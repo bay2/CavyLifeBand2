@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  CavyLifeBand2
+
+  Created by xuemincai on 16/1/5.
+  Copyright © 2016年 xuemincai. All rights reserved.
+*/
+"CFBundleDisplayName" = "CavyBand 2";
+"CFBundleName" = "CavyBand 2";

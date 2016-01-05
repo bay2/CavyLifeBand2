@@ -1,0 +1,25 @@
+language: objective-c
+osx_image: xcode7.2
+script:
+- xctool -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphoneos  -configuration
+  Release OBJROOT=$PWD/build   SYMROOT=$PWD/build CODE_SIGN_IDENTITY="$DEVELOPER_NAME"
+  ONLY_ACTIVE_ARCH=NO
+before_script:
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/$PROFILE_NAME.mobileprovision.enc
+  -d -a -out scripts/profile/$PROFILE_NAME.mobileprovision
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a
+  -out scripts/certs/dist.cer
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
+  -out scripts/certs/dist.p12
+- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/aps.cer.enc -d -a
+  -out scripts/certs/pas.cer
+- ./scripts/add-key.sh
+after_success:
+- ./scripts/sign-and-upload.sh
+after_script:
+- ./scripts/remove-key.sh
+env:
+  global:
+  - APP_NAME="CavyLifeBand2"
+  - 'DEVELOPER_NAME="iPhone Distribution: Hangzhou Cavy Technology Co., Ltd."'
+  - PROFILE_NAME="CavyLifeBand2"
