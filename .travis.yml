@@ -11,8 +11,6 @@ before_script:
   -out scripts/certs/dist.cer
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
   -out scripts/certs/dist.p12
-- openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/aps.cer.enc -d -a
-  -out scripts/certs/pas.cer
 - ./scripts/add-key.sh
 after_success:
 - ./scripts/sign-and-upload.sh
