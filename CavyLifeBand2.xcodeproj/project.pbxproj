@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		917DA96C1C3B8EB700FF675D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917DA96B1C3B8EB700FF675D /* AppDelegate.swift */; };
-		917DA96E1C3B8EB700FF675D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917DA96D1C3B8EB700FF675D /* ViewController.swift */; };
 		917DA9711C3B8EB700FF675D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 917DA96F1C3B8EB700FF675D /* Main.storyboard */; };
 		917DA9731C3B8EB700FF675D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 917DA9721C3B8EB700FF675D /* Assets.xcassets */; };
 		917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 917DA9741C3B8EB700FF675D /* LaunchScreen.storyboard */; };
@@ -16,7 +14,8 @@
 		917DA98C1C3B8EB800FF675D /* CavyLifeBand2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917DA98B1C3B8EB800FF675D /* CavyLifeBand2UITests.swift */; };
 		917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 917DA9A01C3BA12E00FF675D /* InfoPlist.strings */; };
 		91C3ED841C3BB637000A414D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91C3ED861C3BB637000A414D /* Localizable.strings */; };
-		91C3ED8C1C3CB877000A414D /* CavyLifeBand2-Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C3ED8B1C3CB877000A414D /* CavyLifeBand2-Define.swift */; };
+		91C3ED941C3CBF46000A414D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C3ED8F1C3CBF46000A414D /* AppDelegate.swift */; };
+		91C3ED951C3CBF46000A414D /* CavyLifeBand2-Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C3ED901C3CBF46000A414D /* CavyLifeBand2-Define.swift */; };
 		FEEA59B0530DBF292999D652 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A7CFAEA8FAD0237C60B20B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,8 +40,6 @@
 		01513CBBEAFFF398A5D5CA79 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		917DA9681C3B8EB700FF675D /* CavyLifeBand2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CavyLifeBand2.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		917DA96B1C3B8EB700FF675D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = common/AppDelegate.swift; sourceTree = "<group>"; };
-		917DA96D1C3B8EB700FF675D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		917DA9701C3B8EB700FF675D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		917DA9721C3B8EB700FF675D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		917DA9751C3B8EB700FF675D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -61,8 +58,9 @@
 		91C3ED851C3BB637000A414D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		91C3ED871C3BB639000A414D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		91C3ED881C3BB63B000A414D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		91C3ED8A1C3CB458000A414D /* CavyLifeBand2-OC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CavyLifeBand2-OC.h"; path = "common/CavyLifeBand2-OC.h"; sourceTree = "<group>"; };
-		91C3ED8B1C3CB877000A414D /* CavyLifeBand2-Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "CavyLifeBand2-Define.swift"; path = "common/CavyLifeBand2-Define.swift"; sourceTree = "<group>"; };
+		91C3ED8F1C3CBF46000A414D /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		91C3ED901C3CBF46000A414D /* CavyLifeBand2-Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CavyLifeBand2-Define.swift"; sourceTree = "<group>"; };
+		91C3ED911C3CBF46000A414D /* CavyLifeBand2-OC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CavyLifeBand2-OC.h"; sourceTree = "<group>"; };
 		AD7D0502CC392B502E081F26 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,15 +124,15 @@
 		917DA96A1C3B8EB700FF675D /* CavyLifeBand2 */ = {
 			isa = PBXGroup;
 			children = (
+				91C3ED8D1C3CBF46000A414D /* Weather */,
+				91C3ED8E1C3CBF46000A414D /* Common */,
+				91C3ED921C3CBF46000A414D /* Camera */,
+				91C3ED931C3CBF46000A414D /* User */,
 				91C3ED891C3BB685000A414D /* Localization */,
-				917DA96B1C3B8EB700FF675D /* AppDelegate.swift */,
-				917DA96D1C3B8EB700FF675D /* ViewController.swift */,
 				917DA96F1C3B8EB700FF675D /* Main.storyboard */,
 				917DA9721C3B8EB700FF675D /* Assets.xcassets */,
 				917DA9741C3B8EB700FF675D /* LaunchScreen.storyboard */,
 				917DA9771C3B8EB700FF675D /* Info.plist */,
-				91C3ED8A1C3CB458000A414D /* CavyLifeBand2-OC.h */,
-				91C3ED8B1C3CB877000A414D /* CavyLifeBand2-Define.swift */,
 			);
 			path = CavyLifeBand2;
 			sourceTree = "<group>";
@@ -164,6 +162,37 @@
 				917DA9A01C3BA12E00FF675D /* InfoPlist.strings */,
 			);
 			name = Localization;
+			sourceTree = "<group>";
+		};
+		91C3ED8D1C3CBF46000A414D /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
+		91C3ED8E1C3CBF46000A414D /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				91C3ED8F1C3CBF46000A414D /* AppDelegate.swift */,
+				91C3ED901C3CBF46000A414D /* CavyLifeBand2-Define.swift */,
+				91C3ED911C3CBF46000A414D /* CavyLifeBand2-OC.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		91C3ED921C3CBF46000A414D /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		91C3ED931C3CBF46000A414D /* User */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		E460B001B67D19857BA48CA4 /* Frameworks */ = {
@@ -360,9 +389,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91C3ED8C1C3CB877000A414D /* CavyLifeBand2-Define.swift in Sources */,
-				917DA96E1C3B8EB700FF675D /* ViewController.swift in Sources */,
-				917DA96C1C3B8EB700FF675D /* AppDelegate.swift in Sources */,
+				91C3ED951C3CBF46000A414D /* CavyLifeBand2-Define.swift in Sources */,
+				91C3ED941C3CBF46000A414D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
