@@ -20,6 +20,13 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func aa(sender: UIButton) {
+        
+        var aaa: String?
+        
+        print("\(aaa!)")
+        
+    }
 
 }
 
