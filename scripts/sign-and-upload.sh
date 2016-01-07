@@ -25,7 +25,7 @@ if [ ! -z "$PGYER_APP_KEY" ] && [ ! -z "$PGYER_API_KEY" ]; then
     -F file="@$OUTPUTDIR/$APP_NAME.ipa"
 fi
 
-zip -r $OUTPUTDIR/$APP_NAME.dSYM.zip $OUTPUTDIR/$APP_NAME.dSYM/*
+zip -r $OUTPUTDIR/$APP_NAME.app.dSYM.zip $OUTPUTDIR/$APP_NAME.app.dSYM/*
 
 if [ ! -z "$BUGHD_PROJECT_ID" ] && [ ! -z "$BUGHD_API_TOKEN"]; then
   echo ""
