@@ -27,7 +27,7 @@ fi
 
 zip -r $OUTPUTDIR/$APP_NAME.app.dSYM.zip $OUTPUTDIR/$APP_NAME.app.dSYM/*
 
-if [ ! -z "$BUGHD_PROJECT_ID" ] && [ ! -z "$BUGHD_API_TOKEN"]; then
+if [ ! -z "$BUGHD_PROJECT_ID" ] && [ ! -z "$BUGHD_API_TOKEN" ]; then
   echo ""
   echo "***************************"
   echo "* Uploading to BugHD      *"
