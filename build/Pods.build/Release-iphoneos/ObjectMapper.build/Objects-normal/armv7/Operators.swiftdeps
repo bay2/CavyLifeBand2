@@ -1,0 +1,452 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+- "<-"
+provides-nominal:
+provides-member:
+provides-dynamic-lookup:
+depends-top-level:
+- !private "TransformType"
+- !private "fromJSONArrayWithTransform"
+- !private "FromJSON"
+- "Dictionary"
+- !private "MappingType"
+- !private "=="
+- "String"
+- "Array"
+- !private "ToJSON"
+- "Set"
+- !private "AnyObject"
+- "Map"
+- !private "toJSONArrayWithTransform"
+- !private "EnumTransform"
+- !private "Mappable"
+- !private "fromJSONDictionaryWithTransform"
+- !private "??"
+- "<-"
+- !private "RawRepresentable"
+- !private "Hashable"
+- !private "toJSONDictionaryWithTransform"
+depends-member:
+- !private ["PSs9AnyObject", "Object"]
+- !private ["PSs9AnyObject", "basicType"]
+- !private ["PSs9AnyObject", "currentValue"]
+- !private ["PSs9AnyObject", "init"]
+- !private ["PSs9AnyObject", "mappingType"]
+- !private ["PSs9AnyObject", "object"]
+- !private ["PSs9AnyObject", "objectArray"]
+- !private ["PSs9AnyObject", "objectDictionary"]
+- !private ["PSs9AnyObject", "objectDictionaryOfArrays"]
+- !private ["PSs9AnyObject", "objectSet"]
+- !private ["PSs9AnyObject", "optionalBasicType"]
+- !private ["PSs9AnyObject", "optionalObject"]
+- !private ["PSs9AnyObject", "optionalObjectArray"]
+- !private ["PSs9AnyObject", "optionalObjectDictionary"]
+- !private ["PSs9AnyObject", "optionalObjectDictionaryOfArrays"]
+- !private ["PSs9AnyObject", "optionalObjectSet"]
+- !private ["PSs9AnyObject", "optionalTwoDimensionalObjectArray"]
+- !private ["PSs9AnyObject", "twoDimensionalObjectArray"]
+- !private ["PSs9AnyObject", "value"]
+- !private ["Sa", "Element"]
+- !private ["Sa", "Generator"]
+- !private ["Sa", "Index"]
+- !private ["Sa", "_Element"]
+- !private ["Sa", "deinit"]
+- !private ["Sa", "flatMap"]
+- !private ["Sa", "init"]
+- !private ["PSs23ArrayLiteralConvertible", "Element"]
+- !private ["PSs23ArrayLiteralConvertible", "Generator"]
+- !private ["PSs23ArrayLiteralConvertible", "Index"]
+- !private ["PSs23ArrayLiteralConvertible", "_Element"]
+- !private ["PSs23ArrayLiteralConvertible", "flatMap"]
+- !private ["PSs23ArrayLiteralConvertible", "init"]
+- !private ["PSs22BidirectionalIndexType", "Distance"]
+- !private ["PSs22BidirectionalIndexType", "IntegerLiteralType"]
+- !private ["PSs21BitwiseOperationsType", "Distance"]
+- !private ["PSs21BitwiseOperationsType", "IntegerLiteralType"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["PSs25BooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs11BooleanType", "_getBuiltinLogicValue"]
+- !private ["PSs11CVarArgType", "Distance"]
+- !private ["PSs11CVarArgType", "IntegerLiteralType"]
+- !private ["PSs14CollectionType", "Element"]
+- !private ["PSs14CollectionType", "Generator"]
+- !private ["PSs14CollectionType", "Index"]
+- !private ["PSs14CollectionType", "SubSequence"]
+- !private ["PSs14CollectionType", "_Element"]
+- !private ["PSs14CollectionType", "filterMap"]
+- !private ["PSs14CollectionType", "flatMap"]
+- !private ["PSs14CollectionType", "init"]
+- !private ["PSs14CollectionType", "map"]
+- !private ["PSs14CollectionType", "subscript"]
+- !private ["PSs10Comparable", "Distance"]
+- !private ["PSs10Comparable", "IntegerLiteralType"]
+- !private ["PSs10Comparable", "_DisabledRangeIndex"]
+- !private ["PSs28CustomDebugStringConvertible", "Element"]
+- !private ["PSs28CustomDebugStringConvertible", "Generator"]
+- !private ["PSs28CustomDebugStringConvertible", "Index"]
+- ["PSs28CustomDebugStringConvertible", "Some"]
+- !private ["PSs28CustomDebugStringConvertible", "SubSequence"]
+- !private ["PSs28CustomDebugStringConvertible", "_Element"]
+- !private ["PSs28CustomDebugStringConvertible", "filterMap"]
+- !private ["PSs28CustomDebugStringConvertible", "flatMap"]
+- !private ["PSs28CustomDebugStringConvertible", "init"]
+- !private ["PSs28CustomDebugStringConvertible", "map"]
+- !private ["PSs28CustomDebugStringConvertible", "subscript"]
+- !private ["PSs23CustomStringConvertible", "Distance"]
+- !private ["PSs23CustomStringConvertible", "Element"]
+- !private ["PSs23CustomStringConvertible", "Generator"]
+- !private ["PSs23CustomStringConvertible", "Index"]
+- !private ["PSs23CustomStringConvertible", "IntegerLiteralType"]
+- ["PSs23CustomStringConvertible", "Some"]
+- !private ["PSs23CustomStringConvertible", "SubSequence"]
+- !private ["PSs23CustomStringConvertible", "_Element"]
+- !private ["PSs23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs23CustomStringConvertible", "filterMap"]
+- !private ["PSs23CustomStringConvertible", "flatMap"]
+- !private ["PSs23CustomStringConvertible", "init"]
+- !private ["PSs23CustomStringConvertible", "map"]
+- !private ["PSs23CustomStringConvertible", "subscript"]
+- !private ["VSs10Dictionary", "Generator"]
+- !private ["VSs10Dictionary", "Index"]
+- !private ["VSs10Dictionary", "SubSequence"]
+- !private ["VSs10Dictionary", "_Element"]
+- !private ["VSs10Dictionary", "deinit"]
+- !private ["VSs10Dictionary", "filterMap"]
+- !private ["VSs10Dictionary", "map"]
+- !private ["VSs10Dictionary", "subscript"]
+- !private ["VSs19DictionaryGenerator", "Element"]
+- !private ["VSs15DictionaryIndex", "Distance"]
+- !private ["VSs15DictionaryIndex", "_DisabledRangeIndex"]
+- !private ["PSs28DictionaryLiteralConvertible", "Generator"]
+- !private ["PSs28DictionaryLiteralConvertible", "Index"]
+- !private ["PSs28DictionaryLiteralConvertible", "SubSequence"]
+- !private ["PSs28DictionaryLiteralConvertible", "_Element"]
+- !private ["PSs28DictionaryLiteralConvertible", "filterMap"]
+- !private ["PSs28DictionaryLiteralConvertible", "map"]
+- !private ["PSs28DictionaryLiteralConvertible", "subscript"]
+- !private ["C12ObjectMapper13EnumTransform", "Object"]
+- !private ["C12ObjectMapper13EnumTransform", "deinit"]
+- !private ["C12ObjectMapper13EnumTransform", "init"]
+- !private ["PSs9Equatable", "Distance"]
+- !private ["PSs9Equatable", "FromJSON"]
+- !private ["PSs9Equatable", "Generator"]
+- !private ["PSs9Equatable", "IntegerLiteralType"]
+- !private ["PSs9Equatable", "ToJSON"]
+- !private ["PSs9Equatable", "_DisabledRangeIndex"]
+- !private ["PSs9Equatable", "_getBuiltinLogicValue"]
+- !private ["PSs9Equatable", "init"]
+- !private ["PSs16ForwardIndexType", "Distance"]
+- !private ["PSs16ForwardIndexType", "IntegerLiteralType"]
+- !private ["PSs16ForwardIndexType", "_DisabledRangeIndex"]
+- !private ["C12ObjectMapper8FromJSON", "basicType"]
+- !private ["C12ObjectMapper8FromJSON", "object"]
+- !private ["C12ObjectMapper8FromJSON", "objectArray"]
+- !private ["C12ObjectMapper8FromJSON", "objectDictionary"]
+- !private ["C12ObjectMapper8FromJSON", "objectDictionaryOfArrays"]
+- !private ["C12ObjectMapper8FromJSON", "objectSet"]
+- !private ["C12ObjectMapper8FromJSON", "optionalBasicType"]
+- !private ["C12ObjectMapper8FromJSON", "optionalObject"]
+- !private ["C12ObjectMapper8FromJSON", "optionalObjectArray"]
+- !private ["C12ObjectMapper8FromJSON", "optionalObjectDictionary"]
+- !private ["C12ObjectMapper8FromJSON", "optionalObjectDictionaryOfArrays"]
+- !private ["C12ObjectMapper8FromJSON", "optionalObjectSet"]
+- !private ["C12ObjectMapper8FromJSON", "optionalTwoDimensionalObjectArray"]
+- !private ["C12ObjectMapper8FromJSON", "twoDimensionalObjectArray"]
+- !private ["PSs13GeneratorType", "Element"]
+- !private ["PSs8Hashable", "Distance"]
+- !private ["PSs8Hashable", "FromJSON"]
+- !private ["PSs8Hashable", "Generator"]
+- !private ["PSs8Hashable", "IntegerLiteralType"]
+- !private ["PSs8Hashable", "ToJSON"]
+- !private ["PSs8Hashable", "_getBuiltinLogicValue"]
+- !private ["PSs8Hashable", "init"]
+- ["SQ", "Some"]
+- !private ["SQ", "deinit"]
+- !private ["PSs9Indexable", "Element"]
+- !private ["PSs9Indexable", "Generator"]
+- !private ["PSs9Indexable", "Index"]
+- !private ["PSs9Indexable", "SubSequence"]
+- !private ["PSs9Indexable", "_Element"]
+- !private ["PSs9Indexable", "filterMap"]
+- !private ["PSs9Indexable", "flatMap"]
+- !private ["PSs9Indexable", "init"]
+- !private ["PSs9Indexable", "map"]
+- !private ["PSs9Indexable", "subscript"]
+- !private ["VSs17IndexingGenerator", "Element"]
+- !private ["Si", "Distance"]
+- !private ["Si", "IntegerLiteralType"]
+- !private ["PSs21IntegerArithmeticType", "Distance"]
+- !private ["PSs21IntegerArithmeticType", "IntegerLiteralType"]
+- !private ["PSs25IntegerLiteralConvertible", "Distance"]
+- !private ["PSs25IntegerLiteralConvertible", "IntegerLiteralType"]
+- !private ["PSs11IntegerType", "Distance"]
+- !private ["PSs11IntegerType", "IntegerLiteralType"]
+- !private ["C12ObjectMapper3Map", "currentValue"]
+- !private ["C12ObjectMapper3Map", "mappingType"]
+- !private ["C12ObjectMapper3Map", "value"]
+- !private ["O12ObjectMapper11MappingType", "FromJSON"]
+- !private ["O12ObjectMapper11MappingType", "ToJSON"]
+- !private ["O12ObjectMapper11MappingType", "deinit"]
+- !private ["PSs14MirrorPathType", "Distance"]
+- !private ["PSs14MirrorPathType", "IntegerLiteralType"]
+- !private ["PSs21MutableCollectionType", "Element"]
+- !private ["PSs21MutableCollectionType", "Generator"]
+- !private ["PSs21MutableCollectionType", "Index"]
+- !private ["PSs21MutableCollectionType", "_Element"]
+- !private ["PSs21MutableCollectionType", "flatMap"]
+- !private ["PSs21MutableCollectionType", "init"]
+- !private ["PSs16MutableIndexable", "Element"]
+- !private ["PSs16MutableIndexable", "Generator"]
+- !private ["PSs16MutableIndexable", "Index"]
+- !private ["PSs16MutableIndexable", "_Element"]
+- !private ["PSs16MutableIndexable", "flatMap"]
+- !private ["PSs16MutableIndexable", "init"]
+- !private ["PSs16MutableSliceable", "Element"]
+- !private ["PSs16MutableSliceable", "Generator"]
+- !private ["PSs16MutableSliceable", "Index"]
+- !private ["PSs16MutableSliceable", "_Element"]
+- !private ["PSs16MutableSliceable", "flatMap"]
+- !private ["PSs16MutableSliceable", "init"]
+- ["PSs21NilLiteralConvertible", "Some"]
+- ["Sq", "Some"]
+- !private ["Sq", "deinit"]
+- !private ["PSs21RandomAccessIndexType", "Distance"]
+- !private ["PSs21RandomAccessIndexType", "IntegerLiteralType"]
+- !private ["PSs30RangeReplaceableCollectionType", "Element"]
+- !private ["PSs30RangeReplaceableCollectionType", "Generator"]
+- !private ["PSs30RangeReplaceableCollectionType", "Index"]
+- !private ["PSs30RangeReplaceableCollectionType", "_Element"]
+- !private ["PSs30RangeReplaceableCollectionType", "flatMap"]
+- !private ["PSs30RangeReplaceableCollectionType", "init"]
+- !private ["PSs16RawRepresentable", "RawValue"]
+- !private ["PSs12SequenceType", "Element"]
+- !private ["PSs12SequenceType", "Generator"]
+- !private ["PSs12SequenceType", "Index"]
+- !private ["PSs12SequenceType", "SubSequence"]
+- !private ["PSs12SequenceType", "_Element"]
+- !private ["PSs12SequenceType", "filterMap"]
+- !private ["PSs12SequenceType", "flatMap"]
+- !private ["PSs12SequenceType", "init"]
+- !private ["PSs12SequenceType", "map"]
+- !private ["PSs12SequenceType", "subscript"]
+- !private ["VSs3Set", "Generator"]
+- !private ["VSs3Set", "init"]
+- !private ["VSs12SetGenerator", "Element"]
+- !private ["PSs17SignedIntegerType", "Distance"]
+- !private ["PSs17SignedIntegerType", "IntegerLiteralType"]
+- !private ["PSs16SignedNumberType", "Distance"]
+- !private ["PSs16SignedNumberType", "IntegerLiteralType"]
+- !private ["VSs5Slice", "Generator"]
+- !private ["VSs5Slice", "Index"]
+- !private ["VSs5Slice", "SubSequence"]
+- !private ["VSs5Slice", "_Element"]
+- !private ["PSs10Strideable", "Distance"]
+- !private ["PSs10Strideable", "IntegerLiteralType"]
+- !private ["C12ObjectMapper6ToJSON", "basicType"]
+- !private ["C12ObjectMapper6ToJSON", "object"]
+- !private ["C12ObjectMapper6ToJSON", "objectArray"]
+- !private ["C12ObjectMapper6ToJSON", "objectDictionary"]
+- !private ["C12ObjectMapper6ToJSON", "objectDictionaryOfArrays"]
+- !private ["C12ObjectMapper6ToJSON", "objectSet"]
+- !private ["C12ObjectMapper6ToJSON", "optionalBasicType"]
+- !private ["C12ObjectMapper6ToJSON", "optionalObject"]
+- !private ["C12ObjectMapper6ToJSON", "optionalObjectArray"]
+- !private ["C12ObjectMapper6ToJSON", "optionalObjectDictionary"]
+- !private ["C12ObjectMapper6ToJSON", "optionalObjectDictionaryOfArrays"]
+- !private ["C12ObjectMapper6ToJSON", "optionalObjectSet"]
+- !private ["C12ObjectMapper6ToJSON", "optionalTwoDimensionalObjectArray"]
+- !private ["C12ObjectMapper6ToJSON", "twoDimensionalObjectArray"]
+- !private ["P12ObjectMapper13TransformType", "JSON"]
+- ["P12ObjectMapper13TransformType", "Object"]
+- !private ["P12ObjectMapper13TransformType", "init"]
+- !private ["P12ObjectMapper13TransformType", "transformFromJSON"]
+- !private ["P12ObjectMapper13TransformType", "transformToJSON"]
+- !private ["PSs10_ArrayType", "Element"]
+- !private ["PSs10_ArrayType", "Generator"]
+- !private ["PSs10_ArrayType", "Index"]
+- !private ["PSs10_ArrayType", "_Element"]
+- !private ["PSs10_ArrayType", "flatMap"]
+- !private ["PSs10_ArrayType", "init"]
+- !private ["PSs33_BuiltinBooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs33_BuiltinIntegerLiteralConvertible", "Distance"]
+- !private ["PSs33_BuiltinIntegerLiteralConvertible", "IntegerLiteralType"]
+- !private ["PSs24_DestructorSafeContainer", "Element"]
+- !private ["PSs24_DestructorSafeContainer", "Generator"]
+- !private ["PSs24_DestructorSafeContainer", "Index"]
+- !private ["PSs24_DestructorSafeContainer", "_Element"]
+- !private ["PSs24_DestructorSafeContainer", "flatMap"]
+- !private ["PSs24_DestructorSafeContainer", "init"]
+- !private ["PSs14_Incrementable", "Distance"]
+- !private ["PSs14_Incrementable", "IntegerLiteralType"]
+- !private ["PSs14_Incrementable", "_DisabledRangeIndex"]
+- !private ["PSs22_IntegerArithmeticType", "Distance"]
+- !private ["PSs22_IntegerArithmeticType", "IntegerLiteralType"]
+- !private ["PSs12_IntegerType", "Distance"]
+- !private ["PSs12_IntegerType", "IntegerLiteralType"]
+- !private ["PSs21_ObjectiveCBridgeable", "Distance"]
+- !private ["PSs21_ObjectiveCBridgeable", "Element"]
+- !private ["PSs21_ObjectiveCBridgeable", "Generator"]
+- !private ["PSs21_ObjectiveCBridgeable", "Index"]
+- !private ["PSs21_ObjectiveCBridgeable", "IntegerLiteralType"]
+- ["PSs21_ObjectiveCBridgeable", "Some"]
+- !private ["PSs21_ObjectiveCBridgeable", "SubSequence"]
+- !private ["PSs21_ObjectiveCBridgeable", "_Element"]
+- !private ["PSs21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["PSs21_ObjectiveCBridgeable", "filterMap"]
+- !private ["PSs21_ObjectiveCBridgeable", "flatMap"]
+- !private ["PSs21_ObjectiveCBridgeable", "init"]
+- !private ["PSs21_ObjectiveCBridgeable", "map"]
+- !private ["PSs21_ObjectiveCBridgeable", "subscript"]
+- !private ["PSs22_RandomAccessAmbiguity", "Distance"]
+- !private ["PSs22_RandomAccessAmbiguity", "IntegerLiteralType"]
+- !private ["PSs12_Reflectable", "Distance"]
+- !private ["PSs12_Reflectable", "Element"]
+- !private ["PSs12_Reflectable", "Generator"]
+- !private ["PSs12_Reflectable", "Index"]
+- !private ["PSs12_Reflectable", "IntegerLiteralType"]
+- ["PSs12_Reflectable", "Some"]
+- !private ["PSs12_Reflectable", "SubSequence"]
+- !private ["PSs12_Reflectable", "_Element"]
+- !private ["PSs12_Reflectable", "_getBuiltinLogicValue"]
+- !private ["PSs12_Reflectable", "filterMap"]
+- !private ["PSs12_Reflectable", "flatMap"]
+- !private ["PSs12_Reflectable", "init"]
+- !private ["PSs12_Reflectable", "map"]
+- !private ["PSs12_Reflectable", "subscript"]
+- !private ["PSs18_SignedIntegerType", "Distance"]
+- !private ["PSs18_SignedIntegerType", "IntegerLiteralType"]
+- !private ["PSs11_Strideable", "Distance"]
+- !private ["PSs11_Strideable", "IntegerLiteralType"]
+depends-nominal:
+- !private "PSs9AnyObject"
+- !private "Sa"
+- !private "PSs23ArrayLiteralConvertible"
+- !private "PSs22BidirectionalIndexType"
+- !private "PSs21BitwiseOperationsType"
+- !private "Sb"
+- !private "PSs25BooleanLiteralConvertible"
+- !private "PSs11BooleanType"
+- !private "PSs11CVarArgType"
+- !private "PSs14CollectionType"
+- !private "PSs10Comparable"
+- "PSs28CustomDebugStringConvertible"
+- "PSs23CustomStringConvertible"
+- !private "VSs10Dictionary"
+- !private "VSs19DictionaryGenerator"
+- !private "VSs15DictionaryIndex"
+- !private "PSs28DictionaryLiteralConvertible"
+- !private "C12ObjectMapper13EnumTransform"
+- !private "PSs9Equatable"
+- !private "PSs16ForwardIndexType"
+- !private "C12ObjectMapper8FromJSON"
+- !private "PSs13GeneratorType"
+- !private "PSs8Hashable"
+- "SQ"
+- !private "PSs9Indexable"
+- !private "VSs17IndexingGenerator"
+- !private "Si"
+- !private "PSs21IntegerArithmeticType"
+- !private "PSs25IntegerLiteralConvertible"
+- !private "PSs11IntegerType"
+- !private "C12ObjectMapper3Map"
+- !private "O12ObjectMapper11MappingType"
+- !private "PSs14MirrorPathType"
+- !private "PSs21MutableCollectionType"
+- !private "PSs16MutableIndexable"
+- !private "PSs16MutableSliceable"
+- "PSs21NilLiteralConvertible"
+- "Sq"
+- !private "PSs21RandomAccessIndexType"
+- !private "PSs30RangeReplaceableCollectionType"
+- !private "PSs16RawRepresentable"
+- !private "PSs12SequenceType"
+- !private "VSs3Set"
+- !private "VSs12SetGenerator"
+- !private "PSs17SignedIntegerType"
+- !private "PSs16SignedNumberType"
+- !private "VSs5Slice"
+- !private "PSs10Strideable"
+- !private "C12ObjectMapper6ToJSON"
+- "P12ObjectMapper13TransformType"
+- !private "PSs10_ArrayType"
+- !private "PSs33_BuiltinBooleanLiteralConvertible"
+- !private "PSs33_BuiltinIntegerLiteralConvertible"
+- !private "PSs24_DestructorSafeContainer"
+- !private "PSs14_Incrementable"
+- !private "PSs22_IntegerArithmeticType"
+- !private "PSs12_IntegerType"
+- "PSs21_ObjectiveCBridgeable"
+- !private "PSs22_RandomAccessAmbiguity"
+- "PSs12_Reflectable"
+- !private "PSs18_SignedIntegerType"
+- !private "PSs11_Strideable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Swift.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/ObjectMapper/ObjectMapper-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/ObjectMapper.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreImage.swiftmodule"
+interface-hash: "84f4ae7d6a27128740d81ab43e0ba984"

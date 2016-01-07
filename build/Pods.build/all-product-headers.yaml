@@ -1,0 +1,785 @@
+{
+  'version': 0,
+  'case-sensitive': 'false',
+  'roots': [
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/Alamofire.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "Alamofire-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/Alamofire.framework/Headers/Alamofire-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "Alamofire-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/Alamofire/Alamofire-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/Alamofire.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/Alamofire.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/AlamofireImage.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "AlamofireImage-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/AlamofireImage.framework/Headers/AlamofireImage-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "AlamofireImage-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/AlamofireImage/AlamofireImage-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/AlamofireImage.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/AlamofireImage.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/AlamofireObjectMapper.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "AlamofireObjectMapper-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/AlamofireObjectMapper.framework/Headers/AlamofireObjectMapper-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "AlamofireObjectMapper-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/AlamofireObjectMapper/AlamofireObjectMapper-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/AlamofireObjectMapper.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/AlamofireObjectMapper.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/EZSwiftExtensions.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "EZSwiftExtensions-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/EZSwiftExtensions.framework/Headers/EZSwiftExtensions-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "EZSwiftExtensions-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/EZSwiftExtensions/EZSwiftExtensions-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/EZSwiftExtensions.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/EZSwiftExtensions.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "ARCSafe_MemMgmt.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/ARCSafe_MemMgmt.h"
+        },
+        {
+          'type': 'file',
+          'name': "Container+DeepSearch.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Filters/Tools/Container+DeepSearch.h"
+        },
+        {
+          'type': 'file',
+          'name': "Demangle.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/Demangle.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSArchSpecific.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSArchSpecific.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSBacktrace.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSBacktrace.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSBacktrace_Private.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSBacktrace_Private.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCString.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Tools/KSCString.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrash-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrash-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrash-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/KSCrash/KSCrash-umbrella.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrash.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSCrash.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashAdvanced.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSCrashAdvanced.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashC.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSCrashC.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashCallCompletion.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSCrashCallCompletion.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashContext.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSCrashContext.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashDoctor.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSCrashDoctor.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashInstallation+Private.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Installations/KSCrashInstallation+Private.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashInstallation.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Installations/KSCrashInstallation.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashInstallationEmail.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Installations/KSCrashInstallationEmail.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashInstallationQuincyHockey.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Installations/KSCrashInstallationQuincyHockey.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashInstallationStandard.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Installations/KSCrashInstallationStandard.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashInstallationVictory.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Installations/KSCrashInstallationVictory.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReport.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSCrashReport.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportFields.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSCrashReportFields.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportFilter.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Filters/KSCrashReportFilter.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportFilterAlert.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Filters/KSCrashReportFilterAlert.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportFilterAppleFmt.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Filters/KSCrashReportFilterAppleFmt.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportFilterBasic.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Filters/KSCrashReportFilterBasic.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportFilterGZip.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Filters/KSCrashReportFilterGZip.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportFilterJSON.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Filters/KSCrashReportFilterJSON.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportFilterSets.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Filters/KSCrashReportFilterSets.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportSinkConsole.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Sinks/KSCrashReportSinkConsole.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportSinkEMail.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Sinks/KSCrashReportSinkEMail.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportSinkQuincyHockey.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Sinks/KSCrashReportSinkQuincyHockey.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportSinkStandard.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Sinks/KSCrashReportSinkStandard.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportSinkVictory.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Sinks/KSCrashReportSinkVictory.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportStore.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSCrashReportStore.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashReportWriter.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSCrashReportWriter.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashSentry.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashSentry_CPPException.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_CPPException.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashSentry_Deadlock.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_Deadlock.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashSentry_MachException.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_MachException.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashSentry_NSException.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_NSException.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashSentry_Private.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_Private.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashSentry_Signal.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_Signal.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashSentry_User.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Sentry/KSCrashSentry_User.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashState.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSCrashState.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSCrashType.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSCrashType.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSDynamicLinker.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSDynamicLinker.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSFileUtils.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSFileUtils.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSHTTPMultipartPostBody.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Tools/KSHTTPMultipartPostBody.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSHTTPRequestSender.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Tools/KSHTTPRequestSender.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSJSONCodec.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSJSONCodec.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSJSONCodecObjC.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSJSONCodecObjC.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSLogger.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSLogger.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSMach.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSMach.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSMachApple.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSMachApple.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSObjC.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSObjC.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSObjCApple.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSObjCApple.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSReachabilityKSCrash.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Tools/KSReachabilityKSCrash.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSSafeCollections.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSSafeCollections.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSSignalInfo.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSSignalInfo.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSSingleton.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSSingleton.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSString.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSString.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSSysCtl.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSSysCtl.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSSystemInfo.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSSystemInfo.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSSystemInfoC.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/KSSystemInfoC.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSVarArgs.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Filters/Tools/KSVarArgs.h"
+        },
+        {
+          'type': 'file',
+          'name': "KSZombie.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/KSZombie.h"
+        },
+        {
+          'type': 'file',
+          'name': "NSData+GZip.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Filters/Tools/NSData+GZip.h"
+        },
+        {
+          'type': 'file',
+          'name': "NSDictionary+Merge.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/NSDictionary+Merge.h"
+        },
+        {
+          'type': 'file',
+          'name': "NSError+SimpleConstructor.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/NSError+SimpleConstructor.h"
+        },
+        {
+          'type': 'file',
+          'name': "NSMutableData+AppendUTF8.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Reporting/Tools/NSMutableData+AppendUTF8.h"
+        },
+        {
+          'type': 'file',
+          'name': "RFC3339DateTool.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/KSCrash/Source/KSCrash/Recording/Tools/RFC3339DateTool.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/KSCrash.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/Log.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "Log-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/Log.framework/Headers/Log-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "Log-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/Log/Log-umbrella.h"
+        },
+        {
+          'type': 'file',
+          'name': "Log.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Log/Source/Log.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/Log.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/Log.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/MJRefresh.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "MJRefresh-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/MJRefresh.framework/Headers/MJRefresh-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefresh-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/MJRefresh/MJRefresh-umbrella.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefresh.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/MJRefresh.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshAutoFooter.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Base/MJRefreshAutoFooter.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshAutoGifFooter.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Custom/Footer/Auto/MJRefreshAutoGifFooter.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshAutoNormalFooter.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Custom/Footer/Auto/MJRefreshAutoNormalFooter.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshAutoStateFooter.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Custom/Footer/Auto/MJRefreshAutoStateFooter.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshBackFooter.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Base/MJRefreshBackFooter.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshBackGifFooter.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Custom/Footer/Back/MJRefreshBackGifFooter.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshBackNormalFooter.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Custom/Footer/Back/MJRefreshBackNormalFooter.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshBackStateFooter.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Custom/Footer/Back/MJRefreshBackStateFooter.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshComponent.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Base/MJRefreshComponent.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshConst.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/MJRefreshConst.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshFooter.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Base/MJRefreshFooter.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshGifHeader.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Custom/Header/MJRefreshGifHeader.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshHeader.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Base/MJRefreshHeader.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshNormalHeader.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Custom/Header/MJRefreshNormalHeader.h"
+        },
+        {
+          'type': 'file',
+          'name': "MJRefreshStateHeader.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/Custom/Header/MJRefreshStateHeader.h"
+        },
+        {
+          'type': 'file',
+          'name': "UIScrollView+MJExtension.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/UIScrollView+MJExtension.h"
+        },
+        {
+          'type': 'file',
+          'name': "UIScrollView+MJRefresh.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/UIScrollView+MJRefresh.h"
+        },
+        {
+          'type': 'file',
+          'name': "UIView+MJExtension.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/MJRefresh/MJRefresh/UIView+MJExtension.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/MJRefresh.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/MJRefresh.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/ObjectMapper.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "ObjectMapper-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/ObjectMapper.framework/Headers/ObjectMapper-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "ObjectMapper-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/ObjectMapper/ObjectMapper-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/ObjectMapper.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/ObjectMapper.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/Pods.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "Pods-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/Pods.framework/Headers/Pods-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "Pods-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/Pods/Pods-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/Pods.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/Pods.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/SnapKit.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "SnapKit-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/SnapKit.framework/Headers/SnapKit-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "SnapKit-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/SnapKit/SnapKit-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/SnapKit.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/SnapKit.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/SwiftOverlays.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "SwiftOverlays-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/SwiftOverlays.framework/Headers/SwiftOverlays-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "SwiftOverlays-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/SwiftOverlays/SwiftOverlays-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/SwiftOverlays.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/SwiftOverlays.build/module.modulemap"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/XLActionController.framework/Headers",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "XLActionController-Swift.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/XLActionController.framework/Headers/XLActionController-Swift.h"
+        },
+        {
+          'type': 'file',
+          'name': "XLActionController-umbrella.h",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/XLActionController/XLActionController-umbrella.h"
+        }
+      ]
+    },
+    {
+      'type': 'directory',
+      'name': "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/XLActionController.framework/Modules",
+      'contents': [
+        {
+          'type': 'file',
+          'name': "module.modulemap",
+          'external-contents': "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/XLActionController.build/module.modulemap"
+        }
+      ]
+    }
+  ]
+}

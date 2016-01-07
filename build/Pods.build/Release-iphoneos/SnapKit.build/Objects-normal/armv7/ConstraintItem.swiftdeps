@@ -1,0 +1,84 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "ConstraintItem"
+- "=="
+provides-nominal:
+- "C7SnapKit14ConstraintItem"
+provides-member:
+- ["C7SnapKit14ConstraintItem", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "BooleanLiteralType"
+- "View"
+- "AnyObject"
+- "LayoutSupport"
+- "ConstraintItem"
+- !private "!="
+- !private "!=="
+- "ConstraintAttributes"
+- "=="
+- "Bool"
+depends-member:
+- !private ["PSs9AnyObject", "attributes"]
+- !private ["PSs9AnyObject", "deinit"]
+- !private ["PSs9AnyObject", "object"]
+- ["PSs9AnyObject", ""]
+- !private ["PSs23ArrayLiteralConvertible", "RawValue"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["PSs25BooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs11BooleanType", "RawValue"]
+- !private ["PSs11BooleanType", "_getBuiltinLogicValue"]
+- !private ["V7SnapKit20ConstraintAttributes", "RawValue"]
+- !private ["V7SnapKit20ConstraintAttributes", "deinit"]
+- ["C7SnapKit14ConstraintItem", "AnyObject"]
+- ["C7SnapKit14ConstraintItem", "ConstraintAttributes"]
+- ["C7SnapKit14ConstraintItem", "LayoutSupport"]
+- ["C7SnapKit14ConstraintItem", "View"]
+- ["C7SnapKit14ConstraintItem", "attributes"]
+- ["C7SnapKit14ConstraintItem", "deinit"]
+- ["C7SnapKit14ConstraintItem", "init"]
+- ["C7SnapKit14ConstraintItem", "layoutSupport"]
+- ["C7SnapKit14ConstraintItem", "object"]
+- ["C7SnapKit14ConstraintItem", "view"]
+- !private ["PSs23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs9Equatable", "RawValue"]
+- !private ["PSs9Equatable", "_getBuiltinLogicValue"]
+- !private ["PSs8Hashable", "_getBuiltinLogicValue"]
+- !private ["PSs13OptionSetType", "RawValue"]
+- !private ["Sq", "deinit"]
+- !private ["PSs16RawRepresentable", "RawValue"]
+- !private ["PSs14SetAlgebraType", "RawValue"]
+- !private ["PSs33_BuiltinBooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["PSs12_Reflectable", "_getBuiltinLogicValue"]
+depends-nominal:
+- "PSs9AnyObject"
+- !private "PSs23ArrayLiteralConvertible"
+- !private "Sb"
+- !private "PSs25BooleanLiteralConvertible"
+- !private "PSs11BooleanType"
+- !private "V7SnapKit20ConstraintAttributes"
+- "C7SnapKit14ConstraintItem"
+- !private "PSs23CustomStringConvertible"
+- !private "PSs9Equatable"
+- !private "PSs8Hashable"
+- !private "PSs13OptionSetType"
+- !private "Sq"
+- !private "PSs16RawRepresentable"
+- !private "PSs14SetAlgebraType"
+- !private "PSs33_BuiltinBooleanLiteralConvertible"
+- !private "PSs21_ObjectiveCBridgeable"
+- !private "PSs12_Reflectable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Swift.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/SnapKit/SnapKit-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/SnapKit.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreImage.swiftmodule"
+interface-hash: "f457b4f7c0802ce0e601b53016841f9e"

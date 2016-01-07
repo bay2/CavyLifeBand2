@@ -1,0 +1,273 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+provides-nominal:
+provides-member:
+- ["C9Alamofire7Request", ""]
+- ["C9Alamofire7Request", "ObjectMapperSerializer"]
+- ["C9Alamofire7Request", "responseObject"]
+- ["C9Alamofire7Request", "responseObject"]
+- ["C9Alamofire7Request", "responseObject"]
+- ["C9Alamofire7Request", "responseObject"]
+- ["C9Alamofire7Request", "ObjectMapperArraySerializer"]
+- ["C9Alamofire7Request", "responseArray"]
+- ["C9Alamofire7Request", "responseArray"]
+- ["C9Alamofire7Request", "responseArray"]
+- ["C9Alamofire7Request", "responseArray"]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "Mapper"
+- !private "Error"
+- "String"
+- "BooleanLiteralType"
+- "Void"
+- "Request"
+- "Response"
+- !private "AnyObject"
+- "dispatch_queue_t"
+- "NSError"
+- "ResponseSerializer"
+- "StringLiteralType"
+- !private "Mappable"
+- !private "=="
+depends-member:
+- !private ["PSs9AnyObject", "Error"]
+- !private ["PSs9AnyObject", "JSONResponseSerializer"]
+- !private ["PSs9AnyObject", "Mapper"]
+- !private ["PSs9AnyObject", "ObjectMapperArraySerializer"]
+- !private ["PSs9AnyObject", "ObjectMapperSerializer"]
+- !private ["PSs9AnyObject", "Request"]
+- !private ["PSs9AnyObject", "ResponseSerializer"]
+- !private ["PSs9AnyObject", "init"]
+- !private ["PSs9AnyObject", "isEmpty"]
+- !private ["PSs9AnyObject", "map"]
+- !private ["PSs9AnyObject", "mapArray"]
+- !private ["PSs9AnyObject", "response"]
+- !private ["PSs9AnyObject", "responseArray"]
+- !private ["PSs9AnyObject", "responseObject"]
+- !private ["PSs9AnyObject", "valueForKeyPath"]
+- !private ["PSs23ArrayLiteralConvertible", "AllowFragments"]
+- !private ["PSs22BidirectionalIndexType", "DataSerializationFailed"]
+- !private ["PSs21BitwiseOperationsType", "DataSerializationFailed"]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["PSs25BooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs11BooleanType", "_getBuiltinLogicValue"]
+- !private ["PSs11CVarArgType", "DataSerializationFailed"]
+- !private ["PSs11CVarArgType", "isEmpty"]
+- !private ["OV9Alamofire5Error4Code", "DataSerializationFailed"]
+- !private ["PSs10Comparable", "DataSerializationFailed"]
+- !private ["PSs10Comparable", "isEmpty"]
+- !private ["PSs28CustomDebugStringConvertible", "Error"]
+- !private ["PSs28CustomDebugStringConvertible", "Failure"]
+- !private ["PSs28CustomDebugStringConvertible", "JSONResponseSerializer"]
+- !private ["PSs28CustomDebugStringConvertible", "Mapper"]
+- !private ["PSs28CustomDebugStringConvertible", "ObjectMapperArraySerializer"]
+- !private ["PSs28CustomDebugStringConvertible", "ObjectMapperSerializer"]
+- !private ["PSs28CustomDebugStringConvertible", "Request"]
+- !private ["PSs28CustomDebugStringConvertible", "ResponseSerializer"]
+- !private ["PSs28CustomDebugStringConvertible", "Some"]
+- !private ["PSs28CustomDebugStringConvertible", "Success"]
+- !private ["PSs28CustomDebugStringConvertible", "isEmpty"]
+- !private ["PSs28CustomDebugStringConvertible", "response"]
+- !private ["PSs28CustomDebugStringConvertible", "responseArray"]
+- !private ["PSs28CustomDebugStringConvertible", "responseObject"]
+- !private ["PSs28CustomDebugStringConvertible", "value"]
+- !private ["PSs23CustomStringConvertible", "DataSerializationFailed"]
+- !private ["PSs23CustomStringConvertible", "Error"]
+- !private ["PSs23CustomStringConvertible", "Failure"]
+- !private ["PSs23CustomStringConvertible", "JSONResponseSerializer"]
+- !private ["PSs23CustomStringConvertible", "Mapper"]
+- !private ["PSs23CustomStringConvertible", "ObjectMapperArraySerializer"]
+- !private ["PSs23CustomStringConvertible", "ObjectMapperSerializer"]
+- !private ["PSs23CustomStringConvertible", "Request"]
+- !private ["PSs23CustomStringConvertible", "ResponseSerializer"]
+- !private ["PSs23CustomStringConvertible", "Success"]
+- !private ["PSs23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs23CustomStringConvertible", "isEmpty"]
+- !private ["PSs23CustomStringConvertible", "response"]
+- !private ["PSs23CustomStringConvertible", "responseArray"]
+- !private ["PSs23CustomStringConvertible", "responseObject"]
+- !private ["PSs23CustomStringConvertible", "value"]
+- !private ["PSs9Equatable", "AllowFragments"]
+- !private ["PSs9Equatable", "DataSerializationFailed"]
+- !private ["PSs9Equatable", "_getBuiltinLogicValue"]
+- !private ["PSs9Equatable", "isEmpty"]
+- !private ["V9Alamofire5Error", "errorWithCode"]
+- !private ["PSs41ExtendedGraphemeClusterLiteralConvertible", "isEmpty"]
+- !private ["PSs16ForwardIndexType", "DataSerializationFailed"]
+- !private ["PSs8Hashable", "DataSerializationFailed"]
+- !private ["PSs8Hashable", "_getBuiltinLogicValue"]
+- !private ["PSs8Hashable", "isEmpty"]
+- !private ["Si", "DataSerializationFailed"]
+- !private ["PSs21IntegerArithmeticType", "DataSerializationFailed"]
+- !private ["PSs25IntegerLiteralConvertible", "DataSerializationFailed"]
+- !private ["PSs11IntegerType", "DataSerializationFailed"]
+- !private ["C12ObjectMapper6Mapper", "init"]
+- !private ["C12ObjectMapper6Mapper", "map"]
+- !private ["C12ObjectMapper6Mapper", "mapArray"]
+- !private ["PSs14MirrorPathType", "DataSerializationFailed"]
+- !private ["PSs14MirrorPathType", "isEmpty"]
+- !private ["PSo8NSCoding", "isEmpty"]
+- !private ["PSo9NSCopying", "isEmpty"]
+- !private ["VSC20NSJSONReadingOptions", "AllowFragments"]
+- !private ["PSo16NSMutableCopying", "isEmpty"]
+- !private ["CSo8NSObject", "isEmpty"]
+- !private ["PSo16NSObjectProtocol", "isEmpty"]
+- !private ["PSo14NSSecureCoding", "isEmpty"]
+- !private ["CSo8NSString", "isEmpty"]
+- !private ["PSs21NilLiteralConvertible", "Some"]
+- !private ["PSs13OptionSetType", "AllowFragments"]
+- !private ["Sq", "Some"]
+- !private ["Sq", "deinit"]
+- !private ["PSs16OutputStreamType", "isEmpty"]
+- !private ["PSs21RandomAccessIndexType", "DataSerializationFailed"]
+- !private ["PSs16RawRepresentable", "AllowFragments"]
+- !private ["PSs16RawRepresentable", "DataSerializationFailed"]
+- !private ["C9Alamofire7Request", "AnyObject"]
+- !private ["C9Alamofire7Request", "Error"]
+- !private ["C9Alamofire7Request", "JSONResponseSerializer"]
+- !private ["C9Alamofire7Request", "Mappable"]
+- !private ["C9Alamofire7Request", "Mapper"]
+- ["C9Alamofire7Request", "NSError"]
+- ["C9Alamofire7Request", "ObjectMapperArraySerializer"]
+- ["C9Alamofire7Request", "ObjectMapperSerializer"]
+- !private ["C9Alamofire7Request", "Request"]
+- ["C9Alamofire7Request", "Response"]
+- ["C9Alamofire7Request", "ResponseSerializer"]
+- ["C9Alamofire7Request", "String"]
+- ["C9Alamofire7Request", "Void"]
+- ["C9Alamofire7Request", "dispatch_queue_t"]
+- !private ["C9Alamofire7Request", "response"]
+- ["C9Alamofire7Request", "responseArray"]
+- ["C9Alamofire7Request", "responseObject"]
+- !private ["V9Alamofire18ResponseSerializer", "ErrorObject"]
+- !private ["V9Alamofire18ResponseSerializer", "SerializedObject"]
+- !private ["V9Alamofire18ResponseSerializer", "init"]
+- !private ["V9Alamofire18ResponseSerializer", "serializeResponse"]
+- !private ["P9Alamofire22ResponseSerializerType", "ErrorObject"]
+- !private ["P9Alamofire22ResponseSerializerType", "SerializedObject"]
+- !private ["P9Alamofire22ResponseSerializerType", "init"]
+- !private ["P9Alamofire22ResponseSerializerType", "serializeResponse"]
+- !private ["O9Alamofire6Result", "Failure"]
+- !private ["O9Alamofire6Result", "Success"]
+- !private ["O9Alamofire6Result", "value"]
+- !private ["PSs14SetAlgebraType", "AllowFragments"]
+- !private ["PSs17SignedIntegerType", "DataSerializationFailed"]
+- !private ["PSs16SignedNumberType", "DataSerializationFailed"]
+- !private ["PSs10Streamable", "isEmpty"]
+- !private ["PSs10Strideable", "DataSerializationFailed"]
+- !private ["SS", "isEmpty"]
+- !private ["PSs30StringInterpolationConvertible", "isEmpty"]
+- !private ["PSs24StringLiteralConvertible", "isEmpty"]
+- !private ["P9Alamofire20URLStringConvertible", "isEmpty"]
+- !private ["PSs31UnicodeScalarLiteralConvertible", "isEmpty"]
+- !private ["PSs33_BuiltinBooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs49_BuiltinExtendedGraphemeClusterLiteralConvertible", "isEmpty"]
+- !private ["PSs33_BuiltinIntegerLiteralConvertible", "DataSerializationFailed"]
+- !private ["PSs32_BuiltinStringLiteralConvertible", "isEmpty"]
+- !private ["PSs37_BuiltinUTF16StringLiteralConvertible", "isEmpty"]
+- !private ["PSs39_BuiltinUnicodeScalarLiteralConvertible", "isEmpty"]
+- !private ["PSs16_CocoaStringType", "isEmpty"]
+- !private ["PSs14_Incrementable", "DataSerializationFailed"]
+- !private ["PSs22_IntegerArithmeticType", "DataSerializationFailed"]
+- !private ["PSs12_IntegerType", "DataSerializationFailed"]
+- !private ["PSs21_ObjectiveCBridgeable", "DataSerializationFailed"]
+- !private ["PSs21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["PSs21_ObjectiveCBridgeable", "isEmpty"]
+- !private ["VSs26_OptionalNilComparisonType", "deinit"]
+- !private ["PSs22_RandomAccessAmbiguity", "DataSerializationFailed"]
+- !private ["PSs12_Reflectable", "DataSerializationFailed"]
+- !private ["PSs12_Reflectable", "Some"]
+- !private ["PSs12_Reflectable", "_getBuiltinLogicValue"]
+- !private ["PSs12_Reflectable", "isEmpty"]
+- !private ["PSs18_SignedIntegerType", "DataSerializationFailed"]
+- !private ["PSs11_Strideable", "DataSerializationFailed"]
+depends-nominal:
+- !private "PSs9AnyObject"
+- !private "PSs23ArrayLiteralConvertible"
+- !private "PSs22BidirectionalIndexType"
+- !private "PSs21BitwiseOperationsType"
+- !private "Sb"
+- !private "PSs25BooleanLiteralConvertible"
+- !private "PSs11BooleanType"
+- !private "PSs11CVarArgType"
+- !private "OV9Alamofire5Error4Code"
+- !private "PSs10Comparable"
+- !private "PSs28CustomDebugStringConvertible"
+- !private "PSs23CustomStringConvertible"
+- !private "PSs9Equatable"
+- !private "V9Alamofire5Error"
+- !private "PSs41ExtendedGraphemeClusterLiteralConvertible"
+- !private "PSs16ForwardIndexType"
+- !private "PSs8Hashable"
+- !private "Si"
+- !private "PSs21IntegerArithmeticType"
+- !private "PSs25IntegerLiteralConvertible"
+- !private "PSs11IntegerType"
+- !private "C12ObjectMapper6Mapper"
+- !private "PSs14MirrorPathType"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- !private "VSC20NSJSONReadingOptions"
+- !private "PSo16NSMutableCopying"
+- !private "CSo8NSObject"
+- !private "PSo16NSObjectProtocol"
+- !private "PSo14NSSecureCoding"
+- !private "CSo8NSString"
+- !private "PSs21NilLiteralConvertible"
+- !private "PSs13OptionSetType"
+- !private "Sq"
+- !private "PSs16OutputStreamType"
+- !private "PSs21RandomAccessIndexType"
+- !private "PSs16RawRepresentable"
+- "C9Alamofire7Request"
+- !private "V9Alamofire18ResponseSerializer"
+- !private "P9Alamofire22ResponseSerializerType"
+- !private "O9Alamofire6Result"
+- !private "PSs14SetAlgebraType"
+- !private "PSs17SignedIntegerType"
+- !private "PSs16SignedNumberType"
+- !private "PSs10Streamable"
+- !private "PSs10Strideable"
+- !private "SS"
+- !private "PSs30StringInterpolationConvertible"
+- !private "PSs24StringLiteralConvertible"
+- !private "P9Alamofire20URLStringConvertible"
+- !private "PSs31UnicodeScalarLiteralConvertible"
+- !private "PSs33_BuiltinBooleanLiteralConvertible"
+- !private "PSs49_BuiltinExtendedGraphemeClusterLiteralConvertible"
+- !private "PSs33_BuiltinIntegerLiteralConvertible"
+- !private "PSs32_BuiltinStringLiteralConvertible"
+- !private "PSs37_BuiltinUTF16StringLiteralConvertible"
+- !private "PSs39_BuiltinUnicodeScalarLiteralConvertible"
+- !private "PSs16_CocoaStringType"
+- !private "PSs14_Incrementable"
+- !private "PSs22_IntegerArithmeticType"
+- !private "PSs12_IntegerType"
+- !private "PSs21_ObjectiveCBridgeable"
+- !private "VSs26_OptionalNilComparisonType"
+- !private "PSs22_RandomAccessAmbiguity"
+- !private "PSs12_Reflectable"
+- !private "PSs18_SignedIntegerType"
+- !private "PSs11_Strideable"
+depends-dynamic-lookup:
+- !private "valueForKeyPath"
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Swift.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/AlamofireObjectMapper/AlamofireObjectMapper-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/AlamofireObjectMapper.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreImage.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/Alamofire.framework/Modules/Alamofire.swiftmodule/arm.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/Alamofire.framework/Headers/Alamofire-Swift.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/Alamofire/Alamofire-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/Alamofire.build/module.modulemap"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/ObjectMapper.framework/Modules/ObjectMapper.swiftmodule/arm.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/ObjectMapper.framework/Headers/ObjectMapper-Swift.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/ObjectMapper/ObjectMapper-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/ObjectMapper.build/module.modulemap"
+interface-hash: "d16c33b4895eedaf8ab37384e9e0955e"

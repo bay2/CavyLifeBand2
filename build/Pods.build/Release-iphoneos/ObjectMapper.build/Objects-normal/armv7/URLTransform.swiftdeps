@@ -1,0 +1,95 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "URLTransform"
+provides-nominal:
+- "C12ObjectMapper12URLTransform"
+provides-member:
+- ["C12ObjectMapper12URLTransform", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "String"
+- "TransformType"
+- "NSURL"
+- "AnyObject"
+- "URLTransform"
+depends-member:
+- !private ["PSs9AnyObject", "NSURL"]
+- !private ["PSs9AnyObject", "absoluteString"]
+- !private ["PSs9AnyObject", "init"]
+- ["PSs9AnyObject", "transformFromJSON"]
+- ["PSs9AnyObject", "transformToJSON"]
+- ["PSs9AnyObject", ""]
+- !private ["PSs11CVarArgType", "absoluteString"]
+- !private ["PSs11CVarArgType", "init"]
+- ["PSs28CustomDebugStringConvertible", "Some"]
+- !private ["PSs23CustomStringConvertible", "absoluteString"]
+- !private ["PSs23CustomStringConvertible", "init"]
+- !private ["PSs9Equatable", "absoluteString"]
+- !private ["PSs9Equatable", "init"]
+- !private ["PSs8Hashable", "absoluteString"]
+- !private ["PSs8Hashable", "init"]
+- !private ["PSo8NSCoding", "absoluteString"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo9NSCopying", "absoluteString"]
+- !private ["PSo9NSCopying", "init"]
+- !private ["CSo8NSObject", "absoluteString"]
+- !private ["CSo8NSObject", "init"]
+- !private ["PSo16NSObjectProtocol", "absoluteString"]
+- !private ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo14NSSecureCoding", "absoluteString"]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["CSo5NSURL", "absoluteString"]
+- !private ["CSo5NSURL", "init"]
+- ["PSs21NilLiteralConvertible", "Some"]
+- ["Sq", "Some"]
+- !private ["Sq", "deinit"]
+- !private ["P12ObjectMapper13TransformType", "NSURL"]
+- ["P12ObjectMapper13TransformType", "transformFromJSON"]
+- ["P12ObjectMapper13TransformType", "transformToJSON"]
+- ["P12ObjectMapper13TransformType", ""]
+- ["C12ObjectMapper12URLTransform", "AnyObject"]
+- ["C12ObjectMapper12URLTransform", "JSON"]
+- ["C12ObjectMapper12URLTransform", "NSURL"]
+- ["C12ObjectMapper12URLTransform", "Object"]
+- ["C12ObjectMapper12URLTransform", "String"]
+- ["C12ObjectMapper12URLTransform", "deinit"]
+- ["C12ObjectMapper12URLTransform", "init"]
+- ["C12ObjectMapper12URLTransform", "transformFromJSON"]
+- ["C12ObjectMapper12URLTransform", "transformToJSON"]
+- !private ["PSs32_FileReferenceLiteralConvertible", "absoluteString"]
+- !private ["PSs32_FileReferenceLiteralConvertible", "init"]
+- ["PSs12_Reflectable", "Some"]
+- !private ["PSs12_Reflectable", "absoluteString"]
+- !private ["PSs12_Reflectable", "init"]
+depends-nominal:
+- "PSs9AnyObject"
+- !private "PSs11CVarArgType"
+- "PSs28CustomDebugStringConvertible"
+- !private "PSs23CustomStringConvertible"
+- !private "PSs9Equatable"
+- !private "PSs8Hashable"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- !private "CSo8NSObject"
+- !private "PSo16NSObjectProtocol"
+- !private "PSo14NSSecureCoding"
+- !private "CSo5NSURL"
+- "PSs21NilLiteralConvertible"
+- "Sq"
+- "P12ObjectMapper13TransformType"
+- "C12ObjectMapper12URLTransform"
+- !private "PSs32_FileReferenceLiteralConvertible"
+- "PSs12_Reflectable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Swift.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/ObjectMapper/ObjectMapper-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/ObjectMapper.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreImage.swiftmodule"
+interface-hash: "6bb6699970362b11f44d6a8b308f4046"

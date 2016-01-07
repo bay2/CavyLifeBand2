@@ -1,0 +1,159 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "LayoutConstraint"
+- "=="
+provides-nominal:
+- "C7SnapKit16LayoutConstraint"
+provides-member:
+- ["C7SnapKit16LayoutConstraint", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "BooleanLiteralType"
+- "NSLayoutConstraint"
+- !private "!=="
+- "LayoutConstraint"
+- "Constraint"
+- "Bool"
+- !private "!="
+- "=="
+depends-member:
+- !private ["PSs9AnyObject", "firstAttribute"]
+- !private ["PSs9AnyObject", "firstItem"]
+- ["PSs9AnyObject", "init"]
+- !private ["PSs9AnyObject", "multiplier"]
+- !private ["PSs9AnyObject", "priority"]
+- !private ["PSs9AnyObject", "relation"]
+- !private ["PSs9AnyObject", "secondAttribute"]
+- !private ["PSs9AnyObject", "secondItem"]
+- ["PSs9AnyObject", "snp_constraint"]
+- ["PSs9AnyObject", ""]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["PSs25BooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs11BooleanType", "_getBuiltinLogicValue"]
+- !private ["V12CoreGraphics7CGFloat", "deinit"]
+- !private ["PSs11CVarArgType", "firstAttribute"]
+- !private ["PSs11CVarArgType", "firstItem"]
+- ["PSs11CVarArgType", "init"]
+- !private ["PSs11CVarArgType", "multiplier"]
+- !private ["PSs11CVarArgType", "priority"]
+- !private ["PSs11CVarArgType", "relation"]
+- !private ["PSs11CVarArgType", "secondAttribute"]
+- !private ["PSs11CVarArgType", "secondItem"]
+- ["PSs11CVarArgType", "snp_constraint"]
+- ["PSs11CVarArgType", ""]
+- !private ["PSs23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs23CustomStringConvertible", "firstAttribute"]
+- !private ["PSs23CustomStringConvertible", "firstItem"]
+- ["PSs23CustomStringConvertible", "init"]
+- !private ["PSs23CustomStringConvertible", "multiplier"]
+- !private ["PSs23CustomStringConvertible", "priority"]
+- !private ["PSs23CustomStringConvertible", "relation"]
+- !private ["PSs23CustomStringConvertible", "secondAttribute"]
+- !private ["PSs23CustomStringConvertible", "secondItem"]
+- ["PSs23CustomStringConvertible", "snp_constraint"]
+- ["PSs23CustomStringConvertible", ""]
+- !private ["PSs9Equatable", "RawValue"]
+- !private ["PSs9Equatable", "_getBuiltinLogicValue"]
+- !private ["PSs9Equatable", "firstAttribute"]
+- !private ["PSs9Equatable", "firstItem"]
+- ["PSs9Equatable", "init"]
+- !private ["PSs9Equatable", "multiplier"]
+- !private ["PSs9Equatable", "priority"]
+- !private ["PSs9Equatable", "relation"]
+- !private ["PSs9Equatable", "secondAttribute"]
+- !private ["PSs9Equatable", "secondItem"]
+- ["PSs9Equatable", "snp_constraint"]
+- ["PSs9Equatable", ""]
+- !private ["PSs8Hashable", "RawValue"]
+- !private ["PSs8Hashable", "_getBuiltinLogicValue"]
+- !private ["PSs8Hashable", "firstAttribute"]
+- !private ["PSs8Hashable", "firstItem"]
+- ["PSs8Hashable", "init"]
+- !private ["PSs8Hashable", "multiplier"]
+- !private ["PSs8Hashable", "priority"]
+- !private ["PSs8Hashable", "relation"]
+- !private ["PSs8Hashable", "secondAttribute"]
+- !private ["PSs8Hashable", "secondItem"]
+- ["PSs8Hashable", "snp_constraint"]
+- ["PSs8Hashable", ""]
+- ["C7SnapKit16LayoutConstraint", "Constraint"]
+- ["C7SnapKit16LayoutConstraint", "deinit"]
+- !private ["C7SnapKit16LayoutConstraint", "firstAttribute"]
+- !private ["C7SnapKit16LayoutConstraint", "firstItem"]
+- ["C7SnapKit16LayoutConstraint", "init"]
+- !private ["C7SnapKit16LayoutConstraint", "multiplier"]
+- !private ["C7SnapKit16LayoutConstraint", "priority"]
+- !private ["C7SnapKit16LayoutConstraint", "relation"]
+- !private ["C7SnapKit16LayoutConstraint", "secondAttribute"]
+- !private ["C7SnapKit16LayoutConstraint", "secondItem"]
+- ["C7SnapKit16LayoutConstraint", "snp_constraint"]
+- !private ["OSC17NSLayoutAttribute", "RawValue"]
+- ["CSo18NSLayoutConstraint", "Constraint"]
+- !private ["CSo18NSLayoutConstraint", "firstAttribute"]
+- !private ["CSo18NSLayoutConstraint", "firstItem"]
+- ["CSo18NSLayoutConstraint", "init"]
+- !private ["CSo18NSLayoutConstraint", "multiplier"]
+- !private ["CSo18NSLayoutConstraint", "priority"]
+- !private ["CSo18NSLayoutConstraint", "relation"]
+- !private ["CSo18NSLayoutConstraint", "secondAttribute"]
+- !private ["CSo18NSLayoutConstraint", "secondItem"]
+- ["CSo18NSLayoutConstraint", "snp_constraint"]
+- ["CSo18NSLayoutConstraint", ""]
+- !private ["OSC16NSLayoutRelation", "RawValue"]
+- ["CSo8NSObject", "Constraint"]
+- !private ["CSo8NSObject", "firstAttribute"]
+- !private ["CSo8NSObject", "firstItem"]
+- ["CSo8NSObject", "init"]
+- !private ["CSo8NSObject", "multiplier"]
+- !private ["CSo8NSObject", "priority"]
+- !private ["CSo8NSObject", "relation"]
+- !private ["CSo8NSObject", "secondAttribute"]
+- !private ["CSo8NSObject", "secondItem"]
+- ["CSo8NSObject", "snp_constraint"]
+- !private ["PSo16NSObjectProtocol", "firstAttribute"]
+- !private ["PSo16NSObjectProtocol", "firstItem"]
+- ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "multiplier"]
+- !private ["PSo16NSObjectProtocol", "priority"]
+- !private ["PSo16NSObjectProtocol", "relation"]
+- !private ["PSo16NSObjectProtocol", "secondAttribute"]
+- !private ["PSo16NSObjectProtocol", "secondItem"]
+- ["PSo16NSObjectProtocol", "snp_constraint"]
+- ["PSo16NSObjectProtocol", ""]
+- !private ["PSs16RawRepresentable", "RawValue"]
+- !private ["PSs33_BuiltinBooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["PSs21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- !private ["PSs12_Reflectable", "_getBuiltinLogicValue"]
+depends-nominal:
+- "PSs9AnyObject"
+- !private "Sb"
+- !private "PSs25BooleanLiteralConvertible"
+- !private "PSs11BooleanType"
+- !private "V12CoreGraphics7CGFloat"
+- "PSs11CVarArgType"
+- "PSs23CustomStringConvertible"
+- "PSs9Equatable"
+- "PSs8Hashable"
+- "C7SnapKit16LayoutConstraint"
+- !private "OSC17NSLayoutAttribute"
+- "CSo18NSLayoutConstraint"
+- !private "OSC16NSLayoutRelation"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- !private "PSs16RawRepresentable"
+- !private "PSs33_BuiltinBooleanLiteralConvertible"
+- !private "PSs21_ObjectiveCBridgeable"
+- !private "PSs12_Reflectable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Swift.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/SnapKit/SnapKit-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/SnapKit.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreImage.swiftmodule"
+interface-hash: "e6f92f61286f521c027944859944613f"

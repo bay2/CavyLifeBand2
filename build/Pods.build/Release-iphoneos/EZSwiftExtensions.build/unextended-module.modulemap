@@ -1,0 +1,10 @@
+framework module EZSwiftExtensions {
+  umbrella header "EZSwiftExtensions-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module EZSwiftExtensions.__Swift {
+    exclude header "EZSwiftExtensions-Swift.h"
+}

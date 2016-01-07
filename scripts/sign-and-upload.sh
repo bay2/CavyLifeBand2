@@ -24,3 +24,16 @@ if [ ! -z "$PGYER_APP_KEY" ] && [ ! -z "$PGYER_API_KEY" ]; then
     -F _api_key="$PGYER_API_KEY" \
     -F file="@$OUTPUTDIR/$APP_NAME.ipa"
 fi
+
+zip -r $APP_NAME.dSYM.zip $APP_NAME.dSYM/*
+
+if [ ! -z "$BUGHD_PROJECT_ID" ] && [ ! -z "$BUGHD_API_TOKEN"]; then
+  echo ""
+  echo "***************************"
+  echo "* Uploading to BugHD      *"
+  echo "***************************"
+  fir p $PWD/build/Release-iphoneos/$APP_NAME.ipa \
+  -m  $PWD/build/Release-iphoneos/$APP_NAME.dSYM.zip \
+  -P $BUGHD_PROJECT_ID \
+  -T $BUGHD_API_TOKEN
+fi

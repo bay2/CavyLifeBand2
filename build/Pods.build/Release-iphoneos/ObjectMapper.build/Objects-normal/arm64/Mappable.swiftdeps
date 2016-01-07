@@ -1,0 +1,163 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "Mappable"
+- "MappableCluster"
+provides-nominal:
+- "P12ObjectMapper8Mappable"
+- "P12ObjectMapper15MappableCluster"
+provides-member:
+- ["P12ObjectMapper8Mappable", ""]
+- ["P12ObjectMapper15MappableCluster", ""]
+- ["Sa", ""]
+- ["VSs3Set", ""]
+- ["P12ObjectMapper8Mappable", "init"]
+- ["P12ObjectMapper8Mappable", "init"]
+- ["P12ObjectMapper8Mappable", "toJSON"]
+- ["P12ObjectMapper8Mappable", "toJSONString"]
+- ["Sa", "init"]
+- ["Sa", "init"]
+- ["Sa", "toJSON"]
+- ["Sa", "toJSONString"]
+- ["VSs3Set", "init"]
+- ["VSs3Set", "init"]
+- ["VSs3Set", "toJSON"]
+- ["VSs3Set", "toJSONString"]
+provides-dynamic-lookup:
+depends-top-level:
+- "Array"
+- "Map"
+- !private "Mapper"
+- "MappableCluster"
+- "Bool"
+- "AnyObject"
+- "Mappable"
+- "Set"
+- "String"
+- "BooleanLiteralType"
+depends-member:
+- !private ["PSs9AnyObject", "init"]
+- !private ["PSs9AnyObject", "map"]
+- !private ["PSs9AnyObject", "mapArray"]
+- !private ["PSs9AnyObject", "mapSet"]
+- !private ["PSs9AnyObject", "toJSON"]
+- !private ["PSs9AnyObject", "toJSONArray"]
+- !private ["PSs9AnyObject", "toJSONSet"]
+- !private ["PSs9AnyObject", "toJSONString"]
+- ["Sa", "AnyObject"]
+- ["Sa", "Bool"]
+- !private ["Sa", "Element"]
+- ["Sa", "Mappable"]
+- !private ["Sa", "Mapper"]
+- ["Sa", "String"]
+- !private ["Sa", "deinit"]
+- ["Sa", "init"]
+- ["Sa", "toJSON"]
+- ["Sa", "toJSONString"]
+- ["PSs23ArrayLiteralConvertible", "Mappable"]
+- !private ["PSs23ArrayLiteralConvertible", "Mapper"]
+- ["PSs14CollectionType", "Mappable"]
+- !private ["PSs14CollectionType", "Mapper"]
+- ["PSs28CustomDebugStringConvertible", "Mappable"]
+- !private ["PSs28CustomDebugStringConvertible", "Mapper"]
+- ["PSs28CustomDebugStringConvertible", "Some"]
+- ["PSs23CustomStringConvertible", "Mappable"]
+- !private ["PSs23CustomStringConvertible", "Mapper"]
+- ["PSs9Equatable", "Mappable"]
+- !private ["PSs9Equatable", "Mapper"]
+- ["PSs8Hashable", "Mappable"]
+- !private ["PSs8Hashable", "Mapper"]
+- ["PSs9Indexable", "Mappable"]
+- !private ["PSs9Indexable", "Mapper"]
+- ["P12ObjectMapper8Mappable", "AnyObject"]
+- ["P12ObjectMapper8Mappable", "Bool"]
+- ["P12ObjectMapper8Mappable", "Map"]
+- ["P12ObjectMapper8Mappable", "Mappable"]
+- !private ["P12ObjectMapper8Mappable", "Mapper"]
+- !private ["P12ObjectMapper8Mappable", "Self"]
+- ["P12ObjectMapper8Mappable", "String"]
+- ["P12ObjectMapper8Mappable", "init"]
+- ["P12ObjectMapper8Mappable", "mapping"]
+- ["P12ObjectMapper8Mappable", "toJSON"]
+- ["P12ObjectMapper8Mappable", "toJSONString"]
+- ["P12ObjectMapper8Mappable", ""]
+- ["P12ObjectMapper15MappableCluster", "Map"]
+- ["P12ObjectMapper15MappableCluster", "Mappable"]
+- ["P12ObjectMapper15MappableCluster", "objectForMapping"]
+- !private ["C12ObjectMapper6Mapper", "init"]
+- !private ["C12ObjectMapper6Mapper", "map"]
+- !private ["C12ObjectMapper6Mapper", "mapArray"]
+- !private ["C12ObjectMapper6Mapper", "mapSet"]
+- !private ["C12ObjectMapper6Mapper", "toJSON"]
+- !private ["C12ObjectMapper6Mapper", "toJSONArray"]
+- !private ["C12ObjectMapper6Mapper", "toJSONSet"]
+- !private ["C12ObjectMapper6Mapper", "toJSONString"]
+- ["PSs21MutableCollectionType", "Mappable"]
+- !private ["PSs21MutableCollectionType", "Mapper"]
+- ["PSs16MutableIndexable", "Mappable"]
+- !private ["PSs16MutableIndexable", "Mapper"]
+- ["PSs16MutableSliceable", "Mappable"]
+- !private ["PSs16MutableSliceable", "Mapper"]
+- ["PSs21NilLiteralConvertible", "Some"]
+- ["Sq", "Some"]
+- ["PSs30RangeReplaceableCollectionType", "Mappable"]
+- !private ["PSs30RangeReplaceableCollectionType", "Mapper"]
+- ["PSs12SequenceType", "Mappable"]
+- !private ["PSs12SequenceType", "Mapper"]
+- ["VSs3Set", "AnyObject"]
+- ["VSs3Set", "Bool"]
+- !private ["VSs3Set", "Element"]
+- ["VSs3Set", "Mappable"]
+- !private ["VSs3Set", "Mapper"]
+- !private ["VSs3Set", "Set"]
+- ["VSs3Set", "String"]
+- !private ["VSs3Set", "deinit"]
+- ["VSs3Set", "init"]
+- ["VSs3Set", "toJSON"]
+- ["VSs3Set", "toJSONString"]
+- ["PSs10_ArrayType", "Mappable"]
+- !private ["PSs10_ArrayType", "Mapper"]
+- ["PSs24_DestructorSafeContainer", "Mappable"]
+- !private ["PSs24_DestructorSafeContainer", "Mapper"]
+- ["PSs21_ObjectiveCBridgeable", "Mappable"]
+- !private ["PSs21_ObjectiveCBridgeable", "Mapper"]
+- ["PSs12_Reflectable", "Mappable"]
+- !private ["PSs12_Reflectable", "Mapper"]
+- ["PSs12_Reflectable", "Some"]
+depends-nominal:
+- !private "PSs9AnyObject"
+- "Sa"
+- "PSs23ArrayLiteralConvertible"
+- "PSs14CollectionType"
+- "PSs28CustomDebugStringConvertible"
+- "PSs23CustomStringConvertible"
+- "PSs9Equatable"
+- "PSs8Hashable"
+- "PSs9Indexable"
+- "P12ObjectMapper8Mappable"
+- "P12ObjectMapper15MappableCluster"
+- !private "C12ObjectMapper6Mapper"
+- "PSs21MutableCollectionType"
+- "PSs16MutableIndexable"
+- "PSs16MutableSliceable"
+- "PSs21NilLiteralConvertible"
+- "Sq"
+- "PSs30RangeReplaceableCollectionType"
+- "PSs12SequenceType"
+- "VSs3Set"
+- "PSs10_ArrayType"
+- "PSs24_DestructorSafeContainer"
+- "PSs21_ObjectiveCBridgeable"
+- "PSs12_Reflectable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Swift.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/ObjectMapper/ObjectMapper-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/ObjectMapper.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreImage.swiftmodule"
+interface-hash: "1be710ad2b0d73cf152ecfc4229c642f"

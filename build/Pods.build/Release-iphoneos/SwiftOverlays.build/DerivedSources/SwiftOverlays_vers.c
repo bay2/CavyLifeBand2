@@ -1,0 +1,1 @@
+ const unsigned char SwiftOverlaysVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:SwiftOverlays  PROJECT:Pods-1" "\n"; const double SwiftOverlaysVersionNumber __attribute__ ((used)) = (double)1.;

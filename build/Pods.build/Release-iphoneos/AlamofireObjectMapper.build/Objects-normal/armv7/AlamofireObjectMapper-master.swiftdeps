@@ -1,0 +1,5 @@
+version: "Apple Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81)"
+options: "61d02290675f20a4fb349ffd64779e69"
+build_time: [505383900, 802199000]
+inputs:
+  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/AlamofireObjectMapper/AlamofireObjectMapper/AlamofireObjectMapper.swift": [505290108, 0]

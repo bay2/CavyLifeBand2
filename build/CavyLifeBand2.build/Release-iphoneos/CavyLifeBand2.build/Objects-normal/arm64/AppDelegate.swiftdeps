@@ -1,0 +1,367 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "AppDelegate"
+provides-nominal:
+- "C13CavyLifeBand211AppDelegate"
+provides-member:
+- ["C13CavyLifeBand211AppDelegate", ""]
+provides-dynamic-lookup:
+- "applicationWillTerminate"
+- "applicationDidEnterBackground"
+- "application"
+- "applicationWillEnterForeground"
+- "applicationWillResignActive"
+- "window"
+- "applicationDidBecomeActive"
+depends-top-level:
+- "UIResponder"
+- !private "KSCrashInstallationStandard"
+- "NSObject"
+- "UIApplication"
+- "AnyObject"
+- "Bool"
+- "AppDelegate"
+- !private "NSURL"
+- !private "bugHDKey"
+- "UIApplicationDelegate"
+- !private "BooleanLiteralType"
+- "UIWindow"
+depends-member:
+- !private ["PSs9AnyObject", "KSCrashInstallationStandard"]
+- !private ["PSs9AnyObject", "NSURL"]
+- ["PSs9AnyObject", "application"]
+- ["PSs9AnyObject", "applicationDidBecomeActive"]
+- ["PSs9AnyObject", "applicationDidEnterBackground"]
+- ["PSs9AnyObject", "applicationDidFinishLaunching"]
+- ["PSs9AnyObject", "applicationDidReceiveMemoryWarning"]
+- ["PSs9AnyObject", "applicationProtectedDataDidBecomeAvailable"]
+- ["PSs9AnyObject", "applicationProtectedDataWillBecomeUnavailable"]
+- ["PSs9AnyObject", "applicationShouldRequestHealthAuthorization"]
+- ["PSs9AnyObject", "applicationSignificantTimeChange"]
+- ["PSs9AnyObject", "applicationWillEnterForeground"]
+- ["PSs9AnyObject", "applicationWillResignActive"]
+- ["PSs9AnyObject", "applicationWillTerminate"]
+- !private ["PSs9AnyObject", "bugHDKey"]
+- ["PSs9AnyObject", "init"]
+- !private ["PSs9AnyObject", "install"]
+- !private ["PSs9AnyObject", "sendAllReportsWithCompletion"]
+- !private ["PSs9AnyObject", "sharedInstance"]
+- !private ["PSs9AnyObject", "url"]
+- ["PSs9AnyObject", "window"]
+- ["PSs9AnyObject", ""]
+- ["C13CavyLifeBand211AppDelegate", "AnyObject"]
+- ["C13CavyLifeBand211AppDelegate", "Bool"]
+- !private ["C13CavyLifeBand211AppDelegate", "KSCrashInstallationStandard"]
+- ["C13CavyLifeBand211AppDelegate", "NSObject"]
+- !private ["C13CavyLifeBand211AppDelegate", "NSURL"]
+- ["C13CavyLifeBand211AppDelegate", "UIApplication"]
+- ["C13CavyLifeBand211AppDelegate", "UIWindow"]
+- ["C13CavyLifeBand211AppDelegate", "application"]
+- ["C13CavyLifeBand211AppDelegate", "applicationDidBecomeActive"]
+- ["C13CavyLifeBand211AppDelegate", "applicationDidEnterBackground"]
+- ["C13CavyLifeBand211AppDelegate", "applicationDidFinishLaunching"]
+- ["C13CavyLifeBand211AppDelegate", "applicationDidReceiveMemoryWarning"]
+- ["C13CavyLifeBand211AppDelegate", "applicationProtectedDataDidBecomeAvailable"]
+- ["C13CavyLifeBand211AppDelegate", "applicationProtectedDataWillBecomeUnavailable"]
+- ["C13CavyLifeBand211AppDelegate", "applicationShouldRequestHealthAuthorization"]
+- ["C13CavyLifeBand211AppDelegate", "applicationSignificantTimeChange"]
+- ["C13CavyLifeBand211AppDelegate", "applicationWillEnterForeground"]
+- ["C13CavyLifeBand211AppDelegate", "applicationWillResignActive"]
+- ["C13CavyLifeBand211AppDelegate", "applicationWillTerminate"]
+- !private ["C13CavyLifeBand211AppDelegate", "bugHDKey"]
+- ["C13CavyLifeBand211AppDelegate", "deinit"]
+- ["C13CavyLifeBand211AppDelegate", "init"]
+- ["C13CavyLifeBand211AppDelegate", "window"]
+- !private ["PSs11CVarArgType", "KSCrashInstallationStandard"]
+- !private ["PSs11CVarArgType", "NSURL"]
+- ["PSs11CVarArgType", "application"]
+- ["PSs11CVarArgType", "applicationDidBecomeActive"]
+- ["PSs11CVarArgType", "applicationDidEnterBackground"]
+- ["PSs11CVarArgType", "applicationDidFinishLaunching"]
+- ["PSs11CVarArgType", "applicationDidReceiveMemoryWarning"]
+- ["PSs11CVarArgType", "applicationProtectedDataDidBecomeAvailable"]
+- ["PSs11CVarArgType", "applicationProtectedDataWillBecomeUnavailable"]
+- ["PSs11CVarArgType", "applicationShouldRequestHealthAuthorization"]
+- ["PSs11CVarArgType", "applicationSignificantTimeChange"]
+- ["PSs11CVarArgType", "applicationWillEnterForeground"]
+- ["PSs11CVarArgType", "applicationWillResignActive"]
+- ["PSs11CVarArgType", "applicationWillTerminate"]
+- !private ["PSs11CVarArgType", "bugHDKey"]
+- ["PSs11CVarArgType", "init"]
+- !private ["PSs11CVarArgType", "install"]
+- !private ["PSs11CVarArgType", "sendAllReportsWithCompletion"]
+- !private ["PSs11CVarArgType", "sharedInstance"]
+- !private ["PSs11CVarArgType", "url"]
+- ["PSs11CVarArgType", "window"]
+- ["PSs11CVarArgType", ""]
+- !private ["PSs23CustomStringConvertible", "KSCrashInstallationStandard"]
+- !private ["PSs23CustomStringConvertible", "NSURL"]
+- ["PSs23CustomStringConvertible", "application"]
+- ["PSs23CustomStringConvertible", "applicationDidBecomeActive"]
+- ["PSs23CustomStringConvertible", "applicationDidEnterBackground"]
+- ["PSs23CustomStringConvertible", "applicationDidFinishLaunching"]
+- ["PSs23CustomStringConvertible", "applicationDidReceiveMemoryWarning"]
+- ["PSs23CustomStringConvertible", "applicationProtectedDataDidBecomeAvailable"]
+- ["PSs23CustomStringConvertible", "applicationProtectedDataWillBecomeUnavailable"]
+- ["PSs23CustomStringConvertible", "applicationShouldRequestHealthAuthorization"]
+- ["PSs23CustomStringConvertible", "applicationSignificantTimeChange"]
+- ["PSs23CustomStringConvertible", "applicationWillEnterForeground"]
+- ["PSs23CustomStringConvertible", "applicationWillResignActive"]
+- ["PSs23CustomStringConvertible", "applicationWillTerminate"]
+- !private ["PSs23CustomStringConvertible", "bugHDKey"]
+- ["PSs23CustomStringConvertible", "init"]
+- !private ["PSs23CustomStringConvertible", "install"]
+- !private ["PSs23CustomStringConvertible", "sendAllReportsWithCompletion"]
+- !private ["PSs23CustomStringConvertible", "sharedInstance"]
+- !private ["PSs23CustomStringConvertible", "url"]
+- ["PSs23CustomStringConvertible", "window"]
+- ["PSs23CustomStringConvertible", ""]
+- !private ["PSs9Equatable", "KSCrashInstallationStandard"]
+- !private ["PSs9Equatable", "NSURL"]
+- ["PSs9Equatable", "application"]
+- ["PSs9Equatable", "applicationDidBecomeActive"]
+- ["PSs9Equatable", "applicationDidEnterBackground"]
+- ["PSs9Equatable", "applicationDidFinishLaunching"]
+- ["PSs9Equatable", "applicationDidReceiveMemoryWarning"]
+- ["PSs9Equatable", "applicationProtectedDataDidBecomeAvailable"]
+- ["PSs9Equatable", "applicationProtectedDataWillBecomeUnavailable"]
+- ["PSs9Equatable", "applicationShouldRequestHealthAuthorization"]
+- ["PSs9Equatable", "applicationSignificantTimeChange"]
+- ["PSs9Equatable", "applicationWillEnterForeground"]
+- ["PSs9Equatable", "applicationWillResignActive"]
+- ["PSs9Equatable", "applicationWillTerminate"]
+- !private ["PSs9Equatable", "bugHDKey"]
+- ["PSs9Equatable", "init"]
+- !private ["PSs9Equatable", "install"]
+- !private ["PSs9Equatable", "sendAllReportsWithCompletion"]
+- !private ["PSs9Equatable", "sharedInstance"]
+- !private ["PSs9Equatable", "url"]
+- ["PSs9Equatable", "window"]
+- ["PSs9Equatable", ""]
+- !private ["PSs8Hashable", "KSCrashInstallationStandard"]
+- !private ["PSs8Hashable", "NSURL"]
+- ["PSs8Hashable", "application"]
+- ["PSs8Hashable", "applicationDidBecomeActive"]
+- ["PSs8Hashable", "applicationDidEnterBackground"]
+- ["PSs8Hashable", "applicationDidFinishLaunching"]
+- ["PSs8Hashable", "applicationDidReceiveMemoryWarning"]
+- ["PSs8Hashable", "applicationProtectedDataDidBecomeAvailable"]
+- ["PSs8Hashable", "applicationProtectedDataWillBecomeUnavailable"]
+- ["PSs8Hashable", "applicationShouldRequestHealthAuthorization"]
+- ["PSs8Hashable", "applicationSignificantTimeChange"]
+- ["PSs8Hashable", "applicationWillEnterForeground"]
+- ["PSs8Hashable", "applicationWillResignActive"]
+- ["PSs8Hashable", "applicationWillTerminate"]
+- !private ["PSs8Hashable", "bugHDKey"]
+- ["PSs8Hashable", "init"]
+- !private ["PSs8Hashable", "install"]
+- !private ["PSs8Hashable", "sendAllReportsWithCompletion"]
+- !private ["PSs8Hashable", "sharedInstance"]
+- !private ["PSs8Hashable", "url"]
+- ["PSs8Hashable", "window"]
+- ["PSs8Hashable", ""]
+- !private ["CSo19KSCrashInstallation", "install"]
+- !private ["CSo19KSCrashInstallation", "sendAllReportsWithCompletion"]
+- !private ["CSo19KSCrashInstallation", "sharedInstance"]
+- !private ["CSo19KSCrashInstallation", "url"]
+- !private ["CSo27KSCrashInstallationStandard", "install"]
+- !private ["CSo27KSCrashInstallationStandard", "sendAllReportsWithCompletion"]
+- !private ["CSo27KSCrashInstallationStandard", "sharedInstance"]
+- !private ["CSo27KSCrashInstallationStandard", "url"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo9NSCopying", "init"]
+- ["CSo8NSObject", "AnyObject"]
+- ["CSo8NSObject", "Bool"]
+- !private ["CSo8NSObject", "KSCrashInstallationStandard"]
+- ["CSo8NSObject", "NSObject"]
+- !private ["CSo8NSObject", "NSURL"]
+- ["CSo8NSObject", "UIApplication"]
+- ["CSo8NSObject", "UIWindow"]
+- ["CSo8NSObject", "application"]
+- ["CSo8NSObject", "applicationDidBecomeActive"]
+- ["CSo8NSObject", "applicationDidEnterBackground"]
+- ["CSo8NSObject", "applicationDidFinishLaunching"]
+- ["CSo8NSObject", "applicationDidReceiveMemoryWarning"]
+- ["CSo8NSObject", "applicationProtectedDataDidBecomeAvailable"]
+- ["CSo8NSObject", "applicationProtectedDataWillBecomeUnavailable"]
+- ["CSo8NSObject", "applicationShouldRequestHealthAuthorization"]
+- ["CSo8NSObject", "applicationSignificantTimeChange"]
+- ["CSo8NSObject", "applicationWillEnterForeground"]
+- ["CSo8NSObject", "applicationWillResignActive"]
+- ["CSo8NSObject", "applicationWillTerminate"]
+- !private ["CSo8NSObject", "bugHDKey"]
+- ["CSo8NSObject", "init"]
+- !private ["CSo8NSObject", "install"]
+- !private ["CSo8NSObject", "sendAllReportsWithCompletion"]
+- !private ["CSo8NSObject", "sharedInstance"]
+- !private ["CSo8NSObject", "url"]
+- ["CSo8NSObject", "window"]
+- !private ["PSo16NSObjectProtocol", "KSCrashInstallationStandard"]
+- !private ["PSo16NSObjectProtocol", "NSURL"]
+- ["PSo16NSObjectProtocol", "application"]
+- ["PSo16NSObjectProtocol", "applicationDidBecomeActive"]
+- ["PSo16NSObjectProtocol", "applicationDidEnterBackground"]
+- ["PSo16NSObjectProtocol", "applicationDidFinishLaunching"]
+- ["PSo16NSObjectProtocol", "applicationDidReceiveMemoryWarning"]
+- ["PSo16NSObjectProtocol", "applicationProtectedDataDidBecomeAvailable"]
+- ["PSo16NSObjectProtocol", "applicationProtectedDataWillBecomeUnavailable"]
+- ["PSo16NSObjectProtocol", "applicationShouldRequestHealthAuthorization"]
+- ["PSo16NSObjectProtocol", "applicationSignificantTimeChange"]
+- ["PSo16NSObjectProtocol", "applicationWillEnterForeground"]
+- ["PSo16NSObjectProtocol", "applicationWillResignActive"]
+- ["PSo16NSObjectProtocol", "applicationWillTerminate"]
+- !private ["PSo16NSObjectProtocol", "bugHDKey"]
+- ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "install"]
+- !private ["PSo16NSObjectProtocol", "sendAllReportsWithCompletion"]
+- !private ["PSo16NSObjectProtocol", "sharedInstance"]
+- !private ["PSo16NSObjectProtocol", "url"]
+- ["PSo16NSObjectProtocol", "window"]
+- ["PSo16NSObjectProtocol", ""]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["CSo5NSURL", "init"]
+- !private ["PSo21UIApplicationDelegate", "KSCrashInstallationStandard"]
+- !private ["PSo21UIApplicationDelegate", "NSURL"]
+- ["PSo21UIApplicationDelegate", "application"]
+- ["PSo21UIApplicationDelegate", "applicationDidBecomeActive"]
+- ["PSo21UIApplicationDelegate", "applicationDidEnterBackground"]
+- ["PSo21UIApplicationDelegate", "applicationDidFinishLaunching"]
+- ["PSo21UIApplicationDelegate", "applicationDidReceiveMemoryWarning"]
+- ["PSo21UIApplicationDelegate", "applicationProtectedDataDidBecomeAvailable"]
+- ["PSo21UIApplicationDelegate", "applicationProtectedDataWillBecomeUnavailable"]
+- ["PSo21UIApplicationDelegate", "applicationShouldRequestHealthAuthorization"]
+- ["PSo21UIApplicationDelegate", "applicationSignificantTimeChange"]
+- ["PSo21UIApplicationDelegate", "applicationWillEnterForeground"]
+- ["PSo21UIApplicationDelegate", "applicationWillResignActive"]
+- ["PSo21UIApplicationDelegate", "applicationWillTerminate"]
+- !private ["PSo21UIApplicationDelegate", "bugHDKey"]
+- ["PSo21UIApplicationDelegate", "window"]
+- ["PSo21UIApplicationDelegate", ""]
+- ["CSo11UIResponder", "AnyObject"]
+- ["CSo11UIResponder", "Bool"]
+- !private ["CSo11UIResponder", "KSCrashInstallationStandard"]
+- ["CSo11UIResponder", "NSObject"]
+- !private ["CSo11UIResponder", "NSURL"]
+- ["CSo11UIResponder", "UIApplication"]
+- ["CSo11UIResponder", "UIWindow"]
+- ["CSo11UIResponder", "application"]
+- ["CSo11UIResponder", "applicationDidBecomeActive"]
+- ["CSo11UIResponder", "applicationDidEnterBackground"]
+- ["CSo11UIResponder", "applicationDidFinishLaunching"]
+- ["CSo11UIResponder", "applicationDidReceiveMemoryWarning"]
+- ["CSo11UIResponder", "applicationProtectedDataDidBecomeAvailable"]
+- ["CSo11UIResponder", "applicationProtectedDataWillBecomeUnavailable"]
+- ["CSo11UIResponder", "applicationShouldRequestHealthAuthorization"]
+- ["CSo11UIResponder", "applicationSignificantTimeChange"]
+- ["CSo11UIResponder", "applicationWillEnterForeground"]
+- ["CSo11UIResponder", "applicationWillResignActive"]
+- ["CSo11UIResponder", "applicationWillTerminate"]
+- !private ["CSo11UIResponder", "bugHDKey"]
+- ["CSo11UIResponder", "init"]
+- ["CSo11UIResponder", "window"]
+- ["CSo11UIResponder", ""]
+- !private ["PSs32_FileReferenceLiteralConvertible", "init"]
+- !private ["PSs12_Reflectable", "init"]
+depends-nominal:
+- "PSs9AnyObject"
+- "C13CavyLifeBand211AppDelegate"
+- "PSs11CVarArgType"
+- "PSs23CustomStringConvertible"
+- "PSs9Equatable"
+- "PSs8Hashable"
+- !private "CSo19KSCrashInstallation"
+- !private "CSo27KSCrashInstallationStandard"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- !private "PSo14NSSecureCoding"
+- !private "CSo5NSURL"
+- "PSo21UIApplicationDelegate"
+- "CSo11UIResponder"
+- !private "PSs32_FileReferenceLiteralConvertible"
+- !private "PSs12_Reflectable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Swift.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreImage.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSZombie.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/NSMutableData+AppendUTF8.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSReachabilityKSCrash.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSHTTPRequestSender.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSHTTPMultipartPostBody.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCString.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportSinkVictory.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportSinkStandard.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportSinkQuincyHockey.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportSinkEMail.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportSinkConsole.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportFilterSets.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportFilterJSON.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportFilterGZip.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportFilterBasic.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/NSData+GZip.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSVarArgs.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/Container+DeepSearch.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportFilterAppleFmt.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportFilterAlert.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/RFC3339DateTool.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/NSError+SimpleConstructor.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/NSDictionary+Merge.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSSysCtl.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSString.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSSingleton.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSSignalInfo.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSSafeCollections.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSObjCApple.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSObjC.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSMachApple.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSMach.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSLogger.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSJSONCodecObjC.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSJSONCodec.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSFileUtils.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSDynamicLinker.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashCallCompletion.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSBacktrace_Private.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSBacktrace.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/Demangle.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashSentry_User.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashSentry_Signal.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashSentry_Private.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashSentry_NSException.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashSentry_MachException.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashSentry_Deadlock.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashSentry_CPPException.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSSystemInfoC.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSSystemInfo.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportFields.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReport.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashDoctor.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashState.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSArchSpecific.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashSentry.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashContext.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashC.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportStore.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashAdvanced.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashType.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrash.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashInstallationVictory.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashInstallationStandard.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashInstallationQuincyHockey.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashInstallationEmail.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/ARCSafe_MemMgmt.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportWriter.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashReportFilter.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashInstallation.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrashInstallation+Private.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Headers/KSCrash-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Release-iphoneos/KSCrash.framework/Modules/module.modulemap"
+interface-hash: "7af6168d050cd355b11d8220c5f40dad"

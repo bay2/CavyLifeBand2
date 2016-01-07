@@ -1,0 +1,100 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "CustomDateFormatTransform"
+provides-nominal:
+- "C12ObjectMapper25CustomDateFormatTransform"
+provides-member:
+- ["C12ObjectMapper25CustomDateFormatTransform", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "NSDateFormatter"
+- "DateFormatterTransform"
+- !private "StringLiteralType"
+- !private "NSLocale"
+- "CustomDateFormatTransform"
+- "String"
+depends-member:
+- !private ["PSs9AnyObject", "NSDateFormatter"]
+- !private ["PSs9AnyObject", "NSLocale"]
+- !private ["PSs9AnyObject", "dateFormat"]
+- ["PSs9AnyObject", "init"]
+- !private ["PSs9AnyObject", "locale"]
+- ["PSs9AnyObject", ""]
+- !private ["PSs11CVarArgType", "dateFormat"]
+- !private ["PSs11CVarArgType", "init"]
+- !private ["PSs11CVarArgType", "locale"]
+- !private ["C12ObjectMapper25CustomDateFormatTransform", "NSDateFormatter"]
+- !private ["C12ObjectMapper25CustomDateFormatTransform", "NSLocale"]
+- ["C12ObjectMapper25CustomDateFormatTransform", "String"]
+- ["C12ObjectMapper25CustomDateFormatTransform", "deinit"]
+- ["C12ObjectMapper25CustomDateFormatTransform", "init"]
+- !private ["PSs23CustomStringConvertible", "dateFormat"]
+- !private ["PSs23CustomStringConvertible", "init"]
+- !private ["PSs23CustomStringConvertible", "locale"]
+- !private ["C12ObjectMapper22DateFormatterTransform", "NSDateFormatter"]
+- !private ["C12ObjectMapper22DateFormatterTransform", "NSLocale"]
+- ["C12ObjectMapper22DateFormatterTransform", "String"]
+- ["C12ObjectMapper22DateFormatterTransform", "init"]
+- ["C12ObjectMapper22DateFormatterTransform", ""]
+- !private ["PSs9Equatable", "dateFormat"]
+- !private ["PSs9Equatable", "init"]
+- !private ["PSs9Equatable", "locale"]
+- !private ["PSs8Hashable", "dateFormat"]
+- !private ["PSs8Hashable", "init"]
+- !private ["PSs8Hashable", "locale"]
+- !private ["PSo8NSCoding", "dateFormat"]
+- !private ["PSo8NSCoding", "init"]
+- !private ["PSo8NSCoding", "locale"]
+- !private ["PSo9NSCopying", "dateFormat"]
+- !private ["PSo9NSCopying", "init"]
+- !private ["PSo9NSCopying", "locale"]
+- !private ["CSo15NSDateFormatter", "dateFormat"]
+- !private ["CSo15NSDateFormatter", "init"]
+- !private ["CSo15NSDateFormatter", "locale"]
+- !private ["CSo11NSFormatter", "dateFormat"]
+- !private ["CSo11NSFormatter", "init"]
+- !private ["CSo11NSFormatter", "locale"]
+- !private ["CSo8NSLocale", "init"]
+- !private ["CSo8NSObject", "dateFormat"]
+- !private ["CSo8NSObject", "init"]
+- !private ["CSo8NSObject", "locale"]
+- !private ["PSo16NSObjectProtocol", "dateFormat"]
+- !private ["PSo16NSObjectProtocol", "init"]
+- !private ["PSo16NSObjectProtocol", "locale"]
+- !private ["PSo14NSSecureCoding", "init"]
+- !private ["VSs12StaticString", "deinit"]
+- !private ["P12ObjectMapper13TransformType", "NSDateFormatter"]
+- !private ["P12ObjectMapper13TransformType", "NSLocale"]
+- ["P12ObjectMapper13TransformType", "init"]
+- ["P12ObjectMapper13TransformType", ""]
+depends-nominal:
+- "PSs9AnyObject"
+- !private "PSs11CVarArgType"
+- "C12ObjectMapper25CustomDateFormatTransform"
+- !private "PSs23CustomStringConvertible"
+- "C12ObjectMapper22DateFormatterTransform"
+- !private "PSs9Equatable"
+- !private "PSs8Hashable"
+- !private "PSo8NSCoding"
+- !private "PSo9NSCopying"
+- !private "CSo15NSDateFormatter"
+- !private "CSo11NSFormatter"
+- !private "CSo8NSLocale"
+- !private "CSo8NSObject"
+- !private "PSo16NSObjectProtocol"
+- !private "PSo14NSSecureCoding"
+- !private "VSs12StaticString"
+- "P12ObjectMapper13TransformType"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Swift.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/ObjectMapper/ObjectMapper-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/ObjectMapper.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreImage.swiftmodule"
+interface-hash: "0e9c1232deb44f839dfd971b0a5d80e3"

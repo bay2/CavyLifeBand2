@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import KSCrash
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Override point for customization after application launch.
         
-        BugHD.handleCrashWithKey(bugHDKey)
+        let installation = KSCrashInstallationStandard.sharedInstance()
+        
+        installation.url = NSURL(string: bugHDKey)
+        
+        installation.install()
+        installation.sendAllReportsWithCompletion(nil)
+        
         
         return true
     }

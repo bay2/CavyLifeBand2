@@ -8,4 +8,4 @@
 
 import Foundation
 
-let bugHDKey = "64dcd8aad631f17fd3ee1eb8aad1c08e"
+let bugHDKey = "https://collector.bughd.com/kscrash?key=9c009d806879cec4233b3b66b4264315"

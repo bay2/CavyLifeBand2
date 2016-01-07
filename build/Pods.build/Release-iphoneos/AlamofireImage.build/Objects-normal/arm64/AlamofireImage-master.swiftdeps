@@ -1,0 +1,11 @@
+version: "Apple Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81)"
+options: "a0243d7eaa4d3a15cdd48ba0c895037a"
+build_time: [505383891, 904373000]
+inputs:
+  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/AlamofireImage/Source/Request+AlamofireImage.swift": [505290108, 0]
+  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/AlamofireImage/Source/ImageFilter.swift": [505290108, 0]
+  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/AlamofireImage/Source/ImageCache.swift": [505290108, 0]
+  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/AlamofireImage/Source/UIImageView+AlamofireImage.swift": [505290108, 0]
+  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/AlamofireImage/Source/ImageDownloader.swift": [505290108, 0]
+  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/AlamofireImage/Source/Image.swift": [505290108, 0]
+  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/AlamofireImage/Source/UIImage+AlamofireImage.swift": [505290108, 0]

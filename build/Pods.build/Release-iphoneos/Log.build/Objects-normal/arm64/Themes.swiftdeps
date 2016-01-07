@@ -1,0 +1,43 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+provides-nominal:
+provides-member:
+- ["C3Log6Themes", ""]
+- ["C3Log6Themes", "Default"]
+- ["C3Log6Themes", "Tomorrow"]
+- ["C3Log6Themes", "TomorrowNight"]
+- ["C3Log6Themes", "TomorrowNightEighties"]
+- ["C3Log6Themes", "TomorrowNightBright"]
+provides-dynamic-lookup:
+depends-top-level:
+- "Theme"
+- "Themes"
+- "StringLiteralType"
+depends-member:
+- ["PSs9AnyObject", "Theme"]
+- ["PSs9AnyObject", "init"]
+- ["C3Log5Theme", "init"]
+- ["C3Log6Themes", "Default"]
+- ["C3Log6Themes", "Theme"]
+- ["C3Log6Themes", "Tomorrow"]
+- ["C3Log6Themes", "TomorrowNight"]
+- ["C3Log6Themes", "TomorrowNightBright"]
+- ["C3Log6Themes", "TomorrowNightEighties"]
+depends-nominal:
+- "PSs9AnyObject"
+- "C3Log5Theme"
+- "C3Log6Themes"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Swift.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Log/Source/Log.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/Log/Log-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/Log.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/arm64/CoreImage.swiftmodule"
+interface-hash: "10b350237ef9ee5e1a1a33da51ac22a9"

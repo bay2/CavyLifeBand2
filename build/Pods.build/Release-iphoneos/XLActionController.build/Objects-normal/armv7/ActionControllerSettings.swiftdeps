@@ -1,0 +1,227 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "ActionControllerSettings"
+provides-nominal:
+- "V18XLActionController24ActionControllerSettings"
+- "VV18XLActionController24ActionControllerSettings8Behavior"
+- "VV18XLActionController24ActionControllerSettings15CancelViewStyle"
+- "VV18XLActionController24ActionControllerSettings19CollectionViewStyle"
+- "VV18XLActionController24ActionControllerSettings21PresentAnimationStyle"
+- "VV18XLActionController24ActionControllerSettings21DismissAnimationStyle"
+- "VV18XLActionController24ActionControllerSettings14AnimationStyle"
+- "VV18XLActionController24ActionControllerSettings14StatusBarStyle"
+provides-member:
+- ["V18XLActionController24ActionControllerSettings", ""]
+- ["VV18XLActionController24ActionControllerSettings8Behavior", ""]
+- ["VV18XLActionController24ActionControllerSettings15CancelViewStyle", ""]
+- ["VV18XLActionController24ActionControllerSettings19CollectionViewStyle", ""]
+- ["VV18XLActionController24ActionControllerSettings21PresentAnimationStyle", ""]
+- ["VV18XLActionController24ActionControllerSettings21DismissAnimationStyle", ""]
+- ["VV18XLActionController24ActionControllerSettings14AnimationStyle", ""]
+- ["VV18XLActionController24ActionControllerSettings14StatusBarStyle", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "String"
+- "FloatLiteralType"
+- "CGFloat"
+- "UIViewAnimationOptions"
+- "BooleanLiteralType"
+- "UIColor"
+- "CGSizeMake"
+- "ActionControllerSettings"
+- "StringLiteralType"
+- "UIStatusBarStyle"
+- "CGSize"
+- "NSTimeInterval"
+depends-member:
+- ["PSs16AbsoluteValuable", "init"]
+- ["V18XLActionController24ActionControllerSettings", "ActionControllerSettings"]
+- ["V18XLActionController24ActionControllerSettings", "AnimationStyle"]
+- ["V18XLActionController24ActionControllerSettings", "Behavior"]
+- ["V18XLActionController24ActionControllerSettings", "CGFloat"]
+- ["V18XLActionController24ActionControllerSettings", "CGSize"]
+- ["V18XLActionController24ActionControllerSettings", "CGSizeMake"]
+- ["V18XLActionController24ActionControllerSettings", "CancelViewStyle"]
+- ["V18XLActionController24ActionControllerSettings", "CollectionViewStyle"]
+- ["V18XLActionController24ActionControllerSettings", "DismissAnimationStyle"]
+- ["V18XLActionController24ActionControllerSettings", "NSTimeInterval"]
+- ["V18XLActionController24ActionControllerSettings", "PresentAnimationStyle"]
+- ["V18XLActionController24ActionControllerSettings", "StatusBarStyle"]
+- ["V18XLActionController24ActionControllerSettings", "String"]
+- ["V18XLActionController24ActionControllerSettings", "UIColor"]
+- ["V18XLActionController24ActionControllerSettings", "UIStatusBarStyle"]
+- ["V18XLActionController24ActionControllerSettings", "UIViewAnimationOptions"]
+- ["V18XLActionController24ActionControllerSettings", "animation"]
+- ["V18XLActionController24ActionControllerSettings", "behavior"]
+- ["V18XLActionController24ActionControllerSettings", "cancelView"]
+- ["V18XLActionController24ActionControllerSettings", "collectionView"]
+- ["V18XLActionController24ActionControllerSettings", "defaultSettings"]
+- ["V18XLActionController24ActionControllerSettings", "init"]
+- ["V18XLActionController24ActionControllerSettings", "statusBar"]
+- ["VV18XLActionController24ActionControllerSettings14AnimationStyle", "CGSize"]
+- ["VV18XLActionController24ActionControllerSettings14AnimationStyle", "CGSizeMake"]
+- ["VV18XLActionController24ActionControllerSettings14AnimationStyle", "DismissAnimationStyle"]
+- ["VV18XLActionController24ActionControllerSettings14AnimationStyle", "PresentAnimationStyle"]
+- ["VV18XLActionController24ActionControllerSettings14AnimationStyle", "dismiss"]
+- ["VV18XLActionController24ActionControllerSettings14AnimationStyle", "init"]
+- ["VV18XLActionController24ActionControllerSettings14AnimationStyle", "present"]
+- ["VV18XLActionController24ActionControllerSettings14AnimationStyle", "scale"]
+- ["PSs9AnyObject", "blackColor"]
+- ["PSs9AnyObject", "colorWithAlphaComponent"]
+- ["PSs23ArrayLiteralConvertible", "CurveEaseIn"]
+- ["PSs23ArrayLiteralConvertible", "CurveEaseOut"]
+- ["VV18XLActionController24ActionControllerSettings8Behavior", "bounces"]
+- ["VV18XLActionController24ActionControllerSettings8Behavior", "hideOnScrollDown"]
+- ["VV18XLActionController24ActionControllerSettings8Behavior", "hideOnTap"]
+- ["VV18XLActionController24ActionControllerSettings8Behavior", "init"]
+- ["VV18XLActionController24ActionControllerSettings8Behavior", "scrollEnabled"]
+- ["VV18XLActionController24ActionControllerSettings8Behavior", "useDynamics"]
+- ["V12CoreGraphics7CGFloat", "deinit"]
+- ["V12CoreGraphics7CGFloat", "init"]
+- ["PSs11CVarArgType", "blackColor"]
+- ["PSs11CVarArgType", "colorWithAlphaComponent"]
+- ["PSs11CVarArgType", "init"]
+- ["VV18XLActionController24ActionControllerSettings15CancelViewStyle", "CGFloat"]
+- ["VV18XLActionController24ActionControllerSettings15CancelViewStyle", "String"]
+- ["VV18XLActionController24ActionControllerSettings15CancelViewStyle", "UIColor"]
+- ["VV18XLActionController24ActionControllerSettings15CancelViewStyle", "backgroundColor"]
+- ["VV18XLActionController24ActionControllerSettings15CancelViewStyle", "height"]
+- ["VV18XLActionController24ActionControllerSettings15CancelViewStyle", "init"]
+- ["VV18XLActionController24ActionControllerSettings15CancelViewStyle", "showCancel"]
+- ["VV18XLActionController24ActionControllerSettings15CancelViewStyle", "title"]
+- ["VV18XLActionController24ActionControllerSettings19CollectionViewStyle", "CGFloat"]
+- ["VV18XLActionController24ActionControllerSettings19CollectionViewStyle", "cellHeightWhenDynamicsIsUsed"]
+- ["VV18XLActionController24ActionControllerSettings19CollectionViewStyle", "init"]
+- ["VV18XLActionController24ActionControllerSettings19CollectionViewStyle", "lateralMargin"]
+- ["PSs10Comparable", "init"]
+- ["PSs23CustomStringConvertible", "blackColor"]
+- ["PSs23CustomStringConvertible", "colorWithAlphaComponent"]
+- ["PSs23CustomStringConvertible", "init"]
+- ["VV18XLActionController24ActionControllerSettings21DismissAnimationStyle", "CGFloat"]
+- ["VV18XLActionController24ActionControllerSettings21DismissAnimationStyle", "NSTimeInterval"]
+- ["VV18XLActionController24ActionControllerSettings21DismissAnimationStyle", "UIViewAnimationOptions"]
+- ["VV18XLActionController24ActionControllerSettings21DismissAnimationStyle", "damping"]
+- ["VV18XLActionController24ActionControllerSettings21DismissAnimationStyle", "delay"]
+- ["VV18XLActionController24ActionControllerSettings21DismissAnimationStyle", "duration"]
+- ["VV18XLActionController24ActionControllerSettings21DismissAnimationStyle", "init"]
+- ["VV18XLActionController24ActionControllerSettings21DismissAnimationStyle", "offset"]
+- ["VV18XLActionController24ActionControllerSettings21DismissAnimationStyle", "options"]
+- ["VV18XLActionController24ActionControllerSettings21DismissAnimationStyle", "springVelocity"]
+- ["Sd", "init"]
+- ["PSs9Equatable", "CurveEaseIn"]
+- ["PSs9Equatable", "CurveEaseOut"]
+- ["PSs9Equatable", "LightContent"]
+- ["PSs9Equatable", "blackColor"]
+- ["PSs9Equatable", "colorWithAlphaComponent"]
+- ["PSs9Equatable", "init"]
+- ["PSs23FloatLiteralConvertible", "init"]
+- ["PSs17FloatingPointType", "init"]
+- ["PSs8Hashable", "LightContent"]
+- ["PSs8Hashable", "blackColor"]
+- ["PSs8Hashable", "colorWithAlphaComponent"]
+- ["PSs8Hashable", "init"]
+- ["PSs25IntegerLiteralConvertible", "init"]
+- ["PSo8NSCoding", "blackColor"]
+- ["PSo8NSCoding", "colorWithAlphaComponent"]
+- ["PSo9NSCopying", "blackColor"]
+- ["PSo9NSCopying", "colorWithAlphaComponent"]
+- ["CSo8NSObject", "blackColor"]
+- ["CSo8NSObject", "colorWithAlphaComponent"]
+- ["PSo16NSObjectProtocol", "blackColor"]
+- ["PSo16NSObjectProtocol", "colorWithAlphaComponent"]
+- ["PSo14NSSecureCoding", "blackColor"]
+- ["PSo14NSSecureCoding", "colorWithAlphaComponent"]
+- ["PSs13OptionSetType", "CurveEaseIn"]
+- ["PSs13OptionSetType", "CurveEaseOut"]
+- ["Sq", "deinit"]
+- ["VV18XLActionController24ActionControllerSettings21PresentAnimationStyle", "CGFloat"]
+- ["VV18XLActionController24ActionControllerSettings21PresentAnimationStyle", "NSTimeInterval"]
+- ["VV18XLActionController24ActionControllerSettings21PresentAnimationStyle", "UIViewAnimationOptions"]
+- ["VV18XLActionController24ActionControllerSettings21PresentAnimationStyle", "damping"]
+- ["VV18XLActionController24ActionControllerSettings21PresentAnimationStyle", "delay"]
+- ["VV18XLActionController24ActionControllerSettings21PresentAnimationStyle", "duration"]
+- ["VV18XLActionController24ActionControllerSettings21PresentAnimationStyle", "init"]
+- ["VV18XLActionController24ActionControllerSettings21PresentAnimationStyle", "options"]
+- ["VV18XLActionController24ActionControllerSettings21PresentAnimationStyle", "springVelocity"]
+- ["PSs16RawRepresentable", "CurveEaseIn"]
+- ["PSs16RawRepresentable", "CurveEaseOut"]
+- ["PSs16RawRepresentable", "LightContent"]
+- ["PSs14SetAlgebraType", "CurveEaseIn"]
+- ["PSs14SetAlgebraType", "CurveEaseOut"]
+- ["PSs16SignedNumberType", "init"]
+- ["VV18XLActionController24ActionControllerSettings14StatusBarStyle", "UIStatusBarStyle"]
+- ["VV18XLActionController24ActionControllerSettings14StatusBarStyle", "init"]
+- ["VV18XLActionController24ActionControllerSettings14StatusBarStyle", "showStatusBar"]
+- ["VV18XLActionController24ActionControllerSettings14StatusBarStyle", "style"]
+- ["PSs10Strideable", "init"]
+- ["CSo7UIColor", "blackColor"]
+- ["CSo7UIColor", "colorWithAlphaComponent"]
+- ["OSC16UIStatusBarStyle", "LightContent"]
+- ["VSC22UIViewAnimationOptions", "CurveEaseIn"]
+- ["VSC22UIViewAnimationOptions", "CurveEaseOut"]
+- ["PSs31_BuiltinFloatLiteralConvertible", "init"]
+- ["PSs33_BuiltinIntegerLiteralConvertible", "init"]
+- ["PSs19_CVarArgAlignedType", "init"]
+- ["PSs22_CVarArgPassedAsDouble", "init"]
+- ["PSs24_ColorLiteralConvertible", "blackColor"]
+- ["PSs24_ColorLiteralConvertible", "colorWithAlphaComponent"]
+- ["PSs21_ObjectiveCBridgeable", "init"]
+- ["PSs12_Reflectable", "init"]
+- ["PSs11_Strideable", "init"]
+depends-nominal:
+- "PSs16AbsoluteValuable"
+- "V18XLActionController24ActionControllerSettings"
+- "VV18XLActionController24ActionControllerSettings14AnimationStyle"
+- "PSs9AnyObject"
+- "PSs23ArrayLiteralConvertible"
+- "VV18XLActionController24ActionControllerSettings8Behavior"
+- "V12CoreGraphics7CGFloat"
+- "PSs11CVarArgType"
+- "VV18XLActionController24ActionControllerSettings15CancelViewStyle"
+- "VV18XLActionController24ActionControllerSettings19CollectionViewStyle"
+- "PSs10Comparable"
+- "PSs23CustomStringConvertible"
+- "VV18XLActionController24ActionControllerSettings21DismissAnimationStyle"
+- "Sd"
+- "PSs9Equatable"
+- "PSs23FloatLiteralConvertible"
+- "PSs17FloatingPointType"
+- "PSs8Hashable"
+- "PSs25IntegerLiteralConvertible"
+- "PSo8NSCoding"
+- "PSo9NSCopying"
+- "CSo8NSObject"
+- "PSo16NSObjectProtocol"
+- "PSo14NSSecureCoding"
+- "PSs13OptionSetType"
+- "Sq"
+- "VV18XLActionController24ActionControllerSettings21PresentAnimationStyle"
+- "PSs16RawRepresentable"
+- "PSs14SetAlgebraType"
+- "PSs16SignedNumberType"
+- "VV18XLActionController24ActionControllerSettings14StatusBarStyle"
+- "PSs10Strideable"
+- "CSo7UIColor"
+- "OSC16UIStatusBarStyle"
+- "VSC22UIViewAnimationOptions"
+- "PSs31_BuiltinFloatLiteralConvertible"
+- "PSs33_BuiltinIntegerLiteralConvertible"
+- "PSs19_CVarArgAlignedType"
+- "PSs22_CVarArgPassedAsDouble"
+- "PSs24_ColorLiteralConvertible"
+- "PSs21_ObjectiveCBridgeable"
+- "PSs12_Reflectable"
+- "PSs11_Strideable"
+depends-dynamic-lookup:
+depends-external:
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Swift.swiftmodule"
+- "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Target Support Files/XLActionController/XLActionController-umbrella.h"
+- "/Users/xuemincai/code/git/CavyLifeBand2/build/Pods.build/Release-iphoneos/XLActionController.build/unextended-module.modulemap"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/UIKit.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Foundation.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Darwin.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/Dispatch.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/ObjectiveC.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreGraphics.swiftmodule"
+- "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphoneos/armv7/CoreImage.swiftmodule"
+interface-hash: "13d2f3f1a38970a68c73efb6ecc4b120"
