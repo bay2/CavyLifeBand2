@@ -585,6 +585,7 @@
 					"\"SwiftOverlays\"",
 					"-framework",
 					"\"XLActionController\"",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -625,6 +626,7 @@
 					"\"SwiftOverlays\"",
 					"-framework",
 					"\"XLActionController\"",
+					"-ObjC",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
