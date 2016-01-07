@@ -1,5 +1,0 @@
-version: "Apple Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81)"
-options: "1f6926f4e8403b893726b9c1daf877b1"
-build_time: [505383916, 87860000]
-inputs:
-  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/SwiftOverlays/SwiftOverlays/SwiftOverlays.swift": [505290108, 0]

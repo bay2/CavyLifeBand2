@@ -1,9 +1,0 @@
-version: "Apple Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81)"
-options: "977d99150df5e295e19d92c322e00d0c"
-build_time: [505383901, 569970000]
-inputs:
-  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Log/Source/Extensions/Formatters.swift": [505290108, 0]
-  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Log/Source/Extensions/Themes.swift": [505290108, 0]
-  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Log/Source/Logger.swift": [505290108, 0]
-  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Log/Source/Formatter.swift": [505290108, 0]
-  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/Log/Source/Theme.swift": [505290108, 0]

@@ -1,1 +1,0 @@
- const unsigned char XLActionControllerVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:XLActionController  PROJECT:Pods-1" "\n"; const double XLActionControllerVersionNumber __attribute__ ((used)) = (double)1.;

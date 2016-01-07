@@ -1,9 +1,0 @@
-version: "Apple Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81)"
-options: "e03af4fa8e6259444024311b9f8953cd"
-build_time: [505383921, 684197000]
-inputs:
-  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/XLActionController/Source/ActionController.swift": [505290200, 0]
-  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/XLActionController/Source/Action.swift": [505290200, 0]
-  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/XLActionController/Source/ActionControllerSettings.swift": [505290200, 0]
-  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/XLActionController/Source/ActionCell.swift": [505290200, 0]
-  "/Users/xuemincai/code/git/CavyLifeBand2/Pods/XLActionController/Source/DynamicCollectionViewFlowLayout.swift": [505290200, 0]

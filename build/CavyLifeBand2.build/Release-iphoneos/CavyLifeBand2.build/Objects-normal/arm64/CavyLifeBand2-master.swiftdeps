@@ -1,7 +1,0 @@
-version: "Apple Swift version 2.1.1 (swiftlang-700.1.101.15 clang-700.1.81)"
-options: "3f64f04e18837df8e8e571e72f1a4cb5"
-build_time: [505384835, 16061000]
-inputs:
-  "/Users/xuemincai/code/git/CavyLifeBand2/CavyLifeBand2/Common/AppDelegate.swift": [505379775, 0]
-  "/Users/xuemincai/code/git/CavyLifeBand2/CavyLifeBand2/Common/CavyLifeBand2-Define.swift": [505382970, 0]
-  "/Users/xuemincai/code/git/CavyLifeBand2/CavyLifeBand2/ViewController.swift": [505382227, 0]
