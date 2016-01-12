@@ -24,7 +24,7 @@ class CustomCamera: UIViewController {
     @IBOutlet weak var btn4FlashAuto: UIButton!
     @IBOutlet weak var img4FalshAtuo: UIImageView!
     @IBOutlet weak var img4FalshOn: UIImageView!
-    @IBOutlet weak var img4FalshOff: UIImageView!
+    @IBOutlet weak var img4FalshOff: UIImageView! 
     
     
     @IBOutlet weak var photoView: UIView!
