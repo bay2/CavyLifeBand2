@@ -8,12 +8,17 @@
 
 import UIKit
 import LLSimpleCamera
+import AssetsLibrary
+import Log
 
 class CustomCamera: UIViewController {
     
     let screenRect = UIScreen.mainScreen().bounds
     // MARK: Definition
+    
+    
     @IBOutlet weak var headView: UIView!
+    @IBOutlet weak var photoView: UIView!
     @IBOutlet weak var bottomView: UIView!
     
     @IBOutlet weak var shotCutSwitch: UIButton!
@@ -24,28 +29,40 @@ class CustomCamera: UIViewController {
     @IBOutlet weak var btn4FlashAuto: UIButton!
     @IBOutlet weak var img4FalshAtuo: UIImageView!
     @IBOutlet weak var img4FalshOn: UIImageView!
-    @IBOutlet weak var img4FalshOff: UIImageView!   
+    @IBOutlet weak var img4FalshOff: UIImageView!
     
-    
-    @IBOutlet weak var photoView: UIView!
-    var camera = LLSimpleCamera()
-    var errorLabel:UILabel?
-    
-    var isPhotoOrVideo = Bool()
     
     @IBOutlet weak var btn4ChangeToPhoto: UIButton!
     @IBOutlet weak var btn4ChangeToVideo: UIButton!
     @IBOutlet weak var shutterPhoto: UIButton!
     @IBOutlet weak var lastImage: UIButton!
 
-    var startX = CGFloat()
+    var errorLabel     = UILabel?()
+    var camera         = LLSimpleCamera()
+    var isPhotoOrVideo = Bool()
+    var asset          = [ALAsset]()
+    var library        = ALAssetsLibrary()
+    var startX         = CGFloat()// panGestureRecognizer start Location
+    var countOne = 0
+    
+    // MARK: View
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        self.getLastPhoto()         // show lastImage
+        
+        self.camera.start()         // start Camera
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         UIApplication.sharedApplication().idleTimerDisabled = true
         
-        isPhotoOrVideo = true // true 表示照相 false 表示录像
+        isPhotoOrVideo = true
         
         /**
         init
@@ -75,11 +92,12 @@ class CustomCamera: UIViewController {
         // add PanGestureRecognizer
         let pan = UIPanGestureRecognizer(target: self, action: "panAction:")
         self.camera.view.addGestureRecognizer(pan)
-        
     }
-        // Block setOnDeviceChange
+    
+    // rewrite block setOnDeviceChange
     func deviceChange(camera: LLSimpleCamera?, device: AVCaptureDevice?) {
-        print("Device Changed.")
+        
+        Log.info("Device Changed.")
         
         if camera!.isFlashAvailable() {
             
@@ -92,50 +110,43 @@ class CustomCamera: UIViewController {
             }else{
                 
                 self.flashSwitch.selected = true
-                
             }
             
         }else{
             
             self.flashSwitch.hidden = true
-            
         }
     }
-    
+    // rewrite block setOnError
     func cameraError(camera: LLSimpleCamera?, error: NSError?) {
-        print("Camera error:\(error)")
+        Log.error("Camera error:\(error)")
         
         if error?.domain == LLSimpleCameraErrorDomain {
+            return
+        }
+        
+        if String(error?.code) == String(LLSimpleCameraErrorCodeCameraPermission) || String(error?.code) == String(LLSimpleCameraErrorCodeMicrophonePermission) {
             
-            if String(error?.code) == String(LLSimpleCameraErrorCodeCameraPermission) || String(error?.code) == String(LLSimpleCameraErrorCodeMicrophonePermission) {
-
-                if self.errorLabel != nil{
-                    
-                    self.errorLabel!.removeFromSuperview()
-                }
+            if self.errorLabel != nil{
                 
-                let label = UILabel.init(frame: CGRectZero)
-                label.text = "We need permission for the camera.\nPlease go to your settings."
-                label.font = UIFont.init(name: "AvenirNext-DemiBold", size: 13)
-                label.numberOfLines = 2
-                label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-                label.backgroundColor = UIColor.clearColor()
-                label.textColor = UIColor.whiteColor()
-                label.sizeToFit()
-                label.center = CGPointMake(screenRect.width / 2, screenRect.size.height / 2)
-                self.errorLabel = label
-                self.view.addSubview(self.errorLabel!)
+                self.errorLabel!.removeFromSuperview()
             }
+            
+            let label = UILabel.init(frame: CGRectZero)
+            label.text = "We need permission for the camera.\nPlease go to your settings."
+            label.font = UIFont.init(name: "AvenirNext-DemiBold", size: 13)
+            label.numberOfLines = 2
+            label.lineBreakMode = NSLineBreakMode.ByWordWrapping
+            label.backgroundColor = UIColor.clearColor()
+            label.textColor = UIColor.whiteColor()
+            label.sizeToFit()
+            label.center = CGPointMake(screenRect.width / 2, screenRect.size.height / 2)
+            self.errorLabel = label
+            self.view.addSubview(self.errorLabel!)
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
-        
-        super.viewWillAppear(animated)
-        
-        self.camera.start()
-    }
-    
+
     func panAction(sender:UIPanGestureRecognizer){
         // 判断左移 右移
         if UIGestureRecognizerState.Began == sender.state{
@@ -161,21 +172,10 @@ class CustomCamera: UIViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     // MARK:Action 4 Defintion
     func applicationDocumentsDirectory() -> NSURL{
-
-        let urlArray : Array <NSURL> = NSFileManager.defaultManager().URLsForDirectory(NSSearchPathDirectory.DocumentationDirectory, inDomains: NSSearchPathDomainMask.UserDomainMask)
         
-        return urlArray.last!
+        return NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last!
     }
     
     func changeColorForFlashModeButton(){
@@ -213,10 +213,85 @@ class CustomCamera: UIViewController {
             self.flashSwitch.setImage(self.img4FalshAtuo.image, forState: UIControlState.Normal)
         }
     }
+
+    func getLastPhoto(){
+
+
+        library.enumerateGroupsWithTypes(ALAssetsGroupSavedPhotos, usingBlock: { (group: ALAssetsGroup!, stop) -> Void in
+            
+            if group != nil
+            {
+                let assetBlock : ALAssetsGroupEnumerationResultsBlock = {
+                    (result: ALAsset!, index: Int, stop) in
+                    if result != nil
+                    {
+                        self.asset.append(result)
+                        self.countOne++
+                    }
+                }
+                
+                group.enumerateAssetsUsingBlock(assetBlock)
+                
+                Log.info("assets:\(self.countOne)")
+                
+                let myAsset = self.asset[self.countOne - 1]
+                
+                let image =  UIImage(CGImage: myAsset.thumbnail().takeUnretainedValue())
+                
+                self.lastImage.setImage(image, forState: UIControlState.Normal)
+            }
+            
+            }) { (error) -> Void in
+                
+                Log.error("Error:\(error)")
+        }
+   
+    }
+
+    func startVideo(){
+        Log.info("开始摄像")
+        
+        self.shutterPhoto.backgroundColor = UIColor.redColor()
+        self.shutterPhoto.layer.masksToBounds = true
+        self.shutterPhoto.layer.cornerRadius = shutterPhoto.frame.width / 2
+        
+        // start recording
+        let outputURL = self.applicationDocumentsDirectory().URLByAppendingPathComponent("test1").URLByAppendingPathExtension("mov")
+        
+        Log.info("outputURL: \(outputURL)")
+        
+        self.camera.startRecordingWithOutputUrl(outputURL)
+        
+    }
     
+    func stopVideo(){
+        
+        Log.info("1.停止录像")
+
+        self.camera.stopRecording({ (camera, outputFileURL, error) -> Void in
+            
+            // Viedo in outputURL cache
+            
+            Log.info("outputFileURL: \(outputFileURL)")
+
+            self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileURL, completionBlock: { (assetUrl, error) -> Void in
+                if error != nil {
+                    Log.error("Save video fail:%@",error)
+                }else {
+                    //self.countOne = 0
+                    self.getLastPhoto()
+                    Log.info("Save video succeed.")
+                }
+                
+            })
+            
+        })
+        self.shutterPhoto.backgroundColor = UIColor.blackColor()
+    }
+
     // MARK: Action 4 Button
     @IBAction func ChangeFalshLight(sender: AnyObject) {
-        print("打开选择闪光灯")
+        Log.info("打开选择闪光灯")
         
         if(LLSimpleCamera.isRearCameraAvailable()){
             if(self.shotCutSwitch.hidden == false){
@@ -238,7 +313,7 @@ class CustomCamera: UIViewController {
 
     @IBAction func chooseFlashMode(sender: AnyObject) {
         
-        print("更换闪光灯")
+        Log.info("更换闪光灯")
         
         switch (sender.tag - 1000){
         case 0:
@@ -248,68 +323,57 @@ class CustomCamera: UIViewController {
         case 2:
             self.camera.updateFlashMode(LLCameraFlashAuto)
         default:
-            print("FlashLight Change Error")
+            Log.error("FlashLight Change Error")
         }
         self.changeFlashLightSwitchImage()
 
-        print("选择了\(self.camera.flash)")
+        Log.info("选择了\(self.camera.flash)")
     }
     
     @IBAction func ChangeShot(sender: AnyObject) {
-        print("切换摄像头方向")
+        Log.info("切换摄像头方向")
         self.camera.togglePosition()
     }
     
     @IBAction func BackHome(sender: AnyObject) {
-        print("返回主界面")
+        Log.info("返回主界面")
     }
     
     @IBAction func TakePhotoAndVideo(sender: AnyObject) {
         
         if isPhotoOrVideo {
-            print("照相")
+            Log.info("照相")
             self.camera.capture({ (camera, image, metadata, error) -> Void in
                 if (error == nil) {
                     self.camera.start()
                     self.lastImage.setImage(image, forState: UIControlState.Normal)
-                    // save this image
-                    var data : NSData = UIImagePNGRepresentation(image)!
-
+                    
+                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                    
                 }else{
-                    print("An error has occured : \(error)")
+                    Log.error("An error has occured : \(error)")
                 }
-                }, exactSeenImage: true)
-        }else{ //isPhotoOrVideo = false
-            
+                })
+        
+        }else{
+        
             if self.camera.recording == false {
-                print("开始摄像")
-
-                self.shutterPhoto.backgroundColor = UIColor.redColor()
-                self.shutterPhoto.layer.masksToBounds = true
-                self.shutterPhoto.layer.cornerRadius = shutterPhoto.frame.width / 2
                 
                 // start recording
-                let outputURL : NSURL = self.applicationDocumentsDirectory().URLByAppendingPathComponent("cavyVideo").URLByAppendingPathExtension("mov")
-                print("outputURL: \(outputURL)")
-                self.camera.startRecordingWithOutputUrl(outputURL)
                 
-                self.camera.recording = true
-            }else{   // stop recording
+                self.startVideo()
                 
-                print("1.停止录像")
+            }else{
                 
-                self.camera.stopRecording({ (camera, outputURL, error) -> Void in
-                    
-                    print("2.停止录像")
-                })
-                self.shutterPhoto.backgroundColor = UIColor.blackColor()
-                self.camera.recording = false
-            }
+                // stop recording
+                
+                self.stopVideo()
+                       }
         }
     }
     
     @IBAction func GoPhotoAlbum(sender: AnyObject) {
-        print("打开相册")
+        Log.info("打开相册")
         
         let photoAlbum = PhotoAlbum()
         let nav = UINavigationController(rootViewController: photoAlbum)
@@ -317,11 +381,13 @@ class CustomCamera: UIViewController {
     }
     
     @IBAction func Action4ChoosePhoto(sender: AnyObject) {
-        //print("选择当前为照相")
-        self.camera.recording = false
+        if self.camera.recording {
+            Log.info("直接保存Video")
+            self.stopVideo()
+        }
+
         self.shutterPhoto.backgroundColor = UIColor.blackColor()
         isPhotoOrVideo = true
-    //    camera.videoEnabled = false // system dont allow video , close video
         
         self.btn4ChangeToPhoto.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
         self.btn4ChangeToVideo.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
@@ -330,9 +396,6 @@ class CustomCamera: UIViewController {
     }
     
     @IBAction func Action4ChooseVideo(sender: AnyObject) {
-        //print("选择当前为摄影")
-      //  camera.videoEnabled = true // system dont allow video , open video
-      //  self.camera.recording = true
         isPhotoOrVideo = false
         self.btn4ChangeToPhoto.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         self.btn4ChangeToVideo.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
