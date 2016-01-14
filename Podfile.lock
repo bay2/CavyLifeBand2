@@ -61,9 +61,25 @@ PODS:
     - KSCrash/Reporting/Tools
   - KSCrash/Reporting/Tools (0.0.8):
     - KSCrash/Recording
+  - LLSimpleCamera (4.1.0)
   - Log (0.1)
   - MJRefresh (3.0.8)
   - ObjectMapper (1.1.1)
+  - OHHTTPStubs (4.7.0):
+    - OHHTTPStubs/Default (= 4.7.0)
+  - OHHTTPStubs/Core (4.7.0)
+  - OHHTTPStubs/Default (4.7.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (4.7.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (4.7.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (4.7.0)
+  - OHHTTPStubs/Swift (4.7.0):
+    - OHHTTPStubs/Core
   - SnapKit (0.18.0)
   - SwiftOverlays (1.0)
   - XLActionController (1.0.0):
@@ -76,8 +92,11 @@ DEPENDENCIES:
   - AlamofireObjectMapper
   - EZSwiftExtensions
   - KSCrash
+  - LLSimpleCamera
   - Log
   - MJRefresh
+  - OHHTTPStubs
+  - OHHTTPStubs/Swift
   - SnapKit
   - SwiftOverlays
   - XLActionController
@@ -88,9 +107,11 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 24097576202064f8b0a583452dd934064f78dc0e
   EZSwiftExtensions: f7d2e14f7be52dd0025391af96597d1a11d56a9c
   KSCrash: a928da877b18f70c9ec3b50d4e8960271e2a10e5
+  LLSimpleCamera: c2600d1621555473530ca2a70d4399d287086337
   Log: 8de10d912b9cd4fe1abba749d0762be8ad802de7
   MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
   ObjectMapper: 4143abed1dbd49b73d75092fe8fa1c88ed6434b7
+  OHHTTPStubs: d2bf6a0f407620d67e75a1d3f12d86a2b1dd15c0
   SnapKit: e1f090a6d47b1dd4bd89b73f72b6746a7835ef3c
   SwiftOverlays: 6a47bab3ed2784c378f07b275269f9e8231526e6
   XLActionController: c8ddd5bc20bac97a271113acc7e94659d554da5c

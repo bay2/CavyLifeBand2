@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaH-Fz-gd6">
+                                <rect key="frame" x="0.0" y="550" width="300" height="30"/>
+                                <state key="normal" title="加入豚鼠"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用豚鼠帐号即登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1J6-eC-DR6">
+                                <rect key="frame" x="0.0" y="580" width="600" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="vSF-hz-Wed"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VR-nS-y8g">
+                                <rect key="frame" x="300" y="550" width="300" height="30"/>
+                                <state key="normal" title="登录"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3VR-nS-y8g" firstAttribute="width" secondItem="BaH-Fz-gd6" secondAttribute="width" id="3R4-Cz-2pj"/>
+                            <constraint firstAttribute="trailing" secondItem="1J6-eC-DR6" secondAttribute="trailing" id="6G5-JM-iIA"/>
+                            <constraint firstItem="3VR-nS-y8g" firstAttribute="leading" secondItem="BaH-Fz-gd6" secondAttribute="trailing" id="HVx-PU-CAI"/>
+                            <constraint firstAttribute="bottom" secondItem="1J6-eC-DR6" secondAttribute="bottom" id="Uwg-XD-Wl7"/>
+                            <constraint firstItem="1J6-eC-DR6" firstAttribute="top" secondItem="BaH-Fz-gd6" secondAttribute="bottom" id="d92-gp-Psb"/>
+                            <constraint firstItem="1J6-eC-DR6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hlK-wL-Ij0"/>
+                            <constraint firstItem="1J6-eC-DR6" firstAttribute="top" secondItem="3VR-nS-y8g" secondAttribute="bottom" id="l8s-TG-AXy"/>
+                            <constraint firstItem="BaH-Fz-gd6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="p4x-LI-Hi6"/>
+                            <constraint firstItem="3VR-nS-y8g" firstAttribute="leading" secondItem="BaH-Fz-gd6" secondAttribute="trailing" id="pmW-vR-csK"/>
+                            <constraint firstAttribute="trailing" secondItem="3VR-nS-y8g" secondAttribute="trailing" id="r96-PM-h1y"/>
+                            <constraint firstItem="1J6-eC-DR6" firstAttribute="top" secondItem="3VR-nS-y8g" secondAttribute="bottom" id="r9G-lu-wOw"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="l8s-TG-AXy"/>
+                                <exclude reference="pmW-vR-csK"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="BCY-yK-tMm">
+            <objects>
+                <viewController id="NWL-LE-CpC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="T7U-pK-Mpv"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZTS-3C-kiP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pal-2D-Qds">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="57x-g1-mRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1295" y="417"/>
+        </scene>
+    </scenes>
+</document>
