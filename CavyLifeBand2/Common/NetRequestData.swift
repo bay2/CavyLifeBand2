@@ -12,11 +12,13 @@ import Log
 
 class NetRequestData: NSObject {
     
-    //网络请求API
+    /*!
+    网络请求API
     
+    - PhoneNum: 手机号
+    */
     enum NetRequestParaKey: String {
         
-        //手机号
         case PhoneNum =  "phoneNum"
         
     }
@@ -90,9 +92,9 @@ class NetRequestData: NSObject {
      */
     func requestSMSCode(parameters: [String: AnyObject]) {
         
-        let URLString = serverAddr + ""
+        let urlString = serverAddr + ""
         
-        Alamofire.request(.GET, URLString, parameters: ["foo": "bar"]).responseJSON { (response) -> Void in
+        Alamofire.request(.GET, urlString, parameters: ["foo": "bar"]).responseJSON { (response) -> Void in
             
         }
         
