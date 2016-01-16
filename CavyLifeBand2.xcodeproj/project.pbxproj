@@ -21,7 +21,6 @@
 		917DA98C1C3B8EB800FF675D /* CavyLifeBand2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917DA98B1C3B8EB800FF675D /* CavyLifeBand2UITests.swift */; };
 		917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 917DA9A01C3BA12E00FF675D /* InfoPlist.strings */; };
 		91C3ED841C3BB637000A414D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91C3ED861C3BB637000A414D /* Localizable.strings */; };
-		C8B5116C1C479D7E00EEC2D2 /* ImageForScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B5116B1C479D7E00EEC2D2 /* ImageForScrollView.swift */; };
 		FEEA59B0530DBF292999D652 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24A7CFAEA8FAD0237C60B20B /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -73,7 +72,6 @@
 		91C3ED881C3BB63B000A414D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		AD7D0502CC392B502E081F26 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C848EB391C46240F001FA1BF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		C8B5116B1C479D7E00EEC2D2 /* ImageForScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageForScrollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +123,6 @@
 				913D0BD11C3FA126006EE7F8 /* Camera.storyboard */,
 				4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */,
 				4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */,
-				C8B5116B1C479D7E00EEC2D2 /* ImageForScrollView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -430,7 +427,6 @@
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				913D0BDA1C3FA126006EE7F8 /* AppDelegate.swift in Sources */,
 				913D0BDD1C3FAA4B006EE7F8 /* NetRequestData.swift in Sources */,
-				C8B5116C1C479D7E00EEC2D2 /* ImageForScrollView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

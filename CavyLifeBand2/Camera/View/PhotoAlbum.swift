@@ -9,9 +9,9 @@
 import UIKit
 import AssetsLibrary
 import Log
+import EZSwiftExtensions
 
 class PhotoAlbum: UIViewController ,UIScrollViewDelegate{
-    let screenRect   = UIScreen.mainScreen().bounds
     var asset        = [ALAsset]()
     var library      = ALAssetsLibrary()
     var totalCount:Int   = 0
@@ -67,57 +67,33 @@ class PhotoAlbum: UIViewController ,UIScrollViewDelegate{
         super.viewWillAppear(animated)
         print("viewWillAppear")
         
+        scrollView.contentSize = CGSizeMake(ez.screenWidth * CGFloat(self.totalCount), scrollView.frame.height)
         
-        //        scrollView.backgroundColor = UIColor.redColor()
-        scrollView.frame = CGRectMake(0, 64, screenRect.width, screenRect.height - 64 - 69 )
-        scrollView.contentSize = CGSizeMake(scrollView.frame.width * CGFloat(self.totalCount), scrollView.frame.height)
-        
-        scrollView.contentOffset = CGPointMake(scrollView.frame.width * CGFloat(self.currentCount - 1), 0)
-        scrollView.pagingEnabled = true
         
         Log.info("totalPage:\(totalCount) ")
         Log.info("currentPage:\(currentCount) ")
         
         for var i = 0 ; i < self.totalCount ; i++ {
             
-            
-            let bottomView = UIView(frame: CGRectMake(scrollView.frame.width * CGFloat(i), 0, scrollView.frame.width, scrollView.frame.height))
-            
-            bottomView.backgroundColor = UIColor.clearColor()
-            
             let myAsset = self.asset[i]
-            let image =  UIImage(CGImage: myAsset.thumbnail().takeUnretainedValue())
-            /*
-            let newImageView = UIImageView(image: image)
             
-            newImageView.contentMode = UIViewContentMode.ScaleAspectFit
             
-            newImageView.frame = CGRectMake(0, 0, 200, 100)
-            newImageView.center = bottomView.center
-            bottomView.addSubview(newImageView)
-*/
+            let imageView = UIImageView(image: UIImage(CGImage: myAsset.defaultRepresentation().fullResolutionImage().takeUnretainedValue()))
             
-            let tempImageView = ImageForScrollView()
+            imageView.frame.size = CGSizeMake(ez.screenWidth, scrollView.size.height)
+            imageView.frame.origin.x = CGFloat(i) * ez.screenWidth
+            imageView.contentMode = .ScaleAspectFit
+            
+            Log.info("\(imageView.frame), \(ez.screenWidth) \(ez.screenHeight)")
 
-            let newImageView : UIImageView = tempImageView.changeImageSize(image)
-            
-            newImageView.image = image
-            newImageView.backgroundColor = UIColor.cyanColor()
-            newImageView.contentMode = UIViewContentMode.ScaleAspectFill
-            newImageView.center = bottomView.center
-        
-            
-            bottomView.addSubview(newImageView)
-            scrollView.addSubview(bottomView)
+            scrollView.addSubview(imageView)
         }
         
     }
     
-//    scrollViewDidEndDecelerating:
-    
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         
-        let newCount  = Int(scrollView.contentOffset.x / screenRect.width)
+        let newCount  = Int(scrollView.contentOffset.x / ez.screenWidth)
         Log.info("计算后的当前页：\(newCount)")
 
         self.currentCount = newCount + 1
