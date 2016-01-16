@@ -43,7 +43,7 @@ class CustomCamera: UIViewController {
     var asset          = [ALAsset]()
     var library        = ALAssetsLibrary()
     var startX         = CGFloat()// panGestureRecognizer start Location
-    var countOne = 0
+    var countOne       = 0
     
     // MARK: View
     
@@ -254,9 +254,11 @@ class CustomCamera: UIViewController {
         self.shutterPhoto.backgroundColor = UIColor.redColor()
         self.shutterPhoto.layer.masksToBounds = true
         self.shutterPhoto.layer.cornerRadius = shutterPhoto.frame.width / 2
+        // video Name
+        let videoName = self.getVideoName()
         
         // start recording
-        let outputURL = self.applicationDocumentsDirectory().URLByAppendingPathComponent("test1").URLByAppendingPathExtension("mov")
+        let outputURL = self.applicationDocumentsDirectory().URLByAppendingPathComponent(videoName).URLByAppendingPathExtension("mov")
         
         Log.info("outputURL: \(outputURL)")
         
@@ -288,6 +290,33 @@ class CustomCamera: UIViewController {
         })
         self.shutterPhoto.backgroundColor = UIColor.blackColor()
     }
+    
+    func getVideoName() -> String{
+        
+        let nowDate :NSDate = NSDate()
+        
+        let dateForMatter = NSDateFormatter()
+        dateForMatter.setLocalizedDateFormatFromTemplate("yyyyMMddHHmmss")
+        let videoName : String = dateForMatter.stringFromDate(nowDate)
+        
+        Log.info("nowDate:\(nowDate)")
+        
+        return videoName
+    }
+    
+    
+    /**
+     // 获取图片名字
+     - (NSString *)getImgName{
+     NSDate *nowDate= [NSDate date]; // 获取当前时间
+     NSDateFormatter *dateForMatter = [[NSDateFormatter alloc] init];
+     [dateForMatter setDateFormat:@"yyyyMMddHHmmss"];
+     NSString *imgName = [dateForMatter stringFromDate:nowDate];
+     return imgName;
+     }
+     
+     - parameter sender: <#sender description#>
+     */
 
     // MARK: Action 4 Button
     @IBAction func ChangeFalshLight(sender: AnyObject) {
@@ -375,9 +404,12 @@ class CustomCamera: UIViewController {
     @IBAction func GoPhotoAlbum(sender: AnyObject) {
         Log.info("打开相册")
         
-        let photoAlbum = PhotoAlbum()
-        let nav = UINavigationController(rootViewController: photoAlbum)
-        self.presentViewController(nav, animated: true, completion: nil)
+        
+        let storyBoard = UIStoryboard(name: "Camera", bundle: nil)
+        let photoVC = storyBoard.instantiateViewControllerWithIdentifier("PhotoAlbum")
+        
+        self .presentViewController(photoVC, animated: true, completion: nil)
+        
     }
     
     @IBAction func Action4ChoosePhoto(sender: AnyObject) {
@@ -410,6 +442,17 @@ class CustomCamera: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    /*
+    // MARK: - Navigation
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    // Get the new view controller using segue.destinationViewController.
+    // Pass the selected object to the new view controller.
+    }
+    */
     
 
 }
