@@ -47,7 +47,7 @@ class PhotoAlbum: UIViewController ,UIScrollViewDelegate{
                 
                 group.enumerateAssetsUsingBlock(assetBlock)
                 
-                self.currentCount = 1
+                self.currentCount = self.totalCount
                 
                 Log.info("assets:\(self.totalCount)")
                 
@@ -68,7 +68,7 @@ class PhotoAlbum: UIViewController ,UIScrollViewDelegate{
         print("viewWillAppear")
         
         scrollView.contentSize = CGSizeMake(ez.screenWidth * CGFloat(self.totalCount), scrollView.frame.height)
-        
+        scrollView.contentOffset = CGPoint(x: ez.screenWidth * CGFloat(self.totalCount), y: scrollView.frame.height)
         
         Log.info("totalPage:\(totalCount) ")
         Log.info("currentPage:\(currentCount) ")
