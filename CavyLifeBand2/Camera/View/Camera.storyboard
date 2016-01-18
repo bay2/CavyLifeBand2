@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QDV-Yk-peX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QDV-Yk-peX">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -29,7 +29,7 @@
                                         </constraints>
                                         <state key="normal" image="flash_off"/>
                                         <connections>
-                                            <action selector="ChangeFalshLight:" destination="QDV-Yk-peX" eventType="touchUpInside" id="BuI-T1-8bJ"/>
+                                            <action selector="changeFalshLight:" destination="QDV-Yk-peX" eventType="touchUpInside" id="AxP-Sf-8wA"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gZM-8R-MsF">
@@ -40,7 +40,7 @@
                                         </constraints>
                                         <state key="normal" image="camera_cutover"/>
                                         <connections>
-                                            <action selector="ChangeShot:" destination="QDV-Yk-peX" eventType="touchUpInside" id="dVe-62-Vzl"/>
+                                            <action selector="changeShot:" destination="QDV-Yk-peX" eventType="touchUpInside" id="YOy-2X-soU"/>
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUp-pl-0Nf">
@@ -122,7 +122,7 @@
                                         </constraints>
                                         <state key="normal" image="cancel"/>
                                         <connections>
-                                            <action selector="BackHome:" destination="QDV-Yk-peX" eventType="touchUpInside" id="DMA-P5-LmN"/>
+                                            <action selector="backHome:" destination="QDV-Yk-peX" eventType="touchUpInside" id="l3o-uL-t1N"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NI-2C-baU">
@@ -133,7 +133,7 @@
                                         </constraints>
                                         <state key="normal" image="photograph"/>
                                         <connections>
-                                            <action selector="TakePhotoAndVideo:" destination="QDV-Yk-peX" eventType="touchUpInside" id="5xL-a7-Mj1"/>
+                                            <action selector="takePhotoAndVideo:" destination="QDV-Yk-peX" eventType="touchUpInside" id="qGT-8r-gAw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGc-5O-ka9">
@@ -143,7 +143,7 @@
                                             <constraint firstAttribute="width" secondItem="nGc-5O-ka9" secondAttribute="height" multiplier="1:1" id="fMm-ue-1Jm"/>
                                         </constraints>
                                         <connections>
-                                            <action selector="GoPhotoAlbum:" destination="QDV-Yk-peX" eventType="touchUpInside" id="DmL-Zg-62A"/>
+                                            <action selector="goPhotoAlbum:" destination="QDV-Yk-peX" eventType="touchUpInside" id="EEj-xs-0iG"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3k-Sf-dGA">
@@ -153,7 +153,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="Action4ChooseVideo:" destination="QDV-Yk-peX" eventType="touchUpInside" id="VG4-Bd-hYQ"/>
+                                            <action selector="chooseVideoAction:" destination="QDV-Yk-peX" eventType="touchUpInside" id="5oh-7C-Fbs"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuV-jM-Yij">
@@ -163,7 +163,7 @@
                                             <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="Action4ChoosePhoto:" destination="QDV-Yk-peX" eventType="touchUpInside" id="VvP-0J-dsf"/>
+                                            <action selector="choosePhotoAction:" destination="QDV-Yk-peX" eventType="touchUpInside" id="Q9r-Qv-oc0"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -204,16 +204,16 @@
                     </view>
                     <connections>
                         <outlet property="bottomView" destination="3ke-8r-ILT" id="wKX-xG-4H0"/>
-                        <outlet property="btn4ChangeToPhoto" destination="kuV-jM-Yij" id="SgX-q9-O8E"/>
-                        <outlet property="btn4ChangeToVideo" destination="m3k-Sf-dGA" id="W3o-Sq-aHd"/>
-                        <outlet property="btn4FlashAuto" destination="HBO-xC-COC" id="CPd-lJ-IWY"/>
-                        <outlet property="btn4FlashOff" destination="oRO-w9-uIh" id="LlY-9m-DQJ"/>
-                        <outlet property="btn4FlashOn" destination="dUp-pl-0Nf" id="btv-Tp-IRr"/>
+                        <outlet property="changeToPhoto" destination="kuV-jM-Yij" id="M79-Jb-GqA"/>
+                        <outlet property="changeToVideo" destination="m3k-Sf-dGA" id="o4g-pP-lRv"/>
+                        <outlet property="falshAtuoImg" destination="b1q-Du-uJX" id="Owu-4v-cDB"/>
+                        <outlet property="falshOffImg" destination="Yxq-JO-NPc" id="O00-Qx-PWq"/>
+                        <outlet property="falshOnImge" destination="nOU-Nl-fBv" id="c50-t0-Rpe"/>
+                        <outlet property="flashAutoButton" destination="HBO-xC-COC" id="1o6-8A-uds"/>
+                        <outlet property="flashOffButton" destination="oRO-w9-uIh" id="31a-ag-gxA"/>
+                        <outlet property="flashOnButton" destination="dUp-pl-0Nf" id="84F-qe-ckU"/>
                         <outlet property="flashSwitch" destination="w2m-Gx-myF" id="f9H-Yf-Uqx"/>
                         <outlet property="headView" destination="NOU-Hr-aOD" id="CeE-mF-tHJ"/>
-                        <outlet property="img4FalshAtuo" destination="b1q-Du-uJX" id="Ezw-tB-1a8"/>
-                        <outlet property="img4FalshOff" destination="Yxq-JO-NPc" id="qkv-Pw-61W"/>
-                        <outlet property="img4FalshOn" destination="nOU-Nl-fBv" id="v5S-jd-V2Q"/>
                         <outlet property="lastImage" destination="nGc-5O-ka9" id="4Dr-LM-CNb"/>
                         <outlet property="photoView" destination="Vcm-J7-5oN" id="wnb-h9-dvQ"/>
                         <outlet property="shotCutSwitch" destination="gZM-8R-MsF" id="KXE-RH-VTd"/>
