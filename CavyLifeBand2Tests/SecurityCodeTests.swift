@@ -53,7 +53,7 @@ class SecurityCodeTests: XCTestCase {
             
             let reValue:[String:String] = result.value as! [String:String]
             
-            XCTAssert(reValue == resultMsg, "返回结果错误")
+            XCTAssert(reValue == resultMsg, "返回结果错误[reValue = \(reValue), resultMsg = \(resultMsg)]")
             
             expectation.fulfill()
             
@@ -78,7 +78,7 @@ class SecurityCodeTests: XCTestCase {
             
             let reValue:[String:String] = result.value as! [String:String]
             
-            XCTAssert(reValue == resultMsg, "返回结果错误")
+            XCTAssert(reValue == resultMsg, "返回结果错误[reValue = \(reValue), resultMsg = \(resultMsg)]")
             
             expectation.fulfill()
             

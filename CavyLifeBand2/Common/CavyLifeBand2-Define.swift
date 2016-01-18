@@ -10,3 +10,4 @@ import Foundation
 
 let bugHDKey = "https://collector.bughd.com/kscrash?key=9c009d806879cec4233b3b66b4264315"
 let serverAddr = "https://github.com"
+let WebAPICodeSuccess = "1001"

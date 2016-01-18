@@ -104,10 +104,11 @@ class UserNetRequestData: NSObject {
         
     }
     
-    /**
+     /**
      请求短信验证码
      
-     - parameter parameters: 参数 PhoneNumKey, EmailKey
+     - parameter parameters:        参数 UserNetRequestParaKeyEmailKey，UserNetRequestParaKeyEmailKey
+     - parameter completionHandler: 回调
      */
     private func requestSecurityCode(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
         
@@ -116,13 +117,13 @@ class UserNetRequestData: NSObject {
         //有效性校验
         guard let para = parameters else {
             completionHandler?(.Failure(.ParaNil))
-            Log.error("Para nil")
+            Log.error("Parameter nil")
             return
         }
         
-        if para.indexForKey(UserNetRequestParaKeyPhoneNumKey) == nil && para.indexForKey(UserNetRequestParaKeyEmailKey) == nil {
+        if !para.keys.contains(UserNetRequestParaKeyPhoneNumKey) && !para.keys.contains(UserNetRequestParaKeyEmailKey) {
             completionHandler?(.Failure(.ParaErr))
-            Log.error("Para error")
+            Log.error("Parameter error")
             return
         }
         
@@ -168,6 +169,49 @@ class UserNetRequestData: NSObject {
                 
             })
         }
+    }
+    
+    /**
+     注册
+     
+     - parameter parameters:        参数：UserNetRequestParaKeyEmailKey, UserNetRequestParaKeyPhoneNumKey, UserNetRequestParaKeyPasswdKey, UserNetRequestParaKeySecurityCodeKey
+     - parameter completionHandler: 回调
+     */
+    private func requestSignIn(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+        
+        //参数有效性检测
+        guard let para = parameters else {
+            
+            completionHandler?(.Failure(.NetErr))
+            Log.error("Parameter nil")
+            return
+            
+        }
+        
+        if !para.keys.contains(UserNetRequestParaKeyEmailKey) && !para.keys.contains(UserNetRequestParaKeyPhoneNumKey) {
+            
+            completionHandler?(.Failure(.ParaErr))
+            Log.error("Parameter error")
+            return
+            
+        }
+        
+        if !para.keys.contains(UserNetRequestParaKeySecurityCodeKey) || !para.keys.contains(UserNetRequestParaKeyPasswdKey) {
+            
+            completionHandler?(.Failure(.ParaErr))
+            Log.error("Parameter error")
+            return
+            
+        }
+        
+        if let email = para[UserNetRequestParaKeyEmailKey] as? String {
+            guard email.isEmail else {
+                completionHandler?(.Failure(.EmailErr))
+                Log.error("Email error")
+                return
+            }
+        }
+        
     }
     
 }
