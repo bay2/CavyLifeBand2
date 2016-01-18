@@ -47,7 +47,7 @@ class PhotoAlbum: UIViewController ,UIScrollViewDelegate{
                 
                 group.enumerateAssetsUsingBlock(assetBlock)
                 
-                self.currentCount = self.totalCount
+                self.currentCount = 1
                 
                 Log.info("assets:\(self.totalCount)")
                 
