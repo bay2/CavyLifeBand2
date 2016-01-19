@@ -99,19 +99,19 @@ class SignInTest: XCTestCase {
         }
     }
     
-    func testSignUpEmailErr() {
-        
-        for para in paras {
-            
-            testUserNetRequest.netRequestApi(.SignUp, parameters: para, completionHandler: { (result) -> Void in
-                
-                XCTAssert(result.isSuccess, "接口返回错误")
-                XCTAssert(result.error == UserRequestErrorType.PhoneErr, "返回结果错误[error = \(result.error)]")
-                
-            })
-        }
-        
-    }
+//    func testSignUpEmailErr() {
+//        
+//        for para in paras {
+//            
+//            testUserNetRequest.netRequestApi(.SignUp, parameters: para, completionHandler: { (result) -> Void in
+//                
+//                XCTAssert(result.isSuccess, "接口返回错误")
+//                XCTAssert(result.error == UserRequestErrorType.PhoneErr, "返回结果错误[error = \(result.error)]")
+//                
+//            })
+//        }
+//        
+//    }
 
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.
