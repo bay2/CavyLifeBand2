@@ -35,26 +35,29 @@ class SignInTest: XCTestCase {
 
     func testSignUpOk() {
         
-        let paras = [["phoneNum":"17722112322", "pwd":"123456", "authCode":"123456"],
-                     ["email":"asdf@qq.com", "pwd":"123456", "authCode":"123456"]]
+        let paras = [[UserNetRequestParaKey.PhoneNumKey.rawValue: "17722112322", UserNetRequestParaKey.PasswdKey.rawValue: "123456", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],
+                     [UserNetRequestParaKey.EmailKey.rawValue: "asdf@qq.com", UserNetRequestParaKey.EmailKey.rawValue: "123456", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"]]
         
         let expectation = expectationWithDescription("testPhoneNumSecurityCodeOk succeed")
         
         for para in paras {
             
-            testUserNetRequest.netRequestApi(.SignUp, parameters: para, completionHandler: { (result) -> Void in
+            userNetReq.requestSecurityCode(para, completionHandler: { (result) -> Void in
                 
                 let resultMsg = ["code" : "1001", "msg" : "注册成功"]
                 
+                let resulMsgObj = CommonResphones(JSON: resultMsg)
+                
                 XCTAssert(result.isSuccess, "接口返回错误")
+            
+                let reValue: CommonResphones = result.value as! CommonResphones
                 
-                let reValue:[String:String] = result.value as! [String:String]
-                
-                XCTAssert(reValue == resultMsg, "返回结果错误[reValue = \(reValue), resultMsg = \(resultMsg)]")
+                XCTAssert(reValue.code == resulMsgObj!.code, "返回结果错误[reValue.code = \(reValue.code), resulMsgObj!.code = \(resulMsgObj!.code)]")
+                XCTAssert(reValue.msg == resulMsgObj!.msg, "返回结果错误[reValue.msg = \(reValue.msg), resulMsgObj!.msg = \(resulMsgObj!.msg)]")
                 
                 expectation.fulfill()
-                
             })
+            
         }
         
         waitForExpectationsWithTimeout(timeout, handler: nil)
@@ -63,14 +66,15 @@ class SignInTest: XCTestCase {
     
     func testSignUpParaErr() {
         
-        let paras = [["phoneNum":"17722382211", "pwd":"123"],                         // 没有验证码
-                    ["phoneNum":"17722382211", "autoCode":"123456"],                 // 没有密码
-                    ["pwd":"123", "autoCode":"123456"]]                             // 没有手机号码和邮箱
+        let paras = [[UserNetRequestParaKey.PhoneNumKey.rawValue: "17722382211", UserNetRequestParaKey.PasswdKey.rawValue: "123"],                         // 没有验证码
+                    [UserNetRequestParaKey.PhoneNumKey.rawValue: "17722382211", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],                 // 没有密码
+                    [UserNetRequestParaKey.PasswdKey.rawValue: "123", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"]]                             // 没有手机号码和邮箱
         
         
         for para in paras {
             
-            testUserNetRequest.netRequestApi(.SignUp, parameters: para, completionHandler: { (result) -> Void in
+            
+            userNetReq.requestSecurityCode(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isSuccess, "接口返回错误")
                 XCTAssert(result.error == UserRequestErrorType.NetErr, "返回结果错误[error = \(result.error)]")
@@ -83,14 +87,14 @@ class SignInTest: XCTestCase {
     
     func testSignUpPhoneErr() {
         
-        let paras = [["phoneNum":"1722112322", "pwd":"123456", "authCode":"123456"],
-                    ["phoneNum":"17w22112o22", "pwd":"123456", "authCode":"123456"],
-                    ["phoneNum":"adfasdfsfss", "pwd":"123456", "authCode":"123456"]
+        let paras = [[UserNetRequestParaKey.PhoneNumKey.rawValue: "1722112322", UserNetRequestParaKey.PasswdKey.rawValue: "123456", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],
+                    [UserNetRequestParaKey.PhoneNumKey.rawValue: "17w22112o22", UserNetRequestParaKey.PasswdKey.rawValue: "123456", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],
+                    [UserNetRequestParaKey.PhoneNumKey.rawValue: "adfasdfsfss", UserNetRequestParaKey.PasswdKey.rawValue: "123456", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"]
         ]
         
         for para in paras {
             
-            testUserNetRequest.netRequestApi(.SignUp, parameters: para, completionHandler: { (result) -> Void in
+            userNetReq.requestSecurityCode(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isSuccess, "接口返回错误")
                 XCTAssert(result.error == UserRequestErrorType.PhoneErr, "返回结果错误[error = \(result.error)]")
@@ -99,19 +103,47 @@ class SignInTest: XCTestCase {
         }
     }
     
-//    func testSignUpEmailErr() {
-//        
-//        for para in paras {
-//            
-//            testUserNetRequest.netRequestApi(.SignUp, parameters: para, completionHandler: { (result) -> Void in
-//                
-//                XCTAssert(result.isSuccess, "接口返回错误")
-//                XCTAssert(result.error == UserRequestErrorType.PhoneErr, "返回结果错误[error = \(result.error)]")
-//                
-//            })
-//        }
-//        
-//    }
+    func testSignUpEmailErr() {
+        
+        let paras = [[UserNetRequestParaKey.EmailKey.rawValue: "1722112322", UserNetRequestParaKey.PasswdKey.rawValue: "123456", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],
+            [UserNetRequestParaKey.EmailKey.rawValue: "17w22112o22", UserNetRequestParaKey.PasswdKey.rawValue: "123456", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],
+            [UserNetRequestParaKey.EmailKey.rawValue: "adfasdfsfss", UserNetRequestParaKey.PasswdKey.rawValue: "123456", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],
+            [UserNetRequestParaKey.EmailKey.rawValue: "adfa@", UserNetRequestParaKey.PasswdKey.rawValue: "123456", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],
+            [UserNetRequestParaKey.EmailKey.rawValue: "adfasdfsfss@qq", UserNetRequestParaKey.PasswdKey.rawValue: "123456", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],
+            [UserNetRequestParaKey.EmailKey.rawValue: "adfasdfsfss@qq.", UserNetRequestParaKey.PasswdKey.rawValue: "123456", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],
+        ]
+        
+        for para in paras {
+            
+            userNetReq.requestSecurityCode(para, completionHandler: { (result) -> Void in
+                
+                XCTAssert(result.isSuccess, "接口返回错误")
+                XCTAssert(result.error == UserRequestErrorType.PhoneErr, "返回结果错误[error = \(result.error)]")
+                
+            })
+        }
+    }
+    
+    func testSignUpPwdErr() {
+        
+        let paras = [[UserNetRequestParaKey.PhoneNumKey.rawValue: "17722112322", UserNetRequestParaKey.PasswdKey.rawValue: "12345", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],
+            [UserNetRequestParaKey.PhoneNumKey.rawValue: "17722112322", UserNetRequestParaKey.PasswdKey.rawValue: "123456123498291112391", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"],
+            [UserNetRequestParaKey.EmailKey.rawValue: "asdf@qq.com", UserNetRequestParaKey.PasswdKey.rawValue: "12345", "authCode":"123456"],
+            [UserNetRequestParaKey.EmailKey.rawValue: "asdf@qq.com", UserNetRequestParaKey.PasswdKey.rawValue: "123456123498291112391", UserNetRequestParaKey.SecurityCodeKey.rawValue: "123456"]
+        ]
+        
+        for para in paras {
+            
+            userNetReq.requestSecurityCode(para, completionHandler: { (result) -> Void in
+                
+                XCTAssert(result.isSuccess, "接口返回错误")
+                XCTAssert(result.error == UserRequestErrorType.PassWdErr, "返回结果错误[error = \(result.error)]")
+                
+            })
+            
+        }
+        
+    }
 
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.

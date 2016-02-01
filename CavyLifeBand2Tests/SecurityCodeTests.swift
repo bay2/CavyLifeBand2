@@ -45,7 +45,9 @@ class SecurityCodeTests: XCTestCase {
         
         let expectation = expectationWithDescription("testPhoneNumSecurityCodeOk succeed")
         
-        testUserNetRequest.netRequestApi(.SendSecurityCode, parameters: [UserNetRequestParaKeyPhoneNumKey : "17722618598"], completionHandler: { result in
+        
+        
+        userNetReq.requestSecurityCode([UserNetRequestParaKey.PhoneNumKey.rawValue: "17722618598"], completionHandler: { result in
             
             let resultMsg = ["code" : "1001", "msg" : "成功"]
             
@@ -63,45 +65,6 @@ class SecurityCodeTests: XCTestCase {
         
     }
     
-    /**
-     邮箱验证码成功请求
-     */
-    func testEmailSecurityCodeOk() {
-        
-        let expectation = expectationWithDescription("testEmailSecurityCodeOk succeed")
-        
-        testUserNetRequest.netRequestApi(.SendSecurityCode, parameters: [UserNetRequestParaKeyEmailKey : "12311W@qq.com"], completionHandler: { result in
-            
-            let resultMsg = ["code" : "1001", "msg" : "成功"]
-            
-            XCTAssert(result.isSuccess, "接口返回错误")
-            
-            let reValue:[String:String] = result.value as! [String:String]
-            
-            XCTAssert(reValue == resultMsg, "返回结果错误[reValue = \(reValue), resultMsg = \(resultMsg)]")
-            
-            expectation.fulfill()
-            
-        })
-        
-        waitForExpectationsWithTimeout(timeout, handler: nil)
-        
-    }
-    
-    /**
-     验证请求参数为nil
-     */
-    func testParaNilSecurityCode() {
-        
-        testUserNetRequest.netRequestApi(.SendSecurityCode, completionHandler : { result in
-            
-            XCTAssert(result.isFailure, "接口返回错误")
-            
-            XCTAssert(result.error == UserRequestErrorType.ParaNil, "返回结果错误")
-            
-        })
-        
-    }
     
     /**
      手机号码错误
@@ -112,7 +75,7 @@ class SecurityCodeTests: XCTestCase {
         
         for phoneNum in phoneNums {
             
-            testUserNetRequest.netRequestApi(.SendSecurityCode, parameters: [UserNetRequestParaKeyPhoneNumKey: phoneNum], completionHandler: { result in
+            userNetReq.requestSecurityCode([UserNetRequestParaKey.PhoneNumKey.rawValue: phoneNum], completionHandler: { result in
                 
                 XCTAssert(result.isFailure, "接口返回错误(\(phoneNum))")
                 
@@ -123,27 +86,7 @@ class SecurityCodeTests: XCTestCase {
         
     }
     
-    /**
-     邮箱错误
-     */
-    func testEmailErrSecurityCode() {
-        
-        let emails = ["fsadf.com", "sfsf@213", "sdfasdf", "sdfsaf@123."]
-        
-        for email in emails {
-            
-            testUserNetRequest.netRequestApi(.SendSecurityCode, parameters: [UserNetRequestParaKeyEmailKey: email], completionHandler: { result in
-                
-                XCTAssert(result.isFailure, "接口返回错误(\(email))")
-                
-                XCTAssert(result.error == UserRequestErrorType.EmailErr, "接口返回错误(\(email))")
-                
-            })
-            
-        }
-        
-        
-    }
+
     
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.

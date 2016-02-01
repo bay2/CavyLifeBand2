@@ -20,6 +20,7 @@
 		917DA9811C3B8EB800FF675D /* SecurityCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917DA9801C3B8EB800FF675D /* SecurityCodeTests.swift */; };
 		917DA98C1C3B8EB800FF675D /* CavyLifeBand2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917DA98B1C3B8EB800FF675D /* CavyLifeBand2UITests.swift */; };
 		917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 917DA9A01C3BA12E00FF675D /* InfoPlist.strings */; };
+		9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */; };
 		9199DA251C48D2BF009672C4 /* SignUpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199DA241C48D2BF009672C4 /* SignUpTest.swift */; };
 		91A09DAD1C488AF400BB1599 /* Sign_In_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A09DAC1C488AF400BB1599 /* Sign_In_Ok.json */; };
 		91C3AE251C44DABA006B67AF /* UserNetRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C3AE221C44DABA006B67AF /* UserNetRequestData.swift */; };
@@ -78,6 +79,7 @@
 		917DA9A51C3BA1A700FF675D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		917DA9A61C3BA1A700FF675D /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		91931FBDB93D6202BBC98835 /* Pods-CavyLifeBand2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.release.xcconfig"; sourceTree = "<group>"; };
+		9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequestAdapter.swift; sourceTree = "<group>"; };
 		9199DA241C48D2BF009672C4 /* SignUpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTest.swift; sourceTree = "<group>"; };
 		91A09DAC1C488AF400BB1599 /* Sign_In_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Ok.json; sourceTree = "<group>"; };
 		91C3AE221C44DABA006B67AF /* UserNetRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetRequestData.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				913D0BD71C3FA126006EE7F8 /* CavyLifeBand2-Define.swift */,
 				91C3AE511C462FE5006B67AF /* String_Extension.swift */,
 				91C3AE551C474305006B67AF /* Log_Extension.swift */,
+				9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -557,6 +560,7 @@
 				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
+				9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
