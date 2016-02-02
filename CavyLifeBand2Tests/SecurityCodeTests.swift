@@ -45,17 +45,16 @@ class SecurityCodeTests: XCTestCase {
         
         let expectation = expectationWithDescription("testPhoneNumSecurityCodeOk succeed")
         
-        
-        
-        userNetReq.requestSecurityCode([UserNetRequestParaKey.PhoneNumKey.rawValue: "17722618598"], completionHandler: { result in
+        userNetReq.requestSecurityCode([UserNetRequsetKey.PhoneNum.rawValue: "17722618598"], completionHandler: { result in
             
             let resultMsg = ["code" : "1001", "msg" : "成功"]
             
             XCTAssert(result.isSuccess, "接口返回错误")
             
-            let reValue:[String:String] = result.value as! [String:String]
+            let reValue: CommonResphones = result.value as! CommonResphones
             
-            XCTAssert(reValue == resultMsg, "返回结果错误[reValue = \(reValue), resultMsg = \(resultMsg)]")
+            XCTAssert(reValue.code == resultMsg["code"], "返回结果错误[reValue = \(reValue), resultMsg = \(resultMsg["code"])]")
+            XCTAssert(reValue.msg == resultMsg["msg"], "返回结果错误[reValue = \(reValue), resultMsg = \(resultMsg["msg"])")
             
             expectation.fulfill()
             
@@ -75,13 +74,19 @@ class SecurityCodeTests: XCTestCase {
         
         for phoneNum in phoneNums {
             
-            userNetReq.requestSecurityCode([UserNetRequestParaKey.PhoneNumKey.rawValue: phoneNum], completionHandler: { result in
+            let expectation = expectationWithDescription("testPhoneNumErrSecurityCode succeed")
+            
+            userNetReq.requestSecurityCode([UserNetRequsetKey.PhoneNum.rawValue: phoneNum], completionHandler: { result in
                 
                 XCTAssert(result.isFailure, "接口返回错误(\(phoneNum))")
                 
                 XCTAssert(result.error == UserRequestErrorType.PhoneErr, "接口返回错误(\(phoneNum))")
                 
+                expectation.fulfill()
+                
             })
+            
+            waitForExpectationsWithTimeout(timeout, handler: nil)
         }
         
     }

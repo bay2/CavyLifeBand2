@@ -11,22 +11,7 @@ import Alamofire
 import Log
 import EZSwiftExtensions
 
-let UserNetRequestParaKeyPhoneNumKey =  "phoneNum"
-let UserNetRequestParaKeyEmailKey = "email"
-let UserNetRequestParaKeyPasswdKey = "pwd"
-let UserNetRequestParaKeySecurityCodeKey = "authCode"
-let UserNetRequestParaKeyUserNameKey = "user"
-let UserNetRequestParaKeyUserIDKey = "userId"
-let UserNetRequestParaKeyAvatarKey = "imgFile"
-let UserNetRequestParaKeyStepNumKey = "stepNum"
-let UserNetRequestParaKeySleepTimeKey = "sleepTime"
-let UserNetRequestParaKeyPhoneNumListKey = "phoneNumList"
-let UserNetRequestParaKeyFriendIDKey = "friendId"
-let UserNetRequestParaKeyFlagKey = "flag"
-let UserNetRequestParaKeyLocalKey = "lbs"
-let UserNetRequestParaKeyFriendIdListKey = "friendIds"
-let UserNetRequestParaKeyOperateKey = "operate"
-    
+
 /**
  网络请求错误类型
  
@@ -35,14 +20,54 @@ let UserNetRequestParaKeyOperateKey = "operate"
  - ParamErr:  参数错误
  */
 enum UserRequestErrorType: ErrorType {
-    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, PhoneErr
+    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, PhoneErr, PassWdErr, SecurityErr
 }
 
-class UserNetRequestData: NSObject {
+/**
+ web api参数
+ 
+ - PhoneNum:     手机号
+ - Email:        邮箱
+ - Passwd:       密码
+ - SecurityCode: 验证码
+ - UserName:     用户名
+ - UserID:       用户ID
+ - Avater:       头像
+ - StepNum:      步数
+ - SleepTime:    睡眠时间
+ - FriendID:     好友ID
+ - Flag:         标识
+ - Local:        坐标
+ - FriendIdList: 好友列表
+ - Operate:      操作
+ */
+enum UserNetRequsetKey: String {
+    
+    case PhoneNum = "phoneNum"
+    case Email = "email"
+    case Passwd = "pwd"
+    case SecurityCode = "authCode"
+    case UserName = "user"
+    case UserID = "userId"
+    case Avater = "imgFile"
+    case StepNum = "stepNum"
+    case SleepTime = "phoneNumList"
+    case FriendID = "freiendId"
+    case Flag = "flag"
+    case Local = "lbs"
+    case FriendIdList = "friendIds"
+    case Operate = "operate"
+    
+}
+
+let userNetReq = UserNetRequestData()
+
+class UserNetRequestData: NetRequestAdapter {
     
     typealias CompletionHandlernType = (Result<AnyObject, UserRequestErrorType>) -> Void
     
-    private let webAPI = [UserNetRequestMethod.SendSecurityCode.rawValue: ""]
+    private let webAPI = [UserNetRequestMethod.SendSecurityCode.rawValue: "sendSecurityCode",
+        UserNetRequestMethod.SignIn.rawValue: "signIn"]
    
 
     
@@ -86,31 +111,13 @@ class UserNetRequestData: NSObject {
         case TargetValue
     }
     
-    /**
-     
-     - parameter method:     请求类型
-     - parameter parameters: 参数
-     */
-    func netRequestApi(method: UserNetRequestMethod, parameters: [String: AnyObject]? = nil, completionHandler: CompletionHandlernType? = nil) {
-        
-        switch method {
-        case .SendSecurityCode:
-            requestSecurityCode(parameters, completionHandler: completionHandler)
-            
-        default:
-            Log.error("methoe Invalid (\(method))")
-            
-        }
-        
-    }
-    
      /**
      请求短信验证码
      
      - parameter parameters:        参数 UserNetRequestParaKeyEmailKey，UserNetRequestParaKeyEmailKey
      - parameter completionHandler: 回调
      */
-    private func requestSecurityCode(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+    func requestSecurityCode(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
         
         let urlString = serverAddr + webAPI[UserNetRequestMethod.SendSecurityCode.rawValue]!
         
@@ -121,23 +128,7 @@ class UserNetRequestData: NSObject {
             return
         }
         
-        if !para.keys.contains(UserNetRequestParaKeyPhoneNumKey) && !para.keys.contains(UserNetRequestParaKeyEmailKey) {
-            completionHandler?(.Failure(.ParaErr))
-            Log.error("Parameter error")
-            return
-        }
-        
-        if let email: String = para[UserNetRequestParaKeyEmailKey] as? String {
-            
-            if email.isEmail != true {
-                completionHandler?(.Failure(.EmailErr))
-                Log.error("Email error")
-                return
-            }
-
-        }
-        
-        if let phone: String = para[UserNetRequestParaKeyPhoneNumKey] as? String {
+        if let phone: String = para[UserNetRequsetKey.PhoneNum.rawValue] as? String {
             
             if phone.isPhoneNum != true {
                 completionHandler?(.Failure(.PhoneErr))
@@ -147,29 +138,9 @@ class UserNetRequestData: NSObject {
             
         }
         
-        //发送API请求
-        Log.netRequestFormater(urlString, para: para)
-        Alamofire.request(.POST, urlString, parameters: para).responseJSON { (response) -> Void in
-            
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                
-                if response.result.isFailure {
-                    completionHandler?(.Failure(.NetErr))
-                    Log.error("Network error")
-                    return
-                }
-                
-                guard let responseResult = response.result.value else {
-                    completionHandler?(.Failure(.NetAPIErr))
-                    Log.error("Network API error")
-                    return
-                }
-                
-                completionHandler?(.Success(responseResult))
-                
-            })
-        }
-    }
+        netPostRequestAdapter(urlString, para: para, completionHandler: completionHandler)
+        
+   }
     
     /**
      注册
@@ -177,7 +148,9 @@ class UserNetRequestData: NSObject {
      - parameter parameters:        参数：UserNetRequestParaKeyEmailKey, UserNetRequestParaKeyPhoneNumKey, UserNetRequestParaKeyPasswdKey, UserNetRequestParaKeySecurityCodeKey
      - parameter completionHandler: 回调
      */
-    private func requestSignIn(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+    func requestSignIn(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+        
+        let urlString = serverAddr + webAPI[UserNetRequestMethod.SignIn.rawValue]!
         
         //参数有效性检测
         guard let para = parameters else {
@@ -188,7 +161,7 @@ class UserNetRequestData: NSObject {
             
         }
         
-        if !para.keys.contains(UserNetRequestParaKeyEmailKey) && !para.keys.contains(UserNetRequestParaKeyPhoneNumKey) {
+        if !para.keys.contains(UserNetRequsetKey.Email.rawValue) && !para.keys.contains(UserNetRequsetKey.PhoneNum.rawValue) {
             
             completionHandler?(.Failure(.ParaErr))
             Log.error("Parameter error")
@@ -196,7 +169,7 @@ class UserNetRequestData: NSObject {
             
         }
         
-        if !para.keys.contains(UserNetRequestParaKeySecurityCodeKey) || !para.keys.contains(UserNetRequestParaKeyPasswdKey) {
+        if !para.keys.contains(UserNetRequsetKey.SecurityCode.rawValue) || !para.keys.contains(UserNetRequsetKey.Passwd.rawValue) {
             
             completionHandler?(.Failure(.ParaErr))
             Log.error("Parameter error")
@@ -204,13 +177,45 @@ class UserNetRequestData: NSObject {
             
         }
         
-        if let email = para[UserNetRequestParaKeyEmailKey] as? String {
+        if let email = para[UserNetRequsetKey.Email.rawValue] as? String {
             guard email.isEmail else {
                 completionHandler?(.Failure(.EmailErr))
                 Log.error("Email error")
                 return
             }
         }
+        
+        if let phone = para[UserNetRequsetKey.PhoneNum.rawValue] as? String {
+            guard phone.isPhoneNum else {
+                completionHandler?(.Failure(.PhoneErr))
+                Log.error("Phone num error")
+                return
+            }
+        }
+        
+        if let pwd = para[UserNetRequsetKey.Passwd.rawValue] as? String {
+            
+            if pwd.length < 6 || pwd.length > 16 {
+                completionHandler?(.Failure(.PassWdErr))
+                Log.error("Password error")
+                return
+            }
+            
+        }
+        
+        if let securityCode = para[UserNetRequsetKey.SecurityCode.rawValue] as? String {
+            
+            if securityCode.toInt() == nil || securityCode.length != 6 {
+                
+                completionHandler?(.Failure(.SecurityErr))
+                Log.error("Security code error")
+                return
+                
+            }
+            
+        }
+        
+        netPostRequestAdapter(urlString, para: para, completionHandler: completionHandler)
         
     }
     

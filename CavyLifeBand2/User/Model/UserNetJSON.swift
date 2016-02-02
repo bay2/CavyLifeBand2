@@ -9,20 +9,3 @@
 import Foundation
 import AlamofireObjectMapper
 import ObjectMapper
-
-
-class CommonResphones: Mappable {
-    
-    var code = ""
-    var msg = ""
-    
-    required init?(_ map: Map) {
-        
-    }
-    
-    func mapping(map: Map) {
-        code <- map["code"]
-        msg <- map["msg"]
-    }
-    
-}
