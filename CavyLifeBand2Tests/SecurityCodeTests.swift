@@ -12,9 +12,6 @@ import Alamofire
 @testable import CavyLifeBand2
 
 class SecurityCodeTests: XCTestCase {
-    let timeout: NSTimeInterval = 30.0
-    let testUserNetRequest = UserNetRequestData()
-    
     
     override func setUp() {
         super.setUp()

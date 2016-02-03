@@ -10,19 +10,18 @@ import XCTest
 import OHHTTPStubs
 import Alamofire
 @testable import CavyLifeBand2
+let timeout: NSTimeInterval = 30.0
 
-class SignInTest: XCTestCase {
+class SignUpTest: XCTestCase {
     
-    let timeout: NSTimeInterval = 30.0
-    let testUserNetRequest = UserNetRequestData()
-
     override func setUp() {
+        
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         stub(isMethodPOST()) { _ in
             
-            let stubPath = OHPathForFile("Sign_In_Ok.json", self.dynamicType)
+            let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
             return fixture(stubPath!, headers: ["Content-Type" : "application/json"])
             
         }
@@ -31,8 +30,13 @@ class SignInTest: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
+        
+        OHHTTPStubs.removeAllStubs()
     }
 
+    /**
+     手机注册ok
+     */
     func testSignUpPhoneOk() {
         
         let paras = [[UserNetRequsetKey.PhoneNum.rawValue: "17722112322", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "123456"]]
@@ -55,12 +59,15 @@ class SignInTest: XCTestCase {
                 expectation.fulfill()
             })
             
+            waitForExpectationsWithTimeout(timeout, handler: nil)
         }
         
-        waitForExpectationsWithTimeout(timeout, handler: nil)
         
     }
     
+    /**
+     邮件注册ok
+     */
     func testSignUpEmailOk() {
         
         let paras = [[UserNetRequsetKey.Email.rawValue: "asdfwq@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "123456"]]
@@ -90,6 +97,9 @@ class SignInTest: XCTestCase {
     }
  
     
+    /**
+     注册缺少参数
+     */
     func testSignUpParaErr() {
         
         let paras = [[UserNetRequsetKey.PhoneNum.rawValue: "17722382211", UserNetRequsetKey.Passwd.rawValue: "123"],                         // 没有验证码
@@ -114,6 +124,9 @@ class SignInTest: XCTestCase {
         
     }
     
+    /**
+     注册手机号错误
+     */
     func testSignUpPhoneErr() {
         
         let paras = [[UserNetRequsetKey.PhoneNum.rawValue: "1722112322", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "123456"],
@@ -137,6 +150,9 @@ class SignInTest: XCTestCase {
         }
     }
     
+    /**
+     注册邮箱错误
+     */
     func testSignUpEmailErr() {
         
         let paras = [[UserNetRequsetKey.Email.rawValue: "1722112322", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "123456"],
@@ -164,6 +180,9 @@ class SignInTest: XCTestCase {
         }
     }
     
+    /**
+     注册密码错误
+     */
     func testSignUpPwdErr() {
         
         let paras = [[UserNetRequsetKey.PhoneNum.rawValue: "17722112322", UserNetRequsetKey.Passwd.rawValue: "12345", UserNetRequsetKey.SecurityCode.rawValue: "123456"],
@@ -191,6 +210,9 @@ class SignInTest: XCTestCase {
         
     }
     
+    /**
+     注册验证码错误
+     */
     func testSecurityCodeErr() {
         
         let paras = [[UserNetRequsetKey.PhoneNum.rawValue: "17722112322", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "12456"],

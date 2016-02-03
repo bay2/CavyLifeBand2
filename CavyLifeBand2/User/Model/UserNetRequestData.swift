@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import Log
 import EZSwiftExtensions
+import CryptoSwift
 
 
 /**
@@ -67,7 +68,9 @@ class UserNetRequestData: NetRequestAdapter {
     typealias CompletionHandlernType = (Result<AnyObject, UserRequestErrorType>) -> Void
     
     private let webAPI = [UserNetRequestMethod.SendSecurityCode.rawValue: "sendSecurityCode",
-        UserNetRequestMethod.SignIn.rawValue: "signIn"]
+    UserNetRequestMethod.SignIn.rawValue: "signIn",
+    UserNetRequestMethod.SignUp.rawValue: "signUp"]
+    
    
 
     
@@ -148,20 +151,18 @@ class UserNetRequestData: NetRequestAdapter {
      - parameter parameters:        参数：UserNetRequestParaKeyEmailKey, UserNetRequestParaKeyPhoneNumKey, UserNetRequestParaKeyPasswdKey, UserNetRequestParaKeySecurityCodeKey
      - parameter completionHandler: 回调
      */
-    func requestSignIn(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+    func requestSignUp(var parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
         
         let urlString = serverAddr + webAPI[UserNetRequestMethod.SignIn.rawValue]!
         
         //参数有效性检测
-        guard let para = parameters else {
-            
+        if parameters == nil {
             completionHandler?(.Failure(.NetErr))
             Log.error("Parameter nil")
             return
-            
         }
         
-        if !para.keys.contains(UserNetRequsetKey.Email.rawValue) && !para.keys.contains(UserNetRequsetKey.PhoneNum.rawValue) {
+        if !parameters!.keys.contains(UserNetRequsetKey.SecurityCode.rawValue) || !parameters!.keys.contains(UserNetRequsetKey.Passwd.rawValue) {
             
             completionHandler?(.Failure(.ParaErr))
             Log.error("Parameter error")
@@ -169,15 +170,7 @@ class UserNetRequestData: NetRequestAdapter {
             
         }
         
-        if !para.keys.contains(UserNetRequsetKey.SecurityCode.rawValue) || !para.keys.contains(UserNetRequsetKey.Passwd.rawValue) {
-            
-            completionHandler?(.Failure(.ParaErr))
-            Log.error("Parameter error")
-            return
-            
-        }
-        
-        if let email = para[UserNetRequsetKey.Email.rawValue] as? String {
+        if let email = parameters![UserNetRequsetKey.Email.rawValue] as? String {
             guard email.isEmail else {
                 completionHandler?(.Failure(.EmailErr))
                 Log.error("Email error")
@@ -185,7 +178,7 @@ class UserNetRequestData: NetRequestAdapter {
             }
         }
         
-        if let phone = para[UserNetRequsetKey.PhoneNum.rawValue] as? String {
+        if let phone = parameters![UserNetRequsetKey.PhoneNum.rawValue] as? String {
             guard phone.isPhoneNum else {
                 completionHandler?(.Failure(.PhoneErr))
                 Log.error("Phone num error")
@@ -193,17 +186,7 @@ class UserNetRequestData: NetRequestAdapter {
             }
         }
         
-        if let pwd = para[UserNetRequsetKey.Passwd.rawValue] as? String {
-            
-            if pwd.length < 6 || pwd.length > 16 {
-                completionHandler?(.Failure(.PassWdErr))
-                Log.error("Password error")
-                return
-            }
-            
-        }
-        
-        if let securityCode = para[UserNetRequsetKey.SecurityCode.rawValue] as? String {
+        if let securityCode = parameters![UserNetRequsetKey.SecurityCode.rawValue] as? String {
             
             if securityCode.toInt() == nil || securityCode.length != 6 {
                 
@@ -215,7 +198,56 @@ class UserNetRequestData: NetRequestAdapter {
             
         }
         
-        netPostRequestAdapter(urlString, para: para, completionHandler: completionHandler)
+        if let pwd = parameters![UserNetRequsetKey.Passwd.rawValue] as? String {
+            
+            if pwd.length < 6 || pwd.length > 16 {
+                completionHandler?(.Failure(.PassWdErr))
+                Log.error("Password error")
+                return
+            }
+            
+            // 密码进行MD5加密
+            parameters![UserNetRequsetKey.Passwd.rawValue] = pwd.md5()
+            
+        }
+        
+        netPostRequestAdapter(urlString, para: parameters, completionHandler: completionHandler)
+        
+    }
+    
+    /**
+     用户登录
+     
+     - parameter parameters:        UserNetRequsetKey.UserName, UserNetRequsetKey.Passwd
+     - parameter completionHandler: 回调
+     */
+    func requestSignIn(var parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+        
+        let urlString  = webAPI[UserNetRequestMethod.SignUp.rawValue]!
+        
+        if parameters == nil {
+            
+            completionHandler?(.Failure(.ParaNil))
+            Log.error("Para is nil")
+            return
+            
+        }
+        
+        if !parameters!.keys.contains(UserNetRequsetKey.UserName.rawValue) || !parameters!.keys.contains(UserNetRequsetKey.Passwd.rawValue) {
+            
+            completionHandler?(.Failure(.ParaErr))
+            Log.error("Para error")
+            return
+            
+        }
+        
+        // 密码MD5 加密
+        if let pwd = parameters![UserNetRequsetKey.Passwd.rawValue] as? String {
+            
+            parameters![UserNetRequsetKey.Passwd.rawValue] = pwd.md5()
+        }
+        
+        netPostRequestAdapter(urlString, para: parameters, completionHandler: completionHandler)
         
     }
     

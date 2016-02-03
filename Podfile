@@ -12,6 +12,7 @@ pod 'EZSwiftExtensions'
 pod 'MJRefresh'
 pod 'KSCrash'
 pod 'LLSimpleCamera'
+pod 'CryptoSwift'
 
 target :CavyLifeBand2Tests, :exclusive => true do
     pod 'OHHTTPStubs'

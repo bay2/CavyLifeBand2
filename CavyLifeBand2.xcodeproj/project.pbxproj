@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
+		912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D29DA1C6088B5005A06E9 /* SignInTest.swift */; };
+		912D29DD1C609FFD005A06E9 /* Sign_Up_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 912D29DC1C609FFD005A06E9 /* Sign_Up_Ok.json */; };
 		913D0BD81C3FA126006EE7F8 /* Camera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 913D0BD11C3FA126006EE7F8 /* Camera.storyboard */; };
 		913D0BD91C3FA126006EE7F8 /* Weather.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 913D0BD41C3FA126006EE7F8 /* Weather.storyboard */; };
 		913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D0BD71C3FA126006EE7F8 /* CavyLifeBand2-Define.swift */; };
@@ -57,6 +59,8 @@
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		912D29DA1C6088B5005A06E9 /* SignInTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTest.swift; sourceTree = "<group>"; };
+		912D29DC1C609FFD005A06E9 /* Sign_Up_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_Up_Ok.json; sourceTree = "<group>"; };
 		913D0BD11C3FA126006EE7F8 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		913D0BD41C3FA126006EE7F8 /* Weather.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Weather.storyboard; sourceTree = "<group>"; };
 		913D0BD71C3FA126006EE7F8 /* CavyLifeBand2-Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CavyLifeBand2-Define.swift"; sourceTree = "<group>"; };
@@ -222,6 +226,7 @@
 				91C3AE4C1C461E61006B67AF /* json */,
 				917DA9801C3B8EB800FF675D /* SecurityCodeTests.swift */,
 				9199DA241C48D2BF009672C4 /* SignUpTest.swift */,
+				912D29DA1C6088B5005A06E9 /* SignInTest.swift */,
 				917DA9821C3B8EB800FF675D /* Info.plist */,
 			);
 			path = CavyLifeBand2Tests;
@@ -263,6 +268,7 @@
 		91C3AE4C1C461E61006B67AF /* json */ = {
 			isa = PBXGroup;
 			children = (
+				912D29DC1C609FFD005A06E9 /* Sign_Up_Ok.json */,
 				91A09DAC1C488AF400BB1599 /* Sign_In_Ok.json */,
 				91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */,
 			);
@@ -427,6 +433,7 @@
 			files = (
 				91C3AE501C461EA0006B67AF /* SecurityCode_Ok.json in Resources */,
 				91A09DAD1C488AF400BB1599 /* Sign_In_Ok.json in Resources */,
+				912D29DD1C609FFD005A06E9 /* Sign_Up_Ok.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				917DA9811C3B8EB800FF675D /* SecurityCodeTests.swift in Sources */,
+				912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */,
 				9199DA251C48D2BF009672C4 /* SignUpTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

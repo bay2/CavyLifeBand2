@@ -1,11 +1,12 @@
 PODS:
-  - Alamofire (3.1.4)
-  - AlamofireImage (2.2.0):
+  - Alamofire (3.1.5)
+  - AlamofireImage (2.3.0):
     - Alamofire (~> 3.1)
   - AlamofireObjectMapper (2.1.0):
     - Alamofire (~> 3.1.0)
     - ObjectMapper (~> 1.0)
-  - EZSwiftExtensions (1.0.5)
+  - CryptoSwift (0.2.2)
+  - EZSwiftExtensions (1.1.1)
   - KSCrash (0.0.8):
     - KSCrash/Installations (= 0.0.8)
     - KSCrash/no-arc (= 0.0.8)
@@ -61,7 +62,7 @@ PODS:
     - KSCrash/Reporting/Tools
   - KSCrash/Reporting/Tools (0.0.8):
     - KSCrash/Recording
-  - LLSimpleCamera (4.1.0)
+  - LLSimpleCamera (4.2.0)
   - Log (0.1)
   - MJRefresh (3.1.0)
   - ObjectMapper (1.1.1)
@@ -80,7 +81,7 @@ PODS:
   - OHHTTPStubs/OHPathHelpers (4.7.0)
   - OHHTTPStubs/Swift (4.7.0):
     - OHHTTPStubs/Core
-  - SnapKit (0.18.0)
+  - SnapKit (0.19.1)
   - SwiftOverlays (1.0)
   - XLActionController (1.0.0):
     - XLActionController/Core (= 1.0.0)
@@ -90,6 +91,7 @@ DEPENDENCIES:
   - Alamofire
   - AlamofireImage
   - AlamofireObjectMapper
+  - CryptoSwift
   - EZSwiftExtensions
   - KSCrash
   - LLSimpleCamera
@@ -102,17 +104,18 @@ DEPENDENCIES:
   - XLActionController
 
 SPEC CHECKSUMS:
-  Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
-  AlamofireImage: bedb8a4bdfb98eda81ba12952fba6e9e90420922
+  Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
+  AlamofireImage: 4013fb5b99b10117bf2554a67b9bd2231d476b45
   AlamofireObjectMapper: 24097576202064f8b0a583452dd934064f78dc0e
-  EZSwiftExtensions: b4369331aa7a0fcfca8bb7d2467567bcd237f083
+  CryptoSwift: d382228d6301c09474132417878a741c2a2e68cd
+  EZSwiftExtensions: 154c9da7b929f8b04b194e290181be42b49c46b6
   KSCrash: a928da877b18f70c9ec3b50d4e8960271e2a10e5
-  LLSimpleCamera: c2600d1621555473530ca2a70d4399d287086337
+  LLSimpleCamera: ed7813ce4827ff3e34c6af159c99b5b56e54d1c6
   Log: 8de10d912b9cd4fe1abba749d0762be8ad802de7
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   ObjectMapper: 4143abed1dbd49b73d75092fe8fa1c88ed6434b7
   OHHTTPStubs: d2bf6a0f407620d67e75a1d3f12d86a2b1dd15c0
-  SnapKit: e1f090a6d47b1dd4bd89b73f72b6746a7835ef3c
+  SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
   SwiftOverlays: 6a47bab3ed2784c378f07b275269f9e8231526e6
   XLActionController: c8ddd5bc20bac97a271113acc7e94659d554da5c
 
