@@ -21,7 +21,7 @@ import CryptoSwift
  - ParamErr:  参数错误
  */
 enum UserRequestErrorType: ErrorType {
-    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, PhoneErr, PassWdErr, SecurityErr
+    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, PhoneErr, PassWdErr, SecurityErr, UserNameErr
 }
 
 /**
@@ -170,6 +170,14 @@ class UserNetRequestData: NetRequestAdapter {
             
         }
         
+        if !parameters!.keys.contains(UserNetRequsetKey.Email.rawValue) && !parameters!.keys.contains(UserNetRequsetKey.PhoneNum.rawValue) {
+            
+            completionHandler?(.Failure(.ParaErr))
+            Log.error("Parameter error")
+            return
+            
+        }
+        
         if let email = parameters![UserNetRequsetKey.Email.rawValue] as? String {
             guard email.isEmail else {
                 completionHandler?(.Failure(.EmailErr))
@@ -200,7 +208,7 @@ class UserNetRequestData: NetRequestAdapter {
         
         if let pwd = parameters![UserNetRequsetKey.Passwd.rawValue] as? String {
             
-            if pwd.length < 6 || pwd.length > 16 {
+            if passwordCheck(pwd) != true {
                 completionHandler?(.Failure(.PassWdErr))
                 Log.error("Password error")
                 return
@@ -233,21 +241,47 @@ class UserNetRequestData: NetRequestAdapter {
             
         }
         
-        if !parameters!.keys.contains(UserNetRequsetKey.UserName.rawValue) || !parameters!.keys.contains(UserNetRequsetKey.Passwd.rawValue) {
+        if let userName = parameters![UserNetRequsetKey.UserName.rawValue] as? String {
             
-            completionHandler?(.Failure(.ParaErr))
-            Log.error("Para error")
-            return
+            if userName.isPhoneNum != true && userName.isEmail != true {
+                
+                completionHandler?(.Failure(.UserNameErr))
+                Log.error("UserNmae error")
+                return
+            }
             
         }
         
         // 密码MD5 加密
         if let pwd = parameters![UserNetRequsetKey.Passwd.rawValue] as? String {
             
+            if passwordCheck(pwd) {
+                completionHandler?(.Failure(.PassWdErr))
+                Log.error("Password error")
+                return
+            }
+            
             parameters![UserNetRequsetKey.Passwd.rawValue] = pwd.md5()
         }
         
         netPostRequestAdapter(urlString, para: parameters, completionHandler: completionHandler)
+        
+    }
+    
+    /**
+     用户有效性校验
+     
+     - parameter userName: 用户名
+     
+     - returns: 用户名有效返回 true，否则 false
+     */
+    func passwordCheck(passwd: String) -> Bool {
+        
+        if passwd.length < 6 || passwd.length > 16 {
+            return false
+        }
+        
+        return true
         
     }
     

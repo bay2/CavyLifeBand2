@@ -37,7 +37,8 @@ class SignInTest: XCTestCase {
      */
     func testSignInOk() {
         
-        let paras = [[UserNetRequsetKey.UserName.rawValue: "17722342211", UserNetRequsetKey.Passwd.rawValue: "123456"]]
+        let paras = [[UserNetRequsetKey.UserName.rawValue: "17722342211", UserNetRequsetKey.Passwd.rawValue: "123456"],
+            [UserNetRequsetKey.UserName.rawValue: "werqqw@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456"]]
         
         let expectResultMsg = ["code": "1001", "msg": "登录成功"]
         

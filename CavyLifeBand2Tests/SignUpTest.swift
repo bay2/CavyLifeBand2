@@ -45,7 +45,7 @@ class SignUpTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignUpPhoneOk succeed")
             
-            userNetReq.requestSignIn(para, completionHandler: { (result) -> Void in
+            userNetReq.requestSignUp(para, completionHandler: { (result) -> Void in
                 
                 let resultMsg = ["code" : "1001", "msg" : "注册成功"]
                 
@@ -76,7 +76,7 @@ class SignUpTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignUpEmailOk succeed")
             
-            userNetReq.requestSignIn(para, completionHandler: { (result) -> Void in
+            userNetReq.requestSignUp(para, completionHandler: { (result) -> Void in
                 
                 let resultMsg = ["code" : "1001", "msg" : "注册成功"]
                 
@@ -111,7 +111,7 @@ class SignUpTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignUpParaErr succeed")
             
-            userNetReq.requestSignIn(para, completionHandler: { (result) -> Void in
+            userNetReq.requestSignUp(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isFailure, "接口返回错误")
                 XCTAssert(result.error == UserRequestErrorType.ParaErr, "返回结果错误[error = \(result.error)]")
@@ -138,7 +138,7 @@ class SignUpTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignUpPhoneErr succeed")
             
-            userNetReq.requestSignIn(para, completionHandler: { (result) -> Void in
+            userNetReq.requestSignUp(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isFailure, "接口返回错误")
                 XCTAssert(result.error == UserRequestErrorType.PhoneErr, "返回结果错误[error = \(result.error)]")
@@ -167,7 +167,7 @@ class SignUpTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignUpEmailErr succeed")
             
-            userNetReq.requestSignIn(para, completionHandler: { (result) -> Void in
+            userNetReq.requestSignUp(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isFailure, "接口返回错误")
                 XCTAssert(result.error == UserRequestErrorType.EmailErr, "返回结果错误[error = \(result.error)]")
@@ -195,7 +195,7 @@ class SignUpTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignUpParaErr succeed")
             
-            userNetReq.requestSignIn(para, completionHandler: { (result) -> Void in
+            userNetReq.requestSignUp(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isFailure, "接口返回错误")
                 XCTAssert(result.error == UserRequestErrorType.PassWdErr, "返回结果错误[error = \(result.error)]")
@@ -224,7 +224,7 @@ class SignUpTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSecurityCodeErr Ok")
             
-            userNetReq.requestSignIn(para, completionHandler: { (result) -> Void in
+            userNetReq.requestSignUp(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isFailure, "接口返回错误")
                 XCTAssert(result.error == UserRequestErrorType.SecurityErr, "返回结果错误[error = \(result.error)]")
