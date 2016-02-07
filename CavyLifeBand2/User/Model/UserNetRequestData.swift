@@ -255,7 +255,7 @@ class UserNetRequestData: NetRequestAdapter {
         // 密码MD5 加密
         if let pwd = parameters![UserNetRequsetKey.Passwd.rawValue] as? String {
             
-            if passwordCheck(pwd) {
+            if passwordCheck(pwd) != true {
                 completionHandler?(.Failure(.PassWdErr))
                 Log.error("Password error")
                 return
