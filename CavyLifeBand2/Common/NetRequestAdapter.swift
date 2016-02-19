@@ -9,8 +9,6 @@
 import Alamofire
 import Log
 import EZSwiftExtensions
-import ObjectMapper
-import AlamofireObjectMapper
 import JSONJoy
 
 class NetRequestAdapter: NSObject {
