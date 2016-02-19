@@ -1,71 +1,71 @@
 PODS:
-  - Alamofire (3.1.5)
-  - AlamofireImage (2.3.0):
+  - Alamofire (3.2.0)
+  - AlamofireImage (2.3.1):
     - Alamofire (~> 3.1)
-  - AlamofireObjectMapper (2.1.0):
-    - Alamofire (~> 3.1.0)
-    - ObjectMapper (~> 1.0)
-  - CryptoSwift (0.2.2)
+  - CryptoSwift (0.2.3)
   - EZSwiftExtensions (1.1.1)
-  - KSCrash (0.0.8):
-    - KSCrash/Installations (= 0.0.8)
-    - KSCrash/no-arc (= 0.0.8)
-    - KSCrash/Recording (= 0.0.8)
-    - KSCrash/Reporting (= 0.0.8)
-  - KSCrash/Installations (0.0.8):
+  - JSONJoy-Swift (2.0.0)
+  - KSCrash (1.0.1):
+    - KSCrash/Installations (= 1.0.1)
+    - KSCrash/no-arc (= 1.0.1)
+    - KSCrash/Recording (= 1.0.1)
+    - KSCrash/Reporting (= 1.0.1)
+  - KSCrash/Installations (1.0.1):
     - KSCrash/Recording
     - KSCrash/Reporting
-  - KSCrash/no-arc (0.0.8)
-  - KSCrash/Recording (0.0.8):
+  - KSCrash/no-arc (1.0.1)
+  - KSCrash/Recording (1.0.1):
     - KSCrash/no-arc
-  - KSCrash/Reporting (0.0.8):
+  - KSCrash/Reporting (1.0.1):
     - KSCrash/Recording
-    - KSCrash/Reporting/Filters (= 0.0.8)
-    - KSCrash/Reporting/Sinks (= 0.0.8)
-    - KSCrash/Reporting/Tools (= 0.0.8)
-  - KSCrash/Reporting/Filters (0.0.8):
+    - KSCrash/Reporting/Filters (= 1.0.1)
+    - KSCrash/Reporting/MessageUI (= 1.0.1)
+    - KSCrash/Reporting/Sinks (= 1.0.1)
+    - KSCrash/Reporting/Tools (= 1.0.1)
+  - KSCrash/Reporting/Filters (1.0.1):
     - KSCrash/Recording
-    - KSCrash/Reporting/Filters/Alert (= 0.0.8)
-    - KSCrash/Reporting/Filters/AppleFmt (= 0.0.8)
-    - KSCrash/Reporting/Filters/Base (= 0.0.8)
-    - KSCrash/Reporting/Filters/Basic (= 0.0.8)
-    - KSCrash/Reporting/Filters/GZip (= 0.0.8)
-    - KSCrash/Reporting/Filters/JSON (= 0.0.8)
-    - KSCrash/Reporting/Filters/Sets (= 0.0.8)
-  - KSCrash/Reporting/Filters/Alert (0.0.8):
-    - KSCrash/Recording
-    - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/AppleFmt (0.0.8):
+    - KSCrash/Reporting/Filters/Alert (= 1.0.1)
+    - KSCrash/Reporting/Filters/AppleFmt (= 1.0.1)
+    - KSCrash/Reporting/Filters/Base (= 1.0.1)
+    - KSCrash/Reporting/Filters/Basic (= 1.0.1)
+    - KSCrash/Reporting/Filters/GZip (= 1.0.1)
+    - KSCrash/Reporting/Filters/JSON (= 1.0.1)
+    - KSCrash/Reporting/Filters/Sets (= 1.0.1)
+  - KSCrash/Reporting/Filters/Alert (1.0.1):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/Base (0.0.8):
-    - KSCrash/Recording
-  - KSCrash/Reporting/Filters/Basic (0.0.8):
+  - KSCrash/Reporting/Filters/AppleFmt (1.0.1):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/GZip (0.0.8):
+  - KSCrash/Reporting/Filters/Base (1.0.1):
+    - KSCrash/Recording
+  - KSCrash/Reporting/Filters/Basic (1.0.1):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/JSON (0.0.8):
+  - KSCrash/Reporting/Filters/GZip (1.0.1):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/Sets (0.0.8):
+  - KSCrash/Reporting/Filters/JSON (1.0.1):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/Sets (1.0.1):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/AppleFmt
     - KSCrash/Reporting/Filters/Base
     - KSCrash/Reporting/Filters/Basic
     - KSCrash/Reporting/Filters/GZip
     - KSCrash/Reporting/Filters/JSON
-  - KSCrash/Reporting/Sinks (0.0.8):
+  - KSCrash/Reporting/MessageUI (1.0.1):
+    - KSCrash/Recording
+  - KSCrash/Reporting/Sinks (1.0.1):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters
     - KSCrash/Reporting/Tools
-  - KSCrash/Reporting/Tools (0.0.8):
+  - KSCrash/Reporting/Tools (1.0.1):
     - KSCrash/Recording
   - LLSimpleCamera (4.2.0)
   - Log (0.1)
   - MJRefresh (3.1.0)
-  - ObjectMapper (1.1.1)
   - OHHTTPStubs (4.7.0):
     - OHHTTPStubs/Default (= 4.7.0)
   - OHHTTPStubs/Core (4.7.0)
@@ -90,9 +90,9 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - AlamofireImage
-  - AlamofireObjectMapper
   - CryptoSwift
   - EZSwiftExtensions
+  - JSONJoy-Swift
   - KSCrash
   - LLSimpleCamera
   - Log
@@ -104,16 +104,15 @@ DEPENDENCIES:
   - XLActionController
 
 SPEC CHECKSUMS:
-  Alamofire: 5f730ba29fd113b7ddd71c1e65d0c630acf5d7b0
-  AlamofireImage: 4013fb5b99b10117bf2554a67b9bd2231d476b45
-  AlamofireObjectMapper: 24097576202064f8b0a583452dd934064f78dc0e
-  CryptoSwift: d382228d6301c09474132417878a741c2a2e68cd
+  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
+  AlamofireImage: 8256f88835f58257a76ea2738d3773be5057f7ed
+  CryptoSwift: b2bf37b8e7cc6d682ef3365cb966bc5ae5174aa5
   EZSwiftExtensions: 154c9da7b929f8b04b194e290181be42b49c46b6
-  KSCrash: a928da877b18f70c9ec3b50d4e8960271e2a10e5
+  JSONJoy-Swift: 9dc31dfb9e551c3ae7781513a86e369598102653
+  KSCrash: 0ce2e01085d4c4e4dc915ab4adf01d7628069570
   LLSimpleCamera: ed7813ce4827ff3e34c6af159c99b5b56e54d1c6
   Log: 8de10d912b9cd4fe1abba749d0762be8ad802de7
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
-  ObjectMapper: 4143abed1dbd49b73d75092fe8fa1c88ed6434b7
   OHHTTPStubs: d2bf6a0f407620d67e75a1d3f12d86a2b1dd15c0
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
   SwiftOverlays: 6a47bab3ed2784c378f07b275269f9e8231526e6

@@ -194,17 +194,6 @@ class UserNetRequestData: NetRequestAdapter {
             }
         }
         
-        if let securityCode = parameters![UserNetRequsetKey.SecurityCode.rawValue] as? String {
-            
-            if securityCode.toInt() == nil || securityCode.length != 6 {
-                
-                completionHandler?(.Failure(.SecurityErr))
-                Log.error("Security code error")
-                return
-                
-            }
-            
-        }
         
         if let pwd = parameters![UserNetRequsetKey.Passwd.rawValue] as? String {
             
@@ -282,6 +271,18 @@ class UserNetRequestData: NetRequestAdapter {
         }
         
         return true
+        
+    }
+    
+    /**
+     找回密码
+     
+     - parameter parameter:         <#parameter description#>
+     - parameter completionHandler: 回调
+     */
+    func forgotPasswd(parameter: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+        
+        
         
     }
     

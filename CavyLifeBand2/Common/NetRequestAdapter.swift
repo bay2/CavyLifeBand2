@@ -11,6 +11,7 @@ import Log
 import EZSwiftExtensions
 import ObjectMapper
 import AlamofireObjectMapper
+import JSONJoy
 
 class NetRequestAdapter: NSObject {
     
@@ -33,8 +34,8 @@ class NetRequestAdapter: NSObject {
         }
         
         Log.netRequestFormater(urlString, para: para)
-
-        Alamofire.request(.POST, urlString, parameters: parameters).responseObject { (response: Response<CommonResphones, NSError>) -> Void in
+        
+        Alamofire.request(.POST, urlString, parameters: parameters).responseJSON { (response) -> Void in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
@@ -51,7 +52,6 @@ class NetRequestAdapter: NSObject {
                 }
                 
                 completionHandler?(.Success(responseResult))
-                
             })
         }
         
@@ -59,19 +59,18 @@ class NetRequestAdapter: NSObject {
     
 }
 
-/// 通用的返回结果
-class CommonResphones: Mappable {
-    var code: String?
+struct CommenMsg: JSONJoy {
+    
     var msg: String?
+    var code: String?
     
-    required init?(_ map: Map) {
+    init(_ decoder: JSONDecoder) throws {
         
-    }
-    
-    func mapping(map: Map) {
+        msg = try decoder["msg"].getString()
+        code = try decoder["code"].getString()
         
-        code <- map["code"]
-        msg <- map["msg"]
     }
     
 }
+
+

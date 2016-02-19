@@ -9,6 +9,7 @@
 import XCTest
 import OHHTTPStubs
 import Alamofire
+import JSONJoy
 @testable import CavyLifeBand2
 
 class SecurityCodeTests: XCTestCase {
@@ -48,10 +49,17 @@ class SecurityCodeTests: XCTestCase {
             
             XCTAssert(result.isSuccess, "接口返回错误")
             
-            let reValue: CommonResphones = result.value as! CommonResphones
-            
-            XCTAssert(reValue.code == resultMsg["code"], "返回结果错误[reValue = \(reValue), resultMsg = \(resultMsg["code"])]")
-            XCTAssert(reValue.msg == resultMsg["msg"], "返回结果错误[reValue = \(reValue), resultMsg = \(resultMsg["msg"])")
+            do {
+                
+                let reValue = try CommenMsg(JSONDecoder(result.value!))
+                XCTAssert(reValue.code == resultMsg["code"], "返回结果错误[reValue = \(reValue), resultMsg = \(resultMsg["code"])]")
+                XCTAssert(reValue.msg == resultMsg["msg"], "返回结果错误[reValue = \(reValue), resultMsg = \(resultMsg["msg"])")
+                
+            } catch {
+                
+                XCTAssert(false)
+                
+            }
             
             expectation.fulfill()
             

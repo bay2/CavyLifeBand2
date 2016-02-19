@@ -4,7 +4,7 @@ use_frameworks!
 pod 'SnapKit'
 pod 'Alamofire'
 pod 'AlamofireImage'
-pod 'AlamofireObjectMapper'
+pod 'JSONJoy-Swift'
 pod 'Log'
 pod 'XLActionController'
 pod 'SwiftOverlays'

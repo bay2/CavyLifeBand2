@@ -9,6 +9,7 @@
 import XCTest
 import OHHTTPStubs
 import Alamofire
+import JSONJoy
 @testable import CavyLifeBand2
 let timeout: NSTimeInterval = 30.0
 
@@ -51,10 +52,16 @@ class SignUpTest: XCTestCase {
                 
                 XCTAssert(result.isSuccess, "接口返回错误")
             
-                let reValue: CommonResphones = result.value as! CommonResphones
                 
-                XCTAssert(reValue.code == resultMsg["code"], "返回结果错误[reValue.code = \(reValue.code), resulMsgObj!.code = \(resultMsg["code"])]")
-                XCTAssert(reValue.msg == resultMsg["msg"], "返回结果错误[reValue.msg = \(reValue.msg), resulMsgObj!.msg = \(resultMsg["msg"])]")
+                do {
+                    let reValue = try CommenMsg(JSONDecoder(result.value!))
+                    XCTAssert(reValue.code == resultMsg["code"], "返回结果错误[reValue.code = \(reValue.code), resulMsgObj!.code = \(resultMsg["code"])]")
+                    XCTAssert(reValue.msg == resultMsg["msg"], "返回结果错误[reValue.msg = \(reValue.msg), resulMsgObj!.msg = \(resultMsg["msg"])]")
+                    
+                } catch {
+                    XCTAssert(false)
+                }
+                
                 
                 expectation.fulfill()
             })
@@ -81,11 +88,20 @@ class SignUpTest: XCTestCase {
                 let resultMsg = ["code" : "1001", "msg" : "注册成功"]
                 
                 XCTAssert(result.isSuccess, "接口返回错误")
-            
-                let reValue: CommonResphones = result.value as! CommonResphones
                 
-                XCTAssert(reValue.code == resultMsg["code"], "返回结果错误[reValue.code = \(reValue.code), resulMsgObj!.code = \(resultMsg["code"])]")
-                XCTAssert(reValue.msg == resultMsg["msg"], "返回结果错误[reValue.msg = \(reValue.msg), resulMsgObj!.msg = \(resultMsg["msg"])]")
+                do {
+                    
+                    let reValue = try CommenMsg(JSONDecoder(result.value!))
+                    
+                    XCTAssert(reValue.code == resultMsg["code"], "返回结果错误[reValue.code = \(reValue.code), resulMsgObj!.code = \(resultMsg["code"])]")
+                    XCTAssert(reValue.msg == resultMsg["msg"], "返回结果错误[reValue.msg = \(reValue.msg), resulMsgObj!.msg = \(resultMsg["msg"])]")
+                    
+                } catch {
+                    
+                    XCTAssert(false)
+                    
+                }
+            
                 
                 expectation.fulfill()
             })
@@ -210,33 +226,6 @@ class SignUpTest: XCTestCase {
         
     }
     
-    /**
-     注册验证码错误
-     */
-    func testSecurityCodeErr() {
-        
-        let paras = [[UserNetRequsetKey.PhoneNum.rawValue: "17722112322", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "12456"],
-            [UserNetRequsetKey.PhoneNum.rawValue: "17722112322", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "1234s6"],
-            [UserNetRequsetKey.Email.rawValue: "asdf@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "1234256"]
-        ]
-        
-        for para in paras {
-            
-            let expectation = expectationWithDescription("testSecurityCodeErr Ok")
-            
-            userNetReq.requestSignUp(para, completionHandler: { (result) -> Void in
-                
-                XCTAssert(result.isFailure, "接口返回错误")
-                XCTAssert(result.error == UserRequestErrorType.SecurityErr, "返回结果错误[error = \(result.error)]")
-                
-                expectation.fulfill()
-            })
-            
-            waitForExpectationsWithTimeout(timeout, handler: nil)
-            
-        }
-        
-    }
 
 //    func testPerformanceExample() {
 //        // This is an example of a performance test case.

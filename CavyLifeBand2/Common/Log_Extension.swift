@@ -45,8 +45,6 @@ extension Logger {
             
         }
         
-//        log(.Info, items, separator, terminator, file, line, column, function)
-        
         self.info("\(requestUrl)", file: file, line: line, column: column, function: function)
         
     }

@@ -9,6 +9,7 @@
 import XCTest
 import OHHTTPStubs
 import Alamofire
+import JSONJoy
 @testable import CavyLifeBand2
 
 class SignInTest: XCTestCase {
@@ -49,10 +50,18 @@ class SignInTest: XCTestCase {
                 
                 XCTAssert(result.isSuccess, "返回值不正确")
                 
-                let reslutMsg = result.value as! CommonResphones
-                
-                XCTAssert(reslutMsg.code == expectResultMsg["code"], "Expect Value = [\(expectResultMsg["code"])]")
-                XCTAssert(reslutMsg.msg ==  expectResultMsg["msg"], "Expect Value = [\(expectResultMsg["msg"])]")
+                do {
+                    
+                    let reslutMsg = try CommenMsg(JSONDecoder(result.value!))
+                    
+                    XCTAssert(reslutMsg.code == expectResultMsg["code"], "Expect Value = [\(expectResultMsg["code"])]")
+                    XCTAssert(reslutMsg.msg ==  expectResultMsg["msg"], "Expect Value = [\(expectResultMsg["msg"])]")
+                    
+                } catch {
+                    
+                    XCTAssert(false)
+                    
+                }
                 
                 expectation.fulfill()
             })
@@ -87,10 +96,17 @@ class SignInTest: XCTestCase {
                 
                 XCTAssert(result.isSuccess, "返回值不正确")
                 
-                let reslutMsg = result.value as! CommonResphones
-                
-                XCTAssert(reslutMsg.code == expectResultMsg["code"], "Expect Value = [\(expectResultMsg["code"])]")
-                XCTAssert(reslutMsg.msg ==  expectResultMsg["msg"], "Expect Value = [\(expectResultMsg["msg"])]")
+                do {
+                    
+                    let reslutMsg = try CommenMsg(JSONDecoder(result.value!))
+                    XCTAssert(reslutMsg.code == expectResultMsg["code"], "Expect Value = [\(expectResultMsg["code"])]")
+                    XCTAssert(reslutMsg.msg ==  expectResultMsg["msg"], "Expect Value = [\(expectResultMsg["msg"])]")
+                    
+                } catch {
+                    
+                    XCTAssert(false)
+                    
+                }
                 
                 expectation.fulfill()
                 
