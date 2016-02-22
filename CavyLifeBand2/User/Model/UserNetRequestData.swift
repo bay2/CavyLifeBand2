@@ -21,7 +21,7 @@ import CryptoSwift
  - ParamErr:  参数错误
  */
 enum UserRequestErrorType: ErrorType {
-    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, PhoneErr, PassWdErr, SecurityErr, UserNameErr
+    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, PhoneErr, PassWdErr, SecurityCodeErr, UserNameErr
 }
 
 /**
@@ -69,7 +69,8 @@ class UserNetRequestData: NetRequestAdapter {
     
     private let webAPI = [UserNetRequestMethod.SendSecurityCode.rawValue: "sendSecurityCode",
     UserNetRequestMethod.SignIn.rawValue: "signIn",
-    UserNetRequestMethod.SignUp.rawValue: "signUp"]
+    UserNetRequestMethod.SignUp.rawValue: "signUp",
+    UserNetRequestMethod.ForgotPwd.rawValue: "ForgotPwd"]
     
    
 
@@ -275,14 +276,120 @@ class UserNetRequestData: NetRequestAdapter {
     }
     
     /**
+     检查手机验证码是否有效
+     
+     - parameter securityCode: 验证码
+     
+     - returns: true 有效，false 无效
+     */
+    func phoneSecurityCodeCheck(securityCode: String) -> Bool {
+        
+        if securityCode.length != 6 {
+            return false
+        }
+        
+        guard let _ = securityCode.toInt() else {
+            return false
+        }
+        
+        return true
+    }
+    
+    /**
+     邮箱验证码是否有效
+     
+     - parameter securityCode: 验证码
+     
+     - returns: true 有效，false 无效
+     */
+    func emailSecurityCodeCheck(securityCode: String) -> Bool {
+        
+        if securityCode.length != 4 {
+            return false
+        }
+        
+        return true
+        
+    }
+    
+    /**
      找回密码
      
-     - parameter parameter:         <#parameter description#>
+     - parameter parameter:         PhoneNum, Email, Passwd, SecurityCode
      - parameter completionHandler: 回调
      */
     func forgotPasswd(parameter: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
         
+        guard var para = parameter else {
+            Log.error("Parameter is nil")
+            completionHandler?(.Failure(.ParaNil))
+            return
+        }
         
+        // 参数不存在手机号码和邮箱
+        if para.keys.contains(UserNetRequsetKey.PhoneNum.rawValue) == false && para.keys.contains(UserNetRequsetKey.Email.rawValue) == false {
+            Log.error("Parameter error")
+            completionHandler?(.Failure(.ParaErr))
+            return
+        }
+        
+        guard let securityCode = para[UserNetRequsetKey.SecurityCode.rawValue] as? String else {
+            Log.error("Security code is nil")
+            completionHandler?(.Failure(.ParaErr))
+            return
+        }
+        
+        // 手机号码校验
+        if let phoneNum = para[UserNetRequsetKey.PhoneNum.rawValue] as? String {
+            
+            if phoneNum.isPhoneNum == false {
+                Log.error("Phone Num error")
+                completionHandler?(.Failure(.PhoneErr))
+                return
+            }
+            
+            if phoneSecurityCodeCheck(securityCode) == false {
+                Log.error("Security code error ")
+                completionHandler?(.Failure(.SecurityCodeErr))
+                return
+            }
+        }
+        
+        // 邮箱校验
+        if let email = para[UserNetRequsetKey.Email.rawValue] as? String {
+            
+            if email.isEmail == false {
+                Log.error("Email error")
+                completionHandler?(.Failure(.EmailErr))
+                return
+            }
+            
+            if emailSecurityCodeCheck(securityCode) == false {
+                Log.error("Security code error")
+                completionHandler?(.Failure(.SecurityCodeErr))
+                return
+            }
+        }
+        
+        // 密码校验
+        guard let pwd = para[UserNetRequsetKey.Passwd.rawValue] as? String else {
+            Log.error("Passwd is nil")
+            completionHandler?(.Failure(.ParaErr))
+            return
+        }
+        
+        if passwordCheck(pwd) == false {
+            Log.error("Passwd is error")
+            completionHandler?(.Failure(.PassWdErr))
+            return
+        }
+        
+        // MD5 加密
+        para[UserNetRequsetKey.Passwd.rawValue] = pwd.md5()
+        
+        let urlString = serverAddr + webAPI[UserNetRequestMethod.ForgotPwd.rawValue]!
+        
+        netPostRequestAdapter(urlString, para: para, completionHandler: completionHandler)
         
     }
     
