@@ -66,20 +66,20 @@ PODS:
   - LLSimpleCamera (4.2.0)
   - Log (0.1)
   - MJRefresh (3.1.0)
-  - OHHTTPStubs (4.7.0):
-    - OHHTTPStubs/Default (= 4.7.0)
-  - OHHTTPStubs/Core (4.7.0)
-  - OHHTTPStubs/Default (4.7.0):
+  - OHHTTPStubs (4.7.1):
+    - OHHTTPStubs/Default (= 4.7.1)
+  - OHHTTPStubs/Core (4.7.1)
+  - OHHTTPStubs/Default (4.7.1):
     - OHHTTPStubs/Core
     - OHHTTPStubs/JSON
     - OHHTTPStubs/NSURLSession
     - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (4.7.0):
+  - OHHTTPStubs/JSON (4.7.1):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (4.7.0):
+  - OHHTTPStubs/NSURLSession (4.7.1):
     - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (4.7.0)
-  - OHHTTPStubs/Swift (4.7.0):
+  - OHHTTPStubs/OHPathHelpers (4.7.1)
+  - OHHTTPStubs/Swift (4.7.1):
     - OHHTTPStubs/Core
   - SnapKit (0.19.1)
   - SwiftOverlays (1.0)
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   LLSimpleCamera: ed7813ce4827ff3e34c6af159c99b5b56e54d1c6
   Log: 8de10d912b9cd4fe1abba749d0762be8ad802de7
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
-  OHHTTPStubs: d2bf6a0f407620d67e75a1d3f12d86a2b1dd15c0
+  OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
   SwiftOverlays: 6a47bab3ed2784c378f07b275269f9e8231526e6
   XLActionController: c8ddd5bc20bac97a271113acc7e94659d554da5c
