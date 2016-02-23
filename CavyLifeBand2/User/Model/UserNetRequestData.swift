@@ -393,4 +393,33 @@ class UserNetRequestData: NetRequestAdapter {
         
     }
     
+    /**
+     请求发送短信验证码
+     
+     - parameter parameter:         PhoneNum
+     - parameter completionHandler: 回调
+     */
+    func requestPhoneSecurityCode(parameter: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+        
+        guard let para = parameter else {
+            Log.error("Parameter is nil")
+            completionHandler?(.Failure(.ParaNil))
+            return
+        }
+        
+        if let phoneNum = para[UserNetRequsetKey.PhoneNum.rawValue] as? String {
+            
+            if phoneNum.isPhoneNum == false {
+                Log.error("Phone num error")
+                completionHandler?(.Failure(.PhoneErr))
+                return
+            }
+        }
+        
+        let urlString = serverAddr + webAPI[UserNetRequestMethod.SendSecurityCode.rawValue]!
+        
+        netPostRequestAdapter(urlString, para: para, completionHandler: completionHandler)
+        
+    }
+    
 }
