@@ -81,7 +81,9 @@ class UploadPicture: XCTestCase {
      */
     func testUploadPictureUserIDNil() {
         
-        let casePara: [[String: AnyObject]] = [[UserNetRequsetKey.UserID.rawValue: "1"], [UserNetRequsetKey.UserID.rawValue: "2"]]
+        let image = UIImage(named: "flash_automatic")
+        
+        let casePara: [[String: AnyObject]] = [[UserNetRequsetKey.UserID.rawValue: "1", UserNetRequsetKey.Avater.rawValue: image!]]
         
         for para in casePara {
             
@@ -116,7 +118,7 @@ class UploadPicture: XCTestCase {
                 XCTAssert(result.isFailure, "返回值不正确")
                 
                 XCTAssert(result.error == UserRequestErrorType.ParaErr, "实际值 = \(result.error), 期望值 = \(UserRequestErrorType.ParaErr)")
-                
+                    
                 expectation.fulfill()
             })
             
