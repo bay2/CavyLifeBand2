@@ -5,6 +5,7 @@ PODS:
   - CryptoSwift (0.2.3)
   - EZSwiftExtensions (1.1.1)
   - JSONJoy-Swift (2.0.0)
+  - KeychainAccess (2.3.3)
   - KSCrash (1.0.1):
     - KSCrash/Installations (= 1.0.1)
     - KSCrash/no-arc (= 1.0.1)
@@ -81,6 +82,7 @@ PODS:
   - OHHTTPStubs/OHPathHelpers (4.7.1)
   - OHHTTPStubs/Swift (4.7.1):
     - OHHTTPStubs/Core
+  - RandomKit (1.6.0)
   - SnapKit (0.19.1)
   - SwiftOverlays (1.0)
   - XLActionController (1.0.0):
@@ -93,12 +95,14 @@ DEPENDENCIES:
   - CryptoSwift
   - EZSwiftExtensions
   - JSONJoy-Swift
+  - KeychainAccess
   - KSCrash
   - LLSimpleCamera
   - Log
   - MJRefresh
   - OHHTTPStubs
   - OHHTTPStubs/Swift
+  - RandomKit
   - SnapKit
   - SwiftOverlays
   - XLActionController
@@ -109,11 +113,13 @@ SPEC CHECKSUMS:
   CryptoSwift: b2bf37b8e7cc6d682ef3365cb966bc5ae5174aa5
   EZSwiftExtensions: 154c9da7b929f8b04b194e290181be42b49c46b6
   JSONJoy-Swift: 9dc31dfb9e551c3ae7781513a86e369598102653
+  KeychainAccess: 9b7e49e48277e329b1b3195e54697ed313d30acf
   KSCrash: 0ce2e01085d4c4e4dc915ab4adf01d7628069570
   LLSimpleCamera: ed7813ce4827ff3e34c6af159c99b5b56e54d1c6
   Log: 8de10d912b9cd4fe1abba749d0762be8ad802de7
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
+  RandomKit: 9b33ce5fc448056e8ddaaef655da315b26f23e32
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
   SwiftOverlays: 6a47bab3ed2784c378f07b275269f9e8231526e6
   XLActionController: c8ddd5bc20bac97a271113acc7e94659d554da5c

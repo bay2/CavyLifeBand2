@@ -70,7 +70,8 @@ class UserNetRequestData: NetRequestAdapter {
     private let webAPI = [UserNetRequestMethod.SendSecurityCode.rawValue: "sendSecurityCode",
     UserNetRequestMethod.SignIn.rawValue: "signIn",
     UserNetRequestMethod.SignUp.rawValue: "signUp",
-    UserNetRequestMethod.ForgotPwd.rawValue: "ForgotPwd"]
+    UserNetRequestMethod.ForgotPwd.rawValue: "ForgotPwd",
+    UserNetRequestMethod.UpdateAvatar.rawValue: "updateAvatar"]
     
    
 
@@ -421,5 +422,40 @@ class UserNetRequestData: NetRequestAdapter {
         netPostRequestAdapter(urlString, para: para, completionHandler: completionHandler)
         
     }
+    
+    /**
+     上传照片
+    
+     - parameter parameter:  UserID，Avater
+     - parameter completion: 回调
+     */
+    func uploadPicture(parameter: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+        
+        guard var para = parameter else {
+            Log.error("Parameter is nil")
+            completionHandler?(.Failure(.ParaNil))
+            return
+        }
+        
+        guard let image = para[UserNetRequsetKey.Avater.rawValue] as? UIImage else {
+            Log.error("Avater is nil")
+            completionHandler?(.Failure(.ParaErr))
+            return
+        }
+        
+        guard let _ = para[UserNetRequsetKey.UserID.rawValue] else {
+            Log.error("User ID is nil")
+            completionHandler?(.Failure(.ParaErr))
+            return
+        }
+        
+        para[UserNetRequsetKey.Avater.rawValue] = UIImagePNGRepresentation(image)
+        
+        let urlString = serverAddr + webAPI[UserNetRequestMethod.UpdateAvatar.rawValue]!
+        
+        netPostRequestAdapter(urlString, para: para, completionHandler: completionHandler)
+        
+    }
+    
     
 }
