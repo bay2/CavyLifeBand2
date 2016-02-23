@@ -83,7 +83,7 @@ class UploadPicture: XCTestCase {
         
         let image = UIImage(named: "flash_automatic")
         
-        let casePara: [[String: AnyObject]] = [[UserNetRequsetKey.UserID.rawValue: "1", UserNetRequsetKey.Avater.rawValue: image!]]
+        let casePara: [[String: AnyObject]] = [[UserNetRequsetKey.Avater.rawValue: image!]]
         
         for para in casePara {
             
