@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QDV-Yk-peX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QDV-Yk-peX">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Custom Camera-->
         <scene sceneID="9SA-98-f68">
             <objects>
-                <viewController storyboardIdentifier="CustomCamera" id="QDV-Yk-peX" customClass="CustomCamera" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CustomCameraView" id="QDV-Yk-peX" customClass="CustomCamera" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="tCv-Hp-r9L"/>
                         <viewControllerLayoutGuide type="bottom" id="pc5-2e-Lof"/>
@@ -227,7 +227,7 @@
         <!--Photo Album-->
         <scene sceneID="cNP-PF-iTe">
             <objects>
-                <viewController storyboardIdentifier="PhotoAlbum" id="191-EO-XYb" customClass="PhotoAlbum" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PhotoAlbumView" id="191-EO-XYb" customClass="PhotoAlbum" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RAc-7O-V7u"/>
                         <viewControllerLayoutGuide type="bottom" id="NXe-Di-2m1"/>

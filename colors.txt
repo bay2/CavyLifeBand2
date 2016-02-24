@@ -1,0 +1,3 @@
+MainPageBtn : #FFFFFF
+MainPageSelectedBtn : #FFFFFFCC
+MainPageBtnText : #42cd59

@@ -1,87 +1,97 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="l1Y-wt-lLX">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Main Page View Controller-->
+        <scene sceneID="Qzh-qI-xn7">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="max" id="l1Y-wt-lLX" customClass="MainPageViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                    <nil key="simulatedStatusBarMetrics"/>
+                </pageViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ARG-F3-PbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-27" y="213"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="EXj-lq-KRz">
+            <objects>
+                <viewController storyboardIdentifier="MainPageView" id="g7X-r0-LQ6" customClass="PageViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="EyL-6v-axu"/>
+                        <viewControllerLayoutGuide type="bottom" id="dkR-un-3zL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="44N-lm-b5X">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BaH-Fz-gd6">
-                                <rect key="frame" x="0.0" y="550" width="300" height="30"/>
-                                <animations/>
-                                <state key="normal" title="加入豚鼠"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="使用豚鼠帐号即登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1J6-eC-DR6">
-                                <rect key="frame" x="0.0" y="580" width="600" height="20"/>
-                                <animations/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6k8-Yt-QdY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </imageView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMi-bb-Bt6">
+                                <rect key="frame" x="20" y="500" width="560" height="100"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhV-DK-R2Y" customClass="MainPageButton" customModule="CavyLifeBand2" customModuleProvider="target">
+                                        <rect key="frame" x="280" y="0.0" width="280" height="100"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="登入">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zof-lQ-Dys" customClass="MainPageButton" customModule="CavyLifeBand2" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="100"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <state key="normal" title="加入豚鼠">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="vSF-hz-Wed"/>
+                                    <constraint firstAttribute="height" constant="100" placeholder="YES" id="2Yt-Br-7NM"/>
+                                    <constraint firstItem="LhV-DK-R2Y" firstAttribute="width" secondItem="Zof-lQ-Dys" secondAttribute="width" id="34t-6w-YBe"/>
+                                    <constraint firstAttribute="trailing" secondItem="LhV-DK-R2Y" secondAttribute="trailing" id="3Fy-kd-Ljw"/>
+                                    <constraint firstItem="LhV-DK-R2Y" firstAttribute="top" secondItem="oMi-bb-Bt6" secondAttribute="top" id="DqM-Z6-FRQ"/>
+                                    <constraint firstItem="LhV-DK-R2Y" firstAttribute="leading" secondItem="Zof-lQ-Dys" secondAttribute="trailing" placeholder="YES" id="Sc4-Nj-XLE"/>
+                                    <constraint firstItem="Zof-lQ-Dys" firstAttribute="top" secondItem="oMi-bb-Bt6" secondAttribute="top" id="StH-bv-JJw"/>
+                                    <constraint firstAttribute="bottom" secondItem="LhV-DK-R2Y" secondAttribute="bottom" id="Uch-TO-JOi"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zof-lQ-Dys" secondAttribute="bottom" id="eDp-Ar-SiC"/>
+                                    <constraint firstItem="Zof-lQ-Dys" firstAttribute="leading" secondItem="oMi-bb-Bt6" secondAttribute="leading" id="zrM-tN-tIw"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3VR-nS-y8g">
-                                <rect key="frame" x="300" y="550" width="300" height="30"/>
-                                <animations/>
-                                <state key="normal" title="登录"/>
-                            </button>
+                            </view>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="QC6-Z9-gp0">
+                                <rect key="frame" x="0.0" y="463" width="600" height="37"/>
+                            </pageControl>
                         </subviews>
-                        <animations/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="3VR-nS-y8g" firstAttribute="width" secondItem="BaH-Fz-gd6" secondAttribute="width" id="3R4-Cz-2pj"/>
-                            <constraint firstAttribute="trailing" secondItem="1J6-eC-DR6" secondAttribute="trailing" id="6G5-JM-iIA"/>
-                            <constraint firstItem="3VR-nS-y8g" firstAttribute="leading" secondItem="BaH-Fz-gd6" secondAttribute="trailing" id="HVx-PU-CAI"/>
-                            <constraint firstAttribute="bottom" secondItem="1J6-eC-DR6" secondAttribute="bottom" id="Uwg-XD-Wl7"/>
-                            <constraint firstItem="1J6-eC-DR6" firstAttribute="top" secondItem="BaH-Fz-gd6" secondAttribute="bottom" id="d92-gp-Psb"/>
-                            <constraint firstItem="1J6-eC-DR6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="hlK-wL-Ij0"/>
-                            <constraint firstItem="1J6-eC-DR6" firstAttribute="top" secondItem="3VR-nS-y8g" secondAttribute="bottom" id="l8s-TG-AXy"/>
-                            <constraint firstItem="BaH-Fz-gd6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="p4x-LI-Hi6"/>
-                            <constraint firstItem="3VR-nS-y8g" firstAttribute="leading" secondItem="BaH-Fz-gd6" secondAttribute="trailing" id="pmW-vR-csK"/>
-                            <constraint firstAttribute="trailing" secondItem="3VR-nS-y8g" secondAttribute="trailing" id="r96-PM-h1y"/>
-                            <constraint firstItem="1J6-eC-DR6" firstAttribute="top" secondItem="3VR-nS-y8g" secondAttribute="bottom" id="r9G-lu-wOw"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="l8s-TG-AXy"/>
-                                <exclude reference="pmW-vR-csK"/>
-                            </mask>
-                        </variation>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="BCY-yK-tMm">
-            <objects>
-                <viewController id="NWL-LE-CpC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="T7U-pK-Mpv"/>
-                        <viewControllerLayoutGuide type="bottom" id="ZTS-3C-kiP"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Pal-2D-Qds">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oMi-bb-Bt6" firstAttribute="top" secondItem="QC6-Z9-gp0" secondAttribute="bottom" placeholder="YES" id="1PX-Cv-KPM"/>
+                            <constraint firstAttribute="trailing" secondItem="6k8-Yt-QdY" secondAttribute="trailing" id="DWc-aG-9Mq"/>
+                            <constraint firstItem="oMi-bb-Bt6" firstAttribute="leading" secondItem="44N-lm-b5X" secondAttribute="leadingMargin" placeholder="YES" id="EQh-r3-i8r"/>
+                            <constraint firstItem="dkR-un-3zL" firstAttribute="top" secondItem="oMi-bb-Bt6" secondAttribute="bottom" placeholder="YES" id="NuM-C4-iVY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="oMi-bb-Bt6" secondAttribute="trailing" placeholder="YES" id="O05-Zn-UJy"/>
+                            <constraint firstItem="QC6-Z9-gp0" firstAttribute="leading" secondItem="44N-lm-b5X" secondAttribute="leading" id="O6a-wq-MH0"/>
+                            <constraint firstItem="6k8-Yt-QdY" firstAttribute="top" secondItem="44N-lm-b5X" secondAttribute="top" id="T2z-FD-Jsa"/>
+                            <constraint firstAttribute="bottom" secondItem="6k8-Yt-QdY" secondAttribute="bottom" id="rXN-ZJ-45f"/>
+                            <constraint firstAttribute="trailing" secondItem="QC6-Z9-gp0" secondAttribute="trailing" id="vgl-mA-aVG"/>
+                            <constraint firstItem="6k8-Yt-QdY" firstAttribute="leading" secondItem="44N-lm-b5X" secondAttribute="leading" id="yFM-D3-vmd"/>
+                        </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="6k8-Yt-QdY" id="4ZY-6q-K2a"/>
+                        <outlet property="buttonView" destination="oMi-bb-Bt6" id="571-bY-To1"/>
+                        <outlet property="pageCtrl" destination="QC6-Z9-gp0" id="kHr-G4-hyk"/>
+                        <outlet property="signInBtn" destination="LhV-DK-R2Y" id="slW-dM-4j8"/>
+                        <outlet property="signUpBtn" destination="Zof-lQ-Dys" id="kfb-MU-eKF"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="57x-g1-mRX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lvM-bf-xRd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1221" y="213"/>
+            <point key="canvasLocation" x="608" y="213"/>
         </scene>
     </scenes>
 </document>

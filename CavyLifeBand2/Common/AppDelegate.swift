@@ -27,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
         
-//        Log.theme = .TomorrowNight
         
         return true
     }
