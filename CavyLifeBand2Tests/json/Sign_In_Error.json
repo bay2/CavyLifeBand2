@@ -1,4 +1,4 @@
 {
-  "code" : "1000",
-  "msg" : "密码错误"
+  "code" : "1001",
+  "msg" : "user or password error"
 }

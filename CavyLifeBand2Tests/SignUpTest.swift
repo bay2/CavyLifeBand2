@@ -48,7 +48,7 @@ class SignUpTest: XCTestCase {
             
             userNetReq.requestSignUp(para, completionHandler: { (result) -> Void in
                 
-                let resultMsg = ["code" : "1001", "msg" : "注册成功"]
+                let resultMsg = ["code" : "0000", "msg" : "success"]
                 
                 XCTAssert(result.isSuccess, "接口返回错误")
             
@@ -85,7 +85,7 @@ class SignUpTest: XCTestCase {
             
             userNetReq.requestSignUp(para, completionHandler: { (result) -> Void in
                 
-                let resultMsg = ["code" : "1001", "msg" : "注册成功"]
+                let resultMsg = ["code" : "0000", "msg" : "success"]
                 
                 XCTAssert(result.isSuccess, "接口返回错误")
                 

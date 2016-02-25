@@ -1,3 +1,6 @@
-MainPageBtn : #FFFFFF
-MainPageSelectedBtn : #FFFFFFCC
-MainPageBtnText : #42cd59
+MainPageBtn : #FFFFFF00
+MainPageSelectedBtn : #FFFFFF
+MainPageBtnText : #FFFFFF
+MainPageSelectedBtnText : #42cd59
+SignInBackground : #1cd2ff
+SignInTextFieldViewBackground : #009fe2

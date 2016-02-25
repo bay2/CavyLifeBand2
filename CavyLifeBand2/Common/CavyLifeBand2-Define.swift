@@ -7,7 +7,14 @@
 //
 
 import Foundation
+import EZSwiftExtensions
 
 let bugHDKey = "https://collector.bughd.com/kscrash?key=9c009d806879cec4233b3b66b4264315"
-let serverAddr = "https://github.com"
+let serverAddr = "http://192.168.100.225/cavylife/api.do"
 let WebAPICodeSuccess = "1001"
+
+// 1/25 宽度间隙
+let spacingWidth25 = ez.screenWidth / 25
+
+// 1/25 高度间隙
+let spacingHeight = ez.screenHeight / 25

@@ -40,7 +40,7 @@ class SignInTest: XCTestCase {
         let paras = [[UserNetRequsetKey.UserName.rawValue: "17722342211", UserNetRequsetKey.Passwd.rawValue: "123456"],
             [UserNetRequsetKey.UserName.rawValue: "werqqw@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456"]]
         
-        let expectResultMsg = ["code": "1001", "msg": "登录成功"]
+        let expectResultMsg = ["code": "0000", "msg": "success"]
         
         for para in paras {
             
@@ -54,8 +54,8 @@ class SignInTest: XCTestCase {
                     
                     let reslutMsg = try CommenMsg(JSONDecoder(result.value!))
                     
-                    XCTAssert(reslutMsg.code == expectResultMsg["code"], "Expect Value = [\(expectResultMsg["code"])]")
-                    XCTAssert(reslutMsg.msg ==  expectResultMsg["msg"], "Expect Value = [\(expectResultMsg["msg"])]")
+                    XCTAssert(reslutMsg.code == expectResultMsg["code"], "期望值 = [\(expectResultMsg["code"]!)], 实际值 = \(reslutMsg.code!)")
+                    XCTAssert(reslutMsg.msg ==  expectResultMsg["msg"], "期望值 = [\(expectResultMsg["msg"]!)]，实际值 = \(reslutMsg.msg!)")
                     
                 } catch {
                     

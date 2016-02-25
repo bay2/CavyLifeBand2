@@ -44,6 +44,7 @@ enum UserRequestErrorType: ErrorType {
  */
 enum UserNetRequsetKey: String {
     
+    case Cmd = "cmd"
     case PhoneNum = "phoneNum"
     case Email = "email"
     case Passwd = "pwd"
@@ -67,10 +68,10 @@ class UserNetRequestData: NetRequestAdapter {
     
     typealias CompletionHandlernType = (Result<AnyObject, UserRequestErrorType>) -> Void
     
-    private let webAPI = [UserNetRequestMethod.SendSecurityCode.rawValue: "sendSecurityCode",
-    UserNetRequestMethod.SignIn.rawValue: "signIn",
-    UserNetRequestMethod.SignUp.rawValue: "signUp",
-    UserNetRequestMethod.ForgotPwd.rawValue: "ForgotPwd",
+    private let webAPI = [UserNetRequestMethod.SendSecurityCode.rawValue: "sendAuthCode",
+    UserNetRequestMethod.SignIn.rawValue: "userLogin",
+    UserNetRequestMethod.SignUp.rawValue: "userReg",
+    UserNetRequestMethod.ForgotPwd.rawValue: "resetPsw",
     UserNetRequestMethod.UpdateAvatar.rawValue: "updateAvatar"]
     
    
@@ -116,36 +117,6 @@ class UserNetRequestData: NetRequestAdapter {
         case TargetValue
     }
     
-     /**
-     请求短信验证码
-     
-     - parameter parameters:        参数 UserNetRequestParaKeyEmailKey，UserNetRequestParaKeyEmailKey
-     - parameter completionHandler: 回调
-     */
-    func requestSecurityCode(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
-        
-        let urlString = serverAddr + webAPI[UserNetRequestMethod.SendSecurityCode.rawValue]!
-        
-        //有效性校验
-        guard let para = parameters else {
-            completionHandler?(.Failure(.ParaNil))
-            Log.error("Parameter nil")
-            return
-        }
-        
-        if let phone: String = para[UserNetRequsetKey.PhoneNum.rawValue] as? String {
-            
-            if phone.isPhoneNum != true {
-                completionHandler?(.Failure(.PhoneErr))
-                Log.error("Phone error")
-                return
-            }
-            
-        }
-        
-        netPostRequestAdapter(urlString, para: para, completionHandler: completionHandler)
-        
-   }
     
     /**
      注册
@@ -154,8 +125,6 @@ class UserNetRequestData: NetRequestAdapter {
      - parameter completionHandler: 回调
      */
     func requestSignUp(var parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
-        
-        let urlString = serverAddr + webAPI[UserNetRequestMethod.SignIn.rawValue]!
         
         //参数有效性检测
         if parameters == nil {
@@ -205,12 +174,11 @@ class UserNetRequestData: NetRequestAdapter {
                 return
             }
             
-            // 密码进行MD5加密
-            parameters![UserNetRequsetKey.Passwd.rawValue] = pwd.md5()
-            
         }
         
-        netPostRequestAdapter(urlString, para: parameters, completionHandler: completionHandler)
+        parameters![UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.SignUp.rawValue]!
+        
+        netPostRequestAdapter(serverAddr, para: parameters, completionHandler: completionHandler)
         
     }
     
@@ -221,8 +189,6 @@ class UserNetRequestData: NetRequestAdapter {
      - parameter completionHandler: 回调
      */
     func requestSignIn(var parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
-        
-        let urlString  = webAPI[UserNetRequestMethod.SignUp.rawValue]!
         
         if parameters == nil {
             
@@ -251,11 +217,11 @@ class UserNetRequestData: NetRequestAdapter {
                 Log.error("Password error")
                 return
             }
-            
-            parameters![UserNetRequsetKey.Passwd.rawValue] = pwd.md5()
         }
         
-        netPostRequestAdapter(urlString, para: parameters, completionHandler: completionHandler)
+        parameters![UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.SignIn.rawValue]!
+        
+        netPostRequestAdapter(serverAddr, para: parameters, completionHandler: completionHandler)
         
     }
     
@@ -285,7 +251,7 @@ class UserNetRequestData: NetRequestAdapter {
      */
     func phoneSecurityCodeCheck(securityCode: String) -> Bool {
         
-        if securityCode.length != 6 {
+        if securityCode.length != 4 {
             return false
         }
         
@@ -385,12 +351,9 @@ class UserNetRequestData: NetRequestAdapter {
             return
         }
         
-        // MD5 加密
-        para[UserNetRequsetKey.Passwd.rawValue] = pwd.md5()
+        para[UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.ForgotPwd.rawValue]!
         
-        let urlString = serverAddr + webAPI[UserNetRequestMethod.ForgotPwd.rawValue]!
-        
-        netPostRequestAdapter(urlString, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(serverAddr, para: para, completionHandler: completionHandler)
         
     }
     
@@ -402,7 +365,7 @@ class UserNetRequestData: NetRequestAdapter {
      */
     func requestPhoneSecurityCode(parameter: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
         
-        guard let para = parameter else {
+        guard var para = parameter else {
             Log.error("Parameter is nil")
             completionHandler?(.Failure(.ParaNil))
             return
@@ -417,9 +380,9 @@ class UserNetRequestData: NetRequestAdapter {
             }
         }
         
-        let urlString = serverAddr + webAPI[UserNetRequestMethod.SendSecurityCode.rawValue]!
+        para[UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.SendSecurityCode.rawValue]!
         
-        netPostRequestAdapter(urlString, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(serverAddr, para: para, completionHandler: completionHandler)
         
     }
     
@@ -450,10 +413,9 @@ class UserNetRequestData: NetRequestAdapter {
         }
         
         para[UserNetRequsetKey.Avater.rawValue] = UIImagePNGRepresentation(image)
+        para[UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.UpdateAvatar.rawValue]!
         
-        let urlString = serverAddr + webAPI[UserNetRequestMethod.UpdateAvatar.rawValue]!
-        
-        netPostRequestAdapter(urlString, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(serverAddr, para: para, completionHandler: completionHandler)
         
     }
     

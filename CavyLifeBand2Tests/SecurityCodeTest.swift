@@ -40,7 +40,7 @@ class SecurityCodeTest: XCTestCase {
         let samplePara = [[UserNetRequsetKey.PhoneNum.rawValue: "17767894566"],
             [UserNetRequsetKey.PhoneNum.rawValue: "17722334466"]]
         
-        let expectationResult = ["code": "1001", "msg": "成功"]
+        let expectationResult = ["code": "0000", "msg": "success"]
         
         for para in samplePara {
             

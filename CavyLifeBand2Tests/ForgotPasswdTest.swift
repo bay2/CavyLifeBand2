@@ -34,15 +34,15 @@ class ForgotPasswdTest: XCTestCase {
     
     func testForgotPasswdOk() {
         
-        let phoneNumPara = [UserNetRequsetKey.PhoneNum.rawValue: "18611236633",
+        let phoneNumPara = [UserNetRequsetKey.PhoneNum.rawValue: "18758567803",
             UserNetRequsetKey.Passwd.rawValue: "123456",
-            UserNetRequsetKey.SecurityCode.rawValue: "123456"]
+            UserNetRequsetKey.SecurityCode.rawValue: "1318"]
         
-        let emailPara = [UserNetRequsetKey.Email.rawValue: "sdfasdw@qq.com",
+        let emailPara = [UserNetRequsetKey.Email.rawValue: "38sdf8@qq.com",
             UserNetRequsetKey.Passwd.rawValue: "123456",
-            UserNetRequsetKey.SecurityCode.rawValue: "nsd2"]
+            UserNetRequsetKey.SecurityCode.rawValue: "Y45E"]
         
-        let expectationResult = ["code": "1001", "msg": "成功"]
+        let expectationResult = ["code": "0000", "msg": "success"]
         
         let expectation1 = expectationWithDescription("testForgotPasswdOk succeed")
         

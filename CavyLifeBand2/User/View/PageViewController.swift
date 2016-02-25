@@ -33,8 +33,6 @@ class PageViewController: UIViewController {
     // 背景图片
     var backgroundImage: UIImage!
     
-    // 1/25 宽度间隙
-    let spacing25 = ez.screenWidth / 25
     
     // 当前视图索引
     var pageIndex = 0
@@ -45,13 +43,15 @@ class PageViewController: UIViewController {
     var buttonSize: CGSize {
         
         get {
-            return CGSize(width: (spacing25 * 10), height: (spacing25 * 3))
+            return CGSize(width: (spacingWidth25 * 10), height: (spacingWidth25 * 3))
         }
         
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pageCtrl.currentPage = pageIndex
         
         backgroundImageView.image = backgroundImage
         
@@ -76,7 +76,6 @@ class PageViewController: UIViewController {
             
         }
         
-        
         pageCtrl.snp_makeConstraints { (make) -> Void in
             make.bottom.equalTo(backgroundImageView).offset(-((buttonSize.height * 3) - (pageCtrl.size.height / 2)))
         }
@@ -90,8 +89,8 @@ class PageViewController: UIViewController {
         
         buttonView.hidden = false
         buttonView.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(backgroundImageView).offset(spacing25 * 2)
-            make.right.equalTo(backgroundImageView).offset(-(spacing25 * 2))
+            make.left.equalTo(backgroundImageView).offset(spacingWidth25 * 2)
+            make.right.equalTo(backgroundImageView).offset(-(spacingWidth25 * 2))
             make.height.equalTo(buttonSize.height)
             make.bottom.equalTo(backgroundImageView).offset(-buttonSize.height)
         }

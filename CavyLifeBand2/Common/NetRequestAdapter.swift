@@ -33,7 +33,7 @@ class NetRequestAdapter: NSObject {
         
         Log.netRequestFormater(urlString, para: para)
         
-        Alamofire.request(.POST, urlString, parameters: parameters).responseJSON { (response) -> Void in
+        let request = Alamofire.request(.POST, urlString, parameters: parameters).responseJSON { (response) -> Void in
             
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 
@@ -52,6 +52,12 @@ class NetRequestAdapter: NSObject {
                 completionHandler?(.Success(responseResult))
             })
         }
+        
+        if Log.enabled {
+            debugPrint(request)
+        }
+        
+        
         
     }
     

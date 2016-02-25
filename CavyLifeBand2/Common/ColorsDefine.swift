@@ -16,20 +16,32 @@ extension UIColor {
 extension UIColor {
   enum Name {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
-    /// Alpha: 100% <br/> (0xffffffff)
+    /// Alpha: 0% <br/> (0xffffff00)
     case MainPageBtn
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#42cd59"></span>
-    /// Alpha: 100% <br/> (0x42cd59ff)
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+    /// Alpha: 100% <br/> (0xffffffff)
     case MainPageBtnText
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
-    /// Alpha: 80% <br/> (0xffffffcc)
+    /// Alpha: 100% <br/> (0xffffffff)
     case MainPageSelectedBtn
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#42cd59"></span>
+    /// Alpha: 100% <br/> (0x42cd59ff)
+    case MainPageSelectedBtnText
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#1cd2ff"></span>
+    /// Alpha: 100% <br/> (0x1cd2ffff)
+    case SignInBackground
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#009fe2"></span>
+    /// Alpha: 100% <br/> (0x009fe2ff)
+    case SignInTextFieldViewBackground
 
     var rgbaValue: UInt32! {
       switch self {
-      case .MainPageBtn: return 0xffffffff
-      case .MainPageBtnText: return 0x42cd59ff
-      case .MainPageSelectedBtn: return 0xffffffcc
+      case .MainPageBtn: return 0xffffff00
+      case .MainPageBtnText: return 0xffffffff
+      case .MainPageSelectedBtn: return 0xffffffff
+      case .MainPageSelectedBtnText: return 0x42cd59ff
+      case .SignInBackground: return 0x1cd2ffff
+      case .SignInTextFieldViewBackground: return 0x009fe2ff
       }
     }
   }

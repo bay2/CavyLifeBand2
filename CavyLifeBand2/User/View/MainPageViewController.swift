@@ -10,7 +10,7 @@ import UIKit
 
 class MainPageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
-    var pageImage = [UIImage(asset: .PageImage1), UIImage(asset: .PageImage1)]
+    var pageImage = [UIImage(asset: .PageImage1), UIImage(asset: .PageImage1), UIImage(asset: .PageImage1), UIImage(asset: .PageImage1)]
 
     override func viewDidLoad() {
         super.viewDidLoad()
