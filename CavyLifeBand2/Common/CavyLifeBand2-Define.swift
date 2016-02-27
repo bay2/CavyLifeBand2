@@ -17,4 +17,7 @@ let WebAPICodeSuccess = "1001"
 let spacingWidth25 = ez.screenWidth / 25
 
 // 1/25 高度间隙
-let spacingHeight = ez.screenHeight / 25
+let spacingHeight25 = ez.screenHeight / 25
+
+// 统一圆角值
+let commonCornerRadius: CGFloat = 8 / 3

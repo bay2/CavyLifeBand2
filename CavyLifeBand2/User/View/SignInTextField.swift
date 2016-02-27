@@ -15,10 +15,11 @@ class SignInTextField: UITextField {
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
         
-        self.font = UIFont.systemFontOfSize(16)
+        self.font = UIFont.systemFontOfSize(14)
 
-        self.clearButtonMode = .UnlessEditing
-        self.setValue(UIColor(named: .SignInBackground), forKeyPath: "_placeholderLabel.textColor")
+        self.clearButtonMode = .WhileEditing
+        self.setValue(UIColor(named: .SignInPlaceholderText), forKeyPath: "_placeholderLabel.textColor")
+        self.textColor = UIColor(named: .SignInTextFieldText)
         
     }
 

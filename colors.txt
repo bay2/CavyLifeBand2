@@ -1,6 +1,11 @@
-MainPageBtn : #FFFFFF00
-MainPageSelectedBtn : #FFFFFF
-MainPageBtnText : #FFFFFF
-MainPageSelectedBtnText : #42cd59
-SignInBackground : #1cd2ff
-SignInTextFieldViewBackground : #009fe2
+MainPageBtn : #FFD954
+MainPageSelectedBtn : #ECBC46
+MainPageBtnText : #B46E00
+SignInBackground : #1dbcff
+SignInNavigationBar : #1dbcff
+SignInMainTextColor : #00000099
+PageIndicatorTintColor : #00000033
+SignInForgotPwdBtnText : #00000066
+SignInPlaceholderText : #00000066
+SignInTextFieldText : #000000CC
+SignInSplitLine : #00000033

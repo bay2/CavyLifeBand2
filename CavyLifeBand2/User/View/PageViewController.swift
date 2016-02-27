@@ -55,6 +55,8 @@ class PageViewController: UIViewController {
         
         backgroundImageView.image = backgroundImage
         
+        setSubViewTitle()
+        
         defineLayoutSubViews()
 
     }
@@ -62,6 +64,15 @@ class PageViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    /**
+     设置子视图标题
+     */
+    func setSubViewTitle() {
+        
+        signInBtn.setTitle(L10n.MainPageSignInBtn.string, forState: .Normal)
+        signUpBtn.setTitle(L10n.MainPageSignUpBtn.string, forState: .Normal)
     }
     
     /**
