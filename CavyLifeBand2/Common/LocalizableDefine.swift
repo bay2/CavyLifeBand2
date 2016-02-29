@@ -19,6 +19,22 @@ enum L10n {
   case SignInSignUpItemBtn
   /// 忘记了密码？
   case SignInForgotPasswdBtn
+  /// 邮箱
+  case SignUpRightItemBtn
+  /// 加入豚鼠
+  case SignUpTitle
+  /// 手机
+  case SignUpPhoneNumTextField
+  /// 验证码
+  case SignUpSafetyCodeTextField
+  /// 发送验证码
+  case SignUpSendSafetyCode
+  /// 我们已经阅读并接受
+  case SignUpProcotolViewTitle
+  /// 《豚鼠科技服务协议》
+  case SignUpProcotolViewBtn
+  /// 注册
+  case SignUpSignUpBtn
 }
 
 extension L10n : CustomStringConvertible {
@@ -42,6 +58,22 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("SignIn.SignUpItemBtn")
       case .SignInForgotPasswdBtn:
         return L10n.tr("SignIn.ForgotPasswdBtn")
+      case .SignUpRightItemBtn:
+        return L10n.tr("SignUp.RightItemBtn")
+      case .SignUpTitle:
+        return L10n.tr("SignUp.Title")
+      case .SignUpPhoneNumTextField:
+        return L10n.tr("SignUp.PhoneNumTextField")
+      case .SignUpSafetyCodeTextField:
+        return L10n.tr("SignUp.SafetyCodeTextField")
+      case .SignUpSendSafetyCode:
+        return L10n.tr("SignUp.SendSafetyCode")
+      case .SignUpProcotolViewTitle:
+        return L10n.tr("SignUp.ProcotolViewTitle")
+      case .SignUpProcotolViewBtn:
+        return L10n.tr("SignUp.ProcotolViewBtn")
+      case .SignUpSignUpBtn:
+        return L10n.tr("SignUp.SignUpBtn")
     }
   }
 

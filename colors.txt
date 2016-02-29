@@ -9,3 +9,4 @@ SignInForgotPwdBtnText : #00000066
 SignInPlaceholderText : #00000066
 SignInTextFieldText : #000000CC
 SignInSplitLine : #00000033
+SignUpProtocolBtn : #125fae

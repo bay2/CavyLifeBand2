@@ -48,6 +48,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 80% <br/> (0x000000cc)
     case SignInTextFieldText
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#125fae"></span>
+    /// Alpha: 100% <br/> (0x125faeff)
+    case SignUpProtocolBtn
 
     var rgbaValue: UInt32! {
       switch self {
@@ -62,6 +65,7 @@ extension UIColor {
       case .SignInPlaceholderText: return 0x00000066
       case .SignInSplitLine: return 0x00000033
       case .SignInTextFieldText: return 0x000000cc
+      case .SignUpProtocolBtn: return 0x125faeff
       }
     }
   }

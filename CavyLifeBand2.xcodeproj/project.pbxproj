@@ -48,6 +48,9 @@
 		91C3ED841C3BB637000A414D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91C3ED861C3BB637000A414D /* Localizable.strings */; };
 		91D192921C7DA87B00482019 /* colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 91D192911C7DA87B00482019 /* colors.txt */; };
 		91D192941C7DB8DE00482019 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91D192931C7DB8DE00482019 /* Assets.xcassets */; };
+		91D274C31C83D3F1004F1AA7 /* UserProtocolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274C21C83D3F1004F1AA7 /* UserProtocolView.swift */; };
+		91D274C51C843A6D004F1AA7 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274C41C843A6D004F1AA7 /* CheckboxButton.swift */; };
+		91D274C71C84453F004F1AA7 /* SendSafetyCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274C61C84453F004F1AA7 /* SendSafetyCodeButton.swift */; };
 		98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */; };
 		C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECCA2D1C4C7F2D00805826 /* Weather.swift */; };
 		CCC7C82BB91E803A273BED90 /* Pods_CavyLifeBand2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */; };
@@ -129,6 +132,9 @@
 		91C3ED871C3BB639000A414D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		91D192911C7DA87B00482019 /* colors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = colors.txt; sourceTree = SOURCE_ROOT; };
 		91D192931C7DB8DE00482019 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		91D274C21C83D3F1004F1AA7 /* UserProtocolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProtocolView.swift; sourceTree = "<group>"; };
+		91D274C41C843A6D004F1AA7 /* CheckboxButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
+		91D274C61C84453F004F1AA7 /* SendSafetyCodeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendSafetyCodeButton.swift; sourceTree = "<group>"; };
 		98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		AD7D0502CC392B502E081F26 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C848EB391C46240F001FA1BF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -314,6 +320,9 @@
 				91A7516E1C7EB78400D93A57 /* SignInTextField.swift */,
 				9169AAA91C7EE06A00301646 /* SignInViewController.swift */,
 				919C5E4E1C7FE54900F72CA8 /* UserSignInBaseViewController.swift */,
+				91D274C21C83D3F1004F1AA7 /* UserProtocolView.swift */,
+				91D274C41C843A6D004F1AA7 /* CheckboxButton.swift */,
+				91D274C61C84453F004F1AA7 /* SendSafetyCodeButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -629,17 +638,20 @@
 				918435EB1C7D5A3D005B6E92 /* PageViewController.swift in Sources */,
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
 				918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */,
+				91D274C71C84453F004F1AA7 /* SendSafetyCodeButton.swift in Sources */,
 				91A7516D1C7DDB3C00D93A57 /* SignUpViewController.swift in Sources */,
 				918435ED1C7D5ABE005B6E92 /* MainPageViewController.swift in Sources */,
 				91A7516B1C7DD31000D93A57 /* CLBPageControl.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
+				91D274C31C83D3F1004F1AA7 /* UserProtocolView.swift in Sources */,
 				91C3AE251C44DABA006B67AF /* UserNetRequestData.swift in Sources */,
 				91A7516F1C7EB78400D93A57 /* SignInTextField.swift in Sources */,
 				9169AAAA1C7EE06A00301646 /* SignInViewController.swift in Sources */,
 				9141C7FE1C7D72CD003E24F2 /* ImageDefine.swift in Sources */,
 				918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */,
 				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
+				91D274C51C843A6D004F1AA7 /* CheckboxButton.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
 				9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */,

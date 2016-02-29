@@ -8,7 +8,7 @@
 
 import UIKit
 import SnapKit
-
+import EZSwiftExtensions
 
 class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegate {
 
@@ -40,8 +40,6 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
         
         // 设置控件title
         setSubViewTitle()
-
-
         
         // Do any additional setup after loading the view.
     }
@@ -106,7 +104,7 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
             make.left.equalTo(textFieldView).offset(spacingWidth25)
             make.right.equalTo(textFieldView).offset(-spacingWidth25)
         }
-        
+
     }
     
     /**
@@ -126,8 +124,17 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
         }
         
     }
-    
-    
+
+    override func onClickRight(sender: AnyObject) {
+
+        let signUpVC = StoryboardScene.Main.SignUpView.viewController()
+
+        self.pushVC(signUpVC)
+
+    }
+
+
+
 
     /*
     // MARK: - Navigation

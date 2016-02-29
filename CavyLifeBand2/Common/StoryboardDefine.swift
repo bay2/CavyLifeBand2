@@ -55,13 +55,23 @@ struct StoryboardScene {
     static let storyboardName = "Main"
 
     case MainPageView = "MainPageView"
-    static func mainPageViewViewController() -> PageViewController {
-      return StoryboardScene.Main.MainPageView.viewController() as! PageViewController
+    static func mainPageViewViewController() -> MainPageViewController {
+      return StoryboardScene.Main.MainPageView.viewController() as! MainPageViewController
+    }
+
+    case PageView = "PageView"
+    static func pageViewViewController() -> PageViewController {
+      return StoryboardScene.Main.PageView.viewController() as! PageViewController
     }
 
     case SignInView = "SignInView"
     static func signInViewViewController() -> SignInViewController {
       return StoryboardScene.Main.SignInView.viewController() as! SignInViewController
+    }
+
+    case SignUpView = "SignUpView"
+    static func signUpViewViewController() -> SignUpViewController {
+      return StoryboardScene.Main.SignUpView.viewController() as! SignUpViewController
     }
   }
   enum Weather : StoryboardSceneType {

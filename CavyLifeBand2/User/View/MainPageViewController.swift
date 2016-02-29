@@ -24,6 +24,7 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDataSour
         self.view.backgroundColor = UIColor.whiteColor()
         
         setViewControllers([pageView], direction: .Forward, animated: true, completion: nil)
+        self.navigationController?.navigationBarHidden = true
 
     }
 
@@ -75,7 +76,7 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDataSour
             return nil
         }
         
-        let pageVC = StoryboardScene.Main.MainPageView.viewController() as! PageViewController
+        let pageVC = StoryboardScene.Main.PageView.viewController() as! PageViewController
         
         if index == pageImage.count - 1 {
             pageVC.isLastPage = true

@@ -118,7 +118,25 @@ class PageViewController: UIViewController {
         
     }
     
+    /**
+     点击登录
+     
+     - parameter sender: <#sender description#>
+     */
+    @IBAction func onClickSignIn(sender: AnyObject) {
 
+        let signInVC = StoryboardScene.Main.SignInView.viewController()
+        self.pushVC(signInVC)
+
+    }
+
+    /**
+     点击注册
+     
+     - parameter sender: <#sender description#>
+     */
+    @IBAction func onClickSignUp(sender: AnyObject) {
+    }
 
     /*
     // MARK: - Navigation

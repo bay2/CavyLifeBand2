@@ -30,6 +30,7 @@ class UserSignInBaseViewController: UIViewController {
     func updateTextFieldViewUI(textFieldView: UIView) {
         
         textFieldView.layer.cornerRadius = commonCornerRadius
+        textFieldView.backgroundColor = UIColor.whiteColor()
         
     }
 
@@ -43,6 +44,7 @@ class UserSignInBaseViewController: UIViewController {
     func updateNavigationItemUI(title: String, rightBtnText: String) {
 
         self.view.backgroundColor = UIColor(named: .SignInBackground)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.barTintColor = UIColor(named: .SignInNavigationBar)
         self.navigationController?.navigationBar.shadowImage = UIImage.imageWithColor(UIColor(named: .SignInNavigationBar), size: CGSizeMake(ez.screenWidth, 1))
         self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageWithColor(UIColor(named: .SignInNavigationBar), size: CGSizeMake(ez.screenWidth, 64)), forBarPosition: .Any, barMetrics: .Default)
@@ -81,9 +83,9 @@ class UserSignInBaseViewController: UIViewController {
      - parameter sender:
      */
     func onClickBack(sender: AnyObject) {
-        
-        self.navigationController?.popVC()
-        
+
+        self.popVC()
+
     }
     
     /**

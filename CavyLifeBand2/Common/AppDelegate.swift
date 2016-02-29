@@ -27,7 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
 
-        let navigation = UINavigationController(rootViewController: StoryboardScene.Main.SignInView.viewController())
+        let navigation = UINavigationController(rootViewController: StoryboardScene.Main.MainPageView.viewController())
+
+        UINavigationBar.appearance().translucent = false
 
         self.window?.rootViewController = navigation
 

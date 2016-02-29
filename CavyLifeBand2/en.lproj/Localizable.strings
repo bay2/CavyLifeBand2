@@ -17,3 +17,13 @@
 "SignIn.title" = "准备开始";
 "SignIn.SignUpItemBtn" = "注册";
 "SignIn.ForgotPasswdBtn" = "忘记了密码？";
+
+// 注册页面
+"SignUp.RightItemBtn" = "邮箱";
+"SignUp.Title" = "加入豚鼠";
+"SignUp.PhoneNumTextField" = "手机";
+"SignUp.SafetyCodeTextField" = "验证码";
+"SignUp.SendSafetyCode" = "发送验证码";
+"SignUp.ProcotolViewTitle" = "我们已经阅读并接受";
+"SignUp.ProcotolViewBtn" = "《豚鼠科技服务协议》";
+"SignUp.SignUpBtn" = "注册";
