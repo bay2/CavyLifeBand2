@@ -1,2 +1,7 @@
 include:
   - CavyLifeBand2
+exclude:
+  - CavyLifeBand2/Common/StoryboardDefine.swift
+  - CavyLifeBand2/Common/LocalizableDefine.swift
+  - CavyLifeBand2/Common/ImageDefine.swift
+  - CavyLifeBand2/Common/ColorsDefine.swift
