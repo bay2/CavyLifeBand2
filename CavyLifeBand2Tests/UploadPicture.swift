@@ -43,7 +43,7 @@ class UploadPicture: XCTestCase {
         let casePara: [[String: AnyObject]] = [[UserNetRequsetKey.UserID.rawValue: "1", UserNetRequsetKey.Avater.rawValue: image!],
             [UserNetRequsetKey.UserID.rawValue: "2", UserNetRequsetKey.Avater.rawValue: image!]]
         
-        let expectationResult = ["code": "1001", "msg": "成功"]
+        let expectationResult = ["code": "0000", "msg": "success"]
         
         for para in casePara {
             
