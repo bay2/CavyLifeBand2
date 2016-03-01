@@ -19,11 +19,19 @@
 "SignIn.ForgotPasswdBtn" = "忘记了密码？";
 
 // 注册页面
-"SignUp.RightItemBtn" = "邮箱";
+"SignUp.PhoneRightItemBtn" = "邮箱";
+"SignUp.EmailRightItemBtn" = "手机";
 "SignUp.Title" = "加入豚鼠";
 "SignUp.PhoneNumTextField" = "手机";
+"SignUp.EmailTextField" = "邮箱";
 "SignUp.SafetyCodeTextField" = "验证码";
 "SignUp.SendSafetyCode" = "发送验证码";
 "SignUp.ProcotolViewTitle" = "我们已经阅读并接受";
 "SignUp.ProcotolViewBtn" = "《豚鼠科技服务协议》";
 "SignUp.SignUpBtn" = "注册";
+
+// 忘记密码页面
+"Forgot.Title" = "忘记密码了?";
+"Forgot.PasswdTextField" = "新密码";
+"Forgot.BackTextBtn" = "且慢,我想起来了!";
+"Forgot.finish" = "完成";

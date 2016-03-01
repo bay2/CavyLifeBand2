@@ -125,6 +125,11 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
         
     }
 
+    /**
+     点击右侧按钮
+     
+     - parameter sender:
+     */
     override func onClickRight(sender: AnyObject) {
 
         let signUpVC = StoryboardScene.Main.SignUpView.viewController()
@@ -132,8 +137,33 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
         self.pushVC(signUpVC)
 
     }
+    
+    /**
+     点击返回按钮
+     
+     - parameter sender:
+     */
+    override func onClickBack(sender: AnyObject) {
+        super.onClickBack(sender)
+        
+//        dismissVC(completion: nil)
+    }
 
 
+    /**
+     点击忘记密码
+     
+     - parameter sender:
+     */
+    @IBAction func onClickForgot(sender: AnyObject) {
+        
+        let forgotVC = StoryboardScene.Main.signUpViewViewController()
+
+        forgotVC.viewStyle = .PhoneNumForgotPasswd
+
+        self.pushVC(forgotVC)
+
+    }
 
 
     /*

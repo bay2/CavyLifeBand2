@@ -14,6 +14,7 @@ class UserSignInBaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         // Do any additional setup after loading the view.
     }
 
@@ -44,7 +45,6 @@ class UserSignInBaseViewController: UIViewController {
     func updateNavigationItemUI(title: String, rightBtnText: String) {
 
         self.view.backgroundColor = UIColor(named: .SignInBackground)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.barTintColor = UIColor(named: .SignInNavigationBar)
         self.navigationController?.navigationBar.shadowImage = UIImage.imageWithColor(UIColor(named: .SignInNavigationBar), size: CGSizeMake(ez.screenWidth, 1))
         self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageWithColor(UIColor(named: .SignInNavigationBar), size: CGSizeMake(ez.screenWidth, 64)), forBarPosition: .Any, barMetrics: .Default)
@@ -85,6 +85,7 @@ class UserSignInBaseViewController: UIViewController {
     func onClickBack(sender: AnyObject) {
 
         self.popVC()
+        dismissVC(completion: nil)
 
     }
     

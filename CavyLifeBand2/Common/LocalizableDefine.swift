@@ -20,11 +20,15 @@ enum L10n {
   /// 忘记了密码？
   case SignInForgotPasswdBtn
   /// 邮箱
-  case SignUpRightItemBtn
+  case SignUpPhoneRightItemBtn
+  /// 手机
+  case SignUpEmailRightItemBtn
   /// 加入豚鼠
   case SignUpTitle
   /// 手机
   case SignUpPhoneNumTextField
+  /// 邮箱
+  case SignUpEmailTextField
   /// 验证码
   case SignUpSafetyCodeTextField
   /// 发送验证码
@@ -35,6 +39,14 @@ enum L10n {
   case SignUpProcotolViewBtn
   /// 注册
   case SignUpSignUpBtn
+  /// 忘记密码了?
+  case ForgotTitle
+  /// 新密码
+  case ForgotPasswdTextField
+  /// 且慢,我想起来了!
+  case ForgotBackTextBtn
+  /// 完成
+  case ForgotFinish
 }
 
 extension L10n : CustomStringConvertible {
@@ -58,12 +70,16 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("SignIn.SignUpItemBtn")
       case .SignInForgotPasswdBtn:
         return L10n.tr("SignIn.ForgotPasswdBtn")
-      case .SignUpRightItemBtn:
-        return L10n.tr("SignUp.RightItemBtn")
+      case .SignUpPhoneRightItemBtn:
+        return L10n.tr("SignUp.PhoneRightItemBtn")
+      case .SignUpEmailRightItemBtn:
+        return L10n.tr("SignUp.EmailRightItemBtn")
       case .SignUpTitle:
         return L10n.tr("SignUp.Title")
       case .SignUpPhoneNumTextField:
         return L10n.tr("SignUp.PhoneNumTextField")
+      case .SignUpEmailTextField:
+        return L10n.tr("SignUp.EmailTextField")
       case .SignUpSafetyCodeTextField:
         return L10n.tr("SignUp.SafetyCodeTextField")
       case .SignUpSendSafetyCode:
@@ -74,6 +90,14 @@ extension L10n : CustomStringConvertible {
         return L10n.tr("SignUp.ProcotolViewBtn")
       case .SignUpSignUpBtn:
         return L10n.tr("SignUp.SignUpBtn")
+      case .ForgotTitle:
+        return L10n.tr("Forgot.Title")
+      case .ForgotPasswdTextField:
+        return L10n.tr("Forgot.PasswdTextField")
+      case .ForgotBackTextBtn:
+        return L10n.tr("Forgot.BackTextBtn")
+      case .ForgotFinish:
+        return L10n.tr("Forgot.finish")
     }
   }
 
