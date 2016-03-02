@@ -9,9 +9,17 @@
 import Foundation
 import EZSwiftExtensions
 
+// 异常上报服务器地址
 let bugHDKey = "https://collector.bughd.com/kscrash?key=9c009d806879cec4233b3b66b4264315"
-let serverAddr = "http://192.168.100.225/cavylife/api.do"
-let WebAPICodeSuccess = "1001"
+
+// 服务器地址
+let serverAddr = "http://115.28.144.243/cavylife"
+
+// webApi地址
+let webApiAddr = serverAddr + "/api.do"
+
+// 邮箱验证码地址
+let emailCodeAddr = serverAddr + "/imageCode.do"
 
 // 1/25 宽度间隙
 let spacingWidth25 = ez.screenWidth / 25

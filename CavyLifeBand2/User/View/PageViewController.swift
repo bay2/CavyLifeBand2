@@ -10,7 +10,7 @@ import UIKit
 import EZSwiftExtensions
 import SnapKit
 
-class PageViewController: UIViewController {
+class PageViewController: UIViewController, UINavigationControllerDelegate {
 
     // 注册按钮
     @IBOutlet weak var signInBtn: UIButton!
@@ -121,22 +121,36 @@ class PageViewController: UIViewController {
     /**
      点击登录
      
-     - parameter sender: <#sender description#>
+     - parameter sender:
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
 
         let signInVC = StoryboardScene.Main.SignInViewScene.viewController()
+<<<<<<< HEAD
         self.pushVC(signInVC)
+=======
+        
+        presentVC(UINavigationController(rootViewController: signInVC))
+>>>>>>> bay2/master
 
     }
 
     /**
      点击注册
      
-     - parameter sender: <#sender description#>
+     - parameter sender:
      */
     @IBAction func onClickSignUp(sender: AnyObject) {
+        
+        let signUpVC = StoryboardScene.Main.instanciateSignUpView()
+
+        signUpVC.viewStyle = .PhoneNumSignUp
+        
+        presentVC(UINavigationController(rootViewController: signUpVC))
+
     }
+
+
 
     /*
     // MARK: - Navigation

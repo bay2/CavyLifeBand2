@@ -178,7 +178,7 @@ class UserNetRequestData: NetRequestAdapter {
         
         parameters![UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.SignUp.rawValue]!
         
-        netPostRequestAdapter(serverAddr, para: parameters, completionHandler: completionHandler)
+        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
         
     }
     
@@ -221,7 +221,7 @@ class UserNetRequestData: NetRequestAdapter {
         
         parameters![UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.SignIn.rawValue]!
         
-        netPostRequestAdapter(serverAddr, para: parameters, completionHandler: completionHandler)
+        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
         
     }
     
@@ -353,7 +353,7 @@ class UserNetRequestData: NetRequestAdapter {
         
         para[UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.ForgotPwd.rawValue]!
         
-        netPostRequestAdapter(serverAddr, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
         
     }
     
@@ -382,7 +382,7 @@ class UserNetRequestData: NetRequestAdapter {
         
         para[UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.SendSecurityCode.rawValue]!
         
-        netPostRequestAdapter(serverAddr, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
         
     }
     
@@ -415,7 +415,7 @@ class UserNetRequestData: NetRequestAdapter {
         para[UserNetRequsetKey.Avater.rawValue] = UIImagePNGRepresentation(image)
         para[UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.UpdateAvatar.rawValue]!
         
-        netPostRequestAdapter(serverAddr, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
         
     }
     

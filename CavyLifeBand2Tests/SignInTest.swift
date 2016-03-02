@@ -86,7 +86,7 @@ class SignInTest: XCTestCase {
         let paras = [[UserNetRequsetKey.UserName.rawValue: "17722342211", UserNetRequsetKey.Passwd.rawValue: "123456"],
             [UserNetRequsetKey.UserName.rawValue: "werqqw@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456"]]
         
-        let expectResultMsg = ["code": "1000", "msg": "密码错误"]
+        let expectResultMsg = ["code": "1001", "msg": "user or password error"]
         
         for para in paras {
             

@@ -85,7 +85,7 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
             make.height.equalTo(spacingWidth25 * 6 + 0.3)
             make.left.equalTo(self.view).offset(spacingWidth25 * 2)
             make.right.equalTo(self.view).offset(-(spacingWidth25 * 2))
-            make.top.equalTo(self.view).offset(spacingWidth25 * 8 - 64)
+            make.top.equalTo(self.view).offset(spacingWidth25 * 8)
         }
         
     }
@@ -125,6 +125,11 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
         
     }
 
+    /**
+     点击右侧按钮
+     
+     - parameter sender:
+     */
     override func onClickRight(sender: AnyObject) {
 
         let signUpVC = StoryboardScene.Main.SignUpViewScene.viewController()
@@ -133,7 +138,20 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
 
     }
 
+    /**
+     点击忘记密码
+     
+     - parameter sender:
+     */
+    @IBAction func onClickForgot(sender: AnyObject) {
+        
+        let forgotVC = StoryboardScene.Main.instanciateSignUpView()
 
+        forgotVC.viewStyle = .PhoneNumForgotPasswd
+
+        self.pushVC(forgotVC)
+
+    }
 
 
     /*
