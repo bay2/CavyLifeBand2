@@ -8,13 +8,17 @@
 
 import UIKit
 import EZSwiftExtensions
+import SnapKit
 
-class UserSignInBaseViewController: UIViewController {
+class UserSignInBaseViewController: BaseViewController {
 
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.view.backgroundColor = UIColor(named: .SignInBackground)
+
         // Do any additional setup after loading the view.
     }
 
@@ -36,67 +40,7 @@ class UserSignInBaseViewController: UIViewController {
     }
 
 
-    /**
-     更新NavigationItem UI
-     
-     - parameter titleLab:     标题
-     - parameter rightBtnText: 右按钮标题
-     */
-    func updateNavigationItemUI(title: String, rightBtnText: String) {
 
-        self.view.backgroundColor = UIColor(named: .SignInBackground)
-        self.navigationController?.navigationBar.barTintColor = UIColor(named: .SignInNavigationBar)
-        self.navigationController?.navigationBar.shadowImage = UIImage.imageWithColor(UIColor(named: .SignInNavigationBar), size: CGSizeMake(ez.screenWidth, 1))
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage.imageWithColor(UIColor(named: .SignInNavigationBar), size: CGSizeMake(ez.screenWidth, 64)), forBarPosition: .Any, barMetrics: .Default)
-
-        let titleLeb = UILabel()
-
-        titleLeb.text = title
-        titleLeb.textColor = UIColor(named: .SignInMainTextColor)
-        titleLeb.font = UIFont.systemFontOfSize(22)
-        titleLeb.frame = CGRectMake(0, 0, 60, 30)
-
-        self.navigationItem.titleView = titleLeb
-
-        let backBtn = UIButton()
-        backBtn.frame = CGRectMake(0, 0, 30, 30)
-        backBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
-        backBtn.addTarget(self, action: "onClickBack:", forControlEvents: .TouchUpInside)
-        let backBackItem = UIBarButtonItem(customView: backBtn)
-        
-        let rightBtn = UIButton()
-        rightBtn.setTitle(rightBtnText, forState: .Normal)
-        rightBtn.frame = CGRectMake(0, 0, 60, 30)
-        rightBtn.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
-
-        rightBtn.addTarget(self, action: "onClickRight:", forControlEvents: .TouchUpInside)
-        let rightItem = UIBarButtonItem(customView: rightBtn)
-
-        self.navigationItem.leftBarButtonItems = [backBackItem]
-        self.navigationItem.rightBarButtonItems = [rightItem]
-        
-    }
-    
-    /**
-     返回按钮点击事件
-     
-     - parameter sender:
-     */
-    func onClickBack(sender: AnyObject) {
-
-        self.popVC()
-        dismissVC(completion: nil)
-
-    }
-    
-    /**
-     右侧按钮点击事件
-     
-     - parameter sender:
-     */
-    func onClickRight(sender: AnyObject) {
-        
-    }
     
 
     /*

@@ -13,7 +13,7 @@ import EZSwiftExtensions
 let bugHDKey = "https://collector.bughd.com/kscrash?key=9c009d806879cec4233b3b66b4264315"
 
 // 服务器地址
-let serverAddr = "http://192.168.100.225/cavylife"
+let serverAddr = "http://115.28.144.243/cavylife"
 
 // webApi地址
 let webApiAddr = serverAddr + "/api.do"

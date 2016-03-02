@@ -112,7 +112,7 @@ class SignUpViewController: UserSignInBaseViewController {
 
         textFieldView.snp_makeConstraints { (make) -> Void in
             
-            make.top.equalTo(self.view).offset(spacingWidth25 * 8 - 64)
+            make.top.equalTo(self.view).offset(spacingWidth25 * 8)
             make.left.equalTo(self.view).offset(spacingWidth25 * 2)
             make.right.equalTo(self.view).offset(-(spacingWidth25 * 2))
 
@@ -273,7 +273,7 @@ class SignUpViewController: UserSignInBaseViewController {
 
         super.onClickRight(sender)
 
-        let nextView = StoryboardScene.Main.signUpViewViewController()
+        let nextView = StoryboardScene.Main.instanciateSignUpView()
         
 
         switch viewStyle {

@@ -85,7 +85,7 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
             make.height.equalTo(spacingWidth25 * 6 + 0.3)
             make.left.equalTo(self.view).offset(spacingWidth25 * 2)
             make.right.equalTo(self.view).offset(-(spacingWidth25 * 2))
-            make.top.equalTo(self.view).offset(spacingWidth25 * 8 - 64)
+            make.top.equalTo(self.view).offset(spacingWidth25 * 8)
         }
         
     }
@@ -132,23 +132,11 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
      */
     override func onClickRight(sender: AnyObject) {
 
-        let signUpVC = StoryboardScene.Main.SignUpView.viewController()
+        let signUpVC = StoryboardScene.Main.SignUpViewScene.viewController()
 
         self.pushVC(signUpVC)
 
     }
-    
-    /**
-     点击返回按钮
-     
-     - parameter sender:
-     */
-    override func onClickBack(sender: AnyObject) {
-        super.onClickBack(sender)
-        
-//        dismissVC(completion: nil)
-    }
-
 
     /**
      点击忘记密码
@@ -157,7 +145,7 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
      */
     @IBAction func onClickForgot(sender: AnyObject) {
         
-        let forgotVC = StoryboardScene.Main.signUpViewViewController()
+        let forgotVC = StoryboardScene.Main.instanciateSignUpView()
 
         forgotVC.viewStyle = .PhoneNumForgotPasswd
 

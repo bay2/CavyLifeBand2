@@ -19,11 +19,16 @@ class SendSafetyCodeButton: UIButton {
 
         self.setTitle(L10n.SignUpSendSafetyCode.string, forState: .Normal)
         self.titleLabel!.font = UIFont.systemFontOfSize(14)
-        self.titleLabel!.textColor = UIColor(named: .SignInMainTextColor)
+        self.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
 
     }
 
 
+    /**
+     倒计时处理
+     
+     - parameter timer:
+     */
     func countDownProc(timer: NSTimer) {
 
         count--
@@ -45,6 +50,9 @@ class SendSafetyCodeButton: UIButton {
 
     }
 
+    /**
+     开始倒计时
+     */
     func countDown() {
 
         time = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "countDownProc:", userInfo: nil, repeats: true)
