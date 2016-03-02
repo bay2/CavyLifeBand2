@@ -39,10 +39,6 @@ class UserSignInBaseViewController: BaseViewController {
         
     }
 
-
-
-    
-
     /*
     // MARK: - Navigation
 
