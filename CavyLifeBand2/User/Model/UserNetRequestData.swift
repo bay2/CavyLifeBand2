@@ -21,7 +21,7 @@ import CryptoSwift
  - ParamErr:  参数错误
  */
 enum UserRequestErrorType: ErrorType {
-    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, PhoneErr, PassWdErr, SecurityCodeErr, UserNameErr
+    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, EmailNil, PhoneErr, PhoneNil, PassWdErr, PassWdNil, SecurityCodeErr, SecurityCodeNil, UserNameErr, UserNameNil
 }
 
 /**
@@ -150,30 +150,31 @@ class UserNetRequestData: NetRequestAdapter {
         }
         
         if let email = parameters![UserNetRequsetKey.Email.rawValue] as? String {
-            guard email.isEmail else {
-                completionHandler?(.Failure(.EmailErr))
-                Log.error("Email error")
+
+            let check = emailCheck(email)
+            guard check.0 else {
+                completionHandler?(.Failure(check.1!))
                 return
             }
         }
         
         if let phone = parameters![UserNetRequsetKey.PhoneNum.rawValue] as? String {
-            guard phone.isPhoneNum else {
-                completionHandler?(.Failure(.PhoneErr))
-                Log.error("Phone num error")
+
+            let check = phoneNumCheck(phone)
+            guard check.0 else {
+                completionHandler?(.Failure(check.1!))
                 return
             }
+
         }
-        
-        
+
         if let pwd = parameters![UserNetRequsetKey.Passwd.rawValue] as? String {
-            
-            if passwordCheck(pwd) != true {
-                completionHandler?(.Failure(.PassWdErr))
-                Log.error("Password error")
+
+            let check = passwordCheck(pwd)
+            if check.0 == false {
+                completionHandler?(.Failure(check.1!))
                 return
             }
-            
         }
         
         parameters![UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.SignUp.rawValue]!
@@ -199,11 +200,12 @@ class UserNetRequestData: NetRequestAdapter {
         }
         
         if let userName = parameters![UserNetRequsetKey.UserName.rawValue] as? String {
-            
-            if userName.isPhoneNum != true && userName.isEmail != true {
+
+            let check = userNameCheck(userName)
+            if check.0 == false {
                 
-                completionHandler?(.Failure(.UserNameErr))
-                Log.error("UserNmae error")
+                completionHandler?(.Failure(check.1!))
+                Log.error("UserName error")
                 return
             }
             
@@ -211,9 +213,11 @@ class UserNetRequestData: NetRequestAdapter {
         
         // 密码MD5 加密
         if let pwd = parameters![UserNetRequsetKey.Passwd.rawValue] as? String {
-            
-            if passwordCheck(pwd) != true {
-                completionHandler?(.Failure(.PassWdErr))
+
+            let check = passwordCheck(pwd)
+
+            if check.0 != true {
+                completionHandler?(.Failure(check.1!))
                 Log.error("Password error")
                 return
             }
@@ -232,13 +236,19 @@ class UserNetRequestData: NetRequestAdapter {
      
      - returns: 用户名有效返回 true，否则 false
      */
-    func passwordCheck(passwd: String) -> Bool {
-        
-        if passwd.length < 6 || passwd.length > 16 {
-            return false
+    func passwordCheck(passwd: String) -> (Bool, UserRequestErrorType?) {
+
+        if passwd.length == 0 {
+            Log.error("Password is nil")
+            return (false, .PassWdNil)
         }
         
-        return true
+        if passwd.length < 6 || passwd.length > 16 {
+            Log.error("Password error")
+            return (false, .PassWdErr)
+        }
+        
+        return (true, nil)
         
     }
     
@@ -249,17 +259,24 @@ class UserNetRequestData: NetRequestAdapter {
      
      - returns: true 有效，false 无效
      */
-    func phoneSecurityCodeCheck(securityCode: String) -> Bool {
-        
+    func phoneSecurityCodeCheck(securityCode: String) -> (Bool, UserRequestErrorType?) {
+
+        if securityCode.length == 0 {
+            Log.error("Security code is nil")
+            return  (false, .SecurityCodeNil)
+        }
+
         if securityCode.length != 4 {
-            return false
+            Log.error("Security code error")
+            return (false, .SecurityCodeErr)
         }
         
         guard let _ = securityCode.toInt() else {
-            return false
+            Log.error("Security code error")
+            return (false, .SecurityCodeErr)
         }
         
-        return true
+        return (true, nil)
     }
     
     /**
@@ -269,13 +286,19 @@ class UserNetRequestData: NetRequestAdapter {
      
      - returns: true 有效，false 无效
      */
-    func emailSecurityCodeCheck(securityCode: String) -> Bool {
-        
-        if securityCode.length != 4 {
-            return false
+    func emailSecurityCodeCheck(securityCode: String) -> (Bool, UserRequestErrorType?) {
+
+        if securityCode.length == 0 {
+            Log.error("Security code is nil")
+            return (false, .SecurityCodeNil)
         }
         
-        return true
+        if securityCode.length != 4 {
+            Log.error("Security code error")
+            return (false, .SecurityCodeErr)
+        }
+        
+        return (true, nil)
         
     }
     
@@ -305,35 +328,41 @@ class UserNetRequestData: NetRequestAdapter {
             completionHandler?(.Failure(.ParaErr))
             return
         }
-        
+
         // 手机号码校验
         if let phoneNum = para[UserNetRequsetKey.PhoneNum.rawValue] as? String {
+
+            if phoneNum.length == 0 {
+                Log.error("Phone is nil")
+                completionHandler?(.Failure(.SecurityCodeNil))
+                return
+            }
             
             if phoneNum.isPhoneNum == false {
                 Log.error("Phone Num error")
                 completionHandler?(.Failure(.PhoneErr))
                 return
             }
-            
-            if phoneSecurityCodeCheck(securityCode) == false {
-                Log.error("Security code error ")
-                completionHandler?(.Failure(.SecurityCodeErr))
+
+            let phoneCheck = phoneSecurityCodeCheck(securityCode)
+            if phoneCheck.0 == false {
+                completionHandler?(.Failure(phoneCheck.1!))
                 return
             }
         }
         
         // 邮箱校验
         if let email = para[UserNetRequsetKey.Email.rawValue] as? String {
-            
-            if email.isEmail == false {
-                Log.error("Email error")
-                completionHandler?(.Failure(.EmailErr))
+
+            var check = emailCheck(email)
+            guard check.0 else {
+                completionHandler?(.Failure(check.1!))
                 return
             }
-            
-            if emailSecurityCodeCheck(securityCode) == false {
-                Log.error("Security code error")
-                completionHandler?(.Failure(.SecurityCodeErr))
+
+            check = emailSecurityCodeCheck(securityCode)
+            if check.0 == false {
+                completionHandler?(.Failure(check.1!))
                 return
             }
         }
@@ -344,10 +373,10 @@ class UserNetRequestData: NetRequestAdapter {
             completionHandler?(.Failure(.ParaErr))
             return
         }
-        
-        if passwordCheck(pwd) == false {
-            Log.error("Passwd is error")
-            completionHandler?(.Failure(.PassWdErr))
+
+        let check = passwordCheck(pwd)
+        if check.0 != true {
+            completionHandler?(.Failure(check.1!))
             return
         }
         
@@ -372,14 +401,14 @@ class UserNetRequestData: NetRequestAdapter {
         }
         
         if let phoneNum = para[UserNetRequsetKey.PhoneNum.rawValue] as? String {
-            
-            if phoneNum.isPhoneNum == false {
-                Log.error("Phone num error")
-                completionHandler?(.Failure(.PhoneErr))
+
+            let check = phoneNumCheck(phoneNum)
+            if check.0 == false {
+                completionHandler?(.Failure(check.1!))
                 return
             }
         }
-        
+
         para[UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.SendSecurityCode.rawValue]!
         
         netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
@@ -418,6 +447,72 @@ class UserNetRequestData: NetRequestAdapter {
         netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
         
     }
-    
+
+    /**
+     邮箱校验
+     
+     - parameter email: 邮箱
+     
+     - returns:
+     */
+    func emailCheck(email: String) -> (Bool, UserRequestErrorType?) {
+
+        if email.length == 0 {
+            Log.error("Email is nil")
+            return (false, .EmailNil)
+        }
+
+        guard email.isEmail else {
+            Log.error("Email error")
+            return (false, .EmailErr)
+        }
+
+        return (true, nil)
+    }
+
+    /**
+     手机号校验
+     
+     - parameter phoneNum: 手机号
+     
+     - returns:
+     */
+    func phoneNumCheck(phoneNum: String) -> (Bool, UserRequestErrorType?) {
+
+        if phoneNum.length == 0 {
+            Log.error("Phone is nil")
+            return (false, .PhoneNil)
+        }
+
+        guard phoneNum.isPhoneNum else {
+            Log.error("Phone num error")
+            return (false, .PhoneErr)
+        }
+
+        return (true, nil)
+    }
+
+    /**
+     用户名校验
+     
+     - parameter userName: 用户名
+     
+     - returns: 
+     */
+    func userNameCheck(userName: String) -> (Bool, UserRequestErrorType?) {
+
+        if userName.length == 0 {
+            Log.error("UserName is nil")
+            return (false, .UserNameNil)
+        }
+
+        if userName.isEmail != true && userName.isPhoneNum != true {
+            Log.error("UserName error")
+            return (false, .UserNameErr)
+        }
+
+        return (true, nil)
+
+    }
     
 }

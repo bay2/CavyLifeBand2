@@ -44,8 +44,8 @@ class NetRequestAdapter: NSObject {
                 }
                 
                 guard let responseResult = response.result.value else {
-                    completionHandler?(.Failure(.NetAPIErr))
-                    Log.error("Network API error")
+                    completionHandler?(.Failure(.NetErr))
+                    Log.error("Network error")
                     return
                 }
                 

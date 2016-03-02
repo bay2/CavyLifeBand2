@@ -10,6 +10,160 @@ import UIKit
 import EZSwiftExtensions
 import Alamofire
 import AlamofireImage
+import Log
+import JSONJoy
+
+struct SignUpViewModel {
+
+    var userName: String
+    var passwd: String
+    var safetyCode: String
+    var viewController: UIViewController
+
+    init(viewController: UIViewController, userName: String, passwd: String, safetyCode: String) {
+        self.userName = userName
+        self.passwd = passwd
+        self.safetyCode = safetyCode
+        self.viewController = viewController
+    }
+
+    /**
+     注册
+     
+     - parameter para: 参数
+     */
+    private func userSignUp(para: [String: AnyObject]) {
+        
+        userNetReq.requestSignUp(para) { (result) -> Void in
+            
+            if result.isFailure {
+
+                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(result.error!)
+                return
+            }
+            
+            let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
+
+            if msg.code! != WebApiCode.Success.rawValue {
+
+                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(msg.code!)
+                return
+            }
+
+
+            Log.info("Sign up success")
+
+            let signInVm = SignInViewMode(viewController: self.viewController, userName: self.userName, passwd: self.passwd)
+            signInVm.userSignIn()
+        }
+    }
+
+    /**
+     找回密码
+     
+     - parameter para: 参数
+     */
+    private func userForgotPwd(para: [String: AnyObject]) {
+
+        userNetReq.forgotPasswd(para) { (result) in
+
+            if result.isFailure {
+                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(result.error!)
+                return
+            }
+
+            let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
+            if msg.code! != WebApiCode.Success.rawValue {
+                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(msg.code!)
+                return
+            }
+
+            Log.info("Forgot password success")
+
+        }
+
+    }
+
+    /**
+     手机找回密码
+     */
+    func phoneForgotPwd() {
+
+        let para = [UserNetRequsetKey.PhoneNum.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd, UserNetRequsetKey.SecurityCode.rawValue: safetyCode]
+        userForgotPwd(para)
+
+    }
+
+    /**
+     邮箱找回密码
+     */
+    func emailForgotPwd() {
+
+        let para = [UserNetRequsetKey.Email.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd, UserNetRequsetKey.SecurityCode.rawValue: safetyCode]
+        userForgotPwd(para)
+    }
+
+    /**
+     手机注册
+     */
+    func phoneSignUp() {
+
+        let para = [UserNetRequsetKey.PhoneNum.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd, UserNetRequsetKey.SecurityCode.rawValue: safetyCode]
+        userSignUp(para)
+
+    }
+
+    /**
+     邮箱注册
+     */
+    func emailSignUp() {
+        
+        let para = [UserNetRequsetKey.Email.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd, UserNetRequsetKey.SecurityCode.rawValue: safetyCode]
+        userSignUp(para)
+    }
+
+}
+
+struct SendSafetyCode {
+
+    var viewController: UIViewController
+    var userName: String
+    var succeedCallBack: (Void -> Void)?
+
+    init(viewController: UIViewController, userName: String, callBack: (Void -> Void)? = nil){
+
+        self.userName = userName
+        self.succeedCallBack = callBack
+        self.viewController = viewController
+
+    }
+
+    /**
+     发送验证码
+     */
+    func sendSafetyCode() {
+
+        let para = [UserNetRequsetKey.PhoneNum.rawValue: userName]
+
+        userNetReq.requestPhoneSecurityCode(para) { (result) in
+
+            if result.isFailure {
+                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(result.error!)
+                return
+            }
+
+            let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
+            if msg.code! != WebApiCode.Success.rawValue {
+                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(msg.code!)
+            }
+
+            self.succeedCallBack?()
+
+        }
+
+    }
+
+}
 
 class SignUpViewController: UserSignInBaseViewController {
     
@@ -67,8 +221,11 @@ class SignUpViewController: UserSignInBaseViewController {
         defineSubViewsLayout()
 
         refreshEmailSafetyCode()
+        
         emailSafetyCode.userInteractionEnabled = true
         emailSafetyCode.addTapGesture(target: self, action: "refreshEmailSafetyCode")
+        
+        userNameTextField.becomeFirstResponder()
 
         // Do any additional setup after loading the view.
     }
@@ -188,17 +345,6 @@ class SignUpViewController: UserSignInBaseViewController {
     
 
     /**
-     点击发送验证码
-     
-     - parameter sender: 
-     */
-    @IBAction func onClickSafetyCode(sender: SendSafetyCodeButton) {
-        
-        sender.countDown()
-
-    }
-
-    /**
      更新视图风格
      */
     func updateViewStyle() {
@@ -273,7 +419,7 @@ class SignUpViewController: UserSignInBaseViewController {
 
         super.onClickRight(sender)
 
-        let nextView = StoryboardScene.Main.instanciateSignUpView()
+        let nextView = StoryboardScene.Main.instantiateSignUpView()
         
 
         switch viewStyle {
@@ -297,11 +443,6 @@ class SignUpViewController: UserSignInBaseViewController {
 
     }
 
-    override func onClickBack(sender: AnyObject) {
-        super.onClickBack(sender)
-
-    }
-
 
     /**
      刷新邮箱验证码
@@ -320,8 +461,79 @@ class SignUpViewController: UserSignInBaseViewController {
         
     }
 
+    /**
+     返回登录页面
+     
+     - parameter sender:
+     */
+    @IBAction func onClickBackSignIn(sender: AnyObject) {
+        
+        self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
+        
+    }
+    
+    /**
+     回车处理
+     
+     - parameter textField: 文本框
+     
+     - returns:
+     */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        switch  textField {
+            case userNameTextField:
+                safetyCodeTextField.becomeFirstResponder()
+            case safetyCodeTextField:
+                passwdTextField.becomeFirstResponder()
+            default:
+                onClickBackSignIn(mainBtn)
+        }
+        
+        return true
+        
+    }
 
+    /**
+     点击主按钮
+     
+     - parameter sender:
+     */
+    @IBAction func onClickMainBtn(sender: AnyObject) {
+        
+        let signUpMV = SignUpViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!, safetyCode: safetyCodeTextField.text!)
 
+        switch viewStyle {
+            case .EmailForgotPasswd:
+                 signUpMV.emailForgotPwd()
+            case .PhoneNumForgotPasswd:
+                signUpMV.phoneForgotPwd()
+            case .EmailSignUp:
+                signUpMV.emailSignUp()
+            case .PhoneNumSignUp:
+                signUpMV.phoneSignUp()
+        }
+        
+        
+    }
+
+    /**
+     点击发送验证码
+     
+     - parameter sender: 
+     */
+    @IBAction func onClickSendSafetyCode(sender: AnyObject) {
+
+        let sendSafetyCode = SendSafetyCode(viewController: self, userName: userNameTextField.text!) {
+
+            self.safetyCodeBtn.countDown()
+
+        }
+
+        sendSafetyCode.sendSafetyCode()
+
+    }
+    
     /*
     // MARK: - Navigation
 

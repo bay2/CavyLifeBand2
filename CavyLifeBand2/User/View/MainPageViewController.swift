@@ -76,7 +76,7 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDataSour
             return nil
         }
         
-        let pageVC = StoryboardScene.Main.instanciatePageView()
+        let pageVC = StoryboardScene.Main.instantiatePageView()
         
         if index == pageImage.count - 1 {
             pageVC.isLastPage = true

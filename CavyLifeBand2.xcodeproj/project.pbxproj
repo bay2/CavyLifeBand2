@@ -52,6 +52,7 @@
 		91D274C51C843A6D004F1AA7 /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274C41C843A6D004F1AA7 /* CheckboxButton.swift */; };
 		91D274C71C84453F004F1AA7 /* SendSafetyCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274C61C84453F004F1AA7 /* SendSafetyCodeButton.swift */; };
 		91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274C81C8685A6004F1AA7 /* BaseViewController.swift */; };
+		91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */; };
 		98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */; };
 		C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECCA2D1C4C7F2D00805826 /* Weather.swift */; };
 		CCC7C82BB91E803A273BED90 /* Pods_CavyLifeBand2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */; };
@@ -137,6 +138,7 @@
 		91D274C41C843A6D004F1AA7 /* CheckboxButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxButton.swift; sourceTree = "<group>"; };
 		91D274C61C84453F004F1AA7 /* SendSafetyCodeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendSafetyCodeButton.swift; sourceTree = "<group>"; };
 		91D274C81C8685A6004F1AA7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CavyLifeBandAlertView.swift; sourceTree = "<group>"; };
 		98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		AD7D0502CC392B502E081F26 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		C848EB391C46240F001FA1BF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
@@ -219,18 +221,11 @@
 		913D0BD51C3FA126006EE7F8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				91D192911C7DA87B00482019 /* colors.txt */,
-				913D0BD71C3FA126006EE7F8 /* CavyLifeBand2-Define.swift */,
-				9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */,
-				9141C7FD1C7D72CD003E24F2 /* ImageDefine.swift */,
-				918435F21C7D6784005B6E92 /* LocalizableDefine.swift */,
-				918435EE1C7D629D005B6E92 /* ColorsDefine.swift */,
+				91D274CC1C86ABB8004F1AA7 /* Define */,
+				91D274CB1C86ABA1004F1AA7 /* Extension */,
+				91D274CA1C86AB8E004F1AA7 /* UI */,
 				915FFAA51C4E0CA500A492F7 /* AppDelegate.swift */,
-				91C3AE511C462FE5006B67AF /* String_Extension.swift */,
-				91C3AE551C474305006B67AF /* Log_Extension.swift */,
 				9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */,
-				98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */,
-				91D274C81C8685A6004F1AA7 /* BaseViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -314,8 +309,8 @@
 		91C3AE241C44DABA006B67AF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				918435EA1C7D5A3D005B6E92 /* PageViewController.swift */,
 				918435E61C7D4FFA005B6E92 /* Main.storyboard */,
+				918435EA1C7D5A3D005B6E92 /* PageViewController.swift */,
 				918435EC1C7D5ABE005B6E92 /* MainPageViewController.swift */,
 				9141C7FB1C7D6BC5003E24F2 /* MainPageButton.swift */,
 				91A7516A1C7DD31000D93A57 /* CLBPageControl.swift */,
@@ -360,6 +355,38 @@
 				91C3AE241C44DABA006B67AF /* View */,
 			);
 			path = User;
+			sourceTree = "<group>";
+		};
+		91D274CA1C86AB8E004F1AA7 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				91D274C81C8685A6004F1AA7 /* BaseViewController.swift */,
+				91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		91D274CB1C86ABA1004F1AA7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				91C3AE511C462FE5006B67AF /* String_Extension.swift */,
+				91C3AE551C474305006B67AF /* Log_Extension.swift */,
+				98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		91D274CC1C86ABB8004F1AA7 /* Define */ = {
+			isa = PBXGroup;
+			children = (
+				91D192911C7DA87B00482019 /* colors.txt */,
+				913D0BD71C3FA126006EE7F8 /* CavyLifeBand2-Define.swift */,
+				9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */,
+				9141C7FD1C7D72CD003E24F2 /* ImageDefine.swift */,
+				918435F21C7D6784005B6E92 /* LocalizableDefine.swift */,
+				918435EE1C7D629D005B6E92 /* ColorsDefine.swift */,
+			);
+			name = Define;
 			sourceTree = "<group>";
 		};
 		E460B001B67D19857BA48CA4 /* Frameworks */ = {
@@ -642,6 +669,7 @@
 				918435EB1C7D5A3D005B6E92 /* PageViewController.swift in Sources */,
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
 				918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */,
+				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				91D274C71C84453F004F1AA7 /* SendSafetyCodeButton.swift in Sources */,
 				91A7516D1C7DDB3C00D93A57 /* SignUpViewController.swift in Sources */,
 				918435ED1C7D5ABE005B6E92 /* MainPageViewController.swift in Sources */,

@@ -18,6 +18,7 @@ class UserSignInBaseViewController: BaseViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(named: .SignInBackground)
+        self.automaticallyAdjustsScrollViewInsets = false
 
         // Do any additional setup after loading the view.
     }

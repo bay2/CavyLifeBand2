@@ -50,32 +50,35 @@ class BaseViewController: UIViewController {
             make.centerY.equalTo(navItemView)
             make.centerX.equalTo(navItemView)
         }
-
-        self.view.addSubview(backBtn)
-        backBtn.frame = CGRectMake(0, 0, 30, 30)
-        backBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
-        backBtn.addTarget(self, action: "onClickBack:", forControlEvents: .TouchUpInside)
-        navItemView.addSubview(backBtn)
-        backBtn.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(spacingWidth25 * 2)
-            make.centerY.equalTo(navItemView)
-        }
-
-        guard let rightText = rightBtnText else {
-            return
-        }
-
-        self.view.addSubview(rightBtn)
-        rightBtn.setTitle(rightText, forState: .Normal)
-        rightBtn.frame = CGRectMake(0, 0, 60, 30)
-        rightBtn.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
-        rightBtn.addTarget(self, action: "onClickRight:", forControlEvents: .TouchUpInside)
-        navItemView.addSubview(rightBtn)
-        rightBtn.snp_makeConstraints { (make) -> Void in
-            make.right.equalTo(-(spacingWidth25 * 2))
-            make.centerY.equalTo(navItemView)
-        }
         
+        if isNeedBack == true {
+            
+            self.view.addSubview(backBtn)
+            backBtn.frame = CGRectMake(0, 0, 30, 30)
+            backBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
+            backBtn.addTarget(self, action: "onClickBack:", forControlEvents: .TouchUpInside)
+            navItemView.addSubview(backBtn)
+            backBtn.snp_makeConstraints { (make) -> Void in
+                make.left.equalTo(spacingWidth25 * 2)
+                make.centerY.equalTo(navItemView)
+            }
+            
+        }
+
+        if let rightText = rightBtnText {
+            
+            self.view.addSubview(rightBtn)
+            rightBtn.setTitle(rightText, forState: .Normal)
+            rightBtn.frame = CGRectMake(0, 0, 60, 30)
+            rightBtn.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+            rightBtn.addTarget(self, action: "onClickRight:", forControlEvents: .TouchUpInside)
+            navItemView.addSubview(rightBtn)
+            rightBtn.snp_makeConstraints { (make) -> Void in
+                make.right.equalTo(-(spacingWidth25 * 2))
+                make.centerY.equalTo(navItemView)
+            }
+            
+        }
 
     }
 

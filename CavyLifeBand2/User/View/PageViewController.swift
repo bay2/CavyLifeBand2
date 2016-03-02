@@ -138,7 +138,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
      */
     @IBAction func onClickSignUp(sender: AnyObject) {
         
-        let signUpVC = StoryboardScene.Main.instanciateSignUpView()
+        let signUpVC = StoryboardScene.Main.instantiateSignUpView()
 
         signUpVC.viewStyle = .PhoneNumSignUp
         

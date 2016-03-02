@@ -39,12 +39,12 @@ struct StoryboardScene {
     static let storyboardName = "Camera"
 
     case CustomCameraViewScene = "CustomCameraView"
-    static func instanciateCustomCameraView() -> CustomCamera {
+    static func instantiateCustomCameraView() -> CustomCamera {
       return StoryboardScene.Camera.CustomCameraViewScene.viewController() as! CustomCamera
     }
 
     case PhotoAlbumViewScene = "PhotoAlbumView"
-    static func instanciatePhotoAlbumView() -> PhotoAlbum {
+    static func instantiatePhotoAlbumView() -> PhotoAlbum {
       return StoryboardScene.Camera.PhotoAlbumViewScene.viewController() as! PhotoAlbum
     }
   }
@@ -55,22 +55,22 @@ struct StoryboardScene {
     static let storyboardName = "Main"
 
     case MainPageViewScene = "MainPageView"
-    static func instanciateMainPageView() -> MainPageViewController {
+    static func instantiateMainPageView() -> MainPageViewController {
       return StoryboardScene.Main.MainPageViewScene.viewController() as! MainPageViewController
     }
 
     case PageViewScene = "PageView"
-    static func instanciatePageView() -> PageViewController {
+    static func instantiatePageView() -> PageViewController {
       return StoryboardScene.Main.PageViewScene.viewController() as! PageViewController
     }
 
     case SignInViewScene = "SignInView"
-    static func instanciateSignInView() -> SignInViewController {
+    static func instantiateSignInView() -> SignInViewController {
       return StoryboardScene.Main.SignInViewScene.viewController() as! SignInViewController
     }
 
     case SignUpViewScene = "SignUpView"
-    static func instanciateSignUpView() -> SignUpViewController {
+    static func instantiateSignUpView() -> SignUpViewController {
       return StoryboardScene.Main.SignUpViewScene.viewController() as! SignUpViewController
     }
   }

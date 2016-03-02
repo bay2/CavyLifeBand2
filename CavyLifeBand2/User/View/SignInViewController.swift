@@ -9,8 +9,55 @@
 import UIKit
 import SnapKit
 import EZSwiftExtensions
+import Log
+import JSONJoy
 
-class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegate {
+
+struct SignInViewMode {
+    
+    var userName: String
+    var passwd: String
+    var viewController: UIViewController
+
+    init(viewController: UIViewController, userName: String, passwd: String) {
+
+        self.userName = userName
+        self.passwd = passwd
+        self.viewController = viewController
+        
+    }
+    
+    /**
+     用户登录
+     */
+    func userSignIn() -> Void {
+        
+        let para = [UserNetRequsetKey.UserName.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd]
+        
+        userNetReq.requestSignIn(para) { (result) -> Void in
+            
+            if result.isFailure {
+
+                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(result.error!)
+                return
+            }
+            
+            let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
+
+            if msg.code != WebApiCode.Success.rawValue {
+                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(msg.code!)
+                return
+            }
+            
+            Log.info("Sign in succeess")
+            
+        }
+        
+    }
+    
+}
+
+class SignInViewController: UserSignInBaseViewController {
 
     // 登入按钮
     @IBOutlet weak var signInBtn: MainPageButton!
@@ -40,6 +87,9 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
         
         // 设置控件title
         setSubViewTitle()
+        
+        userNameTextField.becomeFirstResponder()
+        
         
         // Do any additional setup after loading the view.
     }
@@ -145,14 +195,46 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
      */
     @IBAction func onClickForgot(sender: AnyObject) {
         
-        let forgotVC = StoryboardScene.Main.instanciateSignUpView()
+        let forgotVC = StoryboardScene.Main.instantiateSignUpView()
 
         forgotVC.viewStyle = .PhoneNumForgotPasswd
 
         self.pushVC(forgotVC)
 
     }
+    
+    /**
+     回车处理
+     
+     - parameter textField:
+     
+     - returns:
+     */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if textField == userNameTextField {
+            passwdTextField.becomeFirstResponder()
+        }
+        
+        if textField == passwdTextField {
+            onClickSignIn(signInBtn)
+        }
+        
+        return true
+        
+    }
 
+    /**
+     点击登录
+     
+     - parameter sender: 
+     */
+    @IBAction func onClickSignIn(sender: AnyObject) {
+
+        let userSignIn = SignInViewMode(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!)
+        userSignIn.userSignIn()
+
+    }
 
     /*
     // MARK: - Navigation
