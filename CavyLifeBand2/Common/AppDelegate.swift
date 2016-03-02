@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         // Override point for customization after application launch.
-
+/*
         let installation = KSCrashInstallationStandard.sharedInstance()
 
         installation.url = NSURL(string: bugHDKey)
@@ -34,7 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = navigation
 
         return true
+        */
+        UINavigationBar.appearance().translucent = false
 
+        window?.rootViewController = UINavigationController(rootViewController: StoryboardScene.Guide.GuideViewScene.viewController())
+        window?.makeKeyAndVisible()
+        return true
     }
 
 

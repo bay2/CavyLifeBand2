@@ -127,7 +127,7 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
 
     override func onClickRight(sender: AnyObject) {
 
-        let signUpVC = StoryboardScene.Main.SignUpView.viewController()
+        let signUpVC = StoryboardScene.Main.SignUpViewScene.viewController()
 
         self.pushVC(signUpVC)
 

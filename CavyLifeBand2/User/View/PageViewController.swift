@@ -125,7 +125,7 @@ class PageViewController: UIViewController {
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
 
-        let signInVC = StoryboardScene.Main.SignInView.viewController()
+        let signInVC = StoryboardScene.Main.SignInViewScene.viewController()
         self.pushVC(signInVC)
 
     }

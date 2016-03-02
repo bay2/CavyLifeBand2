@@ -4,7 +4,7 @@ import Foundation
 import UIKit
 
 protocol StoryboardSceneType {
-  static var storyboardName : String { get }
+  static var storyboardName: String { get }
 }
 
 extension StoryboardSceneType {
@@ -26,55 +26,63 @@ extension StoryboardSceneType where Self: RawRepresentable, Self.RawValue == Str
   }
 }
 
-protocol StoryboardSegueType : RawRepresentable { }
+protocol StoryboardSegueType: RawRepresentable { }
 
 extension UIViewController {
-  func performSegue<S : StoryboardSegueType where S.RawValue == String>(segue: S, sender: AnyObject? = nil) {
+  func performSegue<S: StoryboardSegueType where S.RawValue == String>(segue: S, sender: AnyObject? = nil) {
     performSegueWithIdentifier(segue.rawValue, sender: sender)
   }
 }
 
 struct StoryboardScene {
-  enum Camera : String, StoryboardSceneType {
+  enum Camera: String, StoryboardSceneType {
     static let storyboardName = "Camera"
 
-    case CustomCameraView = "CustomCameraView"
-    static func customCameraViewViewController() -> CustomCamera {
-      return StoryboardScene.Camera.CustomCameraView.viewController() as! CustomCamera
+    case CustomCameraViewScene = "CustomCameraView"
+    static func instantiateCustomCameraView() -> CustomCamera {
+      return StoryboardScene.Camera.CustomCameraViewScene.viewController() as! CustomCamera
     }
 
-    case PhotoAlbumView = "PhotoAlbumView"
-    static func photoAlbumViewViewController() -> PhotoAlbum {
-      return StoryboardScene.Camera.PhotoAlbumView.viewController() as! PhotoAlbum
+    case PhotoAlbumViewScene = "PhotoAlbumView"
+    static func instantiatePhotoAlbumView() -> PhotoAlbum {
+      return StoryboardScene.Camera.PhotoAlbumViewScene.viewController() as! PhotoAlbum
     }
   }
-  enum LaunchScreen : StoryboardSceneType {
+  enum Guide: String, StoryboardSceneType {
+    static let storyboardName = "Guide"
+
+    case GuideViewScene = "GuideView"
+    static func instantiateGuideView() -> GuideViewController {
+      return StoryboardScene.Guide.GuideViewScene.viewController() as! GuideViewController
+    }
+  }
+  enum LaunchScreen: StoryboardSceneType {
     static let storyboardName = "LaunchScreen"
   }
-  enum Main : String, StoryboardSceneType {
+  enum Main: String, StoryboardSceneType {
     static let storyboardName = "Main"
 
-    case MainPageView = "MainPageView"
-    static func mainPageViewViewController() -> MainPageViewController {
-      return StoryboardScene.Main.MainPageView.viewController() as! MainPageViewController
+    case MainPageViewScene = "MainPageView"
+    static func instantiateMainPageView() -> MainPageViewController {
+      return StoryboardScene.Main.MainPageViewScene.viewController() as! MainPageViewController
     }
 
-    case PageView = "PageView"
-    static func pageViewViewController() -> PageViewController {
-      return StoryboardScene.Main.PageView.viewController() as! PageViewController
+    case PageViewScene = "PageView"
+    static func instantiatePageView() -> PageViewController {
+      return StoryboardScene.Main.PageViewScene.viewController() as! PageViewController
     }
 
-    case SignInView = "SignInView"
-    static func signInViewViewController() -> SignInViewController {
-      return StoryboardScene.Main.SignInView.viewController() as! SignInViewController
+    case SignInViewScene = "SignInView"
+    static func instantiateSignInView() -> SignInViewController {
+      return StoryboardScene.Main.SignInViewScene.viewController() as! SignInViewController
     }
 
-    case SignUpView = "SignUpView"
-    static func signUpViewViewController() -> SignUpViewController {
-      return StoryboardScene.Main.SignUpView.viewController() as! SignUpViewController
+    case SignUpViewScene = "SignUpView"
+    static func instantiateSignUpView() -> SignUpViewController {
+      return StoryboardScene.Main.SignUpViewScene.viewController() as! SignUpViewController
     }
   }
-  enum Weather : StoryboardSceneType {
+  enum Weather: StoryboardSceneType {
     static let storyboardName = "Weather"
   }
 }

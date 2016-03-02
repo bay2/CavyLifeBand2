@@ -4,7 +4,7 @@ import Foundation
 import UIKit
 
 extension UIImage {
-  enum Asset : String {
+  enum Asset: String {
     case Backbtn = "backbtn"
     case Camera = "camera"
     case Camera_cutover = "camera_cutover"
@@ -13,6 +13,7 @@ extension UIImage {
     case Flash_automatic = "flash_automatic"
     case Flash_off = "flash_off"
     case Flash_on = "flash_on"
+    case GuideRightBtn = "GuideRightBtn"
     case PageImage1 = "pageImage1"
     case Photograph = "photograph"
     case Splash = "splash"
