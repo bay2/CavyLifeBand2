@@ -39,7 +39,6 @@ enum L10n {
   case SignUpProcotolViewBtn
   /// 注册
   case SignUpSignUpBtn
-<<<<<<< HEAD
   /// 我的信息
   case GuideMyInfo
   /// 我是
@@ -54,6 +53,8 @@ enum L10n {
   case GuideIntroduce
   /// 设置
   case GuideSetting
+  /// 跳过
+  case GuidePassButton
   /// 开启智能通知
   case GuideOpenNotice
   /// 随时关注我的健康生活
@@ -84,7 +85,6 @@ enum L10n {
   case GuidePairFail
   /// 确保手环有电，并且位于手机的连接范围
   case GuidePairFailInfo
-=======
   /// 忘记密码了?
   case ForgotTitle
   /// 新密码
@@ -93,7 +93,6 @@ enum L10n {
   case ForgotBackTextBtn
   /// 完成
   case ForgotFinish
->>>>>>> bay2/master
 }
 
 extension L10n: CustomStringConvertible {
@@ -137,7 +136,6 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("SignUp.ProcotolViewBtn")
       case .SignUpSignUpBtn:
         return L10n.tr("SignUp.SignUpBtn")
-<<<<<<< HEAD
       case .GuideMyInfo:
         return L10n.tr("Guide.MyInfo")
       case .GuideMine:
@@ -152,6 +150,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Guide.Introduce")
       case .GuideSetting:
         return L10n.tr("Guide.Setting")
+      case .GuidePassButton:
+        return L10n.tr("Guide.PassButton")
       case .GuideOpenNotice:
         return L10n.tr("Guide.OpenNotice")
       case .GuideOpenNoticeInfo:
@@ -182,7 +182,6 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Guide.PairFail")
       case .GuidePairFailInfo:
         return L10n.tr("Guide.PairFailInfo")
-=======
       case .ForgotTitle:
         return L10n.tr("Forgot.Title")
       case .ForgotPasswdTextField:
@@ -191,7 +190,6 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Forgot.BackTextBtn")
       case .ForgotFinish:
         return L10n.tr("Forgot.finish")
->>>>>>> bay2/master
     }
   }
 

@@ -39,16 +39,11 @@ struct StoryboardScene {
     static let storyboardName = "Camera"
 
     case CustomCameraViewScene = "CustomCameraView"
-<<<<<<< HEAD
     static func instantiateCustomCameraView() -> CustomCamera {
-=======
-    static func instanciateCustomCameraView() -> CustomCamera {
->>>>>>> bay2/master
       return StoryboardScene.Camera.CustomCameraViewScene.viewController() as! CustomCamera
     }
 
     case PhotoAlbumViewScene = "PhotoAlbumView"
-<<<<<<< HEAD
     static func instantiatePhotoAlbumView() -> PhotoAlbum {
       return StoryboardScene.Camera.PhotoAlbumViewScene.viewController() as! PhotoAlbum
     }
@@ -61,12 +56,6 @@ struct StoryboardScene {
       return StoryboardScene.Guide.GuideViewScene.viewController() as! GuideViewController
     }
   }
-=======
-    static func instanciatePhotoAlbumView() -> PhotoAlbum {
-      return StoryboardScene.Camera.PhotoAlbumViewScene.viewController() as! PhotoAlbum
-    }
-  }
->>>>>>> bay2/master
   enum LaunchScreen: StoryboardSceneType {
     static let storyboardName = "LaunchScreen"
   }
@@ -74,38 +63,22 @@ struct StoryboardScene {
     static let storyboardName = "Main"
 
     case MainPageViewScene = "MainPageView"
-<<<<<<< HEAD
     static func instantiateMainPageView() -> MainPageViewController {
-=======
-    static func instanciateMainPageView() -> MainPageViewController {
->>>>>>> bay2/master
       return StoryboardScene.Main.MainPageViewScene.viewController() as! MainPageViewController
     }
 
     case PageViewScene = "PageView"
-<<<<<<< HEAD
     static func instantiatePageView() -> PageViewController {
-=======
-    static func instanciatePageView() -> PageViewController {
->>>>>>> bay2/master
       return StoryboardScene.Main.PageViewScene.viewController() as! PageViewController
     }
 
     case SignInViewScene = "SignInView"
-<<<<<<< HEAD
     static func instantiateSignInView() -> SignInViewController {
-=======
-    static func instanciateSignInView() -> SignInViewController {
->>>>>>> bay2/master
       return StoryboardScene.Main.SignInViewScene.viewController() as! SignInViewController
     }
 
     case SignUpViewScene = "SignUpView"
-<<<<<<< HEAD
     static func instantiateSignUpView() -> SignUpViewController {
-=======
-    static func instanciateSignUpView() -> SignUpViewController {
->>>>>>> bay2/master
       return StoryboardScene.Main.SignUpViewScene.viewController() as! SignUpViewController
     }
   }

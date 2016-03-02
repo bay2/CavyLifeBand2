@@ -126,12 +126,8 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
     @IBAction func onClickSignIn(sender: AnyObject) {
 
         let signInVC = StoryboardScene.Main.SignInViewScene.viewController()
-<<<<<<< HEAD
-        self.pushVC(signInVC)
-=======
-        
+
         presentVC(UINavigationController(rootViewController: signInVC))
->>>>>>> bay2/master
 
     }
 
@@ -142,7 +138,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
      */
     @IBAction func onClickSignUp(sender: AnyObject) {
         
-        let signUpVC = StoryboardScene.Main.instanciateSignUpView()
+        let signUpVC = StoryboardScene.Main.instantiateSignUpView()
 
         signUpVC.viewStyle = .PhoneNumSignUp
         

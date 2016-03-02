@@ -145,7 +145,8 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
      */
     @IBAction func onClickForgot(sender: AnyObject) {
         
-        let forgotVC = StoryboardScene.Main.instanciateSignUpView()
+        let forgotVC = StoryboardScene.Main.instantiateSignUpView()
+
 
         forgotVC.viewStyle = .PhoneNumForgotPasswd
 

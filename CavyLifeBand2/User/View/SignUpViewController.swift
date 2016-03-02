@@ -273,7 +273,7 @@ class SignUpViewController: UserSignInBaseViewController {
 
         super.onClickRight(sender)
 
-        let nextView = StoryboardScene.Main.instanciateSignUpView()
+        let nextView = StoryboardScene.Main.instantiateSignUpView()
         
 
         switch viewStyle {
