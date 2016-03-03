@@ -25,13 +25,13 @@ class AccountManagerViewController: AccountManagerBaseViewController {
     }
 
     // 手机输入框
-    @IBOutlet weak var userNameTextField: SignInTextField!
+    @IBOutlet weak var userNameTextField: AccountTextField!
     
     // 安全码输入框
-    @IBOutlet weak var safetyCodeTextField: SignInTextField!
+    @IBOutlet weak var safetyCodeTextField: AccountTextField!
     
     // 密码输入框
-    @IBOutlet weak var passwdTextField: SignInTextField!
+    @IBOutlet weak var passwdTextField: AccountTextField!
     
     // 发送验证码按钮
     @IBOutlet weak var safetyCodeBtn: SendSafetyCodeButton!

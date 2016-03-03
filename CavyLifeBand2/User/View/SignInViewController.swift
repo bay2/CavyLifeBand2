@@ -20,10 +20,10 @@ class SignInViewController: AccountManagerBaseViewController {
     @IBOutlet weak var textFieldView: UIView!
 
     // 密码输入框
-    @IBOutlet weak var passwdTextField: SignInTextField!
+    @IBOutlet weak var passwdTextField: AccountTextField!
 
     // 用户名输入框
-    @IBOutlet weak var userNameTextField: SignInTextField!
+    @IBOutlet weak var userNameTextField: AccountTextField!
 
     // 忘记密码按钮
     @IBOutlet weak var forgetPasswdBtn: UIButton!
