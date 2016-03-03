@@ -119,6 +119,12 @@ struct SignInViewModel {
                 return
             }
 
+            let defaults = NSUserDefaults.standardUserDefaults()
+
+            defaults["userName"] = self.userName
+            defaults["passwd"] = self.passwd
+            defaults.synchronize()
+
             self.succeedCallBack?()
             Log.info("Sign in succeess")
 

@@ -398,9 +398,14 @@ extension AccountManagerViewController {
             return true
         }
         
+        if string == "" {
+            return true
+        }
+        
         let newString = textField.text! + string
         
         if newString.length > 4 {
+            textField.text = newString[0...3]
             return false
         }
         

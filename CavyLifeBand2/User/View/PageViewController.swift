@@ -33,7 +33,6 @@ class PageViewController: UIViewController {
     // 背景图片
     var backgroundImage: UIImage!
     
-    
     // 当前视图索引
     var pageIndex = 0
     
