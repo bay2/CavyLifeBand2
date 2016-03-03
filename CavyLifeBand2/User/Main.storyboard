@@ -113,7 +113,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3d-DE-zZQ">
                                 <rect key="frame" x="0.0" y="115" width="600" height="139"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" placeholder="手机/邮箱" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uNl-PL-77D" customClass="SignInTextField" customModule="CavyLifeBand2" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" placeholder="手机/邮箱" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uNl-PL-77D" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -129,7 +129,7 @@
                                             <constraint firstAttribute="height" constant="0.29999999999999999" id="yuL-3F-ZYm"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hVG-TM-RqG" customClass="SignInTextField" customModule="CavyLifeBand2" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hVG-TM-RqG" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="70" width="600" height="69"/>
                                         <color key="textColor" white="0.0" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -218,7 +218,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzV-Xo-a7H">
                                 <rect key="frame" x="0.0" y="87" width="600" height="264"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2tG-rC-pbI" customClass="SignInTextField" customModule="CavyLifeBand2" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2tG-rC-pbI" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="88"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -233,7 +233,7 @@
                                             <constraint firstAttribute="height" constant="0.29999999999999999" id="FI6-b2-Bjb"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKq-lp-KHa" customClass="SignInTextField" customModule="CavyLifeBand2" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKq-lp-KHa" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="88" width="463" height="87"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -271,7 +271,7 @@
                                             <constraint firstAttribute="height" constant="0.29999999999999999" id="ekG-Dh-aw5"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cdp-ez-pgc" customClass="SignInTextField" customModule="CavyLifeBand2" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cdp-ez-pgc" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="176" width="600" height="88"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>

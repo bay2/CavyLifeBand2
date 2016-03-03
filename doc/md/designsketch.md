@@ -1,17 +1,19 @@
 # 首页
-![](../img/xiaoguotu_0.png)
+![](../DesignSketch/account_1.png =621x)
 
 # 登录页
-![](../img/xiaoguotu_1.png)
+![](../DesignSketch/account_2.png)
 
 # 手机注册页
-![](../img/xiaoguotu_2.png)
+![](../DesignSketch/account_3.png)
 
 # 邮箱注册页
-![](../img/xiaoguotu_3.png)
+![](../DesignSketch/account_4.png)
 
 # 手机忘记密码
-![](../img/xiaoguotu_4.png)
+![](../DesignSketch/account_5.png)
 
 # 邮箱忘记密码
-![](../img/xiaoguotu_5.png)
+![](../DesignSketch/account_5.png)
+
+# 
