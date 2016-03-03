@@ -138,7 +138,7 @@ class PageViewController: UIViewController {
      */
     @IBAction func onClickSignUp(sender: AnyObject) {
         
-        let signUpVC = StoryboardScene.Main.instantiateSignUpView()
+        let signUpVC = StoryboardScene.Main.instantiateAccountManagerView()
 
         signUpVC.viewStyle = .PhoneNumSignUp
         

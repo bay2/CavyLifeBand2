@@ -10,7 +10,7 @@ import UIKit
 import EZSwiftExtensions
 import SnapKit
 
-class UserSignInBaseViewController: BaseViewController {
+class AccountManagerBaseViewController: BaseViewController {
 
 
     

@@ -203,10 +203,10 @@
             </objects>
             <point key="canvasLocation" x="-17" y="-427"/>
         </scene>
-        <!--Sign Up View Controller-->
+        <!--Account Manager View Controller-->
         <scene sceneID="tXG-R7-5Mh">
             <objects>
-                <viewController storyboardIdentifier="SignUpView" id="Qo9-lx-23e" customClass="SignUpViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountManagerView" id="Qo9-lx-23e" customClass="AccountManagerViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JiQ-do-q5g"/>
                         <viewControllerLayoutGuide type="bottom" id="5kO-lj-9oy"/>

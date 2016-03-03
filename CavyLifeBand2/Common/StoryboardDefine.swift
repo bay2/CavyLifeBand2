@@ -54,6 +54,11 @@ struct StoryboardScene {
   enum Main: String, StoryboardSceneType {
     static let storyboardName = "Main"
 
+    case AccountManagerViewScene = "AccountManagerView"
+    static func instantiateAccountManagerView() -> AccountManagerViewController {
+      return StoryboardScene.Main.AccountManagerViewScene.viewController() as! AccountManagerViewController
+    }
+
     case MainPageViewScene = "MainPageView"
     static func instantiateMainPageView() -> MainPageViewController {
       return StoryboardScene.Main.MainPageViewScene.viewController() as! MainPageViewController
@@ -67,11 +72,6 @@ struct StoryboardScene {
     case SignInViewScene = "SignInView"
     static func instantiateSignInView() -> SignInViewController {
       return StoryboardScene.Main.SignInViewScene.viewController() as! SignInViewController
-    }
-
-    case SignUpViewScene = "SignUpView"
-    static func instantiateSignUpView() -> SignUpViewController {
-      return StoryboardScene.Main.SignUpViewScene.viewController() as! SignUpViewController
     }
   }
   enum Weather: StoryboardSceneType {

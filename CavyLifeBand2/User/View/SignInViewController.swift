@@ -10,54 +10,8 @@ import UIKit
 import SnapKit
 import EZSwiftExtensions
 import Log
-import JSONJoy
 
-
-struct SignInViewMode {
-    
-    var userName: String
-    var passwd: String
-    var viewController: UIViewController
-
-    init(viewController: UIViewController, userName: String, passwd: String) {
-
-        self.userName = userName
-        self.passwd = passwd
-        self.viewController = viewController
-        
-    }
-    
-    /**
-     用户登录
-     */
-    func userSignIn() -> Void {
-        
-        let para = [UserNetRequsetKey.UserName.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd]
-        
-        userNetReq.requestSignIn(para) { (result) -> Void in
-            
-            if result.isFailure {
-
-                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(result.error!)
-                return
-            }
-            
-            let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
-
-            if msg.code != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(msg.code!)
-                return
-            }
-            
-            Log.info("Sign in succeess")
-            
-        }
-        
-    }
-    
-}
-
-class SignInViewController: UserSignInBaseViewController {
+class SignInViewController: AccountManagerBaseViewController {
 
     // 登入按钮
     @IBOutlet weak var signInBtn: MainPageButton!
@@ -182,7 +136,7 @@ class SignInViewController: UserSignInBaseViewController {
      */
     override func onClickRight(sender: AnyObject) {
 
-        let signUpVC = StoryboardScene.Main.SignUpViewScene.viewController()
+        let signUpVC = StoryboardScene.Main.AccountManagerViewScene.viewController()
 
         self.pushVC(signUpVC)
 
@@ -195,7 +149,7 @@ class SignInViewController: UserSignInBaseViewController {
      */
     @IBAction func onClickForgot(sender: AnyObject) {
         
-        let forgotVC = StoryboardScene.Main.instantiateSignUpView()
+        let forgotVC = StoryboardScene.Main.instantiateAccountManagerView()
 
         forgotVC.viewStyle = .PhoneNumForgotPasswd
 
@@ -210,7 +164,7 @@ class SignInViewController: UserSignInBaseViewController {
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
 
-        let userSignIn = SignInViewMode(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!)
+        let userSignIn = SignInViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!, callBack: nil)
         userSignIn.userSignIn()
 
     }

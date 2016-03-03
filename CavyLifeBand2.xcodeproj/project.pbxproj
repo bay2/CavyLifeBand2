@@ -32,13 +32,14 @@
 		918435ED1C7D5ABE005B6E92 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435EC1C7D5ABE005B6E92 /* MainPageViewController.swift */; };
 		918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435EE1C7D629D005B6E92 /* ColorsDefine.swift */; };
 		918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435F21C7D6784005B6E92 /* LocalizableDefine.swift */; };
+		918E26D11C880E9E00115C4E /* UseVisitrModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E26D01C880E9E00115C4E /* UseVisitrModelView.swift */; };
 		9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */; };
 		9199DA251C48D2BF009672C4 /* SignUpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199DA241C48D2BF009672C4 /* SignUpTest.swift */; };
-		919C5E4F1C7FE54900F72CA8 /* UserSignInBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919C5E4E1C7FE54900F72CA8 /* UserSignInBaseViewController.swift */; };
+		919C5E4F1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919C5E4E1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift */; };
 		91A09DAD1C488AF400BB1599 /* Sign_In_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A09DAC1C488AF400BB1599 /* Sign_In_Ok.json */; };
 		91A1E1DD1C7ACF140059E53B /* ForgotPasswd_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A1E1DC1C7ACF140059E53B /* ForgotPasswd_Ok.json */; };
 		91A7516B1C7DD31000D93A57 /* CLBPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A7516A1C7DD31000D93A57 /* CLBPageControl.swift */; };
-		91A7516D1C7DDB3C00D93A57 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A7516C1C7DDB3C00D93A57 /* SignUpViewController.swift */; };
+		91A7516D1C7DDB3C00D93A57 /* AccountManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A7516C1C7DDB3C00D93A57 /* AccountManagerViewController.swift */; };
 		91A7516F1C7EB78400D93A57 /* SignInTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A7516E1C7EB78400D93A57 /* SignInTextField.swift */; };
 		91BBB6061C671F1800EC1ED1 /* Sign_In_Error.json in Resources */ = {isa = PBXBuildFile; fileRef = 91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */; };
 		91C3AE251C44DABA006B67AF /* UserNetRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C3AE221C44DABA006B67AF /* UserNetRequestData.swift */; };
@@ -117,14 +118,15 @@
 		918435F01C7D6641005B6E92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		918435F11C7D6644005B6E92 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		918435F21C7D6784005B6E92 /* LocalizableDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableDefine.swift; sourceTree = "<group>"; };
+		918E26D01C880E9E00115C4E /* UseVisitrModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseVisitrModelView.swift; sourceTree = "<group>"; };
 		91931FBDB93D6202BBC98835 /* Pods-CavyLifeBand2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequestAdapter.swift; sourceTree = "<group>"; };
 		9199DA241C48D2BF009672C4 /* SignUpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTest.swift; sourceTree = "<group>"; };
-		919C5E4E1C7FE54900F72CA8 /* UserSignInBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSignInBaseViewController.swift; sourceTree = "<group>"; };
+		919C5E4E1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManagerBaseViewController.swift; sourceTree = "<group>"; };
 		91A09DAC1C488AF400BB1599 /* Sign_In_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Ok.json; sourceTree = "<group>"; };
 		91A1E1DC1C7ACF140059E53B /* ForgotPasswd_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForgotPasswd_Ok.json; sourceTree = "<group>"; };
 		91A7516A1C7DD31000D93A57 /* CLBPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLBPageControl.swift; sourceTree = "<group>"; };
-		91A7516C1C7DDB3C00D93A57 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		91A7516C1C7DDB3C00D93A57 /* AccountManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManagerViewController.swift; sourceTree = "<group>"; };
 		91A7516E1C7EB78400D93A57 /* SignInTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTextField.swift; sourceTree = "<group>"; };
 		91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Error.json; sourceTree = "<group>"; };
 		91C3AE221C44DABA006B67AF /* UserNetRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetRequestData.swift; sourceTree = "<group>"; };
@@ -290,6 +292,14 @@
 			path = CavyLifeBand2UITests;
 			sourceTree = "<group>";
 		};
+		918E26CF1C880E5900115C4E /* ModelView */ = {
+			isa = PBXGroup;
+			children = (
+				918E26D01C880E9E00115C4E /* UseVisitrModelView.swift */,
+			);
+			path = ModelView;
+			sourceTree = "<group>";
+		};
 		91C3AE211C44DABA006B67AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -299,25 +309,18 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		91C3AE231C44DABA006B67AF /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		91C3AE241C44DABA006B67AF /* View */ = {
 			isa = PBXGroup;
 			children = (
 				918435E61C7D4FFA005B6E92 /* Main.storyboard */,
-				918435EA1C7D5A3D005B6E92 /* PageViewController.swift */,
 				918435EC1C7D5ABE005B6E92 /* MainPageViewController.swift */,
+				918435EA1C7D5A3D005B6E92 /* PageViewController.swift */,
 				9141C7FB1C7D6BC5003E24F2 /* MainPageButton.swift */,
 				91A7516A1C7DD31000D93A57 /* CLBPageControl.swift */,
-				91A7516C1C7DDB3C00D93A57 /* SignUpViewController.swift */,
+				91A7516C1C7DDB3C00D93A57 /* AccountManagerViewController.swift */,
 				91A7516E1C7EB78400D93A57 /* SignInTextField.swift */,
 				9169AAA91C7EE06A00301646 /* SignInViewController.swift */,
-				919C5E4E1C7FE54900F72CA8 /* UserSignInBaseViewController.swift */,
+				919C5E4E1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift */,
 				91D274C21C83D3F1004F1AA7 /* UserProtocolView.swift */,
 				91D274C41C843A6D004F1AA7 /* CheckboxButton.swift */,
 				91D274C61C84453F004F1AA7 /* SendSafetyCodeButton.swift */,
@@ -350,8 +353,8 @@
 		91C3ED931C3CBF46000A414D /* User */ = {
 			isa = PBXGroup;
 			children = (
+				918E26CF1C880E5900115C4E /* ModelView */,
 				91C3AE211C44DABA006B67AF /* Model */,
-				91C3AE231C44DABA006B67AF /* Controller */,
 				91C3AE241C44DABA006B67AF /* View */,
 			);
 			path = User;
@@ -662,16 +665,17 @@
 			files = (
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
 				9141C7FC1C7D6BC5003E24F2 /* MainPageButton.swift in Sources */,
-				919C5E4F1C7FE54900F72CA8 /* UserSignInBaseViewController.swift in Sources */,
+				919C5E4F1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift in Sources */,
 				917269FA1C47EB0F00A06E3A /* UserNetJSON.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
+				918E26D11C880E9E00115C4E /* UseVisitrModelView.swift in Sources */,
 				91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */,
 				918435EB1C7D5A3D005B6E92 /* PageViewController.swift in Sources */,
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
 				918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */,
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				91D274C71C84453F004F1AA7 /* SendSafetyCodeButton.swift in Sources */,
-				91A7516D1C7DDB3C00D93A57 /* SignUpViewController.swift in Sources */,
+				91A7516D1C7DDB3C00D93A57 /* AccountManagerViewController.swift in Sources */,
 				918435ED1C7D5ABE005B6E92 /* MainPageViewController.swift in Sources */,
 				91A7516B1C7DD31000D93A57 /* CLBPageControl.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
