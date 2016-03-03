@@ -319,8 +319,8 @@
                                     <constraint firstAttribute="height" constant="50" placeholder="YES" id="0bs-H6-7PK"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6U-qo-ihY" customClass="MainPageButton" customModule="CavyLifeBand2" customModuleProvider="target">
-                                <rect key="frame" x="285" y="401" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6U-qo-ihY" customClass="MainPageButton" customModule="CavyLifeBand2" customModuleProvider="target">
+                                <rect key="frame" x="282" y="401" width="36" height="34"/>
                                 <state key="normal" title="注册">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>

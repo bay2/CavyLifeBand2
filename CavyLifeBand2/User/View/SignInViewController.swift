@@ -202,6 +202,34 @@ class SignInViewController: UserSignInBaseViewController {
         self.pushVC(forgotVC)
 
     }
+
+    /**
+     点击登录
+     
+     - parameter sender: 
+     */
+    @IBAction func onClickSignIn(sender: AnyObject) {
+
+        let userSignIn = SignInViewMode(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!)
+        userSignIn.userSignIn()
+
+    }
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+// MARK: - 文本框代理处理
+extension SignInViewController {
     
     /**
      回车处理
@@ -223,27 +251,5 @@ class SignInViewController: UserSignInBaseViewController {
         return true
         
     }
-
-    /**
-     点击登录
-     
-     - parameter sender: 
-     */
-    @IBAction func onClickSignIn(sender: AnyObject) {
-
-        let userSignIn = SignInViewMode(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!)
-        userSignIn.userSignIn()
-
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

@@ -10,7 +10,7 @@ import UIKit
 import EZSwiftExtensions
 import SnapKit
 
-class PageViewController: UIViewController, UINavigationControllerDelegate {
+class PageViewController: UIViewController {
 
     // 注册按钮
     @IBOutlet weak var signInBtn: UIButton!

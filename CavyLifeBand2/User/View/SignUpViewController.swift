@@ -472,27 +472,7 @@ class SignUpViewController: UserSignInBaseViewController {
         
     }
     
-    /**
-     回车处理
-     
-     - parameter textField: 文本框
-     
-     - returns:
-     */
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        
-        switch  textField {
-            case userNameTextField:
-                safetyCodeTextField.becomeFirstResponder()
-            case safetyCodeTextField:
-                passwdTextField.becomeFirstResponder()
-            default:
-                onClickBackSignIn(mainBtn)
-        }
-        
-        return true
-        
-    }
+
 
     /**
      点击主按钮
@@ -543,4 +523,61 @@ class SignUpViewController: UserSignInBaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
+
+extension SignUpViewController {
+    
+    /**
+     输入限制
+     
+     - parameter textField:
+     
+     - returns:
+     */
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField != safetyCodeTextField {
+            return true
+        }
+        
+        let newString = textField.text! + string
+        
+        if newString.length > 4 {
+            return false
+        }
+        
+        if viewStyle == .PhoneNumForgotPasswd || viewStyle == .PhoneNumSignUp {
+            
+            guard let _ = newString.toInt() else {
+                return false
+            }
+            
+        }
+        
+        return true
+        
+    }
+    
+    /**
+     回车处理
+     
+     - parameter textField: 文本框
+     
+     - returns:
+     */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        switch  textField {
+        case userNameTextField:
+            safetyCodeTextField.becomeFirstResponder()
+        case safetyCodeTextField:
+            passwdTextField.becomeFirstResponder()
+        default:
+            onClickBackSignIn(mainBtn)
+        }
+        
+        return true
+        
+    }
+    
 }
