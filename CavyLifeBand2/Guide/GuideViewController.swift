@@ -12,8 +12,23 @@ import SnapKit
 
 class GuideViewController: BaseViewController {
     
-
+    /**
+     style标签
+     
+     - GuideGender:          我的信息 性别页面
+     - GuideBirthday:        我的信息 生日
+     - GuideHeight:          我的信息 身高
+     - GuideWeight:          我的信息 体重
+     - SettingNotice:        设置 开启智能通知
+     - SettingLocationShare: 设置 开启位置分享
+     - BandBluetooth:        连接手环 打开蓝牙
+     - BandopenBand:         连接手环 打开手环
+     - BandLinking:          连接手环 正在连接
+     - BandSuccess:          连接手环 连接成功
+     - BandFail:             连接手环 连接失败
+     */
     enum GuideViewStyle {
+        
         case GuideGender
         case GuideBirthday
         case GuideHeight
@@ -33,34 +48,19 @@ class GuideViewController: BaseViewController {
     /// 中间底视图
     @IBOutlet weak var middleView: UIView!
     
-    /// 小标题
-    @IBOutlet weak var subTitle: UILabel!
-    
-    /// 小标题详情
-    @IBOutlet weak var subTitleInfo: UILabel!
-    
-    /// 中间的图片
-    @IBOutlet weak var middleImage: UIImageView!
-    /// 性别图片上面
-    @IBOutlet weak var genderUpImage: UIButton!
-    /// 性别图片下面
-    @IBOutlet weak var genderDownImage: UIButton!
-    
-    /// 下面附属提醒信息
-    @IBOutlet weak var subSuggtion: UILabel!
-    
     /// 确定按钮
     @IBOutlet weak var guideButton: UIButton!
 
     // 视图风格
-    var viewStyle: GuideViewStyle = .GuideGender
+    var viewStyle: GuideViewStyle = .GuideBirthday
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        updateViewStyle()
+        
         allViewsLayOut()
         
-        updateViewStyle()
         
     }
     
@@ -77,26 +77,6 @@ class GuideViewController: BaseViewController {
         
         middleView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self.view).offset(spacingWidth25 * 9)
-        }
-        
-        genderUpImage.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(middleView).offset(spacingWidth25 * 5)
-        }
-        genderDownImage.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(middleView).offset(spacingWidth25 * 15)
-        }
-        
-        
-        subTitle.textColor = UIColor(named: .GuideColor99)
-        subTitle.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(middleView).offset(spacingWidth25 * 2)
-        }
-        
-        subTitleInfo.textColor = UIColor(named: .GuideColor99)
-        
-        subSuggtion.textColor = UIColor(named: .GuideColor66)
-        subSuggtion.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(middleImage.bottom).offset(spacingWidth25 * 23)
         }
         
         guideButton.snp_makeConstraints { (make) -> Void in
@@ -118,96 +98,75 @@ class GuideViewController: BaseViewController {
         var guideBtnImage = UIImage(asset: .GuideRightBtn)
         
         switch viewStyle {
-            ///我的信息 性别页面
+
         case .GuideGender:
+            infoLabel.hidden = false
             updateNavigationItemUI(L10n.GuideMyInfo.string)
+            upDateGenderView()
             guideBgColor = UIColor(named: .GuideColorBlue)
             titleInfoText = L10n.GuideIntroduce.string
-            subTitleText = L10n.GuideMine.string
-            genderUpImage.hidden = false
-            genderDownImage.hidden = false
             
-            ///我的信息 生日
         case .GuideBirthday:
+            infoLabel.hidden = false
             updateNavigationItemUI(L10n.GuideMyInfo.string)
-            subTitleText = L10n.GuideBirthday.string
+            upDateBirthdayView()
+            titleInfoText = L10n.GuideIntroduce.string
             
-            ///我的信息 身高
         case .GuideHeight:
+            infoLabel.hidden = false
             updateNavigationItemUI(L10n.GuideMyInfo.string)
-            subTitleText = L10n.GuideHeight.string
+            upDateHeightView()
+            titleInfoText = L10n.GuideIntroduce.string
             
-            ///我的信息 体重
         case .GuideWeight:
+            infoLabel.hidden = false
             updateNavigationItemUI(L10n.GuideMyInfo.string)
-            subTitleText = L10n.GuideWeight.string
+            upDateWeightView()
+            titleInfoText = L10n.GuideIntroduce.string
             
-            ///设置 开启智能通知
         case .SettingNotice:
-            infoLabel.hidden = true
-            subTitleInfo.hidden = false
-            middleImage.hidden = false
+            
             updateNavigationItemUI(L10n.GuideSetting.string, rightBtnText: L10n.GuidePassButton.string, isNeedBack: true)
             guideBgColor = UIColor(named: .GuideColorcyanColor)
             subTitleText = L10n.GuideOpenNotice.string
             subTitleInfoText = L10n.GuideOpenNoticeInfo.string
             
-            ///设置 开启位置分享
         case .SettingLocationShare:
-            infoLabel.hidden = true
-            middleImage.hidden = false
+            
             updateNavigationItemUI(L10n.GuideSetting.string, rightBtnText: L10n.GuidePassButton.string, isNeedBack: true)
             guideBgColor = UIColor(named: .GuideColorcyanColor)
             subTitleText = L10n.GuideOpenLocationShare.string
             subTitleInfoText = L10n.GuideOpenLocationShareInfo.string
-            subTitleInfo.hidden = false
             
-            ///连接手环 打开蓝牙
         case .BandBluetooth:
-            infoLabel.hidden = true
-            subTitleInfo.hidden = false
-            middleImage.hidden = false
+            
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             subTitleText = L10n.GuideOpenBluetooth.string
             subTitleInfoText = L10n.GuideOpenBluetoothInfo.string
             
-            ///连接手环 打开手环
         case .BandopenBand:
-            infoLabel.hidden = true
-            middleImage.hidden = false
-            subTitleInfo.hidden = false
-            subSuggtion.hidden = false // 没有电？充电试试看
+            
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             subTitleText = L10n.GuideOpenCavy.string
             subTitleInfoText = L10n.GuideOpenCavyInfo.string
-            subSuggtion.text = L10n.GuideOpenCavySugg.string
             
-            ///连接手环 正在连接
         case .BandLinking:
-            infoLabel.hidden = true
-            subSuggtion.hidden = true
-            middleImage.hidden = false
+            
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             subTitleText = L10n.GuideLinking.string
             
-            ///连接手环 连接成功
         case .BandSuccess:
-            infoLabel.hidden = true
-            subTitleInfo.hidden = false
-            middleImage.hidden = false
+           
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             subTitleText = L10n.GuidePairSuccess.string
             subTitleInfoText = L10n.GuidePairSuccessInfo.string
             
-            ///连接手环 连接失败
         case .BandFail:
-            infoLabel.hidden = true
-            subTitleInfo.hidden = false
-            middleImage.hidden = false
+            
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             addMiddleImage = UIImage(asset: .GuideRightBtn)
@@ -219,9 +178,6 @@ class GuideViewController: BaseViewController {
         
         self.view.backgroundColor = guideBgColor
         self.infoLabel.text = titleInfoText
-        self.subTitle.text = subTitleText
-        self.subTitleInfo.text = subTitleInfoText
-        self.middleImage = UIImageView(image: addMiddleImage)
         self.guideButton.setImage(guideBtnImage, forState: .Normal)
         
     }
@@ -299,5 +255,49 @@ class GuideViewController: BaseViewController {
         
     }
     
+    /**
+     更新性别视图
+     */
+    func  upDateGenderView(){
+                
+        let genderView = GenderView(frame: CGRectMake(0, 0, spacingWidth25 * 23, spacingWidth25 * 28))
+        middleView.addSubview(genderView)
+ 
+    }
+    
+    /**
+     更新生日视图
+     */
+    func  upDateBirthdayView(){
+        
+        let birthView = BirthdayView(frame: CGRectMake(0, 0, spacingWidth25 * 23, spacingWidth25 * 28))
+        middleView.addSubview(birthView)
 
+    }
+    
+    /**
+     更新身高视图
+     */
+    func  upDateHeightView(){
+        
+        let highView = HightView(frame: CGRectMake(0, 0, spacingWidth25 * 23, spacingWidth25 * 28))
+        middleView.addSubview(highView)
+  
+    }
+    
+    /**
+     更新体重视图
+     */
+    func  upDateWeightView(){
+        
+        let weightView = WeightView(frame: CGRectMake(0, 0, spacingWidth25 * 23, spacingWidth25 * 28))
+        middleView.addSubview(weightView)
+    
+    }
+    
+    
+    
+    
+    
+    
 }
