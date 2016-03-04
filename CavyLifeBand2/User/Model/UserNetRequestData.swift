@@ -211,7 +211,6 @@ class UserNetRequestData: NetRequestAdapter {
             
         }
         
-        // 密码MD5 加密
         if let pwd = parameters![UserNetRequsetKey.Passwd.rawValue] as? String {
 
             let check = passwordCheck(pwd)

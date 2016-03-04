@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
+		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
 		9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */; };
 		912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D29DA1C6088B5005A06E9 /* SignInTest.swift */; };
 		912D29DD1C609FFD005A06E9 /* Sign_Up_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 912D29DC1C609FFD005A06E9 /* Sign_Up_Ok.json */; };
@@ -21,7 +22,6 @@
 		9169AAAA1C7EE06A00301646 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9169AAA91C7EE06A00301646 /* SignInViewController.swift */; };
 		917269FA1C47EB0F00A06E3A /* UserNetJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917269F91C47EB0F00A06E3A /* UserNetJSON.swift */; };
 		917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 917DA9741C3B8EB700FF675D /* LaunchScreen.storyboard */; };
-		917DA98C1C3B8EB800FF675D /* CavyLifeBand2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917DA98B1C3B8EB800FF675D /* CavyLifeBand2UITests.swift */; };
 		917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 917DA9A01C3BA12E00FF675D /* InfoPlist.strings */; };
 		918435DB1C7AD094005B6E92 /* ForgotPasswdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435DA1C7AD094005B6E92 /* ForgotPasswdTest.swift */; };
 		918435DD1C7AF624005B6E92 /* SecurityCodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435DC1C7AF624005B6E92 /* SecurityCodeTest.swift */; };
@@ -35,6 +35,7 @@
 		918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E26D21C88307900115C4E /* NSUserDefaultsExtension.swift */; };
 		918E26D51C8833D700115C4E /* AccountModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E26D41C8833D700115C4E /* AccountModelView.swift */; };
 		918E26D71C8833E000115C4E /* AccountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E26D61C8833E000115C4E /* AccountTextField.swift */; };
+		918E26DC1C891CDE00115C4E /* SignInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E26DB1C891CDE00115C4E /* SignInUITests.swift */; };
 		9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */; };
 		9199DA251C48D2BF009672C4 /* SignUpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199DA241C48D2BF009672C4 /* SignUpTest.swift */; };
 		919C5E4F1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919C5E4E1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift */; };
@@ -55,6 +56,7 @@
 		91D274C71C84453F004F1AA7 /* SendSafetyCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274C61C84453F004F1AA7 /* SendSafetyCodeButton.swift */; };
 		91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274C81C8685A6004F1AA7 /* BaseViewController.swift */; };
 		91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */; };
+		91E981291C8937CB00802C5F /* AccountPageSwitchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */; };
 		98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */; };
 		C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECCA2D1C4C7F2D00805826 /* Weather.swift */; };
 		CCC7C82BB91E803A273BED90 /* Pods_CavyLifeBand2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */; };
@@ -80,10 +82,12 @@
 
 /* Begin PBXFileReference section */
 		01513CBBEAFFF398A5D5CA79 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
+		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardDefine.swift; sourceTree = "<group>"; };
 		912D29DA1C6088B5005A06E9 /* SignInTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTest.swift; sourceTree = "<group>"; };
@@ -102,7 +106,6 @@
 		917DA97C1C3B8EB800FF675D /* CavyLifeBand2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CavyLifeBand2Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		917DA9821C3B8EB800FF675D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		917DA9871C3B8EB800FF675D /* CavyLifeBand2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CavyLifeBand2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		917DA98B1C3B8EB800FF675D /* CavyLifeBand2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CavyLifeBand2UITests.swift; sourceTree = "<group>"; };
 		917DA98D1C3B8EB800FF675D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		917DA99F1C3BA12E00FF675D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		917DA9A11C3BA13800FF675D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 		918E26D21C88307900115C4E /* NSUserDefaultsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultsExtension.swift; sourceTree = "<group>"; };
 		918E26D41C8833D700115C4E /* AccountModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountModelView.swift; sourceTree = "<group>"; };
 		918E26D61C8833E000115C4E /* AccountTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTextField.swift; sourceTree = "<group>"; };
+		918E26DB1C891CDE00115C4E /* SignInUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUITests.swift; sourceTree = "<group>"; };
 		91931FBDB93D6202BBC98835 /* Pods-CavyLifeBand2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequestAdapter.swift; sourceTree = "<group>"; };
 		9199DA241C48D2BF009672C4 /* SignUpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTest.swift; sourceTree = "<group>"; };
@@ -143,8 +147,10 @@
 		91D274C61C84453F004F1AA7 /* SendSafetyCodeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendSafetyCodeButton.swift; sourceTree = "<group>"; };
 		91D274C81C8685A6004F1AA7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CavyLifeBandAlertView.swift; sourceTree = "<group>"; };
+		91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPageSwitchUITests.swift; sourceTree = "<group>"; };
 		98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		AD7D0502CC392B502E081F26 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C848EB391C46240F001FA1BF /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		C8ECCA2D1C4C7F2D00805826 /* Weather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +190,8 @@
 				01513CBBEAFFF398A5D5CA79 /* Pods.release.xcconfig */,
 				2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */,
 				91931FBDB93D6202BBC98835 /* Pods-CavyLifeBand2Tests.release.xcconfig */,
+				62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */,
+				0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -264,8 +273,8 @@
 				913D0BD51C3FA126006EE7F8 /* Common */,
 				91C3ED931C3CBF46000A414D /* Account */,
 				91C3ED891C3BB685000A414D /* Localization */,
-				917DA9741C3B8EB700FF675D /* LaunchScreen.storyboard */,
 				91D192931C7DB8DE00482019 /* Assets.xcassets */,
+				917DA9741C3B8EB700FF675D /* LaunchScreen.storyboard */,
 				917DA9771C3B8EB700FF675D /* Info.plist */,
 			);
 			path = CavyLifeBand2;
@@ -288,8 +297,9 @@
 		917DA98A1C3B8EB800FF675D /* CavyLifeBand2UITests */ = {
 			isa = PBXGroup;
 			children = (
-				917DA98B1C3B8EB800FF675D /* CavyLifeBand2UITests.swift */,
 				917DA98D1C3B8EB800FF675D /* Info.plist */,
+				918E26DB1C891CDE00115C4E /* SignInUITests.swift */,
+				91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */,
 			);
 			path = CavyLifeBand2UITests;
 			sourceTree = "<group>";
@@ -402,6 +412,7 @@
 				C848EB391C46240F001FA1BF /* AssetsLibrary.framework */,
 				24A7CFAEA8FAD0237C60B20B /* Pods.framework */,
 				8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */,
+				B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -455,9 +466,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 917DA9961C3B8EB800FF675D /* Build configuration list for PBXNativeTarget "CavyLifeBand2UITests" */;
 			buildPhases = (
+				DCA09848B6D9D547DE5B8B6D /* Check Pods Manifest.lock */,
 				917DA9831C3B8EB800FF675D /* Sources */,
 				917DA9841C3B8EB800FF675D /* Frameworks */,
 				917DA9851C3B8EB800FF675D /* Resources */,
+				9B2BD6B95D7A2188FB2331A3 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -475,9 +488,6 @@
 		917DA9601C3B8EB700FF675D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				KnownAssetTags = (
-					"登入",
-				);
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = xuemincai;
@@ -600,6 +610,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		9B2BD6B95D7A2188FB2331A3 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9C96EDCAA15349112C23D4D1 /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -646,6 +671,21 @@
 			showEnvVarsInLog = 0;
 		};
 		D517CEF9A44190E5F6B327FB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DCA09848B6D9D547DE5B8B6D /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -716,7 +756,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				917DA98C1C3B8EB800FF675D /* CavyLifeBand2UITests.swift in Sources */,
+				91E981291C8937CB00802C5F /* AccountPageSwitchUITests.swift in Sources */,
+				918E26DC1C891CDE00115C4E /* SignInUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -954,11 +995,15 @@
 		};
 		917DA9971C3B8EB800FF675D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CavyLifeBand2UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_TARGET_NAME = CavyLifeBand2;
 				USES_XCTRUNNER = YES;
 			};
@@ -966,11 +1011,14 @@
 		};
 		917DA9981C3B8EB800FF675D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = CavyLifeBand2UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TEST_TARGET_NAME = CavyLifeBand2;
 				USES_XCTRUNNER = YES;
 			};
