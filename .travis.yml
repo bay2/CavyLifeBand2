@@ -9,6 +9,7 @@ script:
   Release OBJROOT=$PWD/build   SYMROOT=$PWD/build CODE_SIGN_IDENTITY="$DEVELOPER_NAME"
   ONLY_ACTIVE_ARCH=NO
 - xctool test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME"Tests" -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+  xcodebuild -workspace $APP_NAME.xcworkspace -scheme $APP_NAME"UITests" -sdk iphonesimulator -destination 'name=iPhone 6s' test
 before_script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/$PROFILE_NAME.mobileprovision.enc
   -d -a -out scripts/profile/$PROFILE_NAME.mobileprovision
