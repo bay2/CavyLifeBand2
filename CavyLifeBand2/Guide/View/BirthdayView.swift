@@ -13,9 +13,10 @@ class BirthdayView: UIView {
     
     var titleLab = UILabel()
     var yyMMLabel = UILabel()
-    var yymmRuler = RulerScroller()
+    var yymmRuler = RulerView()
     var dayLabel = UILabel()
-    var dayRuler = RulerScroller()
+    var dayRuler = RulerView()
+
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,7 +36,6 @@ class BirthdayView: UIView {
         self.addSubview(dayLabel)
         self.addSubview(dayRuler)
         self.addSubview(titleLab)
-
         
         titleLab.text = L10n.GuideBirthday.string
         titleLab.font = UIFont.systemFontOfSize(18)
@@ -78,6 +78,8 @@ class BirthdayView: UIView {
             make.centerX.equalTo(self)
             make.top.equalTo(dayLabel).offset(spacingWidth25 + 45)
         }
+
+        
         
     }
     
