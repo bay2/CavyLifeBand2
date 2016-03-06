@@ -5,11 +5,6 @@ before_install:
 - brew install tailor
 - gem install fir-cli
 script:
-- xctool -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphoneos  -configuration
-  Release OBJROOT=$PWD/build   SYMROOT=$PWD/build CODE_SIGN_IDENTITY="$DEVELOPER_NAME"
-  ONLY_ACTIVE_ARCH=NO
-- xctool test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME"Tests" -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-- xcodebuild -workspace $APP_NAME.xcworkspace -scheme $APP_NAME"UITests" -sdk iphonesimulator -destination 'name=iPhone 6s' test
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/profile/$PROFILE_NAME.mobileprovision.enc
   -d -a -out scripts/profile/$PROFILE_NAME.mobileprovision
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.cer.enc -d -a
@@ -17,6 +12,11 @@ script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
   -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
+- xctool -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphoneos  -configuration
+  Release OBJROOT=$PWD/build   SYMROOT=$PWD/build CODE_SIGN_IDENTITY="$DEVELOPER_NAME"
+  ONLY_ACTIVE_ARCH=NO
+- xctool test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME"Tests" -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- xcodebuild -workspace $APP_NAME.xcworkspace -scheme $APP_NAME"UITests" -sdk iphonesimulator -destination 'name=iPhone 6s' test
 after_success:
 - ./scripts/sign-and-upload.sh
 after_script:
