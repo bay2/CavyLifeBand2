@@ -20,7 +20,7 @@ extension UIImage {
 
         UIGraphicsBeginImageContextWithOptions(size, false, UIScreen.mainScreen().scale)
         color.set()
-        UIRectFill(CGRectMake(0, 0, size.width,size.height))
+        UIRectFill(CGRectMake(0, 0, size.width, size.height))
         let newImg = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
 

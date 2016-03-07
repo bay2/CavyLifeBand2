@@ -21,7 +21,7 @@ import CryptoSwift
  - ParamErr:  参数错误
  */
 enum UserRequestErrorType: ErrorType {
-    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, EmailNil, PhoneErr, PhoneNil, PassWdErr, PassWdNil, SecurityCodeErr, SecurityCodeNil, UserNameErr, UserNameNil
+    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, EmailNil, PhoneErr, PhoneNil, PassWdErr, PassWdNil, SecurityCodeErr, SecurityCodeNil, UserNameErr, UserNameNil, UserIdNil
 }
 
 /**
@@ -59,7 +59,13 @@ enum UserNetRequsetKey: String {
     case Local = "lbs"
     case FriendIdList = "friendIds"
     case Operate = "operate"
-    
+    case NickName = "nickname"
+    case Sex = "sex"
+    case Height = "height"
+    case Weight = "weight"
+    case Birthday = "birthday"
+    case Address = "address"
+
 }
 
 let userNetReq = UserNetRequestData()
@@ -67,15 +73,6 @@ let userNetReq = UserNetRequestData()
 class UserNetRequestData: NetRequestAdapter {
     
     typealias CompletionHandlernType = (Result<AnyObject, UserRequestErrorType>) -> Void
-    
-    private let webAPI = [UserNetRequestMethod.SendSecurityCode.rawValue: "sendAuthCode",
-    UserNetRequestMethod.SignIn.rawValue: "userLogin",
-    UserNetRequestMethod.SignUp.rawValue: "userReg",
-    UserNetRequestMethod.ForgotPwd.rawValue: "resetPsw",
-    UserNetRequestMethod.UpdateAvatar.rawValue: "updateAvatar"]
-    
-   
-
     
     /**
     网络请求API
@@ -99,13 +96,13 @@ class UserNetRequestData: NetRequestAdapter {
     */
     enum UserNetRequestMethod: String {
         
-        case SendSecurityCode
-        case SignUp
-        case SignIn
+        case SendSecurityCode = "sendAuthCode"
+        case SignUp = "userReg"
+        case SignIn = "userLogin"
         case UpdateAvatar
-        case ForgotPwd
-        case UserProfile
-        case SetUserProfile
+        case ForgotPwd = "resetPsw"
+        case UserProfile = "getUserInfo"
+        case SetUserProfile = "setUserInfo"
         case SearchFriends
         case AddFriends
         case DelFriends
@@ -116,8 +113,7 @@ class UserNetRequestData: NetRequestAdapter {
         case SetTargetValue
         case TargetValue
     }
-    
-    
+
     /**
      注册
      
@@ -177,8 +173,8 @@ class UserNetRequestData: NetRequestAdapter {
             }
         }
         
-        parameters![UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.SignUp.rawValue]!
-        
+        parameters![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SignUp.rawValue
+
         netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
         
     }
@@ -222,11 +218,86 @@ class UserNetRequestData: NetRequestAdapter {
             }
         }
         
-        parameters![UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.SignIn.rawValue]!
+        parameters![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SignIn.rawValue
         
         netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
         
     }
+
+    /**
+     查询用户信息
+     
+     - parameter parameters:        UserId
+     - parameter completionHandler: 回调
+     */
+    func queryProfile(var parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+
+        if parameters == nil {
+
+            completionHandler?(.Failure(.ParaNil))
+            Log.error("Parameters is nil")
+            return
+
+        }
+
+        guard let _ = parameters![UserNetRequsetKey.UserID.rawValue] else {
+
+            completionHandler?(.Failure(.UserIdNil))
+            Log.error("User id is nil")
+            return
+
+        }
+
+        parameters![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.UserProfile.rawValue
+
+        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
+
+    }
+
+    /**
+     设置用户信息
+     
+     - parameter parameters:        NickName， PhoneNum， Sex， Height， Weight， Birthday， Address
+     - parameter completionHandler: 回调
+     */
+    func setProfile(var parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+
+        if parameters == nil {
+
+            completionHandler?(.Failure(.ParaNil))
+            Log.error("Parameters is nil")
+            return
+
+        }
+
+        guard let _ = parameters![UserNetRequsetKey.UserID.rawValue] else {
+
+            completionHandler?(.Failure(.ParaNil))
+            Log.error("Parameters is nil")
+            return
+
+        }
+
+        if !(parameters!.keys.contains(UserNetRequsetKey.NickName.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.Sex.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.Height.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.Weight.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.Birthday.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.Address.rawValue)) {
+
+            completionHandler?(.Failure(.ParaErr))
+            Log.error("Parameters error")
+            return
+
+        }
+        
+
+        parameters![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SetUserProfile.rawValue
+
+        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
+
+    }
+
     
     /**
      用户有效性校验
@@ -379,7 +450,7 @@ class UserNetRequestData: NetRequestAdapter {
             return
         }
         
-        para[UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.ForgotPwd.rawValue]!
+        para[UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.ForgotPwd.rawValue
         
         netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
         
@@ -408,7 +479,7 @@ class UserNetRequestData: NetRequestAdapter {
             }
         }
 
-        para[UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.SendSecurityCode.rawValue]!
+        para[UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SendSecurityCode.rawValue
         
         netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
         
@@ -441,11 +512,12 @@ class UserNetRequestData: NetRequestAdapter {
         }
         
         para[UserNetRequsetKey.Avater.rawValue] = UIImagePNGRepresentation(image)
-        para[UserNetRequsetKey.Cmd.rawValue] = webAPI[UserNetRequestMethod.UpdateAvatar.rawValue]!
+        para[UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.UpdateAvatar.rawValue
         
         netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
         
     }
+
 
     /**
      邮箱校验

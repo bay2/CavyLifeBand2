@@ -112,10 +112,10 @@ struct SignInViewModel {
                 return
             }
 
-            let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
+            let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
 
-            if msg.code != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(msg.code!)
+            if msg.commonMsg?.code != WebApiCode.Success.rawValue {
+                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(msg.commonMsg!.code!)
                 return
             }
 
