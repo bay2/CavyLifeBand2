@@ -15,17 +15,15 @@ pod 'LLSimpleCamera'
 pod 'CryptoSwift'
 pod 'KeychainAccess'
 pod 'RealmSwift'
-pod 'Kiwi'
+pod 'SuperMock'
 
 target :CavyLifeBand2Tests, :exclusive => true do
     pod 'OHHTTPStubs'
     pod 'OHHTTPStubs/Swift'
-    pod 'XcodeCoverage'
 end
 
 target :CavyLifeBand2UITests, :exclusive => true do
     pod 'OHHTTPStubs'
     pod 'OHHTTPStubs/Swift'
-    pod 'XcodeCoverage'
 end
 

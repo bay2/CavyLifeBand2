@@ -6,7 +6,6 @@ PODS:
   - EZSwiftExtensions (1.2.1)
   - JSONJoy-Swift (2.0.0)
   - KeychainAccess (2.3.3)
-  - Kiwi (2.4.0)
   - KSCrash (1.1.1):
     - KSCrash/Installations (= 1.1.1)
   - KSCrash/Installations (1.1.1):
@@ -66,7 +65,7 @@ PODS:
   - KSCrash/Reporting/Tools (1.1.1):
     - KSCrash/Recording
   - LLSimpleCamera (4.2.0)
-  - Log (0.1)
+  - Log (0.2)
   - MJRefresh (3.1.0)
   - OHHTTPStubs (4.7.1):
     - OHHTTPStubs/Default (= 4.7.1)
@@ -89,8 +88,8 @@ PODS:
   - RealmSwift (0.98.3):
     - Realm (= 0.98.3)
   - SnapKit (0.19.1)
+  - SuperMock (0.1.0)
   - SwiftOverlays (1.0)
-  - XcodeCoverage (1.3.0)
   - XLActionController (1.0.0):
     - XLActionController/Core (= 1.0.0)
   - XLActionController/Core (1.0.0)
@@ -102,7 +101,6 @@ DEPENDENCIES:
   - EZSwiftExtensions
   - JSONJoy-Swift
   - KeychainAccess
-  - Kiwi
   - KSCrash
   - LLSimpleCamera
   - Log
@@ -111,8 +109,8 @@ DEPENDENCIES:
   - OHHTTPStubs/Swift
   - RealmSwift
   - SnapKit
+  - SuperMock
   - SwiftOverlays
-  - XcodeCoverage
   - XLActionController
 
 SPEC CHECKSUMS:
@@ -122,17 +120,16 @@ SPEC CHECKSUMS:
   EZSwiftExtensions: efd14aa3128fb216af4c304595ccce3406adc6d8
   JSONJoy-Swift: 9dc31dfb9e551c3ae7781513a86e369598102653
   KeychainAccess: 9b7e49e48277e329b1b3195e54697ed313d30acf
-  Kiwi: f49c9d54b28917df5928fe44968a39ed198cb8a8
   KSCrash: 6ab08dc2113d00116a69e46d4c532d6ddd24932b
   LLSimpleCamera: ed7813ce4827ff3e34c6af159c99b5b56e54d1c6
-  Log: 8de10d912b9cd4fe1abba749d0762be8ad802de7
+  Log: 5072b3f13180b8dc89b466c2b0f0466c03b8df07
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
   Realm: c6a7d00221a2d5177810a674aebd40c5e0b70b0f
   RealmSwift: d6ecad6e4c2a645d6ac956c2c7e9efb375f39c31
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
+  SuperMock: df97293409fcc2f6dd67e37d6cbdb7e57b9bcfa7
   SwiftOverlays: 6a47bab3ed2784c378f07b275269f9e8231526e6
-  XcodeCoverage: 0ce3700a1ddb548680e7618cb72835a28d95d603
   XLActionController: c8ddd5bc20bac97a271113acc7e94659d554da5c
 
 COCOAPODS: 0.39.0

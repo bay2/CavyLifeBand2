@@ -62,6 +62,23 @@
 		91F0361F1C8D6BB6003E059A /* Profile_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F0361E1C8D6BB6003E059A /* Profile_Ok.json */; };
 		91F036211C8D915F003E059A /* UserInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F036201C8D915F003E059A /* UserInfoRealm.swift */; };
 		91F036231C8E6BB4003E059A /* UserInfoModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F036221C8E6BB4003E059A /* UserInfoModelView.swift */; };
+		91F036801C8ED2AD003E059A /* Mocks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91F0367F1C8ED2AD003E059A /* Mocks.plist */; };
+		91F0368A1C8ED377003E059A /* CommonResultOk.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036821C8ED377003E059A /* CommonResultOk.json */; };
+		91F0368B1C8ED377003E059A /* ForgotPasswd_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036831C8ED377003E059A /* ForgotPasswd_Ok.json */; };
+		91F0368C1C8ED377003E059A /* Profile_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036841C8ED377003E059A /* Profile_Ok.json */; };
+		91F0368D1C8ED377003E059A /* SecurityCode_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036851C8ED377003E059A /* SecurityCode_Ok.json */; };
+		91F0368E1C8ED377003E059A /* Sign_In_Error.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036861C8ED377003E059A /* Sign_In_Error.json */; };
+		91F0368F1C8ED377003E059A /* Sign_In_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036871C8ED377003E059A /* Sign_In_Ok.json */; };
+		91F036901C8ED377003E059A /* Sign_Up_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036881C8ED377003E059A /* Sign_Up_Ok.json */; };
+		91F036911C8ED377003E059A /* UploadPicture_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036891C8ED377003E059A /* UploadPicture_Ok.json */; };
+		91F0369B1C8EE433003E059A /* CommonResultOk.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036931C8EE433003E059A /* CommonResultOk.json */; };
+		91F0369C1C8EE433003E059A /* ForgotPasswd_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036941C8EE433003E059A /* ForgotPasswd_Ok.json */; };
+		91F0369D1C8EE433003E059A /* Profile_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036951C8EE433003E059A /* Profile_Ok.json */; };
+		91F0369E1C8EE433003E059A /* SecurityCode_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036961C8EE433003E059A /* SecurityCode_Ok.json */; };
+		91F0369F1C8EE433003E059A /* Sign_In_Error.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036971C8EE433003E059A /* Sign_In_Error.json */; };
+		91F036A01C8EE433003E059A /* Sign_In_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036981C8EE433003E059A /* Sign_In_Ok.json */; };
+		91F036A11C8EE433003E059A /* Sign_Up_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036991C8EE433003E059A /* Sign_Up_Ok.json */; };
+		91F036A21C8EE433003E059A /* UploadPicture_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F0369A1C8EE433003E059A /* UploadPicture_Ok.json */; };
 		98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */; };
 		C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8ECCA2D1C4C7F2D00805826 /* Weather.swift */; };
 		CCC7C82BB91E803A273BED90 /* Pods_CavyLifeBand2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */; };
@@ -158,6 +175,23 @@
 		91F0361E1C8D6BB6003E059A /* Profile_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile_Ok.json; sourceTree = "<group>"; };
 		91F036201C8D915F003E059A /* UserInfoRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoRealm.swift; sourceTree = "<group>"; };
 		91F036221C8E6BB4003E059A /* UserInfoModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModelView.swift; sourceTree = "<group>"; };
+		91F0367F1C8ED2AD003E059A /* Mocks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Mocks.plist; sourceTree = "<group>"; };
+		91F036821C8ED377003E059A /* CommonResultOk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CommonResultOk.json; sourceTree = "<group>"; };
+		91F036831C8ED377003E059A /* ForgotPasswd_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForgotPasswd_Ok.json; sourceTree = "<group>"; };
+		91F036841C8ED377003E059A /* Profile_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile_Ok.json; sourceTree = "<group>"; };
+		91F036851C8ED377003E059A /* SecurityCode_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SecurityCode_Ok.json; sourceTree = "<group>"; };
+		91F036861C8ED377003E059A /* Sign_In_Error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Error.json; sourceTree = "<group>"; };
+		91F036871C8ED377003E059A /* Sign_In_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Ok.json; sourceTree = "<group>"; };
+		91F036881C8ED377003E059A /* Sign_Up_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_Up_Ok.json; sourceTree = "<group>"; };
+		91F036891C8ED377003E059A /* UploadPicture_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UploadPicture_Ok.json; sourceTree = "<group>"; };
+		91F036931C8EE433003E059A /* CommonResultOk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CommonResultOk.json; sourceTree = "<group>"; };
+		91F036941C8EE433003E059A /* ForgotPasswd_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForgotPasswd_Ok.json; sourceTree = "<group>"; };
+		91F036951C8EE433003E059A /* Profile_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile_Ok.json; sourceTree = "<group>"; };
+		91F036961C8EE433003E059A /* SecurityCode_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SecurityCode_Ok.json; sourceTree = "<group>"; };
+		91F036971C8EE433003E059A /* Sign_In_Error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Error.json; sourceTree = "<group>"; };
+		91F036981C8EE433003E059A /* Sign_In_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Ok.json; sourceTree = "<group>"; };
+		91F036991C8EE433003E059A /* Sign_Up_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_Up_Ok.json; sourceTree = "<group>"; };
+		91F0369A1C8EE433003E059A /* UploadPicture_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UploadPicture_Ok.json; sourceTree = "<group>"; };
 		98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		AD7D0502CC392B502E081F26 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,6 +312,7 @@
 		917DA96A1C3B8EB700FF675D /* CavyLifeBand2 */ = {
 			isa = PBXGroup;
 			children = (
+				91F036921C8EE433003E059A /* json */,
 				913D0BCF1C3FA126006EE7F8 /* Camera */,
 				913D0BD21C3FA126006EE7F8 /* Weather */,
 				913D0BD51C3FA126006EE7F8 /* Common */,
@@ -308,6 +343,8 @@
 		917DA98A1C3B8EB800FF675D /* CavyLifeBand2UITests */ = {
 			isa = PBXGroup;
 			children = (
+				91F036811C8ED377003E059A /* json */,
+				91F0367F1C8ED2AD003E059A /* Mocks.plist */,
 				917DA98D1C3B8EB800FF675D /* Info.plist */,
 				918E26DB1C891CDE00115C4E /* SignInUITests.swift */,
 				91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */,
@@ -420,6 +457,38 @@
 			);
 			name = Define;
 			sourceTree = "<group>";
+		};
+		91F036811C8ED377003E059A /* json */ = {
+			isa = PBXGroup;
+			children = (
+				91F036821C8ED377003E059A /* CommonResultOk.json */,
+				91F036831C8ED377003E059A /* ForgotPasswd_Ok.json */,
+				91F036841C8ED377003E059A /* Profile_Ok.json */,
+				91F036851C8ED377003E059A /* SecurityCode_Ok.json */,
+				91F036861C8ED377003E059A /* Sign_In_Error.json */,
+				91F036871C8ED377003E059A /* Sign_In_Ok.json */,
+				91F036881C8ED377003E059A /* Sign_Up_Ok.json */,
+				91F036891C8ED377003E059A /* UploadPicture_Ok.json */,
+			);
+			name = json;
+			path = CavyLifeBand2Tests/json;
+			sourceTree = SOURCE_ROOT;
+		};
+		91F036921C8EE433003E059A /* json */ = {
+			isa = PBXGroup;
+			children = (
+				91F036931C8EE433003E059A /* CommonResultOk.json */,
+				91F036941C8EE433003E059A /* ForgotPasswd_Ok.json */,
+				91F036951C8EE433003E059A /* Profile_Ok.json */,
+				91F036961C8EE433003E059A /* SecurityCode_Ok.json */,
+				91F036971C8EE433003E059A /* Sign_In_Error.json */,
+				91F036981C8EE433003E059A /* Sign_In_Ok.json */,
+				91F036991C8EE433003E059A /* Sign_Up_Ok.json */,
+				91F0369A1C8EE433003E059A /* UploadPicture_Ok.json */,
+			);
+			name = json;
+			path = CavyLifeBand2Tests/json;
+			sourceTree = SOURCE_ROOT;
 		};
 		E460B001B67D19857BA48CA4 /* Frameworks */ = {
 			isa = PBXGroup;
@@ -547,14 +616,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91F0369E1C8EE433003E059A /* SecurityCode_Ok.json in Resources */,
+				91F0369F1C8EE433003E059A /* Sign_In_Error.json in Resources */,
 				918435E71C7D4FFA005B6E92 /* Main.storyboard in Resources */,
 				913D0BD91C3FA126006EE7F8 /* Weather.storyboard in Resources */,
+				91F0369C1C8EE433003E059A /* ForgotPasswd_Ok.json in Resources */,
 				91D192921C7DA87B00482019 /* colors.txt in Resources */,
 				91C3ED841C3BB637000A414D /* Localizable.strings in Resources */,
+				91F036A21C8EE433003E059A /* UploadPicture_Ok.json in Resources */,
 				913D0BD81C3FA126006EE7F8 /* Camera.storyboard in Resources */,
 				917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */,
 				91D192941C7DB8DE00482019 /* Assets.xcassets in Resources */,
+				91F0369B1C8EE433003E059A /* CommonResultOk.json in Resources */,
+				91F036A11C8EE433003E059A /* Sign_Up_Ok.json in Resources */,
+				91F036A01C8EE433003E059A /* Sign_In_Ok.json in Resources */,
 				917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */,
+				91F0369D1C8EE433003E059A /* Profile_Ok.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,6 +654,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91F0368D1C8ED377003E059A /* SecurityCode_Ok.json in Resources */,
+				91F0368B1C8ED377003E059A /* ForgotPasswd_Ok.json in Resources */,
+				91F0368C1C8ED377003E059A /* Profile_Ok.json in Resources */,
+				91F036801C8ED2AD003E059A /* Mocks.plist in Resources */,
+				91F0368F1C8ED377003E059A /* Sign_In_Ok.json in Resources */,
+				91F036901C8ED377003E059A /* Sign_Up_Ok.json in Resources */,
+				91F0368E1C8ED377003E059A /* Sign_In_Error.json in Resources */,
+				91F0368A1C8ED377003E059A /* CommonResultOk.json in Resources */,
+				91F036911C8ED377003E059A /* UploadPicture_Ok.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1022,6 +1108,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_TARGET_NAME = CavyLifeBand2;
@@ -1038,6 +1125,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TEST_TARGET_NAME = CavyLifeBand2;
 				USES_XCTRUNNER = YES;

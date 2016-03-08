@@ -9,6 +9,7 @@
 import UIKit
 import KSCrash
 import Log
+import OHHTTPStubs
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,6 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let signInViewModel = SignInViewModel(viewController: UIViewController(), userName: userName as! String, passwd: passwd as! String)
             signInViewModel.userSignIn()
             
+        }
+        
+        if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_ENDPOINTS") {
+            // setup HTTP stubs for tests
+            stub(isMethodPOST()) { _ in
+                let stubPath = OHPathForFile("Sign_In_Ok.json", self.dynamicType)
+                return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+            }
         }
 
 

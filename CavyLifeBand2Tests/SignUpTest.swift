@@ -8,7 +8,6 @@
 
 import XCTest
 import OHHTTPStubs
-import Alamofire
 import JSONJoy
 @testable import CavyLifeBand2
 let timeout: NSTimeInterval = 30.0

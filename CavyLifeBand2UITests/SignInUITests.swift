@@ -17,13 +17,16 @@ class SignInUITests: XCTestCase {
         
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
+        
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         if #available(iOS 9.0, *) {
             
-            XCUIApplication().launch()
+           
             let app = XCUIApplication()
+            app.launchArguments = [ "STUB_HTTP_ENDPOINTS" ]
+            app.launch()
             let pageimage1Image = app.images["pageImage1"]
             pageimage1Image.swipeLeft()
             pageimage1Image.swipeLeft()
@@ -37,6 +40,7 @@ class SignInUITests: XCTestCase {
 
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+
     }
     
     override func tearDown() {
@@ -48,11 +52,6 @@ class SignInUITests: XCTestCase {
     
     
     func testSignIn() {
-        
-        stub(isMethodPOST()) { _ in
-            let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
-            return fixture(stubPath!, headers: ["Content-Type" : "application/json"])
-        }
         
         if #available(iOS 9.0, *) {
             
@@ -75,24 +74,29 @@ class SignInUITests: XCTestCase {
             app.alerts.staticTexts["密码不能为空"].tap()
             okButton.tap()
             
-            let pwdTextField = app.secureTextFields["密码"]
-            pwdTextField.tap()
-            pwdTextField.typeText("123456")
+            
+            let secureTextField = app.secureTextFields["密码"]
+            secureTextField.tap()
+            secureTextField.typeText("123456")
             
             loginButton.tap()
+            
+            let window = app.windows.elementAtIndex(0)
+            
+            window.pressForDuration(3)
 
         }
         
-        OHHTTPStubs.removeAllStubs()
+        
         
     }
     
     func testSignInKeyboardNext() {
         
-        stub(isMethodPOST()) { _ in
-            let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
-            return fixture(stubPath!, headers: ["Content-Type" : "application/json"])
-        }
+//        stub(isMethodPOST()) { _ in
+//            let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
+//            return fixture(stubPath!, headers: ["Content-Type" : "application/json"])
+//        }
         
         if #available(iOS 9.0, *) {
             
@@ -108,8 +112,6 @@ class SignInUITests: XCTestCase {
             app.typeText("\n")
             
         }
-        
-        OHHTTPStubs.removeAllStubs()
         
     }
     

@@ -16,7 +16,7 @@ struct UserSignUpMsg {
     
     init(_ decoder: JSONDecoder) throws {
 
-        userId = try decoder["userId"].getString()
+        do { userId = try decoder["userId"].getString() } catch { userId = "" }
         commonMsg = try CommenMsg(decoder)
 
     }
