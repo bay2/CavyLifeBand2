@@ -31,7 +31,7 @@ class PageViewController: UIViewController {
     @IBOutlet weak var pageCtrl: UIPageControl!
     
     // 背景图片
-    var backgroundImage: UIImage!
+    var homePageImage: UIImage!
     
     // 当前视图索引
     var pageIndex = 0
@@ -52,7 +52,7 @@ class PageViewController: UIViewController {
         
         pageCtrl.currentPage = pageIndex
         
-        backgroundImageView.image = backgroundImage
+        backgroundImageView.image = homePageImage
         
         setSubViewTitle()
         

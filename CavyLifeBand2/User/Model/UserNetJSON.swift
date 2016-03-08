@@ -33,6 +33,8 @@ struct UserProfileMsg {
     var avatarUrl: String?
     var address: String?
     var nickName: String?
+    var stepNum: Int?
+    var sleepTime: String?
 
     init(_ decoder: JSONDecoder) throws  {
 
@@ -45,6 +47,8 @@ struct UserProfileMsg {
         do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
         do { address = try decoder["address"].getString() } catch { address = "" }
         do { nickName = try decoder["nickname"].getString() } catch { nickName = "" }
+        do { stepNum = try decoder["stepNum"].getInt() } catch { stepNum = 0 }
+        do { sleepTime = try decoder["sleepTime"].getString() } catch { sleepTime = "" }
         
     }
 

@@ -41,6 +41,14 @@ enum UserRequestErrorType: ErrorType {
  - Local:        坐标
  - FriendIdList: 好友列表
  - Operate:      操作
+ - NickName:     昵称
+ - Sex:          性别
+ - Height:       身高
+ - Weight:       体重
+ - Birthday:     生日
+ - Address:      地址
+ - StepNum:      步数
+ - SleepTime:    睡眠时间
  */
 enum UserNetRequsetKey: String {
     
@@ -52,8 +60,6 @@ enum UserNetRequsetKey: String {
     case UserName = "user"
     case UserID = "userId"
     case Avater = "imgFile"
-    case StepNum = "stepNum"
-    case SleepTime = "phoneNumList"
     case FriendID = "freiendId"
     case Flag = "flag"
     case Local = "lbs"
@@ -65,6 +71,8 @@ enum UserNetRequsetKey: String {
     case Weight = "weight"
     case Birthday = "birthday"
     case Address = "address"
+    case StepNum = "stepNum"
+    case SleepTime = "sleepTime"
 
 }
 

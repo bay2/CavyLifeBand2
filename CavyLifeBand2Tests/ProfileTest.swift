@@ -41,7 +41,6 @@ class ProfileTest: XCTestCase {
             
         }
         
-        
         let para = [UserNetRequsetKey.UserID.rawValue: "56d6ea3bd34635186c60492b"]
         
         let expectation = expectationWithDescription("testQueryProfile succeed")
@@ -95,6 +94,9 @@ class ProfileTest: XCTestCase {
 
     }
     
+    /**
+     查询个人信息，参数为nil
+     */
     func testQueryProfileParaNil() {
         
         let expectation = expectationWithDescription("testQueryProfileParaNil succeed")
@@ -159,6 +161,9 @@ class ProfileTest: XCTestCase {
 
     }
 
+    /**
+     设置个人信息参数错误
+     */
     func testSetProfileParaError() {
 
         let para = [UserNetRequsetKey.UserID.rawValue: "56d6ea3bd34635186c60492b"]
@@ -185,6 +190,9 @@ class ProfileTest: XCTestCase {
     }
     
     
+    /**
+     设置个人信息参数为nil
+     */
     func testSetProfileParaNil() {
         
         let expectation = expectationWithDescription("testSetProfile succeed")
