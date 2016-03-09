@@ -15,7 +15,8 @@ pod 'LLSimpleCamera'
 pod 'CryptoSwift'
 pod 'KeychainAccess'
 pod 'RealmSwift'
-pod 'SuperMock'
+pod 'OHHTTPStubs'
+pod 'OHHTTPStubs/Swift'
 
 target :CavyLifeBand2Tests, :exclusive => true do
     pod 'OHHTTPStubs'

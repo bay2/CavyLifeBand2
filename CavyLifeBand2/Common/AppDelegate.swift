@@ -9,7 +9,9 @@
 import UIKit
 import KSCrash
 import Log
+#if UITEST
 import OHHTTPStubs
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        #if TARGET_NAME = CavyLifeBand2UITests
         
+        #if UITEST
+        
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_ENDPOINTS") {
             // setup HTTP stubs for tests
             stub(isMethodPOST()) { _ in
@@ -48,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return fixture(stubPath!, headers: ["Content-Type": "application/json"])
             }
         }
+        
+        #endif
             
 //        #endif
         

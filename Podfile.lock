@@ -88,7 +88,6 @@ PODS:
   - RealmSwift (0.98.3):
     - Realm (= 0.98.3)
   - SnapKit (0.19.1)
-  - SuperMock (0.1.0)
   - SwiftOverlays (1.0)
   - XLActionController (1.0.0):
     - XLActionController/Core (= 1.0.0)
@@ -109,7 +108,6 @@ DEPENDENCIES:
   - OHHTTPStubs/Swift
   - RealmSwift
   - SnapKit
-  - SuperMock
   - SwiftOverlays
   - XLActionController
 
@@ -128,7 +126,6 @@ SPEC CHECKSUMS:
   Realm: c6a7d00221a2d5177810a674aebd40c5e0b70b0f
   RealmSwift: d6ecad6e4c2a645d6ac956c2c7e9efb375f39c31
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
-  SuperMock: df97293409fcc2f6dd67e37d6cbdb7e57b9bcfa7
   SwiftOverlays: 6a47bab3ed2784c378f07b275269f9e8231526e6
   XLActionController: c8ddd5bc20bac97a271113acc7e94659d554da5c
 
