@@ -15,8 +15,7 @@ import EZSwiftExtensions
 struct UserInfoModelView {
 
     var userInfo: UserInfoModel?
-    var viewController: UIViewController
-
+    var viewController: UIViewController? = nil
 
     /**
      初始化
@@ -27,18 +26,27 @@ struct UserInfoModelView {
      
      - returns:
      */
-    init(viewController: UIViewController, userId: String, callback: ((Bool) -> Void)? = nil) {
+    init(viewController: UIViewController? = nil, userId: String, callback: ((Bool) -> Void)? = nil) {
 
         let netPara = [UserNetRequsetKey.UserID.rawValue: userId]
 
-        self.viewController = viewController
+        let userInfoRealm = UserInfoOperate().queryUserInfo(userId)
+        
+        self.userInfo = UserInfoModel()
+        self.userInfo!.userId = userId
 
-        userInfo = UserInfoOperate().queryUserInfo(userId)
-
-        if userInfo == nil {
-
-            self.userInfo = UserInfoModel()
-            self.userInfo!.userId = userId
+        if userInfoRealm != nil {
+            
+            self.userInfo!.sex = userInfoRealm!.sex
+            self.userInfo!.height = userInfoRealm!.height
+            self.userInfo!.weight = userInfoRealm!.weight
+            self.userInfo!.birthday = userInfoRealm!.birthday
+            self.userInfo!.avatarUrl = userInfoRealm!.avatarUrl
+            self.userInfo!.address = userInfoRealm!.address
+            self.userInfo!.nickname = userInfoRealm!.nickname
+            self.userInfo!.sleepTime = userInfoRealm!.sleepTime
+            self.userInfo!.stepNum = userInfoRealm!.stepNum
+            
         }
 
         userNetReq.queryProfile(netPara) { (result) in
@@ -46,7 +54,7 @@ struct UserInfoModelView {
             if result.isFailure {
 
                 callback?(false)
-                CavyLifeBandAlertView(viewController: viewController).showViewTitle(result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
                 return
                 
             }
@@ -58,7 +66,7 @@ struct UserInfoModelView {
                 if profileMsg.commonMsg!.code != WebApiCode.Success.rawValue {
 
                     callback?(false)
-                    CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(profileMsg.commonMsg!.code!)
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: profileMsg.commonMsg!.code!)
                     return
 
                 }
@@ -78,11 +86,10 @@ struct UserInfoModelView {
             } catch {
 
                 callback?(false)
-                CavyLifeBandAlertView(viewController: self.viewController).showViewTitle(L10n.UserModuleErrorCodeNetError.string)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: L10n.UserModuleErrorCodeNetError.string)
 
             }
             
-
         }
 
     }
@@ -99,19 +106,16 @@ struct UserInfoModelView {
         UserNetRequsetKey.Height.rawValue: self.userInfo!.height,
         UserNetRequsetKey.Weight.rawValue: self.userInfo!.weight,
         UserNetRequsetKey.Birthday.rawValue: self.userInfo!.birthday,
-        UserNetRequsetKey.Avater.rawValue: self.userInfo!.avatarUrl,
         UserNetRequsetKey.Address.rawValue: self.userInfo!.address,
         UserNetRequsetKey.NickName.rawValue: self.userInfo!.nickname,
         UserNetRequsetKey.StepNum.rawValue: self.userInfo!.stepNum,
         UserNetRequsetKey.SleepTime.rawValue: self.userInfo!.sleepTime]
 
-        let alert = CavyLifeBandAlertView(viewController: self.viewController)
-
         userNetReq.setProfile(netPara) { (result) in
             
             if result.isFailure {
 
-                alert.showViewTitle(result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
                 return
             }
             
@@ -121,7 +125,7 @@ struct UserInfoModelView {
                 
                 if resultMsg.code != WebApiCode.Success.rawValue {
 
-                    alert.showViewTitle(resultMsg.code!)
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: resultMsg.code!)
                     return
 
                 }
@@ -140,7 +144,7 @@ struct UserInfoModelView {
 
             } catch {
 
-                alert.showViewTitle(UserRequestErrorType.NetErr)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: UserRequestErrorType.NetErr)
 
             }
 

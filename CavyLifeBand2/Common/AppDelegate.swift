@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+//        #if TARGET_NAME = CavyLifeBand2UITests
         
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_ENDPOINTS") {
             // setup HTTP stubs for tests
@@ -47,6 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return fixture(stubPath!, headers: ["Content-Type": "application/json"])
             }
         }
+            
+//        #endif
         
 
 //        let navigation = UINavigationController(rootViewController: StoryboardScene.Main.PageViewScene.viewController())

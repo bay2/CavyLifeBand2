@@ -14,6 +14,8 @@ import OHHTTPStubs
 @testable import CavyLifeBand2
 class ProfileTest: XCTestCase {
     
+    var userInfoModelView: UserInfoModelView?
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -31,7 +33,7 @@ class ProfileTest: XCTestCase {
     /**
      查询个人信息
      */
-    func testQueryProfile() {
+    func testUserProfile() {
         
         
         stub(isMethodPOST()) { _ in
@@ -41,172 +43,28 @@ class ProfileTest: XCTestCase {
             
         }
         
-        let para = [UserNetRequsetKey.UserID.rawValue: "56d6ea3bd34635186c60492b"]
+        var expectation = expectationWithDescription("testQueryProfile succeed")
         
-        let expectation = expectationWithDescription("testQueryProfile succeed")
-        
-        userNetReq.queryProfile(para) { (result) -> Void in
+        userInfoModelView = UserInfoModelView(userId: "56d6ea3bd34635186c60492b") {
             
-            XCTAssert(result.isSuccess)
+            XCTAssert($0)
             
-            if result.isFailure {
-                expectation.fulfill()
-                return
-            }
+            let expectationResult = [UserNetRequsetKey.NickName.rawValue: "aaa",
+                UserNetRequsetKey.Birthday.rawValue: "1991-03-07",
+                UserNetRequsetKey.Weight.rawValue: "52",
+                UserNetRequsetKey.Sex.rawValue: "1",
+                UserNetRequsetKey.Height.rawValue: "170",
+                UserNetRequsetKey.Avater.rawValue: "",
+                UserNetRequsetKey.Address.rawValue: "浙江-杭州"]
             
-            do {
-                
-                let expectationResult = [UserNetRequsetKey.NickName.rawValue: "aaa",
-                    UserNetRequsetKey.Birthday.rawValue: "1991-03-07",
-                    UserNetRequsetKey.Weight.rawValue: "52",
-                    UserNetRequsetKey.Sex.rawValue: "1",
-                    UserNetRequsetKey.Height.rawValue: "170",
-                    UserNetRequsetKey.Avater.rawValue: "",
-                    UserNetRequsetKey.Address.rawValue: "浙江-杭州",
-                    "code": "0000",
-                    "msg": "success"]
-
-                let actualResult = try UserProfileMsg(JSONDecoder(result.value!))
-
-                XCTAssert(actualResult.commonMsg?.code == expectationResult["code"], "期望值 = \(expectationResult["code"]) , 实际值 = \(actualResult.commonMsg?.code)")
-                XCTAssert(actualResult.commonMsg?.msg == expectationResult["msg"], "期望值 = \(expectationResult["msg"]) , 实际值 = \(actualResult.commonMsg?.msg)")
-                XCTAssert(actualResult.nickName == expectationResult["nickname"], "期望值 = \(expectationResult["nickname"]) , 实际值 = \(actualResult.nickName)")
-                XCTAssert(actualResult.sex == expectationResult["sex"], "期望值 = \(expectationResult["sex"]) , 实际值 = \(actualResult.sex)")
-                XCTAssert(actualResult.height == expectationResult["height"], "期望值 = \(expectationResult["height"]) , 实际值 = \(actualResult.height)")
-                XCTAssert(actualResult.weight == expectationResult["weight"], "期望值 = \(expectationResult["weight"]) , 实际值 = \(actualResult.weight)")
-                XCTAssert(actualResult.birthday == expectationResult["birthday"], "期望值 = \(expectationResult["birthday"]) , 实际值 = \(actualResult.birthday)")
-                XCTAssert(actualResult.avatarUrl == expectationResult["imgFile"], "期望值 = \(expectationResult["avatarUrl"]) , 实际值 = \(actualResult.avatarUrl)")
-                XCTAssert(actualResult.address == expectationResult["address"], "期望值 = \(expectationResult["address"]) , 实际值 = \(actualResult.address)")
-
-                Log.info("actualResult = \(actualResult)")
-            } catch {
-
-                XCTAssert(false)
-                
-            }
-
-
-            expectation.fulfill()
-
-        }
-
-        waitForExpectationsWithTimeout(timeout, handler: nil)
-
-    }
-    
-    /**
-     查询个人信息，参数为nil
-     */
-    func testQueryProfileParaNil() {
-        
-        let expectation = expectationWithDescription("testQueryProfileParaNil succeed")
-        
-        userNetReq.queryProfile(nil) { (result) -> Void in
             
-            XCTAssert(result.isFailure)
-            
-            XCTAssert(result.error == UserRequestErrorType.ParaNil, "期望值 = \(UserRequestErrorType.ParaNil), 实际值 = \(result.error)")
-            
-            expectation.fulfill()
-        }
-        
-        waitForExpectationsWithTimeout(timeout, handler: nil)
-        
-    }
-
-    /**
-     设置个人信息
-     */
-    func testSetProfile() {
-        
-        stub(isMethodPOST()) { _ in
-            
-            let stubPath = OHPathForFile("CommonResultOk.json", self.dynamicType)
-            return fixture(stubPath!, headers: ["Content-Type" : "application/json"])
-            
-        }
-
-        let paras = [[UserNetRequsetKey.UserID.rawValue: "56d6ea3bd34635186c60492b", UserNetRequsetKey.NickName.rawValue: "aaa"],
-                    [UserNetRequsetKey.UserID.rawValue: "56d6ea3bd34635186c60492b", UserNetRequsetKey.Sex.rawValue: "0"],
-                    [UserNetRequsetKey.UserID.rawValue: "56d6ea3bd34635186c60492b", UserNetRequsetKey.Height.rawValue: "170"],
-                    [UserNetRequsetKey.UserID.rawValue: "56d6ea3bd34635186c60492b", UserNetRequsetKey.Weight.rawValue: "56"],
-                    [UserNetRequsetKey.UserID.rawValue: "56d6ea3bd34635186c60492b", UserNetRequsetKey.Birthday.rawValue: "1990-01-03"],
-                    [UserNetRequsetKey.UserID.rawValue: "56d6ea3bd34635186c60492b", UserNetRequsetKey.Address.rawValue: "浙江省-杭州市"]]
-
-        for para in paras {
-
-            let expectation = expectationWithDescription("testSetProfile succeed")
-
-                userNetReq.setProfile(para) { (result) in
-
-                    XCTAssert(result.isSuccess)
-
-                    if result.isFailure {
-                        expectation.fulfill()
-                        return
-                    }
-
-                    let actualResult = result.value as! [String: String]
-                    let expectationResult = ["code": "0000", "msg": "success"]
-
-                    XCTAssert(expectationResult == actualResult, "期望值 = \(expectationResult), 实际值 = \(actualResult)")
-
-                    expectation.fulfill()
-
-            }
-
-            waitForExpectationsWithTimeout(timeout, handler: nil)
-
-        }
-
-    }
-
-    /**
-     设置个人信息参数错误
-     */
-    func testSetProfileParaError() {
-
-        let para = [UserNetRequsetKey.UserID.rawValue: "56d6ea3bd34635186c60492b"]
-
-        let expectation = expectationWithDescription("testSetProfile succeed")
-
-        userNetReq.setProfile(para) { (result) -> Void in
-
-            XCTAssert(result.isFailure)
-
-            if result.isSuccess {
-                expectation.fulfill()
-                return
-            }
-
-            XCTAssert(UserRequestErrorType.ParaErr == result.error, "期望值 = \(UserRequestErrorType.ParaErr), 实际值 = \(result.error)")
-
-            expectation.fulfill()
-
-        }
-
-        waitForExpectationsWithTimeout(timeout, handler: nil)
-        
-    }
-    
-    
-    /**
-     设置个人信息参数为nil
-     */
-    func testSetProfileParaNil() {
-        
-        let expectation = expectationWithDescription("testSetProfile succeed")
-        
-        userNetReq.setProfile(nil) { (result) -> Void in
-            
-            XCTAssert(result.isFailure)
-            
-            if result.isSuccess {
-                expectation.fulfill()
-                return
-            }
-            
-            XCTAssert(UserRequestErrorType.ParaNil == result.error, "期望值 = \(UserRequestErrorType.ParaNil), 实际值 = \(result.error)")
+            XCTAssert(self.userInfoModelView!.userInfo!.nickname == expectationResult["nickname"], "期望值 = \(expectationResult["nickname"]) , 实际值 = \(self.userInfoModelView!.userInfo!.nickname)")
+            XCTAssert("\(self.userInfoModelView!.userInfo!.sex)" == expectationResult["sex"], "期望值 = \(expectationResult["sex"]) , 实际值 = \(self.userInfoModelView!.userInfo!.sex)")
+            XCTAssert(self.userInfoModelView!.userInfo!.height == expectationResult["height"], "期望值 = \(expectationResult["height"]) , 实际值 = \(self.userInfoModelView!.userInfo!.height)")
+            XCTAssert(self.userInfoModelView!.userInfo!.weight == expectationResult["weight"], "期望值 = \(expectationResult["weight"]) , 实际值 = \(self.userInfoModelView!.userInfo!.weight)")
+            XCTAssert(self.userInfoModelView!.userInfo!.birthday == expectationResult["birthday"], "期望值 = \(expectationResult["birthday"]) , 实际值 = \(self.userInfoModelView!.userInfo!.birthday)")
+            XCTAssert(self.userInfoModelView!.userInfo!.avatarUrl == expectationResult["imgFile"], "期望值 = \(expectationResult["avatarUrl"]) , 实际值 = \(self.userInfoModelView!.userInfo!.avatarUrl)")
+            XCTAssert(self.userInfoModelView!.userInfo!.address == expectationResult["address"], "期望值 = \(expectationResult["address"]) , 实际值 = \(self.userInfoModelView!.userInfo!.address)")
             
             expectation.fulfill()
             
@@ -214,10 +72,27 @@ class ProfileTest: XCTestCase {
         
         waitForExpectationsWithTimeout(timeout, handler: nil)
         
+        userInfoModelView?.userInfo?.nickname = "bbb"
+        userInfoModelView?.userInfo?.sex = 1
+        userInfoModelView?.userInfo?.height = "170"
+        userInfoModelView?.userInfo?.weight = "52"
+        userInfoModelView?.userInfo?.sleepTime = "7:51"
+        userInfoModelView?.userInfo?.stepNum = 1000
+        userInfoModelView?.userInfo?.avatarUrl = ""
+        
+        expectation = expectationWithDescription("testSetProfile succeed")
+        
+        userInfoModelView?.updateInfo() {
+            
+            expectation.fulfill()
+            
+        }
+        
+        waitForExpectationsWithTimeout(timeout, handler: nil)
+        
+
     }
-    
-    
-    
+
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measureBlock {

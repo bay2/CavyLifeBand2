@@ -48,15 +48,19 @@ class UserInfoOperate {
      - returns: 用户信息
      */
     func queryUserInfo(userId: String) -> UserInfoModel? {
-
-        let userInfo = userInfoRealm.objects(UserInfoModel).filter("userId = \(userId)")
+        
+        if userInfoRealm.objects(UserInfoModel).count == 0 {
+            return nil
+        }
+        
+        let userInfo = userInfoRealm.objects(UserInfoModel).filter("userId == '\(userId)'")
 
         if userInfo.count == 0 {
             return nil
         }
 
         return userInfo[0]
-
+            
     }
 
     /**

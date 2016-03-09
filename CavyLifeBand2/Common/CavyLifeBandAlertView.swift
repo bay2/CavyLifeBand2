@@ -11,29 +11,8 @@ import UIKit
 
 class CavyLifeBandAlertView {
 
-    class var shareInstance: CavyLifeBandAlertView {
+    static let sharedIntance = CavyLifeBandAlertView()
 
-        struct Static {
-            static var instance: CavyLifeBandAlertView?
-            static var token: dispatch_once_t = 0
-        }
-
-        dispatch_once(&Static.token) {
-            Static.instance = CavyLifeBandAlertView()
-        }
-        
-        return Static.instance!
-
-    }
-
-    var mainVC: UIViewController?
-
-    convenience init(viewController: UIViewController) {
-
-        self.init()
-        mainVC = viewController
-
-    }
 
     /**
      显示信息提示
@@ -41,15 +20,15 @@ class CavyLifeBandAlertView {
      - parameter title:   <#title description#>
      - parameter message: <#message description#>
      */
-   func showViewTitle(title: String, message: String) {
+   func showViewTitle(viewController: UIViewController?, title: String, message: String) {
 
-       let alertView = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 
-       let defaultAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+        let defaultAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
 
-       alertView.addAction(defaultAction)
+        alertView.addAction(defaultAction)
 
-       mainVC!.presentViewController(alertView, animated: true, completion: nil)
+       viewController?.presentViewController(alertView, animated: true, completion: nil)
 
     }
 
@@ -58,7 +37,7 @@ class CavyLifeBandAlertView {
      
      - parameter userErrorCode:
      */
-    func showViewTitle(userErrorCode: UserRequestErrorType) {
+    func showViewTitle(viewController: UIViewController?, userErrorCode: UserRequestErrorType) {
 
         let errorMessage = [UserRequestErrorType.EmailErr: L10n.UserModuleErrorCodeEmailError.string,
         UserRequestErrorType.EmailNil: L10n.UserModuleErrorCodeEmailNil.string,
@@ -73,7 +52,7 @@ class CavyLifeBandAlertView {
         UserRequestErrorType.UserNameErr: L10n.UserModuleErrorCodeUserNameError.string,
         UserRequestErrorType.UserNameNil: L10n.UserModuleErrorCodeUserNameNil.string]
 
-        showViewTitle("", message: errorMessage[userErrorCode]!)
+        showViewTitle(viewController, title: "", message: errorMessage[userErrorCode]!)
 
     }
 
@@ -82,7 +61,7 @@ class CavyLifeBandAlertView {
      
      - parameter webApiErrorCode:
      */
-    func showViewTitle(webApiErrorCode: String) {
+    func showViewTitle(viewController: UIViewController?, webApiErrorCode: String) {
 
         let errorMessage = [WebApiCode.ParaError.rawValue: L10n.WebErrorCode1000.string,
         WebApiCode.UserPasswdError.rawValue: L10n.WebErrorCode1001.string,
@@ -95,11 +74,11 @@ class CavyLifeBandAlertView {
 
         if let message = errorMessage[webApiErrorCode] {
 
-            showViewTitle("", message: message)
+            showViewTitle(viewController, title: "", message: message)
 
         } else {
 
-            showViewTitle("", message: L10n.UserModuleErrorCodeNetAPIError.string)
+            showViewTitle(viewController, title: "", message: L10n.UserModuleErrorCodeNetAPIError.string)
 
         }
 
