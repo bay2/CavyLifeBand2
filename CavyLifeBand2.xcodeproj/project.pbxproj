@@ -62,15 +62,6 @@
 		91F0361F1C8D6BB6003E059A /* Profile_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F0361E1C8D6BB6003E059A /* Profile_Ok.json */; };
 		91F036211C8D915F003E059A /* UserInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F036201C8D915F003E059A /* UserInfoRealm.swift */; };
 		91F036231C8E6BB4003E059A /* UserInfoModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F036221C8E6BB4003E059A /* UserInfoModelView.swift */; };
-		91F036801C8ED2AD003E059A /* Mocks.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91F0367F1C8ED2AD003E059A /* Mocks.plist */; };
-		91F0368A1C8ED377003E059A /* CommonResultOk.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036821C8ED377003E059A /* CommonResultOk.json */; };
-		91F0368B1C8ED377003E059A /* ForgotPasswd_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036831C8ED377003E059A /* ForgotPasswd_Ok.json */; };
-		91F0368C1C8ED377003E059A /* Profile_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036841C8ED377003E059A /* Profile_Ok.json */; };
-		91F0368D1C8ED377003E059A /* SecurityCode_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036851C8ED377003E059A /* SecurityCode_Ok.json */; };
-		91F0368E1C8ED377003E059A /* Sign_In_Error.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036861C8ED377003E059A /* Sign_In_Error.json */; };
-		91F0368F1C8ED377003E059A /* Sign_In_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036871C8ED377003E059A /* Sign_In_Ok.json */; };
-		91F036901C8ED377003E059A /* Sign_Up_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036881C8ED377003E059A /* Sign_Up_Ok.json */; };
-		91F036911C8ED377003E059A /* UploadPicture_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036891C8ED377003E059A /* UploadPicture_Ok.json */; };
 		91F0369B1C8EE433003E059A /* CommonResultOk.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036931C8EE433003E059A /* CommonResultOk.json */; };
 		91F0369C1C8EE433003E059A /* ForgotPasswd_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036941C8EE433003E059A /* ForgotPasswd_Ok.json */; };
 		91F0369D1C8EE433003E059A /* Profile_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F036951C8EE433003E059A /* Profile_Ok.json */; };
@@ -175,15 +166,6 @@
 		91F0361E1C8D6BB6003E059A /* Profile_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile_Ok.json; sourceTree = "<group>"; };
 		91F036201C8D915F003E059A /* UserInfoRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoRealm.swift; sourceTree = "<group>"; };
 		91F036221C8E6BB4003E059A /* UserInfoModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModelView.swift; sourceTree = "<group>"; };
-		91F0367F1C8ED2AD003E059A /* Mocks.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Mocks.plist; sourceTree = "<group>"; };
-		91F036821C8ED377003E059A /* CommonResultOk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CommonResultOk.json; sourceTree = "<group>"; };
-		91F036831C8ED377003E059A /* ForgotPasswd_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForgotPasswd_Ok.json; sourceTree = "<group>"; };
-		91F036841C8ED377003E059A /* Profile_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile_Ok.json; sourceTree = "<group>"; };
-		91F036851C8ED377003E059A /* SecurityCode_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SecurityCode_Ok.json; sourceTree = "<group>"; };
-		91F036861C8ED377003E059A /* Sign_In_Error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Error.json; sourceTree = "<group>"; };
-		91F036871C8ED377003E059A /* Sign_In_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Ok.json; sourceTree = "<group>"; };
-		91F036881C8ED377003E059A /* Sign_Up_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_Up_Ok.json; sourceTree = "<group>"; };
-		91F036891C8ED377003E059A /* UploadPicture_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UploadPicture_Ok.json; sourceTree = "<group>"; };
 		91F036931C8EE433003E059A /* CommonResultOk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CommonResultOk.json; sourceTree = "<group>"; };
 		91F036941C8EE433003E059A /* ForgotPasswd_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForgotPasswd_Ok.json; sourceTree = "<group>"; };
 		91F036951C8EE433003E059A /* Profile_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile_Ok.json; sourceTree = "<group>"; };
@@ -343,8 +325,6 @@
 		917DA98A1C3B8EB800FF675D /* CavyLifeBand2UITests */ = {
 			isa = PBXGroup;
 			children = (
-				91F036811C8ED377003E059A /* json */,
-				91F0367F1C8ED2AD003E059A /* Mocks.plist */,
 				917DA98D1C3B8EB800FF675D /* Info.plist */,
 				918E26DB1C891CDE00115C4E /* SignInUITests.swift */,
 				91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */,
@@ -457,22 +437,6 @@
 			);
 			name = Define;
 			sourceTree = "<group>";
-		};
-		91F036811C8ED377003E059A /* json */ = {
-			isa = PBXGroup;
-			children = (
-				91F036821C8ED377003E059A /* CommonResultOk.json */,
-				91F036831C8ED377003E059A /* ForgotPasswd_Ok.json */,
-				91F036841C8ED377003E059A /* Profile_Ok.json */,
-				91F036851C8ED377003E059A /* SecurityCode_Ok.json */,
-				91F036861C8ED377003E059A /* Sign_In_Error.json */,
-				91F036871C8ED377003E059A /* Sign_In_Ok.json */,
-				91F036881C8ED377003E059A /* Sign_Up_Ok.json */,
-				91F036891C8ED377003E059A /* UploadPicture_Ok.json */,
-			);
-			name = json;
-			path = CavyLifeBand2Tests/json;
-			sourceTree = SOURCE_ROOT;
 		};
 		91F036921C8EE433003E059A /* json */ = {
 			isa = PBXGroup;
@@ -654,15 +618,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91F0368D1C8ED377003E059A /* SecurityCode_Ok.json in Resources */,
-				91F0368B1C8ED377003E059A /* ForgotPasswd_Ok.json in Resources */,
-				91F0368C1C8ED377003E059A /* Profile_Ok.json in Resources */,
-				91F036801C8ED2AD003E059A /* Mocks.plist in Resources */,
-				91F0368F1C8ED377003E059A /* Sign_In_Ok.json in Resources */,
-				91F036901C8ED377003E059A /* Sign_Up_Ok.json in Resources */,
-				91F0368E1C8ED377003E059A /* Sign_In_Error.json in Resources */,
-				91F0368A1C8ED377003E059A /* CommonResultOk.json in Resources */,
-				91F036911C8ED377003E059A /* UploadPicture_Ok.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

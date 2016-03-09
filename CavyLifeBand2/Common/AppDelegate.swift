@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+        
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_ENDPOINTS") {
             // setup HTTP stubs for tests
             stub(isMethodPOST()) { _ in
@@ -46,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 return fixture(stubPath!, headers: ["Content-Type": "application/json"])
             }
         }
-
+        
 
 //        let navigation = UINavigationController(rootViewController: StoryboardScene.Main.PageViewScene.viewController())
 
