@@ -421,7 +421,7 @@ class UserNetRequestData: NetRequestAdapter {
 
             if phoneNum.length == 0 {
                 Log.error("Phone is nil")
-                completionHandler?(.Failure(.SecurityCodeNil))
+                completionHandler?(.Failure(.PhoneNil))
                 return
             }
             

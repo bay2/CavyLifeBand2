@@ -42,6 +42,8 @@
 		919C5E4F1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919C5E4E1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift */; };
 		91A09DAD1C488AF400BB1599 /* Sign_In_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A09DAC1C488AF400BB1599 /* Sign_In_Ok.json */; };
 		91A0FED61C90303500717B83 /* SignUpEmailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A0FED51C90303500717B83 /* SignUpEmailUITests.swift */; };
+		91A0FED81C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A0FED71C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift */; };
+		91A0FEDA1C903CBE00717B83 /* ForgotPasswdEmailUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A0FED91C903CBE00717B83 /* ForgotPasswdEmailUITest.swift */; };
 		91A1E1DD1C7ACF140059E53B /* ForgotPasswd_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A1E1DC1C7ACF140059E53B /* ForgotPasswd_Ok.json */; };
 		91A7516B1C7DD31000D93A57 /* CLBPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A7516A1C7DD31000D93A57 /* CLBPageControl.swift */; };
 		91A7516D1C7DDB3C00D93A57 /* AccountManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A7516C1C7DDB3C00D93A57 /* AccountManagerViewController.swift */; };
@@ -148,6 +150,8 @@
 		919C5E4E1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManagerBaseViewController.swift; sourceTree = "<group>"; };
 		91A09DAC1C488AF400BB1599 /* Sign_In_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Ok.json; sourceTree = "<group>"; };
 		91A0FED51C90303500717B83 /* SignUpEmailUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpEmailUITests.swift; sourceTree = "<group>"; };
+		91A0FED71C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswdPhoneUITest.swift; sourceTree = "<group>"; };
+		91A0FED91C903CBE00717B83 /* ForgotPasswdEmailUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswdEmailUITest.swift; sourceTree = "<group>"; };
 		91A1E1DC1C7ACF140059E53B /* ForgotPasswd_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForgotPasswd_Ok.json; sourceTree = "<group>"; };
 		91A7516A1C7DD31000D93A57 /* CLBPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLBPageControl.swift; sourceTree = "<group>"; };
 		91A7516C1C7DDB3C00D93A57 /* AccountManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManagerViewController.swift; sourceTree = "<group>"; };
@@ -334,6 +338,8 @@
 				91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */,
 				915921031C9005E000ECD04E /* SignUpPhoneUITests.swift */,
 				91A0FED51C90303500717B83 /* SignUpEmailUITests.swift */,
+				91A0FED71C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift */,
+				91A0FED91C903CBE00717B83 /* ForgotPasswdEmailUITest.swift */,
 			);
 			path = CavyLifeBand2UITests;
 			sourceTree = "<group>";
@@ -823,8 +829,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91A0FED81C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift in Sources */,
 				915921041C9005E000ECD04E /* SignUpPhoneUITests.swift in Sources */,
 				91E981291C8937CB00802C5F /* AccountPageSwitchUITests.swift in Sources */,
+				91A0FEDA1C903CBE00717B83 /* ForgotPasswdEmailUITest.swift in Sources */,
 				91A0FED61C90303500717B83 /* SignUpEmailUITests.swift in Sources */,
 				918E26DC1C891CDE00115C4E /* SignInUITests.swift in Sources */,
 			);
@@ -992,6 +1000,7 @@
 					"\"XLActionController\"",
 					"-ObjC",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1029,6 +1038,7 @@
 					"\"XLActionController\"",
 					"-ObjC",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
