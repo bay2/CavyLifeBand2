@@ -83,6 +83,8 @@ enum L10n {
   case SignUpProcotolViewBtn
   /// 注册
   case SignUpSignUpBtn
+  /// 请先阅读《豚鼠科技服务协议》
+  case SignUpReadProcotol
   /// 忘记密码了?
   case ForgotTitle
   /// 新密码
@@ -178,6 +180,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("SignUp.ProcotolViewBtn")
       case .SignUpSignUpBtn:
         return L10n.tr("SignUp.SignUpBtn")
+      case .SignUpReadProcotol:
+        return L10n.tr("SignUp.ReadProcotol")
       case .ForgotTitle:
         return L10n.tr("Forgot.Title")
       case .ForgotPasswdTextField:

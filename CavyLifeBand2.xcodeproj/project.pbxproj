@@ -18,6 +18,7 @@
 		913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913D0BD71C3FA126006EE7F8 /* CavyLifeBand2-Define.swift */; };
 		9141C7FC1C7D6BC5003E24F2 /* MainPageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9141C7FB1C7D6BC5003E24F2 /* MainPageButton.swift */; };
 		9141C7FE1C7D72CD003E24F2 /* ImageDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9141C7FD1C7D72CD003E24F2 /* ImageDefine.swift */; };
+		915921041C9005E000ECD04E /* SignUpPhoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915921031C9005E000ECD04E /* SignUpPhoneUITests.swift */; };
 		915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915FFAA51C4E0CA500A492F7 /* AppDelegate.swift */; };
 		9169AAAA1C7EE06A00301646 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9169AAA91C7EE06A00301646 /* SignInViewController.swift */; };
 		917269FA1C47EB0F00A06E3A /* UserNetJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917269F91C47EB0F00A06E3A /* UserNetJSON.swift */; };
@@ -40,6 +41,7 @@
 		9199DA251C48D2BF009672C4 /* SignUpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199DA241C48D2BF009672C4 /* SignUpTest.swift */; };
 		919C5E4F1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919C5E4E1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift */; };
 		91A09DAD1C488AF400BB1599 /* Sign_In_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A09DAC1C488AF400BB1599 /* Sign_In_Ok.json */; };
+		91A0FED61C90303500717B83 /* SignUpEmailUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A0FED51C90303500717B83 /* SignUpEmailUITests.swift */; };
 		91A1E1DD1C7ACF140059E53B /* ForgotPasswd_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A1E1DC1C7ACF140059E53B /* ForgotPasswd_Ok.json */; };
 		91A7516B1C7DD31000D93A57 /* CLBPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A7516A1C7DD31000D93A57 /* CLBPageControl.swift */; };
 		91A7516D1C7DDB3C00D93A57 /* AccountManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A7516C1C7DDB3C00D93A57 /* AccountManagerViewController.swift */; };
@@ -110,6 +112,7 @@
 		913D0BD71C3FA126006EE7F8 /* CavyLifeBand2-Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CavyLifeBand2-Define.swift"; sourceTree = "<group>"; };
 		9141C7FB1C7D6BC5003E24F2 /* MainPageButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainPageButton.swift; sourceTree = "<group>"; };
 		9141C7FD1C7D72CD003E24F2 /* ImageDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDefine.swift; sourceTree = "<group>"; };
+		915921031C9005E000ECD04E /* SignUpPhoneUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPhoneUITests.swift; sourceTree = "<group>"; };
 		915FFAA51C4E0CA500A492F7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9169AAA91C7EE06A00301646 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		917269F91C47EB0F00A06E3A /* UserNetJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetJSON.swift; sourceTree = "<group>"; };
@@ -144,6 +147,7 @@
 		9199DA241C48D2BF009672C4 /* SignUpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTest.swift; sourceTree = "<group>"; };
 		919C5E4E1C7FE54900F72CA8 /* AccountManagerBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManagerBaseViewController.swift; sourceTree = "<group>"; };
 		91A09DAC1C488AF400BB1599 /* Sign_In_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Ok.json; sourceTree = "<group>"; };
+		91A0FED51C90303500717B83 /* SignUpEmailUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpEmailUITests.swift; sourceTree = "<group>"; };
 		91A1E1DC1C7ACF140059E53B /* ForgotPasswd_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForgotPasswd_Ok.json; sourceTree = "<group>"; };
 		91A7516A1C7DD31000D93A57 /* CLBPageControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLBPageControl.swift; sourceTree = "<group>"; };
 		91A7516C1C7DDB3C00D93A57 /* AccountManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManagerViewController.swift; sourceTree = "<group>"; };
@@ -328,6 +332,8 @@
 				917DA98D1C3B8EB800FF675D /* Info.plist */,
 				918E26DB1C891CDE00115C4E /* SignInUITests.swift */,
 				91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */,
+				915921031C9005E000ECD04E /* SignUpPhoneUITests.swift */,
+				91A0FED51C90303500717B83 /* SignUpEmailUITests.swift */,
 			);
 			path = CavyLifeBand2UITests;
 			sourceTree = "<group>";
@@ -817,7 +823,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				915921041C9005E000ECD04E /* SignUpPhoneUITests.swift in Sources */,
 				91E981291C8937CB00802C5F /* AccountPageSwitchUITests.swift in Sources */,
+				91A0FED61C90303500717B83 /* SignUpEmailUITests.swift in Sources */,
 				918E26DC1C891CDE00115C4E /* SignInUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

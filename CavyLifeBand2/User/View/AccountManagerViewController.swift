@@ -319,8 +319,6 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
         
     }
-    
-
 
     /**
      点击主按钮
@@ -334,7 +332,13 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         let forgotViewModel = ForgotPasswordViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!, safetyCode: safetyCodeTextField.text!) {
             self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
         }
-
+        
+        if userProtocolView.checkboxBtn.isCheck != true {
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, title: "", message: L10n.SignUpReadProcotol.string)
+            return
+            
+        }
 
         switch viewStyle {
 
@@ -352,7 +356,6 @@ class AccountManagerViewController: AccountManagerBaseViewController {
 
         }
 
-
     }
 
     /**
@@ -362,7 +365,7 @@ class AccountManagerViewController: AccountManagerBaseViewController {
      */
     @IBAction func onClickSendSafetyCode(sender: AnyObject) {
 
-        let sendSafetyCode = SendSafetyCodeViewModel(viewController: self, userName: userNameTextField.text!) {
+        let sendSafetyCode = SendSafetyCodeViewModel(viewController: self, button: safetyCodeBtn, userName: userNameTextField.text!) {
 
             self.safetyCodeBtn.countDown()
 

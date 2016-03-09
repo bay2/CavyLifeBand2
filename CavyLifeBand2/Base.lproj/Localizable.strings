@@ -57,6 +57,7 @@
 "SignUp.ProcotolViewTitle" = "我们已经阅读并接受";
 "SignUp.ProcotolViewBtn" = "《豚鼠科技服务协议》";
 "SignUp.SignUpBtn" = "注册";
+"SignUp.ReadProcotol" = "请先阅读《豚鼠科技服务协议》";
 
 // 忘记密码页面
 "Forgot.Title" = "忘记密码了?";

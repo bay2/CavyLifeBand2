@@ -206,8 +206,9 @@ struct SendSafetyCodeViewModel {
     var viewController: UIViewController
     var userName: String
     var succeedCallBack: (Void -> Void)?
+    var button: UIButton?
     
-    init(viewController: UIViewController, userName: String, callBack: (Void -> Void)? = nil){
+    init(viewController: UIViewController, button: UIButton, userName: String, callBack: (Void -> Void)? = nil){
         
         self.userName = userName
         self.succeedCallBack = callBack
@@ -221,11 +222,13 @@ struct SendSafetyCodeViewModel {
     func sendSafetyCode() {
 
         let para = [UserNetRequsetKey.PhoneNum.rawValue: userName]
+        
 
         userNetReq.requestPhoneSecurityCode(para) { (result) in
 
             if result.isFailure {
                 CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
+                self.button?.enabled = true
                 return
             }
 

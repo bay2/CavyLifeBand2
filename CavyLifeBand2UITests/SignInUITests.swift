@@ -24,7 +24,7 @@ class SignInUITests: XCTestCase {
             
            
             let app = XCUIApplication()
-            app.launchArguments = [ "STUB_HTTP_ENDPOINTS" ]
+            app.launchArguments = [ "STUB_HTTP_SIGN_IN" ]
             app.launch()
             let pageimage1Image = app.images["pageImage1"]
             pageimage1Image.swipeLeft()

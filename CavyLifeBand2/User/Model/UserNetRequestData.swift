@@ -171,6 +171,15 @@ class UserNetRequestData: NetRequestAdapter {
             }
 
         }
+       
+        if let securityCode = parameters![UserNetRequsetKey.SecurityCode.rawValue] as? String {
+            
+            if securityCode.isEmpty {
+                completionHandler?(.Failure(.SecurityCodeNil))
+                return
+            }
+            
+        }
 
         if let pwd = parameters![UserNetRequsetKey.Passwd.rawValue] as? String {
 

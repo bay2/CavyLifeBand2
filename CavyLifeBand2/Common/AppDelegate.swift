@@ -41,22 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-//        #if TARGET_NAME = CavyLifeBand2UITests
-        
-        #if UITEST
-        
-        if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_ENDPOINTS") {
-            // setup HTTP stubs for tests
-            stub(isMethodPOST()) { _ in
-                let stubPath = OHPathForFile("Sign_In_Ok.json", self.dynamicType)
-                return fixture(stubPath!, headers: ["Content-Type": "application/json"])
-            }
-        }
-        
-        #endif
+#if UITEST
             
-//        #endif
-        
+        uiTestStub()
+            
+#endif
 
 //        let navigation = UINavigationController(rootViewController: StoryboardScene.Main.PageViewScene.viewController())
 
@@ -67,6 +56,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
 
     }
+
+#if UITEST
+    
+    func uiTestStub() {
+    
+        if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_IN") {
+    
+            // setup HTTP stubs for tests
+            stub(isMethodPOST()) { _ in
+            let stubPath = OHPathForFile("Sign_In_Ok.json", self.dynamicType)
+            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+            }
+        }
+
+        if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_UP") {
+
+            // setup HTTP stubs for tests
+            stub(isMethodPOST()) { _ in
+                let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
+                return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+            }
+        }
+    
+    
+    
+    }
+    
+#endif
 
 
     func applicationWillResignActive(application: UIApplication) {
