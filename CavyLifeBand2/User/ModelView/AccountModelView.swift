@@ -40,7 +40,7 @@ struct SignUpViewModel {
             
             if result.isFailure {
                 
-                CavyLifeBandAlertView().showViewTitle(result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
                 return
             }
             
@@ -48,7 +48,7 @@ struct SignUpViewModel {
             
             if msg.code! != WebApiCode.Success.rawValue {
                 
-                CavyLifeBandAlertView().showViewTitle(msg.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: msg.code!)
                 return
             }
             
@@ -108,14 +108,14 @@ struct SignInViewModel {
 
             if result.isFailure {
 
-                CavyLifeBandAlertView().showViewTitle(result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
                 return
             }
 
             let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
 
             if msg.commonMsg?.code != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView().showViewTitle(msg.commonMsg!.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: msg.commonMsg!.code!)
                 return
             }
 
@@ -163,13 +163,13 @@ struct ForgotPasswordViewModel{
         userNetReq.forgotPasswd(para) { (result) in
 
             if result.isFailure {
-                CavyLifeBandAlertView().showViewTitle(result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
                 return
             }
 
             let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
             if msg.code! != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView().showViewTitle(msg.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: msg.code!)
                 return
             }
 
@@ -225,13 +225,13 @@ struct SendSafetyCodeViewModel {
         userNetReq.requestPhoneSecurityCode(para) { (result) in
 
             if result.isFailure {
-                CavyLifeBandAlertView().showViewTitle(result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
                 return
             }
 
             let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
             if msg.code! != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView().showViewTitle(msg.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: msg.code!)
             }
 
             self.succeedCallBack?()
