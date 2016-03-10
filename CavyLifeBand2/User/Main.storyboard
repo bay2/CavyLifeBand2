@@ -322,7 +322,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6U-qo-ihY" customClass="MainPageButton" customModule="CavyLifeBand2" customModuleProvider="target">
                                 <rect key="frame" x="282" y="401" width="36" height="34"/>
                                 <state key="normal" title="注册">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="onClickMainBtn:" destination="Qo9-lx-23e" eventType="touchUpInside" id="Nrh-YT-59q"/>

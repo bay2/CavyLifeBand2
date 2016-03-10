@@ -74,6 +74,9 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         emailSafetyCode.addTapGesture(target: self, action: "refreshEmailSafetyCode")
         
         userNameTextField.becomeFirstResponder()
+        userNameTextField.backgroundColor = UIColor.whiteColor()
+        passwdTextField.backgroundColor = UIColor.whiteColor()
+        safetyCodeTextField.backgroundColor = UIColor.whiteColor()
 
         // Do any additional setup after loading the view.
     }

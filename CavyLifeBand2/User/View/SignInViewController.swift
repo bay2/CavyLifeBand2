@@ -43,6 +43,8 @@ class SignInViewController: AccountManagerBaseViewController {
         setSubViewTitle()
         
         userNameTextField.becomeFirstResponder()
+        userNameTextField.backgroundColor = UIColor.whiteColor()
+        passwdTextField.backgroundColor = UIColor.whiteColor()
         
         
         // Do any additional setup after loading the view.
@@ -108,7 +110,7 @@ class SignInViewController: AccountManagerBaseViewController {
             make.left.equalTo(textFieldView).offset(spacingWidth25)
             make.right.equalTo(textFieldView).offset(-spacingWidth25)
         }
-
+        
     }
     
     /**
