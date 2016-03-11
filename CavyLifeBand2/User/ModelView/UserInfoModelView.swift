@@ -16,6 +16,7 @@ struct UserInfoModelView {
 
     var userInfo: UserInfoModel?
     var viewController: UIViewController? = nil
+    static var shareInterface = UserInfoModelView()
 
     /**
      初始化
@@ -26,37 +27,26 @@ struct UserInfoModelView {
      
      - returns:
      */
-    init(viewController: UIViewController? = nil, userId: String, callback: ((Bool) -> Void)? = nil) {
+    init() {
+
+        self.userInfo = UserInfoModel()
+
+    }
+
+    func queryInfo(viewController: UIViewController? = nil, userId: String, callback: ((Bool) -> Void)? = nil) {
 
         let netPara = [UserNetRequsetKey.UserID.rawValue: userId]
 
-        let userInfoRealm = UserInfoOperate().queryUserInfo(userId)
-        
-        self.userInfo = UserInfoModel()
         self.userInfo!.userId = userId
 
-        if userInfoRealm != nil {
-            
-            self.userInfo!.sex = userInfoRealm!.sex
-            self.userInfo!.height = userInfoRealm!.height
-            self.userInfo!.weight = userInfoRealm!.weight
-            self.userInfo!.birthday = userInfoRealm!.birthday
-            self.userInfo!.avatarUrl = userInfoRealm!.avatarUrl
-            self.userInfo!.address = userInfoRealm!.address
-            self.userInfo!.nickname = userInfoRealm!.nickname
-            self.userInfo!.sleepTime = userInfoRealm!.sleepTime
-            self.userInfo!.stepNum = userInfoRealm!.stepNum
-            
-        }
-
         userNetReq.queryProfile(netPara) { (result) in
-            
+
             if result.isFailure {
 
                 callback?(false)
                 CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
                 return
-                
+
             }
 
             do {
@@ -89,7 +79,7 @@ struct UserInfoModelView {
                 CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: L10n.UserModuleErrorCodeNetError.string)
 
             }
-            
+
         }
 
     }
@@ -99,7 +89,7 @@ struct UserInfoModelView {
      
      - parameter successCallback: 更新成功回调
      */
-    func updateInfo(successCallback: (Void -> Void)? = nil) {
+    func updateInfo(viewController: UIViewController? = nil, userId: String, successCallback: (Void -> Void)? = nil) {
 
         let netPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: self.userInfo!.userId,
         UserNetRequsetKey.Sex.rawValue: "\(self.userInfo!.sex)",

@@ -45,7 +45,7 @@ class ProfileTest: XCTestCase {
         
         var expectation = expectationWithDescription("testQueryProfile succeed")
         
-        userInfoModelView = UserInfoModelView(userId: "56d6ea3bd34635186c60492b") {
+        UserInfoModelView.shareInterface.queryInfo(userId: "56d6ea3bd34635186c60492b") {
             
             XCTAssert($0)
             
@@ -58,13 +58,13 @@ class ProfileTest: XCTestCase {
                 UserNetRequsetKey.Address.rawValue: "浙江-杭州"]
             
             
-            XCTAssert(self.userInfoModelView!.userInfo!.nickname == expectationResult["nickname"], "期望值 = \(expectationResult["nickname"]) , 实际值 = \(self.userInfoModelView!.userInfo!.nickname)")
-            XCTAssert("\(self.userInfoModelView!.userInfo!.sex)" == expectationResult["sex"], "期望值 = \(expectationResult["sex"]) , 实际值 = \(self.userInfoModelView!.userInfo!.sex)")
-            XCTAssert(self.userInfoModelView!.userInfo!.height == expectationResult["height"], "期望值 = \(expectationResult["height"]) , 实际值 = \(self.userInfoModelView!.userInfo!.height)")
-            XCTAssert(self.userInfoModelView!.userInfo!.weight == expectationResult["weight"], "期望值 = \(expectationResult["weight"]) , 实际值 = \(self.userInfoModelView!.userInfo!.weight)")
-            XCTAssert(self.userInfoModelView!.userInfo!.birthday == expectationResult["birthday"], "期望值 = \(expectationResult["birthday"]) , 实际值 = \(self.userInfoModelView!.userInfo!.birthday)")
-            XCTAssert(self.userInfoModelView!.userInfo!.avatarUrl == expectationResult["imgFile"], "期望值 = \(expectationResult["avatarUrl"]) , 实际值 = \(self.userInfoModelView!.userInfo!.avatarUrl)")
-            XCTAssert(self.userInfoModelView!.userInfo!.address == expectationResult["address"], "期望值 = \(expectationResult["address"]) , 实际值 = \(self.userInfoModelView!.userInfo!.address)")
+            XCTAssert(UserInfoModelView.shareInterface.userInfo!.nickname == expectationResult["nickname"], "期望值 = \(expectationResult["nickname"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.nickname)")
+            XCTAssert("\(UserInfoModelView.shareInterface.userInfo!.sex)" == expectationResult["sex"], "期望值 = \(expectationResult["sex"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.sex)")
+            XCTAssert(UserInfoModelView.shareInterface.userInfo!.height == expectationResult["height"], "期望值 = \(expectationResult["height"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.height)")
+            XCTAssert(UserInfoModelView.shareInterface.userInfo!.weight == expectationResult["weight"], "期望值 = \(expectationResult["weight"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.weight)")
+            XCTAssert(UserInfoModelView.shareInterface.userInfo!.birthday == expectationResult["birthday"], "期望值 = \(expectationResult["birthday"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.birthday)")
+            XCTAssert(UserInfoModelView.shareInterface.userInfo!.avatarUrl == expectationResult["imgFile"], "期望值 = \(expectationResult["avatarUrl"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.avatarUrl)")
+            XCTAssert(UserInfoModelView.shareInterface.userInfo!.address == expectationResult["address"], "期望值 = \(expectationResult["address"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.address)")
             
             expectation.fulfill()
             
@@ -72,17 +72,18 @@ class ProfileTest: XCTestCase {
         
         waitForExpectationsWithTimeout(timeout, handler: nil)
         
-        userInfoModelView?.userInfo?.nickname = "bbb"
-        userInfoModelView?.userInfo?.sex = 1
-        userInfoModelView?.userInfo?.height = "170"
-        userInfoModelView?.userInfo?.weight = "52"
-        userInfoModelView?.userInfo?.sleepTime = "7:51"
-        userInfoModelView?.userInfo?.stepNum = 1000
-        userInfoModelView?.userInfo?.avatarUrl = ""
+        
+        UserInfoModelView.shareInterface.userInfo?.nickname = "bbb"
+        UserInfoModelView.shareInterface.userInfo?.sex = 1
+        UserInfoModelView.shareInterface.userInfo?.height = "170"
+        UserInfoModelView.shareInterface.userInfo?.weight = "52"
+        UserInfoModelView.shareInterface.userInfo?.sleepTime = "7:51"
+        UserInfoModelView.shareInterface.userInfo?.stepNum = 1000
+        UserInfoModelView.shareInterface.userInfo?.avatarUrl = ""
         
         expectation = expectationWithDescription("testSetProfile succeed")
         
-        userInfoModelView?.updateInfo() {
+        UserInfoModelView.shareInterface.updateInfo(userId: "56d6ea3bd34635186c60492b") {
             
             expectation.fulfill()
             
