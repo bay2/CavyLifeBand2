@@ -2,7 +2,7 @@
 
 ## 开发环境
 
-### [Homebrew](http://brew.sh/index_zh-cn.html) OS X 不可或缺的套件管理器
+### [Homebrew](http://brew.sh/index_zh-cn.html) (OS X 不可或缺的套件管理器)
 **安装命令:**
 
 ```
@@ -30,7 +30,7 @@ brew install tailor
 tailor --xcode /path/to/demo.xcodeproj/
 ```
 
-### [SwiftGen](https://github.com/AliSoftware/SwiftGen)
+### [SwiftGen](https://github.com/AliSoftware/SwiftGen)(Swift 代码静态扫描工具)
 
 自动生成枚举定义:
 - UIImage
