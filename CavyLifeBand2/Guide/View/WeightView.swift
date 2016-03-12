@@ -17,9 +17,9 @@ class WeightView: UIView {
     var KGLabel = UILabel()
     
     var rotaryView = MHRotaryKnob()
-    var currentValue: CGFloat = 120
-    let minValue: CGFloat = 10
-    let maxValue: CGFloat = 450
+    var currentValue: CGFloat = 60
+    let minValue: CGFloat = 0
+    let maxValue: CGFloat = 180
     
     
     override init(frame: CGRect) {

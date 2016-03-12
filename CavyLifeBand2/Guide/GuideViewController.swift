@@ -53,7 +53,7 @@ class GuideViewController: BaseViewController {
     @IBOutlet weak var guideButton: UIButton!
 
     // 视图风格
-    var viewStyle: GuideViewStyle = .GuideGoal
+    var viewStyle: GuideViewStyle = .GuideGender
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +73,7 @@ class GuideViewController: BaseViewController {
 
         infoLabel.textColor = UIColor(named: .GuideColor66)
         infoLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(boundsWidth * 0.2)
+            make.top.equalTo(self.view).offset(boundsWidth * 0.2 + 11)
         }
         
         middleView.snp_makeConstraints { (make) -> Void in
@@ -81,7 +81,7 @@ class GuideViewController: BaseViewController {
         }
         
         guideButton.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(spacingWidth25 * 34)
+            make.top.equalTo(self.view).offset(boundsWidth * 1.32)
         }
 
     }
@@ -93,11 +93,12 @@ class GuideViewController: BaseViewController {
         
         var guideBgColor = UIColor(named: .GuideColorBlue)
         var titleInfoText = L10n.GuideIntroduce.string
-        var subTitleText = L10n.GuideMine.string
-        var subTitleInfoText = L10n.GuideOpenNoticeInfo.string
-        var addMiddleImage = UIImage(asset: .GuideRightBtn)
         var guideBtnImage = UIImage(asset: .GuideRightBtn)
+        var guideBtnImagePress = UIImage(asset: .GuideRightBtnPressed)
         
+//        var subTitleText = L10n.GuideMine.string
+//        var subTitleInfoText = L10n.GuideOpenNoticeInfo.string
+//        var bottomLabText = ""
         switch viewStyle {
 
         case .GuideGender:
@@ -135,58 +136,46 @@ class GuideViewController: BaseViewController {
             
             updateNavigationItemUI(L10n.GuideSetting.string, rightBtnText: L10n.GuidePassButton.string, isNeedBack: true)
             guideBgColor = UIColor(named: .GuideColorcyanColor)
-            subTitleText = L10n.GuideOpenNotice.string
-            subTitleInfoText = L10n.GuideOpenNoticeInfo.string
-            
+            upDatePictureView(L10n.GuideOpenNotice.string, titleInfo: L10n.GuideOpenNoticeInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: " ")
         case .SettingLocationShare:
             
             updateNavigationItemUI(L10n.GuideSetting.string, rightBtnText: L10n.GuidePassButton.string, isNeedBack: true)
             guideBgColor = UIColor(named: .GuideColorcyanColor)
-            subTitleText = L10n.GuideOpenLocationShare.string
-            subTitleInfoText = L10n.GuideOpenLocationShareInfo.string
+            upDatePictureView(L10n.GuideOpenLocationShare.string, titleInfo: L10n.GuideOpenLocationShareInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: "")
             
         case .BandBluetooth:
             
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
-            subTitleText = L10n.GuideOpenBluetooth.string
-            subTitleInfoText = L10n.GuideOpenBluetoothInfo.string
-            
+            upDatePictureView(L10n.GuideOpenBluetooth.string, titleInfo: L10n.GuideOpenBluetoothInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: "")
         case .BandopenBand:
             
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
-            subTitleText = L10n.GuideOpenCavy.string
-            subTitleInfoText = L10n.GuideOpenCavyInfo.string
-            
+            upDatePictureView(L10n.GuideOpenCavy.string, titleInfo: L10n.GuideOpenCavyInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: L10n.GuideOpenCavySugg.string)
         case .BandLinking:
             
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
-            subTitleText = L10n.GuideLinking.string
-            
+            upDatePictureView(L10n.GuideLinking.string, titleInfo: "", midImage: UIImage(asset: .GuideWeightBg), bottomLab: "")
         case .BandSuccess:
            
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
-            subTitleText = L10n.GuidePairSuccess.string
-            subTitleInfoText = L10n.GuidePairSuccessInfo.string
-            
+            upDatePictureView(L10n.GuidePairSuccess.string, titleInfo: L10n.GuidePairSuccessInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: "")
         case .BandFail:
             
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
-            addMiddleImage = UIImage(asset: .GuideRightBtn)
-            guideBtnImage = UIImage(asset: .GuideRightBtn)
-            subTitleText = L10n.GuidePairFail.string
-            subTitleInfoText = L10n.GuidePairFailInfo.string
-   
+            guideBtnImage = UIImage(asset: .GuigeFlashBtn)
+            guideBtnImagePress = UIImage(asset: .GuigeFlashBtnPressed)
+            upDatePictureView(L10n.GuidePairFail.string, titleInfo: L10n.GuidePairFailInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: "")
         }
         
         self.view.backgroundColor = guideBgColor
         self.infoLabel.text = titleInfoText
         self.guideButton.setImage(guideBtnImage, forState: .Normal)
-        
+        self.guideButton.setImage(guideBtnImagePress, forState: .Highlighted)
     }
     
     /**
@@ -270,7 +259,7 @@ class GuideViewController: BaseViewController {
      */
     func  upDateGenderView(){
                 
-        let genderView = GenderView(frame: CGRectMake(0, 0, spacingWidth25 * 23, spacingWidth25 * 28))
+        let genderView = GenderView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))//spacingWidth25 * 23, spacingWidth25 * 28))
         middleView.addSubview(genderView)
  
     }
@@ -280,7 +269,7 @@ class GuideViewController: BaseViewController {
      */
     func  upDateBirthdayView(){
         
-        let birthView = BirthdayView(frame: CGRectMake(0, 0, spacingWidth25 * 23, spacingWidth25 * 28))
+        let birthView = BirthdayView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
         middleView.addSubview(birthView)
 
     }
@@ -290,7 +279,7 @@ class GuideViewController: BaseViewController {
      */
     func  upDateHeightView(){
         
-        let highView = HightView(frame: CGRectMake(0, 0, spacingWidth25 * 23, spacingWidth25 * 28))
+        let highView = HightView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
         middleView.addSubview(highView)
   
     }
@@ -300,7 +289,7 @@ class GuideViewController: BaseViewController {
      */
     func  upDateWeightView(){
         
-        let weightView = WeightView(frame: CGRectMake(0, 0, spacingWidth25 * 23, spacingWidth25 * 28))
+        let weightView = WeightView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
         middleView.addSubview(weightView)
         weightView.rotaryView.backgroundImage = UIImage(asset: .GuideWeightBg)
     
@@ -319,11 +308,27 @@ class GuideViewController: BaseViewController {
         
         goalView.sliderStepAttribute(5000, recommandValue: 8000, minValue: 0, maxValue: 18000)
         goalView.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 0, minM: 0, maxH: 20, maxM: 00)
-        
         middleView.addSubview(goalView)
+        
         
     }
 
+    /**
+     更新目标视图
+     */
+    func upDatePictureView(titleLab: String, titleInfo: String, midImage: UIImage, bottomLab: String){
+        
+        let pictureView = PictureView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
+        
+        pictureView.titleLab.text = titleLab
+        pictureView.titleInfo.text = titleInfo
+        pictureView.middleImgView = UIImageView(image: midImage)
+        pictureView.bottomLab.text = bottomLab
+                
+        middleView.addSubview(pictureView)
+        
+        
+    }
     
     
     

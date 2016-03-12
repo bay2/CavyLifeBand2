@@ -11,6 +11,10 @@ import UIKit
 class PictureView: UIView {
 
     var titleLab = UILabel()
+    var titleInfo = UILabel()
+    var middleImgView = UIImageView()
+    var bottomLab = UILabel()
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,19 +28,43 @@ class PictureView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func pictureViewLayout(){
+    func pictureViewLayout(){
         
         self.addSubview(titleLab)
+        self.addSubview(titleInfo)
+        self.addSubview(middleImgView)
+        self.addSubview(bottomLab)
         
-        
-        titleLab.text = L10n.GuideSetting.string
         titleLab.font = UIFont.systemFontOfSize(18)
         titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 23, 18))
+            make.size.equalTo(CGSizeMake(boundsWidth * 0.6, 18))
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(spacingWidth25 * 2)
+            make.top.equalTo(self).offset(boundsWidth * 0.1 - 9)
+        }
+        titleInfo.font = UIFont.systemFontOfSize(12)
+        titleInfo.textColor = UIColor(named: .GuideColor99)
+        titleInfo.textAlignment = .Center
+        titleInfo.snp_makeConstraints { (make) -> Void in
+            make.size.equalTo(CGSizeMake(boundsWidth * 0.6, 12))
+            make.centerX.equalTo(self)
+            make.top.equalTo(titleLab).offset(boundsWidth * 0.04 + 12)
+        }
+
+        middleImgView.backgroundColor = UIColor.lightGrayColor()
+        middleImgView.snp_makeConstraints { (make) -> Void in
+            make.size.equalTo(CGSizeMake(boundsWidth * 0.72, boundsWidth * 0.72))
+            make.center.equalTo(self)
+        }
+        
+        bottomLab.font = UIFont.systemFontOfSize(12)
+        bottomLab.textColor = UIColor(named: .GuideColor66)
+        bottomLab.textAlignment = .Center
+        bottomLab.snp_makeConstraints { (make) -> Void in
+            make.size.equalTo(CGSizeMake(boundsWidth * 0.6, 12))
+            make.centerX.equalTo(self)
+            make.top.equalTo(middleImgView).offset(boundsWidth * 0.76)
         }
         
     }

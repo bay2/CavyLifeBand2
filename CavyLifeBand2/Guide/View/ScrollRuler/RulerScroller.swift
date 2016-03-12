@@ -91,8 +91,12 @@ class RulerScroller: UIScrollView {
             // 当前刻度值
             currentValue = "15"
             self.contentSize = CGSizeMake(spacingWidth25 * 23 + CGFloat(lineSpace * (dayValue - 1)), 60)
-            self.contentOffset = CGPointMake(CGFloat(lineSpace * 14), 0)
 
+            // 添加动画 防止每次年重置月份时候突兀
+            UIView.animateWithDuration(0.2) { () -> Void in
+                self.contentOffset = CGPointMake(CGFloat(self.lineSpace * 14), 0)
+                
+            }
             /// 循环添加刻度
             for var i = 1 ; i <= dayValue; i++ {
                 
