@@ -166,7 +166,20 @@ class SignInViewController: AccountManagerBaseViewController {
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
 
-        let userSignIn = SignInViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!, callBack: nil)
+        let userSignIn = SignInViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!) {
+            UserInfoModelView.shareInterface.queryInfo(userId: $0) {
+                
+                if $0 == true {
+                    
+                } else {
+                    let guideVC = StoryboardScene.Guide.instantiateGuideView()
+                    
+                    self.presentVC(UINavigationController(rootViewController: guideVC))
+                }
+            }
+            
+        }
+        
         userSignIn.userSignIn()
 
     }

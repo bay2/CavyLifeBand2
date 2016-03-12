@@ -17,7 +17,7 @@ class WeightView: UIView {
     var KGLabel = UILabel()
     
     var rotaryView = MHRotaryKnob()
-    var currentValue: CGFloat = 60
+//    var currentValue: CGFloat = 60
     let minValue: CGFloat = 0
     let maxValue: CGFloat = 180
     
@@ -68,8 +68,8 @@ class WeightView: UIView {
         rotaryView.minimumValue = Float(minValue)
         rotaryView.maximumValue = Float(maxValue)
         rotaryView.interactionStyle = MHRotaryKnobInteractionStyleRotating
-        rotaryView.defaultValue = Float(currentValue)
-        rotaryView.value = Float(currentValue)
+        rotaryView.defaultValue = 60
+        rotaryView.value = 60
         rotaryView.backgroundImage = UIImage(asset: .GuideWeightBg)
         rotaryView.setKnobImage(UIImage(asset: .GuideWeightNiddle), forState: .Normal)
         rotaryView.knobImageCenter = CGPointMake(boundsWidth * 0.36, boundsWidth * 0.36)
@@ -103,8 +103,7 @@ class WeightView: UIView {
     func rotaryKnobDidChange(){
 
         valueLabel.text = String(format: "%.1f", rotaryView.value)
-        
-        
+
     }
     
     /*

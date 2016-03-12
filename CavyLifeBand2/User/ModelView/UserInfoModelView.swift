@@ -89,7 +89,11 @@ struct UserInfoModelView {
      
      - parameter successCallback: 更新成功回调
      */
-    func updateInfo(viewController: UIViewController? = nil, userId: String, successCallback: (Void -> Void)? = nil) {
+    func updateInfo(viewController: UIViewController? = nil, userId: String? = nil, successCallback: (Void -> Void)? = nil) {
+        
+        if userId != nil {
+            self.userInfo!.userId = userId!
+        }
 
         let netPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: self.userInfo!.userId,
         UserNetRequsetKey.Sex.rawValue: "\(self.userInfo!.sex)",

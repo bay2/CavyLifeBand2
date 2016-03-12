@@ -12,6 +12,18 @@ import SnapKit
 
 class GuideViewController: BaseViewController {
     
+    var birthView: BirthdayView?
+    var highView: HightView?
+    var weightView: WeightView?
+    var goalView: GoalView?
+    
+    enum JumpMode {
+        
+        case LoginMode
+        case SignInMode
+        
+    }
+    
     /**
      style标签
      
@@ -54,6 +66,8 @@ class GuideViewController: BaseViewController {
 
     // 视图风格
     var viewStyle: GuideViewStyle = .GuideGender
+    
+    var jumpMode: JumpMode = .LoginMode
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -190,8 +204,18 @@ class GuideViewController: BaseViewController {
             self.pushVC(nextView)
             
         case .SettingLocationShare:
-            nextView.viewStyle = .BandBluetooth
-            self.pushVC(nextView)
+            
+            if self.jumpMode == .LoginMode {
+                
+                nextView.viewStyle = .BandBluetooth
+                self.pushVC(nextView)
+                
+            } else {
+                
+                let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
+                self.pushVC(accountVC)
+                
+            }
             
         default:
             print(__FUNCTION__)
@@ -204,7 +228,20 @@ class GuideViewController: BaseViewController {
      */
     @IBAction func guideBtnClick(sender: AnyObject) {
         
+        if jumpMode == .LoginMode {
+            loginJump()
+        } else {
+            signInJump()
+        }
+        
+        userInfoSetting()
+        
+    }
+    
+    func loginJump() {
+        
         let nextView = StoryboardScene.Guide.instantiateGuideView()
+        nextView.jumpMode = self.jumpMode
         
         switch viewStyle {
             
@@ -212,17 +249,25 @@ class GuideViewController: BaseViewController {
             nextView.viewStyle = .GuideBirthday
             self.pushVC(nextView)
         case .GuideBirthday:
+            
             nextView.viewStyle = .GuideHeight
             self.pushVC(nextView)
+            
         case .GuideHeight:
+            
             nextView.viewStyle = .GuideWeight
             self.pushVC(nextView)
+            
         case .GuideWeight:
+            
             nextView.viewStyle = .GuideGoal
             self.pushVC(nextView)
+            
         case .GuideGoal:
+            
             nextView.viewStyle = .SettingNotice
             self.pushVC(nextView)
+            
         case .SettingNotice:
             nextView.viewStyle = .SettingLocationShare
             self.pushVC(nextView)
@@ -239,17 +284,102 @@ class GuideViewController: BaseViewController {
             nextView.viewStyle = .BandSuccess
             self.pushVC(nextView)
         case .BandSuccess:
-            nextView.viewStyle = .BandFail
+            UserInfoModelView.shareInterface.updateInfo()
+        case .BandFail:
+            print(__FUNCTION__)
+            break
+        }
+    }
+
+    
+    func signInJump() {
+        
+        let nextView = StoryboardScene.Guide.instantiateGuideView()
+        nextView.jumpMode = self.jumpMode
+        
+        switch viewStyle {
+            
+        case .GuideGender:
+            nextView.viewStyle = .GuideBirthday
+            self.pushVC(nextView)
+        case .GuideBirthday:
+            
+            nextView.viewStyle = .GuideHeight
+            self.pushVC(nextView)
+            
+        case .GuideHeight:
+            
+            nextView.viewStyle = .GuideWeight
+            self.pushVC(nextView)
+            
+        case .GuideWeight:
+            
+            nextView.viewStyle = .GuideGoal
+            self.pushVC(nextView)
+            
+        case .GuideGoal:
+            
+            nextView.viewStyle = .SettingNotice
+            self.pushVC(nextView)
+            
+        case .SettingNotice:
+            nextView.viewStyle = .SettingLocationShare
+            self.pushVC(nextView)
+        case .SettingLocationShare:
+            let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
+            pushVC(accountVC)
+            
+        case .BandBluetooth:
+            nextView.viewStyle = .BandopenBand
+            self.pushVC(nextView)
+        case .BandopenBand:
+            nextView.viewStyle = .BandLinking
+            self.pushVC(nextView)
+        case .BandLinking:
+            nextView.viewStyle = .BandSuccess
+            self.pushVC(nextView)
+        case .BandSuccess:
+            nextView.viewStyle = .GuideGender
             self.pushVC(nextView)
         case .BandFail:
             print(__FUNCTION__)
             break
         }
+    }
+    
+    
+    func userInfoSetting() {
         
+        switch viewStyle {
+            
+        case .GuideBirthday:
+            
+            let birthString = "\(birthView!.yymmRuler.nowYear + 1901)-\(birthView!.yymmRuler.nowMonth)-\(birthView!.dayRuler.nowDay)"
+            UserInfoModelView.shareInterface.userInfo?.birthday = birthString
+            
+        case .GuideHeight:
+            
+            let heightString = "\(highView!.heightRuler.nowHeight)"
+            UserInfoModelView.shareInterface.userInfo?.height = heightString
+            
+        case .GuideWeight:
+            let weightString = weightView?.valueLabel.text
+            UserInfoModelView.shareInterface.userInfo?.weight = weightString!
+            
+        case .GuideGoal:
+            
+            let goalStepNum = goalView!.stepCurrentValue
+            let sleepHour = goalView!.hhCurrentValue
+            let sleepMinutes = goalView!.mmCurrentValue
+            UserInfoModelView.shareInterface.userInfo?.stepNum = goalStepNum
+            UserInfoModelView.shareInterface.userInfo?.sleepTime = "\(sleepHour):\(sleepMinutes)"
 
-        
+        default:
+            break
+        }
         
     }
+    
     
     /**
      更新性别视图
@@ -266,8 +396,8 @@ class GuideViewController: BaseViewController {
      */
     func  upDateBirthdayView(){
         
-        let birthView = BirthdayView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
-        middleView.addSubview(birthView)
+        birthView = BirthdayView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
+        middleView.addSubview(birthView!)
 
     }
     
@@ -276,8 +406,8 @@ class GuideViewController: BaseViewController {
      */
     func  upDateHeightView(){
         
-        let highView = HightView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
-        middleView.addSubview(highView)
+        highView = HightView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
+        middleView.addSubview(highView!)
   
     }
     
@@ -286,9 +416,9 @@ class GuideViewController: BaseViewController {
      */
     func  upDateWeightView(){
         
-        let weightView = WeightView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
-        middleView.addSubview(weightView)
-        weightView.rotaryView.backgroundImage = UIImage(asset: .GuideWeightBg)
+        weightView = WeightView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
+        middleView.addSubview(weightView!)
+        weightView!.rotaryView.backgroundImage = UIImage(asset: .GuideWeightBg)
     
     }
     
@@ -297,15 +427,15 @@ class GuideViewController: BaseViewController {
      */
     func upDateGoalView() {
         
-        let goalView  = NSBundle.mainBundle().loadNibNamed("GoalView", owner: nil, options: nil).first as! GoalView
+        goalView = NSBundle.mainBundle().loadNibNamed("GoalView", owner: nil, options: nil).first as? GoalView
         
-        goalView.size = middleView.size
+        goalView!.size = middleView.size
         
-        goalView.goalViewLayout()
+        goalView!.goalViewLayout()
         
-        goalView.sliderStepAttribute(5000, recommandValue: 8000, minValue: 0, maxValue: 18000)
-        goalView.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 0, minM: 0, maxH: 20, maxM: 00)
-        middleView.addSubview(goalView)
+        goalView!.sliderStepAttribute(5000, recommandValue: 8000, minValue: 0, maxValue: 18000)
+        goalView!.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 0, minM: 0, maxH: 20, maxM: 00)
+        middleView.addSubview(goalView!)
         
         
     }

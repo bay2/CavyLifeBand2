@@ -56,7 +56,9 @@ struct SignUpViewModel {
             self.succeedCallBack?()
             Log.info("Sign up success")
             
-            let signInVm = SignInViewModel(viewController: self.viewController, userName: self.userName, passwd: self.passwd, callBack: nil)
+            let signInVm = SignInViewModel(viewController: self.viewController, userName: self.userName, passwd: self.passwd) {
+                UserInfoModelView.shareInterface.updateInfo(userId: $0)
+            }
             signInVm.userSignIn()
         }
     }
@@ -88,13 +90,14 @@ struct SignInViewModel {
     var userName: String
     var passwd: String
     var viewController: UIViewController
-    var succeedCallBack: (Void -> Void)?
+    var succeedCallBack: (String -> Void)?
 
-    init(viewController: UIViewController, userName: String, passwd: String, callBack: (Void -> Void)? = nil) {
+    init(viewController: UIViewController, userName: String, passwd: String, callBack: (String -> Void)? = nil) {
 
         self.userName = userName
         self.passwd = passwd
         self.viewController = viewController
+        self.succeedCallBack = callBack
     }
 
     /**
@@ -125,7 +128,7 @@ struct SignInViewModel {
             defaults["passwd"] = self.passwd
             defaults.synchronize()
 
-            self.succeedCallBack?()
+            self.succeedCallBack?(msg.userId!)
             Log.info("Sign in succeess")
 
         }

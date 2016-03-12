@@ -64,7 +64,7 @@ class BirthdayView: UIView, RulerViewDelegate {
         // 获取当前时间
         let dateFormatter = NSDateFormatter() // = NSDate()
         dateFormatter.dateFormat = "yyyy/MM"
-        let  dateString = dateFormatter.stringFromDate(NSDate())
+        let dateString = dateFormatter.stringFromDate(NSDate())
         var dates = dateString.componentsSeparatedByString("/")
         let currentYear = dates[0].toInt()
         let currentMonth = dates[1].toInt()

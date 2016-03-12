@@ -136,13 +136,11 @@ class PageViewController: UIViewController {
      - parameter sender:
      */
     @IBAction func onClickSignUp(sender: AnyObject) {
-        
 
-        let signUpVC = StoryboardScene.Main.instantiateAccountManagerView()
-
-        signUpVC.viewStyle = .PhoneNumSignUp
-        
-        presentVC(UINavigationController(rootViewController: signUpVC))
+        let guideVC = StoryboardScene.Guide.instantiateGuideView()
+        guideVC.viewStyle = .BandBluetooth
+        guideVC.jumpMode = .SignInMode
+        presentVC(UINavigationController(rootViewController: guideVC))
 
     }
 
