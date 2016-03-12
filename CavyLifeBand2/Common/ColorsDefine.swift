@@ -16,6 +16,9 @@ extension UIColor {
 extension UIColor {
   enum Name {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 20% <br/> (0x00000033)
+    case GuideColor33
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 40% <br/> (0x00000066)
     case GuideColor66
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
@@ -75,6 +78,7 @@ extension UIColor {
 
     var rgbaValue: UInt32! {
       switch self {
+      case .GuideColor33: return 0x00000033
       case .GuideColor66: return 0x00000066
       case .GuideColor99: return 0x00000099
       case .GuideColorBlue: return 0x1dbcffff

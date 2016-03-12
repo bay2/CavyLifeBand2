@@ -36,6 +36,12 @@
 "Guide.Birthday" = "生日";
 "Guide.Height" = "身高";
 "Guide.Weight" = "体重";
+"Guide.Goal" = "目标";
+"Guide.GoalStep" = "运动步数";
+"Guide.GoalSleep" = "睡眠";
+"Guide.Step" = "步";
+"Guide.Average" = "平均";
+"Guide.Recommend" = "推荐";
 "Guide.Introduce" = "可以更好地帮助健康统计哦";
 
 "Guide.Setting" = "设置";

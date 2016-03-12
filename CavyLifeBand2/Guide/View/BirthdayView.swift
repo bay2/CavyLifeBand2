@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BirthdayView: UIView, RulerViewDelegate{
+class BirthdayView: UIView, RulerViewDelegate {
 
     
     var titleLab = UILabel()
@@ -114,12 +114,12 @@ class BirthdayView: UIView, RulerViewDelegate{
     // 计算当前月份的天数
     func daysCount(year: Int, month: Int) -> Int{
         
-        var daysArray = [31,28,31,30,31,30,31,31,30,31,30,31]
+        var daysArray = [0,31,28,31,30,31,30,31,31,30,31,30,31]
         
         if (year % 400 == 0 || year % 100 != 0 && year % 4 == 0 ){
-            daysArray[1] += 1
+            daysArray[2] += 1
         }
-        return daysArray[month - 1]
+        return daysArray[month]
     }
     
     /*

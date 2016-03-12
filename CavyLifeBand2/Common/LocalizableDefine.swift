@@ -49,6 +49,18 @@ enum L10n {
   case GuideHeight
   /// 体重
   case GuideWeight
+  /// 目标
+  case GuideGoal
+  /// 运动步数
+  case GuideGoalStep
+  /// 睡眠
+  case GuideGoalSleep
+  /// 步
+  case GuideStep
+  /// 平均
+  case GuideAverage
+  /// 推荐
+  case GuideRecommend
   /// 可以更好地帮助健康统计哦
   case GuideIntroduce
   /// 设置
@@ -146,6 +158,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Guide.Height")
       case .GuideWeight:
         return L10n.tr("Guide.Weight")
+      case .GuideGoal:
+        return L10n.tr("Guide.Goal")
+      case .GuideGoalStep:
+        return L10n.tr("Guide.GoalStep")
+      case .GuideGoalSleep:
+        return L10n.tr("Guide.GoalSleep")
+      case .GuideStep:
+        return L10n.tr("Guide.Step")
+      case .GuideAverage:
+        return L10n.tr("Guide.Average")
+      case .GuideRecommend:
+        return L10n.tr("Guide.Recommend")
       case .GuideIntroduce:
         return L10n.tr("Guide.Introduce")
       case .GuideSetting:

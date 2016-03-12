@@ -33,6 +33,7 @@ class GuideViewController: BaseViewController {
         case GuideBirthday
         case GuideHeight
         case GuideWeight
+        case GuideGoal
         case SettingNotice
         case SettingLocationShare
         case BandBluetooth
@@ -52,7 +53,7 @@ class GuideViewController: BaseViewController {
     @IBOutlet weak var guideButton: UIButton!
 
     // 视图风格
-    var viewStyle: GuideViewStyle = .GuideBirthday
+    var viewStyle: GuideViewStyle = .GuideGoal
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,11 +73,11 @@ class GuideViewController: BaseViewController {
 
         infoLabel.textColor = UIColor(named: .GuideColor66)
         infoLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(spacingWidth25 * 6)
+            make.top.equalTo(self.view).offset(boundsWidth * 0.2)
         }
         
         middleView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(spacingWidth25 * 9)
+            make.top.equalTo(self.view).offset(boundsWidth * 0.32)
         }
         
         guideButton.snp_makeConstraints { (make) -> Void in
@@ -122,6 +123,12 @@ class GuideViewController: BaseViewController {
             infoLabel.hidden = false
             updateNavigationItemUI(L10n.GuideMyInfo.string)
             upDateWeightView()
+            titleInfoText = L10n.GuideIntroduce.string
+            
+        case .GuideGoal:
+            infoLabel.hidden = false
+            updateNavigationItemUI(L10n.GuideMyInfo.string)
+            upDateGoalView()
             titleInfoText = L10n.GuideIntroduce.string
             
         case .SettingNotice:
@@ -225,6 +232,9 @@ class GuideViewController: BaseViewController {
             nextView.viewStyle = .GuideWeight
             self.pushVC(nextView)
         case .GuideWeight:
+            nextView.viewStyle = .GuideGoal
+            self.pushVC(nextView)
+        case .GuideGoal:
             nextView.viewStyle = .SettingNotice
             self.pushVC(nextView)
         case .SettingNotice:
@@ -292,11 +302,28 @@ class GuideViewController: BaseViewController {
         
         let weightView = WeightView(frame: CGRectMake(0, 0, spacingWidth25 * 23, spacingWidth25 * 28))
         middleView.addSubview(weightView)
+        weightView.rotaryView.backgroundImage = UIImage(asset: .GuideWeightBg)
     
     }
     
-    
-    
+    /**
+     更新目标视图
+     */
+    func upDateGoalView() {
+        
+        let goalView  = NSBundle.mainBundle().loadNibNamed("GoalView", owner: nil, options: nil).first as! GoalView
+        
+        goalView.size = middleView.size
+        
+        goalView.goalViewLayout()
+        
+        goalView.sliderStepAttribute(5000, recommandValue: 8000, minValue: 0, maxValue: 18000)
+        goalView.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 0, minM: 0, maxH: 20, maxM: 00)
+        
+        middleView.addSubview(goalView)
+        
+    }
+
     
     
     

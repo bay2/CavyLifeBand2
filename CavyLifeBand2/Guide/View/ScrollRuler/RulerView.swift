@@ -8,16 +8,18 @@
 
 import UIKit
 
-protocol RulerViewDelegate: NSObjectProtocol
+@objc protocol RulerViewDelegate: NSObjectProtocol
 {
-    func changeRulerValue(scrollRuler: RulerScroller)
-    func changeDayRulerValue(scrollRuler: RulerScroller)
-    func changeCountStatusForDayRuler(scrollRuler: RulerScroller)
+    
+    optional func changeRulerValue(scrollRuler: RulerScroller)
+    optional func changeDayRulerValue(scrollRuler: RulerScroller)
+    optional func changeCountStatusForDayRuler(scrollRuler: RulerScroller)
+    optional func changeHeightRulerValue(scrollRuler: RulerScroller)
 }
 
 class RulerView: UIView , UIScrollViewDelegate {
     
-    weak var rulerDelegate = RulerViewDelegate?()
+    var rulerDelegate: RulerViewDelegate?
     
     var rulerScroll = RulerScroller()
     var columeFlag = UIImageView()
@@ -25,6 +27,7 @@ class RulerView: UIView , UIScrollViewDelegate {
     var nowYear = Int()
     var nowMonth = Int()
     var nowDay = Int()
+    var nowHeight = CGFloat() // 当前身高 滑动跟随改变
     
     /**
      初始化生日年月标尺
@@ -65,9 +68,28 @@ class RulerView: UIView , UIScrollViewDelegate {
         rulerScroll.rulerStyle = style
         rulerScroll.updateRulerViewStyle()
     }
+    
+     /**
+     初始化身高标尺
+     
+     - parameter lineSpace: 间隔长度
+     - parameter lineCount: 间隔数
+     - parameter style:     格尺style
+     */
+    func initHeightRuler(lineSpace: Int, lineCount: Int, style : RulerScroller.RulerStyle){
+        
+        addHeightRulerViewLayout()
+        
+        rulerScroll.backgroundColor = UIColor.whiteColor()
+        rulerScroll.delegate = self
+        rulerScroll.lineSpace = lineSpace
+        rulerScroll.lineCount = lineCount
+        rulerScroll.rulerStyle = style
+        rulerScroll.updateRulerViewStyle()
+    }
         
     /**
-     视图布局 + 添加中间标志
+     添加生日布局 + 中间标志
      */
     func addRulerViewLayout(){
 
@@ -88,29 +110,64 @@ class RulerView: UIView , UIScrollViewDelegate {
         }
 
     }
+    
+    /**
+     添加身高布局 + 中间标志
+     */
+    func addHeightRulerViewLayout(){
+        self.addSubview(rulerScroll)
+        rulerScroll.snp_makeConstraints { (make) -> Void in
+            make.top.bottom.left.right.equalTo(self)
+        }
+        
+        /**
+        添加中间标志
+        */
+        self.addSubview(columeFlag)
+        columeFlag.backgroundColor = UIColor.cyanColor()
+        columeFlag.snp_makeConstraints { (make) -> Void in
+            make.size.equalTo(CGSizeMake(60, 3))
+            make.centerY.equalTo(self)
+            make.left.equalTo(self)
+        }
 
+    }
+    
+    //MARK: --- UIScrollViewDelegate 
+    
     // 滑动触发
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        /// 转换成RulerScroll
         let sc =  scrollView as! RulerScroller
         
         if sc.rulerStyle == .yymmRuler {
             
             // 所有格子数
-            let allCount = sc.yearValue * sc.lineCount + sc.monthValue - 1
+            let allCount = (sc.yearValue - 1901) * sc.lineCount + sc.monthValue - 1
+            
             // 计算起始位置
-            let beginSetX = CGFloat((sc.yearValue * sc.lineCount + sc.monthValue - 1) * sc.lineSpace)
+            let beginSetX = CGFloat(allCount * sc.lineSpace)
+
             // 移动的位置
             let endSetX = scrollView.contentOffset.x
+
             let moveCellInt = Int((endSetX - beginSetX) / CGFloat(sc.lineSpace))
-//            print("moveCell *************** \(moveCellInt)")
+            
+            // 限制范围 防止两边数值溢出变化
+            if moveCellInt > 0{
+                return
+            }
+            if moveCellInt < (0 - allCount) {
+                return
+            }
             
             nowYear = (allCount + moveCellInt) / sc.lineCount
             nowMonth = (allCount + moveCellInt) - nowYear * sc.lineCount + 1
-            
-            sc.currentValue = "\(nowYear).\(nowMonth)"
+
+            sc.currentValue = "\(nowYear + 1901).\(nowMonth)"
             
             // 代理更新数据
-            rulerDelegate?.changeRulerValue(sc)
+            rulerDelegate?.changeRulerValue!(sc)
             
         }else if sc.rulerStyle == .ddRuler{
             
@@ -122,9 +179,44 @@ class RulerView: UIView , UIScrollViewDelegate {
             let moveCellInt = Int((endSetX - beginSetX) / CGFloat(sc.lineSpace))
             
             nowDay = 15 + moveCellInt
+            
+            // 限制范围 防止两边数值溢出变化
+            if nowDay > sc.dayValue {
+                return
+            }
+            
+            if nowDay < 1{
+                return
+            }
+            
             sc.currentValue = "\(nowDay)"
-            rulerDelegate?.changeDayRulerValue(sc)
+            rulerDelegate?.changeDayRulerValue!(sc)
+ 
+        }else if sc.rulerStyle == .hhRuler{
+            // 计算起始位置
+    
+            let allCount = (240 - 30) * sc.lineCount
+            
+            let beginSetY = CGFloat(allCount * sc.lineSpace)
+            
+            // 移动的位置
+            let endSetY = scrollView.contentOffset.y
 
+            let moveCellInt = Int((endSetY - beginSetY) / CGFloat(sc.lineSpace))
+            
+            nowHeight = 240 + CGFloat(moveCellInt) * 0.1
+            
+            // 限制范围 防止两边数值溢出变化
+            if nowHeight > 240 {
+                return
+            }
+            
+            if nowHeight < 30{
+                return
+            }
+            
+            sc.currentValue = "\(nowHeight)"
+            rulerDelegate?.changeHeightRulerValue!(sc)
         }
     }
     
@@ -142,7 +234,7 @@ class RulerView: UIView , UIScrollViewDelegate {
                 
             }
             // 改变当前月份的天数
-            rulerDelegate?.changeCountStatusForDayRuler(sc)
+            rulerDelegate?.changeCountStatusForDayRuler!(sc)
             
             
         }else if sc.rulerStyle == .ddRuler{
@@ -151,6 +243,12 @@ class RulerView: UIView , UIScrollViewDelegate {
                 
                 sc.contentOffset = CGPointMake(CGFloat((self.nowDay - 1) * sc.lineSpace), 0)
                 
+            }
+        }else if sc.rulerStyle == .hhRuler{
+            
+            UIView.animateWithDuration(0.2) { () -> Void in
+                
+                sc.contentOffset = CGPointMake(0, (self.nowHeight - 30) * CGFloat(sc.lineCount * sc.lineSpace))
             }
         }
     }
@@ -170,7 +268,7 @@ class RulerView: UIView , UIScrollViewDelegate {
             }
             
             // 改变当前月份的天数
-            rulerDelegate?.changeCountStatusForDayRuler(sc)
+            rulerDelegate?.changeCountStatusForDayRuler!(sc)
             
             
         }else if sc.rulerStyle == .ddRuler{
@@ -180,10 +278,14 @@ class RulerView: UIView , UIScrollViewDelegate {
                 
             }
             
+        }else if sc.rulerStyle == .hhRuler{
+            
+            UIView.animateWithDuration(0.2) { () -> Void in
+                
+                sc.contentOffset = CGPointMake(0, (self.nowHeight - 30) * CGFloat(sc.lineCount * sc.lineSpace))
+
+            }
         }
         
     }
-    
-    
-
 }

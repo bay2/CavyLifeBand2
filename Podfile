@@ -14,6 +14,8 @@ pod 'KSCrash'
 pod 'LLSimpleCamera'
 pod 'CryptoSwift'
 pod 'KeychainAccess'
+pod 'MHRotaryKnob'
+
 
 target :CavyLifeBand2Tests, :exclusive => true do
     pod 'OHHTTPStubs'

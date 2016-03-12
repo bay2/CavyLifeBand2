@@ -66,6 +66,7 @@ PODS:
     - KSCrash/Recording
   - LLSimpleCamera (4.2.0)
   - Log (0.1)
+  - MHRotaryKnob (1.1.0)
   - MJRefresh (3.1.0)
   - OHHTTPStubs (4.7.1):
     - OHHTTPStubs/Default (= 4.7.1)
@@ -98,6 +99,7 @@ DEPENDENCIES:
   - KSCrash
   - LLSimpleCamera
   - Log
+  - MHRotaryKnob
   - MJRefresh
   - OHHTTPStubs
   - OHHTTPStubs/Swift
@@ -115,6 +117,7 @@ SPEC CHECKSUMS:
   KSCrash: 0ce2e01085d4c4e4dc915ab4adf01d7628069570
   LLSimpleCamera: ed7813ce4827ff3e34c6af159c99b5b56e54d1c6
   Log: 8de10d912b9cd4fe1abba749d0762be8ad802de7
+  MHRotaryKnob: 2485471b3676710e50532a6d42a65097b654f4a3
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
