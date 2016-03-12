@@ -71,7 +71,7 @@ class HightView: UIView, RulerViewDelegate {
             make.left.equalTo(self).offset(spacingWidth25 * 17)
         }
         heightRuler.rulerDelegate = self
-        heightRuler.initHeightRuler(13, lineCount: 10, style: .hhRuler)
+        heightRuler.initHeightRuler(13, lineCount: 10, style: .HeightRuler)
         heightLabel.text = heightRuler.rulerScroll.currentValue
     }
     

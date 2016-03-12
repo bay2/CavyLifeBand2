@@ -52,7 +52,7 @@ class PictureView: UIView {
             make.top.equalTo(titleLab).offset(boundsWidth * 0.04 + 12)
         }
 
-        middleImgView.backgroundColor = UIColor.lightGrayColor()
+        middleImgView.backgroundColor = UIColor.whiteColor()
         middleImgView.snp_makeConstraints { (make) -> Void in
             make.size.equalTo(CGSizeMake(boundsWidth * 0.72, boundsWidth * 0.72))
             make.center.equalTo(self)

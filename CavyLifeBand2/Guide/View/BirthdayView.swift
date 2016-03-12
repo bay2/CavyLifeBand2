@@ -69,7 +69,7 @@ class BirthdayView: UIView, RulerViewDelegate {
         let currentYear = dates[0].toInt()
         let currentMonth = dates[1].toInt()
         
-        yymmRuler.initYearMonthRuler(currentYear!, monthValue: currentMonth!, lineSpace: 13, lineCount: 12, style: .yymmRuler)
+        yymmRuler.initYearMonthRuler(currentYear!, monthValue: currentMonth!, lineSpace: 13, lineCount: 12, style: .YearMonthRuler)
         yyMMLabel.text = yymmRuler.rulerScroll.currentValue
         
         dayLabel.font = UIFont.systemFontOfSize(45)
@@ -87,7 +87,7 @@ class BirthdayView: UIView, RulerViewDelegate {
             make.top.equalTo(dayLabel).offset(spacingWidth25 + 45)
         }
         dayRuler.rulerDelegate = self
-        dayRuler.initDayRuler(31, lineSpace: 26, lineCount: 5, style: .ddRuler)
+        dayRuler.initDayRuler(31, lineSpace: 26, lineCount: 5, style: .DayRuler)
         dayLabel.text = dayRuler.rulerScroll.currentValue
         
     }
@@ -109,17 +109,23 @@ class BirthdayView: UIView, RulerViewDelegate {
         // 通过年月日来判断 下面刻度尺的日期天数
         let days = daysCount(yymmRuler.nowYear, month: yymmRuler.nowMonth)
         
-        dayRuler.initDayRuler(days, lineSpace: 26, lineCount: 5, style: .ddRuler)
+        dayRuler.initDayRuler(days, lineSpace: 26, lineCount: 5, style: .DayRuler)
+        
     }
+    
     // 计算当前月份的天数
-    func daysCount(year: Int, month: Int) -> Int{
+    func daysCount(year: Int, month: Int) -> Int {
         
-        var daysArray = [0,31,28,31,30,31,30,31,31,30,31,30,31]
+        var daysArray = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         
-        if (year % 400 == 0 || year % 100 != 0 && year % 4 == 0 ){
+        if year % 400 == 0 || year % 100 != 0 && year % 4 == 0 {
+            
             daysArray[2] += 1
+            
         }
+        
         return daysArray[month]
+        
     }
     
     /*

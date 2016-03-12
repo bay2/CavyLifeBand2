@@ -17,7 +17,7 @@ import UIKit
     optional func changeHeightRulerValue(scrollRuler: RulerScroller)
 }
 
-class RulerView: UIView , UIScrollViewDelegate {
+class RulerView: UIView, UIScrollViewDelegate {
     
     var rulerDelegate: RulerViewDelegate?
     
@@ -36,7 +36,7 @@ class RulerView: UIView , UIScrollViewDelegate {
      - parameter monthValue: 月份最大值
      - parameter style:      标尺的风格
      */
-    func initYearMonthRuler(yearValue:Int, monthValue: Int, lineSpace: Int, lineCount: Int, style : RulerScroller.RulerStyle){
+    func initYearMonthRuler(yearValue: Int, monthValue: Int, lineSpace: Int, lineCount: Int, style: RulerScroller.RulerStyle) {
 
         addRulerViewLayout()
         
@@ -56,7 +56,7 @@ class RulerView: UIView , UIScrollViewDelegate {
      - parameter dayValue: 日的最大值
      - parameter style:    标尺风格
      */
-    func initDayRuler(dayValue: Int, lineSpace: Int, lineCount: Int, style : RulerScroller.RulerStyle){
+    func initDayRuler(dayValue: Int, lineSpace: Int, lineCount: Int, style: RulerScroller.RulerStyle) {
         
         addRulerViewLayout()
         
@@ -76,7 +76,7 @@ class RulerView: UIView , UIScrollViewDelegate {
      - parameter lineCount: 间隔数
      - parameter style:     格尺style
      */
-    func initHeightRuler(lineSpace: Int, lineCount: Int, style : RulerScroller.RulerStyle){
+    func initHeightRuler(lineSpace: Int, lineCount: Int, style: RulerScroller.RulerStyle) {
         
         addHeightRulerViewLayout()
         
@@ -102,7 +102,7 @@ class RulerView: UIView , UIScrollViewDelegate {
         添加中间标志
         */
         self.addSubview(columeFlag)
-        columeFlag.backgroundColor = UIColor.cyanColor()
+        columeFlag.image = UIImage(asset: .GuideFlagV)
         columeFlag.snp_makeConstraints { (make) -> Void in
             make.size.equalTo(CGSizeMake(3, 60))
             make.centerX.equalTo(self)
@@ -124,7 +124,7 @@ class RulerView: UIView , UIScrollViewDelegate {
         添加中间标志
         */
         self.addSubview(columeFlag)
-        columeFlag.backgroundColor = UIColor.cyanColor()
+        columeFlag.image = UIImage(asset: .GuideFlagH)
         columeFlag.snp_makeConstraints { (make) -> Void in
             make.size.equalTo(CGSizeMake(60, 3))
             make.centerY.equalTo(self)
@@ -140,7 +140,7 @@ class RulerView: UIView , UIScrollViewDelegate {
         /// 转换成RulerScroll
         let sc =  scrollView as! RulerScroller
         
-        if sc.rulerStyle == .yymmRuler {
+        if sc.rulerStyle == .YearMonthRuler {
             
             // 所有格子数
             let allCount = (sc.yearValue - 1901) * sc.lineCount + sc.monthValue - 1
@@ -169,7 +169,7 @@ class RulerView: UIView , UIScrollViewDelegate {
             // 代理更新数据
             rulerDelegate?.changeRulerValue!(sc)
             
-        }else if sc.rulerStyle == .ddRuler{
+        }else if sc.rulerStyle == .DayRuler{
             
             // 计算起始位置
             let beginSetX = CGFloat(sc.lineSpace * 14)
@@ -192,7 +192,7 @@ class RulerView: UIView , UIScrollViewDelegate {
             sc.currentValue = "\(nowDay)"
             rulerDelegate?.changeDayRulerValue!(sc)
  
-        }else if sc.rulerStyle == .hhRuler{
+        }else if sc.rulerStyle == .HeightRuler{
             // 计算起始位置
     
             let allCount = (240 - 30) * sc.lineCount
@@ -225,7 +225,7 @@ class RulerView: UIView , UIScrollViewDelegate {
         
         let sc =  scrollView as! RulerScroller
         
-        if sc.rulerStyle == .yymmRuler {
+        if sc.rulerStyle == .YearMonthRuler {
             
             let nowCount = nowYear * sc.lineCount + nowMonth - 1
             
@@ -237,14 +237,14 @@ class RulerView: UIView , UIScrollViewDelegate {
             rulerDelegate?.changeCountStatusForDayRuler!(sc)
             
             
-        }else if sc.rulerStyle == .ddRuler{
+        }else if sc.rulerStyle == .DayRuler{
 
             UIView.animateWithDuration(0.2) { () -> Void in
                 
                 sc.contentOffset = CGPointMake(CGFloat((self.nowDay - 1) * sc.lineSpace), 0)
                 
             }
-        }else if sc.rulerStyle == .hhRuler{
+        }else if sc.rulerStyle == .HeightRuler{
             
             UIView.animateWithDuration(0.2) { () -> Void in
                 
@@ -258,7 +258,7 @@ class RulerView: UIView , UIScrollViewDelegate {
         
         let sc =  scrollView as! RulerScroller
         
-        if sc.rulerStyle == .yymmRuler {
+        if sc.rulerStyle == .YearMonthRuler {
             
             let nowCount = nowYear * sc.lineCount + nowMonth - 1
             
@@ -271,14 +271,14 @@ class RulerView: UIView , UIScrollViewDelegate {
             rulerDelegate?.changeCountStatusForDayRuler!(sc)
             
             
-        }else if sc.rulerStyle == .ddRuler{
+        }else if sc.rulerStyle == .DayRuler{
             
             UIView.animateWithDuration(0.2) { () -> Void in
                 sc.contentOffset = CGPointMake(CGFloat((self.nowDay - 1) * sc.lineSpace), 0)
                 
             }
             
-        }else if sc.rulerStyle == .hhRuler{
+        }else if sc.rulerStyle == .HeightRuler{
             
             UIView.animateWithDuration(0.2) { () -> Void in
                 
@@ -288,4 +288,5 @@ class RulerView: UIView , UIScrollViewDelegate {
         }
         
     }
+    
 }

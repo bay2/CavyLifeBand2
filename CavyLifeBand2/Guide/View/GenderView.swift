@@ -12,8 +12,8 @@ class GenderView: UIView {
     
     var MOrG = Bool()
     var titleLab = UILabel()
-    var upGenderBtn = UIButton()
-    var downGenderBtn = UIButton()
+    var upGenderBtn = UIButton(type: .Custom)
+    var downGenderBtn = UIButton(type: .Custom)
     
     
     override init(frame: CGRect) {
@@ -35,6 +35,7 @@ class GenderView: UIView {
         self.addSubview(titleLab)
         self.addSubview(upGenderBtn)
         self.addSubview(downGenderBtn)
+
     
         titleLab.text = L10n.GuideMine.string
         titleLab.font = UIFont.systemFontOfSize(18)
@@ -46,8 +47,7 @@ class GenderView: UIView {
             make.top.equalTo(self).offset(spacingWidth25 * 2)
         }
         
-        
-        upGenderBtn.backgroundColor = UIColor.lightGrayColor()
+        upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyGary), forState: .Normal)
         upGenderBtn.frame.size = CGSizeMake(spacingWidth25 * 8, spacingWidth25 * 8)
         upGenderBtn.snp_makeConstraints { (make) -> Void in
             make.size.equalTo(CGSizeMake(spacingWidth25 * 8, spacingWidth25 * 8))
@@ -55,7 +55,7 @@ class GenderView: UIView {
             make.top.equalTo(self).offset(spacingWidth25 * 5)
         }
         
-        downGenderBtn.backgroundColor = UIColor.lightGrayColor()
+        downGenderBtn.setImage(UIImage(asset: .GuideGenderGirlGary), forState: .Normal)
         downGenderBtn.snp_makeConstraints { (make) -> Void in
             make.size.equalTo(CGSizeMake(spacingWidth25 * 8, spacingWidth25 * 8))
             make.centerX.equalTo(self)
@@ -64,36 +64,44 @@ class GenderView: UIView {
         
         upGenderBtn.addTarget(self, action: "genderUpClick", forControlEvents: .TouchUpInside)
         downGenderBtn.addTarget(self, action: "genderDownClick", forControlEvents: .TouchUpInside)
+        
     }
+    
     /**
      上面按钮事件
      */
-    func genderUpClick(){
+    func genderUpClick() {
         
         MOrG = true
         updateGender()
 
     }
+    
     /**
      下面按钮的事件
      */
-    func genderDownClick(){
+    func genderDownClick() {
         
         MOrG = false
         updateGender()
         
     }
+    
     /**
      更新性别事件
      */
     func updateGender() {
         
         if MOrG{
-            upGenderBtn.backgroundColor = UIColor.purpleColor()
-            downGenderBtn.backgroundColor = UIColor.lightGrayColor()
+            
+            upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyChosen), forState: .Normal)
+            downGenderBtn.setImage(UIImage(asset: .GuideGenderGirlGary), forState: .Normal)
+            
         }else {
-            downGenderBtn.backgroundColor = UIColor.purpleColor()
-            upGenderBtn.backgroundColor = UIColor.lightGrayColor()
+            
+            upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyGary), forState: .Normal)
+            downGenderBtn.setImage(UIImage(asset: .GuideGenderGirlChosen), forState: .Normal)
+
         }
         
     }

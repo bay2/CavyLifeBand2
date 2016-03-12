@@ -63,8 +63,6 @@ class GoalView: UIView {
     func goalViewLayout() {
                 
         self.backgroundColor = UIColor.whiteColor()
-        print("\(self.className) --- \(self.frame)")
-
 
         // 页面名称
         titleLab.text = L10n.GuideGoal.string
@@ -191,9 +189,8 @@ class GoalView: UIView {
 
     }
     
-    
     // 步数的slider
-    func sliderStepAttribute(averageValue:Int, recommandValue: Int, minValue: Int, maxValue: Int) {
+    func sliderStepAttribute(averageValue: Int, recommandValue: Int, minValue: Int, maxValue: Int) {
         
         stepValue.text = String(recommandValue)
         
@@ -217,8 +214,7 @@ class GoalView: UIView {
     }
     
     // 睡眠的slider
-    
-    func sliderSleepAttribute(avgH:Int, avgM:Int, recomH: Int, recomM: Int,  minH: Int, minM: Int, maxH: Int, maxM: Int){
+    func sliderSleepAttribute(avgH: Int, avgM: Int, recomH: Int, recomM: Int, minH: Int, minM: Int, maxH: Int, maxM: Int) {
         
         sleepHHValue.text = String(recomH)
         sleepMMValue.text = String(recomM)

@@ -95,10 +95,7 @@ class GuideViewController: BaseViewController {
         var titleInfoText = L10n.GuideIntroduce.string
         var guideBtnImage = UIImage(asset: .GuideRightBtn)
         var guideBtnImagePress = UIImage(asset: .GuideRightBtnPressed)
-        
-//        var subTitleText = L10n.GuideMine.string
-//        var subTitleInfoText = L10n.GuideOpenNoticeInfo.string
-//        var bottomLabText = ""
+
         switch viewStyle {
 
         case .GuideGender:
@@ -136,40 +133,40 @@ class GuideViewController: BaseViewController {
             
             updateNavigationItemUI(L10n.GuideSetting.string, rightBtnText: L10n.GuidePassButton.string, isNeedBack: true)
             guideBgColor = UIColor(named: .GuideColorcyanColor)
-            upDatePictureView(L10n.GuideOpenNotice.string, titleInfo: L10n.GuideOpenNoticeInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: " ")
+            upDatePictureView(L10n.GuideOpenNotice.string, titleInfo: L10n.GuideOpenNoticeInfo.string, midImage: UIImage(asset: .GuideNotice), bottomLab: "")
         case .SettingLocationShare:
             
             updateNavigationItemUI(L10n.GuideSetting.string, rightBtnText: L10n.GuidePassButton.string, isNeedBack: true)
             guideBgColor = UIColor(named: .GuideColorcyanColor)
-            upDatePictureView(L10n.GuideOpenLocationShare.string, titleInfo: L10n.GuideOpenLocationShareInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: "")
+            upDatePictureView(L10n.GuideOpenLocationShare.string, titleInfo: L10n.GuideOpenLocationShareInfo.string, midImage: UIImage(asset: .GuideLocation), bottomLab: "")
             
         case .BandBluetooth:
             
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
-            upDatePictureView(L10n.GuideOpenBluetooth.string, titleInfo: L10n.GuideOpenBluetoothInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: "")
+            upDatePictureView(L10n.GuideOpenBluetooth.string, titleInfo: L10n.GuideOpenBluetoothInfo.string, midImage: UIImage(asset: .GuideBluetooth), bottomLab: "")
         case .BandopenBand:
             
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
-            upDatePictureView(L10n.GuideOpenCavy.string, titleInfo: L10n.GuideOpenCavyInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: L10n.GuideOpenCavySugg.string)
+            upDatePictureView(L10n.GuideOpenCavy.string, titleInfo: L10n.GuideOpenCavyInfo.string, midImage: UIImage(asset: .GuideOpenBand), bottomLab: L10n.GuideOpenCavySugg.string)
         case .BandLinking:
             
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
-            upDatePictureView(L10n.GuideLinking.string, titleInfo: "", midImage: UIImage(asset: .GuideWeightBg), bottomLab: "")
+            upDatePictureView(L10n.GuideLinking.string, titleInfo: "", midImage: UIImage(asset: .GuideOpenBand), bottomLab: "")
         case .BandSuccess:
            
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
-            upDatePictureView(L10n.GuidePairSuccess.string, titleInfo: L10n.GuidePairSuccessInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: "")
+            upDatePictureView(L10n.GuidePairSuccess.string, titleInfo: L10n.GuidePairSuccessInfo.string, midImage: UIImage(asset: .GuidePairSeccuss), bottomLab: "")
         case .BandFail:
             
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             guideBtnImage = UIImage(asset: .GuigeFlashBtn)
             guideBtnImagePress = UIImage(asset: .GuigeFlashBtnPressed)
-            upDatePictureView(L10n.GuidePairFail.string, titleInfo: L10n.GuidePairFailInfo.string, midImage: UIImage(asset: .GuideWeightBg), bottomLab: "")
+            upDatePictureView(L10n.GuidePairFail.string, titleInfo: L10n.GuidePairFailInfo.string, midImage: UIImage(asset: .GuidePairFail), bottomLab: "")
         }
         
         self.view.backgroundColor = guideBgColor
@@ -322,7 +319,7 @@ class GuideViewController: BaseViewController {
         
         pictureView.titleLab.text = titleLab
         pictureView.titleInfo.text = titleInfo
-        pictureView.middleImgView = UIImageView(image: midImage)
+        pictureView.middleImgView.image = midImage
         pictureView.bottomLab.text = bottomLab
                 
         middleView.addSubview(pictureView)
