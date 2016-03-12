@@ -6,6 +6,34 @@
  Copyright © 2016年 xuemincai. All rights reserved.
  */
 
+
+// Web 错误码定义
+"WebErrorCode.1000" = "请求参数错误";
+"WebErrorCode.1001" = "用户名或密码错误";
+"WebErrorCode.1002" = "手机号码错误";
+"WebErrorCode.1003" = "验证码错误";
+"WebErrorCode.1004" = "修改用户信息失败";
+"WebErrorCode.1005" = "用户已存在";
+"WebErrorCode.1006" = "用户名错误或不存在";
+"WebErrorCode.1007" = "短信验证码发送失败";
+"WebErrorCode.5001" = "系统错误";
+"WebErrorCode.5002" = "数据库错误";
+
+// 用户模块错误定义
+"UserModuleErrorCode.NetError" = "网络不给力，请检查你的网络";
+"UserModuleErrorCode.NetAPIError" = "服务器返回错误";
+"UserModuleErrorCode.PhoneError" = "手机号码错误";
+"UserModuleErrorCode.EmailError" = "邮箱格式错误";
+"UserModuleErrorCode.PasswdError" = "密码6位数或密码大于16位数";
+"UserModuleErrorCode.SecurityError" = "验证码错误";
+"UserModuleErrorCode.UserNameError" = "用户名格式错误";
+"UserModuleErrorCode.PhoneNil" = "手机号码不能为空";
+"UserModuleErrorCode.EmailNil" = "邮箱不能为空";
+"UserModuleErrorCode.PasswdNil" = "密码不能为空";
+"UserModuleErrorCode.SecurityNil" = "验证码不能为空";
+"UserModuleErrorCode.UserNameNil" = "用户名不能为空";
+
+
 // 首页
 "MainPage.SignInBtn" = "登入";
 "MainPage.SignUpBtn" = "加入豚鼠";
@@ -29,6 +57,7 @@
 "SignUp.ProcotolViewTitle" = "我们已经阅读并接受";
 "SignUp.ProcotolViewBtn" = "《豚鼠科技服务协议》";
 "SignUp.SignUpBtn" = "注册";
+"SignUp.ReadProcotol" = "请先阅读《豚鼠科技服务协议》";
 
 // 引导页
 "Guide.MyInfo" = "我的信息";

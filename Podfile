@@ -15,10 +15,16 @@ pod 'LLSimpleCamera'
 pod 'CryptoSwift'
 pod 'KeychainAccess'
 pod 'MHRotaryKnob'
-
+pod 'RealmSwift'
+pod 'OHHTTPStubs'
+pod 'OHHTTPStubs/Swift'
 
 target :CavyLifeBand2Tests, :exclusive => true do
     pod 'OHHTTPStubs'
     pod 'OHHTTPStubs/Swift'
 end
 
+target :CavyLifeBand2UITests, :exclusive => true do
+    pod 'OHHTTPStubs'
+    pod 'OHHTTPStubs/Swift'
+end

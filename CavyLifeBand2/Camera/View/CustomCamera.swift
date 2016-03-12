@@ -272,24 +272,24 @@ class CustomCamera: UIViewController {
 
         self.shutterPhoto.backgroundColor = UIColor.blackColor()
         
-        self.camera.stopRecording({ (camera, outputFileURL, error) -> Void in
+        self.camera.stopRecording { (camera, outputFileURL, error) -> Void in
             
             // Viedo in outputURL cache
             
             Log.info("outputFileURL: \(outputFileURL)")
 
-            self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileURL, completionBlock: { (assetUrl, error) -> Void in
+            self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileURL) { (assetUrl, error) -> Void in
                 if error != nil {
-                    Log.error("Save video fail:%@",error)
+                    Log.error("Save video fail:%@", error)
                 }else {
                     //self.countOne = 0
                     self.getLastPhoto()
                     Log.info("Save video succeed.")
                 }
                 
-            })
+            }
             
-        })
+        }
         self.shutterPhoto.backgroundColor = UIColor.blackColor()
     }
 
@@ -355,7 +355,7 @@ class CustomCamera: UIViewController {
         // isPhotoOrVideo = true 照相
         if isPhotoOrVideo {
             Log.info("照相")
-            self.camera.capture({ (camera, image, metadata, error) -> Void in
+            self.camera.capture { (camera, image, metadata, error) -> Void in
                 if error != nil{
                     return
                 }
@@ -365,7 +365,7 @@ class CustomCamera: UIViewController {
                 
                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                 
-                })
+                }
         
         }else{
             // isPhotoOrVideo = false 摄影

@@ -35,7 +35,7 @@ class NetRequestAdapter: NSObject {
         
         let request = Alamofire.request(.POST, urlString, parameters: parameters).responseJSON { (response) -> Void in
             
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 
                 if response.result.isFailure {
                     completionHandler?(.Failure(.NetErr))
@@ -44,21 +44,19 @@ class NetRequestAdapter: NSObject {
                 }
                 
                 guard let responseResult = response.result.value else {
-                    completionHandler?(.Failure(.NetAPIErr))
-                    Log.error("Network API error")
+                    completionHandler?(.Failure(.NetErr))
+                    Log.error("Network error")
                     return
                 }
                 
                 completionHandler?(.Success(responseResult))
-            })
+            }
         }
         
         if Log.enabled {
             debugPrint(request)
         }
-        
-        
-        
+
     }
     
 }

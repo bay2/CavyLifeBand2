@@ -32,3 +32,19 @@ let boundsWidth = UIScreen.mainScreen().bounds.width
 
 // 统一圆角值
 let commonCornerRadius: CGFloat = 8 / 3
+
+// web 接口错误码定义
+enum WebApiCode: String {
+
+    case Success = "0000"
+    case ParaError = "1000"
+    case UserPasswdError = "1001"
+    case PhoneNumError = "1002"
+    case SecurityCodeError = "1003"
+    case MobifyUserError = "1004"
+    case UserExisted = "1005"
+    case UserNotExisted = "1006"
+    case SendSecutityCodeError = "1007"
+    case SystemError = "5001"
+    case DBError = "5002"
+}

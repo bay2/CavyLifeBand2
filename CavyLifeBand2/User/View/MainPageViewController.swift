@@ -83,7 +83,7 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDataSour
         }
         
         pageVC.pageIndex = index
-        pageVC.backgroundImage = pageImage[index]
+        pageVC.homePageImage = pageImage[index]
         
         return pageVC
         

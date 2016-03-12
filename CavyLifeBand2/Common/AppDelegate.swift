@@ -9,6 +9,9 @@
 import UIKit
 import KSCrash
 import Log
+#if UITEST
+import OHHTTPStubs
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,6 +30,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
 
+        let defaults = NSUserDefaults.standardUserDefaults()
+
+        let userName = defaults["userName"]
+        let passwd = defaults["passwd"]
+        if userName != nil && passwd != nil {
+            
+            let signInViewModel = SignInViewModel(viewController: UIViewController(), userName: userName as! String, passwd: passwd as! String)
+            signInViewModel.userSignIn()
+            
+        }
+        
+#if UITEST
+            
+        uiTestStub()
+            
+#endif
+
 //        let navigation = UINavigationController(rootViewController: StoryboardScene.Main.PageViewScene.viewController())
 
 //        UINavigationBar.appearance().translucent = false
@@ -41,6 +61,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         return true
     }
+
+#if UITEST
+    
+    func uiTestStub() {
+    
+        if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_IN") {
+    
+            // setup HTTP stubs for tests
+            stub(isMethodPOST()) { _ in
+            let stubPath = OHPathForFile("Sign_In_Ok.json", self.dynamicType)
+            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+            }
+        }
+
+        if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_UP") {
+
+            // setup HTTP stubs for tests
+            stub(isMethodPOST()) { _ in
+                let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
+                return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+            }
+        }
+    
+        if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_COMMON_RESULT_OK") {
+    
+            // setup HTTP stubs for tests
+            stub(isMethodPOST()) { _ in
+            let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
+            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+            }
+        }
+    
+    
+    
+    }
+    
+#endif
 
 
     func applicationWillResignActive(application: UIApplication) {

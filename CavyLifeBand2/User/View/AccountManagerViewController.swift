@@ -10,8 +10,10 @@ import UIKit
 import EZSwiftExtensions
 import Alamofire
 import AlamofireImage
+import Log
 
-class SignUpViewController: UserSignInBaseViewController {
+
+class AccountManagerViewController: AccountManagerBaseViewController {
     
     enum UserViewStyle {
         
@@ -23,13 +25,13 @@ class SignUpViewController: UserSignInBaseViewController {
     }
 
     // 手机输入框
-    @IBOutlet weak var userNameTextField: SignInTextField!
+    @IBOutlet weak var userNameTextField: AccountTextField!
     
     // 安全码输入框
-    @IBOutlet weak var safetyCodeTextField: SignInTextField!
+    @IBOutlet weak var safetyCodeTextField: AccountTextField!
     
     // 密码输入框
-    @IBOutlet weak var passwdTextField: SignInTextField!
+    @IBOutlet weak var passwdTextField: AccountTextField!
     
     // 发送验证码按钮
     @IBOutlet weak var safetyCodeBtn: SendSafetyCodeButton!
@@ -67,8 +69,14 @@ class SignUpViewController: UserSignInBaseViewController {
         defineSubViewsLayout()
 
         refreshEmailSafetyCode()
+        
         emailSafetyCode.userInteractionEnabled = true
         emailSafetyCode.addTapGesture(target: self, action: "refreshEmailSafetyCode")
+        
+        userNameTextField.becomeFirstResponder()
+        userNameTextField.backgroundColor = UIColor.whiteColor()
+        passwdTextField.backgroundColor = UIColor.whiteColor()
+        safetyCodeTextField.backgroundColor = UIColor.whiteColor()
 
         // Do any additional setup after loading the view.
     }
@@ -188,17 +196,6 @@ class SignUpViewController: UserSignInBaseViewController {
     
 
     /**
-     点击发送验证码
-     
-     - parameter sender: 
-     */
-    @IBAction func onClickSafetyCode(sender: SendSafetyCodeButton) {
-        
-        sender.countDown()
-
-    }
-
-    /**
      更新视图风格
      */
     func updateViewStyle() {
@@ -273,7 +270,7 @@ class SignUpViewController: UserSignInBaseViewController {
 
         super.onClickRight(sender)
 
-        let nextView = StoryboardScene.Main.instantiateSignUpView()
+        let nextView = StoryboardScene.Main.instantiateAccountManagerView()
         
 
         switch viewStyle {
@@ -297,11 +294,6 @@ class SignUpViewController: UserSignInBaseViewController {
 
     }
 
-    override func onClickBack(sender: AnyObject) {
-        super.onClickBack(sender)
-
-    }
-
 
     /**
      刷新邮箱验证码
@@ -320,8 +312,72 @@ class SignUpViewController: UserSignInBaseViewController {
         
     }
 
+    /**
+     返回登录页面
+     
+     - parameter sender:
+     */
+    @IBAction func onClickBackSignIn(sender: AnyObject) {
+        
+        self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
+        
+    }
 
+    /**
+     点击主按钮
+     
+     - parameter sender:
+     */
+    @IBAction func onClickMainBtn(sender: AnyObject) {
 
+        let signUpViewModel = SignUpViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!, safetyCode: safetyCodeTextField.text!)
+
+        let forgotViewModel = ForgotPasswordViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!, safetyCode: safetyCodeTextField.text!) {
+            self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
+        }
+        
+        if userProtocolView.checkboxBtn.isCheck != true {
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, title: "", message: L10n.SignUpReadProcotol.string)
+            return
+            
+        }
+
+        switch viewStyle {
+
+            case .EmailSignUp:
+                signUpViewModel.emailSignUp()
+
+            case .PhoneNumSignUp:
+                signUpViewModel.phoneSignUp()
+
+            case .EmailForgotPasswd:
+                forgotViewModel.emailForgotPwd()
+
+            case .PhoneNumForgotPasswd:
+                forgotViewModel.phoneForgotPwd()
+
+        }
+
+    }
+
+    /**
+     点击发送验证码
+     
+     - parameter sender: 
+     */
+    @IBAction func onClickSendSafetyCode(sender: AnyObject) {
+
+        let sendSafetyCode = SendSafetyCodeViewModel(viewController: self, button: safetyCodeBtn, userName: userNameTextField.text!) {
+
+            self.safetyCodeBtn.countDown()
+
+        }
+
+        sendSafetyCode.sendSafetyCode()
+
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -331,4 +387,66 @@ class SignUpViewController: UserSignInBaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
+
+extension AccountManagerViewController {
+    
+    /**
+     输入限制
+     
+     - parameter textField:
+     
+     - returns:
+     */
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField != safetyCodeTextField {
+            return true
+        }
+        
+        if string == "" {
+            return true
+        }
+        
+        let newString = textField.text! + string
+        
+        if newString.length > 4 {
+            textField.text = newString[0...3]
+            return false
+        }
+        
+        if viewStyle == .PhoneNumForgotPasswd || viewStyle == .PhoneNumSignUp {
+            
+            guard let _ = newString.toInt() else {
+                return false
+            }
+            
+        }
+        
+        return true
+        
+    }
+    
+    /**
+     回车处理
+     
+     - parameter textField: 文本框
+     
+     - returns:
+     */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        switch  textField {
+        case userNameTextField:
+            safetyCodeTextField.becomeFirstResponder()
+        case safetyCodeTextField:
+            passwdTextField.becomeFirstResponder()
+        default:
+            onClickMainBtn(mainBtn)
+        }
+        
+        return true
+        
+    }
+    
 }

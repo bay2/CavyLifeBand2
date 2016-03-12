@@ -3,7 +3,7 @@ MainPageSelectedBtn : #ECBC46
 MainPageBtnText : #B46E00
 SignInBackground : #1dbcff
 SignInNavigationBar : #1dbcff
-SignInMainTextColor : #00000099
+SignInMainTextColor : #00000080
 PageIndicatorTintColor : #00000033
 SignInForgotPwdBtnText : #00000066
 SignInPlaceholderText : #00000066

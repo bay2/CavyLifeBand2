@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SignInTextField: UITextField {
+class AccountTextField: UITextField {
 
     
     // Only override drawRect: if you perform custom drawing.

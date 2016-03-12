@@ -9,8 +9,9 @@
 import UIKit
 import SnapKit
 import EZSwiftExtensions
+import Log
 
-class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegate {
+class SignInViewController: AccountManagerBaseViewController {
 
     // 登入按钮
     @IBOutlet weak var signInBtn: MainPageButton!
@@ -19,10 +20,10 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
     @IBOutlet weak var textFieldView: UIView!
 
     // 密码输入框
-    @IBOutlet weak var passwdTextField: SignInTextField!
+    @IBOutlet weak var passwdTextField: AccountTextField!
 
     // 用户名输入框
-    @IBOutlet weak var userNameTextField: SignInTextField!
+    @IBOutlet weak var userNameTextField: AccountTextField!
 
     // 忘记密码按钮
     @IBOutlet weak var forgetPasswdBtn: UIButton!
@@ -40,6 +41,11 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
         
         // 设置控件title
         setSubViewTitle()
+        
+        userNameTextField.becomeFirstResponder()
+        userNameTextField.backgroundColor = UIColor.whiteColor()
+        passwdTextField.backgroundColor = UIColor.whiteColor()
+        
         
         // Do any additional setup after loading the view.
     }
@@ -104,7 +110,7 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
             make.left.equalTo(textFieldView).offset(spacingWidth25)
             make.right.equalTo(textFieldView).offset(-spacingWidth25)
         }
-
+        
     }
     
     /**
@@ -132,7 +138,7 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
      */
     override func onClickRight(sender: AnyObject) {
 
-        let signUpVC = StoryboardScene.Main.SignUpViewScene.viewController()
+        let signUpVC = StoryboardScene.Main.AccountManagerViewScene.viewController()
 
         self.pushVC(signUpVC)
 
@@ -145,8 +151,7 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
      */
     @IBAction func onClickForgot(sender: AnyObject) {
         
-        let forgotVC = StoryboardScene.Main.instantiateSignUpView()
-
+        let forgotVC = StoryboardScene.Main.instantiateAccountManagerView()
 
         forgotVC.viewStyle = .PhoneNumForgotPasswd
 
@@ -154,6 +159,18 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
 
     }
 
+    /**
+     点击登录
+     
+     - parameter sender: 
+     */
+    @IBAction func onClickSignIn(sender: AnyObject) {
+
+        let userSignIn = SignInViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!, callBack: nil)
+        userSignIn.userSignIn()
+
+    }
+    
 
     /*
     // MARK: - Navigation
@@ -165,4 +182,30 @@ class SignInViewController: UserSignInBaseViewController, UINavigationBarDelegat
     }
     */
 
+}
+
+// MARK: - 文本框代理处理
+extension SignInViewController {
+    
+    /**
+     回车处理
+     
+     - parameter textField:
+     
+     - returns:
+     */
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        
+        if textField == userNameTextField {
+            passwdTextField.becomeFirstResponder()
+        }
+        
+        if textField == passwdTextField {
+            onClickSignIn(signInBtn)
+        }
+        
+        return true
+        
+    }
+    
 }

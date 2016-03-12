@@ -58,7 +58,7 @@ extension UIColor {
     /// Alpha: 40% <br/> (0x00000066)
     case SignInForgotPwdBtnText
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
-    /// Alpha: 60% <br/> (0x00000099)
+    /// Alpha: 50% <br/> (0x00000080)
     case SignInMainTextColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#1dbcff"></span>
     /// Alpha: 100% <br/> (0x1dbcffff)
@@ -92,7 +92,7 @@ extension UIColor {
       case .PageIndicatorTintColor: return 0x00000033
       case .SignInBackground: return 0x1dbcffff
       case .SignInForgotPwdBtnText: return 0x00000066
-      case .SignInMainTextColor: return 0x00000099
+      case .SignInMainTextColor: return 0x00000080
       case .SignInNavigationBar: return 0x1dbcffff
       case .SignInPlaceholderText: return 0x00000066
       case .SignInSplitLine: return 0x00000033

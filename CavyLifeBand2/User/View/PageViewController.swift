@@ -10,7 +10,7 @@ import UIKit
 import EZSwiftExtensions
 import SnapKit
 
-class PageViewController: UIViewController, UINavigationControllerDelegate {
+class PageViewController: UIViewController {
 
     // 注册按钮
     @IBOutlet weak var signInBtn: UIButton!
@@ -31,8 +31,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
     @IBOutlet weak var pageCtrl: UIPageControl!
     
     // 背景图片
-    var backgroundImage: UIImage!
-    
+    var homePageImage: UIImage!
     
     // 当前视图索引
     var pageIndex = 0
@@ -53,7 +52,7 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
         
         pageCtrl.currentPage = pageIndex
         
-        backgroundImageView.image = backgroundImage
+        backgroundImageView.image = homePageImage
         
         setSubViewTitle()
         
@@ -138,7 +137,8 @@ class PageViewController: UIViewController, UINavigationControllerDelegate {
      */
     @IBAction func onClickSignUp(sender: AnyObject) {
         
-        let signUpVC = StoryboardScene.Main.instantiateSignUpView()
+
+        let signUpVC = StoryboardScene.Main.instantiateAccountManagerView()
 
         signUpVC.viewStyle = .PhoneNumSignUp
         

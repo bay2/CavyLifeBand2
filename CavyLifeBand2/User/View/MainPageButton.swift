@@ -26,9 +26,5 @@ class MainPageButton: UIButton {
         self.titleLabel?.font = UIFont.systemFontOfSize(18)
         
     }
-    
-
-
-    
 
 }
