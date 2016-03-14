@@ -47,12 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
 #endif
 
-//        let navigation = UINavigationController(rootViewController: StoryboardScene.Main.PageViewScene.viewController())
-
-//        UINavigationBar.appearance().translucent = false
-
-//        self.window?.rootViewController = navigation
-
         return true
 
     }

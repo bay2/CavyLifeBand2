@@ -48,6 +48,14 @@ struct StoryboardScene {
       return StoryboardScene.Camera.PhotoAlbumViewScene.viewController() as! PhotoAlbum
     }
   }
+  enum Guide: String, StoryboardSceneType {
+    static let storyboardName = "Guide"
+
+    case GuideViewScene = "GuideView"
+    static func instantiateGuideView() -> GuideViewController {
+      return StoryboardScene.Guide.GuideViewScene.viewController() as! GuideViewController
+    }
+  }
   enum LaunchScreen: StoryboardSceneType {
     static let storyboardName = "LaunchScreen"
   }

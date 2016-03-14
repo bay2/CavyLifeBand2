@@ -14,9 +14,11 @@ pod 'KSCrash'
 pod 'LLSimpleCamera'
 pod 'CryptoSwift'
 pod 'KeychainAccess'
-pod 'RealmSwift'
+pod 'MHRotaryKnob'
+pod 'RealmSwift', '<= 0.98.3'
 pod 'OHHTTPStubs'
 pod 'OHHTTPStubs/Swift'
+pod 'Gifu'
 
 target :CavyLifeBand2Tests, :exclusive => true do
     pod 'OHHTTPStubs'
@@ -27,4 +29,3 @@ target :CavyLifeBand2UITests, :exclusive => true do
     pod 'OHHTTPStubs'
     pod 'OHHTTPStubs/Swift'
 end
-

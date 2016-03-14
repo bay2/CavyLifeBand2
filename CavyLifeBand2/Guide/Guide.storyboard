@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <scenes>
+        <!--Guide View Controller-->
+        <scene sceneID="DfP-ST-KgS">
+            <objects>
+                <viewController storyboardIdentifier="GuideView" id="bfR-PD-jX0" customClass="GuideViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RTB-k4-Axd"/>
+                        <viewControllerLayoutGuide type="bottom" id="HaS-9F-Byp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Q7I-HL-6s4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HWD-ra-vI8">
+                                <rect key="frame" x="16" y="200" width="381" height="464"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="HWD-ra-vI8" secondAttribute="height" multiplier="92:112" id="M43-2R-nYt"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLa-eD-a6f">
+                                <rect key="frame" x="157" y="629" width="99" height="99"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="OLa-eD-a6f" secondAttribute="height" multiplier="1:1" id="Fj2-y6-1hZ"/>
+                                </constraints>
+                                <state key="normal" image="GuideRightBtn"/>
+                                <connections>
+                                    <action selector="guideBtnClick:" destination="bfR-PD-jX0" eventType="touchUpInside" id="SOZ-zG-RUD"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="可以更好的帮助健康统计哦！" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkc-Qd-gCg">
+                                <rect key="frame" x="0.0" y="101" width="414" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="oWR-sW-tFj"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.013560153930000001" green="0.1623121914" blue="0.36328806720000001" alpha="0.7478113918" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="OLa-eD-a6f" firstAttribute="centerX" secondItem="Q7I-HL-6s4" secondAttribute="centerX" id="8ZC-vT-ZSH"/>
+                            <constraint firstItem="Hkc-Qd-gCg" firstAttribute="top" secondItem="RTB-k4-Axd" secondAttribute="bottom" constant="81" placeholder="YES" id="QT4-px-ZOG"/>
+                            <constraint firstItem="Hkc-Qd-gCg" firstAttribute="width" secondItem="Q7I-HL-6s4" secondAttribute="width" id="VGy-3T-jEa"/>
+                            <constraint firstItem="HWD-ra-vI8" firstAttribute="width" secondItem="Q7I-HL-6s4" secondAttribute="width" multiplier="0.92" id="ZBa-pq-QFj"/>
+                            <constraint firstItem="OLa-eD-a6f" firstAttribute="width" secondItem="Q7I-HL-6s4" secondAttribute="width" multiplier="6/25" id="eDJ-KF-nl0"/>
+                            <constraint firstItem="HWD-ra-vI8" firstAttribute="top" secondItem="RTB-k4-Axd" secondAttribute="bottom" constant="180" placeholder="YES" id="etC-vz-RzC"/>
+                            <constraint firstItem="Hkc-Qd-gCg" firstAttribute="centerX" secondItem="Q7I-HL-6s4" secondAttribute="centerX" id="ssP-lq-LGr"/>
+                            <constraint firstItem="OLa-eD-a6f" firstAttribute="top" secondItem="HWD-ra-vI8" secondAttribute="bottom" constant="-35" placeholder="YES" id="w5Z-V0-T3l"/>
+                            <constraint firstItem="HWD-ra-vI8" firstAttribute="centerX" secondItem="Q7I-HL-6s4" secondAttribute="centerX" id="wsv-eN-I7a"/>
+                        </constraints>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="guideButton" destination="OLa-eD-a6f" id="4CV-FT-kaJ"/>
+                        <outlet property="infoLabel" destination="Hkc-Qd-gCg" id="TZH-37-sxB"/>
+                        <outlet property="middleView" destination="HWD-ra-vI8" id="n1p-ue-kpo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2ZW-iU-wop" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="523" y="-8"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="GuideRightBtn" width="100" height="100"/>
+    </resources>
+</document>

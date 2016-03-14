@@ -27,6 +27,9 @@ let spacingWidth25 = ez.screenWidth / 25
 // 1/25 高度间隙
 let spacingHeight25 = ez.screenHeight / 25
 
+// 宽度
+//let ez.screenWidth = UIScreen.mainScreen().bounds.width
+
 // 统一圆角值
 let commonCornerRadius: CGFloat = 8 / 3
 

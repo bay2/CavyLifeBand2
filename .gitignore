@@ -3,3 +3,4 @@ Pods/*
 *.xcbkptlist
 CavyLifeBand2.xcodeproj/xcuserdata/*
 .idea/*
+Podfile.lock
