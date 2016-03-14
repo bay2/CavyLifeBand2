@@ -15,7 +15,7 @@ script:
 - xctool -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphoneos  -configuration
   Release OBJROOT=$PWD/build   SYMROOT=$PWD/build CODE_SIGN_IDENTITY="$DEVELOPER_NAME"
   ONLY_ACTIVE_ARCH=NO
-- xcodebuild clean build test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2' GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+- xcodebuild clean build test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2' | xcpretty
 - (curl -s https://codecov.io/bash) | bash
 after_success:
 - ./scripts/sign-and-upload.sh
