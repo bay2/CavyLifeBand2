@@ -1,5 +1,6 @@
 # 二代生活手环
-![Build Status](https://travis-ci.org/bay2/CavyLifeBand2.svg?branch=master) 
+[![Build Status](https://travis-ci.org/bay2/CavyLifeBand2.svg?branch=master)](https://travis-ci.org/bay2/CavyLifeBand2)
+[![codecov.io](https://codecov.io/github/bay2/CavyLifeBand2/coverage.svg?branch=master)](https://codecov.io/github/bay2/CavyLifeBand2)
 
 ## 开发环境
 

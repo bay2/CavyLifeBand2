@@ -28,6 +28,26 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "917DA97B1C3B8EB800FF675D"
+               BuildableName = "CavyLifeBand2Tests.xctest"
+               BlueprintName = "CavyLifeBand2Tests"
+               ReferencedContainer = "container:CavyLifeBand2.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "917DA9861C3B8EB800FF675D"
+               BuildableName = "CavyLifeBand2UITests.xctest"
+               BlueprintName = "CavyLifeBand2UITests"
+               ReferencedContainer = "container:CavyLifeBand2.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
