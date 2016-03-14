@@ -17,7 +17,6 @@ class HightView: UIView, RulerViewDelegate {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
         heightViewLayout()
         
     }
@@ -27,6 +26,7 @@ class HightView: UIView, RulerViewDelegate {
     }
     
     private func heightViewLayout(){
+        
         let CMLabel = UILabel()
         self.addSubview(titleLab)
         self.addSubview(CMLabel)

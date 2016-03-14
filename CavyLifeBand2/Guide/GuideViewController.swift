@@ -9,6 +9,7 @@
 import UIKit
 import EZSwiftExtensions
 import SnapKit
+import Gifu
 
 class GuideViewController: BaseViewController {
     
@@ -16,13 +17,6 @@ class GuideViewController: BaseViewController {
     var highView: HightView?
     var weightView: WeightView?
     var goalView: GoalView?
-    
-    enum JumpMode {
-        
-        case LoginMode
-        case SignInMode
-        
-    }
     
     /**
      style标签
@@ -63,11 +57,9 @@ class GuideViewController: BaseViewController {
     
     /// 确定按钮
     @IBOutlet weak var guideButton: UIButton!
-
-    // 视图风格
-    var viewStyle: GuideViewStyle = .GuideGender
     
-    var jumpMode: JumpMode = .LoginMode
+    // 视图风格
+    var viewStyle: GuideViewStyle = .BandBluetooth
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +68,6 @@ class GuideViewController: BaseViewController {
         
         allViewsLayOut()
         
-        
     }
     
     /**
@@ -84,20 +75,19 @@ class GuideViewController: BaseViewController {
      */
     func allViewsLayOut(){
         
-
         infoLabel.textColor = UIColor(named: .GuideColor66)
         infoLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(boundsWidth * 0.2 + 11)
+            make.top.equalTo(self.view).offset(ez.screenWidth * 0.2 + 11)
         }
         
         middleView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(boundsWidth * 0.32)
+            make.top.equalTo(self.view).offset(ez.screenWidth * 0.32)
         }
         
         guideButton.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(boundsWidth * 1.32)
+            make.top.equalTo(self.view).offset(ez.screenWidth * 1.32)
         }
-
+        
     }
     
     /**
@@ -109,10 +99,11 @@ class GuideViewController: BaseViewController {
         var titleInfoText = L10n.GuideIntroduce.string
         var guideBtnImage = UIImage(asset: .GuideRightBtn)
         var guideBtnImagePress = UIImage(asset: .GuideRightBtnPressed)
-
+        
         switch viewStyle {
-
+            
         case .GuideGender:
+            
             infoLabel.hidden = false
             updateNavigationItemUI(L10n.GuideMyInfo.string)
             upDateGenderView()
@@ -120,24 +111,28 @@ class GuideViewController: BaseViewController {
             titleInfoText = L10n.GuideIntroduce.string
             
         case .GuideBirthday:
+            
             infoLabel.hidden = false
             updateNavigationItemUI(L10n.GuideMyInfo.string)
             upDateBirthdayView()
             titleInfoText = L10n.GuideIntroduce.string
             
         case .GuideHeight:
+            
             infoLabel.hidden = false
             updateNavigationItemUI(L10n.GuideMyInfo.string)
             upDateHeightView()
             titleInfoText = L10n.GuideIntroduce.string
             
         case .GuideWeight:
+            
             infoLabel.hidden = false
             updateNavigationItemUI(L10n.GuideMyInfo.string)
             upDateWeightView()
             titleInfoText = L10n.GuideIntroduce.string
             
         case .GuideGoal:
+            
             infoLabel.hidden = false
             updateNavigationItemUI(L10n.GuideMyInfo.string)
             upDateGoalView()
@@ -148,6 +143,7 @@ class GuideViewController: BaseViewController {
             updateNavigationItemUI(L10n.GuideSetting.string, rightBtnText: L10n.GuidePassButton.string, isNeedBack: true)
             guideBgColor = UIColor(named: .GuideColorcyanColor)
             upDatePictureView(L10n.GuideOpenNotice.string, titleInfo: L10n.GuideOpenNoticeInfo.string, midImage: UIImage(asset: .GuideNotice), bottomLab: "")
+            
         case .SettingLocationShare:
             
             updateNavigationItemUI(L10n.GuideSetting.string, rightBtnText: L10n.GuidePassButton.string, isNeedBack: true)
@@ -159,21 +155,25 @@ class GuideViewController: BaseViewController {
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             upDatePictureView(L10n.GuideOpenBluetooth.string, titleInfo: L10n.GuideOpenBluetoothInfo.string, midImage: UIImage(asset: .GuideBluetooth), bottomLab: "")
+            
         case .BandopenBand:
             
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             upDatePictureView(L10n.GuideOpenCavy.string, titleInfo: L10n.GuideOpenCavyInfo.string, midImage: UIImage(asset: .GuideOpenBand), bottomLab: L10n.GuideOpenCavySugg.string)
+            
         case .BandLinking:
             
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
-            upDatePictureView(L10n.GuideLinking.string, titleInfo: "", midImage: UIImage(asset: .GuideOpenBand), bottomLab: "")
+            upDatePictureView(L10n.GuideLinking.string, titleInfo: "", midImage: UIImage(named: "GuideLinking.gif")!, bottomLab: "")
+            
         case .BandSuccess:
-           
+            
             guideBgColor = UIColor(named: .GuideColorGreen)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             upDatePictureView(L10n.GuidePairSuccess.string, titleInfo: L10n.GuidePairSuccessInfo.string, midImage: UIImage(asset: .GuidePairSeccuss), bottomLab: "")
+            
         case .BandFail:
             
             guideBgColor = UIColor(named: .GuideColorGreen)
@@ -200,22 +200,14 @@ class GuideViewController: BaseViewController {
         switch viewStyle {
             
         case .SettingNotice:
+            
             nextView.viewStyle = .SettingLocationShare
             self.pushVC(nextView)
             
         case .SettingLocationShare:
             
-            if self.jumpMode == .LoginMode {
-                
-                nextView.viewStyle = .BandBluetooth
-                self.pushVC(nextView)
-                
-            } else {
-                
-                let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
-                self.pushVC(accountVC)
-                
-            }
+            let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
+            self.pushVC(accountVC)
             
         default:
             print(__FUNCTION__)
@@ -228,52 +220,18 @@ class GuideViewController: BaseViewController {
      */
     @IBAction func guideBtnClick(sender: AnyObject) {
         
-        if jumpMode == .LoginMode {
-            loginJump()
-        } else {
-            signInJump()
-        }
-        
+        differentJumpMode()
         userInfoSetting()
         
     }
     
-    func loginJump() {
+    // 不同状态的跳转顺序
+    func differentJumpMode() {
         
         let nextView = StoryboardScene.Guide.instantiateGuideView()
-        nextView.jumpMode = self.jumpMode
         
         switch viewStyle {
             
-        case .GuideGender:
-            nextView.viewStyle = .GuideBirthday
-            self.pushVC(nextView)
-        case .GuideBirthday:
-            
-            nextView.viewStyle = .GuideHeight
-            self.pushVC(nextView)
-            
-        case .GuideHeight:
-            
-            nextView.viewStyle = .GuideWeight
-            self.pushVC(nextView)
-            
-        case .GuideWeight:
-            
-            nextView.viewStyle = .GuideGoal
-            self.pushVC(nextView)
-            
-        case .GuideGoal:
-            
-            nextView.viewStyle = .SettingNotice
-            self.pushVC(nextView)
-            
-        case .SettingNotice:
-            nextView.viewStyle = .SettingLocationShare
-            self.pushVC(nextView)
-        case .SettingLocationShare:
-            nextView.viewStyle = .BandBluetooth
-            self.pushVC(nextView)
         case .BandBluetooth:
             nextView.viewStyle = .BandopenBand
             self.pushVC(nextView)
@@ -284,70 +242,61 @@ class GuideViewController: BaseViewController {
             nextView.viewStyle = .BandSuccess
             self.pushVC(nextView)
         case .BandSuccess:
-            UserInfoModelView.shareInterface.updateInfo()
-        case .BandFail:
-            print(__FUNCTION__)
-            break
-        }
-    }
-
-    
-    func signInJump() {
-        
-        let nextView = StoryboardScene.Guide.instantiateGuideView()
-        nextView.jumpMode = self.jumpMode
-        
-        switch viewStyle {
             
+            // 注册时候 也是跳到添加个人信息
+            if UserInfoModelView.shareInterface.userInfo!.userId.isEmpty {
+                
+                nextView.viewStyle = .GuideGender
+                self.pushVC(nextView)
+                return
+            }
+            
+            // 新用户 或者没有个人信息的 就去添加个人信息
+            UserInfoModelView.shareInterface.queryInfo(self) {
+                
+                if $0 {
+                    
+                    if UserInfoModelView.shareInterface.userInfo!.sleepTime.isEmpty {
+                        
+                        nextView.viewStyle = .GuideGender
+                        self.pushVC(nextView)
+                    } else {
+                        
+                        // 如果有个人信息 就是直接跳到主页
+                        UserInfoModelView.shareInterface.updateInfo()
+                    }
+                }
+            }
+            
+        case .BandFail:
+            nextView.viewStyle = .BandSuccess
+            self.pushVC(nextView)
         case .GuideGender:
             nextView.viewStyle = .GuideBirthday
             self.pushVC(nextView)
         case .GuideBirthday:
-            
             nextView.viewStyle = .GuideHeight
             self.pushVC(nextView)
-            
         case .GuideHeight:
-            
             nextView.viewStyle = .GuideWeight
             self.pushVC(nextView)
-            
         case .GuideWeight:
-            
             nextView.viewStyle = .GuideGoal
             self.pushVC(nextView)
-            
         case .GuideGoal:
-            
             nextView.viewStyle = .SettingNotice
             self.pushVC(nextView)
-            
         case .SettingNotice:
             nextView.viewStyle = .SettingLocationShare
             self.pushVC(nextView)
         case .SettingLocationShare:
             let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
             pushVC(accountVC)
-            
-        case .BandBluetooth:
-            nextView.viewStyle = .BandopenBand
-            self.pushVC(nextView)
-        case .BandopenBand:
-            nextView.viewStyle = .BandLinking
-            self.pushVC(nextView)
-        case .BandLinking:
-            nextView.viewStyle = .BandSuccess
-            self.pushVC(nextView)
-        case .BandSuccess:
-            nextView.viewStyle = .GuideGender
-            self.pushVC(nextView)
-        case .BandFail:
-            print(__FUNCTION__)
-            break
         }
+        
     }
     
-    
+    // 传数据
     func userInfoSetting() {
         
         switch viewStyle {
@@ -373,22 +322,21 @@ class GuideViewController: BaseViewController {
             let sleepMinutes = goalView!.mmCurrentValue
             UserInfoModelView.shareInterface.userInfo?.stepNum = goalStepNum
             UserInfoModelView.shareInterface.userInfo?.sleepTime = "\(sleepHour):\(sleepMinutes)"
-
+            
         default:
             break
         }
         
     }
     
-    
     /**
      更新性别视图
      */
     func  upDateGenderView(){
-                
-        let genderView = GenderView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))//spacingWidth25 * 23, spacingWidth25 * 28))
+        
+        let genderView = GenderView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12))//spacingWidth25 * 23, spacingWidth25 * 28))
         middleView.addSubview(genderView)
- 
+        
     }
     
     /**
@@ -396,9 +344,9 @@ class GuideViewController: BaseViewController {
      */
     func  upDateBirthdayView(){
         
-        birthView = BirthdayView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
+        birthView = BirthdayView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12))
         middleView.addSubview(birthView!)
-
+        
     }
     
     /**
@@ -406,9 +354,9 @@ class GuideViewController: BaseViewController {
      */
     func  upDateHeightView(){
         
-        highView = HightView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
+        highView = HightView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12))
         middleView.addSubview(highView!)
-  
+        
     }
     
     /**
@@ -416,10 +364,9 @@ class GuideViewController: BaseViewController {
      */
     func  upDateWeightView(){
         
-        weightView = WeightView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
+        weightView = WeightView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12))
         middleView.addSubview(weightView!)
-        weightView!.rotaryView.backgroundImage = UIImage(asset: .GuideWeightBg)
-    
+        
     }
     
     /**
@@ -439,19 +386,27 @@ class GuideViewController: BaseViewController {
         
         
     }
-
+    
     /**
      更新目标视图
      */
     func upDatePictureView(titleLab: String, titleInfo: String, midImage: UIImage, bottomLab: String){
         
-        let pictureView = PictureView(frame: CGRectMake(0, 0, boundsWidth * 0.92, boundsWidth * 1.12))
+        let pictureView = PictureView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12))
         
         pictureView.titleLab.text = titleLab
         pictureView.titleInfo.text = titleInfo
-        pictureView.middleImgView.image = midImage
         pictureView.bottomLab.text = bottomLab
-                
+        
+        if viewStyle == .BandLinking {
+            
+            pictureView.middleImgView.animateWithImage(named: "GuideLinking.gif")
+            
+        }else {
+            
+            pictureView.middleImgView.image = midImage
+        }
+        
         middleView.addSubview(pictureView)
         
         

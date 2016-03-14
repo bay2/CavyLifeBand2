@@ -138,9 +138,9 @@ class SignInViewController: AccountManagerBaseViewController {
      */
     override func onClickRight(sender: AnyObject) {
 
-        let signUpVC = StoryboardScene.Main.AccountManagerViewScene.viewController()
-
-        self.pushVC(signUpVC)
+        let guideVC = StoryboardScene.Guide.instantiateGuideView()
+        guideVC.viewStyle = .BandBluetooth
+        self.pushVC(guideVC)
 
     }
 
@@ -167,17 +167,10 @@ class SignInViewController: AccountManagerBaseViewController {
     @IBAction func onClickSignIn(sender: AnyObject) {
 
         let userSignIn = SignInViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!) {
-            UserInfoModelView.shareInterface.queryInfo(userId: $0) {
-                
-                if $0 == true {
-                    
-                } else {
-                    let guideVC = StoryboardScene.Guide.instantiateGuideView()
-                    
-                    self.presentVC(UINavigationController(rootViewController: guideVC))
-                }
-            }
+            UserInfoModelView.shareInterface.userInfo?.userId = $0
             
+            let guideVC = StoryboardScene.Guide.instantiateGuideView()
+            self.pushVC(guideVC)
         }
         
         userSignIn.userSignIn()

@@ -138,8 +138,6 @@ class PageViewController: UIViewController {
     @IBAction func onClickSignUp(sender: AnyObject) {
 
         let guideVC = StoryboardScene.Guide.instantiateGuideView()
-        guideVC.viewStyle = .BandBluetooth
-        guideVC.jumpMode = .SignInMode
         presentVC(UINavigationController(rootViewController: guideVC))
 
     }

@@ -7,18 +7,18 @@
 //
 
 import UIKit
+import Gifu
+import EZSwiftExtensions
 
 class PictureView: UIView {
 
     var titleLab = UILabel()
     var titleInfo = UILabel()
-    var middleImgView = UIImageView()
+    var middleImgView = AnimatableImageView()
     var bottomLab = UILabel()
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         
         pictureViewLayout()
         
@@ -39,22 +39,22 @@ class PictureView: UIView {
         titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(boundsWidth * 0.6, 18))
+            make.size.equalTo(CGSizeMake(ez.screenWidth * 0.6, 18))
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(boundsWidth * 0.1 - 9)
+            make.top.equalTo(self).offset(ez.screenWidth * 0.1 - 9)
         }
         titleInfo.font = UIFont.systemFontOfSize(12)
         titleInfo.textColor = UIColor(named: .GuideColor99)
         titleInfo.textAlignment = .Center
         titleInfo.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(boundsWidth * 0.6, 12))
+            make.size.equalTo(CGSizeMake(ez.screenWidth * 0.6, 12))
             make.centerX.equalTo(self)
-            make.top.equalTo(titleLab).offset(boundsWidth * 0.04 + 12)
+            make.top.equalTo(titleLab).offset(ez.screenWidth * 0.04 + 12)
         }
 
         middleImgView.backgroundColor = UIColor.whiteColor()
         middleImgView.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(boundsWidth * 0.72, boundsWidth * 0.72))
+            make.size.equalTo(CGSizeMake(ez.screenWidth * 0.72, ez.screenWidth * 0.72))
             make.center.equalTo(self)
         }
         
@@ -62,9 +62,9 @@ class PictureView: UIView {
         bottomLab.textColor = UIColor(named: .GuideColor66)
         bottomLab.textAlignment = .Center
         bottomLab.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(boundsWidth * 0.6, 12))
+            make.size.equalTo(CGSizeMake(ez.screenWidth * 0.6, 12))
             make.centerX.equalTo(self)
-            make.top.equalTo(middleImgView).offset(boundsWidth * 0.76)
+            make.top.equalTo(middleImgView).offset(ez.screenWidth * 0.76)
         }
         
     }

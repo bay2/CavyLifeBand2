@@ -18,6 +18,7 @@ pod 'MHRotaryKnob'
 pod 'RealmSwift'
 pod 'OHHTTPStubs'
 pod 'OHHTTPStubs/Swift'
+pod 'Gifu'
 
 target :CavyLifeBand2Tests, :exclusive => true do
     pod 'OHHTTPStubs'

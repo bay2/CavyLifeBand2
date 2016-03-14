@@ -57,6 +57,7 @@ struct SignUpViewModel {
             Log.info("Sign up success")
             
             let signInVm = SignInViewModel(viewController: self.viewController, userName: self.userName, passwd: self.passwd) {
+                
                 UserInfoModelView.shareInterface.updateInfo(userId: $0)
             }
             signInVm.userSignIn()

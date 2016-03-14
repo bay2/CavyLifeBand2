@@ -14,11 +14,12 @@ class GenderView: UIView {
     var titleLab = UILabel()
     var upGenderBtn = UIButton(type: .Custom)
     var downGenderBtn = UIButton(type: .Custom)
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        MOrG = true // 默认True 是男的
+        UserInfoModelView.shareInterface.userInfo!.sex = 0
         genderViewLayout()
         
     }
@@ -36,7 +37,6 @@ class GenderView: UIView {
         self.addSubview(upGenderBtn)
         self.addSubview(downGenderBtn)
 
-    
         titleLab.text = L10n.GuideMine.string
         titleLab.font = UIFont.systemFontOfSize(18)
         titleLab.textColor = UIColor(named: .GuideColorCC)
@@ -47,7 +47,7 @@ class GenderView: UIView {
             make.top.equalTo(self).offset(spacingWidth25 * 2)
         }
         
-        upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyGary), forState: .Normal)
+        upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyChosen), forState: .Normal)
         upGenderBtn.frame.size = CGSizeMake(spacingWidth25 * 8, spacingWidth25 * 8)
         upGenderBtn.snp_makeConstraints { (make) -> Void in
             make.size.equalTo(CGSizeMake(spacingWidth25 * 8, spacingWidth25 * 8))

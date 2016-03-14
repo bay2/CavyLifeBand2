@@ -9,14 +9,12 @@
 import UIKit
 
 class BirthdayView: UIView, RulerViewDelegate {
-
     
     var titleLab = UILabel()
     var yyMMLabel = UILabel()
     var yymmRuler = RulerView()
     var dayLabel = UILabel()
     var dayRuler = RulerView()
-
     
     override init(frame: CGRect) {
         super.init(frame: frame)

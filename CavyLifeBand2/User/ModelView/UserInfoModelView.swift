@@ -33,11 +33,13 @@ struct UserInfoModelView {
 
     }
 
-    func queryInfo(viewController: UIViewController? = nil, userId: String, callback: ((Bool) -> Void)? = nil) {
+    func queryInfo(viewController: UIViewController? = nil, userId: String? = nil, callback: ((Bool) -> Void)? = nil) {
+        
+        if userId != nil {
+            self.userInfo!.userId = userId!
+        }
 
-        let netPara = [UserNetRequsetKey.UserID.rawValue: userId]
-
-        self.userInfo!.userId = userId
+        let netPara = [UserNetRequsetKey.UserID.rawValue: self.userInfo!.userId]
 
         userNetReq.queryProfile(netPara) { (result) in
 
