@@ -53,6 +53,15 @@ class AccountManagerViewController: AccountManagerBaseViewController {
     
     // 垂直分割线
     @IBOutlet weak var verticalLine: UIView!
+    
+    
+    var forgotpwdDelegate: ForgotPasswordDelegate?
+    
+    var signUpDelegate: SignUpDelegate?
+    
+    var sendSafetyCodeDelegate: SendSafetyCodeDelegate?
+    
+    var signInDelegate: SignInDelegate?
 
     // 视图风格
     var viewStyle: UserViewStyle = .PhoneNumSignUp
@@ -72,6 +81,11 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         
         emailSafetyCode.userInteractionEnabled = true
         emailSafetyCode.addTapGesture(target: self, action: "refreshEmailSafetyCode")
+        
+        forgotpwdDelegate = self
+        signUpDelegate = self
+        sendSafetyCodeDelegate = self
+        signInDelegate = self
         
         userNameTextField.becomeFirstResponder()
         userNameTextField.backgroundColor = UIColor.whiteColor()
@@ -330,12 +344,6 @@ class AccountManagerViewController: AccountManagerBaseViewController {
      */
     @IBAction func onClickMainBtn(sender: AnyObject) {
 
-        let signUpViewModel = SignUpViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!, safetyCode: safetyCodeTextField.text!)
-
-        let forgotViewModel = ForgotPasswordViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!, safetyCode: safetyCodeTextField.text!) {
-            self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
-        }
-        
         if userProtocolView.checkboxBtn.isCheck != true {
             
             CavyLifeBandAlertView.sharedIntance.showViewTitle(self, title: "", message: L10n.SignUpReadProcotol.string)
@@ -346,19 +354,55 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         switch viewStyle {
 
             case .EmailSignUp:
-                signUpViewModel.emailSignUp()
+                signUpDelegate?.emailSignUp(signInProc)
+            
 
             case .PhoneNumSignUp:
-                signUpViewModel.phoneSignUp()
+                signUpDelegate?.phoneSignUp(signInProc)
 
             case .EmailForgotPasswd:
-                forgotViewModel.emailForgotPwd()
+                forgotpwdDelegate?.emailForgotPwd(forgotPwdProc)
 
             case .PhoneNumForgotPasswd:
-                forgotViewModel.phoneForgotPwd()
+                forgotpwdDelegate?.phoneForgotPwd(forgotPwdProc)
 
         }
 
+    }
+    
+    /**
+     登录处理
+     */
+    func signInProc(isSignUp: Bool) {
+        
+        if isSignUp != true {
+            return
+        }
+        
+        signInDelegate?.signIn {
+            
+            if $0 == true {
+                let guideVC = StoryboardScene.Guide.instantiateGuideView()
+                self.pushVC(guideVC)
+            }
+            
+        }
+        
+    }
+    
+    /**
+     找回密码处理
+     
+     - parameter isForgotPwd:
+     */
+    func forgotPwdProc(isForgotPwd: Bool) {
+        
+        if isForgotPwd != true {
+            return
+        }
+        
+        self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
+        
     }
 
     /**
@@ -368,13 +412,18 @@ class AccountManagerViewController: AccountManagerBaseViewController {
      */
     @IBAction func onClickSendSafetyCode(sender: AnyObject) {
 
-        let sendSafetyCode = SendSafetyCodeViewModel(viewController: self, button: safetyCodeBtn, userName: userNameTextField.text!) {
-
+        self.safetyCodeBtn.enabled = false
+        
+        sendSafetyCodeDelegate?.sendSafetyCode {
+            
+            if $0 != true {
+                self.safetyCodeBtn.enabled = true
+                return
+            }
+            
             self.safetyCodeBtn.countDown()
-
+            
         }
-
-        sendSafetyCode.sendSafetyCode()
 
     }
     
@@ -447,6 +496,26 @@ extension AccountManagerViewController {
         
         return true
         
+    }
+    
+}
+
+extension AccountManagerViewController: SignUpDelegate, ForgotPasswordDelegate, SendSafetyCodeDelegate, SignInDelegate {
+    
+    var userName: String {
+        return userNameTextField.text!
+    }
+    
+    var passwd: String {
+        return passwdTextField.text!
+    }
+    
+    var safetyCode: String {
+        return safetyCodeTextField.text!
+    }
+    
+    var viewController: UIViewController? {
+        return self
     }
     
 }
