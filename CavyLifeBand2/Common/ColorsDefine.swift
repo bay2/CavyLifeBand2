@@ -16,6 +16,15 @@ extension UIColor {
 extension UIColor {
   enum Name {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 100% <br/> (0x000000ff)
+    case CameraBgColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+    /// Alpha: 70% <br/> (0xffffffb3)
+    case CameraChoose
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+    /// Alpha: 20% <br/> (0xffffff33)
+    case CameraNoChoose
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case GuideColor33
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
@@ -78,6 +87,9 @@ extension UIColor {
 
     var rgbaValue: UInt32! {
       switch self {
+      case .CameraBgColor: return 0x000000ff
+      case .CameraChoose: return 0xffffffb3
+      case .CameraNoChoose: return 0xffffff33
       case .GuideColor33: return 0x00000033
       case .GuideColor66: return 0x00000066
       case .GuideColor99: return 0x00000099

@@ -10,40 +10,41 @@ import UIKit
 import LLSimpleCamera
 import AssetsLibrary
 import Log
+import EZSwiftExtensions
+import SnapKit
+import Photos
 
 class CustomCamera: UIViewController {
     
-    let screenRect = UIScreen.mainScreen().bounds
+    
     // MARK: Definition
-    
-    
+    // 头 中间 底下 视图
     @IBOutlet weak var headView: UIView!
     @IBOutlet weak var photoView: UIView!
     @IBOutlet weak var bottomView: UIView!
     
-    @IBOutlet weak var shotCutSwitch: UIButton!
+    // 闪光灯 切换前后摄像头 切换拍照 切换摄像
     @IBOutlet weak var flashSwitch: UIButton!
+    @IBOutlet weak var shotCutSwitch: UIButton!
+    @IBOutlet weak var changeToPhoto: UIButton!
+    @IBOutlet weak var changeToVideo: UIButton!
     
-    @IBOutlet weak var flashOnButton: UIButton!
-    @IBOutlet weak var flashOffButton: UIButton!
-    @IBOutlet weak var flashAutoButton: UIButton!
+    // 闪光灯的三个图片
     @IBOutlet weak var falshOnImge: UIImageView!
     @IBOutlet weak var falshOffImg: UIImageView!
     @IBOutlet weak var falshAtuoImg: UIImageView!
     
-    
-    @IBOutlet weak var changeToPhoto: UIButton!
-    @IBOutlet weak var changeToVideo: UIButton!
+    // 录像计时 拍摄按钮 相册按钮
+    @IBOutlet weak var videRecordTime: UILabel!
     @IBOutlet weak var shutterPhoto: UIButton!
     @IBOutlet weak var lastImage: UIButton!
 
-    var isPhotoOrVideo = Bool()
+    var isPhotoOrVideo: Bool = true // true 代表拍照
     var errorLabel     = UILabel?()
     var camera         = LLSimpleCamera()
-    var asset          = [ALAsset]()
     var library        = ALAssetsLibrary()
-    var startX         = CGFloat()// panGestureRecognizer start Location
-    var countOne       = 0
+    var timer = NSTimer()
+    var timerCount: Int = 0
     
     // MARK:  View
     
@@ -51,9 +52,9 @@ class CustomCamera: UIViewController {
         
         super.viewWillAppear(animated)
         
-        self.getLastPhoto()         // show lastImage
+        getLastPhoto()         // show lastImage
         
-        self.camera.start()         // start Camera
+        camera.start()         // start Camera
     }
     
     
@@ -62,39 +63,34 @@ class CustomCamera: UIViewController {
         
         UIApplication.sharedApplication().idleTimerDisabled = true
         
-        isPhotoOrVideo = true
+        cameraAllViewLayout()
         
-        /**
-        init
         
-        - parameter quality:      photo quality
-        - parameter position:     shot position
-        - parameter videoEnabled: can video
-        */
+    }
+    
+    // 全部控件布局
+    func cameraAllViewLayout() {
+        
+        // 初始化相机:(照片质量， 摄像头方向，是否可以录像)
         self.camera = LLSimpleCamera(quality: AVCaptureSessionPresetHigh, position: LLCameraPositionRear, videoEnabled: true)
-        
-        self.camera.attachToViewController(self, withFrame: CGRectMake(0, 64, self.photoView.frame.size.width, self.photoView.frame.size.height))
-
+        self.camera.attachToViewController(self, withFrame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
         self.camera.fixOrientationAfterCapture = false
         
         // 重写LLSimpleCamera两个Block属性
         self.camera.onDeviceChange = deviceChange
         self.camera.onError = cameraError
         
-        // corner lastImage image Aspect fill
+        // 相册按钮显示 切角
         self.lastImage.layer.masksToBounds    = true
-        self.lastImage.layer.cornerRadius     = lastImage.frame.size.width / 2
+        self.lastImage.layer.cornerRadius     = 6
         self.lastImage.imageView?.contentMode = UIViewContentMode.ScaleAspectFill
+
+        view.addSubview(headView)
+        view.addSubview(bottomView)
         
-        self.view.addSubview(self.headView)
-        self.view.addSubview(self.bottomView)
-        
-        // add PanGestureRecognizer
-        let pan = UIPanGestureRecognizer(target: self, action: "panAction:")
-        self.camera.view.addGestureRecognizer(pan)
     }
     
-    // rewrite block setOnDeviceChange
+    // 重写LLSimpleCamera 的 block -- setOnDeviceChange
     func deviceChange(camera: LLSimpleCamera?, device: AVCaptureDevice?) {
         
         Log.info("Device Changed.")
@@ -118,7 +114,7 @@ class CustomCamera: UIViewController {
         }
     }
     
-    // rewrite block setOnError
+    // 重写LLSimpleCamera 的 block -- setOnError
     func cameraError(camera: LLSimpleCamera?, error: NSError?) {
         Log.error("Camera error:\(error)")
         
@@ -141,34 +137,11 @@ class CustomCamera: UIViewController {
             label.backgroundColor = UIColor.clearColor()
             label.textColor = UIColor.whiteColor()
             label.sizeToFit()
-            label.center = CGPointMake(screenRect.width / 2, screenRect.size.height / 2)
+            label.center = CGPointMake(ez.screenWidth / 2, ez.screenHeight / 2)
             self.errorLabel = label
+            
+            
             self.view.addSubview(self.errorLabel!)
-        }
-    }
-
-    // 添加手势 左移右移来改变 isPhotoOrVideo
-    func panAction(sender: UIPanGestureRecognizer){
-        // 判断左移 右移
-        if UIGestureRecognizerState.Began == sender.state{
-        
-            self.startX = self.camera.view.frame.origin.x
-            
-        }
-        let detail: CGPoint = sender.translationInView(self.view)
-        
-        let endX = startX + detail.x
-        
-        if startX - endX < -100{
-            
-            self.choosePhotoAction(UIButton)
-            
-        }else if startX - endX > 100{
-            
-            self.chooseVideoAction(UIButton)
-            
-        }else{
-            //Log.error("Error for pan")
         }
     }
     
@@ -179,80 +152,56 @@ class CustomCamera: UIViewController {
          return NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last!
     }
     
-    // 改变选中的FlashMode的字体颜色
-    func changeColorForFlashModeButton(){
-        
-        self.flashOnButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        self.flashOffButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        self.flashAutoButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        
-        if camera.flash == LLCameraFlashOn {
-            self.flashOnButton.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
-        }else if camera.flash == LLCameraFlashOff {
-            self.flashOffButton.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
-        }else{
-            self.flashAutoButton.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
-        }
-    }
-    
-    // 显示当前FlashMode类型的图像
-    func changeFlashLightSwitchImage(){
-        
-        self.shotCutSwitch.hidden = false
-        self.flashAutoButton.hidden = true
-        self.flashOffButton.hidden = true
-        self.flashOnButton.hidden = true
-        
-        if camera.flash == LLCameraFlashOn {
-            
-            self.flashSwitch.setImage(self.falshOnImge.image, forState: UIControlState.Normal)
-            
-        }else if camera.flash == LLCameraFlashOff {
-            
-            self.flashSwitch.setImage(self.falshOffImg.image, forState: UIControlState.Normal)
-            
-        }else{
-            
-            self.flashSwitch.setImage(self.falshAtuoImg.image, forState: UIControlState.Normal)
-        }
-    }
-    
     // 获取系统相册最后一张图片
     func getLastPhoto(){
+        print("系统最后一张图片")
         
-        library.enumerateGroupsWithTypes(ALAssetsGroupSavedPhotos, usingBlock: { (group: ALAssetsGroup!, stop) -> Void in
+        // 查看是否有访问权限
+        let status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        if status == PHAuthorizationStatus.Restricted || status == PHAuthorizationStatus.Denied {
             
-            if group != nil {
-                let assetBlock: ALAssetsGroupEnumerationResultsBlock = {
-                    (result: ALAsset!, index: Int, stop) in
-                    if result != nil{
-                        
-                        self.asset.append(result)
-                        self.countOne++
-                    }
-                }
-                
-                group.enumerateAssetsUsingBlock(assetBlock)
-                
-                Log.info("assets:\(self.countOne)")
-                
-                let myAsset = self.asset[self.countOne - 1]
-                
-                let image =  UIImage(CGImage: myAsset.thumbnail().takeUnretainedValue())
-                
-                self.lastImage.setImage(image, forState: UIControlState.Normal)
-            }
-            }) { (error) -> Void in
-                
-                Log.error("Error:\(error)")
+            // 如果没有访问权限 再次请求打开访问权限
+            print("无访问权限")
+            
+            return
         }
+ 
+        // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult
+        let fetchOptions = PHFetchOptions()
+        let fetchResults = PHAsset.fetchAssetsWithOptions(fetchOptions)
+        
+        if fetchResults.countOfAssetsWithMediaType(.Image) > 0 {
+            print(fetchResults.count)
+        }
+        
+        // 最后一张
+        let lastAsset = fetchResults.lastObject as! PHAsset
+        var returnImg = UIImage()
+        PHImageManager.defaultManager().requestImageForAsset(lastAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenWidth), contentMode: .AspectFill, options: nil) { (result, info) -> Void in
+            returnImg = result!
+        }
+                
+        self.lastImage.setBackgroundImage(returnImg, forState: .Normal)
+        
     }
 
     // 开始摄影
     func startVideo(){
         Log.info("开始摄像")
         
-        self.shutterPhoto.backgroundColor = UIColor.redColor()
+        self.videRecordTime.text = "00:00:00"
+        
+        // 开始计时器
+        videoBeginRunTimer()
+        
+        self.flashSwitch.hidden = true
+        self.changeToPhoto.hidden = true
+        self.changeToVideo.hidden = true
+        self.shotCutSwitch.hidden = true
+        self.lastImage.hidden = true
+        self.videRecordTime.hidden = false
+        
+        self.shutterPhoto.setImage(UIImage(asset: .CameraVideoStart), forState: .Normal)
         self.shutterPhoto.layer.masksToBounds = true
         self.shutterPhoto.layer.cornerRadius = shutterPhoto.frame.width / 2
         
@@ -269,71 +218,126 @@ class CustomCamera: UIViewController {
     func stopVideo(){
         
         Log.info("停止录像")
-
-        self.shutterPhoto.backgroundColor = UIColor.blackColor()
         
+        self.camera.recording = false
+        
+        // 停止计时器 时间归零
+        timer.invalidate()
+        timerCount = 0
+        
+        self.flashSwitch.hidden = false
+        self.shotCutSwitch.hidden = false
+        self.changeToPhoto.hidden = false
+        self.changeToVideo.hidden = false
+        self.lastImage.hidden = false
+        self.videRecordTime.hidden = true
+        
+        self.shutterPhoto.setImage(UIImage(asset: .CamerVideoWait), forState: .Normal)
+        
+        // 保存录像
         self.camera.stopRecording { (camera, outputFileURL, error) -> Void in
             
             // Viedo in outputURL cache
             
             Log.info("outputFileURL: \(outputFileURL)")
 
+            // 保存视频
+            print("保存视频")
+            
             self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileURL) { (assetUrl, error) -> Void in
                 if error != nil {
                     Log.error("Save video fail:%@", error)
-                }else {
+                } else {
                     //self.countOne = 0
-                    self.getLastPhoto()
                     Log.info("Save video succeed.")
+                    self.getLastPhoto()
                 }
                 
             }
             
         }
-        self.shutterPhoto.backgroundColor = UIColor.blackColor()
+        
     }
 
+    // 取消录像
+    func stopVideoNoSave() {
+        Log.info("取消录像")
+        
+        // 停止计时器 时间归零
+        timer.invalidate()
+        timerCount = 0
+        
+        self.flashSwitch.hidden = false
+        self.shotCutSwitch.hidden = false
+        self.changeToPhoto.hidden = false
+        self.changeToVideo.hidden = false
+        self.lastImage.hidden = false
+        self.videRecordTime.hidden = true
+        
+        self.shutterPhoto.setImage(UIImage(asset: .CamerVideoWait), forState: .Normal)
+        // 保存录像
+        self.camera.stopRecording { (camera, outputFileURL, error) -> Void in}
+
+    }
+    
+    // 录像计时器 开始计时
+    func videoBeginRunTimer() {
+        
+        print("录像开始计时")
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerRun:", userInfo: nil, repeats: true)
+        
+    }
+    
+    func timerRun(timer: NSTimer) {
+        
+        timerCount++
+        print(timerCount)
+        
+
+        let hour = timerCount / 3600
+        let minutes = timerCount / 60
+        let second = timerCount - hour * 3600 - minutes * 60
+        
+        if hour < 10 && minutes < 10 && second < 10 {
+            
+            self.videRecordTime.text = "0\(hour):0\(minutes):0\(second)"
+            
+        } else if hour < 10 && minutes < 10 {
+            
+            self.videRecordTime.text = "0\(hour):0\(minutes):\(second)"
+            
+        } else if hour < 10 {
+            
+            self.videRecordTime.text = "0\(hour):\(minutes):\(second)"
+            
+        } else {
+            
+            self.videRecordTime.text = "\(hour):\(minutes):\(second)"
+        }
+        
+    }
+    
+    
     // MARK: storyboard 的 ButtonAction
     // 闪光灯状态显示 打开 关闭 自动 可选
     @IBAction func changeFalshLight(sender: AnyObject) {
-        Log.info("打开选择闪光灯")
-        
-        if LLSimpleCamera.isRearCameraAvailable() {
-            if self.shotCutSwitch.hidden == false {
-                
-                self.shotCutSwitch.hidden = true
-                self.flashAutoButton.hidden = false
-                self.flashOffButton.hidden = false
-                self.flashOnButton.hidden = false
-                
-                self.changeColorForFlashModeButton()
-                
-            }else{
-                
-                self.changeFlashLightSwitchImage()
-            }
-        }
-    }
-    
-    // 选择闪光灯模式
-    @IBAction func chooseFlashMode(sender: AnyObject) {
-        
         Log.info("更换闪光灯")
         
-        switch sender.tag - 1000 {
-        case 0:
-            self.camera.updateFlashMode(LLCameraFlashOn)
-        case 1:
+        if camera.flash == LLCameraFlashOn {
+            
             self.camera.updateFlashMode(LLCameraFlashOff)
-        case 2:
+            self.flashSwitch.setImage(self.falshOffImg.image, forState: UIControlState.Normal)
+            
+        }else if camera.flash == LLCameraFlashOff {
             self.camera.updateFlashMode(LLCameraFlashAuto)
-        default:
-            Log.error("FlashLight Change Error")
+            self.flashSwitch.setImage(self.falshAtuoImg.image, forState: UIControlState.Normal)
+            
+        }else if camera.flash == LLCameraFlashAuto {
+            self.camera.updateFlashMode(LLCameraFlashOn)
+            self.flashSwitch.setImage(self.falshOnImge.image, forState: UIControlState.Normal)
         }
-        
-        self.changeFlashLightSwitchImage()
 
-        Log.info("选择了\(self.camera.flash)")
     }
     
     // 切换摄像头方向
@@ -345,8 +349,17 @@ class CustomCamera: UIViewController {
     
     // 返回上一页
     @IBAction func backHome(sender: AnyObject) {
-        Log.info("返回主界面")
-        UIApplication.sharedApplication().idleTimerDisabled = false
+        
+        if isPhotoOrVideo {
+            
+            Log.info("返回主界面")
+            UIApplication.sharedApplication().idleTimerDisabled = false
+            
+        } else {
+            
+            stopVideoNoSave()
+        }
+        
     }
     
     // 照相和摄影
@@ -372,13 +385,11 @@ class CustomCamera: UIViewController {
             if self.camera.recording == false {
                 
                 // start recording
-                
                 self.startVideo()
                 
             }else{
                 
                 // stop recording
-                
                 self.stopVideo()
             }
         }
@@ -387,34 +398,29 @@ class CustomCamera: UIViewController {
     // 打开相册
     @IBAction func goPhotoAlbum(sender: AnyObject) {
         
-        let storyBoard = UIStoryboard(name: "Camera", bundle: nil)
-        let photoVC = storyBoard.instantiateViewControllerWithIdentifier("PhotoAlbum")
-        
-        self.presentViewController(photoVC, animated: true, completion: nil)
-        
+        let photoVC = StoryboardScene.Camera.instantiatePhotoAlbumView()
+        self.presentVC(photoVC)
+
     }
     
     // 更改到照相模式
     @IBAction func choosePhotoAction(sender: AnyObject) {
-        if self.camera.recording {
-            Log.info("直接保存Video")
-            self.stopVideo()
-        }
-
-        self.shutterPhoto.backgroundColor = UIColor.blackColor()
+        
         isPhotoOrVideo = true
+        self.shutterPhoto.setImage(UIImage(asset: .CameraTakePhoto), forState: .Normal)
         
-        self.changeToPhoto.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
+        self.changeToPhoto.setTitleColor(UIColor(named: .CameraChoose), forState: UIControlState.Normal)
         
-        self.changeToVideo.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        self.changeToVideo.setTitleColor(UIColor(named: .CameraNoChoose), forState: UIControlState.Normal)
         
     }
     
     // 更改到录像模式
     @IBAction func chooseVideoAction(sender: AnyObject) {
         isPhotoOrVideo = false
-        self.changeToPhoto.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
-        self.changeToVideo.setTitleColor(UIColor.orangeColor(), forState: UIControlState.Normal)
+        self.shutterPhoto.setImage(UIImage(asset: .CamerVideoWait), forState: .Normal)
+        self.changeToPhoto.setTitleColor(UIColor(named: .CameraNoChoose), forState: UIControlState.Normal)
+        self.changeToVideo.setTitleColor(UIColor(named: .CameraChoose), forState: UIControlState.Normal)
     }
     
     override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {

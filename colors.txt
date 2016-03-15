@@ -18,3 +18,6 @@ GuideColor99 : #00000099
 GuideColor66 : #00000066
 GuideColorCC : #000000CC
 GuideLineColor : #CCCCCC
+CameraBgColor : #000000
+CameraChoose : #ffffffB3
+CameraNoChoose : #ffffff33

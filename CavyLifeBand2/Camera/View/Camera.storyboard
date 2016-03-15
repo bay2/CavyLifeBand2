@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Custom Camera-->
@@ -18,6 +19,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vcm-J7-5oN">
+                                <rect key="frame" x="0.0" y="64" width="600" height="447"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NOU-Hr-aOD">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                 <subviews>
@@ -27,7 +33,7 @@
                                             <constraint firstAttribute="width" secondItem="w2m-Gx-myF" secondAttribute="height" multiplier="1:1" id="O2b-Q7-tUH"/>
                                             <constraint firstAttribute="width" constant="29" id="Vg5-e4-m0E"/>
                                         </constraints>
-                                        <state key="normal" image="flash_off"/>
+                                        <state key="normal" image="CameraFlashClosed"/>
                                         <connections>
                                             <action selector="changeFalshLight:" destination="QDV-Yk-peX" eventType="touchUpInside" id="AxP-Sf-8wA"/>
                                         </connections>
@@ -38,106 +44,82 @@
                                             <constraint firstAttribute="width" constant="29" id="iJZ-Hs-Iv7"/>
                                             <constraint firstAttribute="width" secondItem="gZM-8R-MsF" secondAttribute="height" multiplier="1:1" id="tVb-iG-S7H"/>
                                         </constraints>
-                                        <state key="normal" image="camera_cutover"/>
+                                        <state key="normal" image="CameraTurnCamera"/>
                                         <connections>
                                             <action selector="changeShot:" destination="QDV-Yk-peX" eventType="touchUpInside" id="YOy-2X-soU"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" tag="1000" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dUp-pl-0Nf">
-                                        <rect key="frame" x="79" y="17" width="30" height="30"/>
-                                        <state key="normal" title="打开">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CameraFlashAuto" translatesAutoresizingMaskIntoConstraints="NO" id="b1q-Du-uJX" userLabel="auto_flash">
+                                        <rect key="frame" x="0.0" y="0.0" width="29" height="29"/>
+                                    </imageView>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CameraFlashClosed" translatesAutoresizingMaskIntoConstraints="NO" id="Yxq-JO-NPc" userLabel="off_flash">
+                                        <rect key="frame" x="0.0" y="0.0" width="29" height="29"/>
+                                    </imageView>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CameraFlashOpen" translatesAutoresizingMaskIntoConstraints="NO" id="nOU-Nl-fBv" userLabel="on_flash">
+                                        <rect key="frame" x="0.0" y="0.0" width="29" height="29"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuV-jM-Yij">
+                                        <rect key="frame" x="247" y="18" width="30" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="拍照">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="chooseFlashMode:" destination="QDV-Yk-peX" eventType="touchUpInside" id="4ge-Er-P0z"/>
+                                            <action selector="choosePhotoAction:" destination="QDV-Yk-peX" eventType="touchUpInside" id="Q9r-Qv-oc0"/>
                                         </connections>
                                     </button>
-                                    <button hidden="YES" opaque="NO" tag="1001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRO-w9-uIh">
-                                        <rect key="frame" x="285" y="17" width="30" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3k-Sf-dGA">
+                                        <rect key="frame" x="323" y="18" width="30" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="摄影">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="chooseVideoAction:" destination="QDV-Yk-peX" eventType="touchUpInside" id="5oh-7C-Fbs"/>
+                                        </connections>
+                                    </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q31-dX-0tn">
+                                        <rect key="frame" x="250" y="24" width="100" height="17"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="oRO-w9-uIh" secondAttribute="height" multiplier="1:1" id="EwD-Az-HEl"/>
-                                            <constraint firstAttribute="width" constant="30" id="wXB-PX-VdW"/>
+                                            <constraint firstAttribute="width" constant="100" id="fAm-K0-YC4"/>
                                         </constraints>
-                                        <state key="normal" title="关闭">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="chooseFlashMode:" destination="QDV-Yk-peX" eventType="touchUpInside" id="ub9-Sq-x7R"/>
-                                        </connections>
-                                    </button>
-                                    <button hidden="YES" opaque="NO" tag="1002" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HBO-xC-COC">
-                                        <rect key="frame" x="491" y="17" width="30" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="30" id="H6i-Wo-eeY"/>
-                                            <constraint firstAttribute="width" secondItem="HBO-xC-COC" secondAttribute="height" multiplier="1:1" id="bSr-0U-1xh"/>
-                                        </constraints>
-                                        <state key="normal" title="自动">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="chooseFlashMode:" destination="QDV-Yk-peX" eventType="touchUpInside" id="zdB-CN-IMn"/>
-                                        </connections>
-                                    </button>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flash_automatic.png" translatesAutoresizingMaskIntoConstraints="NO" id="b1q-Du-uJX" userLabel="auto_flash">
-                                        <rect key="frame" x="359" y="17" width="35" height="30"/>
-                                    </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flash_off.png" translatesAutoresizingMaskIntoConstraints="NO" id="Yxq-JO-NPc" userLabel="off_flash">
-                                        <rect key="frame" x="430" y="17" width="35" height="30"/>
-                                    </imageView>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="flash_on.png" translatesAutoresizingMaskIntoConstraints="NO" id="nOU-Nl-fBv" userLabel="on_flash">
-                                        <rect key="frame" x="396" y="17" width="35" height="30"/>
-                                    </imageView>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="m3k-Sf-dGA" firstAttribute="leading" secondItem="Q31-dX-0tn" secondAttribute="trailing" constant="-27" id="Bqw-vS-wr9"/>
                                     <constraint firstAttribute="height" constant="64" id="CuR-9P-5w9"/>
-                                    <constraint firstItem="dUp-pl-0Nf" firstAttribute="centerY" secondItem="NOU-Hr-aOD" secondAttribute="centerY" id="S3d-Mp-VTT"/>
+                                    <constraint firstItem="Q31-dX-0tn" firstAttribute="centerX" secondItem="NOU-Hr-aOD" secondAttribute="centerX" id="Jbw-38-qwt"/>
+                                    <constraint firstItem="kuV-jM-Yij" firstAttribute="centerY" secondItem="Q31-dX-0tn" secondAttribute="centerY" id="QSs-MW-HVU"/>
                                     <constraint firstItem="w2m-Gx-myF" firstAttribute="leading" secondItem="NOU-Hr-aOD" secondAttribute="leading" constant="30" id="Uhg-1T-ntF"/>
-                                    <constraint firstItem="HBO-xC-COC" firstAttribute="leading" secondItem="oRO-w9-uIh" secondAttribute="trailing" constant="66" id="VT9-Il-8Hf"/>
                                     <constraint firstAttribute="trailing" secondItem="gZM-8R-MsF" secondAttribute="trailing" constant="30" id="aSP-of-Hxz"/>
-                                    <constraint firstItem="oRO-w9-uIh" firstAttribute="centerY" secondItem="NOU-Hr-aOD" secondAttribute="centerY" id="dgr-sW-Gu6"/>
+                                    <constraint firstItem="m3k-Sf-dGA" firstAttribute="centerY" secondItem="Q31-dX-0tn" secondAttribute="centerY" id="eCp-mg-0Xc"/>
+                                    <constraint firstItem="Q31-dX-0tn" firstAttribute="centerY" secondItem="NOU-Hr-aOD" secondAttribute="centerY" id="erM-De-uxx"/>
                                     <constraint firstItem="gZM-8R-MsF" firstAttribute="centerY" secondItem="NOU-Hr-aOD" secondAttribute="centerY" id="fKD-9i-iIf"/>
                                     <constraint firstItem="w2m-Gx-myF" firstAttribute="centerY" secondItem="NOU-Hr-aOD" secondAttribute="centerY" id="kM4-aR-ycu"/>
-                                    <constraint firstItem="dUp-pl-0Nf" firstAttribute="leading" secondItem="w2m-Gx-myF" secondAttribute="trailing" constant="20" id="lf7-WY-zNZ"/>
-                                    <constraint firstItem="gZM-8R-MsF" firstAttribute="leading" secondItem="HBO-xC-COC" secondAttribute="trailing" constant="20" id="pMb-GO-sgh"/>
-                                    <constraint firstItem="HBO-xC-COC" firstAttribute="centerY" secondItem="NOU-Hr-aOD" secondAttribute="centerY" id="tYu-u0-6nk"/>
-                                    <constraint firstItem="oRO-w9-uIh" firstAttribute="centerX" secondItem="NOU-Hr-aOD" secondAttribute="centerX" id="zHU-vL-CbG"/>
-                                    <constraint firstAttribute="trailing" secondItem="HBO-xC-COC" secondAttribute="trailing" constant="189" id="zg4-Cx-xz0"/>
+                                    <constraint firstItem="Q31-dX-0tn" firstAttribute="leading" secondItem="kuV-jM-Yij" secondAttribute="trailing" constant="-27" id="qRQ-Qb-p82"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="VT9-Il-8Hf"/>
-                                        <exclude reference="zg4-Cx-xz0"/>
-                                    </mask>
-                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3ke-8r-ILT">
                                 <rect key="frame" x="0.0" y="511" width="600" height="89"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me2-4B-1se">
-                                        <rect key="frame" x="30" y="40" width="29" height="29"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Me2-4B-1se" secondAttribute="height" multiplier="1:1" id="cc5-z3-OF6"/>
-                                            <constraint firstAttribute="width" constant="29" id="shX-lw-tNz"/>
-                                        </constraints>
-                                        <state key="normal" image="cancel"/>
-                                        <connections>
-                                            <action selector="backHome:" destination="QDV-Yk-peX" eventType="touchUpInside" id="l3o-uL-t1N"/>
-                                        </connections>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3NI-2C-baU">
                                         <rect key="frame" x="270" y="14" width="61" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="3NI-2C-baU" secondAttribute="height" multiplier="1:1" id="8TC-29-mhg"/>
                                             <constraint firstAttribute="width" constant="61" id="k93-mr-ccS"/>
                                         </constraints>
-                                        <state key="normal" image="photograph"/>
+                                        <state key="normal" image="CameraTakePhoto"/>
                                         <connections>
                                             <action selector="takePhotoAndVideo:" destination="QDV-Yk-peX" eventType="touchUpInside" id="qGT-8r-gAw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGc-5O-ka9">
                                         <rect key="frame" x="530" y="35" width="40" height="40"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="fBD-IG-Me0"/>
                                             <constraint firstAttribute="width" secondItem="nGc-5O-ka9" secondAttribute="height" multiplier="1:1" id="fMm-ue-1Jm"/>
@@ -146,24 +128,18 @@
                                             <action selector="goPhotoAlbum:" destination="QDV-Yk-peX" eventType="touchUpInside" id="EEj-xs-0iG"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m3k-Sf-dGA">
-                                        <rect key="frame" x="315" y="-5" width="30" height="29"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me2-4B-1se">
+                                        <rect key="frame" x="30" y="40" width="29" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Me2-4B-1se" secondAttribute="height" multiplier="1:1" id="cc5-z3-OF6"/>
+                                            <constraint firstAttribute="width" constant="29" id="shX-lw-tNz"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="视频">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="取消">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="chooseVideoAction:" destination="QDV-Yk-peX" eventType="touchUpInside" id="5oh-7C-Fbs"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuV-jM-Yij">
-                                        <rect key="frame" x="245" y="-5" width="30" height="29"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <state key="normal" title="照片">
-                                            <color key="titleColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="choosePhotoAction:" destination="QDV-Yk-peX" eventType="touchUpInside" id="Q9r-Qv-oc0"/>
+                                            <action selector="backHome:" destination="QDV-Yk-peX" eventType="touchUpInside" id="l3o-uL-t1N"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -171,21 +147,12 @@
                                 <constraints>
                                     <constraint firstItem="3NI-2C-baU" firstAttribute="centerY" secondItem="3ke-8r-ILT" secondAttribute="centerY" id="F7O-g2-wNJ"/>
                                     <constraint firstItem="nGc-5O-ka9" firstAttribute="centerY" secondItem="3ke-8r-ILT" secondAttribute="centerY" constant="10" id="FI8-cS-BM2"/>
-                                    <constraint firstItem="3NI-2C-baU" firstAttribute="leading" secondItem="kuV-jM-Yij" secondAttribute="trailing" constant="-5" id="KJ4-TB-r3e"/>
-                                    <constraint firstItem="m3k-Sf-dGA" firstAttribute="leading" secondItem="3NI-2C-baU" secondAttribute="trailing" constant="-16" id="O4G-Cn-zFc"/>
-                                    <constraint firstItem="3NI-2C-baU" firstAttribute="top" secondItem="m3k-Sf-dGA" secondAttribute="bottom" constant="-10" id="Qk8-ao-uH9"/>
-                                    <constraint firstItem="3NI-2C-baU" firstAttribute="top" secondItem="kuV-jM-Yij" secondAttribute="bottom" constant="-10" id="dSw-xb-oDT"/>
                                     <constraint firstItem="Me2-4B-1se" firstAttribute="leading" secondItem="3ke-8r-ILT" secondAttribute="leading" constant="30" id="fKf-b5-qtW"/>
                                     <constraint firstAttribute="trailing" secondItem="nGc-5O-ka9" secondAttribute="trailing" constant="30" id="gqI-Xj-Oo4"/>
                                     <constraint firstItem="3NI-2C-baU" firstAttribute="centerX" secondItem="3ke-8r-ILT" secondAttribute="centerX" id="krX-lY-9X9"/>
                                     <constraint firstAttribute="height" constant="89" id="srl-7t-BXy"/>
                                     <constraint firstItem="Me2-4B-1se" firstAttribute="centerY" secondItem="3ke-8r-ILT" secondAttribute="centerY" constant="10" id="wWM-ue-4Pp"/>
                                 </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vcm-J7-5oN">
-                                <rect key="frame" x="0.0" y="64" width="600" height="447"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -202,6 +169,8 @@
                             <constraint firstAttribute="trailing" secondItem="NOU-Hr-aOD" secondAttribute="trailing" id="xAH-KU-Fzr"/>
                         </constraints>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="bottomView" destination="3ke-8r-ILT" id="wKX-xG-4H0"/>
                         <outlet property="changeToPhoto" destination="kuV-jM-Yij" id="M79-Jb-GqA"/>
@@ -209,15 +178,13 @@
                         <outlet property="falshAtuoImg" destination="b1q-Du-uJX" id="Owu-4v-cDB"/>
                         <outlet property="falshOffImg" destination="Yxq-JO-NPc" id="O00-Qx-PWq"/>
                         <outlet property="falshOnImge" destination="nOU-Nl-fBv" id="c50-t0-Rpe"/>
-                        <outlet property="flashAutoButton" destination="HBO-xC-COC" id="1o6-8A-uds"/>
-                        <outlet property="flashOffButton" destination="oRO-w9-uIh" id="31a-ag-gxA"/>
-                        <outlet property="flashOnButton" destination="dUp-pl-0Nf" id="84F-qe-ckU"/>
                         <outlet property="flashSwitch" destination="w2m-Gx-myF" id="f9H-Yf-Uqx"/>
                         <outlet property="headView" destination="NOU-Hr-aOD" id="CeE-mF-tHJ"/>
                         <outlet property="lastImage" destination="nGc-5O-ka9" id="4Dr-LM-CNb"/>
                         <outlet property="photoView" destination="Vcm-J7-5oN" id="wnb-h9-dvQ"/>
                         <outlet property="shotCutSwitch" destination="gZM-8R-MsF" id="KXE-RH-VTd"/>
                         <outlet property="shutterPhoto" destination="3NI-2C-baU" id="5eF-4W-OK5"/>
+                        <outlet property="videRecordTime" destination="Q31-dX-0tn" id="LuB-lo-dy6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vo5-cG-AkZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -240,12 +207,15 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="64"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="61X-NX-MFS">
-                                        <rect key="frame" x="30" y="17" width="29" height="29"/>
+                                        <rect key="frame" x="30" y="17" width="60" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="61X-NX-MFS" secondAttribute="height" multiplier="1:1" id="C8F-Bj-qQs"/>
-                                            <constraint firstAttribute="width" constant="29" id="muM-FE-PVZ"/>
+                                            <constraint firstAttribute="width" secondItem="61X-NX-MFS" secondAttribute="height" multiplier="2:1" id="C8F-Bj-qQs"/>
+                                            <constraint firstAttribute="width" constant="60" id="muM-FE-PVZ"/>
                                         </constraints>
-                                        <state key="normal" image="cancel"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <state key="normal" title="取消">
+                                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
                                         <connections>
                                             <action selector="action4Back:" destination="191-EO-XYb" eventType="touchUpInside" id="4N2-cE-cXu"/>
                                         </connections>
@@ -276,9 +246,14 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJu-do-d0V">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JhS-C0-hul">
+                                <rect key="frame" x="0.0" y="540" width="600" height="60"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJu-do-d0V">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="191-EO-XYb" id="lqm-1F-O2u"/>
                                 </connections>
@@ -286,16 +261,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="NXe-Di-2m1" firstAttribute="top" secondItem="aJu-do-d0V" secondAttribute="bottom" id="3hz-0H-bcj"/>
                             <constraint firstAttribute="trailing" secondItem="aJu-do-d0V" secondAttribute="trailing" id="7aI-Ot-bQ7"/>
                             <constraint firstItem="BD8-Rz-VLb" firstAttribute="leading" secondItem="hxQ-MH-mZR" secondAttribute="leading" id="9TB-2a-pMw"/>
+                            <constraint firstItem="JhS-C0-hul" firstAttribute="leading" secondItem="hxQ-MH-mZR" secondAttribute="leading" id="9VR-nQ-RMR"/>
+                            <constraint firstItem="JhS-C0-hul" firstAttribute="height" secondItem="hxQ-MH-mZR" secondAttribute="height" multiplier="0.1" id="9vk-Jq-Vqm"/>
                             <constraint firstAttribute="trailing" secondItem="BD8-Rz-VLb" secondAttribute="trailing" id="FeK-Pd-Vxo"/>
+                            <constraint firstAttribute="trailing" secondItem="JhS-C0-hul" secondAttribute="trailing" id="Fvl-0f-dOw"/>
                             <constraint firstItem="NXe-Di-2m1" firstAttribute="top" secondItem="aJu-do-d0V" secondAttribute="bottom" id="Mxx-fh-J00"/>
                             <constraint firstItem="aJu-do-d0V" firstAttribute="leading" secondItem="hxQ-MH-mZR" secondAttribute="leading" id="N4q-qq-Hbp"/>
                             <constraint firstItem="aJu-do-d0V" firstAttribute="top" secondItem="BD8-Rz-VLb" secondAttribute="bottom" id="QWD-uE-hjE"/>
+                            <constraint firstItem="aJu-do-d0V" firstAttribute="leading" secondItem="hxQ-MH-mZR" secondAttribute="leading" id="R7D-Jw-TfZ"/>
+                            <constraint firstAttribute="trailing" secondItem="aJu-do-d0V" secondAttribute="trailing" id="ZKf-im-bte"/>
+                            <constraint firstItem="NXe-Di-2m1" firstAttribute="top" secondItem="JhS-C0-hul" secondAttribute="bottom" id="qv2-aA-qlj"/>
                             <constraint firstItem="BD8-Rz-VLb" firstAttribute="top" secondItem="hxQ-MH-mZR" secondAttribute="top" id="xOM-N4-Fa5"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomView" destination="JhS-C0-hul" id="G27-zn-Cpe"/>
                         <outlet property="countLabel" destination="9XN-zL-MFn" id="pUP-WN-ctT"/>
                         <outlet property="scrollView" destination="aJu-do-d0V" id="9en-bG-n2c"/>
                     </connections>
@@ -306,12 +289,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="camera_cutover" width="29" height="29"/>
-        <image name="cancel" width="29" height="29"/>
-        <image name="flash_automatic.png" width="29" height="29"/>
-        <image name="flash_off" width="29" height="29"/>
-        <image name="flash_off.png" width="29" height="29"/>
-        <image name="flash_on.png" width="29" height="29"/>
-        <image name="photograph" width="67" height="67"/>
+        <image name="CameraFlashAuto" width="33" height="33"/>
+        <image name="CameraFlashClosed" width="33" height="33"/>
+        <image name="CameraFlashOpen" width="33" height="33"/>
+        <image name="CameraTakePhoto" width="73" height="73"/>
+        <image name="CameraTurnCamera" width="33" height="33"/>
     </resources>
 </document>

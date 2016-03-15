@@ -1,4 +1,5 @@
 # 二代生活手环
+![Build Status](https://travis-ci.org/bay2/CavyLifeBand2.svg?branch=master) 
 
 ## 开发环境
 

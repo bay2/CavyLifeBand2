@@ -97,3 +97,8 @@
 "Forgot.PasswdTextField" = "新密码";
 "Forgot.BackTextBtn" = "且慢,我想起来了!";
 "Forgot.finish" = "完成";
+
+// 照相机
+"Camera.Photo" = "拍照";
+"Camera.Video" = "摄影";
+"Camera.Back" = "取消";
