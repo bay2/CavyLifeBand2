@@ -34,12 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let userName = defaults["userName"]
         let passwd = defaults["passwd"]
-        if userName != nil && passwd != nil {
-            
-            let signInViewModel = SignInViewModel(viewController: UIViewController(), userName: userName as! String, passwd: passwd as! String)
-            signInViewModel.userSignIn()
-            
-        }
+//        if userName != nil && passwd != nil {
+//            
+//            let signInViewModel = SignInViewModel(viewController: UIViewController(), userName: userName as! String, passwd: passwd as! String)
+//            signInViewModel.userSignIn()
+//            
+//        }
         
 #if UITEST
             

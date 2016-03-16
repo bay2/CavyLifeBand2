@@ -15,7 +15,6 @@ import EZSwiftExtensions
 struct UserInfoModelView {
 
     var userInfo: UserInfoModel?
-    var viewController: UIViewController? = nil
     static var shareInterface = UserInfoModelView()
 
     /**
@@ -46,7 +45,7 @@ struct UserInfoModelView {
             if result.isFailure {
 
                 callback?(false)
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, userErrorCode: result.error!)
                 return
 
             }
@@ -58,7 +57,7 @@ struct UserInfoModelView {
                 if profileMsg.commonMsg!.code != WebApiCode.Success.rawValue {
 
                     callback?(false)
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: profileMsg.commonMsg!.code!)
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, webApiErrorCode: profileMsg.commonMsg!.code!)
                     return
 
                 }
@@ -78,7 +77,7 @@ struct UserInfoModelView {
             } catch {
 
                 callback?(false)
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: L10n.UserModuleErrorCodeNetError.string)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, webApiErrorCode: L10n.UserModuleErrorCodeNetError.string)
 
             }
 
@@ -111,7 +110,7 @@ struct UserInfoModelView {
             
             if result.isFailure {
 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, userErrorCode: result.error!)
                 return
             }
             
@@ -121,7 +120,7 @@ struct UserInfoModelView {
                 
                 if resultMsg.code != WebApiCode.Success.rawValue {
 
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: resultMsg.code!)
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, webApiErrorCode: resultMsg.code!)
                     return
 
                 }
@@ -140,7 +139,7 @@ struct UserInfoModelView {
 
             } catch {
 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: UserRequestErrorType.NetErr)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, userErrorCode: UserRequestErrorType.NetErr)
 
             }
 

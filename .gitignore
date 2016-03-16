@@ -2,5 +2,5 @@ Pods/*
 *.xcuserstate
 *.xcbkptlist
 CavyLifeBand2.xcodeproj/xcuserdata/*
-
+.idea/*
 Podfile.lock

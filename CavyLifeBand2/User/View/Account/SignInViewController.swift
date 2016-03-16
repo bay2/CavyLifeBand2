@@ -11,7 +11,7 @@ import SnapKit
 import EZSwiftExtensions
 import Log
 
-class SignInViewController: AccountManagerBaseViewController {
+class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
 
     // 登入按钮
     @IBOutlet weak var signInBtn: MainPageButton!
@@ -27,10 +27,25 @@ class SignInViewController: AccountManagerBaseViewController {
 
     // 忘记密码按钮
     @IBOutlet weak var forgetPasswdBtn: UIButton!
+    
+    var userName: String {
+        return userNameTextField.text!
+    }
+    
+    var passwd: String {
+        return passwdTextField.text!
+    }
+    
+    var viewController: UIViewController? {
+        return self
+    }
+    
+    private var delegate: SignInDelegate?
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        
 
         updateTextFieldViewUI(textFieldView)
 
@@ -45,6 +60,8 @@ class SignInViewController: AccountManagerBaseViewController {
         userNameTextField.becomeFirstResponder()
         userNameTextField.backgroundColor = UIColor.whiteColor()
         passwdTextField.backgroundColor = UIColor.whiteColor()
+        
+        delegate = self
         
         
         // Do any additional setup after loading the view.
@@ -166,14 +183,14 @@ class SignInViewController: AccountManagerBaseViewController {
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
 
-        let userSignIn = SignInViewModel(viewController: self, userName: userNameTextField.text!, passwd: passwdTextField.text!) {
-            UserInfoModelView.shareInterface.userInfo?.userId = $0
+        delegate?.signIn {
             
-            let guideVC = StoryboardScene.Guide.instantiateGuideView()
-            self.pushVC(guideVC)
+            if $0 == true {
+                let guideVC = StoryboardScene.Guide.instantiateGuideView()
+                self.pushVC(guideVC)
+            }
+            
         }
-        
-        userSignIn.userSignIn()
 
     }
     
