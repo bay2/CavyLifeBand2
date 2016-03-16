@@ -29,6 +29,33 @@ class SignUpPhoneUITests: XCTestCase {
             pageimage1Image.swipeLeft()
             app.buttons["加入豚鼠"].tap()
         
+            
+            let guideButton = app.buttons["GuideRightBtn"]
+            guideButton.tap()
+            guideButton.tap()
+            guideButton.tap()
+            guideButton.tap()
+            
+            app.buttons["GuideGenderGirlGary"].tap()
+            guideButton.tap()
+            
+            app.staticTexts["生日"].tap()
+            guideButton.tap()
+            app.staticTexts["身高"].tap()
+            guideButton.tap()
+            app.staticTexts["体重"].tap()
+            guideButton.tap()
+            app.staticTexts["目标"].tap()
+            guideButton.tap()
+            app.staticTexts["开启智能通知"].tap()
+            guideButton.tap()
+            app.staticTexts["开启位置共享"].tap()
+            guideButton.tap()
+            
+            let staticText2 = app.staticTexts["加入豚鼠"]
+            staticText2.tap()
+            
+
         } else {
             // Fallback on earlier versions
         }
