@@ -11,6 +11,7 @@ import AssetsLibrary
 import Log
 import EZSwiftExtensions
 import Photos
+import SnapKit
 
 class PhotoAlbum: UIViewController, UIScrollViewDelegate{
     
@@ -22,29 +23,29 @@ class PhotoAlbum: UIViewController, UIScrollViewDelegate{
     
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var bottomView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor.blackColor()
         
-        self.showCount()
+        scrollView.contentSize = CGSizeMake(ez.screenWidth * CGFloat(self.totalCount), ez.screenHeight - 64 - 49)
+        scrollView.contentOffset = CGPoint(x: ez.screenWidth * CGFloat(self.totalCount), y: ez.screenHeight - 64 - 49)
+        
+        self.loadAssetResult()
+        // 解析最新十张图片
+        addPhotoes(loadIndex, alReadyLoadCount: currentCount)
         
     }
     
-    // 照片数量
-    func showCount(){
-
+    // 照片库 [PFAsset]
+    func loadAssetResult(){
+        
         // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
-
-        let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
         
-        self.totalCount = fetchResults.count
-        self.currentCount = fetchResults.count
-        self.loadIndex = fetchResults.count - 10
+        let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
         
         for var i = 0 ; i < fetchResults.count ; i++ {
             
@@ -52,60 +53,46 @@ class PhotoAlbum: UIViewController, UIScrollViewDelegate{
             
             self.assetResult.append(asset)
         }
-
+        
         self.countLabel.text = "\(self.currentCount)/\(fetchResults.count)"
         
-    }
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // add scrollView
-        scrollView.contentSize = CGSizeMake(ez.screenWidth * CGFloat(self.totalCount), scrollView.frame.height)
-        scrollView.contentOffset = CGPoint(x: ez.screenWidth * CGFloat(self.totalCount), y: scrollView.frame.height)
-        
-        Log.info("totalPage:\(totalCount) ")
-        Log.info("currentPage:\(currentCount) ")
-        
-        // 解析最新十张图片
-        addPhotoes(loadIndex, alReadyLoadCount: currentCount)
     }
     
     // 从 assetResult 添加图片
     func addPhotoes(needLoadCount: Int, alReadyLoadCount: Int) {
         
-        print("加载的是从\(needLoadCount)开始到\(alReadyLoadCount)")
+        Log.info("加载的是从\(needLoadCount)开始到\(alReadyLoadCount)")
+        
+        for var i = needLoadCount; i < alReadyLoadCount; i++ {
             
-            for var i = needLoadCount; i < alReadyLoadCount; i++ {
+            let myAsset = self.assetResult[i]
+            
+            let imageView = UIImageView()
+            
+            // 返回图片高度
+            let scrollHeight = ez.screenHeight - 64 - 49
+            
+            imageView.frame.size = CGSizeMake(ez.screenWidth, scrollHeight)
+            imageView.frame.origin.x = CGFloat(i) * ez.screenWidth
+            imageView.contentMode = .ScaleAspectFit
+            self.scrollView.addSubview(imageView)
+            
+            Log.info("\(imageView.frame), \(ez.screenWidth) \(ez.screenHeight)")
+            
+            // PHImageRequestOptions 设置照片质量
+            let imgRequestOptions = PHImageRequestOptions()
+            imgRequestOptions.deliveryMode = .HighQualityFormat
+            
+            // 获取照片
+            PHImageManager.defaultManager().requestImageForAsset(myAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenHeight), contentMode: .AspectFill, options: imgRequestOptions) { (result, info) -> Void in
                 
-                let myAsset = self.assetResult[i]
-                
-                let imageView = UIImageView()
-                
-                imageView.frame.size = CGSizeMake(ez.screenWidth, self.scrollView.size.height)
-                imageView.frame.origin.x = CGFloat(i) * ez.screenWidth
-                imageView.contentMode = .ScaleAspectFit
-                self.scrollView.addSubview(imageView)
-                
-                Log.info("\(imageView.frame), \(ez.screenWidth) \(ez.screenHeight)")
-                
-                
-                let imgRequestOptions = PHImageRequestOptions()
-                imgRequestOptions.deliveryMode = .HighQualityFormat
-
-                PHImageManager.defaultManager().requestImageForAsset(myAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenHeight), contentMode: .AspectFill, options: imgRequestOptions) { (result, info) -> Void in
-                    
-                    imageView.image = result
-                    
-                }
-                
-                view.addSubview(bottomView)
+                imageView.image = result
                 
             }
+            
+        }
         
     }
-    
 
     // 完成拖拽
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
@@ -144,7 +131,7 @@ class PhotoAlbum: UIViewController, UIScrollViewDelegate{
                 
                 needLoadIndex = 0
             }
-            
+                        
             addPhotoes(needLoadIndex, alReadyLoadCount: loadIndex)
             
             loadIndex = needLoadIndex
@@ -162,5 +149,5 @@ class PhotoAlbum: UIViewController, UIScrollViewDelegate{
         // Dispose of any resources that can be recreated.
     }
     
-
+    
 }

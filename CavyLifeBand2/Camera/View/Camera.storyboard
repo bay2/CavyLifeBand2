@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="QDV-Yk-peX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Custom Camera-->
@@ -246,13 +245,9 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JhS-C0-hul">
-                                <rect key="frame" x="0.0" y="540" width="600" height="60"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJu-do-d0V">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJu-do-d0V">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="delegate" destination="191-EO-XYb" id="lqm-1F-O2u"/>
@@ -261,31 +256,23 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NXe-Di-2m1" firstAttribute="top" secondItem="aJu-do-d0V" secondAttribute="bottom" id="3hz-0H-bcj"/>
-                            <constraint firstAttribute="trailing" secondItem="aJu-do-d0V" secondAttribute="trailing" id="7aI-Ot-bQ7"/>
                             <constraint firstItem="BD8-Rz-VLb" firstAttribute="leading" secondItem="hxQ-MH-mZR" secondAttribute="leading" id="9TB-2a-pMw"/>
-                            <constraint firstItem="JhS-C0-hul" firstAttribute="leading" secondItem="hxQ-MH-mZR" secondAttribute="leading" id="9VR-nQ-RMR"/>
-                            <constraint firstItem="JhS-C0-hul" firstAttribute="height" secondItem="hxQ-MH-mZR" secondAttribute="height" multiplier="0.1" id="9vk-Jq-Vqm"/>
+                            <constraint firstAttribute="trailing" secondItem="aJu-do-d0V" secondAttribute="trailing" id="Awi-eE-H6b"/>
                             <constraint firstAttribute="trailing" secondItem="BD8-Rz-VLb" secondAttribute="trailing" id="FeK-Pd-Vxo"/>
-                            <constraint firstAttribute="trailing" secondItem="JhS-C0-hul" secondAttribute="trailing" id="Fvl-0f-dOw"/>
-                            <constraint firstItem="NXe-Di-2m1" firstAttribute="top" secondItem="aJu-do-d0V" secondAttribute="bottom" id="Mxx-fh-J00"/>
-                            <constraint firstItem="aJu-do-d0V" firstAttribute="leading" secondItem="hxQ-MH-mZR" secondAttribute="leading" id="N4q-qq-Hbp"/>
-                            <constraint firstItem="aJu-do-d0V" firstAttribute="top" secondItem="BD8-Rz-VLb" secondAttribute="bottom" id="QWD-uE-hjE"/>
-                            <constraint firstItem="aJu-do-d0V" firstAttribute="leading" secondItem="hxQ-MH-mZR" secondAttribute="leading" id="R7D-Jw-TfZ"/>
-                            <constraint firstAttribute="trailing" secondItem="aJu-do-d0V" secondAttribute="trailing" id="ZKf-im-bte"/>
-                            <constraint firstItem="NXe-Di-2m1" firstAttribute="top" secondItem="JhS-C0-hul" secondAttribute="bottom" id="qv2-aA-qlj"/>
+                            <constraint firstItem="NXe-Di-2m1" firstAttribute="top" secondItem="aJu-do-d0V" secondAttribute="bottom" constant="49" id="UAo-rU-ovK"/>
+                            <constraint firstItem="aJu-do-d0V" firstAttribute="leading" secondItem="hxQ-MH-mZR" secondAttribute="leading" id="dwQ-fl-edf"/>
+                            <constraint firstItem="aJu-do-d0V" firstAttribute="top" secondItem="BD8-Rz-VLb" secondAttribute="bottom" id="xOG-jj-hsd"/>
                             <constraint firstItem="BD8-Rz-VLb" firstAttribute="top" secondItem="hxQ-MH-mZR" secondAttribute="top" id="xOM-N4-Fa5"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomView" destination="JhS-C0-hul" id="G27-zn-Cpe"/>
                         <outlet property="countLabel" destination="9XN-zL-MFn" id="pUP-WN-ctT"/>
                         <outlet property="scrollView" destination="aJu-do-d0V" id="9en-bG-n2c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ytM-TY-RMj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="718" y="261"/>
+            <point key="canvasLocation" x="886.5" y="336"/>
         </scene>
     </scenes>
     <resources>

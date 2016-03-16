@@ -154,14 +154,14 @@ class CustomCamera: UIViewController {
     
     // 获取系统相册最后一张图片
     func getLastPhoto(){
-        print("系统最后一张图片")
+        Log.info("系统最后一张图片")
         
         // 查看是否有访问权限
         let status: PHAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         if status == PHAuthorizationStatus.Restricted || status == PHAuthorizationStatus.Denied {
             
             // 如果没有访问权限 再次请求打开访问权限
-            print("无访问权限")
+            Log.info("无访问权限")
             
             return
         }
@@ -171,7 +171,7 @@ class CustomCamera: UIViewController {
         let fetchResults = PHAsset.fetchAssetsWithOptions(fetchOptions)
         
         if fetchResults.countOfAssetsWithMediaType(.Image) > 0 {
-            print(fetchResults.count)
+            Log.info(fetchResults.count)
         }
         
         // 最后一张
@@ -208,8 +208,6 @@ class CustomCamera: UIViewController {
         // start recording
         let outputURL = self.applicationDocumentsDirectory().URLByAppendingPathComponent("cavy").URLByAppendingPathExtension("mov")
         
-        Log.info("outputURL: \(outputURL)")
-        
         self.camera.startRecordingWithOutputUrl(outputURL)
         
     }
@@ -239,11 +237,9 @@ class CustomCamera: UIViewController {
             
             // Viedo in outputURL cache
             
-            Log.info("outputFileURL: \(outputFileURL)")
+            Log.info("保存视频:outputFileURL: \(outputFileURL)")
 
             // 保存视频
-            print("保存视频")
-            
             self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileURL) { (assetUrl, error) -> Void in
                 if error != nil {
                     Log.error("Save video fail:%@", error)
@@ -283,7 +279,7 @@ class CustomCamera: UIViewController {
     // 录像计时器 开始计时
     func videoBeginRunTimer() {
         
-        print("录像开始计时")
+        Log.info("录像开始计时")
         
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerRun:", userInfo: nil, repeats: true)
         
@@ -292,7 +288,7 @@ class CustomCamera: UIViewController {
     func timerRun(timer: NSTimer) {
         
         timerCount++
-        print(timerCount)
+        Log.info(timerCount)
         
 
         let hour = timerCount / 3600
@@ -398,7 +394,16 @@ class CustomCamera: UIViewController {
     // 打开相册
     @IBAction func goPhotoAlbum(sender: AnyObject) {
         
+        // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult
+        let fetchOptions = PHFetchOptions()        
+        let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
+        
         let photoVC = StoryboardScene.Camera.instantiatePhotoAlbumView()
+
+        photoVC.totalCount = fetchResults.count
+        photoVC.currentCount = fetchResults.count
+        photoVC.loadIndex = fetchResults.count - 10
+        
         self.presentVC(photoVC)
 
     }
