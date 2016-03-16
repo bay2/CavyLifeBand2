@@ -151,6 +151,12 @@ enum L10n {
   case ForgotBackTextBtn
   /// 完成
   case ForgotFinish
+  /// 拍照
+  case CameraPhoto
+  /// 摄影
+  case CameraVideo
+  /// 取消
+  case CameraBack
 }
 
 extension L10n: CustomStringConvertible {
@@ -306,6 +312,12 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Forgot.BackTextBtn")
       case .ForgotFinish:
         return L10n.tr("Forgot.finish")
+      case .CameraPhoto:
+        return L10n.tr("Camera.Photo")
+      case .CameraVideo:
+        return L10n.tr("Camera.Video")
+      case .CameraBack:
+        return L10n.tr("Camera.Back")
     }
   }
 
