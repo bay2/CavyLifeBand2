@@ -17,9 +17,7 @@ class ContactsViewController: UITableViewController {
         
         self.tableView.separatorStyle = .None
         self.tableView.showsVerticalScrollIndicator = false
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
+
         
         //注册cell
         tableView.registerNib(UINib(nibName: "ContectsListTVCell", bundle: nil), forCellReuseIdentifier: "ContectsListTVCell")
@@ -78,34 +76,50 @@ class ContactsViewController: UITableViewController {
     // 点击事件
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath == 0 {
-            print("跳到添加好友")
-        } else if indexPath == 1 {
-            print("生活豚鼠")
-        } else {
-            
-        }
+        print(__FUNCTION__)
         
         
     }
-    /*
-    
+
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let deletRowAction = UITableViewRowAction(style: .Default, title: "删除") {
+            (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            tableView.editing = true
+        }
+        deletRowAction.backgroundColor = UIColor.lightGrayColor()
+        
+        let concernAction = UITableViewRowAction(style: .Default, title: "取消关注") {
+            (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            tableView.editing = true
+        }
+        concernAction.backgroundColor = UIColor.blueColor()
+        
+        return [concernAction, deletRowAction]
+    }
+       
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+
+            return true
+
     }
+        
     
     // Override to support editing the table view.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
         if editingStyle == .Delete {
             // Delete the row from the data source
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
+        
+        
+        
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

@@ -32,7 +32,7 @@
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="euj-Q2-STC">
                     <rect key="frame" x="460" y="18" width="30" height="30"/>
-                    <color key="backgroundColor" red="0.95686274510000002" green="0.39607843139999999" blue="0.76470588240000004" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="Zu1-IN-Jt3"/>
                         <constraint firstAttribute="width" secondItem="euj-Q2-STC" secondAttribute="height" multiplier="1:1" id="vFZ-RQ-nv7"/>
