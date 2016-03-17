@@ -24,6 +24,27 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
     /// Alpha: 20% <br/> (0xffffff33)
     case CameraNoChoose
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#cccccc"></span>
+    /// Alpha: 100% <br/> (0xccccccff)
+    case ContactCellLine
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 5% <br/> (0x0000000d)
+    case ContactCellSelect
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+    /// Alpha: 100% <br/> (0xffffffff)
+    case ContactFindFriendDark
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 50% <br/> (0x00000080)
+    case ContactFindFriendLight
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case ContactGroupLetter
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 30% <br/> (0x0000004d)
+    case ContactIntrouduce
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 100% <br/> (0x000000ff)
+    case ContactsName
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case GuideColor33
@@ -108,6 +129,13 @@ extension UIColor {
       case .CameraBgColor: return 0x000000ff
       case .CameraChoose: return 0xffffffb3
       case .CameraNoChoose: return 0xffffff33
+      case .ContactCellLine: return 0xccccccff
+      case .ContactCellSelect: return 0x0000000d
+      case .ContactFindFriendDark: return 0xffffffff
+      case .ContactFindFriendLight: return 0x00000080
+      case .ContactGroupLetter: return 0x000000b3
+      case .ContactIntrouduce: return 0x0000004d
+      case .ContactsName: return 0x000000ff
       case .GuideColor33: return 0x00000033
       case .GuideColor66: return 0x00000066
       case .GuideColor99: return 0x00000099

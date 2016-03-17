@@ -27,3 +27,10 @@ HomeViewLeftHeaderLine : #ffffff80
 HomeViewLeftSelected : #0000001A
 HomeViewUserName: #000000B3
 HomeViewAccount: #00000080
+ContactGroupLetter : #000000B3
+ContactsName : #000000
+ContactIntrouduce: #0000004D
+ContactCellLine : #cccccc
+ContactCellSelect : #0000000D
+ContactFindFriendDark : #ffffff
+ContactFindFriendLight : #00000080
