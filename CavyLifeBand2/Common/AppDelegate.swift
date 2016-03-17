@@ -30,10 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
 
-        let defaults = NSUserDefaults.standardUserDefaults()
+//        let defaults = NSUserDefaults.standardUserDefaults()
 
-        let userName = defaults["userName"]
-        let passwd = defaults["passwd"]
+//        let userName = defaults["userName"]
+//        let passwd = defaults["passwd"]
 //        if userName != nil && passwd != nil {
 //            
 //            let signInViewModel = SignInViewModel(viewController: UIViewController(), userName: userName as! String, passwd: passwd as! String)
