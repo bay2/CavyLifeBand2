@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 #if UITEST
             
         uiTestStub()
-            
+    
 #endif
 
         return true
@@ -77,8 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
             // setup HTTP stubs for tests
             stub(isMethodPOST()) { _ in
-            let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
-            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+                let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
+                return fixture(stubPath!, headers: ["Content-Type": "application/json"])
             }
         }
     

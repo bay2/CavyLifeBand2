@@ -1095,7 +1095,7 @@
 					"\"XLActionController\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1133,7 +1133,7 @@
 					"\"XLActionController\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
