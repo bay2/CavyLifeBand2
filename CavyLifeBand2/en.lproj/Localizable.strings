@@ -111,3 +111,7 @@
 "Home.LifeList.Title.About" = "关于";
 "Home.LifeList.Title.Help" = "帮助与反馈";
 "Home.LifeList.Title.Related" = "相关APP";
+
+//好友，联系人
+"Contacts.ListCell.Delete" = "删除";
+"Contacts.ListCell.Attention" = "关注";

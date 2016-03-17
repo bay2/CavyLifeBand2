@@ -33,7 +33,7 @@ class ContectSeachTVCell: UITableViewCell {
         headView.layer.masksToBounds = true
         headView.layer.cornerRadius = 20
         nameLabel.textColor = UIColor(named: .ContactsName)
-        introduceLabel.textColor = UIColor(named: .ContactIntrouduce)
+        introduceLabel.textColor = UIColor(named: .ContactsIntrouduce)
         
     }
 

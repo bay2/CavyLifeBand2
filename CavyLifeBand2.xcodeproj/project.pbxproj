@@ -349,12 +349,12 @@
 		9114D1C61C97AB05008CB4CE /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				9114D1CC1C97AB05008CB4CE /* Main.storyboard */,
 				9114D1C71C97AB05008CB4CE /* AccountManagerBaseViewController.swift */,
 				9114D1C81C97AB05008CB4CE /* AccountManagerViewController.swift */,
 				9114D1C91C97AB05008CB4CE /* AccountTextField.swift */,
 				9114D1CA1C97AB05008CB4CE /* CheckboxButton.swift */,
 				9114D1CB1C97AB05008CB4CE /* CLBPageControl.swift */,
-				9114D1CC1C97AB05008CB4CE /* Main.storyboard */,
 				9114D1CD1C97AB05008CB4CE /* MainPageButton.swift */,
 				9114D1CE1C97AB05008CB4CE /* MainPageViewController.swift */,
 				9114D1CF1C97AB05008CB4CE /* PageViewController.swift */,
@@ -1179,7 +1179,7 @@
 					"\"XLActionController\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1217,7 +1217,7 @@
 					"\"XLActionController\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";

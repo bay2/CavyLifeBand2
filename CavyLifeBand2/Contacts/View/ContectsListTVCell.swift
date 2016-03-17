@@ -26,9 +26,6 @@ class ContectsListTVCell: UITableViewCell {
         headView.layer.cornerRadius = 20
         nameLabel.textColor = UIColor(named: .ContactsName)
         
-        
-        
-        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

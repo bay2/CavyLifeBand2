@@ -66,9 +66,8 @@ class ContactsViewController: UITableViewController {
         cell.nameLabel.text = "strawberry"
         // 点击效果
         let cellBgView = UIView(frame: cell.frame)
-        cellBgView.backgroundColor = UIColor(named: .ContactCellSelect)
+        cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)
         cell.selectedBackgroundView = cellBgView
-        // Configure the cell...
 
         return cell
     }
@@ -82,17 +81,23 @@ class ContactsViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let deletRowAction = UITableViewRowAction(style: .Default, title: "删除") {
-            (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            tableView.editing = true
-        }
-        deletRowAction.backgroundColor = UIColor.lightGrayColor()
         
-        let concernAction = UITableViewRowAction(style: .Default, title: "取消关注") {
+        let deletRowAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellDelete.string) {
+        
             (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            tableView.editing = true
+            tableView.editing = false
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            
         }
-        concernAction.backgroundColor = UIColor.blueColor()
+        
+        deletRowAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
+        
+        let concernAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellAttention.string) {
+            (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            tableView.editing = false
+        }
+        
+        concernAction.backgroundColor = UIColor(named: .ContactsAttentionBtnColor)
         
         return [concernAction, deletRowAction]
     }
@@ -115,7 +120,6 @@ class ContactsViewController: UITableViewController {
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
-        
         
         
     }

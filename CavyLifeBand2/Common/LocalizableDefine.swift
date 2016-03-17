@@ -171,6 +171,10 @@ enum L10n {
   case HomeLifeListTitleHelp
   /// 相关APP
   case HomeLifeListTitleRelated
+  /// 删除
+  case ContactsListCellDelete
+  /// 关注
+  case ContactsListCellAttention
 }
 
 extension L10n: CustomStringConvertible {
@@ -346,6 +350,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.LifeList.Title.Help")
       case .HomeLifeListTitleRelated:
         return L10n.tr("Home.LifeList.Title.Related")
+      case .ContactsListCellDelete:
+        return L10n.tr("Contacts.ListCell.Delete")
+      case .ContactsListCellAttention:
+        return L10n.tr("Contacts.ListCell.Attention")
     }
   }
 
