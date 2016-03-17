@@ -21,3 +21,10 @@ GuideLineColor : #CCCCCC
 CameraBgColor : #000000
 CameraChoose : #ffffffB3
 CameraNoChoose : #ffffff33
+ContactGroupLetter : #000000B3
+ContactsName : #000000
+ContactIntrouduce: #0000004D
+ContactCellLine : #cccccc
+ContactCellSelect : #0000000D
+ContactFindFriendDark : #ffffff
+ContactFindFriendLight : #00000080

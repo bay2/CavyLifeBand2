@@ -8,7 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
+		4C16BCE81C9A748600EDF1E3 /* ContectsListTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C16BCE71C9A748600EDF1E3 /* ContectsListTVCell.xib */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
+		4CEDB9301C9A93E6002C8967 /* ContectSeachTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB92E1C9A93E6002C8967 /* ContectSeachTVCell.swift */; };
+		4CEDB9311C9A93E6002C8967 /* ContectSeachTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CEDB92F1C9A93E6002C8967 /* ContectSeachTVCell.xib */; };
+		4CF15B3F1C9A447F009242A7 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CF15B3E1C9A447F009242A7 /* Contacts.storyboard */; };
+		4CF15B431C9A46C7009242A7 /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF15B421C9A46C7009242A7 /* ContactsViewController.swift */; };
+		4CF15B461C9A478B009242A7 /* ContectsListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF15B451C9A478B009242A7 /* ContectsListTVCell.swift */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
 		9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */; };
 		9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */; };
@@ -115,7 +121,13 @@
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
+		4C16BCE71C9A748600EDF1E3 /* ContectsListTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContectsListTVCell.xib; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
+		4CEDB92E1C9A93E6002C8967 /* ContectSeachTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContectSeachTVCell.swift; sourceTree = "<group>"; };
+		4CEDB92F1C9A93E6002C8967 /* ContectSeachTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContectSeachTVCell.xib; sourceTree = "<group>"; };
+		4CF15B3E1C9A447F009242A7 /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
+		4CF15B421C9A46C7009242A7 /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		4CF15B451C9A478B009242A7 /* ContectsListTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContectsListTVCell.swift; sourceTree = "<group>"; };
 		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GuideLinking.gif; sourceTree = "<group>"; };
@@ -241,6 +253,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CF15B3D1C9A4384009242A7 /* Contacts */ = {
+			isa = PBXGroup;
+			children = (
+				4CF15B3E1C9A447F009242A7 /* Contacts.storyboard */,
+				4CF15B421C9A46C7009242A7 /* ContactsViewController.swift */,
+				4CF15B441C9A4753009242A7 /* View */,
+			);
+			path = Contacts;
+			sourceTree = "<group>";
+		};
+		4CF15B441C9A4753009242A7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4CF15B451C9A478B009242A7 /* ContectsListTVCell.swift */,
+				4C16BCE71C9A748600EDF1E3 /* ContectsListTVCell.xib */,
+				4CEDB92E1C9A93E6002C8967 /* ContectSeachTVCell.swift */,
+				4CEDB92F1C9A93E6002C8967 /* ContectSeachTVCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		669D8264DE153DBB0A215E22 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,6 +466,7 @@
 		917DA96A1C3B8EB700FF675D /* CavyLifeBand2 */ = {
 			isa = PBXGroup;
 			children = (
+				4CF15B3D1C9A4384009242A7 /* Contacts */,
 				9114D1BF1C97AB05008CB4CE /* User */,
 				9114D1BC1C97A1BB008CB4CE /* Resource */,
 				91F036921C8EE433003E059A /* json */,
@@ -689,11 +723,14 @@
 				91D192941C7DB8DE00482019 /* Assets.xcassets in Resources */,
 				91F0369B1C8EE433003E059A /* CommonResultOk.json in Resources */,
 				91F036A11C8EE433003E059A /* Sign_Up_Ok.json in Resources */,
+				4C16BCE81C9A748600EDF1E3 /* ContectsListTVCell.xib in Resources */,
 				91F036A01C8EE433003E059A /* Sign_In_Ok.json in Resources */,
 				917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */,
 				91F0369D1C8EE433003E059A /* Profile_Ok.json in Resources */,
+				4CF15B3F1C9A447F009242A7 /* Contacts.storyboard in Resources */,
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
+				4CEDB9311C9A93E6002C8967 /* ContectSeachTVCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,6 +921,7 @@
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
 				9114D1E71C97AB05008CB4CE /* AccountManagerBaseViewController.swift in Sources */,
+				4CF15B461C9A478B009242A7 /* ContectsListTVCell.swift in Sources */,
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
@@ -891,7 +929,9 @@
 				918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */,
 				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
+				4CEDB9301C9A93E6002C8967 /* ContectSeachTVCell.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
+				4CF15B431C9A46C7009242A7 /* ContactsViewController.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,
 				9114D1FA1C97AB05008CB4CE /* PictureView.swift in Sources */,
@@ -1095,7 +1135,7 @@
 					"\"XLActionController\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1133,7 +1173,7 @@
 					"\"XLActionController\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";

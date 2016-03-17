@@ -48,6 +48,9 @@ struct StoryboardScene {
       return StoryboardScene.Camera.PhotoAlbumViewScene.viewController() as! PhotoAlbum
     }
   }
+  enum Contacts: StoryboardSceneType {
+    static let storyboardName = "Contacts"
+  }
   enum Guide: String, StoryboardSceneType {
     static let storyboardName = "Guide"
 
