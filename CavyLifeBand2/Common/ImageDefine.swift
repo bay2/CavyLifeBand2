@@ -31,6 +31,7 @@ extension UIImage {
     case GuideWeightNiddle = "GuideWeightNiddle"
     case GuigeFlashBtn = "GuigeFlashBtn"
     case GuigeFlashBtnPressed = "GuigeFlashBtnPressed"
+    case LeftTableViewCellAboutIcon = "LeftTableViewCellAboutIcon"
     case PageImage1 = "pageImage1"
     case Photograph = "photograph"
     case Splash = "splash"

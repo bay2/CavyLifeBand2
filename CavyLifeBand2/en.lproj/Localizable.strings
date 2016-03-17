@@ -97,3 +97,12 @@
 "Forgot.PasswdTextField" = "新密码";
 "Forgot.BackTextBtn" = "且慢,我想起来了!";
 "Forgot.finish" = "完成";
+
+// 主页面
+"Home.LifeList.Title.Target" = "目标";
+"Home.LifeList.Title.InfoOpen" = "信息公开";
+"Home.LifeList.Title.Friend" = "好友";
+"Home.LifeList.Title.PK" = "PK";
+"Home.LifeList.Title.About" = "关于";
+"Home.LifeList.Title.Help" = "帮助与反馈";
+"Home.LifeList.Title.Related" = "相关APP";

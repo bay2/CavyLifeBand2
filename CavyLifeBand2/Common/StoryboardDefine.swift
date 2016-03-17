@@ -56,6 +56,24 @@ struct StoryboardScene {
       return StoryboardScene.Guide.GuideViewScene.viewController() as! GuideViewController
     }
   }
+  enum Home: String, StoryboardSceneType {
+    static let storyboardName = "Home"
+
+    case HomeViewScene = "HomeView"
+    static func instantiateHomeView() -> HomeViewController {
+      return StoryboardScene.Home.HomeViewScene.viewController() as! HomeViewController
+    }
+
+    case LeftViewScene = "LeftView"
+    static func instantiateLeftView() -> LeftViewController {
+      return StoryboardScene.Home.LeftViewScene.viewController() as! LeftViewController
+    }
+
+    case RootViewScene = "RootView"
+    static func instantiateRootView() -> RootViewController {
+      return StoryboardScene.Home.RootViewScene.viewController() as! RootViewController
+    }
+  }
   enum LaunchScreen: StoryboardSceneType {
     static let storyboardName = "LaunchScreen"
   }
