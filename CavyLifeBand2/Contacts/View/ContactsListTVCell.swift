@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContectsListTVCell: UITableViewCell {
+class ContactsListTVCell: UITableViewCell {
     
     // 头像
     @IBOutlet weak var headView: UIImageView!
@@ -25,9 +25,6 @@ class ContectsListTVCell: UITableViewCell {
         headView.layer.masksToBounds = true
         headView.layer.cornerRadius = 20
         nameLabel.textColor = UIColor(named: .ContactsName)
-        
-        
-        
         
     }
 

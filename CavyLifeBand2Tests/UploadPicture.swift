@@ -38,7 +38,7 @@ class UploadPicture: XCTestCase {
      */
     func testUploadPictureOk() {
         
-        let image = UIImage(named: "flash_automatic")
+        let image = UIImage(named: "CameraFlashAuto")
         
         let casePara: [[String: AnyObject]] = [[UserNetRequsetKey.UserID.rawValue: "1", UserNetRequsetKey.Avater.rawValue: image!],
             [UserNetRequsetKey.UserID.rawValue: "2", UserNetRequsetKey.Avater.rawValue: image!]]
@@ -81,7 +81,7 @@ class UploadPicture: XCTestCase {
      */
     func testUploadPictureUserIDNil() {
         
-        let image = UIImage(named: "flash_automatic")
+        let image = UIImage(named: "CameraFlashAuto")
         
         let casePara: [[String: AnyObject]] = [[UserNetRequsetKey.Avater.rawValue: image!]]
         

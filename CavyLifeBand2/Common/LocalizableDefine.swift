@@ -157,6 +157,24 @@ enum L10n {
   case CameraVideo
   /// 取消
   case CameraBack
+  /// 目标
+  case HomeLifeListTitleTarget
+  /// 信息公开
+  case HomeLifeListTitleInfoOpen
+  /// 好友
+  case HomeLifeListTitleFriend
+  /// PK
+  case HomeLifeListTitlePK
+  /// 关于
+  case HomeLifeListTitleAbout
+  /// 帮助与反馈
+  case HomeLifeListTitleHelp
+  /// 相关APP
+  case HomeLifeListTitleRelated
+  /// 删除
+  case ContactsListCellDelete
+  /// 关注
+  case ContactsListCellAttention
 }
 
 extension L10n: CustomStringConvertible {
@@ -318,6 +336,24 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Camera.Video")
       case .CameraBack:
         return L10n.tr("Camera.Back")
+      case .HomeLifeListTitleTarget:
+        return L10n.tr("Home.LifeList.Title.Target")
+      case .HomeLifeListTitleInfoOpen:
+        return L10n.tr("Home.LifeList.Title.InfoOpen")
+      case .HomeLifeListTitleFriend:
+        return L10n.tr("Home.LifeList.Title.Friend")
+      case .HomeLifeListTitlePK:
+        return L10n.tr("Home.LifeList.Title.PK")
+      case .HomeLifeListTitleAbout:
+        return L10n.tr("Home.LifeList.Title.About")
+      case .HomeLifeListTitleHelp:
+        return L10n.tr("Home.LifeList.Title.Help")
+      case .HomeLifeListTitleRelated:
+        return L10n.tr("Home.LifeList.Title.Related")
+      case .ContactsListCellDelete:
+        return L10n.tr("Contacts.ListCell.Delete")
+      case .ContactsListCellAttention:
+        return L10n.tr("Contacts.ListCell.Attention")
     }
   }
 

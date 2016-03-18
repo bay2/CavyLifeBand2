@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContectSeachTVCell: UITableViewCell {
+class ContactsSeachTVCell: UITableViewCell {
 
     // 头像
     @IBOutlet weak var headView: UIImageView!
@@ -24,6 +24,10 @@ class ContectSeachTVCell: UITableViewCell {
     
     @IBAction func requestAddFriend(sender: AnyObject) {
         print(__FUNCTION__)
+        
+        
+        
+        
     }
     
     override func awakeFromNib() {
@@ -33,7 +37,7 @@ class ContectSeachTVCell: UITableViewCell {
         headView.layer.masksToBounds = true
         headView.layer.cornerRadius = 20
         nameLabel.textColor = UIColor(named: .ContactsName)
-        introduceLabel.textColor = UIColor(named: .ContactIntrouduce)
+        introduceLabel.textColor = UIColor(named: .ContactsIntrouduce)
         
     }
 
