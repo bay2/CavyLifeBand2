@@ -24,9 +24,6 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
     /// Alpha: 20% <br/> (0xffffff33)
     case CameraNoChoose
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
-    /// Alpha: 70% <br/> (0x000000b3)
-    case ContactGroupLetter
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff5656"></span>
     /// Alpha: 100% <br/> (0xff5656ff)
     case ContactsAttentionBtnColor
@@ -45,6 +42,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 50% <br/> (0x00000080)
     case ContactsFindFriendLight
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case ContactsGroupLetter
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 30% <br/> (0x0000004d)
     case ContactsIntrouduce
@@ -135,13 +135,13 @@ extension UIColor {
       case .CameraBgColor: return 0x000000ff
       case .CameraChoose: return 0xffffffb3
       case .CameraNoChoose: return 0xffffff33
-      case .ContactGroupLetter: return 0x000000b3
       case .ContactsAttentionBtnColor: return 0xff5656ff
       case .ContactsCellLine: return 0xccccccff
       case .ContactsCellSelect: return 0x0000000d
       case .ContactsDeleteBtnColor: return 0xd9d9d9ff
       case .ContactsFindFriendDark: return 0xffffffff
       case .ContactsFindFriendLight: return 0x00000080
+      case .ContactsGroupLetter: return 0x000000b3
       case .ContactsIntrouduce: return 0x0000004d
       case .ContactsName: return 0x000000ff
       case .GuideColor33: return 0x00000033

@@ -20,7 +20,7 @@ class ContactsViewController: UITableViewController {
 
         
         //注册cell
-        tableView.registerNib(UINib(nibName: "ContectsListTVCell", bundle: nil), forCellReuseIdentifier: "ContectsListTVCell")
+        tableView.registerNib(UINib(nibName: "ContactsListTVCell", bundle: nil), forCellReuseIdentifier: "ContactsListTVCell")
         
         
         
@@ -60,7 +60,7 @@ class ContactsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContectsListTVCell") as! ContectsListTVCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsListTVCell") as! ContactsListTVCell
         cell.selectionStyle = .Default
         
         cell.nameLabel.text = "strawberry"
@@ -120,7 +120,6 @@ class ContactsViewController: UITableViewController {
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }
-        
         
     }
     

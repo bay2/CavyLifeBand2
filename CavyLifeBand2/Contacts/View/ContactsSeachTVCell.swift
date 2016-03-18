@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContectSeachTVCell: UITableViewCell {
+class ContactsSeachTVCell: UITableViewCell {
 
     // 头像
     @IBOutlet weak var headView: UIImageView!
@@ -24,6 +24,10 @@ class ContectSeachTVCell: UITableViewCell {
     
     @IBAction func requestAddFriend(sender: AnyObject) {
         print(__FUNCTION__)
+        
+        
+        
+        
     }
     
     override func awakeFromNib() {

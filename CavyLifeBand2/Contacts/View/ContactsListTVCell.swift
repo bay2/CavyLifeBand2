@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContectsListTVCell: UITableViewCell {
+class ContactsListTVCell: UITableViewCell {
     
     // 头像
     @IBOutlet weak var headView: UIImageView!

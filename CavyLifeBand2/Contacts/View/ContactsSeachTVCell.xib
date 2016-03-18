@@ -8,7 +8,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" restorationIdentifier="ContectSeachTVCell" id="iN0-l3-epB" customClass="ContectSeachTVCell" customModule="CavyLifeBand2" customModuleProvider="target">
+        <view contentMode="scaleToFill" restorationIdentifier="ContactsSeachTVCell" id="iN0-l3-epB" customClass="ContactsSeachTVCell" customModule="CavyLifeBand2" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="470" height="77"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
