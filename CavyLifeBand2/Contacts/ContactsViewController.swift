@@ -9,18 +9,46 @@
 import UIKit
 import EZSwiftExtensions
 
-class ContactsViewController: UITableViewController {
 
+struct SearchCellViewModel: ContactsSearchCellDataSource, ContactsSearchCellDelegate{
+    
+    var headImage: UIImage { return UIImage(asset: .GuidePairSeccuss) }
+    var name: String { return "strawberry❤️" }
+    var introudce: String { return " 我爱吃草莓啊~~~" }
+    var requestBtnTitle: String { return "添加" }
+    
+    
+    var nameTextColor: UIColor { return UIColor(named: .ContactsName) }
+    var introductTextColor: UIColor { return UIColor(named: .ContactsIntrouduce) }
+    var nameFont: UIFont { return UIFont.systemFontOfSize(14) }
+    var introduceFont: UIFont { return UIFont.systemFontOfSize(12) }
+    var requestBtnColor: UIColor { return UIColor(named: .ContactsName) }
+    var requestBtnFont: UIFont { return UIFont.systemFontOfSize(14) }
+    
+    func changeRequestBtnName(name: String) {
+        
+        let contactVC = ContactsViewController()
+        
+        contactVC.requestAction()
+        
+    }
+    
+}
+
+
+class ContactsViewController: UITableViewController{
+
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         
         self.tableView.separatorStyle = .None
         self.tableView.showsVerticalScrollIndicator = false
-
-        
+//        self.tableView.delaysContentTouches = false
         //注册cell
-        tableView.registerNib(UINib(nibName: "ContactsListTVCell", bundle: nil), forCellReuseIdentifier: "ContactsListTVCell")
+        tableView.registerNib(UINib(nibName: "ContactsSearchTVCell", bundle: nil), forCellReuseIdentifier: "ContactsSearchTVCell")
         
         
         
@@ -42,6 +70,13 @@ class ContactsViewController: UITableViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func requestAction() {
+        print(__FUNCTION__)
+        let requestVC = StoryboardScene.Contacts.instantiateRquestView()
+        self.pushVC(requestVC)
+        
+    }
 
     // MARK: - Table view data source
 
@@ -60,15 +95,19 @@ class ContactsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsListTVCell") as! ContactsListTVCell
-        cell.selectionStyle = .Default
+//        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsListTVCell") as! ContactsListTVCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsSearchTVCell", forIndexPath: indexPath) as! ContactsSearchTVCell
+//        
+//        cell.selectionStyle = .Default
+//        
+//        
+//        
+//        cell.selectionStyle = UITableViewCellSelectionStyle.None
         
-        cell.nameLabel.text = "strawberry"
-        // 点击效果
-        let cellBgView = UIView(frame: cell.frame)
-        cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)
-        cell.selectedBackgroundView = cellBgView
-
+        let viewMode = SearchCellViewModel()
+        cell.configure(viewMode, delegate: viewMode)
+        
+        
         return cell
     }
     

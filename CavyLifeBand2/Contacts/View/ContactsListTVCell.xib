@@ -27,7 +27,7 @@
                         <constraint firstAttribute="height" constant="16" id="TnW-qP-ZN9"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="euj-Q2-STC">
@@ -54,7 +54,7 @@
                 <outlet property="microView" destination="euj-Q2-STC" id="DyT-1u-e0o"/>
                 <outlet property="nameLabel" destination="VFY-6O-EK9" id="R1o-Wp-fgY"/>
             </connections>
-            <point key="canvasLocation" x="594" y="377"/>
+            <point key="canvasLocation" x="731" y="282"/>
         </view>
     </objects>
 </document>
