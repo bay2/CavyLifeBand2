@@ -9,7 +9,7 @@
 import UIKit
 import EZSwiftExtensions
 
-
+    
 struct SearchCellViewModel: ContactsSearchCellDataSource, ContactsSearchCellDelegate{
     
     var headImage: UIImage { return UIImage(asset: .GuidePairSeccuss) }
@@ -27,10 +27,8 @@ struct SearchCellViewModel: ContactsSearchCellDataSource, ContactsSearchCellDele
     
     func changeRequestBtnName(name: String) {
         
-        let contactVC = ContactsViewController()
-        
-        contactVC.requestAction()
-        
+        var requestBtnTitle: String { return name }
+        ContactsViewController.requestAction()
     }
     
 }
@@ -42,11 +40,13 @@ class ContactsViewController: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        UINavigationBar.appearance().barTintColor = UIColor(named: .HomeViewMainColor)
+        UINavigationBar.appearance().tintColor = UIColor.whiteColor()
+        
         
         self.tableView.separatorStyle = .None
         self.tableView.showsVerticalScrollIndicator = false
-//        self.tableView.delaysContentTouches = false
         //注册cell
         tableView.registerNib(UINib(nibName: "ContactsSearchTVCell", bundle: nil), forCellReuseIdentifier: "ContactsSearchTVCell")
         
@@ -72,9 +72,10 @@ class ContactsViewController: UITableViewController{
     }
     
     func requestAction() {
-        print(__FUNCTION__)
+        
         let requestVC = StoryboardScene.Contacts.instantiateRquestView()
         self.pushVC(requestVC)
+        
         
     }
 
@@ -97,27 +98,35 @@ class ContactsViewController: UITableViewController{
         
 //        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsListTVCell") as! ContactsListTVCell
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactsSearchTVCell", forIndexPath: indexPath) as! ContactsSearchTVCell
-//        
-//        cell.selectionStyle = .Default
-//        
-//        
-//        
-//        cell.selectionStyle = UITableViewCellSelectionStyle.None
+
+        cell.selectionStyle = .Gray
         
         let viewMode = SearchCellViewModel()
         cell.configure(viewMode, delegate: viewMode)
+        cell.requestBtn.addTarget(self, action: "requestAction", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        let cellBgView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, 66))
+        cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)
+        cell.backgroundView = cellBgView
+        
         
         
         return cell
     }
     
     // 点击事件
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         print(__FUNCTION__)
         
+        let searchVC = StoryboardScene.Contacts.instantiateSearchView()
         
+        self.pushVC(searchVC)
+
+        
+
     }
+    
 
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         

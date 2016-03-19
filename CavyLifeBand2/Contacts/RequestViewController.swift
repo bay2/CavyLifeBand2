@@ -8,6 +8,7 @@
 
 import UIKit
 import MHRotaryKnob
+import Log
 
 class RequestViewController: UIViewController {
 
@@ -17,16 +18,32 @@ class RequestViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
 
-        verifyViewLayout()
+        requestViewLayout()
         
         
         
         // Do any additional setup after loading the view.
     }
 
-    func verifyViewLayout() {
+    
+    @IBAction func backAction(sender: AnyObject) {
+        self.popVC()
+    }
+    
+    @IBAction func sendRequest(sender: AnyObject) {
         
+        Log.info("发送好友请求\(requestTextField.text)")
+    }
+    
+    func requestViewLayout() {
+        
+        requestTextField.placeholder = L10n.ContactsRequestPlaceHolder.string
+        
+        sendButton.setTitle(L10n.ContactsRequestSendButton.string, forState: .Normal)
+        sendButton.setTitleColor(UIColor(named: .MainPageBtnText), forState: .Normal)
         sendButton.snp_makeConstraints { (make) -> Void in
             
             make.top.equalTo(requestTextField).offset(requestTextField.frame.height)

@@ -36,3 +36,4 @@ ContactsFindFriendDark : #ffffff
 ContactsFindFriendLight : #00000080
 ContactsDeleteBtnColor : #D9D9D9
 ContactsAttentionBtnColor : #FF5656
+ContactsSearchFlagViewBg : #ffffff66

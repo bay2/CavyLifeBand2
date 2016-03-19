@@ -44,13 +44,17 @@ class ContactsSearchTVCell: UITableViewCell {
     
     // 按钮响应
     @IBAction func requestAddFriend(sender: AnyObject) {
+        
         delegate?.changeRequestBtnName("name")
         
+//        let contactVC = ContactsViewController()
+//        contactVC.requestAction()
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
         
         headView.layer.masksToBounds = true
         headView.layer.cornerRadius = 20

@@ -10,6 +10,8 @@
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C16BCE81C9A748600EDF1E3 /* ContactsListTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C16BCE71C9A748600EDF1E3 /* ContactsListTVCell.xib */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
+		4C5185581C9D3FF400F631B6 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185571C9D3FF400F631B6 /* SearchButton.swift */; };
+		4C51855A1C9D45B600F631B6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185591C9D45B600F631B6 /* SearchViewController.swift */; };
 		4CEDB9301C9A93E6002C8967 /* ContactsSearchTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */; };
 		4CEDB9311C9A93E6002C8967 /* ContactsSearchTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */; };
 		4CEDB95A1C9BA4B3002C8967 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */; };
@@ -131,6 +133,8 @@
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C16BCE71C9A748600EDF1E3 /* ContactsListTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListTVCell.xib; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
+		4C5185571C9D3FF400F631B6 /* SearchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
+		4C5185591C9D45B600F631B6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchTVCell.swift; sourceTree = "<group>"; };
 		4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsSearchTVCell.xib; sourceTree = "<group>"; };
 		4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +278,7 @@
 			children = (
 				4CF15B3E1C9A447F009242A7 /* Contacts.storyboard */,
 				4CF15B421C9A46C7009242A7 /* ContactsViewController.swift */,
+				4C5185591C9D45B600F631B6 /* SearchViewController.swift */,
 				4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */,
 				4CF15B441C9A4753009242A7 /* View */,
 			);
@@ -287,6 +292,7 @@
 				4C16BCE71C9A748600EDF1E3 /* ContactsListTVCell.xib */,
 				4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */,
 				4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */,
+				4C5185571C9D3FF400F631B6 /* SearchButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -964,6 +970,7 @@
 				9114D1FD1C97AB05008CB4CE /* WeightView.swift in Sources */,
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
+				4C5185581C9D3FF400F631B6 /* SearchButton.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
 				9114D1E71C97AB05008CB4CE /* AccountManagerBaseViewController.swift in Sources */,
 				9114D2071C994C9D008CB4CE /* RootViewController.swift in Sources */,
@@ -979,6 +986,7 @@
 				4CEDB9301C9A93E6002C8967 /* ContactsSearchTVCell.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
 				4CF15B431C9A46C7009242A7 /* ContactsViewController.swift in Sources */,
+				4C51855A1C9D45B600F631B6 /* SearchViewController.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,
 				9114D1FA1C97AB05008CB4CE /* PictureView.swift in Sources */,
