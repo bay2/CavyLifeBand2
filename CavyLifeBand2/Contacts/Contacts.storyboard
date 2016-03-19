@@ -1,70 +1,115 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="mrI-6F-W8o">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="his-mo-9Ha">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
-        <scene sceneID="QLG-Iz-rvc">
+        <!--Contacts View Controller-->
+        <scene sceneID="wsb-vs-7f9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mrI-6F-W8o" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="K63-ZG-7P3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Dz0-ux-6Lp" kind="relationship" relationship="rootViewController" id="w83-Zu-alK"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mLi-MW-Z7N" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2028" y="165"/>
-        </scene>
-        <!--联系人-->
-        <scene sceneID="WEd-pg-SSl">
-            <objects>
-                <tableViewController storyboardIdentifier="ContactsView" id="Dz0-ux-6Lp" customClass="ContactsViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="vob-9J-QMa">
+                <viewController storyboardIdentifier="ContactsView" id="WF2-7l-lcN" customClass="ContactsViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MWQ-JP-LMk"/>
+                        <viewControllerLayoutGuide type="bottom" id="TSY-ie-hbm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1sY-yV-HCN">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dr4-LB-a9G">
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="WF2-7l-lcN" id="BeB-2x-xSj"/>
+                                    <outlet property="delegate" destination="WF2-7l-lcN" id="9oW-Jt-lRo"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" restorationIdentifier="ContactsView" translatesAutoresizingMaskIntoConstraints="NO" id="hPS-or-Ehy">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="WF2-7l-lcN" id="eFo-98-ohH"/>
+                                </connections>
+                            </searchBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TSY-ie-hbm" firstAttribute="top" secondItem="dr4-LB-a9G" secondAttribute="bottom" id="6uG-iv-mMM"/>
+                            <constraint firstItem="dr4-LB-a9G" firstAttribute="top" secondItem="hPS-or-Ehy" secondAttribute="bottom" id="Lqe-rU-S6i"/>
+                            <constraint firstItem="dr4-LB-a9G" firstAttribute="leading" secondItem="1sY-yV-HCN" secondAttribute="leading" id="MhX-xh-Z9B"/>
+                            <constraint firstItem="hPS-or-Ehy" firstAttribute="top" secondItem="1sY-yV-HCN" secondAttribute="top" id="UBw-A2-Gq7"/>
+                            <constraint firstAttribute="trailing" secondItem="dr4-LB-a9G" secondAttribute="trailing" id="a8H-Wn-0AH"/>
+                            <constraint firstItem="hPS-or-Ehy" firstAttribute="leading" secondItem="1sY-yV-HCN" secondAttribute="leading" id="hmS-fh-J7F"/>
+                            <constraint firstAttribute="trailing" secondItem="hPS-or-Ehy" secondAttribute="trailing" id="yT5-12-5W7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contactSearch" destination="hPS-or-Ehy" id="7QE-zk-YYv"/>
+                        <outlet property="contactsTable" destination="dr4-LB-a9G" id="EtS-QU-kvD"/>
+                        <outlet property="searchDisplayController" destination="5gb-mO-qyn" id="Cuy-mG-zRE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fD4-MM-tSw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="5gb-mO-qyn">
+                    <connections>
+                        <outlet property="delegate" destination="WF2-7l-lcN" id="oc2-i6-eXk"/>
+                        <outlet property="searchBar" destination="hPS-or-Ehy" id="vjb-0O-iPp"/>
+                        <outlet property="searchContentsController" destination="WF2-7l-lcN" id="vjd-ow-6aN"/>
+                        <outlet property="searchResultsDataSource" destination="WF2-7l-lcN" id="Xha-7Y-GKI"/>
+                        <outlet property="searchResultsDelegate" destination="WF2-7l-lcN" id="pcX-k0-t0A"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="2550" y="168"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="l7V-GY-PDl">
+            <objects>
+                <tableViewController id="his-mo-9Ha" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="d5S-0X-mqe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" id="XxB-6N-ZOz">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="his-mo-9Ha" id="L59-7V-LdU"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wsi-ua-WJE">
-                                <rect key="frame" x="0.0" y="114" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="0fO-2s-IUk">
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wsi-ua-WJE" id="Civ-eO-nz9">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0fO-2s-IUk" id="hlj-Lm-MXM">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="Dz0-ux-6Lp" id="Pwl-KZ-bp9"/>
-                            <outlet property="delegate" destination="Dz0-ux-6Lp" id="9jY-pe-7he"/>
+                            <outlet property="dataSource" destination="his-mo-9Ha" id="rBX-dB-qgH"/>
+                            <outlet property="delegate" destination="his-mo-9Ha" id="hMN-35-4oB"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="联系人" id="AIZ-kE-mPx">
-                        <barButtonItem key="leftBarButtonItem" image="backbtn" id="j4d-6H-vAt">
-                            <connections>
-                                <action selector="backAction:" destination="Dz0-ux-6Lp" id="JXE-bj-YjA"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="r5w-Ef-1qo">
-                            <connections>
-                                <action selector="searchAction:" destination="Dz0-ux-6Lp" id="Luy-UD-v9j"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="KLy-fM-iHu" id="4hu-Eh-4tT"/>
+                    </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4O0-HV-HGr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Nb-mb-MLc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="KLy-fM-iHu">
+                    <connections>
+                        <outlet property="delegate" destination="his-mo-9Ha" id="jPu-Ts-kP2"/>
+                        <outlet property="searchBar" destination="XxB-6N-ZOz" id="eap-YE-Pvu"/>
+                        <outlet property="searchContentsController" destination="his-mo-9Ha" id="Sg2-Wh-oT9"/>
+                        <outlet property="searchResultsDataSource" destination="his-mo-9Ha" id="l5e-Pj-BuH"/>
+                        <outlet property="searchResultsDelegate" destination="his-mo-9Ha" id="WMN-IX-ulg"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2658" y="165"/>
+            <point key="canvasLocation" x="3488" y="168"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="backbtn" width="30" height="30"/>
-    </resources>
 </document>

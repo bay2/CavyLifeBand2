@@ -171,10 +171,18 @@ enum L10n {
   case HomeLifeListTitleHelp
   /// 相关APP
   case HomeLifeListTitleRelated
+  /// 联系人
+  case ContactsTitle
   /// 删除
   case ContactsListCellDelete
   /// 关注
   case ContactsListCellAttention
+  /// 添加好友
+  case ContactsListCellAddFriendrTitle
+  /// 生活豚鼠
+  case ContactsListCellCavy
+  /// 搜索
+  case ContactsSearchBarSearch
 }
 
 extension L10n: CustomStringConvertible {
@@ -350,10 +358,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.LifeList.Title.Help")
       case .HomeLifeListTitleRelated:
         return L10n.tr("Home.LifeList.Title.Related")
+      case .ContactsTitle:
+        return L10n.tr("Contacts.title")
       case .ContactsListCellDelete:
         return L10n.tr("Contacts.ListCell.Delete")
       case .ContactsListCellAttention:
         return L10n.tr("Contacts.ListCell.Attention")
+      case .ContactsListCellAddFriendrTitle:
+        return L10n.tr("Contacts.ListCell.AddFriendrTitle")
+      case .ContactsListCellCavy:
+        return L10n.tr("Contacts.ListCell.Cavy")
+      case .ContactsSearchBarSearch:
+        return L10n.tr("Contacts.SearchBar.Search")
     }
   }
 

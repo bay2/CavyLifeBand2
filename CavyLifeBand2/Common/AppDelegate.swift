@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-/*
-        // Override point for customization after application launch.
+        
+//        self.window?.rootViewController = UINavigationController(rootViewController: StoryboardScene.Contacts.instantiateContactsView())
 
         let installation = KSCrashInstallationStandard.sharedInstance()
 
@@ -46,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         uiTestStub()
     
 #endif
-*/
         return true
 
     }

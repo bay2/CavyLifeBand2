@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EZSwiftExtensions
 
 class ContactsListTVCell: UITableViewCell {
     
@@ -20,16 +21,24 @@ class ContactsListTVCell: UITableViewCell {
     @IBOutlet weak var microView: UIImageView!
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
-        
-        headView.layer.masksToBounds = true
-        headView.layer.cornerRadius = 20
+
+        headView.roundSquareImage()
+
         nameLabel.textColor = UIColor(named: .ContactsName)
-        
+        nameLabel.font = UIFont.systemFontOfSize(16)
+
+
+        let cellBgView = UIView()
+        cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)
+        self.selectedBackgroundView = cellBgView
+
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
 
         // Configure the view for the selected state
     }

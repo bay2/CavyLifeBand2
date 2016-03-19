@@ -113,5 +113,9 @@
 "Home.LifeList.Title.Related" = "相关APP";
 
 //好友，联系人
+"Contacts.title" = "联系人";
 "Contacts.ListCell.Delete" = "删除";
 "Contacts.ListCell.Attention" = "关注";
+"Contacts.ListCell.AddFriendrTitle" = "添加好友";
+"Contacts.ListCell.Cavy" = "生活豚鼠";
+"Contacts.SearchBar.Search" = "搜索";

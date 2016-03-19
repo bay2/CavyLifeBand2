@@ -43,14 +43,20 @@ extension UIColor {
     /// Alpha: 50% <br/> (0x00000080)
     case ContactsFindFriendLight
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
-    /// Alpha: 70% <br/> (0x000000b3)
-    case ContactsGroupLetter
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 30% <br/> (0x0000004d)
     case ContactsIntrouduce
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 30% <br/> (0x0000004d)
+    case ContactsLetterColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 100% <br/> (0x000000ff)
     case ContactsName
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e6e6e6"></span>
+    /// Alpha: 100% <br/> (0xe6e6e6ff)
+    case ContactsSearchBarColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case ContactsTitleColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case GuideColor33
@@ -141,9 +147,11 @@ extension UIColor {
       case .ContactsDeleteBtnColor: return 0xd9d9d9ff
       case .ContactsFindFriendDark: return 0xffffffff
       case .ContactsFindFriendLight: return 0x00000080
-      case .ContactsGroupLetter: return 0x000000b3
       case .ContactsIntrouduce: return 0x0000004d
+      case .ContactsLetterColor: return 0x0000004d
       case .ContactsName: return 0x000000ff
+      case .ContactsSearchBarColor: return 0xe6e6e6ff
+      case .ContactsTitleColor: return 0x000000b3
       case .GuideColor33: return 0x00000033
       case .GuideColor66: return 0x00000066
       case .GuideColor99: return 0x00000099

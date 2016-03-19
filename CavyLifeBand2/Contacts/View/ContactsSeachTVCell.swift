@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EZSwiftExtensions
 
 class ContactsSeachTVCell: UITableViewCell {
 
@@ -25,17 +26,14 @@ class ContactsSeachTVCell: UITableViewCell {
     @IBAction func requestAddFriend(sender: AnyObject) {
         print(__FUNCTION__)
         
-        
-        
-        
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
+        headView.roundSquareImage()
         
-        headView.layer.masksToBounds = true
-        headView.layer.cornerRadius = 20
         nameLabel.textColor = UIColor(named: .ContactsName)
         introduceLabel.textColor = UIColor(named: .ContactsIntrouduce)
         
