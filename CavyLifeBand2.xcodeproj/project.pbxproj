@@ -10,8 +10,14 @@
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C16BCE81C9A748600EDF1E3 /* ContactsListTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C16BCE71C9A748600EDF1E3 /* ContactsListTVCell.xib */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
-		4CEDB9301C9A93E6002C8967 /* ContactsSeachTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB92E1C9A93E6002C8967 /* ContactsSeachTVCell.swift */; };
-		4CEDB9311C9A93E6002C8967 /* ContactsSeachTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CEDB92F1C9A93E6002C8967 /* ContactsSeachTVCell.xib */; };
+		4C5185581C9D3FF400F631B6 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185571C9D3FF400F631B6 /* SearchButton.swift */; };
+		4C51855A1C9D45B600F631B6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185591C9D45B600F631B6 /* SearchViewController.swift */; };
+		4C51855C1C9F8FFD00F631B6 /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */; };
+		4C5185601C9FD51300F631B6 /* RecommendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */; };
+		4C5185631C9FEEEB00F631B6 /* CharacterQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185621C9FEEEB00F631B6 /* CharacterQueue.swift */; };
+		4CEDB9301C9A93E6002C8967 /* ContactsSearchTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */; };
+		4CEDB9311C9A93E6002C8967 /* ContactsSearchTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */; };
+		4CEDB95A1C9BA4B3002C8967 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */; };
 		4CF15B3F1C9A447F009242A7 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CF15B3E1C9A447F009242A7 /* Contacts.storyboard */; };
 		4CF15B461C9A478B009242A7 /* ContactsListTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF15B451C9A478B009242A7 /* ContactsListTVCell.swift */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
@@ -135,8 +141,14 @@
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C16BCE71C9A748600EDF1E3 /* ContactsListTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListTVCell.xib; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
-		4CEDB92E1C9A93E6002C8967 /* ContactsSeachTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSeachTVCell.swift; sourceTree = "<group>"; };
-		4CEDB92F1C9A93E6002C8967 /* ContactsSeachTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsSeachTVCell.xib; sourceTree = "<group>"; };
+		4C5185571C9D3FF400F631B6 /* SearchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
+		4C5185591C9D45B600F631B6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableView.swift; sourceTree = "<group>"; };
+		4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendSearchView.swift; sourceTree = "<group>"; };
+		4C5185621C9FEEEB00F631B6 /* CharacterQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterQueue.swift; sourceTree = "<group>"; };
+		4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchTVCell.swift; sourceTree = "<group>"; };
+		4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsSearchTVCell.xib; sourceTree = "<group>"; };
+		4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		4CF15B3E1C9A447F009242A7 /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
 		4CF15B451C9A478B009242A7 /* ContactsListTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsListTVCell.swift; sourceTree = "<group>"; };
 		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -277,6 +289,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C5185611C9FEE6F00F631B6 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				4C5185621C9FEEEB00F631B6 /* CharacterQueue.swift */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
 		4CF15B3D1C9A4384009242A7 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,7 +305,10 @@
 				910442891C9D5322003D844D /* ContactsViewController.swift */,
 				9104428B1C9D557A003D844D /* ContactsBaseViewController.swift */,
 				91AE57EB1C9FE0B1000F5BC7 /* ContactsSearchController.swift */,
+				4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */,
+				4C5185591C9D45B600F631B6 /* SearchViewController.swift */,
 				4CF15B441C9A4753009242A7 /* View */,
+				4C5185611C9FEE6F00F631B6 /* Public */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -295,10 +318,13 @@
 			children = (
 				4CF15B451C9A478B009242A7 /* ContactsListTVCell.swift */,
 				4C16BCE71C9A748600EDF1E3 /* ContactsListTVCell.xib */,
-				4CEDB92E1C9A93E6002C8967 /* ContactsSeachTVCell.swift */,
-				4CEDB92F1C9A93E6002C8967 /* ContactsSeachTVCell.xib */,
 				910442831C9D297B003D844D /* ContactsLetterView.swift */,
 				910442851C9D2B77003D844D /* ContactsLetterView.xib */,
+				4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */,
+				4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */,
+				4C5185571C9D3FF400F631B6 /* SearchButton.swift */,
+				4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */,
+				4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -784,7 +810,7 @@
 				4CF15B3F1C9A447F009242A7 /* Contacts.storyboard in Resources */,
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
-				4CEDB9311C9A93E6002C8967 /* ContactsSeachTVCell.xib in Resources */,
+				4CEDB9311C9A93E6002C8967 /* ContactsSearchTVCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -966,6 +992,7 @@
 				9114D2091C995B8B008CB4CE /* LeftViewController.swift in Sources */,
 				9114D2051C993E2B008CB4CE /* HomeViewController.swift in Sources */,
 				91AE57EA1C9FDCF2000F5BC7 /* ContactsSearchBar.swift in Sources */,
+				4C5185631C9FEEEB00F631B6 /* CharacterQueue.swift in Sources */,
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */,
 				9114D1E61C97AB05008CB4CE /* UserInfoModelView.swift in Sources */,
@@ -980,6 +1007,9 @@
 				9114D1FD1C97AB05008CB4CE /* WeightView.swift in Sources */,
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
+				4C5185601C9FD51300F631B6 /* RecommendSearchView.swift in Sources */,
+				4C51855C1C9F8FFD00F631B6 /* SearchTableView.swift in Sources */,
+				4C5185581C9D3FF400F631B6 /* SearchButton.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
 				9114D1E71C97AB05008CB4CE /* AccountManagerBaseViewController.swift in Sources */,
 				9114D2071C994C9D008CB4CE /* RootViewController.swift in Sources */,
@@ -992,9 +1022,11 @@
 				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
 				9114D20E1C995CD2008CB4CE /* LeftTableViewCell.swift in Sources */,
-				4CEDB9301C9A93E6002C8967 /* ContactsSeachTVCell.swift in Sources */,
 				9104428A1C9D5322003D844D /* ContactsViewController.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
+				4CEDB9301C9A93E6002C8967 /* ContactsSearchTVCell.swift in Sources */,
+				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
+				4C51855A1C9D45B600F631B6 /* SearchViewController.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,
 				9114D1FA1C97AB05008CB4CE /* PictureView.swift in Sources */,
@@ -1002,6 +1034,7 @@
 				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
 				9114D1FB1C97AB05008CB4CE /* RulerScroller.swift in Sources */,
 				9114D1F61C97AB05008CB4CE /* GenderView.swift in Sources */,
+				4CEDB95A1C9BA4B3002C8967 /* RequestViewController.swift in Sources */,
 				9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */,
 				98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */,
 				9104428C1C9D557A003D844D /* ContactsBaseViewController.swift in Sources */,

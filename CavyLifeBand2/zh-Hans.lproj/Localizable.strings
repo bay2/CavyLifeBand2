@@ -113,9 +113,21 @@
 "Home.LifeList.Title.Related" = "相关APP";
 
 //好友，联系人
-"Contacts.title" = "联系人";
-"Contacts.ListCell.Delete" = "删除";
-"Contacts.ListCell.Attention" = "  关注  ";
-"Contacts.ListCell.AddFriendrTitle" = "添加好友";
 "Contacts.ListCell.Cavy" = "生活豚鼠";
 "Contacts.SearchBar.Search" = "搜索";
+"Contacts.Title" = "联系人";
+"Contacts.NewFriendsCell" = "新的朋友";
+"Contacts.AddFriendsCell" = "添加好友";
+"Contacts.SearchplaceHolder" = "  搜索你得联系人";
+"Contacts.ListCell.Delete" = "删除";
+"Contacts.ListCell.Attention" = "关注";
+"Contacts.ListCell.add" = "添加";
+"Contacts.ListCell.agree" = "同意";
+"Contacts.ListCell.alreaydAdd" = "已发送";
+"Contacts.Search.PhoneNum" = "通讯录好友";
+"Contacts.Search.RecommendNum" = "推荐好友";
+"Contacts.Search.NearbyNum" = "附近好友";
+"Contacts.Search.placeHolder" = "  搜索新的好友";
+"Contacts.Search.dropRefresh" = "下拉换一批";
+"Contacts.Request.placeHolder" = "发送验证申请，等待对方通过";
+"Contacts.Request.SendButton" = "发送";

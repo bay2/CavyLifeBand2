@@ -183,6 +183,38 @@ enum L10n {
   case ContactsListCellCavy
   /// 搜索
   case ContactsSearchBarSearch
+  /// 联系人
+  case ContactsTitle
+  /// 新的朋友
+  case ContactsNewFriendsCell
+  /// 添加好友
+  case ContactsAddFriendsCell
+  ///   搜索你得联系人
+  case ContactsSearchplaceHolder
+  /// 删除
+  case ContactsListCellDelete
+  /// 关注
+  case ContactsListCellAttention
+  /// 添加
+  case ContactsListCellAdd
+  /// 同意
+  case ContactsListCellAgree
+  /// 已发送
+  case ContactsListCellAlreaydAdd
+  /// 通讯录好友
+  case ContactsSearchPhoneNum
+  /// 推荐好友
+  case ContactsSearchRecommendNum
+  /// 附近好友
+  case ContactsSearchNearbyNum
+  ///   搜索新的好友
+  case ContactsSearchPlaceHolder
+  /// 下拉换一批
+  case ContactsSearchDropRefresh
+  /// 发送验证申请，等待对方通过
+  case ContactsRequestPlaceHolder
+  /// 发送
+  case ContactsRequestSendButton
 }
 
 extension L10n: CustomStringConvertible {
@@ -370,6 +402,38 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.ListCell.Cavy")
       case .ContactsSearchBarSearch:
         return L10n.tr("Contacts.SearchBar.Search")
+      case .ContactsTitle:
+        return L10n.tr("Contacts.Title")
+      case .ContactsNewFriendsCell:
+        return L10n.tr("Contacts.NewFriendsCell")
+      case .ContactsAddFriendsCell:
+        return L10n.tr("Contacts.AddFriendsCell")
+      case .ContactsSearchplaceHolder:
+        return L10n.tr("Contacts.SearchplaceHolder")
+      case .ContactsListCellDelete:
+        return L10n.tr("Contacts.ListCell.Delete")
+      case .ContactsListCellAttention:
+        return L10n.tr("Contacts.ListCell.Attention")
+      case .ContactsListCellAdd:
+        return L10n.tr("Contacts.ListCell.add")
+      case .ContactsListCellAgree:
+        return L10n.tr("Contacts.ListCell.agree")
+      case .ContactsListCellAlreaydAdd:
+        return L10n.tr("Contacts.ListCell.alreaydAdd")
+      case .ContactsSearchPhoneNum:
+        return L10n.tr("Contacts.Search.PhoneNum")
+      case .ContactsSearchRecommendNum:
+        return L10n.tr("Contacts.Search.RecommendNum")
+      case .ContactsSearchNearbyNum:
+        return L10n.tr("Contacts.Search.NearbyNum")
+      case .ContactsSearchPlaceHolder:
+        return L10n.tr("Contacts.Search.placeHolder")
+      case .ContactsSearchDropRefresh:
+        return L10n.tr("Contacts.Search.dropRefresh")
+      case .ContactsRequestPlaceHolder:
+        return L10n.tr("Contacts.Request.placeHolder")
+      case .ContactsRequestSendButton:
+        return L10n.tr("Contacts.Request.SendButton")
     }
   }
 

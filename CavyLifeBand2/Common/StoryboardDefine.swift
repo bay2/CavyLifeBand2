@@ -56,9 +56,19 @@ struct StoryboardScene {
       return StoryboardScene.Contacts.ContactsViewScene.viewController() as! ContactsViewController
     }
 
-    case SearchResultViewScene = "searchResultView"
-    static func instantiateSearchResultView() -> UITableViewController {
-      return StoryboardScene.Contacts.SearchResultViewScene.viewController() as! UITableViewController
+    case ContactsViewScene = "ContactsView"
+    static func instantiateContactsView() -> ContactsViewController {
+      return StoryboardScene.Contacts.ContactsViewScene.viewController() as! ContactsViewController
+    }
+
+    case RquestViewScene = "RquestView"
+    static func instantiateRquestView() -> RequestViewController {
+      return StoryboardScene.Contacts.RquestViewScene.viewController() as! RequestViewController
+    }
+
+    case SearchViewScene = "SearchView"
+    static func instantiateSearchView() -> SearchViewController {
+      return StoryboardScene.Contacts.SearchViewScene.viewController() as! SearchViewController
     }
   }
   enum Guide: String, StoryboardSceneType {

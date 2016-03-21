@@ -10,15 +10,40 @@ import UIKit
 import EZSwiftExtensions
 
 var testDataSource = [["aaaab", "aaac"], ["bbbbc", "bbbba"], ["cbbbc", "cbbba"], ["dbbbc", "dbbba"], ["ebbbc", "ebbba"], ["fbbbc", "fbbba"], ["gbbbc", "gbbba"], ["hbbbc", "hbbba"], ["ibbbc", "ibbba"], ["jbbbc", "jbbba"], ["kbbbc", "kbbba"], ["lbbbc", "lbbba"], ["nbbbc", "nbbba"], ["mbbbc", "mbbba"], ["obbbc", "obbba"], ["pbbbc", "pbbba"], ["qbbbc", "qbbba"], ["rbbbc", "rbbba"], ["sbbbc", "sbbba"], ["tbbbc", "tbbba"], ["ubbbc", "ubbba"], ["vbbbc", "vbbba"], ["wbbbc", "wbbba"], ["xbbbc", "xbbba"], ["ybbbc", "ybbba"], ["zbbbc", "zbbba"]]
-
-class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdating {
     
+struct SearchCellViewModel: ContactsSearchCellDataSource, ContactsSearchCellDelegate{
+    
+    var headImage: UIImage { return UIImage(asset: .GuidePairSeccuss) }
+    var name: String { return "strawberry❤️" }
+    var introudce: String { return " 我爱吃草莓啊~~~" }
+    var requestBtnTitle: String { return "添加" }
+    
+    
+    var nameTextColor: UIColor { return UIColor(named: .ContactsName) }
+    var introductTextColor: UIColor { return UIColor(named: .ContactsIntrouduce) }
+    var nameFont: UIFont { return UIFont.systemFontOfSize(14) }
+    var introduceFont: UIFont { return UIFont.systemFontOfSize(12) }
+    var requestBtnColor: UIColor { return UIColor(named: .ContactsName) }
+    var requestBtnFont: UIFont { return UIFont.systemFontOfSize(14) }
+    
+    func changeRequestBtnName(name: String) {
+        
+        var requestBtnTitle: String { return name }
+//        ContactsViewController.requestAction()
+    }
+    
+}
+
+
+class ContactsViewController: UITableViewController{
+
     let defulatDataSource = [L10n.ContactsListCellAddFriendrTitle.string, L10n.ContactsListCellCavy.string]
 
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var contactsTable: UITableView!
     var searchCtrl  = ContactsSearchController(searchResultsController: StoryboardScene.Contacts.instantiateSearchResultView())
     var searchCtrlView = StoryboardScene.Contacts.instantiateSearchResultView().view
+
     
     override func viewDidLoad() {
         
@@ -33,8 +58,6 @@ class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdatin
     func configureSearchController() {
 
         searchView.addSubview(searchCtrl.contactsSearchBar!)
-
-//        searchCtrlView.view.hidden = true
 
         searchCtrl.searchResultsUpdater = self
 
@@ -54,8 +77,18 @@ class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdatin
      */
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return testDataSource.count + 1
+
     }
-    
+
+    func requestAction() {
+        
+        print("添加好友啊")
+        let requestVC = StoryboardScene.Contacts.instantiateRquestView()
+        self.pushVC(requestVC)
+        
+        
+    }
+
     /**
      row 数
      
@@ -127,7 +160,22 @@ class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdatin
             cell.nameLabel.text = testDataSource[indexPath.section - 1][indexPath.row]
 
         }
+
+/*
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsSearchTVCell", forIndexPath: indexPath) as! ContactsSearchTVCell
+
+        cell.selectionStyle = .Gray
         
+        let viewMode = SearchCellViewModel()
+        cell.configure(viewMode, delegate: viewMode)
+        cell.requestBtn.addTarget(self, action: "requestAction", forControlEvents: UIControlEvents.TouchUpInside)
+        
+        let cellBgView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, 66))
+        cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)
+        cell.backgroundView = cellBgView
+        
+        */
+
         return cell
     }
     
