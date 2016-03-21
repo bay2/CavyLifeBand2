@@ -81,6 +81,8 @@
 		91A0FED81C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A0FED71C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift */; };
 		91A0FEDA1C903CBE00717B83 /* ForgotPasswdEmailUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A0FED91C903CBE00717B83 /* ForgotPasswdEmailUITest.swift */; };
 		91A1E1DD1C7ACF140059E53B /* ForgotPasswd_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A1E1DC1C7ACF140059E53B /* ForgotPasswd_Ok.json */; };
+		91AE57EA1C9FDCF2000F5BC7 /* ContactsSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE57E91C9FDCF2000F5BC7 /* ContactsSearchBar.swift */; };
+		91AE57EC1C9FE0B1000F5BC7 /* ContactsSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91AE57EB1C9FE0B1000F5BC7 /* ContactsSearchController.swift */; };
 		91BBB6061C671F1800EC1ED1 /* Sign_In_Error.json in Resources */ = {isa = PBXBuildFile; fileRef = 91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */; };
 		91C3AE501C461EA0006B67AF /* SecurityCode_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */; };
 		91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C3AE511C462FE5006B67AF /* String_Extension.swift */; };
@@ -217,6 +219,8 @@
 		91A0FED71C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswdPhoneUITest.swift; sourceTree = "<group>"; };
 		91A0FED91C903CBE00717B83 /* ForgotPasswdEmailUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswdEmailUITest.swift; sourceTree = "<group>"; };
 		91A1E1DC1C7ACF140059E53B /* ForgotPasswd_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForgotPasswd_Ok.json; sourceTree = "<group>"; };
+		91AE57E91C9FDCF2000F5BC7 /* ContactsSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchBar.swift; sourceTree = "<group>"; };
+		91AE57EB1C9FE0B1000F5BC7 /* ContactsSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchController.swift; sourceTree = "<group>"; };
 		91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Error.json; sourceTree = "<group>"; };
 		91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SecurityCode_Ok.json; sourceTree = "<group>"; };
 		91C3AE511C462FE5006B67AF /* String_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String_Extension.swift; sourceTree = "<group>"; };
@@ -277,8 +281,10 @@
 			isa = PBXGroup;
 			children = (
 				4CF15B3E1C9A447F009242A7 /* Contacts.storyboard */,
+				91AE57E91C9FDCF2000F5BC7 /* ContactsSearchBar.swift */,
 				910442891C9D5322003D844D /* ContactsViewController.swift */,
 				9104428B1C9D557A003D844D /* ContactsBaseViewController.swift */,
+				91AE57EB1C9FE0B1000F5BC7 /* ContactsSearchController.swift */,
 				4CF15B441C9A4753009242A7 /* View */,
 			);
 			path = Contacts;
@@ -952,12 +958,14 @@
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
 				91671C9A1C9AC5A10090BB3F /* HomeUserInfo.swift in Sources */,
 				910442841C9D297B003D844D /* ContactsLetterView.swift in Sources */,
+				91AE57EC1C9FE0B1000F5BC7 /* ContactsSearchController.swift in Sources */,
 				9114D1F71C97AB05008CB4CE /* GoalView.swift in Sources */,
 				9114D1F21C97AB05008CB4CE /* UserProtocolView.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
 				9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */,
 				9114D2091C995B8B008CB4CE /* LeftViewController.swift in Sources */,
 				9114D2051C993E2B008CB4CE /* HomeViewController.swift in Sources */,
+				91AE57EA1C9FDCF2000F5BC7 /* ContactsSearchBar.swift in Sources */,
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */,
 				9114D1E61C97AB05008CB4CE /* UserInfoModelView.swift in Sources */,

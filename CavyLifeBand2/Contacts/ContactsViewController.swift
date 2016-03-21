@@ -11,19 +11,33 @@ import EZSwiftExtensions
 
 var testDataSource = [["aaaab", "aaac"], ["bbbbc", "bbbba"], ["cbbbc", "cbbba"], ["dbbbc", "dbbba"], ["ebbbc", "ebbba"], ["fbbbc", "fbbba"], ["gbbbc", "gbbba"], ["hbbbc", "hbbba"], ["ibbbc", "ibbba"], ["jbbbc", "jbbba"], ["kbbbc", "kbbba"], ["lbbbc", "lbbba"], ["nbbbc", "nbbba"], ["mbbbc", "mbbba"], ["obbbc", "obbba"], ["pbbbc", "pbbba"], ["qbbbc", "qbbba"], ["rbbbc", "rbbba"], ["sbbbc", "sbbba"], ["tbbbc", "tbbba"], ["ubbbc", "ubbba"], ["vbbbc", "vbbba"], ["wbbbc", "wbbba"], ["xbbbc", "xbbba"], ["ybbbc", "ybbba"], ["zbbbc", "zbbba"]]
 
-class ContactsViewController: ContactsBaseViewController {
+class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdating {
     
     let defulatDataSource = [L10n.ContactsListCellAddFriendrTitle.string, L10n.ContactsListCellCavy.string]
 
-    @IBOutlet weak var contactSearch: UISearchBar!
+    @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var contactsTable: UITableView!
+    var searchCtrl  = ContactsSearchController(searchResultsController: StoryboardScene.Contacts.instantiateSearchResultView())
+    var searchCtrlView = StoryboardScene.Contacts.instantiateSearchResultView().view
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
-        contactSearch.tintColor = UIColor(named: .ContactsSearchBarColor)
-        contactSearch.placeholder = L10n.ContactsSearchBarSearch.string
-        
+        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+
+        configureSearchController()
+
+    }
+
+    func configureSearchController() {
+
+        searchView.addSubview(searchCtrl.contactsSearchBar!)
+
+//        searchCtrlView.view.hidden = true
+
+        searchCtrl.searchResultsUpdater = self
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -101,22 +115,20 @@ class ContactsViewController: ContactsBaseViewController {
         
         tableView.registerNib(UINib(nibName: "ContactsListTVCell", bundle: nil), forCellReuseIdentifier: "ContactsListTVCell")
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsListTVCell", forIndexPath: indexPath)
-        
-        let myCell = cell as! ContactsListTVCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsListTVCell", forIndexPath: indexPath)  as! ContactsListTVCell
         
         if indexPath.section == 0 {
             
-            myCell.nameLabel.text = defulatDataSource[indexPath.row]
-            myCell.editing = false
+            cell.nameLabel.text = defulatDataSource[indexPath.row]
+            cell.editing = false
             
         } else {
             
-            myCell.nameLabel.text = testDataSource[indexPath.section - 1][indexPath.row]
-            
+            cell.nameLabel.text = testDataSource[indexPath.section - 1][indexPath.row]
+
         }
         
-        return myCell
+        return cell
     }
     
     /**
@@ -186,17 +198,27 @@ class ContactsViewController: ContactsBaseViewController {
             }
             
         }
-        
+
         deletRowAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
         
         let concernAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellAttention.string) {
             (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+            
             tableView.editing = false
         }
-        
+
         concernAction.backgroundColor = UIColor(named: .ContactsAttentionBtnColor)
-        
-        return [concernAction, deletRowAction]
+
+        let pkRowAction = UITableViewRowAction(style: .Default, title: " PK ") {_, _ in
+
+            tableView.editing = false
+
+        }
+
+        pkRowAction.backgroundColor = UIColor(named: .ContactsPKBtnColor)
+
+
+        return [deletRowAction, concernAction, pkRowAction]
     }
     
     /**
@@ -213,10 +235,36 @@ class ContactsViewController: ContactsBaseViewController {
             return .None
         }
         
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        
+        cell?.backgroundColor = UIColor(named: .ContactsCellSelect)
+        
         return .Delete
         
     }
     
+    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
+
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.backgroundColor = UIColor.whiteColor()
+
+    }
+
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+
+        if searchCtrl.isSearching {
+
+//            self.view.addSubview(searchCtrlView)
+            self.navigationController?.setNavigationBarHidden(true, animated: true)
+
+        } else {
+
+//            searchCtrlView.removeFromSuperview()
+            self.navigationController?.setNavigationBarHidden(false, animated: true)
+
+        }
+
+    }
     
 
     /*

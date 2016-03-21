@@ -175,7 +175,7 @@ enum L10n {
   case ContactsTitle
   /// 删除
   case ContactsListCellDelete
-  /// 关注
+  ///   关注  
   case ContactsListCellAttention
   /// 添加好友
   case ContactsListCellAddFriendrTitle

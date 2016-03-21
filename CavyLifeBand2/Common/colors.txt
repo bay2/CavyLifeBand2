@@ -38,3 +38,4 @@ ContactsDeleteBtnColor : #D9D9D9
 ContactsAttentionBtnColor : #FF5656
 ContactsLetterColor: #0000004D
 ContactsSearchBarColor: #e6e6e6
+ContactsPKBtnColor: #FF9F22
