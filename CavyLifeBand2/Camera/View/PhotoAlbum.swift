@@ -10,13 +10,16 @@ import UIKit
 import AssetsLibrary
 import Log
 import EZSwiftExtensions
+import Photos
+import SnapKit
 
 class PhotoAlbum: UIViewController, UIScrollViewDelegate{
     
-    var asset        = [ALAsset]()
-    var library      = ALAssetsLibrary()
+    var assetResult = [PHAsset]()
+    
     var totalCount: Int   = 0
     var currentCount: Int = 0
+    var loadIndex: Int    = 0   // 加载到哪的标记
     
     @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -26,76 +29,115 @@ class PhotoAlbum: UIViewController, UIScrollViewDelegate{
         
         self.view.backgroundColor = UIColor.blackColor()
         
-        self.showCount()
-
+        scrollView.contentSize = CGSizeMake(ez.screenWidth * CGFloat(self.totalCount), ez.screenHeight - 64 - 49)
+        scrollView.contentOffset = CGPoint(x: ez.screenWidth * CGFloat(self.totalCount), y: ez.screenHeight - 64 - 49)
+        
+        self.loadAssetResult()
+        // 解析最新十张图片
+        addPhotoes(loadIndex, alReadyLoadCount: currentCount)
+        
     }
     
-    // show photoAlbum total count
-    func showCount(){
+    // 照片库 [PFAsset]
+    func loadAssetResult(){
         
-        library.enumerateGroupsWithTypes(ALAssetsGroupSavedPhotos, usingBlock: { (group: ALAssetsGroup!, stop) -> Void in
-            if group != nil{
-                
-                let assetBlock: ALAssetsGroupEnumerationResultsBlock = {
-                    (result: ALAsset!, index: Int, stop) in
-                    
-                    if result != nil{
-                        self.asset.append(result)
-                        self.totalCount++
-                    }
-                }
-                
-                group.enumerateAssetsUsingBlock(assetBlock)
-                
-                self.currentCount = self.totalCount
-                
-                Log.info("assets:\(self.totalCount)")
-                
-                self.countLabel.text = "\(self.currentCount)/\(self.totalCount)"
-            }
-            }) { (error) -> Void in
-                
-                Log.error("Error:\(error)")
+        // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: true)]
+        
+        let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
+        
+        for var i = 0 ; i < fetchResults.count ; i++ {
+            
+            let asset = fetchResults[i] as! PHAsset
+            
+            self.assetResult.append(asset)
         }
         
+        self.countLabel.text = "\(self.currentCount)/\(fetchResults.count)"
+        
     }
     
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    // 从 assetResult 添加图片
+    func addPhotoes(needLoadCount: Int, alReadyLoadCount: Int) {
         
-        // add scrollView
-        scrollView.contentSize = CGSizeMake(ez.screenWidth * CGFloat(self.totalCount), scrollView.frame.height)
-        scrollView.contentOffset = CGPoint(x: ez.screenWidth * CGFloat(self.totalCount), y: scrollView.frame.height)
+        Log.info("加载的是从\(needLoadCount)开始到\(alReadyLoadCount)")
         
-        Log.info("totalPage:\(totalCount) ")
-        Log.info("currentPage:\(currentCount) ")
-        
-        // add all photo
-        for var i = 0 ; i < self.totalCount ; i++ {
+        for var i = needLoadCount; i < alReadyLoadCount; i++ {
             
-            let myAsset = self.asset[i]
+            let myAsset = self.assetResult[i]
             
-            let imageView = UIImageView(image: UIImage(CGImage: myAsset.defaultRepresentation().fullResolutionImage().takeUnretainedValue()))
+            let imageView = UIImageView()
             
-            imageView.frame.size = CGSizeMake(ez.screenWidth, scrollView.size.height)
+            // 返回图片高度
+            let scrollHeight = ez.screenHeight - 64 - 49
+            
+            imageView.frame.size = CGSizeMake(ez.screenWidth, scrollHeight)
             imageView.frame.origin.x = CGFloat(i) * ez.screenWidth
             imageView.contentMode = .ScaleAspectFit
+            self.scrollView.addSubview(imageView)
             
             Log.info("\(imageView.frame), \(ez.screenWidth) \(ez.screenHeight)")
-
-            scrollView.addSubview(imageView)
+            
+            // PHImageRequestOptions 设置照片质量
+            let imgRequestOptions = PHImageRequestOptions()
+            imgRequestOptions.deliveryMode = .HighQualityFormat
+            
+            // 获取照片
+            PHImageManager.defaultManager().requestImageForAsset(myAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenHeight), contentMode: .AspectFill, options: imgRequestOptions) { (result, info) -> Void in
+                
+                imageView.image = result
+                
+            }
+            
         }
+        
+    }
+
+    // 完成拖拽
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        continueLoadPhoto()
+        
     }
     
-    // change current photo will change
+    // 完成拖拽
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         
+        continueLoadPhoto()
+        
+    }
+    
+    // 继续加载图片
+    func continueLoadPhoto() {
+        
         let newCount  = Int(scrollView.contentOffset.x / ez.screenWidth)
-        Log.info("计算后的当前页：\(newCount)")
-
+        
         self.currentCount = newCount + 1
         self.countLabel.text = "\(self.currentCount)/\(self.totalCount)"
+        
+        // 到第一张了 就不用加载了
+        if self.currentCount == 1 {
+            return
+        }
+        
+        // 距离loadIndex 还有三张时候继续往前加载
+        if self.currentCount - self.loadIndex < 3{
+            
+            // 当未加载的照片数目小于10时 从0 ~ loadIndex
+            var needLoadIndex = loadIndex - 10
+            
+            if loadIndex < 10 {
+                
+                needLoadIndex = 0
+            }
+                        
+            addPhotoes(needLoadIndex, alReadyLoadCount: loadIndex)
+            
+            loadIndex = needLoadIndex
+            
+        }
+        
     }
     
     @IBAction func action4Back(sender: AnyObject) {
@@ -107,5 +149,5 @@ class PhotoAlbum: UIViewController, UIScrollViewDelegate{
         // Dispose of any resources that can be recreated.
     }
     
-
+    
 }

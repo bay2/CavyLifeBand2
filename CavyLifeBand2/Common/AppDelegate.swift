@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
+/*
         // Override point for customization after application launch.
 
         let installation = KSCrashInstallationStandard.sharedInstance()
@@ -30,10 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
 
-        let defaults = NSUserDefaults.standardUserDefaults()
+//        let defaults = NSUserDefaults.standardUserDefaults()
 
-        let userName = defaults["userName"]
-        let passwd = defaults["passwd"]
+//        let userName = defaults["userName"]
+//        let passwd = defaults["passwd"]
 //        if userName != nil && passwd != nil {
 //            
 //            let signInViewModel = SignInViewModel(viewController: UIViewController(), userName: userName as! String, passwd: passwd as! String)
@@ -44,9 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 #if UITEST
             
         uiTestStub()
-            
+    
 #endif
-
+*/
         return true
 
     }
@@ -77,8 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
             // setup HTTP stubs for tests
             stub(isMethodPOST()) { _ in
-            let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
-            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+                let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
+                return fixture(stubPath!, headers: ["Content-Type": "application/json"])
             }
         }
     
