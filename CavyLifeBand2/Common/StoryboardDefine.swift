@@ -48,48 +48,12 @@ struct StoryboardScene {
       return StoryboardScene.Camera.PhotoAlbumViewScene.viewController() as! PhotoAlbum
     }
   }
-  enum Contacts: String, StoryboardSceneType {
-    static let storyboardName = "Contacts"
-
-    case ContactsViewScene = "ContactsView"
-    static func instantiateContactsView() -> ContactsViewController {
-      return StoryboardScene.Contacts.ContactsViewScene.viewController() as! ContactsViewController
-    }
-
-    case RquestViewScene = "RquestView"
-    static func instantiateRquestView() -> RequestViewController {
-      return StoryboardScene.Contacts.RquestViewScene.viewController() as! RequestViewController
-    }
-
-    case SearchViewScene = "SearchView"
-    static func instantiateSearchView() -> SearchViewController {
-      return StoryboardScene.Contacts.SearchViewScene.viewController() as! SearchViewController
-    }
-  }
   enum Guide: String, StoryboardSceneType {
     static let storyboardName = "Guide"
 
     case GuideViewScene = "GuideView"
     static func instantiateGuideView() -> GuideViewController {
       return StoryboardScene.Guide.GuideViewScene.viewController() as! GuideViewController
-    }
-  }
-  enum Home: String, StoryboardSceneType {
-    static let storyboardName = "Home"
-
-    case HomeViewScene = "HomeView"
-    static func instantiateHomeView() -> HomeViewController {
-      return StoryboardScene.Home.HomeViewScene.viewController() as! HomeViewController
-    }
-
-    case LeftViewScene = "LeftView"
-    static func instantiateLeftView() -> LeftViewController {
-      return StoryboardScene.Home.LeftViewScene.viewController() as! LeftViewController
-    }
-
-    case RootViewScene = "RootView"
-    static func instantiateRootView() -> RootViewController {
-      return StoryboardScene.Home.RootViewScene.viewController() as! RootViewController
     }
   }
   enum LaunchScreen: StoryboardSceneType {

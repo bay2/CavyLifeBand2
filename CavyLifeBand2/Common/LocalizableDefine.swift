@@ -151,58 +151,6 @@ enum L10n {
   case ForgotBackTextBtn
   /// 完成
   case ForgotFinish
-  /// 拍照
-  case CameraPhoto
-  /// 摄影
-  case CameraVideo
-  /// 取消
-  case CameraBack
-  /// 目标
-  case HomeLifeListTitleTarget
-  /// 信息公开
-  case HomeLifeListTitleInfoOpen
-  /// 好友
-  case HomeLifeListTitleFriend
-  /// PK
-  case HomeLifeListTitlePK
-  /// 关于
-  case HomeLifeListTitleAbout
-  /// 帮助与反馈
-  case HomeLifeListTitleHelp
-  /// 相关APP
-  case HomeLifeListTitleRelated
-  /// 联系人
-  case ContactsTitle
-  /// 新的朋友
-  case ContactsNewFriendsCell
-  /// 添加好友
-  case ContactsAddFriendsCell
-  ///   搜索你得联系人
-  case ContactsSearchplaceHolder
-  /// 删除
-  case ContactsListCellDelete
-  /// 关注
-  case ContactsListCellAttention
-  /// 添加
-  case ContactsListCellAdd
-  /// 同意
-  case ContactsListCellAgree
-  /// 已发送
-  case ContactsListCellAlreaydAdd
-  /// 通讯录好友
-  case ContactsSearchPhoneNum
-  /// 推荐好友
-  case ContactsSearchRecommendNum
-  /// 附近好友
-  case ContactsSearchNearbyNum
-  ///   搜索新的好友
-  case ContactsSearchPlaceHolder
-  /// 下拉换一批
-  case ContactsSearchDropRefresh
-  /// 发送验证申请，等待对方通过
-  case ContactsRequestPlaceHolder
-  /// 发送
-  case ContactsRequestSendButton
 }
 
 extension L10n: CustomStringConvertible {
@@ -358,58 +306,6 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Forgot.BackTextBtn")
       case .ForgotFinish:
         return L10n.tr("Forgot.finish")
-      case .CameraPhoto:
-        return L10n.tr("Camera.Photo")
-      case .CameraVideo:
-        return L10n.tr("Camera.Video")
-      case .CameraBack:
-        return L10n.tr("Camera.Back")
-      case .HomeLifeListTitleTarget:
-        return L10n.tr("Home.LifeList.Title.Target")
-      case .HomeLifeListTitleInfoOpen:
-        return L10n.tr("Home.LifeList.Title.InfoOpen")
-      case .HomeLifeListTitleFriend:
-        return L10n.tr("Home.LifeList.Title.Friend")
-      case .HomeLifeListTitlePK:
-        return L10n.tr("Home.LifeList.Title.PK")
-      case .HomeLifeListTitleAbout:
-        return L10n.tr("Home.LifeList.Title.About")
-      case .HomeLifeListTitleHelp:
-        return L10n.tr("Home.LifeList.Title.Help")
-      case .HomeLifeListTitleRelated:
-        return L10n.tr("Home.LifeList.Title.Related")
-      case .ContactsTitle:
-        return L10n.tr("Contacts.Title")
-      case .ContactsNewFriendsCell:
-        return L10n.tr("Contacts.NewFriendsCell")
-      case .ContactsAddFriendsCell:
-        return L10n.tr("Contacts.AddFriendsCell")
-      case .ContactsSearchplaceHolder:
-        return L10n.tr("Contacts.SearchplaceHolder")
-      case .ContactsListCellDelete:
-        return L10n.tr("Contacts.ListCell.Delete")
-      case .ContactsListCellAttention:
-        return L10n.tr("Contacts.ListCell.Attention")
-      case .ContactsListCellAdd:
-        return L10n.tr("Contacts.ListCell.add")
-      case .ContactsListCellAgree:
-        return L10n.tr("Contacts.ListCell.agree")
-      case .ContactsListCellAlreaydAdd:
-        return L10n.tr("Contacts.ListCell.alreaydAdd")
-      case .ContactsSearchPhoneNum:
-        return L10n.tr("Contacts.Search.PhoneNum")
-      case .ContactsSearchRecommendNum:
-        return L10n.tr("Contacts.Search.RecommendNum")
-      case .ContactsSearchNearbyNum:
-        return L10n.tr("Contacts.Search.NearbyNum")
-      case .ContactsSearchPlaceHolder:
-        return L10n.tr("Contacts.Search.placeHolder")
-      case .ContactsSearchDropRefresh:
-        return L10n.tr("Contacts.Search.dropRefresh")
-      case .ContactsRequestPlaceHolder:
-        return L10n.tr("Contacts.Request.placeHolder")
-      case .ContactsRequestSendButton:
-        return L10n.tr("Contacts.Request.SendButton")
     }
   }
 

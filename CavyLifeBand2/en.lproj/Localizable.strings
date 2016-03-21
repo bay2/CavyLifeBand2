@@ -97,35 +97,3 @@
 "Forgot.PasswdTextField" = "新密码";
 "Forgot.BackTextBtn" = "且慢,我想起来了!";
 "Forgot.finish" = "完成";
-
-// 照相机
-"Camera.Photo" = "拍照";
-"Camera.Video" = "摄影";
-"Camera.Back" = "取消";
-
-// 主页面
-"Home.LifeList.Title.Target" = "目标";
-"Home.LifeList.Title.InfoOpen" = "信息公开";
-"Home.LifeList.Title.Friend" = "好友";
-"Home.LifeList.Title.PK" = "PK";
-"Home.LifeList.Title.About" = "关于";
-"Home.LifeList.Title.Help" = "帮助与反馈";
-"Home.LifeList.Title.Related" = "相关APP";
-
-//好友，联系人
-"Contacts.Title" = "联系人";
-"Contacts.NewFriendsCell" = "新的朋友";
-"Contacts.AddFriendsCell" = "添加好友";
-"Contacts.SearchplaceHolder" = "  搜索你得联系人";
-"Contacts.ListCell.Delete" = "删除";
-"Contacts.ListCell.Attention" = "关注";
-"Contacts.ListCell.add" = "添加";
-"Contacts.ListCell.agree" = "同意";
-"Contacts.ListCell.alreaydAdd" = "已发送";
-"Contacts.Search.PhoneNum" = "通讯录好友";
-"Contacts.Search.RecommendNum" = "推荐好友";
-"Contacts.Search.NearbyNum" = "附近好友";
-"Contacts.Search.placeHolder" = "  搜索新的好友";
-"Contacts.Search.dropRefresh" = "下拉换一批";
-"Contacts.Request.placeHolder" = "发送验证申请，等待对方通过";
-"Contacts.Request.SendButton" = "发送";

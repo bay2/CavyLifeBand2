@@ -223,20 +223,6 @@ class RulerView: UIView, UIScrollViewDelegate {
     // 减速停止时执行
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         
-        scrollViewStopAction(scrollView)
-        
-    }
-    
-    // 完成拖拽
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        scrollViewStopAction(scrollView)
-        
-    }
-    
-    // 滑动结束事件
-    func scrollViewStopAction(scrollView: UIScrollView) {
-        
         let sc =  scrollView as! RulerScroller
         
         if sc.rulerStyle == .YearMonthRuler {
@@ -252,7 +238,7 @@ class RulerView: UIView, UIScrollViewDelegate {
             
             
         }else if sc.rulerStyle == .DayRuler{
-            
+
             UIView.animateWithDuration(0.2) { () -> Void in
                 
                 sc.contentOffset = CGPointMake(CGFloat((self.nowDay - 1) * sc.lineSpace), 0)
@@ -265,8 +251,42 @@ class RulerView: UIView, UIScrollViewDelegate {
                 sc.contentOffset = CGPointMake(0, (self.nowHeight - 30) * CGFloat(sc.lineCount * sc.lineSpace))
             }
         }
-
     }
     
+    // 完成拖拽
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        let sc =  scrollView as! RulerScroller
+        
+        if sc.rulerStyle == .YearMonthRuler {
+            
+            let nowCount = nowYear * sc.lineCount + nowMonth - 1
+            
+            UIView.animateWithDuration(0.2) { () -> Void in
+                sc.contentOffset = CGPointMake(CGFloat(nowCount * sc.lineSpace), 0)
+                
+            }
+            
+            // 改变当前月份的天数
+            rulerDelegate?.changeCountStatusForDayRuler!(sc)
+            
+            
+        }else if sc.rulerStyle == .DayRuler{
+            
+            UIView.animateWithDuration(0.2) { () -> Void in
+                sc.contentOffset = CGPointMake(CGFloat((self.nowDay - 1) * sc.lineSpace), 0)
+                
+            }
+            
+        }else if sc.rulerStyle == .HeightRuler{
+            
+            UIView.animateWithDuration(0.2) { () -> Void in
+                
+                sc.contentOffset = CGPointMake(0, (self.nowHeight - 30) * CGFloat(sc.lineCount * sc.lineSpace))
+
+            }
+        }
+        
+    }
     
 }

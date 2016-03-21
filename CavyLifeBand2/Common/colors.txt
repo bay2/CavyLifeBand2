@@ -12,28 +12,9 @@ SignInSplitLine : #00000033
 SignUpProtocolBtn : #125fae
 GuideColorBlue : #1dbcff
 GuideColorcyanColor : #38e7e1
-GuideColorGreen : #48de299
+GuideColorGreen : #38e797
 GuideColor33 : #00000033
 GuideColor99 : #00000099
 GuideColor66 : #00000066
 GuideColorCC : #000000CC
 GuideLineColor : #CCCCCC
-CameraBgColor : #000000
-CameraChoose : #ffffffB3
-CameraNoChoose : #ffffff33
-HomeViewMainColor : #48d299
-HomeViewMaskColor : #00000066
-HomeViewLeftHeaderLine : #ffffff80
-HomeViewLeftSelected : #0000001A
-HomeViewUserName: #000000B3
-HomeViewAccount: #00000080
-ContactsGroupLetter : #000000B3
-ContactsName : #000000
-ContactsIntrouduce: #0000004D
-ContactsCellLine : #cccccc
-ContactsCellSelect : #0000000D
-ContactsFindFriendDark : #ffffff
-ContactsFindFriendLight : #00000080
-ContactsDeleteBtnColor : #D9D9D9
-ContactsAttentionBtnColor : #FF5656
-ContactsSearchFlagViewBg : #ffffff66
