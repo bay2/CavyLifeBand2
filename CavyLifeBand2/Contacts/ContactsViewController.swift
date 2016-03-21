@@ -35,9 +35,9 @@ struct SearchCellViewModel: ContactsSearchCellDataSource, ContactsSearchCellDele
 }
 
 
-class ContactsViewController: UITableViewController{
+class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdating {
 
-    let defulatDataSource = [L10n.ContactsListCellAddFriendrTitle.string, L10n.ContactsListCellCavy.string]
+    let defulatDataSource = [L10n.ContactsAddFriendsCell.string, L10n.ContactsListCellCavy.string]
 
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var contactsTable: UITableView!

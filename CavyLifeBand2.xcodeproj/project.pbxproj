@@ -1025,7 +1025,6 @@
 				9104428A1C9D5322003D844D /* ContactsViewController.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
 				4CEDB9301C9A93E6002C8967 /* ContactsSearchTVCell.swift in Sources */,
-				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
 				4C51855A1C9D45B600F631B6 /* SearchViewController.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,

@@ -11,17 +11,24 @@ import EZSwiftExtensions
 
 class RecommendSearchView: UIView {
     
-    var searchView = UISearchBar()
     var tableView = SearchTableView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         // 添加 SearchController 和 TableView
-        searchView.frame = CGRectMake(0, 0, ez.screenWidth, 44)
-        addSubview(self.searchView)
         tableView.frame = CGRectMake(0, 44, ez.screenWidth, ez.screenHeight)
         addSubview(tableView)
+    }
+    
+    /**
+     添加搜索bar
+     
+     - parameter searchBar:
+     */
+    func addSearchBar(searchBar: UISearchBar) {
+        
+        addSubview(searchBar)
     }
 
     required init?(coder aDecoder: NSCoder) {

@@ -10,12 +10,14 @@ import UIKit
 import EZSwiftExtensions
 import Log
 
-class SearchViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+class SearchViewController: ContactsBaseViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     
     var searchBtnArray = Array<SearchButton>()
     let searchBtnName: Array<String> = [L10n.ContactsSearchPhoneNum.string, L10n.ContactsSearchRecommendNum.string, L10n.ContactsSearchNearbyNum.string]
     let searchBtnImage: Array<UIImage> = [UIImage(asset: .GuideNotice), UIImage(asset: .GuideNotice), UIImage(asset: .GuideNotice)]
     let serchBtnDefaultImg: Array<UIImage> = [UIImage(asset: .GuideNotice), UIImage(asset: .GuideNotice), UIImage(asset: .GuideNotice)]
+    let searchController = ContactsSearchController(searchResultsController: StoryboardScene.Contacts.instantiateSearchResultView())
+    @IBOutlet weak var buttonView: UIView!
     
     
     @IBOutlet weak var scrollView: UIScrollView!
@@ -23,7 +25,8 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
-        self.navigationController?.navigationBarHidden = true
+        buttonView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        self.navBar?.translucent = false
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -77,10 +80,9 @@ class SearchViewController: UIViewController, UITableViewDataSource, UITableView
         recommandView.tableView.tag = 2001
         scrollViewAddTableView(recommandView.tableView)
         scrollView.addSubview(recommandView)
-
+        recommandView.addSearchBar(searchController.contactsSearchBar!)
         
         // 附近好友 有刷新
-        
         let nearbyView = SearchTableView(frame: CGRectMake(ez.screenWidth * 2, 0, ez.screenWidth, ez.screenHeight), style: UITableViewStyle.Plain)
         tableView.tag = 2003
         scrollViewAddTableView(nearbyView)
