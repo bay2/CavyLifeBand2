@@ -28,7 +28,7 @@ struct SearchCellViewModel: ContactsSearchCellDataSource, ContactsSearchCellDele
     func changeRequestBtnName(name: String) {
         
         var requestBtnTitle: String { return name }
-        ContactsViewController.requestAction()
+//        ContactsViewController.requestAction()
     }
     
 }
@@ -73,6 +73,7 @@ class ContactsViewController: UITableViewController{
     
     func requestAction() {
         
+        print("添加好友啊")
         let requestVC = StoryboardScene.Contacts.instantiateRquestView()
         self.pushVC(requestVC)
         

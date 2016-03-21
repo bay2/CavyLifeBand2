@@ -47,8 +47,6 @@ class ContactsSearchTVCell: UITableViewCell {
         
         delegate?.changeRequestBtnName("name")
         
-//        let contactVC = ContactsViewController()
-//        contactVC.requestAction()
     }
     
     override func awakeFromNib() {

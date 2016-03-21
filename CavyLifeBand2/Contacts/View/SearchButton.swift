@@ -14,20 +14,32 @@ class SearchButton: UIView {
     var imgView = UIImageView()
     var nameLabel = UILabel()
     var flagView = UIView()
+    var button = UIButton()
     
-    // 初始化Button
-    func initSearchButton(imageAsset: UIImage.Asset, name: String) {
-        self.frame = CGRectMake(0, 0, ez.screenWidth / 3, 100)
+    func searchTableViewInit(frame: CGRect, image: UIImage, name: String){
+        
+        self.frame = frame
+        self.imgView.image = image
+        self.nameLabel.text = name
+        
+        self.size = CGSizeMake(ez.screenWidth / 3, 100)
+        
+        self.addSubview(imgView)
+        self.addSubview(nameLabel)
+        self.addSubview(flagView)
+        self.addSubview(button)
         
         imgView.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(self).offset(15)
             make.size.equalTo(CGSizeMake(40, 40))
             make.centerX.equalTo(self)
         }
+        imgView.userInteractionEnabled = true
+        nameLabel.textAlignment = .Center
         nameLabel.textColor = UIColor(named: .ContactsFindFriendLight)
         nameLabel.font = UIFont.systemFontOfSize(14)
         nameLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(imgView).offset(8)
+            make.top.equalTo(imgView).offset(48)
             make.centerX.equalTo(self)
             make.size.equalTo(CGSizeMake(ez.screenWidth / 3, 14))
         }
@@ -38,25 +50,26 @@ class SearchButton: UIView {
             make.bottom.equalTo(self)
             make.centerX.equalTo(self)
         }
-
-        nameLabel.text = name
-        imgView.image = UIImage(asset: imageAsset)
-
+        button.backgroundColor = UIColor.clearColor()
+        button.snp_makeConstraints { (make) -> Void in
+            make.left.right.top.bottom.equalTo(self)
+        }
+       
     }
     
     // 选中的状态
-    func selectButtonStatus(imageAsset: UIImage.Asset){
+    func selectButtonStatus(image: UIImage){
         
-        imgView.image = UIImage(asset: imageAsset)
+        imgView.image = image
         nameLabel.textColor = UIColor(named: .ContactsFindFriendDark)
         flagView.hidden = false
         
     }
     
     // 没有选中的状态
-    func cancelSelectButtonStatus(imageAsset: UIImage.Asset) {
+    func cancelSelectButtonStatus(image: UIImage) {
         
-        imgView.image = UIImage(asset: imageAsset)
+        imgView.image = image
         nameLabel.textColor = UIColor(named: .ContactsFindFriendLight)
         flagView.hidden = true
     }

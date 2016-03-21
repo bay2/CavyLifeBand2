@@ -12,6 +12,9 @@
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4C5185581C9D3FF400F631B6 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185571C9D3FF400F631B6 /* SearchButton.swift */; };
 		4C51855A1C9D45B600F631B6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185591C9D45B600F631B6 /* SearchViewController.swift */; };
+		4C51855C1C9F8FFD00F631B6 /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */; };
+		4C5185601C9FD51300F631B6 /* RecommendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */; };
+		4C5185631C9FEEEB00F631B6 /* CharacterQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185621C9FEEEB00F631B6 /* CharacterQueue.swift */; };
 		4CEDB9301C9A93E6002C8967 /* ContactsSearchTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */; };
 		4CEDB9311C9A93E6002C8967 /* ContactsSearchTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */; };
 		4CEDB95A1C9BA4B3002C8967 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */; };
@@ -135,6 +138,9 @@
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4C5185571C9D3FF400F631B6 /* SearchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 		4C5185591C9D45B600F631B6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableView.swift; sourceTree = "<group>"; };
+		4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendSearchView.swift; sourceTree = "<group>"; };
+		4C5185621C9FEEEB00F631B6 /* CharacterQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterQueue.swift; sourceTree = "<group>"; };
 		4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchTVCell.swift; sourceTree = "<group>"; };
 		4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsSearchTVCell.xib; sourceTree = "<group>"; };
 		4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
@@ -273,14 +279,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C5185611C9FEE6F00F631B6 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				4C5185621C9FEEEB00F631B6 /* CharacterQueue.swift */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
 		4CF15B3D1C9A4384009242A7 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
 				4CF15B3E1C9A447F009242A7 /* Contacts.storyboard */,
 				4CF15B421C9A46C7009242A7 /* ContactsViewController.swift */,
-				4C5185591C9D45B600F631B6 /* SearchViewController.swift */,
 				4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */,
+				4C5185591C9D45B600F631B6 /* SearchViewController.swift */,
 				4CF15B441C9A4753009242A7 /* View */,
+				4C5185611C9FEE6F00F631B6 /* Public */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -293,6 +308,8 @@
 				4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */,
 				4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */,
 				4C5185571C9D3FF400F631B6 /* SearchButton.swift */,
+				4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */,
+				4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -956,6 +973,7 @@
 				9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */,
 				9114D2091C995B8B008CB4CE /* LeftViewController.swift in Sources */,
 				9114D2051C993E2B008CB4CE /* HomeViewController.swift in Sources */,
+				4C5185631C9FEEEB00F631B6 /* CharacterQueue.swift in Sources */,
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */,
 				9114D1E61C97AB05008CB4CE /* UserInfoModelView.swift in Sources */,
@@ -970,6 +988,8 @@
 				9114D1FD1C97AB05008CB4CE /* WeightView.swift in Sources */,
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
+				4C5185601C9FD51300F631B6 /* RecommendSearchView.swift in Sources */,
+				4C51855C1C9F8FFD00F631B6 /* SearchTableView.swift in Sources */,
 				4C5185581C9D3FF400F631B6 /* SearchButton.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
 				9114D1E71C97AB05008CB4CE /* AccountManagerBaseViewController.swift in Sources */,
