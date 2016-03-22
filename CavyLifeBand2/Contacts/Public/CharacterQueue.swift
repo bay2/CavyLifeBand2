@@ -1,53 +1,95 @@
 //
 //  CharacterQueue.swift
-//  CavyLifeBand2
+//  test
 //
-//  Created by Jessica on 16/3/21.
-//  Copyright © 2016年 xuemincai. All rights reserved.
+//  Created by 李宝宝 on 16/3/21.
+//  Copyright © 2016年 Déesse. All rights reserved.
 //
 
 import UIKit
 
 class CharacterQueue: NSObject {
-
     
-    func charArrayTransformDictionar(charArray: Array<String>) -> Dictionary<String, String> {
+    /**
+     传进来所有人的 姓名的数组
+     
+     - parameter charArray: 姓名数组
+     
+     - returns: 按首字母分组的字典
+     */
+//     func charArrayTransformDictionary(charArray: Array<String>) -> Dictionary<String, Any> {
+     func charArrayTransformDictionary(charArray: Array<String>) -> [(String, Any)] {
+        
+        
+        var dataDic = Dictionary<String, Any>()
+        var keyArray = Array<String>()
+        for key in dataDic.keys {
+            keyArray.append(key)
+        }
         
         for var i = 0 ; i < charArray.count ; i++ {
             
+            let char = firstCharactor(charArray[i])
             
-            
-            
+            // 如果key里面没有这个分组 就直接添加
+            if dataDic.keys.contains(char) {
+                
+                var array = dataDic[char] as! Array<String>
+                array.append(charArray[i])
+                // 更新字典
+                dataDic[char] = array
+                
+            } else {
+                // 添加key 和 数组
+                var array = Array<String>()
+                array.append(charArray[i])
+                dataDic.updateValue(array, forKey: char)
+                
+            }
+        
         }
         
-        
-        return ["uu": "uu"]
+//        let sortKeys = Array(dataDic.keys).sort(<)
+//        print(sortKeys)
+//        var sortDic = Dictionary<String, Any>()
+//        for var i = 0 ; i < sortKeys.count ; i++ {
+//            
+//            sortDic[sortKeys[i]] = dataDic[sortKeys[i]]
+//        }
+//        print(sortDic)
+        let result = dataDic.sort { (str1, str2) -> Bool in
+           return str1.0 < str2.0
+        }
+                
+        return result
     }
     
     
-//    
-//    func firstCharactor(name: String) -> String{
-//        
-////        var str = name
-//        CFStringTransform(CFMutableString(name), <#T##range: UnsafeMutablePointer<CFRange>##UnsafeMutablePointer<CFRange>#>, <#T##transform: CFString!##CFString!#>, <#T##reverse: Bool##Bool#>)
-//        
-//        
-//        return "A"
-//    }
-//    
-//    //获取拼音首字母(传入汉字字符串, 返回大写拼音首字母)
-//    - (NSString *)firstCharactor:(NSString *)aString
-//    {
-//    //转成了可变字符串
-//    NSMutableString *str = [NSMutableString stringWithString:aString];
-//    //先转换为带声调的拼音
-//    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformMandarinLatin,NO);
-//    //再转换为不带声调的拼音
-//    CFStringTransform((CFMutableStringRef)str,NULL, kCFStringTransformStripDiacritics,NO);
-//    //转化为大写拼音
-//    NSString *pinYin = [str capitalizedString];
-//    //获取并返回首字母
-//    return [pinYin substringToIndex:1];
-//    }
-//    
+    // 返回第一个字母
+    func firstCharactor(name: String) -> String{
+        
+        let str = CFStringCreateMutableCopy(nil, 0, name)
+        
+        var returnStr = String()
+        
+        if CFStringTransform(str, nil, kCFStringTransformToLatin, false) {
+            
+            if CFStringTransform(str, nil, kCFStringTransformStripDiacritics, false) {
+                
+                // 转换类型
+                let string = String(str)
+                string.capitalizedString
+//                print(string)
+                // 获取第一个字母
+                let character = string[string.startIndex]
+//                print(character)
+               
+                returnStr = String(character)
+            }
+            
+        }
+        
+        return returnStr
+    }
+    
 }
