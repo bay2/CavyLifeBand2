@@ -10,23 +10,24 @@ import UIKit
 import SnapKit
 
 protocol ContactsSearchCellDataSource {
+    
     var headImage: UIImage { get }
     var name: String { get }
     var introudce: String { get }
     var requestBtnTitle: String { get }
+    
 }
 
 protocol ContactsSearchCellDelegate {
+    
     var nameTextColor: UIColor { get }
     var introductTextColor: UIColor { get }
     var nameFont: UIFont { get }
     var introduceFont: UIFont { get }
     var requestBtnColor: UIColor { get }
     var requestBtnFont: UIFont { get }
+    var changeRequestBtnName: ((String) -> Void)? { get }
 
-    //改变有按钮的图片
-    func changeRequestBtnName(name: String)
-    
 }
 
 
@@ -45,7 +46,7 @@ class ContactsSearchTVCell: UITableViewCell {
     // 按钮响应
     @IBAction func requestAddFriend(sender: AnyObject) {
         
-        delegate?.changeRequestBtnName("name")
+        delegate?.changeRequestBtnName?("name")
         
     }
     
@@ -58,6 +59,10 @@ class ContactsSearchTVCell: UITableViewCell {
         headView.layer.cornerRadius = 20
         nameLabel.textColor = UIColor(named: .ContactsName)
         introduceLabel.textColor = UIColor(named: .ContactsIntrouduce)
+        
+        let cellBgView = UIView()
+        cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)
+        self.selectedBackgroundView = cellBgView
         
     }
 

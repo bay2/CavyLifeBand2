@@ -11,7 +11,7 @@
 		4C16BCE81C9A748600EDF1E3 /* ContactsListTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C16BCE71C9A748600EDF1E3 /* ContactsListTVCell.xib */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4C5185581C9D3FF400F631B6 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185571C9D3FF400F631B6 /* SearchButton.swift */; };
-		4C51855A1C9D45B600F631B6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185591C9D45B600F631B6 /* SearchViewController.swift */; };
+		4C51855A1C9D45B600F631B6 /* ContactsSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185591C9D45B600F631B6 /* ContactsSearchVC.swift */; };
 		4C51855C1C9F8FFD00F631B6 /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */; };
 		4C5185601C9FD51300F631B6 /* RecommendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */; };
 		4C5185631C9FEEEB00F631B6 /* CharacterQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185621C9FEEEB00F631B6 /* CharacterQueue.swift */; };
@@ -142,7 +142,7 @@
 		4C16BCE71C9A748600EDF1E3 /* ContactsListTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListTVCell.xib; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4C5185571C9D3FF400F631B6 /* SearchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
-		4C5185591C9D45B600F631B6 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		4C5185591C9D45B600F631B6 /* ContactsSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchVC.swift; sourceTree = "<group>"; };
 		4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableView.swift; sourceTree = "<group>"; };
 		4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendSearchView.swift; sourceTree = "<group>"; };
 		4C5185621C9FEEEB00F631B6 /* CharacterQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterQueue.swift; sourceTree = "<group>"; };
@@ -306,7 +306,7 @@
 				9104428B1C9D557A003D844D /* ContactsBaseViewController.swift */,
 				91AE57EB1C9FE0B1000F5BC7 /* ContactsSearchController.swift */,
 				4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */,
-				4C5185591C9D45B600F631B6 /* SearchViewController.swift */,
+				4C5185591C9D45B600F631B6 /* ContactsSearchVC.swift */,
 				4CF15B441C9A4753009242A7 /* View */,
 				4C5185611C9FEE6F00F631B6 /* Public */,
 			);
@@ -1025,7 +1025,7 @@
 				9104428A1C9D5322003D844D /* ContactsViewController.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
 				4CEDB9301C9A93E6002C8967 /* ContactsSearchTVCell.swift in Sources */,
-				4C51855A1C9D45B600F631B6 /* SearchViewController.swift in Sources */,
+				4C51855A1C9D45B600F631B6 /* ContactsSearchVC.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,
 				9114D1FA1C97AB05008CB4CE /* PictureView.swift in Sources */,

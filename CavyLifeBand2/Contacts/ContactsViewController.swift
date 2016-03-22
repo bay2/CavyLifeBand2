@@ -25,11 +25,12 @@ struct SearchCellViewModel: ContactsSearchCellDataSource, ContactsSearchCellDele
     var introduceFont: UIFont { return UIFont.systemFontOfSize(12) }
     var requestBtnColor: UIColor { return UIColor(named: .ContactsName) }
     var requestBtnFont: UIFont { return UIFont.systemFontOfSize(14) }
+    var changeRequestBtnName: ((String) -> Void)?
     
-    func changeRequestBtnName(name: String) {
+    init(changeRequest: ((String) -> Void)? = nil) {
         
-        var requestBtnTitle: String { return name }
-//        ContactsViewController.requestAction()
+        changeRequestBtnName = changeRequest
+        
     }
     
 }

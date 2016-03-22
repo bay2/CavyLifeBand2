@@ -18,9 +18,8 @@ class SearchTableView: UITableView {
     
     
     override init(frame: CGRect, style: UITableViewStyle) {
+        
         super.init(frame: frame, style: style)
-        
-        
         
     }
 
@@ -31,7 +30,7 @@ class SearchTableView: UITableView {
     // 加载数据
     func loadData(){
         
-        }
+    }
     
     // 下拉刷新
     func headerRefresh(){
