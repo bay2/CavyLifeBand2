@@ -68,7 +68,7 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DeQ-a5-byI" id="Kfc-y6-M9r">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -83,10 +83,10 @@
             </objects>
             <point key="canvasLocation" x="2626" y="124"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Contacts SearchVC-->
         <scene sceneID="i4g-vh-8Q2">
             <objects>
-                <viewController storyboardIdentifier="SearchView" id="zYR-9r-Llb" customClass="SearchViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchView" id="zYR-9r-Llb" customClass="ContactsSearchVC" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ay2-lT-4bn"/>
                         <viewControllerLayoutGuide type="bottom" id="SkJ-bE-3FH"/>

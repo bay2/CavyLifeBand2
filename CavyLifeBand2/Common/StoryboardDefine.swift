@@ -62,8 +62,8 @@ struct StoryboardScene {
     }
 
     case SearchViewScene = "SearchView"
-    static func instantiateSearchView() -> SearchViewController {
-      return StoryboardScene.Contacts.SearchViewScene.viewController() as! SearchViewController
+    static func instantiateSearchView() -> ContactsSearchVC {
+      return StoryboardScene.Contacts.SearchViewScene.viewController() as! ContactsSearchVC
     }
 
     case SearchResultViewScene = "searchResultView"
