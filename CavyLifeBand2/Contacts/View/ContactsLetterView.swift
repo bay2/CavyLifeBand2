@@ -26,9 +26,13 @@ class ContactsLetterView: UIView {
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func drawRect(rect: CGRect) {
-        // Drawing code
+        
         title.font = UIFont.systemFontOfSize(16)
         title.textColor = UIColor(named: .ContactsLetterColor)
+
+        UIColor(named: .ContactsSectionColor).setFill()
+        UIRectFill(rect)
+
     }
 
 }

@@ -20,6 +20,9 @@ class ContactsListTVCell: UITableViewCell {
     // 右边小图标
     @IBOutlet weak var microView: UIImageView!
     
+    @IBOutlet weak var topLine: UIView!
+    @IBOutlet weak var bottomLine: UIView!
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
@@ -36,11 +39,37 @@ class ContactsListTVCell: UITableViewCell {
 
     }
 
+    func configure(dataSource: ContactsListTVCellDataSource) {
+
+        nameLabel.text = dataSource.name
+        headView.image = dataSource.headImage
+        microView.hidden = dataSource.hiddenCare
+
+    }
+
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
 
         // Configure the view for the selected state
     }
+    
+    func showEditing(show: Bool) {
+       
+        topLine.hidden = !show
+        bottomLine.hidden = !show
+        
+    }
+
+
+}
+
+protocol ContactsListTVCellDataSource {
+
+    var headImage: UIImage { get }
+    var name: String { get }
+    var hiddenCare: Bool { get }
+
+    func onClickCell(viewController: UIViewController?)
 
 }

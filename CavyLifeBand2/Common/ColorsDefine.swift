@@ -60,6 +60,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
     /// Alpha: 40% <br/> (0xffffff66)
     case ContactsSearchFlagViewBg
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f2f2f2"></span>
+    /// Alpha: 100% <br/> (0xf2f2f2ff)
+    case ContactsSectionColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 70% <br/> (0x000000b3)
     case ContactsTitleColor
@@ -159,6 +162,7 @@ extension UIColor {
       case .ContactsPKBtnColor: return 0xff9f22ff
       case .ContactsSearchBarColor: return 0xe6e6e6ff
       case .ContactsSearchFlagViewBg: return 0xffffff66
+      case .ContactsSectionColor: return 0xf2f2f2ff
       case .ContactsTitleColor: return 0x000000b3
       case .GuideBandBluetoothColor: return 0x38e797ff
       case .GuideColor33: return 0x00000033

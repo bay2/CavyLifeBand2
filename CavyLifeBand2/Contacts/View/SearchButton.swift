@@ -19,10 +19,10 @@ class SearchButton: UIButton {
     }
 
     //按钮被选中图片
-    let searchBtnImgSelected = [UIImage(asset: .GuideNotice), UIImage(asset: .GuideNotice), UIImage(asset: .GuideNotice)]
+    let searchBtnImgSelected = [UIImage(asset: .ContactsAddrssBookSelected), UIImage(asset: .ContactsRecommendSelected), UIImage(asset: .ContactsNearbySelected)]
 
     //按钮默认图片
-    let searchBtnImgDefault = [UIImage(asset: .GuideNotice), UIImage(asset: .GuideNotice), UIImage(asset: .GuideNotice)]
+    let searchBtnImgDefault = [UIImage(asset: .ContactsAddrssBookNormal), UIImage(asset: .ContactsRecommendNormal), UIImage(asset: .ContactsNearbyNormal)]
     
     let searchBtnTitle: Array<String> = [L10n.ContactsSearchPhoneNum.string, L10n.ContactsSearchRecommendNum.string, L10n.ContactsSearchNearbyNum.string]
 

@@ -14,7 +14,7 @@
 		4C51855A1C9D45B600F631B6 /* ContactsSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185591C9D45B600F631B6 /* ContactsSearchVC.swift */; };
 		4C51855C1C9F8FFD00F631B6 /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */; };
 		4C5185601C9FD51300F631B6 /* RecommendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */; };
-		4C5185631C9FEEEB00F631B6 /* CharacterQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185621C9FEEEB00F631B6 /* CharacterQueue.swift */; };
+		4C5185631C9FEEEB00F631B6 /* ContactsSortAndGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185621C9FEEEB00F631B6 /* ContactsSortAndGroup.swift */; };
 		4CEDB9301C9A93E6002C8967 /* ContactsSearchTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */; };
 		4CEDB9311C9A93E6002C8967 /* ContactsSearchTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */; };
 		4CEDB95A1C9BA4B3002C8967 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */; };
@@ -145,7 +145,7 @@
 		4C5185591C9D45B600F631B6 /* ContactsSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchVC.swift; sourceTree = "<group>"; };
 		4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableView.swift; sourceTree = "<group>"; };
 		4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendSearchView.swift; sourceTree = "<group>"; };
-		4C5185621C9FEEEB00F631B6 /* CharacterQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CharacterQueue.swift; sourceTree = "<group>"; };
+		4C5185621C9FEEEB00F631B6 /* ContactsSortAndGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSortAndGroup.swift; sourceTree = "<group>"; };
 		4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchTVCell.swift; sourceTree = "<group>"; };
 		4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsSearchTVCell.xib; sourceTree = "<group>"; };
 		4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
@@ -292,7 +292,7 @@
 		4C5185611C9FEE6F00F631B6 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				4C5185621C9FEEEB00F631B6 /* CharacterQueue.swift */,
+				4C5185621C9FEEEB00F631B6 /* ContactsSortAndGroup.swift */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -992,7 +992,7 @@
 				9114D2091C995B8B008CB4CE /* LeftViewController.swift in Sources */,
 				9114D2051C993E2B008CB4CE /* HomeViewController.swift in Sources */,
 				91AE57EA1C9FDCF2000F5BC7 /* ContactsSearchBar.swift in Sources */,
-				4C5185631C9FEEEB00F631B6 /* CharacterQueue.swift in Sources */,
+				4C5185631C9FEEEB00F631B6 /* ContactsSortAndGroup.swift in Sources */,
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */,
 				9114D1E61C97AB05008CB4CE /* UserInfoModelView.swift in Sources */,
