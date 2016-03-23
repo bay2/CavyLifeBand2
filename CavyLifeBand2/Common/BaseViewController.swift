@@ -56,7 +56,7 @@ class BaseViewController: UIViewController {
             self.view.addSubview(backBtn)
             backBtn.frame = CGRectMake(0, 0, 30, 30)
             backBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
-            backBtn.addTarget(self, action: "onClickBack:", forControlEvents: .TouchUpInside)
+            backBtn.addTarget(self, action: #selector(BaseViewController.onClickBack(_:)), forControlEvents: .TouchUpInside)
             navItemView.addSubview(backBtn)
             backBtn.snp_makeConstraints { (make) -> Void in
                 make.left.equalTo(spacingWidth25 * 2)
@@ -71,7 +71,7 @@ class BaseViewController: UIViewController {
             rightBtn.setTitle(rightText, forState: .Normal)
             rightBtn.frame = CGRectMake(0, 0, 60, 30)
             rightBtn.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
-            rightBtn.addTarget(self, action: "onClickRight:", forControlEvents: .TouchUpInside)
+            rightBtn.addTarget(self, action: #selector(BaseViewController.onClickRight(_:)), forControlEvents: .TouchUpInside)
             navItemView.addSubview(rightBtn)
             rightBtn.snp_makeConstraints { (make) -> Void in
                 make.right.equalTo(-(spacingWidth25 * 2))

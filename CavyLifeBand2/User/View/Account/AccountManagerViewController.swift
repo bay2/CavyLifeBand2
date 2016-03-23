@@ -80,7 +80,7 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         refreshEmailSafetyCode()
         
         emailSafetyCode.userInteractionEnabled = true
-        emailSafetyCode.addTapGesture(target: self, action: "refreshEmailSafetyCode")
+        emailSafetyCode.addTapGesture(target: self, action: #selector(AccountManagerViewController.refreshEmailSafetyCode))
         
         forgotpwdDelegate = self
         signUpDelegate = self

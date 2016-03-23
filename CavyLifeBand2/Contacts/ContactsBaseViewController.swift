@@ -21,10 +21,13 @@ class ContactsBaseViewController: UIViewController {
 
     }
 
+    /**
+     配置Item
+     */
     func configNavItem() {
 
         let backBtn = UIButton(type: .System)
-        backBtn.addTarget(self, action: "onClickBack", forControlEvents: .TouchUpInside)
+        backBtn.addTarget(self, action: #selector(ContactsBaseViewController.onClickBack), forControlEvents: .TouchUpInside)
 
         backBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
 
@@ -37,6 +40,9 @@ class ContactsBaseViewController: UIViewController {
 
     }
 
+    /**
+     配置bar
+     */
     func configNavBar() {
 
         self.navBar?.shadowImage = UIImage.imageWithColor(UIColor(named: .HomeViewMainColor), size: CGSizeMake(ez.screenWidth, 1))

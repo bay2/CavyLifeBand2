@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        self.window?.rootViewController = UINavigationController(rootViewController: StoryboardScene.Contacts.instantiateSearchView())
+//        self.window?.rootViewController = UINavigationController(rootViewController: StoryboardScene.Contacts.instantiateSearchView())
         
         let installation = KSCrashInstallationStandard.sharedInstance()
         

@@ -69,7 +69,7 @@ struct LeftListViewModel: LeftListCellDateSource, LeftListCellDelegate {
 
     init() {
 
-        icon = UIImage(asset: .LeftTableViewCellAboutIcon)
+        icon = UIImage(asset: .LeftMenuAbout)
         title = ""
 
     }

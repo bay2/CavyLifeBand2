@@ -62,8 +62,8 @@ class GenderView: UIView {
             make.top.equalTo(self).offset(spacingWidth25 * 15)
         }
         
-        upGenderBtn.addTarget(self, action: "genderUpClick", forControlEvents: .TouchUpInside)
-        downGenderBtn.addTarget(self, action: "genderDownClick", forControlEvents: .TouchUpInside)
+        upGenderBtn.addTarget(self, action: #selector(GenderView.genderUpClick), forControlEvents: .TouchUpInside)
+        downGenderBtn.addTarget(self, action: #selector(GenderView.genderDownClick), forControlEvents: .TouchUpInside)
         
     }
     

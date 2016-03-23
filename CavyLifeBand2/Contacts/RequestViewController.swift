@@ -28,10 +28,6 @@ class RequestViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func backAction(sender: AnyObject) {
-        self.popVC()
-    }
-    
     @IBAction func sendRequest(sender: AnyObject) {
         
         Log.info("发送好友请求\(requestTextField.text)")

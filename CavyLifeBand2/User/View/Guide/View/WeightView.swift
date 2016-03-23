@@ -63,7 +63,7 @@ class WeightView: UIView {
         rotaryView!.backgroundImage = UIImage(asset: .GuideWeightBg)
         rotaryView!.setKnobImage(UIImage(asset: .GuideWeightNiddle), forState: .Normal)
         rotaryView!.knobImageCenter = CGPointMake(ez.screenWidth * 0.36, ez.screenWidth * 0.36)
-        rotaryView!.addTarget(self, action: "rotaryKnobDidChange", forControlEvents: UIControlEvents.ValueChanged)
+        rotaryView!.addTarget(self, action: #selector(WeightView.rotaryKnobDidChange), forControlEvents: UIControlEvents.ValueChanged)
         
         // 当前值
         valueLabel.text = "60.0"

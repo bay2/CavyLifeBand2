@@ -63,6 +63,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 70% <br/> (0x000000b3)
     case ContactsTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#38e797"></span>
+    /// Alpha: 100% <br/> (0x38e797ff)
+    case GuideBandBluetoothColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case GuideColor33
@@ -72,21 +75,18 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 60% <br/> (0x00000099)
     case GuideColor99
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#1dbcff"></span>
-    /// Alpha: 100% <br/> (0x1dbcffff)
-    case GuideColorBlue
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 80% <br/> (0x000000cc)
     case GuideColorCC
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#048de2"></span>
-    /// Alpha: 60% <br/> (0x048de299)
-    case GuideColorGreen
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#38e7e1"></span>
-    /// Alpha: 100% <br/> (0x38e7e1ff)
-    case GuideColorcyanColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#cccccc"></span>
     /// Alpha: 100% <br/> (0xccccccff)
     case GuideLineColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#1dbcff"></span>
+    /// Alpha: 100% <br/> (0x1dbcffff)
+    case GuideSetInfoColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
+    /// Alpha: 100% <br/> (0x48d299ff)
+    case GuideSetPermission
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 50% <br/> (0x00000080)
     case HomeViewAccount
@@ -160,14 +160,14 @@ extension UIColor {
       case .ContactsSearchBarColor: return 0xe6e6e6ff
       case .ContactsSearchFlagViewBg: return 0xffffff66
       case .ContactsTitleColor: return 0x000000b3
+      case .GuideBandBluetoothColor: return 0x38e797ff
       case .GuideColor33: return 0x00000033
       case .GuideColor66: return 0x00000066
       case .GuideColor99: return 0x00000099
-      case .GuideColorBlue: return 0x1dbcffff
       case .GuideColorCC: return 0x000000cc
-      case .GuideColorGreen: return 0x048de299
-      case .GuideColorcyanColor: return 0x38e7e1ff
       case .GuideLineColor: return 0xccccccff
+      case .GuideSetInfoColor: return 0x1dbcffff
+      case .GuideSetPermission: return 0x48d299ff
       case .HomeViewAccount: return 0x00000080
       case .HomeViewLeftHeaderLine: return 0xffffff80
       case .HomeViewLeftSelected: return 0x0000001a

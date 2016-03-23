@@ -281,13 +281,13 @@ class CustomCamera: UIViewController {
         
         Log.info("录像开始计时")
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "timerRun:", userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(CustomCamera.timerRun(_:)), userInfo: nil, repeats: true)
         
     }
     
     func timerRun(timer: NSTimer) {
         
-        timerCount++
+        timerCount += 1
         Log.info(timerCount)
         
 

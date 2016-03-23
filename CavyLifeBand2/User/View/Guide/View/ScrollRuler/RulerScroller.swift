@@ -60,7 +60,7 @@ class RulerScroller: UIScrollView {
             self.contentOffset = CGPointMake(spacingWidth25 * 11.5 + CGFloat(allCount * lineSpace), 0)
             
             /// 循环添加刻度
-            for var i = 0 ; i <= allCount; i++ {
+            for i in 0...allCount {
                 
                 if i % lineCount == 0 {
                     /// 长线上面的Label
@@ -84,6 +84,7 @@ class RulerScroller: UIScrollView {
                     shortLine.frame = CGRectMake(spacingWidth25 * 11.5 + CGFloat(lineSpace * i), 40, 1, 20)
                     self.addSubview(shortLine)
                 }
+                
             }
 
         case .DayRuler:
@@ -94,13 +95,15 @@ class RulerScroller: UIScrollView {
 
             // 添加动画 防止每次年重置月份时候突兀
             UIView.animateWithDuration(0.2) { () -> Void in
+                
                 self.contentOffset = CGPointMake(CGFloat(self.lineSpace * 14), 0)
                 
             }
+            
             /// 循环添加刻度
-            for var i = 1 ; i <= dayValue; i++ {
+            for i in 0...dayValue {
                 
-                if i % lineCount == 0{
+                if i % lineCount == 0 {
                     /// 长线上面的Label
                     let lineLabel = UILabel()
                     lineLabel.frame = CGRectMake(spacingWidth25 * 11.5 + CGFloat(lineSpace * (i - 1)) - 30, 8, 60, 18)
@@ -115,7 +118,7 @@ class RulerScroller: UIScrollView {
                     self.addSubview(longLine)
                     self.addSubview(lineLabel)
                     
-                }else{
+                } else {
                     /// 短线
                     let shortLine = UIView()
                     shortLine.backgroundColor = UIColor(named: .GuideLineColor)
@@ -137,7 +140,7 @@ class RulerScroller: UIScrollView {
 
             /// 循环添加刻度
             
-            for var i = minHeight * lineCount ; i <= maxHeight * lineCount; i++ {
+            for i in (minHeight * lineCount)...(maxHeight * lineCount) {
                 
                 if i % lineCount == 0{
                     
@@ -145,7 +148,7 @@ class RulerScroller: UIScrollView {
                     let longLine = UIView()
                     longLine.backgroundColor = UIColor(named: .GuideLineColor)
                     longLine.frame = CGRectMake(26, spacingWidth25 * 14 + CGFloat(lineSpace * (i - minHeight * lineCount)), 34, 1)
-
+                    
                     /// 长线上面的Label
                     let lineLabel = UILabel()
                     lineLabel.frame = CGRectMake(0, spacingWidth25 * 14 + CGFloat(lineSpace * (i - minHeight * lineCount)) - 9, 60, 18)
@@ -163,7 +166,9 @@ class RulerScroller: UIScrollView {
                     shortLine.frame = CGRectMake(40, spacingWidth25 * 14 + CGFloat(lineSpace * (i - minHeight * lineCount)), 20, 1)
                     self.addSubview(shortLine)
                 }
-            }  
+                
+            }
+
         }
     }
     

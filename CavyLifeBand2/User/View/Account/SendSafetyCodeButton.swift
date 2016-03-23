@@ -31,7 +31,7 @@ class SendSafetyCodeButton: UIButton {
      */
     func countDownProc(timer: NSTimer) {
 
-        count--
+        count -= 1
 
         if count == 0 {
 
@@ -55,7 +55,7 @@ class SendSafetyCodeButton: UIButton {
      */
     func countDown() {
 
-        time = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "countDownProc:", userInfo: nil, repeats: true)
+        time = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(SendSafetyCodeButton.countDownProc(_:)), userInfo: nil, repeats: true)
 
         self.enabled = false
 

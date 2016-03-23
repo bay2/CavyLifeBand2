@@ -208,7 +208,7 @@ class GoalView: UIView {
         }
         
         // slider Action
-        self.stepSlider.addTarget(self, action: "stepSliderAction", forControlEvents: UIControlEvents.ValueChanged)
+        self.stepSlider.addTarget(self, action: #selector(GoalView.stepSliderAction), forControlEvents: UIControlEvents.ValueChanged)
         
     }
     
@@ -238,7 +238,7 @@ class GoalView: UIView {
         }
         
         // slider Action
-        self.sleepSlider.addTarget(self, action: "sleepSliderAction", forControlEvents: UIControlEvents.ValueChanged)
+        self.sleepSlider.addTarget(self, action: #selector(GoalView.sleepSliderAction), forControlEvents: UIControlEvents.ValueChanged)
     }
     
 

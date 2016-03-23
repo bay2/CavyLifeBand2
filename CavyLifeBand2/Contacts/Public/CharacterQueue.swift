@@ -27,36 +27,26 @@ class CharacterQueue: NSObject {
             keyArray.append(key)
         }
         
-        for var i = 0 ; i < charArray.count ; i++ {
-            
-            let char = firstCharactor(charArray[i])
+        for char in charArray {
             
             // 如果key里面没有这个分组 就直接添加
             if dataDic.keys.contains(char) {
                 
                 var array = dataDic[char] as! Array<String>
-                array.append(charArray[i])
+                array.append(char)
                 // 更新字典
                 dataDic[char] = array
                 
             } else {
                 // 添加key 和 数组
                 var array = Array<String>()
-                array.append(charArray[i])
+                array.append(char)
                 dataDic.updateValue(array, forKey: char)
                 
             }
-        
+            
         }
         
-//        let sortKeys = Array(dataDic.keys).sort(<)
-//        print(sortKeys)
-//        var sortDic = Dictionary<String, Any>()
-//        for var i = 0 ; i < sortKeys.count ; i++ {
-//            
-//            sortDic[sortKeys[i]] = dataDic[sortKeys[i]]
-//        }
-//        print(sortDic)
         let result = dataDic.sort { (str1, str2) -> Bool in
            return str1.0 < str2.0
         }

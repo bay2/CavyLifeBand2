@@ -9,7 +9,7 @@
 import UIKit
 import EZSwiftExtensions
 
-class ContactsSearchController: UISearchController, UISearchResultsUpdating, UISearchBarDelegate {
+class ContactsSearchController: UISearchController, UISearchBarDelegate {
     
     var contactsSearchBar: ContactsSearchBar?
     var isSearching = false
@@ -41,6 +41,9 @@ class ContactsSearchController: UISearchController, UISearchResultsUpdating, UIS
         // Dispose of any resources that can be recreated.
     }
     
+    /**
+     配置 search bar
+     */
     func configureSearchBar() {
 
         contactsSearchBar = ContactsSearchBar(frame: CGRectMake(0, 0, ez.screenWidth, 44))
@@ -48,21 +51,22 @@ class ContactsSearchController: UISearchController, UISearchResultsUpdating, UIS
 
     }
 
+    /**
+     配置 Search Controller
+     */
     func configureSearchController() {
 
         self.hidesNavigationBarDuringPresentation = false
         self.dimsBackgroundDuringPresentation = false
     }
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        
-        if  searchController.active {
-            self.navigationController?.setNavigationBarHidden(true, animated: true)
-        } else {
-            self.navigationController?.setNavigationBarHidden(false, animated: true)
-        }
-    }
-
+    /**
+     开始搜索
+     
+     - parameter searchBar:
+     
+     - returns:
+     */
     func searchBarShouldBeginEditing(searchBar: UISearchBar) -> Bool {
 
         searchBar.setBackgroundImage(UIImage.imageWithColor(UIColor(named: .HomeViewMainColor), size: CGSizeMake(ez.screenWidth, 44)), forBarPosition: .Any, barMetrics: .Default)
@@ -75,6 +79,11 @@ class ContactsSearchController: UISearchController, UISearchResultsUpdating, UIS
         return true
     }
 
+    /**
+     点击取消搜索
+     
+     - parameter searchBar: 
+     */
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
 
         searchBar.setBackgroundImage(UIImage.imageWithColor(UIColor(named: .ContactsSearchBarColor), size: CGSizeMake(ez.screenWidth, 44)), forBarPosition: .Any, barMetrics: .Default)
@@ -86,8 +95,7 @@ class ContactsSearchController: UISearchController, UISearchResultsUpdating, UIS
         self.searchResultsUpdater?.updateSearchResultsForSearchController(self)
 
     }
-
-
+    
     /*
     // MARK: - Navigation
 

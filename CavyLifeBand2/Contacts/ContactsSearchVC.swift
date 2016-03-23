@@ -74,14 +74,14 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
 
         searchBtnArray[1].selectButtonStatus()
 
-        for var i = 0 ; i < 3 ; i++ {
+        for i in 0  ..< 3  {
             
             let searchBtn = searchBtnArray[i]
 
             searchBtn.frame = CGRectMake(ez.screenWidth / 3 * CGFloat(i), 0, ez.screenWidth / 3, 100)
             searchBtn.tag = SearchButtonTag.AddressBookTag.rawValue + i
 
-            searchBtn.addTarget(self, action: "searchBtnAction:", forControlEvents: .TouchUpInside)
+            searchBtn.addTarget(self, action: #selector(ContactsSearchVC.searchBtnAction(_:)), forControlEvents: .TouchUpInside)
             self.buttonView.addSubview(searchBtn)
 
         }

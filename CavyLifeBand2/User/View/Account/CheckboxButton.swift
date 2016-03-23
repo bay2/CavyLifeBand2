@@ -29,7 +29,7 @@ class CheckboxButton: UIButton {
     override func drawRect(rect: CGRect) {
 
         self.setImage(UIImage(asset: .Chosenbtn), forState: .Normal)
-        self.addTarget(self, action: "onClickBtn:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addTarget(self, action: #selector(CheckboxButton.onClickBtn(_:)), forControlEvents: UIControlEvents.TouchUpInside)
 
     }
 

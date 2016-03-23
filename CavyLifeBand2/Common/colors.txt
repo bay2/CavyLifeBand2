@@ -10,9 +10,9 @@ SignInPlaceholderText : #00000066
 SignInTextFieldText : #000000CC
 SignInSplitLine : #00000033
 SignUpProtocolBtn : #125fae
-GuideColorBlue : #1dbcff
-GuideColorcyanColor : #38e7e1
-GuideColorGreen : #48de299
+GuideSetInfoColor : #1dbcff
+GuideSetPermission : #48d299
+GuideBandBluetoothColor : #38e797
 GuideColor33 : #00000033
 GuideColor99 : #00000099
 GuideColor66 : #00000066

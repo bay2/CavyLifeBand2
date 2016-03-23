@@ -128,7 +128,7 @@ class UserNetRequestData: NetRequestAdapter {
      - parameter parameters:        参数：UserNetRequestParaKeyEmailKey, UserNetRequestParaKeyPhoneNumKey, UserNetRequestParaKeyPasswdKey, UserNetRequestParaKeySecurityCodeKey
      - parameter completionHandler: 回调
      */
-    func requestSignUp(var parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+    func requestSignUp(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
         
         //参数有效性检测
         if parameters == nil {
@@ -190,9 +190,10 @@ class UserNetRequestData: NetRequestAdapter {
             }
         }
         
-        parameters![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SignUp.rawValue
+        var para = parameters
+        para![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SignUp.rawValue
 
-        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
+        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
         
     }
     
@@ -202,7 +203,7 @@ class UserNetRequestData: NetRequestAdapter {
      - parameter parameters:        UserNetRequsetKey.UserName, UserNetRequsetKey.Passwd
      - parameter completionHandler: 回调
      */
-    func requestSignIn(var parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+    func requestSignIn(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
         
         if parameters == nil {
             
@@ -235,9 +236,10 @@ class UserNetRequestData: NetRequestAdapter {
             }
         }
         
-        parameters![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SignIn.rawValue
+        var para = parameters
+        para![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SignIn.rawValue
         
-        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
+        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
         
     }
 
@@ -247,7 +249,7 @@ class UserNetRequestData: NetRequestAdapter {
      - parameter parameters:        UserId
      - parameter completionHandler: 回调
      */
-    func queryProfile(var parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+    func queryProfile(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
 
         if parameters == nil {
 
@@ -265,9 +267,10 @@ class UserNetRequestData: NetRequestAdapter {
 
         }
 
-        parameters![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.UserProfile.rawValue
+        var para = parameters
+        para![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.UserProfile.rawValue
 
-        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
+        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
 
     }
 
@@ -277,7 +280,7 @@ class UserNetRequestData: NetRequestAdapter {
      - parameter parameters:        NickName， PhoneNum， Sex， Height， Weight， Birthday， Address
      - parameter completionHandler: 回调
      */
-    func setProfile(var parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+    func setProfile(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
 
         if parameters == nil {
 
@@ -309,9 +312,10 @@ class UserNetRequestData: NetRequestAdapter {
         }
         
 
-        parameters![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SetUserProfile.rawValue
+        var para = parameters
+        para![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SetUserProfile.rawValue
 
-        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
+        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
 
     }
 
