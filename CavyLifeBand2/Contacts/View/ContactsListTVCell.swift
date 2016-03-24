@@ -20,8 +20,17 @@ class ContactsListTVCell: UITableViewCell {
     // 右边小图标
     @IBOutlet weak var microView: UIImageView!
     
+    var hiddenCare: Bool = true {
+        
+        didSet {
+            microView.hidden = hiddenCare
+        }
+        
+    }
+    
     @IBOutlet weak var topLine: UIView!
     @IBOutlet weak var bottomLine: UIView!
+    private var dataSource: ContactsListTVCellDataSource?
     
     override func awakeFromNib() {
         
@@ -40,10 +49,12 @@ class ContactsListTVCell: UITableViewCell {
     }
 
     func configure(dataSource: ContactsListTVCellDataSource) {
+        
+        self.dataSource = dataSource
 
         nameLabel.text = dataSource.name
         headView.image = dataSource.headImage
-        microView.hidden = dataSource.hiddenCare
+        hiddenCare = dataSource.hiddenCare
 
     }
 
@@ -61,15 +72,15 @@ class ContactsListTVCell: UITableViewCell {
         
     }
 
-
 }
 
 protocol ContactsListTVCellDataSource {
 
     var headImage: UIImage { get }
     var name: String { get }
-    var hiddenCare: Bool { get }
+    var hiddenCare: Bool { set get }
 
-    func onClickCell(viewController: UIViewController?)
+    func onClickCell(viewController: UIViewController)
 
 }
+

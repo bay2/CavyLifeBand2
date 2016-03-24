@@ -54,6 +54,7 @@ protocol LeftListCellDelegate {
 
     var titleColor: UIColor { get }
     var titleFont: UIFont { get }
+    var nextView: UIViewController { get }
 
 }
 

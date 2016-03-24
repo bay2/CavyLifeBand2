@@ -8,13 +8,16 @@
 
 import UIKit
 import Log
+import EZSwiftExtensions
 
 class HomeViewController: UIViewController {
-    
-    var homeViewDelegate: HomeViewDelegate?
+
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil)
         
         // Do any additional setup after loading the view.
     }
@@ -37,14 +40,19 @@ class HomeViewController: UIViewController {
 
     @IBAction func test(sender: AnyObject) {
         
-        self.homeViewDelegate?.onClickMenu()
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
         
     }
     
-}
+    func pushNextView(userInfo: NSNotification) {
 
-protocol HomeViewDelegate {
-    
-    func onClickMenu()
+        guard let viewController = userInfo.userInfo?["nextView"] as? UIViewController else {
+            return
+        }
+        
+        self.pushVC(viewController)
+        
+    }
+
     
 }

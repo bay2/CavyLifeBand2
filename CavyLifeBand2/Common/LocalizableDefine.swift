@@ -186,7 +186,9 @@ enum L10n {
   /// 删除
   case ContactsListCellDelete
   /// 关注
-  case ContactsListCellAttention
+  case ContactsListCellCare
+  /// 取消关注
+  case ContactsListCellUndoCare
   /// 添加
   case ContactsListCellAdd
   /// 同意
@@ -396,14 +398,16 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.SearchplaceHolder")
       case .ContactsListCellDelete:
         return L10n.tr("Contacts.ListCell.Delete")
-      case .ContactsListCellAttention:
-        return L10n.tr("Contacts.ListCell.Attention")
+      case .ContactsListCellCare:
+        return L10n.tr("Contacts.ListCell.Care")
+      case .ContactsListCellUndoCare:
+        return L10n.tr("Contacts.ListCell.UndoCare")
       case .ContactsListCellAdd:
-        return L10n.tr("Contacts.ListCell.add")
+        return L10n.tr("Contacts.ListCell.Add")
       case .ContactsListCellAgree:
-        return L10n.tr("Contacts.ListCell.agree")
+        return L10n.tr("Contacts.ListCell.Agree")
       case .ContactsListCellAlreaydAdd:
-        return L10n.tr("Contacts.ListCell.alreaydAdd")
+        return L10n.tr("Contacts.ListCell.AlreaydAdd")
       case .ContactsSearchPhoneNum:
         return L10n.tr("Contacts.Search.PhoneNum")
       case .ContactsSearchRecommendNum:

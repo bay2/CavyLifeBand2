@@ -24,9 +24,7 @@ struct ContactsModelView: ContactsListTVCellDataSource {
 
     }
 
-    func onClickCell(viewController: UIViewController? = nil) {
-
-        viewController!.pushVC(StoryboardScene.Contacts.instantiateSearchView())
+    func onClickCell(viewController: UIViewController) {
 
     }
 
@@ -36,24 +34,26 @@ struct ContactsAddFriendModelView: ContactsListTVCellDataSource {
 
     var name: String { return L10n.ContactsAddFriendsCell.string }
     var headImage: UIImage { return UIImage(asset: .ContactsListAdd) }
-    var hiddenCare: Bool { return true }
+    var hiddenCare: Bool = true
 
-    func onClickCell(viewController: UIViewController? = nil) {
+    func onClickCell(viewController: UIViewController) {
 
-        viewController!.pushVC(StoryboardScene.Contacts.instantiateSearchView())
+        viewController.pushVC(StoryboardScene.Contacts.instantiateSearchView())
 
     }
 
 }
 
 
-struct ContactsNewFriendModelView: ContactsListTVCellDataSource {
+struct ContactsNewFriendCellModelView: ContactsListTVCellDataSource {
 
     var name: String { return L10n.ContactsNewFriendsCell.string }
     var headImage: UIImage { return UIImage(asset: .ContactsListNew) }
-    var hiddenCare: Bool { return true }
+    var hiddenCare: Bool = true
     
-    func onClickCell(viewController: UIViewController? = nil) {
+    func onClickCell(viewController: UIViewController) {
+
+        viewController.pushVC(StoryboardScene.Contacts.instantiateContactsNewFriend())
         
     }
 
@@ -63,9 +63,9 @@ struct ContactsCavyModelView: ContactsListTVCellDataSource {
 
     var name: String { return L10n.ContactsListCellCavy.string }
     var headImage: UIImage { return UIImage(asset: .ContactsListCavy) }
-    var hiddenCare: Bool { return true }
+    var hiddenCare: Bool = true
 
-    func onClickCell(viewController: UIViewController? = nil) {
+    func onClickCell(viewController: UIViewController) {
 
     }
 
@@ -73,7 +73,7 @@ struct ContactsCavyModelView: ContactsListTVCellDataSource {
 
 class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdating {
 
-    let defulatDataSource: [ContactsListTVCellDataSource] = [ContactsAddFriendModelView(), ContactsNewFriendModelView(), ContactsCavyModelView()]
+    let defulatDataSource: [ContactsListTVCellDataSource] = [ContactsAddFriendModelView(), ContactsNewFriendCellModelView(), ContactsCavyModelView()]
 
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var contactsTable: UITableView!
@@ -191,9 +191,9 @@ extension ContactsViewController {
             return nil
         }
         
+        var names = self.dataGroup!.contactsGroupList![indexPath.section].1
+        
         let deletRowAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellDelete.string) { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
-            
-            var names = self.dataGroup!.contactsGroupList![indexPath.section].1
             
             if names.count == 1 {
                 
@@ -217,13 +217,22 @@ extension ContactsViewController {
         
         deletRowAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
         
-        let concernAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellAttention.string) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsListTVCell
+        
+        let concernActionTitle = cell!.hiddenCare ? L10n.ContactsListCellCare.string : L10n.ContactsListCellUndoCare.string
+        let concernActionColor = cell!.hiddenCare ? UIColor(named: .ContactsCareBtnColor) : UIColor(named: .ContactsUndoCareBtnColor)
+        
+        let concernAction = UITableViewRowAction(style: .Default, title: concernActionTitle) {
             (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             
             tableView.editing = false
+            
+            cell?.hiddenCare = !cell!.hiddenCare
+            names[indexPath.row].hiddenCare = cell!.hiddenCare
+            
         }
-        
-        concernAction.backgroundColor = UIColor(named: .ContactsAttentionBtnColor)
+
+        concernAction.backgroundColor = concernActionColor
         
         let pkRowAction = UITableViewRowAction(style: .Default, title: " PK ") {_, _ in
             
@@ -232,8 +241,7 @@ extension ContactsViewController {
         }
         
         pkRowAction.backgroundColor = UIColor(named: .ContactsPKBtnColor)
-        
-        
+
         return [deletRowAction, concernAction, pkRowAction]
     }
     
@@ -319,9 +327,10 @@ extension ContactsViewController {
         tableView.registerNib(UINib(nibName: "ContactsListTVCell", bundle: nil), forCellReuseIdentifier: "ContactsListTVCell")
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactsListTVCell", forIndexPath: indexPath) as! ContactsListTVCell
         
-        var names = self.dataGroup!.contactsGroupList![indexPath.section].1
+        var names = self.dataGroup!.contactsGroupList
         
-        cell.configure(names[indexPath.row])
+        
+        cell.configure(names![indexPath.section].1[indexPath.row])
         
         return cell
     }

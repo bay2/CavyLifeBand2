@@ -120,10 +120,11 @@
 "Contacts.AddFriendsCell" = "添加好友";
 "Contacts.SearchplaceHolder" = "  搜索你得联系人";
 "Contacts.ListCell.Delete" = "删除";
-"Contacts.ListCell.Attention" = "关注";
-"Contacts.ListCell.add" = "添加";
-"Contacts.ListCell.agree" = "同意";
-"Contacts.ListCell.alreaydAdd" = "已发送";
+"Contacts.ListCell.Care" = "关注";
+"Contacts.ListCell.UndoCare" = "取消关注";
+"Contacts.ListCell.Add" = "添加";
+"Contacts.ListCell.Agree" = "同意";
+"Contacts.ListCell.AlreaydAdd" = "已发送";
 "Contacts.Search.PhoneNum" = "通讯录好友";
 "Contacts.Search.RecommendNum" = "推荐好友";
 "Contacts.Search.NearbyNum" = "附近好友";
@@ -131,4 +132,3 @@
 "Contacts.Search.dropRefresh" = "下拉换一批";
 "Contacts.Request.placeHolder" = "发送验证申请，等待对方通过";
 "Contacts.Request.SendButton" = "发送";
->>>>>>> c3fb55d83f88983eaa36ae54965a18a0c57ad694

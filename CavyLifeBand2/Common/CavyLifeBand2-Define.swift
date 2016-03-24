@@ -33,6 +33,13 @@ let spacingHeight25 = ez.screenHeight / 25
 // 统一圆角值
 let commonCornerRadius: CGFloat = 8 / 3
 
+enum NotificationName: String {
+    
+    case HomeLeftOnClickMenu
+    case HomeLeftOnClickCellPushView
+    case HomeLeftHiddenMenu
+}
+
 // web 接口错误码定义
 enum WebApiCode: String {
 

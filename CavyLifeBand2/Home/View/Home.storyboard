@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LJc-uM-C97">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LJc-uM-C97">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IN4-sa-CY2">
-                                <rect key="frame" x="20" y="20" width="30" height="30"/>
+                                <rect key="frame" x="20" y="99" width="30" height="30"/>
                                 <state key="normal" title="test"/>
                                 <connections>
                                     <action selector="test:" destination="kg3-5e-N1q" eventType="touchUpInside" id="UId-D2-SlE"/>
@@ -28,7 +28,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.2196078431372549" green="0.90588235294117647" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="IN4-sa-CY2" firstAttribute="top" secondItem="ZZX-cg-2eq" secondAttribute="bottom" id="hdE-zt-Myz"/>
+                            <constraint firstItem="IN4-sa-CY2" firstAttribute="top" secondItem="ZZX-cg-2eq" secondAttribute="bottom" constant="79" id="hdE-zt-Myz"/>
                             <constraint firstItem="IN4-sa-CY2" firstAttribute="leading" secondItem="TaF-hb-Y8M" secondAttribute="leadingMargin" id="yBl-lF-eII"/>
                         </constraints>
                     </view>
@@ -37,7 +37,7 @@
             </objects>
             <point key="canvasLocation" x="500" y="335"/>
         </scene>
-        <!--Root View Controller-->
+        <!--Title-->
         <scene sceneID="M0I-vs-paA">
             <objects>
                 <viewController storyboardIdentifier="RootView" id="LJc-uM-C97" customClass="RootViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
@@ -50,10 +50,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="uHi-8I-CQV">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="czD-aZ-fpp">
+                            <connections>
+                                <action selector="onClickMenu:" destination="LJc-uM-C97" id="tSD-Ww-MjI"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WLa-zq-oYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="500" y="1003"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qqi-An-EFA">
+            <objects>
+                <navigationController id="ucy-Zr-uOZ" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tcV-ty-09g">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="LJc-uM-C97" kind="relationship" relationship="rootViewController" id="oNL-dh-iFJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g5O-C9-5Cm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1130" y="1003"/>
         </scene>
         <!--Left View Controller-->
         <scene sceneID="XQC-p4-7gg">
@@ -113,7 +136,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="56"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeftTableViewCellAboutIcon" translatesAutoresizingMaskIntoConstraints="NO" id="4UU-gH-EKE">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeftMenuAbout" translatesAutoresizingMaskIntoConstraints="NO" id="4UU-gH-EKE">
                                                     <rect key="frame" x="32" y="18" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="20" id="A6V-1a-BrQ"/>
@@ -172,6 +195,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="LeftTableViewCellAboutIcon" width="45" height="45"/>
+        <image name="LeftMenuAbout" width="45" height="45"/>
     </resources>
 </document>

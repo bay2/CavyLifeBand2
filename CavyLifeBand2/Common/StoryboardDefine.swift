@@ -51,6 +51,11 @@ struct StoryboardScene {
   enum Contacts: String, StoryboardSceneType {
     static let storyboardName = "Contacts"
 
+    case ContactsNewFriendScene = "ContactsNewFriend"
+    static func instantiateContactsNewFriend() -> ContactsNewFriendVC {
+      return StoryboardScene.Contacts.ContactsNewFriendScene.viewController() as! ContactsNewFriendVC
+    }
+
     case ContactsViewScene = "ContactsView"
     static func instantiateContactsView() -> ContactsViewController {
       return StoryboardScene.Contacts.ContactsViewScene.viewController() as! ContactsViewController

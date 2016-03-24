@@ -10,7 +10,7 @@ import UIKit
 import MHRotaryKnob
 import Log
 
-class RequestViewController: UIViewController {
+class RequestViewController: ContactsBaseViewController {
 
     @IBOutlet weak var requestTextField: UITextField!
     
@@ -23,9 +23,6 @@ class RequestViewController: UIViewController {
 
         requestViewLayout()
         
-        
-        
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func sendRequest(sender: AnyObject) {

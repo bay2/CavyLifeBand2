@@ -10,6 +10,23 @@ import UIKit
 import SnapKit
 import EZSwiftExtensions
 
+struct LeftListViewModel: LeftListCellDateSource, LeftListCellDelegate {
+
+    var title: String
+    var icon: UIImage
+    var nextView: UIViewController
+
+    init(icon: UIImage, title: String, nextView: UIViewController) {
+
+        self.icon = icon
+        self.title = title
+        self.nextView = nextView
+
+    }
+
+}
+
+
 class LeftViewController: UIViewController, HomeUserDelegate {
 
     @IBOutlet weak var userInfoView: HomeUserInfo!
@@ -22,10 +39,16 @@ class LeftViewController: UIViewController, HomeUserDelegate {
     var iconImage: UIImageView { return iconImageView }
     var userName: UILabel { return userNameLab }
     var account: UILabel { return accountLab }
-    
-    let listTitle = [[L10n.HomeLifeListTitleTarget.string, L10n.HomeLifeListTitleInfoOpen.string, L10n.HomeLifeListTitleFriend.string, L10n.HomeLifeListTitlePK.string],
-        [L10n.HomeLifeListTitleAbout.string, L10n.HomeLifeListTitleHelp.string, L10n.HomeLifeListTitleRelated.string]]
-    
+
+    // 列表信息
+    var listTitleViewModel = [[LeftListViewModel(icon: UIImage(asset: .LeftMenuTarget), title: L10n.HomeLifeListTitleTarget.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuInformation), title: L10n.HomeLifeListTitleInfoOpen.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuFriend), title: L10n.HomeLifeListTitleFriend.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuPK), title: L10n.HomeLifeListTitlePK.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController())],
+    [LeftListViewModel(icon: UIImage(asset: .LeftMenuAbout), title: L10n.HomeLifeListTitleAbout.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuHelp), title: L10n.HomeLifeListTitleHelp.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuApp), title: L10n.HomeLifeListTitleRelated.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController())]]
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +64,6 @@ class LeftViewController: UIViewController, HomeUserDelegate {
     }
 
     func setTableViewStyle() {
-
 
         leftTableView.backgroundColor = UIColor(named: .HomeViewMainColor)
         leftTableView.tableFooterView = UIView()
@@ -62,19 +84,7 @@ class LeftViewController: UIViewController, HomeUserDelegate {
 
 }
 
-struct LeftListViewModel: LeftListCellDateSource, LeftListCellDelegate {
-    
-    var title: String
-    var icon: UIImage
 
-    init() {
-
-        icon = UIImage(asset: .LeftMenuAbout)
-        title = ""
-
-    }
-
-}
 
 extension LeftViewController {
     
@@ -91,10 +101,7 @@ extension LeftViewController {
         
         let listCell = tableView.dequeueReusableCellWithIdentifier("LeftCell", forIndexPath: indexPath) as! LeftTableViewCell
 
-        var viewModel = LeftListViewModel()
-        viewModel.title = listTitle[indexPath.section][indexPath.row]
-
-        listCell.configure(viewModel, delegate: viewModel)
+        listCell.configure(listTitleViewModel[indexPath.section][indexPath.row], delegate: listTitleViewModel[indexPath.section][indexPath.row])
 
         return listCell
     }
@@ -109,7 +116,7 @@ extension LeftViewController {
      */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return listTitle[section].count
+        return listTitleViewModel[section].count
 
     }
 
@@ -120,7 +127,7 @@ extension LeftViewController {
      
      - returns:
      */
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return 2 }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return listTitleViewModel.count }
     
     /**
      高度
@@ -157,7 +164,14 @@ extension LeftViewController {
      - parameter indexPath:
      */
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
+        let userInfo = ["nextView": listTitleViewModel[indexPath.section][indexPath.row].nextView] as [NSObject: AnyObject]
+
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil, userInfo: userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
+
     }
 
     /**

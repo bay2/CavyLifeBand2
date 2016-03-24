@@ -108,29 +108,4 @@ class ContactsSearchController: UISearchController, UISearchBarDelegate {
 
 }
 
-struct SearchCellViewModel: ContactsSearchCellDataSource, ContactsSearchCellDelegate{
-    
-    var headImage: UIImage
-    var name: String
-    var introudce: String { return " 我爱吃草莓啊~~~" }
-    var requestBtnTitle: String { return "添加" }
-    
-    
-    var nameTextColor: UIColor { return UIColor(named: .ContactsName) }
-    var introductTextColor: UIColor { return UIColor(named: .ContactsIntrouduce) }
-    var nameFont: UIFont { return UIFont.systemFontOfSize(14) }
-    var introduceFont: UIFont { return UIFont.systemFontOfSize(12) }
-    var requestBtnColor: UIColor { return UIColor(named: .ContactsName) }
-    var requestBtnFont: UIFont { return UIFont.systemFontOfSize(14) }
-    var changeRequestBtnName: ((String) -> Void)?
-    
-    init(name: String = "11111", headImage: UIImage = UIImage(asset: .GuidePairSeccuss), changeRequest: ((String) -> Void)? = nil) {
-        
-        self.name = name
-        self.headImage = headImage
-        
-        
-    }
-    
-    
-}
+

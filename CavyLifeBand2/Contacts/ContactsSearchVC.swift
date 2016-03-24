@@ -319,12 +319,24 @@ extension ContactsSearchVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactsSearchTVCell", forIndexPath: indexPath) as! ContactsSearchTVCell
-        
-        let viewMode = SearchCellViewModel { _ in
+
+        let pushRquestView: (String -> Void) = { _ in
+
             self.pushVC(StoryboardScene.Contacts.instantiateRquestView())
         }
+
+        let addressBookCellViewModel = ContactsAddressBookViewModel(changeRequest: pushRquestView)
+
+        if addressBookTableView == tableView {
+
+            cell.configure(addressBookCellViewModel, delegate: addressBookCellViewModel)
+            return cell
+
+        }
         
-        cell.configure(viewMode, delegate: viewMode)
+        let searchCellViewModel = SearchCellViewModel(changeRequest: pushRquestView)
+
+        cell.configure(searchCellViewModel, delegate: searchCellViewModel)
         
         return cell
     }

@@ -24,9 +24,15 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
     /// Alpha: 20% <br/> (0xffffff33)
     case CameraNoChoose
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff9138"></span>
+    /// Alpha: 100% <br/> (0xff9138ff)
+    case ContactsAddFriendButtonColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#0dcf7f"></span>
+    /// Alpha: 100% <br/> (0x0dcf7fff)
+    case ContactsAgreeButtonColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff5656"></span>
     /// Alpha: 100% <br/> (0xff5656ff)
-    case ContactsAttentionBtnColor
+    case ContactsCareBtnColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#cccccc"></span>
     /// Alpha: 100% <br/> (0xccccccff)
     case ContactsCellLine
@@ -66,6 +72,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 70% <br/> (0x000000b3)
     case ContactsTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#929292"></span>
+    /// Alpha: 100% <br/> (0x929292ff)
+    case ContactsUndoCareBtnColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#38e797"></span>
     /// Alpha: 100% <br/> (0x38e797ff)
     case GuideBandBluetoothColor
@@ -150,7 +159,9 @@ extension UIColor {
       case .CameraBgColor: return 0x000000ff
       case .CameraChoose: return 0xffffffb3
       case .CameraNoChoose: return 0xffffff33
-      case .ContactsAttentionBtnColor: return 0xff5656ff
+      case .ContactsAddFriendButtonColor: return 0xff9138ff
+      case .ContactsAgreeButtonColor: return 0x0dcf7fff
+      case .ContactsCareBtnColor: return 0xff5656ff
       case .ContactsCellLine: return 0xccccccff
       case .ContactsCellSelect: return 0x0000000d
       case .ContactsDeleteBtnColor: return 0xd9d9d9ff
@@ -164,6 +175,7 @@ extension UIColor {
       case .ContactsSearchFlagViewBg: return 0xffffff66
       case .ContactsSectionColor: return 0xf2f2f2ff
       case .ContactsTitleColor: return 0x000000b3
+      case .ContactsUndoCareBtnColor: return 0x929292ff
       case .GuideBandBluetoothColor: return 0x38e797ff
       case .GuideColor33: return 0x00000033
       case .GuideColor66: return 0x00000066

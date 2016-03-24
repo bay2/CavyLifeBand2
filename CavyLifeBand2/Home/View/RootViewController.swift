@@ -9,25 +9,25 @@
 import UIKit
 import EZSwiftExtensions
 
-class RootViewController: UIViewController, HomeViewDelegate {
+class RootViewController: UIViewController  {
 
-    var homeVC: HomeViewController?
+    var homeVC: UINavigationController?
     var leftVC: LeftViewController?
-    
+    let homeMaskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        leftVC = StoryboardScene.Home.instantiateLeftView()
-        homeVC = StoryboardScene.Home.instantiateHomeView()
         
+        leftVC = StoryboardScene.Home.instantiateLeftView()
+        homeVC = UINavigationController(rootViewController: StoryboardScene.Home.instantiateHomeView())
+
         self.view.addSubview(leftVC!.view)
         self.view.addSubview(homeVC!.view)
-        
-        homeVC!.homeViewDelegate = self
-        
-        
 
-        // Do any additional setup after loading the view.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickMenu), name: NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.hiddenLeftView), name: NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,19 +50,34 @@ class RootViewController: UIViewController, HomeViewDelegate {
     func showLeftView() {
 
 
-        let homeMaskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
-
         homeMaskView.backgroundColor = UIColor.clearColor()
+
+        homeMaskView.addTapGesture { _ in
+
+            self.hiddenLeftView()
+
+        }
 
         homeVC!.view.addSubview(homeMaskView)
 
         UIView.animateWithDuration(0.5) {
 
             self.homeVC!.view.frame.origin = CGPointMake(ez.screenWidth - (ez.screenWidth / 6), 0)
-            homeMaskView.backgroundColor = UIColor(named: .HomeViewMaskColor)
+            self.homeMaskView.backgroundColor = UIColor(named: .HomeViewMaskColor)
 
         }
 
+    }
+
+    func hiddenLeftView() {
+
+        UIView.animateWithDuration(0.5) {
+
+            self.homeVC!.view.frame.origin = CGPointMake(0, 0)
+            self.homeMaskView.backgroundColor = UIColor.clearColor()
+            self.homeMaskView.removeFromSuperview()
+
+        }
 
     }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="xqf-N7-lTY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -97,6 +97,7 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qRl-OB-ReG">
                                 <rect key="frame" x="0.0" y="100" width="600" height="500"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </scrollView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6eR-PX-8hV">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="100"/>
@@ -125,9 +126,46 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ULd-v4-ihS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3339" y="837"/>
+            <point key="canvasLocation" x="2626" y="781"/>
         </scene>
-        <!--联系人-->
+        <!--Contacts New FriendVC-->
+        <scene sceneID="1gP-8A-XiR">
+            <objects>
+                <viewController storyboardIdentifier="ContactsNewFriend" id="yAO-be-jMH" customClass="ContactsNewFriendVC" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="fTd-5h-y1B"/>
+                        <viewControllerLayoutGuide type="bottom" id="pvz-8i-2HT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Lao-Mj-jeo">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3op-Se-pPU">
+                                <rect key="frame" x="0.0" y="36" width="600" height="564"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="yAO-be-jMH" id="zJK-9N-go4"/>
+                                    <outlet property="delegate" destination="yAO-be-jMH" id="DUk-SR-Etc"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3op-Se-pPU" firstAttribute="leading" secondItem="Lao-Mj-jeo" secondAttribute="leading" id="DwF-KE-4ua"/>
+                            <constraint firstItem="3op-Se-pPU" firstAttribute="top" secondItem="fTd-5h-y1B" secondAttribute="bottom" constant="16" id="Htm-2I-nmx"/>
+                            <constraint firstItem="pvz-8i-2HT" firstAttribute="top" secondItem="3op-Se-pPU" secondAttribute="bottom" id="Lhv-ZB-0xh"/>
+                            <constraint firstAttribute="trailing" secondItem="3op-Se-pPU" secondAttribute="trailing" id="e2N-jS-xQL"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="newFriendTableView" destination="3op-Se-pPU" id="xrs-wb-nzi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jtp-oT-drX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3252" y="781"/>
+        </scene>
+        <!--Request View Controller-->
         <scene sceneID="oZv-tD-yas">
             <objects>
                 <viewController storyboardIdentifier="RquestView" id="TMJ-7b-zqx" customClass="RequestViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
@@ -170,18 +208,6 @@
                             <constraint firstItem="BGC-Ko-dEN" firstAttribute="centerX" secondItem="OwO-DO-4Fs" secondAttribute="centerX" id="vM1-6r-DNC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="联系人" id="c8T-rq-rt6">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="FPN-An-zuq">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bIM-0k-EaF">
-                                <rect key="frame" x="20" y="7" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="backbtn"/>
-                                <connections>
-                                    <action selector="backAction:" destination="TMJ-7b-zqx" eventType="touchUpInside" id="tHN-xx-gFw"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
-                    </navigationItem>
                     <connections>
                         <outlet property="requestTextField" destination="BGC-Ko-dEN" id="x4c-pp-BT3"/>
                         <outlet property="sendButton" destination="LwM-yM-nHI" id="cxu-xS-a3Y"/>
@@ -189,25 +215,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="toW-72-Oxl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2028" y="837"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="jRb-xe-0QA">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xqf-N7-lTY" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Vti-9O-dOi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="BdG-SW-NxK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2667" y="837"/>
+            <point key="canvasLocation" x="2003" y="781"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="backbtn" width="30" height="30"/>
-    </resources>
 </document>
