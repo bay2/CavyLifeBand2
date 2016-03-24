@@ -210,7 +210,7 @@ class GuideViewController: BaseViewController {
             self.pushVC(accountVC)
             
         default:
-            print(__FUNCTION__)
+            print(#function)
         }
         
     }

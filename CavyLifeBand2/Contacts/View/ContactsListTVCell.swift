@@ -28,11 +28,10 @@ class ContactsListTVCell: UITableViewCell {
 
         nameLabel.textColor = UIColor(named: .ContactsName)
         nameLabel.font = UIFont.systemFontOfSize(16)
-
-
         let cellBgView = UIView()
         cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)
         self.selectedBackgroundView = cellBgView
+        self.selectionStyle = .None
 
     }
 

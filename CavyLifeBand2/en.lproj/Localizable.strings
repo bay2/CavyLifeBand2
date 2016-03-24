@@ -131,4 +131,20 @@
 "Contacts.Search.dropRefresh" = "下拉换一批";
 "Contacts.Request.placeHolder" = "发送验证申请，等待对方通过";
 "Contacts.Request.SendButton" = "发送";
->>>>>>> c3fb55d83f88983eaa36ae54965a18a0c57ad694
+"Contacts.ShowInfo.city" = "城市";
+"Contacts.ShowInfo.Address" = "地址";
+"Contacts.ShowInfo.old" = "年龄";
+"Contacts.ShowInfo.Gender" = "性别";
+"Contacts.ShowInfo.NotesName" = "设置备注";
+"Contacts.ShowInfo.TransformNotes" = "点击修改备注";
+"Contacts.ShowInfo.Height" = "身高";
+"Contacts.ShowInfo.Weight" = "体重";
+"Contacts.ShowInfo.Birth" = "生日";
+"Contacts.ShowInfo.PK" = "PK";
+"Contacts.ShowInfo.Step" = "计步";
+"Contacts.ShowInfo.Sleep" = "睡眠";
+"Contacts.ShowInfo.Achievement" = "成就";
+"Contacts.ShowInfo.AchievementNum" = "您已累计走了";
+"Contacts.ChangeNotesName.PlaceHolder" = "输入备注名";
+"Contacts.ChangeNotesName.Button" = "确定";
+"Contacts.ChangeSelfName.PlaceHolder" = "更改的昵称";

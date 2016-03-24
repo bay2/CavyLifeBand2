@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="ContactsPersonInfoListCell" selectionStyle="default" indentationWidth="10" rowHeight="40" id="KGk-i7-Jjw" customClass="ContactsPersonInfoListCell" customModule="CavyLifeBand2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="432" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="432" height="39"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年龄" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jd3-wc-hp0">
+                        <rect key="frame" x="31" y="12" width="216" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="ZUZ-So-LGA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81T-Fk-i5S">
+                        <rect key="frame" x="221" y="12" width="173" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="VwD-rb-sER"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="jd3-wc-hp0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="23" id="7gn-xV-psP"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="81T-Fk-i5S" secondAttribute="trailing" constant="30" id="CBJ-34-EGM"/>
+                    <constraint firstItem="jd3-wc-hp0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="KrK-1d-i1l"/>
+                    <constraint firstItem="81T-Fk-i5S" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Uet-aW-9g6"/>
+                    <constraint firstItem="jd3-wc-hp0" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.5" id="mAx-4Z-spa"/>
+                    <constraint firstItem="81T-Fk-i5S" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.4" id="xOL-BY-uyH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="titleInfoLabel" destination="81T-Fk-i5S" id="jTK-22-9Wy"/>
+                <outlet property="titleLabel" destination="jd3-wc-hp0" id="EUH-S3-hU2"/>
+            </connections>
+            <point key="canvasLocation" x="574" y="276"/>
+        </tableViewCell>
+    </objects>
+</document>

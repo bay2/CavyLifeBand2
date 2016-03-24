@@ -40,3 +40,4 @@ ContactsLetterColor: #0000004D
 ContactsSearchBarColor: #e6e6e6
 ContactsPKBtnColor: #FF9F22
 ContactsSearchFlagViewBg : #ffffff66
+ContactsAccountLogoutButton : #ff6d01

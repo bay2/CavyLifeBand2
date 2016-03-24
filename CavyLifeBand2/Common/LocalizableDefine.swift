@@ -207,6 +207,40 @@ enum L10n {
   case ContactsRequestPlaceHolder
   /// 发送
   case ContactsRequestSendButton
+  /// 城市
+  case ContactsShowInfoCity
+  /// 地址
+  case ContactsShowInfoAddress
+  /// 年龄
+  case ContactsShowInfoOld
+  /// 性别
+  case ContactsShowInfoGender
+  /// 设置备注
+  case ContactsShowInfoNotesName
+  /// 点击修改备注
+  case ContactsShowInfoTransformNotes
+  /// 身高
+  case ContactsShowInfoHeight
+  /// 体重
+  case ContactsShowInfoWeight
+  /// 生日
+  case ContactsShowInfoBirth
+  /// PK
+  case ContactsShowInfoPK
+  /// 计步
+  case ContactsShowInfoStep
+  /// 睡眠
+  case ContactsShowInfoSleep
+  /// 成就
+  case ContactsShowInfoAchievement
+  /// 您已累计走了
+  case ContactsShowInfoAchievementNum
+  /// 输入备注名
+  case ContactsChangeNotesNamePlaceHolder
+  /// 确定
+  case ContactsChangeNotesNameButton
+  /// 更改的昵称
+  case ContactsChangeSelfNamePlaceHolder
 }
 
 extension L10n: CustomStringConvertible {
@@ -418,6 +452,40 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.Request.placeHolder")
       case .ContactsRequestSendButton:
         return L10n.tr("Contacts.Request.SendButton")
+      case .ContactsShowInfoCity:
+        return L10n.tr("Contacts.ShowInfo.city")
+      case .ContactsShowInfoAddress:
+        return L10n.tr("Contacts.ShowInfo.Address")
+      case .ContactsShowInfoOld:
+        return L10n.tr("Contacts.ShowInfo.old")
+      case .ContactsShowInfoGender:
+        return L10n.tr("Contacts.ShowInfo.Gender")
+      case .ContactsShowInfoNotesName:
+        return L10n.tr("Contacts.ShowInfo.NotesName")
+      case .ContactsShowInfoTransformNotes:
+        return L10n.tr("Contacts.ShowInfo.TransformNotes")
+      case .ContactsShowInfoHeight:
+        return L10n.tr("Contacts.ShowInfo.Height")
+      case .ContactsShowInfoWeight:
+        return L10n.tr("Contacts.ShowInfo.Weight")
+      case .ContactsShowInfoBirth:
+        return L10n.tr("Contacts.ShowInfo.Birth")
+      case .ContactsShowInfoPK:
+        return L10n.tr("Contacts.ShowInfo.PK")
+      case .ContactsShowInfoStep:
+        return L10n.tr("Contacts.ShowInfo.Step")
+      case .ContactsShowInfoSleep:
+        return L10n.tr("Contacts.ShowInfo.Sleep")
+      case .ContactsShowInfoAchievement:
+        return L10n.tr("Contacts.ShowInfo.Achievement")
+      case .ContactsShowInfoAchievementNum:
+        return L10n.tr("Contacts.ShowInfo.AchievementNum")
+      case .ContactsChangeNotesNamePlaceHolder:
+        return L10n.tr("Contacts.ChangeNotesName.PlaceHolder")
+      case .ContactsChangeNotesNameButton:
+        return L10n.tr("Contacts.ChangeNotesName.Button")
+      case .ContactsChangeSelfNamePlaceHolder:
+        return L10n.tr("Contacts.ChangeSelfName.PlaceHolder")
     }
   }
 

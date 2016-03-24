@@ -47,7 +47,7 @@ class PhotoAlbum: UIViewController, UIScrollViewDelegate{
         
         let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
         
-        for var i = 0 ; i < fetchResults.count ; i++ {
+        for i in 0  ..< fetchResults.count  {
             
             let asset = fetchResults[i] as! PHAsset
             
@@ -63,7 +63,7 @@ class PhotoAlbum: UIViewController, UIScrollViewDelegate{
         
         Log.info("加载的是从\(needLoadCount)开始到\(alReadyLoadCount)")
         
-        for var i = needLoadCount; i < alReadyLoadCount; i++ {
+        for i in needLoadCount ..< alReadyLoadCount {
             
             let myAsset = self.assetResult[i]
             

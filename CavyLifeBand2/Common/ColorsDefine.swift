@@ -24,6 +24,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
     /// Alpha: 20% <br/> (0xffffff33)
     case CameraNoChoose
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff6d01"></span>
+    /// Alpha: 100% <br/> (0xff6d01ff)
+    case ContactsAccountLogoutButton
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff5656"></span>
     /// Alpha: 100% <br/> (0xff5656ff)
     case ContactsAttentionBtnColor
@@ -147,6 +150,7 @@ extension UIColor {
       case .CameraBgColor: return 0x000000ff
       case .CameraChoose: return 0xffffffb3
       case .CameraNoChoose: return 0xffffff33
+      case .ContactsAccountLogoutButton: return 0xff6d01ff
       case .ContactsAttentionBtnColor: return 0xff5656ff
       case .ContactsCellLine: return 0xccccccff
       case .ContactsCellSelect: return 0x0000000d

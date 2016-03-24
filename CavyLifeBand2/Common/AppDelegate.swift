@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+        /*
         self.window?.rootViewController = UINavigationController(rootViewController: StoryboardScene.Contacts.instantiateSearchView())
         
         let installation = KSCrashInstallationStandard.sharedInstance()
@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         uiTestStub()
     
-#endif
+#endif*/
         return true
 
     }

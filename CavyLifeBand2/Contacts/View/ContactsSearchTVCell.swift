@@ -53,7 +53,7 @@ class ContactsSearchTVCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        
+        self.selectionStyle = .None
         headView.layer.masksToBounds = true
         headView.layer.cornerRadius = 20
         nameLabel.textColor = UIColor(named: .ContactsName)
