@@ -10,9 +10,9 @@ import UIKit
 import EZSwiftExtensions
 import Log
 
-class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISearchResultsUpdating {
+class ContactsAddFriendVC: ContactsBaseViewController, UIScrollViewDelegate, UISearchResultsUpdating {
     
-    enum SearchButtonTag: Int {
+    enum ContactsTabButtonTag: Int {
         
         case AddressBookTag = 1000
         case RecommendTag = 1001
@@ -21,7 +21,7 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
     }
     
     // 通讯录、推荐、附近 三个主按钮
-    var searchBtnArray: [SearchButton] = [SearchButton(searchType: .AddressBook), SearchButton(searchType: .Recommed), SearchButton(searchType: .Nearby)]
+    var searchBtnArray: [ContactsTabButton] = [ContactsTabButton(searchType: .AddressBook), ContactsTabButton(searchType: .Recommed), ContactsTabButton(searchType: .Nearby)]
 
     // 搜索控件
     let searchController = ContactsSearchController(searchResultsController: StoryboardScene.Contacts.instantiateSearchResultView())
@@ -30,7 +30,7 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
     var addressBookTableView: UITableView?
     
     // 推荐好友View
-    var recommendView: RecommendSearchView?
+    var recommendView: ContactRecommendFriendView?
     
     // 附近好友View
     var nearbyTableView: UITableView?
@@ -61,7 +61,7 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
     
     override func viewWillAppear(animated: Bool) {
         
-        addSearchButton()
+        addContactsTabButton()
         
         addScrollerView()
 
@@ -70,7 +70,7 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
     /**
      添加 Searchutton
      */
-    func addSearchButton() {
+    func addContactsTabButton() {
 
         searchBtnArray[1].selectButtonStatus()
 
@@ -79,9 +79,9 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
             let searchBtn = searchBtnArray[i]
 
             searchBtn.frame = CGRectMake(ez.screenWidth / 3 * CGFloat(i), 0, ez.screenWidth / 3, 100)
-            searchBtn.tag = SearchButtonTag.AddressBookTag.rawValue + i
+            searchBtn.tag = ContactsTabButtonTag.AddressBookTag.rawValue + i
 
-            searchBtn.addTarget(self, action: #selector(ContactsSearchVC.searchBtnAction(_:)), forControlEvents: .TouchUpInside)
+            searchBtn.addTarget(self, action: #selector(ContactsAddFriendVC.searchBtnAction(_:)), forControlEvents: .TouchUpInside)
             self.buttonView.addSubview(searchBtn)
 
         }
@@ -89,7 +89,7 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
     }
     
     /**
-     添加滚动视图上的 SearchTableView
+     添加滚动视图上的 TableView
      */
     func addScrollerView() {
         
@@ -99,7 +99,7 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
         createAddressBookView()
 
         // 推荐好友 有搜索 有刷新
-        createRecommendSearchView()
+        createRecommendFriendView()
 
         // 附近好友 有刷新
         createNearbyView()
@@ -134,9 +134,9 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
     /**
      创建推荐好友搜索视图
      */
-    func createRecommendSearchView() {
+    func createRecommendFriendView() {
 
-        recommendView = RecommendSearchView(frame: CGRectMake(ez.screenWidth, 0, ez.screenWidth, ez.screenHeight))
+        recommendView = ContactRecommendFriendView(frame: CGRectMake(ez.screenWidth, 0, ez.screenWidth, ez.screenHeight))
         configureTableView(recommendView!.tableView)
         scrollView.addSubview(recommendView!)
         
@@ -162,7 +162,7 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
      */
     func configureTableView(tableView: UITableView) {
         
-        tableView.registerNib(UINib(nibName: "ContactsSearchTVCell", bundle: nil), forCellReuseIdentifier: "ContactsSearchTVCell")
+        tableView.registerNib(UINib(nibName: "ContactsAddFriendCell", bundle: nil), forCellReuseIdentifier: "ContactsAddFriendCell")
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         tableView.backgroundColor = UIColor.whiteColor()
         
@@ -178,7 +178,7 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
      */
     func searchBtnAction(sender: UIButton) {
         
-        changeSeachBtnStatus(sender.tag - SearchButtonTag.AddressBookTag.rawValue)
+        changeSeachBtnStatus(sender.tag - ContactsTabButtonTag.AddressBookTag.rawValue)
         
     }
     
@@ -276,7 +276,7 @@ class ContactsSearchVC: ContactsBaseViewController, UIScrollViewDelegate, UISear
 }
 
 // MARK: - tableview代理
-extension ContactsSearchVC: UITableViewDataSource, UITableViewDelegate {
+extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - Table view data source
     /**
@@ -318,26 +318,32 @@ extension ContactsSearchVC: UITableViewDataSource, UITableViewDelegate {
      */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsSearchTVCell", forIndexPath: indexPath) as! ContactsSearchTVCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: indexPath) as! ContactsAddFriendCell
 
         let pushRquestView: (String -> Void) = { _ in
 
-            self.pushVC(StoryboardScene.Contacts.instantiateRquestView())
+            self.pushVC(StoryboardScene.Contacts.instantiateContactsReqFriendVC())
         }
-
-        let addressBookCellViewModel = ContactsAddressBookViewModel(changeRequest: pushRquestView)
-
-        if addressBookTableView == tableView {
-
+        
+        switch tableView {
+            
+        case addressBookTableView!:
+            let addressBookCellViewModel = ContactsAddressBookViewModel(changeRequest: pushRquestView)
             cell.configure(addressBookCellViewModel, delegate: addressBookCellViewModel)
-            return cell
-
+            
+        case recommendView!.tableView:
+            let recommendViewModel = ContactsRecommendCellViewModel(changeRequest: pushRquestView)
+            cell.configure(recommendViewModel, delegate: recommendViewModel)
+            
+        case nearbyTableView!:
+            let nearbyViewModel = ContactsNearbyCellViewModel(changeRequest: pushRquestView)
+            cell.configure(nearbyViewModel, delegate: nearbyViewModel)
+            
+        default:
+            break
+            
         }
-        
-        let searchCellViewModel = SearchCellViewModel(changeRequest: pushRquestView)
 
-        cell.configure(searchCellViewModel, delegate: searchCellViewModel)
-        
         return cell
     }
     

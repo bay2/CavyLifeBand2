@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-        /*
-        self.window?.rootViewController = UINavigationController(rootViewController: StoryboardScene.Contacts.instantiateSearchView())
+    
+        self.window?.rootViewController = UINavigationController(rootViewController: StoryboardScene.Contacts.instantiateContactsFriendListVC())
         
         let installation = KSCrashInstallationStandard.sharedInstance()
         
@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         uiTestStub()
     
-#endif*/
+#endif
         return true
 
     }

@@ -35,6 +35,9 @@ extension UIViewController {
 }
 
 struct StoryboardScene {
+  enum AccountInfo: StoryboardSceneType {
+    static let storyboardName = "AccountInfo"
+  }
   enum Camera: String, StoryboardSceneType {
     static let storyboardName = "Camera"
 
@@ -51,14 +54,24 @@ struct StoryboardScene {
   enum Contacts: String, StoryboardSceneType {
     static let storyboardName = "Contacts"
 
+    case ContactsAddFriendVCScene = "ContactsAddFriendVC"
+    static func instantiateContactsAddFriendVC() -> ContactsAddFriendVC {
+      return StoryboardScene.Contacts.ContactsAddFriendVCScene.viewController() as! ContactsAddFriendVC
+    }
+
     case ContactsFriendInfoVCScene = "ContactsFriendInfoVC"
     static func instantiateContactsFriendInfoVC() -> ContactsFriendInfoVC {
       return StoryboardScene.Contacts.ContactsFriendInfoVCScene.viewController() as! ContactsFriendInfoVC
     }
 
-    case ContactsNewFriendScene = "ContactsNewFriend"
-    static func instantiateContactsNewFriend() -> ContactsNewFriendVC {
-      return StoryboardScene.Contacts.ContactsNewFriendScene.viewController() as! ContactsNewFriendVC
+    case ContactsFriendListVCScene = "ContactsFriendListVC"
+    static func instantiateContactsFriendListVC() -> ContactsFriendListVC {
+      return StoryboardScene.Contacts.ContactsFriendListVCScene.viewController() as! ContactsFriendListVC
+    }
+
+    case ContactsNewFriendVCScene = "ContactsNewFriendVC"
+    static func instantiateContactsNewFriendVC() -> ContactsNewFriendVC {
+      return StoryboardScene.Contacts.ContactsNewFriendVCScene.viewController() as! ContactsNewFriendVC
     }
 
     case ContactsPersonInfoVCScene = "ContactsPersonInfoVC"
@@ -66,22 +79,12 @@ struct StoryboardScene {
       return StoryboardScene.Contacts.ContactsPersonInfoVCScene.viewController() as! ContactsPersonInfoVC
     }
 
-    case ContactsViewScene = "ContactsView"
-    static func instantiateContactsView() -> ContactsViewController {
-      return StoryboardScene.Contacts.ContactsViewScene.viewController() as! ContactsViewController
+    case ContactsReqFriendVCScene = "ContactsReqFriendVC"
+    static func instantiateContactsReqFriendVC() -> ContactsReqFriendVC {
+      return StoryboardScene.Contacts.ContactsReqFriendVCScene.viewController() as! ContactsReqFriendVC
     }
 
-    case RquestViewScene = "RquestView"
-    static func instantiateRquestView() -> RequestViewController {
-      return StoryboardScene.Contacts.RquestViewScene.viewController() as! RequestViewController
-    }
-
-    case SearchViewScene = "SearchView"
-    static func instantiateSearchView() -> ContactsSearchVC {
-      return StoryboardScene.Contacts.SearchViewScene.viewController() as! ContactsSearchVC
-    }
-
-    case SearchResultViewScene = "searchResultView"
+    case SearchResultViewScene = "SearchResultView"
     static func instantiateSearchResultView() -> UITableViewController {
       return StoryboardScene.Contacts.SearchResultViewScene.viewController() as! UITableViewController
     }

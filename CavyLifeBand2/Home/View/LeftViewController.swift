@@ -41,13 +41,13 @@ class LeftViewController: UIViewController, HomeUserDelegate {
     var account: UILabel { return accountLab }
 
     // 列表信息
-    var listTitleViewModel = [[LeftListViewModel(icon: UIImage(asset: .LeftMenuTarget), title: L10n.HomeLifeListTitleTarget.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuInformation), title: L10n.HomeLifeListTitleInfoOpen.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuFriend), title: L10n.HomeLifeListTitleFriend.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuPK), title: L10n.HomeLifeListTitlePK.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController())],
-    [LeftListViewModel(icon: UIImage(asset: .LeftMenuAbout), title: L10n.HomeLifeListTitleAbout.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuHelp), title: L10n.HomeLifeListTitleHelp.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuApp), title: L10n.HomeLifeListTitleRelated.string, nextView: StoryboardScene.Contacts.ContactsViewScene.viewController())]]
+    var listTitleViewModel = [[LeftListViewModel(icon: UIImage(asset: .LeftMenuTarget), title: L10n.HomeLifeListTitleTarget.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuInformation), title: L10n.HomeLifeListTitleInfoOpen.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuFriend), title: L10n.HomeLifeListTitleFriend.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuPK), title: L10n.HomeLifeListTitlePK.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController())],
+    [LeftListViewModel(icon: UIImage(asset: .LeftMenuAbout), title: L10n.HomeLifeListTitleAbout.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuHelp), title: L10n.HomeLifeListTitleHelp.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuApp), title: L10n.HomeLifeListTitleRelated.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController())]]
 
     override func viewDidLoad() {
         super.viewDidLoad()

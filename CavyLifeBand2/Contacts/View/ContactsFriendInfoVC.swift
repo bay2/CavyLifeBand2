@@ -54,7 +54,6 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
             make.height.equalTo(tableViewHeight + 216)
         }
         
-        //infoTableView
         infoTableView.snp_makeConstraints { (make) -> Void in
             make.height.equalTo(tableViewHeight)
         }
@@ -196,10 +195,9 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         if tableView.isEqual(infoTableView) && indexPath.row == 1 {
 
             // 跳转到修改备注
-            let requestVC = StoryboardScene.Contacts.instantiateRquestView()
+            let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
             requestVC.requestStyle = .ChangeNotesName
             self.pushVC(requestVC)
-            
             
         }
         

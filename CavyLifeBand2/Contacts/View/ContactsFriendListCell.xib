@@ -8,11 +8,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Gt6-Nb-1Nf" customClass="ContactsListTVCell" customModule="CavyLifeBand2" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ContactsFriendListCell" selectionStyle="default" indentationWidth="10" id="Gt6-Nb-1Nf" customClass="ContactsFriendListCell" customModule="CavyLifeBand2" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="510" height="66"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gt6-Nb-1Nf" id="VZd-RJ-3O9">
-                <rect key="frame" x="0.0" y="0.0" width="510" height="65"/>
+                <rect key="frame" x="0.0" y="0.0" width="510" height="66"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LBN-Me-Lrl">

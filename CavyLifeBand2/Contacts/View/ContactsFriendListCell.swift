@@ -9,7 +9,7 @@
 import UIKit
 import EZSwiftExtensions
 
-class ContactsListTVCell: UITableViewCell {
+class ContactsFriendListCell: UITableViewCell {
     
     // 头像
     @IBOutlet weak var headView: UIImageView!
@@ -30,7 +30,7 @@ class ContactsListTVCell: UITableViewCell {
     
     @IBOutlet weak var topLine: UIView!
     @IBOutlet weak var bottomLine: UIView!
-    private var dataSource: ContactsListTVCellDataSource?
+    private var dataSource: ContactsFriendListDataSource?
     
     override func awakeFromNib() {
         
@@ -46,7 +46,7 @@ class ContactsListTVCell: UITableViewCell {
 
     }
 
-    func configure(dataSource: ContactsListTVCellDataSource) {
+    func configure(dataSource: ContactsFriendListDataSource) {
         
         self.dataSource = dataSource
 
@@ -72,7 +72,7 @@ class ContactsListTVCell: UITableViewCell {
 
 }
 
-protocol ContactsListTVCellDataSource {
+protocol ContactsFriendListDataSource {
 
     var headImage: UIImage { get }
     var name: String { get }

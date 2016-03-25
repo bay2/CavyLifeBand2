@@ -11,9 +11,9 @@ import UIKit
 
 class ContactsSortAndGroup: NSObject {
     
-    var contactsGroupList: [(String, [ContactsListTVCellDataSource])]?
+    var contactsGroupList: [(String, [ContactsFriendListDataSource])]?
 
-    init(contactsList: [ContactsListTVCellDataSource]) {
+    init(contactsList: [ContactsFriendListDataSource]) {
 
         super.init()
         
@@ -21,9 +21,9 @@ class ContactsSortAndGroup: NSObject {
 
     }
     
-    func sortAndGroup(contactsList: [ContactsListTVCellDataSource]) {
+    func sortAndGroup(contactsList: [ContactsFriendListDataSource]) {
         
-        var dataDic = Dictionary<String, [ContactsListTVCellDataSource]>()
+        var dataDic = Dictionary<String, [ContactsFriendListDataSource]>()
         
         for contactsInfo in contactsList {
             
@@ -41,7 +41,7 @@ class ContactsSortAndGroup: NSObject {
             } else {
                 
                 // 添加key 和 数组
-                var array = [ContactsListTVCellDataSource]()
+                var array = [ContactsFriendListDataSource]()
                 array.append(contactsInfo)
                 dataDic.updateValue(array, forKey: firstChar)
                 

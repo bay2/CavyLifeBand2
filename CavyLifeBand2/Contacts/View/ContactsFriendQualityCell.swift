@@ -24,6 +24,7 @@ class ContactsFriendQualityCell: UITableViewCell {
     var cellEditOrNot: Bool = false
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         
         imgView.roundSquareImage()
@@ -47,9 +48,11 @@ class ContactsFriendQualityCell: UITableViewCell {
      添加数据
      */
     func addData(image: UIImage, info: String, number: String) {
+        
         imgView.image = image
         infoLable.text = info
         numberLabel.text = number
+        
     }
     
     override func setSelected(selected: Bool, animated: Bool) {

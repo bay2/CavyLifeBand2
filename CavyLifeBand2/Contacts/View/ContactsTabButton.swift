@@ -1,5 +1,5 @@
 //
-//  SearchButton.swift
+//  ContactsTabButton.swift
 //  CavyLifeBand2
 //
 //  Created by Jessica on 16/3/19.
@@ -9,10 +9,10 @@
 import UIKit
 import EZSwiftExtensions
 
-class SearchButton: UIButton {
+class ContactsTabButton: UIButton {
 
     // 按钮类型
-    enum SearchButtonType {
+    enum ContactsTabButtonType {
 
         case AddressBook, Recommed, Nearby
 
@@ -27,7 +27,7 @@ class SearchButton: UIButton {
     let searchBtnTitle: Array<String> = [L10n.ContactsSearchPhoneNum.string, L10n.ContactsSearchRecommendNum.string, L10n.ContactsSearchNearbyNum.string]
 
     //当前按钮类型
-    var searchBtnType: SearchButtonType = .AddressBook
+    var searchBtnType: ContactsTabButtonType = .AddressBook
 
     //按钮图片
     private var imgView: UIImageView!
@@ -38,7 +38,7 @@ class SearchButton: UIButton {
     //按钮被选中标签
     private var flagView: UIView!
     
-    convenience init(frame: CGRect = CGRectMake(0, 0, 0, 0), searchType: SearchButtonType, name: String = "") {
+    convenience init(frame: CGRect = CGRectMake(0, 0, 0, 0), searchType: ContactsTabButtonType, name: String = "") {
         
         self.init(frame: frame)
         

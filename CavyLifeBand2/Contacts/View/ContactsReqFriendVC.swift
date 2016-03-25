@@ -10,15 +10,16 @@ import UIKit
 import MHRotaryKnob
 import Log
 
-class RequestViewController: ContactsBaseViewController {
+class ContactsReqFriendVC: ContactsBaseViewController {
 
-enum RequestStyle {
+    enum RequestStyle {
+        
+        case AddFriend
+        case ChangeNotesName
+        case ChangeSelfName
+        
+    }
     
-    case AddFriend
-    case ChangeNotesName
-    case ChangeSelfName
-    
-}
     /// TextField
     @IBOutlet weak var requestTextField: UITextField!
     

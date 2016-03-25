@@ -16,7 +16,7 @@ class ContactsNewFriendVC: ContactsBaseViewController {
 
         super.viewDidLoad()
 
-        newFriendTableView.registerNib(UINib(nibName: "ContactsSearchTVCell", bundle: nil), forCellReuseIdentifier: "ContactsSearchTVCell")
+        newFriendTableView.registerNib(UINib(nibName: "ContactsAddFriendCell", bundle: nil), forCellReuseIdentifier: "ContactsAddFriendCell")
 
     }
 
@@ -42,11 +42,11 @@ extension ContactsNewFriendVC {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        guard let contactsCell = tableView.dequeueReusableCellWithIdentifier("ContactsSearchTVCell", forIndexPath: indexPath) as? ContactsSearchTVCell else {
-            return tableView.dequeueReusableCellWithIdentifier("ContactsSearchTVCell", forIndexPath: indexPath)
+        guard let contactsCell = tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: indexPath) as? ContactsAddFriendCell else {
+            return tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: indexPath)
         }
 
-        let viewModel = ContactsNewFriendTableViewModel()
+        let viewModel = ContactsNewFriendCellViewModel()
 
         contactsCell.configure(viewModel, delegate: viewModel)
         

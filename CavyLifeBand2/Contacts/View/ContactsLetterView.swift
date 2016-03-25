@@ -17,6 +17,13 @@ class ContactsLetterView: UIView {
         super.init(frame: frame)
 
     }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        title.font = UIFont.systemFontOfSize(16)
+        title.textColor = UIColor(named: .ContactsLetterColor)
+        self.backgroundColor =  UIColor(named: .ContactsSectionColor)
+    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,14 +32,14 @@ class ContactsLetterView: UIView {
 
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        
-        title.font = UIFont.systemFontOfSize(16)
-        title.textColor = UIColor(named: .ContactsLetterColor)
-
-        UIColor(named: .ContactsSectionColor).setFill()
-        UIRectFill(rect)
-
-    }
+//    override func drawRect(rect: CGRect) {
+//        
+//        title.font = UIFont.systemFontOfSize(16)
+//        title.textColor = UIColor(named: .ContactsLetterColor)
+//
+//        UIColor(named: .ContactsSectionColor).setFill()
+//        UIRectFill(rect)
+//
+//    }
 
 }

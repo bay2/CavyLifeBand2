@@ -1,5 +1,5 @@
 //
-//  RecommendSearchView.swift
+//  ContactRecommendFriendView.swift
 //  CavyLifeBand2
 //
 //  Created by Jessica on 16/3/21.
@@ -9,9 +9,9 @@
 import UIKit
 import EZSwiftExtensions
 
-class RecommendSearchView: UIView {
+class ContactRecommendFriendView: UIView {
     
-    var tableView = SearchTableView()
+    var tableView = ContactRecommendFriendTV()
     
     override init(frame: CGRect) {
         super.init(frame: frame)

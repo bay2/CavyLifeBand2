@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ContactsAccountInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
@@ -42,8 +43,6 @@ class ContactsAccountInfoVC: UIViewController, UITableViewDelegate, UITableViewD
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         addAllViews()
-        
-        
         
     }
     

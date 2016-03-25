@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import EZSwiftExtensions
 
-protocol ContactsSearchCellDataSource {
+protocol ContactsAddFriendCellDataSource {
     
     var headImage: UIImage { get }
     var name: String { get }
@@ -19,7 +19,7 @@ protocol ContactsSearchCellDataSource {
     
 }
 
-protocol ContactsSearchCellDelegate {
+protocol ContactsAddFriendCellDelegate {
     
     var nameTextColor: UIColor { get }
     var introductTextColor: UIColor { get }
@@ -32,9 +32,9 @@ protocol ContactsSearchCellDelegate {
 }
 
 
-class ContactsSearchTVCell: UITableViewCell {
+class ContactsAddFriendCell: UITableViewCell {
 
-    private var delegate: ContactsSearchCellDelegate?
+    private var delegate: ContactsAddFriendCellDelegate?
     
     // 头像ImgView && 名字Lab && 签名Lab && 请求添加好友Btn
     
@@ -71,7 +71,7 @@ class ContactsSearchTVCell: UITableViewCell {
      - parameter dataSource: 数据
      - parameter delegate:   代理
      */
-    func configure(dataSource: ContactsSearchCellDataSource, delegate: ContactsSearchCellDelegate) {
+    func configure(dataSource: ContactsAddFriendCellDataSource, delegate: ContactsAddFriendCellDelegate) {
         
         self.delegate = delegate
         
@@ -98,7 +98,7 @@ class ContactsSearchTVCell: UITableViewCell {
      
      - parameter dataSource: 数据
      */
-    func labelLayout(dataSource: ContactsSearchCellDataSource) {
+    func labelLayout(dataSource: ContactsAddFriendCellDataSource) {
 
         if dataSource.introudce.isEmpty {
 
@@ -122,73 +122,3 @@ class ContactsSearchTVCell: UITableViewCell {
 
 }
 
-extension ContactsSearchCellDelegate {
-
-    var nameTextColor: UIColor { return UIColor(named: .ContactsName) }
-    var nameFont: UIFont { return UIFont.systemFontOfSize(16) }
-
-    var introductTextColor: UIColor { return UIColor(named: .ContactsIntrouduce) }
-    var introduceFont: UIFont { return UIFont.systemFontOfSize(12) }
-
-    var requestBtnColor: UIColor { return UIColor(named: .ContactsName) }
-    var requestBtnFont: UIFont { return UIFont.systemFontOfSize(14) }
-
-}
-
-struct SearchCellViewModel: ContactsSearchCellDataSource, ContactsSearchCellDelegate{
-
-    var headImage: UIImage
-    var name: String
-    var introudce: String { return " 我爱吃草莓啊~~~" }
-    var requestBtnTitle: String { return L10n.ContactsListCellAdd.string }
-
-    var changeRequestBtnName: ((String) -> Void)?
-
-    init(name: String = "吖保鸡丁", headImage: UIImage = UIImage(asset: .GuideGenderBoyChosen), changeRequest: ((String) -> Void)? = nil) {
-
-        self.name = name
-        self.headImage = headImage
-        self.changeRequestBtnName = changeRequest
-
-    }
-
-}
-
-struct ContactsAddressBookViewModel: ContactsSearchCellDataSource, ContactsSearchCellDelegate {
-
-    var headImage: UIImage
-    var name: String
-    var introudce: String { return "" }
-    var requestBtnTitle: String { return L10n.ContactsListCellAdd.string }
-    
-    var changeRequestBtnName: ((String) -> Void)?
-
-    init(name: String = "吖保鸡丁", headImage: UIImage = UIImage(asset: .GuideGenderBoyChosen), changeRequest: ((String) -> Void)? = nil) {
-
-        self.name = name
-        self.headImage = headImage
-        self.changeRequestBtnName = changeRequest
-
-    }
-
-}
-
-struct ContactsNewFriendTableViewModel: ContactsSearchCellDataSource, ContactsSearchCellDelegate {
-
-    var headImage: UIImage
-    var name: String
-    var introudce: String { return "" }
-    var requestBtnTitle: String { return L10n.ContactsListCellAgree.string}
-    var requestBtnColor: UIColor { return UIColor(named: .ContactsAgreeButtonColor) }
-
-    var changeRequestBtnName: ((String) -> Void)?
-
-    init(name: String = "吖保鸡丁", headImage: UIImage = UIImage(asset: .GuideGenderBoyChosen), changeRequest: ((String) -> Void)? = nil) {
-
-        self.name = name
-        self.headImage = headImage
-        self.changeRequestBtnName = changeRequest
-
-    }
-
-}

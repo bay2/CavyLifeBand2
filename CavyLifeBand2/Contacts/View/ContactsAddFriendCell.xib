@@ -7,11 +7,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ContactsSearchTVCell" selectionStyle="default" indentationWidth="10" id="S2s-Cu-mee" customClass="ContactsSearchTVCell" customModule="CavyLifeBand2" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ContactsAddFriendCell" selectionStyle="default" indentationWidth="10" id="S2s-Cu-mee" customClass="ContactsAddFriendCell" customModule="CavyLifeBand2" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="471" height="77"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S2s-Cu-mee" id="L5Q-JA-8dV">
-                <rect key="frame" x="0.0" y="0.0" width="471" height="76"/>
+                <rect key="frame" x="0.0" y="0.0" width="471" height="77"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qWP-WI-5OM">

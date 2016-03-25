@@ -1,5 +1,5 @@
 //
-//  ContactsViewController.swift
+//  ContactsFriendListVC.swift
 //  CavyLifeBand2
 //
 //  Created by xuemincai on 16/3/19.
@@ -9,71 +9,11 @@
 import UIKit
 import EZSwiftExtensions
 
-struct ContactsModelView: ContactsListTVCellDataSource {
-
-    var name: String
-    var headImage: UIImage
-    var hiddenCare: Bool
-    var viewController: UIViewController?
-
-    init(name: String, headImage: UIImage = UIImage(asset: .GuidePairSeccuss), hiddenCare: Bool = true) {
-
-        self.name = name
-        self.headImage = headImage
-        self.hiddenCare = hiddenCare
-
-    }
-
-    func onClickCell(viewController: UIViewController) {
-
-    }
-
-}
-
-struct ContactsAddFriendModelView: ContactsListTVCellDataSource {
-
-    var name: String { return L10n.ContactsAddFriendsCell.string }
-    var headImage: UIImage { return UIImage(asset: .ContactsListAdd) }
-    var hiddenCare: Bool = true
-
-    func onClickCell(viewController: UIViewController) {
-
-        viewController.pushVC(StoryboardScene.Contacts.instantiateSearchView())
-
-    }
-
-}
 
 
-struct ContactsNewFriendCellModelView: ContactsListTVCellDataSource {
+class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating {
 
-    var name: String { return L10n.ContactsNewFriendsCell.string }
-    var headImage: UIImage { return UIImage(asset: .ContactsListNew) }
-    var hiddenCare: Bool = true
-    
-    func onClickCell(viewController: UIViewController) {
-
-        viewController.pushVC(StoryboardScene.Contacts.instantiateContactsNewFriend())
-        
-    }
-
-}
-
-struct ContactsCavyModelView: ContactsListTVCellDataSource {
-
-    var name: String { return L10n.ContactsListCellCavy.string }
-    var headImage: UIImage { return UIImage(asset: .ContactsListCavy) }
-    var hiddenCare: Bool = true
-
-    func onClickCell(viewController: UIViewController) {
-
-    }
-
-}
-
-class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdating {
-
-    let defulatDataSource: [ContactsListTVCellDataSource] = [ContactsAddFriendModelView(), ContactsNewFriendCellModelView(), ContactsCavyModelView()]
+    let defulatDataSource: [ContactsFriendListDataSource] = [ContactsAddFriendViewModel(), ContactsNewFriendCellModelView(), ContactsCavyModelView()]
 
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var contactsTable: UITableView!
@@ -81,8 +21,8 @@ class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdatin
     var searchCtrl  = ContactsSearchController(searchResultsController: StoryboardScene.Contacts.instantiateSearchResultView())
     var searchCtrlView = StoryboardScene.Contacts.instantiateSearchResultView().view
     
-    var dataSource: [ContactsListTVCellDataSource] = [ContactsModelView(name: "吖吖的"), ContactsModelView(name: "闭包"),
-                                                      ContactsModelView(name: "八卦镇"), ContactsModelView(name: "东波排骨")]
+    var dataSource: [ContactsFriendListDataSource] = [ContactsFriendCellModelView(name: "吖吖的"), ContactsFriendCellModelView(name: "闭包"),
+                                                      ContactsFriendCellModelView(name: "八卦镇"), ContactsFriendCellModelView(name: "东波排骨")]
     var dataGroup: ContactsSortAndGroup?
 
     
@@ -104,7 +44,7 @@ class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdatin
 
     func pushAddFriendView() {
 
-        self.pushVC(StoryboardScene.Contacts.instantiateSearchView())
+        self.pushVC(StoryboardScene.Contacts.instantiateContactsAddFriendVC())
 
     }
 
@@ -128,7 +68,7 @@ class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdatin
 
     func requestAction() {
         
-        let requestVC = StoryboardScene.Contacts.instantiateRquestView()
+        let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
         self.pushVC(requestVC)
 
     }
@@ -162,7 +102,7 @@ class ContactsViewController: ContactsBaseViewController, UISearchResultsUpdatin
 
 }
 
-extension ContactsViewController {
+extension ContactsFriendListVC {
     
     /**
      cell 编辑结束
@@ -172,7 +112,7 @@ extension ContactsViewController {
      */
     func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsListTVCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsFriendListCell
         cell?.showEditing(false)
         
     }
@@ -217,7 +157,7 @@ extension ContactsViewController {
         
         deletRowAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsListTVCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsFriendListCell
         
         let concernActionTitle = cell!.hiddenCare ? L10n.ContactsListCellCare.string : L10n.ContactsListCellUndoCare.string
         let concernActionColor = cell!.hiddenCare ? UIColor(named: .ContactsCareBtnColor) : UIColor(named: .ContactsUndoCareBtnColor)
@@ -260,7 +200,7 @@ extension ContactsViewController {
             return .None
         }
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsListTVCell
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsFriendListCell
         
         cell?.showEditing(true)
         
@@ -324,8 +264,8 @@ extension ContactsViewController {
      */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        tableView.registerNib(UINib(nibName: "ContactsListTVCell", bundle: nil), forCellReuseIdentifier: "ContactsListTVCell")
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsListTVCell", forIndexPath: indexPath) as! ContactsListTVCell
+        tableView.registerNib(UINib(nibName: "ContactsFriendListCell", bundle: nil), forCellReuseIdentifier: "ContactsFriendListCell")
+        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsFriendListCell", forIndexPath: indexPath) as! ContactsFriendListCell
         
         var names = self.dataGroup!.contactsGroupList
         
