@@ -68,7 +68,7 @@ extension ContactsNewFriendVC {
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
-        tableView.deselectRowAtIndexPath(indexPath, false)
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
 
     }
 
