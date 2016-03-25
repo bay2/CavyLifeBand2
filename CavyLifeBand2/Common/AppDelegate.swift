@@ -20,10 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-//        let rootNavView = UINavigationController(rootViewController: StoryboardScene.Home.instantiateRootView())
-//        rootNavView.navigationBar.hidden = true
-//        
-//        self.window?.rootViewController = rootNavView
+        /*
+        self.window?.rootViewController = UINavigationController(rootViewController: StoryboardScene.Contacts.instantiateSearchView())
         
         let installation = KSCrashInstallationStandard.sharedInstance()
         
@@ -47,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         uiTestStub()
     
-#endif
+#endif*/
         return true
 
     }

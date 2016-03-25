@@ -9,12 +9,23 @@
 /* Begin PBXBuildFile section */
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C16BCE81C9A748600EDF1E3 /* ContactsListTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C16BCE71C9A748600EDF1E3 /* ContactsListTVCell.xib */; };
+		4C2146C51CA283A300A220F4 /* ContactsAccountInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2146C41CA283A300A220F4 /* ContactsAccountInfoVC.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4C5185581C9D3FF400F631B6 /* SearchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185571C9D3FF400F631B6 /* SearchButton.swift */; };
 		4C51855A1C9D45B600F631B6 /* ContactsSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185591C9D45B600F631B6 /* ContactsSearchVC.swift */; };
 		4C51855C1C9F8FFD00F631B6 /* SearchTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */; };
 		4C5185601C9FD51300F631B6 /* RecommendSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */; };
 		4C5185631C9FEEEB00F631B6 /* ContactsSortAndGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5185621C9FEEEB00F631B6 /* ContactsSortAndGroup.swift */; };
+		4C5DB7301CA0E9B500270BB1 /* ContactsPersonInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5DB72F1CA0E9B500270BB1 /* ContactsPersonInfoVC.swift */; };
+		4C5DB7371CA1223700270BB1 /* ContactsPersonInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5DB7351CA1223700270BB1 /* ContactsPersonInfoCell.swift */; };
+		4C5DB7381CA1223700270BB1 /* ContactsPersonInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C5DB7361CA1223700270BB1 /* ContactsPersonInfoCell.xib */; };
+		4C5DB73F1CA12C9000270BB1 /* ContactsPersonInfoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5DB73D1CA12C9000270BB1 /* ContactsPersonInfoListCell.swift */; };
+		4C5DB7401CA12C9000270BB1 /* ContactsPersonInfoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C5DB73E1CA12C9000270BB1 /* ContactsPersonInfoListCell.xib */; };
+		4CE0A5AB1CA152CF0017F212 /* ContactsFriendInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE0A5AA1CA152CF0017F212 /* ContactsFriendInfoVC.swift */; };
+		4CE786A61CA3BB4F004E84D5 /* ContactsFriendQualityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE786A41CA3BB4F004E84D5 /* ContactsFriendQualityCell.swift */; };
+		4CE786A71CA3BB4F004E84D5 /* ContactsFriendQualityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE786A51CA3BB4F004E84D5 /* ContactsFriendQualityCell.xib */; };
+		4CE786AC1CA3FE43004E84D5 /* ContactsAccountBadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE786AA1CA3FE43004E84D5 /* ContactsAccountBadgeCell.swift */; };
+		4CE786AD1CA3FE43004E84D5 /* ContactsAccountBadgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CE786AB1CA3FE43004E84D5 /* ContactsAccountBadgeCell.xib */; };
 		4CEDB9301C9A93E6002C8967 /* ContactsSearchTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */; };
 		4CEDB9311C9A93E6002C8967 /* ContactsSearchTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */; };
 		4CEDB95A1C9BA4B3002C8967 /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */; };
@@ -141,12 +152,23 @@
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C16BCE71C9A748600EDF1E3 /* ContactsListTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsListTVCell.xib; sourceTree = "<group>"; };
+		4C2146C41CA283A300A220F4 /* ContactsAccountInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountInfoVC.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4C5185571C9D3FF400F631B6 /* SearchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchButton.swift; sourceTree = "<group>"; };
 		4C5185591C9D45B600F631B6 /* ContactsSearchVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchVC.swift; sourceTree = "<group>"; };
 		4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableView.swift; sourceTree = "<group>"; };
 		4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendSearchView.swift; sourceTree = "<group>"; };
 		4C5185621C9FEEEB00F631B6 /* ContactsSortAndGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSortAndGroup.swift; sourceTree = "<group>"; };
+		4C5DB72F1CA0E9B500270BB1 /* ContactsPersonInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsPersonInfoVC.swift; sourceTree = "<group>"; };
+		4C5DB7351CA1223700270BB1 /* ContactsPersonInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsPersonInfoCell.swift; sourceTree = "<group>"; };
+		4C5DB7361CA1223700270BB1 /* ContactsPersonInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsPersonInfoCell.xib; sourceTree = "<group>"; };
+		4C5DB73D1CA12C9000270BB1 /* ContactsPersonInfoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsPersonInfoListCell.swift; sourceTree = "<group>"; };
+		4C5DB73E1CA12C9000270BB1 /* ContactsPersonInfoListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsPersonInfoListCell.xib; sourceTree = "<group>"; };
+		4CE0A5AA1CA152CF0017F212 /* ContactsFriendInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendInfoVC.swift; sourceTree = "<group>"; };
+		4CE786A41CA3BB4F004E84D5 /* ContactsFriendQualityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendQualityCell.swift; sourceTree = "<group>"; };
+		4CE786A51CA3BB4F004E84D5 /* ContactsFriendQualityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsFriendQualityCell.xib; sourceTree = "<group>"; };
+		4CE786AA1CA3FE43004E84D5 /* ContactsAccountBadgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountBadgeCell.swift; sourceTree = "<group>"; };
+		4CE786AB1CA3FE43004E84D5 /* ContactsAccountBadgeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsAccountBadgeCell.xib; sourceTree = "<group>"; };
 		4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchTVCell.swift; sourceTree = "<group>"; };
 		4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsSearchTVCell.xib; sourceTree = "<group>"; };
 		4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
@@ -310,6 +332,10 @@
 				4CEDB9591C9BA4B3002C8967 /* RequestViewController.swift */,
 				4C5185591C9D45B600F631B6 /* ContactsSearchVC.swift */,
 				91F556D51CA424A800D5FAA9 /* ContactsNewFriendVC.swift */,
+				4C5185591C9D45B600F631B6 /* SearchViewController.swift */,
+				4C5DB72F1CA0E9B500270BB1 /* ContactsPersonInfoVC.swift */,
+				4CE0A5AA1CA152CF0017F212 /* ContactsFriendInfoVC.swift */,
+				4C2146C41CA283A300A220F4 /* ContactsAccountInfoVC.swift */,
 				4CF15B441C9A4753009242A7 /* View */,
 				4C5185611C9FEE6F00F631B6 /* Public */,
 			);
@@ -319,15 +345,23 @@
 		4CF15B441C9A4753009242A7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4C5185571C9D3FF400F631B6 /* SearchButton.swift */,
+				4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */,
+				4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */,
 				4CF15B451C9A478B009242A7 /* ContactsListTVCell.swift */,
 				4C16BCE71C9A748600EDF1E3 /* ContactsListTVCell.xib */,
 				910442831C9D297B003D844D /* ContactsLetterView.swift */,
 				910442851C9D2B77003D844D /* ContactsLetterView.xib */,
 				4CEDB92E1C9A93E6002C8967 /* ContactsSearchTVCell.swift */,
 				4CEDB92F1C9A93E6002C8967 /* ContactsSearchTVCell.xib */,
-				4C5185571C9D3FF400F631B6 /* SearchButton.swift */,
-				4C51855B1C9F8FFD00F631B6 /* SearchTableView.swift */,
-				4C51855F1C9FD51300F631B6 /* RecommendSearchView.swift */,
+				4C5DB7351CA1223700270BB1 /* ContactsPersonInfoCell.swift */,
+				4C5DB7361CA1223700270BB1 /* ContactsPersonInfoCell.xib */,
+				4C5DB73D1CA12C9000270BB1 /* ContactsPersonInfoListCell.swift */,
+				4C5DB73E1CA12C9000270BB1 /* ContactsPersonInfoListCell.xib */,
+				4CE786A41CA3BB4F004E84D5 /* ContactsFriendQualityCell.swift */,
+				4CE786A51CA3BB4F004E84D5 /* ContactsFriendQualityCell.xib */,
+				4CE786AA1CA3FE43004E84D5 /* ContactsAccountBadgeCell.swift */,
+				4CE786AB1CA3FE43004E84D5 /* ContactsAccountBadgeCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -798,15 +832,19 @@
 				91C3ED841C3BB637000A414D /* Localizable.strings in Resources */,
 				9114D1EC1C97AB05008CB4CE /* Main.storyboard in Resources */,
 				91F036A21C8EE433003E059A /* UploadPicture_Ok.json in Resources */,
+				4C5DB7381CA1223700270BB1 /* ContactsPersonInfoCell.xib in Resources */,
 				913D0BD81C3FA126006EE7F8 /* Camera.storyboard in Resources */,
 				9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */,
 				917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */,
 				9114D2031C993166008CB4CE /* Home.storyboard in Resources */,
+				4C5DB7401CA12C9000270BB1 /* ContactsPersonInfoListCell.xib in Resources */,
 				91D192941C7DB8DE00482019 /* Assets.xcassets in Resources */,
 				91F0369B1C8EE433003E059A /* CommonResultOk.json in Resources */,
 				91F036A11C8EE433003E059A /* Sign_Up_Ok.json in Resources */,
 				4C16BCE81C9A748600EDF1E3 /* ContactsListTVCell.xib in Resources */,
 				91F036A01C8EE433003E059A /* Sign_In_Ok.json in Resources */,
+				4CE786A71CA3BB4F004E84D5 /* ContactsFriendQualityCell.xib in Resources */,
+				4CE786AD1CA3FE43004E84D5 /* ContactsAccountBadgeCell.xib in Resources */,
 				910442861C9D2B77003D844D /* ContactsLetterView.xib in Resources */,
 				917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */,
 				91F0369D1C8EE433003E059A /* Profile_Ok.json in Resources */,
@@ -1007,10 +1045,12 @@
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
 				9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */,
 				9114D1F11C97AB05008CB4CE /* SignInViewController.swift in Sources */,
+				4CE786AC1CA3FE43004E84D5 /* ContactsAccountBadgeCell.swift in Sources */,
 				9114D1E51C97AB05008CB4CE /* AccountModelView.swift in Sources */,
 				9114D1FD1C97AB05008CB4CE /* WeightView.swift in Sources */,
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
+				4C2146C51CA283A300A220F4 /* ContactsAccountInfoVC.swift in Sources */,
 				4C5185601C9FD51300F631B6 /* RecommendSearchView.swift in Sources */,
 				4C51855C1C9F8FFD00F631B6 /* SearchTableView.swift in Sources */,
 				4C5185581C9D3FF400F631B6 /* SearchButton.swift in Sources */,
@@ -1033,15 +1073,20 @@
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,
 				9114D1FA1C97AB05008CB4CE /* PictureView.swift in Sources */,
+				4CE0A5AB1CA152CF0017F212 /* ContactsFriendInfoVC.swift in Sources */,
 				9114D1EE1C97AB05008CB4CE /* MainPageViewController.swift in Sources */,
 				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
 				9114D1FB1C97AB05008CB4CE /* RulerScroller.swift in Sources */,
 				9114D1F61C97AB05008CB4CE /* GenderView.swift in Sources */,
 				4CEDB95A1C9BA4B3002C8967 /* RequestViewController.swift in Sources */,
+				4C5DB73F1CA12C9000270BB1 /* ContactsPersonInfoListCell.swift in Sources */,
 				9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */,
+				4C5DB7371CA1223700270BB1 /* ContactsPersonInfoCell.swift in Sources */,
 				98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */,
+				4CE786A61CA3BB4F004E84D5 /* ContactsFriendQualityCell.swift in Sources */,
 				9104428C1C9D557A003D844D /* ContactsBaseViewController.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
+				4C5DB7301CA0E9B500270BB1 /* ContactsPersonInfoVC.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,
 				9114D1F51C97AB05008CB4CE /* BirthdayView.swift in Sources */,
 			);

@@ -24,6 +24,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
     /// Alpha: 20% <br/> (0xffffff33)
     case CameraNoChoose
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff6d01"></span>
+    /// Alpha: 100% <br/> (0xff6d01ff)
+    case ContactsAccountLogoutButton
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff9138"></span>
     /// Alpha: 100% <br/> (0xff9138ff)
     case ContactsAddFriendButtonColor
@@ -159,6 +162,7 @@ extension UIColor {
       case .CameraBgColor: return 0x000000ff
       case .CameraChoose: return 0xffffffb3
       case .CameraNoChoose: return 0xffffff33
+      case .ContactsAccountLogoutButton: return 0xff6d01ff
       case .ContactsAddFriendButtonColor: return 0xff9138ff
       case .ContactsAgreeButtonColor: return 0x0dcf7fff
       case .ContactsCareBtnColor: return 0xff5656ff
