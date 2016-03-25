@@ -19,7 +19,6 @@ enum RequestStyle {
     case ChangeSelfName
     
 }
-
     /// TextField
     @IBOutlet weak var requestTextField: UITextField!
     

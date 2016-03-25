@@ -43,7 +43,6 @@ class ContactsListTVCell: UITableViewCell {
         let cellBgView = UIView()
         cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)
         self.selectedBackgroundView = cellBgView
-        self.selectionStyle = .None
 
     }
 
