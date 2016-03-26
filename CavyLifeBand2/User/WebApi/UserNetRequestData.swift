@@ -21,7 +21,7 @@ import CryptoSwift
  - ParamErr:  参数错误
  */
 enum UserRequestErrorType: ErrorType {
-    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, EmailNil, PhoneErr, PhoneNil, PassWdErr, PassWdNil, SecurityCodeErr, SecurityCodeNil, UserNameErr, UserNameNil, UserIdNil
+    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, EmailNil, PhoneErr, PhoneNil, PassWdErr, PassWdNil, SecurityCodeErr, SecurityCodeNil, UserNameErr, UserNameNil, UserIdNil, SearchTypeNil, LBSNil, PhoneNumListNil
 }
 
 /**
@@ -78,9 +78,11 @@ enum UserNetRequsetKey: String {
 
 let userNetReq = UserNetRequestData()
 
+
+
 class UserNetRequestData: NetRequestAdapter {
+   
     
-    typealias CompletionHandlernType = (Result<AnyObject, UserRequestErrorType>) -> Void
     
     /**
     网络请求API
@@ -111,15 +113,6 @@ class UserNetRequestData: NetRequestAdapter {
         case ForgotPwd = "resetPsw"
         case UserProfile = "getUserInfo"
         case SetUserProfile = "setUserInfo"
-        case SearchFriends
-        case AddFriends
-        case DelFriends
-        case FriendsList
-        case FriendsReqList
-        case WatchFriend
-        case ReportLocation
-        case SetTargetValue
-        case TargetValue
     }
 
     /**
