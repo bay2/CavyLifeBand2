@@ -118,6 +118,10 @@
 		91E1B4EA1CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E1B4E91CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib */; };
 		91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4ED1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift */; };
 		91E1B4F01CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4EF1CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift */; };
+		91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4F41CA53C96008ADEE6 /* ContactsJSON.swift */; };
+		91E1B4F71CA65E1C008ADEE6 /* ContactsWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4F61CA65E1C008ADEE6 /* ContactsWebApi.swift */; };
+		91E1B4F91CA69CAA008ADEE6 /* FriendInfoListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4F81CA69CAA008ADEE6 /* FriendInfoListRealm.swift */; };
+		91E1B4FB1CA6A475008ADEE6 /* FriendInfoListOper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4FA1CA6A475008ADEE6 /* FriendInfoListOper.swift */; };
 		91E981291C8937CB00802C5F /* AccountPageSwitchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */; };
 		91F0361B1C8D2A1D003E059A /* ProfileTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F0361A1C8D2A1D003E059A /* ProfileTest.swift */; };
 		91F0361D1C8D57DE003E059A /* CommonResultOk.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F0361C1C8D57DE003E059A /* CommonResultOk.json */; };
@@ -282,6 +286,10 @@
 		91E1B4E91CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsAccountBadgeCell.xib; sourceTree = "<group>"; };
 		91E1B4ED1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendListViewModel.swift; sourceTree = "<group>"; };
 		91E1B4EF1CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendViewModel.swift; sourceTree = "<group>"; };
+		91E1B4F41CA53C96008ADEE6 /* ContactsJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsJSON.swift; sourceTree = "<group>"; };
+		91E1B4F61CA65E1C008ADEE6 /* ContactsWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsWebApi.swift; sourceTree = "<group>"; };
+		91E1B4F81CA69CAA008ADEE6 /* FriendInfoListRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendInfoListRealm.swift; sourceTree = "<group>"; };
+		91E1B4FA1CA6A475008ADEE6 /* FriendInfoListOper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendInfoListOper.swift; sourceTree = "<group>"; };
 		91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPageSwitchUITests.swift; sourceTree = "<group>"; };
 		91F0361A1C8D2A1D003E059A /* ProfileTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTest.swift; sourceTree = "<group>"; };
 		91F0361C1C8D57DE003E059A /* CommonResultOk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CommonResultOk.json; sourceTree = "<group>"; };
@@ -697,6 +705,7 @@
 		91E1B49E1CA510BD008ADEE6 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				91E1B4F11CA53C25008ADEE6 /* WebApi */,
 				91E1B49F1CA510BD008ADEE6 /* Model */,
 				91E1B4A11CA510BD008ADEE6 /* View */,
 				91E1B4C01CA510BD008ADEE6 /* ViewModel */,
@@ -708,6 +717,8 @@
 			isa = PBXGroup;
 			children = (
 				91E1B4A01CA510BD008ADEE6 /* ContactsSortAndGroup.swift */,
+				91E1B4F81CA69CAA008ADEE6 /* FriendInfoListRealm.swift */,
+				91E1B4FA1CA6A475008ADEE6 /* FriendInfoListOper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -791,6 +802,15 @@
 				91E1B4AA1CA510BD008ADEE6 /* ContactsLetterView.xib */,
 			);
 			name = View;
+			sourceTree = "<group>";
+		};
+		91E1B4F11CA53C25008ADEE6 /* WebApi */ = {
+			isa = PBXGroup;
+			children = (
+				91E1B4F41CA53C96008ADEE6 /* ContactsJSON.swift */,
+				91E1B4F61CA65E1C008ADEE6 /* ContactsWebApi.swift */,
+			);
+			path = WebApi;
 			sourceTree = "<group>";
 		};
 		91F036921C8EE433003E059A /* json */ = {
@@ -1140,6 +1160,7 @@
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
 				91E1B4C51CA510BD008ADEE6 /* ContactsBaseViewController.swift in Sources */,
 				91671C9A1C9AC5A10090BB3F /* HomeUserInfo.swift in Sources */,
+				91E1B4FB1CA6A475008ADEE6 /* FriendInfoListOper.swift in Sources */,
 				9114D1F71C97AB05008CB4CE /* GoalView.swift in Sources */,
 				9114D1F21C97AB05008CB4CE /* UserProtocolView.swift in Sources */,
 				91E1B4DD1CA510BD008ADEE6 /* ContactsTabButton.swift in Sources */,
@@ -1163,6 +1184,7 @@
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
 				9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */,
 				9114D1F11C97AB05008CB4CE /* SignInViewController.swift in Sources */,
+				91E1B4F91CA69CAA008ADEE6 /* FriendInfoListRealm.swift in Sources */,
 				91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */,
 				91E1B4DB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift in Sources */,
 				91E1B4D71CA510BD008ADEE6 /* ContactsAddFriendCell.swift in Sources */,
@@ -1173,6 +1195,7 @@
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
+				91E1B4F71CA65E1C008ADEE6 /* ContactsWebApi.swift in Sources */,
 				91E1B4D51CA510BD008ADEE6 /* ContactsSearchBar.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
 				9114D1E71C97AB05008CB4CE /* AccountManagerBaseViewController.swift in Sources */,
@@ -1188,6 +1211,7 @@
 				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
 				9114D20E1C995CD2008CB4CE /* LeftTableViewCell.swift in Sources */,
+				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,

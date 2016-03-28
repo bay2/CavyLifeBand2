@@ -380,8 +380,8 @@ class GuideViewController: BaseViewController {
         
         goalView!.goalViewLayout()
         
-        goalView!.sliderStepAttribute(5000, recommandValue: 8000, minValue: 0, maxValue: 18000)
-        goalView!.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 0, minM: 0, maxH: 20, maxM: 00)
+        goalView!.sliderStepAttribute(6000, recommandValue: 8000, minValue: 0, maxValue: 20000)
+        goalView!.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 2, minM: 0, maxH: 12, maxM: 00)
         middleView.addSubview(goalView!)
         
         
