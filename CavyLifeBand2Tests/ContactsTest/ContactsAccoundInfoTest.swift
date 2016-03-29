@@ -20,7 +20,7 @@ class ContactsAccoundInfoTest: XCTestCase {
         stub(isMethodPOST()) { _ in
             
             let stubPath = OHPathForFile("AccountInfo_Ok.json", self.dynamicType)
-            return fixture(stubPath, headers: ["Content-Type" : "application/json"])
+            return fixture(stubPath!, headers: ["Content-Type" : "application/json"])
             
         }
         

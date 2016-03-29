@@ -18,15 +18,21 @@ class ContactsAccountInfoVC: UIViewController, UITableViewDelegate, UITableViewD
     /// tableView
     @IBOutlet weak var tableView: UITableView!
     
+    // 徽章视图
     @IBOutlet weak var badgeView: UIView!
     
+    // 成就
     @IBOutlet weak var badgeInfo: UILabel!
     @IBOutlet weak var badgeTitle: UILabel!
+    
     /// 徽章视图
     @IBOutlet weak var collectionView: UICollectionView!
     
     /// 退出登录
     @IBOutlet weak var logoutButton: UIButton!
+    
+    var accountDelegate: AccountInfoDelegate?
+    
     
     /// tableView 的 cell个数
     let cellCount: Int = 6
@@ -44,7 +50,31 @@ class ContactsAccountInfoVC: UIViewController, UITableViewDelegate, UITableViewD
         
         addAllViews()
         
+        accountDelegate = self
+        
+        accountInfoQuery()
     }
+    
+    /**
+     加载账户信息
+     */
+    func accountInfoQuery() {
+        
+        /// 本地取出 账户信息
+//        let accountInfo = UserInfoOperate().queryUserInfo("56d6ea3bd34635186c60492b")
+//        print(accountInfo!)
+        
+        /// 网络获取 账户信息
+        let paras = [UserNetRequsetKey.UserID.rawValue: "56d6ea3bd34635186c60492b"]
+
+        userNetReq.queryProfile(paras, completionHandler: { (result) -> Void in
+            
+            print(result)
+
+        })
+        
+    }
+    
     
     /**
      添加 TableView视图
@@ -238,16 +268,16 @@ class ContactsAccountInfoVC: UIViewController, UITableViewDelegate, UITableViewD
         return UIEdgeInsetsMake(0, 0, 0, 0)
     }
     
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
+
+extension ContactsAccountInfoVC: AccountInfoDelegate {
+    
+    var userId: String { return "56d6ea3bd34635186c60492b" }
+    
+    var viewController: UIViewController?
+    {
+        return self
+    }
+}
+
