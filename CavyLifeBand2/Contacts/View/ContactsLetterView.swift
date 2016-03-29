@@ -23,6 +23,7 @@ class ContactsLetterView: UIView {
         title.font = UIFont.systemFontOfSize(16)
         title.textColor = UIColor(named: .ContactsLetterColor)
         self.backgroundColor =  UIColor(named: .ContactsSectionColor)
+        
     }
 
     required init?(coder aDecoder: NSCoder) {

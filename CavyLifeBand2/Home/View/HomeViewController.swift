@@ -50,7 +50,7 @@ class HomeViewController: UIViewController {
             return
         }
         
-        self.pushVC(viewController)
+        self.navigationController?.pushViewController(viewController, animated: false)
         
     }
 

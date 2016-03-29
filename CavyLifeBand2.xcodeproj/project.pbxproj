@@ -63,6 +63,7 @@
 		918435E31C7C2C4E005B6E92 /* UploadPicture_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 918435E21C7C2C4E005B6E92 /* UploadPicture_Ok.json */; };
 		918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435EE1C7D629D005B6E92 /* ColorsDefine.swift */; };
 		918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435F21C7D6784005B6E92 /* LocalizableDefine.swift */; };
+		91850E271CA8D75C00915C44 /* GetFrendListResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 91850E261CA8D75C00915C44 /* GetFrendListResult.json */; };
 		918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E26D21C88307900115C4E /* NSUserDefaultsExtension.swift */; };
 		918E26DC1C891CDE00115C4E /* SignInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E26DB1C891CDE00115C4E /* SignInUITests.swift */; };
 		9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */; };
@@ -225,6 +226,7 @@
 		918435F01C7D6641005B6E92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		918435F11C7D6644005B6E92 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		918435F21C7D6784005B6E92 /* LocalizableDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableDefine.swift; sourceTree = "<group>"; };
+		91850E261CA8D75C00915C44 /* GetFrendListResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetFrendListResult.json; sourceTree = "<group>"; };
 		918E26D21C88307900115C4E /* NSUserDefaultsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultsExtension.swift; sourceTree = "<group>"; };
 		918E26DB1C891CDE00115C4E /* SignInUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUITests.swift; sourceTree = "<group>"; };
 		91931FBDB93D6202BBC98835 /* Pods-CavyLifeBand2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -777,6 +779,7 @@
 		91F036921C8EE433003E059A /* json */ = {
 			isa = PBXGroup;
 			children = (
+				91850E261CA8D75C00915C44 /* GetFrendListResult.json */,
 				91F036931C8EE433003E059A /* CommonResultOk.json */,
 				91F036941C8EE433003E059A /* ForgotPasswd_Ok.json */,
 				91F036951C8EE433003E059A /* Profile_Ok.json */,
@@ -941,6 +944,7 @@
 				917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */,
 				91E1B4D11CA510BD008ADEE6 /* ContactsPersonInfoListCell.xib in Resources */,
 				91E1B4CA1CA510BD008ADEE6 /* ContactsLetterView.xib in Resources */,
+				91850E271CA8D75C00915C44 /* GetFrendListResult.json in Resources */,
 				91F0369D1C8EE433003E059A /* Profile_Ok.json in Resources */,
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,

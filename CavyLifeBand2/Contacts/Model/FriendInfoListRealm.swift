@@ -12,9 +12,14 @@ import RealmSwift
 /// 好友信息
 class FriendInfoRealm: Object {
     
-    var friendId = ""
-    var nikeName = ""
-    var headImage = UIImage()
+    dynamic var friendId = ""
+    dynamic var nikeName = ""
+    dynamic var headImage = ""
+    dynamic var isFollow = false
+    
+//    override static func primaryKey() -> String? {
+//        return "userId"
+//    }
     
 }
 
@@ -22,11 +27,7 @@ class FriendInfoRealm: Object {
 class FriendInfoListRealm: Object {
     
     dynamic var userId = ""
-    dynamic var friendListInfo = [FriendInfoRealm]()
-    
-    override static func ignoredProperties() -> [String] {
-        return ["userId"]
-    }
+    var friendListInfo = List<FriendInfoRealm>()
     
     override static func primaryKey() -> String? {
         return "userId"

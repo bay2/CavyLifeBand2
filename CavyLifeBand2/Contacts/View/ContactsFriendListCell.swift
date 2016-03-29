@@ -51,8 +51,8 @@ class ContactsFriendListCell: UITableViewCell {
         self.dataSource = dataSource
 
         nameLabel.text = dataSource.name
-        headView.image = dataSource.headImage
         hiddenCare = dataSource.hiddenCare
+        dataSource.setHeadImageView(self.headView)
 
     }
 
@@ -74,11 +74,11 @@ class ContactsFriendListCell: UITableViewCell {
 
 protocol ContactsFriendListDataSource {
 
-    var headImage: UIImage { get }
     var name: String { get }
     var hiddenCare: Bool { set get }
 
     func onClickCell(viewController: UIViewController)
+    func setHeadImageView(headImage: UIImageView)
 
 }
 

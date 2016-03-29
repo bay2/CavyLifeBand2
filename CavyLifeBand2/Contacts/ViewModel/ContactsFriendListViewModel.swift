@@ -19,18 +19,22 @@ struct ContactsFriendCellModelView: ContactsFriendListDataSource {
     // 名字
     var name: String
     
-    // 头像
-    var headImage: UIImage
-    
     // 是否隐藏关注图标
     var hiddenCare: Bool
     
-    init(name: String, headImage: UIImage = UIImage(asset: .GuidePairSeccuss), hiddenCare: Bool = true) {
+    // 头像Url
+    var headImagUrl: String
+    
+    init(name: String, headImagUrl: String, hiddenCare: Bool = true) {
         
         self.name = name
-        self.headImage = headImage
         self.hiddenCare = hiddenCare
+        self.headImagUrl = headImagUrl
         
+    }
+    
+    func setHeadImageView(headImage: UIImageView) {
+        headImage.af_setImageWithURL(NSURL(string: headImagUrl)!, runImageTransitionIfCached: true)
     }
     
     /**
@@ -47,15 +51,45 @@ struct ContactsFriendCellModelView: ContactsFriendListDataSource {
 /**
  *  @author xuemincai
  *
+ *  添加好友table ViewModel
+ */
+struct ContactsAddFriendViewModel: ContactsFriendListDataSource {
+    
+    // 名字
+    var name: String { return L10n.ContactsAddFriendsCell.string }
+    
+    // 头像
+    var headImage: UIImageView { return UIImageView(image: UIImage(asset: .ContactsListAdd)) }
+    
+    // 是否隐藏关注图标
+    var hiddenCare: Bool = true
+    
+    /**
+     点击事件处理
+     
+     - parameter viewController:
+     */
+    func onClickCell(viewController: UIViewController) {
+        
+        viewController.pushVC(StoryboardScene.Contacts.instantiateContactsAddFriendVC())
+        
+    }
+    
+    func setHeadImageView(headImage: UIImageView) {
+        headImage.image = UIImage(asset: .ContactsListAdd)
+    }
+    
+}
+
+/**
+ *  @author xuemincai
+ *
  *  新好友cell ViewModel
  */
 struct ContactsNewFriendCellModelView: ContactsFriendListDataSource {
     
     // 名字
     var name: String { return L10n.ContactsNewFriendsCell.string }
-    
-    // 头像
-    var headImage: UIImage { return UIImage(asset: .ContactsListNew) }
     
     // 是否隐藏关注图标
     var hiddenCare: Bool = true
@@ -71,6 +105,10 @@ struct ContactsNewFriendCellModelView: ContactsFriendListDataSource {
         
     }
     
+    func setHeadImageView(headImage: UIImageView) {
+        headImage.image = UIImage(asset: .ContactsListNew)
+    }
+    
 }
 
 /**
@@ -83,9 +121,6 @@ struct ContactsCavyModelView: ContactsFriendListDataSource {
     // 名字
     var name: String { return L10n.ContactsListCellCavy.string }
     
-    // 头像
-    var headImage: UIImage { return UIImage(asset: .ContactsListCavy) }
-    
     // 是否隐藏关注图标
     var hiddenCare: Bool = true
     
@@ -96,6 +131,10 @@ struct ContactsCavyModelView: ContactsFriendListDataSource {
      */
     func onClickCell(viewController: UIViewController) {
         
+    }
+    
+    func setHeadImageView(headImage: UIImageView) {
+        headImage.image = UIImage(asset: .ContactsListCavy)
     }
     
 }

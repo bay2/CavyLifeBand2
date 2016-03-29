@@ -50,13 +50,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="uHi-8I-CQV">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="czD-aZ-fpp">
-                            <connections>
-                                <action selector="onClickMenu:" destination="LJc-uM-C97" id="tSD-Ww-MjI"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" id="uHi-8I-CQV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WLa-zq-oYU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

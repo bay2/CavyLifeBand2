@@ -8,7 +8,9 @@
 
 import UIKit
 import EZSwiftExtensions
-
+import JSONJoy
+import AlamofireImage
+import RealmSwift
 
 
 class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating {
@@ -17,13 +19,19 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating 
 
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var contactsTable: UITableView!
+    
+    var notificationToken: NotificationToken?
 
     var searchCtrl  = ContactsSearchController(searchResultsController: StoryboardScene.Contacts.instantiateSearchResultView())
     var searchCtrlView = StoryboardScene.Contacts.instantiateSearchResultView().view
     
-    var dataSource: [ContactsFriendListDataSource] = [ContactsFriendCellModelView(name: "吖吖的"), ContactsFriendCellModelView(name: "闭包"),
-                                                      ContactsFriendCellModelView(name: "八卦镇"), ContactsFriendCellModelView(name: "东波排骨")]
+    var dataSource: [ContactsFriendListDataSource] = [ContactsFriendListDataSource]()
     var dataGroup: ContactsSortAndGroup?
+    
+    var friendInfoList: List<FriendInfoRealm>?
+    
+    var friendListRealmOpen: FriendInfoListOper = FriendInfoListOper()
+    
 
     
     override func viewDidLoad() {
@@ -32,16 +40,65 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating 
 
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
-
-        dataGroup = ContactsSortAndGroup(contactsList: dataSource)
-        
-        dataGroup!.contactsGroupList!.insertAsFirst(("", defulatDataSource))
-        
         configureSearchController()
         
-
+        loadFirendListData()
+        
+        notificationToken = friendInfoListRealm.addNotificationBlock { (notification, realm) in
+            
+            self.loadFirendListData()
+        }
+        
+        
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        super.viewWillAppear(animated)
+        
+        friendListRealmOpen.loadFriendListDataByNet(loginUserId)
+        
+    }
+    
+    func loadFirendListData() {
+        
+        friendInfoList = friendListRealmOpen.queryFriendList(loginUserId)
+        
+        updateDataSource()
+        
+        self.contactsTable.reloadData()
+        
+    }
+    
+    /**
+     更新数据
+     */
+    func updateDataSource() {
+        
+        guard let _ = friendInfoList else {
+            dataGroup = ContactsSortAndGroup(contactsList: dataSource)
+            dataGroup?.insertAsFrist(defulatDataSource)
+            return
+        }
+        
+        dataSource.removeAll()
+        
+        for friendInfo in friendInfoList! {
+            
+            let contactsFriendInfo = ContactsFriendCellModelView(name: friendInfo.nikeName, headImagUrl: friendInfo.headImage, hiddenCare: !friendInfo.isFollow)
+            dataSource.append(contactsFriendInfo)
+            
+        }
+        
+        dataGroup = ContactsSortAndGroup(contactsList: dataSource)
+        dataGroup?.insertAsFrist(defulatDataSource)
+        
+    }
+    
+    
+    /**
+     跳转到添加好友
+     */
     func pushAddFriendView() {
 
         self.pushVC(StoryboardScene.Contacts.instantiateContactsAddFriendVC())
@@ -268,7 +325,6 @@ extension ContactsFriendListVC {
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactsFriendListCell", forIndexPath: indexPath) as! ContactsFriendListCell
         
         var names = self.dataGroup!.contactsGroupList
-        
         
         cell.configure(names![indexPath.section].1[indexPath.row])
         
