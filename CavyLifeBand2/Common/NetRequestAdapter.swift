@@ -26,6 +26,7 @@ class NetRequestAdapter: NSObject {
         
         var parameters: [String: AnyObject] = ["phoneType": "ios", "language": UIDevice.deviceLanguage()]
         
+        
         //发送API请求
         if para != nil {
             parameters = parameters.union(para!)

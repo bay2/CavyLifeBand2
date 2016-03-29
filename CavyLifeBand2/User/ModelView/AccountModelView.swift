@@ -50,8 +50,7 @@ extension SignInDelegate {
 
             let defaults = NSUserDefaults.standardUserDefaults()
 
-            defaults["userName"] = self.userName
-            defaults["passwd"] = self.passwd
+            defaults["defulatUserId"] = msg.userId!
             defaults.synchronize()
 
             Log.info("Sign in succeess")

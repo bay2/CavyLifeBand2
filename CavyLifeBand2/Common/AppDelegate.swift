@@ -9,9 +9,9 @@
 import UIKit
 import KSCrash
 import Log
-#if UITEST
+//#if UITEST
 import OHHTTPStubs
-#endif
+//#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,16 +20,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
-    
-        self.window?.rootViewController = UINavigationController(rootViewController: StoryboardScene.Contacts.instantiateContactsFriendListVC())
-        
         let installation = KSCrashInstallationStandard.sharedInstance()
         
         installation.url = NSURL(string: bugHDKey)
 
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
-
+        
+        if loginUserId != "" {
+            
+            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
+            
+        }
+        
+//        stub(isMethodPOST()) { _ in
+//            let stubPath = OHPathForFile("GetFrendListResult.json", self.dynamicType)
+//            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+//        }
+        
         
 #if UITEST
             
@@ -43,6 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 #if UITEST
     
     func uiTestStub() {
+    
+        stub(isMethodPOST()) { _ in
+            let stubPath = OHPathForFile("GetFrendListResult.json", self.dynamicType)
+            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+        }
+
     
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_IN") {
     

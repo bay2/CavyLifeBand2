@@ -382,7 +382,7 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         signInDelegate?.signIn {
             
             if $0 == true {
-                let guideVC = StoryboardScene.Guide.instantiateGuideView()
+                let guideVC = StoryboardScene.Home.instantiateRootView()
                 self.pushVC(guideVC)
             }
             

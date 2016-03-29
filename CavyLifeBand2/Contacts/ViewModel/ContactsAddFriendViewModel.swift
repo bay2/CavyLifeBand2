@@ -9,34 +9,7 @@
 import UIKit
 
 
-/**
- *  @author xuemincai
- *
- *  添加好友table ViewModel
- */
-struct ContactsAddFriendViewModel: ContactsFriendListDataSource {
-    
-    // 名字
-    var name: String { return L10n.ContactsAddFriendsCell.string }
-    
-    // 头像
-    var headImage: UIImage { return UIImage(asset: .ContactsListAdd) }
-    
-    // 是否隐藏关注图标
-    var hiddenCare: Bool = true
-    
-    /**
-     点击事件处理
-     
-     - parameter viewController:
-     */
-    func onClickCell(viewController: UIViewController) {
-        
-        viewController.pushVC(StoryboardScene.Contacts.instantiateContactsAddFriendVC())
-        
-    }
-    
-}
+
 
 
 extension ContactsAddFriendCellDelegate {

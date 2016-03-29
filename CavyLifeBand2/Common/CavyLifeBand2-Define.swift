@@ -40,6 +40,21 @@ enum NotificationName: String {
     case HomeLeftHiddenMenu
 }
 
+// 已经登录的用户id
+var loginUserId: String {
+
+get {
+    
+    let defaults = NSUserDefaults.standardUserDefaults()
+    guard let userId = defaults["defulatUserId"] as? String else {
+        return ""
+    }
+    
+    return userId
+}
+
+}
+
 // web 接口错误码定义
 enum WebApiCode: String {
 
