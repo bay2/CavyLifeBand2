@@ -35,7 +35,10 @@ struct UserProfileMsg {
     var nickName: String?
     var stepNum: Int?
     var sleepTime: String?
+    var notification: String?
+    var localShare: String?
 
+    
     init(_ decoder: JSONDecoder) throws  {
 
         commonMsg = try CommenMsg(decoder)
@@ -49,7 +52,9 @@ struct UserProfileMsg {
         do { nickName = try decoder["nickname"].getString() } catch { nickName = "" }
         do { stepNum = try decoder["stepNum"].getInt() } catch { stepNum = 0 }
         do { sleepTime = try decoder["sleepTime"].getString() } catch { sleepTime = "" }
-        
+        do { notification = try decoder["notification"].getString() } catch { notification = "" }
+        do { localShare = try decoder["localShare"].getString() } catch { localShare = "" }
+
     }
 
 }

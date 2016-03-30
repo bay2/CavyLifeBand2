@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
-		4C3B268E1CAA27E5000683A8 /* ContactsAccountInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3B268D1CAA27E5000683A8 /* ContactsAccountInfoViewModel.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4CC498FD1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */; };
 		4CC498FE1CA9101800B2EE85 /* ContactsFriendViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC498FC1CA9101800B2EE85 /* ContactsFriendViewUITests.swift */; };
@@ -165,7 +164,6 @@
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
-		4C3B268D1CAA27E5000683A8 /* ContactsAccountInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountInfoViewModel.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountInfoUItests.swift; sourceTree = "<group>"; };
 		4CC498FC1CA9101800B2EE85 /* ContactsFriendViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendViewUITests.swift; sourceTree = "<group>"; };
@@ -341,14 +339,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4C3B268C1CAA27BA000683A8 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				4C3B268D1CAA27E5000683A8 /* ContactsAccountInfoViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		4CC498FA1CA9101800B2EE85 /* ContactsUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,7 +688,6 @@
 		91E1B49A1CA50DEF008ADEE6 /* AccountInfo */ = {
 			isa = PBXGroup;
 			children = (
-				4C3B268C1CAA27BA000683A8 /* ViewModel */,
 				91E1B49B1CA50DEF008ADEE6 /* View */,
 			);
 			path = AccountInfo;
@@ -1236,7 +1225,6 @@
 				9114D1EE1C97AB05008CB4CE /* MainPageViewController.swift in Sources */,
 				91E1B4D01CA510BD008ADEE6 /* ContactsPersonInfoListCell.swift in Sources */,
 				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
-				4C3B268E1CAA27E5000683A8 /* ContactsAccountInfoViewModel.swift in Sources */,
 				9114D1FB1C97AB05008CB4CE /* RulerScroller.swift in Sources */,
 				91E1B4C61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift in Sources */,
 				9114D1F61C97AB05008CB4CE /* GenderView.swift in Sources */,

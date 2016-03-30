@@ -290,8 +290,10 @@ class GuideViewController: BaseViewController {
             nextView.viewStyle = .SettingLocationShare
             self.pushVC(nextView)
         case .SettingLocationShare:
-            let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
-            pushVC(accountVC)
+            
+            let homeVC = StoryboardScene.Home.instantiateRootView()
+            pushVC(homeVC)
+
         }
         
     }

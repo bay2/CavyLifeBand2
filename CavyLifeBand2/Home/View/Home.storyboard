@@ -87,7 +87,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Krp-ZQ-cTc" customClass="HomeUserInfo" customModule="CavyLifeBand2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="206"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="agG-sP-Lip">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="agG-sP-Lip">
                                         <rect key="frame" x="32" y="32" width="80" height="80"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>

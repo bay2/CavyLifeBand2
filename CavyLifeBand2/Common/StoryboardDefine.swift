@@ -35,8 +35,13 @@ extension UIViewController {
 }
 
 struct StoryboardScene {
-  enum AccountInfo: StoryboardSceneType {
+  enum AccountInfo: String, StoryboardSceneType {
     static let storyboardName = "AccountInfo"
+
+    case ContactsAccountInfoVCScene = "ContactsAccountInfoVC"
+    static func instantiateContactsAccountInfoVC() -> ContactsAccountInfoVC {
+      return StoryboardScene.AccountInfo.ContactsAccountInfoVCScene.viewController() as! ContactsAccountInfoVC
+    }
   }
   enum Camera: String, StoryboardSceneType {
     static let storyboardName = "Camera"

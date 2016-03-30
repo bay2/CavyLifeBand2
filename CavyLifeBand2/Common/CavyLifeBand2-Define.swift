@@ -38,6 +38,7 @@ enum NotificationName: String {
     case HomeLeftOnClickMenu
     case HomeLeftOnClickCellPushView
     case HomeLeftHiddenMenu
+    case HomeLeftAccountInfo
 }
 
 // 已经登录的用户id
