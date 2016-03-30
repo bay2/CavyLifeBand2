@@ -88,5 +88,90 @@ extension FriendInfoListDelegate {
         return true
     }
     
+}
+
+/**
+ *  @author xuemincai
+ *
+ *  关注好友协议
+ */
+protocol FollowFriendDelegate {
+    
+    var realm: Realm { get }
+    var userId: String { get }
+    
+    func setFollowFriend(friendId: String, isFollow: Bool)
+    
+}
+
+extension FollowFriendDelegate {
+    
+    /**
+     设置好友关注
+     
+     - parameter friendId: 好友id
+     - parameter isFollow: true 关注，false 不关注
+     */
+    func setFollowFriend(friendId: String, isFollow: Bool) {
+        
+        guard let friendList = realm.objects(FriendInfoListRealm).filter("userId = '\(userId)'").first else {
+            return
+        }
+        
+        guard let friendInfo = friendList.friendListInfo.filter("friendId = \(friendId)").first else {
+            return
+        }
+        
+        self.realm.beginWrite()
+        
+        friendInfo.isFollow = isFollow
+        
+        do {
+            try self.realm.commitWrite()
+        } catch let error {
+            Log.error("\(#function) error = \(error)")
+        }
+        
+    }
+    
+}
+
+/**
+ *  @author xuemincai
+ *
+ *  删除好友
+ */
+protocol DeleteFriendDelegate {
+    
+    var realm: Realm { get }
+    var userId: String { get }
+    
+    func deleteFriend(friendId: String)
+    
+}
+
+extension DeleteFriendDelegate {
+    
+    func deleteFriend(friendId: String) {
+        
+        guard let friendList = realm.objects(FriendInfoListRealm).filter("userId = '\(userId)'").first else {
+            return
+        }
+        
+        guard let friendInfo = friendList.friendListInfo.filter("friendId = '\(friendId)'").first else {
+            return
+        }
+        
+        self.realm.beginWrite()
+        
+        self.realm.delete(friendInfo)
+        
+        do {
+            try self.realm.commitWrite()
+        } catch let error {
+            Log.error("\(#function) error = \(error)")
+        }
+        
+    }
     
 }

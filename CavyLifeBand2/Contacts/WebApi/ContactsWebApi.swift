@@ -9,11 +9,6 @@
 import Alamofire
 import Log
 
-enum FollowType: Int {
-    case Follow = 1
-    case UndoFollow = 2
-}
-
 class ContactsWebApi: NetRequestAdapter {
     
     
@@ -242,12 +237,12 @@ class ContactsWebApi: NetRequestAdapter {
      - parameter follow:   关注/取消关注
      - parameter callBack: 回调
      */
-    func followFriend(userId: String, friendId: String, follow: FollowType, callBack: CompletionHandlernType? = nil) {
+    func followFriend(userId: String, friendId: String, follow: Bool, callBack: CompletionHandlernType? = nil) {
         
         let parametes: [String: AnyObject] = [ContactsApiParaKey.Cmd.rawValue: ContactsApiCmd.FollowFriend.rawValue,
                                               ContactsApiParaKey.UserId.rawValue: userId,
                                               ContactsApiParaKey.FriendId.rawValue: friendId,
-                                              ContactsApiParaKey.IsFollow.rawValue: follow.rawValue]
+                                              ContactsApiParaKey.IsFollow.rawValue: follow]
         
         netPostRequestAdapter(webApiAddr, para: parametes, completionHandler: callBack)
         

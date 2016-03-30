@@ -9,12 +9,13 @@
 import UIKit
 import EZSwiftExtensions
 import JSONJoy
+import Alamofire
 import AlamofireImage
 import RealmSwift
 import Log
 
 
-class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating, FriendInfoListDelegate {
+class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating, FriendInfoListDelegate, FollowFriendDelegate, DeleteFriendDelegate {
 
     let defulatDataSource: [ContactsFriendListDataSource] = [ContactsAddFriendViewModel(), ContactsNewFriendCellModelView(), ContactsCavyModelView()]
 
@@ -211,7 +212,7 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating,
      - parameter index:  索引
      - parameter follow: 关注类型
      */
-    func followFriend(index: NSIndexPath, follow: FollowType) {
+    func followFriend(index: NSIndexPath, follow: Bool) {
         
         let friendList = dataGroup!.contactsGroupList![index.section].1
         let friendId = friendList[index.row].friendId
@@ -223,29 +224,14 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating,
                 return
             }
             
-            do {
-                
-                let resultMsg = try CommenMsg(JSONDecoder(result.value!))
-                
-                guard resultMsg.code == WebApiCode.Success.rawValue else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: resultMsg.code!)
-                    return
-                }
-                
-                self.realm.beginWrite()
-                
-                let friendList = self.queryFriendList()
-                
-                let isFollow = follow == .Follow ? true : false
-                
-                friendList!.friendListInfo.filter("friendId = '\(friendId)'").setValue(isFollow, forKey: "isFollow")
-                
-                try! self.realm.commitWrite()
-                
-            } catch let error {
-                Log.error(" \(#function) error (\(error))")
+            let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
+            
+            guard resultMsg.code == WebApiCode.Success.rawValue else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: resultMsg.code!)
+                return
             }
             
+            self.setFollowFriend(friendId, isFollow: follow)
             
         }
         
@@ -293,33 +279,85 @@ extension ContactsFriendListVC {
             return nil
         }
         
-        var names = self.dataGroup!.contactsGroupList![indexPath.section].1
+        let concernAction = createFollowAction(indexPath)
+        let pkRowAction = createPkAction()
+        let deleteRowAction = createDelAction(indexPath)
+       
+        return [deleteRowAction, concernAction, pkRowAction]
+    }
+    
+    /**
+     添加删除按钮
+     
+     - parameter indexPath: 索引
+     
+     - returns:
+     */
+    func createDelAction(indexPath: NSIndexPath) -> UITableViewRowAction {
         
-        let deletRowAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellDelete.string) { (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
+        var names = self.dataGroup!.contactsGroupList![indexPath.section].1
+        let friendId = names[indexPath.row].friendId
+        
+        let deleteFriendNetDataParse: (Result<AnyObject, UserRequestErrorType>) -> Void = { reslut in
             
-            if names.count == 1 {
-                
-                tableView.beginUpdates()
-                self.dataSource.removeAtIndex(indexPath.section)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                tableView.deleteSections(NSIndexSet(index: indexPath.section), withRowAnimation: .Fade)
-                tableView.endUpdates()
-                
-            } else {
-                
-                names.removeAtIndex(indexPath.row)
-                
-                self.dataGroup!.contactsGroupList![indexPath.section].1 = names
-                
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-                
+            guard reslut.isSuccess else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: reslut.error!)
+                return
             }
+        
+            let reslutMsg = try! CommenMsg(JSONDecoder(reslut.value!))
+        
+            guard reslutMsg.code == WebApiCode.Success.rawValue else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: reslutMsg.code!)
+                return
+            }
+            
+            self.deleteFriend(friendId)
+        
+        }
+        
+        let deleteActionProc: (UITableViewRowAction, NSIndexPath) -> Void = { _, _ in
+            
+            ContactsWebApi.shareApi.delFriend(self.userId, friendId: friendId, callBack: deleteFriendNetDataParse)
             
         }
         
-        deletRowAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
         
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsFriendListCell
+        let deleteRowAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellDelete.string, handler: deleteActionProc)
+        
+        
+        deleteRowAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
+        
+        return deleteRowAction
+        
+    }
+    
+    
+    /**
+     创建PK按钮
+     */
+    func createPkAction() -> UITableViewRowAction {
+        
+        let pkRowAction = UITableViewRowAction(style: .Default, title: " PK ") {_, _ in
+            
+            self.contactsTable.editing = false
+            
+        }
+        
+        pkRowAction.backgroundColor = UIColor(named: .ContactsPKBtnColor)
+
+        return pkRowAction
+
+    }
+    
+    /**
+     创建关注按钮
+     */
+    func createFollowAction(indexPath: NSIndexPath) -> UITableViewRowAction {
+        
+        let cell = contactsTable.cellForRowAtIndexPath(indexPath) as? ContactsFriendListCell
+        
+        var names = self.dataGroup!.contactsGroupList![indexPath.section].1
         
         let concernActionTitle = cell!.hiddenCare ? L10n.ContactsListCellCare.string : L10n.ContactsListCellUndoCare.string
         let concernActionColor = cell!.hiddenCare ? UIColor(named: .ContactsCareBtnColor) : UIColor(named: .ContactsUndoCareBtnColor)
@@ -327,29 +365,20 @@ extension ContactsFriendListVC {
         let concernAction = UITableViewRowAction(style: .Default, title: concernActionTitle) {
             (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
             
-            tableView.editing = false
+            self.contactsTable.editing = false
             
             cell?.hiddenCare = !cell!.hiddenCare
             names[indexPath.row].hiddenCare = cell!.hiddenCare
             
-            let followType = cell!.hiddenCare ? FollowType.UndoFollow : FollowType.Follow
-            self.followFriend(indexPath, follow: followType)
+            self.followFriend(indexPath, follow: !cell!.hiddenCare)
             
         }
 
         concernAction.backgroundColor = concernActionColor
         
-        let pkRowAction = UITableViewRowAction(style: .Default, title: " PK ") {_, _ in
-            
-            tableView.editing = false
-            
-        }
+        return concernAction
         
-        pkRowAction.backgroundColor = UIColor(named: .ContactsPKBtnColor)
-
-        return [deletRowAction, concernAction, pkRowAction]
     }
-    
     
     /**
      cell 编辑类型
