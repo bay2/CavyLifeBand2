@@ -76,6 +76,7 @@ protocol ContactsFriendListDataSource {
 
     var name: String { get }
     var hiddenCare: Bool { set get }
+    var friendId: String { get }
 
     func onClickCell(viewController: UIViewController)
     func setHeadImageView(headImage: UIImageView)
