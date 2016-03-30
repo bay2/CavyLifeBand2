@@ -58,7 +58,7 @@ struct ContactsSearchFriendMsg: JSONJoy {
         
         commonMsg = try CommenMsg(decoder)
         friendInfos = [ContactsSearchFriendInfo]()
-        for friendInfo in decoder.array! {
+        for friendInfo in decoder["friendInfos"].array! {
             
             friendInfos?.append(try ContactsSearchFriendInfo(friendInfo))
             

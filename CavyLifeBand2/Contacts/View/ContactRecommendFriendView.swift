@@ -8,6 +8,7 @@
 
 import UIKit
 import EZSwiftExtensions
+import SnapKit
 
 class ContactRecommendFriendView: UIView {
     
@@ -19,6 +20,8 @@ class ContactRecommendFriendView: UIView {
         // 添加 SearchController 和 TableView
         tableView.frame = CGRectMake(0, 44, ez.screenWidth, ez.screenHeight)
         addSubview(tableView)
+        tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        self.backgroundColor = UIColor(named: .HomeViewMainColor)
     }
     
     /**
@@ -29,6 +32,10 @@ class ContactRecommendFriendView: UIView {
     func addSearchBar(searchBar: UISearchBar) {
         
         addSubview(searchBar)
+        searchBar.snp_makeConstraints { (make) in
+            make.top.left.right.equalTo(self)
+        }
+        
     }
 
     required init?(coder aDecoder: NSCoder) {

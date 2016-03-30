@@ -24,8 +24,11 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating,
     
     var notificationToken: NotificationToken?
 
+    @IBOutlet weak var searchCtrlView: UITableView!
+    // 搜索控件
     var searchCtrl  = ContactsSearchController(searchResultsController: StoryboardScene.Contacts.instantiateSearchResultView())
-    var searchCtrlView = StoryboardScene.Contacts.instantiateSearchResultView().view
+    
+    // 搜索页面视图
     
     var dataSource: [ContactsFriendListDataSource] = [ContactsFriendListDataSource]()
     var dataGroup: ContactsSortAndGroup?
@@ -171,7 +174,7 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating,
     func configureSearchController() {
 
         searchView.addSubview(searchCtrl.contactsSearchBar!)
-
+        
         searchCtrl.searchResultsUpdater = self
 
     }
@@ -181,7 +184,6 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating,
         // Dispose of any resources that can be recreated.
     }
     
-
 
     func requestAction() {
         
@@ -194,12 +196,14 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating,
 
         if searchCtrl.isSearching {
 
-//            self.view.addSubview(searchCtrlView)
+            searchCtrlView.hidden = false
+            contactsTable.hidden = true
             self.navigationController?.setNavigationBarHidden(true, animated: true)
 
         } else {
 
-//            searchCtrlView.removeFromSuperview()
+            searchCtrlView.hidden = true
+            contactsTable.hidden = false
             self.navigationController?.setNavigationBarHidden(false, animated: true)
 
         }
