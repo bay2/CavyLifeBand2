@@ -43,7 +43,7 @@ class HightView: UIView, RulerViewDelegate {
             make.top.equalTo(self).offset(spacingWidth25 * 2)
         }
         
-        heightLabel.text = "180"
+        heightLabel.text = "160"
         heightLabel.font = UIFont.systemFontOfSize(48)
         heightLabel.textColor = UIColor(named: .GuideColorCC)
         heightLabel.textAlignment = NSTextAlignment.Center

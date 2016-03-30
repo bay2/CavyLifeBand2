@@ -461,9 +461,9 @@
 				9114D1D91C97AB05008CB4CE /* GoalView.swift */,
 				9114D1DA1C97AB05008CB4CE /* GoalView.xib */,
 				9114D1DB1C97AB05008CB4CE /* HightView.swift */,
+				9114D1E01C97AB05008CB4CE /* WeightView.swift */,
 				9114D1DC1C97AB05008CB4CE /* PictureView.swift */,
 				9114D1DD1C97AB05008CB4CE /* ScrollRuler */,
-				9114D1E01C97AB05008CB4CE /* WeightView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";

@@ -59,7 +59,7 @@ class GuideViewController: BaseViewController {
     @IBOutlet weak var guideButton: UIButton!
     
     // 视图风格
-    var viewStyle: GuideViewStyle = .BandBluetooth
+    var viewStyle: GuideViewStyle = .GuideHeight
     
     override func viewDidLoad() {
         super.viewDidLoad()
