@@ -9,6 +9,11 @@
 import Alamofire
 import Log
 
+enum FollowType: Int {
+    case Follow = 1
+    case UndoFollow = 2
+}
+
 class ContactsWebApi: NetRequestAdapter {
     
     
@@ -46,10 +51,7 @@ class ContactsWebApi: NetRequestAdapter {
         
     }
     
-    enum FollowType: Int {
-        case Follow = 1
-        case UndoFollow = 2
-    }
+
     
     static var shareApi = ContactsWebApi()
     
@@ -252,3 +254,4 @@ class ContactsWebApi: NetRequestAdapter {
     }
     
 }
+

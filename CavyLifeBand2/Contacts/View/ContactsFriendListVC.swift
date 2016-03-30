@@ -11,9 +11,10 @@ import EZSwiftExtensions
 import JSONJoy
 import AlamofireImage
 import RealmSwift
+import Log
 
 
-class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating {
+class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating, FriendInfoListDelegate {
 
     let defulatDataSource: [ContactsFriendListDataSource] = [ContactsAddFriendViewModel(), ContactsNewFriendCellModelView(), ContactsCavyModelView()]
 
@@ -28,11 +29,8 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating 
     var dataSource: [ContactsFriendListDataSource] = [ContactsFriendListDataSource]()
     var dataGroup: ContactsSortAndGroup?
     
-    var friendInfoList: List<FriendInfoRealm>?
-    
-    var friendListRealmOpen: FriendInfoListOper = FriendInfoListOper()
-    
-
+    var realm: Realm = try! Realm()
+    var userId: String { return loginUserId }
     
     override func viewDidLoad() {
         
@@ -44,11 +42,69 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating 
         
         loadFirendListData()
         
-        notificationToken = friendInfoListRealm.addNotificationBlock { (notification, realm) in
+        notificationToken = realm.addNotificationBlock { _, _ in
             
             self.loadFirendListData()
+            
         }
         
+    }
+    
+    /**
+     通过网络加载数据
+     */
+    func loadFriendListDataByNet() {
+        
+        ContactsWebApi.shareApi.getFriendList(userId) { (result) in
+            
+            guard result.isSuccess else {
+                
+                Log.error("Get friend list error")
+                return
+            }
+            
+            do {
+                
+                let netResult = try ContactsFriendListMsg(JSONDecoder(result.value!))
+                self.parserFriendListData(netResult)
+                
+            } catch let error {
+                
+                Log.error("\(#function) result error (\(error))")
+                
+            }
+            
+        }
+    }
+    
+    /**
+     解析好友列表数据
+     */
+    func parserFriendListData(result: ContactsFriendListMsg) {
+        
+        guard result.commonMsg?.code == WebApiCode.Success.rawValue else {
+            Log.error("Query friend list error \(result.commonMsg?.code)")
+            return
+        }
+        
+        let friendList = FriendInfoListRealm()
+        
+        friendList.userId = userId
+        
+        for friendInfo in result.friendInfos! {
+            
+            let friendInfoRealm = FriendInfoRealm()
+            
+            friendInfoRealm.headImage = friendInfo.avatarUrl!
+            friendInfoRealm.friendId = friendInfo.userId!
+            friendInfoRealm.nikeName = friendInfo.nickName!
+            friendInfoRealm.isFollow = friendInfo.isFoolow!
+            
+            friendList.friendListInfo.append(friendInfoRealm)
+            
+        }
+        
+        saveFriendList(friendList)
         
     }
     
@@ -56,13 +112,16 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating 
         
         super.viewWillAppear(animated)
         
-        friendListRealmOpen.loadFriendListDataByNet(loginUserId)
+        loadFriendListDataByNet()
         
     }
     
+    /**
+     加载好友列表数据
+     */
     func loadFirendListData() {
         
-        friendInfoList = friendListRealmOpen.queryFriendList(loginUserId)
+        queryFriendList()
         
         updateDataSource()
         
@@ -75,17 +134,17 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating 
      */
     func updateDataSource() {
         
-        guard let _ = friendInfoList else {
+        dataSource.removeAll()
+        
+        guard let friendList = queryFriendList() else {
             dataGroup = ContactsSortAndGroup(contactsList: dataSource)
             dataGroup?.insertAsFrist(defulatDataSource)
             return
         }
         
-        dataSource.removeAll()
-        
-        for friendInfo in friendInfoList! {
+        for friendInfo in friendList.friendListInfo {
             
-            let contactsFriendInfo = ContactsFriendCellModelView(name: friendInfo.nikeName, headImagUrl: friendInfo.headImage, hiddenCare: !friendInfo.isFollow)
+            let contactsFriendInfo = ContactsFriendCellModelView(friendId: friendInfo.friendId, name: friendInfo.nikeName, headImagUrl: friendInfo.headImage, hiddenCare: !friendInfo.isFollow)
             dataSource.append(contactsFriendInfo)
             
         }
@@ -144,6 +203,52 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating 
 
         }
 
+    }
+    
+    /**
+     关注好友
+     
+     - parameter index:  索引
+     - parameter follow: 关注类型
+     */
+    func followFriend(index: NSIndexPath, follow: FollowType) {
+        
+        let friendList = dataGroup!.contactsGroupList![index.section].1
+        let friendId = friendList[index.row].friendId
+        
+        ContactsWebApi.shareApi.followFriend(userId, friendId: friendId, follow: follow) { result in
+            
+            guard result.isSuccess else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
+                return
+            }
+            
+            do {
+                
+                let resultMsg = try CommenMsg(JSONDecoder(result.value!))
+                
+                guard resultMsg.code == WebApiCode.Success.rawValue else {
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: resultMsg.code!)
+                    return
+                }
+                
+                self.realm.beginWrite()
+                
+                let friendList = self.queryFriendList()
+                
+                let isFollow = follow == .Follow ? true : false
+                
+                friendList!.friendListInfo.filter("friendId = '\(friendId)'").setValue(isFollow, forKey: "isFollow")
+                
+                try! self.realm.commitWrite()
+                
+            } catch let error {
+                Log.error(" \(#function) error (\(error))")
+            }
+            
+            
+        }
+        
     }
     
 
@@ -226,6 +331,9 @@ extension ContactsFriendListVC {
             
             cell?.hiddenCare = !cell!.hiddenCare
             names[indexPath.row].hiddenCare = cell!.hiddenCare
+            
+            let followType = cell!.hiddenCare ? FollowType.UndoFollow : FollowType.Follow
+            self.followFriend(indexPath, follow: followType)
             
         }
 

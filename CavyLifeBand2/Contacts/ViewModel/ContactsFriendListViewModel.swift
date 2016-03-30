@@ -25,11 +25,15 @@ struct ContactsFriendCellModelView: ContactsFriendListDataSource {
     // 头像Url
     var headImagUrl: String
     
-    init(name: String, headImagUrl: String, hiddenCare: Bool = true) {
+    // 好友用户ID
+    var friendId: String
+    
+    init(friendId: String, name: String, headImagUrl: String, hiddenCare: Bool = true) {
         
         self.name = name
         self.hiddenCare = hiddenCare
         self.headImagUrl = headImagUrl
+        self.friendId = friendId
         
     }
     
@@ -57,6 +61,8 @@ struct ContactsAddFriendViewModel: ContactsFriendListDataSource {
     
     // 名字
     var name: String { return L10n.ContactsAddFriendsCell.string }
+    
+    var friendId: String { return "" }
     
     // 头像
     var headImage: UIImageView { return UIImageView(image: UIImage(asset: .ContactsListAdd)) }
@@ -91,6 +97,8 @@ struct ContactsNewFriendCellModelView: ContactsFriendListDataSource {
     // 名字
     var name: String { return L10n.ContactsNewFriendsCell.string }
     
+    var friendId: String { return "" }
+    
     // 是否隐藏关注图标
     var hiddenCare: Bool = true
     
@@ -123,6 +131,8 @@ struct ContactsCavyModelView: ContactsFriendListDataSource {
     
     // 是否隐藏关注图标
     var hiddenCare: Bool = true
+    
+    var friendId: String { return "" }
     
     /**
      点击事件处理
