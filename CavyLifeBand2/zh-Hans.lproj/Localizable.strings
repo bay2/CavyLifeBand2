@@ -136,6 +136,8 @@
 "Contacts.ShowInfo.Address" = "地址";
 "Contacts.ShowInfo.old" = "年龄";
 "Contacts.ShowInfo.Gender" = "性别";
+"Contacts.Gender.Girl" = "女";
+"Contacts.Gender.Boy" = "男";
 "Contacts.ShowInfo.NotesName" = "设置备注";
 "Contacts.ShowInfo.TransformNotes" = "点击修改备注";
 "Contacts.ShowInfo.Height" = "身高";

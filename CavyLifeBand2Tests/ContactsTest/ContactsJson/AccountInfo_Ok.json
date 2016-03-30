@@ -1,0 +1,14 @@
+{
+    "cmd": "0000",
+    "userId": "18758567803"
+    "nickname": "nnn",
+    "sex": "1",
+    "height": "160",
+    "weight": "50",
+    "birthday": "1993-03-03",
+    "address": "北京",
+    "stepNum" : 5000,
+    "sleepTime" : "6:30",
+    "isNotification" : true,
+    "isLocalShare" : true,
+}

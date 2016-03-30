@@ -59,7 +59,7 @@ class GuideViewController: BaseViewController {
     @IBOutlet weak var guideButton: UIButton!
     
     // 视图风格
-    var viewStyle: GuideViewStyle = .BandBluetooth
+    var viewStyle: GuideViewStyle = .GuideHeight
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -290,8 +290,10 @@ class GuideViewController: BaseViewController {
             nextView.viewStyle = .SettingLocationShare
             self.pushVC(nextView)
         case .SettingLocationShare:
-            let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
-            pushVC(accountVC)
+            
+            let homeVC = StoryboardScene.Home.instantiateRootView()
+            pushVC(homeVC)
+
         }
         
     }

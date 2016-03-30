@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import EZSwiftExtensions
 
-struct LeftListViewModel: LeftListCellDateSource, LeftListCellDelegate {
+struct LeftListViewModel: LeftListCellDateSource, LeftListCellDelegate, LeftMenuPushViewDelegate {
 
     var title: String
     var icon: UIImage
@@ -26,9 +26,30 @@ struct LeftListViewModel: LeftListCellDateSource, LeftListCellDelegate {
 
 }
 
+protocol LeftMenuPushViewDelegate {
+    
+    var nextView: UIViewController { get }
+    
+    func pushView()
+
+}
+
+extension LeftMenuPushViewDelegate {
+    
+    func pushView() {
+        
+        let userInfo = ["nextView": self.nextView] as [NSObject: AnyObject]
+
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil, userInfo: userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
+
+    }
+    
+}
+
 
 class LeftViewController: UIViewController, HomeUserDelegate {
-
+  
     @IBOutlet weak var userInfoView: HomeUserInfo!
     @IBOutlet weak var leftTableView: UITableView!
     
@@ -55,6 +76,12 @@ class LeftViewController: UIViewController, HomeUserDelegate {
         setTableViewStyle()
         
         userInfoView.configuration(self)
+        
+        iconImageView.addTapGesture { _ in
+            
+            self.userInfoView.pushView()
+            
+        }
 
     }
 
@@ -167,10 +194,7 @@ extension LeftViewController {
 
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        let userInfo = ["nextView": listTitleViewModel[indexPath.section][indexPath.row].nextView] as [NSObject: AnyObject]
-
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil, userInfo: userInfo)
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
+        listTitleViewModel[indexPath.section][indexPath.row].pushView()
 
     }
 

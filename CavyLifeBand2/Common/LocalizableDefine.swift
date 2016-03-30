@@ -217,6 +217,10 @@ enum L10n {
   case ContactsShowInfoOld
   /// 性别
   case ContactsShowInfoGender
+  /// 女
+  case ContactsGenderGirl
+  /// 男
+  case ContactsGenderBoy
   /// 设置备注
   case ContactsShowInfoNotesName
   /// 点击修改备注
@@ -464,6 +468,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.ShowInfo.old")
       case .ContactsShowInfoGender:
         return L10n.tr("Contacts.ShowInfo.Gender")
+      case .ContactsGenderGirl:
+        return L10n.tr("Contacts.Gender.Girl")
+      case .ContactsGenderBoy:
+        return L10n.tr("Contacts.Gender.Boy")
       case .ContactsShowInfoNotesName:
         return L10n.tr("Contacts.ShowInfo.NotesName")
       case .ContactsShowInfoTransformNotes:

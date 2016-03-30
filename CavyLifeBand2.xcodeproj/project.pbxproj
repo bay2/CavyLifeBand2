@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
+		4CC498FD1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */; };
+		4CC498FE1CA9101800B2EE85 /* ContactsFriendViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC498FC1CA9101800B2EE85 /* ContactsFriendViewUITests.swift */; };
+		4CC499011CA9102800B2EE85 /* ContactsAccoundInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */; };
+		4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */; };
+		4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
 		9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */; };
 		9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */; };
@@ -160,6 +165,11 @@
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
+		4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountInfoUItests.swift; sourceTree = "<group>"; };
+		4CC498FC1CA9101800B2EE85 /* ContactsFriendViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendViewUITests.swift; sourceTree = "<group>"; };
+		4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccoundInfoTest.swift; sourceTree = "<group>"; };
+		4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountInfo_Ok.json; sourceTree = "<group>"; };
+		4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FriendInfo_Ok.json; sourceTree = "<group>"; };
 		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GuideLinking.gif; sourceTree = "<group>"; };
@@ -329,6 +339,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CC498FA1CA9101800B2EE85 /* ContactsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */,
+				4CC498FC1CA9101800B2EE85 /* ContactsFriendViewUITests.swift */,
+			);
+			path = ContactsUITests;
+			sourceTree = "<group>";
+		};
+		4CC498FF1CA9102800B2EE85 /* ContactsTest */ = {
+			isa = PBXGroup;
+			children = (
+				4CC499021CA9105000B2EE85 /* ContactsJson */,
+				4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */,
+			);
+			path = ContactsTest;
+			sourceTree = "<group>";
+		};
+		4CC499021CA9105000B2EE85 /* ContactsJson */ = {
+			isa = PBXGroup;
+			children = (
+				4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */,
+				4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */,
+			);
+			path = ContactsJson;
+			sourceTree = "<group>";
+		};
 		669D8264DE153DBB0A215E22 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,9 +461,9 @@
 				9114D1D91C97AB05008CB4CE /* GoalView.swift */,
 				9114D1DA1C97AB05008CB4CE /* GoalView.xib */,
 				9114D1DB1C97AB05008CB4CE /* HightView.swift */,
+				9114D1E01C97AB05008CB4CE /* WeightView.swift */,
 				9114D1DC1C97AB05008CB4CE /* PictureView.swift */,
 				9114D1DD1C97AB05008CB4CE /* ScrollRuler */,
-				9114D1E01C97AB05008CB4CE /* WeightView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -563,13 +600,14 @@
 		917DA97F1C3B8EB800FF675D /* CavyLifeBand2Tests */ = {
 			isa = PBXGroup;
 			children = (
-				91C3AE4C1C461E61006B67AF /* json */,
+				4CC498FF1CA9102800B2EE85 /* ContactsTest */,
 				9199DA241C48D2BF009672C4 /* SignUpTest.swift */,
 				912D29DA1C6088B5005A06E9 /* SignInTest.swift */,
 				918435DA1C7AD094005B6E92 /* ForgotPasswdTest.swift */,
 				918435DC1C7AF624005B6E92 /* SecurityCodeTest.swift */,
 				918435E01C7C2B8E005B6E92 /* UploadPicture.swift */,
 				91F0361A1C8D2A1D003E059A /* ProfileTest.swift */,
+				91C3AE4C1C461E61006B67AF /* json */,
 				917DA9821C3B8EB800FF675D /* Info.plist */,
 			);
 			path = CavyLifeBand2Tests;
@@ -578,6 +616,7 @@
 		917DA98A1C3B8EB800FF675D /* CavyLifeBand2UITests */ = {
 			isa = PBXGroup;
 			children = (
+				4CC498FA1CA9101800B2EE85 /* ContactsUITests */,
 				917DA98D1C3B8EB800FF675D /* Info.plist */,
 				918E26DB1C891CDE00115C4E /* SignInUITests.swift */,
 				91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */,
@@ -957,9 +996,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				91C3AE501C461EA0006B67AF /* SecurityCode_Ok.json in Resources */,
+				4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */,
 				91F0361F1C8D6BB6003E059A /* Profile_Ok.json in Resources */,
 				91A09DAD1C488AF400BB1599 /* Sign_In_Ok.json in Resources */,
 				91A1E1DD1C7ACF140059E53B /* ForgotPasswd_Ok.json in Resources */,
+				4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */,
 				91BBB6061C671F1800EC1ED1 /* Sign_In_Error.json in Resources */,
 				91F0361D1C8D57DE003E059A /* CommonResultOk.json in Resources */,
 				912D29DD1C609FFD005A06E9 /* Sign_Up_Ok.json in Resources */,
@@ -1203,6 +1244,7 @@
 				918435E11C7C2B8E005B6E92 /* UploadPicture.swift in Sources */,
 				912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */,
 				918435DD1C7AF624005B6E92 /* SecurityCodeTest.swift in Sources */,
+				4CC499011CA9102800B2EE85 /* ContactsAccoundInfoTest.swift in Sources */,
 				9199DA251C48D2BF009672C4 /* SignUpTest.swift in Sources */,
 				91F0361B1C8D2A1D003E059A /* ProfileTest.swift in Sources */,
 			);
@@ -1214,8 +1256,10 @@
 			files = (
 				91A0FED81C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift in Sources */,
 				915921041C9005E000ECD04E /* SignUpPhoneUITests.swift in Sources */,
+				4CC498FD1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift in Sources */,
 				91E981291C8937CB00802C5F /* AccountPageSwitchUITests.swift in Sources */,
 				91A0FEDA1C903CBE00717B83 /* ForgotPasswdEmailUITest.swift in Sources */,
+				4CC498FE1CA9101800B2EE85 /* ContactsFriendViewUITests.swift in Sources */,
 				91A0FED61C90303500717B83 /* SignUpEmailUITests.swift in Sources */,
 				918E26DC1C891CDE00115C4E /* SignInUITests.swift in Sources */,
 			);

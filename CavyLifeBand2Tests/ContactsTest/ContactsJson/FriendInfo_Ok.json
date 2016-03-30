@@ -1,0 +1,19 @@
+{
+    "code": "0000",
+    "msg": "success"
+    "sex": "1",
+    "height": "170",
+    "weight": "52",
+    "birthday": "1991-03-07",
+    "avatarUrl": null,
+    "address": "浙江-杭州",
+    "nickname": "aaa",
+    "stepNum" : 5000,
+    "sleepTime" : "6:30",
+    "isNotification" : true,
+    "isLocalShare" : true,
+    "isOpenBirthday" : true,
+    "isOpenHeight" : true,
+    "isOpenWeight" : true,
+    "remake" : "哈哈哈",
+}

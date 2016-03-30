@@ -16,9 +16,12 @@ class RulerScroller: UIScrollView {
     var yearValue = Int()
     var monthValue = Int()
     var dayValue = Int()
-    
+
     var lineSpace = Int()
     var lineCount = Int()
+    
+    // 默认年份
+    let defaultYear = 1990
     
     // 视图风格
     var rulerStyle: RulerStyle = .YearMonthRuler
@@ -57,7 +60,9 @@ class RulerScroller: UIScrollView {
             // 所有竖线个数
             let allCount: Int = (yearValue - beginYear) * lineCount + monthValue - 1
             self.contentSize = CGSizeMake(spacingWidth25 * 23 + CGFloat(allCount * lineSpace), 60)
-            self.contentOffset = CGPointMake(spacingWidth25 * 11.5 + CGFloat(allCount * lineSpace), 0)
+            
+            let defaultCount: Int = (defaultYear - beginYear) * lineCount
+            self.contentOffset = CGPointMake(CGFloat(defaultCount * lineSpace), 0)
             
             /// 循环添加刻度
             for i in 0...allCount {
@@ -130,11 +135,11 @@ class RulerScroller: UIScrollView {
         case .HeightRuler:
             
             // 当前刻度值
-            currentValue = "180"
+            currentValue = "160"
             let minHeight = 30
             let maxHeight = 240
             let allCount = (maxHeight - minHeight) * lineCount
-            let beginCount = (180 - minHeight) * lineCount
+            let beginCount = (160 - minHeight) * lineCount
             self.contentSize = CGSizeMake(60, spacingWidth25 * 28 + CGFloat(allCount * lineSpace))
             self.contentOffset = CGPointMake(0, CGFloat(beginCount * lineSpace))
 
