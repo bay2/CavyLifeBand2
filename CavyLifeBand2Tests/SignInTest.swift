@@ -37,36 +37,28 @@ class SignInTest: XCTestCase {
      */
     func testSignInOk() {
         
-        let paras = [[UserNetRequsetKey.UserName.rawValue: "17722342211", UserNetRequsetKey.Passwd.rawValue: "123456"],
-            [UserNetRequsetKey.UserName.rawValue: "werqqw@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456"]]
+        let parameters = [("17722342211", "123456"), ("werqqw@qq.com", "123456")]
         
-        let expectResultMsg = ["code": "0000", "msg": "success"]
-        
-        for para in paras {
+        for para in parameters {
             
-            let expectation = expectationWithDescription("testSignInOk succeed")
+            let expectatoin = expectationWithDescription("testSignInOk succes")
             
-            userNetReq.requestSignIn(para, completionHandler: { (result) -> Void in
+            userNetReq.requestSignIn(para.0, passwd: para.1) { result in
                 
-                XCTAssert(result.isSuccess, "返回值不正确")
+                XCTAssertTrue(result.isSuccess)
                 
-                do {
-                    
-                    let reslutMsg = try CommenMsg(JSONDecoder(result.value!))
-                    
-                    XCTAssert(reslutMsg.code == expectResultMsg["code"], "期望值 = [\(expectResultMsg["code"]!)], 实际值 = \(reslutMsg.code!)")
-                    XCTAssert(reslutMsg.msg ==  expectResultMsg["msg"], "期望值 = [\(expectResultMsg["msg"]!)]，实际值 = \(reslutMsg.msg!)")
-                    
-                } catch {
-                    
-                    XCTAssert(false)
-                    
-                }
+                let reslutMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
                 
-                expectation.fulfill()
-            })
+                XCTAssertTrue(reslutMsg.commonMsg?.code == WebApiCode.Success.rawValue)
+                XCTAssertTrue(reslutMsg.commonMsg?.msg == "success")
+                XCTAssertTrue(reslutMsg.userId == "56d6ea3bd34635186c60492b")
+                
+                expectatoin.fulfill()
+                
+            }
             
             waitForExpectationsWithTimeout(timeout, handler: nil)
+            
         }
         
     }
@@ -83,88 +75,47 @@ class SignInTest: XCTestCase {
             return fixture(stubPath!, headers: ["Content-Type" : "application/json"])
         }
         
-        let paras = [[UserNetRequsetKey.UserName.rawValue: "17722342211", UserNetRequsetKey.Passwd.rawValue: "123456"],
-            [UserNetRequsetKey.UserName.rawValue: "werqqw@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456"]]
+        let parameters = [("17722342211", "123456"), ("werqqw@qq.com", "123456")]
         
-        let expectResultMsg = ["code": "1001", "msg": "user or password error"]
-        
-        for para in paras {
+        for para in parameters {
             
             let expectation = expectationWithDescription("testSignInErr succeed")
             
-            userNetReq.requestSignIn(para, completionHandler: { (result) -> Void in
+            userNetReq.requestSignIn(para.0, passwd: para.1) { result in
                 
-                XCTAssert(result.isSuccess, "返回值不正确")
+                XCTAssertTrue(result.isSuccess)
                 
-                do {
-                    
-                    let reslutMsg = try CommenMsg(JSONDecoder(result.value!))
-                    XCTAssert(reslutMsg.code == expectResultMsg["code"], "Expect Value = [\(expectResultMsg["code"])]")
-                    XCTAssert(reslutMsg.msg ==  expectResultMsg["msg"], "Expect Value = [\(expectResultMsg["msg"])]")
-                    
-                } catch {
-                    
-                    XCTAssert(false)
-                    
-                }
+                let reslutMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
+                
+                XCTAssertTrue(reslutMsg.commonMsg?.code == WebApiCode.UserPasswdError.rawValue)
+                XCTAssertTrue(reslutMsg.commonMsg?.msg == "user or password error")
+                XCTAssertTrue(reslutMsg.userId == "")
                 
                 expectation.fulfill()
-                
-            })
+            }
+            
+            waitForExpectationsWithTimeout(timeout, handler: nil)
             
         }
         
-        waitForExpectationsWithTimeout(timeout, handler: nil)
-        
-    }
-    
-    /**
-     用户名格式不正确
-     */
-    func testSignInUserNameErr() {
-        
-        let paras = [[UserNetRequsetKey.UserName.rawValue: "1772311", UserNetRequsetKey.Passwd.rawValue: "123456"],
-            [UserNetRequsetKey.UserName.rawValue: "sdfsa123.com", UserNetRequsetKey.Passwd.rawValue: "123456"],
-            [UserNetRequsetKey.UserName.rawValue: "1223345ew33", UserNetRequsetKey.Passwd.rawValue: "123456"]]
-        
-        for para in paras {
-            
-            let expectation = expectationWithDescription("testSignInUserNameErr succedd")
-            
-            userNetReq.requestSignIn(para, completionHandler: { (result) -> Void in
-                
-                XCTAssert(result.isFailure, "返回值不正确")
-                
-                XCTAssert(result.error == UserRequestErrorType.UserNameErr, "Result = [\(result.error)], Expect Value = [\(UserRequestErrorType.UserNameErr)]")
-                
-                expectation.fulfill()
-            })
-        }
-        
-        waitForExpectationsWithTimeout(timeout, handler: nil)
     }
     
     func testSignInPasswdErr() {
         
-        let paras = [[UserNetRequsetKey.UserName.rawValue: "17723321123", UserNetRequsetKey.Passwd.rawValue: "12311"],
-            [UserNetRequsetKey.UserName.rawValue: "asdqwe@qq.com", UserNetRequsetKey.Passwd.rawValue: "12345"],
-            [UserNetRequsetKey.UserName.rawValue: "18623242112", UserNetRequsetKey.Passwd.rawValue: "12345678901234567"],
-            [UserNetRequsetKey.UserName.rawValue: "slkjldf@qq.com", UserNetRequsetKey.Passwd.rawValue: "12345678901234567"]]
+        let parameters = [("17722334831", "23456"), ("asdqwe@qq.com", ""), ("asdqwe@qq.com", "12312312312312312")]
         
-        for para in paras  {
+        for para in parameters  {
             
             let expectation = expectationWithDescription("testSignInPasswdErr succeed")
             
-            userNetReq.requestSignIn(para, completionHandler: { (result) -> Void in
+            userNetReq.requestSignIn(para.0, passwd: para.1) { result in
                 
-                
-                XCTAssert(result.isFailure, "返回值不正确")
-                
-                XCTAssert(result.error == UserRequestErrorType.PassWdErr, "Result = [\(result.error)], Expect Value = [\(UserRequestErrorType.PassWdErr)]")
+                XCTAssertTrue(result.isFailure)
+                XCTAssertTrue(result.error == UserRequestErrorType.PassWdErr)
                 
                 expectation.fulfill()
                 
-            })
+            }
             
             waitForExpectationsWithTimeout(timeout, handler: nil)
             

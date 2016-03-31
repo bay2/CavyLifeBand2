@@ -142,7 +142,7 @@ class UserNetRequestData: NetRequestAdapter {
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.SignUp.rawValue,
                                                UserNetRequsetKey.UserName.rawValue: userName,
                                                UserNetRequsetKey.SecurityCode.rawValue: safetyCode,
-                                               UserNetRequsetKey.Passwd.rawValue: passwd]
+                                               UserNetRequsetKey.Passwd.rawValue: passwd.md5()]
 
         netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
         
@@ -154,42 +154,24 @@ class UserNetRequestData: NetRequestAdapter {
      - parameter parameters:        UserNetRequsetKey.UserName, UserNetRequsetKey.Passwd
      - parameter completionHandler: 回调
      */
-    func requestSignIn(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+    func requestSignIn(userName: String, passwd: String, completionHandler: CompletionHandlernType?) {
         
-        if parameters == nil {
-            
-            completionHandler?(.Failure(.ParaNil))
-            Log.error("Para is nil")
+        if userName.isEmail == false && userName.isPhoneNum == false {
+            completionHandler?(.Failure(.UserNameErr))
             return
-            
         }
         
-        if let userName = parameters![UserNetRequsetKey.UserName.rawValue] as? String {
-
-            let check = userNameCheck(userName)
-            if check.0 == false {
-                
-                completionHandler?(.Failure(check.1!))
-                Log.error("UserName error")
-                return
-            }
-            
+        guard passwordCheck(passwd) else {
+            completionHandler?(.Failure(.PassWdErr))
+            return
         }
         
-        if let pwd = parameters![UserNetRequsetKey.Passwd.rawValue] as? String {
-
-            if passwordCheck(pwd) == false {
-                completionHandler?(.Failure(.PassWdErr))
-                Log.error("Password is error")
-                return
-            }
-
-        }
+        let parameters = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.SignIn.rawValue,
+                          UserNetRequsetKey.UserName.rawValue: userName,
+                          UserNetRequsetKey.Passwd.rawValue: passwd.md5()]
         
-        var para = parameters
-        para![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SignIn.rawValue
         
-        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
         
     }
 
@@ -341,7 +323,7 @@ class UserNetRequestData: NetRequestAdapter {
      */
     func forgotPasswd(userName: String, passwd: String, safetyCode: String, completionHandler: CompletionHandlernType?) {
         
-        if userName.isPhoneNum == false && userName.isEmail {
+        if userName.isPhoneNum == false && userName.isEmail == false {
             completionHandler?(.Failure(.UserNameErr))
             Log.error("User name is error")
             return
@@ -358,7 +340,7 @@ class UserNetRequestData: NetRequestAdapter {
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.ForgotPwd.rawValue,
                                                UserNetRequsetKey.UserName.rawValue: userName,
                                                UserNetRequsetKey.SecurityCode.rawValue: safetyCode,
-                                               UserNetRequsetKey.Passwd.rawValue: passwd]
+                                               UserNetRequsetKey.Passwd.rawValue: passwd.md5()]
         
         netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
         

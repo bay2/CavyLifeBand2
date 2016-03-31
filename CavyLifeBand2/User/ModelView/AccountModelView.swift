@@ -20,31 +20,25 @@ protocol SignInDelegate {
 
     var userName: String { get }
     var passwd: String { get }
-    var viewController: UIViewController? { get }
-    func signIn(callBack: ((Bool) -> Void)?)
     
 }
 
-extension SignInDelegate {
+extension SignInDelegate where Self: UIViewController {
 
-    func signIn(callBack: ((Bool) -> Void)?) {
+    func signIn() {
 
-        let para = [UserNetRequsetKey.UserName.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd]
-
-        userNetReq.requestSignIn(para) { (result) -> Void in
-
+        userNetReq.requestSignIn(userName, passwd: passwd) { result in
+            
             if result.isFailure {
 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
-                callBack?(false)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
                 return
             }
 
             let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
 
             if msg.commonMsg?.code != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: msg.commonMsg!.code!)
-                callBack?(false)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg!.code!)
                 return
             }
 
@@ -54,9 +48,10 @@ extension SignInDelegate {
             
             defaults.synchronize()
             
+            self.pushVC(StoryboardScene.Guide.instantiateGuideView())
+            
             Log.info("Sign in succeess")
-            callBack?(true)
-
+            
         }
 
         return
