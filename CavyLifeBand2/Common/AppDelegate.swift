@@ -33,11 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        stub(isMethodPOST()) { _ in
-            let stubPath = OHPathForFile("SearchFrendListResult.json", self.dynamicType)
-            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
-        }
-        
+//        stub(isMethodPOST()) { _ in
+//            let stubPath = OHPathForFile("SearchFrendListResult.json", self.dynamicType)
+//            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+//        }
+//        
         
 #if UITEST
             
@@ -52,10 +52,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func uiTestStub() {
     
-        stub(isMethodPOST()) { _ in
-            let stubPath = OHPathForFile("GetFrendListResult.json", self.dynamicType)
-            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
-        }
+//        stub(isMethodPOST()) { _ in
+//            let stubPath = OHPathForFile("GetFrendListResult.json", self.dynamicType)
+//            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+//        }
 
     
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_IN") {

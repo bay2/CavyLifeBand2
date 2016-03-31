@@ -170,7 +170,7 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
         
         let forgotVC = StoryboardScene.Main.instantiateAccountManagerView()
 
-        forgotVC.viewStyle = .PhoneNumForgotPasswd
+        forgotVC.configView(PhoneForgotPwdViewModel())
 
         self.pushVC(forgotVC)
 

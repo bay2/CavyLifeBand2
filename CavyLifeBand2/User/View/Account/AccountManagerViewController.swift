@@ -13,6 +13,19 @@ import AlamofireImage
 import Log
 
 
+
+struct EmailForgotPwdViewModel: AccountManagerViewDataSource {
+    
+    var isSignUp: Bool { return false }
+    var navTitle: String { return L10n.ForgotTitle.string }
+    var itemRightTitle: String { return L10n.SignUpEmailRightItemBtn.string }
+    var userNameTextFieldTitle: String { return L10n.SignUpEmailTextField.string }
+    var passwdTextFieldTitle: String { return L10n.ForgotPasswdTextField.string }
+    var viewMainBtnTitle: String { return L10n.ForgotFinish.string }
+    
+}
+
+
 class AccountManagerViewController: AccountManagerBaseViewController {
     
     enum UserViewStyle {
@@ -51,27 +64,20 @@ class AccountManagerViewController: AccountManagerBaseViewController {
     // 输入框视图
     @IBOutlet weak var textFieldView: UIView!
     
+    var dataSource: AccountManagerViewDataSource?
+    
     // 垂直分割线
     @IBOutlet weak var verticalLine: UIView!
     
-    
-    var forgotpwdDelegate: ForgotPasswordDelegate?
-    
-    var signUpDelegate: SignUpDelegate?
-    
-    var sendSafetyCodeDelegate: SendSafetyCodeDelegate?
-    
-    var signInDelegate: SignInDelegate?
-
-    // 视图风格
-    var viewStyle: UserViewStyle = .PhoneNumSignUp
+    // 忘记密码返回页面
+    var popToViewController: UIViewController {
+        return self.navigationController!.viewControllers[0]
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         updateTextFieldViewUI(textFieldView)
-
-        updateViewStyle()
 
         setSubViewsTitle()
 
@@ -82,15 +88,12 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         emailSafetyCode.userInteractionEnabled = true
         emailSafetyCode.addTapGesture(target: self, action: #selector(AccountManagerViewController.refreshEmailSafetyCode))
         
-        forgotpwdDelegate = self
-        signUpDelegate = self
-        sendSafetyCodeDelegate = self
-        signInDelegate = self
-        
         userNameTextField.becomeFirstResponder()
         userNameTextField.backgroundColor = UIColor.whiteColor()
         passwdTextField.backgroundColor = UIColor.whiteColor()
         safetyCodeTextField.backgroundColor = UIColor.whiteColor()
+        
+        setViewStyle()
 
         // Do any additional setup after loading the view.
     }
@@ -208,71 +211,29 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         
     }
     
-
+    func setViewStyle() {
+        
+        userNameTextField.placeholder = dataSource!.userNameTextFieldTitle
+        passwdTextField.placeholder = dataSource!.passwdTextFieldTitle
+        mainBtn.setTitle(dataSource!.viewMainBtnTitle, forState: .Normal)
+        
+        emailSafetyCode.hidden = dataSource!.isSignUp
+        backSignInBtn.hidden = dataSource!.isSignUp
+        safetyCodeBtn.hidden = !dataSource!.isSignUp
+        userProtocolView.hidden = !dataSource!.isSignUp
+        
+        updateNavigationItemUI(dataSource!.navTitle, rightBtnText: dataSource!.itemRightTitle)
+    }
+    
     /**
-     更新视图风格
+     视图配置
+     
+     - parameter dataSource:
      */
-    func updateViewStyle() {
-
-        var itemTitle = L10n.SignUpSendSafetyCode.string
-        var itemRightTitle = L10n.SignUpPhoneRightItemBtn.string
-        var viewMainBtn = L10n.SignUpSignUpBtn.string
-        var userNameTextFieldTitle = L10n.SignUpPhoneNumTextField.string
-        var passwdTextFieldTitle = L10n.SignInPasswdTextField.string
-
-        switch viewStyle {
-
-            case .PhoneNumSignUp:
-                userProtocolView.hidden = false
-                itemTitle = L10n.SignUpTitle.string
-                itemRightTitle = L10n.SignUpPhoneRightItemBtn.string
-                userNameTextFieldTitle = L10n.SignUpPhoneNumTextField.string
-                passwdTextFieldTitle = L10n.SignInPasswdTextField.string
-                viewMainBtn = L10n.SignUpSignUpBtn.string
-                break
-
-            case .EmailSignUp:
-                userProtocolView.hidden = false
-                itemTitle = L10n.SignUpTitle.string
-                itemRightTitle = L10n.SignUpEmailRightItemBtn.string
-                userNameTextFieldTitle = L10n.SignUpEmailTextField.string
-                passwdTextFieldTitle = L10n.SignInPasswdTextField.string
-                viewMainBtn = L10n.SignUpSignUpBtn.string
-                emailSafetyCode.hidden = false
-                safetyCodeBtn.hidden = true
-                break
-
-            case  .PhoneNumForgotPasswd:
-                userProtocolView.hidden = true
-                itemTitle = L10n.ForgotTitle.string
-                itemRightTitle = L10n.SignUpPhoneRightItemBtn.string
-                userNameTextFieldTitle = L10n.SignUpPhoneNumTextField.string
-                passwdTextFieldTitle = L10n.ForgotPasswdTextField.string
-                viewMainBtn = L10n.ForgotFinish.string
-                userProtocolView.hidden = true
-                backSignInBtn.hidden = false
-                break
-
-            case .EmailForgotPasswd:
-                userProtocolView.hidden = true
-                itemTitle = L10n.ForgotTitle.string
-                itemRightTitle = L10n.SignUpEmailRightItemBtn.string
-                userNameTextFieldTitle = L10n.SignUpEmailTextField.string
-                passwdTextFieldTitle = L10n.ForgotPasswdTextField.string
-                viewMainBtn = L10n.ForgotFinish.string
-                emailSafetyCode.hidden = false
-                safetyCodeBtn.hidden = true
-                userProtocolView.hidden = true
-                backSignInBtn.hidden = false
-                break
-
-        }
-
-        userNameTextField.placeholder = userNameTextFieldTitle
-        passwdTextField.placeholder = passwdTextFieldTitle
-        mainBtn.setTitle(viewMainBtn, forState: .Normal)
-        updateNavigationItemUI(itemTitle, rightBtnText: itemRightTitle)
-
+    func configView(dataSource: AccountManagerViewDataSource) {
+        
+        self.dataSource = dataSource
+        
     }
 
     /**
@@ -283,29 +244,27 @@ class AccountManagerViewController: AccountManagerBaseViewController {
     override func onClickRight(sender: AnyObject) {
 
         super.onClickRight(sender)
-
+        
+        var viewModel: AccountManagerViewDataSource?
         let nextView = StoryboardScene.Main.instantiateAccountManagerView()
         
-
-        switch viewStyle {
-
-            case .PhoneNumSignUp:
-                nextView.viewStyle = .EmailSignUp
-                self.pushVC(nextView)
-
-            case .EmailSignUp:
-                self.popVC()
-
-            case  .PhoneNumForgotPasswd:
-                nextView.viewStyle = .EmailForgotPasswd
-                self.pushVC(nextView)
-
-            case .EmailForgotPasswd:
-                self.popVC()
+        if dataSource?.itemRightTitle == L10n.SignUpEmailRightItemBtn.string {
             
-
+            self.popVC()
+            return
+            
         }
-
+        
+        if dataSource?.isSignUp == true {
+            viewModel = EmailSignUpViewModel()
+        } else {
+            viewModel = EmailForgotPwdViewModel()
+        }
+        
+        nextView.configView(viewModel!)
+        
+        self.pushVC(nextView)
+        
     }
 
 
@@ -313,13 +272,12 @@ class AccountManagerViewController: AccountManagerBaseViewController {
      刷新邮箱验证码
      */
     func refreshEmailSafetyCode() {
-
         
         Alamofire.request(.GET, emailCodeAddr).responseImage { (response) -> Void in
             
             if let image = response.result.value {
                 
-                    self.emailSafetyCode.image = image
+                self.emailSafetyCode.image = image
             }
             
         }
@@ -350,60 +308,17 @@ class AccountManagerViewController: AccountManagerBaseViewController {
             return
             
         }
-
-        switch viewStyle {
-
-            case .EmailSignUp:
-                signUpDelegate?.emailSignUp(signInProc)
-            
-
-            case .PhoneNumSignUp:
-                signUpDelegate?.phoneSignUp(signInProc)
-
-            case .EmailForgotPasswd:
-                forgotpwdDelegate?.emailForgotPwd(forgotPwdProc)
-
-            case .PhoneNumForgotPasswd:
-                forgotpwdDelegate?.phoneForgotPwd(forgotPwdProc)
-
-        }
-
-    }
-    
-    /**
-     登录处理
-     */
-    func signInProc(isSignUp: Bool) {
         
-        if isSignUp != true {
-            return
-        }
-        
-        signInDelegate?.signIn {
-            
-            if $0 == true {
-                let guideVC = StoryboardScene.Home.instantiateRootView()
-                self.pushVC(guideVC)
+        if dataSource?.isSignUp == true {
+            signUp() {
+                UserInfoModelView.shareInterface.updateInfo(userId: $0)
             }
-            
+        } else {
+            forgotPwd()
         }
-        
+
     }
     
-    /**
-     找回密码处理
-     
-     - parameter isForgotPwd:
-     */
-    func forgotPwdProc(isForgotPwd: Bool) {
-        
-        if isForgotPwd != true {
-            return
-        }
-        
-        self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
-        
-    }
 
     /**
      点击发送验证码
@@ -412,19 +327,8 @@ class AccountManagerViewController: AccountManagerBaseViewController {
      */
     @IBAction func onClickSendSafetyCode(sender: AnyObject) {
 
-        self.safetyCodeBtn.enabled = false
+        sendSafetyCode()
         
-        sendSafetyCodeDelegate?.sendSafetyCode {
-            
-            if $0 != true {
-                self.safetyCodeBtn.enabled = true
-                return
-            }
-            
-            self.safetyCodeBtn.countDown()
-            
-        }
-
     }
     
     /*
@@ -464,7 +368,7 @@ extension AccountManagerViewController {
             return false
         }
         
-        if viewStyle == .PhoneNumForgotPasswd || viewStyle == .PhoneNumSignUp {
+        if dataSource?.itemRightTitle == L10n.SignUpPhoneRightItemBtn.string {
             
             guard let _ = newString.toInt() else {
                 return false
@@ -500,7 +404,7 @@ extension AccountManagerViewController {
     
 }
 
-extension AccountManagerViewController: SignUpDelegate, ForgotPasswordDelegate, SendSafetyCodeDelegate, SignInDelegate {
+extension AccountManagerViewController: SignUpDelegate, ForgotPasswordDelegate, SendSafetyCodeDelegate {
     
     var userName: String {
         return userNameTextField.text!
@@ -514,8 +418,8 @@ extension AccountManagerViewController: SignUpDelegate, ForgotPasswordDelegate, 
         return safetyCodeTextField.text!
     }
     
-    var viewController: UIViewController? {
-        return self
+    var sendSafetyCodeBtn: SendSafetyCodeButton {
+        return self.safetyCodeBtn
     }
     
 }
