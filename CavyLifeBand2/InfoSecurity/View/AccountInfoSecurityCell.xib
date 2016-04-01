@@ -16,22 +16,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fIf-FR-LjN">
-                        <rect key="frame" x="459" y="16" width="51" height="31"/>
+                        <rect key="frame" x="479" y="16" width="51" height="31"/>
                         <connections>
                             <action selector="switchAction:" destination="KGk-i7-Jjw" eventType="valueChanged" id="oBs-Jh-1Bu"/>
                         </connections>
                     </switch>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfn-y5-Owa">
-                        <rect key="frame" x="38" y="21" width="34" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="信息" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qfn-y5-Owa">
+                        <rect key="frame" x="8" y="22" width="32" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="qfn-y5-Owa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="30" id="Gu1-9z-qKV"/>
+                    <constraint firstItem="qfn-y5-Owa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Gu1-9z-qKV"/>
                     <constraint firstItem="qfn-y5-Owa" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Jmf-jS-bae"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="fIf-FR-LjN" secondAttribute="trailing" constant="20" id="QId-26-Z8h"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="fIf-FR-LjN" secondAttribute="trailing" id="QId-26-Z8h"/>
                     <constraint firstItem="fIf-FR-LjN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ZcC-5A-rGJ"/>
                 </constraints>
             </tableViewCellContentView>

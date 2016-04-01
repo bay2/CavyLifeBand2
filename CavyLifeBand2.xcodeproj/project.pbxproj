@@ -12,6 +12,7 @@
 		4C12F7CB1CABA321003DA089 /* AccountInfoSecurityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C12F7CA1CABA321003DA089 /* AccountInfoSecurityVC.swift */; };
 		4C12F7D11CABA387003DA089 /* AccountInfoSecurityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C12F7CF1CABA387003DA089 /* AccountInfoSecurityCell.swift */; };
 		4C12F7D21CABA387003DA089 /* AccountInfoSecurityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C12F7D01CABA387003DA089 /* AccountInfoSecurityCell.xib */; };
+		4C12F7DE1CACFF92003DA089 /* AccountInfoSecurityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C12F7DD1CACFF92003DA089 /* AccountInfoSecurityCellViewModel.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4CC498FD1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */; };
 		4CC498FE1CA9101800B2EE85 /* ContactsFriendViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC498FC1CA9101800B2EE85 /* ContactsFriendViewUITests.swift */; };
@@ -172,6 +173,7 @@
 		4C12F7CA1CABA321003DA089 /* AccountInfoSecurityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityVC.swift; sourceTree = "<group>"; };
 		4C12F7CF1CABA387003DA089 /* AccountInfoSecurityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityCell.swift; sourceTree = "<group>"; };
 		4C12F7D01CABA387003DA089 /* AccountInfoSecurityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInfoSecurityCell.xib; sourceTree = "<group>"; };
+		4C12F7DD1CACFF92003DA089 /* AccountInfoSecurityCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityCellViewModel.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountInfoUItests.swift; sourceTree = "<group>"; };
 		4CC498FC1CA9101800B2EE85 /* ContactsFriendViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendViewUITests.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 		4C12F7C71CABA20E003DA089 /* InfoSecurity */ = {
 			isa = PBXGroup;
 			children = (
+				4C12F7D61CABBCEF003DA089 /* Model */,
 				4C12F7CC1CABA342003DA089 /* View */,
 				4C12F7C81CABA226003DA089 /* InfoSecurity.storyboard */,
 				4C12F7CA1CABA321003DA089 /* AccountInfoSecurityVC.swift */,
@@ -364,6 +367,14 @@
 				4C12F7D01CABA387003DA089 /* AccountInfoSecurityCell.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		4C12F7D61CABBCEF003DA089 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4C12F7DD1CACFF92003DA089 /* AccountInfoSecurityCellViewModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4CC498FA1CA9101800B2EE85 /* ContactsUITests */ = {
@@ -1233,6 +1244,7 @@
 				91E1B4D51CA510BD008ADEE6 /* ContactsSearchBar.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
 				9114D1E71C97AB05008CB4CE /* AccountManagerBaseViewController.swift in Sources */,
+				4C12F7DE1CACFF92003DA089 /* AccountInfoSecurityCellViewModel.swift in Sources */,
 				91E1B4CD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift in Sources */,
 				91E1B4CE1CA510BD008ADEE6 /* ContactsPersonInfoCell.swift in Sources */,
 				9114D2071C994C9D008CB4CE /* RootViewController.swift in Sources */,

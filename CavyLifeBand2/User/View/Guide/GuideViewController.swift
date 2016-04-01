@@ -59,14 +59,15 @@ class GuideViewController: BaseViewController {
     @IBOutlet weak var guideButton: UIButton!
     
     // 视图风格
-    var viewStyle: GuideViewStyle = .GuideHeight
+    var viewStyle: GuideViewStyle = .BandBluetooth
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        allViewsLayOut()
+
         updateViewStyle()
         
-        allViewsLayOut()
         
     }
     
@@ -384,6 +385,7 @@ class GuideViewController: BaseViewController {
         
         goalView!.sliderStepAttribute(6000, recommandValue: 8000, minValue: 0, maxValue: 20000)
         goalView!.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 2, minM: 0, maxH: 12, maxM: 00)
+        
         middleView.addSubview(goalView!)
         
         

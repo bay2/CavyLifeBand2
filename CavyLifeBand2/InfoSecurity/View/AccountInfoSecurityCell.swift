@@ -7,37 +7,50 @@
 //
 
 import UIKit
+import Log
+
+
+enum SwitchTag: Int {
+    
+    case HeightSwitchTag = 3000
+    case WeightSwitchTag = 3001
+    case BirthSwitchTag = 300
+}
 
 class AccountInfoSecurityCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var infoSwitch: UISwitch!
+
+    private var dataSource: AccountInfoSecurityListDataSource?
     
     
     @IBAction func switchAction(sender: AnyObject) {
         
-        if sender.on! {
-            
-            print("\(titleLabel.text!)当前状态是： 打开")
-            
-        } else {
-            
-            print("\(titleLabel.text!)当前状态是： 关闭")
-
-        }
+        dataSource?.changeSwitchStatus(sender as! UISwitch)
         
+        Log.info("\(titleLabel.text) --- \(sender.on)")
     }
-    
     
     
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        // Initialization code
         
-        titleLabel.textColor = UIColor(named: .ContactsName)
+        titleLabel.textColor = UIColor(named: .ContactsTitleColor)
         
+    }
+    
+    func configure(dataSource: [AccountInfoSecurityCellViewModel]) {
+        
+        self.dataSource = dataSource[0]
+        
+        infoSwitch.on = dataSource[0].isOpen
+        
+        titleLabel.text = dataSource[0].title
+        
+        dataSource[0].changeSwitchStatus(infoSwitch)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -47,3 +60,16 @@ class AccountInfoSecurityCell: UITableViewCell {
     }
     
 }
+
+protocol AccountInfoSecurityListDataSource {
+    
+    var title: String { get}
+    
+    var isOpen: Bool { get }
+    
+    func changeSwitchStatus(sender: UISwitch)
+    
+}
+
+
+

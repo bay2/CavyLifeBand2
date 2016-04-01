@@ -7,25 +7,62 @@
 //
 
 import UIKit
+import Log
+import RealmSwift
+import EZSwiftExtensions
 
-class AccountInfoSecurityVC: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UITableViewDataSource, AccountInfoSecurityDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let titleArray = ["", L10n.ContactsShowInfoHeight.string, L10n.ContactsShowInfoWeight.string, L10n.ContactsShowInfoBirth.string, ""]
+    var realm: Realm = try! Realm()
+    var userId: String { return loginUserId }
+    let dataArray = [AccountInfoSecurityCellViewModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
+        self.navBar?.translucent = false
+        
+        loadFriendData()
+        
         addTableView()
         
     }
     
+    /**
+     加载数据
+     */
+    func loadFriendData() {
+        
+        // 如果不存在 就添加默认
+        if isExistInfoSecurityList() ==  false {
+            
+            addDefaultAccountInfoSecurityRealm()
+        }
+        
+        queryAccountInfoSecurity()
+
+    }
     
+    /**
+     解析账户信息 的信息公开List
+     */
+    func parserFriendListData(result: AccountInfoSecurityCellViewModel) {
+        
+        
+        
+        
+    }
+    
+    /**
+     添加TableView
+     */
     func addTableView() {
         
+        tableView.layer.cornerRadius = commonCornerRadius
         tableView.registerNib(UINib(nibName: "AccountInfoSecurityCell", bundle: nil), forCellReuseIdentifier: "infoSecurityIdentifier")
         tableView.delegate = self
         tableView.dataSource = self
@@ -43,32 +80,21 @@ class AccountInfoSecurityVC: BaseViewController, UITableViewDelegate, UITableVie
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+      func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 0 || indexPath.row == 4 {
-            return 10
-        }
+
         return 50
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 || indexPath.row == 4 {
-            
-            tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "infoSecurityWhiteCell")
-            let cell = tableView.dequeueReusableCellWithIdentifier("infoSecurityWhiteCell")
-            
-            return cell!
-        }
-        
-        
+       
         let cell = tableView.dequeueReusableCellWithIdentifier("infoSecurityIdentifier") as! AccountInfoSecurityCell
-        
-        cell.titleLabel.text = titleArray[indexPath.row]
-    
+//        let dataSourceVM = AccountInfoSecurityCellViewModel(realm: self.realm, title: titleArray[indexPath.row], isOpenOrNot: true)
+        cell.configure(dataArray)
         return cell
     }
 
