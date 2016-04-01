@@ -20,42 +20,38 @@ protocol SignInDelegate {
 
     var userName: String { get }
     var passwd: String { get }
-    var viewController: UIViewController? { get }
-    func signIn(callBack: ((Bool) -> Void)?)
     
 }
 
-extension SignInDelegate {
+extension SignInDelegate where Self: UIViewController {
 
-    func signIn(callBack: ((Bool) -> Void)?) {
+    func signIn() {
 
-        let para = [UserNetRequsetKey.UserName.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd]
-
-        userNetReq.requestSignIn(para) { (result) -> Void in
-
+        userNetReq.requestSignIn(userName, passwd: passwd) { result in
+            
             if result.isFailure {
 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
-                callBack?(false)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
                 return
             }
 
             let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
 
             if msg.commonMsg?.code != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: msg.commonMsg!.code!)
-                callBack?(false)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg!.code!)
                 return
             }
 
             let defaults = NSUserDefaults.standardUserDefaults()
-
-            defaults["defulatUserId"] = msg.userId!
+            defaults[UserDefaultsKey.SignInUserId.rawValue] = msg.userId
+            defaults[UserDefaultsKey.SignUserName.rawValue] = self.userName
+            
             defaults.synchronize()
-
+            
+            self.pushVC(StoryboardScene.Guide.instantiateGuideView())
+            
             Log.info("Sign in succeess")
-            callBack?(true)
-
+            
         }
 
         return
@@ -65,61 +61,50 @@ extension SignInDelegate {
 }
 
 /**
- *  登录代理
+ *  注册代理
  */
 protocol SignUpDelegate {
 
     var userName: String { get }
     var passwd: String { get }
     var safetyCode: String { get }
-    var viewController: UIViewController? { get }
 
-    func emailSignUp(callBack: ((Bool) -> Void)?)
-    func phoneSignUp(callBack: ((Bool) -> Void)?)
-    func signUp(para: [String: AnyObject], callBack: ((Bool) -> Void)?)
+    func signUp(callBack: (String -> Void)?)
 
 }
 
-extension SignUpDelegate {
+extension SignUpDelegate where Self: UIViewController {
 
-    func emailSignUp(callBack: ((Bool) -> Void)? = nil) {
 
-        let para = [UserNetRequsetKey.Email.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd, UserNetRequsetKey.SecurityCode.rawValue: safetyCode]
-        signUp(para, callBack: callBack)
-
-    }
-
-    func phoneSignUp(callBack: ((Bool) -> Void)? = nil) {
-
-        let para = [UserNetRequsetKey.PhoneNum.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd, UserNetRequsetKey.SecurityCode.rawValue: safetyCode]
-        signUp(para, callBack: callBack)
-
-    }
-
-    func signUp(para: [String: AnyObject], callBack: ((Bool) -> Void)? = nil) {
-
-        userNetReq.requestSignUp(para) { (result) -> Void in
-
+    func signUp(callBack: (String -> Void)? = nil) {
+        
+        userNetReq.requestSignUp(userName, safetyCode: safetyCode, passwd: passwd) { result in
+            
             if result.isFailure {
 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
-                callBack?(false)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
                 return
             }
 
-            let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
+            let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
 
-            if msg.code! != WebApiCode.Success.rawValue {
+            if msg.commonMsg?.code! != WebApiCode.Success.rawValue {
 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: msg.code!)
-                callBack?(false)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg!.code!)
                 return
             }
 
-
-            callBack?(true)
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults[UserDefaultsKey.SignInUserId.rawValue] = msg.userId
+            defaults[UserDefaultsKey.SignUserName.rawValue] = self.userName
+            
+            defaults.synchronize()
+            
             Log.info("Sign up success")
-
+            
+            callBack?(msg.userId!)
+            self.pushVC(StoryboardScene.Home.instantiateRootView())
+            
         }
 
     }
@@ -131,94 +116,118 @@ protocol ForgotPasswordDelegate {
     var userName: String { get }
     var passwd: String { get }
     var safetyCode: String { get }
-    var viewController: UIViewController? { get }
-    func forgotPwd(para: [String: AnyObject], callBack: ((Bool) -> Void)?)
-    func emailForgotPwd(callBack: ((Bool) -> Void)?)
-    func phoneForgotPwd(callBack: ((Bool) -> Void)?)
+    var popToViewController: UIViewController { get }
+    func forgotPwd()
 
 }
 
-extension ForgotPasswordDelegate {
-
-    func forgotPwd(para: [String: AnyObject], callBack: ((Bool) -> Void)? = nil) {
-
-        userNetReq.forgotPasswd(para) { (result) in
-
+extension ForgotPasswordDelegate where Self: UIViewController {
+    
+    
+    func forgotPwd() {
+        
+        userNetReq.forgotPasswd(userName, passwd: passwd, safetyCode: safetyCode) { result in
+            
             if result.isFailure {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
-                callBack?(false)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
                 return
             }
 
             let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
             if msg.code! != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: msg.code!)
-                callBack?(false)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.code!)
                 return
             }
 
-            callBack?(true)
             Log.info("Forgot password success")
-
+            
+            self.navigationController?.popToViewController(self.popToViewController, animated: true)
+            
         }
-
+        
     }
 
-    /**
-    手机找回密码
-    */
-    func phoneForgotPwd(callBack: ((Bool) -> Void)? = nil) {
-
-        let para = [UserNetRequsetKey.PhoneNum.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd, UserNetRequsetKey.SecurityCode.rawValue: safetyCode]
-        forgotPwd(para, callBack: callBack)
-
-    }
-
-    /**
-     邮箱找回密码
-     */
-    func emailForgotPwd(callBack: ((Bool) -> Void)? = nil) {
-
-        let para = [UserNetRequsetKey.Email.rawValue: userName, UserNetRequsetKey.Passwd.rawValue: passwd, UserNetRequsetKey.SecurityCode.rawValue: safetyCode]
-        forgotPwd(para, callBack: callBack)
-    }
 
 }
 
 protocol SendSafetyCodeDelegate {
 
     var userName: String { get }
-    var viewController: UIViewController? { get }
-    func sendSafetyCode(callBack: ((Bool) -> Void)?)
+    func sendSafetyCode()
+    var sendSafetyCodeBtn: SendSafetyCodeButton { get }
 
 }
 
-extension SendSafetyCodeDelegate {
+extension SendSafetyCodeDelegate where Self: UIViewController {
 
-    func sendSafetyCode(callBack: ((Bool) -> Void)? = nil) {
+    func sendSafetyCode() {
+        
+        sendSafetyCodeBtn.enabled = false
 
         let para = [UserNetRequsetKey.PhoneNum.rawValue: userName]
 
         userNetReq.requestPhoneSecurityCode(para) { (result) in
 
             if result.isFailure {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
-                callBack?(false)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
                 return
             }
 
             let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
             if msg.code! != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: msg.code!)
-                callBack?(false)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.code!)
                 return
             }
 
-            callBack?(true)
+            self.sendSafetyCodeBtn.countDown()
 
         }
 
     }
 
+}
+
+protocol AccountManagerViewDataSource {
+    
+    var isSignUp: Bool { get }
+    var navTitle: String { get }
+    var itemRightTitle: String { get }
+    var userNameTextFieldTitle: String { get }
+    var passwdTextFieldTitle: String { get }
+    var viewMainBtnTitle: String { get }
+}
+
+
+struct PhoneSignUpViewModel: AccountManagerViewDataSource {
+    
+    var isSignUp: Bool { return true }
+    var navTitle: String { return L10n.SignUpTitle.string }
+    var itemRightTitle: String { return L10n.SignUpPhoneRightItemBtn.string }
+    var userNameTextFieldTitle: String { return L10n.SignUpPhoneNumTextField.string }
+    var passwdTextFieldTitle: String { return L10n.SignInPasswdTextField.string }
+    var viewMainBtnTitle: String { return L10n.SignUpSignUpBtn.string }
+    
+}
+
+struct EmailSignUpViewModel: AccountManagerViewDataSource {
+    
+    var isSignUp: Bool { return true }
+    var navTitle: String { return L10n.SignUpTitle.string }
+    var itemRightTitle: String { return L10n.SignUpEmailRightItemBtn.string }
+    var userNameTextFieldTitle: String { return L10n.SignUpEmailTextField.string }
+    var passwdTextFieldTitle: String { return L10n.SignInPasswdTextField.string }
+    var viewMainBtnTitle: String { return L10n.SignUpSignUpBtn.string }
+    
+}
+
+struct PhoneForgotPwdViewModel: AccountManagerViewDataSource {
+    
+    var isSignUp: Bool { return false }
+    var navTitle: String { return L10n.ForgotTitle.string }
+    var itemRightTitle: String { return L10n.SignUpPhoneRightItemBtn.string }
+    var userNameTextFieldTitle: String { return L10n.SignUpPhoneNumTextField.string }
+    var passwdTextFieldTitle: String { return L10n.ForgotPasswdTextField.string }
+    var viewMainBtnTitle: String { return L10n.ForgotFinish.string }
+    
 }
 

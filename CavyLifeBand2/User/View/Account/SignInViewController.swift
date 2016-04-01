@@ -40,8 +40,6 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
         return self
     }
     
-    private var delegate: SignInDelegate?
-
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -61,7 +59,6 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
         userNameTextField.backgroundColor = UIColor.whiteColor()
         passwdTextField.backgroundColor = UIColor.whiteColor()
         
-        delegate = self
         
         
         // Do any additional setup after loading the view.
@@ -170,7 +167,7 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
         
         let forgotVC = StoryboardScene.Main.instantiateAccountManagerView()
 
-        forgotVC.viewStyle = .PhoneNumForgotPasswd
+        forgotVC.configView(PhoneForgotPwdViewModel())
 
         self.pushVC(forgotVC)
 
@@ -183,15 +180,8 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
 
-        delegate?.signIn {
+        signIn()
             
-            if $0 == true {
-                let guideVC = StoryboardScene.Guide.instantiateGuideView()
-                self.pushVC(guideVC)
-            }
-            
-        }
-
     }
     
 

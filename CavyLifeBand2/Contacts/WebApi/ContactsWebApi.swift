@@ -74,17 +74,17 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func checkSearchFriend(parametes: [String: AnyObject]) throws {
         
-        guard let searchType = parametes[ContactsApiParaKey.SearchType.rawValue] as? SearchType else { throw UserRequestErrorType.SearchTypeNil }
+        guard let searchType = parametes[ContactsApiParaKey.SearchType.rawValue] as? Int else { throw UserRequestErrorType.SearchTypeNil }
         
         switch searchType {
             
-        case .UserName:
+        case SearchType.UserName.rawValue:
             if parametes.keys.contains(ContactsApiParaKey.UserName.rawValue) != true { throw UserRequestErrorType.UserNameNil }
             
-        case .Nearby:
+        case SearchType.Nearby.rawValue:
             if parametes.keys.contains(ContactsApiParaKey.LBS.rawValue) != true { throw UserRequestErrorType.LBSNil }
             
-        case .AddressBook:
+        case SearchType.AddressBook.rawValue:
             if parametes.keys.contains(ContactsApiParaKey.PhoneNumList.rawValue) != true { UserRequestErrorType.PhoneNumListNil }
             
         default:

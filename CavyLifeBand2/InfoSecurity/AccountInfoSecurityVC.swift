@@ -11,7 +11,7 @@ import Log
 import RealmSwift
 import EZSwiftExtensions
 
-class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UITableViewDataSource, AccountInfoSecurityDelegate {
+class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -38,12 +38,12 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
     func loadFriendData() {
         
         // 如果不存在 就添加默认
-        if isExistInfoSecurityList() ==  false {
-            
-            addDefaultAccountInfoSecurityRealm()
-        }
-        
-        queryAccountInfoSecurity()
+//        if isExistInfoSecurityList() ==  false {
+//            
+//            addDefaultAccountInfoSecurityRealm()
+//        }
+//        
+//        queryAccountInfoSecurity()
 
     }
     

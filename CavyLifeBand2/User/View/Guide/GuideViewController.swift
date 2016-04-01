@@ -208,6 +208,7 @@ class GuideViewController: BaseViewController {
         case .SettingLocationShare:
             
             let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
+            accountVC.configView(PhoneSignUpViewModel())
             self.pushVC(accountVC)
             
         default:
@@ -244,9 +245,7 @@ class GuideViewController: BaseViewController {
             self.pushVC(nextView)
         case .BandSuccess:
             
-            // 注册时候 也是跳到添加个人信息
-            if UserInfoModelView.shareInterface.userInfo!.userId.isEmpty {
-                
+            if loginUserId == "" {
                 nextView.viewStyle = .GuideGender
                 self.pushVC(nextView)
                 return
@@ -264,7 +263,7 @@ class GuideViewController: BaseViewController {
                     } else {
                         
                         // 如果有个人信息 就是直接跳到主页
-                        UserInfoModelView.shareInterface.updateInfo()
+                        self.pushVC(StoryboardScene.Home.instantiateRootView())
                     }
                 }
             }
@@ -292,9 +291,17 @@ class GuideViewController: BaseViewController {
             self.pushVC(nextView)
         case .SettingLocationShare:
             
-            let homeVC = StoryboardScene.Home.instantiateRootView()
-            pushVC(homeVC)
-
+            if loginUserId.isEmpty {
+                let nextVC = StoryboardScene.Main.instantiateAccountManagerView()
+                nextVC.configView(PhoneSignUpViewModel())
+                pushVC(nextVC)
+            } else {
+                UserInfoModelView.shareInterface.updateInfo(self)
+                let nextVC = StoryboardScene.Home.instantiateRootView()
+                pushVC(nextVC)
+            }
+            
+            
         }
         
     }

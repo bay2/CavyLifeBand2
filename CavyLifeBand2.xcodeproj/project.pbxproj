@@ -129,6 +129,8 @@
 		91E1B4F91CA69CAA008ADEE6 /* FriendInfoListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4F81CA69CAA008ADEE6 /* FriendInfoListRealm.swift */; };
 		91E1B4FB1CA6A475008ADEE6 /* FriendInfoListOper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4FA1CA6A475008ADEE6 /* FriendInfoListOper.swift */; };
 		91E981291C8937CB00802C5F /* AccountPageSwitchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */; };
+		91EB79581CAC049700ED3E67 /* SearchFrendListResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 91EB79571CAC049700ED3E67 /* SearchFrendListResult.json */; };
+		91EB795A1CAC04BE00ED3E67 /* SearchFrendListResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 91EB79591CAC04BE00ED3E67 /* SearchFrendListResult.json */; };
 		91F0361B1C8D2A1D003E059A /* ProfileTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F0361A1C8D2A1D003E059A /* ProfileTest.swift */; };
 		91F0361D1C8D57DE003E059A /* CommonResultOk.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F0361C1C8D57DE003E059A /* CommonResultOk.json */; };
 		91F0361F1C8D6BB6003E059A /* Profile_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91F0361E1C8D6BB6003E059A /* Profile_Ok.json */; };
@@ -303,6 +305,8 @@
 		91E1B4F81CA69CAA008ADEE6 /* FriendInfoListRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendInfoListRealm.swift; sourceTree = "<group>"; };
 		91E1B4FA1CA6A475008ADEE6 /* FriendInfoListOper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendInfoListOper.swift; sourceTree = "<group>"; };
 		91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPageSwitchUITests.swift; sourceTree = "<group>"; };
+		91EB79571CAC049700ED3E67 /* SearchFrendListResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchFrendListResult.json; sourceTree = "<group>"; };
+		91EB79591CAC04BE00ED3E67 /* SearchFrendListResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchFrendListResult.json; sourceTree = "<group>"; };
 		91F0361A1C8D2A1D003E059A /* ProfileTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTest.swift; sourceTree = "<group>"; };
 		91F0361C1C8D57DE003E059A /* CommonResultOk.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CommonResultOk.json; sourceTree = "<group>"; };
 		91F0361E1C8D6BB6003E059A /* Profile_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Profile_Ok.json; sourceTree = "<group>"; };
@@ -670,6 +674,7 @@
 		91C3AE4C1C461E61006B67AF /* json */ = {
 			isa = PBXGroup;
 			children = (
+				91EB79571CAC049700ED3E67 /* SearchFrendListResult.json */,
 				91F0361E1C8D6BB6003E059A /* Profile_Ok.json */,
 				91F0361C1C8D57DE003E059A /* CommonResultOk.json */,
 				918435E21C7C2C4E005B6E92 /* UploadPicture_Ok.json */,
@@ -857,6 +862,7 @@
 		91F036921C8EE433003E059A /* json */ = {
 			isa = PBXGroup;
 			children = (
+				91EB79591CAC04BE00ED3E67 /* SearchFrendListResult.json */,
 				91850E261CA8D75C00915C44 /* GetFrendListResult.json */,
 				91F036931C8EE433003E059A /* CommonResultOk.json */,
 				91F036941C8EE433003E059A /* ForgotPasswd_Ok.json */,
@@ -999,6 +1005,7 @@
 			files = (
 				91F0369E1C8EE433003E059A /* SecurityCode_Ok.json in Resources */,
 				91F0369F1C8EE433003E059A /* Sign_In_Error.json in Resources */,
+				91EB795A1CAC04BE00ED3E67 /* SearchFrendListResult.json in Resources */,
 				913D0BD91C3FA126006EE7F8 /* Weather.storyboard in Resources */,
 				91F0369C1C8EE433003E059A /* ForgotPasswd_Ok.json in Resources */,
 				91D192921C7DA87B00482019 /* colors.txt in Resources */,
@@ -1011,6 +1018,7 @@
 				9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */,
 				917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */,
 				9114D2031C993166008CB4CE /* Home.storyboard in Resources */,
+				91EB79581CAC049700ED3E67 /* SearchFrendListResult.json in Resources */,
 				91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */,
 				91E1B4EA1CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib in Resources */,
 				91E1B4D81CA510BD008ADEE6 /* ContactsAddFriendCell.xib in Resources */,
