@@ -262,6 +262,7 @@ class GuideViewController: BaseViewController {
                         self.pushVC(nextView)
                     } else {
                         
+                        UserInfoModelView.shareInterface.updateInfo()
                         // 如果有个人信息 就是直接跳到主页
                         self.pushVC(StoryboardScene.Home.instantiateRootView())
                     }

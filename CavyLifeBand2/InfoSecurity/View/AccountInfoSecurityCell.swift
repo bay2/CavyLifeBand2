@@ -10,13 +10,6 @@ import UIKit
 import Log
 
 
-enum SwitchTag: Int {
-    
-    case HeightSwitchTag = 3000
-    case WeightSwitchTag = 3001
-    case BirthSwitchTag = 300
-}
-
 class AccountInfoSecurityCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -30,7 +23,7 @@ class AccountInfoSecurityCell: UITableViewCell {
         
         dataSource?.changeSwitchStatus(sender as! UISwitch)
         
-        Log.info("\(titleLabel.text) --- \(sender.on)")
+//        Log.info("\(titleLabel.text!) --- \(sender.on)")
     }
     
     
@@ -42,15 +35,14 @@ class AccountInfoSecurityCell: UITableViewCell {
         
     }
     
-    func configure(dataSource: [AccountInfoSecurityCellViewModel]) {
+    func configure(dataSource: [AccountInfoSecurityListDataSource], index: Int) {
         
-        self.dataSource = dataSource[0]
+        self.dataSource = dataSource[index]
         
-        infoSwitch.on = dataSource[0].isOpen
+        infoSwitch.on = dataSource[index].isOpen
         
-        titleLabel.text = dataSource[0].title
+        titleLabel.text = dataSource[index].title
         
-        dataSource[0].changeSwitchStatus(infoSwitch)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -70,6 +62,8 @@ protocol AccountInfoSecurityListDataSource {
     func changeSwitchStatus(sender: UISwitch)
     
 }
+
+
 
 
 

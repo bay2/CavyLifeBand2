@@ -17,7 +17,8 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
     
     var realm: Realm = try! Realm()
     var userId: String { return loginUserId }
-    let dataArray = [AccountInfoSecurityCellViewModel]()
+    
+    var dataSources = [AccountInfoSecurityListDataSource]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,26 +37,17 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
      加载数据
      */
     func loadFriendData() {
+
+        let userInfoModel = UserInfoOperate().queryUserInfo(loginUserId)
         
-        // 如果不存在 就添加默认
-//        if isExistInfoSecurityList() ==  false {
-//            
-//            addDefaultAccountInfoSecurityRealm()
-//        }
-//        
-//        queryAccountInfoSecurity()
+        if userInfoModel != nil {
+            
+            self.dataSources = [AccountInfoSecurityCellViewModel(title: L10n.ContactsShowInfoHeight.string, isOpenOrNot: userInfoModel!.isOpenHeight), AccountInfoSecurityCellViewModel(title: L10n.ContactsShowInfoWeight.string, isOpenOrNot: userInfoModel!.isOpenWeight), AccountInfoSecurityCellViewModel(title: L10n.ContactsShowInfoBirth.string, isOpenOrNot: userInfoModel!.isOpenBirthday)]
+
+        }
 
     }
-    
-    /**
-     解析账户信息 的信息公开List
-     */
-    func parserFriendListData(result: AccountInfoSecurityCellViewModel) {
-        
-        
-        
-        
-    }
+
     
     /**
      添加TableView
@@ -93,8 +85,9 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
         
        
         let cell = tableView.dequeueReusableCellWithIdentifier("infoSecurityIdentifier") as! AccountInfoSecurityCell
-//        let dataSourceVM = AccountInfoSecurityCellViewModel(realm: self.realm, title: titleArray[indexPath.row], isOpenOrNot: true)
-        cell.configure(dataArray)
+
+        cell.configure(dataSources, index: indexPath.row)
+        
         return cell
     }
 

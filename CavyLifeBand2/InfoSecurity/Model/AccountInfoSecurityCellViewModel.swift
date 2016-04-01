@@ -17,19 +17,18 @@ import Log
  */
 struct AccountInfoSecurityCellViewModel: AccountInfoSecurityListDataSource {
     
+    var realm = try! Realm()
+    
     var title: String
     
     var isOpen: Bool
     
-    var realm: Realm
- 
     var userId: String { return loginUserId}
     
-    init(realm: Realm, title: String, isOpenOrNot: Bool = true) {
+    init(title: String, isOpenOrNot: Bool = true) {
         
         self.title = title
         self.isOpen = isOpenOrNot
-        self.realm = realm
     }
     
     /**
@@ -37,14 +36,65 @@ struct AccountInfoSecurityCellViewModel: AccountInfoSecurityListDataSource {
      */
     func changeSwitchStatus(sender: UISwitch) {
         
-        
-        Log.info(sender.tag)
+        Log.info("----\(title)----------\(sender.on)")
 
-        // 更新本地数据库
+        updataRealmWithTitle(title, openOrNot: sender.on)
         
-        // 上传更新数据
+        
+        
     }
+    
+    
+     /**
+     更新本地数据库 和 上传数据 
 
+     - parameter title:         对应的行
+     - parameter openOrNot:     是否打开
+     - parameter userInfoModel: 本地存储的数据
+     */
+    
+    func updataRealmWithTitle(title: String, openOrNot: Bool) {
+        
+        let userInfoModel: UserInfoModel = UserInfoOperate().queryUserInfo(loginUserId)!
+        
+        if title == L10n.ContactsShowInfoHeight.string {
+            
+            try! realm.write {
+                
+                userInfoModel.isOpenHeight = openOrNot
+                UserInfoModelView.shareInterface.userInfo!.isOpenHeight = openOrNot
 
+            }
+            
+        }
+        
+        if title == L10n.ContactsShowInfoWeight.string {
+            
+            try! realm.write {
+                
+                userInfoModel.isOpenWeight = openOrNot
+                
+                UserInfoModelView.shareInterface.userInfo!.isOpenWeight = openOrNot
+
+            }
+            
+        }
+        
+        if title == L10n.ContactsShowInfoBirth.string {
+            
+            try! realm.write {
+                
+                userInfoModel.isOpenBirthday = openOrNot
+                
+                UserInfoModelView.shareInterface.userInfo!.isOpenBirthday = openOrNot
+
+            }
+            
+        }
+
+    }
+    
+    
+    
 }
 

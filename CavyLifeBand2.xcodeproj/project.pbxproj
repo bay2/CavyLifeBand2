@@ -824,8 +824,8 @@
 				91E1B4A61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift */,
 				91E1B4AD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift */,
 				91E1B4B21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift */,
-				91E1B4B91CA510BD008ADEE6 /* ContactsAddFriendVC.swift */,
 				91E1B4BA1CA510BD008ADEE6 /* ContactsFriendListVC.swift */,
+				91E1B4B91CA510BD008ADEE6 /* ContactsAddFriendVC.swift */,
 				91E1B4BC1CA510BD008ADEE6 /* ContactsReqFriendVC.swift */,
 				91E1B4BB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift */,
 			);
