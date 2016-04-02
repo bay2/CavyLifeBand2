@@ -14,7 +14,7 @@
 ### bundle （确保CocoaPods版本一致）
 **安装命令:**
  ```
- gem bundle
+sudo gem install -n /usr/local/bin bundle
  ```
 
 ### [CocoaPods](http://guides.cocoapods.org/using/getting-started.html#installation) 0.39.0 (包管理器)
@@ -23,7 +23,7 @@
 ```
 bundle install
 ```
-### [tailor](https://github.com/sleekbyte/tailor)
+### [tailor](https://github.com/sleekbyte/tailor)(Swift 代码静态扫描工具)
 **安装命令：**
 ```
 brew install tailor
@@ -33,7 +33,7 @@ brew install tailor
 tailor --xcode /path/to/demo.xcodeproj/
 ```
 
-### [SwiftGen](https://github.com/AliSoftware/SwiftGen)(Swift 代码静态扫描工具)
+### [SwiftGen](https://github.com/AliSoftware/SwiftGen)
 
 自动生成枚举定义:
 - UIImage

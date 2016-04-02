@@ -19,7 +19,7 @@ public enum Level {
 
 extension Logger {
     
-    func netRequestFormater(url: String, para: [String: AnyObject]? = nil, items: Any..., separator: String = " ", terminator: String = "\n", file: String = __FILE__, line: Int = __LINE__, column: Int = __COLUMN__, function: String = __FUNCTION__) {
+    func netRequestFormater(url: String, para: [String: AnyObject]? = nil, items: Any..., separator: String = " ", terminator: String = "\n", file: String = #file, line: Int = #line, column: Int = #column, function: String = #function) {
         
         guard enabled else {
             return

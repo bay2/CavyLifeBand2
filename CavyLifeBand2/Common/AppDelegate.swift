@@ -9,43 +9,42 @@
 import UIKit
 import KSCrash
 import Log
-#if UITEST
+//#if UITEST
 import OHHTTPStubs
-#endif
+//#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-
-        // Override point for customization after application launch.
+        
+        #if UITEST
+            
+            uiTestStub()
+            
+        #endif
 
         let installation = KSCrashInstallationStandard.sharedInstance()
-
-        installation.url = NSURL(string: bugHDKey)
+        
+        installation.url = NSURL(string: CavyDefine.bugHDKey)
 
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
-
-        let defaults = NSUserDefaults.standardUserDefaults()
-
-        let userName = defaults["userName"]
-        let passwd = defaults["passwd"]
-//        if userName != nil && passwd != nil {
-//            
-//            let signInViewModel = SignInViewModel(viewController: UIViewController(), userName: userName as! String, passwd: passwd as! String)
-//            signInViewModel.userSignIn()
-//            
-//        }
         
-#if UITEST
+        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId != "" {
             
-        uiTestStub()
+            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
             
-#endif
+        }
+        
+//        stub(isMethodPOST()) { _ in
+//            let stubPath = OHPathForFile("SearchFrendListResult.json", self.dynamicType)
+//            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+//        }
+//        
+        
 
         return true
 
@@ -55,6 +54,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func uiTestStub() {
     
+//        stub(isMethodPOST()) { _ in
+//            let stubPath = OHPathForFile("GetFrendListResult.json", self.dynamicType)
+//            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+//        }
+
+    
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_IN") {
     
             // setup HTTP stubs for tests
@@ -62,6 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let stubPath = OHPathForFile("Sign_In_Ok.json", self.dynamicType)
             return fixture(stubPath!, headers: ["Content-Type": "application/json"])
             }
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+            
         }
 
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_UP") {
@@ -71,18 +79,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
                 return fixture(stubPath!, headers: ["Content-Type": "application/json"])
             }
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
         }
     
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_COMMON_RESULT_OK") {
     
             // setup HTTP stubs for tests
             stub(isMethodPOST()) { _ in
-            let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
-            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
+                let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
+                return fixture(stubPath!, headers: ["Content-Type": "application/json"])
             }
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
         }
-    
-    
     
     }
     

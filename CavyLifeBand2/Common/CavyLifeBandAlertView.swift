@@ -20,7 +20,7 @@ class CavyLifeBandAlertView {
      - parameter title:   <#title description#>
      - parameter message: <#message description#>
      */
-   func showViewTitle(viewController: UIViewController?, title: String, message: String) {
+   func showViewTitle(viewController: UIViewController?, title: String = "", message: String) {
 
         let alertView = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 

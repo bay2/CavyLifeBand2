@@ -95,7 +95,7 @@ class GuideViewController: BaseViewController {
      */
     func updateViewStyle() {
         
-        var guideBgColor = UIColor(named: .GuideColorBlue)
+        var guideBgColor = UIColor(named: .GuideSetInfoColor)
         var titleInfoText = L10n.GuideIntroduce.string
         var guideBtnImage = UIImage(asset: .GuideRightBtn)
         var guideBtnImagePress = UIImage(asset: .GuideRightBtnPressed)
@@ -107,7 +107,7 @@ class GuideViewController: BaseViewController {
             infoLabel.hidden = false
             updateNavigationItemUI(L10n.GuideMyInfo.string)
             upDateGenderView()
-            guideBgColor = UIColor(named: .GuideColorBlue)
+            guideBgColor = UIColor(named: .GuideSetInfoColor)
             titleInfoText = L10n.GuideIntroduce.string
             
         case .GuideBirthday:
@@ -141,42 +141,42 @@ class GuideViewController: BaseViewController {
         case .SettingNotice:
             
             updateNavigationItemUI(L10n.GuideSetting.string, rightBtnText: L10n.GuidePassButton.string, isNeedBack: true)
-            guideBgColor = UIColor(named: .GuideColorcyanColor)
+            guideBgColor = UIColor(named: .GuideSetPermission)
             upDatePictureView(L10n.GuideOpenNotice.string, titleInfo: L10n.GuideOpenNoticeInfo.string, midImage: UIImage(asset: .GuideNotice), bottomLab: "")
             
         case .SettingLocationShare:
             
             updateNavigationItemUI(L10n.GuideSetting.string, rightBtnText: L10n.GuidePassButton.string, isNeedBack: true)
-            guideBgColor = UIColor(named: .GuideColorcyanColor)
+            guideBgColor = UIColor(named: .GuideSetPermission)
             upDatePictureView(L10n.GuideOpenLocationShare.string, titleInfo: L10n.GuideOpenLocationShareInfo.string, midImage: UIImage(asset: .GuideLocation), bottomLab: "")
             
         case .BandBluetooth:
             
-            guideBgColor = UIColor(named: .GuideColorGreen)
+            guideBgColor = UIColor(named: .GuideBandBluetoothColor)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             upDatePictureView(L10n.GuideOpenBluetooth.string, titleInfo: L10n.GuideOpenBluetoothInfo.string, midImage: UIImage(asset: .GuideBluetooth), bottomLab: "")
             
         case .BandopenBand:
             
-            guideBgColor = UIColor(named: .GuideColorGreen)
+            guideBgColor = UIColor(named: .GuideBandBluetoothColor)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             upDatePictureView(L10n.GuideOpenCavy.string, titleInfo: L10n.GuideOpenCavyInfo.string, midImage: UIImage(asset: .GuideOpenBand), bottomLab: L10n.GuideOpenCavySugg.string)
             
         case .BandLinking:
             
-            guideBgColor = UIColor(named: .GuideColorGreen)
+            guideBgColor = UIColor(named: .GuideBandBluetoothColor)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             upDatePictureView(L10n.GuideLinking.string, titleInfo: "", midImage: UIImage(named: "GuideLinking.gif")!, bottomLab: "")
             
         case .BandSuccess:
             
-            guideBgColor = UIColor(named: .GuideColorGreen)
+            guideBgColor = UIColor(named: .GuideBandBluetoothColor)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             upDatePictureView(L10n.GuidePairSuccess.string, titleInfo: L10n.GuidePairSuccessInfo.string, midImage: UIImage(asset: .GuidePairSeccuss), bottomLab: "")
             
         case .BandFail:
             
-            guideBgColor = UIColor(named: .GuideColorGreen)
+            guideBgColor = UIColor(named: .GuideBandBluetoothColor)
             updateNavigationItemUI(L10n.GuideLinkCavy.string)
             guideBtnImage = UIImage(asset: .GuigeFlashBtn)
             guideBtnImagePress = UIImage(asset: .GuigeFlashBtnPressed)
@@ -207,10 +207,11 @@ class GuideViewController: BaseViewController {
         case .SettingLocationShare:
             
             let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
+            accountVC.configView(PhoneSignUpViewModel())
             self.pushVC(accountVC)
             
         default:
-            print(__FUNCTION__)
+            print(#function)
         }
         
     }
@@ -243,9 +244,7 @@ class GuideViewController: BaseViewController {
             self.pushVC(nextView)
         case .BandSuccess:
             
-            // 注册时候 也是跳到添加个人信息
-            if UserInfoModelView.shareInterface.userInfo!.userId.isEmpty {
-                
+            if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId == "" {
                 nextView.viewStyle = .GuideGender
                 self.pushVC(nextView)
                 return
@@ -263,7 +262,7 @@ class GuideViewController: BaseViewController {
                     } else {
                         
                         // 如果有个人信息 就是直接跳到主页
-                        UserInfoModelView.shareInterface.updateInfo()
+                        self.pushVC(StoryboardScene.Home.instantiateRootView())
                     }
                 }
             }
@@ -290,8 +289,18 @@ class GuideViewController: BaseViewController {
             nextView.viewStyle = .SettingLocationShare
             self.pushVC(nextView)
         case .SettingLocationShare:
-            let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
-            pushVC(accountVC)
+            
+            if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
+                let nextVC = StoryboardScene.Main.instantiateAccountManagerView()
+                nextVC.configView(PhoneSignUpViewModel())
+                pushVC(nextVC)
+            } else {
+                UserInfoModelView.shareInterface.updateInfo(self)
+                let nextVC = StoryboardScene.Home.instantiateRootView()
+                pushVC(nextVC)
+            }
+            
+            
         }
         
     }
@@ -380,8 +389,8 @@ class GuideViewController: BaseViewController {
         
         goalView!.goalViewLayout()
         
-        goalView!.sliderStepAttribute(5000, recommandValue: 8000, minValue: 0, maxValue: 18000)
-        goalView!.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 0, minM: 0, maxH: 20, maxM: 00)
+        goalView!.sliderStepAttribute(6000, recommandValue: 8000, minValue: 0, maxValue: 20000)
+        goalView!.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 2, minM: 0, maxH: 12, maxM: 00)
         middleView.addSubview(goalView!)
         
         

@@ -48,108 +48,162 @@ class AccountPageSwitchUITests: XCTestCase {
             
             let app = XCUIApplication()
             
+            let backbtnButton = app.buttons["backbtn"]
+            let buttonJoin = app.buttons["加入豚鼠"]
+            buttonJoin.tap()
+            
+            let guideButton = app.buttons["GuideRightBtn"]
+            guideButton.tap()
+            guideButton.tap()
+            guideButton.tap()
+            guideButton.tap()
+            
+            app.buttons["GuideGenderGirlGary"].tap()
+            app.buttons["GuideGenderBoyGary"].tap()
+            app.buttons["GuideGenderGirlGary"].tap()
+            guideButton.tap()
+            
+            app.staticTexts["生日"].tap()
+            guideButton.tap()
+            app.staticTexts["身高"].tap()
+            guideButton.tap()
+            app.staticTexts["体重"].tap()
+            guideButton.tap()
+            app.staticTexts["目标"].tap()
+            guideButton.tap()
+            app.staticTexts["开启智能通知"].tap()
+            guideButton.tap()
+            app.staticTexts["开启位置共享"].tap()
+            guideButton.tap()
+            
+            let staticText2 = app.staticTexts["加入豚鼠"]
+            staticText2.tap()
+            
+            let signUpBtn = app.buttons["注册"]
+            signUpBtn.tap()
+            app.alerts.collectionViews.buttons["OK"].tap()
+            
+            backbtnButton.tap()
+            backbtnButton.tap()
+            
+            let jumpButton = app.buttons["跳过"]
+            app.staticTexts["开启智能通知"].tap()
+            jumpButton.tap()
+            app.staticTexts["开启位置共享"].tap()
+            jumpButton.tap()
+            
+            staticText2.tap()
+            
+            let buttonEmil = app.buttons["邮箱"]
+            buttonEmil.tap()
+            
+            staticText2.tap()
+            let buttonPhone = app.buttons["手机"]
+            buttonPhone.tap()
+
+            staticText2.tap()
+            backbtnButton.tap()
+            guideButton.tap()
+            
+            staticText2.tap()
+            buttonEmil.tap()
+            
+            staticText2.tap()
+            backbtnButton.tap()
+            
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            
             let button = app.buttons["登入"]
             button.tap()
             
             var staticText = app.staticTexts["准备开始"]
             staticText.tap()
             
-            let backbtnButton = app.buttons["backbtn"]
-            backbtnButton.tap()
-            
-            let button2 = app.buttons["加入豚鼠"]
-            button2.tap()
-            
-            var staticText2 = app.staticTexts["加入豚鼠"]
-            staticText2.tap()
-            backbtnButton.tap()
-            button.tap()
-            app.buttons["注册"].tap()
-            
-            staticText2 = app.staticTexts["加入豚鼠"]
-            staticText2.tap()
-            
-            let button3 = app.buttons["邮箱"]
-            button3.tap()
-            
-            staticText2 = app.staticTexts["加入豚鼠"]
-            staticText2.tap()
-            
-            let button4 = app.buttons["手机"]
-            button4.tap()
-            
-            staticText2 = app.staticTexts["加入豚鼠"]
-            staticText2.tap()
-            button3.tap()
-            
-            staticText2 = app.staticTexts["加入豚鼠"]
-            staticText2.tap()
-            backbtnButton.tap()
-            
-            staticText2 = app.staticTexts["加入豚鼠"]
-            staticText2.tap()
-            backbtnButton.tap()
-            
-            staticText = app.staticTexts["准备开始"]
-            staticText.tap()
-            
-            let button5 = app.buttons["忘记了密码？"]
-            button5.tap()
+            let buttonForget = app.buttons["忘记了密码？"]
+            buttonForget.tap()
             
             var staticText3 = app.staticTexts["忘记密码了?"]
             staticText3.tap()
-            button3.tap()
+            buttonEmil.tap()
             
             staticText3 = app.staticTexts["忘记密码了?"]
+            staticText3.tap()
+            buttonPhone.tap()
+            
             staticText3.tap()
             backbtnButton.tap()
-            
-            staticText3 = app.staticTexts["忘记密码了?"]
-            staticText3.tap()
-            backbtnButton.tap()
-            button5.tap()
+            buttonForget.tap()
             
             staticText3 = app.staticTexts["忘记密码了?"]
             staticText3.tap()
             
-            let button6 = app.buttons["且慢，我想起来了！"]
-            button6.tap()
+            let buttonRemmber = app.buttons["且慢，我想起来了！"]
+            buttonRemmber.tap()
             
             staticText = app.staticTexts["准备开始"]
             staticText.tap()
             
-            button5.tap()
-            button3.tap()
+            buttonForget.tap()
+            buttonEmil.tap()
             
-            staticText3 = app.staticTexts["忘记密码了?"]
             staticText3.tap()
-            button6.tap()
-            backbtnButton.tap()
-            button2.tap()
-            
-            staticText2 = app.staticTexts["加入豚鼠"]
-            staticText2.tap()
-            button3.tap()
-            
-            staticText2 = app.staticTexts["加入豚鼠"]
-            staticText2.tap()
-            button4.tap()
-            
-            staticText2 = app.staticTexts["加入豚鼠"]
-            staticText2.tap()
-            button3.tap()
-            
-            staticText2 = app.staticTexts["加入豚鼠"]
-            staticText2.tap()
+            buttonRemmber.tap()
             backbtnButton.tap()
             
-            staticText2 = app.staticTexts["加入豚鼠"]
+            button.tap()
+            staticText.tap()
+            signUpBtn.tap()
+            
+            guideButton.tap()
+            guideButton.tap()
+            guideButton.tap()
+            guideButton.tap()
+            
+            app.buttons["GuideGenderGirlGary"].tap()
+            guideButton.tap()
+            
+            guideButton.tap()
+            guideButton.tap()
+            guideButton.tap()
+            guideButton.tap()
+            guideButton.tap()
+            guideButton.tap()
+            
             staticText2.tap()
+            
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
+            backbtnButton.tap()
             backbtnButton.tap()
             
+            buttonJoin.tap()
+            backbtnButton.tap()
             
+ 
         }
         
     }
+    
+    
     
 }

@@ -35,6 +35,14 @@ extension UIViewController {
 }
 
 struct StoryboardScene {
+  enum AccountInfo: String, StoryboardSceneType {
+    static let storyboardName = "AccountInfo"
+
+    case ContactsAccountInfoVCScene = "ContactsAccountInfoVC"
+    static func instantiateContactsAccountInfoVC() -> ContactsAccountInfoVC {
+      return StoryboardScene.AccountInfo.ContactsAccountInfoVCScene.viewController() as! ContactsAccountInfoVC
+    }
+  }
   enum Camera: String, StoryboardSceneType {
     static let storyboardName = "Camera"
 
@@ -48,12 +56,68 @@ struct StoryboardScene {
       return StoryboardScene.Camera.PhotoAlbumViewScene.viewController() as! PhotoAlbum
     }
   }
+  enum Contacts: String, StoryboardSceneType {
+    static let storyboardName = "Contacts"
+
+    case ContactsAddFriendVCScene = "ContactsAddFriendVC"
+    static func instantiateContactsAddFriendVC() -> ContactsAddFriendVC {
+      return StoryboardScene.Contacts.ContactsAddFriendVCScene.viewController() as! ContactsAddFriendVC
+    }
+
+    case ContactsFriendInfoVCScene = "ContactsFriendInfoVC"
+    static func instantiateContactsFriendInfoVC() -> ContactsFriendInfoVC {
+      return StoryboardScene.Contacts.ContactsFriendInfoVCScene.viewController() as! ContactsFriendInfoVC
+    }
+
+    case ContactsFriendListVCScene = "ContactsFriendListVC"
+    static func instantiateContactsFriendListVC() -> ContactsFriendListVC {
+      return StoryboardScene.Contacts.ContactsFriendListVCScene.viewController() as! ContactsFriendListVC
+    }
+
+    case ContactsNewFriendVCScene = "ContactsNewFriendVC"
+    static func instantiateContactsNewFriendVC() -> ContactsNewFriendVC {
+      return StoryboardScene.Contacts.ContactsNewFriendVCScene.viewController() as! ContactsNewFriendVC
+    }
+
+    case ContactsPersonInfoVCScene = "ContactsPersonInfoVC"
+    static func instantiateContactsPersonInfoVC() -> ContactsPersonInfoVC {
+      return StoryboardScene.Contacts.ContactsPersonInfoVCScene.viewController() as! ContactsPersonInfoVC
+    }
+
+    case ContactsReqFriendVCScene = "ContactsReqFriendVC"
+    static func instantiateContactsReqFriendVC() -> ContactsReqFriendVC {
+      return StoryboardScene.Contacts.ContactsReqFriendVCScene.viewController() as! ContactsReqFriendVC
+    }
+
+    case SearchResultViewScene = "SearchResultView"
+    static func instantiateSearchResultView() -> UITableViewController {
+      return StoryboardScene.Contacts.SearchResultViewScene.viewController() as! UITableViewController
+    }
+  }
   enum Guide: String, StoryboardSceneType {
     static let storyboardName = "Guide"
 
     case GuideViewScene = "GuideView"
     static func instantiateGuideView() -> GuideViewController {
       return StoryboardScene.Guide.GuideViewScene.viewController() as! GuideViewController
+    }
+  }
+  enum Home: String, StoryboardSceneType {
+    static let storyboardName = "Home"
+
+    case HomeViewScene = "HomeView"
+    static func instantiateHomeView() -> HomeViewController {
+      return StoryboardScene.Home.HomeViewScene.viewController() as! HomeViewController
+    }
+
+    case LeftViewScene = "LeftView"
+    static func instantiateLeftView() -> LeftViewController {
+      return StoryboardScene.Home.LeftViewScene.viewController() as! LeftViewController
+    }
+
+    case RootViewScene = "RootView"
+    static func instantiateRootView() -> RootViewController {
+      return StoryboardScene.Home.RootViewScene.viewController() as! RootViewController
     }
   }
   enum LaunchScreen: StoryboardSceneType {

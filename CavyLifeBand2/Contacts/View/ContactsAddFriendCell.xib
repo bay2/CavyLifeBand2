@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="ContactsAddFriendCell" selectionStyle="default" indentationWidth="10" id="S2s-Cu-mee" customClass="ContactsAddFriendCell" customModule="CavyLifeBand2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="471" height="77"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S2s-Cu-mee" id="L5Q-JA-8dV">
+                <rect key="frame" x="0.0" y="0.0" width="471" height="77"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qWP-WI-5OM">
+                        <rect key="frame" x="30" y="18" width="40" height="40"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="6He-HL-f7I"/>
+                            <constraint firstAttribute="width" constant="40" id="SQp-17-nQh"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="strawberry" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rmt-JS-FIQ">
+                        <rect key="frame" x="86" y="18" width="78" height="19"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="最爱吃草莓啊" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPm-6r-YZi">
+                        <rect key="frame" x="86" y="47" width="72" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ytc-ro-gXX">
+                        <rect key="frame" x="375" y="24" width="66" height="28"/>
+                        <color key="backgroundColor" red="1" green="0.68089345639999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="66" id="J0L-ya-Co8"/>
+                            <constraint firstAttribute="height" constant="28" id="yB1-sK-kNp"/>
+                        </constraints>
+                        <state key="normal" title="添加">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="requestAddFriend:" destination="S2s-Cu-mee" eventType="touchUpInside" id="Ivl-lS-dFO"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="qWP-WI-5OM" firstAttribute="centerY" secondItem="L5Q-JA-8dV" secondAttribute="centerY" id="HBF-NA-XNl"/>
+                    <constraint firstItem="aPm-6r-YZi" firstAttribute="leading" secondItem="qWP-WI-5OM" secondAttribute="trailing" constant="16" id="Hb7-fs-cMD"/>
+                    <constraint firstItem="qWP-WI-5OM" firstAttribute="leading" secondItem="L5Q-JA-8dV" secondAttribute="leading" constant="30" id="gqY-Q5-e6y"/>
+                    <constraint firstItem="Rmt-JS-FIQ" firstAttribute="top" secondItem="qWP-WI-5OM" secondAttribute="top" placeholder="YES" id="hha-Ok-U9C"/>
+                    <constraint firstItem="aPm-6r-YZi" firstAttribute="top" secondItem="Rmt-JS-FIQ" secondAttribute="bottom" constant="10" placeholder="YES" id="iqG-KI-kra"/>
+                    <constraint firstAttribute="trailing" secondItem="Ytc-ro-gXX" secondAttribute="trailing" constant="30" id="woE-En-07g"/>
+                    <constraint firstItem="Rmt-JS-FIQ" firstAttribute="leading" secondItem="qWP-WI-5OM" secondAttribute="trailing" constant="16" id="xRQ-H0-NL8"/>
+                    <constraint firstItem="Ytc-ro-gXX" firstAttribute="centerY" secondItem="L5Q-JA-8dV" secondAttribute="centerY" id="xRl-2z-1Mq"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="headView" destination="qWP-WI-5OM" id="dbN-eV-Pcw"/>
+                <outlet property="introduceLabel" destination="aPm-6r-YZi" id="n8S-wS-P8M"/>
+                <outlet property="nameLabel" destination="Rmt-JS-FIQ" id="HgW-1p-CE3"/>
+                <outlet property="requestBtn" destination="Ytc-ro-gXX" id="Ssa-0N-CHx"/>
+            </connections>
+            <point key="canvasLocation" x="577.5" y="65.5"/>
+        </tableViewCell>
+    </objects>
+</document>

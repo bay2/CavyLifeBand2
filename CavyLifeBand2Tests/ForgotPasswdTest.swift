@@ -12,6 +12,8 @@ import Alamofire
 import JSONJoy
 @testable import CavyLifeBand2
 
+
+
 class ForgotPasswdTest: XCTestCase {
     
     override func setUp() {
@@ -34,208 +36,78 @@ class ForgotPasswdTest: XCTestCase {
     
     func testForgotPasswdOk() {
         
-        let phoneNumPara = [UserNetRequsetKey.PhoneNum.rawValue: "17722618599",
-            UserNetRequsetKey.Passwd.rawValue: "123456",
-            UserNetRequsetKey.SecurityCode.rawValue: "3173"]
+        let parameters = [("17722618599", "123456", "1234"), ("sdfwer@qq.com", "123456", "1234")]
         
-        let emailPara = [UserNetRequsetKey.Email.rawValue: "382499488@qq.com",
-            UserNetRequsetKey.Passwd.rawValue: "123456",
-            UserNetRequsetKey.SecurityCode.rawValue: "Y45E"]
-        
-        let expectationResult = ["code": "0000", "msg": "success"]
-        
-        let expectation1 = expectationWithDescription("testForgotPasswdOk succeed")
-        
-        userNetReq.forgotPasswd(phoneNumPara) { (result) -> Void in
+        for para in parameters {
             
-            XCTAssert(result.isSuccess, "返回值不正确")
+            let expectation = expectationWithDescription("testForgotPasswdOk succeed")
             
-            do {
+            userNetReq.forgotPasswd(para.0, passwd: para.1, safetyCode: para.2) { reslut in
                 
-                let resultVar = try CommenMsg(JSONDecoder(result.value!))
-                XCTAssert(resultVar.code == expectationResult["code"], "返回结果错误[code] = \(resultVar.code), 期望值[code] = \(expectationResult["code"])")
-                XCTAssert(resultVar.msg == expectationResult["msg"], "返回结果错误[msg] = \(resultVar.msg), 期望值[msg] = \(expectationResult["msg"])")
+                XCTAssertTrue(reslut.isSuccess)
                 
-            } catch {
-                XCTAssert(false)
+                let resultVar = try! CommenMsg(JSONDecoder(reslut.value!))
+                
+                XCTAssertTrue(resultVar.code! == WebApiCode.Success.rawValue)
+                XCTAssertTrue(resultVar.msg! == "success")
+                
+                expectation.fulfill()
+            
             }
             
-            expectation1.fulfill()
+            waitForExpectationsWithTimeout(timeout, handler: nil)
             
         }
-        waitForExpectationsWithTimeout(timeout, handler: nil)
         
-        let expectation2 = expectationWithDescription("testForgotPasswdOk succeed")
+       
         
-        userNetReq.forgotPasswd(emailPara) { (result) -> Void in
+    }
+    
+    func testForgotPasswd_UserNameError() {
+        
+        let parameters = [("1772261899", "123456", "1234"), ("sdfweq.com", "123456", "1234"), ("", "123456", "1234")]
+        
+        for para in parameters {
             
-             XCTAssert(result.isSuccess, "返回值不正确")
+            let expectation = expectationWithDescription("testForgotPasswd_UserNameError succeed")
             
-            do {
+            userNetReq.forgotPasswd(para.0, passwd: para.1, safetyCode: para.2) { reslut in
                 
-                let resultVar = try CommenMsg(JSONDecoder(result.value!))
-                XCTAssert(resultVar.code == expectationResult["code"], "返回结果错误[code] = \(resultVar.code), 期望值[code] = \(expectationResult["code"])")
-                XCTAssert(resultVar.msg == expectationResult["msg"], "返回结果错误[msg] = \(resultVar.msg), 期望值[msg] = \(expectationResult["msg"])")
+                XCTAssertTrue(reslut.isFailure)
+                XCTAssertTrue(reslut.error! == UserRequestErrorType.UserNameErr)
                 
-            } catch {
-                XCTAssert(false)
+                expectation.fulfill()
+                
             }
             
-            expectation2.fulfill()
-            
-        }
-        
-        waitForExpectationsWithTimeout(timeout, handler: nil)
-        
-    }
-    
-    /**
-     手机邮箱都未空
-     */
-    func testForgotPasswdPhoneEmailIsNil() {
-        
-        let samplePara = [[UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "123456"],
-        [UserNetRequsetKey.Passwd.rawValue: "126879", UserNetRequsetKey.SecurityCode.rawValue: "122316"],
-        [UserNetRequsetKey.Passwd.rawValue: "126879", UserNetRequsetKey.SecurityCode.rawValue: "sdfe"]]
-        
-        
-        for para in samplePara {
-            
-            let expectation = expectationWithDescription("testForgotPasswdPhoneEmailIsNil succeed")
-            
-            userNetReq.forgotPasswd(para, completionHandler: { (result) -> Void in
-                
-                XCTAssert(result.isFailure, "返回结果不正确")
-                
-                XCTAssert(result.error == UserRequestErrorType.ParaErr, "返回错误码 = \(result.error) , 期望错误码 = \(UserRequestErrorType.ParaErr)")
-                
-                expectation.fulfill()
-                
-            })
-            
-            
             waitForExpectationsWithTimeout(timeout, handler: nil)
             
         }
         
     }
     
-    /**
-     手机号码错误
-     */
-    func testForgotPasswdPhoneNumError() {
+    func testForgotPasswd_PassWdError() {
         
-        let samplePara = [[UserNetRequsetKey.PhoneNum.rawValue: "1772239281", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "123456"],
-        [UserNetRequsetKey.PhoneNum.rawValue: "177223928112", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "123456"],
-        [UserNetRequsetKey.PhoneNum.rawValue: "17722392w81", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "123456"],
-        [UserNetRequsetKey.PhoneNum.rawValue: "qweqqwewq@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "123456"]]
+        let parameters = [("17722618599", "12345678901234567", "1234"), ("sdfwe@qq.com", "12356", "1234"), ("17722618599", "", "1234")]
         
-        for para in samplePara {
+        for para in parameters {
             
-            let expectation = expectationWithDescription("testForgotPasswdPhoneNumError succeed")
+            let expectation = expectationWithDescription("testForgotPasswd_PassWdError succeed")
             
-            userNetReq.forgotPasswd(para, completionHandler: { (result) -> Void in
+            userNetReq.forgotPasswd(para.0, passwd: para.1, safetyCode: para.2) { reslut in
                 
-                XCTAssert(result.isFailure, "返回结果不正确")
-                
-                XCTAssert(result.error == UserRequestErrorType.PhoneErr, "返回错误码 = \(result.error), 期望错误码 = \(UserRequestErrorType.PhoneErr)")
+                XCTAssertTrue(reslut.isFailure)
+                XCTAssertTrue(reslut.error! == UserRequestErrorType.PassWdErr)
                 
                 expectation.fulfill()
-            })
+                
+            }
             
             waitForExpectationsWithTimeout(timeout, handler: nil)
             
         }
         
-    }
-    
-    /**
-     邮箱错误
-     */
-    func testForgotPasswdEmailError() {
         
-        let samplePara = [[UserNetRequsetKey.Email.rawValue: "17722983292", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "ndse"],
-        [UserNetRequsetKey.Email.rawValue: "sdfwec.com", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "ndse"],
-        [UserNetRequsetKey.Email.rawValue: "asdfww@qq", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "ndse"]]
-        
-        for para in samplePara {
-            
-            let expectation = expectationWithDescription("testForgotPasswdEmailError succeed")
-            
-            userNetReq.forgotPasswd(para, completionHandler: { (result) -> Void in
-                
-                XCTAssert(result.isFailure, "返回结果不正确")
-                
-                XCTAssert(result.error == UserRequestErrorType.EmailErr, "返回错误码 = \(result.error), 期望错误码 = \(UserRequestErrorType.EmailErr)")
-                
-                expectation.fulfill()
-            })
-            
-            waitForExpectationsWithTimeout(timeout, handler: nil)
-            
-        }
-    }
-    
-    /**
-     密码错误
-     */
-    func testForgotPasswdPasswdError() {
-        
-        let samplePara = [[UserNetRequsetKey.PhoneNum.rawValue: "17712336211", UserNetRequsetKey.Passwd.rawValue: "12345", UserNetRequsetKey.SecurityCode.rawValue: "1256"],
-        [UserNetRequsetKey.PhoneNum.rawValue: "17712336211", UserNetRequsetKey.Passwd.rawValue: "12345678901112131", UserNetRequsetKey.SecurityCode.rawValue: "1256"],
-        [UserNetRequsetKey.Email.rawValue: "sdfse@qq.com", UserNetRequsetKey.Passwd.rawValue: "12345", UserNetRequsetKey.SecurityCode.rawValue:"suwf"],
-        [UserNetRequsetKey.Email.rawValue: "sdfse@qq.com", UserNetRequsetKey.Passwd.rawValue: "12345678901112131", UserNetRequsetKey.SecurityCode.rawValue:"3jse"]]
-        
-        for para in samplePara {
-            
-            let expectation = expectationWithDescription("testForgotPasswdPasswdError succeed")
-            
-            userNetReq.forgotPasswd(para, completionHandler: { (result) -> Void in
-                
-                XCTAssert(result.isFailure, "返回结果不正确")
-                
-                XCTAssert(result.error == UserRequestErrorType.PassWdErr, "返回错误码 = \(result.error), 期望错误码 = \(UserRequestErrorType.PassWdErr)")
-                
-                expectation.fulfill()
-                
-            })
-            
-            waitForExpectationsWithTimeout(timeout, handler: nil)
-            
-        }
-        
-    }
-   
-    /**
-     验证码错误
-     */
-    func testForgotPasswdSecutityCodeError() {
-        
-        let samplePara = [[UserNetRequsetKey.PhoneNum.rawValue: "17712336211", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "12345"],
-            [UserNetRequsetKey.PhoneNum.rawValue: "17712336211", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "s"],
-            [UserNetRequsetKey.PhoneNum.rawValue: "17712336211", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "1234567"],
-            [UserNetRequsetKey.Email.rawValue: "sdfse@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue:"56"],
-            [UserNetRequsetKey.Email.rawValue: "sdfse@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue:"123456"],
-            [UserNetRequsetKey.Email.rawValue: "sdfse@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue:"12345d"],
-            [UserNetRequsetKey.Email.rawValue: "sdfse@qq.com", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue:"34567"]]
-        
-        for para in samplePara {
-            
-            let expectation = expectationWithDescription("testForgotPasswdSecutityCodeError succeed")
-            
-            userNetReq.forgotPasswd(para, completionHandler: { (result) -> Void in
-                
-                XCTAssert(result.isFailure, "返回结果不正确")
-                
-                XCTAssert(result.error == UserRequestErrorType.SecurityCodeErr, "返回错误码 = \(result.error), 期望错误码 = \(UserRequestErrorType.SecurityCodeErr)")
-                
-                expectation.fulfill()
-                
-            })
-            
-            waitForExpectationsWithTimeout(timeout, handler: nil)
-            
-        }
         
     }
     

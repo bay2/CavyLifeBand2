@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="ContactsPersonInfoCell" id="Pvp-tV-MnP" customClass="ContactsPersonInfoCell" customModule="CavyLifeBand2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="364" height="136"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ogx-6m-de5">
+                    <rect key="frame" x="30" y="20" width="80" height="80"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="UNE-V7-feT"/>
+                        <constraint firstAttribute="width" secondItem="ogx-6m-de5" secondAttribute="height" multiplier="1:1" id="kwh-gg-Cbg"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="备注名字" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQF-Hk-qkU">
+                    <rect key="frame" x="126" y="40" width="72" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GzH-gZ-AHp">
+                    <rect key="frame" x="126" y="67" width="16" height="16"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="GzH-gZ-AHp" secondAttribute="height" multiplier="1:1" id="9f4-c3-QeK"/>
+                        <constraint firstAttribute="width" constant="16" id="hb8-AN-jJ1"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x30-J2-qoo">
+                    <rect key="frame" x="150" y="68" width="100" height="14"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="3ri-Uf-qX3"/>
+                        <constraint firstAttribute="height" constant="14" id="n9x-4v-fs5"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G2M-Gt-fj4">
+                    <rect key="frame" x="30" y="119" width="304" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="hrs-bW-VQX"/>
+                    </constraints>
+                </view>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RnQ-lT-1Qn">
+                    <rect key="frame" x="198" y="38" width="24" height="24"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="GlZ-nc-2Ck"/>
+                        <constraint firstAttribute="width" secondItem="RnQ-lT-1Qn" secondAttribute="height" id="cis-QK-P1d"/>
+                    </constraints>
+                    <state key="normal" image="ContactsAccountEditButton"/>
+                    <connections>
+                        <action selector="editAction:" destination="Pvp-tV-MnP" eventType="touchUpInside" id="qxS-Pl-Vss"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="ogx-6m-de5" firstAttribute="leading" secondItem="Pvp-tV-MnP" secondAttribute="leading" constant="30" id="3IE-Yn-0NY"/>
+                <constraint firstAttribute="bottom" secondItem="G2M-Gt-fj4" secondAttribute="bottom" constant="16" id="5g2-77-Skq"/>
+                <constraint firstItem="RnQ-lT-1Qn" firstAttribute="bottom" secondItem="UQF-Hk-qkU" secondAttribute="bottom" id="8ks-Lv-w2H"/>
+                <constraint firstItem="ogx-6m-de5" firstAttribute="centerY" secondItem="Pvp-tV-MnP" secondAttribute="centerY" constant="-8" id="J8K-ac-Rgm"/>
+                <constraint firstItem="GzH-gZ-AHp" firstAttribute="leading" secondItem="ogx-6m-de5" secondAttribute="trailing" constant="16" id="PSc-TY-jaa"/>
+                <constraint firstItem="x30-J2-qoo" firstAttribute="leading" secondItem="GzH-gZ-AHp" secondAttribute="trailing" constant="8" id="b21-pd-pMz"/>
+                <constraint firstItem="UQF-Hk-qkU" firstAttribute="centerY" secondItem="ogx-6m-de5" secondAttribute="centerY" constant="-9" id="bhC-Ji-FFH"/>
+                <constraint firstItem="x30-J2-qoo" firstAttribute="centerY" secondItem="GzH-gZ-AHp" secondAttribute="centerY" id="f90-ke-nT4"/>
+                <constraint firstItem="x30-J2-qoo" firstAttribute="leading" secondItem="ogx-6m-de5" secondAttribute="trailing" constant="40" placeholder="YES" id="ktW-03-fz8"/>
+                <constraint firstAttribute="trailing" secondItem="G2M-Gt-fj4" secondAttribute="trailing" constant="30" id="n7l-T1-2Yj"/>
+                <constraint firstItem="UQF-Hk-qkU" firstAttribute="leading" secondItem="ogx-6m-de5" secondAttribute="trailing" constant="16" id="qvf-n9-pF3"/>
+                <constraint firstItem="RnQ-lT-1Qn" firstAttribute="leading" secondItem="UQF-Hk-qkU" secondAttribute="trailing" id="r3V-Fv-ymO"/>
+                <constraint firstItem="GzH-gZ-AHp" firstAttribute="centerY" secondItem="ogx-6m-de5" secondAttribute="centerY" constant="15" id="sz0-XC-pJA"/>
+                <constraint firstItem="G2M-Gt-fj4" firstAttribute="leading" secondItem="Pvp-tV-MnP" secondAttribute="leading" constant="30" id="vPx-AB-Kdc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="b21-pd-pMz"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="badgeView" destination="GzH-gZ-AHp" id="yp1-Am-bqb"/>
+                <outlet property="belowLabel" destination="x30-J2-qoo" id="Adl-FV-hOU"/>
+                <outlet property="editButton" destination="RnQ-lT-1Qn" id="Kzj-9P-cMR"/>
+                <outlet property="headView" destination="ogx-6m-de5" id="xji-dv-s6R"/>
+                <outlet property="lineView" destination="G2M-Gt-fj4" id="iqi-DF-d3n"/>
+                <outlet property="upsideLabel" destination="UQF-Hk-qkU" id="kKQ-3k-AoL"/>
+            </connections>
+            <point key="canvasLocation" x="399" y="309"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ContactsAccountEditButton" width="24" height="24"/>
+    </resources>
+</document>

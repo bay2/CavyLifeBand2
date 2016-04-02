@@ -40,8 +40,6 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
         return self
     }
     
-    private var delegate: SignInDelegate?
-
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -61,7 +59,6 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
         userNameTextField.backgroundColor = UIColor.whiteColor()
         passwdTextField.backgroundColor = UIColor.whiteColor()
         
-        delegate = self
         
         
         // Do any additional setup after loading the view.
@@ -105,10 +102,10 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
         
         textFieldView.snp_makeConstraints { (make) -> Void in
             
-            make.height.equalTo(spacingWidth25 * 6 + 0.3)
-            make.left.equalTo(self.view).offset(spacingWidth25 * 2)
-            make.right.equalTo(self.view).offset(-(spacingWidth25 * 2))
-            make.top.equalTo(self.view).offset(spacingWidth25 * 8)
+            make.height.equalTo(CavyDefine.spacingWidth25 * 6 + 0.3)
+            make.left.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 2)
+            make.right.equalTo(self.view).offset(-(CavyDefine.spacingWidth25 * 2))
+            make.top.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 8)
         }
         
     }
@@ -119,13 +116,13 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
     func defineTextFieldLayer() {
         
         passwdTextField.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(textFieldView).offset(spacingWidth25)
-            make.right.equalTo(textFieldView).offset(-spacingWidth25)
+            make.left.equalTo(textFieldView).offset(CavyDefine.spacingWidth25)
+            make.right.equalTo(textFieldView).offset(-CavyDefine.spacingWidth25)
         }
         
         userNameTextField.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(textFieldView).offset(spacingWidth25)
-            make.right.equalTo(textFieldView).offset(-spacingWidth25)
+            make.left.equalTo(textFieldView).offset(CavyDefine.spacingWidth25)
+            make.right.equalTo(textFieldView).offset(-CavyDefine.spacingWidth25)
         }
         
     }
@@ -137,13 +134,13 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
         
         signInBtn.snp_makeConstraints { (make) -> Void in
             
-            make.left.equalTo(self.view).offset(spacingWidth25 * 2)
-            make.right.equalTo(self.view).offset(-(spacingWidth25 * 2))
-            make.height.equalTo(spacingWidth25 * 3)
+            make.left.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 2)
+            make.right.equalTo(self.view).offset(-(CavyDefine.spacingWidth25 * 2))
+            make.height.equalTo(CavyDefine.spacingWidth25 * 3)
         }
         
         forgetPasswdBtn.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(spacingWidth25 * 3)
+            make.height.equalTo(CavyDefine.spacingWidth25 * 3)
         }
         
     }
@@ -170,7 +167,7 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
         
         let forgotVC = StoryboardScene.Main.instantiateAccountManagerView()
 
-        forgotVC.viewStyle = .PhoneNumForgotPasswd
+        forgotVC.configView(PhoneForgotPwdViewModel())
 
         self.pushVC(forgotVC)
 
@@ -183,15 +180,8 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
 
-        delegate?.signIn {
+        signIn()
             
-            if $0 == true {
-                let guideVC = StoryboardScene.Guide.instantiateGuideView()
-                self.pushVC(guideVC)
-            }
-            
-        }
-
     }
     
 

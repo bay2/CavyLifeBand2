@@ -42,7 +42,7 @@ class PageViewController: UIViewController {
     var buttonSize: CGSize {
         
         get {
-            return CGSize(width: (spacingWidth25 * 10), height: (spacingWidth25 * 3))
+            return CGSize(width: (CavyDefine.spacingWidth25 * 10), height: (CavyDefine.spacingWidth25 * 3))
         }
         
     }
@@ -99,8 +99,8 @@ class PageViewController: UIViewController {
         
         buttonView.hidden = false
         buttonView.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(backgroundImageView).offset(spacingWidth25 * 2)
-            make.right.equalTo(backgroundImageView).offset(-(spacingWidth25 * 2))
+            make.left.equalTo(backgroundImageView).offset(CavyDefine.spacingWidth25 * 2)
+            make.right.equalTo(backgroundImageView).offset(-(CavyDefine.spacingWidth25 * 2))
             make.height.equalTo(buttonSize.height)
             make.bottom.equalTo(backgroundImageView).offset(-buttonSize.height)
         }
