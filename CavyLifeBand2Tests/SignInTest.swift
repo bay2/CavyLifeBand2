@@ -102,7 +102,7 @@ class SignInTest: XCTestCase {
     
     func testSignInPasswdErr() {
         
-        let parameters = [("17722334831", "23456"), ("asdqwe@qq.com", ""), ("asdqwe@qq.com", "12312312312312312")]
+        let parameters = [("17722334831", "23456"), ("asdqwe@qq.com", "12312312312312312")]
         
         for para in parameters  {
             
@@ -112,6 +112,29 @@ class SignInTest: XCTestCase {
                 
                 XCTAssertTrue(result.isFailure)
                 XCTAssertTrue(result.error == UserRequestErrorType.PassWdErr)
+                
+                expectation.fulfill()
+                
+            }
+            
+            waitForExpectationsWithTimeout(timeout, handler: nil)
+            
+        }
+        
+    }
+    
+    func testSignInPasswdNil() {
+        
+        let parameters = [("17722334831", ""), ("asdqwe@qq.com", "")]
+        
+        for para in parameters  {
+            
+            let expectation = expectationWithDescription("testSignInPasswdNil succeed")
+            
+            userNetReq.requestSignIn(para.0, passwd: para.1) { result in
+                
+                XCTAssertTrue(result.isFailure)
+                XCTAssertTrue(result.error == UserRequestErrorType.PassWdNil)
                 
                 expectation.fulfill()
                 

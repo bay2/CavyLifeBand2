@@ -72,7 +72,7 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
      */
     func tableViewBaseSetting(tableView: UITableView) {
         
-        tableView.layer.cornerRadius = commonCornerRadius
+        tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         tableView.delegate = self
         tableView.dataSource = self
         tableView.bounces = false

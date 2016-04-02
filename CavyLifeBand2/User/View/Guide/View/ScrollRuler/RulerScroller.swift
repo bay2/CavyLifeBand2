@@ -59,7 +59,7 @@ class RulerScroller: UIScrollView {
             // 两个Line中间的空隙 和 两个Longline的shortLine个数
             // 所有竖线个数
             let allCount: Int = (yearValue - beginYear) * lineCount + monthValue - 1
-            self.contentSize = CGSizeMake(spacingWidth25 * 23 + CGFloat(allCount * lineSpace), 60)
+            self.contentSize = CGSizeMake(CavyDefine.spacingWidth25 * 23 + CGFloat(allCount * lineSpace), 60)
             
             let defaultCount: Int = (defaultYear - beginYear) * lineCount
             self.contentOffset = CGPointMake(CGFloat(defaultCount * lineSpace), 0)
@@ -70,7 +70,7 @@ class RulerScroller: UIScrollView {
                 if i % lineCount == 0 {
                     /// 长线上面的Label
                     let lineLabel = UILabel()
-                    lineLabel.frame = CGRectMake(spacingWidth25 * 11.5 + CGFloat(lineSpace * i) - 30, 8, 60, 18)
+                    lineLabel.frame = CGRectMake(CavyDefine.spacingWidth25 * 11.5 + CGFloat(lineSpace * i) - 30, 8, 60, 18)
                     lineLabel.textAlignment = .Center
                     lineLabel.textColor = UIColor(named: .GuideColor99)
                     lineLabel.text = String((i + beforSpace) / 12) + ".1"
@@ -78,7 +78,7 @@ class RulerScroller: UIScrollView {
                     /// 长线
                     let longLine = UIView()
                     longLine.backgroundColor = UIColor(named: .GuideLineColor)
-                    longLine.frame = CGRectMake(spacingWidth25 * 11.5 + CGFloat(lineSpace * i), 26, 1, 34)
+                    longLine.frame = CGRectMake(CavyDefine.spacingWidth25 * 11.5 + CGFloat(lineSpace * i), 26, 1, 34)
                     self.addSubview(longLine)
                     self.addSubview(lineLabel)
                     
@@ -86,7 +86,7 @@ class RulerScroller: UIScrollView {
                     /// 短线
                     let shortLine = UIView()
                     shortLine.backgroundColor = UIColor(named: .GuideLineColor)
-                    shortLine.frame = CGRectMake(spacingWidth25 * 11.5 + CGFloat(lineSpace * i), 40, 1, 20)
+                    shortLine.frame = CGRectMake(CavyDefine.spacingWidth25 * 11.5 + CGFloat(lineSpace * i), 40, 1, 20)
                     self.addSubview(shortLine)
                 }
                 
@@ -96,7 +96,7 @@ class RulerScroller: UIScrollView {
             
             // 当前刻度值
             currentValue = "15"
-            self.contentSize = CGSizeMake(spacingWidth25 * 23 + CGFloat(lineSpace * (dayValue - 1)), 60)
+            self.contentSize = CGSizeMake(CavyDefine.spacingWidth25 * 23 + CGFloat(lineSpace * (dayValue - 1)), 60)
 
             // 添加动画 防止每次年重置月份时候突兀
             UIView.animateWithDuration(0.2) { () -> Void in
@@ -111,7 +111,7 @@ class RulerScroller: UIScrollView {
                 if i % lineCount == 0 {
                     /// 长线上面的Label
                     let lineLabel = UILabel()
-                    lineLabel.frame = CGRectMake(spacingWidth25 * 11.5 + CGFloat(lineSpace * (i - 1)) - 30, 8, 60, 18)
+                    lineLabel.frame = CGRectMake(CavyDefine.spacingWidth25 * 11.5 + CGFloat(lineSpace * (i - 1)) - 30, 8, 60, 18)
                     lineLabel.textAlignment = .Center
                     lineLabel.textColor = UIColor(named: .GuideColor99)
                     lineLabel.text = String(i)
@@ -119,7 +119,7 @@ class RulerScroller: UIScrollView {
                     /// 长线
                     let longLine = UIView()
                     longLine.backgroundColor = UIColor(named: .GuideLineColor)
-                    longLine.frame = CGRectMake(spacingWidth25 * 11.5 + CGFloat(lineSpace * (i - 1)), 26, 1, 34)
+                    longLine.frame = CGRectMake(CavyDefine.spacingWidth25 * 11.5 + CGFloat(lineSpace * (i - 1)), 26, 1, 34)
                     self.addSubview(longLine)
                     self.addSubview(lineLabel)
                     
@@ -127,7 +127,7 @@ class RulerScroller: UIScrollView {
                     /// 短线
                     let shortLine = UIView()
                     shortLine.backgroundColor = UIColor(named: .GuideLineColor)
-                    shortLine.frame = CGRectMake(spacingWidth25 * 11.5 + CGFloat(lineSpace * (i - 1)), 40, 1, 20)
+                    shortLine.frame = CGRectMake(CavyDefine.spacingWidth25 * 11.5 + CGFloat(lineSpace * (i - 1)), 40, 1, 20)
                     self.addSubview(shortLine)
                 }
             }
@@ -140,7 +140,7 @@ class RulerScroller: UIScrollView {
             let maxHeight = 240
             let allCount = (maxHeight - minHeight) * lineCount
             let beginCount = (160 - minHeight) * lineCount
-            self.contentSize = CGSizeMake(60, spacingWidth25 * 28 + CGFloat(allCount * lineSpace))
+            self.contentSize = CGSizeMake(60, CavyDefine.spacingWidth25 * 28 + CGFloat(allCount * lineSpace))
             self.contentOffset = CGPointMake(0, CGFloat(beginCount * lineSpace))
 
             /// 循环添加刻度
@@ -152,11 +152,11 @@ class RulerScroller: UIScrollView {
                     /// 长线
                     let longLine = UIView()
                     longLine.backgroundColor = UIColor(named: .GuideLineColor)
-                    longLine.frame = CGRectMake(26, spacingWidth25 * 14 + CGFloat(lineSpace * (i - minHeight * lineCount)), 34, 1)
+                    longLine.frame = CGRectMake(26, CavyDefine.spacingWidth25 * 14 + CGFloat(lineSpace * (i - minHeight * lineCount)), 34, 1)
                     
                     /// 长线上面的Label
                     let lineLabel = UILabel()
-                    lineLabel.frame = CGRectMake(0, spacingWidth25 * 14 + CGFloat(lineSpace * (i - minHeight * lineCount)) - 9, 60, 18)
+                    lineLabel.frame = CGRectMake(0, CavyDefine.spacingWidth25 * 14 + CGFloat(lineSpace * (i - minHeight * lineCount)) - 9, 60, 18)
                     lineLabel.textAlignment = .Left
                     lineLabel.textColor = UIColor(named: .GuideColor99)
                     lineLabel.text = String(i / lineCount)
@@ -168,7 +168,7 @@ class RulerScroller: UIScrollView {
                     /// 短线
                     let shortLine = UIView()
                     shortLine.backgroundColor = UIColor(named: .GuideLineColor)
-                    shortLine.frame = CGRectMake(40, spacingWidth25 * 14 + CGFloat(lineSpace * (i - minHeight * lineCount)), 20, 1)
+                    shortLine.frame = CGRectMake(40, CavyDefine.spacingWidth25 * 14 + CGFloat(lineSpace * (i - minHeight * lineCount)), 20, 1)
                     self.addSubview(shortLine)
                 }
                 

@@ -40,22 +40,22 @@ class BirthdayView: UIView, RulerViewDelegate {
         titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 23, 18))
+            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 18))
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(spacingWidth25 * 2)
+            make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 2)
         }
         yyMMLabel.font = UIFont.systemFontOfSize(45)
         yyMMLabel.textColor = UIColor(named: .GuideColorCC)
         yyMMLabel.textAlignment = NSTextAlignment.Center
         yyMMLabel.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 23, 45))
+            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 45))
             make.centerX.equalTo(self)
-            make.top.equalTo(titleLab).offset(spacingWidth25 * 2 + 18)
+            make.top.equalTo(titleLab).offset(CavyDefine.spacingWidth25 * 2 + 18)
         }
         yymmRuler.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 23, 60))
+            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 60))
             make.centerX.equalTo(self)
-            make.top.equalTo(yyMMLabel).offset(spacingWidth25 + 45)
+            make.top.equalTo(yyMMLabel).offset(CavyDefine.spacingWidth25 + 45)
         }
         yymmRuler.rulerDelegate = self
         
@@ -74,15 +74,15 @@ class BirthdayView: UIView, RulerViewDelegate {
         dayLabel.textColor = UIColor(named: .GuideColorCC)
         dayLabel.textAlignment = NSTextAlignment.Center
         dayLabel.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 23, 45))
+            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 45))
             make.centerX.equalTo(self)
-            make.top.equalTo(yymmRuler).offset(spacingWidth25 * 2 + 60)
+            make.top.equalTo(yymmRuler).offset(CavyDefine.spacingWidth25 * 2 + 60)
         }
         
         dayRuler.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 23, 60))
+            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 60))
             make.centerX.equalTo(self)
-            make.top.equalTo(dayLabel).offset(spacingWidth25 + 45)
+            make.top.equalTo(dayLabel).offset(CavyDefine.spacingWidth25 + 45)
         }
         dayRuler.rulerDelegate = self
         dayRuler.initDayRuler(31, lineSpace: 26, lineCount: 5, style: .DayRuler)

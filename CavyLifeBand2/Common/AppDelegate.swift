@@ -19,15 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
+        #if UITEST
+            
+            uiTestStub()
+            
+        #endif
 
         let installation = KSCrashInstallationStandard.sharedInstance()
         
-        installation.url = NSURL(string: bugHDKey)
+        installation.url = NSURL(string: CavyDefine.bugHDKey)
 
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
         
-        if loginUserId != "" {
+        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId != "" {
             
             self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
             
@@ -39,11 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        }
 //        
         
-#if UITEST
-            
-        uiTestStub()
-    
-#endif
+
         return true
 
     }
@@ -65,6 +67,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let stubPath = OHPathForFile("Sign_In_Ok.json", self.dynamicType)
             return fixture(stubPath!, headers: ["Content-Type": "application/json"])
             }
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+            
         }
 
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_UP") {
@@ -74,6 +79,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
                 return fixture(stubPath!, headers: ["Content-Type": "application/json"])
             }
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
         }
     
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_COMMON_RESULT_OK") {
@@ -83,9 +90,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let stubPath = OHPathForFile("Sign_Up_Ok.json", self.dynamicType)
                 return fixture(stubPath!, headers: ["Content-Type": "application/json"])
             }
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
         }
-    
-    
     
     }
     

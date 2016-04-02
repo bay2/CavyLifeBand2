@@ -9,6 +9,8 @@
 import XCTest
 
 class SignUpPhoneUITests: XCTestCase {
+    
+    
         
     override func setUp() {
         super.setUp()
@@ -23,6 +25,7 @@ class SignUpPhoneUITests: XCTestCase {
             let app = XCUIApplication()
             app.launchArguments = [ "STUB_HTTP_SIGN_UP" ]
             app.launch()
+            
             let pageimage1Image = app.images["pageImage1"]
             pageimage1Image.swipeLeft()
             pageimage1Image.swipeLeft()

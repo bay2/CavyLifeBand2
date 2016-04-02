@@ -9,56 +9,115 @@
 import Foundation
 import EZSwiftExtensions
 
-// 异常上报服务器地址
-let bugHDKey = "https://collector.bughd.com/kscrash?key=9c009d806879cec4233b3b66b4264315"
+struct CavyDefine {
+    
+    // 异常上报服务器地址
+    static let bugHDKey = "https://collector.bughd.com/kscrash?key=9c009d806879cec4233b3b66b4264315"
+    
+    // 服务器地址
+    static let serverAddr = "http://115.28.144.243/cavylife"
+    
+    // webApi地址
+    static let webApiAddr = serverAddr + "/api.do"
+    
+    // 邮箱验证码地址
+    static let emailCodeAddr = serverAddr + "/imageCode.do"
+    
+    // 1/25 宽度间隙
+    static let spacingWidth25 = ez.screenWidth / 25
+    
+    // 1/25 高度间隙
+    static let spacingHeight25 = ez.screenHeight / 25
+    
+    // 统一圆角值
+    static let commonCornerRadius: CGFloat = 8 / 3
+    
+    // 已登录用户信息
+    static var loginUserBaseInfo = LoginUserBaseInfoStorage()
+    
+}
 
-// 服务器地址
-let serverAddr = "http://115.28.144.243/cavylife"
+/**
+ *  @author xuemincai
+ *
+ *  已登录用户基本信息
+ */
+struct LoginUserBaseInfoStorage {
+    
+    private var userDefaults: LoginStorage
+    var loginUserInfo: LoginUserBaseInfo {
+        didSet {
+            save()
+        }
+    }
+    
+    init() {
+        
+        userDefaults = NSUserDefaults.standardUserDefaults()
+        
+        let userBaseInfo = userDefaults.objectForKey("SignUserBaseInfo") as? [String: AnyObject] ?? [:]
+        
+        loginUserInfo = LoginUserBaseInfo(dictionary: userBaseInfo)
+        
+    }
+    
+    private func save() {
+        
+        userDefaults.setObject(loginUserInfo.serialize(), forKey: "SignUserBaseInfo")
+        
+    }
+    
+}
 
-// webApi地址
-let webApiAddr = serverAddr + "/api.do"
+/**
+ *  @author xuemincai
+ *
+ *  已登录用户信息
+ */
+struct LoginUserBaseInfo {
+    
+    var loginUserId: String
+    var loginUsername: String
+    
+    init(dictionary: [String: AnyObject]) {
+        
+        loginUserId = (dictionary["SignUserId"] as? String) ?? ""
+        loginUsername = (dictionary["SignUserName"] as? String) ?? ""
+        
+    }
+    
+    func serialize() -> [String: AnyObject] {
+        return ["SignUserId": loginUserId, "SignUserName": loginUsername]
+    }
+    
+}
 
-// 邮箱验证码地址
-let emailCodeAddr = serverAddr + "/imageCode.do"
+/**
+ *  @author xuemincai
+ *
+ *  存储协议
+ */
+protocol LoginStorage {
+    func objectForKey(key: String) -> AnyObject?
+    func setObject(object: AnyObject?, forKey: String)
+}
 
-// 1/25 宽度间隙
-let spacingWidth25 = ez.screenWidth / 25
+extension NSUserDefaults: LoginStorage { }
 
-// 1/25 高度间隙
-let spacingHeight25 = ez.screenHeight / 25
-
-// 宽度
-//let ez.screenWidth = UIScreen.mainScreen().bounds.width
-
-// 统一圆角值
-let commonCornerRadius: CGFloat = 8 / 3
-
+/**
+ 消息定义
+ 
+ - HomeLeftOnClickMenu:         点击菜单
+ - HomeLeftOnClickCellPushView: 点击list
+ - HomeLeftHiddenMenu:          隐藏菜单
+ - HomeLeftAccountInfo:         点头像
+ */
 enum NotificationName: String {
     
     case HomeLeftOnClickMenu
     case HomeLeftOnClickCellPushView
     case HomeLeftHiddenMenu
     case HomeLeftAccountInfo
-}
-
-enum UserDefaultsKey: String {
-    case SignInUserId
-    case SignUserName
-}
-
-// 已经登录的用户id
-var loginUserId: String {
-
-    get {
-
-        let defaults = NSUserDefaults.standardUserDefaults()
-        guard let userId = defaults[UserDefaultsKey.SignInUserId.rawValue] as? String else {
-            return ""
-        }
-        
-        return userId
-    }
-
 }
 
 

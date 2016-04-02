@@ -38,9 +38,9 @@ class HightView: UIView, RulerViewDelegate {
         titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 23, 18))
+            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 18))
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(spacingWidth25 * 2)
+            make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 2)
         }
         
         heightLabel.text = "160"
@@ -48,9 +48,9 @@ class HightView: UIView, RulerViewDelegate {
         heightLabel.textColor = UIColor(named: .GuideColorCC)
         heightLabel.textAlignment = NSTextAlignment.Center
         heightLabel.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 23, 48))
+            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 48))
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(spacingWidth25 * 11 + 18)
+            make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 11 + 18)
         }
         
         CMLabel.text = "CM"
@@ -60,15 +60,15 @@ class HightView: UIView, RulerViewDelegate {
         CMLabel.snp_makeConstraints { (make) -> Void in
             make.size.equalTo(CGSizeMake(80, 30))
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(spacingWidth25 * 12 + 66)
+            make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 12 + 66)
         }
         
         heightRuler.backgroundColor = UIColor.blackColor()
 
         heightRuler.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(80, spacingWidth25 * 28))
+            make.size.equalTo(CGSizeMake(80, CavyDefine.spacingWidth25 * 28))
             make.centerY.equalTo(self)
-            make.left.equalTo(self).offset(spacingWidth25 * 17)
+            make.left.equalTo(self).offset(CavyDefine.spacingWidth25 * 17)
         }
         heightRuler.rulerDelegate = self
         heightRuler.initHeightRuler(13, lineCount: 10, style: .HeightRuler)

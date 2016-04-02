@@ -38,7 +38,7 @@ class BaseViewController: UIViewController {
         
         self.view.addSubview(navItemView)
         navItemView.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(spacingWidth25 * 8)
+            make.height.equalTo(CavyDefine.spacingWidth25 * 8)
             make.top.right.left.equalTo(self.view)
         }
 
@@ -59,7 +59,7 @@ class BaseViewController: UIViewController {
             backBtn.addTarget(self, action: #selector(BaseViewController.onClickBack(_:)), forControlEvents: .TouchUpInside)
             navItemView.addSubview(backBtn)
             backBtn.snp_makeConstraints { (make) -> Void in
-                make.left.equalTo(spacingWidth25 * 2)
+                make.left.equalTo(CavyDefine.spacingWidth25 * 2)
                 make.centerY.equalTo(navItemView)
             }
             
@@ -74,7 +74,7 @@ class BaseViewController: UIViewController {
             rightBtn.addTarget(self, action: #selector(BaseViewController.onClickRight(_:)), forControlEvents: .TouchUpInside)
             navItemView.addSubview(rightBtn)
             rightBtn.snp_makeConstraints { (make) -> Void in
-                make.right.equalTo(-(spacingWidth25 * 2))
+                make.right.equalTo(-(CavyDefine.spacingWidth25 * 2))
                 make.centerY.equalTo(navItemView)
             }
             

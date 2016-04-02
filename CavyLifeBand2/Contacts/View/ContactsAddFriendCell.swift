@@ -58,7 +58,7 @@ class ContactsAddFriendCell: UITableViewCell {
         headView.roundSquareImage()
         nameLabel.textColor = UIColor(named: .ContactsName)
         introduceLabel.textColor = UIColor(named: .ContactsIntrouduce)
-        requestBtn.setCornerRadius(radius: commonCornerRadius)
+        requestBtn.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         
         let cellBgView = UIView()
         cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)

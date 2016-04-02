@@ -42,24 +42,24 @@ class GenderView: UIView {
         titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 23, 18))
+            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 18))
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(spacingWidth25 * 2)
+            make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 2)
         }
         
         upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyChosen), forState: .Normal)
-        upGenderBtn.frame.size = CGSizeMake(spacingWidth25 * 8, spacingWidth25 * 8)
+        upGenderBtn.frame.size = CGSizeMake(CavyDefine.spacingWidth25 * 8, CavyDefine.spacingWidth25 * 8)
         upGenderBtn.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 8, spacingWidth25 * 8))
+            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 8, CavyDefine.spacingWidth25 * 8))
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(spacingWidth25 * 5)
+            make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 5)
         }
         
         downGenderBtn.setImage(UIImage(asset: .GuideGenderGirlGary), forState: .Normal)
         downGenderBtn.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 8, spacingWidth25 * 8))
+            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 8, CavyDefine.spacingWidth25 * 8))
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(spacingWidth25 * 15)
+            make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 15)
         }
         
         upGenderBtn.addTarget(self, action: #selector(GenderView.genderUpClick), forControlEvents: .TouchUpInside)

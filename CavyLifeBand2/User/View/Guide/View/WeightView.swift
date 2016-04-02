@@ -44,9 +44,9 @@ class WeightView: UIView {
         titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(spacingWidth25 * 23, 18))
+            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 18))
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(spacingWidth25 * 2)
+            make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 2)
         }
         
         rotaryView!.snp_makeConstraints { (make) -> Void in

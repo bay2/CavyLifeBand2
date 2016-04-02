@@ -62,7 +62,7 @@ class ContactsReqFriendVC: ContactsBaseViewController {
     
     func requestViewLayout() {
         
-        sendButton.layer.cornerRadius = commonCornerRadius
+        sendButton.layer.cornerRadius = CavyDefine.commonCornerRadius
         sendButton.setTitleColor(UIColor(named: .MainPageBtnText), forState: .Normal)
         sendButton.snp_makeConstraints { (make) -> Void in
             

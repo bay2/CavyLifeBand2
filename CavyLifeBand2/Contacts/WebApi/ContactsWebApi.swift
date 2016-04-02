@@ -61,7 +61,7 @@ class ContactsWebApi: NetRequestAdapter {
         let parameters: [String: AnyObject] = [ContactsApiParaKey.Cmd.rawValue: ContactsApiCmd.GetFriendList.rawValue,
                                                ContactsApiParaKey.UserId.rawValue: userId]
         
-        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: callBack)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
         
     }
     
@@ -106,7 +106,7 @@ class ContactsWebApi: NetRequestAdapter {
         var para = parametes
         para[ContactsApiParaKey.Cmd.rawValue] = ContactsApiCmd.SearchFriend.rawValue
         
-        netPostRequestAdapter(webApiAddr, para: para, completionHandler: callBack)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: para, completionHandler: callBack)
         
     }
     
@@ -189,7 +189,7 @@ class ContactsWebApi: NetRequestAdapter {
         let parametes: [String: AnyObject] = [ContactsApiParaKey.Cmd.rawValue: ContactsApiCmd.GetFriendReqList.rawValue,
                                               ContactsApiParaKey.UserId.rawValue: userId]
         
-        netPostRequestAdapter(webApiAddr, para: parametes, completionHandler: callBack)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
         
     }
     
@@ -208,7 +208,7 @@ class ContactsWebApi: NetRequestAdapter {
                                               ContactsApiParaKey.FriendId.rawValue: friendId,
                                               ContactsApiParaKey.VerifyMsg.rawValue: verifyMsg]
         
-        netPostRequestAdapter(webApiAddr, para: parametes, completionHandler: callBack)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
         
     }
     
@@ -225,7 +225,7 @@ class ContactsWebApi: NetRequestAdapter {
                                               ContactsApiParaKey.UserId.rawValue: userId,
                                               ContactsApiParaKey.FriendId.rawValue: friendId]
         
-        netPostRequestAdapter(webApiAddr, para: parametes, completionHandler: callBack)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
         
     }
     
@@ -244,7 +244,7 @@ class ContactsWebApi: NetRequestAdapter {
                                               ContactsApiParaKey.FriendId.rawValue: friendId,
                                               ContactsApiParaKey.IsFollow.rawValue: follow]
         
-        netPostRequestAdapter(webApiAddr, para: parametes, completionHandler: callBack)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
         
     }
     

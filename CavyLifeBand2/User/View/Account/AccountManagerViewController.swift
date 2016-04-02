@@ -12,20 +12,6 @@ import Alamofire
 import AlamofireImage
 import Log
 
-
-
-struct EmailForgotPwdViewModel: AccountManagerViewDataSource {
-    
-    var isSignUp: Bool { return false }
-    var navTitle: String { return L10n.ForgotTitle.string }
-    var itemRightTitle: String { return L10n.SignUpEmailRightItemBtn.string }
-    var userNameTextFieldTitle: String { return L10n.SignUpEmailTextField.string }
-    var passwdTextFieldTitle: String { return L10n.ForgotPasswdTextField.string }
-    var viewMainBtnTitle: String { return L10n.ForgotFinish.string }
-    
-}
-
-
 class AccountManagerViewController: AccountManagerBaseViewController {
     
     enum UserViewStyle {
@@ -137,29 +123,29 @@ class AccountManagerViewController: AccountManagerBaseViewController {
 
         textFieldView.snp_makeConstraints { (make) -> Void in
             
-            make.top.equalTo(self.view).offset(spacingWidth25 * 8)
-            make.left.equalTo(self.view).offset(spacingWidth25 * 2)
-            make.right.equalTo(self.view).offset(-(spacingWidth25 * 2))
+            make.top.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 8)
+            make.left.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 2)
+            make.right.equalTo(self.view).offset(-(CavyDefine.spacingWidth25 * 2))
 
             if (UIScreen.mainScreen().scale == 2) {         // tailor:disable
-                make.height.equalTo((spacingWidth25 * 3) * 3 + 1)
+                make.height.equalTo((CavyDefine.spacingWidth25 * 3) * 3 + 1)
             } else {
-                make.height.equalTo((spacingWidth25 * 3) * 3 + 0.3)
+                make.height.equalTo((CavyDefine.spacingWidth25 * 3) * 3 + 0.3)
             }
 
         }
         
         userProtocolView.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo(spacingWidth25 * 3)
+            make.height.equalTo(CavyDefine.spacingWidth25 * 3)
             make.width.equalTo(280)
         }
         
         verticalLine.snp_makeConstraints { (make) -> Void in
-            make.height.equalTo((spacingWidth25 * 3 / 5) * 3)
+            make.height.equalTo((CavyDefine.spacingWidth25 * 3 / 5) * 3)
         }
         
         emailSafetyCode.snp_makeConstraints { (make) -> Void in
-            let imageSpacing = spacingWidth25 * 3 / 5
+            let imageSpacing = CavyDefine.spacingWidth25 * 3 / 5
             make.height.equalTo(imageSpacing * 3)
             make.width.equalTo(imageSpacing * 8)
             make.top.equalTo(userNameTextField.snp_bottom).offset(imageSpacing + 0.3)
@@ -173,20 +159,20 @@ class AccountManagerViewController: AccountManagerBaseViewController {
     func defineButtonLayout() {
         
         mainBtn.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(textFieldView.snp_bottom).offset(spacingWidth25 * 3)
-            make.left.equalTo(self.view).offset(spacingWidth25 * 2)
-            make.right.equalTo(self.view).offset(-(spacingWidth25 * 2))
-            make.height.equalTo(spacingWidth25 * 3)
+            make.top.equalTo(textFieldView.snp_bottom).offset(CavyDefine.spacingWidth25 * 3)
+            make.left.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 2)
+            make.right.equalTo(self.view).offset(-(CavyDefine.spacingWidth25 * 2))
+            make.height.equalTo(CavyDefine.spacingWidth25 * 3)
         }
         
         backSignInBtn.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(textFieldView.snp_bottom)
-            make.height.equalTo(spacingWidth25 * 3)
+            make.height.equalTo(CavyDefine.spacingWidth25 * 3)
         }
         
         safetyCodeBtn.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo((spacingWidth25 * 3 / 5) * 9)
-            make.right.equalTo(-spacingWidth25)
+            make.width.equalTo((CavyDefine.spacingWidth25 * 3 / 5) * 9)
+            make.right.equalTo(-CavyDefine.spacingWidth25)
         }
 
     }
@@ -197,8 +183,8 @@ class AccountManagerViewController: AccountManagerBaseViewController {
     func defineTextFieldLayout() {
 
         userNameTextField.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(textFieldView).offset(spacingWidth25)
-            make.right.equalTo(textFieldView).offset(-spacingWidth25)
+            make.left.equalTo(textFieldView).offset(CavyDefine.spacingWidth25)
+            make.right.equalTo(textFieldView).offset(-CavyDefine.spacingWidth25)
         }
         
         safetyCodeTextField.snp_makeConstraints { (make) -> Void in
@@ -211,16 +197,20 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         
     }
     
+    /**
+     设置视图
+     */
     func setViewStyle() {
         
         userNameTextField.placeholder = dataSource!.userNameTextFieldTitle
         passwdTextField.placeholder = dataSource!.passwdTextFieldTitle
         mainBtn.setTitle(dataSource!.viewMainBtnTitle, forState: .Normal)
         
-        emailSafetyCode.hidden = dataSource!.isSignUp
         backSignInBtn.hidden = dataSource!.isSignUp
-        safetyCodeBtn.hidden = !dataSource!.isSignUp
         userProtocolView.hidden = !dataSource!.isSignUp
+        
+        safetyCodeBtn.hidden = dataSource!.isEmail
+        emailSafetyCode.hidden = !dataSource!.isEmail
         
         updateNavigationItemUI(dataSource!.navTitle, rightBtnText: dataSource!.itemRightTitle)
     }
@@ -228,7 +218,7 @@ class AccountManagerViewController: AccountManagerBaseViewController {
     /**
      视图配置
      
-     - parameter dataSource:
+     - parameter dataSource: AccountManagerViewDataSource
      */
     func configView(dataSource: AccountManagerViewDataSource) {
         
@@ -273,7 +263,7 @@ class AccountManagerViewController: AccountManagerBaseViewController {
      */
     func refreshEmailSafetyCode() {
         
-        Alamofire.request(.GET, emailCodeAddr).responseImage { (response) -> Void in
+        Alamofire.request(.GET, CavyDefine.emailCodeAddr).responseImage { (response) -> Void in
             
             if let image = response.result.value {
                 
@@ -301,12 +291,16 @@ class AccountManagerViewController: AccountManagerBaseViewController {
      - parameter sender:
      */
     @IBAction func onClickMainBtn(sender: AnyObject) {
-
+        
         if userProtocolView.checkboxBtn.isCheck != true {
             
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, title: "", message: L10n.SignUpReadProcotol.string)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: L10n.SignUpReadProcotol.string)
             return
             
+        }
+        
+        guard checkInputIsNil() else {
+            return
         }
         
         if dataSource?.isSignUp == true {
@@ -404,7 +398,7 @@ extension AccountManagerViewController {
     
 }
 
-extension AccountManagerViewController: SignUpDelegate, ForgotPasswordDelegate, SendSafetyCodeDelegate {
+extension AccountManagerViewController: SignUpDelegate, ForgotPasswordDelegate, SendSafetyCodeDelegate, AccountMangerInputCheckDelegate {
     
     var userName: String {
         return userNameTextField.text!
@@ -420,6 +414,10 @@ extension AccountManagerViewController: SignUpDelegate, ForgotPasswordDelegate, 
     
     var sendSafetyCodeBtn: SendSafetyCodeButton {
         return self.safetyCodeBtn
+    }
+    
+    var isEmail: Bool {
+        return dataSource!.isEmail
     }
     
 }

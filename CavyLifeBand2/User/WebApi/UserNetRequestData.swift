@@ -121,8 +121,7 @@ class UserNetRequestData: NetRequestAdapter {
      - parameter completionHandler: 回调
      */
     func requestSignUp(userName: String, safetyCode: String, passwd: String, completionHandler: CompletionHandlernType?) {
-        
-        //参数有效性检测
+
         if userName.isEmail == false && userName.isPhoneNum == false {
             
             completionHandler?(.Failure(.UserNameErr))
@@ -144,7 +143,7 @@ class UserNetRequestData: NetRequestAdapter {
                                                UserNetRequsetKey.SecurityCode.rawValue: safetyCode,
                                                UserNetRequsetKey.Passwd.rawValue: passwd.md5()]
 
-        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: completionHandler)
         
     }
     
@@ -156,8 +155,20 @@ class UserNetRequestData: NetRequestAdapter {
      */
     func requestSignIn(userName: String, passwd: String, completionHandler: CompletionHandlernType?) {
         
+        //参数有效性检测
+        if userName.isEmpty {
+            
+            completionHandler?(.Failure(.UserNameNil))
+            return
+        }
+        
         if userName.isEmail == false && userName.isPhoneNum == false {
             completionHandler?(.Failure(.UserNameErr))
+            return
+        }
+        
+        if passwd.isEmpty {
+            completionHandler?(.Failure(.PassWdNil))
             return
         }
         
@@ -171,7 +182,7 @@ class UserNetRequestData: NetRequestAdapter {
                           UserNetRequsetKey.Passwd.rawValue: passwd.md5()]
         
         
-        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: completionHandler)
         
     }
 
@@ -202,7 +213,7 @@ class UserNetRequestData: NetRequestAdapter {
         var para = parameters
         para![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.UserProfile.rawValue
 
-        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: para, completionHandler: completionHandler)
 
     }
 
@@ -247,7 +258,7 @@ class UserNetRequestData: NetRequestAdapter {
         var para = parameters
         para![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SetUserProfile.rawValue
 
-        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: para, completionHandler: completionHandler)
 
     }
     
@@ -342,7 +353,7 @@ class UserNetRequestData: NetRequestAdapter {
                                                UserNetRequsetKey.SecurityCode.rawValue: safetyCode,
                                                UserNetRequsetKey.Passwd.rawValue: passwd.md5()]
         
-        netPostRequestAdapter(webApiAddr, para: parameters, completionHandler: completionHandler)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: completionHandler)
         
     }
     
@@ -368,6 +379,13 @@ class UserNetRequestData: NetRequestAdapter {
 
         }
         
+        if phoneNum.isEmpty {
+            
+            Log.error("Phone num is nil")
+            completionHandler?(.Failure(.PhoneNil))
+            return
+        }
+        
         if phoneNum.isPhoneNum != true {
             
             Log.error("")
@@ -378,7 +396,7 @@ class UserNetRequestData: NetRequestAdapter {
 
         para[UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SendSecurityCode.rawValue
         
-        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: para, completionHandler: completionHandler)
         
     }
     
@@ -411,7 +429,7 @@ class UserNetRequestData: NetRequestAdapter {
         para[UserNetRequsetKey.Avater.rawValue] = UIImagePNGRepresentation(image)
         para[UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.UpdateAvatar.rawValue
         
-        netPostRequestAdapter(webApiAddr, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: para, completionHandler: completionHandler)
         
     }
 

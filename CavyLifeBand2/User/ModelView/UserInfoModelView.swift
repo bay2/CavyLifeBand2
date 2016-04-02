@@ -32,7 +32,7 @@ struct UserInfoModelView {
 
     }
 
-    func queryInfo(viewController: UIViewController? = nil, userId: String? = loginUserId, callback: ((Bool) -> Void)? = nil) {
+    func queryInfo(viewController: UIViewController? = nil, userId: String? = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, callback: ((Bool) -> Void)? = nil) {
         
         if userId != nil {
             self.userInfo!.userId = userId!
@@ -90,7 +90,7 @@ struct UserInfoModelView {
      
      - parameter successCallback: 更新成功回调
      */
-    func updateInfo(viewController: UIViewController? = nil, userId: String? = loginUserId, successCallback: (Void -> Void)? = nil) {
+    func updateInfo(viewController: UIViewController? = nil, userId: String? = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, successCallback: (Void -> Void)? = nil) {
         
         if userId != nil {
             self.userInfo!.userId = userId!

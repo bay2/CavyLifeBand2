@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// 发送验证码按钮
 class SendSafetyCodeButton: UIButton {
 
     var count = 60
@@ -43,7 +44,6 @@ class SendSafetyCodeButton: UIButton {
         } else  {
 
             let btnTitle = "\(count) s"
-
             self.setTitle(btnTitle, forState: .Normal)
 
         }

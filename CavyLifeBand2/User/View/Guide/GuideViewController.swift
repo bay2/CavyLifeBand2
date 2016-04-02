@@ -244,7 +244,7 @@ class GuideViewController: BaseViewController {
             self.pushVC(nextView)
         case .BandSuccess:
             
-            if loginUserId == "" {
+            if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId == "" {
                 nextView.viewStyle = .GuideGender
                 self.pushVC(nextView)
                 return
@@ -290,7 +290,7 @@ class GuideViewController: BaseViewController {
             self.pushVC(nextView)
         case .SettingLocationShare:
             
-            if loginUserId.isEmpty {
+            if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
                 let nextVC = StoryboardScene.Main.instantiateAccountManagerView()
                 nextVC.configView(PhoneSignUpViewModel())
                 pushVC(nextVC)

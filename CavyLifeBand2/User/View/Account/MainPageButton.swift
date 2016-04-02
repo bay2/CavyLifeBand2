@@ -21,7 +21,7 @@ class MainPageButton: UIButton {
         self.setBackgroundColor(UIColor(named: .MainPageSelectedBtn), forState: .Highlighted)
 
         self.layer.masksToBounds = true
-        self.layer.cornerRadius = commonCornerRadius
+        self.layer.cornerRadius = CavyDefine.commonCornerRadius
         
         self.titleLabel?.font = UIFont.systemFontOfSize(18)
         

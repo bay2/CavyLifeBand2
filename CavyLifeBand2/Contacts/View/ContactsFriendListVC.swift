@@ -34,7 +34,7 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating,
     var dataGroup: ContactsSortAndGroup?
     
     var realm: Realm = try! Realm()
-    var userId: String { return loginUserId }
+    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     override func viewDidLoad() {
         

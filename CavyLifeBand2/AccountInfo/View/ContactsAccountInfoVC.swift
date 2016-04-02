@@ -64,12 +64,12 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     func accountInfoQuery() {
         
         /// 本地取出 账户信息
-        let accountInfo = UserInfoOperate().queryUserInfo(loginUserId)
+        let accountInfo = UserInfoOperate().queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
         if accountInfo == nil {
             // 网络获取 账户信息
             
-            let paras = [UserNetRequsetKey.UserID.rawValue: loginUserId]
+            let paras = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
             
             userNetReq.queryProfile(paras, completionHandler: { (result) -> Void in
                 
@@ -139,7 +139,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         let collectionViewHeight = CGFloat((badgeCount / 3) * 132)
 
         // contentView
-        contectView.layer.cornerRadius = commonCornerRadius
+        contectView.layer.cornerRadius = CavyDefine.commonCornerRadius
         contectView.backgroundColor = UIColor(named: .HomeViewMainColor)
         contectView.snp_makeConstraints { (make) in
             
@@ -154,7 +154,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         addBadgeView(collectionViewHeight)
         
         // 退出登录按钮
-        logoutButton.layer.cornerRadius = commonCornerRadius
+        logoutButton.layer.cornerRadius = CavyDefine.commonCornerRadius
         logoutButton.backgroundColor = UIColor(named: .ContactsAccountLogoutButton)
         
         }
@@ -164,7 +164,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
      */
     func  addTableView(){
         
-        tableView.layer.cornerRadius = commonCornerRadius
+        tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
         tableView.delegate = self
         tableView.dataSource = self
@@ -194,7 +194,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         let badgeTitleFont = titleFont.fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits.TraitItalic)
         badgeInfo.font = UIFont(descriptor: badgeTitleFont, size: 16)
         
-        collectionView.layer.cornerRadius = commonCornerRadius
+        collectionView.layer.cornerRadius = CavyDefine.commonCornerRadius
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.registerNib(UINib(nibName: "ContactsAccountBadgeCell", bundle: nil), forCellWithReuseIdentifier: "collectionIdentifier")

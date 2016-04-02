@@ -22,15 +22,16 @@ class SignInUITests: XCTestCase {
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         if #available(iOS 9.0, *) {
             
-           
             let app = XCUIApplication()
             app.launchArguments = [ "STUB_HTTP_SIGN_IN" ]
             app.launch()
-            let pageimage1Image = app.images["pageImage1"]
-            pageimage1Image.swipeLeft()
-            pageimage1Image.swipeLeft()
-            pageimage1Image.swipeLeft()
-            app.buttons["登入"].tap()
+            app.images["pageImage1"].swipeLeft()
+            app.images["pageImage1"].swipeLeft()
+            app.images["pageImage1"].swipeLeft()
+            let btn = app.buttons["登入"]
+            btn.tap()
+            
+            
             
         } else {
             // Fallback on earlier versions
@@ -85,8 +86,6 @@ class SignInUITests: XCTestCase {
             window.pressForDuration(3)
 
         }
-        
-        
         
     }
     
