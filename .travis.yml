@@ -13,7 +13,7 @@ script:
   -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
 - rm -rf ~/Library/Developer/Xcode/DerivedData
-- xcodebuild clean build test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2' OTHER_SWIFT_FLAGS=" -D UITEST"  -configuration Debug
+- xcodebuild clean build test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2' OTHER_SWIFT_FLAGS=" -D UITEST"  -configuration Debug  | xcpretty && exit ${PIPESTATUS[0]}
 after_success:
 - slather
 - ./scripts/sign-and-upload.sh
