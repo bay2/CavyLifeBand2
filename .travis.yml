@@ -2,6 +2,7 @@ language: swift
 osx_image: xcode7.3
 before_install:
 - brew update
+- brew install Caskroom/cask/java
 - brew install tailor
 - gem install fir-cli
 script:
