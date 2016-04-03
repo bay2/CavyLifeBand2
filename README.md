@@ -2,6 +2,8 @@
 [![Build Status](https://travis-ci.org/bay2/CavyLifeBand2.svg?branch=master)](https://travis-ci.org/bay2/CavyLifeBand2)
 [![codecov.io](https://codecov.io/github/bay2/CavyLifeBand2/coverage.svg?branch=master)](https://codecov.io/github/bay2/CavyLifeBand2)
 [![codebeat badge](https://codebeat.co/badges/9499764a-e85f-49ba-800f-ca4fcae2ce88)](https://codebeat.co/projects/github-com-bay2-cavylifeband2)
+[![Language](https://img.shields.io/badge/swift-2.2-orange.svg)](http://swift.org)
+![](https://img.shields.io/badge/Supporting-iOS8.0+-orange.svg)
 
 ## 开发环境
 
