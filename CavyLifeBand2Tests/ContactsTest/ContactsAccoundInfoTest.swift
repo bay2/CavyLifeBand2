@@ -37,7 +37,7 @@ class ContactsAccoundInfoTest: XCTestCase {
     
     func testAccountInfo() {
         
-        let paras = UserNetRequsetKey.Address.rawValue 
+        _ = UserNetRequsetKey.Address.rawValue 
         
 //        let paras = [[UserNetRequsetKey.PhoneNum.rawValue: "17722112322", UserNetRequsetKey.Passwd.rawValue: "123456", UserNetRequsetKey.SecurityCode.rawValue: "123456"]]
         

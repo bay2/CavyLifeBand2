@@ -13,9 +13,9 @@ script:
   -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
 - rm -rf ~/Library/Developer/Xcode/DerivedData
-- xcodebuild clean build test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2' OTHER_SWIFT_FLAGS=" -D UITEST"  -configuration Debug  | xcpretty
+- xcodebuild clean build test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2' OTHER_SWIFT_FLAGS=" -D UITEST"  -configuration Debug GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
 after_success:
-- slather
+- bash <(curl -s https://codecov.io/bash) -J CavyLifeBand2
 - ./scripts/sign-and-upload.sh
 after_script:
 - ./scripts/remove-key.sh
