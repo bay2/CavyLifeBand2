@@ -63,7 +63,7 @@ class LeftViewController: UIViewController, HomeUserDelegate {
 
     // 列表信息
     var listTitleViewModel = [[LeftListViewModel(icon: UIImage(asset: .LeftMenuTarget), title: L10n.HomeLifeListTitleTarget.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuInformation), title: L10n.HomeLifeListTitleInfoOpen.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuInformation), title: L10n.HomeLifeListTitleInfoOpen.string, nextView: StoryboardScene.InfoSecurity.AccountInfoSecurityVCScene.viewController()),
     LeftListViewModel(icon: UIImage(asset: .LeftMenuFriend), title: L10n.HomeLifeListTitleFriend.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
     LeftListViewModel(icon: UIImage(asset: .LeftMenuPK), title: L10n.HomeLifeListTitlePK.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController())],
     [LeftListViewModel(icon: UIImage(asset: .LeftMenuAbout), title: L10n.HomeLifeListTitleAbout.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Log
 import EZSwiftExtensions
 
 class GoalView: UIView {
@@ -14,7 +15,7 @@ class GoalView: UIView {
     var stepCurrentValue: Int = 8000
     var hhCurrentValue: Int = 4
     var mmCurrentValue: Int = 58
-    
+    let sliderWidth = ez.screenWidth * 0.76
     // 标题 -- 目标
     @IBOutlet weak var titleLab: UILabel!
     
@@ -101,6 +102,7 @@ class GoalView: UIView {
         
         // 滑块 stepSlider
         stepSlider.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(sliderWidth)
             make.top.equalTo(stepValue).offset(ez.screenWidth * 0.12 + 36)
         }
         
@@ -160,6 +162,7 @@ class GoalView: UIView {
         
         // 睡眠滑块
         sleepSlider.snp_makeConstraints { (make) -> Void in
+            make.width.equalTo(sliderWidth)
             make.top.equalTo(sleepHHValue).offset(ez.screenWidth * 0.12 + 36)
         }
 
@@ -200,20 +203,19 @@ class GoalView: UIView {
         
         stepValue.text = String(recommandValue)
         
-        let minSlider = Int(minValue / 100)
-        let maxSlider = Int(maxValue / 100)
-        let avgSlider = Int(averageValue / 100)
-        let recomSlider = Int(recommandValue / 100)
-        print("\(minSlider)--\(maxSlider)--\(avgSlider)--\(recomSlider)")
+        let minSlider = Float(minValue / 100)
+        let maxSlider = Float(maxValue / 100)
+        let avgSlider = Float(averageValue / 100)
+        let recomSlider = Float(recommandValue / 100)
         
-        self.stepSlider.minimumValue = Float(minSlider)
-        self.stepSlider.maximumValue = Float(maxSlider)
-        self.stepSlider.value = Float(recomSlider)
+        self.stepSlider.minimumValue = minSlider
+        self.stepSlider.maximumValue = maxSlider
+        self.stepSlider.value = recomSlider
         
         ///  平均 和 推荐标签移动的长度
-        let avgMove = CGFloat(avgSlider - minSlider) / CGFloat(maxSlider - minSlider) * stepSlider.frame.width
-        let recomMove = CGFloat(recomSlider - minSlider) / CGFloat(maxSlider - minSlider) * stepSlider.frame.width
-        print("\(avgMove)--\(recomMove)")
+        let avgMove = CGFloat(avgSlider - minSlider) / CGFloat(maxSlider - minSlider) * sliderWidth
+        let recomMove = CGFloat(recomSlider - minSlider) / CGFloat(maxSlider - minSlider) * sliderWidth
+//        Log.info("步数： \(avgMove)--\(recomMove)")
 
         self.stepPineLine.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(self.stepSlider).offset(avgMove)
@@ -249,14 +251,15 @@ class GoalView: UIView {
         let recCount = hourChangeToMinutes(recomH, minutes: recomM)
         let minCount = hourChangeToMinutes(minH, minutes: minM)
         let maxCount = hourChangeToMinutes(maxH, minutes: maxM)
-        
+
         self.sleepSlider.minimumValue = Float(minCount)
         self.sleepSlider.maximumValue = Float(maxCount)
         self.sleepSlider.value = Float(recCount)
         
         ///  平均 和 推荐标签移动的长度
-        let avgMove = CGFloat(avgCount - minCount) / CGFloat(maxCount - minCount) * sleepSlider.frame.width
-        let recomMove = CGFloat(recCount - minCount) / CGFloat(maxCount - minCount) * sleepSlider.frame.width
+        let avgMove = CGFloat(avgCount - minCount) / CGFloat(maxCount - minCount) * sliderWidth
+        let recomMove = CGFloat(recCount - minCount) / CGFloat(maxCount - minCount) * sliderWidth
+//        Log.info("睡眠： \(avgMove)--\(recomMove)")
         self.sleepPineAvgLine.snp_makeConstraints { (make) -> Void in
             make.left.equalTo(self.stepSlider).offset(avgMove)
         }

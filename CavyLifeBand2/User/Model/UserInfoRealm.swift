@@ -28,6 +28,11 @@ class UserInfoModel: Object {
     dynamic var nickname = ""
     dynamic var stepNum = 0
     dynamic var sleepTime = ""
+    dynamic var isNotification = true
+    dynamic var isLocalShare = true
+    dynamic var isOpenBirthday = true
+    dynamic var isOpenHeight = true
+    dynamic var isOpenWeight = true
 
     override class func primaryKey() -> String? {
         return "userId"
