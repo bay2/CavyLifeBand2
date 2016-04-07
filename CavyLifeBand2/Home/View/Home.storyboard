@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--HomeView-->
+        <!--Home View Controller-->
         <scene sceneID="alT-qA-iyF">
             <objects>
-                <viewController storyboardIdentifier="HomeView" title="HomeView" id="kg3-5e-N1q" customClass="HomeViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeView" id="kg3-5e-N1q" customClass="HomeViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZZX-cg-2eq"/>
                         <viewControllerLayoutGuide type="bottom" id="8Fw-Zj-vkg"/>
@@ -28,7 +28,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.2196078431372549" green="0.90588235294117647" blue="0.59215686274509804" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="IN4-sa-CY2" firstAttribute="top" secondItem="ZZX-cg-2eq" secondAttribute="bottom" constant="79" id="hdE-zt-Myz"/>
+                            <constraint firstItem="IN4-sa-CY2" firstAttribute="top" secondItem="ZZX-cg-2eq" secondAttribute="bottom" constant="79" id="KpJ-3E-E6D"/>
                             <constraint firstItem="IN4-sa-CY2" firstAttribute="leading" secondItem="TaF-hb-Y8M" secondAttribute="leadingMargin" id="yBl-lF-eII"/>
                         </constraints>
                     </view>

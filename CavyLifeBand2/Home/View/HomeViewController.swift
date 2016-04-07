@@ -19,6 +19,12 @@ class HomeViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil)
 
+        // navigationController?
+        self.navigationController?.navigationBar.tintColor  = UIColor(named: .HomeViewMainColor)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "backbtn"), style: .Plain, target: self, action: #selector(showLeftView))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "backbtn"), style: .Plain, target: self, action: #selector(showLeftView))
+        
+        
         
         // Do any additional setup after loading the view.
     }
@@ -38,6 +44,12 @@ class HomeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func showLeftView() {
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+        
+    }
 
     @IBAction func test(sender: AnyObject) {
         
