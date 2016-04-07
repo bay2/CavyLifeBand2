@@ -21,38 +21,46 @@ class ContactsSortAndGroup: NSObject {
 
     }
     
+    
+    func insertAsFrist(object: [ContactsFriendListDataSource]) {
+        
+        contactsGroupList?.insertAsFirst(("", object))
+        
+    }
+    
     func sortAndGroup(contactsList: [ContactsFriendListDataSource]) {
-        
+
         var dataDic = Dictionary<String, [ContactsFriendListDataSource]>()
-        
+
+
         for contactsInfo in contactsList {
-            
+
             let firstChar = firstCharactor(contactsInfo.name)
-            
+
             // 如果key里面没有这个分组 就直接添加
             if dataDic.keys.contains(firstChar) {
-                
+
                 var array = dataDic[firstChar]!
                 array.append(contactsInfo)
-                
+
                 // 更新字典
                 dataDic[firstChar] = array
-                
+
             } else {
-                
+
                 // 添加key 和 数组
                 var array = [ContactsFriendListDataSource]()
                 array.append(contactsInfo)
                 dataDic.updateValue(array, forKey: firstChar)
-                
+
             }
-            
+
         }
-        
+
         contactsGroupList = dataDic.sort { (str1, str2) -> Bool in
             return str1.0 < str2.0
         }
-        
+
     }
     
     /**

@@ -260,6 +260,9 @@
                                     </button>
                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QK5-an-TCA">
                                         <rect key="frame" x="464" y="88" width="136" height="87"/>
+                                        <accessibility key="accessibilityConfiguration" label="EmailSafetyCode">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="136" placeholder="YES" id="haZ-NK-6m6"/>
                                         </constraints>

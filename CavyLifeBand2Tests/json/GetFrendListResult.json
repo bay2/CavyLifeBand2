@@ -1,0 +1,42 @@
+{
+  "code": "0000",
+  "msg": "success",
+  "friendInfos": [
+    {
+      "userId": "1",
+      "nickname": "阿布",
+      "avatarUrl": "http://h.hiphotos.baidu.com/image/h%3D200/sign=a51e1963afd3fd1f2909a53a004f25ce/c995d143ad4bd11354653d7f5dafa40f4afb05d6.jpg",
+      "isFollow": false
+    },
+    {
+      "userId": "2",
+      "nickname": "阿杜",
+      "avatarUrl": "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg",
+      "isFollow": false
+    },
+    {
+      "userId": "3",
+      "nickname": "白起",
+      "avatarUrl": "http://img4q.duitang.com/uploads/item/201502/13/20150213004413_Qdzm5.jpeg",
+      "isFollow": true
+    },
+    {
+      "userId": "4",
+      "nickname": "查理",
+      "avatarUrl": "http://ww1.sinaimg.cn/crop.7.22.1192.1192.1024/5c6defebjw8epti0r9noaj20xc0y1n0x.jpg",
+      "isFollow": false
+    },
+    {
+      "userId": "5",
+      "nickname": "传骑",
+      "avatarUrl": "http://ww2.sinaimg.cn/crop.0.0.1242.1242.1024/005EWUXPjw8eto7cdd42wj30yi0yiabz.jpg",
+      "isFollow": false
+    },
+    {
+      "userId": "6",
+      "nickname": "成风",
+      "avatarUrl": "http://d.hiphotos.baidu.com/zhidao/pic/item/622762d0f703918f331290f3523d269758eec4cc.jpg",
+      "isFollow": false
+    }
+  ]
+}

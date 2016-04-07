@@ -9,34 +9,7 @@
 import UIKit
 
 
-/**
- *  @author xuemincai
- *
- *  添加好友table ViewModel
- */
-struct ContactsAddFriendViewModel: ContactsFriendListDataSource {
-    
-    // 名字
-    var name: String { return L10n.ContactsAddFriendsCell.string }
-    
-    // 头像
-    var headImage: UIImage { return UIImage(asset: .ContactsListAdd) }
-    
-    // 是否隐藏关注图标
-    var hiddenCare: Bool = true
-    
-    /**
-     点击事件处理
-     
-     - parameter viewController:
-     */
-    func onClickCell(viewController: UIViewController) {
-        
-        viewController.pushVC(StoryboardScene.Contacts.instantiateContactsAddFriendVC())
-        
-    }
-    
-}
+
 
 
 extension ContactsAddFriendCellDelegate {
@@ -67,29 +40,31 @@ extension ContactsAddFriendCellDelegate {
 /**
  *  @author xuemincai
  *
- *  推荐好友 cell ViewModel
+ *  添加好友 cell ViewModel
  */
-struct ContactsRecommendCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate{
+struct ContactsAddFriendCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate{
     
     // 头像
-    var headImage: UIImage
+    var headImageUrl: String
     
     // 名字
     var name: String
     
     // 副标题
-    var introudce: String { return " 我爱吃草莓啊~~~" }
+    var introudce: String
     
     // 按钮回调
     var changeRequestBtnName: ((String) -> Void)?
     
-    init(name: String = "吖保鸡丁", headImage: UIImage = UIImage(asset: .GuideGenderBoyChosen), changeRequest: ((String) -> Void)? = nil) {
+    init(name: String = "", headImageUrl: String = "", introudce: String = "", changeRequest: ((String) -> Void)? = nil) {
         
         self.name = name
-        self.headImage = headImage
+        self.headImageUrl = headImageUrl
         self.changeRequestBtnName = changeRequest
+        self.introudce = introudce
         
     }
+    
     
 }
 
@@ -101,7 +76,7 @@ struct ContactsRecommendCellViewModel: ContactsAddFriendCellDataSource, Contacts
 struct ContactsAddressBookViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate {
     
     // 头像
-    var headImage: UIImage
+    var headImageUrl: String
     
     // 名字
     var name: String
@@ -112,10 +87,10 @@ struct ContactsAddressBookViewModel: ContactsAddFriendCellDataSource, ContactsAd
     // 按钮回调
     var changeRequestBtnName: ((String) -> Void)?
     
-    init(name: String = "吖保鸡丁", headImage: UIImage = UIImage(asset: .GuideGenderBoyChosen), changeRequest: ((String) -> Void)? = nil) {
+    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((String) -> Void)? = nil) {
         
         self.name = name
-        self.headImage = headImage
+        self.headImageUrl = headImageUrl
         self.changeRequestBtnName = changeRequest
         
     }
@@ -130,7 +105,7 @@ struct ContactsAddressBookViewModel: ContactsAddFriendCellDataSource, ContactsAd
 struct ContactsNearbyCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate{
     
     // 头像
-    var headImage: UIImage
+    var headImageUrl: String
     
     // 名字
     var name: String
@@ -141,10 +116,10 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendCellDataSource, ContactsAdd
     // 按钮回调
     var changeRequestBtnName: ((String) -> Void)?
     
-    init(name: String = "吖保鸡丁", headImage: UIImage = UIImage(asset: .GuideGenderBoyChosen), changeRequest: ((String) -> Void)? = nil) {
+    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((String) -> Void)? = nil) {
         
         self.name = name
-        self.headImage = headImage
+        self.headImageUrl = headImageUrl
         self.changeRequestBtnName = changeRequest
         
     }
@@ -159,7 +134,7 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendCellDataSource, ContactsAdd
 struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate {
     
     // 头像
-    var headImage: UIImage
+    var headImageUrl: String
     
     // 名字
     var name: String
@@ -176,10 +151,10 @@ struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
     // 按钮回调
     var changeRequestBtnName: ((String) -> Void)?
     
-    init(name: String = "吖保鸡丁", headImage: UIImage = UIImage(asset: .GuideGenderBoyChosen), changeRequest: ((String) -> Void)? = nil) {
+    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((String) -> Void)? = nil) {
         
         self.name = name
-        self.headImage = headImage
+        self.headImageUrl = headImageUrl
         self.changeRequestBtnName = changeRequest
         
     }

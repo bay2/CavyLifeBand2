@@ -9,7 +9,7 @@
 import UIKit
 import EZSwiftExtensions
 
-class HomeUserInfo: UIView {
+class HomeUserInfo: UIView, LeftMenuPushViewDelegate{
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -18,9 +18,12 @@ class HomeUserInfo: UIView {
         // Drawing code
     }
     */
+    
+    var nextView: UIViewController { return StoryboardScene.AccountInfo.instantiateContactsAccountInfoVC() }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
     }
 
     required init?(coder aDecoder: NSCoder) {

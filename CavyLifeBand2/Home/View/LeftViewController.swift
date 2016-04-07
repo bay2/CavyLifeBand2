@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import EZSwiftExtensions
 
-struct LeftListViewModel: LeftListCellDateSource, LeftListCellDelegate {
+struct LeftListViewModel: LeftListCellDateSource, LeftListCellDelegate, LeftMenuPushViewDelegate {
 
     var title: String
     var icon: UIImage
@@ -26,9 +26,30 @@ struct LeftListViewModel: LeftListCellDateSource, LeftListCellDelegate {
 
 }
 
+protocol LeftMenuPushViewDelegate {
+    
+    var nextView: UIViewController { get }
+    
+    func pushView()
+
+}
+
+extension LeftMenuPushViewDelegate {
+    
+    func pushView() {
+        
+        let userInfo = ["nextView": self.nextView] as [NSObject: AnyObject]
+
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil, userInfo: userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
+
+    }
+    
+}
+
 
 class LeftViewController: UIViewController, HomeUserDelegate {
-
+  
     @IBOutlet weak var userInfoView: HomeUserInfo!
     @IBOutlet weak var leftTableView: UITableView!
     
@@ -42,7 +63,7 @@ class LeftViewController: UIViewController, HomeUserDelegate {
 
     // 列表信息
     var listTitleViewModel = [[LeftListViewModel(icon: UIImage(asset: .LeftMenuTarget), title: L10n.HomeLifeListTitleTarget.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuInformation), title: L10n.HomeLifeListTitleInfoOpen.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
+    LeftListViewModel(icon: UIImage(asset: .LeftMenuInformation), title: L10n.HomeLifeListTitleInfoOpen.string, nextView: StoryboardScene.InfoSecurity.AccountInfoSecurityVCScene.viewController()),
     LeftListViewModel(icon: UIImage(asset: .LeftMenuFriend), title: L10n.HomeLifeListTitleFriend.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
     LeftListViewModel(icon: UIImage(asset: .LeftMenuPK), title: L10n.HomeLifeListTitlePK.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController())],
     [LeftListViewModel(icon: UIImage(asset: .LeftMenuAbout), title: L10n.HomeLifeListTitleAbout.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
@@ -55,6 +76,12 @@ class LeftViewController: UIViewController, HomeUserDelegate {
         setTableViewStyle()
         
         userInfoView.configuration(self)
+        
+        iconImageView.addTapGesture { _ in
+            
+            self.userInfoView.pushView()
+            
+        }
 
     }
 
@@ -167,10 +194,7 @@ extension LeftViewController {
 
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        let userInfo = ["nextView": listTitleViewModel[indexPath.section][indexPath.row].nextView] as [NSObject: AnyObject]
-
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil, userInfo: userInfo)
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
+        listTitleViewModel[indexPath.section][indexPath.row].pushView()
 
     }
 

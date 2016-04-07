@@ -35,7 +35,7 @@ class AccountManagerBaseViewController: BaseViewController {
      */
     func updateTextFieldViewUI(textFieldView: UIView) {
         
-        textFieldView.layer.cornerRadius = commonCornerRadius
+        textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
         textFieldView.backgroundColor = UIColor.whiteColor()
         
     }

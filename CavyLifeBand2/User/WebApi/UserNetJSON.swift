@@ -35,7 +35,12 @@ struct UserProfileMsg {
     var nickName: String?
     var stepNum: Int?
     var sleepTime: String?
-
+    var isNotification: Bool?
+    var isLocalShare: Bool?
+    var isOpenBirthday: Bool?
+    var isOpenHeight: Bool?
+    var isOpenWeight: Bool?
+    
     init(_ decoder: JSONDecoder) throws  {
 
         commonMsg = try CommenMsg(decoder)
@@ -49,7 +54,11 @@ struct UserProfileMsg {
         do { nickName = try decoder["nickname"].getString() } catch { nickName = "" }
         do { stepNum = try decoder["stepNum"].getInt() } catch { stepNum = 0 }
         do { sleepTime = try decoder["sleepTime"].getString() } catch { sleepTime = "" }
-        
+        do { isNotification = decoder["isNotification"].bool }
+        do { isLocalShare = decoder["isLocalShare"].bool }
+        do { isOpenBirthday = decoder["isLocalShare"].bool }
+        do { isOpenHeight = decoder["isOpenHeight"].bool }
+        do { isOpenWeight = decoder["isOpenWeight"].bool }
     }
 
 }

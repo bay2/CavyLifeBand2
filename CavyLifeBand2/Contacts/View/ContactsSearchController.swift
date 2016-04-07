@@ -9,9 +9,16 @@
 import UIKit
 import EZSwiftExtensions
 
+protocol ContactsSearchControllerDelegate {
+    
+    func didTapOnSearchButton()
+    
+}
+
 class ContactsSearchController: UISearchController, UISearchBarDelegate {
     
     var contactsSearchBar: ContactsSearchBar?
+    var contactsSearchControllerDelegate: ContactsSearchControllerDelegate?
     var isSearching = false
 
     override init(searchResultsController: UIViewController?) {
@@ -94,6 +101,17 @@ class ContactsSearchController: UISearchController, UISearchBarDelegate {
         
         self.searchResultsUpdater?.updateSearchResultsForSearchController(self)
 
+    }
+    
+    /**
+     点击搜索
+     
+     - parameter searchBar:
+     */
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
+        contactsSearchControllerDelegate?.didTapOnSearchButton()
+        
     }
     
     /*

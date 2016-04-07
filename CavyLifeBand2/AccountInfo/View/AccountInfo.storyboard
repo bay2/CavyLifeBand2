@@ -8,7 +8,7 @@
         <!--Contacts Account InfoVC-->
         <scene sceneID="j7a-cF-OIt">
             <objects>
-                <viewController id="vVu-D1-fCH" customClass="ContactsAccountInfoVC" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContactsAccountInfoVC" id="vVu-D1-fCH" customClass="ContactsAccountInfoVC" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2fR-aq-Z77"/>
                         <viewControllerLayoutGuide type="bottom" id="KLK-vF-45e"/>
@@ -50,14 +50,14 @@
                                                 <rect key="frame" x="20" y="422" width="560" height="128"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成就" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GjD-D6-Ti7">
-                                                        <rect key="frame" x="30" y="25" width="34" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <rect key="frame" x="30" y="25" width="32" height="20"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的成就成就" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYr-16-XXH">
-                                                        <rect key="frame" x="428" y="25" width="102" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <rect key="frame" x="434" y="25" width="96" height="20"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>

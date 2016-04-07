@@ -1,0 +1,8 @@
+coverage_service: cobertura_xml
+xcodeproj: CavyLifeBand2.xcodeproj
+source_directory: CavyLifeBand2
+output_directory: path/to/xml_report
+ignore:
+  - CavyLifeBand2UITests/*
+  - Pods/*
+  - CavyLifeBand2Tests/*

@@ -41,7 +41,7 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
     func addTableView() {
         // 注册
         tableView.backgroundColor = UIColor.whiteColor()
-        tableView.layer.cornerRadius = commonCornerRadius
+        tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
 
         tableView.snp_makeConstraints { (make) -> Void in
             make.height.equalTo(326)

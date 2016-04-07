@@ -2,6 +2,8 @@
 [![Build Status](https://travis-ci.org/bay2/CavyLifeBand2.svg?branch=master)](https://travis-ci.org/bay2/CavyLifeBand2)
 [![codecov.io](https://codecov.io/github/bay2/CavyLifeBand2/coverage.svg?branch=master)](https://codecov.io/github/bay2/CavyLifeBand2)
 [![codebeat badge](https://codebeat.co/badges/9499764a-e85f-49ba-800f-ca4fcae2ce88)](https://codebeat.co/projects/github-com-bay2-cavylifeband2)
+[![Language](https://img.shields.io/badge/swift-2.2-orange.svg)](http://swift.org)
+![](https://img.shields.io/badge/Supporting-iOS8.0+-orange.svg)
 
 ## 开发环境
 
@@ -14,7 +16,7 @@
 ### bundle （确保CocoaPods版本一致）
 **安装命令:**
  ```
- gem bundle
+sudo gem install -n /usr/local/bin bundle
  ```
 
 ### [CocoaPods](http://guides.cocoapods.org/using/getting-started.html#installation) 0.39.0 (包管理器)
@@ -23,7 +25,7 @@
 ```
 bundle install
 ```
-### [tailor](https://github.com/sleekbyte/tailor)
+### [tailor](https://github.com/sleekbyte/tailor)(Swift 代码静态扫描工具)
 **安装命令：**
 ```
 brew install tailor
@@ -33,7 +35,7 @@ brew install tailor
 tailor --xcode /path/to/demo.xcodeproj/
 ```
 
-### [SwiftGen](https://github.com/AliSoftware/SwiftGen)(Swift 代码静态扫描工具)
+### [SwiftGen](https://github.com/AliSoftware/SwiftGen)
 
 自动生成枚举定义:
 - UIImage

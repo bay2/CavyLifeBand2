@@ -23,4 +23,34 @@ extension String {
         return false
     }
     
+    /**
+     返回第一个字母
+     
+     - parameter name: 名字
+     
+     - returns: 第一个字母
+     */
+    func firstCharactor(name: String) -> String {
+        
+        let str = CFStringCreateMutableCopy(nil, 0, name)
+        
+        var returnStr = String()
+        
+        if CFStringTransform(str, nil, kCFStringTransformToLatin, false) {
+            
+            if CFStringTransform(str, nil, kCFStringTransformStripDiacritics, false) {
+                
+                // 转换类型
+                let string = String(str)
+                string.capitalizedString
+                let character = string[string.startIndex]
+                
+                returnStr = String(character)
+            }
+            
+        }
+        
+        return returnStr.uppercaseString
+    }
+    
 }

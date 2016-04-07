@@ -24,10 +24,9 @@ class ForgotPasswdPhoneUITest: XCTestCase {
             let app = XCUIApplication()
             app.launchArguments = [ "STUB_HTTP_COMMON_RESULT_OK" ]
             app.launch()
-            let pageimage1Image = app.images["pageImage1"]
-            pageimage1Image.swipeLeft()
-            pageimage1Image.swipeLeft()
-            pageimage1Image.swipeLeft()
+            app.images["pageImage1"].swipeLeft()
+            app.images["pageImage1"].swipeLeft()
+            app.images["pageImage1"].swipeLeft()
             app.buttons["登入"].tap()
             app.buttons["忘记了密码？"].tap()
             

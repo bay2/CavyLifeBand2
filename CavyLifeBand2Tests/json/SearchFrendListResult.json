@@ -1,0 +1,16 @@
+{
+  "code": "0000",
+  "msg": "success",
+  "friendInfos": [
+    {
+      "userId": "1",
+      "nickname": "阿布",
+      "avatarUrl": "http://h.hiphotos.baidu.com/image/h%3D200/sign=a51e1963afd3fd1f2909a53a004f25ce/c995d143ad4bd11354653d7f5dafa40f4afb05d6.jpg",
+    },
+    {
+      "userId": "2",
+      "nickname": "阿杜",
+      "avatarUrl": "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg",
+    },
+  ]
+}

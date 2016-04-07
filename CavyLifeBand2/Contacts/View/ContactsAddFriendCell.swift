@@ -12,7 +12,7 @@ import EZSwiftExtensions
 
 protocol ContactsAddFriendCellDataSource {
     
-    var headImage: UIImage { get }
+    var headImageUrl: String { get }
     var name: String { get }
     var introudce: String { get }
     var requestBtnTitle: String { get }
@@ -28,6 +28,7 @@ protocol ContactsAddFriendCellDelegate {
     var requestBtnColor: UIColor { get }
     var requestBtnFont: UIFont { get }
     var changeRequestBtnName: ((String) -> Void)? { get }
+    
 
 }
 
@@ -57,7 +58,7 @@ class ContactsAddFriendCell: UITableViewCell {
         headView.roundSquareImage()
         nameLabel.textColor = UIColor(named: .ContactsName)
         introduceLabel.textColor = UIColor(named: .ContactsIntrouduce)
-        requestBtn.setCornerRadius(radius: commonCornerRadius)
+        requestBtn.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         
         let cellBgView = UIView()
         cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)
@@ -83,12 +84,13 @@ class ContactsAddFriendCell: UITableViewCell {
         self.introduceLabel.font = delegate.introduceFont
         self.introduceLabel.textColor = delegate.introductTextColor
 
-        self.headView.image = dataSource.headImage
 
         self.requestBtn.setTitle(dataSource.requestBtnTitle, forState: .Normal)
         self.requestBtn.backgroundColor = delegate.requestBtnColor
+        headView.af_setImageWithURL(NSURL(string: dataSource.headImageUrl)!)
 
         self.labelLayout(dataSource)
+        
 
     }
 

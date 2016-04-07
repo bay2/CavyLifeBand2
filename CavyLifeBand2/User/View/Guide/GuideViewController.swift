@@ -64,9 +64,10 @@ class GuideViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        allViewsLayOut()
+
         updateViewStyle()
         
-        allViewsLayOut()
         
     }
     
@@ -207,6 +208,7 @@ class GuideViewController: BaseViewController {
         case .SettingLocationShare:
             
             let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
+            accountVC.configView(PhoneSignUpViewModel())
             self.pushVC(accountVC)
             
         default:
@@ -243,9 +245,7 @@ class GuideViewController: BaseViewController {
             self.pushVC(nextView)
         case .BandSuccess:
             
-            // 注册时候 也是跳到添加个人信息
-            if UserInfoModelView.shareInterface.userInfo!.userId.isEmpty {
-                
+            if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId == "" {
                 nextView.viewStyle = .GuideGender
                 self.pushVC(nextView)
                 return
@@ -262,8 +262,9 @@ class GuideViewController: BaseViewController {
                         self.pushVC(nextView)
                     } else {
                         
-                        // 如果有个人信息 就是直接跳到主页
                         UserInfoModelView.shareInterface.updateInfo()
+                        // 如果有个人信息 就是直接跳到主页
+                        self.pushVC(StoryboardScene.Home.instantiateRootView())
                     }
                 }
             }
@@ -290,8 +291,18 @@ class GuideViewController: BaseViewController {
             nextView.viewStyle = .SettingLocationShare
             self.pushVC(nextView)
         case .SettingLocationShare:
-            let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
-            pushVC(accountVC)
+            
+            if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
+                let nextVC = StoryboardScene.Main.instantiateAccountManagerView()
+                nextVC.configView(PhoneSignUpViewModel())
+                pushVC(nextVC)
+            } else {
+                UserInfoModelView.shareInterface.updateInfo(self)
+                let nextVC = StoryboardScene.Home.instantiateRootView()
+                pushVC(nextVC)
+            }
+            
+            
         }
         
     }
@@ -380,8 +391,9 @@ class GuideViewController: BaseViewController {
         
         goalView!.goalViewLayout()
         
-        goalView!.sliderStepAttribute(5000, recommandValue: 8000, minValue: 0, maxValue: 18000)
-        goalView!.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 0, minM: 0, maxH: 20, maxM: 00)
+        goalView!.sliderStepAttribute(6000, recommandValue: 8000, minValue: 0, maxValue: 20000)
+        goalView!.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 2, minM: 0, maxH: 12, maxM: 00)
+        
         middleView.addSubview(goalView!)
         
         

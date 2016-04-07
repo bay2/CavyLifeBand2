@@ -12,12 +12,11 @@ script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
   -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
-- xctool -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphoneos  -configuration
-  Release OBJROOT=$PWD/build   SYMROOT=$PWD/build CODE_SIGN_IDENTITY="$DEVELOPER_NAME"
-  ONLY_ACTIVE_ARCH=NO
-- xcodebuild clean build test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2' OTHER_SWIFT_FLAGS=" -D UITEST" | xcpretty -f `xcpretty-travis-formatter` && exit ${PIPESTATUS[0]}
-- (curl -s https://codecov.io/bash) | bash
+- xctool -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphoneos  -configuration Release OBJROOT=$PWD/build   SYMROOT=$PWD/build CODE_SIGN_IDENTITY="$DEVELOPER_NAME" ONLY_ACTIVE_ARCH=NO
+- rm -rf ~/Library/Developer/Xcode/DerivedData
+- xcodebuild clean build test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2' OTHER_SWIFT_FLAGS=" -D UITEST"  | xcpretty
 after_success:
+- bash <(curl -s https://codecov.io/bash)
 - ./scripts/sign-and-upload.sh
 after_script:
 - ./scripts/remove-key.sh
