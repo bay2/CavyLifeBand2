@@ -42,10 +42,9 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     /// 徽章个数
     var badgeCount: Int = 6
     
-    var accountRespond = UserProfileMsg?()
-    let infoTitleArray = [L10n.ContactsShowInfoGender.string, L10n.ContactsShowInfoHeight.string, L10n.ContactsShowInfoWeight.string, L10n.ContactsShowInfoBirth.string, L10n.ContactsShowInfoAddress.string]
+    var userInfoModel = UserInfoModel()
     var infoDataArray: Array<String> = []
-    
+    let infoTitleArray = [L10n.ContactsShowInfoGender.string, L10n.ContactsShowInfoHeight.string, L10n.ContactsShowInfoWeight.string, L10n.ContactsShowInfoBirth.string, L10n.ContactsShowInfoAddress.string]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,8 +79,6 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
                     
                     let resp = try UserProfileMsg(JSONDecoder(result.value!))
                     
-                    self.accountRespond = resp
-                   
                     self.infoDataArray = [self.definiteAccountSex(resp.sex!), resp.height!, resp.weight!, resp.birthday!, resp.address!]
                     
                     Log.info(resp)
@@ -98,9 +95,19 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
                 
             })
             
+        } else {
+            
+            // 直接加载本地数据
+            self.userInfoModel = accountInfo!
+            Log.info(UserInfoOperate().queryUserInfo(loginUserId))
+            
+            self.infoDataArray = [definiteAccountSex(accountInfo!.sex.toString), accountInfo!.height + " cm", accountInfo!.weight + " kg", accountInfo!.birthday, accountInfo!.address]
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                self.tableView.reloadData()
+            }
         }
-        
-        
+
     }
     
     /**
@@ -137,9 +144,9 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         // collectionView 高度
         // |-(badgeCount / 3） *（20 + 112）-|
         let collectionViewHeight = CGFloat((badgeCount / 3) * 132)
-
-        // contentView
         contectView.layer.cornerRadius = commonCornerRadius
+        
+        // contentView
         contectView.backgroundColor = UIColor(named: .HomeViewMainColor)
         contectView.snp_makeConstraints { (make) in
             
@@ -149,9 +156,8 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         
         
         addTableView()
-        
-        
         addBadgeView(collectionViewHeight)
+        
         
         // 退出登录按钮
         logoutButton.layer.cornerRadius = commonCornerRadius
@@ -165,7 +171,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     func  addTableView(){
         
         tableView.layer.cornerRadius = commonCornerRadius
-        tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        tableView.backgroundColor = UIColor.whiteColor()// UIColor(named: .HomeViewMainColor)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.bounces = false
@@ -179,7 +185,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
      */
     func addBadgeView(height: CGFloat) {
         
-        
+        badgeView.layer.cornerRadius = commonCornerRadius
         badgeView.snp_makeConstraints { (make) in
             
             // |-16-|-tableView-|-10-|-badgeView-10- -50- -8- collectionView -|-20-|-logoutButton-50-|-20-|
@@ -194,7 +200,6 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         let badgeTitleFont = titleFont.fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits.TraitItalic)
         badgeInfo.font = UIFont(descriptor: badgeTitleFont, size: 16)
         
-        collectionView.layer.cornerRadius = commonCornerRadius
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.registerNib(UINib(nibName: "ContactsAccountBadgeCell", bundle: nil), forCellWithReuseIdentifier: "collectionIdentifier")
@@ -241,31 +246,33 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        
+        Log.info(UserInfoOperate().queryUserInfo(loginUserId))
+
         // 第一个
         if indexPath.row == 0 {
             
-            // 个人信息
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
+            // 个人信息
             cell.personRealtion(.OwnRelation)
-            
-            if accountRespond?.nickName! != nil {
+            if UserInfoOperate().isUserExist(loginUserId) {
                 
-                cell.addAccountData((accountRespond!.nickName!), accountName: (accountRespond!.nickName!))
+                cell.addAccountData(self.userInfoModel.nickname, accountName: self.userInfoModel.nickname)
                 
             }
-            
             return cell
             
         } else {
             
             // 其他数值
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
-            if accountRespond?.nickName! != nil {
+            
+            if UserInfoOperate().isUserExist(loginUserId) {
                 
                 cell.addData(infoTitleArray[indexPath.row - 1], titleInfo: infoDataArray[indexPath.row - 1], cellEditOrNot: false)
                 
             }
-
             return cell
         }
         

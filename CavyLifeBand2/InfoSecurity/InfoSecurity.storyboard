@@ -52,6 +52,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Ok1-I0-Zm0"/>
                     <connections>
+                        <outlet property="bottomView" destination="MJZ-FU-I8U" id="G6x-gs-zjb"/>
                         <outlet property="tableView" destination="fqv-et-Upd" id="IBs-wa-zsn"/>
                     </connections>
                 </viewController>
