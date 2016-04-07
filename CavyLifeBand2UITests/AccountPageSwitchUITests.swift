@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import Log
 
 class AccountPageSwitchUITests: XCTestCase {
         
@@ -39,7 +40,7 @@ class AccountPageSwitchUITests: XCTestCase {
         super.tearDown()
     }
     
-    func testPageSwitch() {
+    func testJoinCavy() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
         
@@ -48,68 +49,166 @@ class AccountPageSwitchUITests: XCTestCase {
             
             let app = XCUIApplication()
             
-            let backbtnButton = app.buttons["backbtn"]
             let buttonJoin = app.buttons["加入豚鼠"]
             buttonJoin.tap()
             
             let guideButton = app.buttons["GuideRightBtn"]
-            guideButton.tap()
-            guideButton.tap()
-            guideButton.tap()
+            
+            // 打开蓝牙
+            XCTAssert(app.staticTexts["连接手环"].exists)
+            let infoTitle = app.staticTexts["GuideViewInfoTitleLabel"]
+//            XCTAssert(infoTitle.label == "")
+            XCTAssert(app.staticTexts["打开蓝牙"].exists)
+            XCTAssert(app.staticTexts["手机蓝牙打开后才能成功连接手环"].exists)
+            XCTAssert(app.images["GuideBluetooth"].exists)
             guideButton.tap()
             
+            // 连接手环
+            XCTAssert(app.staticTexts["连接手环"].exists)
+//            XCTAssert(infoTitle.label == "")
+            XCTAssert(app.staticTexts["开启手环"].exists)
+            XCTAssert(app.staticTexts["按下手环按钮等待红灯亮起即打开手环"].exists)
+            XCTAssert(app.images["GuideOpenBand"].exists)
+            XCTAssert(app.staticTexts["没有灯充电试试看"].exists)
+            guideButton.tap()
+            
+            // 正在连接。。。
+            XCTAssert(app.staticTexts["连接手环"].exists)
+//            XCTAssert(infoTitle.label == "")
+            XCTAssert(app.staticTexts["正在连接..."].exists)
+            guideButton.tap()
+            
+            // 配对成功
+            XCTAssert(app.staticTexts["连接手环"].exists)
+//            XCTAssert(infoTitle.label == "")
+            XCTAssert(app.staticTexts["配对成功"].exists)
+            XCTAssert(app.images["GuidePairSeccuss"].exists)
+            XCTAssert(app.staticTexts["开始健康之旅吧"].exists)
+            guideButton.tap()
+            
+            
+            // 性别
+            XCTAssert(app.staticTexts["我的信息"].exists)
+            XCTAssert(infoTitle.label == "可以更好地帮助健康统计哦")
+            XCTAssert(app.staticTexts["我是"].exists)
             app.buttons["GuideGenderGirlGary"].tap()
             app.buttons["GuideGenderBoyGary"].tap()
-            app.buttons["GuideGenderGirlGary"].tap()
             guideButton.tap()
             
-            app.staticTexts["生日"].tap()
-            guideButton.tap()
-            app.staticTexts["身高"].tap()
-            guideButton.tap()
-            app.staticTexts["体重"].tap()
-            guideButton.tap()
-            app.staticTexts["目标"].tap()
-            guideButton.tap()
-            app.staticTexts["开启智能通知"].tap()
-            guideButton.tap()
-            app.staticTexts["开启位置共享"].tap()
+            
+            // 生日
+            XCTAssert(app.staticTexts["我的信息"].exists)
+            XCTAssert(infoTitle.label == "可以更好地帮助健康统计哦")
+            XCTAssert(app.staticTexts["生日"].exists)
+            let element = XCUIApplication().childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(2).childrenMatchingType(.Other).element
+            XCTAssert(element.childrenMatchingType(.StaticText)["1990.1"].exists)
+            XCTAssert(element.childrenMatchingType(.StaticText)["15"].exists)
             guideButton.tap()
             
-            let staticText2 = app.staticTexts["加入豚鼠"]
-            staticText2.tap()
+            // 身高
+            XCTAssert(app.staticTexts["我的信息"].exists)
+            XCTAssert(infoTitle.label == "可以更好地帮助健康统计哦")
+            XCTAssert(app.staticTexts["身高"].exists)
+            XCTAssert(app.staticTexts["160.0"].exists)
+            XCTAssert(app.staticTexts["CM"].exists)
+            guideButton.tap()
             
-            let signUpBtn = app.buttons["注册"]
-            signUpBtn.tap()
+            // 体重
+            XCTAssert(app.staticTexts["我的信息"].exists)
+            XCTAssert(infoTitle.label == "可以更好地帮助健康统计哦")
+            XCTAssert(app.staticTexts["体重"].exists)
+            XCTAssert(app.images["GuideWeightBg"].exists)
+            XCTAssert(app.images["GuideWeightNiddle"].exists)
+            XCTAssert(app.staticTexts["60.0"].exists)
+            XCTAssert(app.staticTexts["kg"].exists)
+            guideButton.tap()
+            
+            // 目标
+            XCTAssert(app.staticTexts["我的信息"].exists)
+            XCTAssert(infoTitle.label == "可以更好地帮助健康统计哦")
+            XCTAssert(app.staticTexts["目标"].exists)
+
+            // 计步
+            XCTAssert(app.staticTexts["运动步数"].exists)
+            XCTAssert(app.staticTexts["8000"].exists)
+            XCTAssert(app.staticTexts["步"].exists)
+            XCTAssert(element.childrenMatchingType(.StaticText).matchingIdentifier("平均").elementBoundByIndex(0).exists)
+            XCTAssert(element.childrenMatchingType(.StaticText).matchingIdentifier("推荐").elementBoundByIndex(0).exists)
+            
+            
+            // 睡眠
+            XCTAssert(app.staticTexts["睡眠"].exists)
+            XCTAssert(app.staticTexts["8"].exists)
+            XCTAssert(app.staticTexts["h"].exists)
+            XCTAssert(app.staticTexts["30"].exists)
+            XCTAssert(app.staticTexts["min"].exists)
+            XCTAssert(element.childrenMatchingType(.StaticText).matchingIdentifier("平均").elementBoundByIndex(1).exists)
+            XCTAssert(element.childrenMatchingType(.StaticText).matchingIdentifier("推荐").elementBoundByIndex(1).exists)
+            guideButton.tap()
+            
+            // 开启智能通知
+            XCTAssert(app.buttons["backbtn"].exists)
+            XCTAssert(app.staticTexts["设置"].exists)
+            XCTAssert(app.buttons["跳过"].exists)
+//            XCTAssert(infoTitle.label == "")
+            XCTAssert(app.images["GuideNotice"].exists)
+            XCTAssert(app.staticTexts["开启智能通知"].exists)
+            XCTAssert(app.staticTexts["随时关注我的健康生活"].exists)
+            app.buttons["跳过"].tap()
+            let backbtnButton = app.buttons["backbtn"]
+            backbtnButton.tap()
+            guideButton.tap()
+            
+            // 开启位置共享
+            XCTAssert(app.buttons["backbtn"].exists)
+            XCTAssert(app.staticTexts["设置"].exists)
+            XCTAssert(app.buttons["跳过"].exists)
+//            XCTAssert(infoTitle.label == "")
+            XCTAssert(app.images["GuideLocation"].exists)
+            XCTAssert(app.staticTexts["开启位置共享"].exists)
+            XCTAssert(app.staticTexts["告诉豚鼠你的位置，更有安全服务！"].exists)
+            app.buttons["跳过"].tap()
+            backbtnButton.tap()
+            guideButton.tap()
+            
+            // 注册页面
+            
+            // 手机注册
+            XCTAssert(app.buttons["backbtn"].exists)
+            XCTAssert(app.staticTexts["加入豚鼠"].exists)
+            XCTAssert(app.buttons["邮箱"].exists)
+            XCTAssert(app.textFields["手机"].exists)
+            XCTAssert(app.textFields["验证码"].exists)
+            XCTAssert(app.buttons["发送验证码"].exists)
+            XCTAssert(app.secureTextFields["密码"].exists)
+            XCTAssert(app.staticTexts["我们已经阅读并接受"].exists)
+            XCTAssert(app.buttons["《豚鼠科技服务协议》"].exists)
+            app.buttons["发送验证码"].tap()
+            app.alerts.collectionViews.buttons["OK"].tap()
+            app.buttons["chosenbtn"].tap()
+            app.buttons["unchosenbtn"].tap()
+            
+            app.buttons["注册"].tap()
+            app.alerts.collectionViews.buttons["OK"].tap()
+            app.buttons["邮箱"].tap()
+            
+            // 邮箱注册
+            XCTAssert(app.buttons["backbtn"].exists)
+            XCTAssert(app.staticTexts["加入豚鼠"].exists)
+            XCTAssert(app.buttons["手机"].exists)
+            XCTAssert(app.textFields["邮箱"].exists)
+            XCTAssert(app.textFields["验证码"].exists)
+            XCTAssert(app.secureTextFields["密码"].exists)
+            XCTAssert(app.staticTexts["我们已经阅读并接受"].exists)
+            XCTAssert(app.buttons["《豚鼠科技服务协议》"].exists)
+            app.buttons["chosenbtn"].tap()
+            app.buttons["unchosenbtn"].tap()
+            
+            app.buttons["注册"].tap()
             app.alerts.collectionViews.buttons["OK"].tap()
             
-            backbtnButton.tap()
-            backbtnButton.tap()
+            app.buttons["手机"].tap()
             
-            let jumpButton = app.buttons["跳过"]
-            app.staticTexts["开启智能通知"].tap()
-            jumpButton.tap()
-            app.staticTexts["开启位置共享"].tap()
-            jumpButton.tap()
-            
-            staticText2.tap()
-            
-            let buttonEmil = app.buttons["邮箱"]
-            buttonEmil.tap()
-            
-            staticText2.tap()
-            let buttonPhone = app.buttons["手机"]
-            buttonPhone.tap()
-
-            staticText2.tap()
-            backbtnButton.tap()
-            guideButton.tap()
-            
-            staticText2.tap()
-            buttonEmil.tap()
-            
-            staticText2.tap()
-            backbtnButton.tap()
             
             backbtnButton.tap()
             backbtnButton.tap()
@@ -124,86 +223,89 @@ class AccountPageSwitchUITests: XCTestCase {
             backbtnButton.tap()
             backbtnButton.tap()
             
-            let button = app.buttons["登入"]
-            button.tap()
             
-            var staticText = app.staticTexts["准备开始"]
-            staticText.tap()
-            
-            let buttonForget = app.buttons["忘记了密码？"]
-            buttonForget.tap()
-            
-            var staticText3 = app.staticTexts["忘记密码了?"]
-            staticText3.tap()
-            buttonEmil.tap()
-            
-            staticText3 = app.staticTexts["忘记密码了?"]
-            staticText3.tap()
-            buttonPhone.tap()
-            
-            staticText3.tap()
-            backbtnButton.tap()
-            buttonForget.tap()
-            
-            staticText3 = app.staticTexts["忘记密码了?"]
-            staticText3.tap()
-            
-            let buttonRemmber = app.buttons["且慢，我想起来了！"]
-            buttonRemmber.tap()
-            
-            staticText = app.staticTexts["准备开始"]
-            staticText.tap()
-            
-            buttonForget.tap()
-            buttonEmil.tap()
-            
-            staticText3.tap()
-            buttonRemmber.tap()
-            backbtnButton.tap()
-            
-            button.tap()
-            staticText.tap()
-            signUpBtn.tap()
-            
-            guideButton.tap()
-            guideButton.tap()
-            guideButton.tap()
-            guideButton.tap()
-            
-            app.buttons["GuideGenderGirlGary"].tap()
-            guideButton.tap()
-            
-            guideButton.tap()
-            guideButton.tap()
-            guideButton.tap()
-            guideButton.tap()
-            guideButton.tap()
-            guideButton.tap()
-            
-            staticText2.tap()
-            
-            backbtnButton.tap()
-            backbtnButton.tap()
-            backbtnButton.tap()
-            backbtnButton.tap()
-            backbtnButton.tap()
-            backbtnButton.tap()
-            backbtnButton.tap()
-            backbtnButton.tap()
-            backbtnButton.tap()
-            backbtnButton.tap()
-            backbtnButton.tap()
-            backbtnButton.tap()
-            backbtnButton.tap()
-            
-            buttonJoin.tap()
-            backbtnButton.tap()
-            
- 
         }
         
     }
     
-    
+    func testLogIn() {
+        
+        if #available(iOS 9.0, *) {
+            
+            let app = XCUIApplication()
+            app.buttons["登入"].tap()
+            let backbtnButton = app.buttons["backbtn"]
+            
+            XCTAssert(backbtnButton.exists)
+            XCTAssert(app.staticTexts["准备开始"].exists)
+            XCTAssert(app.buttons["注册"].exists)
+            XCTAssert(app.textFields["手机/邮箱"].exists)
+            XCTAssert(app.secureTextFields["密码"].exists)
+            XCTAssert(app.buttons["忘记了密码？"].exists)
+            XCTAssert(app.buttons["登录"].exists)
+            
+            app.textFields["手机/邮箱"].tap()
+            app.secureTextFields["密码"].tap()
+            app.buttons["登录"].tap()
+            app.alerts.collectionViews.buttons["OK"].tap()
+            app.secureTextFields["忘记了密码？"].tap()
+            
+            
+            // 忘记了密码  
+            // 手机号找回
+            XCTAssert(backbtnButton.exists)
+            XCTAssert(app.staticTexts["忘记密码了?"].exists)
+            XCTAssert(app.buttons["邮箱"].exists)
+            XCTAssert(app.textFields["手机"].exists)
+            XCTAssert(app.textFields["验证码"].exists)
+            XCTAssert(app.buttons["发送验证码"].exists)
+            XCTAssert(app.secureTextFields["新密码"].exists)
+            XCTAssert(app.buttons["且慢，我想起来了！"].exists)
+            XCTAssert(app.buttons["完成"].exists)
+            
+            app.textFields["手机"].tap()
+            app.textFields["验证码"].tap()
+            app.secureTextFields["新密码"].exists
+            app.buttons["发送验证码"].tap()
+            app.alerts.collectionViews.buttons["OK"].tap()
+            
+            app.buttons["完成"].tap()
+            app.alerts.collectionViews.buttons["OK"].tap()
+            app.buttons["邮箱"].tap()
+            
+            app.buttons["且慢，我想起来了！"].tap()
+            app.buttons["忘记了密码？"].tap()
+            
+
+            // 邮箱找回
+            XCTAssert(backbtnButton.exists)
+            XCTAssert(app.staticTexts["忘记密码了?"].exists)
+            XCTAssert(app.buttons["手机"].exists)
+            XCTAssert(app.textFields["邮箱"].exists)
+            XCTAssert(app.textFields["验证码"].exists)
+            XCTAssert(app.secureTextFields["新密码"].exists)
+            XCTAssert(app.buttons["且慢，我想起来了！"].exists)
+            XCTAssert(app.buttons["完成"].exists)
+            
+            app.textFields["手机"].tap()
+            app.textFields["验证码"].tap()
+            app.secureTextFields["新密码"].exists
+            
+            app.buttons["完成"].tap()
+            app.alerts.collectionViews.buttons["OK"].tap()
+            app.buttons["手机"].tap()
+            app.buttons["且慢，我想起来了！"].tap()
+            
+            // 注册
+            
+            testLogIn()
+            
+            backbtnButton.tap()
+            
+           
+        } else {
+            
+        }
+    }
     
 }
