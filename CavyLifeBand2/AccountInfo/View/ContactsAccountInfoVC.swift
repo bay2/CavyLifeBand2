@@ -23,10 +23,10 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     ///  徽章视图
     @IBOutlet weak var badgeView: UIView!
     
-    /// 成就
+    /// 成就数值
     @IBOutlet weak var badgeInfo: UILabel!
     
-    /// 成就数值
+    /// 成就
     @IBOutlet weak var badgeTitle: UILabel!
     
     /// 徽章视图
@@ -38,6 +38,9 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     
     /// tableView 的 cell个数
     let cellCount: Int = 6
+    
+    /// 成就步数
+    let badgeStep: Int = 500000
     
     /// 徽章个数
     var badgeCount: Int = 6
@@ -171,7 +174,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     func  addTableView(){
         
         tableView.layer.cornerRadius = commonCornerRadius
-        tableView.backgroundColor = UIColor.whiteColor()// UIColor(named: .HomeViewMainColor)
+        tableView.backgroundColor = UIColor.whiteColor()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.bounces = false
@@ -191,15 +194,16 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
             // |-16-|-tableView-|-10-|-badgeView-10- -50- -8- collectionView -|-20-|-logoutButton-50-|-20-|
             make.height.equalTo(68 + height)
         }
-        badgeInfo.text = "\(L10n.ContactsShowInfoAchievement.string)\(500000)\(L10n.GuideStep.string)"
-        badgeInfo.textColor = UIColor(named: .ContactsAccountLogoutButton)
+        badgeTitle.textColor = UIColor(named: .ContactsTitleColor)
         badgeTitle.text = L10n.ContactsShowInfoAchievement.string
         
-        // 设置斜体
-        let titleFont = UIFontDescriptor.preferredFontDescriptorWithTextStyle(UIFontTextStyleBody)
-        let badgeTitleFont = titleFont.fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits.TraitItalic)
-        badgeInfo.font = UIFont(descriptor: badgeTitleFont, size: 16)
+        // 成就数值显示
+        let string = String.numberDecimalFormatter(badgeStep)
+        badgeInfo.text = "\(string)\(L10n.GuideStep.string)"
+        badgeInfo.font = UIFont.italicFontWithSize(16)
+        badgeInfo.textColor = UIColor(named: .ContactsAccountLogoutButton)
         
+
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.registerNib(UINib(nibName: "ContactsAccountBadgeCell", bundle: nil), forCellWithReuseIdentifier: "collectionIdentifier")

@@ -20,6 +20,7 @@
 		4CEDAD211CB5002B00BCF58B /* AccountInfoSecurityUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDAD1E1CB5002B00BCF58B /* AccountInfoSecurityUITest.swift */; };
 		4CEDAD221CB5002B00BCF58B /* ContactsAccountInfoUItests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDAD1F1CB5002B00BCF58B /* ContactsAccountInfoUItests.swift */; };
 		4CEDAD231CB5002B00BCF58B /* ContactsFriendViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDAD201CB5002B00BCF58B /* ContactsFriendViewUITests.swift */; };
+		4CEDAD251CB62FAE00BCF58B /* Font_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDAD241CB62FAE00BCF58B /* Font_Extension.swift */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
 		9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */; };
 		9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */; };
@@ -184,6 +185,7 @@
 		4CEDAD1E1CB5002B00BCF58B /* AccountInfoSecurityUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityUITest.swift; sourceTree = "<group>"; };
 		4CEDAD1F1CB5002B00BCF58B /* ContactsAccountInfoUItests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountInfoUItests.swift; sourceTree = "<group>"; };
 		4CEDAD201CB5002B00BCF58B /* ContactsFriendViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendViewUITests.swift; sourceTree = "<group>"; };
+		4CEDAD241CB62FAE00BCF58B /* Font_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font_Extension.swift; sourceTree = "<group>"; };
 		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GuideLinking.gif; sourceTree = "<group>"; };
@@ -714,6 +716,7 @@
 				91C3AE511C462FE5006B67AF /* String_Extension.swift */,
 				91C3AE551C474305006B67AF /* Log_Extension.swift */,
 				98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */,
+				4CEDAD241CB62FAE00BCF58B /* Font_Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -1263,6 +1266,7 @@
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
+				4CEDAD251CB62FAE00BCF58B /* Font_Extension.swift in Sources */,
 				91E1B4C91CA510BD008ADEE6 /* ContactsLetterView.swift in Sources */,
 				9141C7FE1C7D72CD003E24F2 /* ImageDefine.swift in Sources */,
 				918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */,
