@@ -76,6 +76,7 @@ class UserAchievementView: UIView {
         self.clipsToBounds      = true
         self.layer.cornerRadius = CavyDefine.commonCornerRadius
         
+        
     }
     
     
