@@ -208,6 +208,10 @@ extension UIColor {
       case .SignUpProtocolBtn: return 0x125faeff
       }
     }
+
+    var color: UIColor {
+      return UIColor(named: self)
+    }
   }
 
   convenience init(named name: Name) {

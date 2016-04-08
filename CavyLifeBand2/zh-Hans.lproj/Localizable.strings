@@ -151,3 +151,6 @@
 "Contacts.ChangeNotesName.PlaceHolder" = "输入备注名";
 "Contacts.ChangeNotesName.Button" = "确定";
 "Contacts.ChangeSelfName.PlaceHolder" = "更改的昵称";
+
+//闹钟
+"AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";

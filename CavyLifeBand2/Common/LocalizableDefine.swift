@@ -247,6 +247,8 @@ enum L10n {
   case ContactsChangeNotesNameButton
   /// 更改的昵称
   case ContactsChangeSelfNamePlaceHolder
+  /// 手环振动提醒 取消传统声音唤醒体系
+  case AlarmClockIntelligentClockTableFooterInfo
 }
 
 extension L10n: CustomStringConvertible {
@@ -498,12 +500,14 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.ChangeNotesName.Button")
       case .ContactsChangeSelfNamePlaceHolder:
         return L10n.tr("Contacts.ChangeSelfName.PlaceHolder")
+      case .AlarmClockIntelligentClockTableFooterInfo:
+        return L10n.tr("AlarmClock.IntelligentClockTableFooter.Info")
     }
   }
 
   private static func tr(key: String, _ args: CVarArgType...) -> String {
     let format = NSLocalizedString(key, comment: "")
-    return String(format: format, arguments: args)
+    return String(format: format, locale: NSLocale.currentLocale(), arguments: args)
   }
 }
 

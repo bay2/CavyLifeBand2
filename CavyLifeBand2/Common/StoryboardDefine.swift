@@ -43,6 +43,14 @@ struct StoryboardScene {
       return StoryboardScene.AccountInfo.ContactsAccountInfoVCScene.viewController() as! ContactsAccountInfoVC
     }
   }
+  enum AlarmClock: String, StoryboardSceneType {
+    static let storyboardName = "AlarmClock"
+
+    case IntelligentClockViewControllerScene = "IntelligentClockViewController"
+    static func instantiateIntelligentClockViewController() -> IntelligentClockViewController {
+      return StoryboardScene.AlarmClock.IntelligentClockViewControllerScene.viewController() as! IntelligentClockViewController
+    }
+  }
   enum Camera: String, StoryboardSceneType {
     static let storyboardName = "Camera"
 
