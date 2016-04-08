@@ -16,6 +16,7 @@
 		4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
 		686C4CA21CB4B55E0071F636 /* UserAchievementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686C4CA11CB4B55E0071F636 /* UserAchievementView.swift */; };
+		686C4CA41CB4B56E0071F636 /* UserAchievementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686C4CA31CB4B56E0071F636 /* UserAchievementView.xib */; };
 		686C4CA71CB4EC850071F636 /* UserAchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686C4CA51CB4EC850071F636 /* UserAchievementCell.swift */; };
 		686C4CA81CB4EC850071F636 /* UserAchievementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686C4CA61CB4EC850071F636 /* UserAchievementCell.xib */; };
 		9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */; };
@@ -183,6 +184,7 @@
 		4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FriendInfo_Ok.json; sourceTree = "<group>"; };
 		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		686C4CA11CB4B55E0071F636 /* UserAchievementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAchievementView.swift; sourceTree = "<group>"; };
+		686C4CA31CB4B56E0071F636 /* UserAchievementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAchievementView.xib; sourceTree = "<group>"; };
 		686C4CA51CB4EC850071F636 /* UserAchievementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAchievementCell.swift; sourceTree = "<group>"; };
 		686C4CA61CB4EC850071F636 /* UserAchievementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAchievementCell.xib; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -866,6 +868,7 @@
 				91E1B4A91CA510BD008ADEE6 /* ContactsLetterView.swift */,
 				91E1B4AA1CA510BD008ADEE6 /* ContactsLetterView.xib */,
 				686C4CA11CB4B55E0071F636 /* UserAchievementView.swift */,
+				686C4CA31CB4B56E0071F636 /* UserAchievementView.xib */,
 				686C4CA51CB4EC850071F636 /* UserAchievementCell.swift */,
 				686C4CA61CB4EC850071F636 /* UserAchievementCell.xib */,
 			);
