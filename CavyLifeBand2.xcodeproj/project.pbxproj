@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0BF9E91CB78F0500DB06FC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */; };
+		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
+		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
+		4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E61CB78F0500DB06FC /* Home.storyboard */; };
+		4C0BF9F01CB78FBD00DB06FC /* HomeUpperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9EF1CB78FBD00DB06FC /* HomeUpperView.swift */; };
+		4C0BF9F21CB792BA00DB06FC /* HomeUpperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9F11CB792BA00DB06FC /* HomeUpperView.xib */; };
+		4C0BF9F41CB7B5AF00DB06FC /* HomeRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9F31CB7B5AF00DB06FC /* HomeRingView.swift */; };
+		4C0BF9F61CB7B5C500DB06FC /* HomeRingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9F51CB7B5C500DB06FC /* HomeRingView.xib */; };
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4CC498FD1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */; };
@@ -44,10 +52,6 @@
 		9114D1FD1C97AB05008CB4CE /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E01C97AB05008CB4CE /* WeightView.swift */; };
 		9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */; };
 		9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */; };
-		9114D2031C993166008CB4CE /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9114D2021C993166008CB4CE /* Home.storyboard */; };
-		9114D2051C993E2B008CB4CE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D2041C993E2B008CB4CE /* HomeViewController.swift */; };
-		9114D2071C994C9D008CB4CE /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D2061C994C9D008CB4CE /* RootViewController.swift */; };
-		9114D2091C995B8B008CB4CE /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D2081C995B8B008CB4CE /* LeftViewController.swift */; };
 		9114D20E1C995CD2008CB4CE /* LeftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D20C1C995CD2008CB4CE /* LeftTableViewCell.swift */; };
 		9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */; };
 		912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D29DA1C6088B5005A06E9 /* SignInTest.swift */; };
@@ -170,6 +174,14 @@
 		0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		4C0BF9E61CB78F0500DB06FC /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		4C0BF9EF1CB78FBD00DB06FC /* HomeUpperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeUpperView.swift; sourceTree = "<group>"; };
+		4C0BF9F11CB792BA00DB06FC /* HomeUpperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeUpperView.xib; sourceTree = "<group>"; };
+		4C0BF9F31CB7B5AF00DB06FC /* HomeRingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRingView.swift; sourceTree = "<group>"; };
+		4C0BF9F51CB7B5C500DB06FC /* HomeRingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeRingView.xib; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountInfoUItests.swift; sourceTree = "<group>"; };
@@ -208,10 +220,6 @@
 		9114D1E01C97AB05008CB4CE /* WeightView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
 		9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetJSON.swift; sourceTree = "<group>"; };
 		9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetRequestData.swift; sourceTree = "<group>"; };
-		9114D2021C993166008CB4CE /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		9114D2041C993E2B008CB4CE /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		9114D2061C994C9D008CB4CE /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		9114D2081C995B8B008CB4CE /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		9114D20C1C995CD2008CB4CE /* LeftTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftTableViewCell.swift; sourceTree = "<group>"; };
 		9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardDefine.swift; sourceTree = "<group>"; };
 		912D29DA1C6088B5005A06E9 /* SignInTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTest.swift; sourceTree = "<group>"; };
@@ -353,6 +361,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C0BF9E21CB78F0500DB06FC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */,
+				4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */,
+				4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4C0BF9E71CB78F0500DB06FC /* VieWModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = VieWModel;
+			sourceTree = "<group>";
+		};
+		4C0BF9EE1CB78F8600DB06FC /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		4CC498FA1CA9101800B2EE85 /* ContactsUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,7 +536,11 @@
 		9114D2001C99314E008CB4CE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4C0BF9E61CB78F0500DB06FC /* Home.storyboard */,
+				4C0BF9E21CB78F0500DB06FC /* Controller */,
 				9114D2011C99314E008CB4CE /* View */,
+				4C0BF9E71CB78F0500DB06FC /* VieWModel */,
+				4C0BF9EE1CB78F8600DB06FC /* Helpers */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -512,11 +548,11 @@
 		9114D2011C99314E008CB4CE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9114D2021C993166008CB4CE /* Home.storyboard */,
+				4C0BF9EF1CB78FBD00DB06FC /* HomeUpperView.swift */,
+				4C0BF9F11CB792BA00DB06FC /* HomeUpperView.xib */,
+				4C0BF9F31CB7B5AF00DB06FC /* HomeRingView.swift */,
+				4C0BF9F51CB7B5C500DB06FC /* HomeRingView.xib */,
 				91671C941C9A7EC60090BB3F /* LeftHeaderView.swift */,
-				9114D2041C993E2B008CB4CE /* HomeViewController.swift */,
-				9114D2061C994C9D008CB4CE /* RootViewController.swift */,
-				9114D2081C995B8B008CB4CE /* LeftViewController.swift */,
 				9114D20C1C995CD2008CB4CE /* LeftTableViewCell.swift */,
 				91671C991C9AC5A10090BB3F /* HomeUserInfo.swift */,
 			);
@@ -1023,9 +1059,11 @@
 				9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */,
 				91EB796C1CAE075C00ED3E67 /* Sign_In_Error.json in Resources */,
 				917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */,
-				9114D2031C993166008CB4CE /* Home.storyboard in Resources */,
 				91EB796B1CAE075C00ED3E67 /* SecurityCode_Ok.json in Resources */,
+				4C0BF9F61CB7B5C500DB06FC /* HomeRingView.xib in Resources */,
+				4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */,
 				91EB79691CAE075C00ED3E67 /* Profile_Ok.json in Resources */,
+				4C0BF9F21CB792BA00DB06FC /* HomeUpperView.xib in Resources */,
 				91A2EC941CB350D200361952 /* AccountInfoSecurityCell.xib in Resources */,
 				91EB79581CAC049700ED3E67 /* SearchFrendListResult.json in Resources */,
 				91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */,
@@ -1221,6 +1259,7 @@
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
 				91E1B4C51CA510BD008ADEE6 /* ContactsBaseViewController.swift in Sources */,
 				91671C9A1C9AC5A10090BB3F /* HomeUserInfo.swift in Sources */,
+				4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */,
 				9199E4881CAE4A7D00397883 /* AccountMangerProtocol.swift in Sources */,
 				91E1B4FB1CA6A475008ADEE6 /* FriendInfoListOper.swift in Sources */,
 				9114D1F71C97AB05008CB4CE /* GoalView.swift in Sources */,
@@ -1228,12 +1267,11 @@
 				91E1B4DD1CA510BD008ADEE6 /* ContactsTabButton.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
 				9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */,
-				9114D2091C995B8B008CB4CE /* LeftViewController.swift in Sources */,
-				9114D2051C993E2B008CB4CE /* HomeViewController.swift in Sources */,
 				91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */,
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91E1B4E81CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift in Sources */,
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
+				4C0BF9F41CB7B5AF00DB06FC /* HomeRingView.swift in Sources */,
 				91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */,
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,
 				9114D1E61C97AB05008CB4CE /* UserInfoModelView.swift in Sources */,
@@ -1254,6 +1292,7 @@
 				91E1B4D71CA510BD008ADEE6 /* ContactsAddFriendCell.swift in Sources */,
 				9114D1E51C97AB05008CB4CE /* AccountModelView.swift in Sources */,
 				91E1B4C71CA510BD008ADEE6 /* ContactsFriendQualityCell.swift in Sources */,
+				4C0BF9F01CB78FBD00DB06FC /* HomeUpperView.swift in Sources */,
 				9114D1FD1C97AB05008CB4CE /* WeightView.swift in Sources */,
 				91E1B4DC1CA510BD008ADEE6 /* ContactsReqFriendVC.swift in Sources */,
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
@@ -1266,7 +1305,6 @@
 				91E1B4CD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift in Sources */,
 				91E1B4CE1CA510BD008ADEE6 /* ContactsPersonInfoCell.swift in Sources */,
 				91A2EC921CB350D200361952 /* AccountInfoSecurityCellViewModel.swift in Sources */,
-				9114D2071C994C9D008CB4CE /* RootViewController.swift in Sources */,
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
@@ -1274,10 +1312,12 @@
 				9141C7FE1C7D72CD003E24F2 /* ImageDefine.swift in Sources */,
 				918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */,
 				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
+				4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
 				9114D20E1C995CD2008CB4CE /* LeftTableViewCell.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
+				4C0BF9E91CB78F0500DB06FC /* HomeViewController.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,
 				91E1B4D61CA510BD008ADEE6 /* ContactsSearchController.swift in Sources */,
