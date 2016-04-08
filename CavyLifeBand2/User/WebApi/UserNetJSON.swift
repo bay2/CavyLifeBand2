@@ -23,9 +23,13 @@ struct UserSignUpMsg {
     
 }
 
-struct UserProfileMsg {
-
-    var commonMsg: CommenMsg?
+/**
+ *  @author xuemincai
+ *
+ *  用户信息
+ */
+struct UserProfile {
+    
     var sex: String?
     var height: String?
     var weight: String?
@@ -42,10 +46,8 @@ struct UserProfileMsg {
     var isOpenWeight: Bool?
     
     init(_ decoder: JSONDecoder) throws  {
-
-        commonMsg = try CommenMsg(decoder)
         
-        do { sex = try decoder["sex"].getString() } catch { sex = "" }
+        do { sex = try decoder["sex"].getString() } catch { sex = "0" }
         do { height = try decoder["height"].getString() } catch { height = "" }
         do { weight = try decoder["weight"].getString() } catch { weight = "" }
         do { birthday = try decoder["birthday"].getString() } catch { birthday = "" }
@@ -59,6 +61,25 @@ struct UserProfileMsg {
         do { isOpenBirthday = decoder["isLocalShare"].bool }
         do { isOpenHeight = decoder["isOpenHeight"].bool }
         do { isOpenWeight = decoder["isOpenWeight"].bool }
+    }
+    
+}
+
+/**
+ *  @author xuemincai
+ *
+ *  查询用户消息
+ */
+struct UserProfileMsg {
+
+    var commonMsg: CommenMsg?
+    var userProfile: UserProfile?
+    
+    init(_ decoder: JSONDecoder) throws  {
+
+        commonMsg = try CommenMsg(decoder)
+        userProfile = try UserProfile(decoder)
+        
     }
 
 }

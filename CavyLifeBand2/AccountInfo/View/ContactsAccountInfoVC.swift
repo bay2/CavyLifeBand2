@@ -63,42 +63,39 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
      */
     func accountInfoQuery() {
         
-        /// 本地取出 账户信息
-        let accountInfo = UserInfoOperate().queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
-        
-        if accountInfo == nil {
-            // 网络获取 账户信息
-            
-            let paras = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
-            
-            userNetReq.queryProfile(paras, completionHandler: { (result) -> Void in
-                
-                
-                Log.info("result ******** \(result.value!)")
-                
-                do {
-                    
-                    let resp = try UserProfileMsg(JSONDecoder(result.value!))
-                    
-                    self.accountRespond = resp
-                   
-                    self.infoDataArray = [self.definiteAccountSex(resp.sex!), resp.height!, resp.weight!, resp.birthday!, resp.address!]
-                    
-                    Log.info(resp)
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        
-                        self.tableView.reloadData()
-                        
-                    }
-                   
-                } catch {
-                    
-                }
-                
-            })
-            
-        }
+//        /// 本地取出 账户信息
+//        let accountInfo = UserInfoOperate().queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
+//        
+//        if accountInfo == nil {
+//            // 网络获取 账户信息
+//            
+//            UserNetRequestData.shareApi.queryProfile(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, completionHandler: { (result) -> Void in
+//                
+//                Log.info("result ******** \(result.value!)")
+//                
+//                do {
+//                    
+//                    let resp = try UserProfileMsg(JSONDecoder(result.value!))
+//                    
+//                    self.accountRespond = resp
+//                   
+//                    self.infoDataArray = [self.definiteAccountSex(resp.sex!), resp.height!, resp.weight!, resp.birthday!, resp.address!]
+//                    
+//                    Log.info(resp)
+//                    
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        
+//                        self.tableView.reloadData()
+//                        
+//                    }
+//                   
+//                } catch {
+//                    
+//                }
+//                
+//            })
+//            
+//        }
         
         
     }
@@ -248,11 +245,11 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
             cell.personRealtion(.OwnRelation)
             
-            if accountRespond?.nickName! != nil {
-                
-                cell.addAccountData((accountRespond!.nickName!), accountName: (accountRespond!.nickName!))
-                
-            }
+//            if accountRespond?.nickName! != nil {
+//                
+//                cell.addAccountData((accountRespond!.nickName!), accountName: (accountRespond!.nickName!))
+//                
+//            }
             
             return cell
             
@@ -260,11 +257,11 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
             
             // 其他数值
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
-            if accountRespond?.nickName! != nil {
-                
-                cell.addData(infoTitleArray[indexPath.row - 1], titleInfo: infoDataArray[indexPath.row - 1], cellEditOrNot: false)
-                
-            }
+//            if accountRespond?.nickName! != nil {
+//                
+//                cell.addData(infoTitleArray[indexPath.row - 1], titleInfo: infoDataArray[indexPath.row - 1], cellEditOrNot: false)
+//                
+//            }
 
             return cell
         }
