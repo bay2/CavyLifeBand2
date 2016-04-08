@@ -15,6 +15,9 @@
 		4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */; };
 		4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
+		686C4CA21CB4B55E0071F636 /* UserAchievementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686C4CA11CB4B55E0071F636 /* UserAchievementView.swift */; };
+		686C4CA71CB4EC850071F636 /* UserAchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686C4CA51CB4EC850071F636 /* UserAchievementCell.swift */; };
+		686C4CA81CB4EC850071F636 /* UserAchievementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686C4CA61CB4EC850071F636 /* UserAchievementCell.xib */; };
 		9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */; };
 		9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */; };
 		9114D1E51C97AB05008CB4CE /* AccountModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C31C97AB05008CB4CE /* AccountModelView.swift */; };
@@ -83,6 +86,7 @@
 		91A2EC921CB350D200361952 /* AccountInfoSecurityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A2EC8C1CB350D200361952 /* AccountInfoSecurityCellViewModel.swift */; };
 		91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A2EC8E1CB350D200361952 /* AccountInfoSecurityCell.swift */; };
 		91A2EC941CB350D200361952 /* AccountInfoSecurityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A2EC8F1CB350D200361952 /* AccountInfoSecurityCell.xib */; };
+		91ACEC6D1CB7A8E3008ED8B0 /* UserAchievementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ACEC6C1CB7A8E3008ED8B0 /* UserAchievementView.xib */; };
 		91BBB6061C671F1800EC1ED1 /* Sign_In_Error.json in Resources */ = {isa = PBXBuildFile; fileRef = 91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */; };
 		91C3AE501C461EA0006B67AF /* SecurityCode_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */; };
 		91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C3AE511C462FE5006B67AF /* String_Extension.swift */; };
@@ -178,6 +182,9 @@
 		4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountInfo_Ok.json; sourceTree = "<group>"; };
 		4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FriendInfo_Ok.json; sourceTree = "<group>"; };
 		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		686C4CA11CB4B55E0071F636 /* UserAchievementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAchievementView.swift; sourceTree = "<group>"; };
+		686C4CA51CB4EC850071F636 /* UserAchievementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAchievementCell.swift; sourceTree = "<group>"; };
+		686C4CA61CB4EC850071F636 /* UserAchievementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAchievementCell.xib; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GuideLinking.gif; sourceTree = "<group>"; };
 		9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoRealm.swift; sourceTree = "<group>"; };
@@ -259,6 +266,7 @@
 		91A2EC8C1CB350D200361952 /* AccountInfoSecurityCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityCellViewModel.swift; sourceTree = "<group>"; };
 		91A2EC8E1CB350D200361952 /* AccountInfoSecurityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityCell.swift; sourceTree = "<group>"; };
 		91A2EC8F1CB350D200361952 /* AccountInfoSecurityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInfoSecurityCell.xib; sourceTree = "<group>"; };
+		91ACEC6C1CB7A8E3008ED8B0 /* UserAchievementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAchievementView.xib; sourceTree = "<group>"; };
 		91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Error.json; sourceTree = "<group>"; };
 		91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SecurityCode_Ok.json; sourceTree = "<group>"; };
 		91C3AE511C462FE5006B67AF /* String_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String_Extension.swift; sourceTree = "<group>"; };
@@ -854,8 +862,12 @@
 		91E1B4E61CA5141D008ADEE6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				91ACEC6C1CB7A8E3008ED8B0 /* UserAchievementView.xib */,
 				91E1B4A91CA510BD008ADEE6 /* ContactsLetterView.swift */,
 				91E1B4AA1CA510BD008ADEE6 /* ContactsLetterView.xib */,
+				686C4CA11CB4B55E0071F636 /* UserAchievementView.swift */,
+				686C4CA51CB4EC850071F636 /* UserAchievementCell.swift */,
+				686C4CA61CB4EC850071F636 /* UserAchievementCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1029,6 +1041,8 @@
 				91A2EC941CB350D200361952 /* AccountInfoSecurityCell.xib in Resources */,
 				91EB79581CAC049700ED3E67 /* SearchFrendListResult.json in Resources */,
 				91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */,
+				686C4CA81CB4EC850071F636 /* UserAchievementCell.xib in Resources */,
+				91ACEC6D1CB7A8E3008ED8B0 /* UserAchievementView.xib in Resources */,
 				91E1B4EA1CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib in Resources */,
 				91E1B4D81CA510BD008ADEE6 /* ContactsAddFriendCell.xib in Resources */,
 				91A2EC911CB350D200361952 /* InfoSecurity.storyboard in Resources */,
@@ -1276,6 +1290,7 @@
 				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
 				9114D20E1C995CD2008CB4CE /* LeftTableViewCell.swift in Sources */,
+				686C4CA71CB4EC850071F636 /* UserAchievementCell.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
@@ -1286,6 +1301,7 @@
 				9114D1EE1C97AB05008CB4CE /* MainPageViewController.swift in Sources */,
 				91E1B4D01CA510BD008ADEE6 /* ContactsPersonInfoListCell.swift in Sources */,
 				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
+				686C4CA21CB4B55E0071F636 /* UserAchievementView.swift in Sources */,
 				9114D1FB1C97AB05008CB4CE /* RulerScroller.swift in Sources */,
 				91E1B4C61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift in Sources */,
 				9114D1F61C97AB05008CB4CE /* GenderView.swift in Sources */,
