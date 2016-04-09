@@ -18,37 +18,31 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
     @IBOutlet weak var tableView: UITableView!
     
     var realm: Realm = try! Realm()
-    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId}
+    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     var dataSources = [AccountInfoSecurityListDataSource]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Log.info("realm = \(realm.path)")
 
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         self.navBar?.translucent = false
         
+        addCellDataSource(AccountInfoSecurityHeightCellViewModel(realm: realm))
+        addCellDataSource(AccountInfoSecurityWeightCellViewModel(realm: realm))
+        addCellDataSource(AccountInfoSecurityBirthdayCellViewModel(realm: realm))
         self.bottomView.layer.cornerRadius = CavyDefine.commonCornerRadius
-        
-        loadFriendData()
         
         addTableView()
         
     }
     
-    /**
-     加载数据
-     */
-    func loadFriendData() {
-
-        let userInfoModel = UserInfoOperate().queryUserInfo(userId)
+    func addCellDataSource(dataSource: AccountInfoSecurityListDataSource) {
         
-        if userInfoModel != nil {
-            
-            self.dataSources = [AccountInfoSecurityCellViewModel(title: L10n.ContactsShowInfoHeight.string, isOpenOrNot: userInfoModel!.isOpenHeight), AccountInfoSecurityCellViewModel(title: L10n.ContactsShowInfoWeight.string, isOpenOrNot: userInfoModel!.isOpenWeight), AccountInfoSecurityCellViewModel(title: L10n.ContactsShowInfoBirth.string, isOpenOrNot: userInfoModel!.isOpenBirthday)]
-
-        }
-
+        dataSources.append(dataSource)
+        
     }
 
     
@@ -76,7 +70,7 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
     }
     
       func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return dataSources.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -89,7 +83,7 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
        
         let cell = tableView.dequeueReusableCellWithIdentifier("infoSecurityIdentifier") as! AccountInfoSecurityCell
 
-        cell.configure(dataSources, index: indexPath.row)
+        cell.configure(dataSources[indexPath.row])
         
         return cell
     }

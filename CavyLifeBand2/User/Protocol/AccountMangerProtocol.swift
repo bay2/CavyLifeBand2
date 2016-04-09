@@ -59,7 +59,7 @@ extension ForgotPasswordDelegate where Self: UIViewController {
             return
         }
 
-        userNetReq.forgotPasswd(userName, passwd: passwd, safetyCode: safetyCode) { result in
+        UserNetRequestData.shareApi.forgotPasswd(userName, passwd: passwd, safetyCode: safetyCode) { result in
             
             if result.isFailure {
                 CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
@@ -104,7 +104,7 @@ extension SendSafetyCodeDelegate where Self: UIViewController {
         
         let para = [UserNetRequsetKey.PhoneNum.rawValue: userName]
         
-        userNetReq.requestPhoneSecurityCode(para) { (result) in
+        UserNetRequestData.shareApi.requestPhoneSecurityCode(para) { (result) in
             
             if result.isFailure {
                 CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
@@ -144,7 +144,7 @@ extension SignUpDelegate where Self: UIViewController {
     
     func signUp(callBack: (String -> Void)? = nil) {
         
-        userNetReq.requestSignUp(userName, safetyCode: safetyCode, passwd: passwd) { result in
+        UserNetRequestData.shareApi.requestSignUp(userName, safetyCode: safetyCode, passwd: passwd) { result in
             
             if result.isFailure {
                 
@@ -189,7 +189,7 @@ extension SignInDelegate where Self: UIViewController {
     
     func signIn() {
         
-        userNetReq.requestSignIn(userName, passwd: passwd) { result in
+        UserNetRequestData.shareApi.requestSignIn(userName, passwd: passwd) { result in
             
             if result.isFailure {
                 
@@ -207,7 +207,12 @@ extension SignInDelegate where Self: UIViewController {
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = msg.userId ?? ""
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = self.userName
             
-            self.pushVC(StoryboardScene.Guide.instantiateGuideView())
+            let guideVC = StoryboardScene.Guide.instantiateGuideView()
+            let guideVM = GuideBandBluetooth()
+            
+            guideVC.configView(guideVM, delegate: guideVM)
+            
+            self.pushVC(guideVC)
             
             Log.info("Sign in succeess")
             

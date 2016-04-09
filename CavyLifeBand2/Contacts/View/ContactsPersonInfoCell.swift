@@ -34,6 +34,7 @@ class ContactsPersonInfoCell: UITableViewCell {
     @IBOutlet weak var upsideLabel: UILabel!
     
     @IBOutlet weak var editButton: UIButton!
+    
     /// 徽章
     @IBOutlet weak var badgeView: UIImageView!
     
@@ -52,6 +53,16 @@ class ContactsPersonInfoCell: UITableViewCell {
         belowLabel.textColor = UIColor(named: .ContactsIntrouduce)
         lineView.backgroundColor = UIColor(named: .ContactsCellLine)
         self.selectionStyle = .None
+    }
+    
+    func configCell(datasource: PresonInfoCellViewModel) {
+        
+        headView.af_setImageWithURL(NSURL(string: datasource.avatarUrl)!, runImageTransitionIfCached: true)
+        
+        upsideLabel.text = datasource.title
+        
+        belowLabel.text = datasource.subTitle
+        
     }
 
     /**

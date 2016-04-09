@@ -59,6 +59,13 @@ class GoalView: UIView {
 
     // 滑块
     @IBOutlet weak var sleepSlider: UISlider!
+    
+    
+    var sleepTimeString: String {
+        
+        return "\(self.hhCurrentValue):\(self.mmCurrentValue)"
+        
+    }
 
     // 布局
     func goalViewLayout() {

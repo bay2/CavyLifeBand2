@@ -153,7 +153,8 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
     override func onClickRight(sender: AnyObject) {
 
         let guideVC = StoryboardScene.Guide.instantiateGuideView()
-        guideVC.viewStyle = .BandBluetooth
+        let guideVM = GuideBandBluetooth()
+        guideVC.configView(guideVM, delegate: guideVM)
         self.pushVC(guideVC)
 
     }

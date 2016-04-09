@@ -46,7 +46,7 @@ class SecurityCodeTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSecurityCodeOk succeed")
             
-            userNetReq.requestPhoneSecurityCode(para, completionHandler: { (result) -> Void in
+            UserNetRequestData.shareApi.requestPhoneSecurityCode(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isSuccess, "返回值不正确")
                 
@@ -83,7 +83,7 @@ class SecurityCodeTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSecurityCodePhoneError succeed")
             
-            userNetReq.requestPhoneSecurityCode(para, completionHandler: { (result) -> Void in
+            UserNetRequestData.shareApi.requestPhoneSecurityCode(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isFailure, "返回值不正确")
                 
