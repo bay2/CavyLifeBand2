@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
-		4CC498FD1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */; };
-		4CC498FE1CA9101800B2EE85 /* ContactsFriendViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC498FC1CA9101800B2EE85 /* ContactsFriendViewUITests.swift */; };
 		4CC499011CA9102800B2EE85 /* ContactsAccoundInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */; };
 		4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */; };
 		4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */; };
+		4CEDAD211CB5002B00BCF58B /* AccountInfoSecurityUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDAD1E1CB5002B00BCF58B /* AccountInfoSecurityUITest.swift */; };
+		4CEDAD221CB5002B00BCF58B /* ContactsAccountInfoUItests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDAD1F1CB5002B00BCF58B /* ContactsAccountInfoUItests.swift */; };
+		4CEDAD251CB62FAE00BCF58B /* Font_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEDAD241CB62FAE00BCF58B /* Font_Extension.swift */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
 		686C4CA21CB4B55E0071F636 /* UserAchievementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686C4CA11CB4B55E0071F636 /* UserAchievementView.swift */; };
-		686C4CA41CB4B56E0071F636 /* UserAchievementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686C4CA31CB4B56E0071F636 /* UserAchievementView.xib */; };
 		686C4CA71CB4EC850071F636 /* UserAchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686C4CA51CB4EC850071F636 /* UserAchievementCell.swift */; };
 		686C4CA81CB4EC850071F636 /* UserAchievementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686C4CA61CB4EC850071F636 /* UserAchievementCell.xib */; };
 		9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */; };
@@ -82,11 +82,6 @@
 		91A0FED81C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A0FED71C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift */; };
 		91A0FEDA1C903CBE00717B83 /* ForgotPasswdEmailUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A0FED91C903CBE00717B83 /* ForgotPasswdEmailUITest.swift */; };
 		91A1E1DD1C7ACF140059E53B /* ForgotPasswd_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91A1E1DC1C7ACF140059E53B /* ForgotPasswd_Ok.json */; };
-		91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A2EC891CB350D200361952 /* AccountInfoSecurityVC.swift */; };
-		91A2EC911CB350D200361952 /* InfoSecurity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91A2EC8A1CB350D200361952 /* InfoSecurity.storyboard */; };
-		91A2EC921CB350D200361952 /* AccountInfoSecurityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A2EC8C1CB350D200361952 /* AccountInfoSecurityCellViewModel.swift */; };
-		91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A2EC8E1CB350D200361952 /* AccountInfoSecurityCell.swift */; };
-		91A2EC941CB350D200361952 /* AccountInfoSecurityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91A2EC8F1CB350D200361952 /* AccountInfoSecurityCell.xib */; };
 		91ACEC6D1CB7A8E3008ED8B0 /* UserAchievementView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91ACEC6C1CB7A8E3008ED8B0 /* UserAchievementView.xib */; };
 		91BBB6061C671F1800EC1ED1 /* Sign_In_Error.json in Resources */ = {isa = PBXBuildFile; fileRef = 91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */; };
 		91C3AE501C461EA0006B67AF /* SecurityCode_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */; };
@@ -97,6 +92,11 @@
 		91D192941C7DB8DE00482019 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91D192931C7DB8DE00482019 /* Assets.xcassets */; };
 		91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274C81C8685A6004F1AA7 /* BaseViewController.swift */; };
 		91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */; };
+		91D3BF0E1CB8D3BE00AC8C54 /* AccountInfoSecurityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D3BF071CB8D3BE00AC8C54 /* AccountInfoSecurityVC.swift */; };
+		91D3BF0F1CB8D3BE00AC8C54 /* InfoSecurity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91D3BF081CB8D3BE00AC8C54 /* InfoSecurity.storyboard */; };
+		91D3BF101CB8D3BE00AC8C54 /* AccountInfoSecurityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D3BF0A1CB8D3BE00AC8C54 /* AccountInfoSecurityCellViewModel.swift */; };
+		91D3BF111CB8D3BE00AC8C54 /* AccountInfoSecurityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D3BF0C1CB8D3BE00AC8C54 /* AccountInfoSecurityCell.swift */; };
+		91D3BF121CB8D3BE00AC8C54 /* AccountInfoSecurityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91D3BF0D1CB8D3BE00AC8C54 /* AccountInfoSecurityCell.xib */; };
 		91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E1B49C1CA50E0D008ADEE6 /* AccountInfo.storyboard */; };
 		91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4A01CA510BD008ADEE6 /* ContactsSortAndGroup.swift */; };
 		91E1B4C21CA510BD008ADEE6 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E1B4A21CA510BD008ADEE6 /* Contacts.storyboard */; };
@@ -177,11 +177,13 @@
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
-		4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountInfoUItests.swift; sourceTree = "<group>"; };
-		4CC498FC1CA9101800B2EE85 /* ContactsFriendViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendViewUITests.swift; sourceTree = "<group>"; };
 		4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccoundInfoTest.swift; sourceTree = "<group>"; };
 		4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountInfo_Ok.json; sourceTree = "<group>"; };
 		4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FriendInfo_Ok.json; sourceTree = "<group>"; };
+		4CEDAD1E1CB5002B00BCF58B /* AccountInfoSecurityUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityUITest.swift; sourceTree = "<group>"; };
+		4CEDAD1F1CB5002B00BCF58B /* ContactsAccountInfoUItests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountInfoUItests.swift; sourceTree = "<group>"; };
+		4CEDAD201CB5002B00BCF58B /* ContactsFriendViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendViewUITests.swift; sourceTree = "<group>"; };
+		4CEDAD241CB62FAE00BCF58B /* Font_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font_Extension.swift; sourceTree = "<group>"; };
 		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		686C4CA11CB4B55E0071F636 /* UserAchievementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAchievementView.swift; sourceTree = "<group>"; };
 		686C4CA31CB4B56E0071F636 /* UserAchievementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAchievementView.xib; sourceTree = "<group>"; };
@@ -263,10 +265,6 @@
 		91A0FED71C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswdPhoneUITest.swift; sourceTree = "<group>"; };
 		91A0FED91C903CBE00717B83 /* ForgotPasswdEmailUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswdEmailUITest.swift; sourceTree = "<group>"; };
 		91A1E1DC1C7ACF140059E53B /* ForgotPasswd_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ForgotPasswd_Ok.json; sourceTree = "<group>"; };
-		91A2EC891CB350D200361952 /* AccountInfoSecurityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityVC.swift; sourceTree = "<group>"; };
-		91A2EC8A1CB350D200361952 /* InfoSecurity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InfoSecurity.storyboard; sourceTree = "<group>"; };
-		91A2EC8C1CB350D200361952 /* AccountInfoSecurityCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityCellViewModel.swift; sourceTree = "<group>"; };
-		91A2EC8E1CB350D200361952 /* AccountInfoSecurityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityCell.swift; sourceTree = "<group>"; };
 		91A2EC8F1CB350D200361952 /* AccountInfoSecurityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInfoSecurityCell.xib; sourceTree = "<group>"; };
 		91ACEC6C1CB7A8E3008ED8B0 /* UserAchievementView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAchievementView.xib; sourceTree = "<group>"; };
 		91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Error.json; sourceTree = "<group>"; };
@@ -278,6 +276,11 @@
 		91D192931C7DB8DE00482019 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91D274C81C8685A6004F1AA7 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CavyLifeBandAlertView.swift; sourceTree = "<group>"; };
+		91D3BF071CB8D3BE00AC8C54 /* AccountInfoSecurityVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityVC.swift; sourceTree = "<group>"; };
+		91D3BF081CB8D3BE00AC8C54 /* InfoSecurity.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = InfoSecurity.storyboard; sourceTree = "<group>"; };
+		91D3BF0A1CB8D3BE00AC8C54 /* AccountInfoSecurityCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityCellViewModel.swift; sourceTree = "<group>"; };
+		91D3BF0C1CB8D3BE00AC8C54 /* AccountInfoSecurityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityCell.swift; sourceTree = "<group>"; };
+		91D3BF0D1CB8D3BE00AC8C54 /* AccountInfoSecurityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AccountInfoSecurityCell.xib; sourceTree = "<group>"; };
 		91E1B49C1CA50E0D008ADEE6 /* AccountInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountInfo.storyboard; sourceTree = "<group>"; };
 		91E1B4A01CA510BD008ADEE6 /* ContactsSortAndGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSortAndGroup.swift; sourceTree = "<group>"; };
 		91E1B4A21CA510BD008ADEE6 /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
@@ -363,15 +366,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4CC498FA1CA9101800B2EE85 /* ContactsUITests */ = {
-			isa = PBXGroup;
-			children = (
-				4CC498FB1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift */,
-				4CC498FC1CA9101800B2EE85 /* ContactsFriendViewUITests.swift */,
-			);
-			path = ContactsUITests;
-			sourceTree = "<group>";
-		};
 		4CC498FF1CA9102800B2EE85 /* ContactsTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +382,16 @@
 				4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */,
 			);
 			path = ContactsJson;
+			sourceTree = "<group>";
+		};
+		4CEDAD1D1CB5002B00BCF58B /* LeftMenuUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4CEDAD1E1CB5002B00BCF58B /* AccountInfoSecurityUITest.swift */,
+				4CEDAD1F1CB5002B00BCF58B /* ContactsAccountInfoUItests.swift */,
+				4CEDAD201CB5002B00BCF58B /* ContactsFriendViewUITests.swift */,
+			);
+			path = LeftMenuUITests;
 			sourceTree = "<group>";
 		};
 		669D8264DE153DBB0A215E22 /* Pods */ = {
@@ -605,7 +609,7 @@
 		917DA96A1C3B8EB700FF675D /* CavyLifeBand2 */ = {
 			isa = PBXGroup;
 			children = (
-				91A2EC881CB350D200361952 /* InfoSecurity */,
+				91D3BF061CB8D3BE00AC8C54 /* InfoSecurity */,
 				91EB795B1CAE075C00ED3E67 /* json */,
 				913D0BD51C3FA126006EE7F8 /* Common */,
 				91E1B49E1CA510BD008ADEE6 /* Contacts */,
@@ -642,7 +646,7 @@
 		917DA98A1C3B8EB800FF675D /* CavyLifeBand2UITests */ = {
 			isa = PBXGroup;
 			children = (
-				4CC498FA1CA9101800B2EE85 /* ContactsUITests */,
+				4CEDAD1D1CB5002B00BCF58B /* LeftMenuUITests */,
 				917DA98D1C3B8EB800FF675D /* Info.plist */,
 				918E26DB1C891CDE00115C4E /* SignInUITests.swift */,
 				91E981281C8937CB00802C5F /* AccountPageSwitchUITests.swift */,
@@ -660,34 +664,6 @@
 				9199E4871CAE4A7D00397883 /* AccountMangerProtocol.swift */,
 			);
 			name = Protocol;
-			sourceTree = "<group>";
-		};
-		91A2EC881CB350D200361952 /* InfoSecurity */ = {
-			isa = PBXGroup;
-			children = (
-				91A2EC891CB350D200361952 /* AccountInfoSecurityVC.swift */,
-				91A2EC8A1CB350D200361952 /* InfoSecurity.storyboard */,
-				91A2EC8B1CB350D200361952 /* Model */,
-				91A2EC8D1CB350D200361952 /* View */,
-			);
-			path = InfoSecurity;
-			sourceTree = "<group>";
-		};
-		91A2EC8B1CB350D200361952 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				91A2EC8C1CB350D200361952 /* AccountInfoSecurityCellViewModel.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		91A2EC8D1CB350D200361952 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				91A2EC8E1CB350D200361952 /* AccountInfoSecurityCell.swift */,
-				91A2EC8F1CB350D200361952 /* AccountInfoSecurityCell.xib */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		91C3AE4C1C461E61006B67AF /* json */ = {
@@ -731,6 +707,7 @@
 				91C3AE511C462FE5006B67AF /* String_Extension.swift */,
 				91C3AE551C474305006B67AF /* Log_Extension.swift */,
 				98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */,
+				4CEDAD241CB62FAE00BCF58B /* Font_Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -747,6 +724,34 @@
 				918435EE1C7D629D005B6E92 /* ColorsDefine.swift */,
 			);
 			name = Define;
+			sourceTree = "<group>";
+		};
+		91D3BF061CB8D3BE00AC8C54 /* InfoSecurity */ = {
+			isa = PBXGroup;
+			children = (
+				91D3BF071CB8D3BE00AC8C54 /* AccountInfoSecurityVC.swift */,
+				91D3BF081CB8D3BE00AC8C54 /* InfoSecurity.storyboard */,
+				91D3BF091CB8D3BE00AC8C54 /* Model */,
+				91D3BF0B1CB8D3BE00AC8C54 /* View */,
+			);
+			path = InfoSecurity;
+			sourceTree = "<group>";
+		};
+		91D3BF091CB8D3BE00AC8C54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				91D3BF0A1CB8D3BE00AC8C54 /* AccountInfoSecurityCellViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		91D3BF0B1CB8D3BE00AC8C54 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				91D3BF0C1CB8D3BE00AC8C54 /* AccountInfoSecurityCell.swift */,
+				91D3BF0D1CB8D3BE00AC8C54 /* AccountInfoSecurityCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		91E1B49A1CA50DEF008ADEE6 /* AccountInfo */ = {
@@ -844,8 +849,8 @@
 				91E1B4A61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift */,
 				91E1B4AD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift */,
 				91E1B4B21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift */,
-				91E1B4B91CA510BD008ADEE6 /* ContactsAddFriendVC.swift */,
 				91E1B4BA1CA510BD008ADEE6 /* ContactsFriendListVC.swift */,
+				91E1B4B91CA510BD008ADEE6 /* ContactsAddFriendVC.swift */,
 				91E1B4BC1CA510BD008ADEE6 /* ContactsReqFriendVC.swift */,
 				91E1B4BB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift */,
 			);
@@ -1040,15 +1045,14 @@
 				917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */,
 				9114D2031C993166008CB4CE /* Home.storyboard in Resources */,
 				91EB796B1CAE075C00ED3E67 /* SecurityCode_Ok.json in Resources */,
+				91D3BF121CB8D3BE00AC8C54 /* AccountInfoSecurityCell.xib in Resources */,
 				91EB79691CAE075C00ED3E67 /* Profile_Ok.json in Resources */,
-				91A2EC941CB350D200361952 /* AccountInfoSecurityCell.xib in Resources */,
 				91EB79581CAC049700ED3E67 /* SearchFrendListResult.json in Resources */,
 				91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */,
 				686C4CA81CB4EC850071F636 /* UserAchievementCell.xib in Resources */,
 				91ACEC6D1CB7A8E3008ED8B0 /* UserAchievementView.xib in Resources */,
 				91E1B4EA1CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib in Resources */,
 				91E1B4D81CA510BD008ADEE6 /* ContactsAddFriendCell.xib in Resources */,
-				91A2EC911CB350D200361952 /* InfoSecurity.storyboard in Resources */,
 				91E1B4CC1CA510BD008ADEE6 /* ContactsFriendListCell.xib in Resources */,
 				91EB79661CAE075C00ED3E67 /* CommonResultOk.json in Resources */,
 				91E1B4CF1CA510BD008ADEE6 /* ContactsPersonInfoCell.xib in Resources */,
@@ -1061,6 +1065,7 @@
 				91E1B4CA1CA510BD008ADEE6 /* ContactsLetterView.xib in Resources */,
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
+				91D3BF0F1CB8D3BE00AC8C54 /* InfoSecurity.storyboard in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1248,9 +1253,9 @@
 				9114D2091C995B8B008CB4CE /* LeftViewController.swift in Sources */,
 				9114D2051C993E2B008CB4CE /* HomeViewController.swift in Sources */,
 				91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */,
+				91D3BF0E1CB8D3BE00AC8C54 /* AccountInfoSecurityVC.swift in Sources */,
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91E1B4E81CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift in Sources */,
-				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
 				91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */,
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,
 				9114D1E61C97AB05008CB4CE /* UserInfoModelView.swift in Sources */,
@@ -1266,7 +1271,6 @@
 				9114D1F11C97AB05008CB4CE /* SignInViewController.swift in Sources */,
 				91E1B4F91CA69CAA008ADEE6 /* FriendInfoListRealm.swift in Sources */,
 				91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */,
-				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,
 				91E1B4DB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift in Sources */,
 				91E1B4D71CA510BD008ADEE6 /* ContactsAddFriendCell.swift in Sources */,
 				9114D1E51C97AB05008CB4CE /* AccountModelView.swift in Sources */,
@@ -1282,11 +1286,11 @@
 				9114D1E71C97AB05008CB4CE /* AccountManagerBaseViewController.swift in Sources */,
 				91E1B4CD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift in Sources */,
 				91E1B4CE1CA510BD008ADEE6 /* ContactsPersonInfoCell.swift in Sources */,
-				91A2EC921CB350D200361952 /* AccountInfoSecurityCellViewModel.swift in Sources */,
 				9114D2071C994C9D008CB4CE /* RootViewController.swift in Sources */,
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
+				4CEDAD251CB62FAE00BCF58B /* Font_Extension.swift in Sources */,
 				91E1B4C91CA510BD008ADEE6 /* ContactsLetterView.swift in Sources */,
 				9141C7FE1C7D72CD003E24F2 /* ImageDefine.swift in Sources */,
 				918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */,
@@ -1296,6 +1300,8 @@
 				686C4CA71CB4EC850071F636 /* UserAchievementCell.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
+				91D3BF111CB8D3BE00AC8C54 /* AccountInfoSecurityCell.swift in Sources */,
+				91D3BF101CB8D3BE00AC8C54 /* AccountInfoSecurityCellViewModel.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,
 				91E1B4D61CA510BD008ADEE6 /* ContactsSearchController.swift in Sources */,
@@ -1334,12 +1340,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CEDAD221CB5002B00BCF58B /* ContactsAccountInfoUItests.swift in Sources */,
 				91A0FED81C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift in Sources */,
 				915921041C9005E000ECD04E /* SignUpPhoneUITests.swift in Sources */,
-				4CC498FD1CA9101800B2EE85 /* ContactsAccountInfoUItests.swift in Sources */,
 				91E981291C8937CB00802C5F /* AccountPageSwitchUITests.swift in Sources */,
+				4CEDAD211CB5002B00BCF58B /* AccountInfoSecurityUITest.swift in Sources */,
 				91A0FEDA1C903CBE00717B83 /* ForgotPasswdEmailUITest.swift in Sources */,
-				4CC498FE1CA9101800B2EE85 /* ContactsFriendViewUITests.swift in Sources */,
 				91A0FED61C90303500717B83 /* SignUpEmailUITests.swift in Sources */,
 				918E26DC1C891CDE00115C4E /* SignInUITests.swift in Sources */,
 			);
@@ -1509,7 +1515,7 @@
 					"\"XLActionController\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -1547,7 +1553,7 @@
 					"\"XLActionController\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";

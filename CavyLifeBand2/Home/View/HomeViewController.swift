@@ -19,20 +19,6 @@ class HomeViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil)
 
-        
-        // Do any additional setup after loading the view.
-        
-        let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
-        
-        achieveView?.frame = CGRect(x: 20, y: 20, w: ez.screenWidth - 40, h: 320)
-        
-        achieveView?.achievementsList = [UserAchievementCellViewModel(),
-                                         UserAchievementCellViewModel(),
-                                         UserAchievementCellViewModel()]
-        
-        achieveView?.achievementCount = 500000
-        
-        self.view.addSubview(achieveView!)
     }
 
     override func didReceiveMemoryWarning() {
