@@ -64,6 +64,8 @@
 		917B98C61CB8E8F3008698F5 /* AccountInfoSecurityUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B98C31CB8E8F3008698F5 /* AccountInfoSecurityUITest.swift */; };
 		917B98C71CB8E8F3008698F5 /* ContactsAccountInfoUItests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B98C41CB8E8F3008698F5 /* ContactsAccountInfoUItests.swift */; };
 		917B98C81CB8E8F3008698F5 /* ContactsFriendViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B98C51CB8E8F3008698F5 /* ContactsFriendViewUITests.swift */; };
+		917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B98CA1CB8F417008698F5 /* ContactsCellPresenter.swift */; };
+		917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B98CC1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift */; };
 		917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 917DA9741C3B8EB700FF675D /* LaunchScreen.storyboard */; };
 		917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 917DA9A01C3BA12E00FF675D /* InfoPlist.strings */; };
 		91800A7E1CB38846000BDDF2 /* UserProfileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91800A7D1CB38846000BDDF2 /* UserProfileProtocol.swift */; };
@@ -242,6 +244,8 @@
 		917B98C31CB8E8F3008698F5 /* AccountInfoSecurityUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountInfoSecurityUITest.swift; sourceTree = "<group>"; };
 		917B98C41CB8E8F3008698F5 /* ContactsAccountInfoUItests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountInfoUItests.swift; sourceTree = "<group>"; };
 		917B98C51CB8E8F3008698F5 /* ContactsFriendViewUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendViewUITests.swift; sourceTree = "<group>"; };
+		917B98CA1CB8F417008698F5 /* ContactsCellPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsCellPresenter.swift; sourceTree = "<group>"; };
+		917B98CC1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsPresonInfoViewModel.swift; sourceTree = "<group>"; };
 		917DA9681C3B8EB700FF675D /* CavyLifeBand2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CavyLifeBand2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		917DA9751C3B8EB700FF675D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		917DA9771C3B8EB700FF675D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -591,6 +595,14 @@
 			path = LeftMenuUITests;
 			sourceTree = "<group>";
 		};
+		917B98C91CB8F294008698F5 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				917B98CA1CB8F417008698F5 /* ContactsCellPresenter.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
 		917DA95F1C3B8EB700FF675D = {
 			isa = PBXGroup;
 			children = (
@@ -807,6 +819,7 @@
 		91E1B49E1CA510BD008ADEE6 /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				917B98C91CB8F294008698F5 /* Protocol */,
 				91E1B4F11CA53C25008ADEE6 /* WebApi */,
 				91E1B49F1CA510BD008ADEE6 /* Model */,
 				91E1B4A11CA510BD008ADEE6 /* View */,
@@ -843,6 +856,7 @@
 			children = (
 				91E1B4ED1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift */,
 				91E1B4EF1CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift */,
+				917B98CC1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1269,6 +1283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				91671C951C9A7EC60090BB3F /* LeftHeaderView.swift in Sources */,
+				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
 				91E1B4C51CA510BD008ADEE6 /* ContactsBaseViewController.swift in Sources */,
@@ -1316,6 +1331,7 @@
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
 				91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */,
+				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
 				91E1B4F71CA65E1C008ADEE6 /* ContactsWebApi.swift in Sources */,
 				91800A7E1CB38846000BDDF2 /* UserProfileProtocol.swift in Sources */,

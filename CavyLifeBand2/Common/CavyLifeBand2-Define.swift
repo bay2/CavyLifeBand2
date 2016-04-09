@@ -35,6 +35,27 @@ struct CavyDefine {
     // 已登录用户信息
     static var loginUserBaseInfo = LoginUserBaseInfoStorage()
     
+    /**
+     性别数字转汉字
+     
+     - parameter sex: 性别标识
+     
+     - returns: 性别
+     */
+    static func definiteAccountSex(sex: String) -> String {
+        
+        var accountSex = L10n.ContactsGenderGirl.string
+        
+        if sex == "0" {
+            
+            accountSex = L10n.ContactsGenderBoy.string
+            
+        }
+        
+        return accountSex
+    }
+    
+    
 }
 
 /**
