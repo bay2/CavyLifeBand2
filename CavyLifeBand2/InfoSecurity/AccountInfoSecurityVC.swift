@@ -10,9 +10,11 @@ import UIKit
 import Log
 import RealmSwift
 import EZSwiftExtensions
-
+                                                               
 class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var bottomView: UIView!
+    
     @IBOutlet weak var tableView: UITableView!
     
     var realm: Realm = try! Realm()
@@ -26,12 +28,12 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
         Log.info("realm = \(realm.path)")
 
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
-        
         self.navBar?.translucent = false
         
         addCellDataSource(AccountInfoSecurityHeightCellViewModel(realm: realm))
         addCellDataSource(AccountInfoSecurityWeightCellViewModel(realm: realm))
         addCellDataSource(AccountInfoSecurityBirthdayCellViewModel(realm: realm))
+        self.bottomView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
         addTableView()
         

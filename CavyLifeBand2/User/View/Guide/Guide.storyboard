@@ -38,6 +38,7 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkc-Qd-gCg">
                                 <rect key="frame" x="0.0" y="101" width="414" height="16"/>
+                                <accessibility key="accessibilityConfiguration" identifier="GuideViewInfoTitleLabel"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="oWR-sW-tFj"/>
                                 </constraints>
@@ -49,12 +50,12 @@
                         <color key="backgroundColor" red="0.013560153930000001" green="0.1623121914" blue="0.36328806720000001" alpha="0.7478113918" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="OLa-eD-a6f" firstAttribute="centerX" secondItem="Q7I-HL-6s4" secondAttribute="centerX" id="8ZC-vT-ZSH"/>
-                            <constraint firstItem="Hkc-Qd-gCg" firstAttribute="top" secondItem="RTB-k4-Axd" secondAttribute="bottom" constant="81" placeholder="YES" id="QT4-px-ZOG"/>
+                            <constraint firstItem="Hkc-Qd-gCg" firstAttribute="top" secondItem="RTB-k4-Axd" secondAttribute="bottom" constant="81" placeholder="YES" id="Clo-dI-FQg"/>
                             <constraint firstItem="Hkc-Qd-gCg" firstAttribute="width" secondItem="Q7I-HL-6s4" secondAttribute="width" id="VGy-3T-jEa"/>
                             <constraint firstItem="HWD-ra-vI8" firstAttribute="width" secondItem="Q7I-HL-6s4" secondAttribute="width" multiplier="0.92" id="ZBa-pq-QFj"/>
                             <constraint firstItem="OLa-eD-a6f" firstAttribute="width" secondItem="Q7I-HL-6s4" secondAttribute="width" multiplier="6/25" id="eDJ-KF-nl0"/>
-                            <constraint firstItem="HWD-ra-vI8" firstAttribute="top" secondItem="RTB-k4-Axd" secondAttribute="bottom" constant="180" placeholder="YES" id="etC-vz-RzC"/>
                             <constraint firstItem="Hkc-Qd-gCg" firstAttribute="centerX" secondItem="Q7I-HL-6s4" secondAttribute="centerX" id="ssP-lq-LGr"/>
+                            <constraint firstItem="HWD-ra-vI8" firstAttribute="top" secondItem="RTB-k4-Axd" secondAttribute="bottom" constant="180" placeholder="YES" id="v42-kb-Wka"/>
                             <constraint firstItem="OLa-eD-a6f" firstAttribute="top" secondItem="HWD-ra-vI8" secondAttribute="bottom" constant="-35" placeholder="YES" id="w5Z-V0-T3l"/>
                             <constraint firstItem="HWD-ra-vI8" firstAttribute="centerX" secondItem="Q7I-HL-6s4" secondAttribute="centerX" id="wsv-eN-I7a"/>
                         </constraints>

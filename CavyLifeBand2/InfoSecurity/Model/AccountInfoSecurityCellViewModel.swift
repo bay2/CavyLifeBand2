@@ -12,8 +12,6 @@ import Log
 
 typealias AccountInfoCellViewModelPresentable = protocol<AccountInfoSecurityListDataSource, UserInfoRealmOperateDelegate, AccountInfoSecurityUpdateByNetwork>
 
-
-
 struct AccountInfoSecurityHeightCellViewModel: AccountInfoCellViewModelPresentable {
     
     var title: String { return L10n.ContactsShowInfoHeight.string }
