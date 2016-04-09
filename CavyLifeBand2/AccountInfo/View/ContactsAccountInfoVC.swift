@@ -23,10 +23,10 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     ///  徽章视图
     @IBOutlet weak var badgeView: UIView!
     
-    /// 成就
+    /// 成就数值
     @IBOutlet weak var badgeInfo: UILabel!
     
-    /// 成就数值
+    /// 成就
     @IBOutlet weak var badgeTitle: UILabel!
     
     /// 徽章视图
@@ -39,13 +39,15 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     /// tableView 的 cell个数
     let cellCount: Int = 6
     
+    /// 成就步数
+    let badgeStep: Int = 500000
+    
     /// 徽章个数
     var badgeCount: Int = 6
     
-    var accountRespond = UserProfileMsg?()
-    let infoTitleArray = [L10n.ContactsShowInfoGender.string, L10n.ContactsShowInfoHeight.string, L10n.ContactsShowInfoWeight.string, L10n.ContactsShowInfoBirth.string, L10n.ContactsShowInfoAddress.string]
+    var userInfoModel = UserInfoModel()
     var infoDataArray: Array<String> = []
-    
+    let infoTitleArray = [L10n.ContactsShowInfoGender.string, L10n.ContactsShowInfoHeight.string, L10n.ContactsShowInfoWeight.string, L10n.ContactsShowInfoBirth.string, L10n.ContactsShowInfoAddress.string]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,8 +82,6 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
                     
                     let resp = try UserProfileMsg(JSONDecoder(result.value!))
                     
-                    self.accountRespond = resp
-                   
                     self.infoDataArray = [self.definiteAccountSex(resp.sex!), resp.height!, resp.weight!, resp.birthday!, resp.address!]
                     
                     Log.info(resp)
@@ -98,9 +98,19 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
                 
             })
             
+        } else {
+            
+            // 直接加载本地数据
+            self.userInfoModel = accountInfo!
+            Log.info(UserInfoOperate().queryUserInfo(loginUserId))
+            
+            self.infoDataArray = [definiteAccountSex(accountInfo!.sex.toString), accountInfo!.height + " cm", accountInfo!.weight + " kg", accountInfo!.birthday, accountInfo!.address]
+            dispatch_async(dispatch_get_main_queue()) {
+                
+                self.tableView.reloadData()
+            }
         }
-        
-        
+
     }
     
     /**
@@ -140,6 +150,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
 
         // contentView
         contectView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        
         contectView.backgroundColor = UIColor(named: .HomeViewMainColor)
         contectView.snp_makeConstraints { (make) in
             
@@ -149,9 +160,8 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         
         
         addTableView()
-        
-        
         addBadgeView(collectionViewHeight)
+        
         
         // 退出登录按钮
         logoutButton.layer.cornerRadius = CavyDefine.commonCornerRadius
@@ -179,20 +189,20 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
      */
     func addBadgeView(height: CGFloat) {
         
-        
+        badgeView.layer.cornerRadius = commonCornerRadius
         badgeView.snp_makeConstraints { (make) in
             
             // |-16-|-tableView-|-10-|-badgeView-10- -50- -8- collectionView -|-20-|-logoutButton-50-|-20-|
             make.height.equalTo(68 + height)
         }
-        badgeInfo.text = "\(L10n.ContactsShowInfoAchievement.string)\(500000)\(L10n.GuideStep.string)"
-        badgeInfo.textColor = UIColor(named: .ContactsAccountLogoutButton)
+        badgeTitle.textColor = UIColor(named: .ContactsTitleColor)
         badgeTitle.text = L10n.ContactsShowInfoAchievement.string
         
-        // 设置斜体
-        let titleFont = UIFontDescriptor.preferredFontDescriptorWithTextStyle(UIFontTextStyleBody)
-        let badgeTitleFont = titleFont.fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits.TraitItalic)
-        badgeInfo.font = UIFont(descriptor: badgeTitleFont, size: 16)
+        // 成就数值显示
+        let string = String.numberDecimalFormatter(badgeStep)
+        badgeInfo.text = "\(string)\(L10n.GuideStep.string)"
+        badgeInfo.font = UIFont.italicFontWithSize(16)
+        badgeInfo.textColor = UIColor(named: .ContactsAccountLogoutButton)
         
         collectionView.layer.cornerRadius = CavyDefine.commonCornerRadius
         collectionView.delegate = self
@@ -241,31 +251,33 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        
+        Log.info(UserInfoOperate().queryUserInfo(loginUserId))
+
         // 第一个
         if indexPath.row == 0 {
             
-            // 个人信息
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
+            // 个人信息
             cell.personRealtion(.OwnRelation)
-            
-            if accountRespond?.nickName! != nil {
+            if UserInfoOperate().isUserExist(loginUserId) {
                 
-                cell.addAccountData((accountRespond!.nickName!), accountName: (accountRespond!.nickName!))
+                cell.addAccountData(self.userInfoModel.nickname, accountName: self.userInfoModel.nickname)
                 
             }
-            
             return cell
             
         } else {
             
             // 其他数值
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
-            if accountRespond?.nickName! != nil {
+            
+            if UserInfoOperate().isUserExist(loginUserId) {
                 
                 cell.addData(infoTitleArray[indexPath.row - 1], titleInfo: infoDataArray[indexPath.row - 1], cellEditOrNot: false)
                 
             }
-
             return cell
         }
         

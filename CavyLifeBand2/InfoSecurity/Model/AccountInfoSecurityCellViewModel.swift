@@ -72,10 +72,11 @@ struct AccountInfoSecurityCellViewModel: AccountInfoSecurityListDataSource {
             
             try! realm.write {
                 
+                
                 userInfoModel.isOpenWeight = openOrNot
                 
                 UserInfoModelView.shareInterface.userInfo!.isOpenWeight = openOrNot
-
+                
             }
             
         }
@@ -91,6 +92,10 @@ struct AccountInfoSecurityCellViewModel: AccountInfoSecurityListDataSource {
             }
             
         }
+        
+        // 更新
+        UserInfoOperate().updateUserInfo(userInfoModel)
+
 
     }
     

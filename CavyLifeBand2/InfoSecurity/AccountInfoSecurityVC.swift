@@ -10,9 +10,11 @@ import UIKit
 import Log
 import RealmSwift
 import EZSwiftExtensions
-
+                                                               
 class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var bottomView: UIView!
+    
     @IBOutlet weak var tableView: UITableView!
     
     var realm: Realm = try! Realm()
@@ -24,8 +26,9 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
-        
         self.navBar?.translucent = false
+        
+        self.bottomView.layer.cornerRadius = commonCornerRadius
         
         loadFriendData()
         
