@@ -9,6 +9,9 @@
 import UIKit
 import JSONJoy
 import Log
+import Log.Swift
+
+
 
 /**
  *  @author xuemincai

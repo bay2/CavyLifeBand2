@@ -28,7 +28,7 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         self.navBar?.translucent = false
         
-        self.bottomView.layer.cornerRadius = commonCornerRadius
+        self.bottomView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
         loadFriendData()
         

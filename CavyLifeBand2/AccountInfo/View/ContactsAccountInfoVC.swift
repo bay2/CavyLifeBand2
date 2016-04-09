@@ -102,7 +102,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
             
             // 直接加载本地数据
             self.userInfoModel = accountInfo!
-            Log.info(UserInfoOperate().queryUserInfo(loginUserId))
+            Log.info(UserInfoOperate().queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId))
             
             self.infoDataArray = [definiteAccountSex(accountInfo!.sex.toString), accountInfo!.height + " cm", accountInfo!.weight + " kg", accountInfo!.birthday, accountInfo!.address]
             dispatch_async(dispatch_get_main_queue()) {
@@ -189,7 +189,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
      */
     func addBadgeView(height: CGFloat) {
         
-        badgeView.layer.cornerRadius = commonCornerRadius
+        badgeView.layer.cornerRadius = CavyDefine.commonCornerRadius
         badgeView.snp_makeConstraints { (make) in
             
             // |-16-|-tableView-|-10-|-badgeView-10- -50- -8- collectionView -|-20-|-logoutButton-50-|-20-|
@@ -253,7 +253,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
-        Log.info(UserInfoOperate().queryUserInfo(loginUserId))
+        Log.info(UserInfoOperate().queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId))
 
         // 第一个
         if indexPath.row == 0 {
@@ -261,7 +261,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
             // 个人信息
             cell.personRealtion(.OwnRelation)
-            if UserInfoOperate().isUserExist(loginUserId) {
+            if UserInfoOperate().isUserExist(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
                 
                 cell.addAccountData(self.userInfoModel.nickname, accountName: self.userInfoModel.nickname)
                 
@@ -273,7 +273,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
             // 其他数值
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
             
-            if UserInfoOperate().isUserExist(loginUserId) {
+            if UserInfoOperate().isUserExist(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
                 
                 cell.addData(infoTitleArray[indexPath.row - 1], titleInfo: infoDataArray[indexPath.row - 1], cellEditOrNot: false)
                 
