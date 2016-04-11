@@ -33,6 +33,7 @@ class UserInfoModel: Object {
     dynamic var isOpenBirthday = true
     dynamic var isOpenHeight = true
     dynamic var isOpenWeight = true
+    dynamic var isSync = false
 
     override class func primaryKey() -> String? {
         return "userId"
@@ -40,10 +41,18 @@ class UserInfoModel: Object {
 
 }
 
+protocol UserInfoRealmOperateDelegate {
+    
+    var realm: Realm { get }
+    
+    func queryUserInfo(userId: String) -> UserInfoModel?
+    func addUserInfo(userInfo: UserInfoModel) -> Bool
+    func updateUserInfo(userId: String, updateCall: ((UserInfoModel) -> UserInfoModel)) -> Bool
+    func isUserExist(userId: String) -> Bool
+    
+}
 
-class UserInfoOperate {
-
-    let userInfoRealm = try! Realm()
+extension UserInfoRealmOperateDelegate {
 
     /**
      查询用户信息
@@ -54,11 +63,11 @@ class UserInfoOperate {
      */
     func queryUserInfo(userId: String) -> UserInfoModel? {
         
-        if userInfoRealm.objects(UserInfoModel).count == 0 {
+        if realm.objects(UserInfoModel).count == 0 {
             return nil
         }
         
-        let userInfo = userInfoRealm.objects(UserInfoModel).filter("userId == '\(userId)'")
+        let userInfo = realm.objects(UserInfoModel).filter("userId == '\(userId)'")
 
         if userInfo.count == 0 {
             return nil
@@ -79,8 +88,8 @@ class UserInfoOperate {
 
         do {
 
-            try userInfoRealm.write {
-                userInfoRealm.add(userInfo, update: false)
+            try realm.write {
+                realm.add(userInfo, update: false)
             }
 
         } catch {
@@ -102,33 +111,42 @@ class UserInfoOperate {
      
      - returns: 成功：true，失败：false
      */
-    func updateUserInfo(userInfo: UserInfoModel) -> Bool {
+    func updateUserInfo(userId: String, updateCall: ((UserInfoModel) -> UserInfoModel)) -> Bool {
 
-        let userInfoModel = queryUserInfo(userInfo.userId)
-
-        if userInfoModel == nil {
-            Log.error("User info is exist [\(userInfo)]")
+        guard var userInfoModel = queryUserInfo(userId) else {
+            Log.error("User info not exist [\(userId)]")
             return false
         }
 
         do {
+            
+            realm .beginWrite()
+            
+            userInfoModel = updateCall(userInfoModel)
 
-            try userInfoRealm.write {
-                userInfoRealm.add(userInfo, update: true)
-            }
+            realm.add(userInfoModel, update: true)
+            
+            try realm.commitWrite()
 
         } catch {
 
-            Log.error("Update user info error [\(userInfo)]")
+            Log.error("Update user info error [\(userId)]")
             return false
 
         }
 
-        Log.info("Update user info success [\(userInfo)]")
+        Log.info("Update user info success [\(userId)]")
         return true
 
     }
 
+    /**
+     查询用户信息是否存在
+     
+     - parameter userId: 用户Id
+     
+     - returns:
+     */
     func isUserExist(userId: String) -> Bool {
 
         if let _ = queryUserInfo(userId) {

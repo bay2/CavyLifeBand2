@@ -19,7 +19,6 @@ class GenderView: UIView {
         super.init(frame: frame)
         
         MOrG = true // 默认True 是男的
-        UserInfoModelView.shareInterface.userInfo!.sex = 0
         genderViewLayout()
         
     }
@@ -73,7 +72,6 @@ class GenderView: UIView {
     func genderUpClick() {
         
         MOrG = true
-        UserInfoModelView.shareInterface.userInfo!.sex = 0
         updateGender()
 
     }
@@ -84,7 +82,6 @@ class GenderView: UIView {
     func genderDownClick() {
         
         MOrG = false
-        UserInfoModelView.shareInterface.userInfo!.sex = 1
         updateGender()
         
     }

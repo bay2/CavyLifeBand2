@@ -21,7 +21,7 @@ import CryptoSwift
  - ParamErr:  参数错误
  */
 enum UserRequestErrorType: ErrorType {
-    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, EmailNil, PhoneErr, PhoneNil, PassWdErr, PassWdNil, SecurityCodeErr, SecurityCodeNil, UserNameErr, UserNameNil, UserIdNil, SearchTypeNil, LBSNil, PhoneNumListNil
+    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, EmailNil, PhoneErr, PhoneNil, PassWdErr, PassWdNil, SecurityCodeErr, SecurityCodeNil, UserNameErr, UserNameNil, UserIdNil, SearchTypeNil, LBSNil, PhoneNumListNil, UnknownError
 }
 
 /**
@@ -72,16 +72,17 @@ enum UserNetRequsetKey: String {
     case Address = "address"
     case StepNum = "stepNum"
     case SleepTime = "sleepTime"
+    case IsNotification = "isNotification"
+    case IsLocalShare = "isLocalShare"
+    case IsOpenBirthday = "isOpenBirthday"
+    case IsOpenHeight = "isOpenHeight"
+    case IsOpenWeight = "isOpenWeight"
 
 }
 
-let userNetReq = UserNetRequestData()
-
-
-
 class UserNetRequestData: NetRequestAdapter {
    
-    
+    static var shareApi = UserNetRequestData()
     
     /**
     网络请求API
@@ -192,28 +193,18 @@ class UserNetRequestData: NetRequestAdapter {
      - parameter parameters:        UserId
      - parameter completionHandler: 回调
      */
-    func queryProfile(parameters: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
-
-        if parameters == nil {
-
-            completionHandler?(.Failure(.ParaNil))
-            Log.error("Parameters is nil")
-            return
-
-        }
-
-        guard let _ = parameters![UserNetRequsetKey.UserID.rawValue] else {
-
+    func queryProfile(userId: String, completionHandler: CompletionHandlernType?) {
+        
+        if userId.isEmpty {
             completionHandler?(.Failure(.UserIdNil))
             Log.error("User id is nil")
             return
-
         }
+        
+        let parameter = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.UserProfile.rawValue,
+                         UserNetRequsetKey.UserID.rawValue: userId]
 
-        var para = parameters
-        para![UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.UserProfile.rawValue
-
-        netPostRequestAdapter(CavyDefine.webApiAddr, para: para, completionHandler: completionHandler)
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameter, completionHandler: completionHandler)
 
     }
 
@@ -246,7 +237,16 @@ class UserNetRequestData: NetRequestAdapter {
             parameters!.keys.contains(UserNetRequsetKey.Height.rawValue) ||
             parameters!.keys.contains(UserNetRequsetKey.Weight.rawValue) ||
             parameters!.keys.contains(UserNetRequsetKey.Birthday.rawValue) ||
-            parameters!.keys.contains(UserNetRequsetKey.Address.rawValue)) {
+            parameters!.keys.contains(UserNetRequsetKey.Address.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.UserID.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.Address.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.StepNum.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.SleepTime.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.IsNotification.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.IsLocalShare.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.IsOpenBirthday.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.IsOpenHeight.rawValue) ||
+            parameters!.keys.contains(UserNetRequsetKey.IsOpenWeight.rawValue)) {
 
             completionHandler?(.Failure(.ParaErr))
             Log.error("Parameters error")
