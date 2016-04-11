@@ -21,16 +21,6 @@ class HomeUpperView: UIView {
     @IBOutlet weak var weatherView: UIView!
     
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        allViewLayout()
-        
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
 
     /**
      适配
@@ -39,11 +29,24 @@ class HomeUpperView: UIView {
         
         self.frame = CGRectMake(0, 0, ez.screenWidth, 96 + ez.screenWidth * 0.55)
         
+//        sleepRing = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
+//        stepRing = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
+//   
+        
+        let test = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
+        test?.frame = CGRect(x: 0, y: 0, w: 100, h: 100)
+        self.addSubview(test!)
+        
+        weatherView.backgroundColor = UIColor.whiteColor()
+        sleepRing.backgroundColor = UIColor.yellowColor()
+        stepRing.backgroundColor = UIColor.blueColor()
+        
+        Log.info("\(sleepRing)")
         
         
+        // 计步
         
-        
-        
+//        stepRing.stepRingWith(80000, currentNumber: 50000)
         
         
     }

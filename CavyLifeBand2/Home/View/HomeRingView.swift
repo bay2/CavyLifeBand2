@@ -8,65 +8,136 @@
 
 import UIKit
 import Log
+import EZSwiftExtensions
 
-
+enum RingStyle {
+    
+    case StepRing
+    case SleepRing
+    
+}
 
 class HomeRingView: UIView {
+    
+    /// 图片
+    @IBOutlet weak var imgView: UIImageView?
+    
+    /// 当前值
+    @IBOutlet weak var currentLabel: UILabel?
+    
+    /// 完成百分比
+    @IBOutlet weak var percentLabel: UILabel?
+    
+    var ringStyle: RingStyle = .SleepRing
+    
 
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
-    enum RingStyle {
+    override func awakeFromNib() {
         
-        case StepRing
-        case SleepRing
+    }
+    
+    
+    
+    
+    /**
+     计步进度环
+     
+     - parameter targetNumber:
+     - parameter currentNumber: 
+     */
+    func  stepRingWith(targetNumber: Int, currentNumber: Int) {
+        
+        
+   
+        
+    }
+    
+
+    
+    /**
+     返回当前值的文本
+     
+     - returns:
+     */
+    func currectLabel() -> String {
+        
+        
+        switch ringStyle {
+            
+        case .SleepRing:
+            
+            self.frame = CGRectMake(0, 0, ez.screenWidth * 0.35, ez.screenWidth * 0.35)
+            
+        case .StepRing:
+            
+            self.frame = CGRectMake(0, 0, ez.screenWidth * 0.55, ez.screenWidth * 0.55)
+            
+            
+        }
+        
+        return " "
+        
         
     }
     
     
     
     /**
-     计步
+     返回百分比的文本
      
-     - parameter ringStyle:     圆环类型
-     - parameter targetNumber:  目标值
-     - parameter currentNumber: 当前值
+     - returns:
      */
-    func  stepRingWith(ringStyle: RingStyle, targetNumber: Int, currentNumber: Int) {
+    func percentLabelText(targetNum: Int, currectNum: Int) -> String{
+        
+        var percent = currectNum / targetNum
+        
+        if percent > 2 {
+            
+            percent = 100
+            
+        } else {
+            
+            percent *= 100
+        }
         
         switch ringStyle {
             
         case .SleepRing:
-            Log.info("SleepRing")
             
+           let percentLabeltext = "\(percent)"
             
-            
-            
-            
-            
-            
-            
-            
-            
+            return percentLabeltext
             
         case .StepRing:
-            Log.info("SleepRing")
             
+            self.frame = CGRectMake(0, 0, ez.screenWidth * 0.55, ez.screenWidth * 0.55)
             
+            let percentLabeltext = "\(percent)"
             
-            
-            
+            return percentLabeltext
+
             
         }
-        
+                
     }
     
     
-    
+    /**
+     返回百分比
+     */
+    func percentNumber(targetNum: Int, currectNum: Int) -> Int {
+        
+        let percent = currectNum / targetNum
+        
+        if percent > 2 {
+            
+            return 100
+            
+        } else {
+            
+            return percent * 100
+        }
+        
+    }
     
     
 

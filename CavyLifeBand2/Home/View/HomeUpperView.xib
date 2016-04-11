@@ -13,9 +13,9 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r0a-Ku-M2O">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r0a-Ku-M2O" customClass="HomeRingView" customModule="CavyLifeBand2" customModuleProvider="target">
                     <rect key="frame" x="20" y="16" width="210" height="210"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="r0a-Ku-M2O" secondAttribute="height" multiplier="1:1" id="dfp-Wj-Uji"/>
                     </constraints>
@@ -23,9 +23,9 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-2k-p6y">
+                <view contentMode="scaleToFill" restorationIdentifier="HomeRingView" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-2k-p6y" customClass="HomeRingView" customModule="CavyLifeBand2" customModuleProvider="target">
                     <rect key="frame" x="250" y="96" width="330" height="330"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="w9x-2k-p6y" secondAttribute="height" multiplier="1:1" id="o2w-yu-gzl"/>
                     </constraints>
@@ -51,9 +51,9 @@
                 <constraint firstItem="w9x-2k-p6y" firstAttribute="leading" secondItem="xwR-qt-71h" secondAttribute="trailing" id="vvZ-EB-fnS"/>
             </constraints>
             <connections>
-                <outlet property="sleepRing" destination="r0a-Ku-M2O" id="cSD-s0-RVv"/>
-                <outlet property="stepRing" destination="w9x-2k-p6y" id="ZJe-u7-Cwv"/>
-                <outlet property="weatherView" destination="xwR-qt-71h" id="GSD-cl-TcT"/>
+                <outlet property="sleepRing" destination="r0a-Ku-M2O" id="jp8-lh-NWU"/>
+                <outlet property="stepRing" destination="w9x-2k-p6y" id="yKN-gp-Q6b"/>
+                <outlet property="weatherView" destination="xwR-qt-71h" id="Sbx-P6-BwW"/>
             </connections>
             <point key="canvasLocation" x="405.5" y="110.5"/>
         </view>

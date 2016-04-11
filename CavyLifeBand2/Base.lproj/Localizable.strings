@@ -104,6 +104,11 @@
 "Camera.Back" = "取消";
 
 // 主页面
+"Home.SleepRing.PercerntText" = "已完成";
+"Home.SleepRing.Unit.Hour" = "小时";
+"Home.SleepRing.Unit.Minute" = "分钟";
+"Home.StepRing.PercerntText" = "已完成目标的";
+"Home.Weather.Air" = "空气";
 "Home.LifeList.Title.Target" = "目标";
 "Home.LifeList.Title.InfoOpen" = "信息公开";
 "Home.LifeList.Title.Friend" = "好友";

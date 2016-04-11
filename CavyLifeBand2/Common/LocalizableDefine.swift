@@ -157,6 +157,16 @@ enum L10n {
   case CameraVideo
   /// 取消
   case CameraBack
+  /// 已完成
+  case HomeSleepRingPercerntText
+  /// 小时
+  case HomeSleepRingUnitHour
+  /// 分钟
+  case HomeSleepRingUnitMinute
+  /// 已完成目标的
+  case HomeStepRingPercerntText
+  /// 空气
+  case HomeWeatherAir
   /// 目标
   case HomeLifeListTitleTarget
   /// 信息公开
@@ -408,6 +418,16 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Camera.Video")
       case .CameraBack:
         return L10n.tr("Camera.Back")
+      case .HomeSleepRingPercerntText:
+        return L10n.tr("Home.SleepRing.PercerntText")
+      case .HomeSleepRingUnitHour:
+        return L10n.tr("Home.SleepRing.Unit.Hour")
+      case .HomeSleepRingUnitMinute:
+        return L10n.tr("Home.SleepRing.Unit.Minute")
+      case .HomeStepRingPercerntText:
+        return L10n.tr("Home.StepRing.PercerntText")
+      case .HomeWeatherAir:
+        return L10n.tr("Home.Weather.Air")
       case .HomeLifeListTitleTarget:
         return L10n.tr("Home.LifeList.Title.Target")
       case .HomeLifeListTitleInfoOpen:

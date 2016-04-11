@@ -53,10 +53,11 @@ class HomeViewController: BaseViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Right", style: .Plain, target: self, action: #selector(showLeftView))
         
         upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
+        upperView!.allViewLayout()
         view.addSubview(upperView!)
         
         Log.info(upperView?.frame.size.height)
-        Log.info(upperView?.stepRing.frame.size.height)
+        Log.info(upperView?.stepRing!.frame.size.height)
         
     }
     
