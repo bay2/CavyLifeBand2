@@ -30,22 +30,6 @@
                                                     <constraint firstAttribute="height" constant="396" id="uhk-h0-Y3j"/>
                                                 </constraints>
                                             </tableView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Yp-Im-6HQ">
-                                                <rect key="frame" x="20" y="570" width="560" height="50"/>
-                                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="Oil-gZ-lCL"/>
-                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="lAG-KJ-a1T"/>
-                                                </constraints>
-                                                <state key="normal" title="退出登录">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                                <variation key="default">
-                                                    <mask key="constraints">
-                                                        <exclude reference="lAG-KJ-a1T"/>
-                                                    </mask>
-                                                </variation>
-                                            </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svq-EI-1IG">
                                                 <rect key="frame" x="20" y="422" width="560" height="128"/>
                                                 <subviews>
@@ -55,13 +39,13 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的成就成就" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYr-16-XXH">
-                                                        <rect key="frame" x="434" y="25" width="96" height="20"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5,000,000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYr-16-XXH">
+                                                        <rect key="frame" x="456" y="25" width="74" height="20"/>
+                                                        <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
                                                         <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mq1-Eh-GGD">
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mq1-Eh-GGD">
                                                         <rect key="frame" x="30" y="68" width="500" height="128"/>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <constraints>
@@ -98,6 +82,23 @@
                                                     <constraint firstAttribute="trailing" secondItem="mq1-Eh-GGD" secondAttribute="trailing" constant="30" id="xPW-9O-kmG"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Yp-Im-6HQ">
+                                                <rect key="frame" x="20" y="570" width="560" height="50"/>
+                                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="Oil-gZ-lCL"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="lAG-KJ-a1T"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="italicSystem" pointSize="15"/>
+                                                <state key="normal" title="退出登录">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <variation key="default">
+                                                    <mask key="constraints">
+                                                        <exclude reference="lAG-KJ-a1T"/>
+                                                    </mask>
+                                                </variation>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.20485528519999999" green="0.82762688760000003" blue="0.4879666527" alpha="0.82456896550000003" colorSpace="calibratedRGB"/>
                                         <constraints>

@@ -304,11 +304,16 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         }
         
         if dataSource?.isSignUp == true {
+            
             signUp() {
-                UserInfoModelView.shareInterface.updateInfo(userId: $0)
+                GuideUserInfo.userInfo.userId = $0
+                GuideUserInfo.userInfo.updateUserInfo()
             }
+            
         } else {
+            
             forgotPwd()
+            
         }
 
     }

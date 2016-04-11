@@ -49,7 +49,7 @@ class UploadPicture: XCTestCase {
             
             let expectation = expectationWithDescription("testUploadPictureOk succeed")
             
-            userNetReq.uploadPicture(para, completionHandler: { (result) -> Void in
+            UserNetRequestData.shareApi.uploadPicture(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isSuccess, "返回值不正确")
                 
@@ -89,7 +89,7 @@ class UploadPicture: XCTestCase {
             
             let expectation = expectationWithDescription("testUploadPictureOk succeed")
             
-            userNetReq.uploadPicture(para, completionHandler: { (result) -> Void in
+            UserNetRequestData.shareApi.uploadPicture(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isFailure, "返回值不正确")
                 
@@ -113,7 +113,7 @@ class UploadPicture: XCTestCase {
             
             let expectation = expectationWithDescription("testUploadPictureOk succeed")
             
-            userNetReq.uploadPicture(para, completionHandler: { (result) -> Void in
+            UserNetRequestData.shareApi.uploadPicture(para, completionHandler: { (result) -> Void in
                 
                 XCTAssert(result.isFailure, "返回值不正确")
                 

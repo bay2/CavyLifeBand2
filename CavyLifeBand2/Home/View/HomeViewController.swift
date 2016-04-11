@@ -19,8 +19,6 @@ class HomeViewController: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil)
 
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

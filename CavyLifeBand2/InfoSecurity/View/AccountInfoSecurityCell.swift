@@ -35,13 +35,13 @@ class AccountInfoSecurityCell: UITableViewCell {
         
     }
     
-    func configure(dataSource: [AccountInfoSecurityListDataSource], index: Int) {
+    func configure(dataSource: AccountInfoSecurityListDataSource) {
         
-        self.dataSource = dataSource[index]
+        self.dataSource = dataSource
         
-        infoSwitch.on = dataSource[index].isOpen
+        infoSwitch.on = dataSource.isOpen
         
-        titleLabel.text = dataSource[index].title
+        titleLabel.text = dataSource.title
         
     }
 

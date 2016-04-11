@@ -19,6 +19,9 @@ class WeightView: UIView {
     var rotaryView: MHRotaryKnob?
     let minValue: CGFloat = 0
     let maxValue: CGFloat = 180
+    var weightString: String {
+        return self.valueLabel.text ?? ""
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

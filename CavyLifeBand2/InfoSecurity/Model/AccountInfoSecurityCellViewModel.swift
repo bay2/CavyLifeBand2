@@ -10,25 +10,34 @@ import UIKit
 import RealmSwift
 import Log
 
-/**
- *  @author xuemincai
- *
- *  好友列表cell ViewModel
- */
-struct AccountInfoSecurityCellViewModel: AccountInfoSecurityListDataSource {
+typealias AccountInfoCellViewModelPresentable = protocol<AccountInfoSecurityListDataSource, UserInfoRealmOperateDelegate, AccountInfoSecurityUpdateByNetwork>
+
+struct AccountInfoSecurityHeightCellViewModel: AccountInfoCellViewModelPresentable {
     
-    var realm = try! Realm()
+    var title: String { return L10n.ContactsShowInfoHeight.string }
+    var realm: Realm
+    var userId: String {
+        return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+    }
     
-    var title: String
+    var realmUserInfo: UserInfoModel? {
+        return queryUserInfo(userId)
+    }
     
-    var isOpen: Bool
     
-    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId}
-    
-    init(title: String, isOpenOrNot: Bool = true) {
+    init(realm: Realm) {
         
-        self.title = title
-        self.isOpen = isOpenOrNot
+        self.realm = realm
+        
+    }
+    
+    var isOpen: Bool {
+        
+        guard let userInfo = realmUserInfo else {
+            return true
+        }
+        
+        return userInfo.isOpenHeight
     }
     
     /**
@@ -36,65 +45,130 @@ struct AccountInfoSecurityCellViewModel: AccountInfoSecurityListDataSource {
      */
     func changeSwitchStatus(sender: UISwitch) {
         
-        Log.info("----\(title)----------\(sender.on)")
+        updateUserInfo(userId) {
+            $0.isOpenHeight = sender.on
+            $0.isSync = false
+            return $0
+        }
+        
+        updateInfoSecurityAttir {
+            
+            guard $0 == true else {
+                return
+            }
+            
+            self.updateUserInfo(self.userId) {
+                $0.isSync = true
+                return $0
+            }
+        }
+    }
+    
+}
 
-        updataRealmWithTitle(title, openOrNot: sender.on)
+struct AccountInfoSecurityWeightCellViewModel: AccountInfoCellViewModelPresentable {
+    
+    var title: String { return L10n.ContactsShowInfoWeight.string }
+    var realm: Realm
+    var userId: String {
+        return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+    }
+    
+    var realmUserInfo: UserInfoModel? {
+        return queryUserInfo(userId)
+    }
+    
+    init(realm: Realm) {
         
-        
+        self.realm = realm
         
     }
     
+    var isOpen: Bool {
+        
+        guard let userInfo =  queryUserInfo(userId) else {
+            return true
+        }
+        
+        return userInfo.isOpenWeight
+    }
     
-     /**
-     更新本地数据库 和 上传数据 
-
-     - parameter title:         对应的行
-     - parameter openOrNot:     是否打开
-     - parameter userInfoModel: 本地存储的数据
+    /**
+     改变按钮状态
      */
-    
-    func updataRealmWithTitle(title: String, openOrNot: Bool) {
+    func changeSwitchStatus(sender: UISwitch) {
         
-        let userInfoModel: UserInfoModel = UserInfoOperate().queryUserInfo(userId)!
-        
-        if title == L10n.ContactsShowInfoHeight.string {
-            
-            try! realm.write {
-                
-                userInfoModel.isOpenHeight = openOrNot
-                UserInfoModelView.shareInterface.userInfo!.isOpenHeight = openOrNot
-
-            }
-            
+        updateUserInfo(userId) {
+            $0.isOpenWeight = sender.on
+            $0.isSync = false
+            return $0
         }
         
-        if title == L10n.ContactsShowInfoWeight.string {
+        updateInfoSecurityAttir {
             
-            try! realm.write {
-                
-                userInfoModel.isOpenWeight = openOrNot
-                
-                UserInfoModelView.shareInterface.userInfo!.isOpenWeight = openOrNot
-
+            guard $0 == true else {
+                return
             }
             
-        }
-        
-        if title == L10n.ContactsShowInfoBirth.string {
-            
-            try! realm.write {
-                
-                userInfoModel.isOpenBirthday = openOrNot
-                
-                UserInfoModelView.shareInterface.userInfo!.isOpenBirthday = openOrNot
-
+            self.updateUserInfo(self.userId) {
+                $0.isSync = true
+                return $0
             }
-            
         }
-
     }
     
+}
+
+struct AccountInfoSecurityBirthdayCellViewModel: AccountInfoCellViewModelPresentable {
     
+    var title: String { return L10n.ContactsShowInfoBirth.string }
+    var realm: Realm
+    var userId: String {
+        return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+    }
     
+    var realmUserInfo: UserInfoModel? {
+        return queryUserInfo(userId)
+    }
+    
+    init(realm: Realm) {
+        
+        self.realm = realm
+        
+    }
+    
+    var isOpen: Bool {
+        
+        guard let userInfo =  queryUserInfo(userId) else {
+            return true
+        }
+        
+        return userInfo.isOpenWeight
+    }
+    
+    /**
+     改变按钮状态
+     */
+    func changeSwitchStatus(sender: UISwitch) {
+        
+        updateUserInfo(userId) {
+            $0.isOpenBirthday = sender.on
+            $0.isSync = false
+            return $0
+        }
+        
+        updateInfoSecurityAttir {
+            
+            guard $0 == true else {
+                return
+            }
+            
+            self.updateUserInfo(self.userId) {
+                $0.isSync = true
+                return $0
+            }
+        }
+    }
+
 }
 

@@ -45,7 +45,7 @@ class SignUpTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignUpPhoneOk succeed")
             
-            userNetReq.requestSignUp(para.0, safetyCode: para.2, passwd: para.1) { result in
+            UserNetRequestData.shareApi.requestSignUp(para.0, safetyCode: para.2, passwd: para.1) { result in
                 
                 XCTAssertTrue(result.isSuccess)
                 
@@ -77,7 +77,7 @@ class SignUpTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignUpUserNameErr succeed")
             
-            userNetReq.requestSignUp(para.0, safetyCode: para.2, passwd: para.1) { result in
+            UserNetRequestData.shareApi.requestSignUp(para.0, safetyCode: para.2, passwd: para.1) { result in
                 
                 XCTAssertTrue(result.isFailure)
                 XCTAssertTrue(result.error == UserRequestErrorType.UserNameErr)
@@ -93,9 +93,6 @@ class SignUpTest: XCTestCase {
     
     
     /**
-     注册密码错误
-     */
-    /**
      注册手机号错误
      */
     func testSignUpPasswdErr() {
@@ -106,7 +103,7 @@ class SignUpTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignUpPasswdErr succeed")
             
-            userNetReq.requestSignUp(para.0, safetyCode: para.2, passwd: para.1) { result in
+            UserNetRequestData.shareApi.requestSignUp(para.0, safetyCode: para.2, passwd: para.1) { result in
                 
                 XCTAssertTrue(result.isFailure)
                 XCTAssertTrue(result.error == UserRequestErrorType.PassWdErr)
