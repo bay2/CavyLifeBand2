@@ -15,6 +15,8 @@
 		4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */; };
 		4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
+		683655271CBB3B2C009373EA /* SettingSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */; };
+		683655281CBB3B2C009373EA /* SettingSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683655261CBB3B2C009373EA /* SettingSwitchTableViewCell.xib */; };
 		685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */; };
 		685204E91CB7938C004179B0 /* AddClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E81CB7938C004179B0 /* AddClockViewController.swift */; };
 		685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */; };
@@ -187,6 +189,8 @@
 		4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountInfo_Ok.json; sourceTree = "<group>"; };
 		4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FriendInfo_Ok.json; sourceTree = "<group>"; };
 		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSwitchTableViewCell.swift; sourceTree = "<group>"; };
+		683655261CBB3B2C009373EA /* SettingSwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingSwitchTableViewCell.xib; sourceTree = "<group>"; };
 		685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockTableHeaderView.swift; sourceTree = "<group>"; };
 		685204E81CB7938C004179B0 /* AddClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockViewController.swift; sourceTree = "<group>"; };
 		685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersSettingViewController.swift; sourceTree = "<group>"; };
@@ -431,6 +435,8 @@
 				68C558CE1CB751050031719D /* IntelligentClockTableFooterView.swift */,
 				68C558D21CB754090031719D /* IntelligentClockCell.swift */,
 				68C558D31CB754090031719D /* IntelligentClockCell.xib */,
+				683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */,
+				683655261CBB3B2C009373EA /* SettingSwitchTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -949,8 +955,8 @@
 			buildPhases = (
 				D517CEF9A44190E5F6B327FB /* Check Pods Manifest.lock */,
 				917DA9641C3B8EB700FF675D /* Sources */,
-				917DA9651C3B8EB700FF675D /* Frameworks */,
 				917DA9661C3B8EB700FF675D /* Resources */,
+				917DA9651C3B8EB700FF675D /* Frameworks */,
 				9C96EDCAA15349112C23D4D1 /* Embed Pods Frameworks */,
 				014978E6D44FBCCACD14AACB /* Copy Pods Resources */,
 				FA2D68840715E9D8900A434B /* Tailor */,
@@ -1065,6 +1071,7 @@
 				9114D1EC1C97AB05008CB4CE /* Main.storyboard in Resources */,
 				913D0BD81C3FA126006EE7F8 /* Camera.storyboard in Resources */,
 				9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */,
+				683655281CBB3B2C009373EA /* SettingSwitchTableViewCell.xib in Resources */,
 				91EB796C1CAE075C00ED3E67 /* Sign_In_Error.json in Resources */,
 				917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */,
 				9114D2031C993166008CB4CE /* Home.storyboard in Resources */,
@@ -1271,6 +1278,7 @@
 				9199E4881CAE4A7D00397883 /* AccountMangerProtocol.swift in Sources */,
 				91E1B4FB1CA6A475008ADEE6 /* FriendInfoListOper.swift in Sources */,
 				685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */,
+				683655271CBB3B2C009373EA /* SettingSwitchTableViewCell.swift in Sources */,
 				9114D1F71C97AB05008CB4CE /* GoalView.swift in Sources */,
 				68C558D41CB754090031719D /* IntelligentClockCell.swift in Sources */,
 				9114D1F21C97AB05008CB4CE /* UserProtocolView.swift in Sources */,
