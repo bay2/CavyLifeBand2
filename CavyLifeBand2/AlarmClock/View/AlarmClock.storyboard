@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="egO-B4-w8D">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="SPy-r4-wyc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -64,8 +64,8 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UP4-j5-PRN">
                                                 <rect key="frame" x="0.0" y="0.0" width="540" height="50"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="智能唤醒" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hao-aF-0xx">
-                                                        <rect key="frame" x="0.0" y="15" width="64" height="20"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hao-aF-0xx">
+                                                        <rect key="frame" x="0.0" y="25" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -83,7 +83,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="JC3-Nx-qzM" secondAttribute="trailing" id="moB-05-dHi"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="允许你闹钟在目标唤醒时间之前30分钟内将我从浅度睡眠中唤醒，让我更轻松的起床。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZw-JW-Bmj">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jZw-JW-Bmj">
                                                 <rect key="frame" x="0.0" y="50" width="540" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="29" id="rrf-FU-UGe"/>
@@ -99,7 +99,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="lDE-8q-LD6"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="闹钟周期" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9V-BE-oH7">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t9V-BE-oH7">
                                                 <rect key="frame" x="0.0" y="120" width="540" height="16"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="16" id="a5H-Rb-IdT"/>
@@ -131,8 +131,12 @@
                                                         </view>
                                                     </collectionViewCell>
                                                 </cells>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="yOG-bT-bp3" id="75R-G2-zkb"/>
+                                                    <outlet property="delegate" destination="yOG-bT-bp3" id="PFN-KP-FcJ"/>
+                                                </connections>
                                             </collectionView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="小提示" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S82-Mm-c0d">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S82-Mm-c0d">
                                                 <rect key="frame" x="0.0" y="292" width="540" height="14"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="14" id="GBE-2a-EDg"/>
@@ -141,7 +145,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5f6-aL-HpM">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5f6-aL-HpM">
                                                 <rect key="frame" x="0.0" y="316" width="540" height="29"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="29" id="sJ3-Gq-NRK"/>
@@ -157,7 +161,7 @@
                                                     <constraint firstAttribute="height" constant="1" id="ghp-9A-leJ"/>
                                                 </constraints>
                                             </view>
-                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WHX-xg-It0">
+                                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="WHX-xg-It0">
                                                 <rect key="frame" x="0.0" y="366" width="540" height="210"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="210" id="R9w-UT-Wve"/>
@@ -239,7 +243,16 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="700"/>
                     <connections>
+                        <outlet property="alarmCircleDescriptionLabel" destination="5f6-aL-HpM" id="Fpe-CL-bUC"/>
+                        <outlet property="alarmCircleSubTitleLabel" destination="S82-Mm-c0d" id="R4k-FY-qGl"/>
+                        <outlet property="alarmCircleTitleLabel" destination="t9V-BE-oH7" id="I9r-gw-XSb"/>
+                        <outlet property="awakeDescriptionLabel" destination="jZw-JW-Bmj" id="65k-iW-K43"/>
+                        <outlet property="awakeTitleLabel" destination="hao-aF-0xx" id="Gch-XK-0Dp"/>
+                        <outlet property="collectionView" destination="tLb-Uo-TDC" id="gPt-Kg-3Mn"/>
                         <outlet property="confirmBtn" destination="twM-fQ-OfY" id="z3B-Mg-6P3"/>
+                        <outlet property="datePicker" destination="WHX-xg-It0" id="Lhz-Uy-Z7K"/>
+                        <outlet property="separatorViewFisrt" destination="oDr-Sq-IHz" id="S0Z-44-RBN"/>
+                        <outlet property="separatorViewSeconde" destination="M1v-rQ-T06" id="gUD-Gk-PP4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rl7-c6-0KT" userLabel="First Responder" sceneMemberID="firstResponder"/>

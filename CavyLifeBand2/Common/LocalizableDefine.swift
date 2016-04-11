@@ -249,6 +249,40 @@ enum L10n {
   case ContactsChangeSelfNamePlaceHolder
   /// 手环振动提醒 取消传统声音唤醒体系
   case AlarmClockIntelligentClockTableFooterInfo
+  /// 智能闹钟
+  case AlarmClockTitle
+  /// 智能唤醒
+  case AlarmClockAwakeTitle
+  /// 允许你闹钟在目标唤醒时间之前30分钟内将我从浅度睡眠中唤醒，让我更轻松的起床。
+  case AlarmClockAwakeDescription
+  /// 闹钟周期
+  case AlarmClockAlarmCircleTitle
+  /// 小提示
+  case AlarmClockAlarmCircleSubTitle
+  /// 闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。
+  case AlarmClockAlarmCircleDescription
+  /// 安全
+  case SettingSafetyTitle
+  /// 点击添加
+  case SettingSafetyTableCellContactButton
+  /// 紧急联系人
+  case SettingSafetyTableCellContactTitle
+  /// GPS定位
+  case SettingSafetyTableCellGPSTitle
+  /// 紧急报警
+  case SettingSafetyTableFooterTitle
+  /// 紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。
+  case SettingSafetyTableFooterInfo
+  /// 来电提醒
+  case SettingReminderPhoneCallTitle
+  /// 秒未接提醒
+  case SettingReminderPhoneCallDescription
+  /// 短信提醒
+  case SettingReminderMessageTitle
+  /// 振动一次通知提醒
+  case SettingReminderMessageDescription
+  /// 断线手环自动重连
+  case SettingReminderReconnectTitle
 }
 
 extension L10n: CustomStringConvertible {
@@ -502,6 +536,40 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.ChangeSelfName.PlaceHolder")
       case .AlarmClockIntelligentClockTableFooterInfo:
         return L10n.tr("AlarmClock.IntelligentClockTableFooter.Info")
+      case .AlarmClockTitle:
+        return L10n.tr("AlarmClock.Title")
+      case .AlarmClockAwakeTitle:
+        return L10n.tr("AlarmClock.Awake.Title")
+      case .AlarmClockAwakeDescription:
+        return L10n.tr("AlarmClock.Awake.Description")
+      case .AlarmClockAlarmCircleTitle:
+        return L10n.tr("AlarmClock.AlarmCircle.Title")
+      case .AlarmClockAlarmCircleSubTitle:
+        return L10n.tr("AlarmClock.AlarmCircle.SubTitle")
+      case .AlarmClockAlarmCircleDescription:
+        return L10n.tr("AlarmClock.AlarmCircle.Description")
+      case .SettingSafetyTitle:
+        return L10n.tr("Setting.Safety.Title")
+      case .SettingSafetyTableCellContactButton:
+        return L10n.tr("Setting.SafetyTableCell.ContactButton")
+      case .SettingSafetyTableCellContactTitle:
+        return L10n.tr("Setting.SafetyTableCell.ContactTitle")
+      case .SettingSafetyTableCellGPSTitle:
+        return L10n.tr("Setting.SafetyTableCell.GPSTitle")
+      case .SettingSafetyTableFooterTitle:
+        return L10n.tr("Setting.SafetyTableFooter.Title")
+      case .SettingSafetyTableFooterInfo:
+        return L10n.tr("Setting.SafetyTableFooter.Info")
+      case .SettingReminderPhoneCallTitle:
+        return L10n.tr("Setting.ReminderPhoneCall.Title")
+      case .SettingReminderPhoneCallDescription:
+        return L10n.tr("Setting.ReminderPhoneCall.Description")
+      case .SettingReminderMessageTitle:
+        return L10n.tr("Setting.ReminderMessage.Title")
+      case .SettingReminderMessageDescription:
+        return L10n.tr("Setting.ReminderMessage.Description")
+      case .SettingReminderReconnectTitle:
+        return L10n.tr("Setting.ReminderReconnect.Title")
     }
   }
 

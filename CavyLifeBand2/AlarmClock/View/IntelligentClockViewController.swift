@@ -31,7 +31,7 @@ class IntelligentClockViewController: ContactsBaseViewController {
         // Do any additional setup after loading the view.
         self.automaticallyAdjustsScrollViewInsets = false
         
-        self.navigationItem.title = "智能闹钟"
+        self.navigationItem.title = L10n.AlarmClockTitle.string
         Log.warning("|\(self.className)| ---- NavigationBar Title 待修改")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AlarmClockAdd"),
                                                                  style: .Plain,
@@ -52,7 +52,7 @@ class IntelligentClockViewController: ContactsBaseViewController {
     
 
     func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
-        print("test")
+        Log.warning("|\(self.className)| -- 右上角添加")
     }
     
     /**

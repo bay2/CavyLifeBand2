@@ -17,7 +17,11 @@ class SafetySettingViewController: UIViewController {
     
     let tableSectionHeaderHeight: CGFloat = 10.0
     
-    let tableSectionFooterHeight: CGFloat = 88.0
+    let tableSectionFooterHeight: CGFloat = 100.0
+    
+    let safetySwitchCell = "SettingSwitchTableViewCell"
+    
+    let safetyContactCell = "EmergencyContactPersonCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,12 +30,23 @@ class SafetySettingViewController: UIViewController {
         
         self.automaticallyAdjustsScrollViewInsets = false
         
+        self.navigationItem.title = L10n.SettingSafetyTitle.string
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AlarmClockAdd"),
+                                                                 style: .Plain,
+                                                                 target: self,
+                                                                 action: #selector(rightBarBtnAciton(_:)))
+        
         tableView.rowHeight       = 50.0
         tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
         tableView.tableHeaderView = UIView()
         tableView.tableFooterView = UIView()
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         tableView.showsVerticalScrollIndicator = false
+        
+        tableView.registerNib(UINib(nibName: safetySwitchCell, bundle: nil), forCellReuseIdentifier: safetySwitchCell)
+        
+        tableView.registerNib(UINib(nibName: safetyContactCell, bundle: nil), forCellReuseIdentifier: safetyContactCell)
         
         tableView.snp_makeConstraints { (make) in
             
@@ -50,15 +65,9 @@ class SafetySettingViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
+        Log.warning("|\(self.className)| -- 右上角添加")
     }
-    */
 
 }
 
@@ -79,10 +88,17 @@ extension SafetySettingViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell.init(style: .Default, reuseIdentifier: "cell")
-        
-        return cell
-        
+       
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier(safetySwitchCell, forIndexPath: indexPath) as? SettingSwitchTableViewCell
+            cell?.setWithStyle(.NoneDescription)
+            cell?.titleLabel.text = L10n.SettingSafetyTableCellGPSTitle.string
+            return cell!
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier(safetyContactCell, forIndexPath: indexPath) as? EmergencyContactPersonCell
+            
+            return cell!
+        }
         
     }
     
@@ -100,9 +116,15 @@ extension SafetySettingViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let tableHeaderView = IntelligentClockTableHeaderView(frame: CGRect(x: 0, y: 0, w: ez.screenWidth - tableViewMargin * 2, h: tableSectionHeaderHeight))
+        let tableHeaderView = IntelligentClockTableHeaderView(frame: CGRect(x: 0, y: 0, w: self.tableView.size.width, h: tableSectionHeaderHeight))
         
         return tableHeaderView
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let tableFooterView = SafetySettingTableFooterView(frame: CGRect(x: 0, y: 0, w: self.tableView.size.width, h: tableSectionFooterHeight))
+        
+        return tableFooterView
     }
     
 }

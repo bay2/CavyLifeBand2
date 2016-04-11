@@ -22,9 +22,9 @@ class IntelligentClockCell: UITableViewCell {
         
         self.backgroundColor = UIColor.whiteColor()
         
-        timeLabel.textColor = UIColor(named: .ContactsTitleColor)
+        timeLabel.textColor = UIColor(named: .SettingTableCellTitleColor)
         
-        dayLabel.textColor = UIColor(named: .ContactsIntrouduce)
+        dayLabel.textColor = UIColor(named: .SettingTableCellInfoGrayColor)
         
         timeLabel.text = "08:30"
         

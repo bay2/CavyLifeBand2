@@ -16,6 +16,16 @@ class RemindersSettingViewController: UIViewController {
     
     let tableSectionHeight: CGFloat = 10.0
     
+    let tableSwitchCellHeight: CGFloat = 50.0
+    
+    let tableScrollCellHeight: CGFloat = 75.0 + 20 + 20
+    
+    let reminderSettingCell = "SettingSwitchTableViewCell"
+    
+    var tableList = {
+        return ["", "", "", ""]
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +44,8 @@ class RemindersSettingViewController: UIViewController {
             
         }
         
+        tableView.registerNib(UINib.init(nibName: reminderSettingCell, bundle: nil), forCellReuseIdentifier: reminderSettingCell)
+        
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
     }
@@ -49,22 +61,50 @@ class RemindersSettingViewController: UIViewController {
 extension RemindersSettingViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 3
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 2 {
-            return 2
-        } else {
-            return 1
-        }
+        return tableList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell.init(style: .Default, reuseIdentifier: "cell")
+//        let cell = UITableViewCell.init(style: .Default, reuseIdentifier: "cell")
         
-        return cell
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(reminderSettingCell, forIndexPath: indexPath) as? SettingSwitchTableViewCell
+        
+        if tableList.count == 4 {
+            switch indexPath.row {
+            case 0:
+                cell?.setWithStyle(.RedDescription)
+            case 1:
+                cell?.setWithStyle(.GrayDescription)
+            case 2:
+                cell?.setWithStyle(.GrayDescription)
+            case 3:
+                cell?.setWithStyle(.NoneDescription)
+            default:
+                break
+            }
+        } else {
+            switch indexPath.row {
+            case 0:
+                cell?.setWithStyle(.RedDescription)
+            case 1:
+                cell?.setWithStyle(.GrayDescription)
+            case 2:
+                cell?.setWithStyle(.NoneDescription)
+            default:
+                break
+            }
+        }
+        
+        
+        
+        
+        return cell!
         
         
     }
@@ -100,6 +140,14 @@ extension RemindersSettingViewController: UITableViewDelegate {
         
         return header
         
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if tableList.count == 4 && indexPath.row == 1 {
+            return tableScrollCellHeight
+        }
+        
+        return tableSwitchCellHeight
     }
     
 }

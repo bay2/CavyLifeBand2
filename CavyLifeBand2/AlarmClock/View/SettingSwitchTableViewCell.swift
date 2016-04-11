@@ -28,7 +28,11 @@ class SettingSwitchTableViewCell: UITableViewCell {
         
         self.descriptionLabel.hidden = true
         
-        self.descriptionLabel.text = ""
+        self.descriptionLabel.text = "我是来电提醒lalal"
+        
+        self.titleLabel.text = "来电提醒"
+        
+        titleLabel.textColor = UIColor(named: .SettingTableCellTitleColor)
         
     }
 
@@ -45,12 +49,12 @@ class SettingSwitchTableViewCell: UITableViewCell {
         case .RedDescription:
             descriptionLabel.hidden = false
             descriptionLabel.font = UIFont.systemFontOfSize(14.0)
-            descriptionLabel.textColor = UIColor(named: .ContactsAddFriendButtonColor)
+            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoYellowColor)
             
         case .GrayDescription:
             descriptionLabel.hidden = false
-            descriptionLabel.font = UIFont.systemFontOfSize(13.0)
-            descriptionLabel.textColor = UIColor(named: .ContactsIntrouduce)
+            descriptionLabel.font = UIFont.systemFontOfSize(12.0)
+            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoGrayColor)
             
         case .NoneDescription:
             descriptionLabel.hidden = true

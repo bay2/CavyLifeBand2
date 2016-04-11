@@ -15,6 +15,36 @@ extension UIColor {
 
 extension UIColor {
   enum Name {
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f2f2f2"></span>
+    /// Alpha: 100% <br/> (0xf2f2f2ff)
+    case AlarmClockDateBtnBGNormalColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff993f"></span>
+    /// Alpha: 100% <br/> (0xff993fff)
+    case AlarmClockDateBtnBGSelectedColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#858585"></span>
+    /// Alpha: 100% <br/> (0x858585ff)
+    case AlarmClockDateBtnTextNormalColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+    /// Alpha: 100% <br/> (0xffffffff)
+    case AlarmClockDateBtnTextSelectedColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#cccccc"></span>
+    /// Alpha: 100% <br/> (0xccccccff)
+    case AlarmClockSeparatorColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 30% <br/> (0x0000004d)
+    case AlarmClockSettingDescription2Color
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 50% <br/> (0x00000080)
+    case AlarmClockSettingDescriptionColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case AlarmClockSettingTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 30% <br/> (0x0000004d)
+    case AlarmClockTableCellDescriptionColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case AlarmClockTableCellTitleColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 100% <br/> (0x000000ff)
     case CameraBgColor
@@ -132,6 +162,18 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case PageIndicatorTintColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 30% <br/> (0x0000004d)
+    case SettingTableCellInfoGrayColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff9138"></span>
+    /// Alpha: 100% <br/> (0xff9138ff)
+    case SettingTableCellInfoYellowColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case SettingTableCellTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 50% <br/> (0x00000080)
+    case SettingTableFooterInfoColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#1dbcff"></span>
     /// Alpha: 100% <br/> (0x1dbcffff)
     case SignInBackground
@@ -159,6 +201,16 @@ extension UIColor {
 
     var rgbaValue: UInt32! {
       switch self {
+      case .AlarmClockDateBtnBGNormalColor: return 0xf2f2f2ff
+      case .AlarmClockDateBtnBGSelectedColor: return 0xff993fff
+      case .AlarmClockDateBtnTextNormalColor: return 0x858585ff
+      case .AlarmClockDateBtnTextSelectedColor: return 0xffffffff
+      case .AlarmClockSeparatorColor: return 0xccccccff
+      case .AlarmClockSettingDescription2Color: return 0x0000004d
+      case .AlarmClockSettingDescriptionColor: return 0x00000080
+      case .AlarmClockSettingTitleColor: return 0x000000b3
+      case .AlarmClockTableCellDescriptionColor: return 0x0000004d
+      case .AlarmClockTableCellTitleColor: return 0x000000b3
       case .CameraBgColor: return 0x000000ff
       case .CameraChoose: return 0xffffffb3
       case .CameraNoChoose: return 0xffffff33
@@ -198,6 +250,10 @@ extension UIColor {
       case .MainPageBtnText: return 0xb46e00ff
       case .MainPageSelectedBtn: return 0xecbc46ff
       case .PageIndicatorTintColor: return 0x00000033
+      case .SettingTableCellInfoGrayColor: return 0x0000004d
+      case .SettingTableCellInfoYellowColor: return 0xff9138ff
+      case .SettingTableCellTitleColor: return 0x000000b3
+      case .SettingTableFooterInfoColor: return 0x00000080
       case .SignInBackground: return 0x1dbcffff
       case .SignInForgotPwdBtnText: return 0x00000066
       case .SignInMainTextColor: return 0x00000080
