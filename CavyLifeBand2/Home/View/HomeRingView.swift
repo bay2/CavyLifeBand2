@@ -29,21 +29,39 @@ class HomeRingView: UIView {
     
     
     
-    func  initWith(ringStyle: RingStyle) {
+    /**
+     计步
+     
+     - parameter ringStyle:     圆环类型
+     - parameter targetNumber:  目标值
+     - parameter currentNumber: 当前值
+     */
+    func  stepRingWith(ringStyle: RingStyle, targetNumber: Int, currentNumber: Int) {
         
         switch ringStyle {
             
         case .SleepRing:
-            Log.info()
+            Log.info("SleepRing")
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
         case .StepRing:
-            Log.info()
+            Log.info("SleepRing")
             
-        default:
-            <#code#>
+            
+            
+            
+            
+            
         }
-        
-        
         
     }
     

@@ -10,14 +10,14 @@ import UIKit
 import EZSwiftExtensions
 
 class HomeUpperView: UIView {
-
-        /// 睡眠环
-    @IBOutlet weak var sleepRing: UIView!
     
-        ///  计步环
-    @IBOutlet weak var stepRing: UIView!
+    /// 睡眠环
+    @IBOutlet weak var sleepRing: HomeRingView!
     
-        /// 天气
+    ///  计步环
+    @IBOutlet weak var stepRing: HomeRingView!
+    
+    /// 天气
     @IBOutlet weak var weatherView: UIView!
     
 
@@ -37,12 +37,14 @@ class HomeUpperView: UIView {
      */
     func allViewLayout() {
         
-        
-        
-        
-        
-        
         self.frame = CGRectMake(0, 0, ez.screenWidth, 96 + ez.screenWidth * 0.55)
+        
+        
+        
+        
+        
+        
+        
         
     }
     
