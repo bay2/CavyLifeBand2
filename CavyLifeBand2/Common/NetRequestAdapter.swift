@@ -11,9 +11,10 @@ import Log
 import EZSwiftExtensions
 import JSONJoy
 
+typealias CompletionHandlernType = (Result<AnyObject, UserRequestErrorType>) -> Void
+
 class NetRequestAdapter: NSObject {
     
-    typealias CompletionHandlernType = (Result<AnyObject, UserRequestErrorType>) -> Void
     
     /**
      post 网络请求
@@ -62,6 +63,11 @@ class NetRequestAdapter: NSObject {
     
 }
 
+/**
+ *  @author xuemincai
+ *
+ *  通用回应消息
+ */
 struct CommenMsg: JSONJoy {
     
     var msg: String?

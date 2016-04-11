@@ -14,11 +14,23 @@ class PictureView: UIView {
 
     var titleLab = UILabel()
     var titleInfo = UILabel()
-    var middleImgView = AnimatableImageView()
+    var middleImgView: AnimatableImageView?
     var bottomLab = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+    }
+    
+    convenience init(title: String = "", titleInfo: String = "", bottomInfo: String = "", midImage: AnimatableImageView, frame: CGRect = CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12)) {
+        
+        self.init(frame: frame)
+        
+        self.titleLab.text = title
+        self.titleInfo.text = titleInfo
+        self.bottomLab.text = bottomInfo
+        
+        self.middleImgView = midImage
         
         pictureViewLayout()
         
@@ -32,7 +44,7 @@ class PictureView: UIView {
         
         self.addSubview(titleLab)
         self.addSubview(titleInfo)
-        self.addSubview(middleImgView)
+        self.addSubview(middleImgView!)
         self.addSubview(bottomLab)
         
         titleLab.font = UIFont.systemFontOfSize(18)
@@ -52,8 +64,8 @@ class PictureView: UIView {
             make.top.equalTo(titleLab).offset(ez.screenWidth * 0.04 + 12)
         }
 
-        middleImgView.backgroundColor = UIColor.whiteColor()
-        middleImgView.snp_makeConstraints { (make) -> Void in
+        middleImgView!.backgroundColor = UIColor.whiteColor()
+        middleImgView!.snp_makeConstraints { (make) -> Void in
             make.size.equalTo(CGSizeMake(ez.screenWidth * 0.72, ez.screenWidth * 0.72))
             make.center.equalTo(self)
         }
@@ -64,7 +76,7 @@ class PictureView: UIView {
         bottomLab.snp_makeConstraints { (make) -> Void in
             make.size.equalTo(CGSizeMake(ez.screenWidth * 0.6, 12))
             make.centerX.equalTo(self)
-            make.top.equalTo(middleImgView).offset(ez.screenWidth * 0.76)
+            make.top.equalTo(middleImgView!).offset(ez.screenWidth * 0.76)
         }
         
     }

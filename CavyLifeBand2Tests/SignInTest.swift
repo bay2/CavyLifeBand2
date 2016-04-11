@@ -43,7 +43,7 @@ class SignInTest: XCTestCase {
             
             let expectatoin = expectationWithDescription("testSignInOk succes")
             
-            userNetReq.requestSignIn(para.0, passwd: para.1) { result in
+            UserNetRequestData.shareApi.requestSignIn(para.0, passwd: para.1) { result in
                 
                 XCTAssertTrue(result.isSuccess)
                 
@@ -81,7 +81,7 @@ class SignInTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignInErr succeed")
             
-            userNetReq.requestSignIn(para.0, passwd: para.1) { result in
+            UserNetRequestData.shareApi.requestSignIn(para.0, passwd: para.1) { result in
                 
                 XCTAssertTrue(result.isSuccess)
                 
@@ -108,7 +108,7 @@ class SignInTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignInPasswdErr succeed")
             
-            userNetReq.requestSignIn(para.0, passwd: para.1) { result in
+            UserNetRequestData.shareApi.requestSignIn(para.0, passwd: para.1) { result in
                 
                 XCTAssertTrue(result.isFailure)
                 XCTAssertTrue(result.error == UserRequestErrorType.PassWdErr)
@@ -131,7 +131,7 @@ class SignInTest: XCTestCase {
             
             let expectation = expectationWithDescription("testSignInPasswdNil succeed")
             
-            userNetReq.requestSignIn(para.0, passwd: para.1) { result in
+            UserNetRequestData.shareApi.requestSignIn(para.0, passwd: para.1) { result in
                 
                 XCTAssertTrue(result.isFailure)
                 XCTAssertTrue(result.error == UserRequestErrorType.PassWdNil)

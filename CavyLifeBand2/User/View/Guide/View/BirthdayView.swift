@@ -16,6 +16,11 @@ class BirthdayView: UIView, RulerViewDelegate {
     var dayLabel = UILabel()
     var dayRuler = RulerView()
     
+    let beginYear = 1901
+    var birthdayString: String {
+        return "\(self.yymmRuler.nowYear + beginYear)-\(self.yymmRuler.nowMonth)-\(self.dayRuler.nowDay)"
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
