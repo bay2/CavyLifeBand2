@@ -44,4 +44,4 @@ ContactsPKBtnColor: #FF9F22
 ContactsSearchFlagViewBg : #ffffff66
 ContactsAddFriendButtonColor : #ff9138
 ContactsAgreeButtonColor : #0dcf7f
-ContactsAccountLogoutButton : #ff6d01
+ContactsAccountLogoutButton : #ff6749

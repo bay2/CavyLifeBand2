@@ -6,8 +6,6 @@ import UIKit
 extension UIImage {
   enum Asset: String {
     case Backbtn = "backbtn"
-    case Camera = "camera"
-    case Camera_cutover = "camera_cutover"
     case CameraFlashAuto = "CameraFlashAuto"
     case CameraFlashClosed = "CameraFlashClosed"
     case CameraFlashOpen = "CameraFlashOpen"
@@ -16,7 +14,6 @@ extension UIImage {
     case CameraVideoShot = "CameraVideoShot"
     case CameraVideoStart = "CameraVideoStart"
     case CamerVideoWait = "CamerVideoWait"
-    case Cancel = "cancel"
     case Chosenbtn = "chosenbtn"
     case ContactsAccountEditButton = "ContactsAccountEditButton"
     case ContactsAddrssBookNormal = "ContactsAddrssBookNormal"
@@ -29,9 +26,6 @@ extension UIImage {
     case ContactsNearbySelected = "ContactsNearbySelected"
     case ContactsRecommendNormal = "ContactsRecommendNormal"
     case ContactsRecommendSelected = "ContactsRecommendSelected"
-    case Flash_automatic = "flash_automatic"
-    case Flash_off = "flash_off"
-    case Flash_on = "flash_on"
     case GuideBluetooth = "GuideBluetooth"
     case GuideFlagH = "GuideFlagH"
     case GuideFlagV = "GuideFlagV"
@@ -63,7 +57,6 @@ extension UIImage {
     case PersonalInfoHonorLighted = "PersonalInfoHonorLighted"
     case PersonalInfoHonorNormal = "PersonalInfoHonorNormal"
     case PersonalInfoMale = "PersonalInfoMale"
-    case Photograph = "photograph"
     case Splash = "splash"
     case Unchosenbtn = "unchosenbtn"
 

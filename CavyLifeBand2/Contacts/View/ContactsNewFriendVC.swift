@@ -8,13 +8,16 @@
 
 import UIKit
 
-class ContactsNewFriendVC: ContactsBaseViewController {
+class ContactsNewFriendVC: UIViewController, BaseViewControllerPresenter {
+    
+    var navTitle: String { return L10n.ContactsTitle.string }
 
     @IBOutlet weak var newFriendTableView: UITableView!
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        self.updateNavUI()
 
         newFriendTableView.registerNib(UINib(nibName: "ContactsAddFriendCell", bundle: nil), forCellReuseIdentifier: "ContactsAddFriendCell")
 

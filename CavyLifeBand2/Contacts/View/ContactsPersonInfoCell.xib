@@ -29,7 +29,6 @@
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GzH-gZ-AHp">
                     <rect key="frame" x="126" y="67" width="16" height="16"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="GzH-gZ-AHp" secondAttribute="height" multiplier="1:1" id="9f4-c3-QeK"/>
@@ -73,7 +72,6 @@
                 <constraint firstItem="RnQ-lT-1Qn" firstAttribute="bottom" secondItem="UQF-Hk-qkU" secondAttribute="bottom" id="8ks-Lv-w2H"/>
                 <constraint firstItem="ogx-6m-de5" firstAttribute="centerY" secondItem="Pvp-tV-MnP" secondAttribute="centerY" constant="-8" id="J8K-ac-Rgm"/>
                 <constraint firstItem="GzH-gZ-AHp" firstAttribute="leading" secondItem="ogx-6m-de5" secondAttribute="trailing" constant="16" id="PSc-TY-jaa"/>
-                <constraint firstItem="x30-J2-qoo" firstAttribute="leading" secondItem="GzH-gZ-AHp" secondAttribute="trailing" constant="8" id="b21-pd-pMz"/>
                 <constraint firstItem="UQF-Hk-qkU" firstAttribute="centerY" secondItem="ogx-6m-de5" secondAttribute="centerY" constant="-9" id="bhC-Ji-FFH"/>
                 <constraint firstItem="x30-J2-qoo" firstAttribute="centerY" secondItem="GzH-gZ-AHp" secondAttribute="centerY" id="f90-ke-nT4"/>
                 <constraint firstItem="x30-J2-qoo" firstAttribute="leading" secondItem="ogx-6m-de5" secondAttribute="trailing" constant="40" placeholder="YES" id="ktW-03-fz8"/>
@@ -84,11 +82,6 @@
                 <constraint firstItem="G2M-Gt-fj4" firstAttribute="leading" secondItem="Pvp-tV-MnP" secondAttribute="leading" constant="30" id="vPx-AB-Kdc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="b21-pd-pMz"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="badgeView" destination="GzH-gZ-AHp" id="yp1-Am-bqb"/>
                 <outlet property="belowLabel" destination="x30-J2-qoo" id="Adl-FV-hOU"/>

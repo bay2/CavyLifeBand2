@@ -12,7 +12,7 @@ import Alamofire
 import AlamofireImage
 import Log
 
-class AccountManagerViewController: AccountManagerBaseViewController {
+class AccountManagerViewController: UIViewController {
     
     enum UserViewStyle {
         
@@ -63,8 +63,6 @@ class AccountManagerViewController: AccountManagerBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        updateTextFieldViewUI(textFieldView)
-
         setSubViewsTitle()
 
         defineSubViewsLayout()
@@ -78,6 +76,8 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         userNameTextField.backgroundColor = UIColor.whiteColor()
         passwdTextField.backgroundColor = UIColor.whiteColor()
         safetyCodeTextField.backgroundColor = UIColor.whiteColor()
+        
+        updateUI(textFieldView)
         
         setViewStyle()
 
@@ -212,7 +212,7 @@ class AccountManagerViewController: AccountManagerBaseViewController {
         safetyCodeBtn.hidden = dataSource!.isEmail
         emailSafetyCode.hidden = !dataSource!.isEmail
         
-        updateNavigationItemUI(dataSource!.navTitle, rightBtnText: dataSource!.itemRightTitle)
+        updateNavigationItemUI(dataSource!.navTitle, rightBtnTitle: dataSource!.itemRightTitle)
     }
     
     /**
@@ -231,10 +231,8 @@ class AccountManagerViewController: AccountManagerBaseViewController {
      
      - parameter sender:
      */
-    override func onClickRight(sender: AnyObject) {
+     func onClickRightBtn() {
 
-        super.onClickRight(sender)
-        
         var viewModel: AccountManagerViewDataSource?
         let nextView = StoryboardScene.Main.instantiateAccountManagerView()
         
@@ -403,7 +401,7 @@ extension AccountManagerViewController {
     
 }
 
-extension AccountManagerViewController: SignUpDelegate, ForgotPasswordDelegate, SendSafetyCodeDelegate, AccountMangerInputCheckDelegate {
+extension AccountManagerViewController: SignUpDelegate, ForgotPasswordDelegate, SendSafetyCodeDelegate, AccountMangerInputCheckDelegate, UserViewControllerPresentable {
     
     var userName: String {
         return userNameTextField.text!
