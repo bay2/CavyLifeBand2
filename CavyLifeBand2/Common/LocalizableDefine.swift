@@ -247,6 +247,10 @@ enum L10n {
   case ContactsChangeNotesNameButton
   /// 更改的昵称
   case ContactsChangeSelfNamePlaceHolder
+  /// 账户信息
+  case AccountInfoTitle
+  /// 退出登录
+  case AccountInfoLoginoutButtonTitle
 }
 
 extension L10n: CustomStringConvertible {
@@ -498,6 +502,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.ChangeNotesName.Button")
       case .ContactsChangeSelfNamePlaceHolder:
         return L10n.tr("Contacts.ChangeSelfName.PlaceHolder")
+      case .AccountInfoTitle:
+        return L10n.tr("AccountInfo.Title")
+      case .AccountInfoLoginoutButtonTitle:
+        return L10n.tr("AccountInfo.LoginoutButton.Title")
     }
   }
 

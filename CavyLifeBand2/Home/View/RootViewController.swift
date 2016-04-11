@@ -149,13 +149,19 @@ class RootViewController: UIViewController {
     }
 
     func hiddenLeftView() {
-
-        UIView.animateWithDuration(0.5) {
-
+        
+        UIView.animateWithDuration(0.5, animations: {
+            
             self.homeVC!.view.frame.origin = CGPointMake(0, 0)
             self.homeMaskView.backgroundColor = UIColor.clearColor()
-            self.homeMaskView.removeFromSuperview()
-
+        
+        }) {
+                
+            if $0 == true {
+                
+                self.homeMaskView.removeFromSuperview()
+                    
+            }
         }
 
     }

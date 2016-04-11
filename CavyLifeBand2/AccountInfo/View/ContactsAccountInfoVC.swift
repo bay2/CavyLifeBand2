@@ -16,7 +16,7 @@ protocol AccountItemDataSource {
     associatedtype viewModeType
 }
 
-class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserInfoRealmOperateDelegate
+class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserInfoRealmOperateDelegate
 {
     
     var realm: Realm = try! Realm()
@@ -48,9 +48,9 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     /// 徽章个数
     var badgeCount: Int = 6
     
+    var navTitle: String = L10n.AccountInfoTitle.string
+    
     var accountInfos: Array<AnyObject?> = []
-    var infoDataArray: Array<AnyObject?> = []
-    let infoTitleArray = [L10n.ContactsShowInfoGender.string, L10n.ContactsShowInfoHeight.string, L10n.ContactsShowInfoWeight.string, L10n.ContactsShowInfoBirth.string, L10n.ContactsShowInfoAddress.string]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +60,8 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         accountInfoQuery()
         
         addAllViews()
+        
+        self.updateNavUI()
         
     }
     
@@ -80,8 +82,8 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         
         let headCellViewModle  = PresonInfoCellViewModel(title: accountInfo.nickname, subTitle: userName, avatarUrl: accountInfo.avatarUrl)
         let genderCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoGender.string, info: gender)
-        let heightCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoHeight.string, info: accountInfo.height)
-        let weightCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoWeight.string, info: accountInfo.weight)
+        let heightCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoHeight.string, info: "\(accountInfo.height)cm")
+        let weightCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoWeight.string, info: "\(accountInfo.weight)kg")
         let birthCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoBirth.string, info: accountInfo.birthday)
         let addressCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoAddress.string, info: accountInfo.address)
         
@@ -122,12 +124,13 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         addTableView()
         addBadgeView(collectionViewHeight)
         
-        
         // 退出登录按钮
+        logoutButton.setTitle(L10n.AccountInfoLoginoutButtonTitle.string, forState: .Normal)
         logoutButton.layer.cornerRadius = CavyDefine.commonCornerRadius
         logoutButton.backgroundColor = UIColor(named: .ContactsAccountLogoutButton)
+        logoutButton.setBackgroundColor(UIColor(named: .ContactsAccountLogoutButton), forState: .Normal)
         
-        }
+    }
 
     /**
      添加TableView

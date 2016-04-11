@@ -12,7 +12,7 @@ import Log
 import Alamofire
 import JSONJoy
 
-class ContactsAddFriendVC: ContactsBaseViewController, UIScrollViewDelegate, UISearchResultsUpdating, ContactsSearchControllerDelegate {
+class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResultsUpdating, ContactsSearchControllerDelegate, BaseViewControllerPresenter {
     
     enum ContactsTabButtonTag: Int {
         
@@ -21,6 +21,8 @@ class ContactsAddFriendVC: ContactsBaseViewController, UIScrollViewDelegate, UIS
         case NearbyTag = 1002
         
     }
+    
+    var navTitle: String { return L10n.ContactsTitle.string }
     
     // 通讯录、推荐、附近 三个主按钮
     var searchBtnArray: [ContactsTabButton] = [ContactsTabButton(searchType: .AddressBook), ContactsTabButton(searchType: .Recommed), ContactsTabButton(searchType: .Nearby)]
@@ -52,6 +54,8 @@ class ContactsAddFriendVC: ContactsBaseViewController, UIScrollViewDelegate, UIS
 
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         buttonView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        updateNavUI()
 //        self.navBar?.translucent = false
         
         self.buttonView.snp_makeConstraints { (make) -> Void in

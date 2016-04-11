@@ -10,6 +10,7 @@ import XCTest
 
 class AccountInfoSecurityUITest: XCTestCase {
     
+    
     override func setUp() {
         super.setUp()
        
@@ -19,18 +20,11 @@ class AccountInfoSecurityUITest: XCTestCase {
         continueAfterFailure = false
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         if #available(iOS 9.0, *) {
-            XCUIApplication().launch()
             
             let app = XCUIApplication()
+            app.launchArguments = ["AccountInfoSecurityUITest"]
+            app.launch()
             app.buttons["test"].tap()
-            
-            let tablesQuery = app.tables
-            tablesQuery.staticTexts["信息公开"].tap()
-            
-            
-            let backBtn = app.navigationBars["联系人"].buttons["backbtn"]
-            backBtn.tap()
-            
             
             
         } else {
@@ -52,41 +46,54 @@ class AccountInfoSecurityUITest: XCTestCase {
             
             let app = XCUIApplication()
             
-            
-            app.buttons["test"].tap()
-            
             let tablesQuery = app.tables
-            tablesQuery.staticTexts["信息公开"].tap()
+            let openInfoTxt = tablesQuery.staticTexts["信息公开"]
+            openInfoTxt.tap()
             
-            let staticText = app.navigationBars["联系人"].staticTexts["联系人"]
-            staticText.tap()
-            let switch1 = tablesQuery.switches["身高"]
-            switch1.tap()
-            switch1.tap()
-            switch1.tap()
+            let staticText = app.navigationBars["信息公开"].staticTexts["信息公开"]
+            let backBtn = app.navigationBars["信息公开"].buttons["backbtn"]
+            XCTAssert(staticText.exists)
             
-            staticText.tap()
-            let switch2 = tablesQuery.switches["体重"]
-            switch2.tap()
-            switch2.tap()
+            let switchHeight = tablesQuery.switches["身高"]
+            let switchWeight = tablesQuery.switches["体重"]
+            let switchBirth = tablesQuery.switches["生日"]
             
-            staticText.tap()
-            let switch3 = tablesQuery.switches["生日"]
-            switch3.tap()
-            switch3.tap()
-            switch3.tap()
             
-            let backBtn = app.navigationBars["联系人"].buttons["backbtn"]
+            //关闭公开身高
+            switchHeight.tap()
             backBtn.tap()
             
+            openInfoTxt.tap()
+
             
-            app.buttons["test"].tap()
-            tablesQuery.staticTexts["信息公开"].tap()
-            switch3.tap()
-            
+            //关闭公开体重
+            switchHeight.tap()
+            switchWeight.tap()
             backBtn.tap()
+            openInfoTxt.tap()
+
             
-        } else {
+            //关闭公开生日
+            switchWeight.tap()
+            switchBirth.tap()
+            backBtn.tap()
+            openInfoTxt.tap()
+
+            
+            //全部关闭
+            switchWeight.tap()
+            switchHeight.tap()
+            backBtn.tap()
+            openInfoTxt.tap()
+
+            
+            //全部打开
+            switchHeight.tap()
+            switchWeight.tap()
+            switchBirth.tap()
+            backBtn.tap()
+            openInfoTxt.tap()
+
             
         }
         

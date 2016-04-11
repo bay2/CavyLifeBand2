@@ -11,7 +11,7 @@ import SnapKit
 import EZSwiftExtensions
 import Log
 
-class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
+class SignInViewController: UIViewController, SignInDelegate, UserViewControllerPresentable {
 
     // 登入按钮
     @IBOutlet weak var signInBtn: MainPageButton!
@@ -43,11 +43,8 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        
 
-        updateTextFieldViewUI(textFieldView)
-
-        updateNavigationItemUI(L10n.SignInTitle.string, rightBtnText: L10n.SignInSignUpItemBtn.string)
+        updateNavigationItemUI(L10n.SignInTitle.string, rightBtnTitle: L10n.SignInSignUpItemBtn.string)
 
         // 定义视图布局
         defineSubViewLayer()
@@ -59,9 +56,8 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
         userNameTextField.backgroundColor = UIColor.whiteColor()
         passwdTextField.backgroundColor = UIColor.whiteColor()
         
+        updateUI(textFieldView)
         
-        
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -150,7 +146,7 @@ class SignInViewController: AccountManagerBaseViewController, SignInDelegate {
      
      - parameter sender:
      */
-    override func onClickRight(sender: AnyObject) {
+     func onClickRight(sender: AnyObject) {
 
         let guideVC = StoryboardScene.Guide.instantiateGuideView()
         let guideVM = GuideBandBluetooth()

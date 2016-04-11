@@ -10,7 +10,7 @@ import UIKit
 import MHRotaryKnob
 import Log
 
-class ContactsReqFriendVC: ContactsBaseViewController {
+class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
 
     enum RequestStyle {
         
@@ -20,6 +20,7 @@ class ContactsReqFriendVC: ContactsBaseViewController {
         
     }
     
+    
     /// TextField
     @IBOutlet weak var requestTextField: UITextField!
     
@@ -28,10 +29,13 @@ class ContactsReqFriendVC: ContactsBaseViewController {
     
     var requestStyle: RequestStyle = .AddFriend
     
+    var navTitle: String { return L10n.ContactsTitle.string }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        updateNavUI()
 
         requestViewLayout()
         

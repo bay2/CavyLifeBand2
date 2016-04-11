@@ -14,6 +14,7 @@ protocol UserViewControllerPresentable {
     func onClickBackBtn()
     func onClickRightBtn()
     func updateNavigationItemUI(title: String, isNeedBack: Bool, rightBtnTitle: String)
+    func updateUI(textFieldView: UIView)
     
 }
 
@@ -38,6 +39,15 @@ extension UserViewControllerPresentable where Self: UIViewController {
         
         addRightBtn(navItemView, title: rightBtnTitle)
             
+        
+    }
+    
+    func updateUI(textFieldView: UIView) {
+        
+        self.view.backgroundColor = UIColor(named: .SignInBackground)
+        self.automaticallyAdjustsScrollViewInsets = false
+        textFieldView.backgroundColor = UIColor.whiteColor()
+        textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
     }
     
@@ -102,8 +112,6 @@ extension UserViewControllerPresentable where Self: UIViewController {
         rightBtn.setTitle(title, forState: .Normal)
         rightBtn.frame = CGRectMake(0, 0, 60, 30)
         rightBtn.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
-        rightBtn.addTarget(self, action: #selector(BaseViewController.onClickRight(_:)), forControlEvents: .TouchUpInside)
-        
         rightBtn.addTapGesture { _ in
             self.onClickRightBtn()
         }

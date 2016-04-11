@@ -11,11 +11,13 @@ import Log
 import RealmSwift
 import EZSwiftExtensions
                                                                
-class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UITableViewDataSource {
+class AccountInfoSecurityVC: UIViewController, UITableViewDelegate, UITableViewDataSource, BaseViewControllerPresenter {
 
     @IBOutlet weak var bottomView: UIView!
     
     @IBOutlet weak var tableView: UITableView!
+    
+    var navTitle: String { return L10n.HomeLifeListTitleInfoOpen.string }
     
     var realm: Realm = try! Realm()
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
@@ -37,6 +39,8 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
         
         addTableView()
         
+        updateNavUI()
+        
     }
     
     func addCellDataSource(dataSource: AccountInfoSecurityListDataSource) {
@@ -57,6 +61,14 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
         tableView.dataSource = self
         
     }
+    
+    /**
+     点击返回
+     */
+    func onClickBack() {
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+        self.popVC()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -69,7 +81,7 @@ class AccountInfoSecurityVC: ContactsBaseViewController, UITableViewDelegate, UI
         return 1
     }
     
-      func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSources.count
     }
     
