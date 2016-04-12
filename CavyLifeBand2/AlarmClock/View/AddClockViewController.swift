@@ -40,9 +40,9 @@ class AddClockViewController: UIViewController {
         
         self.navigationItem.title = L10n.AlarmClockTitle.string
         
-        separatorViewFisrt.backgroundColor = UIColor(named: .AlarmClockSeparatorColor)
+        separatorViewFisrt.backgroundColor = UIColor(named: .SettingSeparatorColor)
         
-        separatorViewSeconde.backgroundColor = UIColor(named: .AlarmClockSeparatorColor)
+        separatorViewSeconde.backgroundColor = UIColor(named: .SettingSeparatorColor)
         
         awakeTitleLabel.text = L10n.AlarmClockAwakeTitle.string
         

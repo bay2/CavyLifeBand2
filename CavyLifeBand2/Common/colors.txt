@@ -45,7 +45,6 @@ ContactsSearchFlagViewBg : #ffffff66
 ContactsAddFriendButtonColor : #ff9138
 ContactsAgreeButtonColor : #0dcf7f
 ContactsAccountLogoutButton : #ff6d01
-AlarmClockSeparatorColor : #cccccc
 AlarmClockDateBtnBGNormalColor : #f2f2f2
 AlarmClockDateBtnBGSelectedColor : #ff993f
 AlarmClockDateBtnTextNormalColor : #858585
@@ -55,6 +54,7 @@ AlarmClockTableCellDescriptionColor : #0000004D
 AlarmClockSettingTitleColor : #000000B3
 AlarmClockSettingDescriptionColor : #00000080
 AlarmClockSettingDescription2Color : #0000004D
+SettingSeparatorColor : #cccccc
 SettingTableCellTitleColor : #000000B3
 SettingTableCellInfoGrayColor : #0000004D
 SettingTableCellInfoYellowColor : #ff9138

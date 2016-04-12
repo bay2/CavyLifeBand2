@@ -10,12 +10,10 @@ import UIKit
 
 class SettingSwitchTableViewCell: UITableViewCell {
     
-    enum CavyLifeBand2SwitchStyle {
-        case RedDescription
-        case GrayDescription
-        case NoneDescription
-    }
+    
 
+    private var dataSource: SettingCellDataSource?
+    
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -34,6 +32,8 @@ class SettingSwitchTableViewCell: UITableViewCell {
         
         titleLabel.textColor = UIColor(named: .SettingTableCellTitleColor)
         
+//        selectSwitch.addTarget(nil, action: Selector("changeSwitchState:"), forControlEvents: .ValueChanged)
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -42,9 +42,31 @@ class SettingSwitchTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setWithStyle(contentStyle: CavyLifeBand2SwitchStyle) -> Void {
+    func setWithStyle(style: CavyLifeBand2SwitchStyle) -> Void {
+        switch style {
+            
+        case .RedDescription:
+            descriptionLabel.hidden = false
+            descriptionLabel.font = UIFont.systemFontOfSize(14.0)
+            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoYellowColor)
+            
+        case .GrayDescription:
+            descriptionLabel.hidden = false
+            descriptionLabel.font = UIFont.systemFontOfSize(12.0)
+            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoGrayColor)
+            
+        case .NoneDescription:
+            descriptionLabel.hidden = true
+            
+        }
+    }
+    
+    func configure(dataSource: SettingCellDataSource) {
         
-        switch contentStyle {
+        self.dataSource = dataSource
+        
+        //设置样式
+        switch dataSource.cellStyle {
             
         case .RedDescription:
             descriptionLabel.hidden = false
@@ -61,6 +83,57 @@ class SettingSwitchTableViewCell: UITableViewCell {
        
         }
         
+        titleLabel.text = dataSource.title
+        
+        descriptionLabel.text = dataSource.description
+        
+        selectSwitch.setOn(dataSource.isOpen, animated: true)
+        
+        
+        
+//        switch dataSource.title {
+//        case L10n.SettingReminderPhoneCallTitle.string:
+//            descriptionLabel.hidden = false
+//            descriptionLabel.font = UIFont.systemFontOfSize(14.0)
+//            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoYellowColor)
+//        case L10n.SettingReminderMessageTitle.string:
+//            descriptionLabel.hidden = false
+//            descriptionLabel.font = UIFont.systemFontOfSize(12.0)
+//            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoGrayColor)
+//        case L10n.SettingReminderReconnectTitle.string:
+//            descriptionLabel.hidden = true
+//        default:
+//            break
+//        }
+        
+        
+        
     }
+    
+    @IBAction func changeSwitchValue(sender: AnyObject) {
+        
+        dataSource?.changeSwitchStatus(sender as! UISwitch)
+        
+    }
+
+}
+
+enum CavyLifeBand2SwitchStyle {
+    case RedDescription
+    case GrayDescription
+    case NoneDescription
+}
+
+protocol SettingCellDataSource {
+    
+    var title: String { get }
+    
+    var description: String { get }
+    
+    var isOpen: Bool { get }
+    
+    var cellStyle: CavyLifeBand2SwitchStyle { get }
+    
+    func changeSwitchStatus(sender: UISwitch)
     
 }

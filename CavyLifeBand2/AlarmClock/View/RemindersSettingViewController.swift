@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class RemindersSettingViewController: UIViewController {
 
@@ -22,9 +23,13 @@ class RemindersSettingViewController: UIViewController {
     
     let reminderSettingCell = "SettingSwitchTableViewCell"
     
+    let reminderSeondesCell = "SecondsTableViewCell"
+    
     var tableList = {
         return ["", "", "", ""]
     }()
+    
+    var realm: Realm = try! Realm()
     
     
     override func viewDidLoad() {
@@ -46,6 +51,11 @@ class RemindersSettingViewController: UIViewController {
         
         tableView.registerNib(UINib.init(nibName: reminderSettingCell, bundle: nil), forCellReuseIdentifier: reminderSettingCell)
         
+        tableView.registerClass(SecondsTableViewCell.classForCoder(), forCellReuseIdentifier: reminderSeondesCell)
+        
+//        tableView.registerNib(UINib.init(nibName: reminderSeondesCell, bundle: nil), forCellReuseIdentifier: reminderSeondesCell)
+        
+        
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
     }
@@ -53,6 +63,39 @@ class RemindersSettingViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func changeSwitchState(sender: UISwitch) -> Void {
+        Log.warning("todo")
+        
+        if sender.on {
+            Log.info("on")
+            tableList.insertAsFirst("")
+            self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Top)
+            self.tableView.layoutIfNeeded()
+            UIView.animateWithDuration(0.3, animations: {
+                self.tableView.snp_updateConstraints(closure: { (make) in
+                    make.height.equalTo(285.0)
+                })
+                self.tableView.layoutIfNeeded()
+            })
+            
+        } else {
+            Log.info("off")
+            
+            tableList.removeLast()
+            self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Top)
+            
+            self.tableView.layoutIfNeeded()
+            
+            UIView.animateWithDuration(0.3, animations: {
+                self.tableView.snp_updateConstraints(closure: { (make) in
+                    make.height.equalTo(170.0)
+                })
+                self.tableView.layoutIfNeeded()
+            })
+
+        }
     }
 
 }
@@ -69,39 +112,43 @@ extension RemindersSettingViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+                
+        if tableList.count == 4 && indexPath.row == 1 {
+            let sencondsCell = tableView.dequeueReusableCellWithIdentifier(reminderSeondesCell, forIndexPath: indexPath) as? SecondsTableViewCell
+            
+            return sencondsCell!
+        }
         
-//        let cell = UITableViewCell.init(style: .Default, reuseIdentifier: "cell")
+        
         
         
         let cell = tableView.dequeueReusableCellWithIdentifier(reminderSettingCell, forIndexPath: indexPath) as? SettingSwitchTableViewCell
         
+        
+
         if tableList.count == 4 {
             switch indexPath.row {
             case 0:
-                cell?.setWithStyle(.RedDescription)
-            case 1:
-                cell?.setWithStyle(.GrayDescription)
+                cell?.configure(SettingSwitchPhoneCellViewModel(realm: realm))
             case 2:
-                cell?.setWithStyle(.GrayDescription)
+                cell?.configure(SettingSwitchMessageCellViewModel(realm: realm))
             case 3:
-                cell?.setWithStyle(.NoneDescription)
+                cell?.configure(SettingSwitchReconnectCellViewModel(realm: realm))
             default:
                 break
             }
         } else {
             switch indexPath.row {
             case 0:
-                cell?.setWithStyle(.RedDescription)
+                cell?.configure(SettingSwitchPhoneCellViewModel(realm: realm))
             case 1:
-                cell?.setWithStyle(.GrayDescription)
+                cell?.configure(SettingSwitchMessageCellViewModel(realm: realm))
             case 2:
-                cell?.setWithStyle(.NoneDescription)
+                cell?.configure(SettingSwitchReconnectCellViewModel(realm: realm))
             default:
                 break
             }
         }
-        
-        
         
         
         return cell!

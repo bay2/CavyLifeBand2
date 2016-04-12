@@ -8,8 +8,6 @@
 
 import UIKit
 import EZSwiftExtensions
-import SnapKit
-import Log
 
 class IntelligentClockViewController: ContactsBaseViewController {
 

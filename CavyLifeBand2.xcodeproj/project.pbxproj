@@ -20,6 +20,12 @@
 		6836552E1CBB4CEA009373EA /* SafetySettingTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6836552D1CBB4CEA009373EA /* SafetySettingTableFooterView.swift */; };
 		683655311CBB7E43009373EA /* AlarmClockDateCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6836552F1CBB7E43009373EA /* AlarmClockDateCollectionViewCell.swift */; };
 		683655321CBB7E43009373EA /* AlarmClockDateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683655301CBB7E43009373EA /* AlarmClockDateCollectionViewCell.xib */; };
+		6836557D1CBC84B7009373EA /* LineLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6836557A1CBC84B7009373EA /* LineLayout.swift */; };
+		6836557E1CBC84B7009373EA /* SecondsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6836557B1CBC84B7009373EA /* SecondsCollectionViewCell.swift */; };
+		6836557F1CBC84B7009373EA /* SecondsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6836557C1CBC84B7009373EA /* SecondsCollectionViewCell.xib */; };
+		683655821CBC85BE009373EA /* SecondsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655801CBC85BE009373EA /* SecondsTableViewCell.swift */; };
+		683655871CBCE559009373EA /* SettingRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655861CBCE559009373EA /* SettingRealmModel.swift */; };
+		683655891CBCF038009373EA /* SettingSwitchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655881CBCF038009373EA /* SettingSwitchCellViewModel.swift */; };
 		685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */; };
 		685204E91CB7938C004179B0 /* AddClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E81CB7938C004179B0 /* AddClockViewController.swift */; };
 		685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */; };
@@ -215,6 +221,12 @@
 		6836552D1CBB4CEA009373EA /* SafetySettingTableFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafetySettingTableFooterView.swift; sourceTree = "<group>"; };
 		6836552F1CBB7E43009373EA /* AlarmClockDateCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockDateCollectionViewCell.swift; sourceTree = "<group>"; };
 		683655301CBB7E43009373EA /* AlarmClockDateCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlarmClockDateCollectionViewCell.xib; sourceTree = "<group>"; };
+		6836557A1CBC84B7009373EA /* LineLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LineLayout.swift; sourceTree = "<group>"; };
+		6836557B1CBC84B7009373EA /* SecondsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondsCollectionViewCell.swift; sourceTree = "<group>"; };
+		6836557C1CBC84B7009373EA /* SecondsCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SecondsCollectionViewCell.xib; sourceTree = "<group>"; };
+		683655801CBC85BE009373EA /* SecondsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondsTableViewCell.swift; sourceTree = "<group>"; };
+		683655861CBCE559009373EA /* SettingRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingRealmModel.swift; sourceTree = "<group>"; };
+		683655881CBCF038009373EA /* SettingSwitchCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSwitchCellViewModel.swift; sourceTree = "<group>"; };
 		685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockTableHeaderView.swift; sourceTree = "<group>"; };
 		685204E81CB7938C004179B0 /* AddClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockViewController.swift; sourceTree = "<group>"; };
 		685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersSettingViewController.swift; sourceTree = "<group>"; };
@@ -467,6 +479,10 @@
 				685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */,
 				68C558CE1CB751050031719D /* IntelligentClockTableFooterView.swift */,
 				6836552D1CBB4CEA009373EA /* SafetySettingTableFooterView.swift */,
+				6836557A1CBC84B7009373EA /* LineLayout.swift */,
+				683655801CBC85BE009373EA /* SecondsTableViewCell.swift */,
+				6836557B1CBC84B7009373EA /* SecondsCollectionViewCell.swift */,
+				6836557C1CBC84B7009373EA /* SecondsCollectionViewCell.xib */,
 				68C558D21CB754090031719D /* IntelligentClockCell.swift */,
 				68C558D31CB754090031719D /* IntelligentClockCell.xib */,
 				683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */,
@@ -475,6 +491,8 @@
 				6836552A1CBB49F7009373EA /* EmergencyContactPersonCell.xib */,
 				6836552F1CBB7E43009373EA /* AlarmClockDateCollectionViewCell.swift */,
 				683655301CBB7E43009373EA /* AlarmClockDateCollectionViewCell.xib */,
+				683655861CBCE559009373EA /* SettingRealmModel.swift */,
+				683655881CBCF038009373EA /* SettingSwitchCellViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1176,6 +1194,7 @@
 				91EB796D1CAE075C00ED3E67 /* Sign_In_Ok.json in Resources */,
 				917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */,
 				91E1B4D11CA510BD008ADEE6 /* ContactsPersonInfoListCell.xib in Resources */,
+				6836557F1CBC84B7009373EA /* SecondsCollectionViewCell.xib in Resources */,
 				91E1B4CA1CA510BD008ADEE6 /* ContactsLetterView.xib in Resources */,
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
@@ -1357,8 +1376,10 @@
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
+				683655871CBCE559009373EA /* SettingRealmModel.swift in Sources */,
 				91E1B4C51CA510BD008ADEE6 /* ContactsBaseViewController.swift in Sources */,
 				91671C9A1C9AC5A10090BB3F /* HomeUserInfo.swift in Sources */,
+				6836557D1CBC84B7009373EA /* LineLayout.swift in Sources */,
 				9199E4881CAE4A7D00397883 /* AccountMangerProtocol.swift in Sources */,
 				91E1B4FB1CA6A475008ADEE6 /* FriendInfoListOper.swift in Sources */,
 				685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */,
@@ -1397,6 +1418,7 @@
 				9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */,
 				9114D1F11C97AB05008CB4CE /* SignInViewController.swift in Sources */,
 				91E1B4F91CA69CAA008ADEE6 /* FriendInfoListRealm.swift in Sources */,
+				683655891CBCF038009373EA /* SettingSwitchCellViewModel.swift in Sources */,
 				91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */,
 				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,
 				91E1B4DB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift in Sources */,
@@ -1438,6 +1460,7 @@
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,
 				91E1B4D61CA510BD008ADEE6 /* ContactsSearchController.swift in Sources */,
 				9114D1FA1C97AB05008CB4CE /* PictureView.swift in Sources */,
+				6836557E1CBC84B7009373EA /* SecondsCollectionViewCell.swift in Sources */,
 				91E1B4C31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift in Sources */,
 				91ACEC601CB65456008ED8B0 /* GuideSetModelView.swift in Sources */,
 				917B98BE1CB8E841008698F5 /* UserAchievementCell.swift in Sources */,
@@ -1451,6 +1474,7 @@
 				98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,
+				683655821CBC85BE009373EA /* SecondsTableViewCell.swift in Sources */,
 				6836552B1CBB49F7009373EA /* EmergencyContactPersonCell.swift in Sources */,
 				9114D1F51C97AB05008CB4CE /* BirthdayView.swift in Sources */,
 			);

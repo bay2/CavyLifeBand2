@@ -27,9 +27,6 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
     /// Alpha: 100% <br/> (0xffffffff)
     case AlarmClockDateBtnTextSelectedColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#cccccc"></span>
-    /// Alpha: 100% <br/> (0xccccccff)
-    case AlarmClockSeparatorColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 30% <br/> (0x0000004d)
     case AlarmClockSettingDescription2Color
@@ -162,6 +159,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case PageIndicatorTintColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#cccccc"></span>
+    /// Alpha: 100% <br/> (0xccccccff)
+    case SettingSeparatorColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 30% <br/> (0x0000004d)
     case SettingTableCellInfoGrayColor
@@ -205,7 +205,6 @@ extension UIColor {
       case .AlarmClockDateBtnBGSelectedColor: return 0xff993fff
       case .AlarmClockDateBtnTextNormalColor: return 0x858585ff
       case .AlarmClockDateBtnTextSelectedColor: return 0xffffffff
-      case .AlarmClockSeparatorColor: return 0xccccccff
       case .AlarmClockSettingDescription2Color: return 0x0000004d
       case .AlarmClockSettingDescriptionColor: return 0x00000080
       case .AlarmClockSettingTitleColor: return 0x000000b3
@@ -250,6 +249,7 @@ extension UIColor {
       case .MainPageBtnText: return 0xb46e00ff
       case .MainPageSelectedBtn: return 0xecbc46ff
       case .PageIndicatorTintColor: return 0x00000033
+      case .SettingSeparatorColor: return 0xccccccff
       case .SettingTableCellInfoGrayColor: return 0x0000004d
       case .SettingTableCellInfoYellowColor: return 0xff9138ff
       case .SettingTableCellTitleColor: return 0x000000b3

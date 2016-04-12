@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EZSwiftExtensions
 
 class SafetySettingViewController: UIViewController {
 
