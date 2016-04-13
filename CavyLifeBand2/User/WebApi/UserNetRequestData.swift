@@ -24,97 +24,12 @@ enum UserRequestErrorType: ErrorType {
     case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, EmailNil, PhoneErr, PhoneNil, PassWdErr, PassWdNil, SecurityCodeErr, SecurityCodeNil, UserNameErr, UserNameNil, UserIdNil, SearchTypeNil, LBSNil, PhoneNumListNil, UnknownError
 }
 
-/**
- web api参数
- 
- - PhoneNum:     手机号
- - Email:        邮箱
- - Passwd:       密码
- - SecurityCode: 验证码
- - UserName:     用户名
- - UserID:       用户ID
- - Avater:       头像
- - StepNum:      步数
- - SleepTime:    睡眠时间
- - FriendID:     好友ID
- - Flag:         标识
- - Local:        坐标
- - FriendIdList: 好友列表
- - Operate:      操作
- - NickName:     昵称
- - Sex:          性别
- - Height:       身高
- - Weight:       体重
- - Birthday:     生日
- - Address:      地址
- - StepNum:      步数
- - SleepTime:    睡眠时间
- */
-enum UserNetRequsetKey: String {
-    
-    case Cmd = "cmd"
-    case PhoneNum = "phoneNum"
-    case Passwd = "pwd"
-    case SecurityCode = "authCode"
-    case UserName = "user"
-    case UserID = "userId"
-    case Avater = "imgFile"
-    case FriendID = "freiendId"
-    case Flag = "flag"
-    case Local = "lbs"
-    case FriendIdList = "friendIds"
-    case Operate = "operate"
-    case NickName = "nickname"
-    case Sex = "sex"
-    case Height = "height"
-    case Weight = "weight"
-    case Birthday = "birthday"
-    case Address = "address"
-    case StepNum = "stepNum"
-    case SleepTime = "sleepTime"
-    case IsNotification = "isNotification"
-    case IsLocalShare = "isLocalShare"
-    case IsOpenBirthday = "isOpenBirthday"
-    case IsOpenHeight = "isOpenHeight"
-    case IsOpenWeight = "isOpenWeight"
 
-}
 
 class UserNetRequestData: NetRequestAdapter {
    
     static var shareApi = UserNetRequestData()
     
-    /**
-    网络请求API
-    
-    - SendSecurityCode: 发送验证码
-    - SignUp:           注册
-    - SignIn:           登录
-    - UpdateAvatar:     上传头像
-    - ForgotPwd:        找回密码
-    - UserProfile:      查询个人信息
-    - SetUserProfile:   设置个人信息
-    - SearchFriends:    搜索好友
-    - AddFriends:       添加好友
-    - DelFriends:       删除好友
-    - FriendsList:      查询好友列表
-    - FriendsReqList:   查询请求添加好友列表
-    - WatchFriend:      关注好友
-    - ReportLocation:   上报坐标
-    - SetTargetValue:   设置目标值
-    - TargetValue:      查询目标值
-    */
-    enum UserNetRequestMethod: String {
-        
-        case SendSecurityCode = "sendAuthCode"
-        case SignUp = "userReg"
-        case SignIn = "userLogin"
-        case UpdateAvatar
-        case ForgotPwd = "resetPsw"
-        case UserProfile = "getUserInfo"
-        case SetUserProfile = "setUserInfo"
-    }
-
     /**
      注册
      

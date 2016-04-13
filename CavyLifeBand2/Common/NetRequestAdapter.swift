@@ -13,8 +13,12 @@ import JSONJoy
 
 typealias CompletionHandlernType = (Result<AnyObject, UserRequestErrorType>) -> Void
 
-class NetRequestAdapter: NSObject {
+protocol NetRequestAdapter {
     
+    func netPostRequestAdapter(urlString: String, para: [String: AnyObject]?, completionHandler: CompletionHandlernType?)
+}
+
+extension NetRequestAdapter {
     
     /**
      post 网络请求
@@ -58,7 +62,7 @@ class NetRequestAdapter: NSObject {
         if Log.enabled {
             debugPrint(request)
         }
-
+        
     }
     
 }

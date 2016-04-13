@@ -11,13 +11,15 @@ import EZSwiftExtensions
 import RealmSwift
 import Log
 
-class RootViewController: UIViewController {
+class RootViewController: UIViewController, CoordinateReport {
 
     var homeVC: UINavigationController?
     var leftVC: LeftViewController?
     let homeMaskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
     var realm: Realm = try! Realm()
     var updateUserInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+    
+    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,9 @@ class RootViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.hiddenLeftView), name: NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
         
         syncUserInfo()
+        
+        //上报坐标
+        self.coordinateReportServer()
         
     }
 

@@ -11,32 +11,6 @@ import Log
 
 class ContactsWebApi: NetRequestAdapter {
     
-    
-    enum ContactsApiCmd: String {
-        
-        case GetFriendList = "getFriendList"
-        case SearchFriend = "searchFriend"
-        case AddFriend = "addFriend"
-        case GetFriendReqList = "getFriendReqList"
-        case FollowFriend = "followUser"
-        case DeleteFriend = "deleteFriend"
-        
-    }
-    
-    enum ContactsApiParaKey: String {
-        
-        case Cmd = "cmd"
-        case UserId = "userId"
-        case SearchType = "searchType"
-        case UserName = "user"
-        case LBS = "lsb"
-        case PhoneNumList = "phoneNumList"
-        case FriendId = "friendId"
-        case VerifyMsg = "verifyMsg"
-        case IsFollow  = "operate"
-        
-    }
-    
     enum SearchType: Int {
         
         case UserName = 1
@@ -58,8 +32,8 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func getFriendList(userId: String, callBack: CompletionHandlernType? = nil) {
         
-        let parameters: [String: AnyObject] = [ContactsApiParaKey.Cmd.rawValue: ContactsApiCmd.GetFriendList.rawValue,
-                                               ContactsApiParaKey.UserId.rawValue: userId]
+        let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetFriendList.rawValue,
+                                               UserNetRequsetKey.UserID.rawValue: userId]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
         
@@ -74,18 +48,18 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func checkSearchFriend(parametes: [String: AnyObject]) throws {
         
-        guard let searchType = parametes[ContactsApiParaKey.SearchType.rawValue] as? Int else { throw UserRequestErrorType.SearchTypeNil }
+        guard let searchType = parametes[UserNetRequsetKey.SearchType.rawValue] as? Int else { throw UserRequestErrorType.SearchTypeNil }
         
         switch searchType {
             
         case SearchType.UserName.rawValue:
-            if parametes.keys.contains(ContactsApiParaKey.UserName.rawValue) != true { throw UserRequestErrorType.UserNameNil }
+            if parametes.keys.contains(UserNetRequsetKey.UserName.rawValue) != true { throw UserRequestErrorType.UserNameNil }
             
         case SearchType.Nearby.rawValue:
-            if parametes.keys.contains(ContactsApiParaKey.LBS.rawValue) != true { throw UserRequestErrorType.LBSNil }
+            if parametes.keys.contains(UserNetRequsetKey.Local.rawValue) != true { throw UserRequestErrorType.LBSNil }
             
         case SearchType.AddressBook.rawValue:
-            if parametes.keys.contains(ContactsApiParaKey.PhoneNumList.rawValue) != true { UserRequestErrorType.PhoneNumListNil }
+            if parametes.keys.contains(UserNetRequsetKey.PhoneNumList.rawValue) != true { UserRequestErrorType.PhoneNumListNil }
             
         default:
             break
@@ -104,7 +78,7 @@ class ContactsWebApi: NetRequestAdapter {
         try checkSearchFriend(parametes)
         
         var para = parametes
-        para[ContactsApiParaKey.Cmd.rawValue] = ContactsApiCmd.SearchFriend.rawValue
+        para[UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SearchFriend.rawValue
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: para, completionHandler: callBack)
         
@@ -120,8 +94,8 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func searchFriendByUserName(userName: String, callBack: CompletionHandlernType? = nil) throws {
         
-        let parametes: [String: AnyObject] = [ContactsApiParaKey.SearchType.rawValue: SearchType.UserName.rawValue,
-                         ContactsApiParaKey.UserName.rawValue: userName]
+        let parametes: [String: AnyObject] = [UserNetRequsetKey.SearchType.rawValue: SearchType.UserName.rawValue,
+                         UserNetRequsetKey.UserName.rawValue: userName]
         
         
         try searchFriend(parametes, callBack: callBack)
@@ -138,7 +112,7 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func getRecommendFriend(callBack: CompletionHandlernType? = nil) throws {
         
-        let parametes: [String: AnyObject] = [ContactsApiParaKey.SearchType.rawValue: SearchType.Recommend.rawValue]
+        let parametes: [String: AnyObject] = [UserNetRequsetKey.SearchType.rawValue: SearchType.Recommend.rawValue]
         
         try searchFriend(parametes, callBack: callBack)
         
@@ -154,8 +128,8 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func searchFriendByAddressBook(phoneNumList: [String], callBack: CompletionHandlernType? = nil) throws {
         
-        let parametes: [String: AnyObject] = [ContactsApiParaKey.SearchType.rawValue: SearchType.AddressBook.rawValue,
-                                              ContactsApiParaKey.PhoneNumList.rawValue: phoneNumList]
+        let parametes: [String: AnyObject] = [UserNetRequsetKey.SearchType.rawValue: SearchType.AddressBook.rawValue,
+                                              UserNetRequsetKey.PhoneNumList.rawValue: phoneNumList]
         
         try searchFriend(parametes, callBack: callBack)
         
@@ -171,8 +145,8 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func getNearbyFriend(lbs: String, callBack: CompletionHandlernType? = nil) throws {
         
-        let parametes: [String: AnyObject] = [ContactsApiParaKey.SearchType.rawValue: SearchType.Nearby.rawValue,
-                                              ContactsApiParaKey.LBS.rawValue: lbs]
+        let parametes: [String: AnyObject] = [UserNetRequsetKey.SearchType.rawValue: SearchType.Nearby.rawValue,
+                                              UserNetRequsetKey.Local.rawValue: lbs]
         
         try searchFriend(parametes, callBack: callBack)
         
@@ -186,8 +160,8 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func getFriendReqList(userId: String, callBack: CompletionHandlernType? = nil) {
         
-        let parametes: [String: AnyObject] = [ContactsApiParaKey.Cmd.rawValue: ContactsApiCmd.GetFriendReqList.rawValue,
-                                              ContactsApiParaKey.UserId.rawValue: userId]
+        let parametes: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetFriendReqList.rawValue,
+                                              UserNetRequsetKey.UserID.rawValue: userId]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
         
@@ -203,10 +177,10 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func addFriend(userId: String, friendId: String, verifyMsg: String = "", callBack: CompletionHandlernType? = nil) {
         
-        let parametes: [String: AnyObject] = [ContactsApiParaKey.Cmd.rawValue: ContactsApiCmd.AddFriend.rawValue,
-                                              ContactsApiParaKey.UserId.rawValue: userId,
-                                              ContactsApiParaKey.FriendId.rawValue: friendId,
-                                              ContactsApiParaKey.VerifyMsg.rawValue: verifyMsg]
+        let parametes: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.AddFriend.rawValue,
+                                              UserNetRequsetKey.UserID.rawValue: userId,
+                                              UserNetRequsetKey.FriendID.rawValue: friendId,
+                                              UserNetRequsetKey.VerifyMsg.rawValue: verifyMsg]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
         
@@ -221,9 +195,9 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func delFriend(userId: String, friendId: String, callBack: CompletionHandlernType? = nil) {
         
-        let parametes: [String: AnyObject] = [ContactsApiParaKey.Cmd.rawValue: ContactsApiCmd.DeleteFriend.rawValue,
-                                              ContactsApiParaKey.UserId.rawValue: userId,
-                                              ContactsApiParaKey.FriendId.rawValue: friendId]
+        let parametes: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.DeleteFriend.rawValue,
+                                              UserNetRequsetKey.UserID.rawValue: userId,
+                                              UserNetRequsetKey.FriendID.rawValue: friendId]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
         
@@ -239,10 +213,10 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func followFriend(userId: String, friendId: String, follow: Bool, callBack: CompletionHandlernType? = nil) {
         
-        let parametes: [String: AnyObject] = [ContactsApiParaKey.Cmd.rawValue: ContactsApiCmd.FollowFriend.rawValue,
-                                              ContactsApiParaKey.UserId.rawValue: userId,
-                                              ContactsApiParaKey.FriendId.rawValue: friendId,
-                                              ContactsApiParaKey.IsFollow.rawValue: follow]
+        let parametes: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.FollowFriend.rawValue,
+                                              UserNetRequsetKey.UserID.rawValue: userId,
+                                              UserNetRequsetKey.FriendID.rawValue: friendId,
+                                              UserNetRequsetKey.Operate.rawValue: follow]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
         

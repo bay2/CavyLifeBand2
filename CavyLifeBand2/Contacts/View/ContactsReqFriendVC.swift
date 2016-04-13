@@ -20,6 +20,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         
     }
     
+    var friendId: String = ""
     
     /// TextField
     @IBOutlet weak var requestTextField: UITextField!

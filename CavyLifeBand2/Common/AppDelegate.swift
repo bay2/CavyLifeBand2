@@ -39,12 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-//        stub(isMethodPOST()) { _ in
-//            let stubPath = OHPathForFile("SearchFrendListResult.json", self.dynamicType)
-//            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
-//        }
-//        
-        
+        NSTimer.runThisEvery(seconds: 5 * 60) { _ in
+            
+            
+        }
 
         return true
 

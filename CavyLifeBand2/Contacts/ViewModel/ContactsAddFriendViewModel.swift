@@ -8,10 +8,6 @@
 
 import UIKit
 
-
-
-
-
 extension ContactsAddFriendCellDelegate {
     
     // 名字字体颜色
@@ -37,12 +33,39 @@ extension ContactsAddFriendCellDelegate {
     
 }
 
+protocol SwitchAddFirendReqView {
+    
+    var viewController: UIViewController { get }
+    var firendId: String { get }
+    
+    var pushFirendReqView: ((Void) -> Void)? { get }
+    
+}
+
+extension SwitchAddFirendReqView {
+    
+    var pushFirendReqView: ((Void) -> Void)? { return {
+        
+            let addFirendVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
+            addFirendVC.friendId = self.firendId
+            
+            self.viewController.pushVC(addFirendVC)
+        
+        }
+    }
+    
+}
+
 /**
  *  @author xuemincai
  *
  *  添加好友 cell ViewModel
  */
-struct ContactsAddFriendCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate{
+struct ContactsAddFriendCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate, SwitchAddFirendReqView {
+    
+    var viewController: UIViewController
+    
+    var firendId: String
     
     // 头像
     var headImageUrl: String
@@ -54,17 +77,17 @@ struct ContactsAddFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
     var introudce: String
     
     // 按钮回调
-    var changeRequestBtnName: ((String) -> Void)?
+    var changeRequestBtnName: ((Void) -> Void)?  { return pushFirendReqView }
     
-    init(name: String = "", headImageUrl: String = "", introudce: String = "", changeRequest: ((String) -> Void)? = nil) {
+    init(viewController: UIViewController, firendId: String = "", name: String = "", headImageUrl: String = "", introudce: String = "") {
         
+        self.viewController = viewController
+        self.firendId = firendId
         self.name = name
         self.headImageUrl = headImageUrl
-        self.changeRequestBtnName = changeRequest
         self.introudce = introudce
         
     }
-    
     
 }
 
@@ -85,9 +108,9 @@ struct ContactsAddressBookViewModel: ContactsAddFriendCellDataSource, ContactsAd
     var introudce: String { return "" }
     
     // 按钮回调
-    var changeRequestBtnName: ((String) -> Void)?
+    var changeRequestBtnName: ((Void) -> Void)?
     
-    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((String) -> Void)? = nil) {
+    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((Void) -> Void)? = nil) {
         
         self.name = name
         self.headImageUrl = headImageUrl
@@ -114,9 +137,9 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendCellDataSource, ContactsAdd
     var introudce: String { return " 我爱吃草莓啊~~~" }
     
     // 按钮回调
-    var changeRequestBtnName: ((String) -> Void)?
+    var changeRequestBtnName: ((Void) -> Void)?
     
-    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((String) -> Void)? = nil) {
+    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((Void) -> Void)? = nil) {
         
         self.name = name
         self.headImageUrl = headImageUrl
@@ -149,9 +172,9 @@ struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
     var requestBtnColor: UIColor { return UIColor(named: .ContactsAgreeButtonColor) }
     
     // 按钮回调
-    var changeRequestBtnName: ((String) -> Void)?
+    var changeRequestBtnName: ((Void) -> Void)?
     
-    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((String) -> Void)? = nil) {
+    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((Void) -> Void)? = nil) {
         
         self.name = name
         self.headImageUrl = headImageUrl
