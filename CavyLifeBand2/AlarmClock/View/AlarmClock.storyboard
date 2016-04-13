@@ -275,7 +275,7 @@
                                 <rect key="frame" x="0.0" y="36" width="600" height="285"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="285" id="K8B-MN-yLG"/>
+                                    <constraint firstAttribute="height" constant="285" placeholder="YES" id="K8B-MN-yLG"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="SPy-r4-wyc" id="vSU-nN-Lrv"/>

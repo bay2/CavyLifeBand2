@@ -8,11 +8,28 @@
 
 import UIKit
 
+protocol SelectPickerDelegate {
+    
+//    var
+
+    func setSelectIndex(index: Int)
+    
+    func scrollToIndex(index: Int)
+}
+
+extension SelectPickerDelegate {
+
+//    func setSelectIndex(index: Int) -> Void {
+//        <#function body#>
+//    }
+//    
+}
+
 class SecondsTableViewCell: UITableViewCell {
 
     let collectionView: UICollectionView = {
         
-        let view: UICollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 220, height: 75), collectionViewLayout: LineLayout())
+        let view: UICollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 220, height: 60), collectionViewLayout: LineLayout())
         
         view.backgroundColor = UIColor.whiteColor()
         
@@ -25,6 +42,10 @@ class SecondsTableViewCell: UITableViewCell {
     }()
     
     let secondsCell = "SecondsCollectionViewCell"
+    
+    let secondsList = {
+        return ["", "11", "12", "13", "14", "15", ""]
+    }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -40,15 +61,42 @@ class SecondsTableViewCell: UITableViewCell {
         collectionView.snp_makeConstraints { (make) in
             make.centerX.equalTo(self.contentView.snp_centerX)
             make.centerY.equalTo(self.contentView.snp_centerY)
-            make.height.equalTo(75.0)
+            make.height.equalTo(60.0)
             make.width.equalTo(220.0)
         }
         
         self.addSeparatorView()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SecondsTableViewCell.switchChangeIndex(_:)), name: NotificationName.ReminderPhoneSwitchChange.rawValue, object: nil)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func switchChangeIndex(sender: NSNotification) -> Void {
+        
+        let userInfo = sender.userInfo as! [String: AnyObject]
+        
+        let value = userInfo["index"] as! Int
+        
+        Log.info("\(value)")
+        
+        let center = self.convertPoint(self.collectionView.center, toView: self.collectionView)
+        
+        if let currentIndex = self.collectionView.indexPathForItemAtPoint(center) {
+            if currentIndex.row != value {
+                let indexPath = NSIndexPath(forItem: value, inSection: 0)
+                
+                collectionView.selectItemAtIndexPath(indexPath, animated: true, scrollPosition: .CenteredHorizontally)
+                
+                self.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
+            }
+        }
+        
+        
+        
     }
     
     func addSeparatorView() -> Void {
@@ -93,14 +141,16 @@ class SecondsTableViewCell: UITableViewCell {
 extension SecondsTableViewCell: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return secondsList.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(secondsCell, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(secondsCell, forIndexPath: indexPath) as? SecondsCollectionViewCell
         
-        return cell
+        cell!.titleLabel.text = secondsList[indexPath.row]
+        
+        return cell!
     }
     
 }
@@ -114,9 +164,15 @@ extension SecondsTableViewCell: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        if indexPath.row == 0 || indexPath.row == secondsList.count-1 {
+            return
+        }
+        
         collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .CenteredHorizontally, animated: true)
         
         Log.info("select -  \(indexPath.row)")
+        
+        postScrollNotification(indexPath.row)
         
     }
     
@@ -131,14 +187,18 @@ extension SecondsTableViewCell: UICollectionViewDelegate {
             
             Log.info("\(indexPath.row)")
             
-            collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: .CenteredHorizontally)
+            collectionView.selectItemAtIndexPath(indexPath, animated: true, scrollPosition: .CenteredHorizontally)
             
             self.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
             
         }
         
+    }
+    
+    func postScrollNotification(index: Int) -> Void {
         
-
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.ReminderPhoneScrollToSelect.rawValue, object: nil, userInfo: ["index":index])
+    
     }
 
     

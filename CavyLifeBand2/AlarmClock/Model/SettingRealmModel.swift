@@ -12,7 +12,7 @@ import RealmSwift
 class SettingRealmModel: Object {
     dynamic var settingType = "" // 1来电提醒 2短信提醒 3断线重连
     dynamic var isOpenSetting = true
-    dynamic var settingInfo = ""
+    dynamic var settingInfo = 1
     
     override class func primaryKey() -> String? {
         return "settingType"
@@ -135,7 +135,7 @@ extension SettingRealmListOperateDelegate {
         
         if settingType == L10n.SettingReminderPhoneType.string { //来电提醒
             
-            settingModel.settingInfo = ""
+            settingModel.settingInfo = 1
             
         }
         
@@ -280,7 +280,7 @@ extension SettingRealmOperateDelegate {
         
         if settingType == L10n.SettingReminderPhoneType.string { //来电提醒
             
-            settingModel.settingInfo = ""
+            settingModel.settingInfo = 1
             
         }
         

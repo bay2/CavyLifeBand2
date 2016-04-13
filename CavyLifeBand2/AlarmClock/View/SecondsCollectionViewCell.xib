@@ -28,6 +28,9 @@
                 <constraint firstItem="aoz-u8-wnR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="TeV-ti-wev"/>
                 <constraint firstAttribute="trailing" secondItem="aoz-u8-wnR" secondAttribute="trailing" id="dN2-aD-SnR"/>
             </constraints>
+            <connections>
+                <outlet property="titleLabel" destination="aoz-u8-wnR" id="2u6-6h-nF0"/>
+            </connections>
         </collectionViewCell>
     </objects>
 </document>

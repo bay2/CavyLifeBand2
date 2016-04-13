@@ -55,6 +55,8 @@ struct SettingSwitchPhoneCellViewModel: SettingSwitchCellViewModelPresentable {
             return model
         }
         
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.ReminderPhoneSwitchChange.rawValue, object: nil, userInfo: ["index" : realmSetting.settingInfo])
+        
     }
     
 }

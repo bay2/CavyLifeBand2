@@ -23,9 +23,9 @@ class RemindersSettingViewController: UIViewController {
     
     let tableSwitchCellHeight: CGFloat = 50.0
     
-    let tableScrollCellHeight: CGFloat = 75.0 + 20 + 20
+    let tableScrollCellHeight: CGFloat = 60.0 + 20 + 20
     
-    let tableExpandHeight: CGFloat = 285.0
+    let tableExpandHeight: CGFloat = 270.0
     
     let tableUnExpandHeight: CGFloat = 170.0
     
