@@ -145,7 +145,7 @@ extension SettingRealmOperateDelegate {
         
         settingModel.settingType = settingType
         
-        if settingType == "1" { //来电提醒
+        if settingType == L10n.SettingReminderPhoneType.string { //来电提醒
             
             settingModel.settingInfo = ""
             
