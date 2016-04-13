@@ -56,9 +56,6 @@ class HomeViewController: BaseViewController {
         upperView!.allViewLayout()
         view.addSubview(upperView!)
         
-        Log.info(upperView?.frame.size.height)
-        Log.info(upperView?.stepRing!.frame.size.height)
-        
     }
     
     

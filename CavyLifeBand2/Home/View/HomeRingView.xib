@@ -6,7 +6,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeUpperView" customModule="CavyLifeBand2" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="HomeRingView" id="iN0-l3-epB" customClass="HomeRingView" customModule="CavyLifeBand2" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="243" height="230"/>
@@ -14,9 +14,10 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kzn-cx-VTb">
                     <rect key="frame" x="107" y="53" width="30" height="30"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Kzn-cx-VTb" secondAttribute="height" id="Ndw-Tl-ujV"/>
-                        <constraint firstAttribute="width" constant="30" id="hBC-l2-dzb"/>
+                        <constraint firstAttribute="width" constant="30" placeholder="YES" id="hBC-l2-dzb"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="当前值" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TGZ-Kj-BYD">
@@ -24,7 +25,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="pog-xd-DCx"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="40"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                     <variation key="default">
@@ -44,9 +45,9 @@
             <constraints>
                 <constraint firstItem="TGZ-Kj-BYD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="BxH-6R-Hf6"/>
                 <constraint firstItem="Kzn-cx-VTb" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="JZ3-cv-jcL"/>
-                <constraint firstItem="MD7-59-Ny9" firstAttribute="top" secondItem="TGZ-Kj-BYD" secondAttribute="bottom" constant="14" id="YJ2-79-bzg"/>
+                <constraint firstItem="MD7-59-Ny9" firstAttribute="top" secondItem="TGZ-Kj-BYD" secondAttribute="bottom" constant="14" placeholder="YES" id="YJ2-79-bzg"/>
                 <constraint firstItem="TGZ-Kj-BYD" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="oNf-Cf-lcE"/>
-                <constraint firstItem="TGZ-Kj-BYD" firstAttribute="top" secondItem="Kzn-cx-VTb" secondAttribute="bottom" constant="8" id="rAg-7h-rEd"/>
+                <constraint firstItem="TGZ-Kj-BYD" firstAttribute="top" secondItem="Kzn-cx-VTb" secondAttribute="bottom" constant="8" placeholder="YES" id="rAg-7h-rEd"/>
                 <constraint firstItem="MD7-59-Ny9" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wTA-TQ-6r1"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

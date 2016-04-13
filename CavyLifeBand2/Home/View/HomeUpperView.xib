@@ -13,9 +13,9 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r0a-Ku-M2O" customClass="HomeRingView" customModule="CavyLifeBand2" customModuleProvider="target">
-                    <rect key="frame" x="20" y="16" width="210" height="210"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r0a-Ku-M2O">
+                    <rect key="frame" x="20" y="16" width="240" height="240"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="r0a-Ku-M2O" secondAttribute="height" multiplier="1:1" id="dfp-Wj-Uji"/>
                     </constraints>
@@ -23,16 +23,16 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <view contentMode="scaleToFill" restorationIdentifier="HomeRingView" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-2k-p6y" customClass="HomeRingView" customModule="CavyLifeBand2" customModuleProvider="target">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w9x-2k-p6y">
                     <rect key="frame" x="250" y="96" width="330" height="330"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="w9x-2k-p6y" secondAttribute="height" multiplier="1:1" id="o2w-yu-gzl"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xwR-qt-71h">
-                    <rect key="frame" x="36" y="240" width="214" height="42"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="36" y="240" width="204" height="42"/>
+                    <color key="backgroundColor" red="0.21960784310000001" green="0.90588235289999997" blue="0.59215686270000001" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="Ckg-rw-Yo6"/>
                     </constraints>
@@ -45,17 +45,17 @@
                 <constraint firstItem="xwR-qt-71h" firstAttribute="centerY" secondItem="w9x-2k-p6y" secondAttribute="centerY" id="CRn-An-cij"/>
                 <constraint firstItem="w9x-2k-p6y" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.55" id="Frh-Sc-wwP"/>
                 <constraint firstItem="r0a-Ku-M2O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="Imb-TX-iMA"/>
-                <constraint firstItem="r0a-Ku-M2O" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.35" id="Nad-9s-CYC"/>
-                <constraint firstItem="xwR-qt-71h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="36" id="RdZ-eC-0SI"/>
+                <constraint firstItem="r0a-Ku-M2O" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="Nad-9s-CYC"/>
+                <constraint firstItem="xwR-qt-71h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="36" placeholder="YES" id="RdZ-eC-0SI"/>
                 <constraint firstItem="w9x-2k-p6y" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="96" id="a0r-J3-p96"/>
-                <constraint firstItem="w9x-2k-p6y" firstAttribute="leading" secondItem="xwR-qt-71h" secondAttribute="trailing" id="vvZ-EB-fnS"/>
+                <constraint firstItem="w9x-2k-p6y" firstAttribute="leading" secondItem="xwR-qt-71h" secondAttribute="trailing" constant="10" id="vvZ-EB-fnS"/>
             </constraints>
             <connections>
                 <outlet property="sleepRing" destination="r0a-Ku-M2O" id="jp8-lh-NWU"/>
                 <outlet property="stepRing" destination="w9x-2k-p6y" id="yKN-gp-Q6b"/>
                 <outlet property="weatherView" destination="xwR-qt-71h" id="Sbx-P6-BwW"/>
             </connections>
-            <point key="canvasLocation" x="405.5" y="110.5"/>
+            <point key="canvasLocation" x="405" y="110"/>
         </view>
     </objects>
 </document>

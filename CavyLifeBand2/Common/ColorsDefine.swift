@@ -102,6 +102,15 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
     /// Alpha: 100% <br/> (0x48d299ff)
     case GuideSetPermission
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#309a6e"></span>
+    /// Alpha: 100% <br/> (0x309a6eff)
+    case HomeRingViewBackground
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#36f3ff"></span>
+    /// Alpha: 100% <br/> (0x36f3ffff)
+    case HomeSleepRingColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#fff956"></span>
+    /// Alpha: 100% <br/> (0xfff956ff)
+    case HomeStepRingColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 50% <br/> (0x00000080)
     case HomeViewAccount
@@ -188,6 +197,9 @@ extension UIColor {
       case .GuideLineColor: return 0xccccccff
       case .GuideSetInfoColor: return 0x1dbcffff
       case .GuideSetPermission: return 0x48d299ff
+      case .HomeRingViewBackground: return 0x309a6eff
+      case .HomeSleepRingColor: return 0x36f3ffff
+      case .HomeStepRingColor: return 0xfff956ff
       case .HomeViewAccount: return 0x00000080
       case .HomeViewLeftHeaderLine: return 0xffffff80
       case .HomeViewLeftSelected: return 0x0000001a

@@ -12,10 +12,10 @@ import EZSwiftExtensions
 class HomeUpperView: UIView {
     
     /// 睡眠环
-    @IBOutlet weak var sleepRing: HomeRingView!
+    @IBOutlet weak var sleepRing: UIView!
     
     ///  计步环
-    @IBOutlet weak var stepRing: HomeRingView!
+    @IBOutlet weak var stepRing: UIView!
     
     /// 天气
     @IBOutlet weak var weatherView: UIView!
@@ -29,27 +29,39 @@ class HomeUpperView: UIView {
         
         self.frame = CGRectMake(0, 0, ez.screenWidth, 96 + ez.screenWidth * 0.55)
         
-//        sleepRing = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
-//        stepRing = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
-//   
-        
-        let test = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
-        test?.frame = CGRect(x: 0, y: 0, w: 100, h: 100)
-        self.addSubview(test!)
-        
-        weatherView.backgroundColor = UIColor.whiteColor()
-        sleepRing.backgroundColor = UIColor.yellowColor()
-        stepRing.backgroundColor = UIColor.blueColor()
-        
-        Log.info("\(sleepRing)")
+        // 睡眠
+        let sleepView = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
+        sleepRing.addSubview(sleepView!)
+        sleepView?.layer.cornerRadius = sleepView!.frame.width / 2
+        sleepView!.snp_makeConstraints(closure: { (make) in
+            make.left.right.top.bottom.equalTo(sleepRing)
+        })
+        sleepView!.sleepRingWith(.SleepRing, targetHour: 7, targetMinute: 0, currentHour: 5, currentMinute: 10)
         
         
         // 计步
+        let stepView = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
+        stepRing.addSubview(stepView!)
+        stepView?.layer.cornerRadius = stepView!.frame.width / 2
+        stepView!.snp_makeConstraints(closure: { (make) in
+            make.left.right.top.bottom.equalTo(stepRing)
+
+        })
+        stepView!.stepRingWith(.StepRing, targetNumber: 80000, currentNumber: 50000)
         
-//        stepRing.stepRingWith(80000, currentNumber: 50000)
-        
+       // 天气
+        weatherView.snp_makeConstraints(closure: { (make) in
+            make.left.equalTo(self).offset(40)
+        })
+        let weather = NSBundle.mainBundle().loadNibNamed("HomeWeatherView", owner: nil, options: nil).first as? HomeWeatherView
+        weatherView.addSubview(weather!)
+        weather!.loadWeatherView()
+        weather!.snp_makeConstraints { (make) in
+            make.left.right.top.bottom.equalTo(weatherView)
+        }
         
     }
+    
     
     
     
