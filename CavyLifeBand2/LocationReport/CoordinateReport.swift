@@ -7,6 +7,9 @@
 //
 import EZSwiftExtensions
 
+/**
+ *  上报坐标
+ */
 protocol CoordinateReport: NetRequestAdapter {
     
     var userId: String { get }
@@ -16,6 +19,9 @@ protocol CoordinateReport: NetRequestAdapter {
 
 extension CoordinateReport {
     
+    /**
+     每隔5分钟坐标上报服务器
+     */
     func coordinateReportServer() {
         
         reportServer()
@@ -24,8 +30,12 @@ extension CoordinateReport {
             self.reportServer()
         }
         
+        
     }
     
+    /**
+     坐标上报服务器
+     */
     private func reportServer() {
         
         SCLocationManager.shareInterface.startUpdateLocation {

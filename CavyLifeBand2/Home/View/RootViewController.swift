@@ -10,8 +10,10 @@ import UIKit
 import EZSwiftExtensions
 import RealmSwift
 import Log
+import AddressBook
+import Contacts
 
-class RootViewController: UIViewController, CoordinateReport {
+class RootViewController: UIViewController, CoordinateReport, AddressBookDataSource {
 
     var homeVC: UINavigationController?
     var leftVC: LeftViewController?
@@ -35,7 +37,24 @@ class RootViewController: UIViewController, CoordinateReport {
         
         syncUserInfo()
         
-        //上报坐标
+        getAddresBookPhoneInfo {
+            Log.info("\($0)\($1) -- \($2)")
+        }
+        
+        
+    }
+    
+    /**
+     上报坐标
+     
+     - parameter isLocalShare:
+     */
+    func userCoordinateReport(isLocalShare: Bool) {
+        
+        guard isLocalShare else {
+            return
+        }
+        
         self.coordinateReportServer()
         
     }
@@ -55,6 +74,8 @@ class RootViewController: UIViewController, CoordinateReport {
             querySyncDate()
             return
         }
+        
+        userCoordinateReport(userInfo.isLocalShare)
         
         updateSyncDate(userInfo)
         
@@ -113,6 +134,8 @@ class RootViewController: UIViewController, CoordinateReport {
             
             let userInfoModel = UserInfoModel(userId: self.queryUserId, userProfile: userInfo)
             
+            self.userCoordinateReport(userInfoModel.isLocalShare)
+            
             self.addUserInfo(userInfoModel)
             
         }
@@ -153,6 +176,9 @@ class RootViewController: UIViewController, CoordinateReport {
 
     }
 
+    /**
+     隐藏左侧菜单
+     */
     func hiddenLeftView() {
         
         UIView.animateWithDuration(0.5, animations: {
@@ -170,6 +196,7 @@ class RootViewController: UIViewController, CoordinateReport {
         }
 
     }
+
 
     /*
     // MARK: - Navigation

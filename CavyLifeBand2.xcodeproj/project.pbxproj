@@ -59,6 +59,7 @@
 		917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */; };
 		917936CB1CBCEB4B002936E3 /* SCLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936CA1CBCEB4B002936E3 /* SCLocationManager.swift */; };
 		917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936CD1CBCEE1B002936E3 /* CoordinateReport.swift */; };
+		917936D21CBE1F6E002936E3 /* AddressBookDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936D11CBE1F6E002936E3 /* AddressBookDataSource.swift */; };
 		917B98B91CB8E7CA008698F5 /* Font_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B98B81CB8E7CA008698F5 /* Font_Extension.swift */; };
 		917B98BE1CB8E841008698F5 /* UserAchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B98BA1CB8E841008698F5 /* UserAchievementCell.swift */; };
 		917B98BF1CB8E841008698F5 /* UserAchievementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917B98BB1CB8E841008698F5 /* UserAchievementCell.xib */; };
@@ -240,6 +241,7 @@
 		917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendLoadDataViewModel.swift; sourceTree = "<group>"; };
 		917936CA1CBCEB4B002936E3 /* SCLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLocationManager.swift; sourceTree = "<group>"; };
 		917936CD1CBCEE1B002936E3 /* CoordinateReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateReport.swift; sourceTree = "<group>"; };
+		917936D11CBE1F6E002936E3 /* AddressBookDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookDataSource.swift; sourceTree = "<group>"; };
 		917B98B81CB8E7CA008698F5 /* Font_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font_Extension.swift; sourceTree = "<group>"; };
 		917B98BA1CB8E841008698F5 /* UserAchievementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAchievementCell.swift; sourceTree = "<group>"; };
 		917B98BB1CB8E841008698F5 /* UserAchievementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAchievementCell.xib; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 			isa = PBXGroup;
 			children = (
 				917B98CA1CB8F417008698F5 /* ContactsCellPresenter.swift */,
+				917936D11CBE1F6E002936E3 /* AddressBookDataSource.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -1333,6 +1336,7 @@
 				91E1B4F91CA69CAA008ADEE6 /* FriendInfoListRealm.swift in Sources */,
 				91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */,
 				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,
+				917936D21CBE1F6E002936E3 /* AddressBookDataSource.swift in Sources */,
 				91E1B4DB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift in Sources */,
 				91E1B4D71CA510BD008ADEE6 /* ContactsAddFriendCell.swift in Sources */,
 				91E1B4C71CA510BD008ADEE6 /* ContactsFriendQualityCell.swift in Sources */,
