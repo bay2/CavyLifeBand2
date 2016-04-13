@@ -18,6 +18,32 @@ class SettingRealmModel: Object {
         return "settingType"
     }
     
+    var owners: [SettingRealmListModel] {
+        
+        return linkingObjects(SettingRealmListModel.self, forProperty: "settingRealmList")
+    }
+    
+}
+
+class SettingRealmListModel: Object {
+    dynamic var userId = ""
+    var settingRealmList = List<SettingRealmModel>()
+    
+    override class func primaryKey() -> String? {
+        return "userId"
+    }
+    
+}
+
+protocol SettingRealmListOperateDelegate {
+    
+    var realm: Realm { get }
+    
+    var userId: String { get }
+    
+    func querySettingList() -> SettingRealmListModel?
+    func updateSettingList(settingListModel: SettingRealmListModel) -> Bool
+
 }
 
 
@@ -31,6 +57,113 @@ protocol SettingRealmOperateDelegate {
     func isSettingExist(settingType: String) -> Bool
     
 }
+
+extension SettingRealmListOperateDelegate {
+
+    func querySettingList() -> SettingRealmListModel? {
+        
+        guard isExistSettingList() else {
+            
+            return initSettingList()
+            
+        }
+        
+        let settingList = realm.objects(SettingRealmListModel).filter("userId = '\(userId)'")
+        
+        return settingList.first
+    }
+    
+    func updateSettingList(settingListModel: SettingRealmListModel) -> Bool{
+        do {
+            
+            try realm.write {
+                realm.add(settingListModel, update: true)
+            }
+            
+        } catch {
+            
+            Log.error("Add setting error [\(settingListModel)]")
+            return false
+            
+        }
+        
+        Log.info("Add setting success")
+        return true
+    }
+    
+    func isExistSettingList() -> Bool {
+    
+        let list = realm.objects(SettingRealmListModel).filter("userId = '\(userId)'")
+        
+        if list.count <= 0 {
+            return false
+        }
+        
+        return true
+        
+    }
+    
+    func initSettingList() -> SettingRealmListModel? {
+        
+        let settingList = SettingRealmListModel()
+        
+        settingList.userId = userId
+        
+        let phoneSetting = initSettingModel(L10n.SettingReminderPhoneType.string)
+        
+        let messageSetting = initSettingModel(L10n.SettingReminderMessageType.string)
+        
+        let reconnectSetting = initSettingModel(L10n.SettingReminderReconnectType.string)
+        
+        settingList.settingRealmList.appendContentsOf([phoneSetting, messageSetting, reconnectSetting])
+        
+        if addSettingList(settingList) {
+            return settingList
+        }
+        
+        return nil
+        
+    }
+    
+    func initSettingModel(settingType: String) -> SettingRealmModel {
+        
+        let settingModel = SettingRealmModel()
+        
+        settingModel.isOpenSetting = true
+        
+        settingModel.settingType = settingType
+        
+        if settingType == L10n.SettingReminderPhoneType.string { //来电提醒
+            
+            settingModel.settingInfo = ""
+            
+        }
+        
+        return settingModel
+    }
+    
+    func addSettingList(settingListModel: SettingRealmListModel) -> Bool {
+        
+        do {
+            
+            try realm.write {
+                realm.add(settingListModel, update: false)
+            }
+            
+        } catch {
+            
+            Log.error("Add setting error [\(settingListModel)]")
+            return false
+            
+        }
+        
+        Log.info("Add setting success")
+        return true
+        
+    }
+
+}
+
 
 extension SettingRealmOperateDelegate {
     

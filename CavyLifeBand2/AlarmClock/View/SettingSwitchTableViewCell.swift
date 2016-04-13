@@ -8,9 +8,11 @@
 
 import UIKit
 
+protocol SettingSwitchTableViewCelldDelegate {
+    func changeSwitchState(sender: UISwitch) -> Void
+}
+
 class SettingSwitchTableViewCell: UITableViewCell {
-    
-    
 
     private var dataSource: SettingCellDataSource?
     
@@ -20,19 +22,17 @@ class SettingSwitchTableViewCell: UITableViewCell {
     
     @IBOutlet weak var selectSwitch: UISwitch!
     
+    var delegate: SettingSwitchTableViewCelldDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
-        self.descriptionLabel.hidden = true
-        
-        self.descriptionLabel.text = "我是来电提醒lalal"
-        
-        self.titleLabel.text = "来电提醒"
+        descriptionLabel.hidden = true
         
         titleLabel.textColor = UIColor(named: .SettingTableCellTitleColor)
         
-//        selectSwitch.addTarget(nil, action: Selector("changeSwitchState:"), forControlEvents: .ValueChanged)
+        self.selectionStyle = .None
         
     }
 
@@ -66,22 +66,7 @@ class SettingSwitchTableViewCell: UITableViewCell {
         self.dataSource = dataSource
         
         //设置样式
-        switch dataSource.cellStyle {
-            
-        case .RedDescription:
-            descriptionLabel.hidden = false
-            descriptionLabel.font = UIFont.systemFontOfSize(14.0)
-            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoYellowColor)
-            
-        case .GrayDescription:
-            descriptionLabel.hidden = false
-            descriptionLabel.font = UIFont.systemFontOfSize(12.0)
-            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoGrayColor)
-            
-        case .NoneDescription:
-            descriptionLabel.hidden = true
-       
-        }
+        self.setWithStyle(dataSource.cellStyle)
         
         titleLabel.text = dataSource.title
         
@@ -89,30 +74,17 @@ class SettingSwitchTableViewCell: UITableViewCell {
         
         selectSwitch.setOn(dataSource.isOpen, animated: true)
         
-        
-        
-//        switch dataSource.title {
-//        case L10n.SettingReminderPhoneCallTitle.string:
-//            descriptionLabel.hidden = false
-//            descriptionLabel.font = UIFont.systemFontOfSize(14.0)
-//            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoYellowColor)
-//        case L10n.SettingReminderMessageTitle.string:
-//            descriptionLabel.hidden = false
-//            descriptionLabel.font = UIFont.systemFontOfSize(12.0)
-//            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoGrayColor)
-//        case L10n.SettingReminderReconnectTitle.string:
-//            descriptionLabel.hidden = true
-//        default:
-//            break
-//        }
-        
-        
-        
     }
     
-    @IBAction func changeSwitchValue(sender: AnyObject) {
+    @IBAction func changeSwitchValue(sender: UISwitch) {
         
-        dataSource?.changeSwitchStatus(sender as! UISwitch)
+        dataSource?.changeSwitchStatus(sender)
+        
+        if dataSource?.title == L10n.SettingReminderPhoneCallTitle.string {
+            
+            delegate?.changeSwitchState(sender)
+            
+        }
         
     }
 
@@ -137,3 +109,6 @@ protocol SettingCellDataSource {
     func changeSwitchStatus(sender: UISwitch)
     
 }
+
+
+

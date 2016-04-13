@@ -9,6 +9,10 @@
 import UIKit
 import RealmSwift
 
+protocol RemindersSettingVCDataSource {
+    var settingListModel: SettingRealmListModel { get }
+}
+
 class RemindersSettingViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -21,13 +25,17 @@ class RemindersSettingViewController: UIViewController {
     
     let tableScrollCellHeight: CGFloat = 75.0 + 20 + 20
     
+    let tableExpandHeight: CGFloat = 285.0
+    
+    let tableUnExpandHeight: CGFloat = 170.0
+    
     let reminderSettingCell = "SettingSwitchTableViewCell"
     
     let reminderSeondesCell = "SecondsTableViewCell"
     
-    var tableList = {
-        return ["", "", "", ""]
-    }()
+    var tableList: [String]?
+    
+    var dataSource: RemindersSettingVCDataSource?
     
     var realm: Realm = try! Realm()
     
@@ -37,6 +45,38 @@ class RemindersSettingViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        setDataSource()
+        
+        setTableView()
+        
+        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func setDataSource() -> Void {
+        
+        dataSource = ReminderSettingVCViewModel(realm: realm)
+        
+        if dataSource?.settingListModel.settingRealmList[0].isOpenSetting == true {
+            tableList = ["", "", "", ""]
+            self.tableView.snp_updateConstraints(closure: { (make) in
+                make.height.equalTo(tableExpandHeight)
+            })
+        } else {
+            tableList = ["", "", ""]
+            self.tableView.snp_updateConstraints(closure: { (make) in
+                make.height.equalTo(tableUnExpandHeight)
+            })
+        }
+    }
+    
+    func setTableView() -> Void {
         
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         tableView.backgroundColor = UIColor.whiteColor()
@@ -52,49 +92,43 @@ class RemindersSettingViewController: UIViewController {
         tableView.registerNib(UINib.init(nibName: reminderSettingCell, bundle: nil), forCellReuseIdentifier: reminderSettingCell)
         
         tableView.registerClass(SecondsTableViewCell.classForCoder(), forCellReuseIdentifier: reminderSeondesCell)
-        
-//        tableView.registerNib(UINib.init(nibName: reminderSeondesCell, bundle: nil), forCellReuseIdentifier: reminderSeondesCell)
-        
-        
-        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
-        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+}
+
+extension RemindersSettingViewController: SettingSwitchTableViewCelldDelegate {
     
     func changeSwitchState(sender: UISwitch) -> Void {
-        Log.warning("todo")
         
         if sender.on {
-            Log.info("on")
-            tableList.insertAsFirst("")
+            tableList?.insertAsFirst("")
+            
             self.tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Top)
+            
             self.tableView.layoutIfNeeded()
+            
             UIView.animateWithDuration(0.3, animations: {
                 self.tableView.snp_updateConstraints(closure: { (make) in
-                    make.height.equalTo(285.0)
+                    make.height.equalTo(self.tableExpandHeight)
                 })
                 self.tableView.layoutIfNeeded()
             })
             
         } else {
-            Log.info("off")
             
-            tableList.removeLast()
+            tableList?.removeLast()
+            
             self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Top)
             
             self.tableView.layoutIfNeeded()
             
             UIView.animateWithDuration(0.3, animations: {
                 self.tableView.snp_updateConstraints(closure: { (make) in
-                    make.height.equalTo(170.0)
+                    make.height.equalTo(self.tableUnExpandHeight)
                 })
                 self.tableView.layoutIfNeeded()
             })
-
+            
         }
     }
 
@@ -108,43 +142,42 @@ extension RemindersSettingViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableList.count
+        return (tableList?.count)!
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
                 
-        if tableList.count == 4 && indexPath.row == 1 {
+        if tableList?.count == 4 && indexPath.row == 1 {
             let sencondsCell = tableView.dequeueReusableCellWithIdentifier(reminderSeondesCell, forIndexPath: indexPath) as? SecondsTableViewCell
             
             return sencondsCell!
         }
         
-        
-        
-        
         let cell = tableView.dequeueReusableCellWithIdentifier(reminderSettingCell, forIndexPath: indexPath) as? SettingSwitchTableViewCell
         
-        
+        cell?.delegate = nil
 
-        if tableList.count == 4 {
+        if tableList?.count == 4 {
             switch indexPath.row {
             case 0:
-                cell?.configure(SettingSwitchPhoneCellViewModel(realm: realm))
+                cell?.configure(SettingSwitchPhoneCellViewModel(realm: realm, realmSetting: (dataSource?.settingListModel.settingRealmList[0])!))
+                cell?.delegate = self
             case 2:
-                cell?.configure(SettingSwitchMessageCellViewModel(realm: realm))
+                cell?.configure(SettingSwitchMessageCellViewModel(realm: realm, realmSetting: (dataSource?.settingListModel.settingRealmList[1])!))
             case 3:
-                cell?.configure(SettingSwitchReconnectCellViewModel(realm: realm))
+                cell?.configure(SettingSwitchReconnectCellViewModel(realm: realm, realmSetting: (dataSource?.settingListModel.settingRealmList[2])!))
             default:
                 break
             }
         } else {
             switch indexPath.row {
             case 0:
-                cell?.configure(SettingSwitchPhoneCellViewModel(realm: realm))
+                cell?.configure(SettingSwitchPhoneCellViewModel(realm: realm, realmSetting: (dataSource?.settingListModel.settingRealmList[0])!))
+                cell?.delegate = self
             case 1:
-                cell?.configure(SettingSwitchMessageCellViewModel(realm: realm))
+                cell?.configure(SettingSwitchMessageCellViewModel(realm: realm, realmSetting: (dataSource?.settingListModel.settingRealmList[1])!))
             case 2:
-                cell?.configure(SettingSwitchReconnectCellViewModel(realm: realm))
+                cell?.configure(SettingSwitchReconnectCellViewModel(realm: realm, realmSetting: (dataSource?.settingListModel.settingRealmList[2])!))
             default:
                 break
             }
@@ -190,7 +223,7 @@ extension RemindersSettingViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if tableList.count == 4 && indexPath.row == 1 {
+        if tableList?.count == 4 && indexPath.row == 1 {
             return tableScrollCellHeight
         }
         

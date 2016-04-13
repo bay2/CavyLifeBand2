@@ -11,6 +11,7 @@ import RealmSwift
 
 typealias SettingSwitchCellViewModelPresentable = protocol<SettingCellDataSource, SettingRealmOperateDelegate>
 
+
 struct SettingSwitchPhoneCellViewModel: SettingSwitchCellViewModelPresentable {
     
     var title: String { return L10n.SettingReminderPhoneCallTitle.string }
@@ -24,11 +25,8 @@ struct SettingSwitchPhoneCellViewModel: SettingSwitchCellViewModelPresentable {
     
     var isOpen: Bool {
         
-        guard let settingModel = realmSetting else {
-            return true
-        }
+        return realmSetting.isOpenSetting
         
-        return settingModel.isOpenSetting
     }
     
     var cellStyle: CavyLifeBand2SwitchStyle {
@@ -37,18 +35,13 @@ struct SettingSwitchPhoneCellViewModel: SettingSwitchCellViewModelPresentable {
     
     var realm: Realm
     
-    var settingType: String {
-        return L10n.SettingReminderPhoneType.string
-    }
+    var realmSetting: SettingRealmModel
     
-    var realmSetting: SettingRealmModel? {
-        return querySetting(settingType)
-    }
-    
-    
-    init(realm: Realm) {
+    init(realm: Realm, realmSetting: SettingRealmModel) {
         
         self.realm = realm
+        
+        self.realmSetting = realmSetting
         
     }
     
@@ -57,7 +50,7 @@ struct SettingSwitchPhoneCellViewModel: SettingSwitchCellViewModelPresentable {
      */
     func changeSwitchStatus(sender: UISwitch) {
         
-        updateSetting(settingType) { (model: SettingRealmModel) -> SettingRealmModel in
+        updateSetting(realmSetting.settingType) { (model: SettingRealmModel) -> SettingRealmModel in
             model.isOpenSetting = sender.on
             return model
         }
@@ -78,11 +71,7 @@ struct SettingSwitchMessageCellViewModel: SettingSwitchCellViewModelPresentable 
     
     var isOpen: Bool {
         
-        guard let settingModel = realmSetting else {
-            return true
-        }
-        
-        return settingModel.isOpenSetting
+        return realmSetting.isOpenSetting
     }
     
     var cellStyle: CavyLifeBand2SwitchStyle {
@@ -91,18 +80,14 @@ struct SettingSwitchMessageCellViewModel: SettingSwitchCellViewModelPresentable 
     
     var realm: Realm
     
-    var settingType: String {
-        return L10n.SettingReminderMessageType.string
-    }
-    
-    var realmSetting: SettingRealmModel? {
-        return querySetting(settingType)
-    }
+    var realmSetting: SettingRealmModel
     
     
-    init(realm: Realm) {
+    init(realm: Realm, realmSetting: SettingRealmModel) {
         
         self.realm = realm
+        
+        self.realmSetting = realmSetting
         
     }
     
@@ -111,7 +96,7 @@ struct SettingSwitchMessageCellViewModel: SettingSwitchCellViewModelPresentable 
      */
     func changeSwitchStatus(sender: UISwitch) {
         
-        updateSetting(settingType) { (model: SettingRealmModel) -> SettingRealmModel in
+        updateSetting(realmSetting.settingType) { (model: SettingRealmModel) -> SettingRealmModel in
             model.isOpenSetting = sender.on
             return model
         }
@@ -129,12 +114,8 @@ struct SettingSwitchReconnectCellViewModel: SettingSwitchCellViewModelPresentabl
     var description: String { return "" }
     
     var isOpen: Bool {
-        
-        guard let settingModel = realmSetting else {
-            return true
-        }
-        
-        return settingModel.isOpenSetting
+
+        return realmSetting.isOpenSetting
     }
     
     var cellStyle: CavyLifeBand2SwitchStyle {
@@ -143,18 +124,13 @@ struct SettingSwitchReconnectCellViewModel: SettingSwitchCellViewModelPresentabl
     
     var realm: Realm
     
-    var settingType: String {
-        return L10n.SettingReminderMessageType.string
-    }
+    var realmSetting: SettingRealmModel
     
-    var realmSetting: SettingRealmModel? {
-        return querySetting(settingType)
-    }
-    
-    
-    init(realm: Realm) {
+    init(realm: Realm, realmSetting: SettingRealmModel) {
         
         self.realm = realm
+        
+        self.realmSetting = realmSetting
         
     }
     
@@ -163,7 +139,7 @@ struct SettingSwitchReconnectCellViewModel: SettingSwitchCellViewModelPresentabl
      */
     func changeSwitchStatus(sender: UISwitch) {
         
-        updateSetting(settingType) { (model: SettingRealmModel) -> SettingRealmModel in
+        updateSetting(realmSetting.settingType) { (model: SettingRealmModel) -> SettingRealmModel in
             model.isOpenSetting = sender.on
             return model
         }
