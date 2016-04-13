@@ -173,3 +173,6 @@
 "Setting.ReminderMessage.Title" = "短信提醒";
 "Setting.ReminderMessage.Description" = "振动一次通知提醒";
 "Setting.ReminderReconnect.Title" = "断线手环自动重连";
+"Setting.ReminderReconnect.Type" = "3";
+"Setting.ReminderMessage.Type" = "2";
+"Setting.ReminderPhone.Type" = "1";

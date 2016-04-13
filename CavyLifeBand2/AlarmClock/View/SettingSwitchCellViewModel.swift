@@ -38,7 +38,7 @@ struct SettingSwitchPhoneCellViewModel: SettingSwitchCellViewModelPresentable {
     var realm: Realm
     
     var settingType: String {
-        return "1"
+        return L10n.SettingReminderPhoneType.string
     }
     
     var realmSetting: SettingRealmModel? {
@@ -92,7 +92,7 @@ struct SettingSwitchMessageCellViewModel: SettingSwitchCellViewModelPresentable 
     var realm: Realm
     
     var settingType: String {
-        return "2"
+        return L10n.SettingReminderMessageType.string
     }
     
     var realmSetting: SettingRealmModel? {
@@ -144,7 +144,7 @@ struct SettingSwitchReconnectCellViewModel: SettingSwitchCellViewModelPresentabl
     var realm: Realm
     
     var settingType: String {
-        return "3"
+        return L10n.SettingReminderMessageType.string
     }
     
     var realmSetting: SettingRealmModel? {

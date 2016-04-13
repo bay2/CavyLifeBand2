@@ -283,6 +283,12 @@ enum L10n {
   case SettingReminderMessageDescription
   /// 断线手环自动重连
   case SettingReminderReconnectTitle
+  /// 3
+  case SettingReminderReconnectType
+  /// 2
+  case SettingReminderMessageType
+  /// 1
+  case SettingReminderPhoneType
 }
 
 extension L10n: CustomStringConvertible {
@@ -570,6 +576,12 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Setting.ReminderMessage.Description")
       case .SettingReminderReconnectTitle:
         return L10n.tr("Setting.ReminderReconnect.Title")
+      case .SettingReminderReconnectType:
+        return L10n.tr("Setting.ReminderReconnect.Type")
+      case .SettingReminderMessageType:
+        return L10n.tr("Setting.ReminderMessage.Type")
+      case .SettingReminderPhoneType:
+        return L10n.tr("Setting.ReminderPhone.Type")
     }
   }
 
