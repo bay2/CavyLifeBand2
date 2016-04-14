@@ -150,6 +150,8 @@ extension RemindersSettingViewController: UITableViewDataSource {
         if tableList?.count == 4 && indexPath.row == 1 {
             let sencondsCell = tableView.dequeueReusableCellWithIdentifier(reminderSeondesCell, forIndexPath: indexPath) as? SecondsTableViewCell
             
+            sencondsCell?.index = dataSource?.settingListModel.settingRealmList[0].settingInfo
+            
             return sencondsCell!
         }
         

@@ -15,9 +15,10 @@ struct ReminderSettingVCViewModel: ReminderSettingSViewModelPresentable {
     
     var userId: String {
         
-        return "11"
+        return "12"
         
-        //        return return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+//        return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        
     }
     
     var realm: Realm

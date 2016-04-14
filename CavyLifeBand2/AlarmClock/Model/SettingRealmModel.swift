@@ -11,12 +11,9 @@ import RealmSwift
 
 class SettingRealmModel: Object {
     dynamic var settingType = "" // 1来电提醒 2短信提醒 3断线重连
+    dynamic var userId = ""
     dynamic var isOpenSetting = true
     dynamic var settingInfo = 1
-    
-    override class func primaryKey() -> String? {
-        return "settingType"
-    }
     
     var owners: [SettingRealmListModel] {
         
@@ -51,11 +48,11 @@ protocol SettingRealmOperateDelegate {
     
     var realm: Realm { get }
     
-    func querySetting(settingType: String) -> SettingRealmModel?
+    func querySetting(settingType: String, userId: String) -> SettingRealmModel?
     func addSetting(settingModel: SettingRealmModel) -> Bool
-    func updateSetting(settingType: String, updateCall: ((SettingRealmModel) -> SettingRealmModel)) -> Bool
-    func isSettingExist(settingType: String) -> Bool
-    
+    func updateSettingOpen(settingType: String, userId: String, settingOpen: Bool) -> Bool
+    func updateSettingInfo(settingType: String, userId: String, settingInfo: Int) -> Bool
+    func isSettingExist(settingType: String, userId: String) -> Bool 
 }
 
 extension SettingRealmListOperateDelegate {
@@ -109,11 +106,11 @@ extension SettingRealmListOperateDelegate {
         
         settingList.userId = userId
         
-        let phoneSetting = initSettingModel(L10n.SettingReminderPhoneType.string)
+        let phoneSetting = initSettingModel(L10n.SettingReminderPhoneType.string, userId: userId)
         
-        let messageSetting = initSettingModel(L10n.SettingReminderMessageType.string)
+        let messageSetting = initSettingModel(L10n.SettingReminderMessageType.string, userId: userId)
         
-        let reconnectSetting = initSettingModel(L10n.SettingReminderReconnectType.string)
+        let reconnectSetting = initSettingModel(L10n.SettingReminderReconnectType.string, userId: userId)
         
         settingList.settingRealmList.appendContentsOf([phoneSetting, messageSetting, reconnectSetting])
         
@@ -125,13 +122,15 @@ extension SettingRealmListOperateDelegate {
         
     }
     
-    func initSettingModel(settingType: String) -> SettingRealmModel {
+    func initSettingModel(settingType: String, userId: String) -> SettingRealmModel {
         
         let settingModel = SettingRealmModel()
         
         settingModel.isOpenSetting = true
         
         settingModel.settingType = settingType
+        
+        settingModel.userId = userId
         
         if settingType == L10n.SettingReminderPhoneType.string { //来电提醒
             
@@ -174,13 +173,13 @@ extension SettingRealmOperateDelegate {
      
      - returns: 设置model
      */
-    func querySetting(settingType: String) -> SettingRealmModel? {
+    func querySetting(settingType: String, userId: String) -> SettingRealmModel? {
         
-        let settingModels = realm.objects(SettingRealmModel).filter("settingType == '\(settingType)'")
+        let settingModels = realm.objects(SettingRealmModel).filter("settingType == '\(settingType)' && userId == '\(userId)'")
         
         if 0 == settingModels.count {
             //数据库没有相关设置，就设添加一个默认设置
-            let settingModel = initModel(settingType)
+            let settingModel = initModel(settingType, userId: userId)
             
             if addSetting(settingModel) {
                 return settingModel
@@ -221,16 +220,16 @@ extension SettingRealmOperateDelegate {
     }
     
     /**
-     更新设置
-     
-     - parameter settingType: 设置的主键索引
-     - parameter updateCall:  更新回调
-     
-     - returns: 是否更新成功
+     更新设置 开关
      */
-    func updateSetting(settingType: String, updateCall: ((SettingRealmModel) -> SettingRealmModel)) -> Bool {
-        guard var settingModel = querySetting(settingType) else {
-            Log.error("setting not exist [\(settingType)]")
+    func updateSettingOpen(settingType: String, userId: String, settingOpen: Bool) -> Bool {
+        
+        
+        guard let settingList = realm.objects(SettingRealmListModel).filter("userId = '\(userId)'").first else {
+            return false
+        }
+        
+        guard let settingModel = settingList.settingRealmList.filter("settingType = '\(settingType)'").first else {
             return false
         }
         
@@ -238,9 +237,39 @@ extension SettingRealmOperateDelegate {
             
             realm .beginWrite()
             
-            settingModel = updateCall(settingModel)
+            settingModel.isOpenSetting = settingOpen
             
-            realm.add(settingModel, update: true)
+            try realm.commitWrite()
+            
+        } catch {
+            
+            Log.error("Update setting error [\(settingType)]")
+            return false
+            
+        }
+        
+        Log.info("Update setting success [\(settingType)]")
+        return true
+    }
+    
+    /**
+     更新电话设置的时间index 
+     */
+    func updateSettingInfo(settingType: String, userId: String, settingInfo: Int) -> Bool {
+        
+        guard let settingList = realm.objects(SettingRealmListModel).filter("userId = '\(userId)'").first else {
+            return false
+        }
+        
+        guard let settingModel = settingList.settingRealmList.filter("settingType = '\(settingType)'").first else {
+            return false
+        }
+        
+        do {
+
+            realm .beginWrite()
+            
+            settingModel.settingInfo = settingInfo
             
             try realm.commitWrite()
             
@@ -262,21 +291,23 @@ extension SettingRealmOperateDelegate {
      
      - returns: 是否存在
      */
-    func isSettingExist(settingType: String) -> Bool {
+    func isSettingExist(settingType: String, userId: String) -> Bool {
         
-        if let _ = querySetting(settingType) {
+        if let _ = querySetting(settingType, userId: userId) {
             return true
         }
         
         return false
     }
     
-    func initModel(settingType: String) -> SettingRealmModel {
+    func initModel(settingType: String, userId: String) -> SettingRealmModel {
         let settingModel = SettingRealmModel()
         
         settingModel.isOpenSetting = true
         
         settingModel.settingType = settingType
+        
+        settingModel.userId = userId
         
         if settingType == L10n.SettingReminderPhoneType.string { //来电提醒
             

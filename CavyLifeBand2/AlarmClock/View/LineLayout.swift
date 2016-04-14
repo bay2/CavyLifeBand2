@@ -45,14 +45,17 @@ class LineLayout: UICollectionViewFlowLayout {
     override func layoutAttributesForElementsInRect(rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         let array = super.layoutAttributesForElementsInRect(rect)
         
+        let newArray = NSArray(array: array!, copyItems: true) as? [UICollectionViewLayoutAttributes]
+        
         //collection可视区域
         let visibleRect = CGRect(origin: (self.collectionView?.contentOffset)!,
                                  size: (self.collectionView!.bounds.size))
         
-        for attribute: UICollectionViewLayoutAttributes in array! {
+        for attribute: UICollectionViewLayoutAttributes in newArray! {
             
             //对在可视区域的cell做缩放
             if CGRectIntersectsRect(attribute.frame, visibleRect) {
+                
                 
                 let distance: CGFloat = CGRectGetMidX(visibleRect) - attribute.center.x
                 
@@ -69,10 +72,11 @@ class LineLayout: UICollectionViewFlowLayout {
                     attribute.alpha = zoom - 0.7
                     
                 }
+                
             }
         }
         
-        return array
+        return newArray
     }
     
     override func targetContentOffsetForProposedContentOffset(proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {

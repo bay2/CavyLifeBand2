@@ -11,6 +11,28 @@ import RealmSwift
 
 typealias SettingSwitchCellViewModelPresentable = protocol<SettingCellDataSource, SettingRealmOperateDelegate>
 
+struct PhoneReminderTimeModel {
+    var timeDic = {
+        return [1: "5",
+                2: "10",
+                3: "15",
+                4: "20",
+                5: "25",
+                6: "30"]
+    }()
+    
+    var timeArr = {
+        return ["",
+                "5",
+                "10",
+                "15",
+                "20",
+                "25",
+                "30",
+                ""]
+    }()
+    
+}
 
 struct SettingSwitchPhoneCellViewModel: SettingSwitchCellViewModelPresentable {
     
@@ -20,7 +42,14 @@ struct SettingSwitchPhoneCellViewModel: SettingSwitchCellViewModelPresentable {
         
         Log.warning("多少秒提醒还没做")
         
-        return L10n.SettingReminderPhoneCallDescription.string
+        return timeModel.timeArr[realmSetting.settingInfo] + L10n.SettingReminderPhoneCallDescription.string
+    
+    }
+    
+    var timeModel: PhoneReminderTimeModel {
+        
+        return PhoneReminderTimeModel()
+    
     }
     
     var isOpen: Bool {
@@ -48,15 +77,14 @@ struct SettingSwitchPhoneCellViewModel: SettingSwitchCellViewModelPresentable {
     /**
      改变按钮状态
      */
-    func changeSwitchStatus(sender: UISwitch) {
-        
-        updateSetting(realmSetting.settingType) { (model: SettingRealmModel) -> SettingRealmModel in
-            model.isOpenSetting = sender.on
-            return model
-        }
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.ReminderPhoneSwitchChange.rawValue, object: nil, userInfo: ["index" : realmSetting.settingInfo])
-        
+    func changeSwitchStatus(status: Bool) {
+        updateSettingOpen(realmSetting.settingType, userId: realmSetting.userId, settingOpen: status)
+    }
+    
+    
+    //改变时间的选择
+    func changeDescription(index: Int) -> Void {
+        updateSettingInfo(realmSetting.settingType, userId: realmSetting.userId, settingInfo: index)
     }
     
 }
@@ -96,12 +124,9 @@ struct SettingSwitchMessageCellViewModel: SettingSwitchCellViewModelPresentable 
     /**
      改变按钮状态
      */
-    func changeSwitchStatus(sender: UISwitch) {
+    func changeSwitchStatus(status: Bool) {
         
-        updateSetting(realmSetting.settingType) { (model: SettingRealmModel) -> SettingRealmModel in
-            model.isOpenSetting = sender.on
-            return model
-        }
+        updateSettingOpen(realmSetting.settingType, userId: realmSetting.userId, settingOpen: status)
         
     }
     
@@ -139,12 +164,9 @@ struct SettingSwitchReconnectCellViewModel: SettingSwitchCellViewModelPresentabl
     /**
      改变按钮状态
      */
-    func changeSwitchStatus(sender: UISwitch) {
+    func changeSwitchStatus(status: Bool) {
         
-        updateSetting(realmSetting.settingType) { (model: SettingRealmModel) -> SettingRealmModel in
-            model.isOpenSetting = sender.on
-            return model
-        }
+        updateSettingOpen(realmSetting.settingType, userId: realmSetting.userId, settingOpen: status)
         
     }
     

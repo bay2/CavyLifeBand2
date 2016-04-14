@@ -80,7 +80,7 @@ class SettingSwitchTableViewCell: UITableViewCell {
     
     @IBAction func changeSwitchValue(sender: UISwitch) {
         
-        dataSource?.changeSwitchStatus(sender)
+        dataSource?.changeSwitchStatus(sender.on)
         
         if dataSource?.title == L10n.SettingReminderPhoneCallTitle.string {
             
@@ -91,11 +91,14 @@ class SettingSwitchTableViewCell: UITableViewCell {
     }
     
     func setDescription(sender: NSNotification) -> Void {
-        let userInfo = sender.userInfo as! [String: AnyObject]
-        let value = userInfo["index"] as! Int
+        if dataSource?.title == L10n.SettingReminderPhoneCallTitle.string {
+            let userInfo = sender.userInfo as! [String: AnyObject]
+            let value = userInfo["index"] as! Int
+            dataSource?.changeDescription(value)
+            descriptionLabel.text = (dataSource?.description)!
+            Log.info("\(value)")
+        }
         
-        descriptionLabel.text = "\(value)" + (dataSource?.description)!
-        Log.info("\(value)")
     }
 
 }
@@ -116,9 +119,21 @@ protocol SettingCellDataSource {
     
     var cellStyle: CavyLifeBand2SwitchStyle { get }
     
-    func changeSwitchStatus(sender: UISwitch)
+    func changeSwitchStatus(status: Bool)
+    
+    /**
+     改变cell的描述label的内容，目前为来电提醒特有功能
+     
+     - parameter index: index
+     */
+    func changeDescription(index: Int)
     
 }
 
+extension SettingCellDataSource {
+    func changeDescription(index: Int) -> Void {
+        Log.info("\(index)")
+    }
+}
 
 

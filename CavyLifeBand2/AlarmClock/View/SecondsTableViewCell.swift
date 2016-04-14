@@ -41,10 +41,21 @@ class SecondsTableViewCell: UITableViewCell {
     
     }()
     
+    var index: Int? {
+        didSet
+        {
+            scrollByIndex(index!)
+        }
+    }
+    
     let secondsCell = "SecondsCollectionViewCell"
     
     let secondsList = {
         return ["", "11", "12", "13", "14", "15", ""]
+    }()
+    
+    let timeModel: PhoneReminderTimeModel = {
+        return PhoneReminderTimeModel()
     }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -67,36 +78,10 @@ class SecondsTableViewCell: UITableViewCell {
         
         self.addSeparatorView()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SecondsTableViewCell.switchChangeIndex(_:)), name: NotificationName.ReminderPhoneSwitchChange.rawValue, object: nil)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    func switchChangeIndex(sender: NSNotification) -> Void {
-        
-        let userInfo = sender.userInfo as! [String: AnyObject]
-        
-        let value = userInfo["index"] as! Int
-        
-        Log.info("\(value)")
-        
-        let center = self.convertPoint(self.collectionView.center, toView: self.collectionView)
-        
-        if let currentIndex = self.collectionView.indexPathForItemAtPoint(center) {
-            if currentIndex.row != value {
-                let indexPath = NSIndexPath(forItem: value, inSection: 0)
-                
-                collectionView.selectItemAtIndexPath(indexPath, animated: true, scrollPosition: .CenteredHorizontally)
-                
-                self.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
-            }
-        }
-        
-        
-        
     }
     
     func addSeparatorView() -> Void {
@@ -128,6 +113,21 @@ class SecondsTableViewCell: UITableViewCell {
         }
     
     }
+    
+    func scrollByIndex(index: Int) -> Void {
+        let center = self.convertPoint(self.collectionView.center, toView: self.collectionView)
+        
+        if let currentIndex = self.collectionView.indexPathForItemAtPoint(center) {
+            
+            if currentIndex.row != index {
+                let indexPath = NSIndexPath(forItem: index, inSection: 0)
+                
+                collectionView.selectItemAtIndexPath(indexPath, animated: true, scrollPosition: .CenteredHorizontally)
+                
+                self.collectionView(collectionView, didSelectItemAtIndexPath: indexPath)
+            }
+        }
+    }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -141,14 +141,14 @@ class SecondsTableViewCell: UITableViewCell {
 extension SecondsTableViewCell: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return secondsList.count
+        return timeModel.timeArr.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(secondsCell, forIndexPath: indexPath) as? SecondsCollectionViewCell
         
-        cell!.titleLabel.text = secondsList[indexPath.row]
+        cell!.titleLabel.text = timeModel.timeArr[indexPath.row]
         
         return cell!
     }
@@ -164,7 +164,7 @@ extension SecondsTableViewCell: UICollectionViewDelegate {
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.row == 0 || indexPath.row == secondsList.count-1 {
+        if indexPath.row == 0 || indexPath.row == timeModel.timeArr.count-1 {
             return
         }
         
@@ -201,5 +201,4 @@ extension SecondsTableViewCell: UICollectionViewDelegate {
     
     }
 
-    
 }
