@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SettingSwitchTableViewCelldDelegate {
+protocol SettingSwitchTableViewCelldDelegate: class {
     func changeSwitchState(sender: UISwitch) -> Void
 }
 
@@ -22,7 +22,7 @@ class SettingSwitchTableViewCell: UITableViewCell {
     
     @IBOutlet weak var selectSwitch: UISwitch!
     
-    var delegate: SettingSwitchTableViewCelldDelegate?
+    weak var delegate: SettingSwitchTableViewCelldDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()

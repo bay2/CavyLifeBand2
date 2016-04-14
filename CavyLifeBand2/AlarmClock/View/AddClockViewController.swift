@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class AddClockViewController: UIViewController {
 
@@ -32,6 +33,12 @@ class AddClockViewController: UIViewController {
     
     let AddClockCollectionViewCell = "AlarmClockDateCollectionViewCell"
     
+    var realm: Realm = try! Realm()
+    
+    var dataSource: AddClockVCViewModel?
+    
+    var addAlarmBlock: ((model: AlarmRealmModel) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -40,6 +47,29 @@ class AddClockViewController: UIViewController {
         
         self.navigationItem.title = L10n.AlarmClockTitle.string
         
+        baseSetView()
+        
+        collectionView.registerNib(UINib(nibName: AddClockCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: AddClockCollectionViewCell)
+        
+        let alarmModel = AlarmRealmModel()
+        alarmModel.alarmDay = 87
+        
+        dataSource = AddClockVCViewModel(realm: realm, alarmModel: alarmModel)
+        
+        datePicker.datePickerMode = .Time
+        
+        datePicker.addTarget(self, action:#selector(AddClockViewController.datePickerValueChange(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        datePicker.date = (dataSource?.getAlarmTimeDate())!
+
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func baseSetView() -> Void {
         separatorViewFisrt.backgroundColor = UIColor(named: .SettingSeparatorColor)
         
         separatorViewSeconde.backgroundColor = UIColor(named: .SettingSeparatorColor)
@@ -65,34 +95,24 @@ class AddClockViewController: UIViewController {
         alarmCircleDescriptionLabel.textColor = UIColor(named: .AlarmClockSettingDescription2Color)
         
         confirmBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
-        
-        datePicker.datePickerMode = .Time
-        
-        collectionView.registerNib(UINib(nibName: AddClockCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: AddClockCollectionViewCell)
-
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func datePickerValueChange(sender: UIDatePicker) -> Void {
+        dataSource?.setAlarmTimeStr(sender.date)
     }
-    */
 
+    @IBAction func confirm(sender: AnyObject) {
+        
+        addAlarmBlock!(model:dataSource!.alarmModel)
+
+    }
+    
 }
 
 // MARK: - UICollectionViewDelegate
 extension AddClockViewController: UICollectionViewDelegate {
 
+    
     
 }
 
@@ -109,9 +129,11 @@ extension AddClockViewController: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(AddClockCollectionViewCell, forIndexPath: indexPath) as? AlarmClockDateCollectionViewCell
-                
-        cell?.setWithNumber(Int(indexPath.row + 1))
         
+        cell?.setWithNumber(Int(indexPath.row), isOpen: (dataSource?.alarmDayDic![indexPath.row])!)
+        
+        cell?.delegate = self
+      
         return cell!
     }
 
@@ -121,6 +143,14 @@ extension AddClockViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 16.0
+    }
+    
+}
+
+extension AddClockViewController: AlarmClockDateCellDelegate {
+
+    func changeDateSelectState(day: Int, state: Bool) {
+        dataSource?.changeAlarmDay(day, selected: state)
     }
     
 }

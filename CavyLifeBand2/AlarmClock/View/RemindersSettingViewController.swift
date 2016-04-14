@@ -39,6 +39,11 @@ class RemindersSettingViewController: UIViewController {
     
     var realm: Realm = try! Realm()
     
+    deinit {
+        
+        Log.info("dealloc")
+    
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

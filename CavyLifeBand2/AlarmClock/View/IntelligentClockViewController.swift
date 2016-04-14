@@ -41,6 +41,8 @@ class IntelligentClockViewController: ContactsBaseViewController {
         
         tableBaseSetting()
         
+        Log.info("\(10>>1)")
+        
     }
 
     override func didReceiveMemoryWarning() {

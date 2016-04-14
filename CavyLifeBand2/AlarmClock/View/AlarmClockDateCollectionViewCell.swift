@@ -8,9 +8,27 @@
 
 import UIKit
 
+@objc protocol AlarmClockDateCellDelegate {
+    optional func changeDateSelectState(day: Int, state: Bool) -> Void
+}
+
 class AlarmClockDateCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var dateBtn: UIButton!
+    
+    var number: Int? {
+        didSet {
+            let numberFormatter = NSNumberFormatter()
+            numberFormatter.numberStyle = .SpellOutStyle
+            let numberStr = numberFormatter.stringFromNumber(NSNumber.init(integer: number!))
+            
+            dateBtn.setTitle(numberStr, forState: .Normal)
+            dateBtn.setTitle(numberStr, forState: .Selected)
+        }
+    }
+    
+    var delegate: AlarmClockDateCellDelegate?
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,16 +52,22 @@ class AlarmClockDateCollectionViewCell: UICollectionViewCell {
         
         sender.selected = !sender.selected
         
+        self.delegate?.changeDateSelectState?(self.number! - 1, state: sender.selected)
+         
     }
     
-    func setWithNumber(number: Int) -> Void {
+    func setWithNumber(number: Int, isOpen: Bool) -> Void {
         
-        let numberFormatter = NSNumberFormatter()
-        numberFormatter.numberStyle = .SpellOutStyle
-        let numberStr = numberFormatter.stringFromNumber(NSNumber.init(integer: number))
+//        let numberFormatter = NSNumberFormatter()
+//        numberFormatter.numberStyle = .SpellOutStyle
+//        let numberStr = numberFormatter.stringFromNumber(NSNumber.init(integer: number))
+//        
+//        dateBtn.setTitle(numberStr, forState: .Normal)
+//        dateBtn.setTitle(numberStr, forState: .Selected)
         
-        dateBtn.setTitle(numberStr, forState: .Normal)
-        dateBtn.setTitle(numberStr, forState: .Selected)
+        self.number = number+1
+        
+        self.dateBtn.selected = isOpen
         
     }
     

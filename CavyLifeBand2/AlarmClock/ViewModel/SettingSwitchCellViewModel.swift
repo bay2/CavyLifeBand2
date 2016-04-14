@@ -40,8 +40,6 @@ struct SettingSwitchPhoneCellViewModel: SettingSwitchCellViewModelPresentable {
     
     var description: String {
         
-        Log.warning("多少秒提醒还没做")
-        
         return timeModel.timeArr[realmSetting.settingInfo] + L10n.SettingReminderPhoneCallDescription.string
     
     }
