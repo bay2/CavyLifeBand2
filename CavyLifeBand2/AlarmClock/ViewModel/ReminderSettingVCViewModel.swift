@@ -15,6 +15,8 @@ struct ReminderSettingVCViewModel: ReminderSettingSViewModelPresentable {
     
     var userId: String {
         
+        Log.warning("ReminderSettingVCViewModel 用户ID写死")
+        
         return "12"
         
 //        return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId

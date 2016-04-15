@@ -24,7 +24,6 @@ class IntelligentClockCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         
         self.selectionStyle  = .None
 

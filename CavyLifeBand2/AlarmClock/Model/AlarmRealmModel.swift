@@ -58,8 +58,8 @@ class AlarmRealmModel: Object {
         }
         
         return daysStr
-
     }
+    
 }
 
 class AlarmRealmListModel: Object {
@@ -89,9 +89,7 @@ extension AlarmRealmListOperateDelegate {
     
     func queryAlarmList() -> AlarmRealmListModel {
         guard isExistAlarmList() else {
-            
             return initAlarmList()!
-            
         }
         
         let alarmlist = realm.objects(AlarmRealmListModel).filter("userId = '\(userId)'")
@@ -116,7 +114,6 @@ extension AlarmRealmListOperateDelegate {
         if oldAlarm == nil {
             
             self.realm.beginWrite()
-//            alarmList.alarmRealmList.append(alarm)
             alarmList.alarmRealmList.insert(alarm, atIndex: 0)
             do {
                 try self.realm.commitWrite()
@@ -144,7 +141,6 @@ extension AlarmRealmListOperateDelegate {
         }
         
         return true
-
     }
     
     func updateAlarmRealm(newAlarm: AlarmRealmModel, oldAlarm: AlarmRealmModel) -> Bool {

@@ -261,6 +261,10 @@ enum L10n {
   case AlarmClockAlarmCircleSubTitle
   /// 闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。
   case AlarmClockAlarmCircleDescription
+  /// 删除
+  case AlarmClockDeleteBtnTitle
+  /// 请选择闹钟周期
+  case AlarmClockAlarmCircleAlertTitle
   /// 安全
   case SettingSafetyTitle
   /// 点击添加
@@ -554,6 +558,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AlarmClock.AlarmCircle.SubTitle")
       case .AlarmClockAlarmCircleDescription:
         return L10n.tr("AlarmClock.AlarmCircle.Description")
+      case .AlarmClockDeleteBtnTitle:
+        return L10n.tr("AlarmClock.DeleteBtn.Title")
+      case .AlarmClockAlarmCircleAlertTitle:
+        return L10n.tr("AlarmClock.AlarmCircle.AlertTitle")
       case .SettingSafetyTitle:
         return L10n.tr("Setting.Safety.Title")
       case .SettingSafetyTableCellContactButton:

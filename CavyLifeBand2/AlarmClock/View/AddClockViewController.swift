@@ -11,7 +11,7 @@ import RealmSwift
 
 class AddClockViewController: UIViewController {
 
-    @IBOutlet weak var confirmBtn: UIButton!
+    @IBOutlet weak var deleteBtn: UIButton!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -33,6 +33,8 @@ class AddClockViewController: UIViewController {
     
     @IBOutlet weak var awakeSwitch: UISwitch!
     
+    @IBOutlet weak var LCDeleteBtnHeight: NSLayoutConstraint!
+    
     let AddClockCollectionViewCell = "AlarmClockDateCollectionViewCell"
     
     lazy var addNewClock: Bool = {
@@ -44,9 +46,6 @@ class AddClockViewController: UIViewController {
     lazy var alarmModel: AlarmRealmModel = {
         
         let alarm = AlarmRealmModel()
-        
-        Log.warning("用户ID 写死了")
-        alarm.userId = "12"
         
         return alarm
     }()
@@ -61,6 +60,11 @@ class AddClockViewController: UIViewController {
         
         self.navigationItem.title = L10n.AlarmClockTitle.string
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存",
+                                                                 style: .Plain,
+                                                                 target: self,
+                                                                 action: #selector(rightBarBtnAciton(_:)))
+        
         collectionView.registerNib(UINib(nibName: AddClockCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: AddClockCollectionViewCell)
         
         baseSetView()
@@ -74,6 +78,18 @@ class AddClockViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
+        
+        if dataSource?.alarmModel.alarmDay == 0{
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: L10n.AlarmClockAlarmCircleAlertTitle.string)
+            return
+        }
+        
+        updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
+        
+        self.popVC()
     }
     
     /**
@@ -104,7 +120,7 @@ class AddClockViewController: UIViewController {
         
         alarmCircleDescriptionLabel.textColor = UIColor(named: .AlarmClockSettingDescription2Color)
         
-        confirmBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
+        deleteBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
     }
     
     /**
@@ -121,10 +137,12 @@ class AddClockViewController: UIViewController {
         
         awakeSwitch.on = (dataSource?.alarmModel.isOpenAwake)!
         
+        deleteBtn.setTitle(L10n.AlarmClockDeleteBtnTitle.string, forState: .Normal)
+        
         if addNewClock {
-            confirmBtn.setTitle("确定", forState: .Normal)
+            LCDeleteBtnHeight.constant = 0
         } else {
-            confirmBtn.setTitle("删除", forState: .Normal)
+            LCDeleteBtnHeight.constant = 50
         }
 
     }
@@ -136,24 +154,18 @@ class AddClockViewController: UIViewController {
      */
     func datePickerValueChange(sender: UIDatePicker) -> Void {
         dataSource?.setAlarmTimeStr(sender.date)
-        
-        if !addNewClock {
-            updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
-        }
     }
     
-    //action of the button which at the bottom
-    @IBAction func confirm(sender: AnyObject) {
+    //action of the delete button
+    @IBAction func deleteAlarm(sender: AnyObject) {
         updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: addNewClock)
+
+        self.popVC()
     }
     
     //action of switch
     @IBAction func changeAwakeSwitch(sender: UISwitch) {
         dataSource?.alarmModel.isOpenAwake = sender.on
-        
-        if !addNewClock {
-            updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
-        }
     }
     
 }
@@ -195,10 +207,6 @@ extension AddClockViewController: AlarmClockDateCellDelegate {
 
     func changeDateSelectState(day: Int, state: Bool) {
         dataSource?.changeAlarmDay(day, selected: state)
-        
-        if !addNewClock {
-            updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
-        }
     }
     
 }

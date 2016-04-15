@@ -11,7 +11,10 @@ import RealmSwift
 
 struct AddClockVCViewModel {
     var userId: String {
-        return "12"
+        
+        Log.warning("AddClockVCViewModel 用户ID写死")
+        
+        return "13"
     }
     
     var alarmModel: AlarmRealmModel
@@ -27,8 +30,10 @@ struct AddClockVCViewModel {
     }()
     
     init(alarmModel: AlarmRealmModel) {
-        
+                
         self.alarmModel = alarmModel
+        
+        self.alarmModel.userId = userId
         
         self.alarmDayDic = alarmDayToAlarmDayDic(alarmModel.alarmDay)
         

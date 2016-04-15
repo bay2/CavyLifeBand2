@@ -183,7 +183,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="confirm:" destination="yOG-bT-bp3" eventType="touchUpInside" id="nwB-ZS-zbc"/>
+                                                    <action selector="deleteAlarm:" destination="yOG-bT-bp3" eventType="touchUpInside" id="veS-Hp-uaw"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -249,6 +249,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="700"/>
                     <connections>
+                        <outlet property="LCDeleteBtnHeight" destination="jCB-hU-Gl6" id="06N-04-ZG9"/>
                         <outlet property="alarmCircleDescriptionLabel" destination="5f6-aL-HpM" id="Fpe-CL-bUC"/>
                         <outlet property="alarmCircleSubTitleLabel" destination="S82-Mm-c0d" id="R4k-FY-qGl"/>
                         <outlet property="alarmCircleTitleLabel" destination="t9V-BE-oH7" id="I9r-gw-XSb"/>
@@ -256,8 +257,8 @@
                         <outlet property="awakeSwitch" destination="JC3-Nx-qzM" id="GJr-mC-hWP"/>
                         <outlet property="awakeTitleLabel" destination="hao-aF-0xx" id="Gch-XK-0Dp"/>
                         <outlet property="collectionView" destination="tLb-Uo-TDC" id="gPt-Kg-3Mn"/>
-                        <outlet property="confirmBtn" destination="twM-fQ-OfY" id="b3u-JQ-391"/>
                         <outlet property="datePicker" destination="WHX-xg-It0" id="Lhz-Uy-Z7K"/>
+                        <outlet property="deleteBtn" destination="twM-fQ-OfY" id="X4K-Cm-5K8"/>
                         <outlet property="separatorViewFisrt" destination="oDr-Sq-IHz" id="S0Z-44-RBN"/>
                         <outlet property="separatorViewSeconde" destination="M1v-rQ-T06" id="gUD-Gk-PP4"/>
                     </connections>

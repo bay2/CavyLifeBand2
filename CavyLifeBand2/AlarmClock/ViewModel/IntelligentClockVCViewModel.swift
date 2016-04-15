@@ -14,6 +14,9 @@ struct IntelligentClockVCViewModel: AlarmRealmListOperateDelegate {
     var realm: Realm
     
     var userId: String {
+        
+        Log.warning("IntelligentClockVCViewModel 用户ID写死")
+        
         return "12"
     }
     
