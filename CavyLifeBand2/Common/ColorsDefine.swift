@@ -27,6 +27,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
     /// Alpha: 100% <br/> (0xffffffff)
     case AlarmClockDateBtnTextSelectedColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#dbdbdb"></span>
+    /// Alpha: 100% <br/> (0xdbdbdbff)
+    case AlarmClockDeleteBtnBGColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 30% <br/> (0x0000004d)
     case AlarmClockSettingDescription2Color
@@ -205,6 +208,7 @@ extension UIColor {
       case .AlarmClockDateBtnBGSelectedColor: return 0xff993fff
       case .AlarmClockDateBtnTextNormalColor: return 0x858585ff
       case .AlarmClockDateBtnTextSelectedColor: return 0xffffffff
+      case .AlarmClockDeleteBtnBGColor: return 0xdbdbdbff
       case .AlarmClockSettingDescription2Color: return 0x0000004d
       case .AlarmClockSettingDescriptionColor: return 0x00000080
       case .AlarmClockSettingTitleColor: return 0x000000b3

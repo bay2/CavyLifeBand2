@@ -48,7 +48,11 @@ class AlarmRealmModel: Object {
         
         for j in 0..<arr.count {
             
-            let day: String = numberFormatter.stringFromNumber(NSNumber.init(integer: arr[j]))!
+            var day: String = numberFormatter.stringFromNumber(NSNumber.init(integer: arr[j]))!
+            
+            if arr[j] == 7 {
+                day = "日"
+            }
             
             if j == 0 {
                 daysStr += day
@@ -107,11 +111,48 @@ extension AlarmRealmListOperateDelegate {
         return true
     }
     
+    
     func addAlarmRealm(alarm: AlarmRealmModel, alarmList: AlarmRealmListModel) -> Bool {
         
-        let oldAlarm = alarmList.alarmRealmList.filter("userId = '\(userId)' && alarmDay = \(alarm.alarmDay) && alarmTime = '\(alarm.alarmTime)'").first
+        //在数据库找相同时间相同周期的闹钟
+        let oldAlarmList = alarmList.alarmRealmList.filter("userId = '\(userId)' && alarmDay = \(alarm.alarmDay) && alarmTime = '\(alarm.alarmTime)'")
         
-        if oldAlarm == nil {
+        if oldAlarmList.count == 0 {
+            //没有相同周期相同时间的闹钟，新加一个
+            
+            self.realm.beginWrite()
+            alarmList.alarmRealmList.insert(alarm, atIndex: 0)
+            do {
+                try self.realm.commitWrite()
+            } catch let error {
+                Log.error("\(#function) error = \(error)")
+                return false
+            }
+        } else {
+            
+            // 唤醒和开关一样，直接不用添加
+            for i in 0..<oldAlarmList.count {
+                if oldAlarmList[i].isOpenAwake == alarm.isOpenAwake && oldAlarmList[i].isOpen == alarm.isOpen {
+                    return true
+                }
+            }
+            
+            // 唤醒一样但开关不一样，直接改外部开关
+            for j in 0..<oldAlarmList.count {
+                if oldAlarmList[j].isOpenAwake == alarm.isOpenAwake && oldAlarmList[j].isOpen != alarm.isOpen {
+                    self.realm.beginWrite()
+                    oldAlarmList[j].isOpen = alarm.isOpen
+                    
+                    do {
+                        try self.realm.commitWrite()
+                    } catch let error {
+                        Log.error("\(#function) error = \(error)")
+                        return false
+                    }
+                    
+                    return true
+                }
+            }
             
             self.realm.beginWrite()
             alarmList.alarmRealmList.insert(alarm, atIndex: 0)
@@ -122,24 +163,10 @@ extension AlarmRealmListOperateDelegate {
                 return false
             }
             
-        } else {
-            if oldAlarm?.isOpenAwake == alarm.isOpenAwake && oldAlarm?.isOpen == alarm.isOpen {
-                return true
-            } else {
-                self.realm.beginWrite()
-                oldAlarm?.isOpenAwake = alarm.isOpenAwake
-                oldAlarm?.isOpen = alarm.isOpen
-                
-                do {
-                    try self.realm.commitWrite()
-                } catch let error {
-                    Log.error("\(#function) error = \(error)")
-                    return false
-                }
-            }
+            return true
             
         }
-        
+
         return true
     }
     
@@ -198,6 +225,18 @@ extension AlarmRealmListOperateDelegate {
         let alarmList = AlarmRealmListModel()
         
         alarmList.userId = userId
+        
+        let alarm = AlarmRealmModel()
+        
+        alarm.userId = userId
+        
+        alarm.isOpen = false
+        
+        alarm.alarmDay = 1
+        
+        Log.warning("默认设置的周期待修改，未定")
+        
+        alarmList.alarmRealmList.append(alarm)
         
         if addAlarmList(alarmList) {
             return alarmList

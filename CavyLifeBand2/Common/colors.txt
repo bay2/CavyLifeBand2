@@ -51,6 +51,7 @@ AlarmClockDateBtnTextNormalColor : #858585
 AlarmClockDateBtnTextSelectedColor : #ffffff
 AlarmClockTableCellTitleColor : #000000B3
 AlarmClockTableCellDescriptionColor : #0000004D
+AlarmClockDeleteBtnBGColor : #dbdbdb
 AlarmClockSettingTitleColor : #000000B3
 AlarmClockSettingDescriptionColor : #00000080
 AlarmClockSettingDescription2Color : #0000004D

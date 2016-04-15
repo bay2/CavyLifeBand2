@@ -14,7 +14,7 @@ struct AddClockVCViewModel {
         
         Log.warning("AddClockVCViewModel 用户ID写死")
         
-        return "13"
+        return "12"
     }
     
     var alarmModel: AlarmRealmModel

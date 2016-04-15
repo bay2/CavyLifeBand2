@@ -20,7 +20,12 @@ class AlarmClockDateCollectionViewCell: UICollectionViewCell {
         didSet {
             let numberFormatter = NSNumberFormatter()
             numberFormatter.numberStyle = .SpellOutStyle
-            let numberStr = numberFormatter.stringFromNumber(NSNumber.init(integer: number!))
+            var numberStr = numberFormatter.stringFromNumber(NSNumber.init(integer: number!))
+            
+            if number! == 7 {
+                numberStr = "日"
+            }
+            
             
             dateBtn.setTitle(numberStr, forState: .Normal)
             dateBtn.setTitle(numberStr, forState: .Selected)

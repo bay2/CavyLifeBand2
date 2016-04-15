@@ -60,7 +60,7 @@ class AddClockViewController: UIViewController {
         
         self.navigationItem.title = L10n.AlarmClockTitle.string
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "保存",
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AlarmClockNavSave"),
                                                                  style: .Plain,
                                                                  target: self,
                                                                  action: #selector(rightBarBtnAciton(_:)))
@@ -121,6 +121,8 @@ class AddClockViewController: UIViewController {
         alarmCircleDescriptionLabel.textColor = UIColor(named: .AlarmClockSettingDescription2Color)
         
         deleteBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
+        
+        deleteBtn.backgroundColor = UIColor(named: .AlarmClockDeleteBtnBGColor)
     }
     
     /**
