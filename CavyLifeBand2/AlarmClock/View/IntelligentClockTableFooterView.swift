@@ -33,7 +33,6 @@ class IntelligentClockTableFooterView: UIView {
         maskLayer.path  = maskPath.CGPath
         maskLayer.frame = maskRect
         
-        
         // 圆角View设置
         cornerView.snp_makeConstraints { (make) in
             make.top.equalTo(self)
@@ -47,12 +46,12 @@ class IntelligentClockTableFooterView: UIView {
         cornerView.backgroundColor = UIColor.whiteColor()
         
         // 信息Label设置
-        infoLabel.font = UIFont.systemFontOfSize(12)
-        
-        infoLabel.text = L10n.AlarmClockIntelligentClockTableFooterInfo.string
-        
-        infoLabel.textColor = UIColor(named: .AlarmClockSettingDescriptionColor)
-        
+        infoLabel.font          = UIFont.systemFontOfSize(12)
+
+        infoLabel.text          = L10n.AlarmClockIntelligentClockTableFooterInfo.string
+
+        infoLabel.textColor     = UIColor(named: .AlarmClockSettingDescriptionColor)
+
         infoLabel.textAlignment = .Center
         
         infoLabel.snp_makeConstraints { (make) in
@@ -60,8 +59,6 @@ class IntelligentClockTableFooterView: UIView {
             make.leading.equalTo(self).offset(20)
             make.trailing.equalTo(self).offset(-20)
         }
-        
-        
         
     }
     

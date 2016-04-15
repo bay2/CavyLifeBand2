@@ -44,22 +44,22 @@ class SafetySettingTableFooterView: UIView {
             make.height.equalTo(10)
         }
         
-        cornerView.layer.mask = maskLayer
-        
+        cornerView.layer.mask      = maskLayer
+
         cornerView.backgroundColor = UIColor.whiteColor()
         
-        titleLabel.font = UIFont.systemFontOfSize(16.0)
-        
+        titleLabel.font      = UIFont.systemFontOfSize(16.0)
+
         titleLabel.textColor = UIColor(named: .SettingTableCellTitleColor)
+
+        titleLabel.text      = L10n.SettingSafetyTableFooterTitle.string
         
-        titleLabel.text = L10n.SettingSafetyTableFooterTitle.string
-        
-        descriptionLabel.font = UIFont.systemFontOfSize(12.0)
-        
-        descriptionLabel.textColor = UIColor(named: .SettingTableFooterInfoColor)
-        
-        descriptionLabel.text = L10n.SettingSafetyTableFooterInfo.string
-        
+        descriptionLabel.font          = UIFont.systemFontOfSize(12.0)
+
+        descriptionLabel.textColor     = UIColor(named: .SettingTableFooterInfoColor)
+
+        descriptionLabel.text          = L10n.SettingSafetyTableFooterInfo.string
+
         descriptionLabel.numberOfLines = 0
         
         titleLabel.snp_makeConstraints { (make) in
@@ -84,15 +84,5 @@ class SafetySettingTableFooterView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-
-    /*
-    // Only override drawRect: if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
-        // Drawing code
-    }
-    */
 
 }
