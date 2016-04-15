@@ -79,6 +79,7 @@ class ContactsWebApi: NetRequestAdapter {
         
         var para = parametes
         para[UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.SearchFriend.rawValue
+        para[UserNetRequsetKey.UserID.rawValue] = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: para, completionHandler: callBack)
         

@@ -12,7 +12,37 @@ import Log
 import Alamofire
 import JSONJoy
 
+extension ContactsAddressBookFriendData: ContactsTableViewSectionDataSource {
+    
+    var rowCount: Int {
+        return items.count
+    }
+    
+    func createCell(cell: ContactsAddFriendCell, index: NSIndexPath) -> ContactsAddFriendCell {
+        
+        cell.configure(items[index.row], delegate: items[index.row])
+        
+        return cell
+        
+    }
+    
+}
 
+extension ContactsRecommendFriendData: ContactsTableViewSectionDataSource {
+    
+    var rowCount: Int {
+        return items.count
+    }
+    
+    func createCell(cell: ContactsAddFriendCell, index: NSIndexPath) -> ContactsAddFriendCell {
+        
+        cell.configure(items[index.row], delegate: items[index.row])
+        
+        return cell
+        
+    }
+    
+}
 
 
 class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResultsUpdating, ContactsSearchControllerDelegate, BaseViewControllerPresenter {
@@ -51,9 +81,13 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResul
     var searchList: [ContactsSearchFriendInfo]?
     
     // tableview 字典
-    var tableDictionary: [UITableView: CreateTableViewCell] = [:]
+    var tableDictionary2: [UITableView: CreateTableViewCell] = [:]
+    
+    var tableDictionary: [UITableView: ContactsTableViewSectionDataSource] = [:]
     
     var recommendFriendData: ContactsRecommendFriendData?
+    
+    var addressBookFriendData: ContactsAddressBookFriendData?
     
     // 主按钮视图
     @IBOutlet weak var buttonView: UIView!
@@ -84,8 +118,28 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResul
         
         initTableDictionary()
         
-        recommendFriendData = ContactsRecommendFriendData(viewController: self, tableView: recommendView.tableView)
-        recommendFriendData?.loadData()
+        addTableViewData(ContactsRecommendFriendData(viewController: self, tableView: recommendView.tableView), tableView: recommendView.tableView)
+        addTableViewData(ContactsAddressBookFriendData(viewController: self, tableView: addressBookTableView), tableView: addressBookTableView)
+        
+        loadData()
+        
+    }
+    
+    func loadData() {
+        
+        tableDictionary = tableDictionary.map { (key, value) -> (UITableView, ContactsTableViewSectionDataSource) in
+            
+            var dataSource = value
+            dataSource.loadData()
+            
+            return (key, dataSource)
+        }
+        
+    }
+    
+    func addTableViewData<T: ContactsTableViewSectionDataSource where T: ContactsAddFriendDataSync>(dataSource: T, tableView: UITableView) {
+        
+        tableDictionary[tableView] = dataSource
         
     }
     
@@ -104,8 +158,11 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResul
         
         let addressBookCellViewModel: CreateTableViewCell = { (cell, index) in
             
-            let addFriendViewModel = ContactsAddressBookViewModel()
-            cell.configure(addFriendViewModel, delegate: addFriendViewModel)
+            guard let addressBookViewModel = self.addressBookFriendData?.items[index.row] else {
+                return cell
+            }
+            
+            cell.configure(addressBookViewModel, delegate: addressBookViewModel)
             
             return cell
             
@@ -133,16 +190,16 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResul
             
             guard let listRet = self.searchList else { return cell }
             
-            let addFriendViewModel = ContactsAddressBookViewModel(name: listRet[index.row].nickName!, headImageUrl: listRet[index.row].avatarUrl!, changeRequest: pushRquestView)
-            cell.configure(addFriendViewModel, delegate: addFriendViewModel)
+//            let addFriendViewModel = ContactsAddressBookViewModel(name: listRet[index.row].nickName!, headImageUrl: listRet[index.row].avatarUrl!, changeRequest: pushRquestView)
+//            cell.configure(addFriendViewModel, delegate: addFriendViewModel)
             
             return cell
         }
         
-        tableDictionary += [addressBookTableView: addressBookCellViewModel]
-        tableDictionary += [recommendView.tableView: addRecommendViewModel]
-        tableDictionary += [nearbyTableView: addNearbyViewModel]
-        tableDictionary += [searchTableView: addSearchViewModel]
+//        tableDictionary += [addressBookTableView: addressBookCellViewModel]
+//        tableDictionary += [recommendView.tableView: addRecommendViewModel]
+//        tableDictionary += [nearbyTableView: addNearbyViewModel]
+//        tableDictionary += [searchTableView: addSearchViewModel]
         
     }
     
@@ -308,8 +365,6 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResul
         
     }
     
-
-    
 }
 
 // MARK: - 搜索功能代理
@@ -420,7 +475,6 @@ extension ContactsAddFriendVC {
 // MARK: - tableview代理
 extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
     
-    // MARK: - Table view data source
     /**
     section 个数
     
@@ -444,7 +498,13 @@ extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
             return list.count
         }
         
-        return 0
+        guard let dataSourceViewModel = tableDictionary[tableView] else {
+            return 0
+        }
+        
+        Log.info("\(tableView) ---- \(dataSourceViewModel.rowCount)")
+        
+        return dataSourceViewModel.rowCount
     }
     
     /**
@@ -469,11 +529,11 @@ extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: indexPath) as! ContactsAddFriendCell
         
-        guard let createCell = tableDictionary[tableView] else {
+        guard let dataSourceViewModel = tableDictionary[tableView] else {
             return cell
         }
         
-        return createCell(cell, indexPath)
+        return dataSourceViewModel.createCell(cell, index: indexPath)
 
     }
     

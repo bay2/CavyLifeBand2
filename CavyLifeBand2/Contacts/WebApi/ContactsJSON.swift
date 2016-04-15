@@ -58,9 +58,13 @@ struct ContactsSearchFriendMsg: JSONJoy {
         
         commonMsg = try CommenMsg(decoder)
         friendInfos = [ContactsSearchFriendInfo]()
-        for friendInfo in decoder["friendInfos"].array! {
+        guard let friendInfoArray = decoder["friendInfos"].array else {
+            return
+        }
+        
+        for friendInfo in friendInfoArray {
             
-            friendInfos?.append(try ContactsSearchFriendInfo(friendInfo))
+            friendInfos!.append(try ContactsSearchFriendInfo(friendInfo))
             
         }
         
@@ -126,12 +130,15 @@ struct ContactsSearchFriendInfo: JSONJoy {
     //距离
     var distance: String?
     
+    var phoneNum: String?
+    
     init(_ decoder: JSONDecoder) throws {
         
         do { userId = try decoder["userId"].getString() } catch { userId = "" }
         do { nickName = try decoder["nickname"].getString() } catch { nickName = "" }
         do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
         do { distance = try decoder["distance"].getString() } catch { distance = "" }
+        do { phoneNum = try decoder["phoneNum"].getString() } catch { phoneNum = "" }
         
     }
     

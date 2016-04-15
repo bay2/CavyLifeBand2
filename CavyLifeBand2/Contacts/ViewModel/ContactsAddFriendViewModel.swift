@@ -96,7 +96,11 @@ struct ContactsAddFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
  *
  *  通信录好友 cell ViewModel
  */
-struct ContactsAddressBookViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate {
+struct ContactsAddressBookViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate, SwitchAddFirendReqView {
+    
+    var viewController: UIViewController
+    
+    var firendId: String
     
     // 头像
     var headImageUrl: String
@@ -105,16 +109,18 @@ struct ContactsAddressBookViewModel: ContactsAddFriendCellDataSource, ContactsAd
     var name: String
     
     // 副标题
-    var introudce: String { return "" }
+    var introudce: String
     
     // 按钮回调
-    var changeRequestBtnName: ((Void) -> Void)?
+    var changeRequestBtnName: ((Void) -> Void)?  { return pushFirendReqView }
     
-    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((Void) -> Void)? = nil) {
+    init(viewController: UIViewController, firendId: String = "", name: String = "", introudce: String = "", headImageUrl: String = "") {
         
         self.name = name
         self.headImageUrl = headImageUrl
-        self.changeRequestBtnName = changeRequest
+        self.viewController = viewController
+        self.firendId = firendId
+        self.introudce = introudce
         
     }
     
