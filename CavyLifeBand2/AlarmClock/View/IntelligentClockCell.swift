@@ -82,7 +82,7 @@ struct IntelligentClockCellViewModel: IntelligentClockCellDataSource {
         
         self.time   = alarm.alarmTime
 
-        self.day    = "\(alarm.alarmDay)"
+        self.day    = alarm.alarmDayToString()
 
         self.isOpen = alarm.isOpen
 

@@ -21,6 +21,45 @@ class AlarmRealmModel: Object {
         
         return linkingObjects(AlarmRealmListModel.self, forProperty: "alarmRealmList")
     }
+    
+    func alarmDayToString() -> String {
+        //十进制数字转成二进制字符串
+        let binarySum = String(alarmDay, radix: 2)
+        
+        let count = binarySum.characters.count
+        
+        var arr = [Int]()
+        
+        for i in 0..<count {
+            
+            let m = alarmDay & (1<<i)
+            
+            let n: Int = m>>i
+            if n == 1 {
+                arr.append(i+1)
+            }
+            
+        }
+        
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = .SpellOutStyle
+        
+        var daysStr = ""
+        
+        for j in 0..<arr.count {
+            
+            let day: String = numberFormatter.stringFromNumber(NSNumber.init(integer: arr[j]))!
+            
+            if j == 0 {
+                daysStr += day
+            } else {
+                daysStr += ",\(day)"
+            }
+        }
+        
+        return daysStr
+
+    }
 }
 
 class AlarmRealmListModel: Object {
