@@ -46,7 +46,6 @@ class IntelligentClockViewController: ContactsBaseViewController {
         dataSource = IntelligentClockVCViewModel(realm: realm)
         
         tableBaseSetting()
-
     }
 
     override func didReceiveMemoryWarning() {

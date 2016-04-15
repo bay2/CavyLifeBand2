@@ -18,14 +18,12 @@ class SafetySettingViewController: UIViewController {
     
     let tableSectionFooterHeight: CGFloat = 100.0
     
-    let safetySwitchCell = "SettingSwitchTableViewCell"
-    
+    let safetySwitchCell  = "SettingSwitchTableViewCell"
+
     let safetyContactCell = "EmergencyContactPersonCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -62,7 +60,6 @@ class SafetySettingViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
         Log.warning("|\(self.className)| -- 右上角添加")
@@ -75,19 +72,15 @@ class SafetySettingViewController: UIViewController {
 extension SafetySettingViewController: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
         return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return 2
-        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-       
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier(safetySwitchCell, forIndexPath: indexPath) as? SettingSwitchTableViewCell
             cell?.setWithStyle(.NoneDescription)

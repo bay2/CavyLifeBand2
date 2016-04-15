@@ -26,18 +26,13 @@ class IntelligentClockCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        self.selectionStyle = .None
-        
+        self.selectionStyle  = .None
+
         self.backgroundColor = UIColor.whiteColor()
         
         timeLabel.textColor = UIColor(named: .SettingTableCellTitleColor)
-        
-        dayLabel.textColor = UIColor(named: .SettingTableCellInfoGrayColor)
-        
-        timeLabel.text = "08:30"
-        
-        dayLabel.text = "一，二，三"
-        
+
+        dayLabel.textColor  = UIColor(named: .SettingTableCellInfoGrayColor)
         
     }
 
@@ -49,12 +44,12 @@ class IntelligentClockCell: UITableViewCell {
     
     func configure(dataSource: IntelligentClockCellDataSource) -> Void {
         timeLabel.text = dataSource.time
-        
-        dayLabel.text = dataSource.day
-        
-        setSwitch.on = dataSource.isOpen
-        
-        self.index = dataSource.index
+
+        dayLabel.text  = dataSource.day
+
+        setSwitch.on   = dataSource.isOpen
+
+        self.index     = dataSource.index
         
     }
     
@@ -85,12 +80,12 @@ struct IntelligentClockCellViewModel: IntelligentClockCellDataSource {
     
     init(alarm: AlarmRealmModel, index: Int) {
         
-        self.time = alarm.alarmTime
-        
-        self.day = "\(alarm.alarmDay)"
-        
+        self.time   = alarm.alarmTime
+
+        self.day    = "\(alarm.alarmDay)"
+
         self.isOpen = alarm.isOpen
-        
-        self.index = index
+
+        self.index  = index
     }
 }

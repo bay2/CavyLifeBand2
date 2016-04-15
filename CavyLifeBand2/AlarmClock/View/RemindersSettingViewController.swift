@@ -17,23 +17,23 @@ class RemindersSettingViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let tableViewMargin: CGFloat    = 20.0
-    
-    let tableSectionHeight: CGFloat = 10.0
-    
+    let tableViewMargin: CGFloat       = 20.0
+
+    let tableSectionHeight: CGFloat    = 10.0
+
     let tableSwitchCellHeight: CGFloat = 50.0
-    
+
     let tableScrollCellHeight: CGFloat = 60.0 + 20 + 20
-    
-    var tableExpandCellCount: Int?
-    
-    var tableExpandHeight: CGFloat = 220.0
-    
-    var tableUnExpandHeight: CGFloat = 120.0
+
+    var tableExpandHeight: CGFloat     = 220.0
+
+    var tableUnExpandHeight: CGFloat   = 120.0
     
     let reminderSettingCell = "SettingSwitchTableViewCell"
     
     let reminderSeondesCell = "SecondsTableViewCell"
+    
+    var tableExpandCellCount: Int?
     
     var tableList: [String]?
     
@@ -62,7 +62,6 @@ class RemindersSettingViewController: UIViewController {
         setTableView()
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -127,7 +126,6 @@ extension RemindersSettingViewController: SettingSwitchTableViewCelldDelegate {
             })
             
         } else {
-            
             tableList?.removeLast()
             
             self.tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: 1, inSection: 0)], withRowAnimation: .Top)
@@ -211,20 +209,14 @@ extension RemindersSettingViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
         let header = UIView()
-        
         header.backgroundColor = UIColor.whiteColor()
-        
         return header
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        
         let header = UIView()
-        
         header.backgroundColor = UIColor.whiteColor()
-        
         return header
     }
     

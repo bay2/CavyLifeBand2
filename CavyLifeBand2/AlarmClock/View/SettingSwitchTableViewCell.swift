@@ -29,8 +29,8 @@ class SettingSwitchTableViewCell: UITableViewCell {
         // Initialization code
         
         descriptionLabel.hidden = true
-        
-        titleLabel.textColor = UIColor(named: .SettingTableCellTitleColor)
+
+        titleLabel.textColor    = UIColor(named: .SettingTableCellTitleColor)
         
         self.selectionStyle = .None
         

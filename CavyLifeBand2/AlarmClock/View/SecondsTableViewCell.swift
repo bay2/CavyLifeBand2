@@ -12,13 +12,13 @@ class SecondsTableViewCell: UITableViewCell {
 
     let collectionView: UICollectionView = {
         
-        let view: UICollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: 220, height: 60), collectionViewLayout: LineLayout())
-        
-        view.backgroundColor = UIColor.whiteColor()
-        
+        let view: UICollectionView          = UICollectionView(frame: CGRect(x: 0, y: 0, width: 220, height: 60), collectionViewLayout: LineLayout())
+
+        view.backgroundColor                = UIColor.whiteColor()
+
         view.showsHorizontalScrollIndicator = false
-        
-        view.showsVerticalScrollIndicator = false
+
+        view.showsVerticalScrollIndicator   = false
         
         return view
     
@@ -33,10 +33,6 @@ class SecondsTableViewCell: UITableViewCell {
     
     let secondsCell = "SecondsCollectionViewCell"
     
-    let secondsList = {
-        return ["", "11", "12", "13", "14", "15", ""]
-    }()
-    
     let timeModel: PhoneReminderTimeModel = {
         return PhoneReminderTimeModel()
     }()
@@ -46,8 +42,8 @@ class SecondsTableViewCell: UITableViewCell {
         
         self.contentView.addSubview(collectionView)
         
-        collectionView.delegate = self
-        
+        collectionView.delegate   = self
+
         collectionView.dataSource = self
         
         collectionView.registerNib(UINib(nibName: secondsCell, bundle: nil), forCellWithReuseIdentifier: secondsCell)

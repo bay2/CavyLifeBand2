@@ -29,7 +29,6 @@ class AlarmClockDateCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: AlarmClockDateCellDelegate?
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -44,9 +43,7 @@ class AlarmClockDateCollectionViewCell: UICollectionViewCell {
         
         self.layer.cornerRadius = 25.0
         
-        
     }
-
 
     @IBAction func changeSelectState(sender: UIButton) {
         
@@ -57,13 +54,6 @@ class AlarmClockDateCollectionViewCell: UICollectionViewCell {
     }
     
     func setWithNumber(number: Int, isOpen: Bool) -> Void {
-        
-//        let numberFormatter = NSNumberFormatter()
-//        numberFormatter.numberStyle = .SpellOutStyle
-//        let numberStr = numberFormatter.stringFromNumber(NSNumber.init(integer: number))
-//        
-//        dateBtn.setTitle(numberStr, forState: .Normal)
-//        dateBtn.setTitle(numberStr, forState: .Selected)
         
         self.number = number+1
         
