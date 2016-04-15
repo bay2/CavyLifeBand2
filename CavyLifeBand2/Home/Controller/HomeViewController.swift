@@ -17,11 +17,10 @@ class HomeViewController: BaseViewController {
     var upperView: HomeUpperView?
     
     /// 日期滑动View
+    var dateView = HomeDateView()
     
-    /// 时间轴 TableView
-
-    
-    var edgesLong: CGFloat?
+    /// 下面时间轴View
+    var timeLineView = HomeTimeLineView()
     
     override func viewDidLoad() {
         
@@ -33,8 +32,6 @@ class HomeViewController: BaseViewController {
         
         // Do any additional setup after loading the view.
     }
-
-    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -42,7 +39,6 @@ class HomeViewController: BaseViewController {
         upperView!.frame = CGRectMake(0, 0, ez.screenWidth, 96 + ez.screenWidth * 0.55)
 
     }
-    
     
     func addAllView() {
         
@@ -56,70 +52,22 @@ class HomeViewController: BaseViewController {
         upperView!.allViewLayout()
         view.addSubview(upperView!)
         
-    }
-    
-    
-    
-    
-    
-    /**
-     计步视图
-     */
-    func addStepView() {
+        view.addSubview(dateView)
+        dateView.backgroundColor = UIColor.whiteColor()
+        dateView.snp_makeConstraints { (make) in
+            make.top.equalTo(self.view).offset(96 + ez.screenWidth * 0.55)
+            make.left.right.equalTo(self.view)
+            make.height.equalTo(50)
+        }
+        
+        view.addSubview(timeLineView)
+        timeLineView.snp_makeConstraints { (make) in
+            make.top.equalTo(dateView).offset(50)
+            make.left.right.bottom.equalTo(self.view)
+        }
+        
         
     }
-    
-    /**
-     睡眠视图
-     */
-    func addSleepView() {
-        
-    }
-    
-    
-    /**
-     天气视图
-     */
-    func addWeatherView() {
-        
-    }
-    
-    /**
-     日期选择视图
-     */
-    func addDateView() {
-        
-    }
-    
-    /**
-     时间轴视图
-     */
-    func addTimeline() {
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func showLeftView() {
         
@@ -137,4 +85,8 @@ class HomeViewController: BaseViewController {
         
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
 }

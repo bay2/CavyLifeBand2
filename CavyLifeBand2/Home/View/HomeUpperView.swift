@@ -21,7 +21,6 @@ class HomeUpperView: UIView {
     @IBOutlet weak var weatherView: UIView!
     
 
-
     /**
      适配
      */
@@ -32,7 +31,8 @@ class HomeUpperView: UIView {
         // 睡眠
         let sleepView = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
         sleepRing.addSubview(sleepView!)
-        sleepView?.layer.cornerRadius = sleepView!.frame.width / 2
+        sleepRing.layer.cornerRadius = sleepRing.frame.width / 2
+        sleepView!.layer.cornerRadius = sleepView!.frame.width / 2
         sleepView!.snp_makeConstraints(closure: { (make) in
             make.left.right.top.bottom.equalTo(sleepRing)
         })
@@ -42,7 +42,8 @@ class HomeUpperView: UIView {
         // 计步
         let stepView = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
         stepRing.addSubview(stepView!)
-        stepView?.layer.cornerRadius = stepView!.frame.width / 2
+        stepRing.layer.cornerRadius = stepView!.frame.width / 2
+        stepView!.layer.cornerRadius = stepView!.frame.width / 2
         stepView!.snp_makeConstraints(closure: { (make) in
             make.left.right.top.bottom.equalTo(stepRing)
 
@@ -55,10 +56,10 @@ class HomeUpperView: UIView {
         })
         let weather = NSBundle.mainBundle().loadNibNamed("HomeWeatherView", owner: nil, options: nil).first as? HomeWeatherView
         weatherView.addSubview(weather!)
-        weather!.loadWeatherView()
         weather!.snp_makeConstraints { (make) in
             make.left.right.top.bottom.equalTo(weatherView)
         }
+        weather!.loadWeatherView()
         
     }
     

@@ -108,17 +108,23 @@ class HomeRingView: UIView {
         }
         
         // 平头
+        let lineBeginLayer = CAShapeLayer(layer: layer)
+        lineBeginLayer.frame = self.bounds
+        lineBeginLayer.fillColor = UIColor.clearColor().CGColor
+        lineBeginLayer.strokeColor = ringColor.CGColor
+        lineBeginLayer.lineWidth = ringWidth
+        
         if percent > 0 {
             
-            let lineBeginLayer = CAShapeLayer(layer: layer)
-            lineBeginLayer.frame = self.bounds
-            lineBeginLayer.fillColor = UIColor.clearColor().CGColor
-            lineBeginLayer.strokeColor = ringColor.CGColor
-            lineBeginLayer.lineWidth = ringWidth
             let lineBeginPath = UIBezierPath(arcCenter: center, radius: redius, startAngle: startA, endAngle: CGFloat(M_PI - M_PI * 2 * 0.03), clockwise: false)
             lineBeginLayer.path = lineBeginPath.CGPath
             self.layer.addSublayer(lineBeginLayer)
             
+        } else if percent >= 100 {
+            
+            let lineBeginPath = UIBezierPath(arcCenter: center, radius: redius, startAngle: startA, endAngle: CGFloat(M_PI - M_PI * 2), clockwise: false)
+            lineBeginLayer.path = lineBeginPath.CGPath
+            self.layer.addSublayer(lineBeginLayer)
         }
         
         //环形
@@ -182,36 +188,57 @@ class HomeRingView: UIView {
             let hourUnit = "\(L10n.HomeSleepRingUnitHour.string)"
             let minutes = String(currentNumber - (currentNumber / 60) * 60)
             let minUnit = "\(L10n.HomeSleepRingUnitMinute.string)"
-
-            let string = hour + hourUnit + minutes + minUnit
-            let currentString = NSMutableAttributedString(string: string)
-            currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSMakeRange(0, hour.length))
-            currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(12), range: NSMakeRange(hour.length, hourUnit.length))
-            currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSMakeRange(hour.length + hourUnit.length, minutes.length))
-            currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(12), range: NSMakeRange(hour.length + hourUnit.length + minutes.length, minUnit.length))
-
-            currentLabel!.attributedText = currentString
             
             
-            percentLabel!.text = "\(L10n.HomeSleepRingPercerntText)\(percent)%"
+            currentLabel!.attributedText = addSleepAttributeText(hour, hourUnit: hourUnit, minutes: minutes, minUnit: minUnit)
+            
+            percentLabel!.text = "\(L10n.HomeSleepRingPercerntText.string)\(percent)%"
+
             
         case .StepRing:
             
             let step = String(currentNumber)
             let stepUnit = "\(L10n.GuideStep.string)"
             
-            let currentString = NSMutableAttributedString(string: "\(step)\(stepUnit)")
-            
-            currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(32), range: NSMakeRange(0, currentString.length - stepUnit.length))
-            currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(18), range: NSMakeRange(currentString.length - stepUnit.length, stepUnit.length))
-            
-            currentLabel!.attributedText = currentString
+            currentLabel!.attributedText = addStepAttributeText(step, stepUnit: stepUnit)
             
             percentLabel?.text = "\(L10n.HomeStepRingPercerntText)\(percent)%"
             
             
         }
         
+    }
+    
+    /**
+     计步富文本显示
+     */
+    func addStepAttributeText(step: String, stepUnit: String) -> NSMutableAttributedString {
+        
+        let currentString = NSMutableAttributedString(string: "\(step)\(stepUnit)")
+        
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(32), range: NSMakeRange(0, currentString.length - stepUnit.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(18), range: NSMakeRange(currentString.length - stepUnit.length, stepUnit.length))
+        
+
+        
+        return currentString
+    }
+    
+    
+    /**
+     睡眠富文本显示
+     */
+    func addSleepAttributeText(hour: String, hourUnit: String, minutes: String, minUnit: String) -> NSMutableAttributedString {
+        
+        
+        let string = hour + hourUnit + minutes + minUnit
+        let currentString = NSMutableAttributedString(string: string)
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSMakeRange(0, hour.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(12), range: NSMakeRange(hour.length, hourUnit.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSMakeRange(hour.length + hourUnit.length, minutes.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(12), range: NSMakeRange(hour.length + hourUnit.length + minutes.length, minUnit.length))
+        
+        return currentString
     }
     
     /**

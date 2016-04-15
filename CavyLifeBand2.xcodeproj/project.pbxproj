@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C06E9E71CBF73B10093EEFA /* HomeDataCellFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9E61CBF73B10093EEFA /* HomeDataCellFlowLayout.swift */; };
+		4C06E9E91CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9E81CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift */; };
+		4C06E9EC1CC0E28D0093EEFA /* HomeDateTimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9EA1CC0E28D0093EEFA /* HomeDateTimeLineCell.swift */; };
+		4C06E9F21CC0E79C0093EEFA /* HomeTimeLineTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9F01CC0E79C0093EEFA /* HomeTimeLineTableCell.swift */; };
+		4C06E9F31CC0E79C0093EEFA /* HomeTimeLineTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C06E9F11CC0E79C0093EEFA /* HomeTimeLineTableCell.xib */; };
+		4C06E9F51CC0FC710093EEFA /* HomeTimeLineSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9F41CC0FC710093EEFA /* HomeTimeLineSection.swift */; };
+		4C06E9F71CC0FC830093EEFA /* HomeTimeLineSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C06E9F61CC0FC830093EEFA /* HomeTimeLineSection.xib */; };
+		4C06E9F91CC106470093EEFA /* HomeTimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9F81CC106470093EEFA /* HomeTimeLineView.swift */; };
 		4C0BF9E91CB78F0500DB06FC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */; };
 		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
 		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
@@ -20,8 +28,12 @@
 		4C0BFA021CBCE62E00DB06FC /* HomeRingViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA011CBCE62E00DB06FC /* HomeRingViewProtocol.swift */; };
 		4C0BFA041CBDE9F400DB06FC /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA031CBDE9F400DB06FC /* HomeWeatherView.swift */; };
 		4C0BFA061CBDEBB200DB06FC /* HomeWeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BFA051CBDEBB200DB06FC /* HomeWeatherView.xib */; };
+		4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */; };
+		4C0BFA0C1CBF34C700DB06FC /* HomeDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */; };
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
+		4C6A24591CBF5CB1000136EC /* HomeDateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */; };
+		4C6A245A1CBF5CB1000136EC /* HomeDateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */; };
 		4CC499011CA9102800B2EE85 /* ContactsAccoundInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */; };
 		4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */; };
 		4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */; };
@@ -195,6 +207,14 @@
 		0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4C06E9E61CBF73B10093EEFA /* HomeDataCellFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDataCellFlowLayout.swift; sourceTree = "<group>"; };
+		4C06E9E81CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateMoudleWebApi.swift; sourceTree = "<group>"; };
+		4C06E9EA1CC0E28D0093EEFA /* HomeDateTimeLineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateTimeLineCell.swift; sourceTree = "<group>"; };
+		4C06E9F01CC0E79C0093EEFA /* HomeTimeLineTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineTableCell.swift; sourceTree = "<group>"; };
+		4C06E9F11CC0E79C0093EEFA /* HomeTimeLineTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTimeLineTableCell.xib; sourceTree = "<group>"; };
+		4C06E9F41CC0FC710093EEFA /* HomeTimeLineSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineSection.swift; sourceTree = "<group>"; };
+		4C06E9F61CC0FC830093EEFA /* HomeTimeLineSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTimeLineSection.xib; sourceTree = "<group>"; };
+		4C06E9F81CC106470093EEFA /* HomeTimeLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineView.swift; sourceTree = "<group>"; };
 		4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -208,8 +228,12 @@
 		4C0BFA011CBCE62E00DB06FC /* HomeRingViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRingViewProtocol.swift; sourceTree = "<group>"; };
 		4C0BFA031CBDE9F400DB06FC /* HomeWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWeatherView.swift; sourceTree = "<group>"; };
 		4C0BFA051CBDEBB200DB06FC /* HomeWeatherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeWeatherView.xib; sourceTree = "<group>"; };
+		4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWeatherWebApi.swift; sourceTree = "<group>"; };
+		4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateView.swift; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
+		4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateViewCell.swift; sourceTree = "<group>"; };
+		4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDateViewCell.xib; sourceTree = "<group>"; };
 		4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccoundInfoTest.swift; sourceTree = "<group>"; };
 		4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountInfo_Ok.json; sourceTree = "<group>"; };
 		4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FriendInfo_Ok.json; sourceTree = "<group>"; };
@@ -423,11 +447,13 @@
 			path = VieWModel;
 			sourceTree = "<group>";
 		};
-		4C0BF9EE1CB78F8600DB06FC /* Helpers */ = {
+		4C0BFA081CBF27A900DB06FC /* WebApi */ = {
 			isa = PBXGroup;
 			children = (
+				4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */,
+				4C06E9E81CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift */,
 			);
-			path = Helpers;
+			path = WebApi;
 			sourceTree = "<group>";
 		};
 		4CC498FF1CA9102800B2EE85 /* ContactsTest */ = {
@@ -568,7 +594,7 @@
 				4C0BF9E21CB78F0500DB06FC /* Controller */,
 				9114D2011C99314E008CB4CE /* View */,
 				4C0BF9E71CB78F0500DB06FC /* VieWModel */,
-				4C0BF9EE1CB78F8600DB06FC /* Helpers */,
+				4C0BFA081CBF27A900DB06FC /* WebApi */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -576,15 +602,25 @@
 		9114D2011C99314E008CB4CE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				91671C991C9AC5A10090BB3F /* HomeUserInfo.swift */,
+				91671C941C9A7EC60090BB3F /* LeftHeaderView.swift */,
+				9114D20C1C995CD2008CB4CE /* LeftTableViewCell.swift */,
 				4C0BF9EF1CB78FBD00DB06FC /* HomeUpperView.swift */,
 				4C0BF9F91CBB9F9200DB06FC /* HomeUpperView.xib */,
+				4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */,
+				4C06E9F81CC106470093EEFA /* HomeTimeLineView.swift */,
 				4C0BF9F31CB7B5AF00DB06FC /* HomeRingView.swift */,
 				4C0BF9F71CBB77A600DB06FC /* HomeRingView.xib */,
 				4C0BFA031CBDE9F400DB06FC /* HomeWeatherView.swift */,
 				4C0BFA051CBDEBB200DB06FC /* HomeWeatherView.xib */,
-				91671C941C9A7EC60090BB3F /* LeftHeaderView.swift */,
-				9114D20C1C995CD2008CB4CE /* LeftTableViewCell.swift */,
-				91671C991C9AC5A10090BB3F /* HomeUserInfo.swift */,
+				4C06E9E61CBF73B10093EEFA /* HomeDataCellFlowLayout.swift */,
+				4C06E9EA1CC0E28D0093EEFA /* HomeDateTimeLineCell.swift */,
+				4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */,
+				4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */,
+				4C06E9F01CC0E79C0093EEFA /* HomeTimeLineTableCell.swift */,
+				4C06E9F11CC0E79C0093EEFA /* HomeTimeLineTableCell.xib */,
+				4C06E9F41CC0FC710093EEFA /* HomeTimeLineSection.swift */,
+				4C06E9F61CC0FC830093EEFA /* HomeTimeLineSection.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1129,6 +1165,7 @@
 			files = (
 				91EB79671CAE075C00ED3E67 /* ForgotPasswd_Ok.json in Resources */,
 				913D0BD91C3FA126006EE7F8 /* Weather.storyboard in Resources */,
+				4C06E9F31CC0E79C0093EEFA /* HomeTimeLineTableCell.xib in Resources */,
 				91D192921C7DA87B00482019 /* colors.txt in Resources */,
 				91E1B4C21CA510BD008ADEE6 /* Contacts.storyboard in Resources */,
 				91C3ED841C3BB637000A414D /* Localizable.strings in Resources */,
@@ -1140,6 +1177,7 @@
 				91EB796C1CAE075C00ED3E67 /* Sign_In_Error.json in Resources */,
 				917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */,
 				91EB796B1CAE075C00ED3E67 /* SecurityCode_Ok.json in Resources */,
+				4C6A245A1CBF5CB1000136EC /* HomeDateViewCell.xib in Resources */,
 				4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */,
 				91EB79691CAE075C00ED3E67 /* Profile_Ok.json in Resources */,
 				4C0BF9F81CBB77A600DB06FC /* HomeRingView.xib in Resources */,
@@ -1165,6 +1203,7 @@
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
+				4C06E9F71CC0FC830093EEFA /* HomeTimeLineSection.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1358,6 +1397,7 @@
 				91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */,
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
 				4C0BF9F41CB7B5AF00DB06FC /* HomeRingView.swift in Sources */,
+				4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */,
 				91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */,
 				4C0BF9FE1CBCE58000DB06FC /* HomeSleepViewModel.swift in Sources */,
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,
@@ -1373,6 +1413,7 @@
 				91E1B4CB1CA510BD008ADEE6 /* ContactsFriendListCell.swift in Sources */,
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
 				917B98C01CB8E841008698F5 /* UserAchievementView.swift in Sources */,
+				4C0BFA0C1CBF34C700DB06FC /* HomeDateView.swift in Sources */,
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
 				9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */,
 				9114D1F11C97AB05008CB4CE /* SignInViewController.swift in Sources */,
@@ -1401,6 +1442,8 @@
 				91A2EC921CB350D200361952 /* AccountInfoSecurityCellViewModel.swift in Sources */,
 				91B04DE51CB4A39C007E67B0 /* UserInfoModelView.swift in Sources */,
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
+				4C06E9F21CC0E79C0093EEFA /* HomeTimeLineTableCell.swift in Sources */,
+				4C06E9F51CC0FC710093EEFA /* HomeTimeLineSection.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
 				91ACEC671CB68D74008ED8B0 /* AccountInfoSecurityNetworkRequest.swift in Sources */,
@@ -1413,10 +1456,12 @@
 				9114D20E1C995CD2008CB4CE /* LeftTableViewCell.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
+				4C06E9E91CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift in Sources */,
 				4C0BF9E91CB78F0500DB06FC /* HomeViewController.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,
 				91E1B4D61CA510BD008ADEE6 /* ContactsSearchController.swift in Sources */,
+				4C06E9EC1CC0E28D0093EEFA /* HomeDateTimeLineCell.swift in Sources */,
 				9114D1FA1C97AB05008CB4CE /* PictureView.swift in Sources */,
 				91E1B4C31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift in Sources */,
 				91ACEC601CB65456008ED8B0 /* GuideSetModelView.swift in Sources */,
@@ -1424,10 +1469,13 @@
 				9114D1EE1C97AB05008CB4CE /* MainPageViewController.swift in Sources */,
 				91E1B4D01CA510BD008ADEE6 /* ContactsPersonInfoListCell.swift in Sources */,
 				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
+				4C06E9E71CBF73B10093EEFA /* HomeDataCellFlowLayout.swift in Sources */,
 				9114D1FB1C97AB05008CB4CE /* RulerScroller.swift in Sources */,
 				91E1B4C61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift in Sources */,
 				9114D1F61C97AB05008CB4CE /* GenderView.swift in Sources */,
 				9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */,
+				4C6A24591CBF5CB1000136EC /* HomeDateViewCell.swift in Sources */,
+				4C06E9F91CC106470093EEFA /* HomeTimeLineView.swift in Sources */,
 				4C0BFA021CBCE62E00DB06FC /* HomeRingViewProtocol.swift in Sources */,
 				98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,

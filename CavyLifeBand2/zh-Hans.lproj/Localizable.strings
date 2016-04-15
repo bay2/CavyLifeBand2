@@ -109,6 +109,16 @@
 "Home.SleepRing.Unit.Minute" = "分钟";
 "Home.StepRing.PercerntText" = "已完成目标的";
 "Home.Weather.Air" = "空气";
+"Home.Weather.AirCondition.Best" = "优";
+"Home.Weather.AirCondition.Good" = "良";
+"Home.Weather.AirPollution.Mild" = "轻度污染";
+"Home.Weather.AirPollution.Middle" = "中度污染";
+"Home.Weather.AirPollution.Bad" = "重度污染";
+"Home.TimeLine.Cell.Sleep" = "睡眠";
+"Home.TimeLine.Cell.Step" = "计步";
+"Home.TimeLine.Cell.PK" = "PK";
+"Home.TimeLine.Cell.Achive" = "成就";
+"Home.TimeLine.Cell.Healthiy" = "健康";
 "Home.LifeList.Title.Target" = "目标";
 "Home.LifeList.Title.InfoOpen" = "信息公开";
 "Home.LifeList.Title.Friend" = "好友";

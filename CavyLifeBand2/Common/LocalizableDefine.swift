@@ -167,6 +167,26 @@ enum L10n {
   case HomeStepRingPercerntText
   /// 空气
   case HomeWeatherAir
+  /// 优
+  case HomeWeatherAirConditionBest
+  /// 良
+  case HomeWeatherAirConditionGood
+  /// 轻度污染
+  case HomeWeatherAirPollutionMild
+  /// 中度污染
+  case HomeWeatherAirPollutionMiddle
+  /// 重度污染
+  case HomeWeatherAirPollutionBad
+  /// 睡眠
+  case HomeTimeLineCellSleep
+  /// 计步
+  case HomeTimeLineCellStep
+  /// PK
+  case HomeTimeLineCellPK
+  /// 成就
+  case HomeTimeLineCellAchive
+  /// 健康
+  case HomeTimeLineCellHealthiy
   /// 目标
   case HomeLifeListTitleTarget
   /// 信息公开
@@ -428,6 +448,26 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.StepRing.PercerntText")
       case .HomeWeatherAir:
         return L10n.tr("Home.Weather.Air")
+      case .HomeWeatherAirConditionBest:
+        return L10n.tr("Home.Weather.AirCondition.Best")
+      case .HomeWeatherAirConditionGood:
+        return L10n.tr("Home.Weather.AirCondition.Good")
+      case .HomeWeatherAirPollutionMild:
+        return L10n.tr("Home.Weather.AirPollution.Mild")
+      case .HomeWeatherAirPollutionMiddle:
+        return L10n.tr("Home.Weather.AirPollution.Middle")
+      case .HomeWeatherAirPollutionBad:
+        return L10n.tr("Home.Weather.AirPollution.Bad")
+      case .HomeTimeLineCellSleep:
+        return L10n.tr("Home.TimeLine.Cell.Sleep")
+      case .HomeTimeLineCellStep:
+        return L10n.tr("Home.TimeLine.Cell.Step")
+      case .HomeTimeLineCellPK:
+        return L10n.tr("Home.TimeLine.Cell.PK")
+      case .HomeTimeLineCellAchive:
+        return L10n.tr("Home.TimeLine.Cell.Achive")
+      case .HomeTimeLineCellHealthiy:
+        return L10n.tr("Home.TimeLine.Cell.Healthiy")
       case .HomeLifeListTitleTarget:
         return L10n.tr("Home.LifeList.Title.Target")
       case .HomeLifeListTitleInfoOpen:
