@@ -27,19 +27,19 @@ struct IntelligentClockVCViewModel: AlarmRealmListOperateDelegate {
         
     }
     
-    func deleteAlarm(alarmModel: AlarmRealmModel) -> Bool {
-        return deleteAlarm(alarmModel)
+    func deleteAlarm(index: Int) -> Bool {
+        return deleteAlarmRealm(index, alarmList: alarmListModel)
     }
     
-    func changeAlarmOpenStatus(index: Int, status: Bool) -> Bool {
-        
-        alarmListModel.alarmRealmList[index].isOpen = status
-        
-        return updateAlarmRealmList(alarmListModel)
+    func changeAlarmOpenStatus(index: Int) -> Bool {
+                
+        return changeAlarmRealmOpenStatus(alarmListModel.alarmRealmList[index])
         
     }
     
-    
+    func updateAlarm(newAlarm: AlarmRealmModel, index: Int) -> Bool {
+        return updateAlarmRealm(newAlarm, oldAlarm: alarmListModel.alarmRealmList[index])
+    }
     
     func getAlarmModelCopyByIndex(index: Int) -> AlarmRealmModel {
         let alarm = AlarmRealmModel()
@@ -54,21 +54,8 @@ struct IntelligentClockVCViewModel: AlarmRealmListOperateDelegate {
     }
     
     func addAlarm(alarm: AlarmRealmModel) -> Bool {
-        let oldAlarm = alarmListModel.alarmRealmList.filter("userId = '\(userId)' && alarmDay = '\(alarm.alarmDay)' && alarmTime = '\(alarm.alarmTime)'").first
         
-        if oldAlarm == nil {
-            alarmListModel.alarmRealmList.append(alarm)
-        } else {
-            if oldAlarm?.isOpenAwake == alarm.isOpenAwake && oldAlarm?.isOpen == alarm.isOpen {
-                return true
-            } else {
-                oldAlarm?.isOpenAwake = alarm.isOpenAwake
-                oldAlarm?.isOpen = alarm.isOpen
-            }
-            
-        }
-        
-        return updateAlarmRealmList(alarmListModel)
+        return addAlarmRealm(alarm, alarmList: alarmListModel)
         
     }
 

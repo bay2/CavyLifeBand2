@@ -9,9 +9,7 @@
 import UIKit
 import RealmSwift
 
-struct AddClockVCViewModel: AlarmRealmOperateDelegate {
-    var realm: Realm
-    
+struct AddClockVCViewModel {
     var userId: String {
         return "12"
     }
@@ -28,9 +26,7 @@ struct AddClockVCViewModel: AlarmRealmOperateDelegate {
         return formatter
     }()
     
-    init(realm: Realm, alarmModel: AlarmRealmModel) {
-        
-        self.realm = realm
+    init(alarmModel: AlarmRealmModel) {
         
         self.alarmModel = alarmModel
         
@@ -71,6 +67,7 @@ struct AddClockVCViewModel: AlarmRealmOperateDelegate {
             }
         }
         
+        alarmModel.alarmDay = sum
         Log.info("\(sum)")
     }
     

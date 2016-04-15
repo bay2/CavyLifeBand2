@@ -31,44 +31,54 @@ class AddClockViewController: UIViewController {
     
     @IBOutlet weak var separatorViewFisrt: UIView!
     
+    @IBOutlet weak var awakeSwitch: UISwitch!
+    
     let AddClockCollectionViewCell = "AlarmClockDateCollectionViewCell"
     
-    var realm: Realm = try! Realm()
-    
+    lazy var addNewClock: Bool = {
+        return false
+    }()
+        
     var dataSource: AddClockVCViewModel?
     
-    var addAlarmBlock: ((model: AlarmRealmModel) -> Void)?
+    lazy var alarmModel: AlarmRealmModel = {
+        
+        let alarm = AlarmRealmModel()
+        
+        Log.warning("用户ID 写死了")
+        alarm.userId = "12"
+        
+        return alarm
+    }()
+    
+    //更新闹钟的回调，使用isUpdate来判断是删除、添加、更新操作
+    var updateAlarmBlock: ((model: AlarmRealmModel, isUpdate: Bool) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.automaticallyAdjustsScrollViewInsets = false
         
         self.navigationItem.title = L10n.AlarmClockTitle.string
         
-        baseSetView()
-        
         collectionView.registerNib(UINib(nibName: AddClockCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: AddClockCollectionViewCell)
         
-        let alarmModel = AlarmRealmModel()
-        alarmModel.alarmDay = 87
-        
-        dataSource = AddClockVCViewModel(realm: realm, alarmModel: alarmModel)
-        
-        datePicker.datePickerMode = .Time
-        
-        datePicker.addTarget(self, action:#selector(AddClockViewController.datePickerValueChange(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        
-        datePicker.date = (dataSource?.getAlarmTimeDate())!
+        baseSetView()
 
+        setByData()
+    }
+    
+    deinit {
+        Log.info("dealloc")
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    /**
+     视图的基本样式设置
+     */
     func baseSetView() -> Void {
         separatorViewFisrt.backgroundColor = UIColor(named: .SettingSeparatorColor)
         
@@ -97,22 +107,54 @@ class AddClockViewController: UIViewController {
         confirmBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
     }
     
+    /**
+     用数据设置控件
+     */
+    func setByData() -> Void {
+        dataSource = AddClockVCViewModel(alarmModel: alarmModel)
+        
+        datePicker.datePickerMode = .Time
+        
+        datePicker.addTarget(self, action:#selector(AddClockViewController.datePickerValueChange(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        
+        datePicker.date = (dataSource?.getAlarmTimeDate())!
+        
+        awakeSwitch.on = (dataSource?.alarmModel.isOpenAwake)!
+        
+        if addNewClock {
+            confirmBtn.setTitle("确定", forState: .Normal)
+        } else {
+            confirmBtn.setTitle("删除", forState: .Normal)
+        }
+
+    }
+    
+    /**
+     Action of DatePicker Value Change
+     
+     - parameter sender: picker控件
+     */
     func datePickerValueChange(sender: UIDatePicker) -> Void {
         dataSource?.setAlarmTimeStr(sender.date)
-    }
-
-    @IBAction func confirm(sender: AnyObject) {
         
-        addAlarmBlock!(model:dataSource!.alarmModel)
-
+        if !addNewClock {
+            updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
+        }
     }
     
-}
-
-// MARK: - UICollectionViewDelegate
-extension AddClockViewController: UICollectionViewDelegate {
-
+    //action of the button which at the bottom
+    @IBAction func confirm(sender: AnyObject) {
+        updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: addNewClock)
+    }
     
+    //action of switch
+    @IBAction func changeAwakeSwitch(sender: UISwitch) {
+        dataSource?.alarmModel.isOpenAwake = sender.on
+        
+        if !addNewClock {
+            updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
+        }
+    }
     
 }
 
@@ -139,6 +181,7 @@ extension AddClockViewController: UICollectionViewDataSource {
 
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout
 extension AddClockViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
@@ -147,10 +190,15 @@ extension AddClockViewController: UICollectionViewDelegateFlowLayout {
     
 }
 
+// MARK: - AlarmClockDateCellDelegate
 extension AddClockViewController: AlarmClockDateCellDelegate {
 
     func changeDateSelectState(day: Int, state: Bool) {
         dataSource?.changeAlarmDay(day, selected: state)
+        
+        if !addNewClock {
+            updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
+        }
     }
     
 }

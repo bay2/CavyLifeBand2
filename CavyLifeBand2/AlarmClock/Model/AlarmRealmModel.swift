@@ -11,8 +11,8 @@ import RealmSwift
 
 class AlarmRealmModel: Object {
     
-    dynamic var alarmDay = 0
-    dynamic var alarmTime = "8:30"
+    dynamic var alarmDay: Int = 0
+    dynamic var alarmTime = "08:30"
     dynamic var isOpenAwake = true
     dynamic var isOpen = true
     dynamic var userId = ""
@@ -44,8 +44,6 @@ protocol AlarmRealmListOperateDelegate {
     
     func queryAlarmList() -> AlarmRealmListModel
     
-    func updateAlarmRealmList(alarmListModel: AlarmRealmListModel) -> Bool
-    
 }
 
 extension AlarmRealmListOperateDelegate {
@@ -72,45 +70,82 @@ extension AlarmRealmListOperateDelegate {
         return true
     }
     
-//    func addAlarmRealm(alarm: AlarmRealmModel) -> Bool {
-//        
-//        let alarmList
-//        
-//        a.settingRealmList.appendContentsOf([phoneSetting, messageSetting, reconnectSetting])
-//    }
-    
-    func updateAlarmRealmList(alarmListModel: AlarmRealmListModel) -> Bool {
-
-        do {
+    func addAlarmRealm(alarm: AlarmRealmModel, alarmList: AlarmRealmListModel) -> Bool {
+        
+        let oldAlarm = alarmList.alarmRealmList.filter("userId = '\(userId)' && alarmDay = \(alarm.alarmDay) && alarmTime = '\(alarm.alarmTime)'").first
+        
+        if oldAlarm == nil {
             
-            try realm.write {
-//                let oldList = queryAlarmList()
-//                realm.delete(oldList.alarmRealmList)
-                realm.add(alarmListModel, update: true)
-                
+            self.realm.beginWrite()
+//            alarmList.alarmRealmList.append(alarm)
+            alarmList.alarmRealmList.insert(alarm, atIndex: 0)
+            do {
+                try self.realm.commitWrite()
+            } catch let error {
+                Log.error("\(#function) error = \(error)")
+                return false
             }
             
+        } else {
+            if oldAlarm?.isOpenAwake == alarm.isOpenAwake && oldAlarm?.isOpen == alarm.isOpen {
+                return true
+            } else {
+                self.realm.beginWrite()
+                oldAlarm?.isOpenAwake = alarm.isOpenAwake
+                oldAlarm?.isOpen = alarm.isOpen
+                
+                do {
+                    try self.realm.commitWrite()
+                } catch let error {
+                    Log.error("\(#function) error = \(error)")
+                    return false
+                }
+            }
+            
+        }
+        
+        return true
+
+    }
+    
+    func updateAlarmRealm(newAlarm: AlarmRealmModel, oldAlarm: AlarmRealmModel) -> Bool {
+
+        self.realm.beginWrite()
+        
+        oldAlarm.alarmDay = newAlarm.alarmDay
+        oldAlarm.alarmTime = newAlarm.alarmTime
+        oldAlarm.isOpenAwake = newAlarm.isOpenAwake
+        
+        do {
+            try self.realm.commitWrite()
         } catch let error {
-            Log.error("update alarm list error \(error)")
+            Log.error("\(#function) error = \(error)")
             return false
         }
         
         return true
     }
     
-    func deleteAlarm(alarmModel: AlarmRealmModel) -> Bool {
+    func changeAlarmRealmOpenStatus(alarm: AlarmRealmModel) -> Bool {
+        self.realm.beginWrite()
+
+        alarm.isOpen = !alarm.isOpen
         
-        guard let alarmList = realm.objects(AlarmRealmListModel).filter("userId = '\(userId)'").first else {
+        do {
+            try self.realm.commitWrite()
+        } catch let error {
+            Log.error("\(#function) error = \(error)")
             return false
         }
         
-        guard let alarm = alarmList.alarmRealmList.filter("userId = '\(userId)' && alarmDay = '\(alarmModel.alarmDay)' && alarmTime == '\(alarmModel.alarmTime)'").first else {
-            return false
-        }
+        return true
+    }
+    
+    func deleteAlarmRealm(index: Int, alarmList: AlarmRealmListModel) -> Bool {
         
         self.realm.beginWrite()
         
-        self.realm.delete(alarm)
+        alarmList.alarmRealmList.removeAtIndex(index)
         
         do {
             try self.realm.commitWrite()
@@ -156,17 +191,6 @@ extension AlarmRealmListOperateDelegate {
         return true
     }
 
-}
-
-protocol AlarmRealmOperateDelegate {
-    
-    var realm: Realm { get }
-    
-//    func queryAlarm(userId: String) -> AlarmRealmModel?
-//    func addAlarm(alarmModel: AlarmRealmModel) -> Bool
-//    func updateAlarm(alarmModel: AlarmRealmModel) -> Bool
-//    func isAlarmExist(userId: String) -> Bool
-//    func deleteAlarm(userId: String) -> Bool
 }
 
 

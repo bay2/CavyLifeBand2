@@ -8,23 +8,6 @@
 
 import UIKit
 
-protocol SelectPickerDelegate {
-    
-//    var
-
-    func setSelectIndex(index: Int)
-    
-    func scrollToIndex(index: Int)
-}
-
-extension SelectPickerDelegate {
-
-//    func setSelectIndex(index: Int) -> Void {
-//        <#function body#>
-//    }
-//    
-}
-
 class SecondsTableViewCell: UITableViewCell {
 
     let collectionView: UICollectionView = {
@@ -197,7 +180,7 @@ extension SecondsTableViewCell: UICollectionViewDelegate {
     
     func postScrollNotification(index: Int) -> Void {
         
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.ReminderPhoneScrollToSelect.rawValue, object: nil, userInfo: ["index":index])
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.ReminderPhoneScrollToSelect.rawValue, object: nil, userInfo: ["index": index])
     
     }
 

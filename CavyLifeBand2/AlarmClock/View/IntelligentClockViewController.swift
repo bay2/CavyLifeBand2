@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 import EZSwiftExtensions
 
 class IntelligentClockViewController: ContactsBaseViewController {
@@ -20,6 +21,10 @@ class IntelligentClockViewController: ContactsBaseViewController {
     let intelligentClockCellHeight: CGFloat = 50.0
     
     let intelligentClockCellID = "IntelligentClockCell"
+    
+    var realm: Realm = try! Realm()
+    
+    var dataSource: IntelligentClockVCViewModel?
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -38,11 +43,10 @@ class IntelligentClockViewController: ContactsBaseViewController {
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
+        dataSource = IntelligentClockVCViewModel(realm: realm)
         
         tableBaseSetting()
-        
-        Log.info("\(10>>1)")
-        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,9 +54,23 @@ class IntelligentClockViewController: ContactsBaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    /**
+     跳转添加闹钟
+     */
     func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
-        Log.warning("|\(self.className)| -- 右上角添加")
+        
+        let targetVC = StoryboardScene.AlarmClock.instantiateAddClockViewController()
+        
+        targetVC.addNewClock = true
+        
+        targetVC.updateAlarmBlock = { (alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
+            
+            self.dataSource?.addAlarm(alarm)
+            
+            self.tableView.reloadData()
+        }
+        
+        self.pushVC(targetVC)
     }
     
     /**
@@ -68,11 +86,8 @@ class IntelligentClockViewController: ContactsBaseViewController {
         tableView.showsVerticalScrollIndicator = false
         
         tableView.snp_makeConstraints { (make) in
-            
             make.trailing.equalTo(self.view).offset(-tableViewMargin)
-            
             make.leading.equalTo(self.view).offset(tableViewMargin)
-            
         }
         
         tableView.registerNib(UINib.init(nibName: intelligentClockCellID, bundle: nil), forCellReuseIdentifier: intelligentClockCellID)
@@ -88,14 +103,18 @@ extension IntelligentClockViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return (dataSource?.alarmListModel.alarmRealmList.count)!
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(intelligentClockCellID, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(intelligentClockCellID, forIndexPath: indexPath) as? IntelligentClockCell
         
-        return cell
+        cell?.configure(IntelligentClockCellViewModel(alarm: dataSource!.alarmListModel.alarmRealmList[indexPath.row], index: indexPath.row))
+        
+        cell?.delegate = self
+        
+        return cell!
         
     }
     
@@ -124,6 +143,38 @@ extension IntelligentClockViewController: UITableViewDelegate {
         
         return tableHeaderView
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let targetVC = StoryboardScene.AlarmClock.instantiateAddClockViewController()
+        
+        targetVC.alarmModel = (dataSource?.getAlarmModelCopyByIndex(indexPath.row))!
+        
+        targetVC.updateAlarmBlock = { (alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
+            
+            Log.info(alarm)
+            
+            if isUpdate {
+                self.dataSource?.updateAlarm(alarm, index: indexPath.row)
+            } else {
+                self.dataSource?.deleteAlarm(indexPath.row)
+            }
+            
+            self.tableView.reloadData()
+            
+        }
+        
+        self.pushVC(targetVC)
+    }
 
+}
+
+// MARK: - IntelligentClockCellDelegate
+extension IntelligentClockViewController: IntelligentClockCellDelegate {
+
+    func changeAlarmOpenStatus(index: Int) {
+        dataSource?.changeAlarmOpenStatus(index)
+    }
+    
 }
 

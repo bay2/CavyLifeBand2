@@ -110,9 +110,9 @@ extension SettingRealmListOperateDelegate {
         
         let messageSetting = initSettingModel(L10n.SettingReminderMessageType.string, userId: userId)
         
-        let reconnectSetting = initSettingModel(L10n.SettingReminderReconnectType.string, userId: userId)
+//        let reconnectSetting = initSettingModel(L10n.SettingReminderReconnectType.string, userId: userId)
         
-        settingList.settingRealmList.appendContentsOf([phoneSetting, messageSetting, reconnectSetting])
+        settingList.settingRealmList.appendContentsOf([phoneSetting, messageSetting])
         
         if addSettingList(settingList) {
             return settingList

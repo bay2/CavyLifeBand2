@@ -27,7 +27,7 @@ class AlarmClockDateCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    var delegate: AlarmClockDateCellDelegate?
+    weak var delegate: AlarmClockDateCellDelegate?
     
     
     override func awakeFromNib() {
