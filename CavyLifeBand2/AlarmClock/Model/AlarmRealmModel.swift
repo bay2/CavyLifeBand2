@@ -12,7 +12,7 @@ import RealmSwift
 class AlarmRealmModel: Object {
     
     dynamic var alarmDay: Int = 0
-    dynamic var alarmTime = "08:30"
+    dynamic var alarmTime = "08:00"
     dynamic var isOpenAwake = true
     dynamic var isOpen = true
     dynamic var userId = ""
@@ -232,10 +232,9 @@ extension AlarmRealmListOperateDelegate {
         
         alarm.isOpen = false
         
-        alarm.alarmDay = 1
-        
-        Log.warning("默认设置的周期待修改，未定")
-        
+        //周一到周五
+        alarm.alarmDay = 31
+                
         alarmList.alarmRealmList.append(alarm)
         
         if addAlarmList(alarmList) {
