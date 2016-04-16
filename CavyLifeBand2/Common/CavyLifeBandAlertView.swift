@@ -37,7 +37,7 @@ class CavyLifeBandAlertView {
      
      - parameter userErrorCode:
      */
-    func showViewTitle(viewController: UIViewController?, userErrorCode: UserRequestErrorType) {
+    func showViewTitle(viewController: UIViewController?, userErrorCode: UserRequestErrorType?) {
 
         let errorMessage = [UserRequestErrorType.EmailErr: L10n.UserModuleErrorCodeEmailError.string,
         UserRequestErrorType.EmailNil: L10n.UserModuleErrorCodeEmailNil.string,
@@ -50,9 +50,12 @@ class CavyLifeBandAlertView {
         UserRequestErrorType.SecurityCodeErr: L10n.UserModuleErrorCodeSecurityError.string,
         UserRequestErrorType.SecurityCodeNil: L10n.UserModuleErrorCodeSecurityNil.string,
         UserRequestErrorType.UserNameErr: L10n.UserModuleErrorCodeUserNameError.string,
-        UserRequestErrorType.UserNameNil: L10n.UserModuleErrorCodeUserNameNil.string]
-
-        showViewTitle(viewController, title: "", message: errorMessage[userErrorCode]!)
+        UserRequestErrorType.UserNameNil: L10n.UserModuleErrorCodeUserNameNil.string,
+        UserRequestErrorType.UnknownError: L10n.UserModuleErrorCodeUnknownError.string]
+        
+        let userError = userErrorCode ?? UserRequestErrorType.UnknownError
+        
+        showViewTitle(viewController, title: "", message: errorMessage[userError]!)
 
     }
 

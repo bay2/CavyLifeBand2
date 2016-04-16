@@ -10,14 +10,18 @@ import UIKit
 import EZSwiftExtensions
 import RealmSwift
 import Log
+import AddressBook
+import Contacts
 
-class RootViewController: UIViewController {
+class RootViewController: UIViewController, CoordinateReport, AddressBookDataSource {
 
     var homeVC: UINavigationController?
     var leftVC: LeftViewController?
     let homeMaskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
     var realm: Realm = try! Realm()
     var updateUserInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+    
+    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +36,28 @@ class RootViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.hiddenLeftView), name: NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
         
         syncUserInfo()
+        
+        getAddresBookPhoneInfo {
+            Log.info("\($0)\($1) -- \($2)")
+        }
+        
+        
+        
+        
+    }
+    
+    /**
+     上报坐标
+     
+     - parameter isLocalShare:
+     */
+    func userCoordinateReport(isLocalShare: Bool) {
+        
+        guard isLocalShare else {
+            return
+        }
+        
+        self.coordinateReportServer()
         
     }
 
@@ -50,6 +76,8 @@ class RootViewController: UIViewController {
             querySyncDate()
             return
         }
+        
+        userCoordinateReport(userInfo.isLocalShare)
         
         updateSyncDate(userInfo)
         
@@ -108,6 +136,8 @@ class RootViewController: UIViewController {
             
             let userInfoModel = UserInfoModel(userId: self.queryUserId, userProfile: userInfo)
             
+            self.userCoordinateReport(userInfoModel.isLocalShare)
+            
             self.addUserInfo(userInfoModel)
             
         }
@@ -148,6 +178,9 @@ class RootViewController: UIViewController {
 
     }
 
+    /**
+     隐藏左侧菜单
+     */
     func hiddenLeftView() {
         
         UIView.animateWithDuration(0.5, animations: {
@@ -165,6 +198,7 @@ class RootViewController: UIViewController {
         }
 
     }
+
 
     /*
     // MARK: - Navigation

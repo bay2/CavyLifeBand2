@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import Log
 
 class AccountPageSwitchUITests: XCTestCase {
         
@@ -21,8 +20,9 @@ class AccountPageSwitchUITests: XCTestCase {
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         if #available(iOS 9.0, *) {
             
-            XCUIApplication().launch()
             let app = XCUIApplication()
+            app.launchArguments = ["AccountPageSwitchUITests"]
+            app.launch()
             let pageimage1Image = app.images["pageImage1"]
             pageimage1Image.swipeLeft()
             pageimage1Image.swipeLeft()

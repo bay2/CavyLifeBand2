@@ -47,6 +47,8 @@ enum L10n {
   case UserModuleErrorCodeSecurityNil
   /// 用户名不能为空
   case UserModuleErrorCodeUserNameNil
+  /// 未知错误
+  case UserModuleErrorCodeUnknownError
   /// 登入
   case MainPageSignInBtn
   /// 加入豚鼠
@@ -302,6 +304,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UserModuleErrorCode.SecurityNil")
       case .UserModuleErrorCodeUserNameNil:
         return L10n.tr("UserModuleErrorCode.UserNameNil")
+      case .UserModuleErrorCodeUnknownError:
+        return L10n.tr("UserModuleErrorCode.UnknownError")
       case .MainPageSignInBtn:
         return L10n.tr("MainPage.SignInBtn")
       case .MainPageSignUpBtn:

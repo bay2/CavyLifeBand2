@@ -70,8 +70,6 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
      */
     func accountInfoQuery() {
         
-        //TODO: 从本地获取用户信息
-        
         guard let accountInfo = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
             Log.error("Get account info error !")
             return

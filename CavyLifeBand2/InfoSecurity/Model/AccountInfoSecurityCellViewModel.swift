@@ -20,14 +20,13 @@ struct AccountInfoSecurityHeightCellViewModel: AccountInfoCellViewModelPresentab
         return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
     }
     
-    var realmUserInfo: UserInfoModel? {
-        return queryUserInfo(userId)
-    }
+    var realmUserInfo: UserInfoModel?
     
     
     init(realm: Realm) {
         
         self.realm = realm
+        self.realmUserInfo = queryUserInfo(userId)
         
     }
     
@@ -74,13 +73,12 @@ struct AccountInfoSecurityWeightCellViewModel: AccountInfoCellViewModelPresentab
         return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
     }
     
-    var realmUserInfo: UserInfoModel? {
-        return queryUserInfo(userId)
-    }
+    var realmUserInfo: UserInfoModel?
     
     init(realm: Realm) {
         
         self.realm = realm
+        self.realmUserInfo = queryUserInfo(userId)
         
     }
     
@@ -127,13 +125,12 @@ struct AccountInfoSecurityBirthdayCellViewModel: AccountInfoCellViewModelPresent
         return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
     }
     
-    var realmUserInfo: UserInfoModel? {
-        return queryUserInfo(userId)
-    }
+    var realmUserInfo: UserInfoModel?
     
     init(realm: Realm) {
         
         self.realm = realm
+        self.realmUserInfo = queryUserInfo(userId)
         
     }
     

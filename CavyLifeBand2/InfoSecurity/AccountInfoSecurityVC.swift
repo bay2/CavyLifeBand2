@@ -25,17 +25,18 @@ class AccountInfoSecurityVC: UIViewController, UITableViewDelegate, UITableViewD
     var dataSources = [AccountInfoSecurityListDataSource]()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         Log.info("realm = \(realm.path)")
 
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         self.navBar?.translucent = false
+        self.bottomView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
         addCellDataSource(AccountInfoSecurityHeightCellViewModel(realm: realm))
         addCellDataSource(AccountInfoSecurityWeightCellViewModel(realm: realm))
         addCellDataSource(AccountInfoSecurityBirthdayCellViewModel(realm: realm))
-        self.bottomView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
         addTableView()
         
@@ -43,12 +44,16 @@ class AccountInfoSecurityVC: UIViewController, UITableViewDelegate, UITableViewD
         
     }
     
+    /**
+     添加数据源
+     
+     - parameter dataSource:
+     */
     func addCellDataSource(dataSource: AccountInfoSecurityListDataSource) {
         
         dataSources.append(dataSource)
         
     }
-
     
     /**
      添加TableView
@@ -74,6 +79,20 @@ class AccountInfoSecurityVC: UIViewController, UITableViewDelegate, UITableViewD
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+extension AccountInfoSecurityVC {
     
     // MARK: - UITableViewDelegate
     
@@ -86,28 +105,18 @@ class AccountInfoSecurityVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-
+        
         return 50
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-       
+        
         let cell = tableView.dequeueReusableCellWithIdentifier("infoSecurityIdentifier") as! AccountInfoSecurityCell
-
+        
         cell.configure(dataSources[indexPath.row])
         
         return cell
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

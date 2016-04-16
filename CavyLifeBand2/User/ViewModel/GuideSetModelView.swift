@@ -60,7 +60,7 @@ struct GuideSetLocationShare: GuideViewDataSource, GuideViewDelegate {
     var title: String { return L10n.GuideSetting.string }
     var rightItemBtnTitle: String { return L10n.GuidePassButton.string }
     var bgColor: UIColor { return UIColor(named: .GuideSetPermission) }
-    var centerView: UIView { return PictureView(title: L10n.GuideOpenNotice.string, titleInfo: L10n.GuideOpenLocationShare.string, midImage: AnimatableImageView(image: UIImage(asset: .GuideLocation))) }
+    var centerView: UIView { return PictureView(title: L10n.GuideOpenLocationShare.string, titleInfo: L10n.GuideOpenLocationShareInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuideLocation))) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         

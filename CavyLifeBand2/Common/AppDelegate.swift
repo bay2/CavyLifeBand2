@@ -39,12 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-//        stub(isMethodPOST()) { _ in
-//            let stubPath = OHPathForFile("SearchFrendListResult.json", self.dynamicType)
-//            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
-//        }
-//        
-        
+        NSTimer.runThisEvery(seconds: 5 * 60) { _ in
+            
+            
+        }
 
         return true
 
@@ -58,6 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            let stubPath = OHPathForFile("GetFrendListResult.json", self.dynamicType)
 //            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
 //        }
+        
+        if NSProcessInfo.processInfo().arguments.contains("AccountPageSwitchUITests") {
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+            
+        }
 
     
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_IN") {

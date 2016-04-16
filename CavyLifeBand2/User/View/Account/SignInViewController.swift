@@ -146,7 +146,7 @@ class SignInViewController: UIViewController, SignInDelegate, UserViewController
      
      - parameter sender:
      */
-     func onClickRight(sender: AnyObject) {
+     func onClickRightBtn() {
 
         let guideVC = StoryboardScene.Guide.instantiateGuideView()
         let guideVM = GuideBandBluetooth()
