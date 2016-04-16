@@ -43,6 +43,29 @@ struct StoryboardScene {
       return StoryboardScene.AccountInfo.ContactsAccountInfoVCScene.viewController() as! ContactsAccountInfoVC
     }
   }
+  enum AlarmClock: String, StoryboardSceneType {
+    static let storyboardName = "AlarmClock"
+
+    case AddClockViewControllerScene = "AddClockViewController"
+    static func instantiateAddClockViewController() -> AddClockViewController {
+      return StoryboardScene.AlarmClock.AddClockViewControllerScene.viewController() as! AddClockViewController
+    }
+
+    case IntelligentClockViewControllerScene = "IntelligentClockViewController"
+    static func instantiateIntelligentClockViewController() -> IntelligentClockViewController {
+      return StoryboardScene.AlarmClock.IntelligentClockViewControllerScene.viewController() as! IntelligentClockViewController
+    }
+
+    case RemindersSettingViewControllerScene = "RemindersSettingViewController"
+    static func instantiateRemindersSettingViewController() -> RemindersSettingViewController {
+      return StoryboardScene.AlarmClock.RemindersSettingViewControllerScene.viewController() as! RemindersSettingViewController
+    }
+
+    case SafetySettingViewControllerScene = "SafetySettingViewController"
+    static func instantiateSafetySettingViewController() -> SafetySettingViewController {
+      return StoryboardScene.AlarmClock.SafetySettingViewControllerScene.viewController() as! SafetySettingViewController
+    }
+  }
   enum Camera: String, StoryboardSceneType {
     static let storyboardName = "Camera"
 

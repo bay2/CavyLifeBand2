@@ -39,11 +39,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
-        NSTimer.runThisEvery(seconds: 5 * 60) { _ in
-            
-            
-        }
-
         return true
 
     }

@@ -171,3 +171,30 @@
 //账户信息
 "AccountInfo.Title" = "账户信息";
 "AccountInfo.LoginoutButton.Title" = "退出登录";
+
+//闹钟
+"AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";
+"AlarmClock.Title" = "智能闹钟";
+"AlarmClock.Awake.Title" = "智能唤醒";
+"AlarmClock.Awake.Description" = "允许你闹钟在目标唤醒时间之前30分钟内将我从浅度睡眠中唤醒，让我更轻松的起床。";
+"AlarmClock.AlarmCircle.Title" = "闹钟周期";
+"AlarmClock.AlarmCircle.SubTitle" = "小提示";
+"AlarmClock.AlarmCircle.Description" = "闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。";
+"AlarmClock.DeleteBtn.Title" = "删除";
+"AlarmClock.AlarmCircle.AlertTitle" = "请选择闹钟周期";
+
+//设置
+"Setting.Safety.Title" = "安全";
+"Setting.SafetyTableCell.ContactButton" = "点击添加";
+"Setting.SafetyTableCell.ContactTitle" = "紧急联系人";
+"Setting.SafetyTableCell.GPSTitle" = "GPS定位";
+"Setting.SafetyTableFooter.Title" = "紧急报警";
+"Setting.SafetyTableFooter.Info" = "紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。";
+"Setting.ReminderPhoneCall.Title" = "来电提醒";
+"Setting.ReminderPhoneCall.Description" = "秒未接提醒";
+"Setting.ReminderMessage.Title" = "短信提醒";
+"Setting.ReminderMessage.Description" = "振动一次通知提醒";
+"Setting.ReminderReconnect.Title" = "断线手环自动重连";
+"Setting.ReminderReconnect.Type" = "3";
+"Setting.ReminderMessage.Type" = "2";
+"Setting.ReminderPhone.Type" = "1";
