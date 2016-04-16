@@ -27,11 +27,10 @@ protocol ContactsAddFriendCellDelegate {
     var introduceFont: UIFont { get }
     var requestBtnColor: UIColor { get }
     var requestBtnFont: UIFont { get }
-    var changeRequestBtnName: ((String) -> Void)? { get }
+    var changeRequestBtnName: ((Void) -> Void)? { get }
     
 
 }
-
 
 class ContactsAddFriendCell: UITableViewCell {
 
@@ -47,7 +46,7 @@ class ContactsAddFriendCell: UITableViewCell {
     // 按钮响应
     @IBAction func requestAddFriend(sender: AnyObject) {
         
-        delegate?.changeRequestBtnName?("name")
+        delegate?.changeRequestBtnName?()
         
     }
     
@@ -84,13 +83,11 @@ class ContactsAddFriendCell: UITableViewCell {
         self.introduceLabel.font = delegate.introduceFont
         self.introduceLabel.textColor = delegate.introductTextColor
 
-
         self.requestBtn.setTitle(dataSource.requestBtnTitle, forState: .Normal)
         self.requestBtn.backgroundColor = delegate.requestBtnColor
         headView.af_setImageWithURL(NSURL(string: dataSource.headImageUrl)!)
 
         self.labelLayout(dataSource)
-        
 
     }
 

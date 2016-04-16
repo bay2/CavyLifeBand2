@@ -120,6 +120,14 @@ struct StoryboardScene {
       return StoryboardScene.Home.RootViewScene.viewController() as! RootViewController
     }
   }
+  enum InfoSecurity: String, StoryboardSceneType {
+    static let storyboardName = "InfoSecurity"
+
+    case AccountInfoSecurityVCScene = "AccountInfoSecurityVC"
+    static func instantiateAccountInfoSecurityVC() -> AccountInfoSecurityVC {
+      return StoryboardScene.InfoSecurity.AccountInfoSecurityVCScene.viewController() as! AccountInfoSecurityVC
+    }
+  }
   enum LaunchScreen: StoryboardSceneType {
     static let storyboardName = "LaunchScreen"
   }

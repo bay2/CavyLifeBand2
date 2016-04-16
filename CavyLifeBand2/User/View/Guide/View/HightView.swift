@@ -13,6 +13,9 @@ class HightView: UIView, RulerViewDelegate {
     var titleLab = UILabel()
     var heightLabel = UILabel()
     var heightRuler = RulerView()
+    var heightString: String {
+        return "\(self.heightRuler.nowHeight)"
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)

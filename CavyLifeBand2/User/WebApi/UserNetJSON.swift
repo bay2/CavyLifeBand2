@@ -23,9 +23,13 @@ struct UserSignUpMsg {
     
 }
 
-struct UserProfileMsg {
-
-    var commonMsg: CommenMsg?
+/**
+ *  @author xuemincai
+ *
+ *  用户信息
+ */
+struct UserProfile {
+    
     var sex: String?
     var height: String?
     var weight: String?
@@ -35,15 +39,15 @@ struct UserProfileMsg {
     var nickName: String?
     var stepNum: Int?
     var sleepTime: String?
-    var notification: String?
-    var localShare: String?
-
+    var isNotification: Bool?
+    var isLocalShare: Bool?
+    var isOpenBirthday: Bool?
+    var isOpenHeight: Bool?
+    var isOpenWeight: Bool?
     
     init(_ decoder: JSONDecoder) throws  {
-
-        commonMsg = try CommenMsg(decoder)
         
-        do { sex = try decoder["sex"].getString() } catch { sex = "" }
+        do { sex = try decoder["sex"].getString() } catch { sex = "0" }
         do { height = try decoder["height"].getString() } catch { height = "" }
         do { weight = try decoder["weight"].getString() } catch { weight = "" }
         do { birthday = try decoder["birthday"].getString() } catch { birthday = "" }
@@ -52,9 +56,30 @@ struct UserProfileMsg {
         do { nickName = try decoder["nickname"].getString() } catch { nickName = "" }
         do { stepNum = try decoder["stepNum"].getInt() } catch { stepNum = 0 }
         do { sleepTime = try decoder["sleepTime"].getString() } catch { sleepTime = "" }
-        do { notification = try decoder["notification"].getString() } catch { notification = "" }
-        do { localShare = try decoder["localShare"].getString() } catch { localShare = "" }
+        do { isNotification = decoder["isNotification"].bool }
+        do { isLocalShare = decoder["isLocalShare"].bool }
+        do { isOpenBirthday = decoder["isLocalShare"].bool }
+        do { isOpenHeight = decoder["isOpenHeight"].bool }
+        do { isOpenWeight = decoder["isOpenWeight"].bool }
+    }
+    
+}
 
+/**
+ *  @author xuemincai
+ *
+ *  查询用户消息
+ */
+struct UserProfileMsg {
+
+    var commonMsg: CommenMsg?
+    var userProfile: UserProfile?
+    
+    init(_ decoder: JSONDecoder) throws  {
+
+        commonMsg = try CommenMsg(decoder)
+        userProfile = try UserProfile(decoder)
+        
     }
 
 }

@@ -15,7 +15,7 @@ import RealmSwift
 import Log
 
 
-class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating, FriendInfoListDelegate, FollowFriendDelegate, DeleteFriendDelegate {
+class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISearchResultsUpdating, FriendInfoListDelegate, FollowFriendDelegate, DeleteFriendDelegate {
 
     let defulatDataSource: [ContactsFriendListDataSource] = [ContactsAddFriendViewModel(), ContactsNewFriendCellModelView(), ContactsCavyModelView()]
 
@@ -36,9 +36,13 @@ class ContactsFriendListVC: ContactsBaseViewController, UISearchResultsUpdating,
     var realm: Realm = try! Realm()
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
+    var navTitle: String = L10n.ContactsTitle.string
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        self.updateNavUI()
 
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         

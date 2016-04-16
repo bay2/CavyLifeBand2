@@ -10,9 +10,16 @@ import UIKit
 import SnapKit
 import Log
 import JSONJoy
+import RealmSwift
 
-class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
+protocol AccountItemDataSource {
+    associatedtype viewModeType
+}
+
+class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserInfoRealmOperateDelegate
 {
+    
+    var realm: Realm = try! Realm()
     
     /// scrollView的ContectView
     @IBOutlet weak var contectView: UIView!
@@ -23,10 +30,10 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     ///  徽章视图
     @IBOutlet weak var badgeView: UIView!
     
-    /// 成就
+    /// 成就数值
     @IBOutlet weak var badgeInfo: UILabel!
     
-    /// 成就数值
+    /// 成就
     @IBOutlet weak var badgeTitle: UILabel!
     
     /// 徽章视图
@@ -34,18 +41,16 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     
     /// 退出登录
     @IBOutlet weak var logoutButton: UIButton!
-        
     
-    /// tableView 的 cell个数
-    let cellCount: Int = 6
+    /// 成就步数
+    let badgeStep: Int = 500000
     
     /// 徽章个数
     var badgeCount: Int = 6
     
-    var accountRespond = UserProfileMsg?()
-    let infoTitleArray = [L10n.ContactsShowInfoGender.string, L10n.ContactsShowInfoHeight.string, L10n.ContactsShowInfoWeight.string, L10n.ContactsShowInfoBirth.string, L10n.ContactsShowInfoAddress.string]
-    var infoDataArray: Array<String> = []
+    var navTitle: String = L10n.AccountInfoTitle.string
     
+    var accountInfos: Array<AnyObject?> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +61,8 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         
         addAllViews()
         
+        self.updateNavUI()
+        
     }
     
     /**
@@ -63,66 +70,29 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
      */
     func accountInfoQuery() {
         
-        /// 本地取出 账户信息
-        let accountInfo = UserInfoOperate().queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
-        
-        if accountInfo == nil {
-            // 网络获取 账户信息
-            
-            let paras = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
-            
-            userNetReq.queryProfile(paras, completionHandler: { (result) -> Void in
-                
-                
-                Log.info("result ******** \(result.value!)")
-                
-                do {
-                    
-                    let resp = try UserProfileMsg(JSONDecoder(result.value!))
-                    
-                    self.accountRespond = resp
-                   
-                    self.infoDataArray = [self.definiteAccountSex(resp.sex!), resp.height!, resp.weight!, resp.birthday!, resp.address!]
-                    
-                    Log.info(resp)
-                    
-                    dispatch_async(dispatch_get_main_queue()) {
-                        
-                        self.tableView.reloadData()
-                        
-                    }
-                   
-                } catch {
-                    
-                }
-                
-            })
-            
+        guard let accountInfo = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
+            Log.error("Get account info error !")
+            return
         }
         
+        let userName = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername
+        let gender = CavyDefine.definiteAccountSex(accountInfo.sex.toString)
+        
+        let headCellViewModle  = PresonInfoCellViewModel(title: accountInfo.nickname, subTitle: userName, avatarUrl: accountInfo.avatarUrl)
+        let genderCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoGender.string, info: gender)
+        let heightCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoHeight.string, info: "\(accountInfo.height)cm")
+        let weightCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoWeight.string, info: "\(accountInfo.weight)kg")
+        let birthCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoBirth.string, info: accountInfo.birthday)
+        let addressCellViewModel = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoAddress.string, info: accountInfo.address)
+        
+        accountInfos.append(headCellViewModle)
+        accountInfos.append(genderCellViewModel)
+        accountInfos.append(heightCellViewModel)
+        accountInfos.append(weightCellViewModel)
+        accountInfos.append(birthCellViewModel)
+        accountInfos.append(addressCellViewModel)
         
     }
-    
-    /**
-     性别数字转汉字
-     
-     - parameter sex: 性别标识
-     
-     - returns: 性别
-     */
-    func definiteAccountSex(sex: String) -> String {
-    
-        var accountSex = L10n.ContactsGenderGirl.string
-        
-        if sex == "0" {
-            
-            accountSex = L10n.ContactsGenderBoy.string
-            
-        }
-        
-        return accountSex
-    }
-    
     
     
     /**
@@ -132,7 +102,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         
         // InfoTableView高度
         // |-infoListCell-136-|-cellCount-1[infoListCell] * 50-|-边10-|
-        let tableViewHeight = CGFloat(136 + (cellCount - 1) * 50 + 10)
+        let tableViewHeight = CGFloat(136 + (accountInfos.count - 1) * 50 + 10)
         
         // collectionView 高度
         // |-(badgeCount / 3） *（20 + 112）-|
@@ -140,6 +110,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
 
         // contentView
         contectView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        
         contectView.backgroundColor = UIColor(named: .HomeViewMainColor)
         contectView.snp_makeConstraints { (make) in
             
@@ -149,15 +120,15 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
         
         
         addTableView()
-        
-        
         addBadgeView(collectionViewHeight)
         
         // 退出登录按钮
+        logoutButton.setTitle(L10n.AccountInfoLoginoutButtonTitle.string, forState: .Normal)
         logoutButton.layer.cornerRadius = CavyDefine.commonCornerRadius
         logoutButton.backgroundColor = UIColor(named: .ContactsAccountLogoutButton)
+        logoutButton.setBackgroundColor(UIColor(named: .ContactsAccountLogoutButton), forState: .Normal)
         
-        }
+    }
 
     /**
      添加TableView
@@ -179,20 +150,20 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
      */
     func addBadgeView(height: CGFloat) {
         
-        
+        badgeView.layer.cornerRadius = CavyDefine.commonCornerRadius
         badgeView.snp_makeConstraints { (make) in
             
             // |-16-|-tableView-|-10-|-badgeView-10- -50- -8- collectionView -|-20-|-logoutButton-50-|-20-|
             make.height.equalTo(68 + height)
         }
-        badgeInfo.text = "\(L10n.ContactsShowInfoAchievement.string)\(500000)\(L10n.GuideStep.string)"
-        badgeInfo.textColor = UIColor(named: .ContactsAccountLogoutButton)
+        badgeTitle.textColor = UIColor(named: .ContactsTitleColor)
         badgeTitle.text = L10n.ContactsShowInfoAchievement.string
         
-        // 设置斜体
-        let titleFont = UIFontDescriptor.preferredFontDescriptorWithTextStyle(UIFontTextStyleBody)
-        let badgeTitleFont = titleFont.fontDescriptorWithSymbolicTraits(UIFontDescriptorSymbolicTraits.TraitItalic)
-        badgeInfo.font = UIFont(descriptor: badgeTitleFont, size: 16)
+        // 成就数值显示
+        let string = String.numberDecimalFormatter(badgeStep)
+        badgeInfo.text = "\(string)\(L10n.GuideStep.string)"
+        badgeInfo.font = UIFont.italicFontWithSize(16)
+        badgeInfo.textColor = UIColor(named: .ContactsAccountLogoutButton)
         
         collectionView.layer.cornerRadius = CavyDefine.commonCornerRadius
         collectionView.delegate = self
@@ -223,7 +194,7 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return cellCount
+        return accountInfos.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -241,48 +212,31 @@ class ContactsAccountInfoVC: ContactsBaseViewController, UITableViewDelegate, UI
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // 第一个
-        if indexPath.row == 0 {
+        
+        if let cellViewModel = accountInfos[indexPath.row] as? PresonInfoListCellViewModel {
             
-            // 个人信息
-            let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
-            cell.personRealtion(.OwnRelation)
-            
-            if accountRespond?.nickName! != nil {
-                
-                cell.addAccountData((accountRespond!.nickName!), accountName: (accountRespond!.nickName!))
-                
-            }
-            
-            return cell
-            
-        } else {
-            
-            // 其他数值
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
-            if accountRespond?.nickName! != nil {
-                
-                cell.addData(infoTitleArray[indexPath.row - 1], titleInfo: infoDataArray[indexPath.row - 1], cellEditOrNot: false)
-                
-            }
-
+            cell.configCell(cellViewModel)
             return cell
+            
         }
         
+        if let cellViewModel = accountInfos[indexPath.row] as? PresonInfoCellViewModel {
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
+            cell.configCell(cellViewModel)
+            return cell
+            
+        }
+        
+        return tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
+
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if indexPath.row ==  cellCount - 1 {
-            // 退出登录
-            
-        } else {
-            
-            //无点击效果
-            return
-            
-        }
-        
+        return
+
     }
     
     

@@ -11,10 +11,18 @@ import Log
 import JSONJoy
 import OHHTTPStubs
 
+struct UserInfoTest: QueryUserInfoRequestsDelegate {
+    
+    var queryUserId: String {
+        return "56d6ea3bd34635186c60492b"
+    }
+    
+}
+
 @testable import CavyLifeBand2
 class ProfileTest: XCTestCase {
     
-    var userInfoModelView: UserInfoModelView?
+    var userInfoModelView = UserInfoTest()
     
     override func setUp() {
         super.setUp()
@@ -43,54 +51,69 @@ class ProfileTest: XCTestCase {
             
         }
         
-        var expectation = expectationWithDescription("testQueryProfile succeed")
+        let expectation = expectationWithDescription("testQueryProfile succeed")
         
-        UserInfoModelView.shareInterface.queryInfo(userId: "56d6ea3bd34635186c60492b") {
+        userInfoModelView.queryUserInfoByNet {
+           
+            XCTAssert($0 != nil)
             
-            XCTAssert($0)
-            
-            let expectationResult = [UserNetRequsetKey.NickName.rawValue: "aaa",
+            let expectationResult: [String: AnyObject] = [UserNetRequsetKey.Avater.rawValue: "res/images/default_head_boy.png",
+                UserNetRequsetKey.NickName.rawValue: "aaa",
                 UserNetRequsetKey.Birthday.rawValue: "1991-03-07",
                 UserNetRequsetKey.Weight.rawValue: "52",
                 UserNetRequsetKey.Sex.rawValue: "1",
                 UserNetRequsetKey.Height.rawValue: "170",
-                UserNetRequsetKey.Avater.rawValue: "",
-                UserNetRequsetKey.Address.rawValue: "浙江-杭州"]
+                UserNetRequsetKey.Address.rawValue: "浙江-杭州",
+                UserNetRequsetKey.IsLocalShare.rawValue: true,
+                UserNetRequsetKey.IsNotification.rawValue: true,
+                UserNetRequsetKey.IsOpenBirthday.rawValue: true,
+                UserNetRequsetKey.IsOpenHeight.rawValue: true,
+                UserNetRequsetKey.IsOpenWeight.rawValue: true,
+                UserNetRequsetKey.SleepTime.rawValue: "4:58",
+                UserNetRequsetKey.StepNum.rawValue: 8000]
             
-            
-            XCTAssert(UserInfoModelView.shareInterface.userInfo!.nickname == expectationResult["nickname"], "期望值 = \(expectationResult["nickname"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.nickname)")
-            XCTAssert("\(UserInfoModelView.shareInterface.userInfo!.sex)" == expectationResult["sex"], "期望值 = \(expectationResult["sex"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.sex)")
-            XCTAssert(UserInfoModelView.shareInterface.userInfo!.height == expectationResult["height"], "期望值 = \(expectationResult["height"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.height)")
-            XCTAssert(UserInfoModelView.shareInterface.userInfo!.weight == expectationResult["weight"], "期望值 = \(expectationResult["weight"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.weight)")
-            XCTAssert(UserInfoModelView.shareInterface.userInfo!.birthday == expectationResult["birthday"], "期望值 = \(expectationResult["birthday"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.birthday)")
-            XCTAssert(UserInfoModelView.shareInterface.userInfo!.avatarUrl == expectationResult["imgFile"], "期望值 = \(expectationResult["avatarUrl"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.avatarUrl)")
-            XCTAssert(UserInfoModelView.shareInterface.userInfo!.address == expectationResult["address"], "期望值 = \(expectationResult["address"]) , 实际值 = \(UserInfoModelView.shareInterface.userInfo!.address)")
+            XCTAssert($0?.nickName == expectationResult["nickname"] as? String, "期望值 = \(expectationResult["nickname"]) , 实际值 = \($0?.nickName!)")
+            XCTAssert($0?.sex == expectationResult["sex"] as? String, "期望值 = \(expectationResult["sex"]) , 实际值 = \($0?.sex)")
+            XCTAssert($0?.height == expectationResult["height"] as? String, "期望值 = \(expectationResult["height"]) , 实际值 = \($0?.height)")
+            XCTAssert($0?.weight == expectationResult["weight"] as? String, "期望值 = \(expectationResult["weight"]) , 实际值 = \($0?.weight)")
+            XCTAssert($0?.birthday == expectationResult["birthday"] as? String, "期望值 = \(expectationResult["birthday"]) , 实际值 = \($0?.birthday)")
+            XCTAssert($0?.avatarUrl == expectationResult["imgFile"] as? String, "期望值 = \(expectationResult["avatarUrl"]) , 实际值 = \($0?.avatarUrl)")
+            XCTAssert($0?.address == expectationResult["address"] as? String, "期望值 = \(expectationResult["address"]) , 实际值 = \($0?.address)")
+            XCTAssert($0?.isLocalShare == expectationResult[UserNetRequsetKey.IsLocalShare.rawValue] as? Bool, "期望值 = \(expectationResult[UserNetRequsetKey.IsLocalShare.rawValue]) , 实际值 = \($0?.isLocalShare)")
+            XCTAssert($0?.isNotification == expectationResult[UserNetRequsetKey.IsNotification.rawValue] as? Bool, "期望值 = \(expectationResult[UserNetRequsetKey.IsNotification.rawValue]) , 实际值 = \($0?.isNotification)")
+            XCTAssert($0?.isOpenBirthday == expectationResult[UserNetRequsetKey.IsOpenBirthday.rawValue] as? Bool, "期望值 = \(expectationResult[UserNetRequsetKey.IsOpenBirthday.rawValue]) , 实际值 = \($0?.isOpenBirthday)")
+            XCTAssert($0?.isOpenHeight == expectationResult[UserNetRequsetKey.IsOpenHeight.rawValue] as? Bool, "期望值 = \(expectationResult[UserNetRequsetKey.IsOpenHeight.rawValue]) , 实际值 = \($0?.isOpenHeight)")
+            XCTAssert($0?.isOpenWeight == expectationResult[UserNetRequsetKey.IsOpenWeight.rawValue] as? Bool, "期望值 = \(expectationResult[UserNetRequsetKey.IsOpenWeight.rawValue]) , 实际值 = \($0?.isOpenWeight)")
+            XCTAssert($0?.sleepTime == expectationResult[UserNetRequsetKey.SleepTime.rawValue] as? String, "期望值 = \(expectationResult[UserNetRequsetKey.SleepTime.rawValue]) , 实际值 = \($0?.sleepTime)")
+            XCTAssert($0?.stepNum == expectationResult[UserNetRequsetKey.StepNum.rawValue] as? Int, "期望值 = \(expectationResult[UserNetRequsetKey.StepNum.rawValue]) , 实际值 = \($0?.stepNum)")
             
             expectation.fulfill()
+            
             
         }
         
         waitForExpectationsWithTimeout(timeout, handler: nil)
         
         
-        UserInfoModelView.shareInterface.userInfo?.nickname = "bbb"
-        UserInfoModelView.shareInterface.userInfo?.sex = 1
-        UserInfoModelView.shareInterface.userInfo?.height = "170"
-        UserInfoModelView.shareInterface.userInfo?.weight = "52"
-        UserInfoModelView.shareInterface.userInfo?.sleepTime = "7:51"
-        UserInfoModelView.shareInterface.userInfo?.stepNum = 1000
-        UserInfoModelView.shareInterface.userInfo?.avatarUrl = ""
-        
-        expectation = expectationWithDescription("testSetProfile succeed")
-        
-        UserInfoModelView.shareInterface.updateInfo(userId: "56d6ea3bd34635186c60492b") {
-            
-            expectation.fulfill()
-            
-        }
-        
-        waitForExpectationsWithTimeout(timeout, handler: nil)
-        
+//        
+//        UserInfoModelView.shareInterface.userInfo?.nickname = "bbb"
+//        UserInfoModelView.shareInterface.userInfo?.sex = 1
+//        UserInfoModelView.shareInterface.userInfo?.height = "170"
+//        UserInfoModelView.shareInterface.userInfo?.weight = "52"
+//        UserInfoModelView.shareInterface.userInfo?.sleepTime = "7:51"
+//        UserInfoModelView.shareInterface.userInfo?.stepNum = 1000
+//        UserInfoModelView.shareInterface.userInfo?.avatarUrl = ""
+//        
+//        expectation = expectationWithDescription("testSetProfile succeed")
+//        
+//        UserInfoModelView.shareInterface.updateInfo(userId: "56d6ea3bd34635186c60492b") {
+//            
+//            expectation.fulfill()
+//            
+//        }
+//        
+//        waitForExpectationsWithTimeout(timeout, handler: nil)
+//        
 
     }
 

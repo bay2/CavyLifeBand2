@@ -32,6 +32,7 @@
 "UserModuleErrorCode.PasswdNil" = "密码不能为空";
 "UserModuleErrorCode.SecurityNil" = "验证码不能为空";
 "UserModuleErrorCode.UserNameNil" = "用户名不能为空";
+"UserModuleErrorCode.UnknownError" = "未知错误";
 
 
 // 首页
@@ -151,3 +152,7 @@
 "Contacts.ChangeNotesName.PlaceHolder" = "输入备注名";
 "Contacts.ChangeNotesName.Button" = "确定";
 "Contacts.ChangeSelfName.PlaceHolder" = "更改的昵称";
+
+//账户信息
+"AccountInfo.Title" = "账户信息";
+"AccountInfo.LoginoutButton.Title" = "退出登录";
