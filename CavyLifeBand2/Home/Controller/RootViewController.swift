@@ -32,6 +32,8 @@ class RootViewController: UIViewController, CoordinateReport, AddressBookDataSou
         self.view.addSubview(leftVC!.view)
         self.view.addSubview(homeVC!.view)
 
+        
+        UINavigationBar.appearance().tintColor = UIColor(named: .HomeViewMainColor)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickMenu), name: NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.hiddenLeftView), name: NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
         

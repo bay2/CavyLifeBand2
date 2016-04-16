@@ -7,14 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C06E9E71CBF73B10093EEFA /* HomeDataCellFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9E61CBF73B10093EEFA /* HomeDataCellFlowLayout.swift */; };
+		4C06E9E91CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9E81CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift */; };
+		4C06E9EC1CC0E28D0093EEFA /* HomeDateTimeLineCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9EA1CC0E28D0093EEFA /* HomeDateTimeLineCell.swift */; };
+		4C06E9F21CC0E79C0093EEFA /* HomeTimeLineTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9F01CC0E79C0093EEFA /* HomeTimeLineTableCell.swift */; };
+		4C06E9F31CC0E79C0093EEFA /* HomeTimeLineTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C06E9F11CC0E79C0093EEFA /* HomeTimeLineTableCell.xib */; };
+		4C06E9F51CC0FC710093EEFA /* HomeTimeLineSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9F41CC0FC710093EEFA /* HomeTimeLineSection.swift */; };
+		4C06E9F71CC0FC830093EEFA /* HomeTimeLineSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C06E9F61CC0FC830093EEFA /* HomeTimeLineSection.xib */; };
+		4C06E9F91CC106470093EEFA /* HomeTimeLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9F81CC106470093EEFA /* HomeTimeLineView.swift */; };
+		4C0BF9E91CB78F0500DB06FC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */; };
+		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
+		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
+		4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E61CB78F0500DB06FC /* Home.storyboard */; };
+		4C0BF9F01CB78FBD00DB06FC /* HomeUpperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9EF1CB78FBD00DB06FC /* HomeUpperView.swift */; };
+		4C0BF9F41CB7B5AF00DB06FC /* HomeRingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9F31CB7B5AF00DB06FC /* HomeRingView.swift */; };
+		4C0BF9F81CBB77A600DB06FC /* HomeRingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9F71CBB77A600DB06FC /* HomeRingView.xib */; };
+		4C0BF9FA1CBB9F9200DB06FC /* HomeUpperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9F91CBB9F9200DB06FC /* HomeUpperView.xib */; };
+		4C0BF9FC1CBCE4CE00DB06FC /* HomeStepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9FB1CBCE4CE00DB06FC /* HomeStepViewModel.swift */; };
+		4C0BF9FE1CBCE58000DB06FC /* HomeSleepViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9FD1CBCE58000DB06FC /* HomeSleepViewModel.swift */; };
+		4C0BFA021CBCE62E00DB06FC /* HomeRingViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA011CBCE62E00DB06FC /* HomeRingViewProtocol.swift */; };
+		4C0BFA041CBDE9F400DB06FC /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA031CBDE9F400DB06FC /* HomeWeatherView.swift */; };
+		4C0BFA061CBDEBB200DB06FC /* HomeWeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BFA051CBDEBB200DB06FC /* HomeWeatherView.xib */; };
+		4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */; };
+		4C0BFA0C1CBF34C700DB06FC /* HomeDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */; };
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
+		4C6A24591CBF5CB1000136EC /* HomeDateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */; };
+		4C6A245A1CBF5CB1000136EC /* HomeDateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */; };
 		4CC499011CA9102800B2EE85 /* ContactsAccoundInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */; };
 		4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */; };
 		4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
 		9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */; };
 		9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */; };
+		9114D1E71C97AB05008CB4CE /* AccountManagerBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C71C97AB05008CB4CE /* AccountManagerBaseViewController.swift */; };
 		9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C81C97AB05008CB4CE /* AccountManagerViewController.swift */; };
 		9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C91C97AB05008CB4CE /* AccountTextField.swift */; };
 		9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1CA1C97AB05008CB4CE /* CheckboxButton.swift */; };
@@ -39,10 +65,6 @@
 		9114D1FD1C97AB05008CB4CE /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E01C97AB05008CB4CE /* WeightView.swift */; };
 		9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */; };
 		9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */; };
-		9114D2031C993166008CB4CE /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9114D2021C993166008CB4CE /* Home.storyboard */; };
-		9114D2051C993E2B008CB4CE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D2041C993E2B008CB4CE /* HomeViewController.swift */; };
-		9114D2071C994C9D008CB4CE /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D2061C994C9D008CB4CE /* RootViewController.swift */; };
-		9114D2091C995B8B008CB4CE /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D2081C995B8B008CB4CE /* LeftViewController.swift */; };
 		9114D20E1C995CD2008CB4CE /* LeftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D20C1C995CD2008CB4CE /* LeftTableViewCell.swift */; };
 		9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */; };
 		912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D29DA1C6088B5005A06E9 /* SignInTest.swift */; };
@@ -188,8 +210,33 @@
 		0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4C06E9E61CBF73B10093EEFA /* HomeDataCellFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDataCellFlowLayout.swift; sourceTree = "<group>"; };
+		4C06E9E81CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateMoudleWebApi.swift; sourceTree = "<group>"; };
+		4C06E9EA1CC0E28D0093EEFA /* HomeDateTimeLineCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateTimeLineCell.swift; sourceTree = "<group>"; };
+		4C06E9F01CC0E79C0093EEFA /* HomeTimeLineTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineTableCell.swift; sourceTree = "<group>"; };
+		4C06E9F11CC0E79C0093EEFA /* HomeTimeLineTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTimeLineTableCell.xib; sourceTree = "<group>"; };
+		4C06E9F41CC0FC710093EEFA /* HomeTimeLineSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineSection.swift; sourceTree = "<group>"; };
+		4C06E9F61CC0FC830093EEFA /* HomeTimeLineSection.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeTimeLineSection.xib; sourceTree = "<group>"; };
+		4C06E9F81CC106470093EEFA /* HomeTimeLineView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineView.swift; sourceTree = "<group>"; };
+		4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
+		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		4C0BF9E61CB78F0500DB06FC /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
+		4C0BF9EF1CB78FBD00DB06FC /* HomeUpperView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeUpperView.swift; sourceTree = "<group>"; };
+		4C0BF9F31CB7B5AF00DB06FC /* HomeRingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRingView.swift; sourceTree = "<group>"; };
+		4C0BF9F71CBB77A600DB06FC /* HomeRingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeRingView.xib; sourceTree = "<group>"; };
+		4C0BF9F91CBB9F9200DB06FC /* HomeUpperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeUpperView.xib; sourceTree = "<group>"; };
+		4C0BF9FB1CBCE4CE00DB06FC /* HomeStepViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeStepViewModel.swift; sourceTree = "<group>"; };
+		4C0BF9FD1CBCE58000DB06FC /* HomeSleepViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSleepViewModel.swift; sourceTree = "<group>"; };
+		4C0BFA011CBCE62E00DB06FC /* HomeRingViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRingViewProtocol.swift; sourceTree = "<group>"; };
+		4C0BFA031CBDE9F400DB06FC /* HomeWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWeatherView.swift; sourceTree = "<group>"; };
+		4C0BFA051CBDEBB200DB06FC /* HomeWeatherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeWeatherView.xib; sourceTree = "<group>"; };
+		4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWeatherWebApi.swift; sourceTree = "<group>"; };
+		4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateView.swift; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
+		4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateViewCell.swift; sourceTree = "<group>"; };
+		4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDateViewCell.xib; sourceTree = "<group>"; };
 		4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccoundInfoTest.swift; sourceTree = "<group>"; };
 		4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountInfo_Ok.json; sourceTree = "<group>"; };
 		4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FriendInfo_Ok.json; sourceTree = "<group>"; };
@@ -221,10 +268,6 @@
 		9114D1E01C97AB05008CB4CE /* WeightView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
 		9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetJSON.swift; sourceTree = "<group>"; };
 		9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetRequestData.swift; sourceTree = "<group>"; };
-		9114D2021C993166008CB4CE /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		9114D2041C993E2B008CB4CE /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		9114D2061C994C9D008CB4CE /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		9114D2081C995B8B008CB4CE /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		9114D20C1C995CD2008CB4CE /* LeftTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftTableViewCell.swift; sourceTree = "<group>"; };
 		9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardDefine.swift; sourceTree = "<group>"; };
 		912D29DA1C6088B5005A06E9 /* SignInTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTest.swift; sourceTree = "<group>"; };
@@ -389,6 +432,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C0BF9E21CB78F0500DB06FC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */,
+				4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */,
+				4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		4C0BF9E71CB78F0500DB06FC /* VieWModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C0BF9FB1CBCE4CE00DB06FC /* HomeStepViewModel.swift */,
+				4C0BF9FD1CBCE58000DB06FC /* HomeSleepViewModel.swift */,
+				4C0BFA011CBCE62E00DB06FC /* HomeRingViewProtocol.swift */,
+			);
+			path = VieWModel;
+			sourceTree = "<group>";
+		};
+		4C0BFA081CBF27A900DB06FC /* WebApi */ = {
+			isa = PBXGroup;
+			children = (
+				4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */,
+				4C06E9E81CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift */,
+			);
+			path = WebApi;
+			sourceTree = "<group>";
+		};
 		4CC498FF1CA9102800B2EE85 /* ContactsTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -522,7 +594,11 @@
 		9114D2001C99314E008CB4CE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				4C0BF9E61CB78F0500DB06FC /* Home.storyboard */,
+				4C0BF9E21CB78F0500DB06FC /* Controller */,
 				9114D2011C99314E008CB4CE /* View */,
+				4C0BF9E71CB78F0500DB06FC /* VieWModel */,
+				4C0BFA081CBF27A900DB06FC /* WebApi */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -530,13 +606,25 @@
 		9114D2011C99314E008CB4CE /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9114D2021C993166008CB4CE /* Home.storyboard */,
-				91671C941C9A7EC60090BB3F /* LeftHeaderView.swift */,
-				9114D2041C993E2B008CB4CE /* HomeViewController.swift */,
-				9114D2061C994C9D008CB4CE /* RootViewController.swift */,
-				9114D2081C995B8B008CB4CE /* LeftViewController.swift */,
-				9114D20C1C995CD2008CB4CE /* LeftTableViewCell.swift */,
 				91671C991C9AC5A10090BB3F /* HomeUserInfo.swift */,
+				91671C941C9A7EC60090BB3F /* LeftHeaderView.swift */,
+				9114D20C1C995CD2008CB4CE /* LeftTableViewCell.swift */,
+				4C0BF9EF1CB78FBD00DB06FC /* HomeUpperView.swift */,
+				4C0BF9F91CBB9F9200DB06FC /* HomeUpperView.xib */,
+				4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */,
+				4C06E9F81CC106470093EEFA /* HomeTimeLineView.swift */,
+				4C0BF9F31CB7B5AF00DB06FC /* HomeRingView.swift */,
+				4C0BF9F71CBB77A600DB06FC /* HomeRingView.xib */,
+				4C0BFA031CBDE9F400DB06FC /* HomeWeatherView.swift */,
+				4C0BFA051CBDEBB200DB06FC /* HomeWeatherView.xib */,
+				4C06E9E61CBF73B10093EEFA /* HomeDataCellFlowLayout.swift */,
+				4C06E9EA1CC0E28D0093EEFA /* HomeDateTimeLineCell.swift */,
+				4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */,
+				4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */,
+				4C06E9F01CC0E79C0093EEFA /* HomeTimeLineTableCell.swift */,
+				4C06E9F11CC0E79C0093EEFA /* HomeTimeLineTableCell.xib */,
+				4C06E9F41CC0FC710093EEFA /* HomeTimeLineSection.swift */,
+				4C06E9F61CC0FC830093EEFA /* HomeTimeLineSection.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1092,18 +1180,22 @@
 			files = (
 				91EB79671CAE075C00ED3E67 /* ForgotPasswd_Ok.json in Resources */,
 				913D0BD91C3FA126006EE7F8 /* Weather.storyboard in Resources */,
+				4C06E9F31CC0E79C0093EEFA /* HomeTimeLineTableCell.xib in Resources */,
 				91D192921C7DA87B00482019 /* colors.txt in Resources */,
 				91E1B4C21CA510BD008ADEE6 /* Contacts.storyboard in Resources */,
 				91C3ED841C3BB637000A414D /* Localizable.strings in Resources */,
+				4C0BF9FA1CBB9F9200DB06FC /* HomeUpperView.xib in Resources */,
 				91EB79681CAE075C00ED3E67 /* GetFrendListResult.json in Resources */,
 				9114D1EC1C97AB05008CB4CE /* Main.storyboard in Resources */,
 				913D0BD81C3FA126006EE7F8 /* Camera.storyboard in Resources */,
 				9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */,
 				91EB796C1CAE075C00ED3E67 /* Sign_In_Error.json in Resources */,
 				917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */,
-				9114D2031C993166008CB4CE /* Home.storyboard in Resources */,
 				91EB796B1CAE075C00ED3E67 /* SecurityCode_Ok.json in Resources */,
+				4C6A245A1CBF5CB1000136EC /* HomeDateViewCell.xib in Resources */,
+				4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */,
 				91EB79691CAE075C00ED3E67 /* Profile_Ok.json in Resources */,
+				4C0BF9F81CBB77A600DB06FC /* HomeRingView.xib in Resources */,
 				91A2EC941CB350D200361952 /* AccountInfoSecurityCell.xib in Resources */,
 				91EB79581CAC049700ED3E67 /* SearchFrendListResult.json in Resources */,
 				917B98BF1CB8E841008698F5 /* UserAchievementCell.xib in Resources */,
@@ -1114,6 +1206,7 @@
 				91A2EC911CB350D200361952 /* InfoSecurity.storyboard in Resources */,
 				91E1B4CC1CA510BD008ADEE6 /* ContactsFriendListCell.xib in Resources */,
 				91EB79661CAE075C00ED3E67 /* CommonResultOk.json in Resources */,
+				4C0BFA061CBDEBB200DB06FC /* HomeWeatherView.xib in Resources */,
 				91E1B4CF1CA510BD008ADEE6 /* ContactsPersonInfoCell.xib in Resources */,
 				91D192941C7DB8DE00482019 /* Assets.xcassets in Resources */,
 				91EB796F1CAE075C00ED3E67 /* UploadPicture_Ok.json in Resources */,
@@ -1125,6 +1218,7 @@
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
+				4C06E9F71CC0FC830093EEFA /* HomeTimeLineSection.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1300,8 +1394,11 @@
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
+				91E1B4C51CA510BD008ADEE6 /* ContactsBaseViewController.swift in Sources */,
 				91671C9A1C9AC5A10090BB3F /* HomeUserInfo.swift in Sources */,
+				4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */,
 				9199E4881CAE4A7D00397883 /* AccountMangerProtocol.swift in Sources */,
+				4C0BFA041CBDE9F400DB06FC /* HomeWeatherView.swift in Sources */,
 				91E1B4FB1CA6A475008ADEE6 /* FriendInfoListOper.swift in Sources */,
 				9114D1F71C97AB05008CB4CE /* GoalView.swift in Sources */,
 				9114D1F21C97AB05008CB4CE /* UserProtocolView.swift in Sources */,
@@ -1309,13 +1406,15 @@
 				91E1B4DD1CA510BD008ADEE6 /* ContactsTabButton.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
 				9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */,
-				9114D2091C995B8B008CB4CE /* LeftViewController.swift in Sources */,
-				9114D2051C993E2B008CB4CE /* HomeViewController.swift in Sources */,
 				91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */,
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91E1B4E81CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift in Sources */,
 				91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */,
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
+				4C0BF9F41CB7B5AF00DB06FC /* HomeRingView.swift in Sources */,
+				4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */,
+				91D274C91C8685A6004F1AA7 /* BaseViewController.swift in Sources */,
+				4C0BF9FE1CBCE58000DB06FC /* HomeSleepViewModel.swift in Sources */,
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,
 				917B98B91CB8E7CA008698F5 /* Font_Extension.swift in Sources */,
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
@@ -1331,6 +1430,7 @@
 				9144D1121CC0921F006002A8 /* ContactsTableViewProtocol.swift in Sources */,
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
 				917B98C01CB8E841008698F5 /* UserAchievementView.swift in Sources */,
+				4C0BFA0C1CBF34C700DB06FC /* HomeDateView.swift in Sources */,
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
 				9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */,
 				9114D1F11C97AB05008CB4CE /* SignInViewController.swift in Sources */,
@@ -1341,12 +1441,14 @@
 				91E1B4DB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift in Sources */,
 				91E1B4D71CA510BD008ADEE6 /* ContactsAddFriendCell.swift in Sources */,
 				91E1B4C71CA510BD008ADEE6 /* ContactsFriendQualityCell.swift in Sources */,
+				4C0BF9F01CB78FBD00DB06FC /* HomeUpperView.swift in Sources */,
 				9114D1FD1C97AB05008CB4CE /* WeightView.swift in Sources */,
 				91E1B4DC1CA510BD008ADEE6 /* ContactsReqFriendVC.swift in Sources */,
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
 				91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */,
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
+				4C0BF9FC1CBCE4CE00DB06FC /* HomeStepViewModel.swift in Sources */,
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
 				91E1B4F71CA65E1C008ADEE6 /* ContactsWebApi.swift in Sources */,
@@ -1356,8 +1458,9 @@
 				91E1B4CD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift in Sources */,
 				91E1B4CE1CA510BD008ADEE6 /* ContactsPersonInfoCell.swift in Sources */,
 				91A2EC921CB350D200361952 /* AccountInfoSecurityCellViewModel.swift in Sources */,
-				9114D2071C994C9D008CB4CE /* RootViewController.swift in Sources */,
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
+				4C06E9F21CC0E79C0093EEFA /* HomeTimeLineTableCell.swift in Sources */,
+				4C06E9F51CC0FC710093EEFA /* HomeTimeLineSection.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
 				91ACEC671CB68D74008ED8B0 /* AccountInfoSecurityNetworkRequest.swift in Sources */,
@@ -1365,13 +1468,17 @@
 				9141C7FE1C7D72CD003E24F2 /* ImageDefine.swift in Sources */,
 				918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */,
 				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
+				4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
 				9114D20E1C995CD2008CB4CE /* LeftTableViewCell.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
+				4C06E9E91CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift in Sources */,
+				4C0BF9E91CB78F0500DB06FC /* HomeViewController.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,
 				91E1B4D61CA510BD008ADEE6 /* ContactsSearchController.swift in Sources */,
+				4C06E9EC1CC0E28D0093EEFA /* HomeDateTimeLineCell.swift in Sources */,
 				917936CB1CBCEB4B002936E3 /* SCLocationManager.swift in Sources */,
 				9114D1FA1C97AB05008CB4CE /* PictureView.swift in Sources */,
 				91E1B4C31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift in Sources */,
@@ -1380,10 +1487,14 @@
 				9114D1EE1C97AB05008CB4CE /* MainPageViewController.swift in Sources */,
 				91E1B4D01CA510BD008ADEE6 /* ContactsPersonInfoListCell.swift in Sources */,
 				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
+				4C06E9E71CBF73B10093EEFA /* HomeDataCellFlowLayout.swift in Sources */,
 				9114D1FB1C97AB05008CB4CE /* RulerScroller.swift in Sources */,
 				91E1B4C61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift in Sources */,
 				9114D1F61C97AB05008CB4CE /* GenderView.swift in Sources */,
 				9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */,
+				4C6A24591CBF5CB1000136EC /* HomeDateViewCell.swift in Sources */,
+				4C06E9F91CC106470093EEFA /* HomeTimeLineView.swift in Sources */,
+				4C0BFA021CBCE62E00DB06FC /* HomeRingViewProtocol.swift in Sources */,
 				98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
