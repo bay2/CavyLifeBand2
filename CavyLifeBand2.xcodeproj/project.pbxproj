@@ -103,7 +103,6 @@
 		91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B04DDB1CB3EC83007E67B0 /* GuideViewProtocol.swift */; };
 		91B04DE31CB4A39C007E67B0 /* AccountModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B04DE01CB4A39C007E67B0 /* AccountModelView.swift */; };
 		91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B04DE11CB4A39C007E67B0 /* GuideBluetoothModelView.swift */; };
-		91B04DE51CB4A39C007E67B0 /* UserInfoModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B04DE21CB4A39C007E67B0 /* UserInfoModelView.swift */; };
 		91BBB6061C671F1800EC1ED1 /* Sign_In_Error.json in Resources */ = {isa = PBXBuildFile; fileRef = 91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */; };
 		91C3AE501C461EA0006B67AF /* SecurityCode_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */; };
 		91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C3AE511C462FE5006B67AF /* String_Extension.swift */; };
@@ -298,7 +297,6 @@
 		91B04DDB1CB3EC83007E67B0 /* GuideViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuideViewProtocol.swift; path = Protocol/GuideViewProtocol.swift; sourceTree = "<group>"; };
 		91B04DE01CB4A39C007E67B0 /* AccountModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountModelView.swift; sourceTree = "<group>"; };
 		91B04DE11CB4A39C007E67B0 /* GuideBluetoothModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideBluetoothModelView.swift; sourceTree = "<group>"; };
-		91B04DE21CB4A39C007E67B0 /* UserInfoModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoModelView.swift; sourceTree = "<group>"; };
 		91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Error.json; sourceTree = "<group>"; };
 		91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SecurityCode_Ok.json; sourceTree = "<group>"; };
 		91C3AE511C462FE5006B67AF /* String_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String_Extension.swift; sourceTree = "<group>"; };
@@ -747,7 +745,6 @@
 			children = (
 				91B04DE01CB4A39C007E67B0 /* AccountModelView.swift */,
 				91B04DE11CB4A39C007E67B0 /* GuideBluetoothModelView.swift */,
-				91B04DE21CB4A39C007E67B0 /* UserInfoModelView.swift */,
 				91ACEC5F1CB65456008ED8B0 /* GuideSetModelView.swift */,
 				91ACEC611CB654BD008ED8B0 /* GuideInfoModelView.swift */,
 			);
@@ -1359,7 +1356,6 @@
 				91E1B4CD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift in Sources */,
 				91E1B4CE1CA510BD008ADEE6 /* ContactsPersonInfoCell.swift in Sources */,
 				91A2EC921CB350D200361952 /* AccountInfoSecurityCellViewModel.swift in Sources */,
-				91B04DE51CB4A39C007E67B0 /* UserInfoModelView.swift in Sources */,
 				9114D2071C994C9D008CB4CE /* RootViewController.swift in Sources */,
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,

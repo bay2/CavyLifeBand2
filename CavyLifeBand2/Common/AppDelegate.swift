@@ -56,6 +56,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            let stubPath = OHPathForFile("GetFrendListResult.json", self.dynamicType)
 //            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
 //        }
+        
+        if NSProcessInfo.processInfo().arguments.contains("AccountPageSwitchUITests") {
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+            
+        }
 
     
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_IN") {
