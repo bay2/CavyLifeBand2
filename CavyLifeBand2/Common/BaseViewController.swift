@@ -29,13 +29,24 @@ protocol BaseViewControllerPresenter {
     
     //title 名
     var navTitle: String { get }
+    var leftBtn: UIButton? { get }
+    var rightBtn: UIButton? { get }
     
-    func onClickBack()
+    func onRightBtn()
+    func onLeftBtnBack()
     func updateNavUI()
     
 }
 
 extension BaseViewControllerPresenter where Self: UIViewController {
+    
+    var leftBtn: UIButton? {
+        return nil
+    }
+    
+    var rightBtn: UIButton? {
+        return nil
+    }
     
     /**
      更新导航栏UI
@@ -52,19 +63,44 @@ extension BaseViewControllerPresenter where Self: UIViewController {
      */
     func configNavItem() {
         
-        let backBtn = UIButton(type: .System)
-        backBtn.addTapGesture { _ in
-            self.onClickBack()
-        }
-        
-        backBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
-        
-        backBtn.frame = CGRectMake(0, 0, 30, 30)
-        let backButtonItem = UIBarButtonItem(customView: backBtn)
         let spacingBtnItem = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         spacingBtnItem.width = 14
         
-        self.navigationItem.leftBarButtonItems = [spacingBtnItem, backButtonItem]
+        if leftBtn == nil && self.navigationController?.viewControllers.count > 1 {
+            
+            let leftItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
+            leftItemBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
+            leftItemBtn.addTapGesture { _ in
+                self.onLeftBtnBack()
+            }
+            
+            let backButtonItem = UIBarButtonItem(customView: leftItemBtn)
+            self.navigationItem.leftBarButtonItems = [spacingBtnItem, backButtonItem]
+            
+        } else if let leftItemBtn = leftBtn {
+            
+            leftItemBtn.frame = CGRectMake(0, 0, 30, 30)
+            
+            leftItemBtn.addTapGesture { _ in
+                self.onLeftBtnBack()
+            }
+            
+            let backButtonItem = UIBarButtonItem(customView: leftItemBtn)
+            self.navigationItem.leftBarButtonItems = [spacingBtnItem, backButtonItem]
+            
+        }
+        
+        guard let rightItemBtn = rightBtn else {
+            return
+        }
+        
+        rightItemBtn.addTapGesture { _ in
+            self.onRightBtn()
+        }
+        
+        rightItemBtn.frame = CGRectMake(0, 0, 30, 30)
+        let rightButtonItem = UIBarButtonItem(customView: rightItemBtn)
+        self.navigationItem.rightBarButtonItems = [rightButtonItem, spacingBtnItem]
         
     }
     
@@ -87,10 +123,15 @@ extension BaseViewControllerPresenter where Self: UIViewController {
     /**
      返回按钮处理
      */
-    func onClickBack() {
+    func onLeftBtnBack() {
         
         self.popVC()
         
     }
+    
+    /**
+     点击右侧按钮
+     */
+    func onRightBtn() { }
     
 }

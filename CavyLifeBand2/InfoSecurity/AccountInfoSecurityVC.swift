@@ -70,7 +70,7 @@ class AccountInfoSecurityVC: UIViewController, UITableViewDelegate, UITableViewD
     /**
      点击返回
      */
-    func onClickBack() {
+    func onLeftBtnBack() {
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
         self.popVC()
     }

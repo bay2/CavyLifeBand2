@@ -20,7 +20,7 @@ struct HomeStepViewModel: RingViewDataSource {
     var currentNumber: Int { return 0 }
     var targetNumber: Int { return 0 }
     var ringColor: UIColor{ return UIColor(named: .HomeStepRingColor) }
-    var diameter:CGFloat { return ez.screenWidth * 0.55 }
+    var diameter: CGFloat { return ez.screenWidth * 0.55 }
     var ringWidth: CGFloat { return 16 }
     
 }

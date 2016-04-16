@@ -13,8 +13,16 @@ import EZSwiftExtensions
 
 class HomeViewController: UIViewController, BaseViewControllerPresenter {
     
+    lazy var leftBtn: UIButton? = {
+        
+        let button = UIButton(type: .System)
+        button.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
+        
+        return button
+    }()
+    
     var navTitle: String { return "" }
-
+    
     /// 上部分 计步睡眠天气页面
     var upperView: HomeUpperView?
     
@@ -44,13 +52,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
 
     }
     
+    /**
+     添加子视图
+     */
     func addAllView() {
         
         self.view.backgroundColor = UIColor.whiteColor()
-        
-        self.navBar?.translucent = false
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Left", style: .Plain, target: self, action: #selector(showLeftView))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Right", style: .Plain, target: self, action: #selector(showLeftView))
         
         upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
         upperView!.allViewLayout()
@@ -73,12 +80,27 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
     }
     
+    /**
+     点击左侧按钮
+     */
+    func onLeftBtnBack() {
+        self.showLeftView()
+    }
+    
+    /**
+     展示左侧菜单
+     */
     func showLeftView() {
         
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
         
     }
     
+    /**
+     跳转到新的视图
+     
+     - parameter userInfo:
+     */
     func pushNextView(userInfo: NSNotification) {
 
         guard let viewController = userInfo.userInfo?["nextView"] as? UIViewController else {

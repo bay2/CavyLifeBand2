@@ -24,7 +24,7 @@ class AccountInfoSecurityUITest: XCTestCase {
             let app = XCUIApplication()
             app.launchArguments = ["AccountInfoSecurityUITest"]
             app.launch()
-            app.buttons["test"].tap()
+            app.buttons["backbtn"].tap()
             
             
         } else {
