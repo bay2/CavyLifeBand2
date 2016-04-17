@@ -13,7 +13,7 @@ import Log
 import AddressBook
 import Contacts
 
-class RootViewController: UIViewController, CoordinateReport, AddressBookDataSource {
+class RootViewController: UIViewController, CoordinateReport {
 
     var homeVC: UINavigationController?
     var leftVC: LeftViewController?
@@ -24,7 +24,10 @@ class RootViewController: UIViewController, CoordinateReport, AddressBookDataSou
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        Log.info("\(realm.path)")
         
         leftVC = StoryboardScene.Home.instantiateLeftView()
         homeVC = UINavigationController(rootViewController: StoryboardScene.Home.instantiateHomeView())
@@ -38,13 +41,6 @@ class RootViewController: UIViewController, CoordinateReport, AddressBookDataSou
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.hiddenLeftView), name: NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
         
         syncUserInfo()
-        
-        getAddresBookPhoneInfo {
-            Log.info("\($0)\($1) -- \($2)")
-        }
-        
-        
-        
         
     }
     

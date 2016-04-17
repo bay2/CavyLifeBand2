@@ -12,6 +12,7 @@ import EZSwiftExtensions
 
 protocol ContactsAddFriendCellDataSource {
     
+    var firendId: String { get }
     var headImageUrl: String { get }
     var name: String { get }
     var introudce: String { get }

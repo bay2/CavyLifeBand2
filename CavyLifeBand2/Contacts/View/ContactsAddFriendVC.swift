@@ -12,40 +12,7 @@ import Log
 import Alamofire
 import JSONJoy
 
-extension ContactsAddressBookFriendData: ContactsTableViewSectionDataSource {
-    
-    var rowCount: Int {
-        return items.count
-    }
-    
-    func createCell(cell: ContactsAddFriendCell, index: NSIndexPath) -> ContactsAddFriendCell {
-        
-        cell.configure(items[index.row], delegate: items[index.row])
-        
-        return cell
-        
-    }
-    
-}
-
-extension ContactsRecommendFriendData: ContactsTableViewSectionDataSource {
-    
-    var rowCount: Int {
-        return items.count
-    }
-    
-    func createCell(cell: ContactsAddFriendCell, index: NSIndexPath) -> ContactsAddFriendCell {
-        
-        cell.configure(items[index.row], delegate: items[index.row])
-        
-        return cell
-        
-    }
-    
-}
-
-
-class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResultsUpdating, ContactsSearchControllerDelegate, BaseViewControllerPresenter {
+class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewControllerPresenter {
     
     enum ContactsTabButtonTag: Int {
         
@@ -77,12 +44,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResul
     // 搜索结果tableview
     var searchTableView: UITableView = UITableView(frame: CGRectMake(0, 40, ez.screenWidth, ez.screenHeight), style: .Plain)
     
-    // 搜索结果列表
-    var searchList: [ContactsSearchFriendInfo]?
-    
     // tableview 字典
-    var tableDictionary2: [UITableView: CreateTableViewCell] = [:]
-    
     var tableDictionary: [UITableView: ContactsTableViewSectionDataSource] = [:]
     
     var recommendFriendData: ContactsRecommendFriendData?
@@ -116,20 +78,23 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResul
         
         addScrollerView()
         
-        initTableDictionary()
-        
         addTableViewData(ContactsRecommendFriendData(viewController: self, tableView: recommendView.tableView), tableView: recommendView.tableView)
         addTableViewData(ContactsAddressBookFriendData(viewController: self, tableView: addressBookTableView), tableView: addressBookTableView)
+        addTableViewData(ContactsSearchFriendData(viewController: self, tableView:  searchTableView), tableView: searchTableView)
+        addTableViewData(ContactsNearbyFriendData(viewController: self, tableView: nearbyTableView), tableView: nearbyTableView)
         
         loadData()
         
     }
     
+    /**
+     加载数据
+     */
     func loadData() {
         
         tableDictionary = tableDictionary.map { (key, value) -> (UITableView, ContactsTableViewSectionDataSource) in
             
-            var dataSource = value
+            let dataSource = value
             dataSource.loadData()
             
             return (key, dataSource)
@@ -137,72 +102,19 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResul
         
     }
     
+    /**
+     添加表格数据源
+     
+     - parameter dataSource: 数据源
+     - parameter tableView:  tableview
+     */
     func addTableViewData<T: ContactsTableViewSectionDataSource where T: ContactsAddFriendDataSync>(dataSource: T, tableView: UITableView) {
         
         tableDictionary[tableView] = dataSource
         
     }
     
-    /**
-     初始化table字典
-     
-     - returns:
-     */
-    func initTableDictionary() {
-        
-        let pushRquestView: (Void -> Void) = {
-            
-            self.navigationController?.navigationBarHidden = false
-            self.pushVC(StoryboardScene.Contacts.instantiateContactsReqFriendVC())
-        }
-        
-        let addressBookCellViewModel: CreateTableViewCell = { (cell, index) in
-            
-            guard let addressBookViewModel = self.addressBookFriendData?.items[index.row] else {
-                return cell
-            }
-            
-            cell.configure(addressBookViewModel, delegate: addressBookViewModel)
-            
-            return cell
-            
-        }
-        
-        let addRecommendViewModel: CreateTableViewCell = { (cell, index) in
-            
-            guard let addFriendViewModel = self.recommendFriendData?.items[index.row] else {
-                return cell
-            }
-            
-            cell.configure(addFriendViewModel, delegate: addFriendViewModel)
-            
-            return cell
-        }
-        
-        let addNearbyViewModel: CreateTableViewCell = { (cell, index) in
-            
-            let addFriendViewModel = ContactsNearbyCellViewModel(changeRequest: pushRquestView)
-            cell.configure(addFriendViewModel, delegate: addFriendViewModel)
-            return cell
-        }
-        
-        let addSearchViewModel: CreateTableViewCell = { (cell, index) in
-            
-            guard let listRet = self.searchList else { return cell }
-            
-//            let addFriendViewModel = ContactsAddressBookViewModel(name: listRet[index.row].nickName!, headImageUrl: listRet[index.row].avatarUrl!, changeRequest: pushRquestView)
-//            cell.configure(addFriendViewModel, delegate: addFriendViewModel)
-            
-            return cell
-        }
-        
-//        tableDictionary += [addressBookTableView: addressBookCellViewModel]
-//        tableDictionary += [recommendView.tableView: addRecommendViewModel]
-//        tableDictionary += [nearbyTableView: addNearbyViewModel]
-//        tableDictionary += [searchTableView: addSearchViewModel]
-        
-    }
-    
+
     /**
      添加 Searchutton
      */
@@ -367,110 +279,6 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, UISearchResul
     
 }
 
-// MARK: - 搜索功能代理
-extension ContactsAddFriendVC {
-    
-    /**
-     隐藏按钮视图
-     
-     - parameter hidden: 是否隐藏
-     */
-    func setButtonViewHidden(hidden: Bool) {
-        
-        self.navigationController?.setNavigationBarHidden(hidden, animated: true)
-        
-        if hidden {
-            
-            self.scrollView.snp_remakeConstraints { (make) -> Void in
-                make.top.equalTo(buttonView.snp_bottom).offset(20)
-            }
-            
-            self.buttonView.snp_remakeConstraints { (make) -> Void in
-                make.top.equalTo(self.view).offset(-100)
-            }
-            
-            
-        } else {
-            
-            self.scrollView.snp_remakeConstraints { (make) -> Void in
-                make.top.equalTo(buttonView.snp_bottom)
-            }
-            
-            self.buttonView.snp_remakeConstraints { (make) -> Void in
-                make.top.equalTo(self.view)
-            }
-            
-        }
-        
-        self.view.setNeedsUpdateConstraints()
-        self.view.updateConstraintsIfNeeded()
-        
-        UIView.animateWithDuration(0.3) {
-            
-            self.view.layoutIfNeeded()
-            
-        }
-        
-    }
-    
-    /**
-     刷新搜索结果
-     
-     - parameter searchController:
-     */
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        
-        if self.searchController.isSearching {
-            
-            setButtonViewHidden(true)
-            self.scrollView.scrollEnabled = false
-            searchTableView.hidden = false
-            recommendView.tableView.hidden = true
-            searchTableView.reloadData()
-            
-        } else {
-            
-            setButtonViewHidden(false)
-            self.scrollView.scrollEnabled = true
-            self.searchController.contactsSearchBar?.text = ""
-            searchList?.removeAll()
-            recommendView.tableView.hidden = false
-            searchTableView.hidden = true
-            
-        }
-        
-    }
-    
-    /**
-     点击搜索按钮
-     */
-    func didTapOnSearchButton() {
-        
-        let searchDataParse: (Result<AnyObject, UserRequestErrorType> -> Void) = { reslut in
-            
-            guard reslut.isSuccess else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: reslut.error!)
-                return
-            }
-            
-            let reslutMsg = try! ContactsSearchFriendMsg(JSONDecoder(reslut.value!))
-            
-            guard reslutMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: reslutMsg.commonMsg!.code!)
-                return
-            }
-            
-            self.searchList = reslutMsg.friendInfos
-            
-            self.searchTableView.reloadData()
-            
-        }
-        
-        try! ContactsWebApi.shareApi.searchFriendByUserName(self.searchController.contactsSearchBar!.text!, callBack: searchDataParse)
-        
-    }
-    
-}
 
 // MARK: - tableview代理
 extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
@@ -494,15 +302,9 @@ extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
      */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if let list = searchList {
-            return list.count
-        }
-        
         guard let dataSourceViewModel = tableDictionary[tableView] else {
             return 0
         }
-        
-        Log.info("\(tableView) ---- \(dataSourceViewModel.rowCount)")
         
         return dataSourceViewModel.rowCount
     }

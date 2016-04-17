@@ -198,7 +198,6 @@ enum UserNetRequsetKey: String {
     case Avater = "imgFile"
     case FriendID = "freiendId"
     case Flag = "flag"
-    case Local = "lbs"
     case FriendIdList = "friendIds"
     case Operate = "operate"
     case NickName = "nickname"

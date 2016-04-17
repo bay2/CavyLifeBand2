@@ -9,7 +9,39 @@
 import UIKit
 import JSONJoy
 import EZSwiftExtensions
+import Alamofire
 
+extension ContactsAddFriendCellViewModel {
+    
+    init(viewController: UIViewController, friendInfo: ContactsSearchFriendInfo) {
+        
+        self.firendId = friendInfo.userId ?? ""
+        self.headImageUrl = friendInfo.avatarUrl ?? ""
+        self.name = friendInfo.nickName ?? ""
+        
+        self.viewController = viewController
+        
+    }
+    
+}
+
+extension ContactsNearbyCellViewModel {
+    
+    init(viewController: UIViewController, friendInfo: ContactsSearchFriendInfo) {
+        
+        self.firendId = friendInfo.userId ?? ""
+        self.headImageUrl = friendInfo.avatarUrl ?? ""
+        self.name = friendInfo.nickName ?? ""
+        self.introudce = friendInfo.distance ?? ""
+        
+        
+        self.viewController = viewController
+        
+    }
+    
+}
+
+/// 推荐好友数据源
 class ContactsRecommendFriendData: ContactsAddFriendDataSync {
     
     typealias ItemType = ContactsAddFriendCellViewModel
@@ -25,6 +57,9 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
         
     }
     
+    /**
+     加载推荐好友数据
+     */
     func loadData() {
         
         do {
@@ -45,7 +80,7 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
                 
                 for friendInfo in resultMsg.friendInfos! {
                     
-                    let friendCellViewModel = ContactsAddFriendCellViewModel(viewController: self.viewController, firendId: friendInfo.userId!, name: friendInfo.nickName!, headImageUrl: friendInfo.avatarUrl!)
+                    let friendCellViewModel = ContactsAddFriendCellViewModel(viewController: self.viewController, friendInfo: friendInfo)
                     
                     self.items.append(friendCellViewModel)
                 }
@@ -62,6 +97,7 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
     
 }
 
+/// 通讯录好友数据源
 class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDataSync {
     
     typealias ItemType = ContactsAddressBookViewModel
@@ -78,6 +114,9 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
         
     }
     
+    /**
+     请求通讯录好友数据
+     */
     func loadData() {
         
         var phoneNumList = [String]()
@@ -90,8 +129,8 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
             
         }
         
-        // 2s 后进行网络请求
-        NSTimer.runThisAfterDelay(seconds: 2, queue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
+        // 1s 后进行网络请求
+        NSTimer.runThisAfterDelay(seconds: 1, queue: dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)) {
             
             do {
                 
@@ -138,6 +177,125 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
             }
             
         }
+        
+    }
+    
+}
+
+
+
+/// 搜索好友数据
+class ContactsSearchFriendData: ContactsAddFriendDataSync {
+    
+    typealias ItemType = ContactsAddFriendCellViewModel
+    var items: [ItemType] = []
+    var searchText: String = ""
+    var viewController: UIViewController
+    var tableView: UITableView
+    
+    init(viewController: UIViewController, tableView: UITableView) {
+        
+        self.viewController = viewController
+        self.tableView = tableView
+        
+    }
+    
+    /**
+     加载搜索好友数据
+     */
+    func loadData() {
+        
+        if searchText.isEmpty {
+            return
+        }
+        
+        let searchDataParse: (Result<AnyObject, UserRequestErrorType> -> Void) = { reslut in
+            
+            guard reslut.isSuccess else {
+                return
+            }
+            
+            let reslutMsg = try! ContactsSearchFriendMsg(JSONDecoder(reslut.value!))
+            
+            guard reslutMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: reslutMsg.commonMsg!.code!)
+                return
+            }
+            
+            guard let friendInfos = reslutMsg.friendInfos else {
+                return
+            }
+            
+            for friendInfo in friendInfos {
+                self.items.append(ContactsAddFriendCellViewModel(viewController: self.viewController, friendInfo: friendInfo))
+            }
+            
+            self.tableView.reloadData()
+            
+        }
+        
+        do {
+            try ContactsWebApi.shareApi.searchFriendByUserName(searchText, callBack: searchDataParse)
+        } catch let error {
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+        }
+        
+    }
+    
+}
+
+class ContactsNearbyFriendData: ContactsAddFriendDataSync {
+    
+    typealias ItemType = ContactsNearbyCellViewModel
+    var items: [ItemType] = []
+    var viewController: UIViewController
+    var tableView: UITableView
+    
+    init(viewController: UIViewController, tableView: UITableView) {
+        
+        self.viewController = viewController
+        self.tableView = tableView
+        
+    }
+    
+    func loadData() {
+        
+        guard let coordinate = SCLocationManager.shareInterface.coordinate else {
+            return
+        }
+        
+        let searchDataParse: (Result<AnyObject, UserRequestErrorType> -> Void) = { reslut in
+            
+            guard reslut.isSuccess else {
+                return
+            }
+            
+            let reslutMsg = try! ContactsSearchFriendMsg(JSONDecoder(reslut.value!))
+            
+            guard reslutMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: reslutMsg.commonMsg!.code!)
+                return
+            }
+            
+            guard let friendInfos = reslutMsg.friendInfos else {
+                return
+            }
+            
+            for friendInfo in friendInfos {
+                self.items.append(ContactsNearbyCellViewModel(viewController: self.viewController, friendInfo: friendInfo))
+            }
+            
+            self.tableView.reloadData()
+            
+        }
+        
+        do {
+            try ContactsWebApi.shareApi.getNearbyFriend("\(coordinate.longitude)", latitude: "\(coordinate.latitude)", callBack: searchDataParse)
+        } catch let error {
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+        }
+        
+        
         
     }
     

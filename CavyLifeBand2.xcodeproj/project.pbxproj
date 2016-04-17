@@ -64,6 +64,8 @@
 		68C558D41CB754090031719D /* IntelligentClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C558D21CB754090031719D /* IntelligentClockCell.swift */; };
 		68C558D51CB754090031719D /* IntelligentClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C558D31CB754090031719D /* IntelligentClockCell.xib */; };
 		68D6ED5F1CB7AEE700E1A1FB /* SafetySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D6ED5E1CB7AEE700E1A1FB /* SafetySettingViewController.swift */; };
+		9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */; };
+		9104AA701CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */; };
 		9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */; };
 		9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */; };
 		9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C81C97AB05008CB4CE /* AccountManagerViewController.swift */; };
@@ -293,6 +295,8 @@
 		68C558D31CB754090031719D /* IntelligentClockCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntelligentClockCell.xib; sourceTree = "<group>"; };
 		68D6ED5E1CB7AEE700E1A1FB /* SafetySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafetySettingViewController.swift; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtSearch.swift; sourceTree = "<group>"; };
+		9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtDataSource.swift; sourceTree = "<group>"; };
 		9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GuideLinking.gif; sourceTree = "<group>"; };
 		9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoRealm.swift; sourceTree = "<group>"; };
 		9114D1C81C97AB05008CB4CE /* AccountManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManagerViewController.swift; sourceTree = "<group>"; };
@@ -1109,6 +1113,8 @@
 				91E1B4BA1CA510BD008ADEE6 /* ContactsFriendListVC.swift */,
 				91E1B4BC1CA510BD008ADEE6 /* ContactsReqFriendVC.swift */,
 				91E1B4BB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift */,
+				9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */,
+				9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */,
 			);
 			name = ViewController;
 			sourceTree = "<group>";
@@ -1525,6 +1531,7 @@
 				91B04DDA1CB3D4F0007E67B0 /* UserViewControllerProtocol.swift in Sources */,
 				91E1B4DD1CA510BD008ADEE6 /* ContactsTabButton.swift in Sources */,
 				6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */,
+				9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
 				9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */,
 				91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */,
@@ -1582,6 +1589,7 @@
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
 				91E1B4CD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift in Sources */,
 				91E1B4CE1CA510BD008ADEE6 /* ContactsPersonInfoCell.swift in Sources */,
+				9104AA701CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift in Sources */,
 				91A2EC921CB350D200361952 /* AccountInfoSecurityCellViewModel.swift in Sources */,
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
 				4C06E9F21CC0E79C0093EEFA /* HomeTimeLineTableCell.swift in Sources */,

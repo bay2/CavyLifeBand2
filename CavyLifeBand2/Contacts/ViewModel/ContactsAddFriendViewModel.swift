@@ -33,6 +33,9 @@ extension ContactsAddFriendCellDelegate {
     
 }
 
+/**
+ *  切换到添加好友页面
+ */
 protocol SwitchAddFirendReqView {
     
     var viewController: UIViewController { get }
@@ -56,12 +59,14 @@ extension SwitchAddFirendReqView {
     
 }
 
+typealias ContactsAddFriendPortocols = protocol<ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate, SwitchAddFirendReqView>
+
 /**
  *  @author xuemincai
  *
  *  添加好友 cell ViewModel
  */
-struct ContactsAddFriendCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate, SwitchAddFirendReqView {
+struct ContactsAddFriendCellViewModel: ContactsAddFriendPortocols {
     
     var viewController: UIViewController
     
@@ -74,18 +79,17 @@ struct ContactsAddFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
     var name: String
     
     // 副标题
-    var introudce: String
+    var introudce: String { return "" }
     
     // 按钮回调
     var changeRequestBtnName: ((Void) -> Void)?  { return pushFirendReqView }
     
-    init(viewController: UIViewController, firendId: String = "", name: String = "", headImageUrl: String = "", introudce: String = "") {
+    init(viewController: UIViewController, firendId: String = "", name: String = "", headImageUrl: String = "") {
         
         self.viewController = viewController
         self.firendId = firendId
         self.name = name
         self.headImageUrl = headImageUrl
-        self.introudce = introudce
         
     }
     
@@ -96,7 +100,7 @@ struct ContactsAddFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
  *
  *  通信录好友 cell ViewModel
  */
-struct ContactsAddressBookViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate, SwitchAddFirendReqView {
+struct ContactsAddressBookViewModel: ContactsAddFriendPortocols {
     
     var viewController: UIViewController
     
@@ -131,7 +135,11 @@ struct ContactsAddressBookViewModel: ContactsAddFriendCellDataSource, ContactsAd
  *
  *  附近好友 cell ViewModel
  */
-struct ContactsNearbyCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate{
+struct ContactsNearbyCellViewModel: ContactsAddFriendPortocols {
+    
+    var viewController: UIViewController
+    
+    var firendId: String
     
     // 头像
     var headImageUrl: String
@@ -140,16 +148,18 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendCellDataSource, ContactsAdd
     var name: String
     
     // 副标题
-    var introudce: String { return " 我爱吃草莓啊~~~" }
+    var introudce: String
     
     // 按钮回调
-    var changeRequestBtnName: ((Void) -> Void)?
+    var changeRequestBtnName: ((Void) -> Void)?  { return pushFirendReqView }
     
-    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((Void) -> Void)? = nil) {
+    init(viewController: UIViewController, name: String = "", firendId: String = "", headImageUrl: String = "", introudce: String = "") {
         
         self.name = name
         self.headImageUrl = headImageUrl
-        self.changeRequestBtnName = changeRequest
+        self.firendId = firendId
+        self.viewController = viewController
+        self.introudce = introudce
         
     }
     
@@ -161,6 +171,8 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendCellDataSource, ContactsAdd
  *  新朋友 cell ViewModel
  */
 struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate {
+    
+    var firendId: String
     
     // 头像
     var headImageUrl: String
@@ -180,8 +192,9 @@ struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
     // 按钮回调
     var changeRequestBtnName: ((Void) -> Void)?
     
-    init(name: String = "吖保鸡丁", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((Void) -> Void)? = nil) {
+    init(name: String = "吖保鸡丁", firendId: String = "", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((Void) -> Void)? = nil) {
         
+        self.firendId = firendId
         self.name = name
         self.headImageUrl = headImageUrl
         self.changeRequestBtnName = changeRequest
