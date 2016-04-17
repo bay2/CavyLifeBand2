@@ -85,7 +85,7 @@ class ContactsAddFriendCell: UITableViewCell {
         self.introduceLabel.textColor = delegate.introductTextColor
 
         self.requestBtn.setTitle(dataSource.requestBtnTitle, forState: .Normal)
-        self.requestBtn.backgroundColor = delegate.requestBtnColor
+        self.requestBtn.setBackgroundColor(delegate.requestBtnColor, forState: .Normal)
         headView.af_setImageWithURL(NSURL(string: dataSource.headImageUrl)!)
 
         self.labelLayout(dataSource)
