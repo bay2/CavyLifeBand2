@@ -32,7 +32,6 @@ class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDele
         // 下面的时间轴
         let lineLayout = UICollectionViewFlowLayout()
         lineLayout.itemSize = CGSizeMake(ez.screenWidth, ez.screenHeight - 96 - ez.screenWidth * 0.55 - 50 - 64)
-        Log.info(lineLayout.itemSize)
         lineLayout.scrollDirection = .Horizontal
         lineLayout.minimumLineSpacing = 0
         lineLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)

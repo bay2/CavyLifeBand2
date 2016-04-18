@@ -82,7 +82,7 @@ struct ContactsAddFriendCellViewModel: ContactsAddFriendPortocols {
     var introudce: String { return "" }
     
     // 按钮回调
-    var changeRequestBtnName: ((Void) -> Void)?  { return pushFirendReqView }
+    var changeRequestBtnName: ((UIButton) -> Void)?
     
     init(viewController: UIViewController, firendId: String = "", name: String = "", headImageUrl: String = "") {
         
@@ -90,6 +90,10 @@ struct ContactsAddFriendCellViewModel: ContactsAddFriendPortocols {
         self.firendId = firendId
         self.name = name
         self.headImageUrl = headImageUrl
+        
+        changeRequestBtnName = { _ in
+            self.pushFirendReqView
+        }
         
     }
     
@@ -116,7 +120,7 @@ struct ContactsAddressBookViewModel: ContactsAddFriendPortocols {
     var introudce: String
     
     // 按钮回调
-    var changeRequestBtnName: ((Void) -> Void)?  { return pushFirendReqView }
+    var changeRequestBtnName: ((UIButton) -> Void)?
     
     init(viewController: UIViewController, firendId: String = "", name: String = "", introudce: String = "", headImageUrl: String = "") {
         
@@ -125,6 +129,10 @@ struct ContactsAddressBookViewModel: ContactsAddFriendPortocols {
         self.viewController = viewController
         self.firendId = firendId
         self.introudce = introudce
+        
+        changeRequestBtnName = { _ in
+            self.pushFirendReqView
+        }
         
     }
     
@@ -151,7 +159,7 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendPortocols {
     var introudce: String
     
     // 按钮回调
-    var changeRequestBtnName: ((Void) -> Void)?  { return pushFirendReqView }
+    var changeRequestBtnName: ((UIButton) -> Void)?
     
     init(viewController: UIViewController, name: String = "", firendId: String = "", headImageUrl: String = "", introudce: String = "") {
         
@@ -160,6 +168,10 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendPortocols {
         self.firendId = firendId
         self.viewController = viewController
         self.introudce = introudce
+        
+        changeRequestBtnName = { _ in
+            self.pushFirendReqView
+        }
         
     }
     
@@ -172,6 +184,8 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendPortocols {
  */
 struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate {
     
+    var viewController: UIViewController
+    
     var firendId: String
     
     // 头像
@@ -181,7 +195,7 @@ struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
     var name: String
     
     // 副标题
-    var introudce: String { return "" }
+    var introudce: String
     
     // 请求按钮 title
     var requestBtnTitle: String { return L10n.ContactsListCellAgree.string}
@@ -190,14 +204,25 @@ struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
     var requestBtnColor: UIColor { return UIColor(named: .ContactsAgreeButtonColor) }
     
     // 按钮回调
-    var changeRequestBtnName: ((Void) -> Void)?
+    var changeRequestBtnName: ((UIButton) -> Void)?
     
-    init(name: String = "吖保鸡丁", firendId: String = "", headImageUrl: String = "http://h.hiphotos.baidu.com/zhidao/pic/item/eac4b74543a9822628850ccc8c82b9014b90eb91.jpg", changeRequest: ((Void) -> Void)? = nil) {
+    init(viewController: UIViewController, name: String = "", firendId: String = "", headImageUrl: String = "", introudce: String = "") {
         
         self.firendId = firendId
         self.name = name
         self.headImageUrl = headImageUrl
-        self.changeRequestBtnName = changeRequest
+        self.introudce = introudce
+        self.viewController = viewController
+        
+        changeRequestBtnName = {
+            
+            $0.enabled = false
+            $0.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+            $0.backgroundColor = UIColor.clearColor()
+            $0.setTitle(L10n.ContactsListCellAlreaydAdd.string, forState: .Normal)
+            $0.setTitleColor(UIColor(named: .ContactsIntrouduce), forState: .Normal)
+            
+        }
         
     }
     

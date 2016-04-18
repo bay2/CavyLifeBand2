@@ -28,7 +28,7 @@ protocol ContactsAddFriendCellDelegate {
     var introduceFont: UIFont { get }
     var requestBtnColor: UIColor { get }
     var requestBtnFont: UIFont { get }
-    var changeRequestBtnName: ((Void) -> Void)? { get }
+    var changeRequestBtnName: ((UIButton) -> Void)? { get }
     
 
 }
@@ -45,9 +45,9 @@ class ContactsAddFriendCell: UITableViewCell {
     @IBOutlet weak var requestBtn: UIButton!
     
     // 按钮响应
-    @IBAction func requestAddFriend(sender: AnyObject) {
+    @IBAction func requestAddFriend(sender: UIButton) {
         
-        delegate?.changeRequestBtnName?()
+        delegate?.changeRequestBtnName?(sender)
         
     }
     

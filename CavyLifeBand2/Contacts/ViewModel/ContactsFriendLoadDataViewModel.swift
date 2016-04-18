@@ -15,11 +15,7 @@ extension ContactsAddFriendCellViewModel {
     
     init(viewController: UIViewController, friendInfo: ContactsSearchFriendInfo) {
         
-        self.firendId = friendInfo.userId ?? ""
-        self.headImageUrl = friendInfo.avatarUrl ?? ""
-        self.name = friendInfo.nickName ?? ""
-        
-        self.viewController = viewController
+        self.init(viewController: viewController, firendId: friendInfo.userId ?? "", name: friendInfo.nickName ?? "", headImageUrl: friendInfo.avatarUrl ?? "")
         
     }
     
@@ -29,13 +25,17 @@ extension ContactsNearbyCellViewModel {
     
     init(viewController: UIViewController, friendInfo: ContactsSearchFriendInfo) {
         
-        self.firendId = friendInfo.userId ?? ""
-        self.headImageUrl = friendInfo.avatarUrl ?? ""
-        self.name = friendInfo.nickName ?? ""
-        self.introudce = friendInfo.distance ?? ""
+        self.init(viewController: viewController, firendId: friendInfo.userId ?? "", name: friendInfo.nickName ?? "", headImageUrl: friendInfo.avatarUrl ?? "", introudce: friendInfo.distance ?? "")
         
+    }
+    
+}
+
+extension ContactsNewFriendCellViewModel {
+    
+    init(viewController: UIViewController, friendInfo: ContactsFriendReqInfo) {
         
-        self.viewController = viewController
+        self.init(viewController: viewController, firendId: friendInfo.userId ?? "", name: friendInfo.nickName ?? "", headImageUrl: friendInfo.avatarUrl ?? "", introudce: friendInfo.verifyMsg ?? "")
         
     }
     
@@ -244,6 +244,7 @@ class ContactsSearchFriendData: ContactsAddFriendDataSync {
     
 }
 
+/// 附近好友数据请求
 class ContactsNearbyFriendData: ContactsAddFriendDataSync {
     
     typealias ItemType = ContactsNearbyCellViewModel
@@ -295,8 +296,52 @@ class ContactsNearbyFriendData: ContactsAddFriendDataSync {
             CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
         }
         
+    }
+    
+}
+
+class ContactsNewFriendData: ContactsAddFriendDataSync {
+    
+    typealias ItemType = ContactsNewFriendCellViewModel
+    
+    var items: [ItemType] = []
+    
+    var viewController: UIViewController
+    var tableView: UITableView
+    
+    init(viewController: UIViewController, tableView: UITableView) {
+        
+        self.viewController = viewController
+        self.tableView = tableView
+        
+    }
+    
+    func loadData() {
         
         
+        let searchDataParse: (Result<AnyObject, UserRequestErrorType> -> Void) = { reslut in
+            
+            guard reslut.isSuccess else {
+                return
+            }
+            
+            let reslutMsg = try! ContactsFriendReqMsg(JSONDecoder(reslut.value!))
+            
+            guard reslutMsg.commendMsg?.code == WebApiCode.Success.rawValue else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: reslutMsg.commendMsg?.code ?? "")
+                return
+            }
+            
+            for friendInfo in reslutMsg.userInfos {
+                self.items.append(ContactsNewFriendCellViewModel(viewController: self.viewController, friendInfo: friendInfo))
+            }
+            
+            self.tableView.reloadData()
+            
+        }
+        
+        ContactsWebApi.shareApi.getFriendReqList(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, callBack: searchDataParse)
+            
     }
     
 }
