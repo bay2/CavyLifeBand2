@@ -318,7 +318,6 @@ class ContactsNewFriendData: ContactsAddFriendDataSync {
     
     func loadData() {
         
-        
         let searchDataParse: (Result<AnyObject, UserRequestErrorType> -> Void) = { reslut in
             
             guard reslut.isSuccess else {

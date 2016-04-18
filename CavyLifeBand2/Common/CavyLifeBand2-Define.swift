@@ -35,6 +35,9 @@ struct CavyDefine {
     // 已登录用户信息
     static var loginUserBaseInfo = LoginUserBaseInfoStorage()
     
+    // 已登录用户昵称
+    static var userNickname = ""
+    
     /**
      性别数字转汉字
      
@@ -196,7 +199,7 @@ enum UserNetRequsetKey: String {
     case UserName = "user"
     case UserID = "userId"
     case Avater = "imgFile"
-    case FriendID = "freiendId"
+    case FriendID = "friendId"
     case Flag = "flag"
     case FriendIdList = "friendIds"
     case Operate = "operate"
@@ -218,6 +221,7 @@ enum UserNetRequsetKey: String {
     case VerifyMsg = "verifyMsg"
     case Longitude = "longitude"
     case Latitude = "latitude"
+    case FriendReqType = "type"
     
 }
 

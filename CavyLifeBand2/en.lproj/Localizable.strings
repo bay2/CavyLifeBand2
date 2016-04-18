@@ -167,6 +167,7 @@
 "Contacts.ChangeNotesName.PlaceHolder" = "输入备注名";
 "Contacts.ChangeNotesName.Button" = "确定";
 "Contacts.ChangeSelfName.PlaceHolder" = "更改的昵称";
+"Contacts.Request.VerifyMsg" = "哈喽，我是";
 
 //账户信息
 "AccountInfo.Title" = "账户信息";

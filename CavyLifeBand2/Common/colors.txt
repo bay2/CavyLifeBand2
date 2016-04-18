@@ -1,3 +1,5 @@
+TextFieldTextColor : #000000CC
+
 MainPageBtn : #FFD954
 MainPageSelectedBtn : #ECBC46
 MainPageBtnText : #B46E00
@@ -7,7 +9,7 @@ SignInMainTextColor : #00000080
 PageIndicatorTintColor : #00000033
 SignInForgotPwdBtnText : #00000066
 SignInPlaceholderText : #00000066
-SignInTextFieldText : #000000CC
+
 SignInSplitLine : #00000033
 SignUpProtocolBtn : #125fae
 GuideSetInfoColor : #1dbcff

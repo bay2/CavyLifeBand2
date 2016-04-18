@@ -11,6 +11,7 @@ import SnapKit
 import Log
 import JSONJoy
 import RealmSwift
+import EZSwiftExtensions
 
 protocol AccountItemDataSource {
     associatedtype viewModeType
@@ -127,6 +128,17 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         logoutButton.layer.cornerRadius = CavyDefine.commonCornerRadius
         logoutButton.backgroundColor = UIColor(named: .ContactsAccountLogoutButton)
         logoutButton.setBackgroundColor(UIColor(named: .ContactsAccountLogoutButton), forState: .Normal)
+        
+        logoutButton.addTapGesture { _ in
+            
+//            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+            
+            self.view.window?.rootViewController = UINavigationController(rootViewController: StoryboardScene.Main.instantiateSignInView())
+            self.navigationController?.popToRootViewControllerAnimated(false)
+            self.view.removeFromSuperview()
+            
+            
+        }
         
     }
 

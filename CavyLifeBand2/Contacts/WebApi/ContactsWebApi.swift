@@ -183,9 +183,28 @@ class ContactsWebApi: NetRequestAdapter {
     func addFriend(userId: String, friendId: String, verifyMsg: String = "", callBack: CompletionHandlernType? = nil) {
         
         let parametes: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.AddFriend.rawValue,
+                                              UserNetRequsetKey.FriendReqType.rawValue: "1",
                                               UserNetRequsetKey.UserID.rawValue: userId,
                                               UserNetRequsetKey.FriendID.rawValue: friendId,
                                               UserNetRequsetKey.VerifyMsg.rawValue: verifyMsg]
+        
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
+        
+    }
+    
+    /**
+     同意添加好友
+     
+     - parameter userId:    用户ID
+     - parameter friendId:  好友ID
+     - parameter callBack:  回调
+     */
+    func agreeFriend(userId: String, friendId: String, callBack: CompletionHandlernType? = nil) {
+        
+        let parametes: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.AddFriend.rawValue,
+                                              UserNetRequsetKey.FriendReqType.rawValue: "2",
+                                              UserNetRequsetKey.UserID.rawValue: userId,
+                                              UserNetRequsetKey.FriendID.rawValue: friendId]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
         

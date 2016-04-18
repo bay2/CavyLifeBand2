@@ -51,9 +51,9 @@ class RootViewController: UIViewController, CoordinateReport {
      */
     func userCoordinateReport(isLocalShare: Bool) {
         
-//        guard isLocalShare else {
-//            return
-//        }
+        guard isLocalShare else {
+            return
+        }
         
         self.coordinateReportServer()
         
@@ -78,6 +78,8 @@ class RootViewController: UIViewController, CoordinateReport {
         userCoordinateReport(userInfo.isLocalShare)
         
         updateSyncDate(userInfo)
+        
+        CavyDefine.userNickname = userInfo.nickname
         
     }
     
@@ -131,6 +133,8 @@ class RootViewController: UIViewController, CoordinateReport {
             guard let userInfo = resultUserInfo else {
                 return
             }
+            
+            CavyDefine.userNickname = userInfo.nickName ?? ""
             
             let userInfoModel = UserInfoModel(userId: self.queryUserId, userProfile: userInfo)
             
