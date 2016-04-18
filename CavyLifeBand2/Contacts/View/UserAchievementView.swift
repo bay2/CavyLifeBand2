@@ -43,8 +43,10 @@ class UserAchievementView: UIView {
 
     /// 成就标题Label
     @IBOutlet weak var titleLabel: UILabel!
+    
     /// 成就详情Label
     @IBOutlet weak var infoLabel: UILabel!
+    
     /// 成就图标展示视图
     @IBOutlet weak var collectionView: UICollectionView!
     

@@ -17,19 +17,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="年龄" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jd3-wc-hp0">
-                        <rect key="frame" x="31" y="12" width="216" height="16"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="16" id="ZUZ-So-LGA"/>
-                        </constraints>
+                        <rect key="frame" x="31" y="11" width="216" height="19"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81T-Fk-i5S">
-                        <rect key="frame" x="221" y="12" width="173" height="16"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="16" id="VwD-rb-sER"/>
-                        </constraints>
+                        <rect key="frame" x="221" y="11" width="173" height="19"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>

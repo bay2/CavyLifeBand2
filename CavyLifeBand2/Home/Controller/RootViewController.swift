@@ -51,9 +51,9 @@ class RootViewController: UIViewController, CoordinateReport {
      */
     func userCoordinateReport(isLocalShare: Bool) {
         
-        guard isLocalShare else {
-            return
-        }
+//        guard isLocalShare else {
+//            return
+//        }
         
         self.coordinateReportServer()
         
