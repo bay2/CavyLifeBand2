@@ -198,3 +198,21 @@
 "Setting.ReminderReconnect.Type" = "3";
 "Setting.ReminderMessage.Type" = "2";
 "Setting.ReminderPhone.Type" = "1";
+
+//PK
+"PK.RulesView.HowPKTitle" = "怎么PK？";
+"PK.RulesView.HowPKInfo" = "PK是与好友比拼步数，只需点击“+”选择比赛时长即开始PK";
+"PK.RulesView.HowWinTitle" = "怎么取胜？";
+"PK.RulesView.HowWinInfo" = "比赛规定时间内，比对手行走更多步数即可取胜";
+"PK.RulesView.HowSeeTitle" = "别人是否能看到我的步数？";
+"PK.RulesView.HowSeeInfo" = "在创建对决时选择公开PK时况，则所有好友能看到你的PK时况，选择关闭表示仅对决双方可见";
+"PK.IntroduceVC.InfoTitle" = "让我们比一比吧";
+"PK.IntroduceVC.SelectInfo" = "选择好友、选定时长";
+"PK.PK.Title" = "PK";
+"PK.InvitationVC.Title" = "对决邀请";
+"PK.InvitationVC.SelectFriend" = "选择对手";
+"PK.InvitationVC.SelectTime" = "选择时长";
+"PK.InvitationVC.TimeUnit" = "天";
+"PK.InvitationVC.PKState" = "PK时况";
+"PK.InvitationVC.PKOtherSeeAble" = "所有好友可见";
+"PK.InvitationVC.PKOtherSeeUnable" = "对决双方可见";

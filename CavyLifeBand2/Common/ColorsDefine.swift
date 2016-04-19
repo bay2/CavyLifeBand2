@@ -169,6 +169,24 @@ extension UIColor {
     /// Alpha: 100% <br/> (0xecbc46ff)
     case MainPageSelectedBtn
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 50% <br/> (0x00000080)
+    case PKIntroduceVCLabelColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case PKInvitationVCLabelColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 30% <br/> (0x0000004d)
+    case PKInvitationVCSeeStateBtnNormalColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case PKInvitationVCSeeStateBtnSelectedColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 50% <br/> (0x00000080)
+    case PKRulesViewInfoColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case PKRulesViewTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case PageIndicatorTintColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#cccccc"></span>
@@ -264,6 +282,12 @@ extension UIColor {
       case .MainPageBtn: return 0xffd954ff
       case .MainPageBtnText: return 0xb46e00ff
       case .MainPageSelectedBtn: return 0xecbc46ff
+      case .PKIntroduceVCLabelColor: return 0x00000080
+      case .PKInvitationVCLabelColor: return 0x000000b3
+      case .PKInvitationVCSeeStateBtnNormalColor: return 0x0000004d
+      case .PKInvitationVCSeeStateBtnSelectedColor: return 0x000000b3
+      case .PKRulesViewInfoColor: return 0x00000080
+      case .PKRulesViewTitleColor: return 0x000000b3
       case .PageIndicatorTintColor: return 0x00000033
       case .SettingSeparatorColor: return 0xccccccff
       case .SettingTableCellInfoGrayColor: return 0x0000004d
@@ -279,6 +303,10 @@ extension UIColor {
       case .SignInTextFieldText: return 0x000000cc
       case .SignUpProtocolBtn: return 0x125faeff
       }
+    }
+
+    var color: UIColor {
+      return UIColor(named: self)
     }
   }
 

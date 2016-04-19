@@ -1,6 +1,5 @@
 // Generated using SwiftGen, by O.Halligon — https://github.com/AliSoftware/SwiftGen
 
-import Foundation
 import UIKit
 
 extension UIImage {
@@ -59,6 +58,8 @@ extension UIImage {
     case PersonalInfoHonorLighted = "PersonalInfoHonorLighted"
     case PersonalInfoHonorNormal = "PersonalInfoHonorNormal"
     case PersonalInfoMale = "PersonalInfoMale"
+    case PKNextBtnNormal = "PKNextBtnNormal"
+    case PKNextBtnSelected = "PKNextBtnSelected"
     case Splash = "splash"
     case Unchosenbtn = "unchosenbtn"
 

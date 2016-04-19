@@ -22,7 +22,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
         return button
         
     }()
-
+    
     let tableViewMargin: CGFloat            = 20.0
 
     let tableSectionHederHeight: CGFloat    = 10.0

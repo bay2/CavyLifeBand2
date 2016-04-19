@@ -329,6 +329,38 @@ enum L10n {
   case SettingReminderMessageType
   /// 1
   case SettingReminderPhoneType
+  /// 怎么PK？
+  case PKRulesViewHowPKTitle
+  /// PK是与好友比拼步数，只需点击“+”选择比赛时长即开始PK
+  case PKRulesViewHowPKInfo
+  /// 怎么取胜？
+  case PKRulesViewHowWinTitle
+  /// 比赛规定时间内，比对手行走更多步数即可取胜
+  case PKRulesViewHowWinInfo
+  /// 别人是否能看到我的步数？
+  case PKRulesViewHowSeeTitle
+  /// 在创建对决时选择公开PK时况，则所有好友能看到你的PK时况，选择关闭表示仅对决双方可见
+  case PKRulesViewHowSeeInfo
+  /// 让我们比一比吧
+  case PKIntroduceVCInfoTitle
+  /// 选择好友、选定时长
+  case PKIntroduceVCSelectInfo
+  /// PK
+  case PKPKTitle
+  /// 对决邀请
+  case PKInvitationVCTitle
+  /// 选择对手
+  case PKInvitationVCSelectFriend
+  /// 选择时长
+  case PKInvitationVCSelectTime
+  /// 天
+  case PKInvitationVCTimeUnit
+  /// PK时况
+  case PKInvitationVCPKState
+  /// 所有好友可见
+  case PKInvitationVCPKOtherSeeAble
+  /// 对决双方可见
+  case PKInvitationVCPKOtherSeeUnable
 }
 
 extension L10n: CustomStringConvertible {
@@ -662,12 +694,44 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Setting.ReminderMessage.Type")
       case .SettingReminderPhoneType:
         return L10n.tr("Setting.ReminderPhone.Type")
+      case .PKRulesViewHowPKTitle:
+        return L10n.tr("PK.RulesView.HowPKTitle")
+      case .PKRulesViewHowPKInfo:
+        return L10n.tr("PK.RulesView.HowPKInfo")
+      case .PKRulesViewHowWinTitle:
+        return L10n.tr("PK.RulesView.HowWinTitle")
+      case .PKRulesViewHowWinInfo:
+        return L10n.tr("PK.RulesView.HowWinInfo")
+      case .PKRulesViewHowSeeTitle:
+        return L10n.tr("PK.RulesView.HowSeeTitle")
+      case .PKRulesViewHowSeeInfo:
+        return L10n.tr("PK.RulesView.HowSeeInfo")
+      case .PKIntroduceVCInfoTitle:
+        return L10n.tr("PK.IntroduceVC.InfoTitle")
+      case .PKIntroduceVCSelectInfo:
+        return L10n.tr("PK.IntroduceVC.SelectInfo")
+      case .PKPKTitle:
+        return L10n.tr("PK.PK.Title")
+      case .PKInvitationVCTitle:
+        return L10n.tr("PK.InvitationVC.Title")
+      case .PKInvitationVCSelectFriend:
+        return L10n.tr("PK.InvitationVC.SelectFriend")
+      case .PKInvitationVCSelectTime:
+        return L10n.tr("PK.InvitationVC.SelectTime")
+      case .PKInvitationVCTimeUnit:
+        return L10n.tr("PK.InvitationVC.TimeUnit")
+      case .PKInvitationVCPKState:
+        return L10n.tr("PK.InvitationVC.PKState")
+      case .PKInvitationVCPKOtherSeeAble:
+        return L10n.tr("PK.InvitationVC.PKOtherSeeAble")
+      case .PKInvitationVCPKOtherSeeUnable:
+        return L10n.tr("PK.InvitationVC.PKOtherSeeUnable")
     }
   }
 
   private static func tr(key: String, _ args: CVarArgType...) -> String {
     let format = NSLocalizedString(key, comment: "")
-    return String(format: format, arguments: args)
+    return String(format: format, locale: NSLocale.currentLocale(), arguments: args)
   }
 }
 

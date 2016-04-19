@@ -64,6 +64,13 @@
 		68C558D41CB754090031719D /* IntelligentClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C558D21CB754090031719D /* IntelligentClockCell.swift */; };
 		68C558D51CB754090031719D /* IntelligentClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C558D31CB754090031719D /* IntelligentClockCell.xib */; };
 		68D6ED5F1CB7AEE700E1A1FB /* SafetySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D6ED5E1CB7AEE700E1A1FB /* SafetySettingViewController.swift */; };
+		68E977F41CC5D15C00651724 /* PK.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68E977F31CC5D15C00651724 /* PK.storyboard */; };
+		68E977F61CC6008F00651724 /* PKRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E977F51CC6008F00651724 /* PKRulesView.swift */; };
+		68E977F81CC600A100651724 /* PKRulesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E977F71CC600A100651724 /* PKRulesView.xib */; };
+		68E977FA1CC6089D00651724 /* PKIntroduceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E977F91CC6089D00651724 /* PKIntroduceVC.swift */; };
+		68E977FC1CC610DB00651724 /* PKRulesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E977FB1CC610DB00651724 /* PKRulesVC.swift */; };
+		68E978061CC62B5600651724 /* PKInvitationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978051CC62B5600651724 /* PKInvitationVC.swift */; };
+		68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978091CC6412800651724 /* TimePickerView.swift */; };
 		9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */; };
 		9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */; };
 		9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C81C97AB05008CB4CE /* AccountManagerViewController.swift */; };
@@ -292,6 +299,13 @@
 		68C558D21CB754090031719D /* IntelligentClockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockCell.swift; sourceTree = "<group>"; };
 		68C558D31CB754090031719D /* IntelligentClockCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntelligentClockCell.xib; sourceTree = "<group>"; };
 		68D6ED5E1CB7AEE700E1A1FB /* SafetySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafetySettingViewController.swift; sourceTree = "<group>"; };
+		68E977F31CC5D15C00651724 /* PK.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PK.storyboard; sourceTree = "<group>"; };
+		68E977F51CC6008F00651724 /* PKRulesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRulesView.swift; sourceTree = "<group>"; };
+		68E977F71CC600A100651724 /* PKRulesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKRulesView.xib; sourceTree = "<group>"; };
+		68E977F91CC6089D00651724 /* PKIntroduceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKIntroduceVC.swift; sourceTree = "<group>"; };
+		68E977FB1CC610DB00651724 /* PKRulesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRulesVC.swift; sourceTree = "<group>"; };
+		68E978051CC62B5600651724 /* PKInvitationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKInvitationVC.swift; sourceTree = "<group>"; };
+		68E978091CC6412800651724 /* TimePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GuideLinking.gif; sourceTree = "<group>"; };
 		9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoRealm.swift; sourceTree = "<group>"; };
@@ -600,6 +614,28 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		68E977F11CC5D0FE00651724 /* PK */ = {
+			isa = PBXGroup;
+			children = (
+				68E977F21CC5D0FE00651724 /* View */,
+			);
+			path = PK;
+			sourceTree = "<group>";
+		};
+		68E977F21CC5D0FE00651724 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68E977F31CC5D15C00651724 /* PK.storyboard */,
+				68E977F91CC6089D00651724 /* PKIntroduceVC.swift */,
+				68E978051CC62B5600651724 /* PKInvitationVC.swift */,
+				68E977FB1CC610DB00651724 /* PKRulesVC.swift */,
+				68E977F51CC6008F00651724 /* PKRulesView.swift */,
+				68E977F71CC600A100651724 /* PKRulesView.xib */,
+				68E978091CC6412800651724 /* TimePickerView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		9114D1BC1C97A1BB008CB4CE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -838,6 +874,7 @@
 		917DA96A1C3B8EB700FF675D /* CavyLifeBand2 */ = {
 			isa = PBXGroup;
 			children = (
+				68E977F11CC5D0FE00651724 /* PK */,
 				68C558C81CB74CF90031719D /* AlarmClock */,
 				917936CC1CBCEDC9002936E3 /* LocationReport */,
 				91A2EC881CB350D200361952 /* InfoSecurity */,
@@ -1332,8 +1369,10 @@
 				91E1B4CA1CA510BD008ADEE6 /* ContactsLetterView.xib in Resources */,
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
+				68E977F81CC600A100651724 /* PKRulesView.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
 				4C06E9F71CC0FC830093EEFA /* HomeTimeLineSection.xib in Resources */,
+				68E977F41CC5D15C00651724 /* PK.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1508,6 +1547,7 @@
 				68D6ED5F1CB7AEE700E1A1FB /* SafetySettingViewController.swift in Sources */,
 				91671C951C9A7EC60090BB3F /* LeftHeaderView.swift in Sources */,
 				685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */,
+				68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
@@ -1538,6 +1578,7 @@
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,
 				917B98B91CB8E7CA008698F5 /* Font_Extension.swift in Sources */,
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
+				68E977FA1CC6089D00651724 /* PKIntroduceVC.swift in Sources */,
 				9114D1ED1C97AB05008CB4CE /* MainPageButton.swift in Sources */,
 				91ACEC621CB654BD008ED8B0 /* GuideInfoModelView.swift in Sources */,
 				917936C71CBB8E34002936E3 /* BaseViewController.swift in Sources */,
@@ -1548,6 +1589,7 @@
 				6836552E1CBB4CEA009373EA /* SafetySettingTableFooterView.swift in Sources */,
 				91B04DE31CB4A39C007E67B0 /* AccountModelView.swift in Sources */,
 				918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */,
+				68E978061CC62B5600651724 /* PKInvitationVC.swift in Sources */,
 				91E1B4CB1CA510BD008ADEE6 /* ContactsFriendListCell.swift in Sources */,
 				9144D1121CC0921F006002A8 /* ContactsTableViewProtocol.swift in Sources */,
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
@@ -1586,6 +1628,7 @@
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
 				4C06E9F21CC0E79C0093EEFA /* HomeTimeLineTableCell.swift in Sources */,
 				4C06E9F51CC0FC710093EEFA /* HomeTimeLineSection.swift in Sources */,
+				68E977F61CC6008F00651724 /* PKRulesView.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
 				91ACEC671CB68D74008ED8B0 /* AccountInfoSecurityNetworkRequest.swift in Sources */,
@@ -1615,6 +1658,7 @@
 				91ACEC601CB65456008ED8B0 /* GuideSetModelView.swift in Sources */,
 				917B98BE1CB8E841008698F5 /* UserAchievementCell.swift in Sources */,
 				9114D1EE1C97AB05008CB4CE /* MainPageViewController.swift in Sources */,
+				68E977FC1CC610DB00651724 /* PKRulesVC.swift in Sources */,
 				91E1B4D01CA510BD008ADEE6 /* ContactsPersonInfoListCell.swift in Sources */,
 				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
 				4C06E9E71CBF73B10093EEFA /* HomeDataCellFlowLayout.swift in Sources */,
