@@ -71,6 +71,11 @@
 		68E977FC1CC610DB00651724 /* PKRulesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E977FB1CC610DB00651724 /* PKRulesVC.swift */; };
 		68E978061CC62B5600651724 /* PKInvitationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978051CC62B5600651724 /* PKInvitationVC.swift */; };
 		68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978091CC6412800651724 /* TimePickerView.swift */; };
+		68E9780C1CC758B400651724 /* PKChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E9780B1CC758B400651724 /* PKChallengeView.swift */; };
+		68E9780E1CC758CE00651724 /* PKChallengeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E9780D1CC758CE00651724 /* PKChallengeView.xib */; };
+		68E978111CC7698900651724 /* PKInvitationVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978101CC7698900651724 /* PKInvitationVCViewModel.swift */; };
+		68E978151CC77D8C00651724 /* PKInfoOrResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */; };
+		68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E978161CC77DE500651724 /* PKInfoOrResultView.xib */; };
 		9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */; };
 		9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */; };
 		9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C81C97AB05008CB4CE /* AccountManagerViewController.swift */; };
@@ -306,6 +311,11 @@
 		68E977FB1CC610DB00651724 /* PKRulesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRulesVC.swift; sourceTree = "<group>"; };
 		68E978051CC62B5600651724 /* PKInvitationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKInvitationVC.swift; sourceTree = "<group>"; };
 		68E978091CC6412800651724 /* TimePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		68E9780B1CC758B400651724 /* PKChallengeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKChallengeView.swift; sourceTree = "<group>"; };
+		68E9780D1CC758CE00651724 /* PKChallengeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKChallengeView.xib; sourceTree = "<group>"; };
+		68E978101CC7698900651724 /* PKInvitationVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKInvitationVCViewModel.swift; sourceTree = "<group>"; };
+		68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKInfoOrResultView.swift; sourceTree = "<group>"; };
+		68E978161CC77DE500651724 /* PKInfoOrResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKInfoOrResultView.xib; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GuideLinking.gif; sourceTree = "<group>"; };
 		9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoRealm.swift; sourceTree = "<group>"; };
@@ -617,6 +627,7 @@
 		68E977F11CC5D0FE00651724 /* PK */ = {
 			isa = PBXGroup;
 			children = (
+				68E9780F1CC7696300651724 /* ViewModel */,
 				68E977F21CC5D0FE00651724 /* View */,
 			);
 			path = PK;
@@ -631,9 +642,21 @@
 				68E977FB1CC610DB00651724 /* PKRulesVC.swift */,
 				68E977F51CC6008F00651724 /* PKRulesView.swift */,
 				68E977F71CC600A100651724 /* PKRulesView.xib */,
+				68E9780B1CC758B400651724 /* PKChallengeView.swift */,
+				68E9780D1CC758CE00651724 /* PKChallengeView.xib */,
+				68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */,
+				68E978161CC77DE500651724 /* PKInfoOrResultView.xib */,
 				68E978091CC6412800651724 /* TimePickerView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		68E9780F1CC7696300651724 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				68E978101CC7698900651724 /* PKInvitationVCViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		9114D1BC1C97A1BB008CB4CE /* Resource */ = {
@@ -1353,6 +1376,7 @@
 				917B98C11CB8E841008698F5 /* UserAchievementView.xib in Resources */,
 				91E1B4EA1CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib in Resources */,
 				91E1B4D81CA510BD008ADEE6 /* ContactsAddFriendCell.xib in Resources */,
+				68E9780E1CC758CE00651724 /* PKChallengeView.xib in Resources */,
 				91A2EC911CB350D200361952 /* InfoSecurity.storyboard in Resources */,
 				91E1B4CC1CA510BD008ADEE6 /* ContactsFriendListCell.xib in Resources */,
 				91EB79661CAE075C00ED3E67 /* CommonResultOk.json in Resources */,
@@ -1370,6 +1394,7 @@
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
 				68E977F81CC600A100651724 /* PKRulesView.xib in Resources */,
+				68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
 				4C06E9F71CC0FC830093EEFA /* HomeTimeLineSection.xib in Resources */,
 				68E977F41CC5D15C00651724 /* PK.storyboard in Resources */,
@@ -1563,6 +1588,7 @@
 				68C558D41CB754090031719D /* IntelligentClockCell.swift in Sources */,
 				9114D1F21C97AB05008CB4CE /* UserProtocolView.swift in Sources */,
 				91B04DDA1CB3D4F0007E67B0 /* UserViewControllerProtocol.swift in Sources */,
+				68E9780C1CC758B400651724 /* PKChallengeView.swift in Sources */,
 				91E1B4DD1CA510BD008ADEE6 /* ContactsTabButton.swift in Sources */,
 				6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
@@ -1570,6 +1596,7 @@
 				91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */,
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91E1B4E81CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift in Sources */,
+				68E978111CC7698900651724 /* PKInvitationVCViewModel.swift in Sources */,
 				91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */,
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
 				4C0BF9F41CB7B5AF00DB06FC /* HomeRingView.swift in Sources */,
@@ -1619,6 +1646,7 @@
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
 				91E1B4F71CA65E1C008ADEE6 /* ContactsWebApi.swift in Sources */,
+				68E978151CC77D8C00651724 /* PKInfoOrResultView.swift in Sources */,
 				91800A7E1CB38846000BDDF2 /* UserProfileProtocol.swift in Sources */,
 				91E1B4D51CA510BD008ADEE6 /* ContactsSearchBar.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,

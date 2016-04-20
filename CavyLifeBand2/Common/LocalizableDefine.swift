@@ -361,6 +361,10 @@ enum L10n {
   case PKInvitationVCPKOtherSeeAble
   /// 对决双方可见
   case PKInvitationVCPKOtherSeeUnable
+  /// PK时长
+  case PKChallengeViewPKTimeTitle
+  /// 如不接受，三天后失效
+  case PKChallengeViewPKRules
 }
 
 extension L10n: CustomStringConvertible {
@@ -726,6 +730,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("PK.InvitationVC.PKOtherSeeAble")
       case .PKInvitationVCPKOtherSeeUnable:
         return L10n.tr("PK.InvitationVC.PKOtherSeeUnable")
+      case .PKChallengeViewPKTimeTitle:
+        return L10n.tr("PK.ChallengeView.PKTimeTitle")
+      case .PKChallengeViewPKRules:
+        return L10n.tr("PK.ChallengeView.PKRules")
     }
   }
 

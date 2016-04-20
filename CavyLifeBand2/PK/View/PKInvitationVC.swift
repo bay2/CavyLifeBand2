@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EZSwiftExtensions
 
 class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     
@@ -16,6 +17,10 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     
     let timePicker: TimePickerView = {
         return TimePickerView.init(frame: CGRectZero, dataSource: nil)
+    }()
+    
+    var dataSource: PKInvitationVCViewModel = {
+        return PKInvitationVCViewModel()
     }()
     
     @IBOutlet weak var invitationView: UIView!
@@ -39,11 +44,8 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         
         baseSetting()
         
-        timePicker.pickerDelegate = self
+        dataSouceSetting()
         
-        timePicker.scrollToIndex(1)
-        
-        changeSeeAbleType(otherSeeUnableBtn)
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,12 +54,31 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     }
     
     @IBAction func addAction(sender: UIButton) {
+        
+        Log.warning("选择对手 未完成")
+        
+        Log.warning("push 的 VC 需要抛出一个block给我做 头像更换")
+        
     }
 
     @IBAction func commitAction(sender: UIButton) {
+        Log.warning("提交 未完成")
+        
+        let challenge = NSBundle.mainBundle().loadNibNamed("PKChallengeView", owner: nil, options: nil).first as? PKChallengeView
+        
+        challenge?.frame = CGRect(x: 20, y: 20, w: ez.screenWidth - 40, h: 342)
+        
+        self.view .addSubview(challenge!)
+        
+        challenge?.snp_makeConstraints(closure: { (make) in
+            make.leading.equalTo(self.view).offset(20)
+            make.trailing.equalTo(self.view).offset(-20)
+            make.height.equalTo(360)
+            make.centerY.equalTo(self.view.snp_centerY)
+        })
+        
     }
-    
-    
+        
     @IBAction func changeSeeAbleType(sender: UIButton) {
         sender.selected = true
         lastBtn?.selected = false
@@ -66,6 +87,7 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     
     func baseSetting() -> Void {
         
+        invitationView.clipsToBounds = true
         invitationView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
         selectFriendLabel.text = L10n.PKInvitationVCSelectFriend.string
@@ -78,7 +100,8 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         timeUnitLabel.textColor     = UIColor(named: .PKIntroduceVCLabelColor)
         PKStateLabel.textColor      = UIColor(named: .PKIntroduceVCLabelColor)
         
-        
+        addBtn.clipsToBounds      = true
+        addBtn.layer.cornerRadius = addBtn.frame.size.width / 2
         
         addBtn.setImage(UIImage(named: "PKInvitationAddBtn"), forState: .Normal)
         commitBtn.setImage(UIImage(named: "GuideRightBtn"), forState: .Normal)
@@ -100,6 +123,16 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
             make.height.equalTo(timePickerContainerView.snp_height)
             
         }
+        
+        timePicker.pickerDelegate = self
+    }
+    
+    func dataSouceSetting() -> Void {
+        
+        timePicker.scrollToIndex(dataSource.selectIndex)
+        
+        changeSeeAbleType(dataSource.otherCanSee ? otherSeeAbleBtn : otherSeeUnableBtn)
+        
     }
 
 }
@@ -108,6 +141,8 @@ extension PKInvitationVC: TimePickerViewDelegate {
     
     func timePickerView(timePickerView: TimePickerView, didSelectItemAtIndex index: Int) {
         Log.info("\(index)")
+        
+        dataSource.selectIndex = index
     }
     
 }

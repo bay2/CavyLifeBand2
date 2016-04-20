@@ -216,3 +216,5 @@
 "PK.InvitationVC.PKState" = "PK时况";
 "PK.InvitationVC.PKOtherSeeAble" = "所有好友可见";
 "PK.InvitationVC.PKOtherSeeUnable" = "对决双方可见";
+"PK.ChallengeView.PKTimeTitle" = "PK时长";
+"PK.ChallengeView.PKRules" = "如不接受，三天后失效";

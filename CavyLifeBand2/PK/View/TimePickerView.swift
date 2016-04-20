@@ -189,7 +189,7 @@ extension TimePickerView: UICollectionViewDelegate {
 extension TimePickerView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        return CGSizeMake(30, 60)
+        return CGSizeMake(30, 40)
     }
 
 }
