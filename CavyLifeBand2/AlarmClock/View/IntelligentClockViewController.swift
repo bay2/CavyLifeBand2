@@ -62,7 +62,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
     /**
      跳转添加闹钟
      */
-    func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
+    func onRightBtn() {
         
         let targetVC = StoryboardScene.AlarmClock.instantiateAddClockViewController()
         

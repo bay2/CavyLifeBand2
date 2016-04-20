@@ -29,16 +29,30 @@ class RootViewController: UIViewController, CoordinateReport {
         
         Log.info("\(realm.path)")
         
-        leftVC = StoryboardScene.Home.instantiateLeftView()
-        homeVC = UINavigationController(rootViewController: StoryboardScene.Home.instantiateHomeView())
-
-        self.view.addSubview(leftVC!.view)
-        self.view.addSubview(homeVC!.view)
-
+        self.navigationController?.navigationBarHidden = true
+        
+        
+        loadHomeView()
+            
         
         UINavigationBar.appearance().tintColor = UIColor(named: .HomeViewMainColor)
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickMenu), name: NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.hiddenLeftView), name: NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.loadHomeView), name: NotificationName.HomeUpdateUserInfo.rawValue, object: nil)
+        
+    }
+    
+    /**
+     加载主页面视图
+     */
+    func loadHomeView() {
+        
+        leftVC = StoryboardScene.Home.instantiateLeftView()
+        homeVC = UINavigationController(rootViewController: StoryboardScene.Home.instantiateHomeView())
+        
+        self.view.addSubview(leftVC!.view)
+        self.view.addSubview(homeVC!.view)
         
         syncUserInfo()
         

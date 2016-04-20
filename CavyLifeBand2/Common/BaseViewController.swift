@@ -35,6 +35,10 @@ protocol BaseViewControllerPresenter {
     func onRightBtn()
     func onLeftBtnBack()
     func updateNavUI()
+    func configNavBar()
+    func configNavItem()
+    
+    var newTitleLable: UILabel? { get }
     
 }
 
@@ -45,6 +49,10 @@ extension BaseViewControllerPresenter where Self: UIViewController {
     }
     
     var rightBtn: UIButton? {
+        return nil
+    }
+    
+    var newTitleLable: UILabel? {
         return nil
     }
     
@@ -70,18 +78,18 @@ extension BaseViewControllerPresenter where Self: UIViewController {
             
             let leftItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
             leftItemBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
-            leftItemBtn.addTapGesture { _ in
+            leftItemBtn.addTapGesture { [unowned self] _ in
                 self.onLeftBtnBack()
             }
             
             let backButtonItem = UIBarButtonItem(customView: leftItemBtn)
             self.navigationItem.leftBarButtonItems = [spacingBtnItem, backButtonItem]
-            
+        
         } else if let leftItemBtn = leftBtn {
             
             leftItemBtn.frame = CGRectMake(0, 0, 30, 30)
             
-            leftItemBtn.addTapGesture { _ in
+            leftItemBtn.addTapGesture { [unowned self] _ in
                 self.onLeftBtnBack()
             }
             
@@ -94,14 +102,14 @@ extension BaseViewControllerPresenter where Self: UIViewController {
             return
         }
         
-        rightItemBtn.addTapGesture { _ in
+        rightItemBtn.addTapGesture { [unowned self]  _ in
             self.onRightBtn()
         }
         
         rightItemBtn.frame = CGRectMake(0, 0, 30, 30)
         let rightButtonItem = UIBarButtonItem(customView: rightItemBtn)
         self.navigationItem.rightBarButtonItems = [rightButtonItem, spacingBtnItem]
-        
+    
     }
     
     /**

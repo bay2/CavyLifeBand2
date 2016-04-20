@@ -166,7 +166,10 @@ extension SignUpDelegate where Self: UIViewController {
             Log.info("Sign up success")
             
             callBack?(msg.userId!)
-            self.pushVC(StoryboardScene.Home.instantiateRootView())
+//            self.pushVC(StoryboardScene.Home.instantiateRootView())
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeUpdateUserInfo.rawValue, object: nil)
+            self.dismissVC(completion: nil)
+            
             
         }
         

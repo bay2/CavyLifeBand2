@@ -131,12 +131,9 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         logoutButton.addTapGesture { _ in
             
-//            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
             
-            self.view.window?.rootViewController = UINavigationController(rootViewController: StoryboardScene.Main.instantiateSignInView())
-            self.navigationController?.popToRootViewControllerAnimated(false)
-            self.view.removeFromSuperview()
-            
+            self.presentVC(UINavigationController(rootViewController: StoryboardScene.Main.instantiateMainPageView()))
             
         }
         

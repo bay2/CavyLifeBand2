@@ -14,9 +14,22 @@ class CLBPageControl: UIPageControl {
 
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+//    override func drawRect(rect: CGRect) {
+//        
+//    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        awakeFromNib()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func awakeFromNib() {
         currentPageIndicatorTintColor = UIColor.whiteColor()
-        pageIndicatorTintColor = UIColor(hexString: "#FFFFFF", alpha: 0.2)
+        pageIndicatorTintColor = UIColor(named: .PageIndicatorTintColor)
     }
 
 

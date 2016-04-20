@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class AddClockViewController: UIViewController {
+class AddClockViewController: UIViewController, BaseViewControllerPresenter {
 
     @IBOutlet weak var deleteBtn: UIButton!
     
@@ -53,23 +53,28 @@ class AddClockViewController: UIViewController {
     //更新闹钟的回调，使用isUpdate来判断是删除、添加、更新操作
     var updateAlarmBlock: ((model: AlarmRealmModel, isUpdate: Bool) -> Void)?
     
+    var navTitle: String { return L10n.AlarmClockTitle.string }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.automaticallyAdjustsScrollViewInsets = false
         
-        self.navigationItem.title = L10n.AlarmClockTitle.string
+//        self.navigationItem.title = L10n.AlarmClockTitle.string
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AlarmClockNavSave"),
-                                                                 style: .Plain,
-                                                                 target: self,
-                                                                 action: #selector(rightBarBtnAciton(_:)))
-        
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AlarmClockNavSave"),
+//                                                                 style: .Plain,
+//                                                                 target: self,
+//                                                                 action: #selector(rightBarBtnAciton(_:)))
+//        
         collectionView.registerNib(UINib(nibName: AddClockCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: AddClockCollectionViewCell)
+        
+        updateNavUI()
         
         baseSetView()
 
         setByData()
+        
     }
     
     deinit {
@@ -82,12 +87,12 @@ class AddClockViewController: UIViewController {
     
     func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
         
-        if dataSource?.alarmModel.alarmDay == 0{
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: L10n.AlarmClockAlarmCircleAlertTitle.string)
-            return
-        }
-        
-        updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
+//        if dataSource?.alarmModel.alarmDay == 0{
+//            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: L10n.AlarmClockAlarmCircleAlertTitle.string)
+//            return
+//        }
+//        
+//        updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
         
         self.popVC()
     }

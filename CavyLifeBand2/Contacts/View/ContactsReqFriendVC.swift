@@ -39,6 +39,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
         updateNavUI()
 
         requestViewLayout()
@@ -85,8 +86,6 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         
         self.delegate = delegate
         self.dataSource = dataSource
-        
-        
         
     }
     

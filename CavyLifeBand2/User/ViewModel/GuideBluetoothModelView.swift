@@ -19,7 +19,13 @@ struct GuideBandBluetooth: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var bgColor: UIColor { return UIColor(named: .GuideBandBluetoothColor) }
-    var centerView: UIView { return PictureView(title: L10n.GuideOpenBluetooth.string, titleInfo: L10n.GuideOpenBluetoothInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuideBluetooth))) }
+    var centerView: UIView
+    
+    init() {
+        
+        self.centerView = PictureView(title: L10n.GuideOpenBluetooth.string, titleInfo: L10n.GuideOpenBluetoothInfo.string, midImage: UIImageView(image: UIImage(asset: .GuideBluetooth)))
+        
+    }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -67,12 +73,14 @@ struct GuideBandLinking: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var bgColor: UIColor { return UIColor(named: .GuideBandBluetoothColor) }
-    var centerView: UIView {
+    var centerView: UIView
+    
+    init() {
         
         let imageView = AnimatableImageView()
         imageView.animateWithImage(named: "GuideLinking.gif")
+        centerView = PictureView(title: L10n.GuideLinking.string, midImage: imageView)
         
-        return PictureView(title: L10n.GuideLinking.string, midImage: imageView)
     }
     
     func onClickGuideOkBtn(viewController: UIViewController) {

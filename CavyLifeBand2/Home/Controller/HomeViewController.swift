@@ -35,7 +35,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
+        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil)
 
         addAllView()

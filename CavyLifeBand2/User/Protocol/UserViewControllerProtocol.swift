@@ -87,8 +87,8 @@ extension UserViewControllerPresentable where Self: UIViewController {
         backBtn.frame = CGRectMake(0, 0, 30, 30)
         backBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
         
-        backBtn.addTapGesture { _ in
-            self.onClickBackBtn()
+        backBtn.addTapGesture { [weak self]  _ in
+            self?.onClickBackBtn()
         }
         
         navItemView.addSubview(backBtn)
@@ -112,7 +112,7 @@ extension UserViewControllerPresentable where Self: UIViewController {
         rightBtn.setTitle(title, forState: .Normal)
         rightBtn.frame = CGRectMake(0, 0, 60, 30)
         rightBtn.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
-        rightBtn.addTapGesture { _ in
+        rightBtn.addTapGesture { [unowned self]  _ in
             self.onClickRightBtn()
         }
         

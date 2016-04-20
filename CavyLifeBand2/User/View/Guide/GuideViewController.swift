@@ -35,6 +35,10 @@ class GuideViewController: UIViewController, UserViewControllerPresentable {
         
     }
     
+    deinit {
+        Log.error("deinit GuideViewController")
+    }
+    
     /**
      布局全部视图
      */
