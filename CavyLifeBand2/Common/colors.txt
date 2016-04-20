@@ -70,3 +70,4 @@ PKIntroduceVCLabelColor : #00000080
 PKInvitationVCSeeStateBtnNormalColor : #0000004D
 PKInvitationVCSeeStateBtnSelectedColor : #000000B3
 PKInvitationVCLabelColor : #000000B3
+PKTimePickerSeparatorColor : #e5e5e5

@@ -186,6 +186,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 70% <br/> (0x000000b3)
     case PKRulesViewTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e5e5e5"></span>
+    /// Alpha: 100% <br/> (0xe5e5e5ff)
+    case PKTimePickerSeparatorColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case PageIndicatorTintColor
@@ -288,6 +291,7 @@ extension UIColor {
       case .PKInvitationVCSeeStateBtnSelectedColor: return 0x000000b3
       case .PKRulesViewInfoColor: return 0x00000080
       case .PKRulesViewTitleColor: return 0x000000b3
+      case .PKTimePickerSeparatorColor: return 0xe5e5e5ff
       case .PageIndicatorTintColor: return 0x00000033
       case .SettingSeparatorColor: return 0xccccccff
       case .SettingTableCellInfoGrayColor: return 0x0000004d

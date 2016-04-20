@@ -14,13 +14,20 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
 
     var lastBtn: UIButton?
     
+    let timePicker: TimePickerView = {
+        return TimePickerView.init(frame: CGRectZero, dataSource: nil)
+    }()
+    
     @IBOutlet weak var invitationView: UIView!
+    @IBOutlet weak var timePickerContainerView: UIView!
+    
     @IBOutlet weak var selectFriendLabel: UILabel!
     @IBOutlet weak var selectTimeLabel: UILabel!
     @IBOutlet weak var PKStateLabel: UILabel!
-    @IBOutlet weak var commitBtn: UIButton!
     @IBOutlet weak var timeUnitLabel: UILabel!
+    
     @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var commitBtn: UIButton!
     @IBOutlet weak var otherSeeUnableBtn: UIButton!
     @IBOutlet weak var otherSeeAbleBtn: UIButton!
     
@@ -31,6 +38,10 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         baseSetting()
+        
+        timePicker.pickerDelegate = self
+        
+        timePicker.scrollToIndex(1)
         
         changeSeeAbleType(otherSeeUnableBtn)
     }
@@ -67,6 +78,11 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         timeUnitLabel.textColor     = UIColor(named: .PKIntroduceVCLabelColor)
         PKStateLabel.textColor      = UIColor(named: .PKIntroduceVCLabelColor)
         
+        
+        
+        addBtn.setImage(UIImage(named: "PKInvitationAddBtn"), forState: .Normal)
+        commitBtn.setImage(UIImage(named: "GuideRightBtn"), forState: .Normal)
+        
         otherSeeUnableBtn.setTitle(L10n.PKInvitationVCPKOtherSeeUnable.string, forState: .Normal)
         otherSeeAbleBtn.setTitle(L10n.PKInvitationVCPKOtherSeeAble.string, forState: .Normal)
         
@@ -75,6 +91,23 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         
         otherSeeUnableBtn.setTitleColor(UIColor(named: .PKInvitationVCSeeStateBtnSelectedColor), forState: .Selected)
         otherSeeUnableBtn.setTitleColor(UIColor(named: .PKInvitationVCSeeStateBtnNormalColor), forState: .Normal)
+        
+        timePickerContainerView.addSubview(timePicker)
+        
+        timePicker.snp_makeConstraints { (make) in
+            make.center.equalTo(timePickerContainerView.snp_center)
+            make.width.equalTo(timePickerContainerView.snp_width)
+            make.height.equalTo(timePickerContainerView.snp_height)
+            
+        }
     }
 
+}
+
+extension PKInvitationVC: TimePickerViewDelegate {
+    
+    func timePickerView(timePickerView: TimePickerView, didSelectItemAtIndex index: Int) {
+        Log.info("\(index)")
+    }
+    
 }

@@ -182,7 +182,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8e-0s-hrd">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d8e-0s-hrd">
                                         <rect key="frame" x="240" y="70" width="80" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="0Z6-yD-Ffi"/>
@@ -289,7 +289,7 @@
                                     </mask>
                                 </variation>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9t1-tN-tBo">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9t1-tN-tBo">
                                 <rect key="frame" x="260" y="406" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="ZJF-Q0-gmE"/>
@@ -313,12 +313,13 @@
                     <connections>
                         <outlet property="PKStateLabel" destination="Gu4-FA-Ygn" id="aGX-Sm-f5b"/>
                         <outlet property="addBtn" destination="d8e-0s-hrd" id="nfn-Hi-MDg"/>
-                        <outlet property="commitBtn" destination="9t1-tN-tBo" id="2zh-kZ-xyt"/>
+                        <outlet property="commitBtn" destination="9t1-tN-tBo" id="z2l-uP-HpA"/>
                         <outlet property="invitationView" destination="1tH-Gk-A6Z" id="Nd8-Vv-sk0"/>
                         <outlet property="otherSeeAbleBtn" destination="uNQ-hn-2bL" id="z5J-ku-csJ"/>
                         <outlet property="otherSeeUnableBtn" destination="GQZ-0w-7Yu" id="xE8-7W-M7t"/>
                         <outlet property="selectFriendLabel" destination="XKk-PL-H3T" id="Lxf-wT-DHH"/>
                         <outlet property="selectTimeLabel" destination="aVQ-tG-jxo" id="i1x-5c-BNX"/>
+                        <outlet property="timePickerContainerView" destination="OAc-4h-aKp" id="B4z-7B-Aey"/>
                         <outlet property="timeUnitLabel" destination="XsX-Sf-nYk" id="KZH-6S-sBr"/>
                     </connections>
                 </viewController>
