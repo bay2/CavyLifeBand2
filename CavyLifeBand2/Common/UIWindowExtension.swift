@@ -44,10 +44,10 @@ extension UIWindow {
         }
         
         if let previousViewController = previousViewController {
-        // Allow the view controller to be deallocated
-        previousViewController.dismissViewControllerAnimated(false) {
-            // Remove the root view in case its still showing
-            previousViewController.view.removeFromSuperview()
+            // Allow the view controller to be deallocated
+            previousViewController.dismissViewControllerAnimated(false) {
+                // Remove the root view in case its still showing
+                previousViewController.view.removeFromSuperview()
             }
         }
     }

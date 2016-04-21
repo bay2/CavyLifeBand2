@@ -29,17 +29,12 @@ class RootViewController: UIViewController, CoordinateReport {
         
         Log.info("\(realm.path)")
         
-        self.navigationController?.navigationBarHidden = true
-        
-        
         loadHomeView()
             
-        
         UINavigationBar.appearance().tintColor = UIColor(named: .HomeViewMainColor)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickMenu), name: NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.hiddenLeftView), name: NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.loadHomeView), name: NotificationName.HomeUpdateUserInfo.rawValue, object: nil)
         
     }
     

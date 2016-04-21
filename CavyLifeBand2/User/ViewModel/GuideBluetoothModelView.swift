@@ -133,7 +133,7 @@ struct GuideBandSuccess: GuideViewDataSource, GuideViewDelegate, QueryUserInfoRe
             // 没有目标值信息
             guard userInfo.sleepTime?.isEmpty == true else {
                 
-                viewController.pushVC(StoryboardScene.Home.instantiateRootView())
+                UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
                 
                 return
             }

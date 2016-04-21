@@ -142,7 +142,6 @@ enum NotificationName: String {
     case HomeLeftOnClickCellPushView
     case HomeLeftHiddenMenu
     case HomeLeftAccountInfo
-    case HomeUpdateUserInfo
     case ReminderPhoneSwitchChange
     case ReminderPhoneScrollToSelect
     

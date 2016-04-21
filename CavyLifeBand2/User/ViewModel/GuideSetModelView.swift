@@ -90,7 +90,7 @@ struct GuideSetLocationShare: GuideViewDataSource, GuideViewDelegate {
             return
         }
         
-        viewController.pushVC(StoryboardScene.Home.instantiateRootView())
+        UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
         
     }
     

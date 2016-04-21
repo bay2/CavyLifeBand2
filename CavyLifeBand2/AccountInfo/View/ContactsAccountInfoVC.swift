@@ -133,7 +133,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
             
-            self.presentVC(UINavigationController(rootViewController: StoryboardScene.Main.instantiateMainPageView()))
+            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Main.instantiateMainPageView(), transition: CATransition())
             
         }
         

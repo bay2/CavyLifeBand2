@@ -33,8 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
         
-        self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
-//        self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
+        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
+            self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
+        } else {
+            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
+        }
         
         return true
 

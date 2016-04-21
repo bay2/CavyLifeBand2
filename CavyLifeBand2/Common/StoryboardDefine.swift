@@ -167,11 +167,6 @@ struct StoryboardScene {
       return StoryboardScene.Main.MainPageViewScene.viewController() as! MainPageViewController
     }
 
-    case PageViewScene = "PageView"
-    static func instantiatePageView() -> PageViewController {
-      return StoryboardScene.Main.PageViewScene.viewController() as! PageViewController
-    }
-
     case SignInViewScene = "SignInView"
     static func instantiateSignInView() -> SignInViewController {
       return StoryboardScene.Main.SignInViewScene.viewController() as! SignInViewController
