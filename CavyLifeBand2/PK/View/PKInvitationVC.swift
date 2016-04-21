@@ -65,9 +65,7 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         Log.warning("提交 未完成")
         
         let challenge = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView
-        
-        challenge?.frame = CGRect(x: 20, y: 20, w: ez.screenWidth - 40, h: 380)
-        
+                
         self.view .addSubview(challenge!)
         
         challenge?.snp_makeConstraints(closure: { (make) in

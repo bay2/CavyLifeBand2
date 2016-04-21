@@ -57,12 +57,7 @@ class PKInfoOrResultView: UIView {
     
     func baseSetting() -> Void {
         
-        // 斜体字体
-        let matrix = CGAffineTransformMake(1, 0, CGFloat(tanf(5 * Float(M_PI) / 180)), 1, 0, 0)
-        let desc   = UIFontDescriptor(name: UIFont.systemFontOfSize(14).fontName, matrix: matrix)
-        let font   = UIFont(descriptor: desc, size: 14)
-        
-        seeStateLabel.font = font
+        seeStateLabel.font = dataSource?.matrixFont
         
         seeStateLabel.textColor = UIColor(named: .PKInfoOrResultViewNormalTextColor)
         
@@ -233,6 +228,11 @@ protocol PKInfoOrResultViewDataSource {
     
     var winner: Winner { get }
     
+    var matrixFont: UIFont { get }
+    
+//    var userAvatar: UIImage { get }
+//    var comprtitorAvatar: UIImage { get }
+    
     func timeFormatterStr() -> NSMutableAttributedString
     
 }
@@ -240,17 +240,26 @@ protocol PKInfoOrResultViewDataSource {
 extension PKInfoOrResultViewDataSource {
     
     var userName: String { return L10n.PKCustomViewUserName.string }
+    
+    var matrixFont: UIFont {
+        
+        let matrix = CGAffineTransformMake(1, 0, CGFloat(tanf(5 * Float(M_PI) / 180)), 1, 0, 0)
+        let desc   = UIFontDescriptor(name: UIFont.systemFontOfSize(14).fontName, matrix: matrix)
+        let font   = UIFont(descriptor: desc, size: 14)
+        
+        return font
+    }
 
 }
 
 struct PKInfoOrResultViewModel: PKInfoOrResultViewDataSource {
     var isPKEnd: Bool = true
     
-    var userStepCount: Int = 1236
+    var userStepCount: Int = 123
     
     var competitorStepCount: Int = 1234
     
-    var competitorName: String = "雪菜"
+    var competitorName: String = "雪菜炒饭"
     
     var isOtherCanSee: Bool = true
     

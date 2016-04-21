@@ -38,12 +38,7 @@ class PKChallengeView: UIView {
      */
     func baseSetting() -> Void {
         
-        // 斜体字体
-        let matrix = CGAffineTransformMake(1, 0, CGFloat(tanf(5 * Float(M_PI) / 180)), 1, 0, 0)
-        let desc   = UIFontDescriptor(name: UIFont.systemFontOfSize(16).fontName, matrix: matrix)
-        let font   = UIFont(descriptor: desc, size: 12)
-        
-        PKSeeStateLabel.font = font
+        PKSeeStateLabel.font = dataSource?.matrixFont
         
         PKTimeTitleLabel.text       = L10n.PKChallengeViewPKTimeTitle.string
         PKInvitationRulesLabel.text = L10n.PKChallengeViewPKRules.string
@@ -96,11 +91,21 @@ protocol PKChallengeViewDataSource {
 //    var userAvatar: UIImage { get }
 //    var comprtitorAvatar: UIImage { get }
     var seeState: String { get }
+    var matrixFont: UIFont { get }
 }
 
 extension PKChallengeViewDataSource {
     
     var userName: String { return L10n.PKCustomViewUserName.string }
+    
+    var matrixFont: UIFont {
+        
+        let matrix = CGAffineTransformMake(1, 0, CGFloat(tanf(5 * Float(M_PI) / 180)), 1, 0, 0)
+        let desc   = UIFontDescriptor(name: UIFont.systemFontOfSize(14).fontName, matrix: matrix)
+        let font   = UIFont(descriptor: desc, size: 14)
+        
+        return font
+    }
     
 }
 
