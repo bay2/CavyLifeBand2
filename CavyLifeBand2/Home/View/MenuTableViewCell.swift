@@ -1,5 +1,5 @@
 //
-//  LeftTableViewCell.swift
+//  MenuTableViewCell.swift
 //  CavyLifeBand2
 //
 //  Created by xuemincai on 16/3/16.
@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import SnapKit
 
-class LeftTableViewCell: UITableViewCell {
+class MenuTableViewCell: UITableViewCell {
 
     @IBOutlet weak var listIcon: UIImageView!
     @IBOutlet weak var listTitle: UILabel!
@@ -22,6 +23,8 @@ class LeftTableViewCell: UITableViewCell {
         let selectedView = UIView()
         selectedView.backgroundColor = UIColor(named: .HomeViewLeftSelected)
         self.selectedBackgroundView = selectedView
+        
+        
 
     }
 
@@ -31,46 +34,32 @@ class LeftTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func configure(dataSource: LeftListCellDateSource, delegate: LeftListCellDelegate) {
+    func configure(dataSource: MenuCellDateSource, delegate: MenuCellDelegate) {
 
         listIcon.image = dataSource.icon
         listTitle.text = dataSource.title
 
-        listTitle.font = delegate.titleFont
-        listTitle.textColor = delegate.titleColor
+        listTitle.font = dataSource.titleFont
+        listTitle.textColor = dataSource.titleColor
+        
+        configLayoutView()
 
+    }
+    
+    /**
+     自动布局视图
+     */
+    func configLayoutView() {
+        
+        let listTitleOffset = listIcon.image == nil ? 32 : 62
+        
+        listTitle.snp_makeConstraints {
+            $0.left.equalTo(self).offset(listTitleOffset)
+        }
+        
     }
     
 }
 
-protocol LeftListCellDateSource {
 
-    var title: String { get }
-    var icon: UIImage { get }
-
-}
-
-protocol LeftListCellDelegate {
-
-    var titleColor: UIColor { get }
-    var titleFont: UIFont { get }
-
-}
-
-extension LeftListCellDateSource {
-
-    var titleColor: UIColor {
-        return UIColor.whiteColor()
-    }
-
-    var titleFont: UIFont {
-        
-        let font = UIFont.systemFontOfSize(16)
-        font.fontWithSize(0.23)
-        return font
-   
-    }
-
-
-}
 

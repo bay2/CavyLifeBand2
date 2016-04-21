@@ -13,12 +13,21 @@ import EZSwiftExtensions
 
 class HomeViewController: UIViewController, BaseViewControllerPresenter {
     
-    lazy var leftBtn: UIButton? = {
+    var leftBtn: UIButton? = {
         
         let button = UIButton(type: .System)
-        button.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
+        button.setBackgroundImage(UIImage(asset: .HomeLeftMenu), forState: .Normal)
         
         return button
+    }()
+    
+    var rightBtn: UIButton? = {
+        
+        let button = UIButton(type: .System)
+        button.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
+        
+        return button
+        
     }()
     
     var navTitle: String { return "" }
@@ -36,7 +45,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomePushView.rawValue, object: nil)
 
         addAllView()
         
@@ -88,11 +97,27 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
     }
     
     /**
+     点击手环菜单
+     */
+    func onRightBtn() {
+        self.showRightView()
+    }
+    
+    /**
      展示左侧菜单
      */
     func showLeftView() {
         
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+        
+    }
+    
+    /**
+     展示右侧菜单
+     */
+    func showRightView() {
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
         
     }
     

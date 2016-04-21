@@ -9,7 +9,7 @@
 import UIKit
 import EZSwiftExtensions
 
-class HomeUserInfo: UIView, LeftMenuPushViewDelegate{
+class HomeUserInfo: UIView, MenuPushViewDelegate{
 
     /*
     // Only override drawRect: if you perform custom drawing.

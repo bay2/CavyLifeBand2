@@ -139,8 +139,9 @@ extension NSUserDefaults: LoginStorage { }
 enum NotificationName: String {
     
     case HomeLeftOnClickMenu
-    case HomeLeftOnClickCellPushView
-    case HomeLeftHiddenMenu
+    case HomePushView
+    case HomeShowHomeView
+    case HomeRightOnClickMenu
     case HomeLeftAccountInfo
     case ReminderPhoneSwitchChange
     case ReminderPhoneScrollToSelect

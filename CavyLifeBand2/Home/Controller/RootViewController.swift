@@ -14,9 +14,32 @@ import AddressBook
 import Contacts
 
 class RootViewController: UIViewController, CoordinateReport {
+    
+    enum MoveDirection {
+        
+        case LeftMove
+        case RightMove
+        
+        var movePoint: CGPoint {
+            
+            switch self {
+                
+            case .LeftMove:
+                return CGPointMake(-(ez.screenWidth * 5 / 6), 0)
+                
+            case .RightMove:
+                
+                return CGPointMake(ez.screenWidth - (ez.screenWidth / 6), 0)
+                
+            }
+            
+        }
+        
+    }
 
     var homeVC: UINavigationController?
-    var leftVC: LeftViewController?
+    var leftVC: LeftMenViewController?
+    var bandMenuVC: RightViewController?
     let homeMaskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
     var realm: Realm = try! Realm()
     var updateUserInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
@@ -34,7 +57,8 @@ class RootViewController: UIViewController, CoordinateReport {
         UINavigationBar.appearance().tintColor = UIColor(named: .HomeViewMainColor)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickMenu), name: NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.hiddenLeftView), name: NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickBandMenu), name: NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.showHomeView), name: NotificationName.HomeShowHomeView.rawValue, object: nil)
         
     }
     
@@ -45,9 +69,16 @@ class RootViewController: UIViewController, CoordinateReport {
         
         leftVC = StoryboardScene.Home.instantiateLeftView()
         homeVC = UINavigationController(rootViewController: StoryboardScene.Home.instantiateHomeView())
+        bandMenuVC = StoryboardScene.Home.instantiateRightView()
         
         self.view.addSubview(leftVC!.view)
+        self.view.addSubview(bandMenuVC!.view)
         self.view.addSubview(homeVC!.view)
+        
+        bandMenuVC!.view.snp_makeConstraints {
+            $0.top.bottom.right.equalTo(self.view)
+            $0.left.equalTo(self.view).offset(ez.screenWidth / 6)
+        }
         
         syncUserInfo()
         
@@ -169,37 +200,64 @@ class RootViewController: UIViewController, CoordinateReport {
      */
     func showLeftView() {
 
+        hiddenHomeView(.RightMove)
 
+    }
+    
+    /**
+     显示手环设置菜单
+     */
+    func onClickBandMenu() {
+        
+        hiddenHomeView(.LeftMove)
+        
+    }
+    
+    /**
+     隐藏主页
+     
+     - parameter direction: 主页移动的方向
+     */
+    func hiddenHomeView(direction: MoveDirection) {
+        
         homeMaskView.backgroundColor = UIColor.clearColor()
-
-        homeMaskView.addTapGesture { _ in
-
-            self.hiddenLeftView()
-
+        
+        if direction == .LeftMove {
+            bandMenuVC?.view.hidden = false
+            leftVC?.view.hidden = true
+        } else {
+            bandMenuVC?.view.hidden = true
+            leftVC?.view.hidden = false
         }
-
+        
+        homeMaskView.addTapGesture { [unowned self] _ in
+            
+            self.showHomeView()
+            
+        }
+        
         homeVC!.view.addSubview(homeMaskView)
-
-        UIView.animateWithDuration(0.5) {
-
-            self.homeVC!.view.frame.origin = CGPointMake(ez.screenWidth - (ez.screenWidth / 6), 0)
+        
+        UIView.animateWithDuration(0.5) { [unowned self] _ in
+            
+            self.homeVC!.view.frame.origin = direction.movePoint
             self.homeMaskView.backgroundColor = UIColor(named: .HomeViewMaskColor)
-
+            
         }
-
+        
     }
 
     /**
      隐藏左侧菜单
      */
-    func hiddenLeftView() {
+    func showHomeView() {
         
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animateWithDuration(0.5, animations: { [unowned self] in
             
             self.homeVC!.view.frame.origin = CGPointMake(0, 0)
             self.homeMaskView.backgroundColor = UIColor.clearColor()
         
-        }) {
+        }) { [unowned self] in
                 
             if $0 == true {
                 

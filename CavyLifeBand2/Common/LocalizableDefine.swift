@@ -203,6 +203,18 @@ enum L10n {
   case HomeLifeListTitleHelp
   /// 相关APP
   case HomeLifeListTitleRelated
+  /// 遥控相机
+  case HomeRightListTitleCamera
+  /// 提醒
+  case HomeRightListTitleNotification
+  /// 智能闹钟
+  case HomeRightListTitleAlarmClock
+  /// 安全
+  case HomeRightListTitleSecurity
+  /// 固件升级
+  case HomeRightListTitleFirmwareUpgrade
+  /// 绑定新的CavyBand
+  case HomeRightListTitleBindingBand
   /// 生活豚鼠
   case ContactsListCellCavy
   /// 搜索
@@ -538,6 +550,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.LifeList.Title.Help")
       case .HomeLifeListTitleRelated:
         return L10n.tr("Home.LifeList.Title.Related")
+      case .HomeRightListTitleCamera:
+        return L10n.tr("Home.RightList.Title.Camera")
+      case .HomeRightListTitleNotification:
+        return L10n.tr("Home.RightList.Title.Notification")
+      case .HomeRightListTitleAlarmClock:
+        return L10n.tr("Home.RightList.Title.AlarmClock")
+      case .HomeRightListTitleSecurity:
+        return L10n.tr("Home.RightList.Title.Security")
+      case .HomeRightListTitleFirmwareUpgrade:
+        return L10n.tr("Home.RightList.Title.FirmwareUpgrade")
+      case .HomeRightListTitleBindingBand:
+        return L10n.tr("Home.RightList.Title.BindingBand")
       case .ContactsListCellCavy:
         return L10n.tr("Contacts.ListCell.Cavy")
       case .ContactsSearchBarSearch:
