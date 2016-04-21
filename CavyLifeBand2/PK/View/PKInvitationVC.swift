@@ -64,16 +64,16 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     @IBAction func commitAction(sender: UIButton) {
         Log.warning("提交 未完成")
         
-        let challenge = NSBundle.mainBundle().loadNibNamed("PKChallengeView", owner: nil, options: nil).first as? PKChallengeView
+        let challenge = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView
         
-        challenge?.frame = CGRect(x: 20, y: 20, w: ez.screenWidth - 40, h: 342)
+        challenge?.frame = CGRect(x: 20, y: 20, w: ez.screenWidth - 40, h: 380)
         
         self.view .addSubview(challenge!)
         
         challenge?.snp_makeConstraints(closure: { (make) in
             make.leading.equalTo(self.view).offset(20)
             make.trailing.equalTo(self.view).offset(-20)
-            make.height.equalTo(360)
+            make.height.equalTo(380)
             make.centerY.equalTo(self.view.snp_centerY)
         })
         

@@ -365,6 +365,20 @@ enum L10n {
   case PKChallengeViewPKTimeTitle
   /// 如不接受，三天后失效
   case PKChallengeViewPKRules
+  /// PK时长
+  case PKInfoOrResultViewPKEndTimeTitle
+  /// 余剩时间
+  case PKInfoOrResultViewPKNotEndTimeTitle
+  /// 天
+  case PKInfoOrResultViewDayUnit
+  /// 小时
+  case PKInfoOrResultViewHourUnit
+  /// 分钟
+  case PKInfoOrResultViewMinUnit
+  /// 我
+  case PKCustomViewUserName
+  /// 胜利了
+  case PKCustomViewWinState
 }
 
 extension L10n: CustomStringConvertible {
@@ -734,6 +748,20 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("PK.ChallengeView.PKTimeTitle")
       case .PKChallengeViewPKRules:
         return L10n.tr("PK.ChallengeView.PKRules")
+      case .PKInfoOrResultViewPKEndTimeTitle:
+        return L10n.tr("PK.InfoOrResultView.PKEndTimeTitle")
+      case .PKInfoOrResultViewPKNotEndTimeTitle:
+        return L10n.tr("PK.InfoOrResultView.PKNotEndTimeTitle")
+      case .PKInfoOrResultViewDayUnit:
+        return L10n.tr("PK.InfoOrResultView.DayUnit")
+      case .PKInfoOrResultViewHourUnit:
+        return L10n.tr("PK.InfoOrResultView.HourUnit")
+      case .PKInfoOrResultViewMinUnit:
+        return L10n.tr("PK.InfoOrResultView.MinUnit")
+      case .PKCustomViewUserName:
+        return L10n.tr("PK.CustomView.UserName")
+      case .PKCustomViewWinState:
+        return L10n.tr("PK.CustomView.WinState")
     }
   }
 

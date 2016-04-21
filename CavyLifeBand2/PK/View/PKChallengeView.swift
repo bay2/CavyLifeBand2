@@ -28,7 +28,9 @@ class PKChallengeView: UIView {
     override func awakeFromNib() {
         baseSetting()
         
-//        dataSourceSetting()
+        dataSource = PKChallengeViewModel()
+        
+        dataSourceSetting()
     }
     
     /**
@@ -75,17 +77,13 @@ class PKChallengeView: UIView {
      */
     func dataSourceSetting() -> Void {
         
-        userAvatarImageView.image       = dataSource?.userAvatar
-        competitorAvatarImageView.image = dataSource?.comprtitorAvatar
+//        userAvatarImageView.image       = dataSource?.userAvatar
+//        competitorAvatarImageView.image = dataSource?.comprtitorAvatar
         
         userNameLabel.text       = dataSource?.userName
         competitorNameLabel.text = dataSource?.competitorName
-        
-        guard let otherCanSee = dataSource?.isOtherCanSee else {
-            return
-        }
-        
-        PKSeeStateLabel.text = otherCanSee ? L10n.PKInvitationVCPKOtherSeeAble.string : L10n.PKInvitationVCPKOtherSeeUnable.string
+        PKSeeStateLabel.text     = dataSource?.seeState
+        PKTimeLabel.text         = dataSource?.PKTime
 
     }
     
@@ -95,9 +93,29 @@ protocol PKChallengeViewDataSource {
     var userName: String { get }
     var competitorName: String { get }
     var PKTime: String { get }
-    var userAvatar: UIImage { get }
-    var comprtitorAvatar: UIImage { get }
-    var isOtherCanSee: Bool { get }
+//    var userAvatar: UIImage { get }
+//    var comprtitorAvatar: UIImage { get }
+    var seeState: String { get }
+}
+
+extension PKChallengeViewDataSource {
     
+    var userName: String { return L10n.PKCustomViewUserName.string }
     
+}
+
+struct PKChallengeViewModel: PKChallengeViewDataSource {
+    var competitorName: String { return "雪菜" }
+    
+    var PKTime: String { return "5" }
+    
+    var seeState: String {
+        if isOtherCanSee {
+            return L10n.PKInvitationVCPKOtherSeeAble.string
+        } else {
+            return L10n.PKInvitationVCPKOtherSeeUnable.string
+        }
+    }
+    
+    var isOtherCanSee = true
 }

@@ -178,6 +178,12 @@ extension UIColor {
     /// Alpha: 100% <br/> (0xff7200ff)
     case PKChallengeViewTopViewBGColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case PKInfoOrResultViewNormalTextColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff7200"></span>
+    /// Alpha: 100% <br/> (0xff7200ff)
+    case PKInfoOrResultViewWinnerTextColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 50% <br/> (0x00000080)
     case PKIntroduceVCLabelColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
@@ -297,6 +303,8 @@ extension UIColor {
       case .PKChallengeViewNormalTitleColor: return 0x000000b3
       case .PKChallengeViewRulesTitleColor: return 0xff7200ff
       case .PKChallengeViewTopViewBGColor: return 0xff7200ff
+      case .PKInfoOrResultViewNormalTextColor: return 0x000000b3
+      case .PKInfoOrResultViewWinnerTextColor: return 0xff7200ff
       case .PKIntroduceVCLabelColor: return 0x00000080
       case .PKInvitationVCLabelColor: return 0x000000b3
       case .PKInvitationVCSeeStateBtnNormalColor: return 0x0000004d

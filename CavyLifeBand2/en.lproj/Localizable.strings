@@ -218,3 +218,10 @@
 "PK.InvitationVC.PKOtherSeeUnable" = "对决双方可见";
 "PK.ChallengeView.PKTimeTitle" = "PK时长";
 "PK.ChallengeView.PKRules" = "如不接受，三天后失效";
+"PK.InfoOrResultView.PKEndTimeTitle" = "PK时长";
+"PK.InfoOrResultView.PKNotEndTimeTitle" = "余剩时间";
+"PK.InfoOrResultView.DayUnit" = "天";
+"PK.InfoOrResultView.HourUnit" = "小时";
+"PK.InfoOrResultView.MinUnit" = "分钟";
+"PK.CustomView.UserName" = "我";
+"PK.CustomView.WinState" = "胜利了";

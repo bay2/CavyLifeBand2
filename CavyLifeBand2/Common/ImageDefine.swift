@@ -62,6 +62,7 @@ extension UIImage {
     case PKInvitationAddBtn = "PKInvitationAddBtn"
     case PKNextBtnNormal = "PKNextBtnNormal"
     case PKNextBtnSelected = "PKNextBtnSelected"
+    case PKWinner = "PKWinner"
     case Splash = "splash"
     case Unchosenbtn = "unchosenbtn"
 

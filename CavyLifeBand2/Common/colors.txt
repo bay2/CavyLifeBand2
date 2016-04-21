@@ -74,3 +74,5 @@ PKTimePickerSeparatorColor : #e5e5e5
 PKChallengeViewNormalTitleColor : #000000B3
 PKChallengeViewRulesTitleColor : #ff7200
 PKChallengeViewTopViewBGColor : #ff7200
+PKInfoOrResultViewWinnerTextColor : #ff7200
+PKInfoOrResultViewNormalTextColor : #000000B3
