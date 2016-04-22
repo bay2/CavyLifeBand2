@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias MenuProtocol = protocol<MenuCellDateSource, MenuCellDelegate, MenuPushViewDelegate>
+typealias MenuProtocol = protocol<MenuCellDateSource, MenuCellDelegate>
 
 /**
  *  菜单组数据协议
@@ -28,28 +28,6 @@ extension MenuGroupDataSource {
     
     var rowCount: Int {
         return items.count
-    }
-    
-}
-
-
-protocol MenuPushViewDelegate {
-    
-    var nextView: UIViewController { get }
-    
-    func pushView()
-    
-}
-
-extension MenuPushViewDelegate {
-    
-    func pushView() {
-        
-        let userInfo = ["nextView": self.nextView] as [NSObject: AnyObject]
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
-        
     }
     
 }

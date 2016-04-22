@@ -39,6 +39,16 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
     }
     
     /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+        
+    }
+    
+    /**
      添加 全部视图
      */
     func addAllViews() {

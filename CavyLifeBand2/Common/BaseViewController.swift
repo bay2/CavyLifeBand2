@@ -74,6 +74,8 @@ extension BaseViewControllerPresenter where Self: UIViewController {
         let spacingBtnItem = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         spacingBtnItem.width = 14
         
+        self.navigationController?.navigationBarHidden = false
+        
         if leftBtn == nil && self.navigationController?.viewControllers.count > 1 {
             
             let leftItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
@@ -83,7 +85,7 @@ extension BaseViewControllerPresenter where Self: UIViewController {
             }
             
             let backButtonItem = UIBarButtonItem(customView: leftItemBtn)
-            self.navigationItem.leftBarButtonItems = [spacingBtnItem, backButtonItem]
+            self.navigationItem.leftBarButtonItems = [backButtonItem]
         
         } else if let leftItemBtn = leftBtn {
             
@@ -94,7 +96,7 @@ extension BaseViewControllerPresenter where Self: UIViewController {
             }
             
             let backButtonItem = UIBarButtonItem(customView: leftItemBtn)
-            self.navigationItem.leftBarButtonItems = [spacingBtnItem, backButtonItem]
+            self.navigationItem.leftBarButtonItems = [backButtonItem]
             
         }
         

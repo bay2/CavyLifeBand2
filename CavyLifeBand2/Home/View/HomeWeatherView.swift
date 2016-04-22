@@ -51,10 +51,8 @@ class HomeWeatherView: UIView {
                 Log.error("\(#function) result error (\(error))")
                 
             }
-
             
         }
-        
     
     }
     

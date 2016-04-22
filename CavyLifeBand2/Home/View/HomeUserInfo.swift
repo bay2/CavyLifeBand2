@@ -9,7 +9,7 @@
 import UIKit
 import EZSwiftExtensions
 
-class HomeUserInfo: UIView, MenuPushViewDelegate{
+class HomeUserInfo: UIView {
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -19,8 +19,6 @@ class HomeUserInfo: UIView, MenuPushViewDelegate{
     }
     */
     
-    var nextView: UIViewController { return StoryboardScene.AccountInfo.instantiateContactsAccountInfoVC() }
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -42,7 +40,6 @@ class HomeUserInfo: UIView, MenuPushViewDelegate{
         delegate.account.font = UIFont.systemFontOfSize(14)
 
     }
-
 
 }
 

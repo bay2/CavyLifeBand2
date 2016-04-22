@@ -22,18 +22,11 @@ class LeftMenViewController: UIViewController, HomeUserDelegate {
     @IBOutlet weak var accountLab: UILabel!
     @IBOutlet weak var userNameLab: UILabel!
     
+    var menuGroup: [MenuGroupDataSource] = []
+    
     var iconImage: UIImageView { return iconImageView }
     var userName: UILabel { return userNameLab }
     var account: UILabel { return accountLab }
-
-    // 列表信息
-    var listTitleViewModel = [[MenuViewModel(icon: UIImage(asset: .LeftMenuTarget), title: L10n.HomeLifeListTitleTarget.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
-    MenuViewModel(icon: UIImage(asset: .LeftMenuInformation), title: L10n.HomeLifeListTitleInfoOpen.string, nextView: StoryboardScene.InfoSecurity.AccountInfoSecurityVCScene.viewController()),
-    MenuViewModel(icon: UIImage(asset: .LeftMenuFriend), title: L10n.HomeLifeListTitleFriend.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
-    MenuViewModel(icon: UIImage(asset: .LeftMenuPK), title: L10n.HomeLifeListTitlePK.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController())],
-    [MenuViewModel(icon: UIImage(asset: .LeftMenuAbout), title: L10n.HomeLifeListTitleAbout.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
-    MenuViewModel(icon: UIImage(asset: .LeftMenuHelp), title: L10n.HomeLifeListTitleHelp.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
-    MenuViewModel(icon: UIImage(asset: .LeftMenuApp), title: L10n.HomeLifeListTitleRelated.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController())]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +37,24 @@ class LeftMenViewController: UIViewController, HomeUserDelegate {
         
         iconImageView.addTapGesture { _ in
             
-            self.userInfoView.pushView()
+            let userInfo = ["nextView": StoryboardScene.AccountInfo.instantiateContactsAccountInfoVC()] as [NSObject: AnyObject]
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
             
         }
+        
+        addMenumenuGroupData(AppFeatureMenuGroupDataModel())
+        addMenumenuGroupData(AppAboutMenuGroupDataModel())
 
+    }
+    
+    /**
+     添加菜单组数据
+     
+     - parameter menuGroup:
+     */
+    func addMenumenuGroupData(menuGroup: MenuGroupDataSource) {
+        self.menuGroup.append(menuGroup)
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,6 +62,9 @@ class LeftMenViewController: UIViewController, HomeUserDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    /**
+     设置tableview
+     */
     func setTableViewStyle() {
 
         leftTableView.backgroundColor = UIColor(named: .HomeViewMainColor)
@@ -93,11 +103,17 @@ extension LeftMenViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         
-        let listCell = tableView.dequeueReusableCellWithIdentifier("MenuTableViewCell", forIndexPath: indexPath) as! MenuTableViewCell
-
-        listCell.configure(listTitleViewModel[indexPath.section][indexPath.row], delegate: listTitleViewModel[indexPath.section][indexPath.row])
-
-        return listCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("MenuTableViewCell", forIndexPath: indexPath)
+        
+        guard let cellMenu = cell  as? MenuTableViewCell else {
+            return cell
+        }
+        
+        let menuViewModel = menuGroup[indexPath.section].items[indexPath.row]
+        
+        cellMenu.configure(menuViewModel, delegate: menuViewModel)
+            
+        return cellMenu
     }
 
     /**
@@ -110,7 +126,7 @@ extension LeftMenViewController {
      */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return listTitleViewModel[section].count
+        return menuGroup[section].rowCount
 
     }
 
@@ -121,7 +137,7 @@ extension LeftMenViewController {
      
      - returns:
      */
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return listTitleViewModel.count }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return menuGroup.count }
     
     /**
      高度
@@ -131,7 +147,9 @@ extension LeftMenViewController {
      
      - returns:
      */
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat { return 50 }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return menuGroup[indexPath.section].items[indexPath.row].cellHeight
+    }
 
     /**
      header 视图
@@ -142,13 +160,7 @@ extension LeftMenViewController {
      - returns:
      */
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        if section == 0 {
-            return UIView()
-        }
-        
-        return LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
-
+        return menuGroup[section].sectionView
     }
 
     /**
@@ -161,7 +173,12 @@ extension LeftMenViewController {
 
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        listTitleViewModel[indexPath.section][indexPath.row].pushView()
+        let nextView = menuGroup[indexPath.section].items[indexPath.row].nextView
+        
+        let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
 
     }
 

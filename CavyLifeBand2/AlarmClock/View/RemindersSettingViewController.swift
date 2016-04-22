@@ -13,7 +13,7 @@ protocol RemindersSettingVCDataSource {
     var settingListModel: SettingRealmListModel { get }
 }
 
-class RemindersSettingViewController: UIViewController {
+class RemindersSettingViewController: UIViewController, BaseViewControllerPresenter {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -41,6 +41,8 @@ class RemindersSettingViewController: UIViewController {
     
     var realm: Realm = try! Realm()
     
+    var navTitle: String { return L10n.HomeRightListTitleNotification.string }
+    
     deinit {
         Log.info("dealloc")
     }
@@ -48,7 +50,6 @@ class RemindersSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.automaticallyAdjustsScrollViewInsets = false
         
         tableExpandCellCount = 3
@@ -61,12 +62,24 @@ class RemindersSettingViewController: UIViewController {
         
         setTableView()
         
+        updateNavUI()
+        
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
+        
     }
     
     //Table与DataSource有关的设置

@@ -26,8 +26,6 @@ class HomeUpperView: UIView {
      */
     func allViewLayout() {
         
-        self.frame = CGRectMake(0, 0, ez.screenWidth, 96 + ez.screenWidth * 0.55)
-        
         // 睡眠
         let sleepView = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
         sleepRing.addSubview(sleepView!)

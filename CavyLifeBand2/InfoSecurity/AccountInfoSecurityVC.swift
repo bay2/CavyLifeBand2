@@ -68,11 +68,13 @@ class AccountInfoSecurityVC: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     /**
-     点击返回
+     返回按钮处理
      */
     func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
-        self.popVC()
+        
     }
 
     override func didReceiveMemoryWarning() {

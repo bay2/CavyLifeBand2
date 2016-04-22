@@ -28,7 +28,6 @@ class RootViewController: UIViewController, CoordinateReport {
                 return CGPointMake(-(ez.screenWidth * 5 / 6), 0)
                 
             case .RightMove:
-                
                 return CGPointMake(ez.screenWidth - (ez.screenWidth / 6), 0)
                 
             }
