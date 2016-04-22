@@ -82,10 +82,11 @@ class AddClockViewController: UIViewController {
     
     func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
         
-        if dataSource?.alarmModel.alarmDay == 0{
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: L10n.AlarmClockAlarmCircleAlertTitle.string)
-            return
-        }
+        //去掉强制需要选择闹钟周期
+//        if dataSource?.alarmModel.alarmDay == 0{
+//            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: L10n.AlarmClockAlarmCircleAlertTitle.string)
+//            return
+//        }
         
         updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
         
