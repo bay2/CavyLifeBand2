@@ -18,7 +18,7 @@ struct PKRecordList: JSONJoy {
     var dueList: [PKDueRecord]?
     
     //完成列表
-    var finishList: [PKCompleteRecord]?
+    var finishList: [PKFinishRecord]?
     
     init(_ decoder: JSONDecoder) throws {
         commonMsg = try CommenMsg(decoder)
@@ -27,7 +27,7 @@ struct PKRecordList: JSONJoy {
         
         dueList = [PKDueRecord]()
         
-        finishList = [PKCompleteRecord]()
+        finishList = [PKFinishRecord]()
         
         
         if let waitArray = decoder["waitList"].array {
@@ -52,7 +52,7 @@ struct PKRecordList: JSONJoy {
             
             for finishRecord in finishArray {
                 
-                finishList?.append(try PKCompleteRecord(finishRecord))
+                finishList?.append(try PKFinishRecord(finishRecord))
                 
             }
         }
@@ -129,7 +129,7 @@ struct PKDueRecord: JSONJoy {
     
 }
 
-struct PKCompleteRecord: JSONJoy {
+struct PKFinishRecord: JSONJoy {
     //用户Id
     var userId: String?
     

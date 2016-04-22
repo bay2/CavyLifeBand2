@@ -53,9 +53,10 @@
 		683655951CBE25DB009373EA /* ReminderSettingVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655941CBE25DB009373EA /* ReminderSettingVCViewModel.swift */; };
 		683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655961CBE261B009373EA /* SettingRealmModel.swift */; };
 		683655991CBE3C84009373EA /* AlarmRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655981CBE3C84009373EA /* AlarmRealmModel.swift */; };
-		684C6AD51CC9B512000C176E /* PKRecordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD41CC9B512000C176E /* PKRecordVC.swift */; };
 		684C6AD81CC9BA1C000C176E /* PKJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD71CC9BA1C000C176E /* PKJSON.swift */; };
 		684C6ADA1CC9CCE4000C176E /* PKWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD91CC9CCE4000C176E /* PKWebApi.swift */; };
+		684C6ADC1CCA01C9000C176E /* PKWebHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6ADB1CCA01C9000C176E /* PKWebHandler.swift */; };
+		684C6ADF1CCA0506000C176E /* PKRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6ADE1CCA0506000C176E /* PKRealm.swift */; };
 		685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */; };
 		685204E91CB7938C004179B0 /* AddClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E81CB7938C004179B0 /* AddClockViewController.swift */; };
 		685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */; };
@@ -296,9 +297,10 @@
 		683655941CBE25DB009373EA /* ReminderSettingVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderSettingVCViewModel.swift; sourceTree = "<group>"; };
 		683655961CBE261B009373EA /* SettingRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingRealmModel.swift; sourceTree = "<group>"; };
 		683655981CBE3C84009373EA /* AlarmRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmRealmModel.swift; sourceTree = "<group>"; };
-		684C6AD41CC9B512000C176E /* PKRecordVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordVC.swift; sourceTree = "<group>"; };
 		684C6AD71CC9BA1C000C176E /* PKJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKJSON.swift; sourceTree = "<group>"; };
 		684C6AD91CC9CCE4000C176E /* PKWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWebApi.swift; sourceTree = "<group>"; };
+		684C6ADB1CCA01C9000C176E /* PKWebHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWebHandler.swift; sourceTree = "<group>"; };
+		684C6ADE1CCA0506000C176E /* PKRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRealm.swift; sourceTree = "<group>"; };
 		685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockTableHeaderView.swift; sourceTree = "<group>"; };
 		685204E81CB7938C004179B0 /* AddClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockViewController.swift; sourceTree = "<group>"; };
 		685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersSettingViewController.swift; sourceTree = "<group>"; };
@@ -598,8 +600,17 @@
 			children = (
 				684C6AD71CC9BA1C000C176E /* PKJSON.swift */,
 				684C6AD91CC9CCE4000C176E /* PKWebApi.swift */,
+				684C6ADB1CCA01C9000C176E /* PKWebHandler.swift */,
 			);
 			path = WebApi;
+			sourceTree = "<group>";
+		};
+		684C6ADD1CCA04D4000C176E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				684C6ADE1CCA0506000C176E /* PKRealm.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		68C558C81CB74CF90031719D /* AlarmClock */ = {
@@ -642,6 +653,7 @@
 		68E977F11CC5D0FE00651724 /* PK */ = {
 			isa = PBXGroup;
 			children = (
+				684C6ADD1CCA04D4000C176E /* Model */,
 				684C6AD61CC9B99C000C176E /* WebApi */,
 				68E9780F1CC7696300651724 /* ViewModel */,
 				68E977F21CC5D0FE00651724 /* View */,
@@ -663,7 +675,6 @@
 				68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */,
 				68E978161CC77DE500651724 /* PKInfoOrResultView.xib */,
 				68E978091CC6412800651724 /* TimePickerView.swift */,
-				684C6AD41CC9B512000C176E /* PKRecordVC.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1645,6 +1656,7 @@
 				9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */,
 				9114D1F11C97AB05008CB4CE /* SignInViewController.swift in Sources */,
 				91E1B4F91CA69CAA008ADEE6 /* FriendInfoListRealm.swift in Sources */,
+				684C6ADF1CCA0506000C176E /* PKRealm.swift in Sources */,
 				91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */,
 				683655921CBE25A6009373EA /* SettingSwitchCellViewModel.swift in Sources */,
 				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,
@@ -1658,6 +1670,7 @@
 				91E1B4DC1CA510BD008ADEE6 /* ContactsReqFriendVC.swift in Sources */,
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
+				684C6ADC1CCA01C9000C176E /* PKWebHandler.swift in Sources */,
 				91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */,
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
 				4C0BF9FC1CBCE4CE00DB06FC /* HomeStepViewModel.swift in Sources */,
@@ -1677,7 +1690,6 @@
 				68E977F61CC6008F00651724 /* PKRulesView.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
-				684C6AD51CC9B512000C176E /* PKRecordVC.swift in Sources */,
 				91ACEC671CB68D74008ED8B0 /* AccountInfoSecurityNetworkRequest.swift in Sources */,
 				91E1B4C91CA510BD008ADEE6 /* ContactsLetterView.swift in Sources */,
 				68C558CD1CB74D3E0031719D /* IntelligentClockViewController.swift in Sources */,
