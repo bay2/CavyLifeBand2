@@ -17,6 +17,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
     lazy var rightBtn: UIButton? =  {
         
         let button = UIButton(type: .System)
+        button.frame = CGRectMake(0, 0, 30, 30)
         button.setBackgroundImage(UIImage(asset: .AlarmClockAdd), forState: .Normal)
         
         return button

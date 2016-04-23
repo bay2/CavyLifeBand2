@@ -33,10 +33,6 @@ class UserProtocolView: UIView {
 
     }
 
-
-
-
-
     /**
      视图布局
      */

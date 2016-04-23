@@ -12,7 +12,8 @@ import Alamofire
 import AlamofireImage
 import Log
 
-class AccountManagerViewController: UIViewController {
+
+class AccountManagerViewController: UIViewController, BaseViewControllerPresenter {
     
     enum UserViewStyle {
         
@@ -52,6 +53,20 @@ class AccountManagerViewController: UIViewController {
     
     var dataSource: AccountManagerViewDataSource?
     
+    var navTitle: String {
+        return dataSource?.navTitle ?? ""
+    }
+    
+    var rightBtn: UIButton? =  {
+        
+        let button = UIButton(type: .System)
+        button.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(16)
+        return button
+        
+    }()
+    
+    
     // 垂直分割线
     @IBOutlet weak var verticalLine: UIView!
     
@@ -77,9 +92,17 @@ class AccountManagerViewController: UIViewController {
         passwdTextField.backgroundColor = UIColor.whiteColor()
         safetyCodeTextField.backgroundColor = UIColor.whiteColor()
         
-        updateUI(textFieldView)
+        textFieldView.backgroundColor = UIColor.whiteColor()
+        textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        
+        rightBtn?.frame = CGRectMake(0, 0, 60, 30)
+        rightBtn?.setTitle(dataSource?.itemRightTitle, forState: .Normal)
+        
+        self.view.backgroundColor = UIColor(named: .SignInBackground)
         
         setViewStyle()
+        
+        updateNavUI()
 
         // Do any additional setup after loading the view.
     }
@@ -123,9 +146,9 @@ class AccountManagerViewController: UIViewController {
 
         textFieldView.snp_makeConstraints { (make) -> Void in
             
-            make.top.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 8)
-            make.left.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 2)
-            make.right.equalTo(self.view).offset(-(CavyDefine.spacingWidth25 * 2))
+            make.top.equalTo(self.view).offset(16)
+            make.left.equalTo(self.view).offset(30)
+            make.right.equalTo(self.view).offset(-30)
 
             if (UIScreen.mainScreen().scale == 2) {         // tailor:disable
                 make.height.equalTo((CavyDefine.spacingWidth25 * 3) * 3 + 1)
@@ -146,8 +169,7 @@ class AccountManagerViewController: UIViewController {
         
         emailSafetyCode.snp_makeConstraints { (make) -> Void in
             let imageSpacing = CavyDefine.spacingWidth25 * 3 / 5
-            make.height.equalTo(imageSpacing * 3)
-            make.width.equalTo(imageSpacing * 8)
+            make.size.equalTo(CGSizeMake(80, 30))
             make.top.equalTo(userNameTextField.snp_bottom).offset(imageSpacing + 0.3)
             make.left.equalTo(safetyCodeTextField.snp_right).offset(imageSpacing + 0.3)
         }
@@ -160,8 +182,8 @@ class AccountManagerViewController: UIViewController {
         
         mainBtn.snp_makeConstraints { (make) -> Void in
             make.top.equalTo(textFieldView.snp_bottom).offset(CavyDefine.spacingWidth25 * 3)
-            make.left.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 2)
-            make.right.equalTo(self.view).offset(-(CavyDefine.spacingWidth25 * 2))
+            make.left.equalTo(self.view).offset(30)
+            make.right.equalTo(self.view).offset(-30)
             make.height.equalTo(CavyDefine.spacingWidth25 * 3)
         }
         
@@ -171,8 +193,8 @@ class AccountManagerViewController: UIViewController {
         }
         
         safetyCodeBtn.snp_makeConstraints { (make) -> Void in
-            make.width.equalTo((CavyDefine.spacingWidth25 * 3 / 5) * 9)
-            make.right.equalTo(-CavyDefine.spacingWidth25)
+            make.width.equalTo(90)
+            make.right.equalTo(20)
         }
 
     }
@@ -212,7 +234,6 @@ class AccountManagerViewController: UIViewController {
         safetyCodeBtn.hidden = dataSource!.isEmail
         emailSafetyCode.hidden = !dataSource!.isEmail
         
-        updateNavigationItemUI(dataSource!.navTitle, rightBtnTitle: dataSource!.itemRightTitle)
     }
     
     /**
@@ -231,7 +252,7 @@ class AccountManagerViewController: UIViewController {
      
      - parameter sender:
      */
-     func onClickRightBtn() {
+     func onRightBtn() {
 
         var viewModel: AccountManagerViewDataSource?
         let nextView = StoryboardScene.Main.instantiateAccountManagerView()
@@ -401,7 +422,7 @@ extension AccountManagerViewController {
     
 }
 
-extension AccountManagerViewController: SignUpDelegate, ForgotPasswordDelegate, SendSafetyCodeDelegate, AccountMangerInputCheckDelegate, UserViewControllerPresentable {
+extension AccountManagerViewController: SignUpDelegate, ForgotPasswordDelegate, SendSafetyCodeDelegate, AccountMangerInputCheckDelegate {
     
     var userName: String {
         return userNameTextField.text!
