@@ -69,7 +69,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         textFieldView.backgroundColor = UIColor.whiteColor()
         textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
-        self.view.backgroundColor = UIColor(named: .SignInBackground)
+        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         updateNavUI()
         

@@ -3,7 +3,7 @@ TextFieldTextColor : #000000CC
 MainPageBtn : #FFD954
 MainPageSelectedBtn : #ECBC46
 MainPageBtnText : #B46E00
-SignInBackground : #1dbcff
+SignInBackground : #48d299
 SignInNavigationBar : #1dbcff
 SignInMainTextColor : #00000080
 PageIndicatorTintColor : #00000033

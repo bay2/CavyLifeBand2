@@ -60,7 +60,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     var rightBtn: UIButton? =  {
         
         let button = UIButton(type: .System)
-        button.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        button.setTitleColor(UIColor(named: .HomeViewMainColor), forState: .Normal)
         button.titleLabel?.font = UIFont.systemFontOfSize(16)
         return button
         
@@ -165,13 +165,13 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         verticalLine.snp_makeConstraints { (make) -> Void in
             make.height.equalTo((CavyDefine.spacingWidth25 * 3 / 5) * 3)
+            make.right.equalTo(self.textFieldView).offset(-110)
         }
         
         emailSafetyCode.snp_makeConstraints { (make) -> Void in
-            let imageSpacing = CavyDefine.spacingWidth25 * 3 / 5
             make.size.equalTo(CGSizeMake(80, 30))
-            make.top.equalTo(userNameTextField.snp_bottom).offset(imageSpacing + 0.3)
-            make.left.equalTo(safetyCodeTextField.snp_right).offset(imageSpacing + 0.3)
+            make.centerY.equalTo(self.safetyCodeTextField)
+            make.left.equalTo(safetyCodeTextField.snp_right).offset(10)
         }
     }
 
@@ -194,7 +194,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         safetyCodeBtn.snp_makeConstraints { (make) -> Void in
             make.width.equalTo(90)
-            make.right.equalTo(20)
+            make.right.equalTo(self.textFieldView).offset(-20)
         }
 
     }
@@ -205,8 +205,8 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     func defineTextFieldLayout() {
 
         userNameTextField.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(textFieldView).offset(CavyDefine.spacingWidth25)
-            make.right.equalTo(textFieldView).offset(-CavyDefine.spacingWidth25)
+            make.left.equalTo(textFieldView).offset(20)
+            make.right.equalTo(textFieldView).offset(-20)
         }
         
         safetyCodeTextField.snp_makeConstraints { (make) -> Void in

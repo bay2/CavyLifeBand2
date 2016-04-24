@@ -18,7 +18,6 @@ import Gifu
 struct GuideBandBluetooth: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
-    var bgColor: UIColor { return UIColor(named: .GuideBandBluetoothColor) }
     var centerView: UIView
     
     init() {
@@ -48,7 +47,6 @@ struct GuideBandBluetooth: GuideViewDataSource, GuideViewDelegate {
 struct GuideBandOpenBand: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
-    var bgColor: UIColor { return UIColor(named: .GuideBandBluetoothColor) }
     var centerView: UIView { return PictureView(title: L10n.GuideOpenCavy.string, titleInfo: L10n.GuideOpenCavyInfo.string, bottomInfo: L10n.GuideOpenCavySugg.string, midImage: AnimatableImageView(image: UIImage(asset: .GuideOpenBand))) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
@@ -72,7 +70,6 @@ struct GuideBandOpenBand: GuideViewDataSource, GuideViewDelegate {
 struct GuideBandLinking: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
-    var bgColor: UIColor { return UIColor(named: .GuideBandBluetoothColor) }
     var centerView: UIView
     
     init() {
@@ -104,7 +101,6 @@ struct GuideBandLinking: GuideViewDataSource, GuideViewDelegate {
 struct GuideBandSuccess: GuideViewDataSource, GuideViewDelegate, QueryUserInfoRequestsDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
-    var bgColor: UIColor { return UIColor(named: .GuideBandBluetoothColor) }
     var centerView: UIView { return PictureView(title: L10n.GuidePairSuccess.string, titleInfo: L10n.GuidePairSuccessInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairSeccuss))) }
     var queryUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
@@ -162,7 +158,6 @@ struct GuideBandSuccess: GuideViewDataSource, GuideViewDelegate, QueryUserInfoRe
 struct GuideBandFail: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
-    var bgColor: UIColor { return UIColor(named: .GuideBandBluetoothColor) }
     var centerView: UIView { return PictureView(title: L10n.GuidePairFail.string, titleInfo: L10n.GuidePairFailInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairFail))) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
