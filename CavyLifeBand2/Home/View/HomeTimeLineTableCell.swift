@@ -13,6 +13,8 @@ class HomeTimeLineTableCell: UITableViewCell {
     
     /// 图片上面的线
     @IBOutlet weak var headLine: UIView!
+    /// 图片下面的线
+    @IBOutlet weak var bottomLine: UIView!
     
     /// 图片
     @IBOutlet weak var imgView: UIImageView!
@@ -29,56 +31,23 @@ class HomeTimeLineTableCell: UITableViewCell {
     /// 结果值
     @IBOutlet weak var resultLabel: UILabel!
     
-    /**
-     cell加载数据
-     */
-    func cellConfig(moudle: HomeTimeLineMoudle) {
-        
-        addAllViewLayout()
-        
-        imgView.image = UIImage(contentsOfFile: moudle.image)
-        imgView.af_setImageWithURL(NSURL(string: moudle.image)!, runImageTransitionIfCached: true)
-        nameLabel.text = moudle.name
-        timeLabel.text = moudle.time
-        othersName.text = moudle.othersName
-        resultLabel.attributedText = resultAttribtuedTest(moudle.result)
-        
-    }
     
-    /**
-     返回右面结果值
-     */
-    func resultAttribtuedTest(string: String) -> NSAttributedString {
+    func cellConfig(dataSource: HomeTimeLineDataSource, delegate: HomeTimeLineDelegate) {
         
-        let attrs = NSAttributedString(string: string)
         
-        if string == L10n.HomeTimeLineCellSleep.string {
-            
-            
-            
-        HomeRingView(frame: frame).addSleepAttributeText("6", hourUnit: "小时", minutes: "34", minUnit: "分钟")
-            
-        }
-        if string == L10n.HomeTimeLineCellStep.string {
-            
-        }
-        if string == L10n.HomeTimeLineCellPK.string {
-            
-        }
-        if string == L10n.HomeTimeLineCellAchive.string {
-            
-        }
-        if string == L10n.HomeTimeLineCellHealthiy.string {
-            
-        }
+        imgView.image = dataSource.image
+        nameLabel.text = dataSource.title
+        timeLabel.text = dataSource.time
+        othersName.text = dataSource.others
+        resultLabel.attributedText = dataSource.resultNum
+        addAllViewLayout(dataSource.others)
         
-        return attrs
     }
     
     /**
      所有视图的布局
      */
-    func addAllViewLayout() {
+    func addAllViewLayout(name: String) {
         
         imgView.layer.masksToBounds = true
         imgView.layer.cornerRadius = imgView.frame.width / 2
@@ -88,22 +57,17 @@ class HomeTimeLineTableCell: UITableViewCell {
         timeLabel.textColor = UIColor(named: .ContactsIntrouduce)
         othersName.textColor = UIColor(named: .HomeViewUserName)
         resultLabel.textColor = UIColor(named: .HomeViewUserName)
-    }
     
-    func haveOthers(moudle: HomeTimeLineMoudle) {
-    
-        /**
-         *  判断PK 成就
-         */
-        if moudle.othersName != "" {
+        // 判断PK 成就
+        if name != "" {
             
             nameLabel.snp_makeConstraints(closure: { (make) in
-                make.centerX.equalTo(imgView)
+                make.centerY.equalTo(imgView)
             })
             
         } else {
             nameLabel.snp_makeConstraints(closure: { (make) in
-                make.centerX.equalTo(imgView).offset(-3)
+                make.centerY.equalTo(imgView).offset(-3)
             })
         }
         

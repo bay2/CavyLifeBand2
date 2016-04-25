@@ -11,7 +11,7 @@ import UIKit
 import EZSwiftExtensions
 
 
-struct HomeSleepViewModel: RingViewDataSource, RingViewDelegate{
+struct HomeSleepRingViewModel: RingViewDataSource, RingViewDelegate{
     
     var image: UIImage { return UIImage(asset: .GuideOpenBand) }
 //    var currentLabText: String { return "  " }

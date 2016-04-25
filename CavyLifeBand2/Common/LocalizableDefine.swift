@@ -329,6 +329,28 @@ enum L10n {
   case SettingReminderMessageType
   /// 1
   case SettingReminderPhoneType
+  /// 晴
+  case HomeWeatherSun
+  /// 多云
+  case HomeWeatherCloudy
+  /// 阴
+  case HomeWeatherOvercast
+  /// 阵雨
+  case HomeWeatherRainOccasional
+  /// 雷阵雨
+  case HomeWeatherRainThundery
+  /// 小雨
+  case HomeWeatherRainLight
+  /// 中雨
+  case HomeWeatherRainMiddle
+  /// 大雨
+  case HomeWeatherRainHeavy
+  /// 小雪
+  case HomeWeatherSnowLight
+  /// 中雪
+  case HomeWeatherSnowMiddle
+  /// 大雪
+  case HomeWeatherSnowHeavy
 }
 
 extension L10n: CustomStringConvertible {
@@ -662,6 +684,28 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Setting.ReminderMessage.Type")
       case .SettingReminderPhoneType:
         return L10n.tr("Setting.ReminderPhone.Type")
+      case .HomeWeatherSun:
+        return L10n.tr("Home.Weather.Sun")
+      case .HomeWeatherCloudy:
+        return L10n.tr("Home.Weather.Cloudy")
+      case .HomeWeatherOvercast:
+        return L10n.tr("Home.Weather.Overcast")
+      case .HomeWeatherRainOccasional:
+        return L10n.tr("Home.Weather.Rain.Occasional")
+      case .HomeWeatherRainThundery:
+        return L10n.tr("Home.Weather.Rain.Thundery")
+      case .HomeWeatherRainLight:
+        return L10n.tr("Home.Weather.Rain.Light")
+      case .HomeWeatherRainMiddle:
+        return L10n.tr("Home.Weather.Rain.Middle")
+      case .HomeWeatherRainHeavy:
+        return L10n.tr("Home.Weather.Rain.Heavy")
+      case .HomeWeatherSnowLight:
+        return L10n.tr("Home.Weather.Snow.Light")
+      case .HomeWeatherSnowMiddle:
+        return L10n.tr("Home.Weather.Snow.Middle")
+      case .HomeWeatherSnowHeavy:
+        return L10n.tr("Home.Weather.Snow.Heavy")
     }
   }
 

@@ -14,7 +14,7 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kzn-cx-VTb">
                     <rect key="frame" x="107" y="53" width="30" height="30"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Kzn-cx-VTb" secondAttribute="height" id="Ndw-Tl-ujV"/>
                         <constraint firstAttribute="width" constant="30" placeholder="YES" id="hBC-l2-dzb"/>

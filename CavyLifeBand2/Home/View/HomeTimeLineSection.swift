@@ -9,6 +9,7 @@
 import UIKit
 
 class HomeTimeLineSection: UIView {
+    
     @IBOutlet weak var lineView: UIView!
 
     /*

@@ -16,10 +16,19 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
     lazy var leftBtn: UIButton? = {
         
         let button = UIButton(type: .System)
-        button.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
+        button.setBackgroundImage(UIImage(asset: .HomeNavLeftItem), forState: .Normal)
         
         return button
     }()
+    
+    lazy var rightBtn: UIButton? = {
+        
+        let button = UIButton(type: .System)
+        button.setBackgroundImage(UIImage(asset: .HomeNavRightItem), forState: .Normal)
+        
+        return button
+    }()
+    
     
     var navTitle: String { return "" }
     
@@ -70,7 +79,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
             make.left.right.equalTo(self.view)
             make.height.equalTo(50)
         }
-        
         view.addSubview(timeLineView)
         timeLineView.snp_makeConstraints { (make) in
             make.top.equalTo(dateView).offset(50)
@@ -115,4 +123,9 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
+    
+    
+    
 }

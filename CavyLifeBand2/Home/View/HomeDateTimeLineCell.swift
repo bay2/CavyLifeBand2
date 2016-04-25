@@ -12,6 +12,7 @@ import EZSwiftExtensions
 class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource{
     
     var tableView =  UITableView()
+    var dataCount = 8
     
     /// cell数据的数组
     var dataArray: Array<HomeTimeLineMoudle> = []
@@ -35,6 +36,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         tableView.dataSource = self
         tableView.delegate = self
         tableView.showsVerticalScrollIndicator = false
+        tableView.separatorStyle = .None
         
         tableView.registerNib(UINib(nibName: "HomeTimeLineTableCell", bundle: nil), forCellReuseIdentifier: "HomeTimeLineTableCell")
         
@@ -52,7 +54,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     // MARK: UITableViewDelegate
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 8
+        return dataCount
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -94,20 +96,68 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("HomeTimeLineTableCell", forIndexPath: indexPath) as! HomeTimeLineTableCell
+        
+        cell.headLine.hidden = false
+        cell.bottomLine.hidden = false
         
         if indexPath.section == 0 {
             
             cell.headLine.hidden = true
             
+            let cellVM = TimeLineStepViewModel()
+            cell.cellConfig(cellVM, delegate: cellVM)
+        }
+        
+        if indexPath.section == 1 {
+            
+            let cellVM = TimeLineSleepViewModel()
+            cell.cellConfig(cellVM, delegate: cellVM)
+        }
+        if indexPath.section == 2 {
+            
+            let cellVM = TimeLinePKViewModel()
+            cell.cellConfig(cellVM, delegate: cellVM)
+        }
+
+        if indexPath.section == 3 {
+            
+            let cellVM = TimeLineAchiveViewModel()
+            cell.cellConfig(cellVM, delegate: cellVM)
+        }
+
+        if indexPath.section == 4 {
+            
+            let cellVM = TimeLineHealthViewModel()
+            cell.cellConfig(cellVM, delegate: cellVM)
+        }
+
+        if indexPath.section == dataCount - 1 {
+            
+            cell.bottomLine.hidden = true
         }
         
         
-        
-        cell.addAllViewLayout()
-        
         return cell
+    }
+    
+    /**
+     section不悬浮
+     */
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        let sectionHeight: CGFloat = 16
+        
+        if scrollView.contentOffset.y <= sectionHeight && scrollView.contentOffset.y >= 0{
+            
+            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)
+            
+        } else if scrollView.contentOffset.y >= sectionHeight {
+            
+            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeight, 0, 0, 0)
+            
+        }
+
     }
 
 }

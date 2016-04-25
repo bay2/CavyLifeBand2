@@ -12,7 +12,7 @@ import EZSwiftExtensions
 class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     /// label宽度
-    var labelWidth = ez.screenWidth * 1/3
+    var labelWidth = ez.screenWidth / 3
     
     /// 日期滑块
     var collectionView: UICollectionView?
@@ -25,6 +25,7 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         
         addAllViewLayout()
         
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -32,7 +33,7 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     }
     
     func addAllViewLayout() {
-    
+        
         // 上面的CollectionView
         let layout = HomeDataCellFlowLayout()
         collectionView = UICollectionView(frame: CGRectMake(0, 0, ez.screenWidth, 50), collectionViewLayout: layout)
@@ -51,16 +52,20 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         collectionView!.registerNib(UINib(nibName: "HomeDateViewCell", bundle: nil), forCellWithReuseIdentifier: "HomeDateCell")
         
         // 中间白色三角形
-        let image = UIImageView()
-        self.addSubview(image)
-        image.backgroundColor = UIColor.whiteColor()
-        image.snp_makeConstraints { (make) in
+        let imgView = UIImageView()
+        self.addSubview(imgView)
+        imgView.snp_makeConstraints { (make) in
             make.size.equalTo(CGSizeMake(20, 10))
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(40)
         }
+        imgView.image = UIImage(asset: .HomeTimelineCorn)
+        
+        // 接受通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeDatePage), name: "ChangeDatePage", object: nil)
 
     }
+    
     
     // MARK: -- collectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -73,11 +78,12 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeDateCell", forIndexPath: indexPath) as! HomeDateViewCell
         
-        cell.dateLabel.text = "\(indexPath.row)"
+        cell.dateLabel.text = "2016.4.\(indexPath.row)"
         
         return cell
     }
     
+
 }
 
 // MARK: - UIScrollViewDelegate
@@ -119,8 +125,26 @@ extension HomeDateView: UIScrollViewDelegate {
         }
         
         collView.setContentOffset(CGPointMake(CGFloat(count) * labelWidth, 0), animated: true)
+
+        // 通知绑定日期和时间轴的同步
+        NSNotificationCenter.defaultCenter().postNotificationName("changeTimeLinePage", object: nil, userInfo: ["currentPage" : count])
+
     
     }
+    
+    /**
+     改变CollectionView对应页数
+     
+     - parameter sender:
+     */
+    func changeDatePage(sender: NSNotification){
+        
+        let count = sender.userInfo!["currentPage"] as! CGFloat
+        
+        self.collectionView!.setContentOffset(CGPointMake(count * labelWidth, 0), animated: true)
+        
+    }
+    
 
 }
 

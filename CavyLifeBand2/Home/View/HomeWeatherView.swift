@@ -97,20 +97,40 @@ class HomeWeatherView: UIView {
         
         imgView.layer.masksToBounds = true
         imgView.layer.cornerRadius = 10
-         
-        if cond.contains("雨") {
-            
-            imgView.image = UIImage(asset: .GuideGenderBoyChosen)
-        }
-        if cond.contains("晴") {
-            
-            imgView.image = UIImage(asset: .GuideGenderBoyChosen)
-        }
-        if cond.contains("阴") {
-            
-            imgView.image = UIImage(asset: .GuideGenderBoyChosen)
-        }
         
+        
+        let weatherNames = [L10n.HomeWeatherSun.string,
+                            L10n.HomeWeatherCloudy.string,
+                            L10n.HomeWeatherOvercast.string,
+                            L10n.HomeWeatherRainOccasional.string,
+                            L10n.HomeWeatherRainThundery.string,
+                            L10n.HomeWeatherRainLight.string,
+                            L10n.HomeWeatherRainMiddle.string,
+                            L10n.HomeWeatherRainHeavy.string,
+                            L10n.HomeWeatherSnowLight.string,
+                            L10n.HomeWeatherSnowMiddle.string,
+                            L10n.HomeWeatherSnowHeavy.string]
+        
+        let weatherImages = [UIImage(asset: .HomeWeatherSun),
+                             UIImage(asset: .HomeWeatherCloudy),
+                             UIImage(asset: .HomeWeatherOvercast),
+                             UIImage(asset: .HomeWeatherRainOccasional),
+                             UIImage(asset: .HomeWeatherRainThundery),
+                             UIImage(asset: .HomeWeatherRainLight),
+                             UIImage(asset: .HomeWeatherRain),
+                             UIImage(asset: .HomeWeatherRainHeavy),
+                             UIImage(asset: .HomeWeatherSnowLight),
+                             UIImage(asset: .HomeWeatherSnow),
+                             UIImage(asset: .HomeWeatherSnowHeavy)]
+        
+        
+        for i in 0  ..< weatherNames.count {
+                    
+            if cond.contains(weatherNames[i]) {
+                
+                imgView.image = weatherImages[i]
+            }
+        }
         
     }
     

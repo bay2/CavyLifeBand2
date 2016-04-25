@@ -151,6 +151,7 @@ class HomeRingView: UIView {
             
         case .SleepRing:
             
+            imgView?.image = UIImage(asset: .HomeSleepRing)
             imgView?.snp_makeConstraints(closure: { (make) in
                 make.size.equalTo(30)
                 make.bottom.equalTo(currentLabel!).offset(-20)
@@ -161,6 +162,7 @@ class HomeRingView: UIView {
             
         case .StepRing:
             
+            imgView?.image = UIImage(asset: .HomeStepRing)
             imgView?.snp_makeConstraints(closure: { (make) in
                 make.size.equalTo(46)
                 make.bottom.equalTo(currentLabel!).offset(-40)
@@ -189,8 +191,9 @@ class HomeRingView: UIView {
             let minutes = String(currentNumber - (currentNumber / 60) * 60)
             let minUnit = "\(L10n.HomeSleepRingUnitMinute.string)"
             
-            
-            currentLabel!.attributedText = addSleepAttributeText(hour, hourUnit: hourUnit, minutes: minutes, minUnit: minUnit)
+            let attrs: NSMutableAttributedString = NSMutableAttributedString().attributeString(hour, numSize: 16, unit: hourUnit, unitSize: 12)
+            attrs.appendAttributedString(NSMutableAttributedString().attributeString(minutes, numSize: 16, unit: minUnit, unitSize: 12))
+            currentLabel!.attributedText = attrs
             
             percentLabel!.text = "\(L10n.HomeSleepRingPercerntText.string)\(percent)%"
 
@@ -200,7 +203,7 @@ class HomeRingView: UIView {
             let step = String(currentNumber)
             let stepUnit = "\(L10n.GuideStep.string)"
             
-            currentLabel!.attributedText = addStepAttributeText(step, stepUnit: stepUnit)
+            currentLabel!.attributedText =  NSMutableAttributedString().attributeString(step, numSize: 32, unit: stepUnit, unitSize: 18)
             
             percentLabel?.text = "\(L10n.HomeStepRingPercerntText)\(percent)%"
             
@@ -209,39 +212,7 @@ class HomeRingView: UIView {
         
     }
     
-    /**
-     计步富文本显示
-     */
-    func addStepAttributeText(step: String, stepUnit: String) -> NSMutableAttributedString {
-        
-        let currentString = NSMutableAttributedString(string: "\(step)\(stepUnit)")
-        
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(32), range: NSMakeRange(0, currentString.length - stepUnit.length))
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(18), range: NSMakeRange(currentString.length - stepUnit.length, stepUnit.length))
-        
-
-        
-        return currentString
-    }
-    
-    
-    /**
-     睡眠富文本显示
-     */
-    func addSleepAttributeText(hour: String, hourUnit: String, minutes: String, minUnit: String) -> NSMutableAttributedString {
-        
-        
-        let string = hour + hourUnit + minutes + minUnit
-        let currentString = NSMutableAttributedString(string: string)
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSMakeRange(0, hour.length))
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(12), range: NSMakeRange(hour.length, hourUnit.length))
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(16), range: NSMakeRange(hour.length + hourUnit.length, minutes.length))
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(12), range: NSMakeRange(hour.length + hourUnit.length + minutes.length, minUnit.length))
-        
-        return currentString
-    }
-    
-    /**
+       /**
      返回百分比
      */
     func percentNumber(targetNum: Int, currectNum: Int) -> CGFloat {
