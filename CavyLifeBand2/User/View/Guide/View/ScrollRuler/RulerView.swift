@@ -137,6 +137,7 @@ class RulerView: UIView, UIScrollViewDelegate {
     
     // 滑动触发
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        
         /// 转换成RulerScroll
         let sc =  scrollView as! RulerScroller
         

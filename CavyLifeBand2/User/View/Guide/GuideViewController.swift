@@ -87,15 +87,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
         infoLabel.textColor = UIColor(named: .GuideColor66)
         infoLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(ez.screenWidth * 0.2 + 11)
-        }
-        
-        middleView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(ez.screenWidth * 0.32)
-        }
-        
-        guideButton.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(ez.screenWidth * 1.32)
+            make.top.equalTo(self.view)
         }
         
     }
@@ -125,6 +117,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         self.guideButton.setImage(viewDataSource.guideBtnImage, forState: .Normal)
         self.guideButton.setImage(viewDataSource.guideBtnImagePress, forState: .Highlighted)
         self.middleView.addSubview(viewDataSource.centerView)
+        
         self.infoLabel.text = dataSource?.subTitle
         navTitle = viewDataSource.title
         rightBtn?.setTitle(viewDataSource.rightItemBtnTitle, forState: .Normal)

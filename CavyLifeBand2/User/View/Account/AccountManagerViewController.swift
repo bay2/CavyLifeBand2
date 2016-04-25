@@ -57,10 +57,10 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         return dataSource?.navTitle ?? ""
     }
     
-    var rightBtn: UIButton? =  {
+    lazy var rightBtn: UIButton? =  {
         
         let button = UIButton(type: .System)
-        button.setTitleColor(UIColor(named: .HomeViewMainColor), forState: .Normal)
+        button.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
         button.titleLabel?.font = UIFont.systemFontOfSize(16)
         return button
         
@@ -98,7 +98,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         rightBtn?.frame = CGRectMake(0, 0, 60, 30)
         rightBtn?.setTitle(dataSource?.itemRightTitle, forState: .Normal)
         
-        self.view.backgroundColor = UIColor(named: .SignInBackground)
+        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         setViewStyle()
         

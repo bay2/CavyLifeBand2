@@ -49,7 +49,7 @@ struct GuideBirthdayViewModel: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var centerView: UIView { return BirthdayView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12)) }
+    var centerView: UIView { return BirthdayView(frame: CGRectMake(0, 0, ez.screenWidth - 40, ez.screenWidth * 1.12)) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -144,7 +144,7 @@ struct GuideGoalViewModel: GuideViewDataSource, GuideViewDelegate {
             return UIView()
         }
         
-        goalView.size = CGSizeMake(ez.screenWidth * 0.92, ez.screenWidth * 1.12)
+        goalView.size = CGSizeMake(ez.screenWidth - 40, ez.screenWidth * 1.12)
         
         goalView.goalViewLayout()
         
