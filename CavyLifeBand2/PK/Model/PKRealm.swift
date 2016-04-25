@@ -9,22 +9,18 @@
 import UIKit
 import RealmSwift
 
-class PKRecordsRealmModel: Object {
-    var loginUserId = ""
-    
-    var waitRealmList = List<PKWaitRealmModel>()
-    var dueRealmList = List<PKDueRealmModel>()
-    var finishRealmList = List<PKFinishRealmModel>()
-    
-    override class func primaryKey() -> String? {
-        return "loginUserId"
-    }
-    
+protocol PKRecordRealmDataSource {
+    var pkId: String { get }
+    var loginUserId: String { get }
+    var userId: String { get }
+    var avatarUrl: String { get }
+    var nickname: String { get }
+    var pkDuration: String { get }
+    var syncState: Int { get }
 }
 
-
 //等待响应的PK记录
-class PKWaitRealmModel: Object {
+class PKWaitRealmModel: Object, PKRecordRealmDataSource {
     dynamic var pkId = ""
     dynamic var loginUserId = ""
     dynamic var userId = ""
@@ -47,15 +43,14 @@ class PKWaitRealmModel: Object {
      */
     dynamic var syncState = PKRecordsRealmSyncState.Synced.rawValue
     
-    var owners: [PKRecordsRealmModel] {
-        
-        return linkingObjects(PKRecordsRealmModel.self, forProperty: "waitRealmList")
+    override class func primaryKey() -> String? {
+        return "pkId"
     }
     
 }
 
 //进行中的PK记录
-class PKDueRealmModel: Object {
+class PKDueRealmModel: Object, PKRecordRealmDataSource {
     dynamic var pkId = ""
     dynamic var loginUserId = ""
     dynamic var userId = ""
@@ -70,15 +65,14 @@ class PKDueRealmModel: Object {
      */
     dynamic var syncState = PKRecordsRealmSyncState.Synced.rawValue
     
-    var owners: [PKRecordsRealmModel] {
-        
-        return linkingObjects(PKRecordsRealmModel.self, forProperty: "dueRealmList")
+    override class func primaryKey() -> String? {
+        return "pkId"
     }
     
 }
 
 //已完成的PK记录
-class PKFinishRealmModel: Object {
+class PKFinishRealmModel: Object, PKRecordRealmDataSource {
     dynamic var pkId = ""
     dynamic var loginUserId = ""
     dynamic var userId = ""
@@ -95,9 +89,8 @@ class PKFinishRealmModel: Object {
      */
     dynamic var syncState = PKRecordsRealmSyncState.Synced.rawValue
     
-    var owners: [PKRecordsRealmModel] {
-        
-        return linkingObjects(PKRecordsRealmModel.self, forProperty: "finishRealmList")
+    override class func primaryKey() -> String? {
+        return "pkId"
     }
     
 }
@@ -108,110 +101,120 @@ protocol PKRecordsRealmModelOperateDelegate {
     
     var loginUserId: String { get }
     
-    func queryPKRecordsRealm() -> PKRecordsRealmModel
+    func queryPKWaitRecordsRealm() -> Results<(PKWaitRealmModel)>
     
-    func savePKRecordsRealm(pkRecords: PKRecordsRealmModel) -> Bool
+    func queryPKDueRecordsRealm() -> Results<(PKDueRealmModel)>
     
-    func deletePKRecordsRealm() -> Bool
+    func queryPKFinishRecordsRealm() -> Results<(PKFinishRealmModel)>
+    
+    func queryPKRecordsRealm<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type) -> Results<(T)>
+    
+    func savePKRecordsRealm<T: PKRecordRealmDataSource where T: Object>(recordList: [T]) -> Bool
+    
+    func deletePKRecordsRealm<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type) -> Bool
     
     func addPKWaitRealm(pkWait: PKWaitRealmModel) -> Bool
+    
+    func updatePKWaitRealm(waitModel: PKWaitRealmModel, updateType: PKRecordsRealmUpdateType) -> Bool
     
 }
 
 
 extension PKRecordsRealmModelOperateDelegate {
     
-    func queryPKRecordsRealm() -> PKRecordsRealmModel {
+    func queryPKWaitRecordsRealm() -> Results<(PKWaitRealmModel)> {
         
-        guard isExistPKRecordsRealm() else {
-            return initPKRecordsRealm()!
-        }
+        let predicate = NSPredicate(format: "loginUserId = %@ AND syncState = %d", loginUserId, PKRecordsRealmSyncState.Synced.rawValue)
+        
+        let waitList = realm.objects(PKWaitRealmModel).filter(predicate)
 
-        let pkRecords = realm.objects(PKRecordsRealmModel).filter("loginUserId = '\(loginUserId)'")
-
-        return pkRecords.first!
+        return waitList
     
     }
     
-    
-    func isExistPKRecordsRealm() -> Bool {
-        let pkRecords = realm.objects(PKRecordsRealmModel).filter("loginUserId = '\(loginUserId)'")
+    func queryPKDueRecordsRealm() -> Results<(PKDueRealmModel)> {
+        let predicate = NSPredicate(format: "loginUserId = %@", loginUserId)
         
-        if pkRecords.count <= 0 {
+        let dueList = realm.objects(PKDueRealmModel).filter(predicate)
+        
+        return dueList
+    }
+    
+    func queryPKFinishRecordsRealm() -> Results<(PKFinishRealmModel)> {
+        let predicate = NSPredicate(format: "loginUserId = %@ AND syncState = %d", loginUserId, PKRecordsRealmSyncState.Synced.rawValue)
+        
+        let finishList = realm.objects(PKFinishRealmModel).filter(predicate)
+        
+        return finishList
+    }
+    
+    func queryPKRecordsRealm<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type) -> Results<(T)> {
+        let predicate = NSPredicate(format: "loginUserId = %@ AND syncState = %d", loginUserId, PKRecordsRealmSyncState.Synced.rawValue)
+        
+        let finishList = realm.objects(modelClass).filter(predicate)
+        
+        return finishList
+    }
+    
+    func savePKWaitRecordsRealm(waitList: [PKWaitRealmModel]) -> Bool {
+        
+        realm.beginWrite()
+        
+        realm.add(waitList, update: false)
+        
+        do {
+            try realm.commitWrite()
+        } catch let error {
+            Log.error("\(#function) error = \(error)")
             return false
         }
         
         return true
-    }
-    
-    func initPKRecordsRealm() -> PKRecordsRealmModel? {
-        
-        let pkRecords = PKRecordsRealmModel()
-        
-        pkRecords.loginUserId = loginUserId
-        
-        Log.warning("需要删除以下代码")
-        //------
-        let finish = PKFinishRealmModel()
-        finish.loginUserId = loginUserId
-        finish.pkId = "123"
-        
-        pkRecords.finishRealmList.append(finish)
-        //-------
-        
-        if savePKRecordsRealm(pkRecords) {
-            return pkRecords
-        }
-        
-        return nil
         
     }
     
-    func savePKRecordsRealm(pkRecords: PKRecordsRealmModel) -> Bool {
+    func savePKDueRecordsRealm(dueList: [PKDueRealmModel]) -> Bool {
+        
+        realm.beginWrite()
+        
+        realm.add(dueList, update: false)
         
         do {
-            
-            try realm.write {
-                realm.add(pkRecords, update: false)
-            }
-            
-        } catch {
-            
-            Log.error("save pkRecords error [\(pkRecords)]")
+            try realm.commitWrite()
+        } catch let error {
+            Log.error("\(#function) error = \(error)")
             return false
-            
-        }
-        
-        Log.info("save pkRecords success")
-        return true
-    }
-    
-    func deletePKRecordsRealm() -> Bool {
-        if isExistPKRecordsRealm() {
-            //
-            let pkRecords = realm.objects(PKRecordsRealmModel).filter("loginUserId = '\(loginUserId)'")
-            self.realm.beginWrite()
-            
-            self.realm.delete(pkRecords)
-            
-            do {
-                try self.realm.commitWrite()
-            } catch let error {
-                Log.error("\(#function) error = \(error)")
-                return false
-            }
-            
-            return true
         }
         
         return true
+        
     }
     
-    func addPKWaitRealm(pkWait: PKWaitRealmModel, pkRecords: PKRecordsRealmModel) -> Bool {
-        self.realm.beginWrite()
-        pkRecords.waitRealmList.insert(pkWait, atIndex: 0)
+    
+    func savePKFinishRecordsRealm(finishList: [PKFinishRealmModel]) -> Bool {
+        
+        realm.beginWrite()
+        
+        realm.add(finishList, update: false)
+        
         do {
-            try self.realm.commitWrite()
+            try realm.commitWrite()
+        } catch let error {
+            Log.error("\(#function) error = \(error)")
+            return false
+        }
+        
+        return true
+        
+    }
+    
+    func savePKRecordsRealm<T: PKRecordRealmDataSource where T: Object>(recordList: [T]) -> Bool {
+        realm.beginWrite()
+        
+        realm.add(recordList, update: false)
+        
+        do {
+            try realm.commitWrite()
         } catch let error {
             Log.error("\(#function) error = \(error)")
             return false
@@ -220,15 +223,40 @@ extension PKRecordsRealmModelOperateDelegate {
         return true
     }
     
+    func deletePKRecordsRealm<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type) -> Bool {
+        
+        let predicate = NSPredicate(format: "loginUserId = %@", loginUserId)
+        
+        let modelList = realm.objects(modelClass).filter(predicate)
+        
+        if modelList.count <= 0 {
+            return true
+        }
+
+        realm.beginWrite()
+        
+        realm.delete(modelList)
+        
+        do {
+            try realm.commitWrite()
+        } catch let error {
+            Log.error("\(#function) error = \(error)")
+            return false
+        }
+        
+        return true
+        
+    }
+    
     //增加待回应的记录出现在邀请PK，这时候不需要让VM持有pkRecords
     func addPKWaitRealm(pkWait: PKWaitRealmModel) -> Bool {
         
-        let pkRecords = queryPKRecordsRealm()
+        realm.beginWrite()
         
-        self.realm.beginWrite()
-        pkRecords.waitRealmList.insert(pkWait, atIndex: 0)
+        realm.add(pkWait, update: false)
+
         do {
-            try self.realm.commitWrite()
+            try realm.commitWrite()
         } catch let error {
             Log.error("\(#function) error = \(error)")
             return false
@@ -240,27 +268,27 @@ extension PKRecordsRealmModelOperateDelegate {
     
     
     //更新待回应数据 撤销或接受PK
-    func updatePKWaitRealm(index: Int, updateType: PKRecordsRealmUpdateType, pkRecords: PKRecordsRealmModel) -> Bool {
+    func updatePKWaitRealm(waitModel: PKWaitRealmModel, updateType: PKRecordsRealmUpdateType) -> Bool {
         
         switch updateType {
         case .UndoWait:
-            self.realm.beginWrite()
-            pkRecords.waitRealmList[index].type = PKWaitType.UndoWait.rawValue
-            pkRecords.waitRealmList[index].syncState = PKRecordsRealmSyncState.NotSync.rawValue
+            realm.beginWrite()
+            waitModel.type = PKWaitType.UndoWait.rawValue
+            waitModel.syncState = PKRecordsRealmSyncState.NotSync.rawValue
             do {
-                try self.realm.commitWrite()
+                try realm.commitWrite()
             } catch let error {
                 Log.error("\(#function) error = \(error)")
                 return false
             }
         case .AcceptWait:
-            self.realm.beginWrite()
-            pkRecords.waitRealmList[index].type = PKWaitType.AcceptWait.rawValue
-            pkRecords.waitRealmList[index].syncState = PKRecordsRealmSyncState.NotSync.rawValue
+            realm.beginWrite()
+            waitModel.type = PKWaitType.AcceptWait.rawValue
+            waitModel.syncState = PKRecordsRealmSyncState.NotSync.rawValue
             
             //增加进行中
             do {
-                try self.realm.commitWrite()
+                try realm.commitWrite()
             } catch let error {
                 Log.error("\(#function) error = \(error)")
                 return false
@@ -273,11 +301,11 @@ extension PKRecordsRealmModelOperateDelegate {
     }
     
     //增加进行中PK记录
-    func addPKDueRealm(pkDue: PKDueRealmModel, pkRecords: PKRecordsRealmModel) -> Bool {
-        self.realm.beginWrite()
-        pkRecords.dueRealmList.insert(pkDue, atIndex: 0)
+    func addPKDueRealm(pkDue: PKDueRealmModel) -> Bool {
+        realm.beginWrite()
+        realm.add(pkDue, update: false)
         do {
-            try self.realm.commitWrite()
+            try realm.commitWrite()
         } catch let error {
             Log.error("\(#function) error = \(error)")
             return false
@@ -288,8 +316,9 @@ extension PKRecordsRealmModelOperateDelegate {
     }
     
     //更改待回应记录同步状态
-    func syncPKWaitRealm(pkRecords: PKRecordsRealmModel) -> Bool {
-        let waitList = pkRecords.waitRealmList.filter("syncState = \(PKRecordsRealmSyncState.NotSync.rawValue)")
+    func syncPKWaitRealm() -> Bool {
+        
+        let waitList = realm.objects(PKWaitRealmModel).filter("loginUserId = '\(loginUserId)'")
         
         if waitList.count <= 0 {
             return true
@@ -313,8 +342,8 @@ extension PKRecordsRealmModelOperateDelegate {
     }
     
     //更改待进行中记录同步状态
-    func syncPKDueRealm(pkRecords: PKRecordsRealmModel) -> Bool {
-        let dueList = pkRecords.dueRealmList.filter("syncState = \(PKRecordsRealmSyncState.NotSync.rawValue)")
+    func syncPKDueRealm() -> Bool {
+        let dueList = realm.objects(PKDueRealmModel).filter("loginUserId = '\(loginUserId)'")
         
         if dueList.count <= 0 {
             return true
@@ -338,21 +367,21 @@ extension PKRecordsRealmModelOperateDelegate {
     }
 
     //更改已完成记录同步状态
-    func syncPKFinishRealm(pkRecords: PKRecordsRealmModel) -> Bool {
-        let finishList = pkRecords.finishRealmList.filter("syncState = \(PKRecordsRealmSyncState.NotSync.rawValue)")
+    func syncPKFinishRealm() -> Bool {
+        let finishList = realm.objects(PKFinishRealmModel).filter("loginUserId = '\(loginUserId)'")
         
         if finishList.count <= 0 {
             return true
         }
         
-        self.realm.beginWrite()
+        realm.beginWrite()
         
         for i in 0..<finishList.count {
             finishList[i].syncState = PKRecordsRealmSyncState.Synced.rawValue
         }
         
         do {
-            try self.realm.commitWrite()
+            try realm.commitWrite()
         } catch let error {
             Log.error("\(#function) error = \(error)")
             return false
@@ -363,12 +392,12 @@ extension PKRecordsRealmModelOperateDelegate {
     }
     
     //更新已完成记录删除状态
-    func updatePKFinishRealm(index: Int, pkRecords: PKRecordsRealmModel) -> Bool {
-        self.realm.beginWrite()
-        pkRecords.finishRealmList[index].isDelete = true
-        pkRecords.finishRealmList[index].syncState = PKRecordsRealmSyncState.NotSync.rawValue
+    func updatePKFinishRealm(finishModel: PKFinishRealmModel) -> Bool {
+        realm.beginWrite()
+        finishModel.isDelete  = true
+        finishModel.syncState = PKRecordsRealmSyncState.NotSync.rawValue
         do {
-            try self.realm.commitWrite()
+            try realm.commitWrite()
         } catch let error {
             Log.error("\(#function) error = \(error)")
             return false
@@ -377,17 +406,24 @@ extension PKRecordsRealmModelOperateDelegate {
         return true
     }
     
-    func getUnSyncPKIdList() -> [String:[String]] {
+    func getUnSyncPKIdList<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type) -> [String]? {
         
-        let pkRecords = realm.objects(PKRecordsRealmModel).filter("loginUserId = '\(loginUserId)'").first
+        let predicate = NSPredicate(format: "loginUserId = %@ AND syncState = %d", loginUserId, PKRecordsRealmSyncState.NotSync.rawValue)
         
+        let modelList = realm.objects(modelClass).filter(predicate)
         
-        let waitList = pkRecords?.waitRealmList.filter("syncState = \(PKRecordsRealmSyncState.NotSync.rawValue)")
+        if modelList.count <= 0 {
+            return nil
+        }
         
-        let finishList = pkRecords?.finishRealmList.filter("syncState = \(PKRecordsRealmSyncState.NotSync.rawValue)")
+        var pkIdList = [String]()
         
-        let dueList = pkRecords?.dueRealmList.filter("syncState = \(PKRecordsRealmSyncState.NotSync.rawValue)")
+        for model in modelList {
+            pkIdList.append(model.valueForKey("pkId") as? String ?? "")
+        }
         
+        return pkIdList
+
     }
     
     

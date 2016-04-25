@@ -52,10 +52,11 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         print(realm.path)
         
         let pkVM = PKRecordsViewModel(realm: realm)
+
+        print(pkVM.finishList) 
         
-        pkVM.pkListModel
         
-        
+
         
         
     }

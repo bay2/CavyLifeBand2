@@ -18,14 +18,24 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate {
     
     var realm: Realm
     
-    var pkListModel: PKRecordsRealmModel {
-        
-        return queryPKRecordsRealm()
-        
+    var waitList: Results<(PKWaitRealmModel)> {
+        return queryPKWaitRecordsRealm()
+    }
+    
+    var dueList: Results<(PKDueRealmModel)> {
+        return queryPKDueRecordsRealm()
+    }
+    
+    var finishList: Results<(PKFinishRealmModel)> {
+        return queryPKFinishRecordsRealm()
     }
     
     init(realm: Realm) {
         self.realm = realm
     }
+    
+//    func acceptPKInvitation(<#parameters#>) -> Bool {
+//        <#function body#>
+//    }
 
 }
