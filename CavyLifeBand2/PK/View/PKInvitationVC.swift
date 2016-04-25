@@ -8,6 +8,7 @@
 
 import UIKit
 import EZSwiftExtensions
+import RealmSwift
 
 class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     
@@ -19,9 +20,9 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         return TimePickerView.init(frame: CGRectZero, dataSource: nil)
     }()
     
-    var dataSource: PKInvitationVCViewModel = {
-        return PKInvitationVCViewModel()
-    }()
+    var realm: Realm = try! Realm()
+    
+    var dataSource: PKInvitationVCViewModel?
     
     @IBOutlet weak var invitationView: UIView!
     @IBOutlet weak var timePickerContainerView: UIView!
@@ -42,9 +43,20 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         self.automaticallyAdjustsScrollViewInsets = false
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
+        dataSource = PKInvitationVCViewModel(realm: realm)
+        
         baseSetting()
         
         dataSouceSetting()
+                
+        print(realm.path)
+        
+        let pkVM = PKRecordsViewModel(realm: realm)
+        
+        pkVM.pkListModel
+        
+        
+        
         
     }
 
@@ -127,9 +139,9 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     
     func dataSouceSetting() -> Void {
         
-        timePicker.scrollToIndex(dataSource.selectIndex)
+        timePicker.scrollToIndex(dataSource!.selectIndex)
         
-        changeSeeAbleType(dataSource.otherCanSee ? otherSeeAbleBtn : otherSeeUnableBtn)
+        changeSeeAbleType(dataSource!.otherCanSee ? otherSeeAbleBtn : otherSeeUnableBtn)
         
     }
 
@@ -140,7 +152,7 @@ extension PKInvitationVC: TimePickerViewDelegate {
     func timePickerView(timePickerView: TimePickerView, didSelectItemAtIndex index: Int) {
         Log.info("\(index)")
         
-        dataSource.selectIndex = index
+        dataSource!.selectIndex = index
     }
     
 }

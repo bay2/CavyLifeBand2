@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import RealmSwift
 
-struct PKInvitationVCViewModel {
+struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate {
+    
+    var loginUserId: String {
+        Log.warning("用户ID写死")
+        return "12"
+    }
     
     var competitorId: String = { return "" }()
     
@@ -31,5 +37,22 @@ struct PKInvitationVCViewModel {
                 "5",
                 ""]
     }()
+    
+    var realm: Realm
+    
+    var pkWaitRealmModel: PKWaitRealmModel{
+        let pkWait = PKWaitRealmModel()
+        pkWait.loginUserId = self.loginUserId
+        return pkWait
+    }
+    
+    init(realm: Realm) {
+        self.realm = realm
+    }
+    
+    //直接传入pkWait操作数据库，该pkWait应该是调接口后才add入数据库，pkId需要接口返回,同步状态为已同步
+    func addPKWaitRecord() -> Bool {
+        return addPKWaitRealm(self.pkWaitRealmModel)
+    }
     
 }

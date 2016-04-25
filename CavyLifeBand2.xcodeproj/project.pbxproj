@@ -60,6 +60,7 @@
 		685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */; };
 		685204E91CB7938C004179B0 /* AddClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E81CB7938C004179B0 /* AddClockViewController.swift */; };
 		685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */; };
+		6859BC381CCDBD3E0050F6A0 /* PKRecordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC371CCDBD3E0050F6A0 /* PKRecordsViewModel.swift */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		68C558CB1CB74D1F0031719D /* AlarmClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */; };
@@ -304,6 +305,7 @@
 		685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockTableHeaderView.swift; sourceTree = "<group>"; };
 		685204E81CB7938C004179B0 /* AddClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockViewController.swift; sourceTree = "<group>"; };
 		685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersSettingViewController.swift; sourceTree = "<group>"; };
+		6859BC371CCDBD3E0050F6A0 /* PKRecordsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsViewModel.swift; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlarmClock.storyboard; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 			isa = PBXGroup;
 			children = (
 				68E978101CC7698900651724 /* PKInvitationVCViewModel.swift */,
+				6859BC371CCDBD3E0050F6A0 /* PKRecordsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1654,6 +1657,7 @@
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
 				68C558CF1CB751050031719D /* IntelligentClockTableFooterView.swift in Sources */,
 				9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */,
+				6859BC381CCDBD3E0050F6A0 /* PKRecordsViewModel.swift in Sources */,
 				9114D1F11C97AB05008CB4CE /* SignInViewController.swift in Sources */,
 				91E1B4F91CA69CAA008ADEE6 /* FriendInfoListRealm.swift in Sources */,
 				684C6ADF1CCA0506000C176E /* PKRealm.swift in Sources */,
