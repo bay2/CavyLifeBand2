@@ -54,6 +54,7 @@ class RootViewController: UIViewController, CoordinateReport {
         loadHomeView()
             
         UINavigationBar.appearance().tintColor = UIColor(named: .HomeViewMainColor)
+        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickMenu), name: NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickBandMenu), name: NotificationName.HomeRightOnClickMenu.rawValue, object: nil)

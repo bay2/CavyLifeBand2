@@ -52,6 +52,17 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         
     }()
     
+    var rightBtn: UIButton? = {
+        
+        let button = UIButton(type: .System)
+        button.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(16)
+        button.frame = CGRectMake(0, 0, 60, 30)
+        button.setTitle(L10n.SignUpSignUpBtn.string, forState: .Normal)
+        return button
+        
+    }()
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()

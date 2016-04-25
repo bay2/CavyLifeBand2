@@ -61,6 +61,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         let button = UIButton(type: .System)
         button.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        button.frame = CGRectMake(0, 0, 60, 30)
         button.titleLabel?.font = UIFont.systemFontOfSize(16)
         return button
         
@@ -95,7 +96,6 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         textFieldView.backgroundColor = UIColor.whiteColor()
         textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
-        rightBtn?.frame = CGRectMake(0, 0, 60, 30)
         rightBtn?.setTitle(dataSource?.itemRightTitle, forState: .Normal)
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
