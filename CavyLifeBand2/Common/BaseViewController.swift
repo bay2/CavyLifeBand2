@@ -40,6 +40,8 @@ protocol BaseViewControllerPresenter {
     
     var newTitleLable: UILabel? { get }
     
+    var barBgColor: UIColor { get }
+    
 }
 
 extension BaseViewControllerPresenter where Self: UIViewController {
@@ -55,6 +57,11 @@ extension BaseViewControllerPresenter where Self: UIViewController {
     var newTitleLable: UILabel? {
         return nil
     }
+    
+    var barBgColor: UIColor {
+        return self.view.backgroundColor ?? UIColor.whiteColor()
+    }
+    
     
     /**
      更新导航栏UI

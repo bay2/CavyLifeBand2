@@ -24,6 +24,7 @@ env:
   matrix:
   - bulidTask: bulid.sh
   - bulidTask: test.sh
+  - bulidTask: uitest.sh
   global:
   - APP_NAME="CavyLifeBand2"
   - 'DEVELOPER_NAME="iPhone Distribution: Hangzhou Cavy Technology Co., Ltd."'
