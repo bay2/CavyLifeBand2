@@ -31,10 +31,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
     }()
     
-    var barBgColor: UIColor {
-        return UIColor(named: .HomeViewMainColor)
-    }
-    
     var navTitle: String { return "" }
     
     /// 上部分 计步睡眠天气页面
