@@ -7,6 +7,45 @@
 //
 import JSONJoy
 
+struct LaunchPKResponse: JSONJoy {
+    //通用消息头
+    var commonMsg: CommenMsg?
+    
+    //等待列表
+    var pkIdList: [PKId]?
+    
+    init(_ decoder: JSONDecoder) throws {
+        commonMsg = try CommenMsg(decoder)
+        
+        pkIdList = [PKId]()
+        
+        if let pkIdArray = decoder["pkIdList"].array {
+            
+            for pkId in pkIdArray {
+                
+                pkIdList?.append(try PKId(pkId))
+                
+            }
+        }
+        
+        
+    }
+}
+
+struct PKId {
+    
+    //PK记录Id
+    var pkId: String
+
+    init(_ decoder: JSONDecoder) throws {
+        
+        do { pkId = try decoder["pkId"].getString() } catch { pkId = "" }
+        
+    }
+    
+}
+
+
 struct PKRecordList: JSONJoy {
     //通用消息头
     var commonMsg: CommenMsg?
@@ -63,25 +102,25 @@ struct PKRecordList: JSONJoy {
 
 struct PKWaitRecord: JSONJoy {
     //PK记录Id
-    var pkId: String?
+    var pkId: String
     
     //等待类型 0等待对方接受；1对方等待我接受
-    var type: String?
+    var type: String
     
     //用户Id
-    var userId: String?
+    var userId: String
     
     //头像
-    var avatarUrl: String?
+    var avatarUrl: String
     
     //昵称
-    var nickname: String?
+    var nickname: String
     
     //发起挑战时间，时间格式：yyyy-MM-dd HH:mm:ss
-    var launchedTime: String?
+    var launchedTime: String
     
     //PK时长
-    var pkDuration: String?
+    var pkDuration: String
     
     init(_ decoder: JSONDecoder) throws {
         
@@ -99,22 +138,22 @@ struct PKWaitRecord: JSONJoy {
 
 struct PKDueRecord: JSONJoy {
     //PK记录Id
-    var pkId: String?
+    var pkId: String
     
     //用户Id
-    var userId: String?
+    var userId: String
     
     //头像
-    var avatarUrl: String?
+    var avatarUrl: String
     
     //昵称
-    var nickname: String?
+    var nickname: String
     
     //开始PK时间，时间格式：yyyy-MM-dd HH:mm:ss
-    var beginTime: String?
-    
+    var beginTime: String
+
     //PK时长
-    var pkDuration: String?
+    var pkDuration: String
     
     init(_ decoder: JSONDecoder) throws {
         
@@ -130,28 +169,32 @@ struct PKDueRecord: JSONJoy {
 }
 
 struct PKFinishRecord: JSONJoy {
+    //PK记录Id
+    var pkId: String
+    
     //用户Id
-    var userId: String?
+    var userId: String
     
     //头像
-    var avatarUrl: String?
+    var avatarUrl: String
     
     //昵称
-    var nickname: String?
+    var nickname: String
     
     //我是否胜利
-    var isWin: Bool?
+    var isWin: Bool
     
     //PK完成时间，时间格式：yyyy-MM-dd HH:mm:ss
-    var completeTime: String?
+    var completeTime: String
     
     //PK时长
-    var pkDuration: String?
+    var pkDuration: String
     
     init(_ decoder: JSONDecoder) throws {
         
         isWin = decoder["isWin"].bool
         
+        do { pkId = try decoder["pkId"].getString() } catch { pkId = "" }
         do { userId = try decoder["userId"].getString() } catch { userId = "" }
         do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
         do { nickname = try decoder["nickname"].getString() } catch { nickname = "" }

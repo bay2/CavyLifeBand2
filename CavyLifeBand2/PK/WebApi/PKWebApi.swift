@@ -11,7 +11,7 @@ import Log
 
 class PKWebApi: NetRequestAdapter {
     
-    static var shareApi = UserNetRequestData()
+    static var shareApi = PKWebApi()
     
     /**
      获取PK列表
@@ -19,7 +19,7 @@ class PKWebApi: NetRequestAdapter {
      - parameter userId:   用户id
      - parameter callBack: 回调
      */
-    func getPKRecordList(userId: String, callBack: CompletionHandlernType? = nil) {
+    func getPKRecordList(userId: String, callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetPKRecordList.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: userId]
@@ -40,7 +40,7 @@ class PKWebApi: NetRequestAdapter {
      - parameter launchTime:     发起时间
      - parameter pkDuration:     PK时长
      */
-    func launchPK(userId: String, launchPKList: [[String: String]], callBack: CompletionHandlernType? = nil) {
+    func launchPK(userId: String, launchPKList: [[String: AnyObject]], callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.LaunchPK.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: userId,
@@ -60,7 +60,7 @@ class PKWebApi: NetRequestAdapter {
      undoPKList
      - parameter pkId:           PK记录的Id
      */
-    func undoPK(userId: String, undoPKList: [[String: String]], callBack: CompletionHandlernType? = nil) {
+    func undoPK(userId: String, undoPKList: [[String: String]], callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.UndoPK.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: userId,
@@ -80,7 +80,7 @@ class PKWebApi: NetRequestAdapter {
      delPkList
      - parameter pkId:           PK记录的Id
      */
-    func deletePK(userId: String, delPkList: [[String: String]], callBack: CompletionHandlernType? = nil) {
+    func deletePK(userId: String, delPkList: [[String: String]], callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.DeletePK.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: userId,
@@ -101,7 +101,7 @@ class PKWebApi: NetRequestAdapter {
      - parameter pkId:           PK记录的Id
      - parameter acceptTime:     接受时间
      */
-    func acceptPK(userId: String, acceptPkList: [[String: String]], callBack: CompletionHandlernType? = nil) {
+    func acceptPK(userId: String, acceptPkList: [[String: String]], callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.AcceptPK.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: userId,
@@ -110,4 +110,5 @@ class PKWebApi: NetRequestAdapter {
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
         
     }
+    
 }

@@ -309,14 +309,14 @@ extension PKRecordsRealmModelOperateDelegate {
         
         realm.beginWrite()
         
+        waitModel.syncState = PKRecordsRealmSyncState.NotSync.rawValue
+        
         switch updateType {
         case .UndoWait:
             waitModel.type = PKWaitType.UndoWait.rawValue
-            waitModel.syncState = PKRecordsRealmSyncState.NotSync.rawValue
             
         case .AcceptWait:
             waitModel.type = PKWaitType.AcceptWait.rawValue
-            waitModel.syncState = PKRecordsRealmSyncState.NotSync.rawValue
             
         default:
             break

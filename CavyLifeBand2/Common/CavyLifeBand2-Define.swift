@@ -235,6 +235,7 @@ enum UserNetRequsetKey: String {
     case PKDuration = "pkDuration"
     case PKId = "pkId"
     case AcceptTime = "acceptTime"
+    case IsAllowWatch = "isAllowWatch"
 }
 
 /**

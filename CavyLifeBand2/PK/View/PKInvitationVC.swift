@@ -76,7 +76,9 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         
         Log.warning("选择对手 未完成")
         
-        Log.warning("push 的 VC 需要抛出一个block给我做 头像更换")
+        Log.warning("push 的 VC 需要抛出一个block给我 数据为选择的人的userId，avatarUrl，nickname")
+        
+//        dataSource?.setPKWaitCompetitorInfo(<#T##userId: String##String#>, nickName: <#T##String#>, avatarUrl: <#T##String#>)
         
     }
 
@@ -97,9 +99,15 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     }
         
     @IBAction func changeSeeAbleType(sender: UIButton) {
+        
+        if lastBtn != nil {
+            dataSource?.isAllowWatch = !(dataSource?.isAllowWatch)!
+        }
+        
         sender.selected = true
         lastBtn?.selected = false
         lastBtn = sender
+        
     }
     
     func baseSetting() -> Void {
@@ -148,7 +156,7 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         
         timePicker.scrollToIndex(dataSource!.selectIndex)
         
-        changeSeeAbleType(dataSource!.otherCanSee ? otherSeeAbleBtn : otherSeeUnableBtn)
+        changeSeeAbleType(dataSource!.isAllowWatch ? otherSeeAbleBtn : otherSeeUnableBtn)
         
     }
 
