@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SafetySettingViewController: UIViewController {
+class SafetySettingViewController: UIViewController, BaseViewControllerPresenter {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -21,6 +21,8 @@ class SafetySettingViewController: UIViewController {
     let safetySwitchCell  = "SettingSwitchTableViewCell"
 
     let safetyContactCell = "EmergencyContactPersonCell"
+    
+    var navTitle: String { return L10n.HomeRightListTitleSecurity.string }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +47,7 @@ class SafetySettingViewController: UIViewController {
         
         tableView.registerNib(UINib(nibName: safetyContactCell, bundle: nil), forCellReuseIdentifier: safetyContactCell)
         
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp_makeConstraints { make in
             
             make.trailing.equalTo(self.view).offset(-tableViewMargin)
             
@@ -54,6 +56,18 @@ class SafetySettingViewController: UIViewController {
         }
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        updateNavUI()
+    }
+    
+    /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {

@@ -32,6 +32,7 @@ extension GuideViewDataSource {
     var rightItemBtnTitle: String { return "" }
     var guideBtnImage: UIImage { return UIImage(asset: .GuideRightBtn) }
     var guideBtnImagePress: UIImage { return UIImage(asset: .GuideRightBtnPressed) }
+    var bgColor: UIColor { return UIColor(named: .HomeViewMainColor) }
     
 }
 

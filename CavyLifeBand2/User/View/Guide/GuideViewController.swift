@@ -12,7 +12,7 @@ import SnapKit
 import Gifu
 
 
-class GuideViewController: UIViewController, UserViewControllerPresentable {
+class GuideViewController: UIViewController, BaseViewControllerPresenter {
     
     var dataSource: GuideViewDataSource?
     var delegate: GuideViewDelegate?
@@ -26,12 +26,57 @@ class GuideViewController: UIViewController, UserViewControllerPresentable {
     /// 确定按钮
     @IBOutlet weak var guideButton: UIButton!
     
+    var navTitle: String = ""
+    
+    var leftBtn: UIButton? = {
+        
+        let leftItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
+        leftItemBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
+        return leftItemBtn
+        
+    }()
+    
+    var rightBtn: UIButton? = {
+        
+        let rightBtn = UIButton(type: .System)
+        rightBtn.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        rightBtn.titleLabel?.font = UIFont.systemFontOfSize(16)
+        rightBtn.frame = CGRectMake(0, 0, 60, 30)
+        
+        return rightBtn
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         allViewsLayOut()
 
         updateViewStyle()
+        
+        updateNavUI()
+        
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        
+        super.viewDidAppear(animated)
+        
+        updateNavUI()
+        
+    }
+    
+    deinit {
+        Log.error("deinit GuideViewController")
+    }
+    
+    func onLeftBtnBack() {
+        
+        if self.navigationController?.viewControllers.count > 1 {
+            self.popVC()
+        } else {
+            self.dismissVC(completion: nil)
+        }
         
     }
     
@@ -41,16 +86,8 @@ class GuideViewController: UIViewController, UserViewControllerPresentable {
     func allViewsLayOut(){
         
         infoLabel.textColor = UIColor(named: .GuideColor66)
-        infoLabel.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(ez.screenWidth * 0.2 + 11)
-        }
-        
-        middleView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(ez.screenWidth * 0.32)
-        }
-        
-        guideButton.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(self.view).offset(ez.screenWidth * 1.32)
+        infoLabel.snp_makeConstraints { make -> Void in
+            make.top.equalTo(self.view)
         }
         
     }
@@ -79,13 +116,15 @@ class GuideViewController: UIViewController, UserViewControllerPresentable {
         self.view.backgroundColor = viewDataSource.bgColor
         self.guideButton.setImage(viewDataSource.guideBtnImage, forState: .Normal)
         self.guideButton.setImage(viewDataSource.guideBtnImagePress, forState: .Highlighted)
-        self.updateNavigationItemUI(viewDataSource.title, rightBtnTitle: viewDataSource.rightItemBtnTitle)
         self.middleView.addSubview(viewDataSource.centerView)
+        
         self.infoLabel.text = dataSource?.subTitle
+        navTitle = viewDataSource.title
+        rightBtn?.setTitle(viewDataSource.rightItemBtnTitle, forState: .Normal)
   
     }
    
-    func onClickRightBtn() {
+    func onRightBtn() {
         
         delegate?.onClickRight(self)
         

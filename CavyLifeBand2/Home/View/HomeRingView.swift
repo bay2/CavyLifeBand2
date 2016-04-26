@@ -151,21 +151,21 @@ class HomeRingView: UIView {
             
         case .SleepRing:
             
-            imgView?.snp_makeConstraints(closure: { (make) in
+            imgView?.snp_makeConstraints(closure: { make in
                 make.size.equalTo(30)
                 make.bottom.equalTo(currentLabel!).offset(-20)
             })
-            percentLabel?.snp_makeConstraints(closure: { (make) in
+            percentLabel?.snp_makeConstraints(closure: { make in
                 make.bottom.equalTo(currentLabel!).offset(20)
             })
             
         case .StepRing:
             
-            imgView?.snp_makeConstraints(closure: { (make) in
+            imgView?.snp_makeConstraints(closure: { make in
                 make.size.equalTo(46)
                 make.bottom.equalTo(currentLabel!).offset(-40)
             })
-            percentLabel?.snp_makeConstraints(closure: { (make) in
+            percentLabel?.snp_makeConstraints(closure: { make in
                 make.bottom.equalTo(currentLabel!).offset(20)
             })
         }

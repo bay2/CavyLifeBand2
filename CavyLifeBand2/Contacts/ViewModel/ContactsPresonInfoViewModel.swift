@@ -25,10 +25,12 @@ class PresonInfoListCellViewModel: ContactsPersonInfoListCellPresenter, AnyObjec
 
 class PresonInfoCellViewModel: ContactsPersonInfoCellPresenter, AnyObject {
     
-    typealias viewModeType = PresonInfoCellViewModel
     var title: String
     var subTitle: String
     var avatarUrl: String
+    var relation: PersonRelation {
+        return .OwnRelation
+    }
     
     init(title: String, subTitle: String, avatarUrl: String) {
         

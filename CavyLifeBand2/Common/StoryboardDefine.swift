@@ -134,8 +134,13 @@ struct StoryboardScene {
     }
 
     case LeftViewScene = "LeftView"
-    static func instantiateLeftView() -> LeftViewController {
-      return StoryboardScene.Home.LeftViewScene.viewController() as! LeftViewController
+    static func instantiateLeftView() -> LeftMenViewController {
+      return StoryboardScene.Home.LeftViewScene.viewController() as! LeftMenViewController
+    }
+
+    case RightViewScene = "RightView"
+    static func instantiateRightView() -> RightViewController {
+      return StoryboardScene.Home.RightViewScene.viewController() as! RightViewController
     }
 
     case RootViewScene = "RootView"
@@ -165,11 +170,6 @@ struct StoryboardScene {
     case MainPageViewScene = "MainPageView"
     static func instantiateMainPageView() -> MainPageViewController {
       return StoryboardScene.Main.MainPageViewScene.viewController() as! MainPageViewController
-    }
-
-    case PageViewScene = "PageView"
-    static func instantiatePageView() -> PageViewController {
-      return StoryboardScene.Main.PageViewScene.viewController() as! PageViewController
     }
 
     case SignInViewScene = "SignInView"

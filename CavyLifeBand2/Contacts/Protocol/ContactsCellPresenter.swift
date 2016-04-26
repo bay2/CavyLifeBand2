@@ -26,5 +26,6 @@ protocol ContactsPersonInfoCellPresenter {
     var title: String { get }
     var subTitle: String { get }
     var avatarUrl: String { get }
+    var relation: PersonRelation { get }
     
 }

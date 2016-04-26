@@ -18,7 +18,6 @@ struct GuideGenderViewModel: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var bgColor: UIColor { return UIColor(named: .GuideSetInfoColor) }
     var centerView: UIView { return GenderView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12)) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
@@ -50,8 +49,7 @@ struct GuideBirthdayViewModel: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var bgColor: UIColor { return UIColor(named: .GuideSetInfoColor) }
-    var centerView: UIView { return BirthdayView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12)) }
+    var centerView: UIView { return BirthdayView(frame: CGRectMake(0, 0, ez.screenWidth - 40, ez.screenWidth * 1.12)) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -81,7 +79,6 @@ struct GuideHeightViewModel: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var bgColor: UIColor { return UIColor(named: .GuideSetInfoColor) }
     var centerView: UIView { return HightView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12)) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
@@ -111,7 +108,6 @@ struct GuideWeightViewModel: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var bgColor: UIColor { return UIColor(named: .GuideSetInfoColor) }
     var centerView: UIView { return WeightView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12)) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
@@ -142,14 +138,13 @@ struct GuideGoalViewModel: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var bgColor: UIColor { return UIColor(named: .GuideSetInfoColor) }
     var centerView: UIView {
         
         guard let goalView = NSBundle.mainBundle().loadNibNamed("GoalView", owner: nil, options: nil).first as? GoalView else {
             return UIView()
         }
         
-        goalView.size = CGSizeMake(ez.screenWidth * 0.92, ez.screenWidth * 1.12)
+        goalView.size = CGSizeMake(ez.screenWidth - 40, ez.screenWidth * 1.12)
         
         goalView.goalViewLayout()
         

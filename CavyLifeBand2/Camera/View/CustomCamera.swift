@@ -55,13 +55,18 @@ class CustomCamera: UIViewController {
         getLastPhoto()         // show lastImage
         
         camera.start()         // start Camera
+        
+        self.navigationController?.navigationBarHidden = true
     }
     
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         UIApplication.sharedApplication().idleTimerDisabled = true
+        
+        
         
         cameraAllViewLayout()
         
@@ -177,7 +182,7 @@ class CustomCamera: UIViewController {
         // 最后一张
         let lastAsset = fetchResults.lastObject as! PHAsset
         var returnImg = UIImage()
-        PHImageManager.defaultManager().requestImageForAsset(lastAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenWidth), contentMode: .AspectFill, options: nil) { (result, info) -> Void in
+        PHImageManager.defaultManager().requestImageForAsset(lastAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenWidth), contentMode: .AspectFill, options: nil) {(result, info) -> Void in
             returnImg = result!
         }
                 
@@ -233,14 +238,14 @@ class CustomCamera: UIViewController {
         self.shutterPhoto.setImage(UIImage(asset: .CamerVideoWait), forState: .Normal)
         
         // 保存录像
-        self.camera.stopRecording { (camera, outputFileURL, error) -> Void in
+        self.camera.stopRecording {(camera, outputFileURL, error) -> Void in
             
             // Viedo in outputURL cache
             
             Log.info("保存视频:outputFileURL: \(outputFileURL)")
 
             // 保存视频
-            self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileURL) { (assetUrl, error) -> Void in
+            self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileURL) {(assetUrl, error) -> Void in
                 if error != nil {
                     Log.error("Save video fail:%@", error)
                 } else {
@@ -272,7 +277,7 @@ class CustomCamera: UIViewController {
         
         self.shutterPhoto.setImage(UIImage(asset: .CamerVideoWait), forState: .Normal)
         // 保存录像
-        self.camera.stopRecording { (camera, outputFileURL, error) -> Void in}
+        self.camera.stopRecording {(camera, outputFileURL, error) -> Void in}
 
     }
     
@@ -325,11 +330,11 @@ class CustomCamera: UIViewController {
             self.camera.updateFlashMode(LLCameraFlashOff)
             self.flashSwitch.setImage(self.falshOffImg.image, forState: UIControlState.Normal)
             
-        }else if camera.flash == LLCameraFlashOff {
+        } else if camera.flash == LLCameraFlashOff {
             self.camera.updateFlashMode(LLCameraFlashAuto)
             self.flashSwitch.setImage(self.falshAtuoImg.image, forState: UIControlState.Normal)
             
-        }else if camera.flash == LLCameraFlashAuto {
+        } else if camera.flash == LLCameraFlashAuto {
             self.camera.updateFlashMode(LLCameraFlashOn)
             self.flashSwitch.setImage(self.falshOnImge.image, forState: UIControlState.Normal)
         }
@@ -348,8 +353,12 @@ class CustomCamera: UIViewController {
         
         if isPhotoOrVideo {
             
-            Log.info("返回主界面")
             UIApplication.sharedApplication().idleTimerDisabled = false
+            
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            self.navigationController?.popViewControllerAnimated(false)
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
             
         } else {
             
@@ -364,7 +373,7 @@ class CustomCamera: UIViewController {
         // isPhotoOrVideo = true 照相
         if isPhotoOrVideo {
             Log.info("照相")
-            self.camera.capture { (camera, image, metadata, error) -> Void in
+            self.camera.capture {(camera, image, metadata, error) -> Void in
                 if error != nil{
                     return
                 }

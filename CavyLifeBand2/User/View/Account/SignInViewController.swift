@@ -11,7 +11,7 @@ import SnapKit
 import EZSwiftExtensions
 import Log
 
-class SignInViewController: UIViewController, SignInDelegate, UserViewControllerPresentable {
+class SignInViewController: UIViewController, SignInDelegate, BaseViewControllerPresenter {
 
     // 登入按钮
     @IBOutlet weak var signInBtn: MainPageButton!
@@ -40,11 +40,32 @@ class SignInViewController: UIViewController, SignInDelegate, UserViewController
         return self
     }
     
+    var navTitle: String {
+        return L10n.SignInTitle.string
+    }
+    
+    var leftBtn: UIButton? = {
+        
+        let leftItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
+        leftItemBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
+        return leftItemBtn
+        
+    }()
+    
+    var rightBtn: UIButton? = {
+        
+        let button = UIButton(type: .System)
+        button.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(16)
+        button.frame = CGRectMake(0, 0, 60, 30)
+        button.setTitle(L10n.SignUpSignUpBtn.string, forState: .Normal)
+        return button
+        
+    }()
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
-
-        updateNavigationItemUI(L10n.SignInTitle.string, rightBtnTitle: L10n.SignInSignUpItemBtn.string)
 
         // 定义视图布局
         defineSubViewLayer()
@@ -56,8 +77,17 @@ class SignInViewController: UIViewController, SignInDelegate, UserViewController
         userNameTextField.backgroundColor = UIColor.whiteColor()
         passwdTextField.backgroundColor = UIColor.whiteColor()
         
-        updateUI(textFieldView)
+        textFieldView.backgroundColor = UIColor.whiteColor()
+        textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
+        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        updateNavUI()
+        
+    }
+    
+    deinit {
+        Log.error("deinit SignInViewController")
     }
     
     override func didReceiveMemoryWarning() {
@@ -96,12 +126,12 @@ class SignInViewController: UIViewController, SignInDelegate, UserViewController
      */
     func defineViewLayer() {
         
-        textFieldView.snp_makeConstraints { (make) -> Void in
+        textFieldView.snp_makeConstraints { make -> Void in
             
             make.height.equalTo(CavyDefine.spacingWidth25 * 6 + 0.3)
-            make.left.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 2)
-            make.right.equalTo(self.view).offset(-(CavyDefine.spacingWidth25 * 2))
-            make.top.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 8)
+            make.left.equalTo(self.view).offset(30)
+            make.right.equalTo(self.view).offset(-30)
+            make.top.equalTo(self.view).offset(16)
         }
         
     }
@@ -111,14 +141,14 @@ class SignInViewController: UIViewController, SignInDelegate, UserViewController
      */
     func defineTextFieldLayer() {
         
-        passwdTextField.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(textFieldView).offset(CavyDefine.spacingWidth25)
-            make.right.equalTo(textFieldView).offset(-CavyDefine.spacingWidth25)
+        passwdTextField.snp_makeConstraints { make -> Void in
+            make.left.equalTo(textFieldView).offset(20)
+            make.right.equalTo(textFieldView).offset(-20)
         }
         
-        userNameTextField.snp_makeConstraints { (make) -> Void in
-            make.left.equalTo(textFieldView).offset(CavyDefine.spacingWidth25)
-            make.right.equalTo(textFieldView).offset(-CavyDefine.spacingWidth25)
+        userNameTextField.snp_makeConstraints { make -> Void in
+            make.left.equalTo(textFieldView).offset(20)
+            make.right.equalTo(textFieldView).offset(-20)
         }
         
     }
@@ -128,14 +158,14 @@ class SignInViewController: UIViewController, SignInDelegate, UserViewController
      */
     func defineButtonLayer() {
         
-        signInBtn.snp_makeConstraints { (make) -> Void in
+        signInBtn.snp_makeConstraints { make -> Void in
             
-            make.left.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 2)
-            make.right.equalTo(self.view).offset(-(CavyDefine.spacingWidth25 * 2))
+            make.left.equalTo(self.view).offset(30)
+            make.right.equalTo(self.view).offset(-30)
             make.height.equalTo(CavyDefine.spacingWidth25 * 3)
         }
         
-        forgetPasswdBtn.snp_makeConstraints { (make) -> Void in
+        forgetPasswdBtn.snp_makeConstraints { make -> Void in
             make.height.equalTo(CavyDefine.spacingWidth25 * 3)
         }
         
@@ -146,7 +176,7 @@ class SignInViewController: UIViewController, SignInDelegate, UserViewController
      
      - parameter sender:
      */
-     func onClickRightBtn() {
+     func onRightBtn() {
 
         let guideVC = StoryboardScene.Guide.instantiateGuideView()
         let guideVM = GuideBandBluetooth()
@@ -178,7 +208,13 @@ class SignInViewController: UIViewController, SignInDelegate, UserViewController
     @IBAction func onClickSignIn(sender: AnyObject) {
 
         signIn()
-            
+        
+    }
+    
+    func onLeftBtnBack() {
+        
+        self.dismissVC(completion: nil)
+        
     }
     
 

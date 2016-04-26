@@ -43,8 +43,10 @@ class UserAchievementView: UIView {
 
     /// 成就标题Label
     @IBOutlet weak var titleLabel: UILabel!
+    
     /// 成就详情Label
     @IBOutlet weak var infoLabel: UILabel!
+    
     /// 成就图标展示视图
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -56,10 +58,7 @@ class UserAchievementView: UIView {
         
         
         // 斜体字体
-        let matrix = CGAffineTransformMake(1, 0, CGFloat(tanf(15 * Float(M_PI) / 180)), 1, 0, 0)
-        let desc   = UIFontDescriptor(name: UIFont.systemFontOfSize(16).fontName, matrix: matrix)
-        let font   = UIFont(descriptor: desc, size: 16)
-        
+        let font   = UIFont.italicFontWithSize(16)
         
         // 成就详情Label样式设置
         infoLabel.text      = infoStrFormatter()

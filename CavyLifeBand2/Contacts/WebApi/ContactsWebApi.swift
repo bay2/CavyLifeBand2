@@ -56,7 +56,10 @@ class ContactsWebApi: NetRequestAdapter {
             if parametes.keys.contains(UserNetRequsetKey.UserName.rawValue) != true { throw UserRequestErrorType.UserNameNil }
             
         case SearchType.Nearby.rawValue:
-            if parametes.keys.contains(UserNetRequsetKey.Local.rawValue) != true { throw UserRequestErrorType.LBSNil }
+            if parametes.keys.contains(UserNetRequsetKey.Latitude.rawValue) != true ||
+               parametes.keys.contains(UserNetRequsetKey.Longitude.rawValue) != true {
+                throw UserRequestErrorType.LBSNil
+            }
             
         case SearchType.AddressBook.rawValue:
             if parametes.keys.contains(UserNetRequsetKey.PhoneNumList.rawValue) != true { UserRequestErrorType.PhoneNumListNil }
@@ -144,10 +147,11 @@ class ContactsWebApi: NetRequestAdapter {
      
      - throws:
      */
-    func getNearbyFriend(lbs: String, callBack: CompletionHandlernType? = nil) throws {
+    func getNearbyFriend(longitude: String, latitude: String, callBack: CompletionHandlernType? = nil) throws {
         
         let parametes: [String: AnyObject] = [UserNetRequsetKey.SearchType.rawValue: SearchType.Nearby.rawValue,
-                                              UserNetRequsetKey.Local.rawValue: lbs]
+                                              UserNetRequsetKey.Longitude.rawValue: longitude,
+                                              UserNetRequsetKey.Latitude.rawValue: latitude]
         
         try searchFriend(parametes, callBack: callBack)
         
@@ -179,9 +183,28 @@ class ContactsWebApi: NetRequestAdapter {
     func addFriend(userId: String, friendId: String, verifyMsg: String = "", callBack: CompletionHandlernType? = nil) {
         
         let parametes: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.AddFriend.rawValue,
+                                              UserNetRequsetKey.FriendReqType.rawValue: "1",
                                               UserNetRequsetKey.UserID.rawValue: userId,
                                               UserNetRequsetKey.FriendID.rawValue: friendId,
                                               UserNetRequsetKey.VerifyMsg.rawValue: verifyMsg]
+        
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
+        
+    }
+    
+    /**
+     同意添加好友
+     
+     - parameter userId:    用户ID
+     - parameter friendId:  好友ID
+     - parameter callBack:  回调
+     */
+    func agreeFriend(userId: String, friendId: String, callBack: CompletionHandlernType? = nil) {
+        
+        let parametes: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.AddFriend.rawValue,
+                                              UserNetRequsetKey.FriendReqType.rawValue: "2",
+                                              UserNetRequsetKey.UserID.rawValue: userId,
+                                              UserNetRequsetKey.FriendID.rawValue: friendId]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
         

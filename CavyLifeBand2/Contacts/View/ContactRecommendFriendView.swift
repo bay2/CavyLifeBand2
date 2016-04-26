@@ -32,7 +32,7 @@ class ContactRecommendFriendView: UIView {
     func addSearchBar(searchBar: UISearchBar) {
         
         addSubview(searchBar)
-        searchBar.snp_makeConstraints { (make) in
+        searchBar.snp_makeConstraints { make in
             make.top.left.right.equalTo(self)
         }
         
