@@ -189,6 +189,18 @@ enum L10n {
   case HomeTimeLineCellAchive
   /// 健康
   case HomeTimeLineCellHealthiy
+  /// 累计
+  case HomeTimeLineAchiveBadge
+  /// 领先
+  case HomeTimeLinePKLead
+  /// 落后
+  case HomeTimeLinePKBack
+  /// 胜利了!
+  case HomeTimeLinePKWin
+  /// 失败了!
+  case HomeTimeLinePKLose
+  /// 需要关怀
+  case HomeTimeLineHealthyCare
   /// 目标
   case HomeLifeListTitleTarget
   /// 信息公开
@@ -544,6 +556,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.TimeLine.Cell.Achive")
       case .HomeTimeLineCellHealthiy:
         return L10n.tr("Home.TimeLine.Cell.Healthiy")
+      case .HomeTimeLineAchiveBadge:
+        return L10n.tr("Home.TimeLine.Achive.Badge")
+      case .HomeTimeLinePKLead:
+        return L10n.tr("Home.TimeLine.PK.Lead")
+      case .HomeTimeLinePKBack:
+        return L10n.tr("Home.TimeLine.PK.Back")
+      case .HomeTimeLinePKWin:
+        return L10n.tr("Home.TimeLine.PK.Win")
+      case .HomeTimeLinePKLose:
+        return L10n.tr("Home.TimeLine.PK.Lose")
+      case .HomeTimeLineHealthyCare:
+        return L10n.tr("Home.TimeLine.Healthy.Care")
       case .HomeLifeListTitleTarget:
         return L10n.tr("Home.LifeList.Title.Target")
       case .HomeLifeListTitleInfoOpen:
@@ -711,7 +735,7 @@ extension L10n: CustomStringConvertible {
 
   private static func tr(key: String, _ args: CVarArgType...) -> String {
     let format = NSLocalizedString(key, comment: "")
-    return String(format: format, arguments: args)
+    return String(format: format, locale: NSLocale.currentLocale(), arguments: args)
   }
 }
 

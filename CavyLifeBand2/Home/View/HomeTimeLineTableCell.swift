@@ -51,23 +51,25 @@ class HomeTimeLineTableCell: UITableViewCell {
         
         imgView.layer.masksToBounds = true
         imgView.layer.cornerRadius = imgView.frame.width / 2
-        imgView.backgroundColor = UIColor.lightGrayColor()
         
+        headLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
+        bottomLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
         nameLabel.textColor = UIColor(named: .HomeViewUserName)
         timeLabel.textColor = UIColor(named: .ContactsIntrouduce)
         othersName.textColor = UIColor(named: .HomeViewUserName)
         resultLabel.textColor = UIColor(named: .HomeViewUserName)
     
         // 判断PK 成就
-        if name != "" {
+        if name == "" {
             
-            nameLabel.snp_makeConstraints(closure: { (make) in
+            nameLabel.snp_makeConstraints(closure: {(make) in
                 make.centerY.equalTo(imgView)
             })
             
         } else {
-            nameLabel.snp_makeConstraints(closure: { (make) in
-                make.centerY.equalTo(imgView).offset(-3)
+            
+            nameLabel.snp_makeConstraints(closure: {(make) in
+                make.centerY.equalTo(imgView).offset(-10)
             })
         }
         

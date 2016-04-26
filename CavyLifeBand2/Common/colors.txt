@@ -30,6 +30,7 @@ HomeViewAccount: #00000080
 HomeSleepRingColor: #36f3ff
 HomeStepRingColor: #fff956
 HomeRingViewBackground: #309a6e
+HomeTimeLineLineColor:#e5e5e5
 ContactsTitleColor : #000000B3
 ContactsName : #000000
 ContactsIntrouduce: #0000004D

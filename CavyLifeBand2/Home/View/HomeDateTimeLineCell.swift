@@ -12,7 +12,7 @@ import EZSwiftExtensions
 class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource{
     
     var tableView =  UITableView()
-    var dataCount = 8
+    var dataCount = 5
     
     /// cell数据的数组
     var dataArray: Array<HomeTimeLineMoudle> = []
@@ -105,30 +105,31 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
             
             cell.headLine.hidden = true
             
-            let cellVM = TimeLineStepViewModel()
+            let cellVM = TimeLineStepViewModel(timeLine: "12:00", stepNumber: 10000)
             cell.cellConfig(cellVM, delegate: cellVM)
         }
         
         if indexPath.section == 1 {
             
-            let cellVM = TimeLineSleepViewModel()
+            let cellVM = TimeLineSleepViewModel(timeLine: "11:36", sleepHour: 6, sleepMin: 30)
+            
             cell.cellConfig(cellVM, delegate: cellVM)
         }
         if indexPath.section == 2 {
             
-            let cellVM = TimeLinePKViewModel()
+            let cellVM = TimeLinePKViewModel(timeLine: "10:12", othersName: "东坡排骨", result: "胜利了！")
             cell.cellConfig(cellVM, delegate: cellVM)
         }
 
         if indexPath.section == 3 {
             
-            let cellVM = TimeLineAchiveViewModel()
+            let cellVM = TimeLineAchiveViewModel(timeLine: "9:45", result: "徽章")
             cell.cellConfig(cellVM, delegate: cellVM)
         }
 
         if indexPath.section == 4 {
             
-            let cellVM = TimeLineHealthViewModel()
+            let cellVM = TimeLineHealthViewModel(timeLine: "8:09", othersName: "水煮肉片")
             cell.cellConfig(cellVM, delegate: cellVM)
         }
 

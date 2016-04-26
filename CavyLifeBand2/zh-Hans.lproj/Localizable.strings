@@ -120,6 +120,12 @@
 "Home.TimeLine.Cell.PK" = "PK";
 "Home.TimeLine.Cell.Achive" = "成就";
 "Home.TimeLine.Cell.Healthiy" = "健康";
+"Home.TimeLine.Achive.Badge" = "累计";
+"Home.TimeLine.PK.Lead" = "领先";
+"Home.TimeLine.PK.Back" = "落后";
+"Home.TimeLine.PK.Win" = "胜利了!";
+"Home.TimeLine.PK.Lose" = "失败了!";
+"Home.TimeLine.Healthy.Care" = "需要关怀";
 "Home.LifeList.Title.Target" = "目标";
 "Home.LifeList.Title.InfoOpen" = "信息公开";
 "Home.LifeList.Title.Friend" = "好友";

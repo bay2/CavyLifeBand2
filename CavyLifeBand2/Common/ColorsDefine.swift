@@ -141,6 +141,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#fff956"></span>
     /// Alpha: 100% <br/> (0xfff956ff)
     case HomeStepRingColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e5e5e5"></span>
+    /// Alpha: 100% <br/> (0xe5e5e5ff)
+    case HomeTimeLineLineColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 50% <br/> (0x00000080)
     case HomeViewAccount
@@ -255,6 +258,7 @@ extension UIColor {
       case .HomeRingViewBackground: return 0x309a6eff
       case .HomeSleepRingColor: return 0x36f3ffff
       case .HomeStepRingColor: return 0xfff956ff
+      case .HomeTimeLineLineColor: return 0xe5e5e5ff
       case .HomeViewAccount: return 0x00000080
       case .HomeViewLeftHeaderLine: return 0xffffff80
       case .HomeViewLeftSelected: return 0x0000001a
@@ -279,6 +283,10 @@ extension UIColor {
       case .SignInTextFieldText: return 0x000000cc
       case .SignUpProtocolBtn: return 0x125faeff
       }
+    }
+
+    var color: UIColor {
+      return UIColor(named: self)
     }
   }
 
