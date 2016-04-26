@@ -13,7 +13,7 @@ script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
   -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
-- xctool -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphoneos  -configuration Release OBJROOT=$PWD/build   SYMROOT=$PWD/build CODE_SIGN_IDENTITY="$DEVELOPER_NAME" ONLY_ACTIVE_ARCH=NO
+- $bulidTask
 after_success:
 - ./scripts/sign-and-upload.sh
 after_script:
@@ -21,6 +21,9 @@ after_script:
 include:
 - CavyLifeBand2
 env:
+  matrix:
+  - bulidTask: xctool -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphoneos  -configuration Release OBJROOT=$PWD/build   SYMROOT=$PWD/build CODE_SIGN_IDENTITY="$DEVELOPER_NAME" ONLY_ACTIVE_ARCH=NO
+  - bulidTask: xcodebuild clean build test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2' OTHER_SWIFT_FLAGS=" -D UITEST"  | xcpretty
   global:
   - APP_NAME="CavyLifeBand2"
   - 'DEVELOPER_NAME="iPhone Distribution: Hangzhou Cavy Technology Co., Ltd."'
