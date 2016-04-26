@@ -35,7 +35,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUw-oR-uXo">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUw-oR-uXo" customClass="BandInfoView" customModule="CavyLifeBand2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="145"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的CavyBand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMF-hI-9Zm">
@@ -56,24 +56,24 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3ya-x6-hdt">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ru-q4-K2K">
                                         <rect key="frame" x="464" y="20" width="90" height="90"/>
                                         <color key="backgroundColor" red="1" green="0.68089345639999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="i69-ec-sFr"/>
-                                            <constraint firstAttribute="width" constant="90" id="nWx-wL-qGt"/>
+                                            <constraint firstAttribute="width" constant="90" id="YQh-f6-QEr"/>
+                                            <constraint firstAttribute="height" constant="90" id="mww-4r-F2Y"/>
                                         </constraints>
-                                    </imageView>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="cI2-oT-W8Z" firstAttribute="leading" secondItem="PMF-hI-9Zm" secondAttribute="leading" id="5BI-MQ-L2r"/>
-                                    <constraint firstItem="3ya-x6-hdt" firstAttribute="top" secondItem="YUw-oR-uXo" secondAttribute="top" constant="20" id="5Ow-uW-Lxw"/>
                                     <constraint firstAttribute="height" constant="145" id="HNc-K1-6gU"/>
                                     <constraint firstItem="PWd-Z8-aVI" firstAttribute="top" secondItem="cI2-oT-W8Z" secondAttribute="bottom" constant="10" id="Hj9-4a-OjE"/>
                                     <constraint firstItem="cI2-oT-W8Z" firstAttribute="top" secondItem="PMF-hI-9Zm" secondAttribute="bottom" constant="32" id="JFj-kd-dGx"/>
                                     <constraint firstItem="PMF-hI-9Zm" firstAttribute="leading" secondItem="YUw-oR-uXo" secondAttribute="leading" constant="32" id="UqW-4Z-MX9"/>
-                                    <constraint firstAttribute="trailing" secondItem="3ya-x6-hdt" secondAttribute="trailing" constant="46" id="aO2-vh-9rF"/>
+                                    <constraint firstItem="8ru-q4-K2K" firstAttribute="top" secondItem="YUw-oR-uXo" secondAttribute="top" constant="20" id="bc4-6A-cbC"/>
+                                    <constraint firstAttribute="trailing" secondItem="8ru-q4-K2K" secondAttribute="trailing" constant="46" id="euS-nn-xWu"/>
                                     <constraint firstItem="PMF-hI-9Zm" firstAttribute="top" secondItem="YUw-oR-uXo" secondAttribute="top" constant="25" id="mtL-0F-LoG"/>
                                     <constraint firstItem="PWd-Z8-aVI" firstAttribute="leading" secondItem="PMF-hI-9Zm" secondAttribute="leading" id="xhJ-eE-Xeu"/>
                                 </constraints>
