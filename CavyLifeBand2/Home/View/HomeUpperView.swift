@@ -31,7 +31,7 @@ class HomeUpperView: UIView {
         sleepRing.addSubview(sleepView!)
         sleepRing.layer.cornerRadius = sleepRing.frame.width / 2
         sleepView!.layer.cornerRadius = sleepView!.frame.width / 2
-        sleepView!.snp_makeConstraints(closure: { (make) in
+        sleepView!.snp_makeConstraints(closure: { make in
             make.left.right.top.bottom.equalTo(sleepRing)
         })
         sleepView!.sleepRingWith(.SleepRing, targetHour: 7, targetMinute: 0, currentHour: 5, currentMinute: 10)
@@ -42,19 +42,19 @@ class HomeUpperView: UIView {
         stepRing.addSubview(stepView!)
         stepRing.layer.cornerRadius = stepView!.frame.width / 2
         stepView!.layer.cornerRadius = stepView!.frame.width / 2
-        stepView!.snp_makeConstraints(closure: { (make) in
+        stepView!.snp_makeConstraints(closure: { make in
             make.left.right.top.bottom.equalTo(stepRing)
 
         })
         stepView!.stepRingWith(.StepRing, targetNumber: 80000, currentNumber: 50000)
         
        // 天气
-        weatherView.snp_makeConstraints(closure: { (make) in
+        weatherView.snp_makeConstraints(closure: { make in
             make.left.equalTo(self).offset(40)
         })
         let weather = NSBundle.mainBundle().loadNibNamed("HomeWeatherView", owner: nil, options: nil).first as? HomeWeatherView
         weatherView.addSubview(weather!)
-        weather!.snp_makeConstraints { (make) in
+        weather!.snp_makeConstraints { make in
             make.left.right.top.bottom.equalTo(weatherView)
         }
         weather!.loadWeatherView()

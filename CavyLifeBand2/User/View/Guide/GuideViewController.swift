@@ -86,7 +86,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
     func allViewsLayOut(){
         
         infoLabel.textColor = UIColor(named: .GuideColor66)
-        infoLabel.snp_makeConstraints { (make) -> Void in
+        infoLabel.snp_makeConstraints { make -> Void in
             make.top.equalTo(self.view)
         }
         

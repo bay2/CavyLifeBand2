@@ -59,12 +59,12 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         
         // contentView 
         contectView.backgroundColor = UIColor(named: .HomeViewMainColor)
-        contectView.snp_makeConstraints { (make) in
+        contectView.snp_makeConstraints { make in
             // |-16-|-infoTableView-|-10-|-qualityTableView-170-|-20-|
             make.height.equalTo(tableViewHeight + 216)
         }
         
-        infoTableView.snp_makeConstraints { (make) -> Void in
+        infoTableView.snp_makeConstraints { make -> Void in
             make.height.equalTo(tableViewHeight)
         }
         tableViewBaseSetting(infoTableView)

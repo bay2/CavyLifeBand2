@@ -144,7 +144,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
      */
     func defineViewLayout() {
 
-        textFieldView.snp_makeConstraints { (make) -> Void in
+        textFieldView.snp_makeConstraints { make -> Void in
             
             make.top.equalTo(self.view).offset(16)
             make.left.equalTo(self.view).offset(30)
@@ -158,17 +158,17 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
 
         }
         
-        userProtocolView.snp_makeConstraints { (make) -> Void in
+        userProtocolView.snp_makeConstraints { make -> Void in
             make.height.equalTo(CavyDefine.spacingWidth25 * 3)
             make.width.equalTo(280)
         }
         
-        verticalLine.snp_makeConstraints { (make) -> Void in
+        verticalLine.snp_makeConstraints { make -> Void in
             make.height.equalTo((CavyDefine.spacingWidth25 * 3 / 5) * 3)
             make.right.equalTo(self.textFieldView).offset(-110)
         }
         
-        emailSafetyCode.snp_makeConstraints { (make) -> Void in
+        emailSafetyCode.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(80, 30))
             make.centerY.equalTo(self.safetyCodeTextField)
             make.left.equalTo(safetyCodeTextField.snp_right).offset(10)
@@ -180,19 +180,19 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
      */
     func defineButtonLayout() {
         
-        mainBtn.snp_makeConstraints { (make) -> Void in
+        mainBtn.snp_makeConstraints { make -> Void in
             make.top.equalTo(textFieldView.snp_bottom).offset(CavyDefine.spacingWidth25 * 3)
             make.left.equalTo(self.view).offset(30)
             make.right.equalTo(self.view).offset(-30)
             make.height.equalTo(CavyDefine.spacingWidth25 * 3)
         }
         
-        backSignInBtn.snp_makeConstraints { (make) -> Void in
+        backSignInBtn.snp_makeConstraints { make -> Void in
             make.top.equalTo(textFieldView.snp_bottom)
             make.height.equalTo(CavyDefine.spacingWidth25 * 3)
         }
         
-        safetyCodeBtn.snp_makeConstraints { (make) -> Void in
+        safetyCodeBtn.snp_makeConstraints { make -> Void in
             make.width.equalTo(90)
             make.right.equalTo(self.textFieldView).offset(-20)
         }
@@ -204,16 +204,16 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
      */
     func defineTextFieldLayout() {
 
-        userNameTextField.snp_makeConstraints { (make) -> Void in
+        userNameTextField.snp_makeConstraints { make -> Void in
             make.left.equalTo(textFieldView).offset(20)
             make.right.equalTo(textFieldView).offset(-20)
         }
         
-        safetyCodeTextField.snp_makeConstraints { (make) -> Void in
+        safetyCodeTextField.snp_makeConstraints { make -> Void in
             make.left.equalTo(userNameTextField)
         }
         
-        passwdTextField.snp_makeConstraints { (make) -> Void in
+        passwdTextField.snp_makeConstraints { make -> Void in
             make.left.right.equalTo(userNameTextField)
         }
         
@@ -282,7 +282,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
      */
     func refreshEmailSafetyCode() {
         
-        Alamofire.request(.GET, CavyDefine.emailCodeAddr).responseImage { (response) -> Void in
+        Alamofire.request(.GET, CavyDefine.emailCodeAddr).responseImage {(response) -> Void in
             
             if let image = response.result.value {
                 
@@ -324,7 +324,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         if dataSource?.isSignUp == true {
             
-            signUp() {
+            signUp {
                 GuideUserInfo.userInfo.userId = $0
                 GuideUserInfo.userInfo.updateUserInfo()
             }

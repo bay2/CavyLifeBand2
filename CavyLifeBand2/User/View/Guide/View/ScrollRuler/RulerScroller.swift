@@ -101,7 +101,7 @@ class RulerScroller: UIScrollView {
             self.contentSize = CGSizeMake(CavyDefine.spacingWidth25 * 23 + CGFloat(lineSpace * (dayValue - 1)), 60)
 
             // 添加动画 防止每次年重置月份时候突兀
-            UIView.animateWithDuration(0.2) { () -> Void in
+            UIView.animateWithDuration(0.2) {() -> Void in
                 
                 self.contentOffset = CGPointMake(CGFloat(self.lineSpace * 14), 0)
                 

@@ -113,7 +113,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         contectView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
         contectView.backgroundColor = UIColor(named: .HomeViewMainColor)
-        contectView.snp_makeConstraints { (make) in
+        contectView.snp_makeConstraints { make in
             
             // |-16-|-tableView-|-10-|-badgeView-10- -50- -8- collectionView -|-20-|-logoutButton-50-|-20-|
             make.height.equalTo(16 + tableViewHeight + 10 + 68 + collectionViewHeight + 20 + 50 + 20)
@@ -160,7 +160,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     func addBadgeView(height: CGFloat) {
         
         badgeView.layer.cornerRadius = CavyDefine.commonCornerRadius
-        badgeView.snp_makeConstraints { (make) in
+        badgeView.snp_makeConstraints { make in
             
             // |-16-|-tableView-|-10-|-badgeView-10- -50- -8- collectionView -|-20-|-logoutButton-50-|-20-|
             make.height.equalTo(68 + height)
@@ -178,7 +178,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.registerNib(UINib(nibName: "ContactsAccountBadgeCell", bundle: nil), forCellWithReuseIdentifier: "collectionIdentifier")
-        collectionView.snp_makeConstraints { (make) in
+        collectionView.snp_makeConstraints { make in
             // |-10-|-50-|-8-|-(badgeCount / 3 * 112 + 20)-|
             make.height.equalTo(height)
         }

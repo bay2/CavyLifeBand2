@@ -97,12 +97,12 @@ class HomeTimeLineTableCell: UITableViewCell {
          */
         if moudle.othersName != "" {
             
-            nameLabel.snp_makeConstraints(closure: { (make) in
+            nameLabel.snp_makeConstraints(closure: { make in
                 make.centerX.equalTo(imgView)
             })
             
         } else {
-            nameLabel.snp_makeConstraints(closure: { (make) in
+            nameLabel.snp_makeConstraints(closure: { make in
                 make.centerX.equalTo(imgView).offset(-3)
             })
         }

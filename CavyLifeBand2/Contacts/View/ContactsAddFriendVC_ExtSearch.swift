@@ -21,22 +21,22 @@ extension ContactsAddFriendVC: UISearchResultsUpdating, ContactsSearchController
         
         if hidden {
             
-            self.scrollView.snp_remakeConstraints { (make) -> Void in
+            self.scrollView.snp_remakeConstraints { make -> Void in
                 make.top.equalTo(buttonView.snp_bottom).offset(20)
             }
             
-            self.buttonView.snp_remakeConstraints { (make) -> Void in
+            self.buttonView.snp_remakeConstraints { make -> Void in
                 make.top.equalTo(self.view).offset(-100)
             }
             
             
         } else {
             
-            self.scrollView.snp_remakeConstraints { (make) -> Void in
+            self.scrollView.snp_remakeConstraints { make -> Void in
                 make.top.equalTo(buttonView.snp_bottom)
             }
             
-            self.buttonView.snp_remakeConstraints { (make) -> Void in
+            self.buttonView.snp_remakeConstraints { make -> Void in
                 make.top.equalTo(self.view)
             }
             

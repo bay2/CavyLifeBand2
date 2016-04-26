@@ -43,7 +43,7 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.backgroundColor = UIColor.whiteColor()
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
 
-        tableView.snp_makeConstraints { (make) -> Void in
+        tableView.snp_makeConstraints { make -> Void in
             make.height.equalTo(326)
         }
         // 隐藏分隔线

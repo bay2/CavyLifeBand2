@@ -118,7 +118,7 @@ class MainPageViewController: UIViewController {
         
         self.view.addSubview(pageCtrl)
         
-        pageCtrl.snp_makeConstraints { (make) in
+        pageCtrl.snp_makeConstraints { make in
             
             make.centerX.equalTo(self.view)
             make.bottom.equalTo(self.view).offset(-((buttonSize.height * 3) - (pageCtrl.size.height / 2)))
@@ -149,7 +149,7 @@ class MainPageViewController: UIViewController {
      */
     func buttonLayout() {
         
-        signUpBtn.snp_makeConstraints { (make) -> Void in
+        signUpBtn.snp_makeConstraints { make -> Void in
             
             make.left.equalTo(self.view).offset(CavyDefine.spacingWidth25 * 2)
             make.bottom.equalTo(self.view).offset(-buttonSize.height)
@@ -157,7 +157,7 @@ class MainPageViewController: UIViewController {
             
         }
         
-        signInBtn.snp_makeConstraints { (make) in
+        signInBtn.snp_makeConstraints { make in
             
             make.right.equalTo(self.view).offset(-(CavyDefine.spacingWidth25 * 2))
             make.bottom.equalTo(self.view).offset(-buttonSize.height)

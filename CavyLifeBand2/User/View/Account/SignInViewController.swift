@@ -126,7 +126,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      */
     func defineViewLayer() {
         
-        textFieldView.snp_makeConstraints { (make) -> Void in
+        textFieldView.snp_makeConstraints { make -> Void in
             
             make.height.equalTo(CavyDefine.spacingWidth25 * 6 + 0.3)
             make.left.equalTo(self.view).offset(30)
@@ -141,12 +141,12 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      */
     func defineTextFieldLayer() {
         
-        passwdTextField.snp_makeConstraints { (make) -> Void in
+        passwdTextField.snp_makeConstraints { make -> Void in
             make.left.equalTo(textFieldView).offset(20)
             make.right.equalTo(textFieldView).offset(-20)
         }
         
-        userNameTextField.snp_makeConstraints { (make) -> Void in
+        userNameTextField.snp_makeConstraints { make -> Void in
             make.left.equalTo(textFieldView).offset(20)
             make.right.equalTo(textFieldView).offset(-20)
         }
@@ -158,14 +158,14 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      */
     func defineButtonLayer() {
         
-        signInBtn.snp_makeConstraints { (make) -> Void in
+        signInBtn.snp_makeConstraints { make -> Void in
             
             make.left.equalTo(self.view).offset(30)
             make.right.equalTo(self.view).offset(-30)
             make.height.equalTo(CavyDefine.spacingWidth25 * 3)
         }
         
-        forgetPasswdBtn.snp_makeConstraints { (make) -> Void in
+        forgetPasswdBtn.snp_makeConstraints { make -> Void in
             make.height.equalTo(CavyDefine.spacingWidth25 * 3)
         }
         

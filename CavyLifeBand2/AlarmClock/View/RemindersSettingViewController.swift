@@ -90,13 +90,13 @@ class RemindersSettingViewController: UIViewController, BaseViewControllerPresen
         if dataSource?.settingListModel.settingRealmList[0].isOpenSetting == true {
             tableList = Array(count: tableExpandCellCount!, repeatedValue: "")
             
-            self.tableView.snp_updateConstraints(closure: { (make) in
+            self.tableView.snp_updateConstraints(closure: { make in
                 make.height.equalTo(tableExpandHeight)
             })
         } else {
             tableList = Array(count: tableExpandCellCount! - 1, repeatedValue: "")
             
-            self.tableView.snp_updateConstraints(closure: { (make) in
+            self.tableView.snp_updateConstraints(closure: { make in
                 make.height.equalTo(tableUnExpandHeight)
             })
         }
@@ -108,7 +108,7 @@ class RemindersSettingViewController: UIViewController, BaseViewControllerPresen
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         tableView.backgroundColor = UIColor.whiteColor()
         
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp_makeConstraints { make in
             make.trailing.equalTo(self.view).offset(-tableViewMargin)
             make.leading.equalTo(self.view).offset(tableViewMargin)
         }
@@ -132,7 +132,7 @@ extension RemindersSettingViewController: SettingSwitchTableViewCelldDelegate {
             self.tableView.layoutIfNeeded()
             
             UIView.animateWithDuration(0.3, animations: {
-                self.tableView.snp_updateConstraints(closure: { (make) in
+                self.tableView.snp_updateConstraints(closure: { make in
                     make.height.equalTo(self.tableExpandHeight)
                 })
                 self.tableView.layoutIfNeeded()
@@ -146,7 +146,7 @@ extension RemindersSettingViewController: SettingSwitchTableViewCelldDelegate {
             self.tableView.layoutIfNeeded()
             
             UIView.animateWithDuration(0.3, animations: {
-                self.tableView.snp_updateConstraints(closure: { (make) in
+                self.tableView.snp_updateConstraints(closure: { make in
                     make.height.equalTo(self.tableUnExpandHeight)
                 })
                 self.tableView.layoutIfNeeded()

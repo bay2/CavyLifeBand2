@@ -79,7 +79,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
         
         targetVC.addNewClock = true
         
-        targetVC.updateAlarmBlock = { (alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
+        targetVC.updateAlarmBlock = {(alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
             
             self.dataSource?.addAlarm(alarm)
             
@@ -101,7 +101,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         tableView.showsVerticalScrollIndicator = false
         
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp_makeConstraints { make in
             make.trailing.equalTo(self.view).offset(-tableViewMargin)
             make.leading.equalTo(self.view).offset(tableViewMargin)
         }
@@ -166,7 +166,7 @@ extension IntelligentClockViewController: UITableViewDelegate {
         
         targetVC.alarmModel = (dataSource?.getAlarmModelCopyByIndex(indexPath.row))!
         
-        targetVC.updateAlarmBlock = { (alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
+        targetVC.updateAlarmBlock = {(alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
             
             Log.info(alarm)
             

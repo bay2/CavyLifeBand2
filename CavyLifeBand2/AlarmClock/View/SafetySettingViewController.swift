@@ -47,7 +47,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         
         tableView.registerNib(UINib(nibName: safetyContactCell, bundle: nil), forCellReuseIdentifier: safetyContactCell)
         
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp_makeConstraints { make in
             
             make.trailing.equalTo(self.view).offset(-tableViewMargin)
             

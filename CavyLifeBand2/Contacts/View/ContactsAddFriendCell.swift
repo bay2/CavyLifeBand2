@@ -103,17 +103,17 @@ class ContactsAddFriendCell: UITableViewCell {
 
         if dataSource.introudce.isEmpty {
 
-            self.nameLabel.snp_makeConstraints(closure: { (make) in
+            self.nameLabel.snp_makeConstraints(closure: { make in
                 make.centerY.equalTo(self)
             })
 
         } else {
 
-            self.nameLabel.snp_makeConstraints(closure: { (make) in
+            self.nameLabel.snp_makeConstraints(closure: { make in
                 make.bottom.equalTo(self.headView.snp_centerY)
             })
             
-            self.introduceLabel.snp_makeConstraints(closure: { (make) in
+            self.introduceLabel.snp_makeConstraints(closure: { make in
                 make.top.equalTo(self.nameLabel.snp_bottom).offset(8)
             })
             

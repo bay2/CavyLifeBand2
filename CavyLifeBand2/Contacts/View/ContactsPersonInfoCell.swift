@@ -81,14 +81,14 @@ class ContactsPersonInfoCell: UITableViewCell {
             editButton.hidden = false
             badgeView.hidden = true
             
-            subTitleLab.snp_makeConstraints(closure: { (make) -> Void in
+            subTitleLab.snp_makeConstraints(closure: { make -> Void in
                 make.left.equalTo(badgeView)
             })
             
         case .FriendRelation:
             
             // 朋友的信息
-            subTitleLab.snp_makeConstraints(closure: { (make) -> Void in
+            subTitleLab.snp_makeConstraints(closure: { make -> Void in
                 make.left.equalTo(badgeView).offset(24)
             })
             
@@ -97,7 +97,7 @@ class ContactsPersonInfoCell: UITableViewCell {
             
             // 陌生人的信息
             subTitleLab.hidden = true
-            subTitleLab.snp_makeConstraints(closure: { (make) -> Void in
+            subTitleLab.snp_makeConstraints(closure: { make -> Void in
                 make.left.equalTo(badgeView).offset(24)
             })
             

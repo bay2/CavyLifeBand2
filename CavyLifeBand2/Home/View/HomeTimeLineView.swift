@@ -46,7 +46,7 @@ class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDele
         collectionView!.delegate = self
         collectionView!.registerClass(HomeDateTimeLineCell.self, forCellWithReuseIdentifier: "HomeDateTimeLineCell")
         self.addSubview(collectionView!)
-        collectionView!.snp_makeConstraints { (make) in
+        collectionView!.snp_makeConstraints { make in
             make.left.top.right.bottom.equalTo(self)
         }
         

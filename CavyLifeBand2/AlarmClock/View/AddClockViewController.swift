@@ -138,7 +138,7 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
         
         datePicker.datePickerMode = .Time
         
-        datePicker.addTarget(self, action:#selector(AddClockViewController.datePickerValueChange(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        datePicker.addTarget(self, action: #selector(AddClockViewController.datePickerValueChange(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         datePicker.date = (dataSource?.getAlarmTimeDate())!
         
@@ -165,7 +165,7 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
     
     //action of the delete button
     @IBAction func deleteAlarm(sender: AnyObject) {
-        updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: addNewClock)
+        updateAlarmBlock!(model: dataSource!.alarmModel, isUpdate: addNewClock)
 
         self.popVC()
     }

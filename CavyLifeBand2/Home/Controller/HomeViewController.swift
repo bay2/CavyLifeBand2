@@ -74,14 +74,14 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
         view.addSubview(dateView)
         dateView.backgroundColor = UIColor.whiteColor()
-        dateView.snp_makeConstraints { (make) in
+        dateView.snp_makeConstraints { make in
             make.top.equalTo(self.view).offset(96 + ez.screenWidth * 0.55)
             make.left.right.equalTo(self.view)
             make.height.equalTo(50)
         }
         
         view.addSubview(timeLineView)
-        timeLineView.snp_makeConstraints { (make) in
+        timeLineView.snp_makeConstraints { make in
             make.top.equalTo(dateView).offset(50)
             make.left.right.bottom.equalTo(self.view)
         }
@@ -140,4 +140,5 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
 }

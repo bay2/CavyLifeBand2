@@ -63,7 +63,7 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
      */
     func loadFriendListDataByNet() {
         
-        ContactsWebApi.shareApi.getFriendList(userId) { (result) in
+        ContactsWebApi.shareApi.getFriendList(userId) {(result) in
             
             guard result.isSuccess else {
                 

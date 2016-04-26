@@ -9,7 +9,7 @@
 import Foundation
 import Log
 
-var Log = Logger()
+let Log = Logger()
 
 public enum Level {
     case Trace, Debug, Info, Warning, Error

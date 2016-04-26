@@ -28,7 +28,7 @@ extension UserViewControllerPresentable where Self: UIViewController {
         self.navigationController?.navigationBarHidden = true
         
         self.view.addSubview(navItemView)
-        navItemView.snp_makeConstraints { (make) -> Void in
+        navItemView.snp_makeConstraints { make -> Void in
             make.height.equalTo(CavyDefine.spacingWidth25 * 8)
             make.top.right.left.equalTo(self.view)
         }
@@ -64,7 +64,7 @@ extension UserViewControllerPresentable where Self: UIViewController {
         titleLeb.textColor = UIColor(named: .SignInMainTextColor)
         titleLeb.font = UIFont.systemFontOfSize(22)
         navItemView.addSubview(titleLeb)
-        titleLeb.snp_makeConstraints { (make) -> Void in
+        titleLeb.snp_makeConstraints { make -> Void in
             make.centerY.equalTo(navItemView)
             make.centerX.equalTo(navItemView)
         }
@@ -92,7 +92,7 @@ extension UserViewControllerPresentable where Self: UIViewController {
         }
         
         navItemView.addSubview(backBtn)
-        backBtn.snp_makeConstraints { (make) -> Void in
+        backBtn.snp_makeConstraints { make -> Void in
             make.left.equalTo(CavyDefine.spacingWidth25 * 2)
             make.centerY.equalTo(navItemView)
         }
@@ -117,7 +117,7 @@ extension UserViewControllerPresentable where Self: UIViewController {
         }
         
         navItemView.addSubview(rightBtn)
-        rightBtn.snp_makeConstraints { (make) -> Void in
+        rightBtn.snp_makeConstraints { make -> Void in
             make.right.equalTo(-(CavyDefine.spacingWidth25 * 2))
             make.centerY.equalTo(navItemView)
         }

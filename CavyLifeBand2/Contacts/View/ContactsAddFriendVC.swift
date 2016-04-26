@@ -66,11 +66,11 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
         
         updateNavUI()
         
-        self.buttonView.snp_makeConstraints { (make) -> Void in
+        self.buttonView.snp_makeConstraints { make -> Void in
             make.top.equalTo(self.view)
         }
         
-        self.scrollView.snp_makeConstraints { (make) -> Void in
+        self.scrollView.snp_makeConstraints { make -> Void in
             make.top.equalTo(buttonView.snp_bottom)
         }
         
@@ -80,7 +80,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
         
         addTableViewData(ContactsRecommendFriendData(viewController: self, tableView: recommendView.tableView), tableView: recommendView.tableView)
         addTableViewData(ContactsAddressBookFriendData(viewController: self, tableView: addressBookTableView), tableView: addressBookTableView)
-        addTableViewData(ContactsSearchFriendData(viewController: self, tableView:  searchTableView), tableView: searchTableView)
+        addTableViewData(ContactsSearchFriendData(viewController: self, tableView: searchTableView), tableView: searchTableView)
         addTableViewData(ContactsNearbyFriendData(viewController: self, tableView: nearbyTableView), tableView: nearbyTableView)
         
         loadData()
@@ -92,7 +92,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
      */
     func loadData() {
         
-        tableDictionary = tableDictionary.map { (key, value) -> (UITableView, ContactsTableViewSectionDataSource) in
+        tableDictionary = tableDictionary.map {(key, value) -> (UITableView, ContactsTableViewSectionDataSource) in
             
             let dataSource = value
             dataSource.loadData()

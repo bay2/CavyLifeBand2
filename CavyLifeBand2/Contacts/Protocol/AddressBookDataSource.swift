@@ -39,7 +39,7 @@ extension AddressBookDataSource {
             
             if CNContactStore.authorizationStatusForEntityType(.Contacts) == .NotDetermined {
                 
-                contact.requestAccessForEntityType(.Contacts) { (granted, error) in
+                contact.requestAccessForEntityType(.Contacts) {(granted, error) in
                     
                     guard granted else {
                         return
@@ -69,7 +69,7 @@ extension AddressBookDataSource {
         
         if ABAddressBookGetAuthorizationStatus() == .NotDetermined {
             
-            ABAddressBookRequestAccessWithCompletion(contact) { (granted, error) in
+            ABAddressBookRequestAccessWithCompletion(contact) {(granted, error) in
                 
                 guard granted else {
                     return
@@ -98,7 +98,7 @@ extension AddressBookDataSource {
         
         let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(CNContactFormatterStyle.FullName), CNContactPhoneNumbersKey]
         
-        try! addressBook.enumerateContactsWithFetchRequest(CNContactFetchRequest(keysToFetch: keysToFetch)) { (contact, pointer) in
+        try! addressBook.enumerateContactsWithFetchRequest(CNContactFetchRequest(keysToFetch: keysToFetch)) {(contact, pointer) in
             
             let phone = contact.phoneNumbers.first
             guard let phoneNumber = phone?.value as? CNPhoneNumber else {
