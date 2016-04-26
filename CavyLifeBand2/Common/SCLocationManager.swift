@@ -68,6 +68,7 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
                 return
             }
             
+            Log.error("\(placemark![0].administrativeArea)")
             
         }
         
