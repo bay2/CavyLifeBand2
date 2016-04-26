@@ -15,6 +15,7 @@ script:
 - ./scripts/add-key.sh
 - . $bulidTask
 after_success:
+- bash <(curl -s https://codecov.io/bash)>
 - ./scripts/sign-and-upload.sh
 after_script:
 - ./scripts/remove-key.sh
