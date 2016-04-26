@@ -42,7 +42,7 @@ class ForgotPasswdTest: XCTestCase {
             
             let expectation = expectationWithDescription("testForgotPasswdOk succeed")
             
-            userNetReq.forgotPasswd(para.0, passwd: para.1, safetyCode: para.2) { reslut in
+            UserNetRequestData.shareApi.forgotPasswd(para.0, passwd: para.1, safetyCode: para.2) { reslut in
                 
                 XCTAssertTrue(reslut.isSuccess)
                 
@@ -71,7 +71,7 @@ class ForgotPasswdTest: XCTestCase {
             
             let expectation = expectationWithDescription("testForgotPasswd_UserNameError succeed")
             
-            userNetReq.forgotPasswd(para.0, passwd: para.1, safetyCode: para.2) { reslut in
+            UserNetRequestData.shareApi.forgotPasswd(para.0, passwd: para.1, safetyCode: para.2) { reslut in
                 
                 XCTAssertTrue(reslut.isFailure)
                 XCTAssertTrue(reslut.error! == UserRequestErrorType.UserNameErr)
@@ -94,7 +94,7 @@ class ForgotPasswdTest: XCTestCase {
             
             let expectation = expectationWithDescription("testForgotPasswd_PassWdError succeed")
             
-            userNetReq.forgotPasswd(para.0, passwd: para.1, safetyCode: para.2) { reslut in
+            UserNetRequestData.shareApi.forgotPasswd(para.0, passwd: para.1, safetyCode: para.2) { reslut in
                 
                 XCTAssertTrue(reslut.isFailure)
                 XCTAssertTrue(reslut.error! == UserRequestErrorType.PassWdErr)

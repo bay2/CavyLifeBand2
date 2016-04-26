@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Log
 import EZSwiftExtensions
 
 class GoalView: UIView {
@@ -14,7 +15,7 @@ class GoalView: UIView {
     var stepCurrentValue: Int = 8000
     var hhCurrentValue: Int = 4
     var mmCurrentValue: Int = 58
-    
+    let sliderWidth = ez.screenWidth * 0.76
     // 标题 -- 目标
     @IBOutlet weak var titleLab: UILabel!
     
@@ -58,6 +59,13 @@ class GoalView: UIView {
 
     // 滑块
     @IBOutlet weak var sleepSlider: UISlider!
+    
+    
+    var sleepTimeString: String {
+        
+        return "\(self.hhCurrentValue):\(self.mmCurrentValue)"
+        
+    }
 
     // 布局
     func goalViewLayout() {
@@ -67,7 +75,7 @@ class GoalView: UIView {
         // 页面名称
         titleLab.text = L10n.GuideGoal.string
         titleLab.textColor = UIColor(named: .GuideColorCC)
-        titleLab.snp_makeConstraints { (make) -> Void in
+        titleLab.snp_makeConstraints { make -> Void in
             make.top.equalTo(self).offset(ez.screenWidth * 0.08)
         }
         
@@ -81,50 +89,51 @@ class GoalView: UIView {
         // 单位：步
         stepUnit.text = L10n.GuideStep.string
         stepUnit.textColor = UIColor(named: .GuideColorCC)
-        stepUnit.snp_makeConstraints { (make) -> Void in
+        stepUnit.snp_makeConstraints { make -> Void in
             make.right.equalTo(self).offset(0 - ez.screenWidth * 0.08)
         }
         
         // 目标步数
         stepValue.text = String(stepCurrentValue)
         stepValue.textColor = UIColor(named: .GuideColorCC)
-        stepValue.snp_makeConstraints { (make) -> Void in
+        stepValue.snp_makeConstraints { make -> Void in
             make.top.equalTo(titleLab).offset(ez.screenWidth * 0.14)
         }
         
         // 计步模块
         stepModlue.text = L10n.GuideGoalStep.string
         stepModlue.textColor = UIColor(named: .GuideColorCC)
-        stepModlue.snp_makeConstraints { (make) -> Void in
+        stepModlue.snp_makeConstraints { make -> Void in
             make.left.equalTo(self).offset(ez.screenWidth * 0.08)
         }
         
         // 滑块 stepSlider
-        stepSlider.snp_makeConstraints { (make) -> Void in
+        stepSlider.snp_makeConstraints { make -> Void in
+            make.width.equalTo(sliderWidth)
             make.top.equalTo(stepValue).offset(ez.screenWidth * 0.12 + 36)
         }
         
         // 平均值线
         stepPinAvg.textColor = UIColor(named: .GuideColor33)
         stepPineLine.backgroundColor = UIColor(named: .GuideColor33)
-        stepPineLine.snp_makeConstraints { (make) -> Void in
+        stepPineLine.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.04)
             make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
         }
         
-        stepPinAvg.snp_makeConstraints { (make) -> Void in
+        stepPinAvg.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.06 - 14)
         }
         
         // 推荐值线
         stepPinRecom.textColor = UIColor(named: .GuideColor33)
         stepPinRecomLIne.backgroundColor = UIColor(named: .GuideColor33)
-        stepPinRecomLIne.snp_makeConstraints { (make) -> Void in
+        stepPinRecomLIne.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.04)
             make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
         }
         
-        stepPinRecom.snp_makeConstraints { (make) -> Void in
+        stepPinRecom.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.06 - 14)
         }
         
@@ -137,12 +146,12 @@ class GoalView: UIView {
         // 单位：min
         sleepMMUnit.text = "min"
         sleepMMUnit.textColor = UIColor(named: .GuideColorCC)
-        sleepMMUnit.snp_makeConstraints { (make) -> Void in
+        sleepMMUnit.snp_makeConstraints { make -> Void in
             make.right.equalTo(self).offset(0 - ez.screenWidth * 0.08)
         }
         sleepMMValue.text = String(mmCurrentValue)
         sleepMMValue.textColor = UIColor(named: .GuideColorCC)
-        sleepMMValue.snp_makeConstraints { (make) -> Void in
+        sleepMMValue.snp_makeConstraints { make -> Void in
             make.top.equalTo(stepSlider).offset(ez.screenWidth * 0.22)
         }
 
@@ -154,35 +163,36 @@ class GoalView: UIView {
         // 睡眠模块
         sleepModlue.text = L10n.GuideGoalSleep.string
         sleepModlue.textColor = UIColor(named: .GuideColorCC)
-        sleepModlue.snp_makeConstraints { (make) -> Void in
+        sleepModlue.snp_makeConstraints { make -> Void in
             make.left.equalTo(self).offset(ez.screenWidth * 0.08)
         }
         
         // 睡眠滑块
-        sleepSlider.snp_makeConstraints { (make) -> Void in
+        sleepSlider.snp_makeConstraints { make -> Void in
+            make.width.equalTo(sliderWidth)
             make.top.equalTo(sleepHHValue).offset(ez.screenWidth * 0.12 + 36)
         }
 
         // 平均值线
         sleepPinAvgLab.textColor = UIColor(named: .GuideColor33)
         sleepPineAvgLine.backgroundColor = UIColor(named: .GuideColor33)
-        sleepPineAvgLine.snp_makeConstraints { (make) -> Void in
+        sleepPineAvgLine.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.04)
             make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
         }
         
-        sleepPinAvgLab.snp_makeConstraints { (make) -> Void in
+        sleepPinAvgLab.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.06 - 14)
         }
         
         // 推荐值线
         sleepPinRecomLine.backgroundColor = UIColor(named: .GuideColor33)
-        sleepPinRecomLine.snp_makeConstraints { (make) -> Void in
+        sleepPinRecomLine.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.04)
             make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
         }
         sleepPinRecomLab.textColor = UIColor(named: .GuideColor33)
-        sleepPinRecomLab.snp_makeConstraints { (make) -> Void in
+        sleepPinRecomLab.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.06 - 14)
         }
 
@@ -200,25 +210,24 @@ class GoalView: UIView {
         
         stepValue.text = String(recommandValue)
         
-        let minSlider = Int(minValue / 100)
-        let maxSlider = Int(maxValue / 100)
-        let avgSlider = Int(averageValue / 100)
-        let recomSlider = Int(recommandValue / 100)
-        print("\(minSlider)--\(maxSlider)--\(avgSlider)--\(recomSlider)")
+        let minSlider = Float(minValue / 100)
+        let maxSlider = Float(maxValue / 100)
+        let avgSlider = Float(averageValue / 100)
+        let recomSlider = Float(recommandValue / 100)
         
-        self.stepSlider.minimumValue = Float(minSlider)
-        self.stepSlider.maximumValue = Float(maxSlider)
-        self.stepSlider.value = Float(recomSlider)
+        self.stepSlider.minimumValue = minSlider
+        self.stepSlider.maximumValue = maxSlider
+        self.stepSlider.value = recomSlider
         
         ///  平均 和 推荐标签移动的长度
-        let avgMove = CGFloat(avgSlider - minSlider) / CGFloat(maxSlider - minSlider) * stepSlider.frame.width
-        let recomMove = CGFloat(recomSlider - minSlider) / CGFloat(maxSlider - minSlider) * stepSlider.frame.width
-        print("\(avgMove)--\(recomMove)")
+        let avgMove = CGFloat(avgSlider - minSlider) / CGFloat(maxSlider - minSlider) * sliderWidth
+        let recomMove = CGFloat(recomSlider - minSlider) / CGFloat(maxSlider - minSlider) * sliderWidth
+//        Log.info("步数： \(avgMove)--\(recomMove)")
 
-        self.stepPineLine.snp_makeConstraints { (make) -> Void in
+        self.stepPineLine.snp_makeConstraints { make -> Void in
             make.left.equalTo(self.stepSlider).offset(avgMove)
         }
-        self.stepPinRecomLIne.snp_makeConstraints { (make) -> Void in
+        self.stepPinRecomLIne.snp_makeConstraints { make -> Void in
             make.left.equalTo(self.stepSlider).offset(recomMove)
         }
         
@@ -249,18 +258,19 @@ class GoalView: UIView {
         let recCount = hourChangeToMinutes(recomH, minutes: recomM)
         let minCount = hourChangeToMinutes(minH, minutes: minM)
         let maxCount = hourChangeToMinutes(maxH, minutes: maxM)
-        
+
         self.sleepSlider.minimumValue = Float(minCount)
         self.sleepSlider.maximumValue = Float(maxCount)
         self.sleepSlider.value = Float(recCount)
         
         ///  平均 和 推荐标签移动的长度
-        let avgMove = CGFloat(avgCount - minCount) / CGFloat(maxCount - minCount) * sleepSlider.frame.width
-        let recomMove = CGFloat(recCount - minCount) / CGFloat(maxCount - minCount) * sleepSlider.frame.width
-        self.sleepPineAvgLine.snp_makeConstraints { (make) -> Void in
+        let avgMove = CGFloat(avgCount - minCount) / CGFloat(maxCount - minCount) * sliderWidth
+        let recomMove = CGFloat(recCount - minCount) / CGFloat(maxCount - minCount) * sliderWidth
+//        Log.info("睡眠： \(avgMove)--\(recomMove)")
+        self.sleepPineAvgLine.snp_makeConstraints { make -> Void in
             make.left.equalTo(self.stepSlider).offset(avgMove)
         }
-        self.sleepPinRecomLine.snp_makeConstraints { (make) -> Void in
+        self.sleepPinRecomLine.snp_makeConstraints { make -> Void in
             make.left.equalTo(self.stepSlider).offset(recomMove)
         }
         

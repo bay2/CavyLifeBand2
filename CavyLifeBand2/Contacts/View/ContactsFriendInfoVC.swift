@@ -39,6 +39,16 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
     }
     
     /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+        
+    }
+    
+    /**
      添加 全部视图
      */
     func addAllViews() {
@@ -49,12 +59,12 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         
         // contentView 
         contectView.backgroundColor = UIColor(named: .HomeViewMainColor)
-        contectView.snp_makeConstraints { (make) in
+        contectView.snp_makeConstraints { make in
             // |-16-|-infoTableView-|-10-|-qualityTableView-170-|-20-|
             make.height.equalTo(tableViewHeight + 216)
         }
         
-        infoTableView.snp_makeConstraints { (make) -> Void in
+        infoTableView.snp_makeConstraints { make -> Void in
             make.height.equalTo(tableViewHeight)
         }
         tableViewBaseSetting(infoTableView)

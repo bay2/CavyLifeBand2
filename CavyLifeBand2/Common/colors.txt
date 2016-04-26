@@ -1,13 +1,15 @@
+TextFieldTextColor : #000000CC
+
 MainPageBtn : #FFD954
 MainPageSelectedBtn : #ECBC46
 MainPageBtnText : #B46E00
-SignInBackground : #1dbcff
+SignInBackground : #48d299
 SignInNavigationBar : #1dbcff
 SignInMainTextColor : #00000080
 PageIndicatorTintColor : #00000033
 SignInForgotPwdBtnText : #00000066
 SignInPlaceholderText : #00000066
-SignInTextFieldText : #000000CC
+
 SignInSplitLine : #00000033
 SignUpProtocolBtn : #125fae
 GuideSetInfoColor : #1dbcff
@@ -27,6 +29,9 @@ HomeViewLeftHeaderLine : #ffffff80
 HomeViewLeftSelected : #0000001A
 HomeViewUserName: #000000B3
 HomeViewAccount: #00000080
+HomeSleepRingColor: #36f3ff
+HomeStepRingColor: #fff956
+HomeRingViewBackground: #309a6e
 ContactsTitleColor : #000000B3
 ContactsName : #000000
 ContactsIntrouduce: #0000004D
@@ -44,4 +49,20 @@ ContactsPKBtnColor: #FF9F22
 ContactsSearchFlagViewBg : #ffffff66
 ContactsAddFriendButtonColor : #ff9138
 ContactsAgreeButtonColor : #0dcf7f
+ContactsAccountLogoutButton : #ff6749
 ContactsAccountLogoutButton : #ff6d01
+AlarmClockDateBtnBGNormalColor : #f2f2f2
+AlarmClockDateBtnBGSelectedColor : #ff993f
+AlarmClockDateBtnTextNormalColor : #858585
+AlarmClockDateBtnTextSelectedColor : #ffffff
+AlarmClockTableCellTitleColor : #000000B3
+AlarmClockTableCellDescriptionColor : #0000004D
+AlarmClockDeleteBtnBGColor : #dbdbdb
+AlarmClockSettingTitleColor : #000000B3
+AlarmClockSettingDescriptionColor : #00000080
+AlarmClockSettingDescription2Color : #0000004D
+SettingSeparatorColor : #cccccc
+SettingTableCellTitleColor : #000000B3
+SettingTableCellInfoGrayColor : #0000004D
+SettingTableCellInfoYellowColor : #ff9138
+SettingTableFooterInfoColor : #00000080

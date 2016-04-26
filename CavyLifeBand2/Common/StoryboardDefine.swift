@@ -43,6 +43,29 @@ struct StoryboardScene {
       return StoryboardScene.AccountInfo.ContactsAccountInfoVCScene.viewController() as! ContactsAccountInfoVC
     }
   }
+  enum AlarmClock: String, StoryboardSceneType {
+    static let storyboardName = "AlarmClock"
+
+    case AddClockViewControllerScene = "AddClockViewController"
+    static func instantiateAddClockViewController() -> AddClockViewController {
+      return StoryboardScene.AlarmClock.AddClockViewControllerScene.viewController() as! AddClockViewController
+    }
+
+    case IntelligentClockViewControllerScene = "IntelligentClockViewController"
+    static func instantiateIntelligentClockViewController() -> IntelligentClockViewController {
+      return StoryboardScene.AlarmClock.IntelligentClockViewControllerScene.viewController() as! IntelligentClockViewController
+    }
+
+    case RemindersSettingViewControllerScene = "RemindersSettingViewController"
+    static func instantiateRemindersSettingViewController() -> RemindersSettingViewController {
+      return StoryboardScene.AlarmClock.RemindersSettingViewControllerScene.viewController() as! RemindersSettingViewController
+    }
+
+    case SafetySettingViewControllerScene = "SafetySettingViewController"
+    static func instantiateSafetySettingViewController() -> SafetySettingViewController {
+      return StoryboardScene.AlarmClock.SafetySettingViewControllerScene.viewController() as! SafetySettingViewController
+    }
+  }
   enum Camera: String, StoryboardSceneType {
     static let storyboardName = "Camera"
 
@@ -111,13 +134,26 @@ struct StoryboardScene {
     }
 
     case LeftViewScene = "LeftView"
-    static func instantiateLeftView() -> LeftViewController {
-      return StoryboardScene.Home.LeftViewScene.viewController() as! LeftViewController
+    static func instantiateLeftView() -> LeftMenViewController {
+      return StoryboardScene.Home.LeftViewScene.viewController() as! LeftMenViewController
+    }
+
+    case RightViewScene = "RightView"
+    static func instantiateRightView() -> RightViewController {
+      return StoryboardScene.Home.RightViewScene.viewController() as! RightViewController
     }
 
     case RootViewScene = "RootView"
     static func instantiateRootView() -> RootViewController {
       return StoryboardScene.Home.RootViewScene.viewController() as! RootViewController
+    }
+  }
+  enum InfoSecurity: String, StoryboardSceneType {
+    static let storyboardName = "InfoSecurity"
+
+    case AccountInfoSecurityVCScene = "AccountInfoSecurityVC"
+    static func instantiateAccountInfoSecurityVC() -> AccountInfoSecurityVC {
+      return StoryboardScene.InfoSecurity.AccountInfoSecurityVCScene.viewController() as! AccountInfoSecurityVC
     }
   }
   enum LaunchScreen: StoryboardSceneType {
@@ -134,11 +170,6 @@ struct StoryboardScene {
     case MainPageViewScene = "MainPageView"
     static func instantiateMainPageView() -> MainPageViewController {
       return StoryboardScene.Main.MainPageViewScene.viewController() as! MainPageViewController
-    }
-
-    case PageViewScene = "PageView"
-    static func instantiatePageView() -> PageViewController {
-      return StoryboardScene.Main.PageViewScene.viewController() as! PageViewController
     }
 
     case SignInViewScene = "SignInView"

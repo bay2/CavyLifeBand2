@@ -19,6 +19,9 @@ class WeightView: UIView {
     var rotaryView: MHRotaryKnob?
     let minValue: CGFloat = 0
     let maxValue: CGFloat = 180
+    var weightString: String {
+        return self.valueLabel.text ?? ""
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,13 +46,13 @@ class WeightView: UIView {
         titleLab.font = UIFont.systemFontOfSize(18)
         titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.textAlignment = .Center
-        titleLab.snp_makeConstraints { (make) -> Void in
+        titleLab.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 18))
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 2)
         }
         
-        rotaryView!.snp_makeConstraints { (make) -> Void in
+        rotaryView!.snp_makeConstraints { make -> Void in
             make.center.equalTo(self)
             make.size.equalTo(CGSizeMake(ez.screenWidth * 0.72, ez.screenWidth * 0.72))
         }
@@ -70,7 +73,7 @@ class WeightView: UIView {
         valueLabel.textAlignment = .Center
         valueLabel.textColor = UIColor(named: .GuideColorCC)
         valueLabel.font = UIFont.systemFontOfSize(45)
-        valueLabel.snp_makeConstraints { (make) -> Void in
+        valueLabel.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(ez.screenWidth * 0.72, 45))
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(ez.screenWidth * 0.72)
@@ -81,7 +84,7 @@ class WeightView: UIView {
         KGLabel.textAlignment = .Center
         KGLabel.textColor = UIColor(named: .GuideColorCC)
         KGLabel.font = UIFont.systemFontOfSize(30)
-        KGLabel.snp_makeConstraints { (make) -> Void in
+        KGLabel.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(ez.screenWidth * 0.72, 40))
             make.centerX.equalTo(self)
             make.top.equalTo(valueLabel).offset(ez.screenWidth * 0.04 + 30)

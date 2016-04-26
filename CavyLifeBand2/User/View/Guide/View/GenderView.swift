@@ -14,12 +14,17 @@ class GenderView: UIView {
     var titleLab = UILabel()
     var upGenderBtn = UIButton(type: .Custom)
     var downGenderBtn = UIButton(type: .Custom)
+    
+    var genderBtnSize: CGSize {
+        
+        return CGSizeMake(130, 130)
+        
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         MOrG = true // 默认True 是男的
-        UserInfoModelView.shareInterface.userInfo!.sex = 0
         genderViewLayout()
         
     }
@@ -41,25 +46,24 @@ class GenderView: UIView {
         titleLab.font = UIFont.systemFontOfSize(18)
         titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.textAlignment = .Center
-        titleLab.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 18))
+        titleLab.snp_makeConstraints { make -> Void in
+            make.top.equalTo(self)
+            make.bottom.equalTo(upGenderBtn.snp_top)
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 2)
         }
         
         upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyChosen), forState: .Normal)
-        upGenderBtn.frame.size = CGSizeMake(CavyDefine.spacingWidth25 * 8, CavyDefine.spacingWidth25 * 8)
-        upGenderBtn.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 8, CavyDefine.spacingWidth25 * 8))
+        upGenderBtn.snp_makeConstraints { make -> Void in
+            make.size.equalTo(genderBtnSize)
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 5)
+            make.bottom.equalTo(self.snp_centerY).offset(-15)
         }
         
         downGenderBtn.setImage(UIImage(asset: .GuideGenderGirlGary), forState: .Normal)
-        downGenderBtn.snp_makeConstraints { (make) -> Void in
-            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 8, CavyDefine.spacingWidth25 * 8))
+        downGenderBtn.snp_makeConstraints { make -> Void in
+            make.size.equalTo(genderBtnSize)
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 15)
+            make.top.equalTo(self.snp_centerY).offset(15)
         }
         
         upGenderBtn.addTarget(self, action: #selector(GenderView.genderUpClick), forControlEvents: .TouchUpInside)
@@ -73,7 +77,6 @@ class GenderView: UIView {
     func genderUpClick() {
         
         MOrG = true
-        UserInfoModelView.shareInterface.userInfo!.sex = 0
         updateGender()
 
     }
@@ -84,7 +87,6 @@ class GenderView: UIView {
     func genderDownClick() {
         
         MOrG = false
-        UserInfoModelView.shareInterface.userInfo!.sex = 1
         updateGender()
         
     }

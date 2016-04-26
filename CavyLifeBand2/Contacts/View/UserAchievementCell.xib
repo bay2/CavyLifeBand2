@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="UserAchievementCell" customModule="CavyLifeBand2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="90" height="132"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="90" height="132"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y9A-j9-fNz">
+                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Y9A-j9-fNz" secondAttribute="height" multiplier="1:1" id="bGv-0v-5fo"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cdh-2k-qSz">
+                        <rect key="frame" x="5" y="100" width="80" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Y9A-j9-fNz" secondAttribute="trailing" id="2d9-1g-ejX"/>
+                <constraint firstItem="Cdh-2k-qSz" firstAttribute="top" secondItem="Y9A-j9-fNz" secondAttribute="bottom" constant="10" id="5Tr-Bw-Vst"/>
+                <constraint firstItem="Y9A-j9-fNz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8rQ-Um-091"/>
+                <constraint firstItem="Cdh-2k-qSz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="9v3-Fl-UEQ"/>
+                <constraint firstAttribute="trailing" secondItem="Cdh-2k-qSz" secondAttribute="trailing" constant="5" id="WEJ-eB-Lks"/>
+                <constraint firstAttribute="bottom" secondItem="Cdh-2k-qSz" secondAttribute="bottom" constant="20" id="ZBv-Is-NDR"/>
+                <constraint firstItem="Y9A-j9-fNz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="aSM-cX-TSu"/>
+            </constraints>
+            <connections>
+                <outlet property="achieveImageView" destination="Y9A-j9-fNz" id="fZV-pX-A3V"/>
+                <outlet property="achieveTitleLabel" destination="Cdh-2k-qSz" id="yoT-nL-4BF"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

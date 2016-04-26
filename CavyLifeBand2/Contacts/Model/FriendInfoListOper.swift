@@ -31,8 +31,6 @@ extension FriendInfoListDelegate {
      */
     func queryFriendList() -> FriendInfoListRealm? {
         
-        Log.info("\(realm.path)")
-        
         guard isExistFriendList() else {
             return nil
         }

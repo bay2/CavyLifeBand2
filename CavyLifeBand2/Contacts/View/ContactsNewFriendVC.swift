@@ -8,15 +8,38 @@
 
 import UIKit
 
-class ContactsNewFriendVC: ContactsBaseViewController {
+extension ContactsNewFriendData: ContactsTableViewSectionDataSource {
+    
+    var rowCount: Int { return items.count }
+    
+    func createCell(cell: ContactsAddFriendCell, index: NSIndexPath) -> ContactsAddFriendCell {
+        
+        cell.configure(items[index.row], delegate: items[index.row])
+        
+        return cell
+        
+    }
+    
+}
+
+class ContactsNewFriendVC: UIViewController, BaseViewControllerPresenter {
+    
+    var navTitle: String { return L10n.ContactsTitle.string }
 
     @IBOutlet weak var newFriendTableView: UITableView!
+    
+    var newFriendData: ContactsNewFriendData?
     
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        self.updateNavUI()
 
         newFriendTableView.registerNib(UINib(nibName: "ContactsAddFriendCell", bundle: nil), forCellReuseIdentifier: "ContactsAddFriendCell")
+        
+        newFriendData = ContactsNewFriendData(viewController: self, tableView: newFriendTableView)
+        
+        newFriendData?.loadData()
 
     }
 
@@ -46,17 +69,13 @@ extension ContactsNewFriendVC {
             return tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: indexPath)
         }
 
-        let viewModel = ContactsNewFriendCellViewModel()
-
-        contactsCell.configure(viewModel, delegate: viewModel)
-        
-        return contactsCell
+        return newFriendData?.createCell(contactsCell, index: indexPath) ?? contactsCell
 
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return 5
+        return newFriendData?.rowCount ?? 0
 
     }
 

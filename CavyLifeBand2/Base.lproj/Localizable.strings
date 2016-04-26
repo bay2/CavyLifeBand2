@@ -32,7 +32,7 @@
 "UserModuleErrorCode.PasswdNil" = "密码不能为空";
 "UserModuleErrorCode.SecurityNil" = "验证码不能为空";
 "UserModuleErrorCode.UserNameNil" = "用户名不能为空";
-
+"UserModuleErrorCode.UnknownError" = "未知错误";
 
 // 首页
 "MainPage.SignInBtn" = "登入";
@@ -104,6 +104,21 @@
 "Camera.Back" = "取消";
 
 // 主页面
+"Home.SleepRing.PercerntText" = "已完成";
+"Home.SleepRing.Unit.Hour" = "小时";
+"Home.SleepRing.Unit.Minute" = "分钟";
+"Home.StepRing.PercerntText" = "已完成目标的";
+"Home.Weather.Air" = "空气";
+"Home.Weather.AirCondition.Best" = "优";
+"Home.Weather.AirCondition.Good" = "良";
+"Home.Weather.AirPollution.Mild" = "轻度污染";
+"Home.Weather.AirPollution.Middle" = "中度污染";
+"Home.Weather.AirPollution.Bad" = "重度污染";
+"Home.TimeLine.Cell.Sleep" = "睡眠";
+"Home.TimeLine.Cell.Step" = "计步";
+"Home.TimeLine.Cell.PK" = "PK";
+"Home.TimeLine.Cell.Achive" = "成就";
+"Home.TimeLine.Cell.Healthiy" = "健康";
 "Home.LifeList.Title.Target" = "目标";
 "Home.LifeList.Title.InfoOpen" = "信息公开";
 "Home.LifeList.Title.Friend" = "好友";
@@ -111,6 +126,12 @@
 "Home.LifeList.Title.About" = "关于";
 "Home.LifeList.Title.Help" = "帮助与反馈";
 "Home.LifeList.Title.Related" = "相关APP";
+"Home.RightList.Title.Camera" = "遥控相机";
+"Home.RightList.Title.Notification" = "提醒";
+"Home.RightList.Title.AlarmClock" = "智能闹钟";
+"Home.RightList.Title.Security" = "安全";
+"Home.RightList.Title.FirmwareUpgrade" = "固件升级";
+"Home.RightList.Title.BindingBand" = "绑定新的CavyBand";
 
 //好友，联系人
 "Contacts.ListCell.Cavy" = "生活豚鼠";
@@ -151,3 +172,35 @@
 "Contacts.ChangeNotesName.PlaceHolder" = "输入备注名";
 "Contacts.ChangeNotesName.Button" = "确定";
 "Contacts.ChangeSelfName.PlaceHolder" = "更改的昵称";
+"Contacts.Request.VerifyMsg" = "哈喽，我是";
+
+//账户信息
+"AccountInfo.Title" = "账户信息";
+"AccountInfo.LoginoutButton.Title" = "退出登录";
+
+//闹钟
+"AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";
+"AlarmClock.Title" = "智能闹钟";
+"AlarmClock.Awake.Title" = "智能唤醒";
+"AlarmClock.Awake.Description" = "允许你闹钟在目标唤醒时间之前30分钟内将我从浅度睡眠中唤醒，让我更轻松的起床。";
+"AlarmClock.AlarmCircle.Title" = "闹钟周期";
+"AlarmClock.AlarmCircle.SubTitle" = "小提示";
+"AlarmClock.AlarmCircle.Description" = "闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。";
+"AlarmClock.DeleteBtn.Title" = "删除";
+"AlarmClock.AlarmCircle.AlertTitle" = "请选择闹钟周期";
+
+//设置
+"Setting.Safety.Title" = "安全";
+"Setting.SafetyTableCell.ContactButton" = "点击添加";
+"Setting.SafetyTableCell.ContactTitle" = "紧急联系人";
+"Setting.SafetyTableCell.GPSTitle" = "GPS定位";
+"Setting.SafetyTableFooter.Title" = "紧急报警";
+"Setting.SafetyTableFooter.Info" = "紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。";
+"Setting.ReminderPhoneCall.Title" = "来电提醒";
+"Setting.ReminderPhoneCall.Description" = "秒未接提醒";
+"Setting.ReminderMessage.Title" = "短信提醒";
+"Setting.ReminderMessage.Description" = "振动一次通知提醒";
+"Setting.ReminderReconnect.Title" = "断线手环自动重连";
+"Setting.ReminderReconnect.Type" = "3";
+"Setting.ReminderMessage.Type" = "2";
+"Setting.ReminderPhone.Type" = "1";

@@ -86,7 +86,7 @@ class PageViewController: UIViewController {
             
         }
         
-        pageCtrl.snp_makeConstraints { (make) -> Void in
+        pageCtrl.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(backgroundImageView).offset(-((buttonSize.height * 3) - (pageCtrl.size.height / 2)))
         }
         
@@ -98,7 +98,7 @@ class PageViewController: UIViewController {
     func viewLayout() {
         
         buttonView.hidden = false
-        buttonView.snp_makeConstraints { (make) -> Void in
+        buttonView.snp_makeConstraints { make -> Void in
             make.left.equalTo(backgroundImageView).offset(CavyDefine.spacingWidth25 * 2)
             make.right.equalTo(backgroundImageView).offset(-(CavyDefine.spacingWidth25 * 2))
             make.height.equalTo(buttonSize.height)
@@ -111,7 +111,7 @@ class PageViewController: UIViewController {
      */
     func buttonLayout() {
         
-        signInBtn.snp_makeConstraints { (make) -> Void in
+        signInBtn.snp_makeConstraints { make -> Void in
             make.width.equalTo(buttonSize.width)
         }
         
@@ -138,6 +138,10 @@ class PageViewController: UIViewController {
     @IBAction func onClickSignUp(sender: AnyObject) {
 
         let guideVC = StoryboardScene.Guide.instantiateGuideView()
+        
+        let guideVM = GuideBandBluetooth()
+        guideVC.configView(guideVM, delegate: guideVM)
+        
         presentVC(UINavigationController(rootViewController: guideVC))
 
     }

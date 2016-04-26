@@ -33,19 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
         
-        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId != "" {
-            
+        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
+            self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
+        } else {
             self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
-            
         }
         
-//        stub(isMethodPOST()) { _ in
-//            let stubPath = OHPathForFile("SearchFrendListResult.json", self.dynamicType)
-//            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
-//        }
-//        
-        
-
         return true
 
     }
@@ -58,6 +51,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            let stubPath = OHPathForFile("GetFrendListResult.json", self.dynamicType)
 //            return fixture(stubPath!, headers: ["Content-Type": "application/json"])
 //        }
+        
+        if NSProcessInfo.processInfo().arguments.contains("AccountPageSwitchUITests") {
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+            
+        }
 
     
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_IN") {
@@ -92,6 +91,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+        }
+        
+        if NSProcessInfo.processInfo().arguments.contains("AccountInfoSecurityUITest") {
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
+            
         }
     
     }

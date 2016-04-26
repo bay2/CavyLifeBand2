@@ -53,4 +53,22 @@ extension String {
         return returnStr.uppercaseString
     }
     
+    /**
+     数字转格式化字符 千位分隔格式
+     
+     - parameter num: 需转换数字
+     
+     - returns: 转换后的字符串
+     */
+    static func  numberDecimalFormatter(num: Int) -> String {
+    
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = .DecimalStyle
+        let string = numberFormatter.stringFromNumber(NSNumber(integer: num))
+        
+        return string!
+    }
+    
+    
+    
 }

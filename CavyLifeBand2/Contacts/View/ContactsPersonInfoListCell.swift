@@ -16,7 +16,7 @@ class ContactsPersonInfoListCell: UITableViewCell {
     /// 右边Label
     @IBOutlet weak var titleInfoLabel: UILabel!
     
-    
+    var datasource: ContactsPersonInfoListCellPresenter?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,11 +24,8 @@ class ContactsPersonInfoListCell: UITableViewCell {
         
         titleLabel.textColor = UIColor(named: .ContactsTitleColor)
         self.selectionStyle = .None
-        
-            titleInfoLabel.textColor = UIColor(named: .ContactsName)
+        titleInfoLabel.textColor = UIColor(named: .ContactsName)
             
-
-        
     }
     
     func addData(title: String, titleInfo: String, cellEditOrNot: Bool) {
@@ -42,6 +39,14 @@ class ContactsPersonInfoListCell: UITableViewCell {
         titleInfoLabel.text = titleInfo
     }
     
+    func configCell(datasource: ContactsPersonInfoListCellPresenter) {
+        
+        self.datasource = datasource
+        
+        titleLabel.text = datasource.title
+        titleInfoLabel.text = datasource.info
+        
+    }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

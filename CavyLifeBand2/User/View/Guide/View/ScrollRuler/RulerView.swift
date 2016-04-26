@@ -94,7 +94,7 @@ class RulerView: UIView, UIScrollViewDelegate {
     func addRulerViewLayout(){
 
         self.addSubview(rulerScroll)
-        rulerScroll.snp_makeConstraints { (make) -> Void in
+        rulerScroll.snp_makeConstraints { make -> Void in
             make.top.bottom.left.right.equalTo(self)
         }
         
@@ -103,7 +103,7 @@ class RulerView: UIView, UIScrollViewDelegate {
         */
         self.addSubview(columeFlag)
         columeFlag.image = UIImage(asset: .GuideFlagV)
-        columeFlag.snp_makeConstraints { (make) -> Void in
+        columeFlag.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(3, 60))
             make.centerX.equalTo(self)
             make.top.equalTo(self)
@@ -116,7 +116,7 @@ class RulerView: UIView, UIScrollViewDelegate {
      */
     func addHeightRulerViewLayout(){
         self.addSubview(rulerScroll)
-        rulerScroll.snp_makeConstraints { (make) -> Void in
+        rulerScroll.snp_makeConstraints { make -> Void in
             make.top.bottom.left.right.equalTo(self)
         }
         
@@ -125,7 +125,7 @@ class RulerView: UIView, UIScrollViewDelegate {
         */
         self.addSubview(columeFlag)
         columeFlag.image = UIImage(asset: .GuideFlagH)
-        columeFlag.snp_makeConstraints { (make) -> Void in
+        columeFlag.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(60, 3))
             make.centerY.equalTo(self)
             make.left.equalTo(self)
@@ -137,6 +137,7 @@ class RulerView: UIView, UIScrollViewDelegate {
     
     // 滑动触发
     func scrollViewDidScroll(scrollView: UIScrollView) {
+        
         /// 转换成RulerScroll
         let sc =  scrollView as! RulerScroller
         
@@ -243,7 +244,7 @@ class RulerView: UIView, UIScrollViewDelegate {
             
             let nowCount = nowYear * sc.lineCount + nowMonth - 1
             
-            UIView.animateWithDuration(0.2) { () -> Void in
+            UIView.animateWithDuration(0.2) {() -> Void in
                 sc.contentOffset = CGPointMake(CGFloat(nowCount * sc.lineSpace), 0)
                 
             }
@@ -251,16 +252,16 @@ class RulerView: UIView, UIScrollViewDelegate {
             rulerDelegate?.changeCountStatusForDayRuler!(sc)
             
             
-        }else if sc.rulerStyle == .DayRuler{
+        } else if sc.rulerStyle == .DayRuler{
             
-            UIView.animateWithDuration(0.2) { () -> Void in
+            UIView.animateWithDuration(0.2) {() -> Void in
                 
                 sc.contentOffset = CGPointMake(CGFloat((self.nowDay - 1) * sc.lineSpace), 0)
                 
             }
-        }else if sc.rulerStyle == .HeightRuler{
+        } else if sc.rulerStyle == .HeightRuler{
             
-            UIView.animateWithDuration(0.2) { () -> Void in
+            UIView.animateWithDuration(0.2) {() -> Void in
                 
                 sc.contentOffset = CGPointMake(0, (self.nowHeight - 30) * CGFloat(sc.lineCount * sc.lineSpace))
             }

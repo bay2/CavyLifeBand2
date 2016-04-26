@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import EZSwiftExtensions
 
 class RulerScroller: UIScrollView {
 
@@ -59,7 +59,7 @@ class RulerScroller: UIScrollView {
             // 两个Line中间的空隙 和 两个Longline的shortLine个数
             // 所有竖线个数
             let allCount: Int = (yearValue - beginYear) * lineCount + monthValue - 1
-            self.contentSize = CGSizeMake(CavyDefine.spacingWidth25 * 23 + CGFloat(allCount * lineSpace), 60)
+            self.contentSize = CGSizeMake(ez.screenWidth / 2 + CGFloat(allCount * lineSpace), 55)
             
             let defaultCount: Int = (defaultYear - beginYear) * lineCount
             self.contentOffset = CGPointMake(CGFloat(defaultCount * lineSpace), 0)
@@ -68,6 +68,7 @@ class RulerScroller: UIScrollView {
             for i in 0...allCount {
                 
                 if i % lineCount == 0 {
+                    
                     /// 长线上面的Label
                     let lineLabel = UILabel()
                     lineLabel.frame = CGRectMake(CavyDefine.spacingWidth25 * 11.5 + CGFloat(lineSpace * i) - 30, 8, 60, 18)
@@ -83,6 +84,7 @@ class RulerScroller: UIScrollView {
                     self.addSubview(lineLabel)
                     
                 }else{
+                    
                     /// 短线
                     let shortLine = UIView()
                     shortLine.backgroundColor = UIColor(named: .GuideLineColor)
@@ -99,7 +101,7 @@ class RulerScroller: UIScrollView {
             self.contentSize = CGSizeMake(CavyDefine.spacingWidth25 * 23 + CGFloat(lineSpace * (dayValue - 1)), 60)
 
             // 添加动画 防止每次年重置月份时候突兀
-            UIView.animateWithDuration(0.2) { () -> Void in
+            UIView.animateWithDuration(0.2) {() -> Void in
                 
                 self.contentOffset = CGPointMake(CGFloat(self.lineSpace * 14), 0)
                 
