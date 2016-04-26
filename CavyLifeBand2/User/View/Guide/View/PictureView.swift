@@ -12,6 +12,8 @@ import EZSwiftExtensions
 
 class PictureView: UIView {
 
+    
+
     var titleLab = UILabel()
     var titleInfo = UILabel()
     var middleImgView: UIImageView = UIImageView()
@@ -21,7 +23,7 @@ class PictureView: UIView {
         super.init(frame: frame)
     }
     
-    convenience init(title: String = "", titleInfo: String = "", bottomInfo: String = "", midImage: UIImageView, frame: CGRect = CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12)) {
+    convenience init(title: String = "", titleInfo: String = "", bottomInfo: String = "", midImage: UIImageView, frame: CGRect = CGRectMake(0, 0, ez.screenWidth - horizontalInset * 2, ez.screenHeight - navHeight - upInset - bottomInset)) {
         
         self.init(frame: frame)
         
