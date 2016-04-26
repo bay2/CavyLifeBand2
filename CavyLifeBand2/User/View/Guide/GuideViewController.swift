@@ -116,11 +116,16 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         self.view.backgroundColor = viewDataSource.bgColor
         self.guideButton.setImage(viewDataSource.guideBtnImage, forState: .Normal)
         self.guideButton.setImage(viewDataSource.guideBtnImagePress, forState: .Highlighted)
-        self.middleView.addSubview(viewDataSource.centerView)
+        
+        let centerView = viewDataSource.centerView
+        self.middleView.addSubview(centerView)
         
         self.infoLabel.text = dataSource?.subTitle
         navTitle = viewDataSource.title
         rightBtn?.setTitle(viewDataSource.rightItemBtnTitle, forState: .Normal)
+        centerView.snp_makeConstraints { make in
+            make.left.top.right.bottom.equalTo(middleView)
+        }
   
     }
    
