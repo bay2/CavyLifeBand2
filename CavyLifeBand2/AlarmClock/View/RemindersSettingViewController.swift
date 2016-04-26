@@ -13,7 +13,7 @@ protocol RemindersSettingVCDataSource {
     var settingListModel: SettingRealmListModel { get }
 }
 
-class RemindersSettingViewController: UIViewController {
+class RemindersSettingViewController: UIViewController, BaseViewControllerPresenter {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -41,6 +41,8 @@ class RemindersSettingViewController: UIViewController {
     
     var realm: Realm = try! Realm()
     
+    var navTitle: String { return L10n.HomeRightListTitleNotification.string }
+    
     deinit {
         Log.info("dealloc")
     }
@@ -48,7 +50,6 @@ class RemindersSettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         self.automaticallyAdjustsScrollViewInsets = false
         
         tableExpandCellCount = 3
@@ -61,12 +62,24 @@ class RemindersSettingViewController: UIViewController {
         
         setTableView()
         
+        updateNavUI()
+        
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
+        
     }
     
     //Table与DataSource有关的设置
@@ -77,13 +90,13 @@ class RemindersSettingViewController: UIViewController {
         if dataSource?.settingListModel.settingRealmList[0].isOpenSetting == true {
             tableList = Array(count: tableExpandCellCount!, repeatedValue: "")
             
-            self.tableView.snp_updateConstraints(closure: { (make) in
+            self.tableView.snp_updateConstraints(closure: { make in
                 make.height.equalTo(tableExpandHeight)
             })
         } else {
             tableList = Array(count: tableExpandCellCount! - 1, repeatedValue: "")
             
-            self.tableView.snp_updateConstraints(closure: { (make) in
+            self.tableView.snp_updateConstraints(closure: { make in
                 make.height.equalTo(tableUnExpandHeight)
             })
         }
@@ -95,7 +108,7 @@ class RemindersSettingViewController: UIViewController {
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         tableView.backgroundColor = UIColor.whiteColor()
         
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp_makeConstraints { make in
             make.trailing.equalTo(self.view).offset(-tableViewMargin)
             make.leading.equalTo(self.view).offset(tableViewMargin)
         }
@@ -119,7 +132,7 @@ extension RemindersSettingViewController: SettingSwitchTableViewCelldDelegate {
             self.tableView.layoutIfNeeded()
             
             UIView.animateWithDuration(0.3, animations: {
-                self.tableView.snp_updateConstraints(closure: { (make) in
+                self.tableView.snp_updateConstraints(closure: { make in
                     make.height.equalTo(self.tableExpandHeight)
                 })
                 self.tableView.layoutIfNeeded()
@@ -133,7 +146,7 @@ extension RemindersSettingViewController: SettingSwitchTableViewCelldDelegate {
             self.tableView.layoutIfNeeded()
             
             UIView.animateWithDuration(0.3, animations: {
-                self.tableView.snp_updateConstraints(closure: { (make) in
+                self.tableView.snp_updateConstraints(closure: { make in
                     make.height.equalTo(self.tableUnExpandHeight)
                 })
                 self.tableView.layoutIfNeeded()

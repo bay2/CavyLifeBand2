@@ -12,6 +12,7 @@ import EZSwiftExtensions
 
 protocol ContactsAddFriendCellDataSource {
     
+    var firendId: String { get }
     var headImageUrl: String { get }
     var name: String { get }
     var introudce: String { get }
@@ -27,7 +28,7 @@ protocol ContactsAddFriendCellDelegate {
     var introduceFont: UIFont { get }
     var requestBtnColor: UIColor { get }
     var requestBtnFont: UIFont { get }
-    var changeRequestBtnName: ((Void) -> Void)? { get }
+    var changeRequestBtnName: ((UIButton) -> Void)? { get }
     
 
 }
@@ -44,9 +45,9 @@ class ContactsAddFriendCell: UITableViewCell {
     @IBOutlet weak var requestBtn: UIButton!
     
     // 按钮响应
-    @IBAction func requestAddFriend(sender: AnyObject) {
+    @IBAction func requestAddFriend(sender: UIButton) {
         
-        delegate?.changeRequestBtnName?()
+        delegate?.changeRequestBtnName?(sender)
         
     }
     
@@ -84,6 +85,7 @@ class ContactsAddFriendCell: UITableViewCell {
         self.introduceLabel.textColor = delegate.introductTextColor
 
         self.requestBtn.setTitle(dataSource.requestBtnTitle, forState: .Normal)
+        self.requestBtn.setBackgroundColor(delegate.requestBtnColor, forState: .Normal)
         self.requestBtn.backgroundColor = delegate.requestBtnColor
         headView.af_setImageWithURL(NSURL(string: dataSource.headImageUrl)!)
 
@@ -101,17 +103,17 @@ class ContactsAddFriendCell: UITableViewCell {
 
         if dataSource.introudce.isEmpty {
 
-            self.nameLabel.snp_makeConstraints(closure: { (make) in
+            self.nameLabel.snp_makeConstraints(closure: { make in
                 make.centerY.equalTo(self)
             })
 
         } else {
 
-            self.nameLabel.snp_makeConstraints(closure: { (make) in
+            self.nameLabel.snp_makeConstraints(closure: { make in
                 make.bottom.equalTo(self.headView.snp_centerY)
             })
             
-            self.introduceLabel.snp_makeConstraints(closure: { (make) in
+            self.introduceLabel.snp_makeConstraints(closure: { make in
                 make.top.equalTo(self.nameLabel.snp_bottom).offset(8)
             })
             

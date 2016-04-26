@@ -20,7 +20,10 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         
     }
     
-    var friendId: String = ""
+    var delegate: ContactsReqFriendViewControllerDelegate?
+    var dataSource: ContactsReqFriendViewControllerDataSource?
+    
+    @IBOutlet weak var textFieldView: UIView!
     
     /// TextField
     @IBOutlet weak var requestTextField: UITextField!
@@ -36,13 +39,22 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
         updateNavUI()
 
         requestViewLayout()
         
     }
     
+    /**
+     点击发送按钮
+     
+     - parameter sender:
+     */
     @IBAction func sendRequest(sender: AnyObject) {
+        
+        delegate?.verifyMsg = requestTextField.text ?? ""
+        delegate?.onClickButton()
         
         switch requestStyle {
             
@@ -65,34 +77,55 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     }
     
     
+    /**
+     配置视图
+     
+     - parameter dataSource:
+     */
+    func viewConfig(dataSource: ContactsReqFriendViewControllerDataSource, delegate: ContactsReqFriendViewControllerDelegate) {
+        
+        self.delegate = delegate
+        self.dataSource = dataSource
+        
+    }
+    
+    
+    /**
+     布局
+     */
     func requestViewLayout() {
+        
+        textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
         sendButton.layer.cornerRadius = CavyDefine.commonCornerRadius
         sendButton.setTitleColor(UIColor(named: .MainPageBtnText), forState: .Normal)
-        sendButton.snp_makeConstraints { (make) -> Void in
-            
-            make.top.equalTo(requestTextField).offset(requestTextField.frame.height)
-            
-        }
+        sendButton.setBackgroundColor(UIColor(named: .MainPageBtn), forState: .Normal)
+        sendButton.backgroundColor = UIColor(named: .MainPageBtn)
+        sendButton.setTitle(dataSource?.bottonTitle, forState: .Normal)
         
-        switch requestStyle {
-
-            // 请求添加好友
-        case .AddFriend:
-                requestTextField.placeholder = "  \(L10n.ContactsRequestPlaceHolder.string)"
-                sendButton.setTitle(L10n.ContactsRequestSendButton.string, forState: .Normal)
-            
-            // 修改备注名字
-        case .ChangeNotesName:
-                requestTextField.placeholder = "  \(L10n.ContactsChangeNotesNamePlaceHolder.string)"
-                sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
-            
-            // 修改自己的昵称
-        case .ChangeSelfName:
-            requestTextField.placeholder = "  \(L10n.ContactsChangeSelfNamePlaceHolder.string)"
-            sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
-            
-        }
+        requestTextField.placeholder = dataSource?.placeholderText
+        requestTextField.text = dataSource?.textFieldTitle
+        requestTextField.textColor = UIColor(named: .TextFieldTextColor)
+        
+        
+//        switch requestStyle {
+//
+//            // 请求添加好友
+//        case .AddFriend:
+//                requestTextField.placeholder = L10n.ContactsRequestPlaceHolder.string
+//                sendButton.setTitle(L10n.ContactsRequestSendButton.string, forState: .Normal)
+//            
+//            // 修改备注名字
+//        case .ChangeNotesName:
+//                requestTextField.placeholder = L10n.ContactsChangeNotesNamePlaceHolder.string
+//                sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
+//            
+//            // 修改自己的昵称
+//        case .ChangeSelfName:
+//            requestTextField.placeholder = L10n.ContactsChangeSelfNamePlaceHolder.string
+//            sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
+//            
+//        }
         
     }
     

@@ -26,4 +26,3 @@ protocol ContactsTableViewSectionDataSource {
     func loadData()
     
 }
-  

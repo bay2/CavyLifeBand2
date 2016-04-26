@@ -12,9 +12,8 @@ import RealmSwift
 struct AddClockVCViewModel {
     var userId: String {
         
-        Log.warning("AddClockVCViewModel 用户ID写死")
+        return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         
-        return "12"
     }
     
     var alarmModel: AlarmRealmModel

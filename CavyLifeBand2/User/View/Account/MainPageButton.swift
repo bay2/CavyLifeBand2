@@ -14,12 +14,16 @@ class MainPageButton: UIButton {
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
-    override func drawRect(rect: CGRect) {
+//    override func drawRect(rect: CGRect) {
+//        
+//    }
+    
+    override func awakeFromNib() {
         
         self.setTitleColor(UIColor(named: .MainPageBtnText), forState: .Normal)
         self.setBackgroundColor(UIColor(named: .MainPageBtn), forState: .Normal)
         self.setBackgroundColor(UIColor(named: .MainPageSelectedBtn), forState: .Highlighted)
-
+        
         self.layer.masksToBounds = true
         self.layer.cornerRadius = CavyDefine.commonCornerRadius
         

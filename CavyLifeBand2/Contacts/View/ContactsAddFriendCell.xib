@@ -36,7 +36,7 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ytc-ro-gXX">
                         <rect key="frame" x="375" y="24" width="66" height="28"/>
-                        <color key="backgroundColor" red="1" green="0.68089345639999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="66" id="J0L-ya-Co8"/>
                             <constraint firstAttribute="height" constant="28" id="yB1-sK-kNp"/>

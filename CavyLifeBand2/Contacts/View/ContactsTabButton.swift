@@ -46,7 +46,7 @@ class ContactsTabButton: UIButton {
         
         imgView = UIImageView(image: searchBtnImgDefault[searchBtnType.hashValue])
         self.addSubview(imgView)
-        imgView.snp_makeConstraints { (make) -> Void in
+        imgView.snp_makeConstraints { make -> Void in
             
             make.top.equalTo(self).offset(18)
             make.size.equalTo(CGSizeMake(40, 40))
@@ -60,7 +60,7 @@ class ContactsTabButton: UIButton {
         nameLabel.textColor = UIColor(named: .ContactsFindFriendLight)
         nameLabel.font = UIFont.systemFontOfSize(14)
         nameLabel.text = searchBtnTitle[searchBtnType.hashValue]
-        nameLabel.snp_makeConstraints { (make) -> Void in
+        nameLabel.snp_makeConstraints { make -> Void in
             
             make.top.equalTo(imgView.snp_bottom).offset(8)
             make.centerX.equalTo(self)
@@ -72,7 +72,7 @@ class ContactsTabButton: UIButton {
         self.addSubview(flagView)
         flagView.backgroundColor = UIColor(named: .ContactsSearchFlagViewBg)
         flagView.hidden = true
-        flagView.snp_makeConstraints { (make) -> Void in
+        flagView.snp_makeConstraints { make -> Void in
             
             make.size.equalTo(CGSizeMake(ez.screenWidth / 3, 4))
             make.bottom.equalTo(self)

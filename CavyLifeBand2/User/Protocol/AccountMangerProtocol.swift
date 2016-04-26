@@ -104,7 +104,7 @@ extension SendSafetyCodeDelegate where Self: UIViewController {
         
         let para = [UserNetRequsetKey.PhoneNum.rawValue: userName]
         
-        UserNetRequestData.shareApi.requestPhoneSecurityCode(para) { (result) in
+        UserNetRequestData.shareApi.requestPhoneSecurityCode(para) {(result) in
             
             if result.isFailure {
                 CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
@@ -166,7 +166,9 @@ extension SignUpDelegate where Self: UIViewController {
             Log.info("Sign up success")
             
             callBack?(msg.userId!)
-            self.pushVC(StoryboardScene.Home.instantiateRootView())
+            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
+            self.dismissVC(completion: nil)
+            
             
         }
         

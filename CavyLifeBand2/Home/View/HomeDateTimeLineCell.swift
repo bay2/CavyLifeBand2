@@ -40,7 +40,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         
         self.addSubview(tableView)
         
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp_makeConstraints { make in
             make.left.right.top.bottom.equalTo(self)
         }
         

@@ -40,7 +40,7 @@ class HightView: UIView, RulerViewDelegate {
         titleLab.font = UIFont.systemFontOfSize(18)
         titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.textAlignment = .Center
-        titleLab.snp_makeConstraints { (make) -> Void in
+        titleLab.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 18))
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 2)
@@ -50,7 +50,7 @@ class HightView: UIView, RulerViewDelegate {
         heightLabel.font = UIFont.systemFontOfSize(48)
         heightLabel.textColor = UIColor(named: .GuideColorCC)
         heightLabel.textAlignment = NSTextAlignment.Center
-        heightLabel.snp_makeConstraints { (make) -> Void in
+        heightLabel.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 48))
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 11 + 18)
@@ -60,7 +60,7 @@ class HightView: UIView, RulerViewDelegate {
         CMLabel.font = UIFont.systemFontOfSize(30)
         CMLabel.textColor = UIColor(named: .GuideColorCC)
         CMLabel.textAlignment = NSTextAlignment.Center
-        CMLabel.snp_makeConstraints { (make) -> Void in
+        CMLabel.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(80, 30))
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 12 + 66)
@@ -68,7 +68,7 @@ class HightView: UIView, RulerViewDelegate {
         
         heightRuler.backgroundColor = UIColor.blackColor()
 
-        heightRuler.snp_makeConstraints { (make) -> Void in
+        heightRuler.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(80, CavyDefine.spacingWidth25 * 28))
             make.centerY.equalTo(self)
             make.left.equalTo(self).offset(CavyDefine.spacingWidth25 * 17)

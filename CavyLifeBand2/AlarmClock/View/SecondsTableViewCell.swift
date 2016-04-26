@@ -48,7 +48,7 @@ class SecondsTableViewCell: UITableViewCell {
         
         collectionView.registerNib(UINib(nibName: secondsCell, bundle: nil), forCellWithReuseIdentifier: secondsCell)
         
-        collectionView.snp_makeConstraints { (make) in
+        collectionView.snp_makeConstraints { make in
             make.centerX.equalTo(self.contentView.snp_centerX)
             make.centerY.equalTo(self.contentView.snp_centerY)
             make.height.equalTo(60.0)
@@ -77,14 +77,14 @@ class SecondsTableViewCell: UITableViewCell {
         
         self.contentView.addSubview(separatorView2)
         
-        separatorView1.snp_makeConstraints { (make) in
+        separatorView1.snp_makeConstraints { make in
             make.height.equalTo(1)
             make.bottom.equalTo(collectionView.snp_top)
             make.width.equalTo(200.0)
             make.centerX.equalTo(self.contentView.snp_centerX)
         }
         
-        separatorView2.snp_makeConstraints { (make) in
+        separatorView2.snp_makeConstraints { make in
             make.height.equalTo(1)
             make.top.equalTo(collectionView.snp_bottom)
             make.width.equalTo(separatorView1.snp_width)

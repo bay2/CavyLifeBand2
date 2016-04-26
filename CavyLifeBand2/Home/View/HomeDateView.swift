@@ -43,7 +43,7 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         collectionView!.alwaysBounceHorizontal = true
         collectionView!.contentSize = CGSizeMake(CGFloat(dateCount) * labelWidth, 0)
         collectionView!.contentOffset = CGPointMake(CGFloat(dateCount - 1) * labelWidth, 0)
-        collectionView!.snp_makeConstraints { (make) in
+        collectionView!.snp_makeConstraints { make in
             make.left.right.top.bottom.equalTo(self)
         }
         collectionView!.dataSource = self
@@ -54,7 +54,7 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         let image = UIImageView()
         self.addSubview(image)
         image.backgroundColor = UIColor.whiteColor()
-        image.snp_makeConstraints { (make) in
+        image.snp_makeConstraints { make in
             make.size.equalTo(CGSizeMake(20, 10))
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(40)

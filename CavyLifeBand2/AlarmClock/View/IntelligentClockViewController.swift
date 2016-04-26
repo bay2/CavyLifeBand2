@@ -17,6 +17,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
     lazy var rightBtn: UIButton? =  {
         
         let button = UIButton(type: .System)
+        button.frame = CGRectMake(0, 0, 30, 30)
         button.setBackgroundImage(UIImage(asset: .AlarmClockAdd), forState: .Normal)
         
         return button
@@ -53,6 +54,16 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
         
         tableBaseSetting()
     }
+    
+    /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -62,13 +73,13 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
     /**
      跳转添加闹钟
      */
-    func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
+    func onRightBtn() {
         
         let targetVC = StoryboardScene.AlarmClock.instantiateAddClockViewController()
         
         targetVC.addNewClock = true
         
-        targetVC.updateAlarmBlock = { (alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
+        targetVC.updateAlarmBlock = {(alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
             
             self.dataSource?.addAlarm(alarm)
             
@@ -90,7 +101,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         tableView.showsVerticalScrollIndicator = false
         
-        tableView.snp_makeConstraints { (make) in
+        tableView.snp_makeConstraints { make in
             make.trailing.equalTo(self.view).offset(-tableViewMargin)
             make.leading.equalTo(self.view).offset(tableViewMargin)
         }
@@ -155,7 +166,7 @@ extension IntelligentClockViewController: UITableViewDelegate {
         
         targetVC.alarmModel = (dataSource?.getAlarmModelCopyByIndex(indexPath.row))!
         
-        targetVC.updateAlarmBlock = { (alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
+        targetVC.updateAlarmBlock = {(alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
             
             Log.info(alarm)
             

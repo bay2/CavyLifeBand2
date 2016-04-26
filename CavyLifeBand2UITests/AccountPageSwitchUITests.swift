@@ -48,6 +48,8 @@ class AccountPageSwitchUITests: XCTestCase {
         
         if #available(iOS 9.0, *) {
             
+            
+            
             let app = XCUIApplication()
             app.buttons["登入"].tap()
             let backbtnButton = app.buttons["backbtn"]
@@ -155,6 +157,10 @@ class AccountPageSwitchUITests: XCTestCase {
      */
     func loginOrder() {
         
+        
+        
+        
+        
         if #available(iOS 9.0, *) {
             
             
@@ -207,9 +213,14 @@ class AccountPageSwitchUITests: XCTestCase {
             XCTAssert(app.staticTexts["我的信息"].exists)
             XCTAssert(infoTitle.label == "可以更好地帮助健康统计哦")
             XCTAssert(app.staticTexts["生日"].exists)
-            let element = XCUIApplication().childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(2).childrenMatchingType(.Other).element
-            XCTAssert(element.childrenMatchingType(.StaticText)["1990.1"].exists)
-            XCTAssert(element.childrenMatchingType(.StaticText)["15"].exists)
+  
+            
+            let element = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.childrenMatchingType(.StaticText)
+            
+            var staticText = element["1990.1"]
+            XCTAssert(staticText.exists)
+            staticText = element["15"]
+            XCTAssert(staticText.exists)
             guideButton.tap()
             
             // 身高
@@ -239,8 +250,15 @@ class AccountPageSwitchUITests: XCTestCase {
             XCTAssert(app.staticTexts["运动步数"].exists)
             XCTAssert(app.staticTexts["8000"].exists)
             XCTAssert(app.staticTexts["步"].exists)
-            XCTAssert(element.childrenMatchingType(.StaticText).matchingIdentifier("平均").elementBoundByIndex(0).exists)
-            XCTAssert(element.childrenMatchingType(.StaticText).matchingIdentifier("推荐").elementBoundByIndex(0).exists)
+            
+            
+            let elementSet = app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).element
+            var staticTextSet = elementSet.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.childrenMatchingType(.StaticText).matchingIdentifier("平均").elementBoundByIndex(0)
+            
+            staticTextSet = elementSet.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.childrenMatchingType(.StaticText).matchingIdentifier("推荐").elementBoundByIndex(0)
+
+            XCTAssert(staticTextSet.exists)
+            XCTAssert(staticTextSet.exists)
             
             
             // 睡眠
@@ -249,8 +267,12 @@ class AccountPageSwitchUITests: XCTestCase {
             XCTAssert(app.staticTexts["h"].exists)
             XCTAssert(app.staticTexts["30"].exists)
             XCTAssert(app.staticTexts["min"].exists)
-            XCTAssert(element.childrenMatchingType(.StaticText).matchingIdentifier("平均").elementBoundByIndex(1).exists)
-            XCTAssert(element.childrenMatchingType(.StaticText).matchingIdentifier("推荐").elementBoundByIndex(1).exists)
+            
+            staticTextSet = elementSet.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.childrenMatchingType(.StaticText).matchingIdentifier("推荐").elementBoundByIndex(1)
+            XCTAssert(staticTextSet.exists)
+            
+            staticTextSet = elementSet.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).element.childrenMatchingType(.StaticText).matchingIdentifier("平均").elementBoundByIndex(1)
+            XCTAssert(staticTextSet.exists)
             guideButton.tap()
             
             // 开启智能通知

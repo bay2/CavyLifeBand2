@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="l1Y-wt-lLX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ZI4-tz-Y0G">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -7,96 +7,39 @@
     </dependencies>
     <scenes>
         <!--Main Page View Controller-->
-        <scene sceneID="Qzh-qI-xn7">
+        <scene sceneID="NBs-2p-bkr">
             <objects>
-                <pageViewController storyboardIdentifier="MainPageView" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="min" id="l1Y-wt-lLX" customClass="MainPageViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ARG-F3-PbO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-17" y="213"/>
-        </scene>
-        <!--Page View Controller-->
-        <scene sceneID="EXj-lq-KRz">
-            <objects>
-                <viewController storyboardIdentifier="PageView" id="g7X-r0-LQ6" customClass="PageViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainPageView" id="ZI4-tz-Y0G" customClass="MainPageViewController" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="EyL-6v-axu"/>
-                        <viewControllerLayoutGuide type="bottom" id="dkR-un-3zL"/>
+                        <viewControllerLayoutGuide type="top" id="JoV-O7-Sqt"/>
+                        <viewControllerLayoutGuide type="bottom" id="G6S-as-p5u"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="44N-lm-b5X">
+                    <view key="view" contentMode="scaleToFill" id="F3p-rf-4Cb">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6k8-Yt-QdY">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hoA-bS-GFx">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                            </imageView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oMi-bb-Bt6">
-                                <rect key="frame" x="20" y="500" width="560" height="100"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhV-DK-R2Y" customClass="MainPageButton" customModule="CavyLifeBand2" customModuleProvider="target">
-                                        <rect key="frame" x="280" y="0.0" width="280" height="100"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="登入">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onClickSignIn:" destination="g7X-r0-LQ6" eventType="touchUpInside" id="ilc-vO-h7p"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zof-lQ-Dys" customClass="MainPageButton" customModule="CavyLifeBand2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="100"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <state key="normal" title="加入豚鼠">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onClickSignUp:" destination="g7X-r0-LQ6" eventType="touchUpInside" id="JZU-2w-ut9"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="100" placeholder="YES" id="2Yt-Br-7NM"/>
-                                    <constraint firstItem="LhV-DK-R2Y" firstAttribute="width" secondItem="Zof-lQ-Dys" secondAttribute="width" id="34t-6w-YBe"/>
-                                    <constraint firstAttribute="trailing" secondItem="LhV-DK-R2Y" secondAttribute="trailing" id="3Fy-kd-Ljw"/>
-                                    <constraint firstItem="LhV-DK-R2Y" firstAttribute="top" secondItem="oMi-bb-Bt6" secondAttribute="top" id="DqM-Z6-FRQ"/>
-                                    <constraint firstItem="LhV-DK-R2Y" firstAttribute="leading" secondItem="Zof-lQ-Dys" secondAttribute="trailing" placeholder="YES" id="Sc4-Nj-XLE"/>
-                                    <constraint firstItem="Zof-lQ-Dys" firstAttribute="top" secondItem="oMi-bb-Bt6" secondAttribute="top" id="StH-bv-JJw"/>
-                                    <constraint firstAttribute="bottom" secondItem="LhV-DK-R2Y" secondAttribute="bottom" id="Uch-TO-JOi"/>
-                                    <constraint firstAttribute="bottom" secondItem="Zof-lQ-Dys" secondAttribute="bottom" id="eDp-Ar-SiC"/>
-                                    <constraint firstItem="Zof-lQ-Dys" firstAttribute="leading" secondItem="oMi-bb-Bt6" secondAttribute="leading" id="zrM-tN-tIw"/>
-                                </constraints>
-                            </view>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="QC6-Z9-gp0" customClass="CLBPageControl" customModule="CavyLifeBand2" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="463" width="600" height="37"/>
-                            </pageControl>
+                                <connections>
+                                    <outlet property="delegate" destination="ZI4-tz-Y0G" id="jIX-ZV-hkc"/>
+                                </connections>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="oMi-bb-Bt6" firstAttribute="top" secondItem="QC6-Z9-gp0" secondAttribute="bottom" placeholder="YES" id="1PX-Cv-KPM"/>
-                            <constraint firstAttribute="trailing" secondItem="6k8-Yt-QdY" secondAttribute="trailing" id="DWc-aG-9Mq"/>
-                            <constraint firstItem="oMi-bb-Bt6" firstAttribute="leading" secondItem="44N-lm-b5X" secondAttribute="leadingMargin" placeholder="YES" id="EQh-r3-i8r"/>
-                            <constraint firstItem="dkR-un-3zL" firstAttribute="top" secondItem="oMi-bb-Bt6" secondAttribute="bottom" placeholder="YES" id="NuM-C4-iVY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="oMi-bb-Bt6" secondAttribute="trailing" placeholder="YES" id="O05-Zn-UJy"/>
-                            <constraint firstItem="QC6-Z9-gp0" firstAttribute="leading" secondItem="44N-lm-b5X" secondAttribute="leading" id="O6a-wq-MH0"/>
-                            <constraint firstItem="6k8-Yt-QdY" firstAttribute="top" secondItem="44N-lm-b5X" secondAttribute="top" id="T2z-FD-Jsa"/>
-                            <constraint firstAttribute="bottom" secondItem="6k8-Yt-QdY" secondAttribute="bottom" id="rXN-ZJ-45f"/>
-                            <constraint firstAttribute="trailing" secondItem="QC6-Z9-gp0" secondAttribute="trailing" id="vgl-mA-aVG"/>
-                            <constraint firstItem="6k8-Yt-QdY" firstAttribute="leading" secondItem="44N-lm-b5X" secondAttribute="leading" id="yFM-D3-vmd"/>
+                            <constraint firstItem="G6S-as-p5u" firstAttribute="top" secondItem="hoA-bS-GFx" secondAttribute="bottom" id="7Us-QK-X40"/>
+                            <constraint firstItem="hoA-bS-GFx" firstAttribute="leading" secondItem="F3p-rf-4Cb" secondAttribute="leading" id="Z0d-cf-iiU"/>
+                            <constraint firstItem="hoA-bS-GFx" firstAttribute="top" secondItem="F3p-rf-4Cb" secondAttribute="topMargin" id="a12-fk-e1o"/>
+                            <constraint firstAttribute="trailing" secondItem="hoA-bS-GFx" secondAttribute="trailing" id="q4w-Jx-8SF"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backgroundImageView" destination="6k8-Yt-QdY" id="4ZY-6q-K2a"/>
-                        <outlet property="buttonView" destination="oMi-bb-Bt6" id="571-bY-To1"/>
-                        <outlet property="pageCtrl" destination="QC6-Z9-gp0" id="kHr-G4-hyk"/>
-                        <outlet property="signInBtn" destination="LhV-DK-R2Y" id="slW-dM-4j8"/>
-                        <outlet property="signUpBtn" destination="Zof-lQ-Dys" id="kfb-MU-eKF"/>
+                        <outlet property="pageScrollView" destination="hoA-bS-GFx" id="p3y-6j-gRj"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lvM-bf-xRd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uw1-yL-VTE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="608" y="213"/>
+            <point key="canvasLocation" x="608" y="235"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="ucl-CX-y3g">
