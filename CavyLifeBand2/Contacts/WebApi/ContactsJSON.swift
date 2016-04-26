@@ -154,6 +154,26 @@ struct ContactsFriendReqMsg: JSONJoy {
     //通用消息头
     var commendMsg: CommenMsg?
     
+    var userInfos: [ContactsFriendReqInfo] = []
+    
+    init(_ decoder: JSONDecoder) throws {
+        
+        commendMsg = try CommenMsg(decoder)
+        
+        guard let userInfoArray = decoder["userInfos"].array else {
+            return
+        }
+        
+        for userInfo in userInfoArray {
+            userInfos.append(try! ContactsFriendReqInfo(userInfo))
+        }
+        
+    }
+    
+}
+
+struct ContactsFriendReqInfo {
+    
     //用户ID
     var userId: String?
     
@@ -168,13 +188,10 @@ struct ContactsFriendReqMsg: JSONJoy {
     
     init(_ decoder: JSONDecoder) throws {
         
-        commendMsg = try CommenMsg(decoder)
-        
         do { userId = try decoder["userId"].getString() } catch { userId = "" }
         do { nickName = try decoder["nickname"].getString() } catch { nickName = "" }
         do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
         do { verifyMsg = try decoder["verifyMsg"].getString() } catch { verifyMsg = "" }
         
     }
-    
 }

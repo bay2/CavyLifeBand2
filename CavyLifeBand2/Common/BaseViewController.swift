@@ -35,6 +35,10 @@ protocol BaseViewControllerPresenter {
     func onRightBtn()
     func onLeftBtnBack()
     func updateNavUI()
+    func configNavBar()
+    func configNavItem()
+    
+    var newTitleLable: UILabel? { get }
     
 }
 
@@ -45,6 +49,10 @@ extension BaseViewControllerPresenter where Self: UIViewController {
     }
     
     var rightBtn: UIButton? {
+        return nil
+    }
+    
+    var newTitleLable: UILabel? {
         return nil
     }
     
@@ -66,27 +74,29 @@ extension BaseViewControllerPresenter where Self: UIViewController {
         let spacingBtnItem = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         spacingBtnItem.width = 14
         
+        self.navigationController?.navigationBarHidden = false
+        
         if leftBtn == nil && self.navigationController?.viewControllers.count > 1 {
             
             let leftItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
             leftItemBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
-            leftItemBtn.addTapGesture { _ in
+            leftItemBtn.addTapGesture { [unowned self] _ in
                 self.onLeftBtnBack()
             }
             
             let backButtonItem = UIBarButtonItem(customView: leftItemBtn)
-            self.navigationItem.leftBarButtonItems = [spacingBtnItem, backButtonItem]
-            
+            self.navigationItem.leftBarButtonItems = [backButtonItem]
+        
         } else if let leftItemBtn = leftBtn {
             
             leftItemBtn.frame = CGRectMake(0, 0, 30, 30)
             
-            leftItemBtn.addTapGesture { _ in
+            leftItemBtn.addTapGesture { [unowned self] _ in
                 self.onLeftBtnBack()
             }
             
             let backButtonItem = UIBarButtonItem(customView: leftItemBtn)
-            self.navigationItem.leftBarButtonItems = [spacingBtnItem, backButtonItem]
+            self.navigationItem.leftBarButtonItems = [backButtonItem]
             
         }
         
@@ -94,14 +104,13 @@ extension BaseViewControllerPresenter where Self: UIViewController {
             return
         }
         
-        rightItemBtn.addTapGesture { _ in
+        rightItemBtn.addTapGesture { [unowned self]  _ in
             self.onRightBtn()
         }
         
-        rightItemBtn.frame = CGRectMake(0, 0, 30, 30)
         let rightButtonItem = UIBarButtonItem(customView: rightItemBtn)
         self.navigationItem.rightBarButtonItems = [rightButtonItem, spacingBtnItem]
-        
+    
     }
     
     /**
@@ -109,12 +118,14 @@ extension BaseViewControllerPresenter where Self: UIViewController {
      */
     func configNavBar() {
         
-        self.navBar?.shadowImage = UIImage.imageWithColor(UIColor(named: .HomeViewMainColor), size: CGSizeMake(ez.screenWidth, 1))
-        self.navBar?.setBackgroundImage(UIImage.imageWithColor(UIColor(named: .HomeViewMainColor), size: CGSizeMake(ez.screenWidth, 64)), forBarPosition: .Any, barMetrics: .Default)
+        
+        self.navBar?.shadowImage = UIImage.imageWithColor(self.view.backgroundColor ?? UIColor.whiteColor(), size: CGSizeMake(ez.screenWidth, 1))
+        self.navBar?.setBackgroundImage(UIImage.imageWithColor(self.view.backgroundColor ?? UIColor.whiteColor(), size: CGSizeMake(ez.screenWidth, 64)), forBarPosition: .Any, barMetrics: .Default)
         
         let titleLable = UILabel(frame: CGRectMake(0, 0, 60, 44))
         titleLable.text = navTitle
         titleLable.textColor = UIColor(named: .ContactsTitleColor)
+        
         titleLable.font = UIFont.systemFontOfSize(18)
         
         self.navigationItem.titleView = titleLable

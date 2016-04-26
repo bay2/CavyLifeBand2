@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Guide View Controller-->
@@ -20,18 +19,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HWD-ra-vI8">
-                                <rect key="frame" x="16" y="200" width="381" height="464"/>
+                                <rect key="frame" x="20" y="60" width="374" height="556"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="HWD-ra-vI8" secondAttribute="height" multiplier="92:112" id="M43-2R-nYt"/>
-                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLa-eD-a6f">
-                                <rect key="frame" x="157" y="629" width="99" height="99"/>
+                                <rect key="frame" x="167" y="576" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OLa-eD-a6f" secondAttribute="height" multiplier="1:1" id="Fj2-y6-1hZ"/>
+                                    <constraint firstAttribute="width" constant="80" id="SGF-Db-11x"/>
+                                    <constraint firstAttribute="height" constant="80" id="ot2-tM-dDf"/>
                                 </constraints>
                                 <state key="normal" image="GuideRightBtn"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Fj2-y6-1hZ"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="guideBtnClick:" destination="bfR-PD-jX0" eventType="touchUpInside" id="SOZ-zG-RUD"/>
                                 </connections>
@@ -49,15 +52,15 @@
                         </subviews>
                         <color key="backgroundColor" red="0.013560153930000001" green="0.1623121914" blue="0.36328806720000001" alpha="0.7478113918" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="HWD-ra-vI8" firstAttribute="leading" secondItem="Q7I-HL-6s4" secondAttribute="leading" constant="20" id="3Y5-yy-RdA"/>
                             <constraint firstItem="OLa-eD-a6f" firstAttribute="centerX" secondItem="Q7I-HL-6s4" secondAttribute="centerX" id="8ZC-vT-ZSH"/>
+                            <constraint firstItem="HaS-9F-Byp" firstAttribute="top" secondItem="HWD-ra-vI8" secondAttribute="bottom" constant="120" id="BSU-e3-Neh"/>
                             <constraint firstItem="Hkc-Qd-gCg" firstAttribute="top" secondItem="RTB-k4-Axd" secondAttribute="bottom" constant="81" placeholder="YES" id="Clo-dI-FQg"/>
+                            <constraint firstAttribute="trailing" secondItem="HWD-ra-vI8" secondAttribute="trailing" constant="20" id="Rct-eN-mNu"/>
                             <constraint firstItem="Hkc-Qd-gCg" firstAttribute="width" secondItem="Q7I-HL-6s4" secondAttribute="width" id="VGy-3T-jEa"/>
-                            <constraint firstItem="HWD-ra-vI8" firstAttribute="width" secondItem="Q7I-HL-6s4" secondAttribute="width" multiplier="0.92" id="ZBa-pq-QFj"/>
-                            <constraint firstItem="OLa-eD-a6f" firstAttribute="width" secondItem="Q7I-HL-6s4" secondAttribute="width" multiplier="6/25" id="eDJ-KF-nl0"/>
                             <constraint firstItem="Hkc-Qd-gCg" firstAttribute="centerX" secondItem="Q7I-HL-6s4" secondAttribute="centerX" id="ssP-lq-LGr"/>
-                            <constraint firstItem="HWD-ra-vI8" firstAttribute="top" secondItem="RTB-k4-Axd" secondAttribute="bottom" constant="180" placeholder="YES" id="v42-kb-Wka"/>
-                            <constraint firstItem="OLa-eD-a6f" firstAttribute="top" secondItem="HWD-ra-vI8" secondAttribute="bottom" constant="-35" placeholder="YES" id="w5Z-V0-T3l"/>
-                            <constraint firstItem="HWD-ra-vI8" firstAttribute="centerX" secondItem="Q7I-HL-6s4" secondAttribute="centerX" id="wsv-eN-I7a"/>
+                            <constraint firstItem="HWD-ra-vI8" firstAttribute="top" secondItem="RTB-k4-Axd" secondAttribute="bottom" constant="40" id="v42-kb-Wka"/>
+                            <constraint firstItem="OLa-eD-a6f" firstAttribute="top" secondItem="HWD-ra-vI8" secondAttribute="bottom" constant="-40" id="w5Z-V0-T3l"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>

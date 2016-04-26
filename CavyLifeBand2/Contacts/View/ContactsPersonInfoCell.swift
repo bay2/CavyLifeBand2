@@ -31,7 +31,8 @@ class ContactsPersonInfoCell: UITableViewCell {
     @IBOutlet weak var headView: UIImageView!
     
     /// 上面的Lable
-    @IBOutlet weak var upsideLabel: UILabel!
+    @IBOutlet weak var titleLab: UILabel!
+    
     
     @IBOutlet weak var editButton: UIButton!
     
@@ -39,7 +40,7 @@ class ContactsPersonInfoCell: UITableViewCell {
     @IBOutlet weak var badgeView: UIImageView!
     
     /// 下面的Label
-    @IBOutlet weak var belowLabel: UILabel!
+    @IBOutlet weak var subTitleLab: UILabel!
     
     /// 分割线
     @IBOutlet weak var lineView: UIView!
@@ -49,8 +50,8 @@ class ContactsPersonInfoCell: UITableViewCell {
         super.awakeFromNib()
 
         headView.roundSquareImage()
-        upsideLabel.textColor = UIColor(named: .ContactsName)
-        belowLabel.textColor = UIColor(named: .ContactsIntrouduce)
+        titleLab.textColor = UIColor(named: .ContactsName)
+        subTitleLab.textColor = UIColor(named: .ContactsIntrouduce)
         lineView.backgroundColor = UIColor(named: .ContactsCellLine)
         self.selectionStyle = .None
     }
@@ -59,9 +60,11 @@ class ContactsPersonInfoCell: UITableViewCell {
         
         headView.af_setImageWithURL(NSURL(string: datasource.avatarUrl)!, runImageTransitionIfCached: true)
         
-        upsideLabel.text = datasource.title
+        titleLab.text = datasource.title
         
-        belowLabel.text = datasource.subTitle
+        subTitleLab.text = datasource.subTitle
+        
+        personRealtion(datasource.relation)
         
     }
 
@@ -73,25 +76,28 @@ class ContactsPersonInfoCell: UITableViewCell {
         switch relation {
             
         case .OwnRelation:
+            
             // 自己的账户信息
             editButton.hidden = false
             badgeView.hidden = true
             
-            belowLabel.snp_makeConstraints(closure: { (make) -> Void in
+            subTitleLab.snp_makeConstraints(closure: { make -> Void in
                 make.left.equalTo(badgeView)
             })
             
         case .FriendRelation:
+            
             // 朋友的信息
-            belowLabel.snp_makeConstraints(closure: { (make) -> Void in
+            subTitleLab.snp_makeConstraints(closure: { make -> Void in
                 make.left.equalTo(badgeView).offset(24)
             })
             
             
         case .StrangerRelation:
+            
             // 陌生人的信息
-            belowLabel.hidden = true
-            belowLabel.snp_makeConstraints(closure: { (make) -> Void in
+            subTitleLab.hidden = true
+            subTitleLab.snp_makeConstraints(closure: { make -> Void in
                 make.left.equalTo(badgeView).offset(24)
             })
             
@@ -112,8 +118,8 @@ class ContactsPersonInfoCell: UITableViewCell {
     func addPersonData(headImage: UIImage, badgeOrNot: Bool, notesName: String, nickName: String) {
         
         headView.image = headImage
-        upsideLabel.text = notesName
-        belowLabel.text = nickName
+        titleLab.text = notesName
+        subTitleLab.text = nickName
         
         if badgeOrNot {
             badgeView.image = UIImage(asset: .GuidePairSeccuss)
@@ -132,8 +138,8 @@ class ContactsPersonInfoCell: UITableViewCell {
      */
     func addAccountData(nickName: String, accountName: String) {
         
-        upsideLabel.text = nickName
-        belowLabel.text = accountName
+        titleLab.text = nickName
+        subTitleLab.text = accountName
    
     }
     

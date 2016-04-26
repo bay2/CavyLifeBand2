@@ -44,7 +44,7 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         collectionView!.alwaysBounceHorizontal = true
         collectionView!.contentSize = CGSizeMake(CGFloat(dateCount) * labelWidth, 0)
         collectionView!.contentOffset = CGPointMake(CGFloat(dateCount - 1) * labelWidth, 0)
-        collectionView!.snp_makeConstraints { (make) in
+        collectionView!.snp_makeConstraints { make in
             make.left.right.top.bottom.equalTo(self)
         }
         collectionView!.dataSource = self

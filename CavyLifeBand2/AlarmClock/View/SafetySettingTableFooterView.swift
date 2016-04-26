@@ -37,7 +37,7 @@ class SafetySettingTableFooterView: UIView {
         
         
         // 圆角View设置
-        cornerView.snp_makeConstraints { (make) in
+        cornerView.snp_makeConstraints { make in
             make.top.equalTo(self)
             make.leading.equalTo(self)
             make.trailing.equalTo(self)
@@ -62,13 +62,13 @@ class SafetySettingTableFooterView: UIView {
 
         descriptionLabel.numberOfLines = 0
         
-        titleLabel.snp_makeConstraints { (make) in
+        titleLabel.snp_makeConstraints { make in
             make.leading.equalTo(self).offset(20.0)
             make.trailing.equalTo(self).offset(-20.0)
             make.top.equalTo(cornerView.snp_bottom).offset(28.0)
         }
         
-        descriptionLabel.snp_makeConstraints { (make) in
+        descriptionLabel.snp_makeConstraints { make in
             make.leading.equalTo(titleLabel)
             make.trailing.equalTo(titleLabel)
             make.top.equalTo(titleLabel.snp_bottom).offset(10.0)

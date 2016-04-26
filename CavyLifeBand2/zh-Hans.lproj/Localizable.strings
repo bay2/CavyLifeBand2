@@ -133,6 +133,12 @@
 "Home.LifeList.Title.About" = "关于";
 "Home.LifeList.Title.Help" = "帮助与反馈";
 "Home.LifeList.Title.Related" = "相关APP";
+"Home.RightList.Title.Camera" = "遥控相机";
+"Home.RightList.Title.Notification" = "提醒";
+"Home.RightList.Title.AlarmClock" = "智能闹钟";
+"Home.RightList.Title.Security" = "安全";
+"Home.RightList.Title.FirmwareUpgrade" = "固件升级";
+"Home.RightList.Title.BindingBand" = "绑定新的CavyBand";
 
 //好友，联系人
 "Contacts.ListCell.Cavy" = "生活豚鼠";
@@ -173,6 +179,7 @@
 "Contacts.ChangeNotesName.PlaceHolder" = "输入备注名";
 "Contacts.ChangeNotesName.Button" = "确定";
 "Contacts.ChangeSelfName.PlaceHolder" = "更改的昵称";
+"Contacts.Request.VerifyMsg" = "哈喽，我是";
 
 //账户信息
 "AccountInfo.Title" = "账户信息";

@@ -49,7 +49,7 @@ class SettingSwitchTableViewCell: UITableViewCell {
             descriptionLabel.hidden = false
             descriptionLabel.font = UIFont.systemFontOfSize(14.0)
             descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoYellowColor)
-            NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(SettingSwitchTableViewCell.setDescription(_:)),
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingSwitchTableViewCell.setDescription(_:)),
                                                              name: NotificationName.ReminderPhoneScrollToSelect.rawValue, object: nil)
             
         case .GrayDescription:
@@ -131,9 +131,11 @@ protocol SettingCellDataSource {
 }
 
 extension SettingCellDataSource {
+    
     func changeDescription(index: Int) -> Void {
         Log.info("\(index)")
     }
+    
 }
 
 

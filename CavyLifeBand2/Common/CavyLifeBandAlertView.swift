@@ -42,7 +42,7 @@ class CavyLifeBandAlertView {
         let errorMessage = [UserRequestErrorType.EmailErr: L10n.UserModuleErrorCodeEmailError.string,
         UserRequestErrorType.EmailNil: L10n.UserModuleErrorCodeEmailNil.string,
         UserRequestErrorType.NetAPIErr: L10n.UserModuleErrorCodeNetAPIError.string,
-        UserRequestErrorType.NetErr: L10n.UserModuleErrorCodeNetAPIError.string,
+        UserRequestErrorType.NetErr: L10n.UserModuleErrorCodeNetError.string,
         UserRequestErrorType.PassWdErr: L10n.UserModuleErrorCodePasswdError.string,
         UserRequestErrorType.PassWdNil: L10n.UserModuleErrorCodePasswdNil.string,
         UserRequestErrorType.PhoneNil: L10n.UserModuleErrorCodePhoneNil.string,

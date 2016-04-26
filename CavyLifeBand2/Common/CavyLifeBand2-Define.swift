@@ -35,6 +35,9 @@ struct CavyDefine {
     // 已登录用户信息
     static var loginUserBaseInfo = LoginUserBaseInfoStorage()
     
+    // 已登录用户昵称
+    static var userNickname = ""
+    
     /**
      性别数字转汉字
      
@@ -136,8 +139,9 @@ extension NSUserDefaults: LoginStorage { }
 enum NotificationName: String {
     
     case HomeLeftOnClickMenu
-    case HomeLeftOnClickCellPushView
-    case HomeLeftHiddenMenu
+    case HomePushView
+    case HomeShowHomeView
+    case HomeRightOnClickMenu
     case HomeLeftAccountInfo
     case ReminderPhoneSwitchChange
     case ReminderPhoneScrollToSelect
@@ -196,9 +200,8 @@ enum UserNetRequsetKey: String {
     case UserName = "user"
     case UserID = "userId"
     case Avater = "imgFile"
-    case FriendID = "freiendId"
+    case FriendID = "friendId"
     case Flag = "flag"
-    case Local = "lbs"
     case FriendIdList = "friendIds"
     case Operate = "operate"
     case NickName = "nickname"
@@ -219,6 +222,7 @@ enum UserNetRequsetKey: String {
     case VerifyMsg = "verifyMsg"
     case Longitude = "longitude"
     case Latitude = "latitude"
+    case FriendReqType = "type"
     
 }
 

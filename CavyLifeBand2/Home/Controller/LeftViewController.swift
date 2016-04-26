@@ -1,5 +1,5 @@
 //
-//  LeftViewController.swift
+//  LeftMenViewController.swift
 //  CavyLifeBand2
 //
 //  Created by xuemincai on 16/3/16.
@@ -10,45 +10,10 @@ import UIKit
 import SnapKit
 import EZSwiftExtensions
 
-struct LeftListViewModel: LeftListCellDateSource, LeftListCellDelegate, LeftMenuPushViewDelegate {
-
-    var title: String
-    var icon: UIImage
-    var nextView: UIViewController
-
-    init(icon: UIImage, title: String, nextView: UIViewController) {
-
-        self.icon = icon
-        self.title = title
-        self.nextView = nextView
-
-    }
-
-}
-
-protocol LeftMenuPushViewDelegate {
-    
-    var nextView: UIViewController { get }
-    
-    func pushView()
-
-}
-
-extension LeftMenuPushViewDelegate {
-    
-    func pushView() {
-        
-        let userInfo = ["nextView": self.nextView] as [NSObject: AnyObject]
-
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickCellPushView.rawValue, object: nil, userInfo: userInfo)
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftHiddenMenu.rawValue, object: nil)
-
-    }
-    
-}
 
 
-class LeftViewController: UIViewController, HomeUserDelegate {
+
+class LeftMenViewController: UIViewController, HomeUserDelegate {
   
     @IBOutlet weak var userInfoView: HomeUserInfo!
     @IBOutlet weak var leftTableView: UITableView!
@@ -57,18 +22,11 @@ class LeftViewController: UIViewController, HomeUserDelegate {
     @IBOutlet weak var accountLab: UILabel!
     @IBOutlet weak var userNameLab: UILabel!
     
+    var menuGroup: [MenuGroupDataSource] = []
+    
     var iconImage: UIImageView { return iconImageView }
     var userName: UILabel { return userNameLab }
     var account: UILabel { return accountLab }
-
-    // 列表信息
-    var listTitleViewModel = [[LeftListViewModel(icon: UIImage(asset: .LeftMenuTarget), title: L10n.HomeLifeListTitleTarget.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuInformation), title: L10n.HomeLifeListTitleInfoOpen.string, nextView: StoryboardScene.InfoSecurity.AccountInfoSecurityVCScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuFriend), title: L10n.HomeLifeListTitleFriend.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuPK), title: L10n.HomeLifeListTitlePK.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController())],
-    [LeftListViewModel(icon: UIImage(asset: .LeftMenuAbout), title: L10n.HomeLifeListTitleAbout.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuHelp), title: L10n.HomeLifeListTitleHelp.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()),
-    LeftListViewModel(icon: UIImage(asset: .LeftMenuApp), title: L10n.HomeLifeListTitleRelated.string, nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController())]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,10 +37,24 @@ class LeftViewController: UIViewController, HomeUserDelegate {
         
         iconImageView.addTapGesture { _ in
             
-            self.userInfoView.pushView()
+            let userInfo = ["nextView": StoryboardScene.AccountInfo.instantiateContactsAccountInfoVC()] as [NSObject: AnyObject]
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
             
         }
+        
+        addMenumenuGroupData(AppFeatureMenuGroupDataModel())
+        addMenumenuGroupData(AppAboutMenuGroupDataModel())
 
+    }
+    
+    /**
+     添加菜单组数据
+     
+     - parameter menuGroup:
+     */
+    func addMenumenuGroupData(menuGroup: MenuGroupDataSource) {
+        self.menuGroup.append(menuGroup)
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,11 +62,15 @@ class LeftViewController: UIViewController, HomeUserDelegate {
         // Dispose of any resources that can be recreated.
     }
 
+    /**
+     设置tableview
+     */
     func setTableViewStyle() {
 
         leftTableView.backgroundColor = UIColor(named: .HomeViewMainColor)
         leftTableView.tableFooterView = UIView()
         leftTableView.tableHeaderView = UIView()
+        leftTableView.registerNib(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell")
 
     }
 
@@ -113,7 +89,7 @@ class LeftViewController: UIViewController, HomeUserDelegate {
 
 
 
-extension LeftViewController {
+extension LeftMenViewController {
     
 
     /**
@@ -126,11 +102,18 @@ extension LeftViewController {
      */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let listCell = tableView.dequeueReusableCellWithIdentifier("LeftCell", forIndexPath: indexPath) as! LeftTableViewCell
-
-        listCell.configure(listTitleViewModel[indexPath.section][indexPath.row], delegate: listTitleViewModel[indexPath.section][indexPath.row])
-
-        return listCell
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("MenuTableViewCell", forIndexPath: indexPath)
+        
+        guard let cellMenu = cell  as? MenuTableViewCell else {
+            return cell
+        }
+        
+        let menuViewModel = menuGroup[indexPath.section].items[indexPath.row]
+        
+        cellMenu.configure(menuViewModel, delegate: menuViewModel)
+            
+        return cellMenu
     }
 
     /**
@@ -143,7 +126,7 @@ extension LeftViewController {
      */
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return listTitleViewModel[section].count
+        return menuGroup[section].rowCount
 
     }
 
@@ -154,7 +137,7 @@ extension LeftViewController {
      
      - returns:
      */
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return listTitleViewModel.count }
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int { return menuGroup.count }
     
     /**
      高度
@@ -164,7 +147,9 @@ extension LeftViewController {
      
      - returns:
      */
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat { return 50 }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return menuGroup[indexPath.section].items[indexPath.row].cellHeight
+    }
 
     /**
      header 视图
@@ -175,13 +160,7 @@ extension LeftViewController {
      - returns:
      */
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        if section == 0 {
-            return UIView()
-        }
-        
-        return LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
-
+        return menuGroup[section].sectionView
     }
 
     /**
@@ -194,7 +173,12 @@ extension LeftViewController {
 
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        listTitleViewModel[indexPath.section][indexPath.row].pushView()
+        let nextView = menuGroup[indexPath.section].items[indexPath.row].nextView
+        
+        let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
 
     }
 

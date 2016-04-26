@@ -9,7 +9,7 @@
 import UIKit
 import EZSwiftExtensions
 
-protocol ContactsSearchControllerDelegate {
+protocol ContactsSearchControllerDelegate: class {
     
     func didTapOnSearchButton()
     
@@ -18,7 +18,7 @@ protocol ContactsSearchControllerDelegate {
 class ContactsSearchController: UISearchController, UISearchBarDelegate {
     
     var contactsSearchBar: ContactsSearchBar?
-    var contactsSearchControllerDelegate: ContactsSearchControllerDelegate?
+    weak var contactsSearchControllerDelegate: ContactsSearchControllerDelegate?
     var isSearching = false
 
     override init(searchResultsController: UIViewController?) {

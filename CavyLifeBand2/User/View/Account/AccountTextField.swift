@@ -19,7 +19,7 @@ class AccountTextField: UITextField {
 
         self.clearButtonMode = .WhileEditing
         self.setValue(UIColor(named: .SignInPlaceholderText), forKeyPath: "_placeholderLabel.textColor")
-        self.textColor = UIColor(named: .SignInTextFieldText)
+        self.textColor = UIColor(named: .TextFieldTextColor)
         
     }
 

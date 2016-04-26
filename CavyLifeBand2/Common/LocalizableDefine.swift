@@ -215,6 +215,18 @@ enum L10n {
   case HomeLifeListTitleHelp
   /// 相关APP
   case HomeLifeListTitleRelated
+  /// 遥控相机
+  case HomeRightListTitleCamera
+  /// 提醒
+  case HomeRightListTitleNotification
+  /// 智能闹钟
+  case HomeRightListTitleAlarmClock
+  /// 安全
+  case HomeRightListTitleSecurity
+  /// 固件升级
+  case HomeRightListTitleFirmwareUpgrade
+  /// 绑定新的CavyBand
+  case HomeRightListTitleBindingBand
   /// 生活豚鼠
   case ContactsListCellCavy
   /// 搜索
@@ -291,6 +303,8 @@ enum L10n {
   case ContactsChangeNotesNameButton
   /// 更改的昵称
   case ContactsChangeSelfNamePlaceHolder
+  /// 哈喽，我是
+  case ContactsRequestVerifyMsg
   /// 账户信息
   case AccountInfoTitle
   /// 退出登录
@@ -582,6 +596,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.LifeList.Title.Help")
       case .HomeLifeListTitleRelated:
         return L10n.tr("Home.LifeList.Title.Related")
+      case .HomeRightListTitleCamera:
+        return L10n.tr("Home.RightList.Title.Camera")
+      case .HomeRightListTitleNotification:
+        return L10n.tr("Home.RightList.Title.Notification")
+      case .HomeRightListTitleAlarmClock:
+        return L10n.tr("Home.RightList.Title.AlarmClock")
+      case .HomeRightListTitleSecurity:
+        return L10n.tr("Home.RightList.Title.Security")
+      case .HomeRightListTitleFirmwareUpgrade:
+        return L10n.tr("Home.RightList.Title.FirmwareUpgrade")
+      case .HomeRightListTitleBindingBand:
+        return L10n.tr("Home.RightList.Title.BindingBand")
       case .ContactsListCellCavy:
         return L10n.tr("Contacts.ListCell.Cavy")
       case .ContactsSearchBarSearch:
@@ -658,6 +684,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.ChangeNotesName.Button")
       case .ContactsChangeSelfNamePlaceHolder:
         return L10n.tr("Contacts.ChangeSelfName.PlaceHolder")
+      case .ContactsRequestVerifyMsg:
+        return L10n.tr("Contacts.Request.VerifyMsg")
       case .AccountInfoTitle:
         return L10n.tr("AccountInfo.Title")
       case .AccountInfoLoginoutButtonTitle:
