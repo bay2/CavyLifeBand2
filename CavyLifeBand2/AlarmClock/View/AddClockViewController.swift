@@ -94,6 +94,8 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
 //        
 //        updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
         
+        updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
+        
         self.popVC()
     }
     
