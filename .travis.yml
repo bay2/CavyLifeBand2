@@ -22,7 +22,7 @@ include:
 - CavyLifeBand2
 env:
   matrix:
-  - bulidTask: build.sh
+  - bulidTask: bulid.sh
   - bulidTask: test.sh
   global:
   - APP_NAME="CavyLifeBand2"

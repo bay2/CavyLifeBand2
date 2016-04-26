@@ -1,5 +1,3 @@
 #!/bin/sh
 
-ld clean build test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk
-iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2'
-OTHER_SWIFT_FLAGS=" -D UITEST"  | xcpretty
+xcodebuild clean build test -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.2' OTHER_SWIFT_FLAGS=" -D UITEST"  | xcpretty
