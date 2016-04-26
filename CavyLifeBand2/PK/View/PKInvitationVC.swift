@@ -51,12 +51,18 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
                 
         print(realm.path)
         
+        //---------下面这个VM不适用于这个C，只是在这里试验代码------------//
+        
+        Log.warning("以下代码需要删除")
+        
         let pkVM = PKRecordsViewModel(realm: realm)
+        
+//        let save = pkVM.savePKRecordsToRealm()
 
         print(pkVM.finishList) 
         
         
-
+        //---------上面这个VM不适用于这个C，只是在这里试验代码------------//
         
         
     }
