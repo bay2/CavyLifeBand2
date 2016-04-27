@@ -215,6 +215,12 @@ enum L10n {
   case HomeRightListTitleFirmwareUpgrade
   /// 绑定新的CavyBand
   case HomeRightListTitleBindingBand
+  /// 日
+  case HomeDetailViewTimeBucketDay
+  /// 周
+  case HomeDetailViewTimeBucketWeek
+  /// 月
+  case HomeDetailViewTimeBucketMonth
   /// 生活豚鼠
   case ContactsListCellCavy
   /// 搜索
@@ -562,6 +568,12 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.RightList.Title.FirmwareUpgrade")
       case .HomeRightListTitleBindingBand:
         return L10n.tr("Home.RightList.Title.BindingBand")
+      case .HomeDetailViewTimeBucketDay:
+        return L10n.tr("Home.DetailView.TimeBucket.Day")
+      case .HomeDetailViewTimeBucketWeek:
+        return L10n.tr("Home.DetailView.TimeBucket.Week")
+      case .HomeDetailViewTimeBucketMonth:
+        return L10n.tr("Home.DetailView.TimeBucket.Month")
       case .ContactsListCellCavy:
         return L10n.tr("Contacts.ListCell.Cavy")
       case .ContactsSearchBarSearch:

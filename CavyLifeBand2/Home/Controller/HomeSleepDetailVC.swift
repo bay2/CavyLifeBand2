@@ -10,31 +10,30 @@ import UIKit
 
 class HomeSleepDetailVC: UIViewController, BaseViewControllerPresenter {
     
-    
-    
     lazy var leftBtn: UIButton? = {
         
-        let button = UIButton(type: .System)
-        button.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
-        return button
+        let leftItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
+        leftItemBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
+        return leftItemBtn
+        
         
     }()
     
     lazy var rightBtn: UIButton? = {
         
-        let button = UIButton(type: .System)
+        let button = UIButton(frame: CGRectMake(0, 0, 60, 30))
         button.setTitle("分享", forState: .Normal)
         return button
         
     }()
     
-    var navTitle: String { return "睡眠" }
-    
+    var navTitle: String = "睡眠" 
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        self.updateNavUI()
         
         self.view.backgroundColor = UIColor.blueColor()
     }

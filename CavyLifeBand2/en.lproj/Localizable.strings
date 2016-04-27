@@ -133,6 +133,9 @@
 "Home.RightList.Title.Security" = "安全";
 "Home.RightList.Title.FirmwareUpgrade" = "固件升级";
 "Home.RightList.Title.BindingBand" = "绑定新的CavyBand";
+"Home.DetailView.TimeBucket.Day" = "日";
+"Home.DetailView.TimeBucket.Week" = "周";
+"Home.DetailView.TimeBucket.Month" = "月";
 
 //好友，联系人
 "Contacts.ListCell.Cavy" = "生活豚鼠";

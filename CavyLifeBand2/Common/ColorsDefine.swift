@@ -135,6 +135,12 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
     /// Alpha: 100% <br/> (0x48d299ff)
     case GuideSetPermission
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e5e5e5"></span>
+    /// Alpha: 100% <br/> (0xe5e5e5ff)
+    case HomeDetailBackground
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 40% <br/> (0x00000066)
+    case HomeDetailDeselectText
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#309a6e"></span>
     /// Alpha: 100% <br/> (0x309a6eff)
     case HomeRingViewBackground
@@ -256,6 +262,8 @@ extension UIColor {
       case .GuideLineColor: return 0xccccccff
       case .GuideSetInfoColor: return 0x1dbcffff
       case .GuideSetPermission: return 0x48d299ff
+      case .HomeDetailBackground: return 0xe5e5e5ff
+      case .HomeDetailDeselectText: return 0x00000066
       case .HomeRingViewBackground: return 0x309a6eff
       case .HomeSleepRingColor: return 0x36f3ffff
       case .HomeStepRingColor: return 0xfff956ff
