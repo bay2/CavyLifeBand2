@@ -20,7 +20,8 @@ class HomeUpperView: UIView {
     /// 天气
     @IBOutlet weak var weatherView: UIView!
     
-
+    var viewController = UIViewController()
+    
     /**
      适配
      */
@@ -35,7 +36,9 @@ class HomeUpperView: UIView {
             make.left.right.top.bottom.equalTo(sleepRing)
         })
         sleepView!.sleepRingWith(.SleepRing, targetHour: 7, targetMinute: 0, currentHour: 5, currentMinute: 10)
-        
+        sleepView!.addTapGesture {(_) in
+            self.showSleepDetailView()
+        }
         
         // 计步
         let stepView = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
@@ -47,6 +50,9 @@ class HomeUpperView: UIView {
 
         })
         stepView!.stepRingWith(.StepRing, targetNumber: 80000, currentNumber: 50000)
+        stepView!.addTapGesture {(_) in
+            self.showStepDetailView()
+        }
         
        // 天气
         weatherView.snp_makeConstraints(closure: { make in
@@ -61,6 +67,15 @@ class HomeUpperView: UIView {
         
     }
     
+    func showSleepDetailView(){
+        
+        self.viewController.pushVC(HomeSleepDetailVC())
+    }
+    
+    func showStepDetailView(){
+        
+        self.viewController.pushVC(HomeStepDetailVC())
+    }
     
     
     

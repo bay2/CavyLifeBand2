@@ -32,6 +32,8 @@
 		4C0BFA0C1CBF34C700DB06FC /* HomeDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */; };
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C2B67EC1CCF49CD00512CC7 /* GuideViewConfigDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */; };
+		4C2B67F01CCF87A800512CC7 /* HomeSleepDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67EE1CCF87A800512CC7 /* HomeSleepDetailVC.swift */; };
+		4C2B67F11CCF87A800512CC7 /* HomeStepDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67EF1CCF87A800512CC7 /* HomeStepDetailVC.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4C6A24591CBF5CB1000136EC /* HomeDateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */; };
 		4C6A245A1CBF5CB1000136EC /* HomeDateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */; };
@@ -269,6 +271,8 @@
 		4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateView.swift; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewConfigDefine.swift; sourceTree = "<group>"; };
+		4C2B67EE1CCF87A800512CC7 /* HomeSleepDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeSleepDetailVC.swift; sourceTree = "<group>"; };
+		4C2B67EF1CCF87A800512CC7 /* HomeStepDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeStepDetailVC.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateViewCell.swift; sourceTree = "<group>"; };
 		4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDateViewCell.xib; sourceTree = "<group>"; };
@@ -533,6 +537,15 @@
 			path = WebApi;
 			sourceTree = "<group>";
 		};
+		4C2B67ED1CCF875900512CC7 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				4C2B67EE1CCF87A800512CC7 /* HomeSleepDetailVC.swift */,
+				4C2B67EF1CCF87A800512CC7 /* HomeStepDetailVC.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
 		4CC498FF1CA9102800B2EE85 /* ContactsTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -728,6 +741,7 @@
 				9150CABD1CC8D14100A398E9 /* Protocol */,
 				4C0BF9E21CB78F0500DB06FC /* Controller */,
 				9114D2011C99314E008CB4CE /* View */,
+				4C2B67ED1CCF875900512CC7 /* DetailView */,
 				4C0BF9E71CB78F0500DB06FC /* ViewModel */,
 				4C0BFA081CBF27A900DB06FC /* WebApi */,
 			);
@@ -1543,6 +1557,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				68D6ED5F1CB7AEE700E1A1FB /* SafetySettingViewController.swift in Sources */,
+				4C2B67F01CCF87A800512CC7 /* HomeSleepDetailVC.swift in Sources */,
 				91671C951C9A7EC60090BB3F /* LeftHeaderView.swift in Sources */,
 				685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
@@ -1675,6 +1690,7 @@
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,
 				683655821CBC85BE009373EA /* SecondsTableViewCell.swift in Sources */,
+				4C2B67F11CCF87A800512CC7 /* HomeStepDetailVC.swift in Sources */,
 				6836552B1CBB49F7009373EA /* EmergencyContactPersonCell.swift in Sources */,
 				9150CABC1CC8D12D00A398E9 /* MenuProtocol.swift in Sources */,
 				9114D1F51C97AB05008CB4CE /* BirthdayView.swift in Sources */,

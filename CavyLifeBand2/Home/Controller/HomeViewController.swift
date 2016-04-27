@@ -70,6 +70,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
         upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
         upperView!.allViewLayout()
+        upperView!.viewController = self
         view.addSubview(upperView!)
         
         view.addSubview(dateView)
