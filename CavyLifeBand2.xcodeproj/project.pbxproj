@@ -94,7 +94,6 @@
 		9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */; };
 		9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */; };
 		9114D20E1C995CD2008CB4CE /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D20C1C995CD2008CB4CE /* MenuTableViewCell.swift */; };
-		911D1D891CCFA39C00065053 /* BandElectricView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 911D1D881CCFA39C00065053 /* BandElectricView.xib */; };
 		911D1D8B1CCFA3B800065053 /* BandElectricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911D1D8A1CCFA3B800065053 /* BandElectricView.swift */; };
 		911D1D8D1CCFAB0700065053 /* BandInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911D1D8C1CCFAB0700065053 /* BandInfoView.swift */; };
 		9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */; };
@@ -335,7 +334,6 @@
 		9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetJSON.swift; sourceTree = "<group>"; };
 		9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetRequestData.swift; sourceTree = "<group>"; };
 		9114D20C1C995CD2008CB4CE /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
-		911D1D881CCFA39C00065053 /* BandElectricView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BandElectricView.xib; sourceTree = "<group>"; };
 		911D1D8A1CCFA3B800065053 /* BandElectricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandElectricView.swift; sourceTree = "<group>"; };
 		911D1D8C1CCFAB0700065053 /* BandInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandInfoView.swift; sourceTree = "<group>"; };
 		9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardDefine.swift; sourceTree = "<group>"; };
@@ -763,7 +761,6 @@
 				4C06E9F11CC0E79C0093EEFA /* HomeTimeLineTableCell.xib */,
 				4C06E9F41CC0FC710093EEFA /* HomeTimeLineSection.swift */,
 				4C06E9F61CC0FC830093EEFA /* HomeTimeLineSection.xib */,
-				911D1D881CCFA39C00065053 /* BandElectricView.xib */,
 				911D1D8A1CCFA3B800065053 /* BandElectricView.swift */,
 				911D1D8C1CCFAB0700065053 /* BandInfoView.swift */,
 			);
@@ -1343,7 +1340,6 @@
 				4C0BF9FA1CBB9F9200DB06FC /* HomeUpperView.xib in Resources */,
 				91EB79681CAE075C00ED3E67 /* GetFrendListResult.json in Resources */,
 				9114D1EC1C97AB05008CB4CE /* Main.storyboard in Resources */,
-				911D1D891CCFA39C00065053 /* BandElectricView.xib in Resources */,
 				913D0BD81C3FA126006EE7F8 /* Camera.storyboard in Resources */,
 				9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */,
 				683655321CBB7E43009373EA /* AlarmClockDateCollectionViewCell.xib in Resources */,
