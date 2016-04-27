@@ -18,8 +18,12 @@ class BandElectricView: UIView {
     }
     */
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func awakeFromNib() {
-        self.backgroundColor = UIColor.whiteColor()
+//        self.backgroundColor = UIColor.whiteColor()
     }
 
 }
