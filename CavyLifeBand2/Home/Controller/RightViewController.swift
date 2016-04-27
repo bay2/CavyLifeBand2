@@ -14,6 +14,7 @@ class RightViewController: UIViewController {
     
     @IBOutlet weak var menuTabelView: UITableView!
     var menuGroup: [MenuGroupDataSource] = []
+    @IBOutlet weak var bandElectricView: BandElectricView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,8 @@ class RightViewController: UIViewController {
         addMenumenuGroupData(BandFeatureMenuGroupDataModel())
         addMenumenuGroupData(BandHardwareMenuGroupDataModel())
         addMenumenuGroupData(BindingBandMenuGroupDataModel())
+        
+        bandElectricView.configElectricImage(0.9)
 
         // Do any additional setup after loading the view.
     }
