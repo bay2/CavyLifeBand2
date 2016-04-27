@@ -112,6 +112,9 @@ extension UIColor {
     /// Alpha: 100% <br/> (0x38e797ff)
     case GuideBandBluetoothColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 50% <br/> (0x00000080)
+    case GuideBirthRulerLineColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case GuideColor33
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
@@ -189,8 +192,8 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 50% <br/> (0x00000080)
     case SettingTableFooterInfoColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#1dbcff"></span>
-    /// Alpha: 100% <br/> (0x1dbcffff)
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
+    /// Alpha: 100% <br/> (0x48d299ff)
     case SignInBackground
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 40% <br/> (0x00000066)
@@ -248,6 +251,7 @@ extension UIColor {
       case .ContactsTitleColor: return 0x000000b3
       case .ContactsUndoCareBtnColor: return 0x929292ff
       case .GuideBandBluetoothColor: return 0x38e797ff
+      case .GuideBirthRulerLineColor: return 0x00000080
       case .GuideColor33: return 0x00000033
       case .GuideColor66: return 0x00000066
       case .GuideColor99: return 0x00000099
@@ -274,7 +278,7 @@ extension UIColor {
       case .SettingTableCellInfoYellowColor: return 0xff9138ff
       case .SettingTableCellTitleColor: return 0x000000b3
       case .SettingTableFooterInfoColor: return 0x00000080
-      case .SignInBackground: return 0x1dbcffff
+      case .SignInBackground: return 0x48d299ff
       case .SignInForgotPwdBtnText: return 0x00000066
       case .SignInMainTextColor: return 0x00000080
       case .SignInNavigationBar: return 0x1dbcffff

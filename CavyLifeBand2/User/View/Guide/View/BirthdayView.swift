@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EZSwiftExtensions
 
 class BirthdayView: UIView, RulerViewDelegate {
     
@@ -45,52 +46,54 @@ class BirthdayView: UIView, RulerViewDelegate {
         titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 18))
+            make.size.equalTo(CGSizeMake(birthRulerWidth, 18))
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 2)
         }
-        yyMMLabel.font = UIFont.systemFontOfSize(45)
+        
+        yyMMLabel.font = UIFont.systemFontOfSize(40)
         yyMMLabel.textColor = UIColor(named: .GuideColorCC)
         yyMMLabel.textAlignment = NSTextAlignment.Center
         yyMMLabel.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 45))
+            make.size.equalTo(CGSizeMake(birthRulerWidth, 40))
             make.centerX.equalTo(self)
-            make.top.equalTo(titleLab).offset(CavyDefine.spacingWidth25 * 2 + 18)
+            make.top.equalTo(self).offset(middleViewHeight / 2 - birthRulerViewHeight - rulerBetweenSpace / 2)
         }
+        
         yymmRuler.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 60))
+            make.size.equalTo(CGSizeMake(birthRulerWidth, birthRulerHeight))
             make.centerX.equalTo(self)
-            make.top.equalTo(yyMMLabel).offset(CavyDefine.spacingWidth25 + 45)
+            make.top.equalTo(self).offset(middleViewHeight / 2 - birthRulerHeight - rulerBetweenSpace / 2)
         }
         yymmRuler.rulerDelegate = self
         
         // 获取当前时间
-        let dateFormatter = NSDateFormatter() // = NSDate()
+        let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy/MM"
         let dateString = dateFormatter.stringFromDate(NSDate())
         var dates = dateString.componentsSeparatedByString("/")
         let currentYear = dates[0].toInt()
         let currentMonth = dates[1].toInt()
         
-        yymmRuler.initYearMonthRuler(currentYear!, monthValue: currentMonth!, lineSpace: 13, lineCount: 12, style: .YearMonthRuler)
+        yymmRuler.initYearMonthRuler(currentYear!, monthValue: currentMonth!, style: .YearMonthRuler)
         yyMMLabel.text = yymmRuler.rulerScroll.currentValue
         
-        dayLabel.font = UIFont.systemFontOfSize(45)
+        dayLabel.font = UIFont.systemFontOfSize(40)
         dayLabel.textColor = UIColor(named: .GuideColorCC)
         dayLabel.textAlignment = NSTextAlignment.Center
         dayLabel.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 45))
+            make.size.equalTo(CGSizeMake(birthRulerWidth, 40))
             make.centerX.equalTo(self)
-            make.top.equalTo(yymmRuler).offset(CavyDefine.spacingWidth25 * 2 + 60)
+            make.top.equalTo(self).offset(middleViewHeight / 2 + rulerBetweenSpace)
         }
         
         dayRuler.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 60))
+            make.size.equalTo(CGSizeMake(birthRulerWidth, 60))
             make.centerX.equalTo(self)
-            make.top.equalTo(dayLabel).offset(CavyDefine.spacingWidth25 + 45)
+            make.top.equalTo(self).offset(middleViewHeight / 2 + rulerBetweenSpace + birthRulerHeight)
         }
         dayRuler.rulerDelegate = self
-        dayRuler.initDayRuler(31, lineSpace: 26, lineCount: 5, style: .DayRuler)
+        dayRuler.initDayRuler(31, style: .DayRuler)
         dayLabel.text = dayRuler.rulerScroll.currentValue
         
     }
@@ -112,7 +115,7 @@ class BirthdayView: UIView, RulerViewDelegate {
         // 通过年月日来判断 下面刻度尺的日期天数
         let days = daysCount(yymmRuler.nowYear, month: yymmRuler.nowMonth)
         
-        dayRuler.initDayRuler(days, lineSpace: 26, lineCount: 5, style: .DayRuler)
+        dayRuler.initDayRuler(days, style: .DayRuler)
         
     }
     

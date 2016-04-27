@@ -34,6 +34,7 @@
 		4C2B67DC1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */; };
 		4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67DD1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift */; };
 		4C2B67E21CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */; };
+		4C2B67EC1CCF49CD00512CC7 /* GuideViewConfigDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4C6A24591CBF5CB1000136EC /* HomeDateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */; };
 		4C6A245A1CBF5CB1000136EC /* HomeDateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */; };
@@ -273,6 +274,7 @@
 		4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString_Extension.swift; sourceTree = "<group>"; };
 		4C2B67DD1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineCellViewModel.swift; sourceTree = "<group>"; };
 		4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineProtocol.swift; sourceTree = "<group>"; };
+		4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewConfigDefine.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateViewCell.swift; sourceTree = "<group>"; };
 		4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDateViewCell.xib; sourceTree = "<group>"; };
@@ -696,13 +698,14 @@
 		9114D1D61C97AB05008CB4CE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9114D1DC1C97AB05008CB4CE /* PictureView.swift */,
 				9114D1D71C97AB05008CB4CE /* BirthdayView.swift */,
 				9114D1D81C97AB05008CB4CE /* GenderView.swift */,
 				9114D1D91C97AB05008CB4CE /* GoalView.swift */,
 				9114D1DA1C97AB05008CB4CE /* GoalView.xib */,
 				9114D1DB1C97AB05008CB4CE /* HightView.swift */,
 				9114D1E01C97AB05008CB4CE /* WeightView.swift */,
-				9114D1DC1C97AB05008CB4CE /* PictureView.swift */,
+				4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */,
 				9114D1DD1C97AB05008CB4CE /* ScrollRuler */,
 			);
 			path = View;
@@ -1613,6 +1616,7 @@
 				9104AA721CC4BF4B00FE03E7 /* ContactsViewControllerPresenter.swift in Sources */,
 				91E1B4DB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift in Sources */,
 				91E1B4D71CA510BD008ADEE6 /* ContactsAddFriendCell.swift in Sources */,
+				4C2B67EC1CCF49CD00512CC7 /* GuideViewConfigDefine.swift in Sources */,
 				683655951CBE25DB009373EA /* ReminderSettingVCViewModel.swift in Sources */,
 				91E1B4C71CA510BD008ADEE6 /* ContactsFriendQualityCell.swift in Sources */,
 				4C0BF9F01CB78FBD00DB06FC /* HomeUpperView.swift in Sources */,
