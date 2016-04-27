@@ -96,6 +96,9 @@
 		9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */; };
 		9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */; };
 		9114D20E1C995CD2008CB4CE /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D20C1C995CD2008CB4CE /* MenuTableViewCell.swift */; };
+		911D1D891CCFA39C00065053 /* BandElectricView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 911D1D881CCFA39C00065053 /* BandElectricView.xib */; };
+		911D1D8B1CCFA3B800065053 /* BandElectricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911D1D8A1CCFA3B800065053 /* BandElectricView.swift */; };
+		911D1D8D1CCFAB0700065053 /* BandInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911D1D8C1CCFAB0700065053 /* BandInfoView.swift */; };
 		9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */; };
 		912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D29DA1C6088B5005A06E9 /* SignInTest.swift */; };
 		912D29DD1C609FFD005A06E9 /* Sign_Up_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 912D29DC1C609FFD005A06E9 /* Sign_Up_Ok.json */; };
@@ -336,6 +339,9 @@
 		9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetJSON.swift; sourceTree = "<group>"; };
 		9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetRequestData.swift; sourceTree = "<group>"; };
 		9114D20C1C995CD2008CB4CE /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		911D1D881CCFA39C00065053 /* BandElectricView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BandElectricView.xib; sourceTree = "<group>"; };
+		911D1D8A1CCFA3B800065053 /* BandElectricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandElectricView.swift; sourceTree = "<group>"; };
+		911D1D8C1CCFAB0700065053 /* BandInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandInfoView.swift; sourceTree = "<group>"; };
 		9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardDefine.swift; sourceTree = "<group>"; };
 		912D29DA1C6088B5005A06E9 /* SignInTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTest.swift; sourceTree = "<group>"; };
 		912D29DC1C609FFD005A06E9 /* Sign_Up_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_Up_Ok.json; sourceTree = "<group>"; };
@@ -771,6 +777,9 @@
 				4C06E9F11CC0E79C0093EEFA /* HomeTimeLineTableCell.xib */,
 				4C06E9F41CC0FC710093EEFA /* HomeTimeLineSection.swift */,
 				4C06E9F61CC0FC830093EEFA /* HomeTimeLineSection.xib */,
+				911D1D881CCFA39C00065053 /* BandElectricView.xib */,
+				911D1D8A1CCFA3B800065053 /* BandElectricView.swift */,
+				911D1D8C1CCFAB0700065053 /* BandInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1348,6 +1357,7 @@
 				4C0BF9FA1CBB9F9200DB06FC /* HomeUpperView.xib in Resources */,
 				91EB79681CAE075C00ED3E67 /* GetFrendListResult.json in Resources */,
 				9114D1EC1C97AB05008CB4CE /* Main.storyboard in Resources */,
+				911D1D891CCFA39C00065053 /* BandElectricView.xib in Resources */,
 				913D0BD81C3FA126006EE7F8 /* Camera.storyboard in Resources */,
 				9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */,
 				683655321CBB7E43009373EA /* AlarmClockDateCollectionViewCell.xib in Resources */,
@@ -1592,6 +1602,7 @@
 				4C0BF9FE1CBCE58000DB06FC /* HomeSleepViewModel.swift in Sources */,
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,
 				917B98B91CB8E7CA008698F5 /* Font_Extension.swift in Sources */,
+				911D1D8D1CCFAB0700065053 /* BandInfoView.swift in Sources */,
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
 				9114D1ED1C97AB05008CB4CE /* MainPageButton.swift in Sources */,
 				91ACEC621CB654BD008ED8B0 /* GuideInfoModelView.swift in Sources */,
@@ -1657,6 +1668,7 @@
 				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
 				4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
+				911D1D8B1CCFA3B800065053 /* BandElectricView.swift in Sources */,
 				9114D20E1C995CD2008CB4CE /* MenuTableViewCell.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
