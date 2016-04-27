@@ -69,7 +69,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
      */
     func addAllView() {
         
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
         upperView!.allViewLayout()

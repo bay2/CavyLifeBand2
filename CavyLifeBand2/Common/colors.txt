@@ -9,7 +9,6 @@ SignInMainTextColor : #00000080
 PageIndicatorTintColor : #00000033
 SignInForgotPwdBtnText : #00000066
 SignInPlaceholderText : #00000066
-
 SignInSplitLine : #00000033
 SignUpProtocolBtn : #125fae
 GuideSetInfoColor : #1dbcff
@@ -28,26 +27,27 @@ HomeViewMainColor : #48d299
 HomeViewMaskColor : #00000066
 HomeViewLeftHeaderLine : #ffffff80
 HomeViewLeftSelected : #0000001A
-HomeViewUserName: #000000B3
-HomeViewAccount: #00000080
-HomeSleepRingColor: #36f3ff
-HomeStepRingColor: #fff956
-HomeRingViewBackground: #309a6e
-HomeTimeLineLineColor:#e5e5e5
+HomeViewUserName : #000000B3
+HomeViewAccount : #00000080
+HomeSleepRingColor : #36f3ff
+HomeStepRingColor : #fff956
+HomeRingViewBackground : #309a6e
+HomeTimeLineLineColor :#e5e5e5
+HomeTimeLinePKCellTextColor : #ff8259
 ContactsTitleColor : #000000B3
 ContactsName : #000000
-ContactsIntrouduce: #0000004D
+ContactsIntrouduce : #0000004D
 ContactsCellLine : #cccccc
 ContactsCellSelect : #0000000D
-ContactsSectionColor: #f2f2f2
+ContactsSectionColor : #f2f2f2
 ContactsFindFriendDark : #ffffff
 ContactsFindFriendLight : #00000080
 ContactsDeleteBtnColor : #D9D9D9
 ContactsCareBtnColor : #FF5656
 ContactsUndoCareBtnColor : #929292
-ContactsLetterColor: #0000004D
-ContactsSearchBarColor: #e6e6e6
-ContactsPKBtnColor: #FF9F22
+ContactsLetterColor : #0000004D
+ContactsSearchBarColor : #e6e6e6
+ContactsPKBtnColor : #FF9F22
 ContactsSearchFlagViewBg : #ffffff66
 ContactsAddFriendButtonColor : #ff9138
 ContactsAgreeButtonColor : #0dcf7f

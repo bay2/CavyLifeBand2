@@ -22,14 +22,45 @@ class HomeWeatherView: UIView {
     /// 空气
     @IBOutlet weak var airQuality: UILabel!
     
+    /// 当前城市
+    var city = "hangzou"
+    
+
     /**
      加载天气视图
      */
     func loadWeatherView() {
+       
+        // 确定城市名字索引
+        var cityChinese = ""
+        SCLocationManager.shareInterface.startUpdateLocation {
+            cityChinese = $0
+            // 去掉市
+            let index = cityChinese.rangeOfString("市")
+            cityChinese.removeRange(index!)
+            
+            // 转换拼音
+            let str = CFStringCreateMutableCopy(nil, 0, cityChinese)
+            if CFStringTransform(str, nil, kCFStringTransformMandarinLatin, false) {}
+            if CFStringTransform(str, nil, kCFStringTransformStripDiacritics, false) {}
+            self.city = String(str)
+            // 删除中间的空格 hang zhou => hangzhou
+            let spaceIndex = self.city.rangeOfString(" ")
+            self.city.removeRange(spaceIndex!)
+            
+            Log.info(self.city)
+
+            self.loadWeahDate()
+        }
         
-        let location = "hangzhou"
+    }
+    
+    /**
+     加载天气数据
+     */
+    func loadWeahDate() {
         
-        HomeWeatherWebApi.shareApi.parseWeatherData(location) {(result) in
+        HomeWeatherWebApi.shareApi.parseWeatherData(city) {(result) in
             
             guard result.isSuccess else {
                 
@@ -53,8 +84,9 @@ class HomeWeatherView: UIView {
             }
             
         }
-    
+        
     }
+    
     
     /**
      添加空气状态文本
@@ -95,7 +127,6 @@ class HomeWeatherView: UIView {
         
         imgView.layer.masksToBounds = true
         imgView.layer.cornerRadius = 10
-        
         
         let weatherNames = [L10n.HomeWeatherSun.string,
                             L10n.HomeWeatherCloudy.string,

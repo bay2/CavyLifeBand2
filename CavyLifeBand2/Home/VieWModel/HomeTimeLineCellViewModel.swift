@@ -93,10 +93,31 @@ struct TimeLinePKViewModel: HomeTimeLineDataSource, HomeTimeLineDelegate {
     var resultNum: NSMutableAttributedString
     
     
-    init(timeLine: String,othersName: String, result: String){
+    init(timeLine: String, othersName: String, result: String) {
         time = timeLine
         others = othersName
         resultNum = NSMutableAttributedString(string: result)
+    }
+    
+    /**
+     返回不同的富文本内容
+     */
+    func attrsString(str: String) -> NSMutableAttributedString {
+        
+        let attrs = NSMutableAttributedString(string: str)
+        
+        attrs.addAttribute(NSForegroundColorAttributeName, value: UIColor(named: .HomeTimeLinePKCellTextColor), range: NSMakeRange(0, str.length))
+        
+        // XX领先了10000步
+        
+        // XX落后了10000步
+        
+        // XX胜利了
+        
+        // XX失败了
+    
+        return attrs
+        
     }
     
     // 跳到PK详情页

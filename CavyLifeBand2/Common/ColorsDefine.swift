@@ -147,6 +147,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e5e5e5"></span>
     /// Alpha: 100% <br/> (0xe5e5e5ff)
     case HomeTimeLineLineColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff8259"></span>
+    /// Alpha: 100% <br/> (0xff8259ff)
+    case HomeTimeLinePKCellTextColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 50% <br/> (0x00000080)
     case HomeViewAccount
@@ -263,6 +266,7 @@ extension UIColor {
       case .HomeSleepRingColor: return 0x36f3ffff
       case .HomeStepRingColor: return 0xfff956ff
       case .HomeTimeLineLineColor: return 0xe5e5e5ff
+      case .HomeTimeLinePKCellTextColor: return 0xff8259ff
       case .HomeViewAccount: return 0x00000080
       case .HomeViewLeftHeaderLine: return 0xffffff80
       case .HomeViewLeftSelected: return 0x0000001a
