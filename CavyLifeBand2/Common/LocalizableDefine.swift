@@ -189,6 +189,18 @@ enum L10n {
   case HomeTimeLineCellAchive
   /// 健康
   case HomeTimeLineCellHealthiy
+  /// 累计
+  case HomeTimeLineAchiveBadge
+  /// 领先
+  case HomeTimeLinePKLead
+  /// 落后
+  case HomeTimeLinePKBack
+  /// 胜利了!
+  case HomeTimeLinePKWin
+  /// 失败了!
+  case HomeTimeLinePKLose
+  /// 需要关怀
+  case HomeTimeLineHealthyCare
   /// 目标
   case HomeLifeListTitleTarget
   /// 信息公开
@@ -343,6 +355,28 @@ enum L10n {
   case SettingReminderMessageType
   /// 1
   case SettingReminderPhoneType
+  /// 晴
+  case HomeWeatherSun
+  /// 多云
+  case HomeWeatherCloudy
+  /// 阴
+  case HomeWeatherOvercast
+  /// 阵雨
+  case HomeWeatherRainOccasional
+  /// 雷阵雨
+  case HomeWeatherRainThundery
+  /// 小雨
+  case HomeWeatherRainLight
+  /// 中雨
+  case HomeWeatherRainMiddle
+  /// 大雨
+  case HomeWeatherRainHeavy
+  /// 小雪
+  case HomeWeatherSnowLight
+  /// 中雪
+  case HomeWeatherSnowMiddle
+  /// 大雪
+  case HomeWeatherSnowHeavy
 }
 
 extension L10n: CustomStringConvertible {
@@ -536,6 +570,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.TimeLine.Cell.Achive")
       case .HomeTimeLineCellHealthiy:
         return L10n.tr("Home.TimeLine.Cell.Healthiy")
+      case .HomeTimeLineAchiveBadge:
+        return L10n.tr("Home.TimeLine.Achive.Badge")
+      case .HomeTimeLinePKLead:
+        return L10n.tr("Home.TimeLine.PK.Lead")
+      case .HomeTimeLinePKBack:
+        return L10n.tr("Home.TimeLine.PK.Back")
+      case .HomeTimeLinePKWin:
+        return L10n.tr("Home.TimeLine.PK.Win")
+      case .HomeTimeLinePKLose:
+        return L10n.tr("Home.TimeLine.PK.Lose")
+      case .HomeTimeLineHealthyCare:
+        return L10n.tr("Home.TimeLine.Healthy.Care")
       case .HomeLifeListTitleTarget:
         return L10n.tr("Home.LifeList.Title.Target")
       case .HomeLifeListTitleInfoOpen:
@@ -690,6 +736,28 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Setting.ReminderMessage.Type")
       case .SettingReminderPhoneType:
         return L10n.tr("Setting.ReminderPhone.Type")
+      case .HomeWeatherSun:
+        return L10n.tr("Home.Weather.Sun")
+      case .HomeWeatherCloudy:
+        return L10n.tr("Home.Weather.Cloudy")
+      case .HomeWeatherOvercast:
+        return L10n.tr("Home.Weather.Overcast")
+      case .HomeWeatherRainOccasional:
+        return L10n.tr("Home.Weather.Rain.Occasional")
+      case .HomeWeatherRainThundery:
+        return L10n.tr("Home.Weather.Rain.Thundery")
+      case .HomeWeatherRainLight:
+        return L10n.tr("Home.Weather.Rain.Light")
+      case .HomeWeatherRainMiddle:
+        return L10n.tr("Home.Weather.Rain.Middle")
+      case .HomeWeatherRainHeavy:
+        return L10n.tr("Home.Weather.Rain.Heavy")
+      case .HomeWeatherSnowLight:
+        return L10n.tr("Home.Weather.Snow.Light")
+      case .HomeWeatherSnowMiddle:
+        return L10n.tr("Home.Weather.Snow.Middle")
+      case .HomeWeatherSnowHeavy:
+        return L10n.tr("Home.Weather.Snow.Heavy")
     }
   }
 

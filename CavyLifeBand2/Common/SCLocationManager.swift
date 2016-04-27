@@ -13,9 +13,26 @@ import CoreLocation
 /*
  功能：
  1.获取经纬度坐标
+ 
+ SCLocationManager.shareInterface.startUpdateLocation({ coordinate in
+ 
+ let parameter = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.ReportCoordinate.rawValue,
+ UserNetRequsetKey.UserID.rawValue: self.userId,
+ UserNetRequsetKey.Longitude.rawValue: "\(coordinate.longitude)",
+ UserNetRequsetKey.Latitude.rawValue: "\(coordinate.latitude)"]
+ 
+ self.netPostRequestAdapter(CavyDefine.webApiAddr, para: parameter)
+ 
+ }, cityComplete: nil)
+ 
  2.获取城市名称
  
+ SCLocationManager.shareInterface.startUpdateLocation {
+    Log.error("\($0)")
+ }
+ 
  */
+
 
 class SCLocationManager: NSObject, CLLocationManagerDelegate {
     
