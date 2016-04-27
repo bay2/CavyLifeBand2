@@ -38,16 +38,16 @@ extension CoordinateReport {
      */
     private func reportServer() {
         
-        SCLocationManager.shareInterface.startUpdateLocation {
+        SCLocationManager.shareInterface.startUpdateLocation ({
             
             let parameter = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.ReportCoordinate.rawValue,
                 UserNetRequsetKey.UserID.rawValue: self.userId,
-                UserNetRequsetKey.Longitude.rawValue: "\(SCLocationManager.shareInterface.coordinate!.longitude)",
-                UserNetRequsetKey.Latitude.rawValue: "\(SCLocationManager.shareInterface.coordinate!.latitude)"]
+                UserNetRequsetKey.Longitude.rawValue: "\($0.longitude)",
+                UserNetRequsetKey.Latitude.rawValue: "\($0.latitude)"]
             
             self.netPostRequestAdapter(CavyDefine.webApiAddr, para: parameter)
             
-        }
+        })
         
     }
     

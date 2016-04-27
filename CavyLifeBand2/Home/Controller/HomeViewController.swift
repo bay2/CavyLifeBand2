@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
     var rightBtn: UIButton? = {
         
         let button = UIButton(type: .System)
+        button.size = CGSizeMake(30, 30)
         button.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
         
         return button
