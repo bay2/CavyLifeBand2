@@ -21,6 +21,7 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
     
     static var shareInterface: SCLocationManager = SCLocationManager()
     
+    var coordinate: CLLocationCoordinate2D?
     var locationManager: CLLocationManager!
     var complete: (CLLocationCoordinate2D -> Void)?
     var cityComplete: (String -> Void)?
@@ -64,6 +65,8 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         let geocoder = CLGeocoder()
+        
+        self.coordinate = locations[0].coordinate
         
         let locationObj = CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
         
