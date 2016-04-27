@@ -31,6 +31,9 @@
 		4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */; };
 		4C0BFA0C1CBF34C700DB06FC /* HomeDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */; };
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
+		4C2B67DC1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */; };
+		4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67DD1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift */; };
+		4C2B67E21CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */; };
 		4C2B67EC1CCF49CD00512CC7 /* GuideViewConfigDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4C6A24591CBF5CB1000136EC /* HomeDateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */; };
@@ -271,6 +274,9 @@
 		4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWeatherWebApi.swift; sourceTree = "<group>"; };
 		4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateView.swift; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
+		4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString_Extension.swift; sourceTree = "<group>"; };
+		4C2B67DD1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineCellViewModel.swift; sourceTree = "<group>"; };
+		4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineProtocol.swift; sourceTree = "<group>"; };
 		4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewConfigDefine.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateViewCell.swift; sourceTree = "<group>"; };
@@ -524,6 +530,8 @@
 				4C0BF9FB1CBCE4CE00DB06FC /* HomeStepViewModel.swift */,
 				4C0BF9FD1CBCE58000DB06FC /* HomeSleepViewModel.swift */,
 				4C0BFA011CBCE62E00DB06FC /* HomeRingViewProtocol.swift */,
+				4C2B67DD1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift */,
+				4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */,
 				9150CAB91CC8D03800A398E9 /* RightMenuViewModel.swift */,
 			);
 			name = ViewModel;
@@ -1032,6 +1040,7 @@
 				91C3AE551C474305006B67AF /* Log_Extension.swift */,
 				98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */,
 				917B98B81CB8E7CA008698F5 /* Font_Extension.swift */,
+				4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */,
 				9150CAAD1CC66CBB00A398E9 /* UIWindowExtension.swift */,
 			);
 			name = Extension;
@@ -1575,6 +1584,7 @@
 				6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */,
 				9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
+				4C2B67DC1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift in Sources */,
 				9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */,
 				9150CABA1CC8D03800A398E9 /* RightMenuViewModel.swift in Sources */,
 				91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */,
@@ -1634,6 +1644,7 @@
 				91800A7E1CB38846000BDDF2 /* UserProfileProtocol.swift in Sources */,
 				91E1B4D51CA510BD008ADEE6 /* ContactsSearchBar.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
+				4C2B67E21CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift in Sources */,
 				91E1B4CD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift in Sources */,
 				91E1B4CE1CA510BD008ADEE6 /* ContactsPersonInfoCell.swift in Sources */,
 				9104AA701CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift in Sources */,
@@ -1684,6 +1695,7 @@
 				4C0BFA021CBCE62E00DB06FC /* HomeRingViewProtocol.swift in Sources */,
 				98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
+				4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */,
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,
 				683655821CBC85BE009373EA /* SecondsTableViewCell.swift in Sources */,

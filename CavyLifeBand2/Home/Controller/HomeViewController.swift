@@ -16,11 +16,13 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
     var leftBtn: UIButton? = {
         
         let button = UIButton(type: .System)
+
         button.setBackgroundImage(UIImage(asset: .HomeLeftMenu), forState: .Normal)
         
         return button
     }()
     
+
     var rightBtn: UIButton? = {
         
         let button = UIButton(type: .System)
@@ -67,7 +69,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
      */
     func addAllView() {
         
-        self.view.backgroundColor = UIColor.whiteColor()
+        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
         upperView!.allViewLayout()
@@ -80,7 +82,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
             make.left.right.equalTo(self.view)
             make.height.equalTo(50)
         }
-        
         view.addSubview(timeLineView)
         timeLineView.snp_makeConstraints { make in
             make.top.equalTo(dateView).offset(50)

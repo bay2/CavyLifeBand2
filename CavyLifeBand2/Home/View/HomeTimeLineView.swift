@@ -50,6 +50,8 @@ class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDele
             make.left.top.right.bottom.equalTo(self)
         }
         
+        // 接收通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeTimeLinePage), name: "changeTimeLinePage", object: nil)
 
     }
     
@@ -110,8 +112,24 @@ extension HomeTimeLineView: UIScrollViewDelegate {
         
         collView.setContentOffset(CGPointMake(CGFloat(count) * ez.screenWidth, 0), animated: true)
         
+        // 通知绑定日期和时间轴的同步
+        NSNotificationCenter.defaultCenter().postNotificationName("ChangeDatePage", object: nil, userInfo: ["currentPage" : count])
+        
 
-
+        
+    }
+    
+    /**
+      改变页数
+     
+     - parameter sender: 通知
+     */
+    func changeTimeLinePage(sender: NSNotification){
+        
+        let count = sender.userInfo!["currentPage"] as! CGFloat
+        
+        self.collectionView!.setContentOffset(CGPointMake(count * ez.screenWidth, 0), animated: true)
+        
     }
     
 }
