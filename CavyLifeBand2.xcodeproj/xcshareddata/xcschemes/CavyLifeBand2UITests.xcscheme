@@ -40,6 +40,9 @@
             </BuildableReference>
             <SkippedTests>
                <Test
+                  Identifier = "ContactsAccountInfoUItests">
+               </Test>
+               <Test
                   Identifier = "ContactsFriendViewUITests">
                </Test>
             </SkippedTests>
