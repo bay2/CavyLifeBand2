@@ -56,7 +56,7 @@ class HightView: UIView, RulerViewDelegate {
         }
         
         heightLabel.text = "160"
-        heightLabel.font = UIFont.systemFontOfSize(48)
+        heightLabel.font = UIFont.systemFontOfSize(50)
         heightLabel.textColor = UIColor(named: .GuideColorCC)
         heightLabel.textAlignment = NSTextAlignment.Center
         heightLabel.snp_makeConstraints { make -> Void in
