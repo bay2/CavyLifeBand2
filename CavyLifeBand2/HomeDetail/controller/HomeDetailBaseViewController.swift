@@ -1,15 +1,16 @@
 //
-//  HomeStepDetailVC.swift
+//  HomeDetailBaseViewController.swift
 //  CavyLifeBand2
 //
-//  Created by Jessica on 16/4/26.
+//  Created by Jessica on 16/4/28.
 //  Copyright © 2016年 xuemincai. All rights reserved.
 //
 
 import UIKit
 import EZSwiftExtensions
 
-class HomeStepDetailVC: UIViewController, BaseViewControllerPresenter, UIScrollViewDelegate {
+
+class HomeDetailBaseViewController: UIViewController, BaseViewControllerPresenter, UIScrollViewDelegate {
     
     /// 日 周 年 索引
     var upperButtonArray: [HomeDetailTimeButton] = [HomeDetailTimeButton(selectIndex: 0), HomeDetailTimeButton(selectIndex: 1), HomeDetailTimeButton(selectIndex: 2)]
@@ -17,9 +18,9 @@ class HomeStepDetailVC: UIViewController, BaseViewControllerPresenter, UIScrollV
     /// ScrollView
     var scrollView = UIScrollView()
     
-
+    
     lazy var leftBtn: UIButton? = {
-
+        
         let leftItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
         leftItemBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
         return leftItemBtn
@@ -32,16 +33,14 @@ class HomeStepDetailVC: UIViewController, BaseViewControllerPresenter, UIScrollV
         let button = UIButton(frame: CGRectMake(0, 0, 60, 30))
         button.setTitle("分享", forState: .Normal)
         return button
-
+        
     }()
     
     var navTitle: String = "计步"
-    
+
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(named: .HomeDetailBackground)
-        
         self.updateNavUI()
         
         allViewLayout()
@@ -53,10 +52,12 @@ class HomeStepDetailVC: UIViewController, BaseViewControllerPresenter, UIScrollV
      */
     func allViewLayout() {
         
+        self.view.backgroundColor = UIColor(named: .HomeDetailBackground)
+        
+        
         /**
          周日年
          */
-      
         
         for i in 0 ..< 3 {
             
@@ -72,6 +73,7 @@ class HomeStepDetailVC: UIViewController, BaseViewControllerPresenter, UIScrollV
             make.top.equalTo(self.view).offset(50)
             make.left.right.bottom.equalTo(self.view)
         }
+        scrollView.backgroundColor = UIColor.clearColor()
         scrollView.contentSize = CGSizeMake(ez.screenWidth * 3, 0)
         scrollView.pagingEnabled = true
         scrollView.delegate = self
@@ -79,10 +81,10 @@ class HomeStepDetailVC: UIViewController, BaseViewControllerPresenter, UIScrollV
         scrollView.backgroundColor = UIColor.whiteColor()
         
         for i in 0 ..< 3 {
-            let detailView = HomeDetailStepView(frame: CGRectMake(ez.screenWidth  * CGFloat(i), 0, ez.screenWidth, self.scrollView.frame.size.height))
-        scrollView.addSubview(detailView)
+            let detailView = HomeDeatilBaseView(frame: CGRectMake(ez.screenWidth  * CGFloat(i), 0, ez.screenWidth, ez.screenWidth - 64 - 50))
+            scrollView.addSubview(detailView)
         }
-   
+        
     }
     
     
@@ -96,7 +98,7 @@ class HomeStepDetailVC: UIViewController, BaseViewControllerPresenter, UIScrollV
         let index = (button as! HomeDetailTimeButton).selectedIndex
         
         changeButtonStatusWithIndex(index)
-       
+        
     }
     
     func changeButtonStatusWithIndex(index: Int) {
@@ -114,7 +116,7 @@ class HomeStepDetailVC: UIViewController, BaseViewControllerPresenter, UIScrollV
      分享
      */
     func onRightBtn() {
-         Log.info("分享")
+        Log.info("分享")
     }
     
     
@@ -123,6 +125,9 @@ class HomeStepDetailVC: UIViewController, BaseViewControllerPresenter, UIScrollV
     // 停止拖拽
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         
+        
+        Log.error("\(scrollView)")
+
         scrollViewEndAction(scrollView)
         
     }
@@ -130,10 +135,12 @@ class HomeStepDetailVC: UIViewController, BaseViewControllerPresenter, UIScrollV
     // 滑动拖拽
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
-        scrollViewEndAction(scrollView)
         
-    }
+        Log.error("\(scrollView)")
 
+        scrollViewEndAction(scrollView)
+    }
+    
     /**
      滑动结束事件
      */
@@ -144,8 +151,5 @@ class HomeStepDetailVC: UIViewController, BaseViewControllerPresenter, UIScrollV
         changeButtonStatusWithIndex(count)
         
     }
-
-    
-    
     
 }

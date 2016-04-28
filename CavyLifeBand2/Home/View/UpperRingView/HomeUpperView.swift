@@ -69,12 +69,12 @@ class HomeUpperView: UIView {
     
     func showSleepDetailView(){
         
-        self.viewController.pushVC(HomeSleepDetailVC())
+        self.viewController.pushVC(HomeDetailBaseViewController())
     }
     
     func showStepDetailView(){
         
-        self.viewController.pushVC(HomeStepDetailVC())
+        self.viewController.pushVC(HomeDetailBaseViewController())
     }
     
     

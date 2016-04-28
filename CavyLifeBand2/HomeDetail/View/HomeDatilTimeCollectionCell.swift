@@ -10,19 +10,19 @@ import UIKit
 
 class HomeDatilTimeCollectionCell: UICollectionViewCell {
     
-    
-    var button = UIButton()
+    var label = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor(named: .HomeDetailBackground)
-        self.addSubview(button)
-        button.snp_makeConstraints {(make) in
+        self.backgroundColor = UIColor.clearColor()
+        self.addSubview(label)
+        label.snp_makeConstraints {(make) in
             make.size.equalTo(CGSizeMake(70, 30))
             make.center.equalTo(self)
         }
-        deselectStatus()
+        label.font = UIFont.systemFontOfSize(14)
+        label.textAlignment = .Center
 
     }
     
@@ -30,20 +30,15 @@ class HomeDatilTimeCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     func selectStatus() {
         
-        button.backgroundColor = UIColor(named: .HomeViewMainColor)
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 15
-        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        label.textColor = UIColor.whiteColor()
 
     }
     
     func deselectStatus() {
         
-        button.backgroundColor = UIColor(named: .HomeDetailBackground)
-        button.setTitleColor(UIColor(named: .HomeDetailDeselectText), forState: .Normal)
+        label.textColor = UIColor(named: .HomeDetailDeselectText)
 
     }
     
