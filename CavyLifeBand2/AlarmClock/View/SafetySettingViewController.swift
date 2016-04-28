@@ -24,17 +24,22 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
     
     var navTitle: String { return L10n.HomeRightListTitleSecurity.string }
     
+    lazy var rightBtn: UIButton? =  {
+        
+        let button = UIButton(type: .System)
+        button.frame = CGRectMake(0, 0, 30, 30)
+        button.setBackgroundImage(UIImage(asset: .AlarmClockAdd), forState: .Normal)
+        
+        return button
+        
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.automaticallyAdjustsScrollViewInsets = false
         
         self.navigationItem.title = L10n.SettingSafetyTitle.string
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AlarmClockAdd"),
-                                                                 style: .Plain,
-                                                                 target: self,
-                                                                 action: #selector(rightBarBtnAciton(_:)))
         
         tableView.rowHeight       = 50.0
         tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
@@ -75,7 +80,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         // Dispose of any resources that can be recreated.
     }
 
-    func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
+    func onRightBtn() -> Void {
         Log.warning("|\(self.className)| -- 右上角添加")
     }
 

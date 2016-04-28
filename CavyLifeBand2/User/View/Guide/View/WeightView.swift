@@ -72,11 +72,10 @@ class WeightView: UIView {
         valueLabel.text = "60.0"
         valueLabel.textAlignment = .Center
         valueLabel.textColor = UIColor(named: .GuideColorCC)
-        valueLabel.font = UIFont.systemFontOfSize(45)
+        valueLabel.font = UIFont.systemFontOfSize(50)
         valueLabel.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(ez.screenWidth * 0.72, 45))
             make.centerX.equalTo(self)
-            make.top.equalTo(self).offset(ez.screenWidth * 0.72)
+            make.centerY.equalTo(self.rotaryView!.snp_bottom)
         }
         
         // kg 标签
@@ -85,9 +84,8 @@ class WeightView: UIView {
         KGLabel.textColor = UIColor(named: .GuideColorCC)
         KGLabel.font = UIFont.systemFontOfSize(30)
         KGLabel.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(ez.screenWidth * 0.72, 40))
-            make.centerX.equalTo(self)
-            make.top.equalTo(valueLabel).offset(ez.screenWidth * 0.04 + 30)
+            make.centerY.equalTo(valueLabel).offset(3)
+            make.left.equalTo(valueLabel.snp_right)
         }
         
     }
