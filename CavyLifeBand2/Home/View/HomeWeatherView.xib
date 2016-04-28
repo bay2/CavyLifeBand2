@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="113" height="46"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LnO-mN-uqF">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeWeatherSun" translatesAutoresizingMaskIntoConstraints="NO" id="LnO-mN-uqF">
                     <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                     <color key="backgroundColor" red="0.28235294119999998" green="0.82352941180000006" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
@@ -51,4 +51,7 @@
             <point key="canvasLocation" x="296.5" y="87"/>
         </view>
     </objects>
+    <resources>
+        <image name="HomeWeatherSun" width="20" height="20"/>
+    </resources>
 </document>

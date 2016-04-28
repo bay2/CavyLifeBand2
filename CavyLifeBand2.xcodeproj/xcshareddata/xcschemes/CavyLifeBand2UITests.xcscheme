@@ -38,6 +38,11 @@
                BlueprintName = "CavyLifeBand2UITests"
                ReferencedContainer = "container:CavyLifeBand2.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ContactsFriendViewUITests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>

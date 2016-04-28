@@ -29,8 +29,7 @@ extension CoordinateReport {
         NSTimer.runThisEvery(seconds: 5 * 60) { _ in
             self.reportServer()
         }
-        
-        
+   
     }
     
     /**

@@ -47,8 +47,8 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
     typealias ItemType = ContactsAddFriendCellViewModel
     
     var items: [ItemType] = []
-    var viewController: UIViewController
-    var tableView: UITableView
+    weak var viewController: UIViewController?
+    weak var tableView: UITableView?
     
     init(viewController: UIViewController, tableView: UITableView) {
         
@@ -80,12 +80,12 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
                 
                 for friendInfo in resultMsg.friendInfos! {
                     
-                    let friendCellViewModel = ContactsAddFriendCellViewModel(viewController: self.viewController, friendInfo: friendInfo)
+                    let friendCellViewModel = ContactsAddFriendCellViewModel(viewController: self.viewController!, friendInfo: friendInfo)
                     
                     self.items.append(friendCellViewModel)
                 }
                 
-                self.tableView.reloadData()
+                self.tableView!.reloadData()
                 
             }
             
@@ -104,8 +104,8 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
     
     var items: [ItemType] = []
     var phoneNumInfos: [String: String] = [:]
-    var viewController: UIViewController
-    var tableView: UITableView
+    weak var viewController: UIViewController?
+    weak var tableView: UITableView?
     
     init(viewController: UIViewController, tableView: UITableView) {
         
@@ -162,11 +162,11 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
                         let name = self.phoneNumInfos[firendInfo.phoneNum ?? ""] ?? ""
                         let headImageUrl = firendInfo.avatarUrl ?? ""
                         
-                        self.items.append(ContactsAddressBookViewModel(viewController: self.viewController, firendId: firendId, name: nickName, introudce: name, headImageUrl: headImageUrl))
+                        self.items.append(ContactsAddressBookViewModel(viewController: self.viewController!, firendId: firendId, name: nickName, introudce: name, headImageUrl: headImageUrl))
                         
                     }
                     
-                    self.tableView.reloadData()
+                    self.tableView!.reloadData()
                     
                 }
                 
@@ -190,8 +190,8 @@ class ContactsSearchFriendData: ContactsAddFriendDataSync {
     typealias ItemType = ContactsAddFriendCellViewModel
     var items: [ItemType] = []
     var searchText: String = ""
-    var viewController: UIViewController
-    var tableView: UITableView
+    weak var viewController: UIViewController?
+    weak var tableView: UITableView?
     
     init(viewController: UIViewController, tableView: UITableView) {
         
@@ -227,10 +227,10 @@ class ContactsSearchFriendData: ContactsAddFriendDataSync {
             }
             
             for friendInfo in friendInfos {
-                self.items.append(ContactsAddFriendCellViewModel(viewController: self.viewController, friendInfo: friendInfo))
+                self.items.append(ContactsAddFriendCellViewModel(viewController: self.viewController!, friendInfo: friendInfo))
             }
             
-            self.tableView.reloadData()
+            self.tableView!.reloadData()
             
         }
         
@@ -249,8 +249,8 @@ class ContactsNearbyFriendData: ContactsAddFriendDataSync {
     
     typealias ItemType = ContactsNearbyCellViewModel
     var items: [ItemType] = []
-    var viewController: UIViewController
-    var tableView: UITableView
+    weak var viewController: UIViewController?
+    weak var tableView: UITableView?
     
     init(viewController: UIViewController, tableView: UITableView) {
         
@@ -283,10 +283,10 @@ class ContactsNearbyFriendData: ContactsAddFriendDataSync {
             }
             
             for friendInfo in friendInfos {
-                self.items.append(ContactsNearbyCellViewModel(viewController: self.viewController, friendInfo: friendInfo))
+                self.items.append(ContactsNearbyCellViewModel(viewController: self.viewController!, friendInfo: friendInfo))
             }
             
-            self.tableView.reloadData()
+            self.tableView!.reloadData()
             
         }
         
@@ -306,8 +306,8 @@ class ContactsNewFriendData: ContactsAddFriendDataSync {
     
     var items: [ItemType] = []
     
-    var viewController: UIViewController
-    var tableView: UITableView
+    weak var viewController: UIViewController?
+    weak var tableView: UITableView?
     
     init(viewController: UIViewController, tableView: UITableView) {
         
@@ -332,10 +332,10 @@ class ContactsNewFriendData: ContactsAddFriendDataSync {
             }
             
             for friendInfo in reslutMsg.userInfos {
-                self.items.append(ContactsNewFriendCellViewModel(viewController: self.viewController, friendInfo: friendInfo))
+                self.items.append(ContactsNewFriendCellViewModel(viewController: self.viewController!, friendInfo: friendInfo))
             }
             
-            self.tableView.reloadData()
+            self.tableView!.reloadData()
             
         }
         

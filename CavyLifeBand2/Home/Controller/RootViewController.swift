@@ -12,6 +12,7 @@ import RealmSwift
 import Log
 import AddressBook
 import Contacts
+import KeychainAccess
 
 class RootViewController: UIViewController, CoordinateReport {
     

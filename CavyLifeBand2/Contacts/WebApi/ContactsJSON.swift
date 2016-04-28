@@ -119,18 +119,18 @@ struct ContactsFriendInfo: JSONJoy {
 struct ContactsSearchFriendInfo: JSONJoy {
     
     //用户ID
-    var userId: String?
+    var userId: String
     
     //匿名
-    var nickName: String?
+    var nickName: String
     
     //头像
-    var avatarUrl: String?
+    var avatarUrl: String
     
     //距离
-    var distance: String?
-    
-    var phoneNum: String?
+    var distance: String
+   
+    var phoneNum: String
     
     init(_ decoder: JSONDecoder) throws {
         
@@ -175,16 +175,16 @@ struct ContactsFriendReqMsg: JSONJoy {
 struct ContactsFriendReqInfo {
     
     //用户ID
-    var userId: String?
+    var userId: String
     
     //匿名
-    var nickName: String?
+    var nickName: String
     
     //头像
-    var avatarUrl: String?
+    var avatarUrl: String
     
     //验证消息
-    var verifyMsg: String?
+    var verifyMsg: String
     
     init(_ decoder: JSONDecoder) throws {
         
