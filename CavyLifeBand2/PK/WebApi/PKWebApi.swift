@@ -8,6 +8,7 @@
 
 import Alamofire
 import Log
+import JSONJoy
 
 class PKWebApi: NetRequestAdapter {
     
@@ -112,3 +113,200 @@ class PKWebApi: NetRequestAdapter {
     }
     
 }
+
+protocol PKWebRequestProtocol {
+    //发起PK
+    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([PKId]) -> Void)?) -> Void
+    //接受PK
+    func acceptPKInvitation(dueRealms: [PKDueRealmModel], loginUserId: String, callBack: ((Void) -> Void)?) -> Void
+    //撤销PK
+    func undoPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: ((Void) -> Void)?) -> Void
+    //删除PK
+    func deletePKFinish(finishRealms: [PKFinishRealmModel], loginUserId: String, callBack: ((Void) -> Void)?) -> Void
+    
+}
+
+extension PKWebRequestProtocol {
+    
+    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([PKId]) -> Void)? = nil) -> Void {
+        
+        do {
+            
+            let pk: [[String: AnyObject]] = translateWaitRealmToLaunchRequest(waitRealms)
+            
+            try PKWebApi.shareApi.launchPK(loginUserId, launchPKList: pk) {(result) in
+                
+                guard result.isSuccess else {
+                    return
+                }
+                
+                let resultMsg = try! LaunchPKResponse(JSONDecoder(result.value!))
+                
+                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                    return
+                }
+                
+                callBack?(resultMsg.pkIdList!)
+                
+            }
+            
+        } catch let error {
+            Log.warning("\(error)")
+        }
+
+    }
+    
+    func acceptPKInvitation(dueRealms: [PKDueRealmModel], loginUserId: String, callBack: ((Void) -> Void)? = nil) -> Void {
+        
+        do {
+            
+            let pk: [[String: String]] = translateDueRealmToAcceptRequest(dueRealms)
+            
+            try PKWebApi.shareApi.acceptPK(loginUserId, acceptPkList: pk) {(result) in
+                
+                guard result.isSuccess else {
+                    return
+                }
+                
+                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
+                
+                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                    return
+                }
+                
+                callBack?()
+
+                
+            }
+            
+        } catch let error {
+            Log.warning("\(error)")
+        }
+        
+    }
+    
+    
+    func undoPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: ((Void) -> Void)? = nil) -> Void {
+        
+        do {
+            
+            let pk: [[String: String]] = translateWaitRealmToUndoRequest(waitRealms)
+            
+            try PKWebApi.shareApi.undoPK(loginUserId, undoPKList: pk) {(result) in
+                
+                guard result.isSuccess else {
+                    return
+                }
+                
+                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
+                
+                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                    return
+                }
+                
+                callBack?()
+    
+            }
+            
+        } catch let error {
+            Log.warning("\(error)")
+        }
+        
+    }
+
+    
+    func deletePKFinish(finishRealms: [PKFinishRealmModel], loginUserId: String, callBack: ((Void) -> Void)? = nil) -> Void {
+
+        do {
+            
+            let pk: [[String: String]] = translateFinishRealmToDeleteRequest(finishRealms)
+            
+            try PKWebApi.shareApi.deletePK(loginUserId, delPkList: pk) {(result) in
+                
+                guard result.isSuccess else {
+                    return
+                }
+                
+                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
+                
+                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                    return
+                }
+                
+                callBack?()
+            }
+            
+        } catch let error {
+            Log.warning("\(error)")
+        }
+        
+    }
+    
+    //把数据库已完成记录转成删除PK接口的请求入参格式
+    func translateFinishRealmToDeleteRequest(finishRealms: [PKFinishRealmModel]) -> [[String: String]] {
+        var requests: [[String: String]] = [[String: String]]()
+        
+        for realm in finishRealms {
+            
+            let request: [String: String] = [UserNetRequsetKey.PKId.rawValue: realm.pkId]
+            
+            requests.append(request)
+        }
+        
+        return requests
+    }
+    
+    //把数据库待回应记录转成撤销PK接口的请求入参格式
+    func translateWaitRealmToUndoRequest(waitRealms: [PKWaitRealmModel]) -> [[String: String]] {
+        var requests: [[String: String]] = [[String: String]]()
+        
+        for realm in waitRealms {
+            
+            let request: [String: String] = [UserNetRequsetKey.PKId.rawValue: realm.pkId]
+            
+            requests.append(request)
+        }
+        
+        return requests
+    }
+    
+    //把数据库待回应记录转成发起PK接口的请求入参格式
+    func translateWaitRealmToLaunchRequest(waitRealms: [PKWaitRealmModel]) -> [[String: AnyObject]] {
+        var requests: [[String: AnyObject]] = [[String: AnyObject]]()
+        
+        for realm in waitRealms {
+            
+            let request: [String: AnyObject] = [UserNetRequsetKey.FriendID.rawValue: realm.userId,
+                                                UserNetRequsetKey.LaunchTime.rawValue: realm.launchedTime,
+                                                UserNetRequsetKey.PKDuration.rawValue: realm.pkDuration,
+                                                UserNetRequsetKey.IsAllowWatch.rawValue: realm.isAllowWatch]
+            
+            requests.append(request)
+        }
+        
+        return requests
+    }
+    
+    //把数据库接受的进行中记录转成接受PK接口的请求入参格式
+    func translateDueRealmToAcceptRequest(dueRealms: [PKDueRealmModel]) -> [[String: String]] {
+        var requests: [[String: String]] = [[String: String]]()
+        
+        for realm in dueRealms {
+            
+            let request: [String: String] = [UserNetRequsetKey.PKId.rawValue: realm.pkId,
+                                             UserNetRequsetKey.AcceptTime.rawValue: realm.beginTime]
+            
+            requests.append(request)
+        }
+        
+        return requests
+    }
+
+
+}
+
+
+
+
+
+

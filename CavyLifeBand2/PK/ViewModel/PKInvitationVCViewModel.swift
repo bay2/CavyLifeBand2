@@ -10,12 +10,9 @@ import UIKit
 import RealmSwift
 import JSONJoy
 
-struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate {
+struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProtocol {
     
     var loginUserId: String
-    
-    //默认选择双方可见非所有好友可见
-    var isAllowWatch = false
     
     var competitorId: String = { return "" }()
     
@@ -73,42 +70,18 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFromString("yyyy-MM-dd HH:mm:ss")
         let launchTimeStr = dateFormatter.stringFromDate(NSDate())
+        
         pkWaitRealmModel.launchedTime = launchTimeStr
         
-        do {
+        launchPK([pkWaitRealmModel], loginUserId: self.loginUserId) {
+            let pkId = $0[0].pkId
             
-            let pk: [String: AnyObject] = [UserNetRequsetKey.FriendID.rawValue: pkWaitRealmModel.userId,
-                                           UserNetRequsetKey.LaunchTime.rawValue: launchTimeStr,
-                                           UserNetRequsetKey.PKDuration.rawValue: pkWaitRealmModel.pkDuration,
-                                           UserNetRequsetKey.IsAllowWatch.rawValue: isAllowWatch]
+            self.pkWaitRealmModel.pkId      = pkId
+            self.pkWaitRealmModel.syncState = PKRecordsRealmSyncState.Synced.rawValue
             
-            try PKWebApi.shareApi.launchPK(pkWaitRealmModel.loginUserId, launchPKList: [pk]) { (result) in
-                
-                guard result.isSuccess else {
-//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error)
-                    return
-                }
-                
-                let resultMsg = try! LaunchPKResponse(JSONDecoder(result.value!))
-                
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: resultMsg.commonMsg?.code ?? "")
-                    return
-                }
-                
-                let pkId = resultMsg.pkIdList?[0].pkId
-                
-                self.pkWaitRealmModel.pkId = pkId!
-                self.pkWaitRealmModel.syncState = PKRecordsRealmSyncState.Synced.rawValue
-                
-                self.addPKWaitRealm(self.pkWaitRealmModel)
-    
-            }
-            
-        } catch let error {
-//            CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, userErrorCode: error as? UserRequestErrorType)
-            Log.warning("\(error)")
+            self.addPKWaitRealm(self.pkWaitRealmModel)
         }
+        
     }
     
 }

@@ -78,3 +78,7 @@ PKChallengeViewRulesTitleColor : #ff7200
 PKChallengeViewTopViewBGColor : #ff7200
 PKInfoOrResultViewWinnerTextColor : #ff7200
 PKInfoOrResultViewNormalTextColor : #000000B3
+PKRecordsCellAcceptBtnBGColor : #0dcf7f
+PKRecordsCellUndoBtnBGColor : #dbdbdb
+PKRecordsCellPKAgainBtnBGColor : #ff9138
+PKRecordsCellDeleteBtnBGColor : #dbdbdb

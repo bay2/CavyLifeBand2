@@ -190,6 +190,11 @@ struct StoryboardScene {
       return StoryboardScene.PK.PKInvitationVCScene.viewController() as! PKInvitationVC
     }
 
+    case PKRecordsVCScene = "PKRecordsVC"
+    static func instantiatePKRecordsVC() -> PKRecordsVC {
+      return StoryboardScene.PK.PKRecordsVCScene.viewController() as! PKRecordsVC
+    }
+
     case PKRulesVCScene = "PKRulesVC"
     static func instantiatePKRulesVC() -> PKRulesVC {
       return StoryboardScene.PK.PKRulesVCScene.viewController() as! PKRulesVC

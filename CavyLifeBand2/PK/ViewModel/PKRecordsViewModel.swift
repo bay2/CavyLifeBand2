@@ -10,7 +10,7 @@ import UIKit
 import JSONJoy
 import RealmSwift
 
-struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate {
+struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProtocol {
     
     static let dateFormatter: NSDateFormatter = {
         let formatter = NSDateFormatter()
@@ -22,118 +22,161 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate {
     
     var realm: Realm
     
-    var waitList: Results<(PKWaitRealmModel)> {
-        return queryPKWaitRecordsRealm()
-    }
+    weak var tableView: UITableView?
     
-    var dueList: Results<(PKDueRealmModel)> {
-        return queryPKDueRecordsRealm()
-    }
+    var itemGroup: [[PKRecordsCellDataSource]]
     
-    var finishList: Results<(PKFinishRealmModel)> {
-        return queryPKFinishRecordsRealm()
-    }
-    
-    init(realm: Realm) {
+    init(realm: Realm, tableView: UITableView) {
         self.realm = realm
+        
         Log.warning("用户ID写死")
         self.loginUserId = "12"
+        
+        self.itemGroup = [[PKRecordsCellDataSource]]()
+        
+        self.tableView = tableView
+        
+        print(realm.path)
+        
+//        let due1: PKWaitRealmModel = PKWaitRealmModel()
+//        
+//        
+//        due1.pkId = "10"
+//        
+//        due1.nickname = "o"
+//        due1.loginUserId = "12"
+//        
+//        let dues:[PKWaitRealmModel] = [due1]
+//        
+//        self.savePKRecordsRealm(dues)
+//
     }
     
-    func deletePKFinish(finishRealm: PKFinishRealmModel) -> Void {
+    mutating func deletePKFinish(indexPath: NSIndexPath) -> Void {
+        let finishVM: PKFinishRecordsCellViewModel = self.itemGroup[indexPath.section][indexPath.row] as! PKFinishRecordsCellViewModel
+        
+        let finishRealm: PKFinishRealmModel = finishVM.pkRecord
         
         updatePKFinishRealm(finishRealm)
         
-        do {
+        //调接口把删除操作同步到服务器
+        deletePKFinish([finishRealm], loginUserId: self.loginUserId) {
+            self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: finishRealm.pkId)
+        }
+        
+        self.itemGroup[indexPath.section].removeAtIndex(indexPath.row)
+        
+        if self.itemGroup[indexPath.section].count == 0 {
+            self.itemGroup.removeAtIndex(indexPath.section)
+        }
+        
+        self.tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
+    }
+    
+    func canEdit(section: Int) -> Bool {
+        if self.itemGroup[section][0] is PKFinishRecordsCellViewModel {
+            return true
+        }
+        
+        return false
+    }
+    
+    func sectionTitle(section: Int) -> String {
+        if self.itemGroup[section][0] is PKFinishRecordsCellViewModel {
+            return "已完成"
+        } else if self.itemGroup[section][0] is PKWaitRecordsCellViewModel {
+            return "待回应"
+        } else if self.itemGroup[section][0] is PKDueRecordsCellViewModel {
+            return "进行中"
+        } else {
+            return ""
+        }
+    }
+    
+    mutating func loadDataFromRealm() {
+        
+        var waitCellVMs: [PKRecordsCellDataSource] = [PKRecordsCellDataSource]()
+        
+        var dueCellVMs: [PKRecordsCellDataSource] = [PKRecordsCellDataSource]()
+        
+        var finishCellVMs: [PKRecordsCellDataSource] = [PKRecordsCellDataSource]()
+        
+        let waitRealms = self.queryPKWaitRecordsRealm()
+        
+        let dueRealms = self.queryPKDueRecordsRealm()
+        
+        let finishRealms = self.queryPKFinishRecordsRealm()
+        
+        for waitRealm in waitRealms {
+            let waitCellVM: PKWaitRecordsCellViewModel = PKWaitRecordsCellViewModel(pkRecord: waitRealm, realm: self.realm, tableView: self.tableView)
             
-            let pk: [String: String] = [UserNetRequsetKey.PKId.rawValue: finishRealm.pkId]
+            waitCellVMs.append(waitCellVM)
+        }
+        
+        for dueRealm in dueRealms {
+            let dueCellVM: PKDueRecordsCellViewModel = PKDueRecordsCellViewModel(pkRecord: dueRealm)
             
-            try PKWebApi.shareApi.deletePK(self.loginUserId, delPkList: [pk]) { (result) in
-                
-                guard result.isSuccess else {
-                    //                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error)
-                    return
-                }
-                
-                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
-                
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    //                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: resultMsg.commonMsg?.code ?? "")
-                    return
-                }
-                
-                self.syncPKRecordsRealm(PKFinishRealmModel.self)
-                
-            }
+            dueCellVMs.append(dueCellVM)
+        }
+        
+        for finishRealm in finishRealms {
+            let finishCellVM: PKFinishRecordsCellViewModel = PKFinishRecordsCellViewModel(pkRecord: finishRealm, realm: self.realm, tableView: self.tableView)
             
-        } catch let error {
-            Log.warning("\(error)")
-            //            CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, userErrorCode: error as? UserRequestErrorType)
+            finishCellVMs.append(finishCellVM)
+        }
+        
+        self.itemGroup.removeAll()
+        
+        if waitCellVMs.count > 0 {
+            self.itemGroup.append(waitCellVMs)
+        }
+        
+        if dueCellVMs.count > 0 {
+            self.itemGroup.append(dueCellVMs)
+        }
+        
+        if finishCellVMs.count > 0 {
+            self.itemGroup.append(finishCellVMs)
         }
         
     }
     
-    func acceptPKInvitation(waitRealm: PKWaitRealmModel) -> Bool {
-        updatePKWaitRealm(waitRealm, updateType: PKRecordsRealmUpdateType.AcceptWait)
+    mutating func changeData() {
+        let due1: PKDueRealmModel = PKDueRealmModel()
         
-        let dueRealm = PKDueRealmModel()
+        let due2: PKDueRealmModel = PKDueRealmModel()
         
-        dueRealm.pkId = waitRealm.pkId
-        dueRealm.loginUserId = waitRealm.loginUserId
-        dueRealm.userId = waitRealm.userId
-        dueRealm.avatarUrl = waitRealm.userId
-        dueRealm.nickname = waitRealm.nickname
-        dueRealm.pkDuration = waitRealm.pkDuration
-        dueRealm.beginTime = PKRecordsViewModel.dateFormatter.stringFromDate(NSDate())
-        dueRealm.syncState = PKRecordsRealmSyncState.NotSync.rawValue
+        due1.pkId = "6"
+        due2.pkId = "5"
         
-        do {
-            
-            let pk: [String: String] = [UserNetRequsetKey.PKId.rawValue: dueRealm.pkId,
-                                       UserNetRequsetKey.AcceptTime.rawValue: dueRealm.beginTime]
-            
-            try PKWebApi.shareApi.acceptPK(self.loginUserId, acceptPkList: [pk]) { (result) in
-                
-                guard result.isSuccess else {
-//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error)
-                    return
-                }
-                
-                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
-                
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: resultMsg.commonMsg?.code ?? "")
-                    return
-                }
-                
-                self.syncPKRecordsRealm(PKDueRealmModel.self)
-                
-            }
-            
-        } catch let error {
-            Log.warning("\(error)")
-//            CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, userErrorCode: error as? UserRequestErrorType)
-        }
-
-        return addPKDueRealm(dueRealm)
+        due1.nickname = "o"
+        due2.nickname = "p"
+        
+        due2.loginUserId = "12"
+        due1.loginUserId = "12"
+        
+        let dues: [PKDueRealmModel] = [due1, due2]
+        
+        self.savePKRecordsRealm(dues)
+        
+        self.loadDataFromRealm()
+        
+        self.tableView?.reloadData()
     }
     
-    
-    func loadData() {
+    mutating func loadDataFromWeb() {
         
         do {
             
-            try PKWebApi.shareApi.getPKRecordList(self.loginUserId) { (result) in
+            try PKWebApi.shareApi.getPKRecordList(self.loginUserId) {(result) in
                 
                 guard result.isSuccess else {
-//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error)
                     return
                 }
                 
                 let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
                 
                 guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: resultMsg.commonMsg?.code ?? "")
                     return
                 }
                 
@@ -145,23 +188,24 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate {
                 
                 for waitModel in resultMsg.waitList! {
 
-                    waitRecordsRealm.append(self.translateWaitModelToRealm(waitModel))
+                    let waitRealm = self.translateWaitModelToRealm(waitModel)
                     
+                    waitRecordsRealm.append(waitRealm)
                 }
                 
                 for dueModel in resultMsg.dueList! {
                     
-                    dueRecordsRealm.append(self.translateDueModelToRealm(dueModel))
+                    let dueRealm = self.translateDueModelToRealm(dueModel)
                     
+                    dueRecordsRealm.append(dueRealm)
                 }
                 
                 for finishModel in resultMsg.finishList! {
                     
-                    finishRecordsRealm.append(self.translateFinishModelToRealm(finishModel))
+                    let finishRealm = self.translateFinishModelToRealm(finishModel)
                     
+                    finishRecordsRealm.append(finishRealm)
                 }
-                
-                Log.warning("tableview要重刷数据")
                 
                 self.deletePKRecordsRealm(PKWaitRealmModel.self)
                 self.deletePKRecordsRealm(PKDueRealmModel.self)
@@ -171,15 +215,20 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate {
                 self.savePKRecordsRealm(dueRecordsRealm)
                 self.savePKRecordsRealm(finishRecordsRealm)
                 
+                self.loadDataFromRealm()
             }
             
         } catch let error {
             Log.warning("\(error)")
-//            CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, userErrorCode: error as? UserRequestErrorType)
         }
         
     }
     
+//    func addCellViewModelGroup(realmModels: [PKRecordRealmDataSource]) -> Void {
+//        <#function body#>
+//    }
+    
+    //把接口返回的待回应记录JSONModel转为Realm格式
     func translateWaitModelToRealm(model: PKWaitRecord) -> PKWaitRealmModel {
         
         let realm = PKWaitRealmModel()
@@ -196,6 +245,7 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate {
         return realm
     }
     
+    //把接口返回的进行中记录JSONModel转为Realm格式
     func translateDueModelToRealm(model: PKDueRecord) -> PKDueRealmModel {
         
         let realm = PKDueRealmModel()
@@ -211,6 +261,7 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate {
         return realm
     }
     
+    //把接口返回的已完成记录JSONModel转为Realm格式
     func translateFinishModelToRealm(model: PKFinishRecord) -> PKFinishRealmModel {
         
         let realm = PKFinishRealmModel()
@@ -227,5 +278,7 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate {
         return realm
     }
 
-
 }
+
+
+

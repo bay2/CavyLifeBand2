@@ -195,6 +195,18 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 70% <br/> (0x000000b3)
     case PKInvitationVCSeeStateBtnSelectedColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#0dcf7f"></span>
+    /// Alpha: 100% <br/> (0x0dcf7fff)
+    case PKRecordsCellAcceptBtnBGColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#dbdbdb"></span>
+    /// Alpha: 100% <br/> (0xdbdbdbff)
+    case PKRecordsCellDeleteBtnBGColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff9138"></span>
+    /// Alpha: 100% <br/> (0xff9138ff)
+    case PKRecordsCellPKAgainBtnBGColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#dbdbdb"></span>
+    /// Alpha: 100% <br/> (0xdbdbdbff)
+    case PKRecordsCellUndoBtnBGColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 50% <br/> (0x00000080)
     case PKRulesViewInfoColor
@@ -222,8 +234,8 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 50% <br/> (0x00000080)
     case SettingTableFooterInfoColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#1dbcff"></span>
-    /// Alpha: 100% <br/> (0x1dbcffff)
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
+    /// Alpha: 100% <br/> (0x48d299ff)
     case SignInBackground
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 40% <br/> (0x00000066)
@@ -309,6 +321,10 @@ extension UIColor {
       case .PKInvitationVCLabelColor: return 0x000000b3
       case .PKInvitationVCSeeStateBtnNormalColor: return 0x0000004d
       case .PKInvitationVCSeeStateBtnSelectedColor: return 0x000000b3
+      case .PKRecordsCellAcceptBtnBGColor: return 0x0dcf7fff
+      case .PKRecordsCellDeleteBtnBGColor: return 0xdbdbdbff
+      case .PKRecordsCellPKAgainBtnBGColor: return 0xff9138ff
+      case .PKRecordsCellUndoBtnBGColor: return 0xdbdbdbff
       case .PKRulesViewInfoColor: return 0x00000080
       case .PKRulesViewTitleColor: return 0x000000b3
       case .PKTimePickerSeparatorColor: return 0xe5e5e5ff
@@ -318,7 +334,7 @@ extension UIColor {
       case .SettingTableCellInfoYellowColor: return 0xff9138ff
       case .SettingTableCellTitleColor: return 0x000000b3
       case .SettingTableFooterInfoColor: return 0x00000080
-      case .SignInBackground: return 0x1dbcffff
+      case .SignInBackground: return 0x48d299ff
       case .SignInForgotPwdBtnText: return 0x00000066
       case .SignInMainTextColor: return 0x00000080
       case .SignInNavigationBar: return 0x1dbcffff

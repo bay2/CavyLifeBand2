@@ -48,22 +48,6 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         baseSetting()
         
         dataSouceSetting()
-                
-        print(realm.path)
-        
-        //---------下面这个VM不适用于这个C，只是在这里试验代码------------//
-        
-        Log.warning("以下代码需要删除")
-        
-        let pkVM = PKRecordsViewModel(realm: realm)
-        
-//        let save = pkVM.savePKRecordsToRealm()
-
-        print(pkVM.finishList) 
-        
-        
-        //---------上面这个VM不适用于这个C，只是在这里试验代码------------//
-        
         
     }
 
@@ -89,7 +73,7 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
                 
         self.view .addSubview(challenge!)
         
-        challenge?.snp_makeConstraints(closure: { (make) in
+        challenge?.snp_makeConstraints(closure: {(make) in
             make.leading.equalTo(self.view).offset(20)
             make.trailing.equalTo(self.view).offset(-20)
             make.height.equalTo(380)
@@ -101,7 +85,7 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     @IBAction func changeSeeAbleType(sender: UIButton) {
         
         if lastBtn != nil {
-            dataSource?.isAllowWatch = !(dataSource?.isAllowWatch)!
+            dataSource?.pkWaitRealmModel.isAllowWatch = !(dataSource?.pkWaitRealmModel.isAllowWatch)!
         }
         
         sender.selected = true
@@ -142,7 +126,7 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         
         timePickerContainerView.addSubview(timePicker)
         
-        timePicker.snp_makeConstraints { (make) in
+        timePicker.snp_makeConstraints {(make) in
             make.center.equalTo(timePickerContainerView.snp_center)
             make.width.equalTo(timePickerContainerView.snp_width)
             make.height.equalTo(timePickerContainerView.snp_height)
@@ -156,7 +140,7 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         
         timePicker.scrollToIndex(dataSource!.selectIndex)
         
-        changeSeeAbleType(dataSource!.isAllowWatch ? otherSeeAbleBtn : otherSeeUnableBtn)
+        changeSeeAbleType(dataSource!.pkWaitRealmModel.isAllowWatch ? otherSeeAbleBtn : otherSeeUnableBtn)
         
     }
 

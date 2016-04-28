@@ -67,7 +67,7 @@ class TimePickerView: UIView {
         
         self.addSubview(collectionView)
         
-        collectionView.snp_makeConstraints { (make) in
+        collectionView.snp_makeConstraints {(make) in
             make.center.equalTo(self.snp_center)
             make.height.equalTo(self.snp_height)
             make.width.equalTo(self.snp_width)
@@ -92,14 +92,14 @@ class TimePickerView: UIView {
         
         self.addSubview(separatorView2)
         
-        separatorView1.snp_makeConstraints { (make) in
+        separatorView1.snp_makeConstraints {(make) in
             make.height.equalTo(1)
             make.bottom.equalTo(self.snp_top)
             make.width.equalTo(self.snp_width)
             make.centerX.equalTo(self.snp_centerX)
         }
         
-        separatorView2.snp_makeConstraints { (make) in
+        separatorView2.snp_makeConstraints {(make) in
             make.height.equalTo(1)
             make.top.equalTo(self.snp_bottom)
             make.width.equalTo(separatorView1.snp_width)
