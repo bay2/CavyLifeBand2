@@ -27,7 +27,7 @@ class RulerView: UIView, UIScrollViewDelegate {
     var nowYear = Int()
     var nowMonth = Int()
     var nowDay = Int()
-    var nowHeight = CGFloat() // 当前身高 滑动跟随改变
+    var nowHeight: Int = 0  // 当前身高 滑动跟随改变
     
     /**
      初始化生日年月标尺
@@ -196,7 +196,7 @@ class RulerView: UIView, UIScrollViewDelegate {
         }else if sc.rulerStyle == .HeightRuler{
             // 计算起始位置
     
-            let allCount = (240 - 30) * sc.lineCount
+            let allCount = 240 - 30
             
             let beginSetY = CGFloat(allCount * sc.lineSpace)
             
@@ -205,7 +205,7 @@ class RulerView: UIView, UIScrollViewDelegate {
 
             let moveCellInt = Int((endSetY - beginSetY) / CGFloat(sc.lineSpace))
             
-            nowHeight = 240 + CGFloat(moveCellInt) * 0.1
+            nowHeight = 240 + moveCellInt
             
             // 限制范围 防止两边数值溢出变化
             if nowHeight > 240 {
@@ -217,7 +217,7 @@ class RulerView: UIView, UIScrollViewDelegate {
             }
             
             sc.currentValue = "\(nowHeight)"
-            rulerDelegate?.changeHeightRulerValue!(sc)
+            rulerDelegate?.changeHeightRulerValue?(sc)
         }
     }
     
@@ -238,7 +238,9 @@ class RulerView: UIView, UIScrollViewDelegate {
     // 滑动结束事件
     func scrollViewStopAction(scrollView: UIScrollView) {
         
-        let sc =  scrollView as! RulerScroller
+        guard let sc =  scrollView as? RulerScroller else {
+            return
+        }
         
         if sc.rulerStyle == .YearMonthRuler {
             
@@ -256,7 +258,7 @@ class RulerView: UIView, UIScrollViewDelegate {
          
         } else if sc.rulerStyle == .HeightRuler{
             
-            sc.setContentOffset(CGPointMake(0, (self.nowHeight - 30) * CGFloat(sc.lineCount * sc.lineSpace)), animated: true)
+            sc.setContentOffset(CGPointMake(0, CGFloat(self.nowHeight - 30) * CGFloat(sc.lineSpace)), animated: true)
      
         }
 

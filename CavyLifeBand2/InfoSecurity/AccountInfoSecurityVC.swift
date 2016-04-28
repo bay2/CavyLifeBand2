@@ -28,8 +28,6 @@ class AccountInfoSecurityVC: UIViewController, UITableViewDelegate, UITableViewD
         
         super.viewDidLoad()
         
-        Log.info("realm = \(realm.path)")
-
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         self.navBar?.translucent = false
         self.bottomView.layer.cornerRadius = CavyDefine.commonCornerRadius
