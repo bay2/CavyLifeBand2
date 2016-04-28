@@ -13,7 +13,6 @@ class AlarmRealmModel: Object {
     
     dynamic var alarmDay: Int = 0
     dynamic var alarmTime = "08:00"
-    dynamic var isOpenAwake = true
     dynamic var isOpen = true
     dynamic var userId = ""
     
@@ -130,16 +129,16 @@ extension AlarmRealmListOperateDelegate {
             }
         } else {
             
-            // 唤醒和开关一样，直接不用添加
+            // 开关一样，直接不用添加
             for i in 0..<oldAlarmList.count {
-                if oldAlarmList[i].isOpenAwake == alarm.isOpenAwake && oldAlarmList[i].isOpen == alarm.isOpen {
+                if oldAlarmList[i].isOpen == alarm.isOpen {
                     return true
                 }
             }
             
             // 唤醒一样但开关不一样，直接改外部开关
             for j in 0..<oldAlarmList.count {
-                if oldAlarmList[j].isOpenAwake == alarm.isOpenAwake && oldAlarmList[j].isOpen != alarm.isOpen {
+                if oldAlarmList[j].isOpen != alarm.isOpen {
                     self.realm.beginWrite()
                     oldAlarmList[j].isOpen = alarm.isOpen
                     
@@ -176,7 +175,6 @@ extension AlarmRealmListOperateDelegate {
         
         oldAlarm.alarmDay = newAlarm.alarmDay
         oldAlarm.alarmTime = newAlarm.alarmTime
-        oldAlarm.isOpenAwake = newAlarm.isOpenAwake
         
         do {
             try self.realm.commitWrite()
