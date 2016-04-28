@@ -245,7 +245,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
      */
     func changeSeachBtnStatus(index: Int) {
         
-        let _ = searchBtnArray.map {
+        _ = searchBtnArray.map {
             $0.deselectButtonStatus()
         }
 

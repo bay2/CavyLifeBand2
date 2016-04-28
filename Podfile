@@ -17,6 +17,7 @@ pod 'RealmSwift'
 pod 'OHHTTPStubs'
 pod 'OHHTTPStubs/Swift'
 pod 'Gifu'
+pod 'PgyUpdate'
 
 target :CavyLifeBand2Tests, :exclusive => true do
     pod 'OHHTTPStubs'

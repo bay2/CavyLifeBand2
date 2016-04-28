@@ -11,9 +11,11 @@ import EZSwiftExtensions
 
 class HomeDataCellFlowLayout: UICollectionViewFlowLayout {
 
+    let itemWidth: CGFloat = ez.screenWidth / 3
+    
     override func prepareLayout() {
         
-        self.itemSize = CGSizeMake(ez.screenWidth / 3, 50)
+        self.itemSize = CGSizeMake(itemWidth, 50)
         self.scrollDirection = UICollectionViewScrollDirection.Horizontal
         
         self.minimumLineSpacing = 0
@@ -37,9 +39,13 @@ class HomeDataCellFlowLayout: UICollectionViewFlowLayout {
         for attrs in array {
             let itemCenterX = attrs.center.x
 
-            let scale = 1 - 0.5 * fabs(itemCenterX - centerX) / 200
+            let scale = 1 - 0.2 * fabs(itemCenterX - centerX) / itemWidth
 
             attrs.transform3D = CATransform3DMakeScale(scale, scale, 1)
+            
+            attrs.zIndex = 1
+            
+            attrs.alpha = 1 - 0.5 * fabs(itemCenterX - centerX) / itemWidth
  
         }
         

@@ -9,7 +9,6 @@ SignInMainTextColor : #00000080
 PageIndicatorTintColor : #00000033
 SignInForgotPwdBtnText : #00000066
 SignInPlaceholderText : #00000066
-
 SignInSplitLine : #00000033
 SignUpProtocolBtn : #125fae
 GuideSetInfoColor : #1dbcff
@@ -28,13 +27,15 @@ HomeViewMainColor : #48d299
 HomeViewMaskColor : #00000066
 HomeViewLeftHeaderLine : #ffffff80
 HomeViewLeftSelected : #0000001A
-HomeViewUserName: #000000B3
+HomeViewUserName : #000000B3
 HomeViewAccount : #00000080
 HomeSleepRingColor : #36f3ff
 HomeStepRingColor : #fff956
 HomeRingViewBackground : #309a6e
 HomeDetailBackground : #e5e5e5
 HomeDetailDeselectText : #00000066
+HomeTimeLineLineColor :#e5e5e5
+HomeTimeLinePKCellTextColor : #ff8259
 ContactsTitleColor : #000000B3
 ContactsName : #000000
 ContactsIntrouduce : #0000004D

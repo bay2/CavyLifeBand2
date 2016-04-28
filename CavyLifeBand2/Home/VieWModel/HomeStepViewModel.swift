@@ -11,7 +11,7 @@ import UIKit
 import EZSwiftExtensions
 
 
-struct HomeStepViewModel: RingViewDataSource {
+struct HomeStepRingViewModel: RingViewDataSource {
     
     var image: UIImage { return UIImage(asset: .GuideOpenBand) }
 //    var currentLabText: String { return "  " }
