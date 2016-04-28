@@ -208,7 +208,6 @@ extension SignInDelegate where Self: UIViewController {
             
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = msg.userId ?? ""
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = self.userName
-            GuideUserInfo.userInfo.userId = msg.userId ?? ""
             
             let guideVC = StoryboardScene.Guide.instantiateGuideView()
             let guideVM = GuideBandBluetooth()
