@@ -62,7 +62,6 @@ extension BaseViewControllerPresenter where Self: UIViewController {
         return UIColor(named: .HomeViewMainColor)
     }
     
-    
     /**
      更新导航栏UI
      */

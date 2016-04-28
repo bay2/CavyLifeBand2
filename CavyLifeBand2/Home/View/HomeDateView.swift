@@ -54,7 +54,7 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         // 中间白色三角形
         let imgView = UIImageView()
         self.addSubview(imgView)
-        imgView.snp_makeConstraints { (make) in
+        imgView.snp_makeConstraints { make in
             make.size.equalTo(CGSizeMake(20, 10))
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(40)
@@ -127,7 +127,7 @@ extension HomeDateView: UIScrollViewDelegate {
         collView.setContentOffset(CGPointMake(CGFloat(count) * labelWidth, 0), animated: true)
 
         // 通知绑定日期和时间轴的同步
-        NSNotificationCenter.defaultCenter().postNotificationName("changeTimeLinePage", object: nil, userInfo: ["currentPage" : count])
+        NSNotificationCenter.defaultCenter().postNotificationName("changeTimeLinePage", object: nil, userInfo: ["currentPage": count])
 
     
     }
