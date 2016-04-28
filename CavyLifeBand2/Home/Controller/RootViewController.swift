@@ -213,7 +213,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         }
         
         //撤销pk
-        if let undoList: [PKWaitRealmModel] = self.getUnSyncWaitPKIdListWithType(.UndoWait) {
+        if let undoList: [PKWaitRealmModel] = self.getUnSyncWaitPKListWithType(.UndoWait) {
             self.undoPK(undoList, loginUserId: self.loginUserId, callBack: {
                 for undo in undoList {
                     self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: undo.pkId)
