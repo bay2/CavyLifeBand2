@@ -16,7 +16,7 @@ struct TimeLineStepViewModel: HomeTimeLineDataSource, HomeTimeLineDelegate {
     
     var image: UIImage { return UIImage(asset: .HomeListStep) }
     var title: String { return L10n.HomeTimeLineCellStep.string }
-    var others: String { return ""}
+    var others: String { return "" }
     var time: String
     var resultNum: NSMutableAttributedString
     
@@ -28,7 +28,7 @@ struct TimeLineStepViewModel: HomeTimeLineDataSource, HomeTimeLineDelegate {
     
     // 跳到计步详情页
     func showDetailViewController() {
-     Log.info("跳到计步详情")
+        Log.info("跳到计步详情")
     }
     
 }

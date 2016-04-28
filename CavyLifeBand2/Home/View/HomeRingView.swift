@@ -152,7 +152,7 @@ class HomeRingView: UIView {
         case .SleepRing:
             
             imgView?.image = UIImage(asset: .HomeSleepRing)
-            imgView?.snp_makeConstraints(closure: { (make) in
+            imgView?.snp_makeConstraints(closure: { make in
 
                 make.size.equalTo(30)
                 make.bottom.equalTo(currentLabel!).offset(-20)
@@ -164,7 +164,7 @@ class HomeRingView: UIView {
         case .StepRing:
 
             imgView?.image = UIImage(asset: .HomeStepRing)
-            imgView?.snp_makeConstraints(closure: { (make) in
+            imgView?.snp_makeConstraints(closure: { make in
                 make.size.equalTo(46)
                 make.bottom.equalTo(currentLabel!).offset(-40)
             })
