@@ -19,7 +19,7 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
     }()
     
     var loginUserId: String
-    
+
     var realm: Realm
     
     weak var tableView: UITableView?
@@ -37,6 +37,7 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
         self.tableView = tableView
         
         print(realm.path)
+        
         
 //        let due1: PKWaitRealmModel = PKWaitRealmModel()
 //        
@@ -60,17 +61,17 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
         updatePKFinishRealm(finishRealm)
         
         //调接口把删除操作同步到服务器
-        deletePKFinish([finishRealm], loginUserId: self.loginUserId) {
-            self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: finishRealm.pkId)
-        }
-        
-        self.itemGroup[indexPath.section].removeAtIndex(indexPath.row)
-        
-        if self.itemGroup[indexPath.section].count == 0 {
-            self.itemGroup.removeAtIndex(indexPath.section)
-        }
-        
-        self.tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
+//        deletePKFinish([finishRealm], loginUserId: self.loginUserId) {
+//            self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: finishRealm.pkId)
+//        }
+//        
+//        self.itemGroup[indexPath.section].removeAtIndex(indexPath.row)
+//        
+//        if self.itemGroup[indexPath.section].count == 0 {
+//            self.itemGroup.removeAtIndex(indexPath.section)
+//        }
+//        
+//        self.tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
     }
     
     func canEdit(section: Int) -> Bool {
@@ -138,7 +139,7 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
         if finishCellVMs.count > 0 {
             self.itemGroup.append(finishCellVMs)
         }
-        
+    
     }
     
     mutating func changeData() {
@@ -170,52 +171,61 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
             
             try PKWebApi.shareApi.getPKRecordList(self.loginUserId) {(result) in
                 
-                guard result.isSuccess else {
-                    return
-                }
+                let queue = dispatch_queue_create("handleWebJson", DISPATCH_QUEUE_SERIAL)
                 
-                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
-                
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    return
-                }
-                
-                var waitRecordsRealm: [PKWaitRealmModel] = [PKWaitRealmModel]()
-                
-                var dueRecordsRealm: [PKDueRealmModel] = [PKDueRealmModel]()
-                
-                var finishRecordsRealm: [PKFinishRealmModel] = [PKFinishRealmModel]()
-                
-                for waitModel in resultMsg.waitList! {
-
-                    let waitRealm = self.translateWaitModelToRealm(waitModel)
+                dispatch_async(queue, {
+                    guard result.isSuccess else {
+                        return
+                    }
                     
-                    waitRecordsRealm.append(waitRealm)
-                }
-                
-                for dueModel in resultMsg.dueList! {
+                    let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
                     
-                    let dueRealm = self.translateDueModelToRealm(dueModel)
+                    guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                        return
+                    }
                     
-                    dueRecordsRealm.append(dueRealm)
-                }
-                
-                for finishModel in resultMsg.finishList! {
+                    var waitRecordsRealm: [PKWaitRealmModel] = [PKWaitRealmModel]()
                     
-                    let finishRealm = self.translateFinishModelToRealm(finishModel)
+                    var dueRecordsRealm: [PKDueRealmModel] = [PKDueRealmModel]()
                     
-                    finishRecordsRealm.append(finishRealm)
-                }
-                
-                self.deletePKRecordsRealm(PKWaitRealmModel.self)
-                self.deletePKRecordsRealm(PKDueRealmModel.self)
-                self.deletePKRecordsRealm(PKFinishRealmModel.self)
-                
-                self.savePKRecordsRealm(waitRecordsRealm)
-                self.savePKRecordsRealm(dueRecordsRealm)
-                self.savePKRecordsRealm(finishRecordsRealm)
-                
-                self.loadDataFromRealm()
+                    var finishRecordsRealm: [PKFinishRealmModel] = [PKFinishRealmModel]()
+                    
+                    for waitModel in resultMsg.waitList! {
+                        
+                        let waitRealm = self.translateWaitModelToRealm(waitModel)
+                        
+                        waitRecordsRealm.append(waitRealm)
+                    }
+                    
+                    for dueModel in resultMsg.dueList! {
+                        
+                        let dueRealm = self.translateDueModelToRealm(dueModel)
+                        
+                        dueRecordsRealm.append(dueRealm)
+                    }
+                    
+                    for finishModel in resultMsg.finishList! {
+                        
+                        let finishRealm = self.translateFinishModelToRealm(finishModel)
+                        
+                        finishRecordsRealm.append(finishRealm)
+                    }
+                    
+                    dispatch_async(dispatch_get_main_queue(), {
+                        
+                        self.deletePKRecordsRealm(PKWaitRealmModel.self)
+                        self.deletePKRecordsRealm(PKDueRealmModel.self)
+                        self.deletePKRecordsRealm(PKFinishRealmModel.self)
+                        
+                        self.savePKRecordsRealm(waitRecordsRealm)
+                        self.savePKRecordsRealm(dueRecordsRealm)
+                        self.savePKRecordsRealm(finishRecordsRealm)
+                        
+                        self.loadDataFromRealm()
+                    })
+                    
+                })
+   
             }
             
         } catch let error {

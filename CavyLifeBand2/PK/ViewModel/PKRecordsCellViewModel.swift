@@ -21,8 +21,6 @@ protocol PKRecordsCellDataSource {
     
     var isShowBtn: Bool { get }
     
-//    var tableView: UITableView { get }
-    
     func clickBtn() -> Void
 }
 
@@ -90,9 +88,9 @@ struct PKWaitRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelO
             //把新的进行中记录加入数据库
             addPKDueRealm(dueRealm)
             //调接口接受PK,调接口成功后把那条刚加入数据库的进行中记录的同步状态改为已同步
-//            acceptPKInvitation([dueRealm], loginUserId: self.loginUserId, callBack: {
-//                self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: dueRealm.pkId)
-//            })
+            acceptPKInvitation([dueRealm], loginUserId: self.loginUserId, callBack: {
+                self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: dueRealm.pkId)
+            })
          
             break
             
@@ -100,11 +98,11 @@ struct PKWaitRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelO
             //将待回应记录的type改为已撤销
             updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
             //如果撤销一条未同步到服务器的pk，不需要调接口
-//            if pkRecord.pkId != "" {
-//                undoPK([pkRecord], loginUserId: self.loginUserId, callBack: {
-//                    self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: self.pkRecord.pkId)
-//                })
-//            }
+            if pkRecord.pkId != "" {
+                undoPK([pkRecord], loginUserId: self.loginUserId, callBack: {
+                    self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: self.pkRecord.pkId)
+                })
+            }
 
             break
         default:
@@ -180,7 +178,7 @@ struct PKFinishRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmMode
         //发起pk
         let waitRecord: PKWaitRealmModel = PKWaitRealmModel()
         
-        waitRecord.loginUserId  = "12"//CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        waitRecord.loginUserId  = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         waitRecord.userId       = pkRecord.userId
         waitRecord.avatarUrl    = pkRecord.avatarUrl
         waitRecord.nickname     = pkRecord.nickname
@@ -188,14 +186,14 @@ struct PKFinishRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmMode
         waitRecord.syncState    = PKRecordsRealmSyncState.NotSync.rawValue
         waitRecord.launchedTime = dateFormatter.stringFromDate(NSDate())
         
-//        launchPK([waitRecord], loginUserId: self.loginUserId) {
-            let pkId = "15"//$0[0].pkId
+        launchPK([waitRecord], loginUserId: self.loginUserId) {
+            let pkId = $0[0].pkId
 
             waitRecord.pkId      = pkId
             waitRecord.syncState = PKRecordsRealmSyncState.Synced.rawValue
 
             self.addPKWaitRealm(waitRecord)
-//        }
+        }
 
     }
     

@@ -121,7 +121,7 @@ protocol PKRecordsRealmModelOperateDelegate {
     func deletePKRecordsRealm<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type) -> Bool
     
     //获取某一类pk未同步记录的Array
-    func getUnSyncPKIdList<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type) -> [T]?
+    func getUnSyncPKList<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type) -> [T]?
     
     /**
      获取未同步的待回应记录 Array
@@ -130,7 +130,7 @@ protocol PKRecordsRealmModelOperateDelegate {
      
      - returns: Array
      */
-    func getUnSyncWaitPKIdListWithType(type: PKWaitType) -> [PKWaitRealmModel]?
+    func getUnSyncWaitPKListWithType(type: PKWaitType) -> [PKWaitRealmModel]?
     
     //增加进行中PK记录
     func addPKDueRealm(pkDue: PKDueRealmModel) -> Bool
@@ -218,33 +218,17 @@ extension PKRecordsRealmModelOperateDelegate {
     func addPKWaitRealm(pkWait: PKWaitRealmModel) -> Bool {
         
         do {
-            
             try realm.write {
                 realm.add(pkWait, update: false)
             }
             
         } catch {
-            
-            Log.error("Add setting error [\(pkWait)]")
+            Log.error("Add PKWait error [\(pkWait)]")
             return false
-            
         }
         
-        Log.info("Add setting success")
+        Log.info("Add PKWait success")
         return true
-        
-//        realm.beginWrite()
-//        
-//        realm.add(pkWait, update: false)
-//
-//        do {
-//            try realm.commitWrite()
-//        } catch let error {
-//            Log.error("\(#function) error = \(error)")
-//            return false
-//        }
-//        
-//        return true
     }
     
     //更新待回应数据 撤销或接受PK
@@ -333,7 +317,7 @@ extension PKRecordsRealmModelOperateDelegate {
     }
     
     //未同步pkId Array
-    func getUnSyncPKIdList<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type) -> [T]? {
+    func getUnSyncPKList<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type) -> [T]? {
         let predicate = NSPredicate(format: "loginUserId = %@ AND syncState = %d", loginUserId, PKRecordsRealmSyncState.NotSync.rawValue)
         
         let modelList = realm.objects(modelClass).filter(predicate)
@@ -342,17 +326,17 @@ extension PKRecordsRealmModelOperateDelegate {
             return nil
         }
         
-        var pkIdList = [T]()
+        var pkList = [T]()
         
         for model in modelList {
-            pkIdList.append(model)
+            pkList.append(model)
         }
         
-        return pkIdList
+        return pkList
     }
     
     //未同步waitList 的 Array
-    func getUnSyncWaitPKIdListWithType(type: PKWaitType) -> [PKWaitRealmModel]? {
+    func getUnSyncWaitPKListWithType(type: PKWaitType) -> [PKWaitRealmModel]? {
         let predicate = NSPredicate(format: "loginUserId = %@ AND syncState = %d And type = %@", loginUserId, PKRecordsRealmSyncState.NotSync.rawValue, type.rawValue)
         
         let waitList = realm.objects(PKWaitRealmModel).filter(predicate)

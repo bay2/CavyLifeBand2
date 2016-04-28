@@ -24,11 +24,9 @@ class PKRecordsVC: UIViewController {
         self.dataSource?.changeData()
     }
     
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        Log.info("didLoad")
         // Do any additional setup after loading the view.
         
         tableView.registerNib(UINib.init(nibName: "PKRecordsTableViewCell", bundle: nil), forCellReuseIdentifier: "PKRecordsTableViewCell")
@@ -41,6 +39,8 @@ class PKRecordsVC: UIViewController {
         dataSource = PKRecordsViewModel(realm: realm, tableView: tableView)
         
         dataSource?.loadDataFromRealm()
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

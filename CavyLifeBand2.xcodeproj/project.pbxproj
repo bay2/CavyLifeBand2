@@ -55,7 +55,6 @@
 		683655991CBE3C84009373EA /* AlarmRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655981CBE3C84009373EA /* AlarmRealmModel.swift */; };
 		684C6AD81CC9BA1C000C176E /* PKJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD71CC9BA1C000C176E /* PKJSON.swift */; };
 		684C6ADA1CC9CCE4000C176E /* PKWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD91CC9CCE4000C176E /* PKWebApi.swift */; };
-		684C6ADC1CCA01C9000C176E /* PKWebHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6ADB1CCA01C9000C176E /* PKWebHandler.swift */; };
 		684C6ADF1CCA0506000C176E /* PKRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6ADE1CCA0506000C176E /* PKRealm.swift */; };
 		685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */; };
 		685204E91CB7938C004179B0 /* AddClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E81CB7938C004179B0 /* AddClockViewController.swift */; };
@@ -65,6 +64,7 @@
 		6859BC401CD096DB0050F6A0 /* PKRecordsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC3F1CD096DB0050F6A0 /* PKRecordsVC.swift */; };
 		6859BC7D1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC7B1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift */; };
 		6859BC7E1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC7C1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib */; };
+		6859BC801CD1F48D0050F6A0 /* PKTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC7F1CD1F48D0050F6A0 /* PKTestViewController.swift */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		68C558CB1CB74D1F0031719D /* AlarmClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */; };
@@ -312,7 +312,6 @@
 		683655981CBE3C84009373EA /* AlarmRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmRealmModel.swift; sourceTree = "<group>"; };
 		684C6AD71CC9BA1C000C176E /* PKJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKJSON.swift; sourceTree = "<group>"; };
 		684C6AD91CC9CCE4000C176E /* PKWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWebApi.swift; sourceTree = "<group>"; };
-		684C6ADB1CCA01C9000C176E /* PKWebHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWebHandler.swift; sourceTree = "<group>"; };
 		684C6ADE1CCA0506000C176E /* PKRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRealm.swift; sourceTree = "<group>"; };
 		685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockTableHeaderView.swift; sourceTree = "<group>"; };
 		685204E81CB7938C004179B0 /* AddClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockViewController.swift; sourceTree = "<group>"; };
@@ -322,6 +321,7 @@
 		6859BC3F1CD096DB0050F6A0 /* PKRecordsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsVC.swift; sourceTree = "<group>"; };
 		6859BC7B1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsTableViewCell.swift; sourceTree = "<group>"; };
 		6859BC7C1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKRecordsTableViewCell.xib; sourceTree = "<group>"; };
+		6859BC7F1CD1F48D0050F6A0 /* PKTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKTestViewController.swift; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlarmClock.storyboard; sourceTree = "<group>"; };
@@ -629,7 +629,6 @@
 			children = (
 				684C6AD71CC9BA1C000C176E /* PKJSON.swift */,
 				684C6AD91CC9CCE4000C176E /* PKWebApi.swift */,
-				684C6ADB1CCA01C9000C176E /* PKWebHandler.swift */,
 			);
 			path = WebApi;
 			sourceTree = "<group>";
@@ -707,6 +706,7 @@
 				68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */,
 				68E978161CC77DE500651724 /* PKInfoOrResultView.xib */,
 				68E978091CC6412800651724 /* TimePickerView.swift */,
+				6859BC7F1CD1F48D0050F6A0 /* PKTestViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1670,6 +1670,7 @@
 				6859BC3E1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift in Sources */,
 				68E9780C1CC758B400651724 /* PKChallengeView.swift in Sources */,
 				91E1B4DD1CA510BD008ADEE6 /* ContactsTabButton.swift in Sources */,
+				6859BC801CD1F48D0050F6A0 /* PKTestViewController.swift in Sources */,
 				6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */,
 				9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
@@ -1727,7 +1728,6 @@
 				91E1B4DC1CA510BD008ADEE6 /* ContactsReqFriendVC.swift in Sources */,
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
-				684C6ADC1CCA01C9000C176E /* PKWebHandler.swift in Sources */,
 				91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */,
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
 				4C0BF9FC1CBCE4CE00DB06FC /* HomeStepViewModel.swift in Sources */,

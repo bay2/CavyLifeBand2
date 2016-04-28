@@ -13,7 +13,7 @@ import Log
 import AddressBook
 import Contacts
 
-class RootViewController: UIViewController, CoordinateReport {
+class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate {
     
     enum MoveDirection {
         
@@ -44,6 +44,8 @@ class RootViewController: UIViewController, CoordinateReport {
     var updateUserInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
     
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
+    
+    var loginUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     override func viewDidLoad() {
         
@@ -184,6 +186,49 @@ class RootViewController: UIViewController, CoordinateReport {
             
         }
         
+    }
+    
+    /**
+     将数据库未同步的pk记录同步到服务器
+     */
+    func syncPKRecords() {
+        //删除pk
+        if let finishList: [PKFinishRealmModel] = self.getUnSyncPKList(PKFinishRealmModel.self) {
+            self.deletePKFinish(finishList, loginUserId: self.loginUserId, callBack: {
+                
+                for finish in finishList {
+                    self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: finish.pkId)
+                }
+                
+            })
+        }
+        
+        //接受pk
+        if let acceptList: [PKDueRealmModel] = self.getUnSyncPKList(PKDueRealmModel.self) {
+            self.acceptPKInvitation(acceptList, loginUserId: self.loginUserId, callBack: {
+                for accept in acceptList {
+                    self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: accept.pkId)
+                }
+            })
+        }
+        
+        //撤销pk
+        if let undoList: [PKWaitRealmModel] = self.getUnSyncWaitPKIdListWithType(.UndoWait) {
+            self.undoPK(undoList, loginUserId: self.loginUserId, callBack: {
+                for undo in undoList {
+                    self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: undo.pkId)
+                }
+            })
+        }
+        
+        //发起pk
+//        if let launchList: [PKWaitRealmModel] = self.getUnSyncWaitPKIdListWithType(.MeWaitOther) {
+//            self.launchPK(launchList, loginUserId: self.loginUserId, callBack: { (pkIdList) in
+//                for launch in launchList {
+//                    self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: launch.pkId)
+//                }
+//            })
+//        }
     }
 
     /**
