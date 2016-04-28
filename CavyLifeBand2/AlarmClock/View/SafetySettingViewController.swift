@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import RealmSwift
 
-class SafetySettingViewController: UIViewController, BaseViewControllerPresenter {
+class SafetySettingViewController: UIViewController, BaseViewControllerPresenter, EmergencyContactRealmListOperateDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,9 +23,16 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
 
     let safetyContactCell = "EmergencyContactPersonCell"
     
+    var realm: Realm = try! Realm()
+    
+    var userId: String = { return "12" }()
+    
     var navTitle: String { return L10n.HomeRightListTitleSecurity.string }
     
+    var emergencyContactModel: EmergencyContactRealmListModel?
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         self.automaticallyAdjustsScrollViewInsets = false
@@ -35,6 +43,8 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
                                                                  style: .Plain,
                                                                  target: self,
                                                                  action: #selector(rightBarBtnAciton(_:)))
+        
+        emergencyContactModel = queryEmergencyContactList()
         
         tableView.rowHeight       = 50.0
         tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
@@ -60,6 +70,15 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         updateNavUI()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
+        Log.warning("|\(self.className)| -- 右上角添加")
+    }
+    
     /**
      返回按钮处理
      */
@@ -69,14 +88,16 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
-        Log.warning("|\(self.className)| -- 右上角添加")
+    
+    func addEmergencyContact(sender: UIButton) {
+        
+        if emergencyContactModel?.emergencyContactRealmList.count == 3 {
+            Log.error("上限三人，不能再添加，据说要用弹框提示")
+        } else {
+            //展示系统通讯录 选择联系人
+//            addEmergencyContact(<#T##emergencyContact: EmergencyContactRealmModel##EmergencyContactRealmModel#>, listModel: emergencyContactModel)
+        }
+        
     }
 
 }
@@ -108,10 +129,37 @@ extension SafetySettingViewController: UITableViewDataSource {
         
     }
     
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.row > 1 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
 }
 
 // MARK: - UITableViewDelegate
 extension SafetySettingViewController: UITableViewDelegate {
+    
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        guard let list = self.emergencyContactModel else {
+         
+            return nil
+            
+        }
+        
+        let deleteAction = UITableViewRowAction(style: .Default, title: "删除") {(action, indexPath) in
+            Log.info("删除")
+            self.deleteEmergencyContactRealm(indexPath.row - 2, listModel: list)
+        }
+        
+//        deleteAction.backgroundColor = UIColor(named: .PKRecordsCellDeleteBtnBGColor)
+        
+        return [deleteAction]
+    }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return tableSectionFooterHeight
