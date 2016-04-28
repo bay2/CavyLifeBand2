@@ -73,6 +73,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
             
         }
+        
+        if NSProcessInfo.processInfo().arguments.contains("ContactsAccountInfoUItests") {
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
+        }
 
     
         if NSProcessInfo.processInfo().arguments.contains("STUB_HTTP_SIGN_IN") {
