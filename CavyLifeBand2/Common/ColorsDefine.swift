@@ -108,6 +108,15 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#929292"></span>
     /// Alpha: 100% <br/> (0x929292ff)
     case ContactsUndoCareBtnColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#b8b8b8"></span>
+    /// Alpha: 100% <br/> (0xb8b8b8ff)
+    case EmergencyContactCellAddBtnTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#dddddd"></span>
+    /// Alpha: 100% <br/> (0xddddddff)
+    case EmergencyContactCellCancelBtnTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
+    /// Alpha: 100% <br/> (0x48d299ff)
+    case EmergencyContactCellInfoLabelColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#38e797"></span>
     /// Alpha: 100% <br/> (0x38e797ff)
     case GuideBandBluetoothColor
@@ -192,8 +201,8 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 70% <br/> (0x000000b3)
     case SettingTableCellTitleColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
-    /// Alpha: 50% <br/> (0x00000080)
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+    /// Alpha: 100% <br/> (0xffffffff)
     case SettingTableFooterInfoColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
     /// Alpha: 100% <br/> (0x48d299ff)
@@ -253,6 +262,9 @@ extension UIColor {
       case .ContactsSectionColor: return 0xf2f2f2ff
       case .ContactsTitleColor: return 0x000000b3
       case .ContactsUndoCareBtnColor: return 0x929292ff
+      case .EmergencyContactCellAddBtnTitleColor: return 0xb8b8b8ff
+      case .EmergencyContactCellCancelBtnTitleColor: return 0xddddddff
+      case .EmergencyContactCellInfoLabelColor: return 0x48d299ff
       case .GuideBandBluetoothColor: return 0x38e797ff
       case .GuideBirthRulerLineColor: return 0x00000080
       case .GuideColor33: return 0x00000033
@@ -281,7 +293,7 @@ extension UIColor {
       case .SettingTableCellInfoGrayColor: return 0x0000004d
       case .SettingTableCellInfoYellowColor: return 0xff9138ff
       case .SettingTableCellTitleColor: return 0x000000b3
-      case .SettingTableFooterInfoColor: return 0x00000080
+      case .SettingTableFooterInfoColor: return 0xffffffff
       case .SignInBackground: return 0x48d299ff
       case .SignInForgotPwdBtnText: return 0x00000066
       case .SignInMainTextColor: return 0x00000080

@@ -67,4 +67,8 @@ SettingSeparatorColor : #cccccc
 SettingTableCellTitleColor : #000000B3
 SettingTableCellInfoGrayColor : #0000004D
 SettingTableCellInfoYellowColor : #ff9138
-SettingTableFooterInfoColor : #00000080
+SettingTableFooterInfoColor : #ffffff
+EmergencyContactCellAddBtnTitleColor : #b8b8b8
+EmergencyContactCellCancelBtnTitleColor : #dddddd
+EmergencyContactCellInfoLabelColor : #48d299
+

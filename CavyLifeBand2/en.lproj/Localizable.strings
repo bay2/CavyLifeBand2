@@ -203,6 +203,7 @@
 "Setting.SafetyTableCell.GPSTitle" = "GPS定位";
 "Setting.SafetyTableFooter.Title" = "紧急报警";
 "Setting.SafetyTableFooter.Info" = "紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。";
+"Setting.SafetyTableEmergencyContact.CancelBtn" = "取消";
 "Setting.ReminderPhoneCall.Title" = "来电提醒";
 "Setting.ReminderPhoneCall.Description" = "秒未接提醒";
 "Setting.ReminderMessage.Title" = "短信提醒";

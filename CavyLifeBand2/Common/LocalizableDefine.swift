@@ -339,6 +339,8 @@ enum L10n {
   case SettingSafetyTableFooterTitle
   /// 紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。
   case SettingSafetyTableFooterInfo
+  /// 取消
+  case SettingSafetyTableEmergencyContactCancelBtn
   /// 来电提醒
   case SettingReminderPhoneCallTitle
   /// 秒未接提醒
@@ -720,6 +722,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Setting.SafetyTableFooter.Title")
       case .SettingSafetyTableFooterInfo:
         return L10n.tr("Setting.SafetyTableFooter.Info")
+      case .SettingSafetyTableEmergencyContactCancelBtn:
+        return L10n.tr("Setting.SafetyTableEmergencyContact.CancelBtn")
       case .SettingReminderPhoneCallTitle:
         return L10n.tr("Setting.ReminderPhoneCall.Title")
       case .SettingReminderPhoneCallDescription:

@@ -41,6 +41,10 @@ protocol EmergencyContactRealmListOperateDelegate {
     
     func queryEmergencyContactList() -> EmergencyContactRealmListModel?
     
+    func deleteEmergencyContactRealm(model: EmergencyContactRealmModel) -> Bool
+    
+    func addEmergencyContact(emergencyContact: EmergencyContactRealmModel, listModel: EmergencyContactRealmListModel) -> Bool
+    
 }
 
 
@@ -95,11 +99,11 @@ extension EmergencyContactRealmListOperateDelegate {
         return true
     }
     
-    func deleteEmergencyContactRealm(index: Int, listModel: EmergencyContactRealmListModel) -> Bool {
+    func deleteEmergencyContactRealm(model: EmergencyContactRealmModel) -> Bool {
         
         self.realm.beginWrite()
         
-        listModel.emergencyContactRealmList.removeAtIndex(index)
+        self.realm.delete(model)
         
         do {
             try self.realm.commitWrite()
