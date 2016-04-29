@@ -199,6 +199,11 @@ struct StoryboardScene {
     static func instantiatePKRulesVC() -> PKRulesVC {
       return StoryboardScene.PK.PKRulesVCScene.viewController() as! PKRulesVC
     }
+
+    case PKTestViewControllerScene = "PKTestViewController"
+    static func instantiatePKTestViewController() -> PKTestViewController {
+      return StoryboardScene.PK.PKTestViewControllerScene.viewController() as! PKTestViewController
+    }
   }
   enum Weather: StoryboardSceneType {
     static let storyboardName = "Weather"

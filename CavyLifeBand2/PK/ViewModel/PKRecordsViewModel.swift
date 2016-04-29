@@ -42,15 +42,24 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
 //        let due1: PKWaitRealmModel = PKWaitRealmModel()
 //        
 //        
-//        due1.pkId = "10"
+//        due1.pkId = "2"
 //        
 //        due1.nickname = "o"
 //        due1.loginUserId = "12"
 //        
-//        let dues:[PKWaitRealmModel] = [due1]
+//        let due2: PKWaitRealmModel = PKWaitRealmModel()
+//        
+//        
+//        due2.pkId = "1"
+//        
+//        due2.nickname = "x"
+//        due2.loginUserId = "12"
+//        
+//        let dues:[PKWaitRealmModel] = [due1, due2]
 //        
 //        self.savePKRecordsRealm(dues)
 //
+        
     }
     
     mutating func deletePKFinish(indexPath: NSIndexPath) -> Void {
@@ -61,17 +70,10 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
         updatePKFinishRealm(finishRealm)
         
         //调接口把删除操作同步到服务器
-//        deletePKFinish([finishRealm], loginUserId: self.loginUserId) {
-//            self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: finishRealm.pkId)
-//        }
-//        
-//        self.itemGroup[indexPath.section].removeAtIndex(indexPath.row)
-//        
-//        if self.itemGroup[indexPath.section].count == 0 {
-//            self.itemGroup.removeAtIndex(indexPath.section)
-//        }
-//        
-//        self.tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
+        deletePKFinish([finishRealm], loginUserId: self.loginUserId) {
+            self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: finishRealm.pkId)
+        }
+
     }
     
     func canEdit(section: Int) -> Bool {
@@ -84,11 +86,11 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
     
     func sectionTitle(section: Int) -> String {
         if self.itemGroup[section][0] is PKFinishRecordsCellViewModel {
-            return "已完成"
+            return L10n.PKRecordsVCFinishSectionTitle.string
         } else if self.itemGroup[section][0] is PKWaitRecordsCellViewModel {
-            return "待回应"
+            return L10n.PKRecordsVCWaitSectionTitle.string
         } else if self.itemGroup[section][0] is PKDueRecordsCellViewModel {
-            return "进行中"
+            return L10n.PKRecordsVCDueSectionTitle.string
         } else {
             return ""
         }
@@ -173,7 +175,7 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
                 
                 let queue = dispatch_queue_create("handleWebJson", DISPATCH_QUEUE_SERIAL)
                 
-                dispatch_async(queue, {
+                dispatch_async(queue) {
                     guard result.isSuccess else {
                         return
                     }
@@ -211,7 +213,7 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
                         finishRecordsRealm.append(finishRealm)
                     }
                     
-                    dispatch_async(dispatch_get_main_queue(), {
+                    dispatch_async(dispatch_get_main_queue()) {
                         
                         self.deletePKRecordsRealm(PKWaitRealmModel.self)
                         self.deletePKRecordsRealm(PKDueRealmModel.self)
@@ -222,9 +224,9 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
                         self.savePKRecordsRealm(finishRecordsRealm)
                         
                         self.loadDataFromRealm()
-                    })
+                    }
                     
-                })
+                }
    
             }
             
@@ -233,10 +235,6 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
         }
         
     }
-    
-//    func addCellViewModelGroup(realmModels: [PKRecordRealmDataSource]) -> Void {
-//        <#function body#>
-//    }
     
     //把接口返回的待回应记录JSONModel转为Realm格式
     func translateWaitModelToRealm(model: PKWaitRecord) -> PKWaitRealmModel {

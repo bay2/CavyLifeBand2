@@ -57,7 +57,13 @@ class PKRecordsVC: UIViewController {
 extension PKRecordsVC: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return (dataSource?.itemGroup.count)!
+        
+        guard let count = dataSource?.itemGroup.count else {
+            return 0
+        }
+        
+        return count
+
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -83,8 +89,7 @@ extension PKRecordsVC: UITableViewDataSource {
 extension PKRecordsVC: UITableViewDelegate {
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .Default, title: "删除") {(action, indexPath) in
-            Log.info("删除")
+        let deleteAction = UITableViewRowAction(style: .Default, title: L10n.PKRecordsCellDeleteBtnTitle.string) {(action, indexPath) in
             self.dataSource?.deletePKFinish(indexPath)
         }
        

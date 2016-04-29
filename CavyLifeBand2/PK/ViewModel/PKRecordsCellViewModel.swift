@@ -59,8 +59,8 @@ struct PKWaitRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelO
         self.tableView     = tableView
         self.loginUserId   = pkRecord.loginUserId
         self.nickName      = pkRecord.nickname
-        self.pkDescription = "\(pkRecord.pkDuration)天步数对决"
-        self.btnTitle      = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? "撤销" : "接受"
+        self.pkDescription = "\(pkRecord.pkDuration)" + L10n.PKRecordsCellDurationDescription.string
+        self.btnTitle      = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? L10n.PKRecordsCellUndoBtnTitle.string : L10n.PKRecordsCellAcceptBtnTitle.string
         self.btnBGColor    = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? UIColor(named: .PKRecordsCellUndoBtnBGColor) : UIColor(named: .PKRecordsCellAcceptBtnBGColor)
         
     }
@@ -131,7 +131,7 @@ struct PKDueRecordsCellViewModel: PKRecordsCellDataSource {
         self.isShowBtn = false
         self.pkRecord = pkRecord
         self.nickName = pkRecord.nickname
-        self.pkDescription = "\(pkRecord.pkDuration)天步数对决"
+        self.pkDescription = "\(pkRecord.pkDuration)" + L10n.PKRecordsCellDurationDescription.string
         self.btnTitle = ""
         self.btnBGColor = UIColor.whiteColor()
         
@@ -164,9 +164,9 @@ struct PKFinishRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmMode
         self.realm         = realm
         self.pkRecord      = pkRecord
         self.loginUserId   = pkRecord.loginUserId
-        self.nickName      = pkRecord.isWin ? "你赢了" : "\(pkRecord.nickname)赢了"
-        self.pkDescription = "\(pkRecord.pkDuration)天步数对决"
-        self.btnTitle      = "再战"
+        self.nickName      = pkRecord.isWin ? L10n.PKRecordsCellYouWin.string : "\(pkRecord.nickname)" + L10n.PKRecordsCellWin.string
+        self.pkDescription = "\(pkRecord.pkDuration)" + L10n.PKRecordsCellDurationDescription.string
+        self.btnTitle      = L10n.PKRecordsCellPKAgainBtnTitle.string
         self.btnBGColor    = UIColor(named: .PKRecordsCellPKAgainBtnBGColor)
         self.tableView     = tableView
     }

@@ -231,4 +231,13 @@
 "PK.InfoOrResultView.MinUnit" = "分钟";
 "PK.CustomView.UserName" = "我";
 "PK.CustomView.WinState" = "胜利了";
-
+"PK.RecordsCell.DurationDescription" = "天步数对决";
+"PK.RecordsCell.YouWin" = "你赢了";
+"PK.RecordsCell.Win" = "赢了";
+"PK.RecordsCell.PKAgainBtnTitle" = "再战";
+"PK.RecordsCell.AcceptBtnTitle" = "接受";
+"PK.RecordsCell.UndoBtnTitle" = "撤销";
+"PK.RecordsCell.DeleteBtnTitle" = "删除";
+"PK.RecordsVC.WaitSectionTitle" = "待回应";
+"PK.RecordsVC.DueSectionTitle" = "进行中";
+"PK.RecordsVC.FinishSectionTitle" = "已完成";

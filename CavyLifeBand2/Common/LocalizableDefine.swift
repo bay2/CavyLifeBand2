@@ -393,6 +393,26 @@ enum L10n {
   case PKCustomViewUserName
   /// 胜利了
   case PKCustomViewWinState
+  /// 天步数对决
+  case PKRecordsCellDurationDescription
+  /// 你赢了
+  case PKRecordsCellYouWin
+  /// 赢了
+  case PKRecordsCellWin
+  /// 再战
+  case PKRecordsCellPKAgainBtnTitle
+  /// 接受
+  case PKRecordsCellAcceptBtnTitle
+  /// 撤销
+  case PKRecordsCellUndoBtnTitle
+  /// 删除
+  case PKRecordsCellDeleteBtnTitle
+  /// 待回应
+  case PKRecordsVCWaitSectionTitle
+  /// 进行中
+  case PKRecordsVCDueSectionTitle
+  /// 已完成
+  case PKRecordsVCFinishSectionTitle
 }
 
 extension L10n: CustomStringConvertible {
@@ -790,6 +810,26 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("PK.CustomView.UserName")
       case .PKCustomViewWinState:
         return L10n.tr("PK.CustomView.WinState")
+      case .PKRecordsCellDurationDescription:
+        return L10n.tr("PK.RecordsCell.DurationDescription")
+      case .PKRecordsCellYouWin:
+        return L10n.tr("PK.RecordsCell.YouWin")
+      case .PKRecordsCellWin:
+        return L10n.tr("PK.RecordsCell.Win")
+      case .PKRecordsCellPKAgainBtnTitle:
+        return L10n.tr("PK.RecordsCell.PKAgainBtnTitle")
+      case .PKRecordsCellAcceptBtnTitle:
+        return L10n.tr("PK.RecordsCell.AcceptBtnTitle")
+      case .PKRecordsCellUndoBtnTitle:
+        return L10n.tr("PK.RecordsCell.UndoBtnTitle")
+      case .PKRecordsCellDeleteBtnTitle:
+        return L10n.tr("PK.RecordsCell.DeleteBtnTitle")
+      case .PKRecordsVCWaitSectionTitle:
+        return L10n.tr("PK.RecordsVC.WaitSectionTitle")
+      case .PKRecordsVCDueSectionTitle:
+        return L10n.tr("PK.RecordsVC.DueSectionTitle")
+      case .PKRecordsVCFinishSectionTitle:
+        return L10n.tr("PK.RecordsVC.FinishSectionTitle")
     }
   }
 
