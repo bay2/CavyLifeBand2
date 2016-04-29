@@ -10,7 +10,7 @@ import UIKit
 import EZSwiftExtensions
 
 class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-        
+    
     /// 时间间隔选择
     var timeView: UICollectionView?
     

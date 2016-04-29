@@ -9,17 +9,9 @@
 import UIKit
 import EZSwiftExtensions
 
-
-enum DetailViewStyle {
+class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{
     
-    case SleepDetailStyle
-    case StepDetailStyle
-}
-
-
-class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{ //, ChartViewProtocol {
-    
-    let viewStyle: DetailViewStyle = .StepDetailStyle
+    var viewStyle: ChartViewStyle = .StepChart
     
     /// 日 周 年 索引
     var upperButtonArray: [ChartTimeButton] = [ChartTimeButton(selectIndex: 0), ChartTimeButton(selectIndex: 1), ChartTimeButton(selectIndex: 2)]
@@ -49,17 +41,20 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{ //
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
 
         allViewLayout()
+        
+        parserData()
         
     }
     
     func configChartBaseView(dataSource: ChartViewProtocol) {
         
         navTitle = dataSource.title
+        viewStyle = dataSource.chartStyle
         
         self.updateNavUI()
+        
     }
     
     /**
@@ -99,6 +94,22 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{ //
     }
     
     /**
+     解析数据 加到数据库
+     */
+    func parserData() {
+        
+        
+        let arrayDay = ["4.18","4.19","4.20","4.21","4.22","4.23","4.24","4.25","4.26","4.27","4.28","4.29"]
+        let arrayWeak = ["3.15-21","3.22-29","4.1-7","4.8-14","4.15-21","4.22-29"]
+        let arrayMonths = ["11","12","1","2","3","4"]
+        
+        
+        
+        
+    }
+    
+    
+    /**
      更改 年月日按钮状态
      */
     func changeButtonStatus(button: UIButton) {
@@ -129,6 +140,7 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{ //
         Log.info("分享")
     }
     
+
 }
 
 // MARK: --UIScrollViewDelegate

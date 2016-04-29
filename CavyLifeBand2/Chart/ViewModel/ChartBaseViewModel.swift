@@ -8,20 +8,31 @@
 
 import UIKit
 
+enum ChartViewStyle {
+    
+    case SleepChart
+    case StepChart
+    
+}
+
 protocol ChartViewProtocol {
     
     var title: String { get }
+    var chartStyle: ChartViewStyle { get }
+    
     
 }
 
 struct ChartViewModel: ChartViewProtocol {
     
     var title: String
+    var chartStyle: ChartViewStyle
     
-    init(title: String) {
+    init(title: String, chartStyle: ChartViewStyle) {
         
         self.title = title
         
+        self.chartStyle = chartStyle
     }
     
 }
