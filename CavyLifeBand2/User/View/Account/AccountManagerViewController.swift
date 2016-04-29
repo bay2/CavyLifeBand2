@@ -327,12 +327,16 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         if dataSource?.isSignUp == true {
             
             signUp {
-                CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = $0
+                
                 GuideUserInfo.userInfo.userId = $0
+                
+                Log.info("[\(GuideUserInfo.userInfo.userId)] Sign up success")
                 
                 let userInfoModel = UserInfoModel(guideUserinfo: GuideUserInfo.userInfo)
                 userInfoModel.isSync = false
                 self.addUserInfo(userInfoModel)
+                
+                UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
             }
             
         } else {

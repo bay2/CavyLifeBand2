@@ -13,7 +13,8 @@ extension UserInfoModel {
     convenience init(guideUserinfo: GuideUserInfo) {
         
         self.init()
-        
+       
+        self.userId = guideUserinfo.userId
         self.sex = guideUserinfo.gender
         self.height = guideUserinfo.height
         self.weight = guideUserinfo.weight
