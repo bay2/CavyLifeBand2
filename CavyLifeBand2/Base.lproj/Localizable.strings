@@ -194,6 +194,8 @@
 "AlarmClock.AlarmCircle.Description" = "闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。";
 "AlarmClock.DeleteBtn.Title" = "删除";
 "AlarmClock.AlarmCircle.AlertTitle" = "请选择闹钟周期";
+"AlarmClock.EmptyView.Title" = "未设置闹钟";
+"AlarmClock.EmptyView.Info" = "手环震动唤醒，远离传统闹铃噪声";
 
 //设置
 "Setting.Safety.Title" = "安全";

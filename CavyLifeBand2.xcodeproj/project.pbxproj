@@ -63,6 +63,8 @@
 		6859BC821CD221A80050F6A0 /* EmergencyContactRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC811CD221A80050F6A0 /* EmergencyContactRealmModel.swift */; };
 		6859BC851CD32D690050F6A0 /* EmergencyContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC831CD32D690050F6A0 /* EmergencyContactInfoCell.swift */; };
 		6859BC861CD32D690050F6A0 /* EmergencyContactInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC841CD32D690050F6A0 /* EmergencyContactInfoCell.xib */; };
+		6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */; };
+		6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		68C558CB1CB74D1F0031719D /* AlarmClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */; };
@@ -308,6 +310,8 @@
 		6859BC811CD221A80050F6A0 /* EmergencyContactRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactRealmModel.swift; sourceTree = "<group>"; };
 		6859BC831CD32D690050F6A0 /* EmergencyContactInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactInfoCell.swift; sourceTree = "<group>"; };
 		6859BC841CD32D690050F6A0 /* EmergencyContactInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmergencyContactInfoCell.xib; sourceTree = "<group>"; };
+		6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyClockView.xib; sourceTree = "<group>"; };
+		6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyClockView.swift; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlarmClock.storyboard; sourceTree = "<group>"; };
@@ -639,6 +643,8 @@
 				6836552A1CBB49F7009373EA /* EmergencyContactPersonCell.xib */,
 				6836552F1CBB7E43009373EA /* AlarmClockDateCollectionViewCell.swift */,
 				683655301CBB7E43009373EA /* AlarmClockDateCollectionViewCell.xib */,
+				6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */,
+				6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1396,6 +1402,7 @@
 				91E1B4CA1CA510BD008ADEE6 /* ContactsLetterView.xib in Resources */,
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
+				6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
 				4C06E9F71CC0FC830093EEFA /* HomeTimeLineSection.xib in Resources */,
 			);
@@ -1574,6 +1581,7 @@
 				685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
+				6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
 				91671C9A1C9AC5A10090BB3F /* HomeUserInfo.swift in Sources */,
 				6836557D1CBC84B7009373EA /* LineLayout.swift in Sources */,
@@ -1905,7 +1913,7 @@
 					"\"SnapKit\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";
@@ -1940,7 +1948,7 @@
 					"\"SnapKit\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";
