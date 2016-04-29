@@ -200,6 +200,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                     self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: finish.pkId)
                 }
                 
+            }, failure: { (errorMsg) in
+                Log.warning(errorMsg)
             })
         }
         
@@ -209,6 +211,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 for accept in acceptList {
                     self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: accept.pkId)
                 }
+            }, failure: { (errorMsg) in
+                Log.warning(errorMsg)
             })
         }
         
@@ -218,6 +222,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 for undo in undoList {
                     self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: undo.pkId)
                 }
+            }, failure: { (errorMsg) in
+                Log.warning(errorMsg)
             })
         }
         

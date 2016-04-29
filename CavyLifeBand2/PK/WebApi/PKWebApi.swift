@@ -114,21 +114,23 @@ class PKWebApi: NetRequestAdapter {
     
 }
 
+typealias FailureHandle = (String) -> Void
+
 protocol PKWebRequestProtocol {
     //发起PK
-    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([PKId]) -> Void)?) -> Void
+    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([PKId]) -> Void)?, failure: FailureHandle?) -> Void
     //接受PK
-    func acceptPKInvitation(dueRealms: [PKDueRealmModel], loginUserId: String, callBack: ((Void) -> Void)?) -> Void
+    func acceptPKInvitation(dueRealms: [PKDueRealmModel], loginUserId: String, callBack: ((Void) -> Void)?, failure: FailureHandle?) -> Void
     //撤销PK
-    func undoPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: ((Void) -> Void)?) -> Void
+    func undoPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: ((Void) -> Void)?, failure: FailureHandle?) -> Void
     //删除PK
-    func deletePKFinish(finishRealms: [PKFinishRealmModel], loginUserId: String, callBack: ((Void) -> Void)?) -> Void
+    func deletePKFinish(finishRealms: [PKFinishRealmModel], loginUserId: String, callBack: ((Void) -> Void)?, failure: FailureHandle?) -> Void
     
 }
 
 extension PKWebRequestProtocol {
     
-    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([PKId]) -> Void)? = nil) -> Void {
+    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([PKId]) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
         
         do {
             
@@ -137,12 +139,14 @@ extension PKWebRequestProtocol {
             try PKWebApi.shareApi.launchPK(loginUserId, launchPKList: pk) {(result) in
                 
                 guard result.isSuccess else {
+                    failure?(self.getErroMsgFromUserCode(result.error))
                     return
                 }
                 
                 let resultMsg = try! LaunchPKResponse(JSONDecoder(result.value!))
                 
                 guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
                     return
                 }
                 
@@ -151,12 +155,12 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            Log.warning("\(error)")
+            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
         }
 
     }
     
-    func acceptPKInvitation(dueRealms: [PKDueRealmModel], loginUserId: String, callBack: ((Void) -> Void)? = nil) -> Void {
+    func acceptPKInvitation(dueRealms: [PKDueRealmModel], loginUserId: String, callBack: ((Void) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
         
         do {
             
@@ -165,12 +169,14 @@ extension PKWebRequestProtocol {
             try PKWebApi.shareApi.acceptPK(loginUserId, acceptPkList: pk) {(result) in
                 
                 guard result.isSuccess else {
+                    failure?(self.getErroMsgFromUserCode(result.error))
                     return
                 }
                 
                 let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
                 
                 guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
                     return
                 }
                 
@@ -180,13 +186,13 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            Log.warning("\(error)")
+            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
         }
         
     }
     
     
-    func undoPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: ((Void) -> Void)? = nil) -> Void {
+    func undoPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: ((Void) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
         
         do {
             
@@ -195,12 +201,14 @@ extension PKWebRequestProtocol {
             try PKWebApi.shareApi.undoPK(loginUserId, undoPKList: pk) {(result) in
                 
                 guard result.isSuccess else {
+                    failure?(self.getErroMsgFromUserCode(result.error))
                     return
                 }
                 
                 let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
                 
                 guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
                     return
                 }
                 
@@ -209,13 +217,13 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            Log.warning("\(error)")
+            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
         }
         
     }
 
     
-    func deletePKFinish(finishRealms: [PKFinishRealmModel], loginUserId: String, callBack: ((Void) -> Void)? = nil) -> Void {
+    func deletePKFinish(finishRealms: [PKFinishRealmModel], loginUserId: String, callBack: ((Void) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
 
         do {
             
@@ -224,12 +232,14 @@ extension PKWebRequestProtocol {
             try PKWebApi.shareApi.deletePK(loginUserId, delPkList: pk) {(result) in
                 
                 guard result.isSuccess else {
+                    failure?(self.getErroMsgFromUserCode(result.error))
                     return
                 }
                 
                 let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
                 
                 guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
                     return
                 }
                 
@@ -237,7 +247,7 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            Log.warning("\(error)")
+            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
         }
         
     }
@@ -302,6 +312,51 @@ extension PKWebRequestProtocol {
         return requests
     }
 
+    //user error code to string
+    func getErroMsgFromUserCode(userErrorCode: UserRequestErrorType?) -> String {
+        
+        let errorMessage = [UserRequestErrorType.EmailErr: L10n.UserModuleErrorCodeEmailError.string,
+                            UserRequestErrorType.EmailNil: L10n.UserModuleErrorCodeEmailNil.string,
+                            UserRequestErrorType.NetAPIErr: L10n.UserModuleErrorCodeNetAPIError.string,
+                            UserRequestErrorType.NetErr: L10n.UserModuleErrorCodeNetError.string,
+                            UserRequestErrorType.PassWdErr: L10n.UserModuleErrorCodePasswdError.string,
+                            UserRequestErrorType.PassWdNil: L10n.UserModuleErrorCodePasswdNil.string,
+                            UserRequestErrorType.PhoneNil: L10n.UserModuleErrorCodePhoneNil.string,
+                            UserRequestErrorType.PhoneErr: L10n.UserModuleErrorCodePhoneError.string,
+                            UserRequestErrorType.SecurityCodeErr: L10n.UserModuleErrorCodeSecurityError.string,
+                            UserRequestErrorType.SecurityCodeNil: L10n.UserModuleErrorCodeSecurityNil.string,
+                            UserRequestErrorType.UserNameErr: L10n.UserModuleErrorCodeUserNameError.string,
+                            UserRequestErrorType.UserNameNil: L10n.UserModuleErrorCodeUserNameNil.string,
+                            UserRequestErrorType.UnknownError: L10n.UserModuleErrorCodeUnknownError.string]
+        
+        let userError = userErrorCode ?? UserRequestErrorType.UnknownError
+        
+        return errorMessage[userError]!
+    }
+    
+    //web error code to string
+    func getErroMsgFromWebErrorCode(webErrorCode: String) -> String {
+    
+        let errorMessage = [WebApiCode.ParaError.rawValue: L10n.WebErrorCode1000.string,
+                            WebApiCode.UserPasswdError.rawValue: L10n.WebErrorCode1001.string,
+                            WebApiCode.PhoneNumError.rawValue: L10n.WebErrorCode1002.string,
+                            WebApiCode.SecurityCodeError.rawValue: L10n.WebErrorCode1003.string,
+                            WebApiCode.MobifyUserError.rawValue: L10n.WebErrorCode1004.string,
+                            WebApiCode.UserExisted.rawValue: L10n.WebErrorCode1005.string,
+                            WebApiCode.UserNotExisted.rawValue: L10n.WebErrorCode1006.string,
+                            WebApiCode.SendSecutityCodeError.rawValue: L10n.WebErrorCode1007.string]
+        
+        if let message = errorMessage[webErrorCode] {
+            
+            return message
+            
+        } else {
+        
+            return L10n.UserModuleErrorCodeNetAPIError.string
+        
+        }
+        
+    }
 
 }
 

@@ -70,9 +70,11 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
         updatePKFinishRealm(finishRealm)
         
         //调接口把删除操作同步到服务器
-        deletePKFinish([finishRealm], loginUserId: self.loginUserId) {
+        deletePKFinish([finishRealm], loginUserId: self.loginUserId, callBack: {
             self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: finishRealm.pkId)
-        }
+        }, failure: {(erreoMsg) in
+            Log.warning("弹框提示失败" + erreoMsg)
+        })
 
     }
     
@@ -231,7 +233,9 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
             }
             
         } catch let error {
-            Log.warning("\(error)")
+            
+            Log.warning("弹框提示失败\(error)")
+            
         }
         
     }

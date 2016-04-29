@@ -14,7 +14,7 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
     
     var loginUserId: String
     
-    var competitorId: String = { return "" }()
+    var competitorId: String
     
     var selectTime: String?
     
@@ -42,9 +42,8 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
     init(realm: Realm) {
         self.realm = realm
         
-        Log.warning("用户ID写死")
-        
-        self.loginUserId = "12"
+        self.loginUserId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        self.competitorId = ""
         
         pkWaitRealmModel = PKWaitRealmModel()
         pkWaitRealmModel.loginUserId = self.loginUserId
@@ -73,14 +72,25 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
         
         pkWaitRealmModel.launchedTime = launchTimeStr
         
-        launchPK([pkWaitRealmModel], loginUserId: self.loginUserId) {
+        launchPK([pkWaitRealmModel], loginUserId: self.loginUserId, callBack: {
             let pkId = $0[0].pkId
             
             self.pkWaitRealmModel.pkId      = pkId
             self.pkWaitRealmModel.syncState = PKRecordsRealmSyncState.Synced.rawValue
             
             self.addPKWaitRealm(self.pkWaitRealmModel)
-        }
+        }, failure: { (errorMsg) in
+            Log.warning("弹窗提示失败" + errorMsg)
+        })
+        
+//        launchPK([pkWaitRealmModel], loginUserId: self.loginUserId) {
+//            let pkId = $0[0].pkId
+//            
+//            self.pkWaitRealmModel.pkId      = pkId
+//            self.pkWaitRealmModel.syncState = PKRecordsRealmSyncState.Synced.rawValue
+//            
+//            self.addPKWaitRealm(self.pkWaitRealmModel)
+//        }
         
     }
     

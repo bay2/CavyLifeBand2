@@ -90,6 +90,8 @@ struct PKWaitRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelO
             //调接口接受PK,调接口成功后把那条刚加入数据库的进行中记录的同步状态改为已同步
             acceptPKInvitation([dueRealm], loginUserId: self.loginUserId, callBack: {
                 self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: dueRealm.pkId)
+            }, failure: { (errorMsg) in
+                Log.warning("弹框提示" + errorMsg)
             })
          
             break
@@ -99,9 +101,13 @@ struct PKWaitRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelO
             updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
             //如果撤销一条未同步到服务器的pk，不需要调接口
             if pkRecord.pkId != "" {
+                
                 undoPK([pkRecord], loginUserId: self.loginUserId, callBack: {
                     self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: self.pkRecord.pkId)
+                }, failure: { (errorMsg) in
+                        Log.warning("弹框提示" + errorMsg)
                 })
+               
             }
 
             break
@@ -186,15 +192,18 @@ struct PKFinishRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmMode
         waitRecord.syncState    = PKRecordsRealmSyncState.NotSync.rawValue
         waitRecord.launchedTime = dateFormatter.stringFromDate(NSDate())
         
-        launchPK([waitRecord], loginUserId: self.loginUserId) {
+        launchPK([waitRecord], loginUserId: self.loginUserId, callBack: {
             let pkId = $0[0].pkId
-
+            
             waitRecord.pkId      = pkId
             waitRecord.syncState = PKRecordsRealmSyncState.Synced.rawValue
-
+            
             self.addPKWaitRealm(waitRecord)
-        }
-
+            
+        }, failure: { (errorMsg) in
+            Log.warning("弹窗提示失败" + errorMsg)
+        })
+        
     }
     
 }
