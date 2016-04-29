@@ -128,11 +128,11 @@ class RootViewController: UIViewController, CoordinateReport {
      */
     func updateSyncDate(userInfo: UserInfoModel) {
         
-        guard userInfo.isSync != true else {
+        if userInfo.isSync == true {
             return
         }
         
-        updateUserInfoPara += [UserNetRequsetKey.NickName.rawValue: userInfo.nickname,
+        updateUserInfoPara += [UserNetRequsetKey.UserID.rawValue: userInfo.userId,
                                UserNetRequsetKey.Sex.rawValue: userInfo.sex.toString,
                                UserNetRequsetKey.Height.rawValue: userInfo.height,
                                UserNetRequsetKey.Weight.rawValue: userInfo.weight,

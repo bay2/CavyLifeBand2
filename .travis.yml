@@ -1,5 +1,7 @@
 language: objective-c
-cache: cocoapods
+cache:
+  - bundler
+  - cocoapods
 osx_image: xcode7.3
 before_install:
 - brew update
@@ -24,8 +26,8 @@ include:
 env:
   matrix:
   - bulidTask: bulid.sh
-  - bulidTask: test.sh
   - bulidTask: uitest.sh
+  - bulidTask: test.sh
   global:
   - APP_NAME="CavyLifeBand2"
   - 'DEVELOPER_NAME="iPhone Distribution: Hangzhou Cavy Technology Co., Ltd."'

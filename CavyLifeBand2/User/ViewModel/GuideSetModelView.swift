@@ -8,6 +8,7 @@
 import UIKit
 import EZSwiftExtensions
 import Gifu
+import RealmSwift
 
 /**
  *  @author xuemincai
@@ -54,11 +55,13 @@ struct GuideSetNoticeViewModel: GuideViewDataSource, GuideViewDelegate {
  *
  *  设置位置共享
  */
-struct GuideSetLocationShare: GuideViewDataSource, GuideViewDelegate {
+struct GuideSetLocationShare: GuideViewDataSource, GuideViewDelegate, UserInfoRealmOperateDelegate {
     
     var title: String { return L10n.GuideSetting.string }
     var rightItemBtnTitle: String { return L10n.GuidePassButton.string }
     var centerView: UIView { return PictureView(title: L10n.GuideOpenLocationShare.string, titleInfo: L10n.GuideOpenLocationShareInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuideLocation))) }
+    
+    var realm: Realm  = try! Realm()
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -77,7 +80,7 @@ struct GuideSetLocationShare: GuideViewDataSource, GuideViewDelegate {
     
     func pushNextView(viewController: UIViewController) {
         
-        if GuideUserInfo.userInfo.userId.isEmpty {
+        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
             
             let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
             
@@ -87,6 +90,22 @@ struct GuideSetLocationShare: GuideViewDataSource, GuideViewDelegate {
             
             return
         }
+        
+        GuideUserInfo.userInfo.userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        let userInfoModel = UserInfoModel(guideUserinfo: GuideUserInfo.userInfo)
+        userInfoModel.isSync = false
+        
+        if let _ = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
+            
+            updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) { _ in
+                return userInfoModel
+            }
+            
+        } else {
+            addUserInfo(userInfoModel)
+        }
+        
+        
         
         UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
         

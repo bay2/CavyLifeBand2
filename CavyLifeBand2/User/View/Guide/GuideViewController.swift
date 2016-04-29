@@ -58,14 +58,6 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
     }
     
-    override func viewDidAppear(animated: Bool) {
-        
-        super.viewDidAppear(animated)
-        
-        updateNavUI()
-        
-    }
-    
     deinit {
         Log.error("deinit GuideViewController")
     }
