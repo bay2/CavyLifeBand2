@@ -12,6 +12,7 @@ import RealmSwift
 import Log
 import AddressBook
 import Contacts
+import KeychainAccess
 
 class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate {
     
@@ -55,9 +56,6 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         loadHomeView()
             
-        UINavigationBar.appearance().tintColor = UIColor(named: .HomeViewMainColor)
-        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickMenu), name: NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickBandMenu), name: NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.showHomeView), name: NotificationName.HomeShowHomeView.rawValue, object: nil)
@@ -132,11 +130,11 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
      */
     func updateSyncDate(userInfo: UserInfoModel) {
         
-        guard userInfo.isSync != true else {
+        if userInfo.isSync == true {
             return
         }
         
-        updateUserInfoPara += [UserNetRequsetKey.NickName.rawValue: userInfo.nickname,
+        updateUserInfoPara += [UserNetRequsetKey.UserID.rawValue: userInfo.userId,
                                UserNetRequsetKey.Sex.rawValue: userInfo.sex.toString,
                                UserNetRequsetKey.Height.rawValue: userInfo.height,
                                UserNetRequsetKey.Weight.rawValue: userInfo.weight,

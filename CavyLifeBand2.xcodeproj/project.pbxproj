@@ -31,6 +31,10 @@
 		4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */; };
 		4C0BFA0C1CBF34C700DB06FC /* HomeDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */; };
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
+		4C2B67DC1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */; };
+		4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67DD1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift */; };
+		4C2B67E21CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */; };
+		4C2B67EC1CCF49CD00512CC7 /* GuideViewConfigDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4C6A24591CBF5CB1000136EC /* HomeDateViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */; };
 		4C6A245A1CBF5CB1000136EC /* HomeDateViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */; };
@@ -114,6 +118,8 @@
 		9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */; };
 		9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */; };
 		9114D20E1C995CD2008CB4CE /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D20C1C995CD2008CB4CE /* MenuTableViewCell.swift */; };
+		911D1D8B1CCFA3B800065053 /* BandElectricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911D1D8A1CCFA3B800065053 /* BandElectricView.swift */; };
+		911D1D8D1CCFAB0700065053 /* BandInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911D1D8C1CCFAB0700065053 /* BandInfoView.swift */; };
 		9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */; };
 		912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D29DA1C6088B5005A06E9 /* SignInTest.swift */; };
 		912D29DD1C609FFD005A06E9 /* Sign_Up_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 912D29DC1C609FFD005A06E9 /* Sign_Up_Ok.json */; };
@@ -288,6 +294,10 @@
 		4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWeatherWebApi.swift; sourceTree = "<group>"; };
 		4C0BFA0B1CBF34C700DB06FC /* HomeDateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateView.swift; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
+		4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString_Extension.swift; sourceTree = "<group>"; };
+		4C2B67DD1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineCellViewModel.swift; sourceTree = "<group>"; };
+		4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineProtocol.swift; sourceTree = "<group>"; };
+		4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewConfigDefine.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4C6A24571CBF5CB1000136EC /* HomeDateViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateViewCell.swift; sourceTree = "<group>"; };
 		4C6A24581CBF5CB1000136EC /* HomeDateViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDateViewCell.xib; sourceTree = "<group>"; };
@@ -372,6 +382,9 @@
 		9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetJSON.swift; sourceTree = "<group>"; };
 		9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetRequestData.swift; sourceTree = "<group>"; };
 		9114D20C1C995CD2008CB4CE /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		911D1D8A1CCFA3B800065053 /* BandElectricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandElectricView.swift; sourceTree = "<group>"; };
+		911D1D8C1CCFAB0700065053 /* BandInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandInfoView.swift; sourceTree = "<group>"; };
+		912019451CD1AF3A00D8BC4C /* CavyLifeBand2-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CavyLifeBand2-Swift.h"; path = "CavyLifeBand2/CavyLifeBand2-Swift.h"; sourceTree = SOURCE_ROOT; };
 		9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardDefine.swift; sourceTree = "<group>"; };
 		912D29DA1C6088B5005A06E9 /* SignInTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTest.swift; sourceTree = "<group>"; };
 		912D29DC1C609FFD005A06E9 /* Sign_Up_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_Up_Ok.json; sourceTree = "<group>"; };
@@ -558,6 +571,8 @@
 				4C0BF9FB1CBCE4CE00DB06FC /* HomeStepViewModel.swift */,
 				4C0BF9FD1CBCE58000DB06FC /* HomeSleepViewModel.swift */,
 				4C0BFA011CBCE62E00DB06FC /* HomeRingViewProtocol.swift */,
+				4C2B67DD1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift */,
+				4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */,
 				9150CAB91CC8D03800A398E9 /* RightMenuViewModel.swift */,
 			);
 			name = ViewModel;
@@ -790,13 +805,14 @@
 		9114D1D61C97AB05008CB4CE /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9114D1DC1C97AB05008CB4CE /* PictureView.swift */,
 				9114D1D71C97AB05008CB4CE /* BirthdayView.swift */,
 				9114D1D81C97AB05008CB4CE /* GenderView.swift */,
 				9114D1D91C97AB05008CB4CE /* GoalView.swift */,
 				9114D1DA1C97AB05008CB4CE /* GoalView.xib */,
 				9114D1DB1C97AB05008CB4CE /* HightView.swift */,
 				9114D1E01C97AB05008CB4CE /* WeightView.swift */,
-				9114D1DC1C97AB05008CB4CE /* PictureView.swift */,
+				4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */,
 				9114D1DD1C97AB05008CB4CE /* ScrollRuler */,
 			);
 			path = View;
@@ -856,6 +872,8 @@
 				4C06E9F11CC0E79C0093EEFA /* HomeTimeLineTableCell.xib */,
 				4C06E9F41CC0FC710093EEFA /* HomeTimeLineSection.swift */,
 				4C06E9F61CC0FC830093EEFA /* HomeTimeLineSection.xib */,
+				911D1D8A1CCFA3B800065053 /* BandElectricView.swift */,
+				911D1D8C1CCFAB0700065053 /* BandInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -904,6 +922,7 @@
 				915FFAA51C4E0CA500A492F7 /* AppDelegate.swift */,
 				917936CA1CBCEB4B002936E3 /* SCLocationManager.swift */,
 				9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */,
+				912019451CD1AF3A00D8BC4C /* CavyLifeBand2-Swift.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1123,6 +1142,7 @@
 				91C3AE551C474305006B67AF /* Log_Extension.swift */,
 				98CE436F5AB3387A6ACC0F69 /* UIImageExtension.swift */,
 				917B98B81CB8E7CA008698F5 /* Font_Extension.swift */,
+				4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */,
 				9150CAAD1CC66CBB00A398E9 /* UIWindowExtension.swift */,
 			);
 			name = Extension;
@@ -1674,6 +1694,7 @@
 				6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */,
 				9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
+				4C2B67DC1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift in Sources */,
 				9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */,
 				9150CABA1CC8D03800A398E9 /* RightMenuViewModel.swift in Sources */,
 				91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */,
@@ -1687,6 +1708,7 @@
 				4C0BF9FE1CBCE58000DB06FC /* HomeSleepViewModel.swift in Sources */,
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,
 				917B98B91CB8E7CA008698F5 /* Font_Extension.swift in Sources */,
+				911D1D8D1CCFAB0700065053 /* BandInfoView.swift in Sources */,
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
 				68E977FA1CC6089D00651724 /* PKIntroduceVC.swift in Sources */,
 				9114D1ED1C97AB05008CB4CE /* MainPageButton.swift in Sources */,
@@ -1721,6 +1743,7 @@
 				9104AA721CC4BF4B00FE03E7 /* ContactsViewControllerPresenter.swift in Sources */,
 				91E1B4DB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift in Sources */,
 				91E1B4D71CA510BD008ADEE6 /* ContactsAddFriendCell.swift in Sources */,
+				4C2B67EC1CCF49CD00512CC7 /* GuideViewConfigDefine.swift in Sources */,
 				683655951CBE25DB009373EA /* ReminderSettingVCViewModel.swift in Sources */,
 				91E1B4C71CA510BD008ADEE6 /* ContactsFriendQualityCell.swift in Sources */,
 				4C0BF9F01CB78FBD00DB06FC /* HomeUpperView.swift in Sources */,
@@ -1739,6 +1762,7 @@
 				91800A7E1CB38846000BDDF2 /* UserProfileProtocol.swift in Sources */,
 				91E1B4D51CA510BD008ADEE6 /* ContactsSearchBar.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
+				4C2B67E21CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift in Sources */,
 				91E1B4CD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift in Sources */,
 				6859BC7D1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift in Sources */,
 				91E1B4CE1CA510BD008ADEE6 /* ContactsPersonInfoCell.swift in Sources */,
@@ -1760,6 +1784,7 @@
 				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
 				4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
+				911D1D8B1CCFA3B800065053 /* BandElectricView.swift in Sources */,
 				9114D20E1C995CD2008CB4CE /* MenuTableViewCell.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
@@ -1792,6 +1817,7 @@
 				4C0BFA021CBCE62E00DB06FC /* HomeRingViewProtocol.swift in Sources */,
 				98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
+				4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */,
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,
 				683655821CBC85BE009373EA /* SecondsTableViewCell.swift in Sources */,
@@ -1995,8 +2021,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2031,8 +2057,8 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

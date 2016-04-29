@@ -40,6 +40,8 @@ protocol BaseViewControllerPresenter {
     
     var newTitleLable: UILabel? { get }
     
+    var barBgColor: UIColor { get }
+    
 }
 
 extension BaseViewControllerPresenter where Self: UIViewController {
@@ -54,6 +56,10 @@ extension BaseViewControllerPresenter where Self: UIViewController {
     
     var newTitleLable: UILabel? {
         return nil
+    }
+    
+    var barBgColor: UIColor {
+        return UIColor(named: .HomeViewMainColor)
     }
     
     /**
@@ -119,8 +125,8 @@ extension BaseViewControllerPresenter where Self: UIViewController {
     func configNavBar() {
         
         
-        self.navBar?.shadowImage = UIImage.imageWithColor(self.view.backgroundColor ?? UIColor.whiteColor(), size: CGSizeMake(ez.screenWidth, 1))
-        self.navBar?.setBackgroundImage(UIImage.imageWithColor(self.view.backgroundColor ?? UIColor.whiteColor(), size: CGSizeMake(ez.screenWidth, 64)), forBarPosition: .Any, barMetrics: .Default)
+        self.navBar?.shadowImage = UIImage.imageWithColor(barBgColor, size: CGSizeMake(ez.screenWidth, 1))
+        self.navBar?.setBackgroundImage(UIImage.imageWithColor(barBgColor, size: CGSizeMake(ez.screenWidth, 64)), forBarPosition: .Any, barMetrics: .Default)
         
         let titleLable = UILabel(frame: CGRectMake(0, 0, 60, 44))
         titleLable.text = navTitle

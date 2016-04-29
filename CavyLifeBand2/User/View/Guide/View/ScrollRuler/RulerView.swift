@@ -27,7 +27,7 @@ class RulerView: UIView, UIScrollViewDelegate {
     var nowYear = Int()
     var nowMonth = Int()
     var nowDay = Int()
-    var nowHeight = CGFloat() // 当前身高 滑动跟随改变
+    var nowHeight: Int = 0  // 当前身高 滑动跟随改变
     
     /**
      初始化生日年月标尺
@@ -36,16 +36,16 @@ class RulerView: UIView, UIScrollViewDelegate {
      - parameter monthValue: 月份最大值
      - parameter style:      标尺的风格
      */
-    func initYearMonthRuler(yearValue: Int, monthValue: Int, lineSpace: Int, lineCount: Int, style: RulerScroller.RulerStyle) {
+    func initYearMonthRuler(yearValue: Int, monthValue: Int, style: RulerScroller.RulerStyle) {
 
         addRulerViewLayout()
         
-        rulerScroll.backgroundColor = UIColor.whiteColor()
+        rulerScroll.backgroundColor = UIColor.clearColor()
         rulerScroll.delegate = self
         rulerScroll.yearValue = yearValue
         rulerScroll.monthValue = monthValue
-        rulerScroll.lineSpace = lineSpace
-        rulerScroll.lineCount = lineCount
+        rulerScroll.lineSpace = birthYYMMLineSpace
+        rulerScroll.lineCount = birthYYMMLineCount
         rulerScroll.rulerStyle = style
         rulerScroll.updateRulerViewStyle()
     }
@@ -56,15 +56,15 @@ class RulerView: UIView, UIScrollViewDelegate {
      - parameter dayValue: 日的最大值
      - parameter style:    标尺风格
      */
-    func initDayRuler(dayValue: Int, lineSpace: Int, lineCount: Int, style: RulerScroller.RulerStyle) {
+    func initDayRuler(dayValue: Int, style: RulerScroller.RulerStyle) {
         
         addRulerViewLayout()
         
-        rulerScroll.backgroundColor = UIColor.whiteColor()
+        rulerScroll.backgroundColor = UIColor.clearColor()
         rulerScroll.delegate = self
         rulerScroll.dayValue = dayValue
-        rulerScroll.lineSpace = lineSpace
-        rulerScroll.lineCount = lineCount
+        rulerScroll.lineSpace = birthDayLineSpace
+        rulerScroll.lineCount = birthDayLineCount
         rulerScroll.rulerStyle = style
         rulerScroll.updateRulerViewStyle()
     }
@@ -76,15 +76,15 @@ class RulerView: UIView, UIScrollViewDelegate {
      - parameter lineCount: 间隔数
      - parameter style:     格尺style
      */
-    func initHeightRuler(lineSpace: Int, lineCount: Int, style: RulerScroller.RulerStyle) {
+    func initHeightRuler(style: RulerScroller.RulerStyle) {
         
         addHeightRulerViewLayout()
         
-        rulerScroll.backgroundColor = UIColor.whiteColor()
+        rulerScroll.backgroundColor = UIColor.clearColor()
         rulerScroll.delegate = self
-        rulerScroll.lineSpace = lineSpace
-        rulerScroll.lineCount = lineCount
-        rulerScroll.rulerStyle = style
+        rulerScroll.lineSpace = heightLineSpace
+        rulerScroll.lineCount = heightLineCount
+        rulerScroll.rulerStyle = .HeightRuler
         rulerScroll.updateRulerViewStyle()
     }
         
@@ -104,7 +104,7 @@ class RulerView: UIView, UIScrollViewDelegate {
         self.addSubview(columeFlag)
         columeFlag.image = UIImage(asset: .GuideFlagV)
         columeFlag.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(3, 60))
+            make.size.equalTo(CGSizeMake(3, birthRulerHeight))
             make.centerX.equalTo(self)
             make.top.equalTo(self)
         }
@@ -126,7 +126,7 @@ class RulerView: UIView, UIScrollViewDelegate {
         self.addSubview(columeFlag)
         columeFlag.image = UIImage(asset: .GuideFlagH)
         columeFlag.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(60, 3))
+            make.size.equalTo(CGSizeMake(heightRulerWidth, 3))
             make.centerY.equalTo(self)
             make.left.equalTo(self)
         }
@@ -196,7 +196,7 @@ class RulerView: UIView, UIScrollViewDelegate {
         }else if sc.rulerStyle == .HeightRuler{
             // 计算起始位置
     
-            let allCount = (240 - 30) * sc.lineCount
+            let allCount = 240 - 30
             
             let beginSetY = CGFloat(allCount * sc.lineSpace)
             
@@ -205,7 +205,7 @@ class RulerView: UIView, UIScrollViewDelegate {
 
             let moveCellInt = Int((endSetY - beginSetY) / CGFloat(sc.lineSpace))
             
-            nowHeight = 240 + CGFloat(moveCellInt) * 0.1
+            nowHeight = 240 + moveCellInt
             
             // 限制范围 防止两边数值溢出变化
             if nowHeight > 240 {
@@ -217,7 +217,7 @@ class RulerView: UIView, UIScrollViewDelegate {
             }
             
             sc.currentValue = "\(nowHeight)"
-            rulerDelegate?.changeHeightRulerValue!(sc)
+            rulerDelegate?.changeHeightRulerValue?(sc)
         }
     }
     
@@ -238,35 +238,31 @@ class RulerView: UIView, UIScrollViewDelegate {
     // 滑动结束事件
     func scrollViewStopAction(scrollView: UIScrollView) {
         
-        let sc =  scrollView as! RulerScroller
+        guard let sc =  scrollView as? RulerScroller else {
+            return
+        }
         
         if sc.rulerStyle == .YearMonthRuler {
             
             let nowCount = nowYear * sc.lineCount + nowMonth - 1
             
-            UIView.animateWithDuration(0.2) {() -> Void in
-                sc.contentOffset = CGPointMake(CGFloat(nowCount * sc.lineSpace), 0)
-                
-            }
+            sc.setContentOffset(CGPointMake(CGFloat(nowCount * sc.lineSpace), 0), animated: true)
+            
             // 改变当前月份的天数
             rulerDelegate?.changeCountStatusForDayRuler!(sc)
             
             
         } else if sc.rulerStyle == .DayRuler{
             
-            UIView.animateWithDuration(0.2) {() -> Void in
-                
-                sc.contentOffset = CGPointMake(CGFloat((self.nowDay - 1) * sc.lineSpace), 0)
-                
-            }
+            sc.setContentOffset(CGPointMake(CGFloat((self.nowDay - 1) * sc.lineSpace), 0), animated: true)
+         
         } else if sc.rulerStyle == .HeightRuler{
             
-            UIView.animateWithDuration(0.2) {() -> Void in
-                
-                sc.contentOffset = CGPointMake(0, (self.nowHeight - 30) * CGFloat(sc.lineCount * sc.lineSpace))
-            }
+            sc.setContentOffset(CGPointMake(0, CGFloat(self.nowHeight - 30) * CGFloat(sc.lineSpace)), animated: true)
+     
         }
 
+        
     }
     
     

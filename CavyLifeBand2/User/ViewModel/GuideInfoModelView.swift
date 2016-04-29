@@ -18,7 +18,7 @@ struct GuideGenderViewModel: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var centerView: UIView { return GenderView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12)) }
+    var centerView: UIView { return GenderView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight)) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -49,7 +49,7 @@ struct GuideBirthdayViewModel: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var centerView: UIView { return BirthdayView(frame: CGRectMake(0, 0, ez.screenWidth - 40, ez.screenWidth * 1.12)) }
+    var centerView: UIView { return BirthdayView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight)) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -79,7 +79,7 @@ struct GuideHeightViewModel: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var centerView: UIView { return HightView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12)) }
+    var centerView: UIView { return HightView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight)) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -108,7 +108,7 @@ struct GuideWeightViewModel: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var centerView: UIView { return WeightView(frame: CGRectMake(0, 0, ez.screenWidth * 0.92, ez.screenWidth * 1.12)) }
+    var centerView: UIView { return WeightView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight)) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -138,20 +138,23 @@ struct GuideGoalViewModel: GuideViewDataSource, GuideViewDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var centerView: UIView {
+    var centerView: UIView
+    
+    init() {
         
         guard let goalView = NSBundle.mainBundle().loadNibNamed("GoalView", owner: nil, options: nil).first as? GoalView else {
-            return UIView()
+            self.centerView = UIView()
+            return
         }
         
-        goalView.size = CGSizeMake(ez.screenWidth - 40, ez.screenWidth * 1.12)
+        goalView.size = CGSizeMake(middleViewWidth, middleViewHeight)
         
         goalView.goalViewLayout()
         
         goalView.sliderStepAttribute(6000, recommandValue: 8000, minValue: 0, maxValue: 20000)
         goalView.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 2, minM: 0, maxH: 12, maxM: 00)
         
-        return goalView
+        self.centerView = goalView
         
     }
     

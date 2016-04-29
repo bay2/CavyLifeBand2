@@ -50,6 +50,16 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
         return alarm
     }()
     
+    lazy var rightBtn: UIButton? =  {
+        
+        let button = UIButton(type: .System)
+        button.frame = CGRectMake(0, 0, 30, 30)
+        button.setBackgroundImage(UIImage(asset: .AlarmClockNavSave), forState: .Normal)
+        
+        return button
+        
+    }()
+    
     //更新闹钟的回调，使用isUpdate来判断是删除、添加、更新操作
     var updateAlarmBlock: ((model: AlarmRealmModel, isUpdate: Bool) -> Void)?
     
@@ -85,7 +95,7 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
         super.didReceiveMemoryWarning()
     }
     
-    func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
+    func onRightBtn() -> Void {
         
 //        if dataSource?.alarmModel.alarmDay == 0{
 //            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: L10n.AlarmClockAlarmCircleAlertTitle.string)
@@ -94,7 +104,7 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
 //        
 //        updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
         
-        updateAlarmBlock!(model:dataSource!.alarmModel, isUpdate: true)
+        updateAlarmBlock!(model: dataSource!.alarmModel, isUpdate: true)
         
         self.popVC()
     }

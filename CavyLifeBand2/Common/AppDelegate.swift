@@ -9,9 +9,9 @@
 import UIKit
 import KSCrash
 import Log
-//#if UITEST
+#if UITEST
 import OHHTTPStubs
-//#endif
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -39,8 +39,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
 //        }
         
+//        PgyUpdateManager.sharedPgyManager.startManagerWithAppId("")
+        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
+        PgyUpdateManager.sharedPgyManager().checkUpdate()
+        PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
+        
         return true
 
+    }
+    
+    func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {
+        
+        guard let updateDictionary = updateMethodWithDictionary else {
+            return
+        }
+        
+        UIApplication.sharedApplication().openURL(NSURL(string: "\(updateDictionary["downloadURL"])")!)
+        
+        
     }
 
 #if UITEST
@@ -56,6 +72,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
             
+        }
+        
+        if NSProcessInfo.processInfo().arguments.contains("ContactsAccountInfoUItests") {
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
         }
 
     

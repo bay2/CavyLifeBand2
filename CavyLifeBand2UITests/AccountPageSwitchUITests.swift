@@ -227,7 +227,7 @@ class AccountPageSwitchUITests: XCTestCase {
             XCTAssert(app.staticTexts["我的信息"].exists)
             XCTAssert(infoTitle.label == "可以更好地帮助健康统计哦")
             XCTAssert(app.staticTexts["身高"].exists)
-            XCTAssert(app.staticTexts["160.0"].exists)
+            XCTAssert(app.staticTexts["160"].exists)
             XCTAssert(app.staticTexts["CM"].exists)
             guideButton.tap()
             

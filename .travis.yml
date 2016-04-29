@@ -1,5 +1,7 @@
 language: objective-c
-cache: cocoapods
+cache:
+  - bundler
+  - cocoapods
 osx_image: xcode7.3
 before_install:
 - brew update
@@ -13,14 +15,19 @@ script:
 - openssl aes-256-cbc -k "$ENCRYPTION_SECRET" -in scripts/certs/dist.p12.enc -d -a
   -out scripts/certs/dist.p12
 - ./scripts/add-key.sh
-- xctool -workspace $APP_NAME.xcworkspace -scheme $APP_NAME -sdk iphoneos  -configuration Release OBJROOT=$PWD/build   SYMROOT=$PWD/build CODE_SIGN_IDENTITY="$DEVELOPER_NAME" ONLY_ACTIVE_ARCH=NO
+- . $bulidTask
 after_success:
+- bash <(curl -s https://codecov.io/bash)>
 - ./scripts/sign-and-upload.sh
 after_script:
 - ./scripts/remove-key.sh
 include:
 - CavyLifeBand2
 env:
+  matrix:
+  - bulidTask: bulid.sh
+  - bulidTask: uitest.sh
+  - bulidTask: test.sh
   global:
   - APP_NAME="CavyLifeBand2"
   - 'DEVELOPER_NAME="iPhone Distribution: Hangzhou Cavy Technology Co., Ltd."'

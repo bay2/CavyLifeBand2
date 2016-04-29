@@ -10,13 +10,38 @@ import Foundation
 import CoreLocation
 
 
+/*
+ 功能：
+ 1.获取经纬度坐标
+ 
+ SCLocationManager.shareInterface.startUpdateLocation({ coordinate in
+ 
+ let parameter = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.ReportCoordinate.rawValue,
+ UserNetRequsetKey.UserID.rawValue: self.userId,
+ UserNetRequsetKey.Longitude.rawValue: "\(coordinate.longitude)",
+ UserNetRequsetKey.Latitude.rawValue: "\(coordinate.latitude)"]
+ 
+ self.netPostRequestAdapter(CavyDefine.webApiAddr, para: parameter)
+ 
+ }, cityComplete: nil)
+ 
+ 2.获取城市名称
+ 
+ SCLocationManager.shareInterface.startUpdateLocation {
+    Log.error("\($0)")
+ }
+ 
+ */
+
+
 class SCLocationManager: NSObject, CLLocationManagerDelegate {
     
     static var shareInterface: SCLocationManager = SCLocationManager()
     
-    var locationManager: CLLocationManager!
     var coordinate: CLLocationCoordinate2D?
-    var complete: (Void -> Void)?
+    var locationManager: CLLocationManager!
+    var complete: (CLLocationCoordinate2D -> Void)?
+    var cityComplete: (String -> Void)?
     
     override init(){
         
@@ -32,7 +57,7 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
     /**
      更新GSP位置
      */
-    func startUpdateLocation(complete: (Void -> Void)? = nil) {
+    func startUpdateLocation(complete: (CLLocationCoordinate2D -> Void)? = nil, cityComplete: (String -> Void)? = nil) {
         
         if CLLocationManager.authorizationStatus() == .Denied || CLLocationManager.authorizationStatus() == .Restricted {
             
@@ -44,7 +69,7 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         self.complete = complete
-        
+        self.cityComplete = cityComplete
         
     }
     
@@ -58,9 +83,9 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
         
         let geocoder = CLGeocoder()
         
-        coordinate = locations[0].coordinate
+        self.coordinate = locations[0].coordinate
         
-        let locationObj = CLLocation(latitude: coordinate!.latitude, longitude: coordinate!.longitude)
+        let locationObj = CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
         
         geocoder.reverseGeocodeLocation(locationObj) {(placemark, error) -> Void in
             
@@ -68,11 +93,18 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
                 return
             }
             
+            guard let placemarks = placemark else {
+                return
+            }
+            
+            _ = placemarks.map {[unowned self]  in
+                self.cityComplete?($0.locality ?? "")
+            }
             
         }
         
         locationManager.stopUpdatingLocation()
-        complete?()
+        complete?(locations[0].coordinate)
         
     }
     

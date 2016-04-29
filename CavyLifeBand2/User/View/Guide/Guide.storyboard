@@ -19,11 +19,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HWD-ra-vI8">
-                                <rect key="frame" x="20" y="60" width="374" height="556"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="frame" x="20" y="60" width="374" height="566"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkc-Qd-gCg">
+                                <rect key="frame" x="0.0" y="101" width="414" height="0.0"/>
+                                <accessibility key="accessibilityConfiguration" identifier="GuideViewInfoTitleLabel"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OLa-eD-a6f">
-                                <rect key="frame" x="167" y="576" width="80" height="80"/>
+                                <rect key="frame" x="167" y="586" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="OLa-eD-a6f" secondAttribute="height" multiplier="1:1" id="Fj2-y6-1hZ"/>
                                     <constraint firstAttribute="width" constant="80" id="SGF-Db-11x"/>
@@ -39,22 +46,12 @@
                                     <action selector="guideBtnClick:" destination="bfR-PD-jX0" eventType="touchUpInside" id="SOZ-zG-RUD"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkc-Qd-gCg">
-                                <rect key="frame" x="0.0" y="101" width="414" height="16"/>
-                                <accessibility key="accessibilityConfiguration" identifier="GuideViewInfoTitleLabel"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="16" id="oWR-sW-tFj"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.013560153930000001" green="0.1623121914" blue="0.36328806720000001" alpha="0.7478113918" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="HWD-ra-vI8" firstAttribute="leading" secondItem="Q7I-HL-6s4" secondAttribute="leading" constant="20" id="3Y5-yy-RdA"/>
                             <constraint firstItem="OLa-eD-a6f" firstAttribute="centerX" secondItem="Q7I-HL-6s4" secondAttribute="centerX" id="8ZC-vT-ZSH"/>
-                            <constraint firstItem="HaS-9F-Byp" firstAttribute="top" secondItem="HWD-ra-vI8" secondAttribute="bottom" constant="120" id="BSU-e3-Neh"/>
+                            <constraint firstItem="HaS-9F-Byp" firstAttribute="top" secondItem="HWD-ra-vI8" secondAttribute="bottom" constant="110" id="BSU-e3-Neh"/>
                             <constraint firstItem="Hkc-Qd-gCg" firstAttribute="top" secondItem="RTB-k4-Axd" secondAttribute="bottom" constant="81" placeholder="YES" id="Clo-dI-FQg"/>
                             <constraint firstAttribute="trailing" secondItem="HWD-ra-vI8" secondAttribute="trailing" constant="20" id="Rct-eN-mNu"/>
                             <constraint firstItem="Hkc-Qd-gCg" firstAttribute="width" secondItem="Q7I-HL-6s4" secondAttribute="width" id="VGy-3T-jEa"/>

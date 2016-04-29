@@ -112,6 +112,9 @@ extension UIColor {
     /// Alpha: 100% <br/> (0x38e797ff)
     case GuideBandBluetoothColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 50% <br/> (0x00000080)
+    case GuideBirthRulerLineColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case GuideColor33
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
@@ -141,6 +144,12 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#fff956"></span>
     /// Alpha: 100% <br/> (0xfff956ff)
     case HomeStepRingColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e5e5e5"></span>
+    /// Alpha: 100% <br/> (0xe5e5e5ff)
+    case HomeTimeLineLineColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff8259"></span>
+    /// Alpha: 100% <br/> (0xff8259ff)
+    case HomeTimeLinePKCellTextColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 50% <br/> (0x00000080)
     case HomeViewAccount
@@ -293,6 +302,7 @@ extension UIColor {
       case .ContactsTitleColor: return 0x000000b3
       case .ContactsUndoCareBtnColor: return 0x929292ff
       case .GuideBandBluetoothColor: return 0x38e797ff
+      case .GuideBirthRulerLineColor: return 0x00000080
       case .GuideColor33: return 0x00000033
       case .GuideColor66: return 0x00000066
       case .GuideColor99: return 0x00000099
@@ -303,6 +313,8 @@ extension UIColor {
       case .HomeRingViewBackground: return 0x309a6eff
       case .HomeSleepRingColor: return 0x36f3ffff
       case .HomeStepRingColor: return 0xfff956ff
+      case .HomeTimeLineLineColor: return 0xe5e5e5ff
+      case .HomeTimeLinePKCellTextColor: return 0xff8259ff
       case .HomeViewAccount: return 0x00000080
       case .HomeViewLeftHeaderLine: return 0xffffff80
       case .HomeViewLeftSelected: return 0x0000001a

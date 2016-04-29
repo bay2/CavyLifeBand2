@@ -29,8 +29,7 @@ extension CoordinateReport {
         NSTimer.runThisEvery(seconds: 5 * 60) { _ in
             self.reportServer()
         }
-        
-        
+   
     }
     
     /**
@@ -38,16 +37,16 @@ extension CoordinateReport {
      */
     private func reportServer() {
         
-        SCLocationManager.shareInterface.startUpdateLocation {
+        SCLocationManager.shareInterface.startUpdateLocation({ coordinate in
             
             let parameter = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.ReportCoordinate.rawValue,
                 UserNetRequsetKey.UserID.rawValue: self.userId,
-                UserNetRequsetKey.Longitude.rawValue: "\(SCLocationManager.shareInterface.coordinate!.longitude)",
-                UserNetRequsetKey.Latitude.rawValue: "\(SCLocationManager.shareInterface.coordinate!.latitude)"]
+                UserNetRequsetKey.Longitude.rawValue: "\(coordinate.longitude)",
+                UserNetRequsetKey.Latitude.rawValue: "\(coordinate.latitude)"]
             
             self.netPostRequestAdapter(CavyDefine.webApiAddr, para: parameter)
             
-        }
+            }, cityComplete: nil)
         
     }
     

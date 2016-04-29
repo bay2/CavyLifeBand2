@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10116"/>
@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQg-Tv-Sym">
-                    <rect key="frame" x="50" y="0.0" width="2" height="600"/>
+                    <rect key="frame" x="42" y="0.0" width="2" height="600"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="2" id="QeH-NI-5Wp"/>
@@ -22,7 +22,7 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="dQg-Tv-Sym" secondAttribute="bottom" id="NYZ-y2-pmT"/>
-                <constraint firstItem="dQg-Tv-Sym" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="50" id="Qk6-nY-vbl"/>
+                <constraint firstItem="dQg-Tv-Sym" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="42" id="Qk6-nY-vbl"/>
                 <constraint firstItem="dQg-Tv-Sym" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WTG-jL-Tqk"/>
                 <constraint firstItem="dQg-Tv-Sym" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="l3H-IS-j0D"/>
             </constraints>
