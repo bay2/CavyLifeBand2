@@ -9,14 +9,8 @@
 import UIKit
 import EZSwiftExtensions
 
-class HomeDeatilBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    /// 单个时间段宽度
-    var timeButtonWidth = ez.screenWidth / 3
-    var timeButtonHeight: CGFloat = 50
-    var infoViewHeight: CGFloat = chartViewHight + listViewHight + 20 
-    
-    
+class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+        
     /// 时间间隔选择
     var timeView: UICollectionView?
     
@@ -25,7 +19,6 @@ class HomeDeatilBaseView: UIView, UICollectionViewDelegate, UICollectionViewData
     
     /// 数据个数
     var dateCount: Int = 20
-    
     
     override init(frame: CGRect) {
         
@@ -41,12 +34,10 @@ class HomeDeatilBaseView: UIView, UICollectionViewDelegate, UICollectionViewData
         fatalError("init(coder:) has not been implemented")
     }
     
-    /**
-     添加时间段的视图
-     */
+    // 添加时间段的视图
     func addTimeBucketView() {
         
-        self.backgroundColor = UIColor(named: .HomeDetailBackground)
+        self.backgroundColor = UIColor(named: .ChartBackground)
         
         // 标记背景图片 70 * 30
         let timeFlagView = UIView()
@@ -57,7 +48,7 @@ class HomeDeatilBaseView: UIView, UICollectionViewDelegate, UICollectionViewData
         timeFlagView.snp_makeConstraints { make in
             make.centerX.equalTo(self)
             make.size.equalTo(CGSizeMake(70, 30))
-            make.top.equalTo(self).offset(10)
+            make.top.equalTo(self).offset((timeButtonHeight - 30) / 2)
         }
         
         // 时间段CollectionView
@@ -77,7 +68,7 @@ class HomeDeatilBaseView: UIView, UICollectionViewDelegate, UICollectionViewData
         timeView!.contentOffset = CGPointMake(CGFloat(dateCount - 1) * timeButtonWidth, timeButtonHeight)
         timeView!.dataSource = self
         timeView!.delegate = self
-        timeView!.registerClass(HomeDatilTimeCollectionCell.self, forCellWithReuseIdentifier: "HomeDatilTimeCollectionCell")
+        timeView!.registerClass(ChartTimeCollectionCell.self, forCellWithReuseIdentifier: "ChartTimeCollectionCell")
         self.addSubview(timeView!)
         timeView!.snp_makeConstraints { make in
             make.left.right.top.equalTo(self)
@@ -86,9 +77,7 @@ class HomeDeatilBaseView: UIView, UICollectionViewDelegate, UICollectionViewData
       
     }
     
-    /**
-     添加详情页面
-     */
+    // 添加详情页面
     func addInfoView() {
         
         // 详情的CollectionView
@@ -99,7 +88,7 @@ class HomeDeatilBaseView: UIView, UICollectionViewDelegate, UICollectionViewData
         timeLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         
         infoView = UICollectionView(frame: CGRectMake(0, 0, ez.screenWidth, infoViewHeight), collectionViewLayout: timeLayout)
-        infoView!.backgroundColor = UIColor.whiteColor()
+        infoView!.backgroundColor = UIColor(named: .ChartBackground)
         infoView!.alwaysBounceHorizontal = true
         infoView!.showsHorizontalScrollIndicator = false
         infoView!.contentSize = CGSizeMake(CGFloat(dateCount - 1) * ez.screenWidth, timeButtonHeight)
@@ -107,17 +96,15 @@ class HomeDeatilBaseView: UIView, UICollectionViewDelegate, UICollectionViewData
         infoView!.dataSource = self
         infoView!.delegate = self
         infoView!.scrollEnabled = false
-        infoView!.registerClass(HomeDetailInfoCollectionCell.self, forCellWithReuseIdentifier: "HomeDetailInfoCollectionCell")
+        infoView!.registerClass(ChartInfoCollectionCell.self, forCellWithReuseIdentifier: "ChartInfoCollectionCell")
         self.addSubview(infoView!)
         infoView!.snp_makeConstraints { make in
-            make.left.right.equalTo(self)
             make.top.equalTo(timeView!).offset(timeButtonHeight)
-            make.height.equalTo(infoViewHeight)
+            make.centerX.equalTo(self)
+            make.size.equalTo(CGSize(width: ez.screenWidth, height: infoViewHeight))
         }
 
-        infoView!.backgroundColor = UIColor.blueColor()
     }
-    
     
     // MARK: -- collectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -129,7 +116,7 @@ class HomeDeatilBaseView: UIView, UICollectionViewDelegate, UICollectionViewData
         
         if collectionView == timeView! {
             
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeDatilTimeCollectionCell", forIndexPath: indexPath) as! HomeDatilTimeCollectionCell
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChartTimeCollectionCell", forIndexPath: indexPath) as! ChartTimeCollectionCell
             
             cell.deselectStatus()
             cell.label.text = "4.\(indexPath.item)"
@@ -142,10 +129,7 @@ class HomeDeatilBaseView: UIView, UICollectionViewDelegate, UICollectionViewData
             
         } else {
             
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeDetailInfoCollectionCell", forIndexPath: indexPath) as! HomeDetailInfoCollectionCell
-            
-            cell.chartView?.backgroundColor = UIColor.redColor()
-            cell.listView?.backgroundColor = UIColor.blueColor()
+            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChartInfoCollectionCell", forIndexPath: indexPath) as! ChartInfoCollectionCell
             
             return cell
 
@@ -174,7 +158,7 @@ class HomeDeatilBaseView: UIView, UICollectionViewDelegate, UICollectionViewData
 }
 
 // MARK: - UIScrollViewDelegate
-extension HomeDeatilBaseView: UIScrollViewDelegate {
+extension ChartBaseView: UIScrollViewDelegate {
     
     // 停止拖拽
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
@@ -219,13 +203,13 @@ extension HomeDeatilBaseView: UIScrollViewDelegate {
         
         // 更改 选中日期的状态
         for i in 0 ..< dateCount {
-            guard let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) as? HomeDatilTimeCollectionCell else {
+            guard let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) as? ChartTimeCollectionCell else {
                 continue
             }
             cell.deselectStatus()
         }
         
-        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? HomeDatilTimeCollectionCell else {
+        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? ChartTimeCollectionCell else {
             return
         }
         cell.selectStatus()
@@ -237,4 +221,3 @@ extension HomeDeatilBaseView: UIScrollViewDelegate {
     
     
 }
-

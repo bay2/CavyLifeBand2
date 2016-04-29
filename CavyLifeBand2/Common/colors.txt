@@ -32,10 +32,15 @@ HomeViewAccount : #00000080
 HomeSleepRingColor : #36f3ff
 HomeStepRingColor : #fff956
 HomeRingViewBackground : #309a6e
-HomeDetailBackground : #e5e5e5
-HomeDetailDeselectText : #00000066
 HomeTimeLineLineColor :#e5e5e5
 HomeTimeLinePKCellTextColor : #ff8259
+ChartBackground : #e5e5e5
+ChartSleepDegreeText : #ff5757
+ChartDeselectText : #00000066
+ChartSleepDegreeDeep : #2db6cf
+ChartSleepDegreeLight : #36f3ff
+ChartMapBackground : #4d4d4d
+chartMapTextColor : #ffffff4D
 ContactsTitleColor : #000000B3
 ContactsName : #000000
 ContactsIntrouduce : #0000004D

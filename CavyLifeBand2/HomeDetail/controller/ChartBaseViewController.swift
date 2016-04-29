@@ -1,5 +1,5 @@
 //
-//  HomeDetailBaseViewController.swift
+//  ChartBaseViewController.swift
 //  CavyLifeBand2
 //
 //  Created by Jessica on 16/4/28.
@@ -10,14 +10,22 @@ import UIKit
 import EZSwiftExtensions
 
 
-class HomeDetailBaseViewController: UIViewController, BaseViewControllerPresenter, UIScrollViewDelegate {
+enum DetailViewStyle {
+    
+    case SleepDetailStyle
+    case StepDetailStyle
+}
+
+
+class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{ //, ChartViewProtocol {
+    
+    let viewStyle: DetailViewStyle = .StepDetailStyle
     
     /// 日 周 年 索引
-    var upperButtonArray: [HomeDetailTimeButton] = [HomeDetailTimeButton(selectIndex: 0), HomeDetailTimeButton(selectIndex: 1), HomeDetailTimeButton(selectIndex: 2)]
+    var upperButtonArray: [ChartTimeButton] = [ChartTimeButton(selectIndex: 0), ChartTimeButton(selectIndex: 1), ChartTimeButton(selectIndex: 2)]
     
     /// ScrollView
     var scrollView = UIScrollView()
-    
     
     lazy var leftBtn: UIButton? = {
         
@@ -36,15 +44,22 @@ class HomeDetailBaseViewController: UIViewController, BaseViewControllerPresente
         
     }()
     
-    var navTitle: String = "计步"
+    var navTitle: String = ""
 
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        self.updateNavUI()
         
+
         allViewLayout()
         
+    }
+    
+    func configChartBaseView(dataSource: ChartViewProtocol) {
+        
+        navTitle = dataSource.title
+        
+        self.updateNavUI()
     }
     
     /**
@@ -52,17 +67,13 @@ class HomeDetailBaseViewController: UIViewController, BaseViewControllerPresente
      */
     func allViewLayout() {
         
-        self.view.backgroundColor = UIColor(named: .HomeDetailBackground)
+        self.view.backgroundColor = UIColor(named: .ChartBackground)
         
-        
-        /**
-         周日年
-         */
-        
+        // 周日年
         for i in 0 ..< 3 {
             
             let button = upperButtonArray[i]
-            button.frame = CGRectMake(ez.screenWidth / 3 * CGFloat(i), 0, ez.screenWidth / 3, 50)
+            button.frame = CGRectMake(ez.screenWidth / 3 * CGFloat(i), 0, timeButtonWidth, timeButtonHeight)
             button.addTarget(self, action: #selector(changeButtonStatus(_:)), forControlEvents: .TouchUpInside)
             self.view.addSubview(button)
         }
@@ -70,10 +81,10 @@ class HomeDetailBaseViewController: UIViewController, BaseViewControllerPresente
         
         self.view.addSubview(scrollView)
         scrollView.snp_makeConstraints { (make) in
-            make.top.equalTo(self.view).offset(50)
+            make.top.equalTo(self.view).offset(timeButtonHeight)
             make.left.right.bottom.equalTo(self.view)
         }
-        scrollView.backgroundColor = UIColor.clearColor()
+        scrollView.backgroundColor = UIColor(named: .ChartBackground)
         scrollView.contentSize = CGSizeMake(ez.screenWidth * 3, 0)
         scrollView.pagingEnabled = true
         scrollView.delegate = self
@@ -81,26 +92,25 @@ class HomeDetailBaseViewController: UIViewController, BaseViewControllerPresente
         scrollView.backgroundColor = UIColor.whiteColor()
         
         for i in 0 ..< 3 {
-            let detailView = HomeDeatilBaseView(frame: CGRectMake(ez.screenWidth  * CGFloat(i), 0, ez.screenWidth, ez.screenWidth - 64 - 50))
+            let detailView = ChartBaseView(frame: CGRectMake(ez.screenWidth  * CGFloat(i), 0, ez.screenWidth, ez.screenHeight - navHeight - timeButtonHeight))
             scrollView.addSubview(detailView)
         }
         
     }
-    
-    
     
     /**
      更改 年月日按钮状态
      */
     func changeButtonStatus(button: UIButton) {
         
-        
-        let index = (button as! HomeDetailTimeButton).selectedIndex
-        
+        let index = (button as! ChartTimeButton).selectedIndex
         changeButtonStatusWithIndex(index)
         
     }
     
+    /**
+     更改按钮状态
+     */
     func changeButtonStatusWithIndex(index: Int) {
         
         let _ = upperButtonArray.map {
@@ -119,15 +129,14 @@ class HomeDetailBaseViewController: UIViewController, BaseViewControllerPresente
         Log.info("分享")
     }
     
-    
-    // MARK: --UIScrollViewDelegate
+}
+
+// MARK: --UIScrollViewDelegate
+extension ChartBaseViewController: UIScrollViewDelegate {
     
     // 停止拖拽
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         
-        
-        Log.error("\(scrollView)")
-
         scrollViewEndAction(scrollView)
         
     }
@@ -135,9 +144,6 @@ class HomeDetailBaseViewController: UIViewController, BaseViewControllerPresente
     // 滑动拖拽
     func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
-        
-        Log.error("\(scrollView)")
-
         scrollViewEndAction(scrollView)
     }
     
@@ -151,5 +157,5 @@ class HomeDetailBaseViewController: UIViewController, BaseViewControllerPresente
         changeButtonStatusWithIndex(count)
         
     }
-    
+
 }

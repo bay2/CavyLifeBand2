@@ -1,5 +1,5 @@
 //
-//  HomeDatilTimeCollectionCell.swift
+//  ChartTimeCollectionCell.swift
 //  CavyLifeBand2
 //
 //  Created by Jessica on 16/4/27.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeDatilTimeCollectionCell: UICollectionViewCell {
+class ChartTimeCollectionCell: UICollectionViewCell {
     
     var label = UILabel()
     
@@ -30,15 +30,21 @@ class HomeDatilTimeCollectionCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /**
+     选中状态
+     */
     func selectStatus() {
         
         label.textColor = UIColor.whiteColor()
 
     }
     
+    /**
+     未选中状态
+     */
     func deselectStatus() {
         
-        label.textColor = UIColor(named: .HomeDetailDeselectText)
+        label.textColor = UIColor(named: .ChartDeselectText)
 
     }
     

@@ -139,9 +139,20 @@
 "Home.RightList.Title.Security" = "安全";
 "Home.RightList.Title.FirmwareUpgrade" = "固件升级";
 "Home.RightList.Title.BindingBand" = "绑定新的CavyBand";
-"Home.DetailView.TimeBucket.Day" = "日";
-"Home.DetailView.TimeBucket.Week" = "周";
-"Home.DetailView.TimeBucket.Month" = "月";
+
+//Chart
+"Chart.Sleep" = "睡眠";
+"Chart.Step" = "计步";
+"Chart.TimeBucket.Day" = "日";
+"Chart.TimeBucket.Week" = "周";
+"Chart.TimeBucket.Month" = "月";
+"Chart.Target.Percent" = "目标完成度";
+"Chart.Sleep.IndexNumber" = "睡眠指数";
+"Chart.Sleep.Degree.Deep" = "深度";
+"Chart.Sleep.Degree.Light" = "浅度";
+"Chart.Step.Today.Step" = "今日步数";
+"Chart.Step.Kilometer" = "行走公里数";
+"Chart.Step.TimeUsed" = "花费时长";
 
 //好友，联系人
 "Contacts.ListCell.Cavy" = "生活豚鼠";

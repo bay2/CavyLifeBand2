@@ -69,12 +69,20 @@ class HomeUpperView: UIView {
     
     func showSleepDetailView(){
         
-        self.viewController.pushVC(HomeDetailBaseViewController())
+        let sleepVM = ChartViewModel(title: L10n.ContactsShowInfoSleep.string)
+        let chartVC = ChartBaseViewController()
+        chartVC.configChartBaseView(sleepVM)
+        
+        self.viewController.pushVC(chartVC)
     }
     
     func showStepDetailView(){
         
-        self.viewController.pushVC(HomeDetailBaseViewController())
+        let stepVM = ChartViewModel(title: L10n.ContactsShowInfoStep.string)
+        let chartVC = ChartBaseViewController()
+        chartVC.configChartBaseView(stepVM)
+        
+        self.viewController.pushVC(chartVC)
     }
     
     

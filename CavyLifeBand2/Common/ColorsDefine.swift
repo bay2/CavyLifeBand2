@@ -54,6 +54,24 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
     /// Alpha: 20% <br/> (0xffffff33)
     case CameraNoChoose
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e5e5e5"></span>
+    /// Alpha: 100% <br/> (0xe5e5e5ff)
+    case ChartBackground
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 40% <br/> (0x00000066)
+    case ChartDeselectText
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#4d4d4d"></span>
+    /// Alpha: 100% <br/> (0x4d4d4dff)
+    case ChartMapBackground
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#2db6cf"></span>
+    /// Alpha: 100% <br/> (0x2db6cfff)
+    case ChartSleepDegreeDeep
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#36f3ff"></span>
+    /// Alpha: 100% <br/> (0x36f3ffff)
+    case ChartSleepDegreeLight
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff5757"></span>
+    /// Alpha: 100% <br/> (0xff5757ff)
+    case ChartSleepDegreeText
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff6d01"></span>
     /// Alpha: 100% <br/> (0xff6d01ff)
     case ContactsAccountLogoutButton
@@ -135,12 +153,6 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
     /// Alpha: 100% <br/> (0x48d299ff)
     case GuideSetPermission
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e5e5e5"></span>
-    /// Alpha: 100% <br/> (0xe5e5e5ff)
-    case HomeDetailBackground
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
-    /// Alpha: 40% <br/> (0x00000066)
-    case HomeDetailDeselectText
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#309a6e"></span>
     /// Alpha: 100% <br/> (0x309a6eff)
     case HomeRingViewBackground
@@ -225,6 +237,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 80% <br/> (0x000000cc)
     case TextFieldTextColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+    /// Alpha: 30% <br/> (0xffffff4d)
+    case ChartMapTextColor
 
     var rgbaValue: UInt32! {
       switch self {
@@ -241,6 +256,12 @@ extension UIColor {
       case .CameraBgColor: return 0x000000ff
       case .CameraChoose: return 0xffffffb3
       case .CameraNoChoose: return 0xffffff33
+      case .ChartBackground: return 0xe5e5e5ff
+      case .ChartDeselectText: return 0x00000066
+      case .ChartMapBackground: return 0x4d4d4dff
+      case .ChartSleepDegreeDeep: return 0x2db6cfff
+      case .ChartSleepDegreeLight: return 0x36f3ffff
+      case .ChartSleepDegreeText: return 0xff5757ff
       case .ContactsAccountLogoutButton: return 0xff6d01ff
       case .ContactsAddFriendButtonColor: return 0xff9138ff
       case .ContactsAgreeButtonColor: return 0x0dcf7fff
@@ -268,8 +289,6 @@ extension UIColor {
       case .GuideLineColor: return 0xccccccff
       case .GuideSetInfoColor: return 0x1dbcffff
       case .GuideSetPermission: return 0x48d299ff
-      case .HomeDetailBackground: return 0xe5e5e5ff
-      case .HomeDetailDeselectText: return 0x00000066
       case .HomeRingViewBackground: return 0x309a6eff
       case .HomeSleepRingColor: return 0x36f3ffff
       case .HomeStepRingColor: return 0xfff956ff
@@ -298,6 +317,7 @@ extension UIColor {
       case .SignInSplitLine: return 0x00000033
       case .SignUpProtocolBtn: return 0x125faeff
       case .TextFieldTextColor: return 0x000000cc
+      case .ChartMapTextColor: return 0xffffff4d
       }
     }
 

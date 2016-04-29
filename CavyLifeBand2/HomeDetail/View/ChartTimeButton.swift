@@ -1,5 +1,5 @@
 //
-//  HomeDetailTimeButton.swift
+//  ChartTimeButton.swift
 //  CavyLifeBand2
 //
 //  Created by Jessica on 16/4/27.
@@ -9,10 +9,10 @@
 import UIKit
 import EZSwiftExtensions
 
-class HomeDetailTimeButton: UIButton {
+class ChartTimeButton: UIButton {
 
     
-    let searchBtnTitle: Array<String> = [L10n.HomeDetailViewTimeBucketDay.string, L10n.HomeDetailViewTimeBucketWeek.string, L10n.HomeDetailViewTimeBucketMonth.string]
+    let searchBtnTitle: Array<String> = [L10n.ChartTimeBucketDay.string, L10n.ChartTimeBucketWeek.string, L10n.ChartTimeBucketMonth.string]
     
     //当前按钮类型
     var selectedIndex: Int = 0
