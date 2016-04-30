@@ -54,10 +54,10 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
         
 //        self.navigationItem.title = L10n.AlarmClockTitle.string
         
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AlarmClockNavSave"),
-                                                                 style: .Plain,
-                                                                 target: self,
-                                                                 action: #selector(rightBarBtnAciton(_:)))
+//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AlarmClockNavSave"),
+//                                                                 style: .Plain,
+//                                                                 target: self,
+//                                                                 action: #selector(rightBarBtnAciton(_:)))
 //
         collectionView.registerNib(UINib(nibName: AddClockCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: AddClockCollectionViewCell)
         

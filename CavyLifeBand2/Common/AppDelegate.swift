@@ -25,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             uiTestStub()
             
         #endif
+        
+        CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
 
         let installation = KSCrashInstallationStandard.sharedInstance()
         
@@ -33,11 +35,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
         
-//        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
-//            self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
-//        } else {
-//            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
-//        }
+        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
+            self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
+        } else {
+            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
+        }
         
 //        PgyUpdateManager.sharedPgyManager.startManagerWithAppId("")
         PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
@@ -110,6 +112,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if NSProcessInfo.processInfo().arguments.contains("AccountInfoSecurityUITest") {
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
+            
+        }
+        
+        if NSProcessInfo.processInfo().arguments.contains("AlarmClockUITest") {
             
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
             
