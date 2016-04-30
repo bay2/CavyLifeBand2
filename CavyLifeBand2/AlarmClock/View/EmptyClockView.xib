@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="4WX-Sx-sWr" customClass="EmptyClockView" customModule="CavyLifeBand2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jYh-RO-Z0r">
+                    <rect key="frame" x="282" y="231" width="36" height="137"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AlarmClockEmotyIcon" translatesAutoresizingMaskIntoConstraints="NO" id="FuC-Xq-19Q">
+                            <rect key="frame" x="-22" y="0.0" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="FuC-Xq-19Q" secondAttribute="height" multiplier="1:1" id="Mnd-6q-U4z"/>
+                                <constraint firstAttribute="width" constant="80" id="wJc-S0-1b7"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VW0-c2-Kcz">
+                            <rect key="frame" x="-2" y="90" width="40" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQD-PP-viR">
+                            <rect key="frame" x="0.0" y="120" width="36" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="FQD-PP-viR" secondAttribute="bottom" id="7S5-a9-YWZ"/>
+                        <constraint firstItem="FuC-Xq-19Q" firstAttribute="centerX" secondItem="jYh-RO-Z0r" secondAttribute="centerX" id="BFp-Dh-uWN"/>
+                        <constraint firstItem="FQD-PP-viR" firstAttribute="leading" secondItem="jYh-RO-Z0r" secondAttribute="leading" id="MZ3-zw-rzb"/>
+                        <constraint firstItem="VW0-c2-Kcz" firstAttribute="centerX" secondItem="FQD-PP-viR" secondAttribute="centerX" id="UPP-xI-SBU"/>
+                        <constraint firstItem="FQD-PP-viR" firstAttribute="top" secondItem="VW0-c2-Kcz" secondAttribute="bottom" constant="10" id="W76-FP-WQs"/>
+                        <constraint firstItem="VW0-c2-Kcz" firstAttribute="top" secondItem="FuC-Xq-19Q" secondAttribute="bottom" constant="10" id="oAc-jw-OfL"/>
+                        <constraint firstItem="FuC-Xq-19Q" firstAttribute="top" secondItem="jYh-RO-Z0r" secondAttribute="top" id="ukH-tf-Hnv"/>
+                        <constraint firstAttribute="trailing" secondItem="FQD-PP-viR" secondAttribute="trailing" id="vNf-cK-i6T"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="jYh-RO-Z0r" firstAttribute="centerY" secondItem="4WX-Sx-sWr" secondAttribute="centerY" id="LRU-wj-zvZ"/>
+                <constraint firstItem="jYh-RO-Z0r" firstAttribute="centerX" secondItem="4WX-Sx-sWr" secondAttribute="centerX" id="Wgy-Yf-Cvf"/>
+            </constraints>
+            <connections>
+                <outlet property="infoLabel" destination="FQD-PP-viR" id="S2B-6J-YYq"/>
+                <outlet property="titleLabel" destination="VW0-c2-Kcz" id="T9y-ho-kfg"/>
+            </connections>
+            <point key="canvasLocation" x="762" y="317"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="AlarmClockEmotyIcon" width="80" height="80"/>
+    </resources>
+</document>
