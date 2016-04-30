@@ -73,3 +73,19 @@ EmergencyContactCellAddBtnTitleColor : #b8b8b8
 EmergencyContactCellCancelBtnTitleColor : #dddddd
 EmergencyContactCellInfoLabelColor : #48d299
 
+PKRulesViewTitleColor : #000000B3
+PKRulesViewInfoColor : #00000080
+PKIntroduceVCLabelColor : #00000080
+PKInvitationVCSeeStateBtnNormalColor : #0000004D
+PKInvitationVCSeeStateBtnSelectedColor : #000000B3
+PKInvitationVCLabelColor : #000000B3
+PKTimePickerSeparatorColor : #e5e5e5
+PKChallengeViewNormalTitleColor : #000000B3
+PKChallengeViewRulesTitleColor : #ff7200
+PKChallengeViewTopViewBGColor : #ff7200
+PKInfoOrResultViewWinnerTextColor : #ff7200
+PKInfoOrResultViewNormalTextColor : #000000B3
+PKRecordsCellAcceptBtnBGColor : #0dcf7f
+PKRecordsCellUndoBtnBGColor : #dbdbdb
+PKRecordsCellPKAgainBtnBGColor : #ff9138
+PKRecordsCellDeleteBtnBGColor : #dbdbdb

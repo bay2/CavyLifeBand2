@@ -57,6 +57,9 @@
 		683655951CBE25DB009373EA /* ReminderSettingVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655941CBE25DB009373EA /* ReminderSettingVCViewModel.swift */; };
 		683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655961CBE261B009373EA /* SettingRealmModel.swift */; };
 		683655991CBE3C84009373EA /* AlarmRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655981CBE3C84009373EA /* AlarmRealmModel.swift */; };
+		684C6AD81CC9BA1C000C176E /* PKJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD71CC9BA1C000C176E /* PKJSON.swift */; };
+		684C6ADA1CC9CCE4000C176E /* PKWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD91CC9CCE4000C176E /* PKWebApi.swift */; };
+		684C6ADF1CCA0506000C176E /* PKRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6ADE1CCA0506000C176E /* PKRealm.swift */; };
 		685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */; };
 		685204E91CB7938C004179B0 /* AddClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E81CB7938C004179B0 /* AddClockViewController.swift */; };
 		685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */; };
@@ -66,6 +69,12 @@
 		6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */; };
 		6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */; };
 		6859BC941CD4776D0050F6A0 /* AlarmClockUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */; };
+		6859BC381CCDBD3E0050F6A0 /* PKRecordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC371CCDBD3E0050F6A0 /* PKRecordsViewModel.swift */; };
+		6859BC3E1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC3D1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift */; };
+		6859BC401CD096DB0050F6A0 /* PKRecordsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC3F1CD096DB0050F6A0 /* PKRecordsVC.swift */; };
+		6859BC7D1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC7B1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift */; };
+		6859BC7E1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC7C1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib */; };
+		6859BC801CD1F48D0050F6A0 /* PKTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC7F1CD1F48D0050F6A0 /* PKTestViewController.swift */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		68C558CB1CB74D1F0031719D /* AlarmClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */; };
@@ -74,6 +83,18 @@
 		68C558D41CB754090031719D /* IntelligentClockCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C558D21CB754090031719D /* IntelligentClockCell.swift */; };
 		68C558D51CB754090031719D /* IntelligentClockCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68C558D31CB754090031719D /* IntelligentClockCell.xib */; };
 		68D6ED5F1CB7AEE700E1A1FB /* SafetySettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D6ED5E1CB7AEE700E1A1FB /* SafetySettingViewController.swift */; };
+		68E977F41CC5D15C00651724 /* PK.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68E977F31CC5D15C00651724 /* PK.storyboard */; };
+		68E977F61CC6008F00651724 /* PKRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E977F51CC6008F00651724 /* PKRulesView.swift */; };
+		68E977F81CC600A100651724 /* PKRulesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E977F71CC600A100651724 /* PKRulesView.xib */; };
+		68E977FA1CC6089D00651724 /* PKIntroduceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E977F91CC6089D00651724 /* PKIntroduceVC.swift */; };
+		68E977FC1CC610DB00651724 /* PKRulesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E977FB1CC610DB00651724 /* PKRulesVC.swift */; };
+		68E978061CC62B5600651724 /* PKInvitationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978051CC62B5600651724 /* PKInvitationVC.swift */; };
+		68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978091CC6412800651724 /* TimePickerView.swift */; };
+		68E9780C1CC758B400651724 /* PKChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E9780B1CC758B400651724 /* PKChallengeView.swift */; };
+		68E9780E1CC758CE00651724 /* PKChallengeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E9780D1CC758CE00651724 /* PKChallengeView.xib */; };
+		68E978111CC7698900651724 /* PKInvitationVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978101CC7698900651724 /* PKInvitationVCViewModel.swift */; };
+		68E978151CC77D8C00651724 /* PKInfoOrResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */; };
+		68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E978161CC77DE500651724 /* PKInfoOrResultView.xib */; };
 		9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */; };
 		9104AA701CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */; };
 		9104AA721CC4BF4B00FE03E7 /* ContactsViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA711CC4BF4B00FE03E7 /* ContactsViewControllerPresenter.swift */; };
@@ -305,6 +326,9 @@
 		683655941CBE25DB009373EA /* ReminderSettingVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderSettingVCViewModel.swift; sourceTree = "<group>"; };
 		683655961CBE261B009373EA /* SettingRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingRealmModel.swift; sourceTree = "<group>"; };
 		683655981CBE3C84009373EA /* AlarmRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmRealmModel.swift; sourceTree = "<group>"; };
+		684C6AD71CC9BA1C000C176E /* PKJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKJSON.swift; sourceTree = "<group>"; };
+		684C6AD91CC9CCE4000C176E /* PKWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWebApi.swift; sourceTree = "<group>"; };
+		684C6ADE1CCA0506000C176E /* PKRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRealm.swift; sourceTree = "<group>"; };
 		685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockTableHeaderView.swift; sourceTree = "<group>"; };
 		685204E81CB7938C004179B0 /* AddClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockViewController.swift; sourceTree = "<group>"; };
 		685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersSettingViewController.swift; sourceTree = "<group>"; };
@@ -314,6 +338,12 @@
 		6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyClockView.xib; sourceTree = "<group>"; };
 		6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyClockView.swift; sourceTree = "<group>"; };
 		6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockUITest.swift; sourceTree = "<group>"; };
+		6859BC371CCDBD3E0050F6A0 /* PKRecordsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsViewModel.swift; sourceTree = "<group>"; };
+		6859BC3D1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsCellViewModel.swift; sourceTree = "<group>"; };
+		6859BC3F1CD096DB0050F6A0 /* PKRecordsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsVC.swift; sourceTree = "<group>"; };
+		6859BC7B1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsTableViewCell.swift; sourceTree = "<group>"; };
+		6859BC7C1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKRecordsTableViewCell.xib; sourceTree = "<group>"; };
+		6859BC7F1CD1F48D0050F6A0 /* PKTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKTestViewController.swift; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlarmClock.storyboard; sourceTree = "<group>"; };
@@ -322,6 +352,18 @@
 		68C558D21CB754090031719D /* IntelligentClockCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockCell.swift; sourceTree = "<group>"; };
 		68C558D31CB754090031719D /* IntelligentClockCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IntelligentClockCell.xib; sourceTree = "<group>"; };
 		68D6ED5E1CB7AEE700E1A1FB /* SafetySettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SafetySettingViewController.swift; sourceTree = "<group>"; };
+		68E977F31CC5D15C00651724 /* PK.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PK.storyboard; sourceTree = "<group>"; };
+		68E977F51CC6008F00651724 /* PKRulesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRulesView.swift; sourceTree = "<group>"; };
+		68E977F71CC600A100651724 /* PKRulesView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKRulesView.xib; sourceTree = "<group>"; };
+		68E977F91CC6089D00651724 /* PKIntroduceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKIntroduceVC.swift; sourceTree = "<group>"; };
+		68E977FB1CC610DB00651724 /* PKRulesVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRulesVC.swift; sourceTree = "<group>"; };
+		68E978051CC62B5600651724 /* PKInvitationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKInvitationVC.swift; sourceTree = "<group>"; };
+		68E978091CC6412800651724 /* TimePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
+		68E9780B1CC758B400651724 /* PKChallengeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKChallengeView.swift; sourceTree = "<group>"; };
+		68E9780D1CC758CE00651724 /* PKChallengeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKChallengeView.xib; sourceTree = "<group>"; };
+		68E978101CC7698900651724 /* PKInvitationVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKInvitationVCViewModel.swift; sourceTree = "<group>"; };
+		68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKInfoOrResultView.swift; sourceTree = "<group>"; };
+		68E978161CC77DE500651724 /* PKInfoOrResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKInfoOrResultView.xib; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtSearch.swift; sourceTree = "<group>"; };
 		9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtDataSource.swift; sourceTree = "<group>"; };
@@ -610,6 +652,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		684C6AD61CC9B99C000C176E /* WebApi */ = {
+			isa = PBXGroup;
+			children = (
+				684C6AD71CC9BA1C000C176E /* PKJSON.swift */,
+				684C6AD91CC9CCE4000C176E /* PKWebApi.swift */,
+			);
+			path = WebApi;
+			sourceTree = "<group>";
+		};
+		684C6ADD1CCA04D4000C176E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				684C6ADE1CCA0506000C176E /* PKRealm.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		68C558C81CB74CF90031719D /* AlarmClock */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,6 +708,49 @@
 				6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		68E977F11CC5D0FE00651724 /* PK */ = {
+			isa = PBXGroup;
+			children = (
+				684C6ADD1CCA04D4000C176E /* Model */,
+				684C6AD61CC9B99C000C176E /* WebApi */,
+				68E9780F1CC7696300651724 /* ViewModel */,
+				68E977F21CC5D0FE00651724 /* View */,
+			);
+			path = PK;
+			sourceTree = "<group>";
+		};
+		68E977F21CC5D0FE00651724 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68E977F31CC5D15C00651724 /* PK.storyboard */,
+				68E977F91CC6089D00651724 /* PKIntroduceVC.swift */,
+				68E978051CC62B5600651724 /* PKInvitationVC.swift */,
+				6859BC3F1CD096DB0050F6A0 /* PKRecordsVC.swift */,
+				6859BC7B1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift */,
+				6859BC7C1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib */,
+				68E977FB1CC610DB00651724 /* PKRulesVC.swift */,
+				68E977F51CC6008F00651724 /* PKRulesView.swift */,
+				68E977F71CC600A100651724 /* PKRulesView.xib */,
+				68E9780B1CC758B400651724 /* PKChallengeView.swift */,
+				68E9780D1CC758CE00651724 /* PKChallengeView.xib */,
+				68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */,
+				68E978161CC77DE500651724 /* PKInfoOrResultView.xib */,
+				68E978091CC6412800651724 /* TimePickerView.swift */,
+				6859BC7F1CD1F48D0050F6A0 /* PKTestViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		68E9780F1CC7696300651724 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				68E978101CC7698900651724 /* PKInvitationVCViewModel.swift */,
+				6859BC371CCDBD3E0050F6A0 /* PKRecordsViewModel.swift */,
+				6859BC3D1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		9114D1BC1C97A1BB008CB4CE /* Resource */ = {
@@ -904,6 +1006,7 @@
 		917DA96A1C3B8EB700FF675D /* CavyLifeBand2 */ = {
 			isa = PBXGroup;
 			children = (
+				68E977F11CC5D0FE00651724 /* PK */,
 				68C558C81CB74CF90031719D /* AlarmClock */,
 				917936CC1CBCEDC9002936E3 /* LocationReport */,
 				91A2EC881CB350D200361952 /* InfoSecurity */,
@@ -1388,9 +1491,11 @@
 				91E1B4EA1CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib in Resources */,
 				6859BC861CD32D690050F6A0 /* EmergencyContactInfoCell.xib in Resources */,
 				91E1B4D81CA510BD008ADEE6 /* ContactsAddFriendCell.xib in Resources */,
+				68E9780E1CC758CE00651724 /* PKChallengeView.xib in Resources */,
 				91A2EC911CB350D200361952 /* InfoSecurity.storyboard in Resources */,
 				9150CAB81CC8BA0C00A398E9 /* MenuTableViewCell.xib in Resources */,
 				91E1B4CC1CA510BD008ADEE6 /* ContactsFriendListCell.xib in Resources */,
+				6859BC7E1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib in Resources */,
 				91EB79661CAE075C00ED3E67 /* CommonResultOk.json in Resources */,
 				4C0BFA061CBDEBB200DB06FC /* HomeWeatherView.xib in Resources */,
 				91E1B4CF1CA510BD008ADEE6 /* ContactsPersonInfoCell.xib in Resources */,
@@ -1406,8 +1511,11 @@
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
 				6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */,
+				68E977F81CC600A100651724 /* PKRulesView.xib in Resources */,
+				68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
 				4C06E9F71CC0FC830093EEFA /* HomeTimeLineSection.xib in Resources */,
+				68E977F41CC5D15C00651724 /* PK.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1582,6 +1690,7 @@
 				68D6ED5F1CB7AEE700E1A1FB /* SafetySettingViewController.swift in Sources */,
 				91671C951C9A7EC60090BB3F /* LeftHeaderView.swift in Sources */,
 				685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */,
+				68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
 				6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */,
@@ -1599,7 +1708,10 @@
 				68C558D41CB754090031719D /* IntelligentClockCell.swift in Sources */,
 				9114D1F21C97AB05008CB4CE /* UserProtocolView.swift in Sources */,
 				91B04DDA1CB3D4F0007E67B0 /* UserViewControllerProtocol.swift in Sources */,
+				6859BC3E1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift in Sources */,
+				68E9780C1CC758B400651724 /* PKChallengeView.swift in Sources */,
 				91E1B4DD1CA510BD008ADEE6 /* ContactsTabButton.swift in Sources */,
+				6859BC801CD1F48D0050F6A0 /* PKTestViewController.swift in Sources */,
 				6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */,
 				9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
@@ -1609,6 +1721,7 @@
 				91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */,
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91E1B4E81CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift in Sources */,
+				68E978111CC7698900651724 /* PKInvitationVCViewModel.swift in Sources */,
 				91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */,
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
 				4C0BF9F41CB7B5AF00DB06FC /* HomeRingView.swift in Sources */,
@@ -1618,16 +1731,19 @@
 				917B98B91CB8E7CA008698F5 /* Font_Extension.swift in Sources */,
 				911D1D8D1CCFAB0700065053 /* BandInfoView.swift in Sources */,
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
+				68E977FA1CC6089D00651724 /* PKIntroduceVC.swift in Sources */,
 				9114D1ED1C97AB05008CB4CE /* MainPageButton.swift in Sources */,
 				91ACEC621CB654BD008ED8B0 /* GuideInfoModelView.swift in Sources */,
 				917936C71CBB8E34002936E3 /* BaseViewController.swift in Sources */,
 				91E1B4F01CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift in Sources */,
 				683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */,
+				684C6AD81CC9BA1C000C176E /* PKJSON.swift in Sources */,
 				91ACEC5C1CB4B526008ED8B0 /* GuideUserInfo.swift in Sources */,
 				9114D1EF1C97AB05008CB4CE /* PageViewController.swift in Sources */,
 				6836552E1CBB4CEA009373EA /* SafetySettingTableFooterView.swift in Sources */,
 				91B04DE31CB4A39C007E67B0 /* AccountModelView.swift in Sources */,
 				918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */,
+				68E978061CC62B5600651724 /* PKInvitationVC.swift in Sources */,
 				91E1B4CB1CA510BD008ADEE6 /* ContactsFriendListCell.swift in Sources */,
 				9144D1121CC0921F006002A8 /* ContactsTableViewProtocol.swift in Sources */,
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
@@ -1636,9 +1752,11 @@
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
 				68C558CF1CB751050031719D /* IntelligentClockTableFooterView.swift in Sources */,
 				9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */,
+				6859BC381CCDBD3E0050F6A0 /* PKRecordsViewModel.swift in Sources */,
 				919FC6681CC613660062A1CB /* MainPageViewController.swift in Sources */,
 				9114D1F11C97AB05008CB4CE /* SignInViewController.swift in Sources */,
 				91E1B4F91CA69CAA008ADEE6 /* FriendInfoListRealm.swift in Sources */,
+				684C6ADF1CCA0506000C176E /* PKRealm.swift in Sources */,
 				91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */,
 				683655921CBE25A6009373EA /* SettingSwitchCellViewModel.swift in Sources */,
 				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,
@@ -1660,11 +1778,14 @@
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
 				91E1B4F71CA65E1C008ADEE6 /* ContactsWebApi.swift in Sources */,
+				68E978151CC77D8C00651724 /* PKInfoOrResultView.swift in Sources */,
+				6859BC401CD096DB0050F6A0 /* PKRecordsVC.swift in Sources */,
 				91800A7E1CB38846000BDDF2 /* UserProfileProtocol.swift in Sources */,
 				91E1B4D51CA510BD008ADEE6 /* ContactsSearchBar.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
 				4C2B67E21CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift in Sources */,
 				91E1B4CD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift in Sources */,
+				6859BC7D1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift in Sources */,
 				91E1B4CE1CA510BD008ADEE6 /* ContactsPersonInfoCell.swift in Sources */,
 				9104AA701CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift in Sources */,
 				91A2EC921CB350D200361952 /* AccountInfoSecurityCellViewModel.swift in Sources */,
@@ -1672,6 +1793,7 @@
 				4C06E9F21CC0E79C0093EEFA /* HomeTimeLineTableCell.swift in Sources */,
 				4C06E9F51CC0FC710093EEFA /* HomeTimeLineSection.swift in Sources */,
 				6859BC851CD32D690050F6A0 /* EmergencyContactInfoCell.swift in Sources */,
+				68E977F61CC6008F00651724 /* PKRulesView.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
 				91ACEC671CB68D74008ED8B0 /* AccountInfoSecurityNetworkRequest.swift in Sources */,
@@ -1702,7 +1824,9 @@
 				91E1B4C31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift in Sources */,
 				91ACEC601CB65456008ED8B0 /* GuideSetModelView.swift in Sources */,
 				917B98BE1CB8E841008698F5 /* UserAchievementCell.swift in Sources */,
+				68E977FC1CC610DB00651724 /* PKRulesVC.swift in Sources */,
 				91E1B4D01CA510BD008ADEE6 /* ContactsPersonInfoListCell.swift in Sources */,
+				684C6ADA1CC9CCE4000C176E /* PKWebApi.swift in Sources */,
 				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
 				4C06E9E71CBF73B10093EEFA /* HomeDataCellFlowLayout.swift in Sources */,
 				9114D1FB1C97AB05008CB4CE /* RulerScroller.swift in Sources */,
@@ -1897,6 +2021,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = CavyLifeBand2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1932,6 +2057,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = CavyLifeBand2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

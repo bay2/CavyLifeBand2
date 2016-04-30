@@ -190,6 +190,54 @@ extension UIColor {
     /// Alpha: 100% <br/> (0xecbc46ff)
     case MainPageSelectedBtn
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case PKChallengeViewNormalTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff7200"></span>
+    /// Alpha: 100% <br/> (0xff7200ff)
+    case PKChallengeViewRulesTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff7200"></span>
+    /// Alpha: 100% <br/> (0xff7200ff)
+    case PKChallengeViewTopViewBGColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case PKInfoOrResultViewNormalTextColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff7200"></span>
+    /// Alpha: 100% <br/> (0xff7200ff)
+    case PKInfoOrResultViewWinnerTextColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 50% <br/> (0x00000080)
+    case PKIntroduceVCLabelColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case PKInvitationVCLabelColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 30% <br/> (0x0000004d)
+    case PKInvitationVCSeeStateBtnNormalColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case PKInvitationVCSeeStateBtnSelectedColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#0dcf7f"></span>
+    /// Alpha: 100% <br/> (0x0dcf7fff)
+    case PKRecordsCellAcceptBtnBGColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#dbdbdb"></span>
+    /// Alpha: 100% <br/> (0xdbdbdbff)
+    case PKRecordsCellDeleteBtnBGColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff9138"></span>
+    /// Alpha: 100% <br/> (0xff9138ff)
+    case PKRecordsCellPKAgainBtnBGColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#dbdbdb"></span>
+    /// Alpha: 100% <br/> (0xdbdbdbff)
+    case PKRecordsCellUndoBtnBGColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 50% <br/> (0x00000080)
+    case PKRulesViewInfoColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 70% <br/> (0x000000b3)
+    case PKRulesViewTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e5e5e5"></span>
+    /// Alpha: 100% <br/> (0xe5e5e5ff)
+    case PKTimePickerSeparatorColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case PageIndicatorTintColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#cccccc"></span>
@@ -292,6 +340,22 @@ extension UIColor {
       case .MainPageBtn: return 0xffd954ff
       case .MainPageBtnText: return 0xb46e00ff
       case .MainPageSelectedBtn: return 0xecbc46ff
+      case .PKChallengeViewNormalTitleColor: return 0x000000b3
+      case .PKChallengeViewRulesTitleColor: return 0xff7200ff
+      case .PKChallengeViewTopViewBGColor: return 0xff7200ff
+      case .PKInfoOrResultViewNormalTextColor: return 0x000000b3
+      case .PKInfoOrResultViewWinnerTextColor: return 0xff7200ff
+      case .PKIntroduceVCLabelColor: return 0x00000080
+      case .PKInvitationVCLabelColor: return 0x000000b3
+      case .PKInvitationVCSeeStateBtnNormalColor: return 0x0000004d
+      case .PKInvitationVCSeeStateBtnSelectedColor: return 0x000000b3
+      case .PKRecordsCellAcceptBtnBGColor: return 0x0dcf7fff
+      case .PKRecordsCellDeleteBtnBGColor: return 0xdbdbdbff
+      case .PKRecordsCellPKAgainBtnBGColor: return 0xff9138ff
+      case .PKRecordsCellUndoBtnBGColor: return 0xdbdbdbff
+      case .PKRulesViewInfoColor: return 0x00000080
+      case .PKRulesViewTitleColor: return 0x000000b3
+      case .PKTimePickerSeparatorColor: return 0xe5e5e5ff
       case .PageIndicatorTintColor: return 0x00000033
       case .SettingSeparatorColor: return 0xccccccff
       case .SettingTableCellInfoGrayColor: return 0x0000004d

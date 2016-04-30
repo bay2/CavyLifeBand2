@@ -11,9 +11,9 @@ import EZSwiftExtensions
 import Alamofire
 import AlamofireImage
 import Log
+import RealmSwift
 
-
-class AccountManagerViewController: UIViewController, BaseViewControllerPresenter {
+class AccountManagerViewController: UIViewController, BaseViewControllerPresenter, UserInfoRealmOperateDelegate {
     
     enum UserViewStyle {
         
@@ -23,6 +23,8 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         case EmailForgotPasswd
         
     }
+    
+    var realm: Realm = try! Realm()
 
     // 手机输入框
     @IBOutlet weak var userNameTextField: AccountTextField!
@@ -325,8 +327,16 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         if dataSource?.isSignUp == true {
             
             signUp {
+                
                 GuideUserInfo.userInfo.userId = $0
-                GuideUserInfo.userInfo.updateUserInfo()
+                
+                Log.info("[\(GuideUserInfo.userInfo.userId)] Sign up success")
+                
+                let userInfoModel = UserInfoModel(guideUserinfo: GuideUserInfo.userInfo)
+                userInfoModel.isSync = false
+                self.addUserInfo(userInfoModel)
+                
+                UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
             }
             
         } else {

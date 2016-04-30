@@ -37,6 +37,16 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
     
     var contactRealms: EmergencyContactRealmListModel?
     
+    lazy var rightBtn: UIButton? =  {
+        
+        let button = UIButton(type: .System)
+        button.frame = CGRectMake(0, 0, 30, 30)
+        button.setBackgroundImage(UIImage(asset: .AlarmClockAdd), forState: .Normal)
+        
+        return button
+        
+    }()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -44,11 +54,6 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         self.automaticallyAdjustsScrollViewInsets = false
         
         self.navigationItem.title = L10n.SettingSafetyTitle.string
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AlarmClockAdd"),
-                                                                 style: .Plain,
-                                                                 target: self,
-                                                                 action: #selector(rightBarBtnAciton(_:)))
         
         loadContactFromRealm()
         
@@ -61,7 +66,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         }
         
         Log.info(realm.path)
-        
+
         tableView.rowHeight       = 50.0
         tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
         tableView.tableHeaderView = UIView()
@@ -134,6 +139,10 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
 //            addEmergencyContact(<#T##emergencyContact: EmergencyContactRealmModel##EmergencyContactRealmModel#>, listModel: contactRealms)
         }
         
+    }
+
+    func onRightBtn() -> Void {
+        Log.warning("|\(self.className)| -- 右上角添加")
     }
 
 }

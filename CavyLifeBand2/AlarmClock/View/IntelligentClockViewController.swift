@@ -23,7 +23,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
         return button
         
     }()
-
+    
     let tableViewMargin: CGFloat            = 20.0
 
     let tableSectionHederHeight: CGFloat    = 10.0
@@ -57,12 +57,16 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
         self.tableView.hidden = true
         self.emptyView?.hidden = false
         
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        //用于UITest查找Table
+        self.tableView.accessibilityIdentifier = "AlarmClockTable"
         
         updateNavUI()
         

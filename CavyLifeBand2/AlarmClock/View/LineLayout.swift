@@ -9,21 +9,25 @@
 import UIKit
 
 class LineLayout: UICollectionViewFlowLayout {
-
-    let itemSizeWidth: CGFloat = 50.0
     
-    let zoomScale: CGFloat = 0.4
+    let zoomScale: CGFloat = 0.5
     
     let horizontalInset: CGFloat = 0.0
     
     let verticalInset: CGFloat = 0.0
     
-    let activeDistance: CGFloat = 120.0
+    var activeDistance: CGFloat = 0
     
-    override init() {
+    convenience override init() {
+        
+        self.init(itemWidth: 50, collectiViewWidth: 290)
+                
+    }
+    
+    init(itemWidth: CGFloat, collectiViewWidth: CGFloat) {
         super.init()
         
-        self.itemSize = CGSize(width: itemSizeWidth, height: itemSizeWidth)
+        self.itemSize = CGSize(width: itemWidth, height: itemWidth)
         
         self.scrollDirection = .Horizontal
         
@@ -31,7 +35,8 @@ class LineLayout: UICollectionViewFlowLayout {
                                              verticalInset, horizontalInset)
         
         self.minimumLineSpacing = 30.0
-                
+        
+        activeDistance = collectiViewWidth / 2.0 - itemWidth / 2.0
     }
     
     required init?(coder aDecoder: NSCoder) {

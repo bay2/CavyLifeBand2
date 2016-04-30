@@ -23,7 +23,7 @@ class AlarmClockUITest: XCTestCase {
         // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
         
             app.launchArguments = ["AlarmClockUITest"]
-            app.launch()
+//            app.launch()
         
 
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
@@ -43,26 +43,26 @@ class AlarmClockUITest: XCTestCase {
      测试添加新的闹钟
      */
     func testAddNewClock() {
+    
+        app.launch()
+    
+        app.navigationBars["CavyLifeBand2.HomeView"].childrenMatchingType(.Button).elementBoundByIndex(2).tap()
         
-            app.launchArguments = ["AlarmClockUITest"]
+        app.tables.staticTexts["智能闹钟"].tap()
         
-            app.launch()
+        app.navigationBars["智能闹钟"].buttons["AlarmClockAdd"].tap()
         
-            app.navigationBars["CavyLifeBand2.HomeView"].childrenMatchingType(.Button).elementBoundByIndex(2).tap()
-            
-            app.tables.staticTexts["智能闹钟"].tap()
+        let collectionViewsQuery = app.scrollViews.otherElements.collectionViews
         
-            XCTAssert(app.navigationBars["智能闹钟"].buttons["AlarmClockAdd"].exists)
+        collectionViewsQuery.buttons["one"].tap()
+        collectionViewsQuery.buttons["two"].tap()
+        collectionViewsQuery.buttons["three"].tap()
         
-            app.navigationBars["智能闹钟"].buttons["AlarmClockAdd"].tap()
+        let datePickersQuery = app.scrollViews.otherElements.datePickers
         
-            let collectionViewsQuery = app.scrollViews.otherElements.collectionViews
-            
-            collectionViewsQuery.buttons["one"].tap()
-            collectionViewsQuery.buttons["two"].tap()
-            collectionViewsQuery.buttons["three"].tap()
+        datePickersQuery.pickerWheels["00 minutes"].tap()
         
-            app.scrollViews.otherElements.datePickers.pickerWheels["00 minutes"].tap()
+        app.navigationBars["智能闹钟"].buttons["AlarmClockNavSave"].tap()
         
     }
     
@@ -71,7 +71,32 @@ class AlarmClockUITest: XCTestCase {
      */
     func testDeleteClcok() {
         
+        app.launch()
         
+        app.navigationBars["CavyLifeBand2.HomeView"].childrenMatchingType(.Button).elementBoundByIndex(2).tap()
+        
+        app.tables.staticTexts["智能闹钟"].tap()
+        
+        app.tables["AlarmClockTable"]
+        
+   
+        if app.tables["AlarmClockTable"].cells.count == 0 {
+            app.navigationBars["智能闹钟"].childrenMatchingType(.Button).elementBoundByIndex(2).tap()
+            
+            let collectionViewsQuery = app.scrollViews.otherElements.collectionViews
+            
+            collectionViewsQuery.buttons["one"].tap()
+            collectionViewsQuery.buttons["two"].tap()
+            
+            app.scrollViews.otherElements.datePickers.pickerWheels["00 minutes"].tap()
+            
+            app.navigationBars["智能闹钟"].buttons["AlarmClockNavSave"].tap()
+        }
+        
+        app.tables["AlarmClockTable"].cells.elementBoundByIndex(0).tap()
+        
+        
+        app.scrollViews.otherElements.buttons["删除"].tap()
         
     }
     
@@ -80,23 +105,36 @@ class AlarmClockUITest: XCTestCase {
      */
     func testEditClock() {
         
+        app.launch()
         
-        let app = XCUIApplication()
-        app.navigationBars["CavyLifeBand2.HomeView"].buttons["HomeBandMenu"].tap()
+        app.navigationBars["CavyLifeBand2.HomeView"].childrenMatchingType(.Button).elementBoundByIndex(2).tap()
+        
         app.tables.staticTexts["智能闹钟"].tap()
-
         
+        if app.tables["AlarmClockTable"].cells.count == 0 {
+            app.navigationBars["智能闹钟"].childrenMatchingType(.Button).elementBoundByIndex(2).tap()
+            
+            let collectionViewsQuery = app.scrollViews.otherElements.collectionViews
+            
+            collectionViewsQuery.buttons["one"].tap()
+            collectionViewsQuery.buttons["two"].tap()
+            
+            app.scrollViews.otherElements.datePickers.pickerWheels["00 minutes"].tap()
+            
+            app.navigationBars["智能闹钟"].buttons["AlarmClockNavSave"].tap()
+        }
         
-        let app = XCUIApplication()
-        app.tables.staticTexts["08:03"].tap()
+        app.tables["AlarmClockTable"].cells.elementBoundByIndex(0).tap()
         
-        let elementsQuery = app.scrollViews.otherElements
-        let collectionViewsQuery = elementsQuery.collectionViews
-        collectionViewsQuery.buttons["three"].tap()
+        let collectionViewsQuery = app.scrollViews.otherElements.collectionViews
+        
+        collectionViewsQuery.buttons["one"].tap()
         collectionViewsQuery.buttons["two"].tap()
-        elementsQuery.datePickers.pickerWheels["03 minutes"].tap()
+        collectionViewsQuery.buttons["three"].tap()
         
-        
+        app.navigationBars["智能闹钟"].buttons["AlarmClockNavSave"].tap()
+            
+    
     }
     
 }
