@@ -147,7 +147,7 @@
 "Chart.TimeBucket.Week" = "周";
 "Chart.TimeBucket.Month" = "月";
 "Chart.Target.Percent" = "目标完成度";
-"Chart.Sleep.IndexNumber" = "睡眠指数";
+"Chart.Sleep.IndexNumber" = "周睡眠指数";
 "Chart.Sleep.Degree.Deep" = "深度";
 "Chart.Sleep.Degree.Light" = "浅度";
 "Chart.Step.Today.Step" = "今日步数";

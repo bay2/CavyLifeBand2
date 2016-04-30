@@ -19,9 +19,9 @@ let insetSpace: CGFloat = 20
 /// 详情 - chart 高度
 let chartViewHight: CGFloat = 212
 /// 详情 -list - cell 高度
-let listcellHight: CGFloat = 44
+let listcellHight: CGFloat = 40
 /// 详情-list 高度
-let listViewHight: CGFloat = 44 * 4 + 20
+let listViewHight: CGFloat = listcellHight * 4 + 20
 /// 详情页面 宽
 let infoViewWidth: CGFloat = ez.screenWidth - insetSpace * 2
 /// 详情页面 高

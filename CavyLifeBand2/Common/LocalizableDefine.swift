@@ -239,7 +239,7 @@ enum L10n {
   case ChartTimeBucketMonth
   /// 目标完成度
   case ChartTargetPercent
-  /// 睡眠指数
+  /// 周睡眠指数
   case ChartSleepIndexNumber
   /// 深度
   case ChartSleepDegreeDeep
