@@ -21,6 +21,8 @@ class EmergencyContactPersonCell: UITableViewCell {
         titleLabel.textColor = UIColor(named: .SettingTableCellTitleColor)
         
         addBtn.setTitleColor(UIColor(named: .SettingTableCellInfoGrayColor), forState: .Normal)
+        
+        addBtn.addTarget(nil, action: Selector ("addEmergencyContact:"), forControlEvents: .TouchUpInside)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

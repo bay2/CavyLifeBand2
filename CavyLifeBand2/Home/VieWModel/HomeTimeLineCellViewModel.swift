@@ -138,7 +138,7 @@ struct TimeLineHealthViewModel: HomeTimeLineDataSource, HomeTimeLineDelegate {
     var others: String
     var resultNum: NSMutableAttributedString{ return NSMutableAttributedString(string: L10n.HomeTimeLineHealthyCare.string) }
     
-    init(timeLine: String,othersName: String){
+    init(timeLine: String, othersName: String){
         time = timeLine
         others = othersName
     }

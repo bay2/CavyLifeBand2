@@ -63,6 +63,12 @@
 		685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */; };
 		685204E91CB7938C004179B0 /* AddClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204E81CB7938C004179B0 /* AddClockViewController.swift */; };
 		685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */; };
+		6859BC821CD221A80050F6A0 /* EmergencyContactRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC811CD221A80050F6A0 /* EmergencyContactRealmModel.swift */; };
+		6859BC851CD32D690050F6A0 /* EmergencyContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC831CD32D690050F6A0 /* EmergencyContactInfoCell.swift */; };
+		6859BC861CD32D690050F6A0 /* EmergencyContactInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC841CD32D690050F6A0 /* EmergencyContactInfoCell.xib */; };
+		6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */; };
+		6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */; };
+		6859BC941CD4776D0050F6A0 /* AlarmClockUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */; };
 		6859BC381CCDBD3E0050F6A0 /* PKRecordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC371CCDBD3E0050F6A0 /* PKRecordsViewModel.swift */; };
 		6859BC3E1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC3D1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift */; };
 		6859BC401CD096DB0050F6A0 /* PKRecordsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC3F1CD096DB0050F6A0 /* PKRecordsVC.swift */; };
@@ -326,6 +332,12 @@
 		685204E61CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockTableHeaderView.swift; sourceTree = "<group>"; };
 		685204E81CB7938C004179B0 /* AddClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockViewController.swift; sourceTree = "<group>"; };
 		685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersSettingViewController.swift; sourceTree = "<group>"; };
+		6859BC811CD221A80050F6A0 /* EmergencyContactRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactRealmModel.swift; sourceTree = "<group>"; };
+		6859BC831CD32D690050F6A0 /* EmergencyContactInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactInfoCell.swift; sourceTree = "<group>"; };
+		6859BC841CD32D690050F6A0 /* EmergencyContactInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmergencyContactInfoCell.xib; sourceTree = "<group>"; };
+		6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyClockView.xib; sourceTree = "<group>"; };
+		6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyClockView.swift; sourceTree = "<group>"; };
+		6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockUITest.swift; sourceTree = "<group>"; };
 		6859BC371CCDBD3E0050F6A0 /* PKRecordsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsViewModel.swift; sourceTree = "<group>"; };
 		6859BC3D1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsCellViewModel.swift; sourceTree = "<group>"; };
 		6859BC3F1CD096DB0050F6A0 /* PKRecordsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsVC.swift; sourceTree = "<group>"; };
@@ -635,6 +647,7 @@
 			children = (
 				683655961CBE261B009373EA /* SettingRealmModel.swift */,
 				683655981CBE3C84009373EA /* AlarmRealmModel.swift */,
+				6859BC811CD221A80050F6A0 /* EmergencyContactRealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -685,10 +698,14 @@
 				68C558D31CB754090031719D /* IntelligentClockCell.xib */,
 				683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */,
 				683655261CBB3B2C009373EA /* SettingSwitchTableViewCell.xib */,
+				6859BC831CD32D690050F6A0 /* EmergencyContactInfoCell.swift */,
+				6859BC841CD32D690050F6A0 /* EmergencyContactInfoCell.xib */,
 				683655291CBB49F7009373EA /* EmergencyContactPersonCell.swift */,
 				6836552A1CBB49F7009373EA /* EmergencyContactPersonCell.xib */,
 				6836552F1CBB7E43009373EA /* AlarmClockDateCollectionViewCell.swift */,
 				683655301CBB7E43009373EA /* AlarmClockDateCollectionViewCell.xib */,
+				6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */,
+				6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1037,6 +1054,7 @@
 				91A0FED51C90303500717B83 /* SignUpEmailUITests.swift */,
 				91A0FED71C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift */,
 				91A0FED91C903CBE00717B83 /* ForgotPasswdEmailUITest.swift */,
+				6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */,
 			);
 			path = CavyLifeBand2UITests;
 			sourceTree = "<group>";
@@ -1471,6 +1489,7 @@
 				91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */,
 				917B98C11CB8E841008698F5 /* UserAchievementView.xib in Resources */,
 				91E1B4EA1CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib in Resources */,
+				6859BC861CD32D690050F6A0 /* EmergencyContactInfoCell.xib in Resources */,
 				91E1B4D81CA510BD008ADEE6 /* ContactsAddFriendCell.xib in Resources */,
 				68E9780E1CC758CE00651724 /* PKChallengeView.xib in Resources */,
 				91A2EC911CB350D200361952 /* InfoSecurity.storyboard in Resources */,
@@ -1491,6 +1510,7 @@
 				91E1B4CA1CA510BD008ADEE6 /* ContactsLetterView.xib in Resources */,
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
+				6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */,
 				68E977F81CC600A100651724 /* PKRulesView.xib in Resources */,
 				68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
@@ -1673,6 +1693,7 @@
 				68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
+				6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
 				91671C9A1C9AC5A10090BB3F /* HomeUserInfo.swift in Sources */,
 				6836557D1CBC84B7009373EA /* LineLayout.swift in Sources */,
@@ -1771,6 +1792,7 @@
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
 				4C06E9F21CC0E79C0093EEFA /* HomeTimeLineTableCell.swift in Sources */,
 				4C06E9F51CC0FC710093EEFA /* HomeTimeLineSection.swift in Sources */,
+				6859BC851CD32D690050F6A0 /* EmergencyContactInfoCell.swift in Sources */,
 				68E977F61CC6008F00651724 /* PKRulesView.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
@@ -1817,6 +1839,7 @@
 				4C0BFA021CBCE62E00DB06FC /* HomeRingViewProtocol.swift in Sources */,
 				98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
+				6859BC821CD221A80050F6A0 /* EmergencyContactRealmModel.swift in Sources */,
 				4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */,
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,
@@ -1851,6 +1874,7 @@
 				91E981291C8937CB00802C5F /* AccountPageSwitchUITests.swift in Sources */,
 				917B98C61CB8E8F3008698F5 /* AccountInfoSecurityUITest.swift in Sources */,
 				91A0FEDA1C903CBE00717B83 /* ForgotPasswdEmailUITest.swift in Sources */,
+				6859BC941CD4776D0050F6A0 /* AlarmClockUITest.swift in Sources */,
 				917B98C81CB8E8F3008698F5 /* ContactsFriendViewUITests.swift in Sources */,
 				91A0FED61C90303500717B83 /* SignUpEmailUITests.swift in Sources */,
 				918E26DC1C891CDE00115C4E /* SignInUITests.swift in Sources */,
@@ -2018,7 +2042,7 @@
 					"\"SnapKit\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";
@@ -2054,7 +2078,7 @@
 					"\"SnapKit\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";

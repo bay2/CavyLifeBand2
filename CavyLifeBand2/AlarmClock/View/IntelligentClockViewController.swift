@@ -34,16 +34,39 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
     
     let intelligentClockCellID = "IntelligentClockCell"
     
+    var emptyView: EmptyClockView?
+    
     var realm: Realm = try! Realm()
     
     var dataSource: IntelligentClockVCViewModel?
     
     @IBOutlet weak var tableView: UITableView!
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let alarmlist = dataSource?.alarmListModel.alarmRealmList {
+            if  alarmlist.count > 0{
+                self.tableView.hidden = false
+                self.emptyView?.hidden = true
+                return
+            }
+            
+        }
+        
+        self.tableView.hidden = true
+        self.emptyView?.hidden = false
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        //用于UITest查找Table
+        self.tableView.accessibilityIdentifier = "AlarmClockTable"
         
         updateNavUI()
         
@@ -53,6 +76,21 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
         dataSource = IntelligentClockVCViewModel(realm: realm)
         
         tableBaseSetting()
+        
+        if let empty = NSBundle.mainBundle().loadNibNamed("EmptyClockView", owner: nil, options: nil).first as? EmptyClockView {
+            emptyView = empty
+            
+            self.view.addSubview(emptyView!)
+            
+            emptyView?.snp_makeConstraints(closure: { (make) in
+                make.width.equalTo(self.view)
+                make.height.equalTo(150)
+                make.center.equalTo(self.view.snp_center)
+                
+            })
+            
+        }
+        
     }
     
     /**
@@ -119,7 +157,13 @@ extension IntelligentClockViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (dataSource?.alarmListModel.alarmRealmList.count)!
+        
+        guard let count = dataSource?.alarmListModel.alarmRealmList.count else {
+            return 0
+        }
+        
+        return count
+
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

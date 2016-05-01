@@ -47,7 +47,6 @@ struct IntelligentClockVCViewModel: AlarmRealmListOperateDelegate {
         alarm.userId = alarmListModel.alarmRealmList[index].userId
         alarm.alarmDay = alarmListModel.alarmRealmList[index].alarmDay
         alarm.alarmTime = alarmListModel.alarmRealmList[index].alarmTime
-        alarm.isOpenAwake = alarmListModel.alarmRealmList[index].isOpenAwake
         alarm.isOpen = alarmListModel.alarmRealmList[index].isOpen
         
         return alarm

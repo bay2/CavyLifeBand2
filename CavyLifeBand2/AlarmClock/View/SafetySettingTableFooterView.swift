@@ -50,7 +50,7 @@ class SafetySettingTableFooterView: UIView {
         
         titleLabel.font      = UIFont.systemFontOfSize(16.0)
 
-        titleLabel.textColor = UIColor(named: .SettingTableCellTitleColor)
+        titleLabel.textColor = UIColor(named: .SettingTableFooterInfoColor)
 
         titleLabel.text      = L10n.SettingSafetyTableFooterTitle.string
         
