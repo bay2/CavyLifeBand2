@@ -34,14 +34,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
         
-//        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
-//            self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
-//        } else {
-//            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
-//        }
+        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
+            self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
+        } else {
+            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
+        }
         
         
-//        PgyUpdateManager.sharedPgyManager.startManagerWithAppId("")
         PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
         PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
         PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
