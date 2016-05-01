@@ -79,7 +79,7 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
             self.pkWaitRealmModel.syncState = PKRecordsRealmSyncState.Synced.rawValue
             
             self.addPKWaitRealm(self.pkWaitRealmModel)
-        }, failure: { (errorMsg) in
+        }, failure: {(errorMsg) in
             Log.warning("弹窗提示失败" + errorMsg)
         })
         

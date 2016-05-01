@@ -90,7 +90,7 @@ struct PKWaitRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelO
             //调接口接受PK,调接口成功后把那条刚加入数据库的进行中记录的同步状态改为已同步
             acceptPKInvitation([dueRealm], loginUserId: self.loginUserId, callBack: {
                 self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: dueRealm.pkId)
-            }, failure: { (errorMsg) in
+            }, failure: {(errorMsg) in
                 Log.warning("弹框提示" + errorMsg)
             })
          
@@ -104,7 +104,7 @@ struct PKWaitRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelO
                 
                 undoPK([pkRecord], loginUserId: self.loginUserId, callBack: {
                     self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: self.pkRecord.pkId)
-                }, failure: { (errorMsg) in
+                }, failure: {(errorMsg) in
                         Log.warning("弹框提示" + errorMsg)
                 })
                
@@ -200,7 +200,7 @@ struct PKFinishRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmMode
             
             self.addPKWaitRealm(waitRecord)
             
-        }, failure: { (errorMsg) in
+        }, failure: {(errorMsg) in
             Log.warning("弹窗提示失败" + errorMsg)
         })
         

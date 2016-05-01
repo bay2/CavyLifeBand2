@@ -27,8 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         #endif
         
-        CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
-
         let installation = KSCrashInstallationStandard.sharedInstance()
         
         installation.url = NSURL(string: CavyDefine.bugHDKey)
