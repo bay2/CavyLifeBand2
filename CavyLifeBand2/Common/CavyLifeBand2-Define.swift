@@ -145,6 +145,7 @@ enum NotificationName: String {
     case HomeLeftAccountInfo
     case ReminderPhoneSwitchChange
     case ReminderPhoneScrollToSelect
+    case ContactsFirendReqDeleteItem
     
 }
 

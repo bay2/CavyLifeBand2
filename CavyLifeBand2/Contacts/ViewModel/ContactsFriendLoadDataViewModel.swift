@@ -21,6 +21,16 @@ extension ContactsAddFriendCellViewModel {
     
 }
 
+extension ContactsRecommendCellViewModel {
+    
+     init(viewController: UIViewController, rowIndex: Int, friendInfo: ContactsSearchFriendInfo) {
+        
+        self.init(viewController: viewController, rowIndex: rowIndex, firendId: friendInfo.userId, name: friendInfo.nickName, headImageUrl: friendInfo.avatarUrl)
+        
+    }
+    
+}
+
 extension ContactsNearbyCellViewModel {
     
     init(viewController: UIViewController, friendInfo: ContactsSearchFriendInfo) {
@@ -44,7 +54,7 @@ extension ContactsNewFriendCellViewModel {
 /// 推荐好友数据源
 class ContactsRecommendFriendData: ContactsAddFriendDataSync {
     
-    typealias ItemType = ContactsAddFriendCellViewModel
+    typealias ItemType = ContactsRecommendCellViewModel
     
     var items: [ItemType] = []
     weak var viewController: UIViewController?
@@ -55,6 +65,32 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
         self.viewController = viewController
         self.tableView = tableView
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ContactsRecommendFriendData.deleteItem), name: NotificationName.ContactsFirendReqDeleteItem.rawValue, object: nil)
+        
+    }
+    
+    @objc func deleteItem(userInfo: NSNotification) {
+        
+        guard let userInfoRow = userInfo.userInfo else {
+            return
+        }
+        
+        guard let rowIndex = userInfoRow["rowIndex"] as? Int else {
+            return
+        }
+        
+        items.removeAtIndex(rowIndex)
+        
+        var index = 0
+        
+        items = items.map { item -> ItemType in
+            
+            var newItem = item
+            newItem.rowIndex = index
+            index += 1
+            return newItem
+        }
+
     }
     
     /**
@@ -80,7 +116,7 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
                 
                 for friendInfo in resultMsg.friendInfos! {
                     
-                    let friendCellViewModel = ContactsAddFriendCellViewModel(viewController: self.viewController!, friendInfo: friendInfo)
+                    let friendCellViewModel = ContactsRecommendCellViewModel(viewController: self.viewController!, rowIndex: self.items.count, friendInfo: friendInfo)
                     
                     self.items.append(friendCellViewModel)
                 }
@@ -300,6 +336,7 @@ class ContactsNearbyFriendData: ContactsAddFriendDataSync {
     
 }
 
+/// 新的好友数据源
 class ContactsNewFriendData: ContactsAddFriendDataSync {
     
     typealias ItemType = ContactsNewFriendCellViewModel

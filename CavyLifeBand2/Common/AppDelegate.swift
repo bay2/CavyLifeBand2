@@ -41,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         
-//        PgyUpdateManager.sharedPgyManager.startManagerWithAppId("")
         PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
         PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
         PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
