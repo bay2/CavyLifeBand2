@@ -46,6 +46,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         
     }
     
+
     /**
      点击发送按钮
      
@@ -55,6 +56,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         
         delegate?.verifyMsg = requestTextField.text ?? ""
         delegate?.onClickButton()
+        
         
         switch requestStyle {
             
@@ -73,7 +75,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         }
     
         // 返回前页
-        self.popVC()
+        
     }
     
     

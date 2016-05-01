@@ -8,62 +8,46 @@
 
 import UIKit
 import JSONJoy
+import EZSwiftExtensions
 
-extension ContactsAddFriendCellDelegate {
-    
-    // 名字字体颜色
-    var nameTextColor: UIColor { return UIColor(named: .ContactsName) }
-    
-    // 名字字体大小
-    var nameFont: UIFont { return UIFont.systemFontOfSize(16) }
-    
-    // 副标题字体颜色
-    var introductTextColor: UIColor { return UIColor(named: .ContactsIntrouduce) }
-    
-    // 副标题字体大小
-    var introduceFont: UIFont { return UIFont.systemFontOfSize(12) }
-    
-    // 按钮颜色
-    var requestBtnColor: UIColor { return UIColor(named: .ContactsAddFriendButtonColor) }
-    
-    // 按钮字体大小
-    var requestBtnFont: UIFont { return UIFont.systemFontOfSize(14) }
-    
-    // 按钮title
-    var requestBtnTitle: String { return L10n.ContactsListCellAdd.string }
-    
-}
 
-/**
- *  切换到添加好友页面
- */
-protocol SwitchAddFirendReqView {
-    
-    var viewController: UIViewController { get }
-    var firendId: String { get }
-    
-    var pushFirendReqView: ((Void) -> Void)? { get }
-    
-}
+/// 添加好友协议集
+typealias ContactsAddFriendPortocols = protocol<ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate, SwitchAddFirendReqView>
 
-extension SwitchAddFirendReqView {
+/// 添加完好友后删除tableview的好友cell
+typealias ContactsAddFriendDelItemPortocols = protocol<ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate, ContactsReqFriendDeleteItemDelegate>
+
+/// 新的朋友 协议集
+typealias ContactsNewFriendPortocols = protocol<ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate>
+
+/// 好友请求 协议集
+typealias ContactsReqFriendPortocols = protocol<ContactsReqFriendViewControllerDelegate, ContactsReqFriendViewControllerDataSource>
+
+struct ContactsRecommendCellViewModel: ContactsAddFriendDelItemPortocols {
     
-    var pushFirendReqView: ((Void) -> Void)? { return {
+    var viewController: UIViewController
+    
+    var firendId: String
+    
+    var headImageUrl: String
+    
+    var name: String
+    
+    var introudce: String { return "" }
+    
+    var rowIndex: Int
+    
+    init(viewController: UIViewController, rowIndex: Int, firendId: String = "", name: String = "", headImageUrl: String = "") {
         
-        let addFirendVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
+        self.viewController = viewController
+        self.firendId = firendId
+        self.name = name
+        self.headImageUrl = headImageUrl
+        self.rowIndex = rowIndex
         
-        let firendReqViewModel = ContactsFriendReqViewModel(viewController: addFirendVC, friendId: self.firendId)
-        
-        addFirendVC.viewConfig(firendReqViewModel, delegate: firendReqViewModel)
-            
-        self.viewController.pushVC(addFirendVC)
-        
-        }
     }
     
 }
-
-typealias ContactsAddFriendPortocols = protocol<ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate, SwitchAddFirendReqView>
 
 /**
  *  @author xuemincai
@@ -85,8 +69,6 @@ struct ContactsAddFriendCellViewModel: ContactsAddFriendPortocols {
     // 副标题
     var introudce: String { return "" }
     
-    // 按钮回调
-    var changeRequestBtnName: ((UIButton) -> Void)?
     
     init(viewController: UIViewController, firendId: String = "", name: String = "", headImageUrl: String = "") {
         
@@ -95,10 +77,10 @@ struct ContactsAddFriendCellViewModel: ContactsAddFriendPortocols {
         self.name = name
         self.headImageUrl = headImageUrl
         
-        changeRequestBtnName = { _ in
-            self.pushFirendReqView?()
-        }
-        
+    }
+    
+    func changeRequestBtnName(sender: UIButton) {
+        self.pushFirendReqView?()
     }
     
 }
@@ -123,9 +105,6 @@ struct ContactsAddressBookViewModel: ContactsAddFriendPortocols {
     // 副标题
     var introudce: String
     
-    // 按钮回调
-    var changeRequestBtnName: ((UIButton) -> Void)?
-    
     init(viewController: UIViewController, firendId: String = "", name: String = "", introudce: String = "", headImageUrl: String = "") {
         
         self.name = name
@@ -134,10 +113,10 @@ struct ContactsAddressBookViewModel: ContactsAddFriendPortocols {
         self.firendId = firendId
         self.introudce = introudce
         
-        changeRequestBtnName = { _ in
-            self.pushFirendReqView?()
-        }
-        
+    }
+    
+    func changeRequestBtnName(sender: UIButton) {
+        self.pushFirendReqView?()
     }
     
 }
@@ -162,9 +141,6 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendPortocols {
     // 副标题
     var introudce: String
     
-    // 按钮回调
-    var changeRequestBtnName: ((UIButton) -> Void)?
-    
     init(viewController: UIViewController, name: String = "", firendId: String = "", headImageUrl: String = "", introudce: String = "") {
         
         self.name = name
@@ -173,10 +149,10 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendPortocols {
         self.viewController = viewController
         self.introudce = introudce
         
-        changeRequestBtnName = { _ in
-            self.pushFirendReqView?()
-        }
-        
+    }
+    
+    func changeRequestBtnName(sender: UIButton) {
+        self.pushFirendReqView?()
     }
     
 }
@@ -186,7 +162,7 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendPortocols {
  *
  *  新朋友 cell ViewModel
  */
-struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate {
+struct ContactsNewFriendCellViewModel: ContactsNewFriendPortocols {
     
     var viewController: UIViewController
     
@@ -207,9 +183,6 @@ struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
     // 按钮颜色
     var requestBtnColor: UIColor { return UIColor(named: .ContactsAgreeButtonColor) }
     
-    // 按钮回调
-    var changeRequestBtnName: ((UIButton) -> Void)?
-    
     init(viewController: UIViewController, name: String = "", firendId: String = "", headImageUrl: String = "", introudce: String = "") {
         
         self.firendId = firendId
@@ -218,16 +191,15 @@ struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
         self.introudce = introudce
         self.viewController = viewController
         
-        changeRequestBtnName = {
-            
-            $0.enabled = false
-            $0.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-            $0.backgroundColor = UIColor.clearColor()
-            $0.setTitle(L10n.ContactsListCellAlreaydAdd.string, forState: .Normal)
-            $0.setTitleColor(UIColor(named: .ContactsIntrouduce), forState: .Normal)
-            
-        }
+    }
+    
+    func changeRequestBtnName(sender: UIButton) {
         
+        sender.enabled = false
+        sender.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+        sender.backgroundColor = UIColor.clearColor()
+        sender.setTitle(L10n.ContactsListCellAlreaydAdd.string, forState: .Normal)
+        sender.setTitleColor(UIColor(named: .ContactsIntrouduce), forState: .Normal)
     }
     
 }
@@ -235,7 +207,7 @@ struct ContactsNewFriendCellViewModel: ContactsAddFriendCellDataSource, Contacts
 /**
  *  请求添加好友
  */
-struct ContactsFriendReqViewModel: ContactsReqFriendViewControllerDelegate, ContactsReqFriendViewControllerDataSource {
+struct ContactsFriendReqViewModel: ContactsReqFriendPortocols {
     
     var textFieldTitle: String {
         return L10n.ContactsRequestVerifyMsg.string + CavyDefine.userNickname
@@ -255,10 +227,14 @@ struct ContactsFriendReqViewModel: ContactsReqFriendViewControllerDelegate, Cont
     
     var viewController: UIViewController
     
-    init(viewController: UIViewController, friendId: String) {
+    //点击发送请求成功回调
+    var onClickButtonCellBack: (Void -> Void)?
+    
+    init(viewController: UIViewController, friendId: String, onClickButtonCellBack: (Void -> Void)? = nil) {
         
         self.viewController = viewController
         self.friendId = friendId
+        self.onClickButtonCellBack = onClickButtonCellBack
         
     }
     
@@ -274,8 +250,13 @@ struct ContactsFriendReqViewModel: ContactsReqFriendViewControllerDelegate, Cont
             let resultMsg: CommenMsg = try! CommenMsg(JSONDecoder($0.value!))
             
             guard resultMsg.code == WebApiCode.Success.rawValue else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: resultMsg.code ?? "")
                 return
             }
+            
+            self.onClickButtonCellBack?()
+            
+            self.viewController.popVC()
             
         }
         
