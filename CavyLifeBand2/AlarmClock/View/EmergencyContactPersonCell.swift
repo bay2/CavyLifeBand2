@@ -14,6 +14,8 @@ class EmergencyContactPersonCell: UITableViewCell {
     
     @IBOutlet weak var addBtn: UIButton!
     
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,8 +24,10 @@ class EmergencyContactPersonCell: UITableViewCell {
         
         addBtn.setTitleColor(UIColor(named: .SettingTableCellInfoGrayColor), forState: .Normal)
         
-        addBtn.addTarget(nil, action: Selector ("addEmergencyContact:"), forControlEvents: .TouchUpInside)
+        addBtn.addTarget(nil, action: #selector(SafetySettingViewController.addEmergencyContact(_:)), forControlEvents: .TouchUpInside)
     }
+    
+
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

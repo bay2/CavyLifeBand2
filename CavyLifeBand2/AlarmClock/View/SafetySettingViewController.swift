@@ -65,7 +65,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
             
         }
         
-        Log.info(realm.path)
+        Log.info(realm.configuration.fileURL)
 
         tableView.rowHeight       = 50.0
         tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
@@ -89,6 +89,8 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         }
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        contactPicker.pickerDelegate = self
         
         updateNavUI()
     }
@@ -130,13 +132,18 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         
     }
     
+    var contactPicker = SCAddressBookPicker()
+    
     func addEmergencyContact(sender: UIButton) {
+        
+        
         
         if contactModels.count == 3 {
             Log.error("上限三人，不能再添加，据说要用弹框提示")
         } else {
+            
             //展示系统通讯录 选择联系人
-//            addEmergencyContact(<#T##emergencyContact: EmergencyContactRealmModel##EmergencyContactRealmModel#>, listModel: contactRealms)
+            contactPicker.showAddressBoolPicker(self)
         }
         
     }
@@ -145,6 +152,18 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         Log.warning("|\(self.className)| -- 右上角添加")
     }
 
+}
+
+// MARK: - SCAddressBookPickerDelegate
+extension SafetySettingViewController: SCAddressBookPickerDelegate {
+    
+    func contactPicker(didSelectContact contact: SCAddressBookContact) {
+        
+        //TODO: 这里返回联系人信息，可以在这里完成保存紧急联系人信息的操作
+        Log.warning("【联系人信息】姓名：\(contact.name), 手机号:\(contact.phoneName)")
+        
+    }
+    
 }
 
 
@@ -167,18 +186,22 @@ extension SafetySettingViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
+            
             let cell = tableView.dequeueReusableCellWithIdentifier(safetySwitchCell, forIndexPath: indexPath) as? SettingSwitchTableViewCell
             cell?.setWithStyle(.NoneDescription)
             cell?.titleLabel.text = L10n.SettingSafetyTableCellGPSTitle.string
             cell?.layer.cornerRadius = CavyDefine.commonCornerRadius
             cell?.clipsToBounds = true
             return cell!
+            
         } else {
             
             if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCellWithIdentifier(safetyContactCell, forIndexPath: indexPath) as? EmergencyContactPersonCell
                 
+                let cell = tableView.dequeueReusableCellWithIdentifier(safetyContactCell, forIndexPath: indexPath) as? EmergencyContactPersonCell
+                cell?.selectionStyle = .None
                 return cell!
+                
             }
             
             let cell = tableView.dequeueReusableCellWithIdentifier(ContactInfoCell, forIndexPath: indexPath) as? EmergencyContactInfoCell
@@ -223,7 +246,7 @@ extension SafetySettingViewController: UITableViewDelegate {
         
         tableHeaderView.addSubview(whiteView)
         
-        whiteView.snp_makeConstraints { (make) in
+        whiteView.snp_makeConstraints {(make) in
             make.bottom.equalTo(tableHeaderView.snp_bottom)
             make.height.equalTo(10)
             make.leading.equalTo(tableHeaderView.snp_leading)
