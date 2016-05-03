@@ -101,6 +101,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         if let count = contactRealms?.emergencyContactRealmList.count {
             
             for i in 0..<count {
+                
                 let contactVM = EmergencyContactInfoCellViewModel(model: contactRealms!.emergencyContactRealmList[i], realm: self.realm)
                 
                 contactModels.append(contactVM)
