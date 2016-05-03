@@ -36,8 +36,6 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
         
         self.tableView = tableView
         
-        print(realm.path)
-        
         
 //        let due1: PKWaitRealmModel = PKWaitRealmModel()
 //        

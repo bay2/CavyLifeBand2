@@ -9,6 +9,7 @@
 import UIKit
 import KSCrash
 import Log
+import EZSwiftExtensions
 #if UITEST
 import OHHTTPStubs
 #endif
@@ -25,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             uiTestStub()
             
         #endif
-
+        
         let installation = KSCrashInstallationStandard.sharedInstance()
         
         installation.url = NSURL(string: CavyDefine.bugHDKey)
@@ -33,17 +34,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         installation.install()
         installation.sendAllReportsWithCompletion(nil)
         
-//        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
-//            self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
-//        } else {
-//            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
-//        }
+        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
+            self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
+        } else {
+            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
+        }
         
-//        PgyUpdateManager.sharedPgyManager.startManagerWithAppId("")
+        
         PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
-        PgyUpdateManager.sharedPgyManager().checkUpdate()
+        PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
         PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
-        
+            
         return true
 
     }
@@ -54,8 +55,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        UIApplication.sharedApplication().openURL(NSURL(string: "\(updateDictionary["downloadURL"])")!)
+        let localBuild = ez.appBuild?.toInt() ?? 0
+        let newBuild = (updateDictionary["versionCode"] as? String ?? "").toInt() ?? 0
         
+        guard localBuild < newBuild else {
+            return
+        }
+        
+        PgyUpdateManager.sharedPgyManager().checkUpdate()
         
     }
 
@@ -114,6 +121,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if NSProcessInfo.processInfo().arguments.contains("AccountInfoSecurityUITest") {
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
+            
+        }
+        
+        if NSProcessInfo.processInfo().arguments.contains("AlarmClockUITest") {
             
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
             

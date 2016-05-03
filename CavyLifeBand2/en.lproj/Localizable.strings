@@ -195,6 +195,8 @@
 "AlarmClock.AlarmCircle.Description" = "闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。";
 "AlarmClock.DeleteBtn.Title" = "删除";
 "AlarmClock.AlarmCircle.AlertTitle" = "请选择闹钟周期";
+"AlarmClock.EmptyView.Title" = "未设置闹钟";
+"AlarmClock.EmptyView.Info" = "手环震动唤醒，远离传统闹铃噪声";
 
 //设置
 "Setting.Safety.Title" = "安全";
@@ -203,6 +205,7 @@
 "Setting.SafetyTableCell.GPSTitle" = "GPS定位";
 "Setting.SafetyTableFooter.Title" = "紧急报警";
 "Setting.SafetyTableFooter.Info" = "紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。";
+"Setting.SafetyTableEmergencyContact.CancelBtn" = "取消";
 "Setting.ReminderPhoneCall.Title" = "来电提醒";
 "Setting.ReminderPhoneCall.Description" = "秒未接提醒";
 "Setting.ReminderMessage.Title" = "短信提醒";

@@ -69,6 +69,12 @@
 		6859BC7D1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC7B1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift */; };
 		6859BC7E1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC7C1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib */; };
 		6859BC801CD1F48D0050F6A0 /* PKTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC7F1CD1F48D0050F6A0 /* PKTestViewController.swift */; };
+		6859BC821CD221A80050F6A0 /* EmergencyContactRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC811CD221A80050F6A0 /* EmergencyContactRealmModel.swift */; };
+		6859BC851CD32D690050F6A0 /* EmergencyContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC831CD32D690050F6A0 /* EmergencyContactInfoCell.swift */; };
+		6859BC861CD32D690050F6A0 /* EmergencyContactInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC841CD32D690050F6A0 /* EmergencyContactInfoCell.xib */; };
+		6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */; };
+		6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */; };
+		6859BC941CD4776D0050F6A0 /* AlarmClockUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		68C558CB1CB74D1F0031719D /* AlarmClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */; };
@@ -91,7 +97,7 @@
 		68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E978161CC77DE500651724 /* PKInfoOrResultView.xib */; };
 		9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */; };
 		9104AA701CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */; };
-		9104AA721CC4BF4B00FE03E7 /* ContactsViewControllerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA711CC4BF4B00FE03E7 /* ContactsViewControllerPresenter.swift */; };
+		9104AA721CC4BF4B00FE03E7 /* ContactsReqFriendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA711CC4BF4B00FE03E7 /* ContactsReqFriendProtocol.swift */; };
 		9114D1BE1C97A1BB008CB4CE /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */; };
 		9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */; };
 		9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1C81C97AB05008CB4CE /* AccountManagerViewController.swift */; };
@@ -141,7 +147,9 @@
 		917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */; };
 		917936CB1CBCEB4B002936E3 /* SCLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936CA1CBCEB4B002936E3 /* SCLocationManager.swift */; };
 		917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936CD1CBCEE1B002936E3 /* CoordinateReport.swift */; };
-		917936D21CBE1F6E002936E3 /* AddressBookDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936D11CBE1F6E002936E3 /* AddressBookDataSource.swift */; };
+		9179DA991CD5E93800FCA63C /* AddressBookDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9179DA981CD5E93800FCA63C /* AddressBookDataSource.swift */; };
+		9179DA9B1CD5E95D00FCA63C /* AddressBookPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9179DA9A1CD5E95D00FCA63C /* AddressBookPicker.swift */; };
+		9179DA961CD5D27700FCA63C /* ContactsAddFriendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9179DA951CD5D27700FCA63C /* ContactsAddFriendProtocol.swift */; };
 		917B98B91CB8E7CA008698F5 /* Font_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B98B81CB8E7CA008698F5 /* Font_Extension.swift */; };
 		917B98BE1CB8E841008698F5 /* UserAchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B98BA1CB8E841008698F5 /* UserAchievementCell.swift */; };
 		917B98BF1CB8E841008698F5 /* UserAchievementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917B98BB1CB8E841008698F5 /* UserAchievementCell.xib */; };
@@ -332,6 +340,12 @@
 		6859BC7B1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsTableViewCell.swift; sourceTree = "<group>"; };
 		6859BC7C1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKRecordsTableViewCell.xib; sourceTree = "<group>"; };
 		6859BC7F1CD1F48D0050F6A0 /* PKTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKTestViewController.swift; sourceTree = "<group>"; };
+		6859BC811CD221A80050F6A0 /* EmergencyContactRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactRealmModel.swift; sourceTree = "<group>"; };
+		6859BC831CD32D690050F6A0 /* EmergencyContactInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactInfoCell.swift; sourceTree = "<group>"; };
+		6859BC841CD32D690050F6A0 /* EmergencyContactInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmergencyContactInfoCell.xib; sourceTree = "<group>"; };
+		6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyClockView.xib; sourceTree = "<group>"; };
+		6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyClockView.swift; sourceTree = "<group>"; };
+		6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockUITest.swift; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlarmClock.storyboard; sourceTree = "<group>"; };
@@ -355,7 +369,7 @@
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtSearch.swift; sourceTree = "<group>"; };
 		9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtDataSource.swift; sourceTree = "<group>"; };
-		9104AA711CC4BF4B00FE03E7 /* ContactsViewControllerPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewControllerPresenter.swift; sourceTree = "<group>"; };
+		9104AA711CC4BF4B00FE03E7 /* ContactsReqFriendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsReqFriendProtocol.swift; sourceTree = "<group>"; };
 		9114D1BD1C97A1BB008CB4CE /* GuideLinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GuideLinking.gif; sourceTree = "<group>"; };
 		9114D1C11C97AB05008CB4CE /* UserInfoRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoRealm.swift; sourceTree = "<group>"; };
 		9114D1C81C97AB05008CB4CE /* AccountManagerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountManagerViewController.swift; sourceTree = "<group>"; };
@@ -406,7 +420,9 @@
 		917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendLoadDataViewModel.swift; sourceTree = "<group>"; };
 		917936CA1CBCEB4B002936E3 /* SCLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLocationManager.swift; sourceTree = "<group>"; };
 		917936CD1CBCEE1B002936E3 /* CoordinateReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateReport.swift; sourceTree = "<group>"; };
-		917936D11CBE1F6E002936E3 /* AddressBookDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookDataSource.swift; sourceTree = "<group>"; };
+		9179DA981CD5E93800FCA63C /* AddressBookDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookDataSource.swift; sourceTree = "<group>"; };
+		9179DA9A1CD5E95D00FCA63C /* AddressBookPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookPicker.swift; sourceTree = "<group>"; };
+		9179DA951CD5D27700FCA63C /* ContactsAddFriendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendProtocol.swift; sourceTree = "<group>"; };
 		917B98B81CB8E7CA008698F5 /* Font_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font_Extension.swift; sourceTree = "<group>"; };
 		917B98BA1CB8E841008698F5 /* UserAchievementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAchievementCell.swift; sourceTree = "<group>"; };
 		917B98BB1CB8E841008698F5 /* UserAchievementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAchievementCell.xib; sourceTree = "<group>"; };
@@ -635,6 +651,7 @@
 			children = (
 				683655961CBE261B009373EA /* SettingRealmModel.swift */,
 				683655981CBE3C84009373EA /* AlarmRealmModel.swift */,
+				6859BC811CD221A80050F6A0 /* EmergencyContactRealmModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -685,10 +702,14 @@
 				68C558D31CB754090031719D /* IntelligentClockCell.xib */,
 				683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */,
 				683655261CBB3B2C009373EA /* SettingSwitchTableViewCell.xib */,
+				6859BC831CD32D690050F6A0 /* EmergencyContactInfoCell.swift */,
+				6859BC841CD32D690050F6A0 /* EmergencyContactInfoCell.xib */,
 				683655291CBB49F7009373EA /* EmergencyContactPersonCell.swift */,
 				6836552A1CBB49F7009373EA /* EmergencyContactPersonCell.xib */,
 				6836552F1CBB7E43009373EA /* AlarmClockDateCollectionViewCell.swift */,
 				683655301CBB7E43009373EA /* AlarmClockDateCollectionViewCell.xib */,
+				6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */,
+				6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -943,6 +964,15 @@
 			path = LocationReport;
 			sourceTree = "<group>";
 		};
+		9179DA971CD5E93800FCA63C /* AddressBook */ = {
+			isa = PBXGroup;
+			children = (
+				9179DA981CD5E93800FCA63C /* AddressBookDataSource.swift */,
+				9179DA9A1CD5E95D00FCA63C /* AddressBookPicker.swift */,
+			);
+			path = AddressBook;
+			sourceTree = "<group>";
+		};
 		917B98C21CB8E8F3008698F5 /* LeftMenuUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -957,9 +987,9 @@
 			isa = PBXGroup;
 			children = (
 				917B98CA1CB8F417008698F5 /* ContactsCellPresenter.swift */,
-				917936D11CBE1F6E002936E3 /* AddressBookDataSource.swift */,
 				9144D1111CC0921F006002A8 /* ContactsTableViewProtocol.swift */,
-				9104AA711CC4BF4B00FE03E7 /* ContactsViewControllerPresenter.swift */,
+				9104AA711CC4BF4B00FE03E7 /* ContactsReqFriendProtocol.swift */,
+				9179DA951CD5D27700FCA63C /* ContactsAddFriendProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -989,6 +1019,7 @@
 		917DA96A1C3B8EB700FF675D /* CavyLifeBand2 */ = {
 			isa = PBXGroup;
 			children = (
+				9179DA971CD5E93800FCA63C /* AddressBook */,
 				68E977F11CC5D0FE00651724 /* PK */,
 				68C558C81CB74CF90031719D /* AlarmClock */,
 				917936CC1CBCEDC9002936E3 /* LocationReport */,
@@ -1037,6 +1068,7 @@
 				91A0FED51C90303500717B83 /* SignUpEmailUITests.swift */,
 				91A0FED71C9033DD00717B83 /* ForgotPasswdPhoneUITest.swift */,
 				91A0FED91C903CBE00717B83 /* ForgotPasswdEmailUITest.swift */,
+				6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */,
 			);
 			path = CavyLifeBand2UITests;
 			sourceTree = "<group>";
@@ -1471,6 +1503,7 @@
 				91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */,
 				917B98C11CB8E841008698F5 /* UserAchievementView.xib in Resources */,
 				91E1B4EA1CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib in Resources */,
+				6859BC861CD32D690050F6A0 /* EmergencyContactInfoCell.xib in Resources */,
 				91E1B4D81CA510BD008ADEE6 /* ContactsAddFriendCell.xib in Resources */,
 				68E9780E1CC758CE00651724 /* PKChallengeView.xib in Resources */,
 				91A2EC911CB350D200361952 /* InfoSecurity.storyboard in Resources */,
@@ -1491,6 +1524,7 @@
 				91E1B4CA1CA510BD008ADEE6 /* ContactsLetterView.xib in Resources */,
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
+				6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */,
 				68E977F81CC600A100651724 /* PKRulesView.xib in Resources */,
 				68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
@@ -1673,6 +1707,7 @@
 				68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
+				6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
 				91671C9A1C9AC5A10090BB3F /* HomeUserInfo.swift in Sources */,
 				6836557D1CBC84B7009373EA /* LineLayout.swift in Sources */,
@@ -1684,6 +1719,7 @@
 				683655271CBB3B2C009373EA /* SettingSwitchTableViewCell.swift in Sources */,
 				9114D1F71C97AB05008CB4CE /* GoalView.swift in Sources */,
 				9150CAB61CC89EA600A398E9 /* RightViewController.swift in Sources */,
+				9179DA991CD5E93800FCA63C /* AddressBookDataSource.swift in Sources */,
 				68C558D41CB754090031719D /* IntelligentClockCell.swift in Sources */,
 				9114D1F21C97AB05008CB4CE /* UserProtocolView.swift in Sources */,
 				91B04DDA1CB3D4F0007E67B0 /* UserViewControllerProtocol.swift in Sources */,
@@ -1739,8 +1775,7 @@
 				91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */,
 				683655921CBE25A6009373EA /* SettingSwitchCellViewModel.swift in Sources */,
 				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,
-				917936D21CBE1F6E002936E3 /* AddressBookDataSource.swift in Sources */,
-				9104AA721CC4BF4B00FE03E7 /* ContactsViewControllerPresenter.swift in Sources */,
+				9104AA721CC4BF4B00FE03E7 /* ContactsReqFriendProtocol.swift in Sources */,
 				91E1B4DB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift in Sources */,
 				91E1B4D71CA510BD008ADEE6 /* ContactsAddFriendCell.swift in Sources */,
 				4C2B67EC1CCF49CD00512CC7 /* GuideViewConfigDefine.swift in Sources */,
@@ -1771,6 +1806,7 @@
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
 				4C06E9F21CC0E79C0093EEFA /* HomeTimeLineTableCell.swift in Sources */,
 				4C06E9F51CC0FC710093EEFA /* HomeTimeLineSection.swift in Sources */,
+				6859BC851CD32D690050F6A0 /* EmergencyContactInfoCell.swift in Sources */,
 				68E977F61CC6008F00651724 /* PKRulesView.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
@@ -1811,18 +1847,21 @@
 				91E1B4C61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift in Sources */,
 				6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */,
 				9114D1F61C97AB05008CB4CE /* GenderView.swift in Sources */,
+				9179DA9B1CD5E95D00FCA63C /* AddressBookPicker.swift in Sources */,
 				9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */,
 				4C6A24591CBF5CB1000136EC /* HomeDateViewCell.swift in Sources */,
 				4C06E9F91CC106470093EEFA /* HomeTimeLineView.swift in Sources */,
 				4C0BFA021CBCE62E00DB06FC /* HomeRingViewProtocol.swift in Sources */,
 				98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
+				6859BC821CD221A80050F6A0 /* EmergencyContactRealmModel.swift in Sources */,
 				4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */,
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,
 				683655821CBC85BE009373EA /* SecondsTableViewCell.swift in Sources */,
 				6836552B1CBB49F7009373EA /* EmergencyContactPersonCell.swift in Sources */,
 				9150CABC1CC8D12D00A398E9 /* MenuProtocol.swift in Sources */,
+				9179DA961CD5D27700FCA63C /* ContactsAddFriendProtocol.swift in Sources */,
 				9114D1F51C97AB05008CB4CE /* BirthdayView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1851,6 +1890,7 @@
 				91E981291C8937CB00802C5F /* AccountPageSwitchUITests.swift in Sources */,
 				917B98C61CB8E8F3008698F5 /* AccountInfoSecurityUITest.swift in Sources */,
 				91A0FEDA1C903CBE00717B83 /* ForgotPasswdEmailUITest.swift in Sources */,
+				6859BC941CD4776D0050F6A0 /* AlarmClockUITest.swift in Sources */,
 				917B98C81CB8E8F3008698F5 /* ContactsFriendViewUITests.swift in Sources */,
 				91A0FED61C90303500717B83 /* SignUpEmailUITests.swift in Sources */,
 				918E26DC1C891CDE00115C4E /* SignInUITests.swift in Sources */,
@@ -2018,7 +2058,7 @@
 					"\"SnapKit\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";
@@ -2054,7 +2094,7 @@
 					"\"SnapKit\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";

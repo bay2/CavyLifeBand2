@@ -63,11 +63,16 @@ AlarmClockDeleteBtnBGColor : #dbdbdb
 AlarmClockSettingTitleColor : #000000B3
 AlarmClockSettingDescriptionColor : #00000080
 AlarmClockSettingDescription2Color : #0000004D
+AlarmClockEmptyLabelColor : #2b7e5c
 SettingSeparatorColor : #cccccc
 SettingTableCellTitleColor : #000000B3
 SettingTableCellInfoGrayColor : #0000004D
 SettingTableCellInfoYellowColor : #ff9138
-SettingTableFooterInfoColor : #00000080
+SettingTableFooterInfoColor : #ffffff
+EmergencyContactCellAddBtnTitleColor : #b8b8b8
+EmergencyContactCellCancelBtnTitleColor : #dddddd
+EmergencyContactCellInfoLabelColor : #48d299
+
 PKRulesViewTitleColor : #000000B3
 PKRulesViewInfoColor : #00000080
 PKIntroduceVCLabelColor : #00000080

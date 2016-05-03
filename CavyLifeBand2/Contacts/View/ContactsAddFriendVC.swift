@@ -87,6 +87,17 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tableDictionary.map {(key, value) -> (UITableView, ContactsTableViewSectionDataSource) in
+            key.reloadData()
+            
+            return (key, value)
+        }
+        
+    }
+    
     /**
      加载数据
      */
@@ -305,6 +316,9 @@ extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
         guard let dataSourceViewModel = tableDictionary[tableView] else {
             return 0
         }
+        
+        
+        Log.error("\(dataSourceViewModel.rowCount)")
         
         return dataSourceViewModel.rowCount
     }
