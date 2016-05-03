@@ -1,0 +1,9 @@
+comment:
+    layout: header, changes, diff, sunburst
+  coverage:
+    ignore:
+    - CavyLifeBand2Tests/.*
+    - CavyLifeBand2UITests/.*
+    - Pods/.*
+    status:
+      patch: false
