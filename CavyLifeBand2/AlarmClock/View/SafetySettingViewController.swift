@@ -29,7 +29,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
     
     var notificationToken: NotificationToken?
     
-    var userId: String = { return "12" }()
+    var userId: String = { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }()
     
     var navTitle: String { return L10n.HomeRightListTitleSecurity.string }
     
@@ -37,19 +37,12 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
     
     var contactRealms: EmergencyContactRealmListModel?
     
-    lazy var rightBtn: UIButton? =  {
-        
-        let button = UIButton(type: .System)
-        button.frame = CGRectMake(0, 0, 30, 30)
-        button.setBackgroundImage(UIImage(asset: .AlarmClockAdd), forState: .Normal)
-        
-        return button
-        
-    }()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        
         
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -118,10 +111,6 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         
     }
     
-    func rightBarBtnAciton(sender: UIBarButtonItem) -> Void {
-        Log.warning("|\(self.className)| -- 右上角添加")
-    }
-    
     /**
      返回按钮处理
      */
@@ -147,11 +136,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         }
         
     }
-
-    func onRightBtn() -> Void {
-        Log.warning("|\(self.className)| -- 右上角添加")
-    }
-
+    
 }
 
 // MARK: - SCAddressBookPickerDelegate
