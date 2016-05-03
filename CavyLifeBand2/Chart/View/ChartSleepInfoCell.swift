@@ -27,6 +27,8 @@ class ChartSleepInfoCell: UITableViewCell {
         
         rightLabel.textColor = UIColor(named: .HomeViewUserName)
         
+        self.selectionStyle = .None
+
     }
     
     

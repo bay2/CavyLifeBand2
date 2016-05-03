@@ -11,6 +11,8 @@ import EZSwiftExtensions
 
 class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    var viewStyle: ChartViewStyle = .StepChart
+    
     /// 时间间隔选择
     var timeView: UICollectionView?
     
@@ -130,6 +132,9 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
         } else {
             
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChartInfoCollectionCell", forIndexPath: indexPath) as! ChartInfoCollectionCell
+            
+            cell.viewStyle = self.viewStyle
+            
             
             return cell
 

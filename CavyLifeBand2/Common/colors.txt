@@ -39,8 +39,10 @@ ChartSleepDegreeText : #ff5757
 ChartDeselectText : #00000066
 ChartSleepDegreeDeep : #2db6cf
 ChartSleepDegreeLight : #36f3ff
-ChartMapBackground : #4d4d4d
-chartMapTextColor : #ffffff4D
+ChartViewBackground : #4d4d4d
+ChartViewTextColor : #ffffff4D
+ChartGirdColor : #ffffff1A
+ChartStepPillarColor : #fff956
 ContactsTitleColor : #000000B3
 ContactsName : #000000
 ContactsIntrouduce : #0000004D

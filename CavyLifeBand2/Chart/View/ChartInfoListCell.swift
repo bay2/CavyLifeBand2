@@ -21,7 +21,7 @@ class ChartInfoListCell: UITableViewCell {
         leftLabel.textColor = UIColor(named: .HomeViewUserName)
         rightLabel.textColor = UIColor(named: .HomeViewUserName)
 
-        
+        self.selectionStyle = .None
         
         
         
