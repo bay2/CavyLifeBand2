@@ -11,18 +11,19 @@ import OHHTTPStubs
 import JSONJoy
 @testable import CavyLifeBand2
 
-class PKTest: XCTestCase {
+class PKRecordsTest: XCTestCase {
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
-        stub(containsQueryParams(["cmd": "getPKRecordList"])) { _ in
+        stub(isMethodPOST()) { _ in
             
             let stubPath = OHPathForFile("PK_RecordsList.json", self.dynamicType)
             return fixture(stubPath!, headers: ["Content-Type" : "application/json"])
             
         }
+        
     }
     
     override func tearDown() {
@@ -54,8 +55,9 @@ class PKTest: XCTestCase {
                 
                 XCTAssertTrue(resultMsg.waitList?.count == 2)
                 
-                XCTAssertTrue(resultMsg.waitList![0] is PKWaitRecord)
- 
+                XCTAssertTrue(resultMsg.dueList?.count == 1)
+                
+                XCTAssertTrue(resultMsg.finishList?.count == 2)
             }
             
         } catch let error {

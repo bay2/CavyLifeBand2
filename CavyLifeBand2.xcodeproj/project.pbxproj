@@ -75,7 +75,7 @@
 		6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */; };
 		6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */; };
 		6859BC941CD4776D0050F6A0 /* AlarmClockUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */; };
-		686A5E7D1CD883BF00EB8D0E /* PKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E7C1CD883BF00EB8D0E /* PKTest.swift */; };
+		686A5E7D1CD883BF00EB8D0E /* PKRecordsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E7C1CD883BF00EB8D0E /* PKRecordsTest.swift */; };
 		686A5E7F1CD8900300EB8D0E /* PK_RecordsList.json in Resources */ = {isa = PBXBuildFile; fileRef = 686A5E7E1CD8900300EB8D0E /* PK_RecordsList.json */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
@@ -348,7 +348,7 @@
 		6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyClockView.xib; sourceTree = "<group>"; };
 		6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyClockView.swift; sourceTree = "<group>"; };
 		6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockUITest.swift; sourceTree = "<group>"; };
-		686A5E7C1CD883BF00EB8D0E /* PKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKTest.swift; sourceTree = "<group>"; };
+		686A5E7C1CD883BF00EB8D0E /* PKRecordsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsTest.swift; sourceTree = "<group>"; };
 		686A5E7E1CD8900300EB8D0E /* PK_RecordsList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PK_RecordsList.json; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
@@ -1051,7 +1051,7 @@
 				91C3AE4C1C461E61006B67AF /* json */,
 				4CC498FF1CA9102800B2EE85 /* ContactsTest */,
 				9199DA241C48D2BF009672C4 /* SignUpTest.swift */,
-				686A5E7C1CD883BF00EB8D0E /* PKTest.swift */,
+				686A5E7C1CD883BF00EB8D0E /* PKRecordsTest.swift */,
 				912D29DA1C6088B5005A06E9 /* SignInTest.swift */,
 				918435DA1C7AD094005B6E92 /* ForgotPasswdTest.swift */,
 				918435DC1C7AF624005B6E92 /* SecurityCodeTest.swift */,
@@ -1879,7 +1879,7 @@
 			files = (
 				918435DB1C7AD094005B6E92 /* ForgotPasswdTest.swift in Sources */,
 				918435E11C7C2B8E005B6E92 /* UploadPicture.swift in Sources */,
-				686A5E7D1CD883BF00EB8D0E /* PKTest.swift in Sources */,
+				686A5E7D1CD883BF00EB8D0E /* PKRecordsTest.swift in Sources */,
 				912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */,
 				918435DD1C7AF624005B6E92 /* SecurityCodeTest.swift in Sources */,
 				4CC499011CA9102800B2EE85 /* ContactsAccoundInfoTest.swift in Sources */,
