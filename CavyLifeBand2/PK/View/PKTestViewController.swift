@@ -23,8 +23,8 @@ class PKTestViewController: UIViewController {
     
 
     @IBAction func pushToNext(sender: UIButton) {
-        Log.info("push")
-        self.pushVC(StoryboardScene.PK.instantiatePKRecordsVC())
+//        Log.info("push")
+//        self.pushVC(StoryboardScene.PK.instantiatePKRecordsVC())
         
         
     }

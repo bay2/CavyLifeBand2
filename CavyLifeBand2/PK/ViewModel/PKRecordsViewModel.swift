@@ -10,6 +10,7 @@ import UIKit
 import JSONJoy
 import RealmSwift
 
+/*
 struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProtocol {
     
     static let dateFormatter: NSDateFormatter = {
@@ -98,23 +99,23 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
     
     mutating func loadDataFromRealm() {
         
-        var waitCellVMs: [PKRecordsCellDataSource] = [PKRecordsCellDataSource]()
+//        var waitCellVMs: [PKRecordsCellDataSource] = [PKRecordsCellDataSource]()
         
         var dueCellVMs: [PKRecordsCellDataSource] = [PKRecordsCellDataSource]()
         
         var finishCellVMs: [PKRecordsCellDataSource] = [PKRecordsCellDataSource]()
         
-        let waitRealms = self.queryPKWaitRecordsRealm()
+//        let waitRealms = self.queryPKWaitRecordsRealm()
         
         let dueRealms = self.queryPKDueRecordsRealm()
         
         let finishRealms = self.queryPKFinishRecordsRealm()
         
-        for waitRealm in waitRealms {
-            let waitCellVM: PKWaitRecordsCellViewModel = PKWaitRecordsCellViewModel(pkRecord: waitRealm, realm: self.realm, tableView: self.tableView)
-            
-            waitCellVMs.append(waitCellVM)
-        }
+//        for waitRealm in waitRealms {
+//            let waitCellVM: PKWaitRecordsCellViewModel = PKWaitRecordsCellViewModel(pkRecord: waitRealm, realm: self.realm, tableView: self.tableView)
+//            
+//            waitCellVMs.append(waitCellVM)
+//        }
         
         for dueRealm in dueRealms {
             let dueCellVM: PKDueRecordsCellViewModel = PKDueRecordsCellViewModel(pkRecord: dueRealm)
@@ -130,9 +131,9 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
         
         self.itemGroup.removeAll()
         
-        if waitCellVMs.count > 0 {
-            self.itemGroup.append(waitCellVMs)
-        }
+//        if waitCellVMs.count > 0 {
+//            self.itemGroup.append(waitCellVMs)
+//        }
         
         if dueCellVMs.count > 0 {
             self.itemGroup.append(dueCellVMs)
@@ -290,5 +291,5 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
 
 }
 
-
+*/
 

@@ -65,9 +65,6 @@
 		685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */; };
 		6859BC381CCDBD3E0050F6A0 /* PKRecordsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC371CCDBD3E0050F6A0 /* PKRecordsViewModel.swift */; };
 		6859BC3E1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC3D1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift */; };
-		6859BC401CD096DB0050F6A0 /* PKRecordsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC3F1CD096DB0050F6A0 /* PKRecordsVC.swift */; };
-		6859BC7D1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC7B1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift */; };
-		6859BC7E1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC7C1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib */; };
 		6859BC801CD1F48D0050F6A0 /* PKTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC7F1CD1F48D0050F6A0 /* PKTestViewController.swift */; };
 		6859BC821CD221A80050F6A0 /* EmergencyContactRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC811CD221A80050F6A0 /* EmergencyContactRealmModel.swift */; };
 		6859BC851CD32D690050F6A0 /* EmergencyContactInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC831CD32D690050F6A0 /* EmergencyContactInfoCell.swift */; };
@@ -147,9 +144,9 @@
 		917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */; };
 		917936CB1CBCEB4B002936E3 /* SCLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936CA1CBCEB4B002936E3 /* SCLocationManager.swift */; };
 		917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936CD1CBCEE1B002936E3 /* CoordinateReport.swift */; };
+		9179DA961CD5D27700FCA63C /* ContactsAddFriendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9179DA951CD5D27700FCA63C /* ContactsAddFriendProtocol.swift */; };
 		9179DA991CD5E93800FCA63C /* AddressBookDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9179DA981CD5E93800FCA63C /* AddressBookDataSource.swift */; };
 		9179DA9B1CD5E95D00FCA63C /* AddressBookPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9179DA9A1CD5E95D00FCA63C /* AddressBookPicker.swift */; };
-		9179DA961CD5D27700FCA63C /* ContactsAddFriendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9179DA951CD5D27700FCA63C /* ContactsAddFriendProtocol.swift */; };
 		917B98B91CB8E7CA008698F5 /* Font_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B98B81CB8E7CA008698F5 /* Font_Extension.swift */; };
 		917B98BE1CB8E841008698F5 /* UserAchievementCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917B98BA1CB8E841008698F5 /* UserAchievementCell.swift */; };
 		917B98BF1CB8E841008698F5 /* UserAchievementCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917B98BB1CB8E841008698F5 /* UserAchievementCell.xib */; };
@@ -201,6 +198,10 @@
 		91D192921C7DA87B00482019 /* colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 91D192911C7DA87B00482019 /* colors.txt */; };
 		91D192941C7DB8DE00482019 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91D192931C7DB8DE00482019 /* Assets.xcassets */; };
 		91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */; };
+		91DFA91C1CD8445C0036B939 /* PKListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DFA91B1CD8445C0036B939 /* PKListVC.swift */; };
+		91DFA91E1CD84DC20036B939 /* PKListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DFA91D1CD84DC20036B939 /* PKListDataSource.swift */; };
+		91DFA9201CD8C3820036B939 /* PKListSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91DFA91F1CD8C3820036B939 /* PKListSectionView.xib */; };
+		91DFA9221CD8C49F0036B939 /* PKListSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DFA9211CD8C49F0036B939 /* PKListSectionView.swift */; };
 		91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E1B49C1CA50E0D008ADEE6 /* AccountInfo.storyboard */; };
 		91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4A01CA510BD008ADEE6 /* ContactsSortAndGroup.swift */; };
 		91E1B4C21CA510BD008ADEE6 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E1B4A21CA510BD008ADEE6 /* Contacts.storyboard */; };
@@ -336,9 +337,6 @@
 		685204EA1CB79D40004179B0 /* RemindersSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemindersSettingViewController.swift; sourceTree = "<group>"; };
 		6859BC371CCDBD3E0050F6A0 /* PKRecordsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsViewModel.swift; sourceTree = "<group>"; };
 		6859BC3D1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsCellViewModel.swift; sourceTree = "<group>"; };
-		6859BC3F1CD096DB0050F6A0 /* PKRecordsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsVC.swift; sourceTree = "<group>"; };
-		6859BC7B1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsTableViewCell.swift; sourceTree = "<group>"; };
-		6859BC7C1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKRecordsTableViewCell.xib; sourceTree = "<group>"; };
 		6859BC7F1CD1F48D0050F6A0 /* PKTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKTestViewController.swift; sourceTree = "<group>"; };
 		6859BC811CD221A80050F6A0 /* EmergencyContactRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactRealmModel.swift; sourceTree = "<group>"; };
 		6859BC831CD32D690050F6A0 /* EmergencyContactInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyContactInfoCell.swift; sourceTree = "<group>"; };
@@ -420,9 +418,9 @@
 		917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendLoadDataViewModel.swift; sourceTree = "<group>"; };
 		917936CA1CBCEB4B002936E3 /* SCLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLocationManager.swift; sourceTree = "<group>"; };
 		917936CD1CBCEE1B002936E3 /* CoordinateReport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateReport.swift; sourceTree = "<group>"; };
+		9179DA951CD5D27700FCA63C /* ContactsAddFriendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendProtocol.swift; sourceTree = "<group>"; };
 		9179DA981CD5E93800FCA63C /* AddressBookDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookDataSource.swift; sourceTree = "<group>"; };
 		9179DA9A1CD5E95D00FCA63C /* AddressBookPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressBookPicker.swift; sourceTree = "<group>"; };
-		9179DA951CD5D27700FCA63C /* ContactsAddFriendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendProtocol.swift; sourceTree = "<group>"; };
 		917B98B81CB8E7CA008698F5 /* Font_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font_Extension.swift; sourceTree = "<group>"; };
 		917B98BA1CB8E841008698F5 /* UserAchievementCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAchievementCell.swift; sourceTree = "<group>"; };
 		917B98BB1CB8E841008698F5 /* UserAchievementCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserAchievementCell.xib; sourceTree = "<group>"; };
@@ -486,6 +484,10 @@
 		91D192911C7DA87B00482019 /* colors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = colors.txt; path = CavyLifeBand2/Common/colors.txt; sourceTree = SOURCE_ROOT; };
 		91D192931C7DB8DE00482019 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CavyLifeBandAlertView.swift; sourceTree = "<group>"; };
+		91DFA91B1CD8445C0036B939 /* PKListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKListVC.swift; sourceTree = "<group>"; };
+		91DFA91D1CD84DC20036B939 /* PKListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKListDataSource.swift; sourceTree = "<group>"; };
+		91DFA91F1CD8C3820036B939 /* PKListSectionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKListSectionView.xib; sourceTree = "<group>"; };
+		91DFA9211CD8C49F0036B939 /* PKListSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKListSectionView.swift; sourceTree = "<group>"; };
 		91E1B49C1CA50E0D008ADEE6 /* AccountInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountInfo.storyboard; sourceTree = "<group>"; };
 		91E1B4A01CA510BD008ADEE6 /* ContactsSortAndGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSortAndGroup.swift; sourceTree = "<group>"; };
 		91E1B4A21CA510BD008ADEE6 /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
@@ -731,9 +733,6 @@
 				68E977F31CC5D15C00651724 /* PK.storyboard */,
 				68E977F91CC6089D00651724 /* PKIntroduceVC.swift */,
 				68E978051CC62B5600651724 /* PKInvitationVC.swift */,
-				6859BC3F1CD096DB0050F6A0 /* PKRecordsVC.swift */,
-				6859BC7B1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift */,
-				6859BC7C1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib */,
 				68E977FB1CC610DB00651724 /* PKRulesVC.swift */,
 				68E977F51CC6008F00651724 /* PKRulesView.swift */,
 				68E977F71CC600A100651724 /* PKRulesView.xib */,
@@ -743,6 +742,9 @@
 				68E978161CC77DE500651724 /* PKInfoOrResultView.xib */,
 				68E978091CC6412800651724 /* TimePickerView.swift */,
 				6859BC7F1CD1F48D0050F6A0 /* PKTestViewController.swift */,
+				91DFA91B1CD8445C0036B939 /* PKListVC.swift */,
+				91DFA91F1CD8C3820036B939 /* PKListSectionView.xib */,
+				91DFA9211CD8C49F0036B939 /* PKListSectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -753,6 +755,7 @@
 				68E978101CC7698900651724 /* PKInvitationVCViewModel.swift */,
 				6859BC371CCDBD3E0050F6A0 /* PKRecordsViewModel.swift */,
 				6859BC3D1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift */,
+				91DFA91D1CD84DC20036B939 /* PKListDataSource.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1509,7 +1512,6 @@
 				91A2EC911CB350D200361952 /* InfoSecurity.storyboard in Resources */,
 				9150CAB81CC8BA0C00A398E9 /* MenuTableViewCell.xib in Resources */,
 				91E1B4CC1CA510BD008ADEE6 /* ContactsFriendListCell.xib in Resources */,
-				6859BC7E1CD1DD230050F6A0 /* PKRecordsTableViewCell.xib in Resources */,
 				91EB79661CAE075C00ED3E67 /* CommonResultOk.json in Resources */,
 				4C0BFA061CBDEBB200DB06FC /* HomeWeatherView.xib in Resources */,
 				91E1B4CF1CA510BD008ADEE6 /* ContactsPersonInfoCell.xib in Resources */,
@@ -1528,6 +1530,7 @@
 				68E977F81CC600A100651724 /* PKRulesView.xib in Resources */,
 				68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
+				91DFA9201CD8C3820036B939 /* PKListSectionView.xib in Resources */,
 				4C06E9F71CC0FC830093EEFA /* HomeTimeLineSection.xib in Resources */,
 				68E977F41CC5D15C00651724 /* PK.storyboard in Resources */,
 			);
@@ -1748,8 +1751,10 @@
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
 				68E977FA1CC6089D00651724 /* PKIntroduceVC.swift in Sources */,
 				9114D1ED1C97AB05008CB4CE /* MainPageButton.swift in Sources */,
+				91DFA91C1CD8445C0036B939 /* PKListVC.swift in Sources */,
 				91ACEC621CB654BD008ED8B0 /* GuideInfoModelView.swift in Sources */,
 				917936C71CBB8E34002936E3 /* BaseViewController.swift in Sources */,
+				91DFA9221CD8C49F0036B939 /* PKListSectionView.swift in Sources */,
 				91E1B4F01CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift in Sources */,
 				683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */,
 				684C6AD81CC9BA1C000C176E /* PKJSON.swift in Sources */,
@@ -1759,6 +1764,7 @@
 				91B04DE31CB4A39C007E67B0 /* AccountModelView.swift in Sources */,
 				918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */,
 				68E978061CC62B5600651724 /* PKInvitationVC.swift in Sources */,
+				91DFA91E1CD84DC20036B939 /* PKListDataSource.swift in Sources */,
 				91E1B4CB1CA510BD008ADEE6 /* ContactsFriendListCell.swift in Sources */,
 				9144D1121CC0921F006002A8 /* ContactsTableViewProtocol.swift in Sources */,
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
@@ -1793,13 +1799,11 @@
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
 				91E1B4F71CA65E1C008ADEE6 /* ContactsWebApi.swift in Sources */,
 				68E978151CC77D8C00651724 /* PKInfoOrResultView.swift in Sources */,
-				6859BC401CD096DB0050F6A0 /* PKRecordsVC.swift in Sources */,
 				91800A7E1CB38846000BDDF2 /* UserProfileProtocol.swift in Sources */,
 				91E1B4D51CA510BD008ADEE6 /* ContactsSearchBar.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
 				4C2B67E21CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift in Sources */,
 				91E1B4CD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift in Sources */,
-				6859BC7D1CD1DD230050F6A0 /* PKRecordsTableViewCell.swift in Sources */,
 				91E1B4CE1CA510BD008ADEE6 /* ContactsPersonInfoCell.swift in Sources */,
 				9104AA701CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift in Sources */,
 				91A2EC921CB350D200361952 /* AccountInfoSecurityCellViewModel.swift in Sources */,
@@ -2058,7 +2062,7 @@
 					"\"SnapKit\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";
@@ -2094,7 +2098,7 @@
 					"\"SnapKit\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";

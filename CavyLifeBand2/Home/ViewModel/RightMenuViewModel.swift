@@ -123,7 +123,7 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource {
         
         items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuPK),
             title: L10n.HomeLifeListTitlePK.string,
-            nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
+            nextView: StoryboardScene.PK.instantiatePKListVC()))
         
         
     }

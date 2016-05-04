@@ -30,7 +30,7 @@ protocol ContactsReqFriendDeleteItemDelegate {
     var firendId: String  { get }
     var rowIndex: Int { get }
     
-    func changeRequestBtnName(button: UIButton)
+    func clickCellBtn(button: UIButton)
     
 }
 
@@ -41,7 +41,7 @@ extension ContactsReqFriendDeleteItemDelegate {
      
      - parameter button: 按钮
      */
-    func changeRequestBtnName(button: UIButton) {
+    func clickBtn(button: UIButton) {
         
         let friendReqVM =  ContactsFriendReqViewModel(viewController: viewController, friendId: firendId) {
             

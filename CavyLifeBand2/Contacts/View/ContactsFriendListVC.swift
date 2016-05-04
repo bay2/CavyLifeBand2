@@ -29,7 +29,6 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
     var searchCtrl  = ContactsSearchController(searchResultsController: StoryboardScene.Contacts.instantiateSearchResultView())
     
     // 搜索页面视图
-    
     var dataSource: [ContactsFriendListDataSource] = [ContactsFriendListDataSource]()
     var dataGroup: ContactsSortAndGroup?
     

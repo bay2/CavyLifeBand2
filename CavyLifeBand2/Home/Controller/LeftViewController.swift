@@ -11,8 +11,6 @@ import SnapKit
 import EZSwiftExtensions
 
 
-
-
 class LeftMenViewController: UIViewController, HomeUserDelegate {
   
     @IBOutlet weak var userInfoView: HomeUserInfo!

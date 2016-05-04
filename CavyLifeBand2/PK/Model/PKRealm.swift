@@ -151,6 +151,7 @@ extension PKRecordsRealmModelOperateDelegate {
     
     func queryPKWaitRecordsRealm() -> Results<(PKWaitRealmModel)> {
         //loginUserID相等，且不是已撤销和已接受
+        
         let predicate = NSPredicate(format: "loginUserId = %@ AND type != %@ AND type != %@", loginUserId, PKWaitType.AcceptWait.rawValue, PKWaitType.UndoWait.rawValue)
         
         let waitList = realm.objects(PKWaitRealmModel).filter(predicate)
@@ -379,16 +380,6 @@ enum PKWaitType: String {
     case AcceptWait = "2"
     case UndoWait = "3"
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

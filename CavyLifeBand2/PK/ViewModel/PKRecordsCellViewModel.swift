@@ -9,71 +9,55 @@
 import UIKit
 import RealmSwift
 
-protocol PKRecordsCellDataSource {
-    
-    var nickName: String { get }
-    
-    var pkDescription: String { get }
-    
-    var btnTitle: String { get }
-    
-    var btnBGColor: UIColor { get }
-    
-    var isShowBtn: Bool { get }
-    
-    func clickBtn() -> Void
-}
-
-extension PKRecordsCellDataSource {
-    
-    func clickBtn() -> Void {
-        Log.info("啥也不干啦")
-    }
-    
-}
+typealias PKCellProtocols = protocol<PKRecordsRealmModelOperateDelegate, PKWebRequestProtocol, ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate>
 
 //待回应cell 的 viewmodel
-struct PKWaitRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelOperateDelegate, PKWebRequestProtocol {
-    var tableView: UITableView?
+struct PKWaitRecordsCellViewModel: PKCellProtocols {
     
     var realm: Realm
     
     var loginUserId: String
     
-    var nickName: String
+    var introudce: String
     
-    var pkDescription: String
-    
-    var btnTitle: String
+    var bottonTitle: String
     
     var btnBGColor: UIColor
     
-    var isShowBtn: Bool
+    var headImageUrl: String
+    
+    var firendId: String
+    
+    var name: String
 
     var pkRecord: PKWaitRealmModel
     
-    init(pkRecord: PKWaitRealmModel, realm: Realm, tableView: UITableView? = nil) {
-        self.isShowBtn     = true
+    init(pkRecord: PKWaitRealmModel, realm: Realm) {
+        
         self.realm         = realm
         self.pkRecord      = pkRecord
-        self.tableView     = tableView
         self.loginUserId   = pkRecord.loginUserId
-        self.nickName      = pkRecord.nickname
-        self.pkDescription = "\(pkRecord.pkDuration)" + L10n.PKRecordsCellDurationDescription.string
-        self.btnTitle      = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? L10n.PKRecordsCellUndoBtnTitle.string : L10n.PKRecordsCellAcceptBtnTitle.string
+        self.name          = pkRecord.nickname
+        self.introudce     = pkRecord.pkDuration + L10n.PKRecordsCellDurationDescription.string
+        self.bottonTitle   = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? L10n.PKRecordsCellUndoBtnTitle.string : L10n.PKRecordsCellAcceptBtnTitle.string
         self.btnBGColor    = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? UIColor(named: .PKRecordsCellUndoBtnBGColor) : UIColor(named: .PKRecordsCellAcceptBtnBGColor)
+        self.headImageUrl  = pkRecord.avatarUrl
+        self.firendId      = pkRecord.userId
         
     }
     
-    func clickBtn() -> Void {
+    func clickCellBtn(sender: UIButton) {
         
         switch self.pkRecord.type {
+            
         case PKWaitType.OtherWaitMe.rawValue: //接受
+            
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFromString("yyyy-MM-dd HH:mm:ss")
             
             //将待回应记录的type改为已接受
             updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.AcceptWait)
+            
             //根据待回应记录生成新的进行中记录
             let dueRealm = PKDueRealmModel()
     
@@ -85,27 +69,31 @@ struct PKWaitRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelO
             dueRealm.pkDuration  = pkRecord.pkDuration
             dueRealm.beginTime   = dateFormatter.stringFromDate(NSDate())
             dueRealm.syncState   = PKRecordsRealmSyncState.NotSync.rawValue
+            
             //把新的进行中记录加入数据库
             addPKDueRealm(dueRealm)
+            
             //调接口接受PK,调接口成功后把那条刚加入数据库的进行中记录的同步状态改为已同步
             acceptPKInvitation([dueRealm], loginUserId: self.loginUserId, callBack: {
                 self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: dueRealm.pkId)
-            }, failure: {(errorMsg) in
-                Log.warning("弹框提示" + errorMsg)
+            }, failure: {
+                Log.warning("弹框提示" + $0)
             })
          
             break
             
         case PKWaitType.MeWaitOther.rawValue://撤销
+            
             //将待回应记录的type改为已撤销
             updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
+            
             //如果撤销一条未同步到服务器的pk，不需要调接口
             if pkRecord.pkId != "" {
                 
                 undoPK([pkRecord], loginUserId: self.loginUserId, callBack: {
                     self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: self.pkRecord.pkId)
-                }, failure: {(errorMsg) in
-                        Log.warning("弹框提示" + errorMsg)
+                }, failure: {
+                    Log.warning("弹框提示" + $0)
                 })
                
             }
@@ -120,25 +108,30 @@ struct PKWaitRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelO
 }
 
 //进行中 cell 的 viewmodel
-struct PKDueRecordsCellViewModel: PKRecordsCellDataSource {
-    var nickName: String
+struct PKDueRecordsCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFriendCellDelegate {
     
-    var pkDescription: String
+    var name: String
     
-    var btnTitle: String
+    var introudce: String
+    
+    var bottonTitle: String
     
     var btnBGColor: UIColor
     
-    var isShowBtn: Bool
-    
     var pkRecord: PKDueRealmModel
     
+    var firendId: String
+    
+    var headImageUrl: String
+    
     init(pkRecord: PKDueRealmModel) {
-        self.isShowBtn = false
+        
+        self.firendId = pkRecord.userId
+        self.headImageUrl = pkRecord.avatarUrl
         self.pkRecord = pkRecord
-        self.nickName = pkRecord.nickname
-        self.pkDescription = "\(pkRecord.pkDuration)" + L10n.PKRecordsCellDurationDescription.string
-        self.btnTitle = ""
+        self.name = pkRecord.nickname
+        self.introudce = "\(pkRecord.pkDuration)" + L10n.PKRecordsCellDurationDescription.string
+        self.bottonTitle = ""
         self.btnBGColor = UIColor.whiteColor()
         
     }
@@ -146,38 +139,43 @@ struct PKDueRecordsCellViewModel: PKRecordsCellDataSource {
 }
 
 //已完成 cell 的 viewmodel
-struct PKFinishRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelOperateDelegate, PKWebRequestProtocol {
-    var tableView: UITableView?
+struct PKFinishRecordsCellViewModel: PKCellProtocols {
+    
     
     var realm: Realm
     
     var loginUserId: String
     
-    var nickName: String
+    var bottonTitle: String
     
-    var pkDescription: String
+    var firendId: String
     
-    var btnTitle: String
+    var headImageUrl: String
+    
+    var name: String
+    
+    var introudce: String
     
     var btnBGColor: UIColor
     
-    var isShowBtn: Bool
-    
     var pkRecord: PKFinishRealmModel
     
-    init(pkRecord: PKFinishRealmModel, realm: Realm, tableView: UITableView? = nil) {
-        self.isShowBtn     = true
+    init(pkRecord: PKFinishRealmModel, realm: Realm) {
+        
         self.realm         = realm
         self.pkRecord      = pkRecord
+        self.firendId      = pkRecord.userId
+        self.headImageUrl  = pkRecord.avatarUrl
         self.loginUserId   = pkRecord.loginUserId
-        self.nickName      = pkRecord.isWin ? L10n.PKRecordsCellYouWin.string : "\(pkRecord.nickname)" + L10n.PKRecordsCellWin.string
-        self.pkDescription = "\(pkRecord.pkDuration)" + L10n.PKRecordsCellDurationDescription.string
-        self.btnTitle      = L10n.PKRecordsCellPKAgainBtnTitle.string
+        self.name          = pkRecord.isWin ? L10n.PKRecordsCellYouWin.string : pkRecord.nickname + L10n.PKRecordsCellWin.string
+        self.introudce     = pkRecord.pkDuration + L10n.PKRecordsCellDurationDescription.string
+        self.bottonTitle   = L10n.PKRecordsCellPKAgainBtnTitle.string
         self.btnBGColor    = UIColor(named: .PKRecordsCellPKAgainBtnBGColor)
-        self.tableView     = tableView
+        
     }
     
-    func clickBtn() -> Void {
+    func clickCellBtn() -> Void {
+        
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFromString("yyyy-MM-dd HH:mm:ss")
         
@@ -193,6 +191,7 @@ struct PKFinishRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmMode
         waitRecord.launchedTime = dateFormatter.stringFromDate(NSDate())
         
         launchPK([waitRecord], loginUserId: self.loginUserId, callBack: {
+            
             let pkId = $0[0].pkId
             
             waitRecord.pkId      = pkId
@@ -200,8 +199,8 @@ struct PKFinishRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmMode
             
             self.addPKWaitRealm(waitRecord)
             
-        }, failure: {(errorMsg) in
-            Log.warning("弹窗提示失败" + errorMsg)
+        }, failure: {
+            Log.warning("弹窗提示失败" + $0)
         })
         
     }

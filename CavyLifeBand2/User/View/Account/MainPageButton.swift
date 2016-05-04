@@ -22,13 +22,18 @@ class MainPageButton: UIButton {
         
         self.setTitleColor(UIColor(named: .MainPageBtnText), forState: .Normal)
         self.setBackgroundColor(UIColor(named: .MainPageBtn), forState: .Normal)
-        self.setBackgroundColor(UIColor(named: .MainPageSelectedBtn), forState: .Highlighted)
         
         self.layer.masksToBounds = true
         self.layer.cornerRadius = CavyDefine.commonCornerRadius
         
         self.titleLabel?.font = UIFont.systemFontOfSize(18)
         
+    }
+    
+    override func setBackgroundColor(color: UIColor, forState: UIControlState) {
+        
+        super.setBackgroundColor(color, forState: forState)
+        self.backgroundColor = UIColor(named: .MainPageBtn)
     }
 
 }
