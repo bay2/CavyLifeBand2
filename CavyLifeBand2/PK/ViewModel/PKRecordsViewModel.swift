@@ -10,7 +10,7 @@ import UIKit
 import JSONJoy
 import RealmSwift
 
-struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProtocol {
+struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProtocol, PKWebTranslateToRealmProtocol {
     
     static let dateFormatter: NSDateFormatter = {
         let formatter = NSDateFormatter()
@@ -238,13 +238,26 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
         
     }
     
+    
+}
+
+protocol PKWebTranslateToRealmProtocol {
+    
+    var loginUserId: String { get }
+    
+    func translateWaitModelToRealm(model: PKWaitRecord) -> PKWaitRealmModel
+    func translateDueModelToRealm(model: PKDueRecord) -> PKDueRealmModel
+    func translateFinishModelToRealm(model: PKFinishRecord) -> PKFinishRealmModel
+}
+
+extension PKWebTranslateToRealmProtocol {
     //把接口返回的待回应记录JSONModel转为Realm格式
     func translateWaitModelToRealm(model: PKWaitRecord) -> PKWaitRealmModel {
         
         let realm = PKWaitRealmModel()
         
         realm.pkId         = model.pkId
-        realm.loginUserId  = self.loginUserId
+        realm.loginUserId  = loginUserId
         realm.userId       = model.userId
         realm.avatarUrl    = model.avatarUrl
         realm.nickname     = model.nickname
@@ -261,7 +274,7 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
         let realm = PKDueRealmModel()
         
         realm.pkId        = model.pkId
-        realm.loginUserId = self.loginUserId
+        realm.loginUserId = loginUserId
         realm.userId      = model.userId
         realm.avatarUrl   = model.avatarUrl
         realm.nickname    = model.nickname
@@ -277,7 +290,7 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
         let realm = PKFinishRealmModel()
         
         realm.pkId         = model.pkId
-        realm.loginUserId  = self.loginUserId
+        realm.loginUserId  = loginUserId
         realm.userId       = model.userId
         realm.avatarUrl    = model.avatarUrl
         realm.nickname     = model.nickname
@@ -289,6 +302,5 @@ struct PKRecordsViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequestProto
     }
 
 }
-
 
 

@@ -98,16 +98,20 @@ struct PKWaitRecordsCellViewModel: PKRecordsCellDataSource, PKRecordsRealmModelO
             
         case PKWaitType.MeWaitOther.rawValue://撤销
             //将待回应记录的type改为已撤销
-            updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
+            
             //如果撤销一条未同步到服务器的pk，不需要调接口
             if pkRecord.pkId != "" {
                 
+                updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
+                
                 undoPK([pkRecord], loginUserId: self.loginUserId, callBack: {
-                    self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: self.pkRecord.pkId)
+                    self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: self.pkRecord.pkId)
                 }, failure: {(errorMsg) in
-                        Log.warning("弹框提示" + errorMsg)
+                    Log.warning("弹框提示" + errorMsg)
                 })
                
+            } else {
+                updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
             }
 
             break

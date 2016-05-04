@@ -16,7 +16,7 @@ protocol PKRecordRealmDataSource {
     var avatarUrl: String { get }
     var nickname: String { get }
     var pkDuration: String { get }
-    var syncState: Int { get }
+    var syncState: Int { get set }
 }
 
 //等待响应的PK记录
@@ -44,9 +44,9 @@ class PKWaitRealmModel: Object, PKRecordRealmDataSource {
      */
     dynamic var syncState = PKRecordsRealmSyncState.Synced.rawValue
     
-    override class func primaryKey() -> String? {
-        return "pkId"
-    }
+//    override class func primaryKey() -> String? {
+//        return "pkId"
+//    }
     
 }
 
@@ -216,6 +216,12 @@ extension PKRecordsRealmModelOperateDelegate {
     
     //增加待回应的记录出现在邀请PK，这时候不需要让VM持有pkRecords
     func addPKWaitRealm(pkWait: PKWaitRealmModel) -> Bool {
+        let predicate = NSPredicate(format: "loginUserId = %@ AND pkId = %@", loginUserId, pkWait.pkId)
+        
+        guard realm.objects(PKWaitRealmModel).filter(predicate).first == nil else {
+            Log.warning("\(#function) 该记录已经存在")
+            return false
+        }
         
         do {
             try realm.write {
@@ -264,6 +270,13 @@ extension PKRecordsRealmModelOperateDelegate {
     
     //增加进行中PK记录
     func addPKDueRealm(pkDue: PKDueRealmModel) -> Bool {
+        let predicate = NSPredicate(format: "loginUserId = %@ AND pkId = %@", loginUserId, pkDue.pkId)
+        
+        guard realm.objects(PKDueRealmModel).filter(predicate).first == nil else {
+            Log.warning("\(#function) 该记录已经存在")
+            return false
+        }
+        
         realm.beginWrite()
         
         realm.add(pkDue, update: false)
@@ -280,9 +293,9 @@ extension PKRecordsRealmModelOperateDelegate {
     
     func syncPKRecordsRealm<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type, pkId: String) -> Bool {
         
-        let predicate = NSPredicate(format: "loginUserId = %@ AND pkId", loginUserId, pkId)
+        let predicate = NSPredicate(format: "loginUserId = %@ AND pkId = %@", loginUserId, pkId)
         
-        guard let pkRecord = realm.objects(PKWaitRealmModel).filter(predicate).first else {
+        guard var pkRecord = realm.objects(modelClass).filter(predicate).first else {
             Log.warning("\(#function) 该记录不存在")
             return false
         }
