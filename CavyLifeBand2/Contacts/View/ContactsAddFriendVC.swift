@@ -317,9 +317,6 @@ extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
             return 0
         }
         
-        
-        Log.error("\(dataSourceViewModel.rowCount)")
-        
         return dataSourceViewModel.rowCount
     }
     

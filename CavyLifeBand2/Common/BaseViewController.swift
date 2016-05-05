@@ -110,7 +110,7 @@ extension BaseViewControllerPresenter where Self: UIViewController {
             return
         }
         
-        rightItemBtn.addTapGesture { [unowned self]  _ in
+        rightItemBtn.addTapGesture { [unowned self] _ in
             self.onRightBtn()
         }
         

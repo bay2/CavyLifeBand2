@@ -28,10 +28,8 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
     var timeArr: [String] = {
         return ["",
                 "1",
-                "2",
                 "3",
-                "4",
-                "5",
+                "7",
                 ""]
     }()
     

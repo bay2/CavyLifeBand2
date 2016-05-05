@@ -34,7 +34,6 @@
 "UserModuleErrorCode.UserNameNil" = "用户名不能为空";
 "UserModuleErrorCode.UnknownError" = "未知错误";
 
-
 // 首页
 "MainPage.SignInBtn" = "登入";
 "MainPage.SignUpBtn" = "加入豚鼠";
@@ -251,6 +250,8 @@
 "PK.RecordsVC.WaitSectionTitle" = "待回应";
 "PK.RecordsVC.DueSectionTitle" = "进行中";
 "PK.RecordsVC.FinishSectionTitle" = "已完成";
+"PK.RecordsVC.LaunchPkTitle" = "发起PK";
+
 
 // 天气
 "Home.Weather.Sun" = "晴";

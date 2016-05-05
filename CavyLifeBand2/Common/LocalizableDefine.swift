@@ -431,6 +431,8 @@ enum L10n {
   case PKRecordsVCDueSectionTitle
   /// 已完成
   case PKRecordsVCFinishSectionTitle
+  /// 发起PK
+  case PKRecordsVCLaunchPkTitle
   /// 晴
   case HomeWeatherSun
   /// 多云
@@ -888,6 +890,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("PK.RecordsVC.DueSectionTitle")
       case .PKRecordsVCFinishSectionTitle:
         return L10n.tr("PK.RecordsVC.FinishSectionTitle")
+      case .PKRecordsVCLaunchPkTitle:
+        return L10n.tr("PK.RecordsVC.LaunchPkTitle")
       case .HomeWeatherSun:
         return L10n.tr("Home.Weather.Sun")
       case .HomeWeatherCloudy:

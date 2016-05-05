@@ -16,34 +16,42 @@ class PKListVC: UIViewController, BaseViewControllerPresenter {
     
     let realm = try! Realm()
     
-    private var dataSources: [PKSectionDataSource] = []
+    private var dataSources: [PKListDataDelegateProtocols] = []
     
     var navTitle: String = L10n.PKPKTitle.string
     
+    @IBOutlet weak var launchPKBtn: MainPageButton!
+    
+    var notificationToken: NotificationToken?
+    
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         updateNavUI()
         
         pkListTableView.registerNib(UINib(nibName: "ContactsAddFriendCell", bundle: nil), forCellReuseIdentifier: "ContactsAddFriendCell")
         
-        addDataSource(PKWaitListDataSource(realm: self.realm, tableView: pkListTableView))
-        addDataSource(PKDueListDataSource(realm: self.realm, tableView: pkListTableView))
-        addDataSource(PKFinishListDataSource(realm: self.realm, tableView: pkListTableView))
+        //添加数据源
+        addDataSource(PKWaitListDataSource(realm: self.realm))
+        addDataSource(PKDueListDataSource(realm: self.realm))
+        addDataSource(PKFinishListDataSource(realm: self.realm))
+        
+        //修改PK按钮UI
+        launchPKBtn.setBackgroundColor(UIColor(named: .PKRecordsCellPKAgainBtnBGColor), forState: .Normal)
+        launchPKBtn.setTitle(L10n.PKRecordsVCLaunchPkTitle.string, forState: .Normal)
         
         loadItemData()
         
-        
-        let _ = realm.addNotificationBlock {[unowned self] _, _ in
+        notificationToken = realm.addNotificationBlock {[unowned self] _, _ in
             self.loadItemData()
         }
 
     }
     
-    deinit {
+    override func viewDidAppear(animated: Bool) {
         
-        Log.error("PKListVC deinit")
-        
+        super.viewDidAppear(animated)
     }
     
     func loadItemData() {
@@ -53,6 +61,8 @@ class PKListVC: UIViewController, BaseViewControllerPresenter {
             data.loadData()
             return data
         }
+        
+        pkListTableView.reloadData()
         
     }
 
@@ -66,9 +76,25 @@ class PKListVC: UIViewController, BaseViewControllerPresenter {
      
      - parameter dataSource: 数据源
      */
-    func addDataSource<T: PKSectionDataSource where T: PKListDataSource>(dataSource: T) {
+    func addDataSource<T: PKListDataDelegateProtocols where T: PKListDataSource>(dataSource: T) {
         
         dataSources.append(dataSource)
+        
+    }
+    
+    @IBAction func onClickLaunchPK(sender: AnyObject) {
+        
+        self.pushVC(StoryboardScene.PK.instantiatePKInvitationVC())
+        
+    }
+    
+    /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popToViewController(self.navigationController!.viewControllers[0], animated: false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
         
     }
     
@@ -78,9 +104,7 @@ class PKListVC: UIViewController, BaseViewControllerPresenter {
 extension PKListVC {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         return dataSources[indexPath.section].createCell(tableView, indexPath: indexPath)
-        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,13 +124,20 @@ extension PKListVC {
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
         return dataSources[section].sectionHeight
-        
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        return dataSources[indexPath.section].createRowActions(indexPath)
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return dataSources[indexPath.section].isCanEditRow
     }
     
 }

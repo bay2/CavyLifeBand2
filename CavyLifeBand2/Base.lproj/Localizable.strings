@@ -250,6 +250,8 @@
 "PK.RecordsVC.WaitSectionTitle" = "待回应";
 "PK.RecordsVC.DueSectionTitle" = "进行中";
 "PK.RecordsVC.FinishSectionTitle" = "已完成";
+"PK.RecordsVC.LaunchPkTitle" = "发起PK";
+
 
 // 天气
 "Home.Weather.Sun" = "晴";

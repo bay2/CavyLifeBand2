@@ -304,6 +304,7 @@ extension PKRecordsRealmModelOperateDelegate {
     
     //更改已完成记录删除状态
     func updatePKFinishRealm(finishModel: PKFinishRealmModel) -> Bool {
+        
         realm.beginWrite()
         finishModel.isDelete  = true
         finishModel.syncState = PKRecordsRealmSyncState.NotSync.rawValue

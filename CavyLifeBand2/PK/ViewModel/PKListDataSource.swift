@@ -62,9 +62,28 @@ protocol PKListDataSource {
     
 }
 
+protocol PKListActionDelegate {
+    
+    func createRowActions(indexPath: NSIndexPath) -> [UITableViewRowAction]?
+    var isCanEditRow: Bool { get }
+    
+}
+
+extension PKListActionDelegate {
+    
+    func createRowActions(indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        return nil
+    }
+    
+    var isCanEditRow: Bool {
+        return false
+    }
+    
+}
 
 
-typealias PKListDataProtocols = protocol<PKSectionDataSource, PKListDataSource, PKRecordsRealmModelOperateDelegate>
+typealias PKListDataDelegateProtocols = protocol<PKSectionDataSource, PKRecordsRealmModelOperateDelegate, PKListActionDelegate>
+typealias PKListDataProtocols = protocol<PKListDataSource, PKListDataDelegateProtocols>
 
 /**
  *  等待回应数据源
@@ -83,12 +102,9 @@ struct PKWaitListDataSource: PKListDataProtocols {
     
     var rowCount: Int { return item.count }
     
-    var tableView: UITableView
-    
-    init(realm: Realm, tableView: UITableView) {
+    init(realm: Realm) {
         
         self.realm = realm
-        self.tableView = tableView
         
     }
     
@@ -99,8 +115,6 @@ struct PKWaitListDataSource: PKListDataProtocols {
         item = waitDataModel.map {(waitModel) -> ItemType in
             ItemType(pkRecord: waitModel, realm: realm)
         }
-        
-        self.tableView.reloadData()
         
     }
     
@@ -135,13 +149,9 @@ struct PKDueListDataSource: PKListDataProtocols {
     
     var rowCount: Int { return item.count }
     
-    var tableView: UITableView
-    
-    init(realm: Realm, tableView: UITableView) {
+    init(realm: Realm) {
         
-        self.realm     = realm
-        self.tableView = tableView
-        
+        self.realm = realm
     }
     
     mutating func loadData() {
@@ -152,7 +162,6 @@ struct PKDueListDataSource: PKListDataProtocols {
             ItemType(pkRecord: dueModel)
         }
         
-        self.tableView.reloadData()
         
     }
     
@@ -187,12 +196,13 @@ struct PKFinishListDataSource: PKListDataProtocols {
     
     var rowCount: Int { return item.count }
     
-    var tableView: UITableView
+    var isCanEditRow: Bool {
+        return true
+    }
     
-    init(realm: Realm, tableView: UITableView) {
+    init(realm: Realm) {
         
-        self.realm     = realm
-        self.tableView = tableView
+        self.realm = realm
         
     }
     
@@ -203,8 +213,6 @@ struct PKFinishListDataSource: PKListDataProtocols {
         item = pkFinishModel.map {(finishModel) -> ItemType in
             ItemType(pkRecord: finishModel, realm: realm)
         }
-        
-        tableView.reloadData()
         
     }
     
@@ -217,6 +225,19 @@ struct PKFinishListDataSource: PKListDataProtocols {
         cell.configure(self.item[indexPath.row], delegate: self.item[indexPath.row])
         
         return cell
+        
+    }
+    
+    func createRowActions(indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let delAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellDelete.string) {(_, indexPath) in
+            
+            self.item[indexPath.row].clickDelete()
+            
+        }
+        
+        delAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
+        return [delAction]
         
     }
     

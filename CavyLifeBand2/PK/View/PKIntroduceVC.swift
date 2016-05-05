@@ -54,6 +54,7 @@ class PKIntroduceVC: UIViewController, BaseViewControllerPresenter {
     
 
     func baseStting() -> Void {
+        
         nextBtn.setImage(UIImage(named: "PKNextBtnNormal"), forState: .Normal)
         nextBtn.setImage(UIImage(named: "PKNextBtnSelected"), forState: .Highlighted)
         
@@ -70,8 +71,7 @@ class PKIntroduceVC: UIViewController, BaseViewControllerPresenter {
 
     @IBAction func nextAction(sender: UIButton) {
         
-//        let targetVC = StoryboardScene.PK.instantiatePKInvitationVC()
-        let targetVC = StoryboardScene.PK.instantiatePKRulesVC()
+        let targetVC = StoryboardScene.PK.instantiatePKInvitationVC()
         self.pushVC(targetVC)
     
     }

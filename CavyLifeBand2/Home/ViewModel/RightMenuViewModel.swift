@@ -7,6 +7,7 @@
 //
 import UIKit
 import EZSwiftExtensions
+import RealmSwift
 
 /**
  *  菜单项 view model
@@ -26,6 +27,7 @@ struct MenuViewModel: MenuProtocol {
     }
     
 }
+
 
 /**
  *  手环功能菜单项
@@ -97,11 +99,13 @@ struct BindingBandMenuGroupDataModel: MenuGroupDataSource {
 /**
  *  APP功能菜单
  */
-struct AppFeatureMenuGroupDataModel: MenuGroupDataSource {
+struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOperateDelegate {
     
     var items: [MenuProtocol] = []
     var sectionView: UIView = UIView()
     var sectionHeight: CGFloat = 16
+    var realm: Realm = try! Realm()
+    var loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
     
     init() {
         
@@ -125,6 +129,31 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource {
             title: L10n.HomeLifeListTitlePK.string,
             nextView: StoryboardScene.PK.instantiatePKListVC()))
         
+    }
+    
+    /**
+     刷新下个访问的视图
+     */
+    mutating func refurbishNextView() {
+        
+        items = items.map {(item) -> MenuProtocol in
+            
+            if item.title == L10n.HomeLifeListTitlePK.string {
+                
+                var newItem = item
+                
+                if queryPKWaitRecordsRealm().count > 1 || queryPKDueRecordsRealm().count > 1 || queryPKFinishRecordsRealm().count > 1 {
+                    newItem.nextView = StoryboardScene.PK.instantiatePKListVC()
+                } else {
+                    newItem.nextView = StoryboardScene.PK.instantiatePKIntroduceVC()
+                }
+                
+                return newItem
+            }
+            
+            return item
+            
+        }
         
     }
     

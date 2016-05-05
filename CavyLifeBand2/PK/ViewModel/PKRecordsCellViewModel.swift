@@ -205,4 +205,23 @@ struct PKFinishRecordsCellViewModel: PKCellProtocols {
         
     }
     
+    func clickDelete() {
+        
+        
+        self.updatePKFinishRealm(pkRecord)
+        
+        deletePKFinish([pkRecord], loginUserId: pkRecord.loginUserId, callBack: {
+            
+            self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: self.pkRecord.pkId)
+            
+            
+        }, failure: {
+            
+            Log.warning("弹窗提示失败" + $0)
+                
+        })
+
+        
+    }
+    
 }

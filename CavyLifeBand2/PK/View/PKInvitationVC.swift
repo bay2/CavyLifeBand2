@@ -17,7 +17,10 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     var lastBtn: UIButton?
     
     let timePicker: TimePickerView = {
-        return TimePickerView.init(frame: CGRectZero, dataSource: nil)
+        
+        let picker = TimePickerView(frame: CGRectZero, dataSource: nil)
+        picker.timeArr = ["", "1", "3", "7", ""]
+        return picker
     }()
     
     var realm: Realm = try! Realm()
@@ -49,36 +52,36 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         
         dataSouceSetting()
         
+        updateNavUI()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func addAction(sender: UIButton) {
         
-        Log.warning("选择对手 未完成")
-        
-        Log.warning("push 的 VC 需要抛出一个block给我 数据为选择的人的userId，avatarUrl，nickname")
+        //TODO: 选择对手 未完成(push 的 VC 需要抛出一个block给我 数据为选择的人的userId，avatarUrl，nickname)
         
 //        dataSource?.setPKWaitCompetitorInfo(<#T##userId: String##String#>, nickName: <#T##String#>, avatarUrl: <#T##String#>)
         
     }
 
     @IBAction func commitAction(sender: UIButton) {
-        Log.warning("提交 未完成")
         
-        let challenge = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView
-                
-        self.view .addSubview(challenge!)
+        //TODO: 提交 未完成
         
-        challenge?.snp_makeConstraints(closure: {(make) in
-            make.leading.equalTo(self.view).offset(20)
-            make.trailing.equalTo(self.view).offset(-20)
-            make.height.equalTo(380)
-            make.centerY.equalTo(self.view.snp_centerY)
-        })
+//        let challenge = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView
+//                
+//        self.view .addSubview(challenge!)
+//        
+//        challenge?.snp_makeConstraints(closure: {(make) in
+//            make.leading.equalTo(self.view).offset(20)
+//            make.trailing.equalTo(self.view).offset(-20)
+//            make.height.equalTo(380)
+//            make.centerY.equalTo(self.view.snp_centerY)
+//        })
         
     }
         

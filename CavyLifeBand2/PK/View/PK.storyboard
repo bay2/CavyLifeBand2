@@ -327,44 +327,6 @@
             </objects>
             <point key="canvasLocation" x="1821" y="210"/>
         </scene>
-        <!--RecordsVC-->
-        <scene sceneID="Aoq-0I-N5h">
-            <objects>
-                <viewController storyboardIdentifier="PKRecordsVC" id="CfD-dD-viY" customClass="PKRecordsVC" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Lli-Xd-oIZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="OZB-6x-xcw"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="U4w-d0-7wy">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IVc-eh-uIQ">
-                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="CfD-dD-viY" id="VRy-We-XZj"/>
-                                    <outlet property="delegate" destination="CfD-dD-viY" id="91G-oI-K1W"/>
-                                </connections>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="IVc-eh-uIQ" firstAttribute="leading" secondItem="U4w-d0-7wy" secondAttribute="leading" id="CpE-dj-l30"/>
-                            <constraint firstItem="IVc-eh-uIQ" firstAttribute="top" secondItem="Lli-Xd-oIZ" secondAttribute="bottom" id="KJA-KQ-XMs"/>
-                            <constraint firstItem="OZB-6x-xcw" firstAttribute="top" secondItem="IVc-eh-uIQ" secondAttribute="bottom" id="Vhx-dV-NEZ"/>
-                            <constraint firstAttribute="trailing" secondItem="IVc-eh-uIQ" secondAttribute="trailing" id="fJs-o8-0cu"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="0L5-Rz-xJg"/>
-                    <connections>
-                        <outlet property="tableView" destination="IVc-eh-uIQ" id="RZF-yZ-AzC"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zdP-XR-EfS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2432" y="210"/>
-        </scene>
         <!--ListVC-->
         <scene sceneID="sdS-9t-V5W">
             <objects>
@@ -394,6 +356,9 @@
                                             <constraint firstAttribute="height" constant="50" id="7Se-Ci-85t"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="onClickLaunchPK:" destination="yEB-og-6po" eventType="touchUpInside" id="sBG-ZO-6T9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -417,12 +382,13 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="launchPKBtn" destination="wO7-pn-ceB" id="hKk-XL-e4u"/>
                         <outlet property="pkListTableView" destination="HSV-Mm-M4C" id="G4x-NS-1Uj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M2I-Nl-uWH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3043" y="210"/>
+            <point key="canvasLocation" x="2438" y="210"/>
         </scene>
     </scenes>
 </document>

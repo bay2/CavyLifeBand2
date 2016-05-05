@@ -142,7 +142,6 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
             
         }
         
-        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
