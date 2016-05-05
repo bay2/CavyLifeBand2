@@ -59,6 +59,7 @@ private class AKCollectionViewCell: UICollectionViewCell {
 	var imageView: UIImageView!
 	var font = UIFont.systemFontOfSize(UIFont.systemFontSize())
 	var highlightedFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
+    var highlightedTextColor = UIColor.blackColor()
 	var _selected: Bool = false {
 		didSet(selected) {
 			let animation = CATransition()
@@ -66,6 +67,7 @@ private class AKCollectionViewCell: UICollectionViewCell {
 			animation.duration = 0.15
 			self.label.layer.addAnimation(animation, forKey: "")
 			self.label.font = self.selected ? self.highlightedFont : self.font
+            self.label.textColor = self.selected ? self.highlightedTextColor : UIColor.blackColor()
 		}
 	}
 
@@ -136,9 +138,9 @@ private class AKCollectionViewLayout: UICollectionViewFlowLayout {
 
 	private override func prepareLayout() {
 		let visibleRect = CGRect(origin: self.collectionView!.contentOffset, size: self.collectionView!.bounds.size)
-		self.midX = CGRectGetMidX(visibleRect);
-		self.width = CGRectGetWidth(visibleRect) / 2;
-		self.maxAngle = CGFloat(M_PI_2);
+		self.midX = CGRectGetMidX(visibleRect)
+		self.width = CGRectGetWidth(visibleRect) / 2
+		self.maxAngle = CGFloat(M_PI_2)
 	}
 
 	private override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
@@ -151,15 +153,15 @@ private class AKCollectionViewLayout: UICollectionViewFlowLayout {
             case .Flat:
                 return attributes
             case .Wheel:
-                let distance = CGRectGetMidX(attributes.frame) - self.midX;
-                let currentAngle = self.maxAngle * distance / self.width / CGFloat(M_PI_2);
-                var transform = CATransform3DIdentity;
-                transform = CATransform3DTranslate(transform, -distance, 0, -self.width);
-                transform = CATransform3DRotate(transform, currentAngle, 0, 1, 0);
-                transform = CATransform3DTranslate(transform, 0, 0, self.width);
-                attributes.transform3D = transform;
-                attributes.alpha = fabs(currentAngle) < self.maxAngle ? 1.0 : 0.0;
-                return attributes;
+                let distance = CGRectGetMidX(attributes.frame) - self.midX
+                let currentAngle = self.maxAngle * distance / self.width / CGFloat(M_PI_2)
+                var transform = CATransform3DIdentity
+                transform = CATransform3DTranslate(transform, -distance, 0, -self.width)
+                transform = CATransform3DRotate(transform, currentAngle, 0, 1, 0)
+                transform = CATransform3DTranslate(transform, 0, 0, self.width)
+                attributes.transform3D = transform
+                attributes.alpha = fabs(currentAngle) < self.maxAngle ? 1.0 : 0.0
+                return attributes
             }
         }
         
@@ -259,10 +261,10 @@ public class AKPickerView: UIView, UICollectionViewDataSource, UICollectionViewD
 	@IBInspectable public var viewDepth: CGFloat = 1000.0 {
 		didSet {
 			self.collectionView.layer.sublayerTransform = self.viewDepth > 0.0 ? {
-				var transform = CATransform3DIdentity;
-				transform.m34 = -1.0 / self.viewDepth;
-				return transform;
-            }() : CATransform3DIdentity;
+				var transform = CATransform3DIdentity
+				transform.m34 = -1.0 / self.viewDepth
+				return transform
+            }() : CATransform3DIdentity
 		}
 	}
 	/// Readwrite. A boolean value indicates whether the mask is disabled.
@@ -536,6 +538,7 @@ public class AKPickerView: UIView, UICollectionViewDataSource, UICollectionViewD
 			cell.label.font = self.font
 			cell.font = self.font
 			cell.highlightedFont = self.highlightedFont
+            cell.highlightedTextColor = self.highlightedTextColor
 			cell.label.bounds = CGRect(origin: CGPointZero, size: self.sizeForString(title))
 			if let delegate = self.delegate {
 				delegate.pickerView?(self, configureLabel: cell.label, forItem: indexPath.item)

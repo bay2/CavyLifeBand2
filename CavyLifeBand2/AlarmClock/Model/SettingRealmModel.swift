@@ -13,7 +13,7 @@ class SettingRealmModel: Object {
     dynamic var settingType = "" // 1来电提醒 2短信提醒 3断线重连
     dynamic var userId = ""
     dynamic var isOpenSetting = true
-    dynamic var settingInfo = 1
+    dynamic var settingInfo = 0
     
     var owners: [SettingRealmListModel] {
         
@@ -134,7 +134,7 @@ extension SettingRealmListOperateDelegate {
         
         if settingType == L10n.SettingReminderPhoneType.string { //来电提醒
             
-            settingModel.settingInfo = 1
+            settingModel.settingInfo = 0
             
         }
         
@@ -311,7 +311,7 @@ extension SettingRealmOperateDelegate {
         
         if settingType == L10n.SettingReminderPhoneType.string { //来电提醒
             
-            settingModel.settingInfo = 1
+            settingModel.settingInfo = 0
             
         }
         

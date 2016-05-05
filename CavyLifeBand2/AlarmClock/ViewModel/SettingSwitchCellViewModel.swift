@@ -12,24 +12,14 @@ import RealmSwift
 typealias SettingSwitchCellViewModelPresentable = protocol<SettingCellDataSource, SettingRealmOperateDelegate>
 
 struct PhoneReminderTimeModel {
-    var timeDic = {
-        return [1: "5",
-                2: "10",
-                3: "15",
-                4: "20",
-                5: "25",
-                6: "30"]
-    }()
     
     var timeArr = {
-        return ["",
-                "5",
+        return ["5",
                 "10",
                 "15",
                 "20",
                 "25",
-                "30",
-                ""]
+                "30"]
     }()
     
 }
