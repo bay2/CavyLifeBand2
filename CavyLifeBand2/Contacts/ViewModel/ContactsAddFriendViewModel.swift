@@ -195,11 +195,18 @@ struct ContactsNewFriendCellViewModel: ContactsNewFriendPortocols {
     
     func clickCellBtn(sender: UIButton) {
         
-        sender.enabled = false
-        sender.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-        sender.backgroundColor = UIColor.clearColor()
-        sender.setTitle(L10n.ContactsListCellAlreaydAdd.string, forState: .Normal)
-        sender.setTitleColor(UIColor(named: .ContactsIntrouduce), forState: .Normal)
+        ContactsWebApi.shareApi.agreeFriend(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, friendId: firendId) {
+            
+            if $0.isSuccess {
+                
+                sender.enabled = false
+                sender.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+                sender.backgroundColor = UIColor.clearColor()
+                sender.setTitle(L10n.ContactsListCellAlreaydAdd.string, forState: .Normal)
+                sender.setTitleColor(UIColor(named: .ContactsIntrouduce), forState: .Normal)
+                
+            }
+        }
     }
     
 }
