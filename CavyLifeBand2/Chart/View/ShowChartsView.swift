@@ -9,15 +9,17 @@
 import UIKit
 import Charts
 
+let leftMaxValue = 10
+let leftLabelCCount = leftMaxValue / 2
 let legendLable = "Step"
 let legendColors = [UIColor(named: .ChartStepPillarColor)]
 let leftUnit = " k"
-let leftMaxValue = 10
 let spaceBetweenLabel = 1
 let dataCount = 7
 
-
 class ShowChartsView: BarChartView, ChartViewDelegate {
+    
+    var chartsData: [PerStepChartData] = []
     
     var showValue: Bool = false
     
@@ -53,6 +55,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         self.rightAxis.enabled = false
         self.delegate = self
         self.maxVisibleValueCount = leftMaxValue
+        
     }
 
     /**
@@ -79,13 +82,14 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         // 左边刻度
         let leftAxis = self.leftAxis
         leftAxis.labelFont = UIFont.systemFontOfSize(12)
-        leftAxis.labelCount = leftMaxValue / 2
+        leftAxis.labelCount = leftLabelCCount
         leftAxis.valueFormatter = NSNumberFormatter()
         leftAxis.valueFormatter!.maximumFractionDigits = 1
         leftAxis.valueFormatter!.positiveSuffix = leftUnit
         leftAxis.labelPosition = .OutsideChart
         leftAxis.labelTextColor = UIColor(named: .ChartGirdColor)
         leftAxis.spaceTop = 0.15
+        leftAxis.spaceBottom = 0.15
         leftAxis.axisMinValue = 0
     }
     
@@ -157,7 +161,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         
         Log.info("\(chartView)  \(entry)   \(dataSetIndex)  \(highlight)")
-           
+        
    
         
     }

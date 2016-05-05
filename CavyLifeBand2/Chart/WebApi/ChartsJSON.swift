@@ -1,5 +1,5 @@
 //
-//  ChartJSON.swift
+//  ChartsJSON.swift
 //  CavyLifeBand2
 //
 //  Created by Jessica on 16/4/29.
@@ -8,6 +8,60 @@
 
 import UIKit
 import JSONJoy
+
+
+//  NET REQUEST ??
+//struct chartStepModel: JSONJoy {
+//    
+//     var timeBucket = ""
+//     var time = ""
+//     var chartName = ""
+//     var chartNumber: Float = 0
+//     var step = 0
+//     var kilometer = 0
+//    
+//    init(_ decoder: JSONDecoder) throws {
+//        
+//        do { timeBucket = try decoder["timeBucket"].getString() } catch { timeBucket = "" }
+//        do { time = try decoder["time"].getString() } catch { time = "" }
+//        do { chartName = try decoder["chartName"].getString() } catch { chartName = "" }
+//        do { chartNumber = try decoder["chartNumber"].getFloat() } catch { chartNumber = 0 }
+//        do { step = try decoder["step"].getInt() } catch { step = 0 }
+//        do { kilometer = try decoder["kilometer"].getInt() } catch { kilometer = 0 }
+//    }
+//}
+
+
+
+
+
+
+// --------------JSON----------------
+
+
+
+struct ChartsForStep: JSONJoy {
+    
+    
+    let datas: [StepChartView]?
+    
+    init(_ decoder: JSONDecoder) throws {
+        
+        datas = [StepChartView]()
+        
+        guard let data = decoder["data"].array else { throw JSONError.WrongType }
+        
+        for chartDecoder in data {
+            
+            datas?.append(try  StepChartView(chartDecoder))
+        }
+        
+        
+    }
+
+}
+
+
 
 /**
  *  日 周 年 最大的
@@ -21,12 +75,12 @@ struct StepChartView: JSONJoy {
     
     init(_ decoder: JSONDecoder) throws {
     
-        do { timeBucket = try decoder[""].getString() } catch { timeBucket = "" }
+        do { timeBucket = try decoder["timeBucket"].getString() } catch { timeBucket = "" }
         
         
         stepCharts = [StepCharts]()
         
-        guard let data = decoder["charts"].array else { throw JSONError.WrongType }
+        guard let data = decoder["stepCharts"].array else { throw JSONError.WrongType }
         
         for chartDecoder in data {
             stepCharts?.append(try  StepCharts(chartDecoder))
@@ -51,18 +105,18 @@ struct StepCharts: JSONJoy {
     
     var charts: [PerStepChartData]?
     
-    var todatStep: Int?
+    var step: Int?
     var kilometer: Int?
     var percent: Int?
     var useTime: Int?
 
     init(_ decoder: JSONDecoder) throws {
         
-        do { time = try decoder[""].getString() } catch { time = "" }
-        do { todatStep = try decoder[""].getInt() } catch { todatStep = 0 }
-        do { kilometer = try decoder[""].getInt() } catch { kilometer = 0 }
-        do { percent = try decoder[""].getInt() } catch { percent = 0 }
-        do { useTime = try decoder[""].getInt() } catch { useTime = 0 }
+        do { time = try decoder["time"].getString() } catch { time = "" }
+        do { step = try decoder["step"].getInt() } catch { step = 0 }
+        do { kilometer = try decoder["kilometer"].getInt() } catch { kilometer = 0 }
+        do { percent = try decoder["percent"].getInt() } catch { percent = 0 }
+        do { useTime = try decoder["useTime"].getInt() } catch { useTime = 0 }
 
         charts = [PerStepChartData]()
         
@@ -83,13 +137,13 @@ struct StepCharts: JSONJoy {
 struct PerStepChartData: JSONJoy {
     
     var name: String?
-    var number: Int?
+    var number: Float?
     
     init(_ decoder: JSONDecoder) throws {
         
-        do { name = try decoder[""].getString() } catch { name = "" }
+        do { name = try decoder["name"].getString() } catch { name = "" }
         
-        do { number = try decoder[""].getInt() } catch { number = 0 }
+        do { number = try decoder["number"].getFloat() } catch { number = 0 }
     }
 }
 

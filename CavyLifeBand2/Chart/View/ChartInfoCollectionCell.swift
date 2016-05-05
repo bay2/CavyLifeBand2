@@ -14,8 +14,10 @@ class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITabl
 
     var viewStyle: ChartViewStyle = .StepChart
     
+    var data: StepCharts?
+    
     /// 柱状图
-    var chartView: UIView?
+    var chartView = ShowChartsView()
     ///  列表展示信息
     var listView: UITableView?
     
@@ -39,14 +41,14 @@ class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITabl
         
         self.backgroundColor = UIColor(named: .ChartBackground)
         
-        chartView = ShowChartsView()
-        self.addSubview(chartView!)
-        chartView!.snp_makeConstraints { make in
+        self.addSubview(chartView)
+        chartView.snp_makeConstraints { make in
             make.top.equalTo(self)
             make.centerX.equalTo(self)
             make.size.equalTo(CGSize(width: infoViewWidth, height: chartViewHight))
         }
         
+//        chartView.dataArray = self.data!.charts!
         
     }
     

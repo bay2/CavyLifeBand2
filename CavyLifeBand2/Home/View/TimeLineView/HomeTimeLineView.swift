@@ -40,8 +40,8 @@ class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDele
         collectionView!.backgroundColor = UIColor.whiteColor()
         collectionView!.showsHorizontalScrollIndicator = false
         collectionView!.alwaysBounceHorizontal = true
-        collectionView!.contentSize = CGSizeMake(CGFloat(dateCount - 1) * ez.screenWidth, 0)
-        collectionView!.contentOffset = CGPointMake(CGFloat(dateCount - 1) * ez.screenWidth, 0)
+        collectionView!.contentSize = CGSizeMake(CGFloat(dateCount) * ez.screenWidth, 0)
+        collectionView!.contentOffset = CGPointMake(CGFloat(dateCount) * ez.screenWidth, 0)
         collectionView!.dataSource = self
         collectionView!.delegate = self
         collectionView!.registerClass(HomeDateTimeLineCell.self, forCellWithReuseIdentifier: "HomeDateTimeLineCell")
@@ -114,8 +114,6 @@ extension HomeTimeLineView: UIScrollViewDelegate {
         
         // 通知绑定日期和时间轴的同步
         NSNotificationCenter.defaultCenter().postNotificationName("ChangeDatePage", object: nil, userInfo: ["currentPage": count])
-        
-
         
     }
     

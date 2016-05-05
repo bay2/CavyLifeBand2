@@ -22,6 +22,9 @@
 		4C2B67E21CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */; };
 		4C2B67EC1CCF49CD00512CC7 /* GuideViewConfigDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
+		4C63CBD81CD9922F00BDD3C2 /* Charts.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C63CBD71CD9922F00BDD3C2 /* Charts.json */; };
+		4C6F14971CD9F454007E923B /* ChartsDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */; };
+		4C6F14991CDB245C007E923B /* ChartsNetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F14981CDB245C007E923B /* ChartsNetRequest.swift */; };
 		4CB7A06E1CD095C400DFB8DC /* BandElectricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */; };
 		4CB7A06F1CD095C400DFB8DC /* BandElectricView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB7A0561CD095C400DFB8DC /* BandElectricView.xib */; };
 		4CB7A0701CD095C400DFB8DC /* BandInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0571CD095C400DFB8DC /* BandInfoView.swift */; };
@@ -57,7 +60,7 @@
 		4CB7A0DA1CD3497F00DFB8DC /* ChartTimeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0CD1CD3497F00DFB8DC /* ChartTimeCollectionCell.swift */; };
 		4CB7A0DB1CD3497F00DFB8DC /* ChartBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0CF1CD3497F00DFB8DC /* ChartBaseViewModel.swift */; };
 		4CB7A0DD1CD3534100DFB8DC /* ChartInfoTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0DC1CD3534100DFB8DC /* ChartInfoTableViewModel.swift */; };
-		4CB7A0DF1CD35BF900DFB8DC /* ChartJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0DE1CD35BF900DFB8DC /* ChartJSON.swift */; };
+		4CB7A0DF1CD35BF900DFB8DC /* ChartsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0DE1CD35BF900DFB8DC /* ChartsJSON.swift */; };
 		4CB7A0E61CD4793F00DFB8DC /* ShowChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0E51CD4793F00DFB8DC /* ShowChartsView.swift */; };
 		4CC499011CA9102800B2EE85 /* ContactsAccoundInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */; };
 		4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */; };
@@ -279,6 +282,9 @@
 		4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineProtocol.swift; sourceTree = "<group>"; };
 		4C2B67EB1CCF49CD00512CC7 /* GuideViewConfigDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewConfigDefine.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
+		4C63CBD71CD9922F00BDD3C2 /* Charts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Charts.json; sourceTree = "<group>"; };
+		4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsDataRealm.swift; sourceTree = "<group>"; };
+		4C6F14981CDB245C007E923B /* ChartsNetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsNetRequest.swift; sourceTree = "<group>"; };
 		4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandElectricView.swift; sourceTree = "<group>"; };
 		4CB7A0561CD095C400DFB8DC /* BandElectricView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BandElectricView.xib; sourceTree = "<group>"; };
 		4CB7A0571CD095C400DFB8DC /* BandInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandInfoView.swift; sourceTree = "<group>"; };
@@ -314,7 +320,7 @@
 		4CB7A0CD1CD3497F00DFB8DC /* ChartTimeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartTimeCollectionCell.swift; sourceTree = "<group>"; };
 		4CB7A0CF1CD3497F00DFB8DC /* ChartBaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartBaseViewModel.swift; sourceTree = "<group>"; };
 		4CB7A0DC1CD3534100DFB8DC /* ChartInfoTableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInfoTableViewModel.swift; sourceTree = "<group>"; };
-		4CB7A0DE1CD35BF900DFB8DC /* ChartJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartJSON.swift; sourceTree = "<group>"; };
+		4CB7A0DE1CD35BF900DFB8DC /* ChartsJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsJSON.swift; sourceTree = "<group>"; };
 		4CB7A0E51CD4793F00DFB8DC /* ShowChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowChartsView.swift; sourceTree = "<group>"; };
 		4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccoundInfoTest.swift; sourceTree = "<group>"; };
 		4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountInfo_Ok.json; sourceTree = "<group>"; };
@@ -668,7 +674,10 @@
 		4CB7A0D01CD3497F00DFB8DC /* WebApi */ = {
 			isa = PBXGroup;
 			children = (
-				4CB7A0DE1CD35BF900DFB8DC /* ChartJSON.swift */,
+				4CB7A0DE1CD35BF900DFB8DC /* ChartsJSON.swift */,
+				4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */,
+				4C6F14981CDB245C007E923B /* ChartsNetRequest.swift */,
+				4C63CBD71CD9922F00BDD3C2 /* Charts.json */,
 			);
 			path = WebApi;
 			sourceTree = "<group>";
@@ -1489,6 +1498,7 @@
 				91D192941C7DB8DE00482019 /* Assets.xcassets in Resources */,
 				91EB796F1CAE075C00ED3E67 /* UploadPicture_Ok.json in Resources */,
 				91EB796E1CAE075C00ED3E67 /* Sign_Up_Ok.json in Resources */,
+				4C63CBD81CD9922F00BDD3C2 /* Charts.json in Resources */,
 				68C558D51CB754090031719D /* IntelligentClockCell.xib in Resources */,
 				91EB796D1CAE075C00ED3E67 /* Sign_In_Ok.json in Resources */,
 				917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */,
@@ -1703,6 +1713,7 @@
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91E1B4E81CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift in Sources */,
 				91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */,
+				4C6F14971CD9F454007E923B /* ChartsDataRealm.swift in Sources */,
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
 				4CB7A0E61CD4793F00DFB8DC /* ShowChartsView.swift in Sources */,
 				4CB7A0831CD095C400DFB8DC /* HomeWeatherView.swift in Sources */,
@@ -1757,6 +1768,7 @@
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
 				91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */,
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
+				4C6F14991CDB245C007E923B /* ChartsNetRequest.swift in Sources */,
 				4C0BF9FC1CBCE4CE00DB06FC /* HomeStepViewModel.swift in Sources */,
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
@@ -1814,7 +1826,7 @@
 				9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */,
 				4C0BFA021CBCE62E00DB06FC /* HomeRingViewProtocol.swift in Sources */,
 				98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */,
-				4CB7A0DF1CD35BF900DFB8DC /* ChartJSON.swift in Sources */,
+				4CB7A0DF1CD35BF900DFB8DC /* ChartsJSON.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
 				4CB7A0D61CD3497F00DFB8DC /* ChartLengthNote.swift in Sources */,
 				4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */,

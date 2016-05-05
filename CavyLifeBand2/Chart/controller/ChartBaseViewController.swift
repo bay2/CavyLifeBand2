@@ -8,22 +8,17 @@
 
 import UIKit
 import EZSwiftExtensions
+import JSONJoy
 
 
-let shouldHideData: Bool = true
-let mounths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
 let weeks = ["Mon", "Tues", "Wed", "Thur", "Fri", "Sat", "Sun"]
-let day = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-
-
 let dayData: [Double] = [3, 6, 8, 12, 5, 10, 7]
-let mounthData: [Double] = [3, 6, 8, 2, 5, 6, 7]
-let yearData: [Double] = [3, 6, 8, 2, 5, 6, 7]
 
 
 class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{
     
     var viewStyle: ChartViewStyle = .StepChart
+    var stepData: ChartsForStep?
     
     /// 日 周 年 索引
     var upperButtonArray: [ChartTimeButton] = [ChartTimeButton(selectIndex: 0), ChartTimeButton(selectIndex: 1), ChartTimeButton(selectIndex: 2)]
@@ -54,6 +49,8 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{
         
         super.viewDidLoad()
 
+        parserData()
+        
         allViewLayout()
         
         parserData()
@@ -68,6 +65,35 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{
         self.updateNavUI()
         
     }
+    
+    /**
+     解析数据 加到数据库
+     */
+    func parserData() {
+        
+        let path = NSBundle.mainBundle().pathForResource("Charts", ofType: "json")
+        let data = NSData(contentsOfFile: path!)
+        
+        do {
+            
+            stepData = try ChartsForStep(JSONDecoder(data!))
+            
+        } catch {
+            
+            print("unable to parse the JSON")
+            
+        }
+        
+        // 添加到数据库
+        
+        
+        
+        
+        
+        
+        
+    }
+    
     
     /**
      所有视图的布局
@@ -101,30 +127,12 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{
         for i in 0 ..< 3 {
             let detailView = ChartBaseView(frame: CGRectMake(ez.screenWidth  * CGFloat(i), 0, ez.screenWidth, ez.screenHeight - navHeight - timeButtonHeight))
             detailView.viewStyle = self.viewStyle
+            detailView.setData(stepData!.datas![i].stepCharts!)
             scrollView.addSubview(detailView)
         }
         
     }
-    
-    /**
-     解析数据 加到数据库
-     */
-    func parserData() {
-        
-        
 
-        
-        
-//        
-//        let arrayDay = ["4.18","4.19","4.20","4.21","4.22","4.23","4.24","4.25","4.26","4.27","4.28","4.29"]
-//        let arrayWeak = ["3.15-21","3.22-29","4.1-7","4.8-14","4.15-21","4.22-29"]
-//        let arrayMonths = ["11","12","1","2","3","4"]
-//        
-//        
-        
-        
-    }
-    
     
     /**
      更改 年月日按钮状态
