@@ -195,6 +195,8 @@
 "AlarmClock.AlarmCircle.Description" = "闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。";
 "AlarmClock.DeleteBtn.Title" = "删除";
 "AlarmClock.AlarmCircle.AlertTitle" = "请选择闹钟周期";
+"AlarmClock.EmptyView.Title" = "未设置闹钟";
+"AlarmClock.EmptyView.Info" = "手环震动唤醒，远离传统闹铃噪声";
 
 //设置
 "Setting.Safety.Title" = "安全";
@@ -203,6 +205,7 @@
 "Setting.SafetyTableCell.GPSTitle" = "GPS定位";
 "Setting.SafetyTableFooter.Title" = "紧急报警";
 "Setting.SafetyTableFooter.Info" = "紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。";
+"Setting.SafetyTableEmergencyContact.CancelBtn" = "取消";
 "Setting.ReminderPhoneCall.Title" = "来电提醒";
 "Setting.ReminderPhoneCall.Description" = "秒未接提醒";
 "Setting.ReminderMessage.Title" = "短信提醒";
@@ -211,6 +214,43 @@
 "Setting.ReminderReconnect.Type" = "3";
 "Setting.ReminderMessage.Type" = "2";
 "Setting.ReminderPhone.Type" = "1";
+
+//PK
+"PK.RulesView.HowPKTitle" = "怎么PK？";
+"PK.RulesView.HowPKInfo" = "PK是与好友比拼步数，只需点击“+”选择比赛时长即开始PK";
+"PK.RulesView.HowWinTitle" = "怎么取胜？";
+"PK.RulesView.HowWinInfo" = "比赛规定时间内，比对手行走更多步数即可取胜";
+"PK.RulesView.HowSeeTitle" = "别人是否能看到我的步数？";
+"PK.RulesView.HowSeeInfo" = "在创建对决时选择公开PK时况，则所有好友能看到你的PK时况，选择关闭表示仅对决双方可见";
+"PK.IntroduceVC.InfoTitle" = "让我们比一比吧";
+"PK.IntroduceVC.SelectInfo" = "选择好友、选定时长";
+"PK.PK.Title" = "PK";
+"PK.InvitationVC.Title" = "对决邀请";
+"PK.InvitationVC.SelectFriend" = "选择对手";
+"PK.InvitationVC.SelectTime" = "选择时长";
+"PK.InvitationVC.TimeUnit" = "天";
+"PK.InvitationVC.PKState" = "PK时况";
+"PK.InvitationVC.PKOtherSeeAble" = "所有好友可见";
+"PK.InvitationVC.PKOtherSeeUnable" = "对决双方可见";
+"PK.ChallengeView.PKTimeTitle" = "PK时长";
+"PK.ChallengeView.PKRules" = "如不接受，三天后失效";
+"PK.InfoOrResultView.PKEndTimeTitle" = "PK时长";
+"PK.InfoOrResultView.PKNotEndTimeTitle" = "余剩时间";
+"PK.InfoOrResultView.DayUnit" = "天";
+"PK.InfoOrResultView.HourUnit" = "小时";
+"PK.InfoOrResultView.MinUnit" = "分钟";
+"PK.CustomView.UserName" = "我";
+"PK.CustomView.WinState" = "胜利了";
+"PK.RecordsCell.DurationDescription" = "天步数对决";
+"PK.RecordsCell.YouWin" = "你赢了";
+"PK.RecordsCell.Win" = "赢了";
+"PK.RecordsCell.PKAgainBtnTitle" = "再战";
+"PK.RecordsCell.AcceptBtnTitle" = "接受";
+"PK.RecordsCell.UndoBtnTitle" = "撤销";
+"PK.RecordsCell.DeleteBtnTitle" = "删除";
+"PK.RecordsVC.WaitSectionTitle" = "待回应";
+"PK.RecordsVC.DueSectionTitle" = "进行中";
+"PK.RecordsVC.FinishSectionTitle" = "已完成";
 
 // 天气
 "Home.Weather.Sun" = "晴";

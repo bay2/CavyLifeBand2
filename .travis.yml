@@ -1,7 +1,4 @@
 language: objective-c
-cache:
-  - bundler
-  - cocoapods
 osx_image: xcode7.3
 before_install:
 - brew update
@@ -17,7 +14,6 @@ script:
 - ./scripts/add-key.sh
 - . $bulidTask
 after_success:
-- bash <(curl -s https://codecov.io/bash)>
 - ./scripts/sign-and-upload.sh
 after_script:
 - ./scripts/remove-key.sh

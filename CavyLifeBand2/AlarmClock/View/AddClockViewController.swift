@@ -17,10 +17,6 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    @IBOutlet weak var awakeTitleLabel: UILabel!
-    
-    @IBOutlet weak var awakeDescriptionLabel: UILabel!
-    
     @IBOutlet weak var alarmCircleTitleLabel: UILabel!
     
     @IBOutlet weak var alarmCircleSubTitleLabel: UILabel!
@@ -28,10 +24,6 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
     @IBOutlet weak var alarmCircleDescriptionLabel: UILabel!
     
     @IBOutlet weak var separatorViewSeconde: UIView!
-    
-    @IBOutlet weak var separatorViewFisrt: UIView!
-    
-    @IBOutlet weak var awakeSwitch: UISwitch!
     
     @IBOutlet weak var LCDeleteBtnHeight: NSLayoutConstraint!
     
@@ -76,7 +68,7 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
 //                                                                 style: .Plain,
 //                                                                 target: self,
 //                                                                 action: #selector(rightBarBtnAciton(_:)))
-//        
+//
         collectionView.registerNib(UINib(nibName: AddClockCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: AddClockCollectionViewCell)
         
         updateNavUI()
@@ -113,17 +105,7 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
      视图的基本样式设置
      */
     func baseSetView() -> Void {
-        separatorViewFisrt.backgroundColor = UIColor(named: .SettingSeparatorColor)
-        
         separatorViewSeconde.backgroundColor = UIColor(named: .SettingSeparatorColor)
-        
-        awakeTitleLabel.text = L10n.AlarmClockAwakeTitle.string
-        
-        awakeTitleLabel.textColor = UIColor(named: .AlarmClockSettingTitleColor)
-        
-        awakeDescriptionLabel.text = L10n.AlarmClockAwakeDescription.string
-        
-        awakeDescriptionLabel.textColor = UIColor(named: .AlarmClockSettingDescriptionColor)
         
         alarmCircleTitleLabel.text = L10n.AlarmClockAlarmCircleTitle.string
         
@@ -153,9 +135,7 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
         datePicker.addTarget(self, action: #selector(AddClockViewController.datePickerValueChange(_:)), forControlEvents: UIControlEvents.ValueChanged)
         
         datePicker.date = (dataSource?.getAlarmTimeDate())!
-        
-        awakeSwitch.on = (dataSource?.alarmModel.isOpenAwake)!
-        
+                
         deleteBtn.setTitle(L10n.AlarmClockDeleteBtnTitle.string, forState: .Normal)
         
         if addNewClock {
@@ -180,11 +160,6 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
         updateAlarmBlock!(model: dataSource!.alarmModel, isUpdate: addNewClock)
 
         self.popVC()
-    }
-    
-    //action of switch
-    @IBAction func changeAwakeSwitch(sender: UISwitch) {
-        dataSource?.alarmModel.isOpenAwake = sender.on
     }
     
 }
