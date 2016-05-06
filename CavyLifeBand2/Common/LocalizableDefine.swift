@@ -453,6 +453,26 @@ enum L10n {
   case HomeWeatherSnowMiddle
   /// 大雪
   case HomeWeatherSnowHeavy
+  /// 关于豚鼠
+  case RelateAboutNavTitle
+  /// 当前版本
+  case RelateAboutCurrentVersion
+  /// 功能介绍
+  case RelateAboutFunctionIntroduce
+  /// 进入官网
+  case RelateAboutGoOfficialWebsite
+  /// 豚鼠科技 版权所有
+  case RelateAboutCopyright
+  /// 使用条款和隐私政策
+  case RelateAboutUseAndPrivate
+  /// 帮助与反馈
+  case RelateHelpAndFeedbackNavTitle
+  /// 发送
+  case RelateHelpAndFeedbackSendBtnTitle
+  /// 相关App
+  case RelateRelateAppNavTitle
+  /// 下载
+  case RelateRelateAppCellDownloadBtnTitle
 }
 
 extension L10n: CustomStringConvertible {
@@ -910,6 +930,26 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.Weather.Snow.Middle")
       case .HomeWeatherSnowHeavy:
         return L10n.tr("Home.Weather.Snow.Heavy")
+      case .RelateAboutNavTitle:
+        return L10n.tr("Relate.About.NavTitle")
+      case .RelateAboutCurrentVersion:
+        return L10n.tr("Relate.About.CurrentVersion")
+      case .RelateAboutFunctionIntroduce:
+        return L10n.tr("Relate.About.FunctionIntroduce")
+      case .RelateAboutGoOfficialWebsite:
+        return L10n.tr("Relate.About.GoOfficialWebsite")
+      case .RelateAboutCopyright:
+        return L10n.tr("Relate.About.Copyright")
+      case .RelateAboutUseAndPrivate:
+        return L10n.tr("Relate.About.UseAndPrivate")
+      case .RelateHelpAndFeedbackNavTitle:
+        return L10n.tr("Relate.HelpAndFeedback.NavTitle")
+      case .RelateHelpAndFeedbackSendBtnTitle:
+        return L10n.tr("Relate.HelpAndFeedback.SendBtnTitle")
+      case .RelateRelateAppNavTitle:
+        return L10n.tr("Relate.RelateApp.NavTitle")
+      case .RelateRelateAppCellDownloadBtnTitle:
+        return L10n.tr("Relate.RelateAppCell.DownloadBtnTitle")
     }
   }
 

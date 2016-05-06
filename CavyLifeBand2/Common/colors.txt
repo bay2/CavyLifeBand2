@@ -89,3 +89,14 @@ PKRecordsCellAcceptBtnBGColor : #0dcf7f
 PKRecordsCellUndoBtnBGColor : #dbdbdb
 PKRecordsCellPKAgainBtnBGColor : #ff9138
 PKRecordsCellDeleteBtnBGColor : #dbdbdb
+
+RelateAboutCellTitleColor : #585858
+RelateAboutCellInfoColor : #333333
+RelateAboutUseAndPrivateColor : #2b7e5c
+RelateAboutCopyrightColor : #91e4c2
+RalateHelpFeedbackCellTitleColor : #585858
+RalateHelpFeedbackTextViewPlaceHolderColor : #b8b8b8
+RalateAppCellTitleColor : #585858
+RalateAppCellInfoColor : #b8b8b8
+RalateAppCellSizeColor : #8d8d8d
+RalateAppCellDeleteBtnBGColor : #0dcf7f
