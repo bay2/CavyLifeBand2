@@ -251,7 +251,14 @@ protocol PKWebTranslateToRealmProtocol {
 }
 
 extension PKWebTranslateToRealmProtocol {
-    //把接口返回的待回应记录JSONModel转为Realm格式
+    
+    /**
+     把接口返回的待回应记录JSONModel转为Realm格式
+     
+     - parameter model: <#model description#>
+     
+     - returns: <#return value description#>
+     */
     func translateWaitModelToRealm(model: PKWaitRecord) -> PKWaitRealmModel {
         
         let realm = PKWaitRealmModel()

@@ -14,10 +14,7 @@ class EmergencyContactRealmModel: Object {
     dynamic var phoneNumber = ""
     dynamic var userId = ""
     
-    var owners: [EmergencyContactRealmListModel] {
-        
-        return linkingObjects(EmergencyContactRealmListModel.self, forProperty: "emergencyContactRealmList")
-    }
+    let owners = LinkingObjects(fromType: EmergencyContactRealmListModel.self, property: "emergencyContactRealmList")
 
 }
 

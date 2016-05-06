@@ -15,10 +15,7 @@ class SettingRealmModel: Object {
     dynamic var isOpenSetting = true
     dynamic var settingInfo = 0
     
-    var owners: [SettingRealmListModel] {
-        
-        return linkingObjects(SettingRealmListModel.self, forProperty: "settingRealmList")
-    }
+    let owners = LinkingObjects(fromType: SettingRealmListModel.self, property: "settingRealmList")
     
 }
 
