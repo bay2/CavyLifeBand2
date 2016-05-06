@@ -270,9 +270,10 @@
 "Relate.About.CurrentVersion" = "当前版本";
 "Relate.About.FunctionIntroduce" = "功能介绍";
 "Relate.About.GoOfficialWebsite" = "进入官网";
-"Relate.About.Copyright" = "豚鼠科技 版权所有";
+"Relate.About.Copyright" = "豚鼠科技 版权所有\nCopyright © 2014-2016 CavyTech\nAll Right Reserved";
 "Relate.About.UseAndPrivate" = "使用条款和隐私政策";
 "Relate.HelpAndFeedback.NavTitle" = "帮助与反馈";
 "Relate.HelpAndFeedback.SendBtnTitle" = "发送";
+"Relate.HelpAndFeedback.TextViewPlaceHolder" = "请描述你的问题或意见";
 "Relate.RelateApp.NavTitle" = "相关App";
 "Relate.RelateAppCell.DownloadBtnTitle" = "下载";

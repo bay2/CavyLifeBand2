@@ -8,12 +8,24 @@
 
 import UIKit
 
-class HelpAndFeedbackVC: UIViewController {
-
+class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
+    
+    @IBOutlet weak var sendBtn: UIButton!
+    
+    @IBOutlet weak var textView: UITextView!
+    
+    var navTitle: String { return L10n.RelateHelpAndFeedbackNavTitle.string }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        baseUISetting()
+        
+        updateNavUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +33,27 @@ class HelpAndFeedbackVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func baseUISetting() {
+        
+        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        textView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        
+        textView.font = UIFont.systemFontOfSize(14.0)
+        
+        
+        
+        sendBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
+        
+        sendBtn.setTitle(L10n.RelateHelpAndFeedbackSendBtnTitle.string, forState: .Normal)
+        
+        sendBtn.backgroundColor = UIColor(named: .RalateHelpFeedbackSendBtnBGColor)
+        
+        sendBtn.setTitleColor(UIColor(named: .RalateHelpFeedbackSendBtnTitleColor), forState: .Normal)
     }
-    */
+  
+    @IBAction func sendAction(sender: UIButton) {
+        Log.info("发送帮助与反馈")
+    }
 
 }

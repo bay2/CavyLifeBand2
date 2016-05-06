@@ -243,6 +243,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#0dcf7f"></span>
     /// Alpha: 100% <br/> (0x0dcf7fff)
     case RalateAppCellDeleteBtnBGColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+    /// Alpha: 100% <br/> (0xffffffff)
+    case RalateAppCellDeleteBtnTitleColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#b8b8b8"></span>
     /// Alpha: 100% <br/> (0xb8b8b8ff)
     case RalateAppCellInfoColor
@@ -255,6 +258,12 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#585858"></span>
     /// Alpha: 100% <br/> (0x585858ff)
     case RalateHelpFeedbackCellTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffd954"></span>
+    /// Alpha: 100% <br/> (0xffd954ff)
+    case RalateHelpFeedbackSendBtnBGColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#b46e00"></span>
+    /// Alpha: 100% <br/> (0xb46e00ff)
+    case RalateHelpFeedbackSendBtnTitleColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#b8b8b8"></span>
     /// Alpha: 100% <br/> (0xb8b8b8ff)
     case RalateHelpFeedbackTextViewPlaceHolderColor
@@ -388,10 +397,13 @@ extension UIColor {
       case .PKTimePickerSeparatorColor: return 0xe5e5e5ff
       case .PageIndicatorTintColor: return 0x00000033
       case .RalateAppCellDeleteBtnBGColor: return 0x0dcf7fff
+      case .RalateAppCellDeleteBtnTitleColor: return 0xffffffff
       case .RalateAppCellInfoColor: return 0xb8b8b8ff
       case .RalateAppCellSizeColor: return 0x8d8d8dff
       case .RalateAppCellTitleColor: return 0x585858ff
       case .RalateHelpFeedbackCellTitleColor: return 0x585858ff
+      case .RalateHelpFeedbackSendBtnBGColor: return 0xffd954ff
+      case .RalateHelpFeedbackSendBtnTitleColor: return 0xb46e00ff
       case .RalateHelpFeedbackTextViewPlaceHolderColor: return 0xb8b8b8ff
       case .RelateAboutCellInfoColor: return 0x333333ff
       case .RelateAboutCellTitleColor: return 0x585858ff

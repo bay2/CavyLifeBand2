@@ -461,7 +461,7 @@ enum L10n {
   case RelateAboutFunctionIntroduce
   /// 进入官网
   case RelateAboutGoOfficialWebsite
-  /// 豚鼠科技 版权所有
+  /// 豚鼠科技 版权所有\nCopyright © 2014-2016 CavyTech\nAll Right Reserved
   case RelateAboutCopyright
   /// 使用条款和隐私政策
   case RelateAboutUseAndPrivate
@@ -469,6 +469,8 @@ enum L10n {
   case RelateHelpAndFeedbackNavTitle
   /// 发送
   case RelateHelpAndFeedbackSendBtnTitle
+  /// 请描述你的问题或意见
+  case RelateHelpAndFeedbackTextViewPlaceHolder
   /// 相关App
   case RelateRelateAppNavTitle
   /// 下载
@@ -946,6 +948,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Relate.HelpAndFeedback.NavTitle")
       case .RelateHelpAndFeedbackSendBtnTitle:
         return L10n.tr("Relate.HelpAndFeedback.SendBtnTitle")
+      case .RelateHelpAndFeedbackTextViewPlaceHolder:
+        return L10n.tr("Relate.HelpAndFeedback.TextViewPlaceHolder")
       case .RelateRelateAppNavTitle:
         return L10n.tr("Relate.RelateApp.NavTitle")
       case .RelateRelateAppCellDownloadBtnTitle:

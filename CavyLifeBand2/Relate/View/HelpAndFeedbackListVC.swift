@@ -8,12 +8,61 @@
 
 import UIKit
 
-class HelpAndFeedbackListVC: UIViewController {
+class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
 
+    @IBOutlet weak var tableView: UITableView!
+    
+    var navTitle: String { return L10n.RelateHelpAndFeedbackNavTitle.string }
+    
+    lazy var rightBtn: UIButton? =  {
+        
+        let button = UIButton(type: .System)
+        
+        button.frame = CGRectMake(0, 0, 70, 30)
+        button.setTitle(L10n.RelateHelpAndFeedbackNavTitle.string, forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(14.0)
+        
+        return button
+        
+    }()
+    
+    let HelpAndFeedbackCellID = "AboutCell"
+    
+    var tableDataSource: [AboutCellDataSource] = [AboutCellDataSource]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        updateNavUI()
+        
+        tableDataSource = [AboutCellModel(title: "手环连接失败？"),
+                           AboutCellModel(title: "按了手环按钮没有亮灯？"),
+                           AboutCellModel(title: "安全功能如何使用？"),
+                           AboutCellModel(title: "手环不能记录睡眠？"),
+                           AboutCellModel(title: "手环不能记录计步？")]
+        
+        tableView.separatorStyle = .None
+        
+        tableView.tableFooterView = UIView()
+        
+        tableView.delegate = self
+        
+        tableView.dataSource = self
+        
+        tableView.tableFooterView = UIView()
+        
+        tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        
+        tableView.backgroundColor = UIColor.clearColor()
+        
+        tableView.registerNib(UINib.init(nibName: HelpAndFeedbackCellID, bundle: nil), forCellReuseIdentifier: HelpAndFeedbackCellID)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,15 +70,74 @@ class HelpAndFeedbackListVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func onRightBtn() {
+        
+        let targetVC = StoryboardScene.Relate.instantiateHelpAndFeedbackVC()
+        
+        self.pushVC(targetVC)
+        
     }
-    */
 
+}
+
+// MARK: - UITableViewDelegate
+extension HelpAndFeedbackListVC: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let viewFrame = CGRect(x: 0, y: 0, w: tableView.frame.width, h: 10)
+        
+        let tableFooterView = AboutSectionEmptyView(frame: viewFrame, cornerType: .Bottom)
+        
+        return tableFooterView
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let viewFrame = CGRect(x: 0, y: 0, w: tableView.frame.width, h: 10)
+        
+        let tableHeaderView = AboutSectionEmptyView(frame: viewFrame, cornerType: .Top)
+        
+        return tableHeaderView
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+
+    }
+    
+}
+
+// MARK: - UITableViewDelegate
+extension HelpAndFeedbackListVC: UITableViewDataSource {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableDataSource.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(HelpAndFeedbackCellID, forIndexPath: indexPath) as? AboutCell
+        
+        cell?.configure(tableDataSource[indexPath.row])
+        
+        return cell!
+        
+    }
+    
 }
