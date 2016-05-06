@@ -15,19 +15,11 @@ import Log
 class ChartStepDataRealm: Object {
     
     dynamic var userId = ""
-    dynamic var timeBucket = ""
     dynamic var time: NSDate? = nil
     dynamic var step = 0
     dynamic var kilometer = 0
-    let charts = List<ChartsList>()
 
 }
-
-class ChartsList: Object {
-    dynamic var chartName = ""
-    dynamic var chartNumber: Float = 0
-}
-
 
 protocol ChartsRealmProtocol {
     
@@ -78,17 +70,13 @@ extension ChartsRealmProtocol {
      
      - returns:              数据数组
      */
-    func queryStepNumber(userId: String, timeBucket: String) -> [ChartStepDataRealm]? {
+    func queryStepNumber(userId: String, beginTime: NSDate, endTime: NSDate) -> [ChartStepDataRealm]? {
         
         if realm.objects(ChartStepDataRealm).count == 0 {
             return nil
         }
         
-        
-         /// 区分 日 周 月 ？
-        
-        
-        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND timebucket == '\(timeBucket)' ")
+        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > '\(beginTime)' AND time < '\(endTime)' ")
         
         if dataInfo.count == 0 {
             return nil

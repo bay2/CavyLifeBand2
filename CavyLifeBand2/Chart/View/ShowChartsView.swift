@@ -9,13 +9,13 @@
 import UIKit
 import Charts
 
-let leftMaxValue = 10
-let leftLabelCCount = leftMaxValue / 2
+let leftMaxValue = 1
+let leftLabelCCount = 1
 let legendLable = "Step"
 let legendColors = [UIColor(named: .ChartStepPillarColor)]
 let leftUnit = " k"
-let spaceBetweenLabel = 1
-let dataCount = 7
+let spaceBetweenLabel = dayTime.count / 3
+let dataCount = dayTime.count
 
 class ShowChartsView: BarChartView, ChartViewDelegate {
     
@@ -55,7 +55,6 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         self.rightAxis.enabled = false
         self.delegate = self
         self.maxVisibleValueCount = leftMaxValue
-        
     }
 
     /**
@@ -64,7 +63,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     func addxAxis(){
         
         let xAxis = self.xAxis
-        
+        xAxis.labelHeight = 8
         xAxis.labelPosition = .Bottom
         xAxis.labelFont = UIFont.systemFontOfSize(10)
         xAxis.gridColor = UIColor(named: .ChartGirdColor)
@@ -88,7 +87,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         leftAxis.valueFormatter!.positiveSuffix = leftUnit
         leftAxis.labelPosition = .OutsideChart
         leftAxis.labelTextColor = UIColor(named: .ChartGirdColor)
-        leftAxis.spaceTop = 0.15
+        leftAxis.spaceTop = 0.1
         leftAxis.spaceBottom = 0.15
         leftAxis.axisMinValue = 0
     }
@@ -117,7 +116,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
         for i in 0 ..< count {
-            xVals.append(weeks[i])
+            xVals.append(dayTime[i])
         }
         for i in 0 ..< count {
             

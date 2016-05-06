@@ -10,36 +10,6 @@ import UIKit
 import JSONJoy
 
 
-//  NET REQUEST ??
-//struct chartStepModel: JSONJoy {
-//    
-//     var timeBucket = ""
-//     var time = ""
-//     var chartName = ""
-//     var chartNumber: Float = 0
-//     var step = 0
-//     var kilometer = 0
-//    
-//    init(_ decoder: JSONDecoder) throws {
-//        
-//        do { timeBucket = try decoder["timeBucket"].getString() } catch { timeBucket = "" }
-//        do { time = try decoder["time"].getString() } catch { time = "" }
-//        do { chartName = try decoder["chartName"].getString() } catch { chartName = "" }
-//        do { chartNumber = try decoder["chartNumber"].getFloat() } catch { chartNumber = 0 }
-//        do { step = try decoder["step"].getInt() } catch { step = 0 }
-//        do { kilometer = try decoder["kilometer"].getInt() } catch { kilometer = 0 }
-//    }
-//}
-
-
-
-
-
-
-// --------------JSON----------------
-
-
-
 struct ChartsForStep: JSONJoy {
     
     

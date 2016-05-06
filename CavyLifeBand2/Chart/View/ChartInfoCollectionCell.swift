@@ -13,11 +13,10 @@ import EZSwiftExtensions
 class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
 
     var viewStyle: ChartViewStyle = .StepChart
+    var timeBucket = ""
     
     var data: StepCharts?
-    
-    /// 柱状图
-    var chartView = ShowChartsView()
+
     ///  列表展示信息
     var listView: UITableView?
     
@@ -35,21 +34,35 @@ class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITabl
     }
     
     /**
-     添加柱状图
+     添加ChartsView
      */
     func addChartViewLayout() {
         
         self.backgroundColor = UIColor(named: .ChartBackground)
+
         
-        self.addSubview(chartView)
-        chartView.snp_makeConstraints { make in
+        if viewStyle == .SleepChart && timeBucket == "day" {
+            let view = ShowPieChartsView()
+            chartViewLayout(view)
+            return
+        }
+        
+        let view = ShowPieChartsView()
+        chartViewLayout(view)
+
+        
+    }
+    
+    /**
+     ChartsView Layout
+     */
+    func chartViewLayout(view: UIView) {
+        self.addSubview(view)
+        view.snp_makeConstraints { make in
             make.top.equalTo(self)
             make.centerX.equalTo(self)
             make.size.equalTo(CGSize(width: infoViewWidth, height: chartViewHight))
         }
-        
-//        chartView.dataArray = self.data!.charts!
-        
     }
     
     /**
