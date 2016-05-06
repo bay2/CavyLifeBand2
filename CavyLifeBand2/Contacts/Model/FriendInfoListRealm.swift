@@ -16,6 +16,7 @@ class FriendInfoRealm: Object {
     dynamic var nikeName = ""
     dynamic var headImage = ""
     dynamic var isFollow = false
+    dynamic var fullName = ""
     
 //    override static func primaryKey() -> String? {
 //        return "userId"

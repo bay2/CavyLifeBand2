@@ -195,7 +195,7 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
                         
                         let firendId = firendInfo.userId ?? ""
                         let nickName = firendInfo.nickName ?? ""
-                        let name = self.phoneNumInfos[firendInfo.phoneNum ?? ""] ?? ""
+                        let name = self.phoneNumInfos[firendInfo.phoneNum] ?? ""
                         let headImageUrl = firendInfo.avatarUrl ?? ""
                         
                         self.items.append(ContactsAddressBookViewModel(viewController: self.viewController!, firendId: firendId, name: nickName, introudce: name, headImageUrl: headImageUrl))

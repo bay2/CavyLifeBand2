@@ -42,8 +42,6 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         
         super.viewDidLoad()
         
-        
-        
         self.automaticallyAdjustsScrollViewInsets = false
         
         self.navigationItem.title = L10n.SettingSafetyTitle.string
@@ -243,6 +241,7 @@ extension SafetySettingViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
         let tableFooterView = SafetySettingTableFooterView(frame: CGRect(x: 0, y: 0, w: self.tableView.size.width, h: tableSectionFooterHeight))
         
         return tableFooterView

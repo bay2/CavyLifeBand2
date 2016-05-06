@@ -39,6 +39,7 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
      tableView 信息
      */
     func addTableView() {
+        
         // 注册
         tableView.backgroundColor = UIColor.whiteColor()
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
@@ -46,6 +47,7 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.snp_makeConstraints { make -> Void in
             make.height.equalTo(326)
         }
+        
         // 隐藏分隔线
         tableView.separatorStyle = .None
         tableView.registerNib(UINib(nibName: "ContactsPersonInfoCell", bundle: nil), forCellReuseIdentifier: "ContactsPersonInfoCell")

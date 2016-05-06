@@ -25,14 +25,17 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
     var notificationToken: NotificationToken?
 
     @IBOutlet weak var searchCtrlView: UITableView!
+    
     // 搜索控件
     var searchCtrl  = ContactsSearchController(searchResultsController: StoryboardScene.Contacts.instantiateSearchResultView())
     
     // 搜索页面视图
     var dataSource: [ContactsFriendListDataSource] = [ContactsFriendListDataSource]()
+    
     var dataGroup: ContactsSortAndGroup?
     
     var realm: Realm = try! Realm()
+    
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     var navTitle: String = L10n.ContactsTitle.string
@@ -80,7 +83,6 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
                 Log.error("\(#function) result error (\(error))")
                 
             }
-            
         }
     }
     
@@ -89,8 +91,8 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
      */
     func parserFriendListData(result: ContactsFriendListMsg) {
         
-        guard result.commonMsg?.code == WebApiCode.Success.rawValue else {
-            Log.error("Query friend list error \(result.commonMsg?.code)")
+        guard result.commonMsg.code == WebApiCode.Success.rawValue else {
+            Log.error("Query friend list error \(result.commonMsg.code)")
             return
         }
         
@@ -98,14 +100,15 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
         
         friendList.userId = userId
         
-        for friendInfo in result.friendInfos! {
+        for friendInfo in result.friendInfos {
             
             let friendInfoRealm = FriendInfoRealm()
             
-            friendInfoRealm.headImage = friendInfo.avatarUrl!
-            friendInfoRealm.friendId = friendInfo.userId!
-            friendInfoRealm.nikeName = friendInfo.nickName!
-            friendInfoRealm.isFollow = friendInfo.isFoolow!
+            friendInfoRealm.headImage = friendInfo.avatarUrl
+            friendInfoRealm.friendId = friendInfo.userId
+            friendInfoRealm.nikeName = friendInfo.nickName
+            friendInfoRealm.isFollow = friendInfo.isFoolow
+            friendInfoRealm.fullName = friendInfo.nickName.chineseToSpell() + friendInfo.nickName
             
             friendList.friendListInfo.append(friendInfoRealm)
             
@@ -243,17 +246,6 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
         }
         
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

@@ -148,3 +148,36 @@ struct ContactsCavyModelView: ContactsFriendListDataSource {
     }
     
 }
+
+struct ContactsTableListModelView: ContactsAddFriendDataSync, ContactsTableViewSectionDataSource {
+    
+    //TODO: 好友分组列表未实现
+    typealias ItemType = ContactsFriendListDataSource
+    
+    var items: [ItemType]
+    
+    var rowCount: Int {
+        return items.count
+    }
+    
+    func createCell(tableView: UITableView, index: NSIndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: index) as? ContactsAddFriendCell else {
+            fatalError()
+        }
+        
+        return cell
+        
+    }
+    
+    func loadData() {
+        
+        
+    }
+    
+    func createSectionView() -> UIView? {
+        return NSBundle().loadNibNamed("ContactsLetterView", owner: nil, options: nil).first as? ContactsLetterView
+    }
+    
+    
+}

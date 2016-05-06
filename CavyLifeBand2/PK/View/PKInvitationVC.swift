@@ -63,6 +63,7 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     @IBAction func addAction(sender: UIButton) {
         
         //TODO: 选择对手 未完成(push 的 VC 需要抛出一个block给我 数据为选择的人的userId，avatarUrl，nickname)
+        self.pushVC(StoryboardScene.PK.instantiatePKSelectOppTVC())
         
 //        dataSource?.setPKWaitCompetitorInfo(<#T##userId: String##String#>, nickName: <#T##String#>, avatarUrl: <#T##String#>)
         
