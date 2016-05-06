@@ -65,7 +65,13 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     @IBAction func addAction(sender: UIButton) {
         
         //TODO: 选择对手 未完成(push 的 VC 需要抛出一个block给我 数据为选择的人的userId，avatarUrl，nickname)
-        self.pushVC(StoryboardScene.PK.instantiatePKSelectOppTVC())
+        
+        let pkSelectVC = StoryboardScene.PK.instantiatePKSelectOppTVC()
+        
+        pkSelectVC.delegate = self
+        
+        self.pushVC(pkSelectVC)
+        
         
 //        dataSource?.setPKWaitCompetitorInfo(<#T##userId: String##String#>, nickName: <#T##String#>, avatarUrl: <#T##String#>)
         
@@ -181,6 +187,14 @@ extension PKInvitationVC: AKPickerViewDelegate {
     
     func pickerView(pickerView: AKPickerView, didSelectItem item: Int) {
         dataSource?.selectIndex = item
+    }
+    
+}
+
+extension PKInvitationVC: PKSelectOppTVCDelegate {
+    
+    func selectPKOpp(userId: String, nikeName: String, avatarUrl: String) {
+        dataSource?.setPKWaitCompetitorInfo(userId, nickName: nikeName, avatarUrl: avatarUrl)
     }
     
 }

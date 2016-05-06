@@ -151,32 +151,44 @@ struct ContactsCavyModelView: ContactsFriendListDataSource {
 
 struct ContactsTableListModelView: ContactsAddFriendDataSync, ContactsTableViewSectionDataSource {
     
-    //TODO: 好友分组列表未实现
-    typealias ItemType = ContactsFriendListDataSource
+    typealias ItemType = ContactsFriendCellModelView
     
     var items: [ItemType]
+    var sectionTitle: String
     
     var rowCount: Int {
         return items.count
     }
     
+    init(items: [ItemType], sectionTitle: String) {
+        
+        self.items = items
+        self.sectionTitle = sectionTitle
+        
+    }
+    
+    func loadData() { Log.warning("不做任何处理") }
+    
     func createCell(tableView: UITableView, index: NSIndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: index) as? ContactsAddFriendCell else {
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("ContactsFriendListCell", forIndexPath: index) as? ContactsFriendListCell else {
             fatalError()
         }
+        
+        cell.configure(items[index.row])
         
         return cell
         
     }
     
-    func loadData() {
-        
-        
-    }
-    
     func createSectionView() -> UIView? {
-        return NSBundle().loadNibNamed("ContactsLetterView", owner: nil, options: nil).first as? ContactsLetterView
+        
+        let letterView = NSBundle.mainBundle().loadNibNamed("ContactsLetterView", owner: nil, options: nil).first as? ContactsLetterView
+        
+        letterView?.title.text = sectionTitle
+        
+        return letterView
+        
     }
     
     

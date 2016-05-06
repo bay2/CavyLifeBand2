@@ -32,7 +32,7 @@ extension PKSectionDataSource {
     var sectionView: UIView? {
         
         guard let view = NSBundle.mainBundle().loadNibNamed("PKListSectionView", owner: nil, options: nil).first as? PKListSectionView else {
-            Log.error("load Nib(ContactsLetterView) error")
+            Log.error("load Nib(PKListSectionView) error")
             return nil
         }
         

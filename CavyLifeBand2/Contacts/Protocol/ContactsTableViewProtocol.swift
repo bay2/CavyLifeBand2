@@ -27,6 +27,10 @@ protocol ContactsTableViewSectionDataSource {
     
     func createSectionView() -> UIView?
     
+    var cellHeight: CGFloat { get }
+    
+    var sectionTitle: String { get }
+    
 }
 
 extension ContactsTableViewSectionDataSource {
@@ -34,5 +38,9 @@ extension ContactsTableViewSectionDataSource {
     func createSectionView() -> UIView? {
         return nil
     }
+    
+    var cellHeight: CGFloat { return 66 }
+    
+    var sectionTitle: String { return "" }
     
 }

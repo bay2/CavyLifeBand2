@@ -9,7 +9,27 @@
 import UIKit
 import RealmSwift
 
-class PKSelectOppTVC: UITableViewController, FriendInfoListDelegate {
+extension ContactsFriendCellModelView {
+    
+    init(friendInfoRealm: FriendInfoRealm) {
+        
+        name = friendInfoRealm.nikeName
+        hiddenCare = !friendInfoRealm.isFollow
+        headImagUrl = friendInfoRealm.headImage
+        friendId = friendInfoRealm.friendId
+        
+    }
+    
+}
+
+protocol PKSelectOppTVCDelegate {
+    
+    func selectPKOpp(userId: String, nikeName: String, avatarUrl: String)
+    
+}
+
+
+class PKSelectOppTVC: UITableViewController, FriendInfoListDelegate, BaseViewControllerPresenter {
     
     var dataSource: [ContactsTableViewSectionDataSource] = []
     
@@ -17,23 +37,47 @@ class PKSelectOppTVC: UITableViewController, FriendInfoListDelegate {
     
     var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
     
+    var delegate: PKSelectOppTVCDelegate?
+    
+    var navTitle: String {
+        return L10n.PKInvitationVCSelectFriend.string
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        //TODO: 测试代码
+        loadFriendData()
         
-        _ = [1...10].map { letter -> String in
-            Log.error(letter)
-            return String(letter)
-        }
+        self.tableView.registerNib(UINib(nibName: "ContactsFriendListCell", bundle: nil), forCellReuseIdentifier: "ContactsFriendListCell")
         
     }
     
-    func addSourceData(data: ContactsTableViewSectionDataSource) {
+    /**
+     加载数据
+     */
+    func loadFriendData() {
+        
+        dataSource = "ABCDEFGHIJKNMLOPQRXTVUWSYZ".characters.map { letter -> ContactsTableViewSectionDataSource? in
+            
+            guard let queryResult = queryFriendListByLetter(String(letter)) else {
+                return nil
+            }
+            
+            if queryResult.count < 1 {
+                return nil
+            }
+            
+            let cellViewMaodels = queryResult.map { friendInfo -> ContactsFriendCellModelView in
+                return ContactsFriendCellModelView(friendInfoRealm: friendInfo)
+            }
+            
+            return ContactsTableListModelView(items: cellViewMaodels, sectionTitle: String(letter))
+            
+            }.flatMap { $0 }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -54,50 +98,25 @@ class PKSelectOppTVC: UITableViewController, FriendInfoListDelegate {
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return dataSource[section].createSectionView()
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return dataSource[indexPath.section].cellHeight
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
+        guard let listModelView = dataSource[indexPath.section] as? ContactsTableListModelView else {
+            return
+        }
+        
+        let userId = listModelView.items[indexPath.row].friendId
+        let nikeName = listModelView.items[indexPath.row].name
+        let avatarUrl = listModelView.items[indexPath.row].headImagUrl
+        
+        
+        delegate?.selectPKOpp(userId, nikeName: nikeName, avatarUrl: avatarUrl)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
