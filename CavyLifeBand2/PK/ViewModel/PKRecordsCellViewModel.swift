@@ -90,12 +90,16 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
             //如果撤销一条未同步到服务器的pk，不需要调接口
             if pkRecord.pkId != "" {
                 
+                updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
+                
                 undoPK([pkRecord], loginUserId: self.loginUserId, callBack: {
                     self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: self.pkRecord.pkId)
                 }, failure: {
                     Log.warning("弹框提示" + $0)
                 })
                
+            } else {
+                updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
             }
 
             break

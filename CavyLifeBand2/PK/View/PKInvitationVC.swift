@@ -16,11 +16,13 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
 
     var lastBtn: UIButton?
     
-    let timePicker: TimePickerView = {
+    lazy var timePicker: AKPickerView = {
+        let view = AKPickerView()
         
-        let picker = TimePickerView(frame: CGRectZero, dataSource: nil)
-        picker.timeArr = ["", "1", "3", "7", ""]
-        return picker
+        view
+        
+        return view
+
     }()
     
     var realm: Realm = try! Realm()
@@ -137,12 +139,21 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
             
         }
         
-        timePicker.pickerDelegate = self
+        timePicker.delegate = self
+        timePicker.dataSource = self
+        
+        timePicker.font = UIFont(name: "HelveticaNeue-Light", size: 30)!
+        timePicker.highlightedFont = UIFont(name: "HelveticaNeue", size: 44)!
+        timePicker.textColor = UIColor(named: .AlarmClockTableCellDescriptionColor)
+        timePicker.highlightedTextColor = UIColor(named: .AlarmClockTableCellTitleColor)
+        timePicker.pickerViewStyle = .Flat
+        timePicker.maskDisabled = false
     }
     
     func dataSouceSetting() -> Void {
         
-        timePicker.scrollToIndex(dataSource!.selectIndex)
+        
+        self.timePicker.selectItem(dataSource!.selectIndex)
         
         changeSeeAbleType(dataSource!.pkWaitRealmModel.isAllowWatch ? otherSeeAbleBtn : otherSeeUnableBtn)
         
@@ -150,12 +161,26 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
 
 }
 
-extension PKInvitationVC: TimePickerViewDelegate {
+extension PKInvitationVC: AKPickerViewDataSource {
     
-    func timePickerView(timePickerView: TimePickerView, didSelectItemAtIndex index: Int) {
-        Log.info("\(index)")
-        
-        dataSource!.selectIndex = index
+    func numberOfItemsInPickerView(pickerView: AKPickerView) -> Int {
+        return dataSource!.timeArr.count
+    }
+    
+    func pickerView(pickerView: AKPickerView, titleForItem item: Int) -> String {
+        return dataSource!.timeArr[item]
+    }
+    
+}
+
+extension PKInvitationVC: AKPickerViewDelegate {
+    
+    func pickerView(pickerView: AKPickerView, marginForItem item: Int) -> CGSize {
+        return CGSizeMake(15, 10)
+    }
+    
+    func pickerView(pickerView: AKPickerView, didSelectItem item: Int) {
+        dataSource?.selectIndex = item
     }
     
 }

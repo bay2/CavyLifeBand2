@@ -71,6 +71,16 @@
 		6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */; };
 		6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */; };
 		6859BC941CD4776D0050F6A0 /* AlarmClockUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */; };
+		686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */; };
+		686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */; };
+		686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */; };
+		686A5E991CD9E6A200EB8D0E /* PKRecordsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E941CD9E6A200EB8D0E /* PKRecordsTest.swift */; };
+		686A5E9A1CD9E6A200EB8D0E /* UndoPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E951CD9E6A200EB8D0E /* UndoPKTest.swift */; };
+		686A5EA01CD9E6DD00EB8D0E /* Launch_PK_Multiply.json in Resources */ = {isa = PBXBuildFile; fileRef = 686A5E9C1CD9E6DD00EB8D0E /* Launch_PK_Multiply.json */; };
+		686A5EA11CD9E6DD00EB8D0E /* Launch_PK_Single.json in Resources */ = {isa = PBXBuildFile; fileRef = 686A5E9D1CD9E6DD00EB8D0E /* Launch_PK_Single.json */; };
+		686A5EA21CD9E6DD00EB8D0E /* PK_OK.json in Resources */ = {isa = PBXBuildFile; fileRef = 686A5E9E1CD9E6DD00EB8D0E /* PK_OK.json */; };
+		686A5EA31CD9E6DD00EB8D0E /* PK_RecordsList.json in Resources */ = {isa = PBXBuildFile; fileRef = 686A5E9F1CD9E6DD00EB8D0E /* PK_RecordsList.json */; };
+		686A5EE51CDB16DE00EB8D0E /* AKPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5EE41CDB16DE00EB8D0E /* AKPickerView.swift */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		68C558CB1CB74D1F0031719D /* AlarmClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */; };
@@ -343,6 +353,16 @@
 		6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyClockView.xib; sourceTree = "<group>"; };
 		6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyClockView.swift; sourceTree = "<group>"; };
 		6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockUITest.swift; sourceTree = "<group>"; };
+		686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptPKTest.swift; sourceTree = "<group>"; };
+		686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePKTest.swift; sourceTree = "<group>"; };
+		686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPKTest.swift; sourceTree = "<group>"; };
+		686A5E941CD9E6A200EB8D0E /* PKRecordsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRecordsTest.swift; sourceTree = "<group>"; };
+		686A5E951CD9E6A200EB8D0E /* UndoPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UndoPKTest.swift; sourceTree = "<group>"; };
+		686A5E9C1CD9E6DD00EB8D0E /* Launch_PK_Multiply.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Launch_PK_Multiply.json; sourceTree = "<group>"; };
+		686A5E9D1CD9E6DD00EB8D0E /* Launch_PK_Single.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Launch_PK_Single.json; sourceTree = "<group>"; };
+		686A5E9E1CD9E6DD00EB8D0E /* PK_OK.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PK_OK.json; sourceTree = "<group>"; };
+		686A5E9F1CD9E6DD00EB8D0E /* PK_RecordsList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PK_RecordsList.json; sourceTree = "<group>"; };
+		686A5EE41CDB16DE00EB8D0E /* AKPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPickerView.swift; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlarmClock.storyboard; sourceTree = "<group>"; };
@@ -673,6 +693,30 @@
 				684C6ADE1CCA0506000C176E /* PKRealm.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		686A5E901CD9E6A200EB8D0E /* PKTest */ = {
+			isa = PBXGroup;
+			children = (
+				686A5E9B1CD9E6DD00EB8D0E /* PKJson */,
+				686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */,
+				686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */,
+				686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */,
+				686A5E941CD9E6A200EB8D0E /* PKRecordsTest.swift */,
+				686A5E951CD9E6A200EB8D0E /* UndoPKTest.swift */,
+			);
+			path = PKTest;
+			sourceTree = "<group>";
+		};
+		686A5E9B1CD9E6DD00EB8D0E /* PKJson */ = {
+			isa = PBXGroup;
+			children = (
+				686A5E9C1CD9E6DD00EB8D0E /* Launch_PK_Multiply.json */,
+				686A5E9D1CD9E6DD00EB8D0E /* Launch_PK_Single.json */,
+				686A5E9E1CD9E6DD00EB8D0E /* PK_OK.json */,
+				686A5E9F1CD9E6DD00EB8D0E /* PK_RecordsList.json */,
+			);
+			path = PKJson;
 			sourceTree = "<group>";
 		};
 		68C558C81CB74CF90031719D /* AlarmClock */ = {
@@ -1049,6 +1093,7 @@
 			children = (
 				91C3AE4C1C461E61006B67AF /* json */,
 				4CC498FF1CA9102800B2EE85 /* ContactsTest */,
+				686A5E901CD9E6A200EB8D0E /* PKTest */,
 				9199DA241C48D2BF009672C4 /* SignUpTest.swift */,
 				912D29DA1C6088B5005A06E9 /* SignInTest.swift */,
 				918435DA1C7AD094005B6E92 /* ForgotPasswdTest.swift */,
@@ -1164,6 +1209,7 @@
 		91D274CA1C86AB8E004F1AA7 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				686A5EE41CDB16DE00EB8D0E /* AKPickerView.swift */,
 				91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */,
 				917936C61CBB8E34002936E3 /* BaseViewController.swift */,
 			);
@@ -1541,15 +1587,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				91C3AE501C461EA0006B67AF /* SecurityCode_Ok.json in Resources */,
+				686A5EA21CD9E6DD00EB8D0E /* PK_OK.json in Resources */,
 				4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */,
 				91F0361F1C8D6BB6003E059A /* Profile_Ok.json in Resources */,
 				91A09DAD1C488AF400BB1599 /* Sign_In_Ok.json in Resources */,
 				91A1E1DD1C7ACF140059E53B /* ForgotPasswd_Ok.json in Resources */,
 				4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */,
+				686A5EA01CD9E6DD00EB8D0E /* Launch_PK_Multiply.json in Resources */,
 				91BBB6061C671F1800EC1ED1 /* Sign_In_Error.json in Resources */,
+				686A5EA31CD9E6DD00EB8D0E /* PK_RecordsList.json in Resources */,
 				91F0361D1C8D57DE003E059A /* CommonResultOk.json in Resources */,
 				912D29DD1C609FFD005A06E9 /* Sign_Up_Ok.json in Resources */,
 				918435E31C7C2C4E005B6E92 /* UploadPicture_Ok.json in Resources */,
+				686A5EA11CD9E6DD00EB8D0E /* Launch_PK_Single.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1724,6 +1774,7 @@
 				9150CAB61CC89EA600A398E9 /* RightViewController.swift in Sources */,
 				9179DA991CD5E93800FCA63C /* AddressBookDataSource.swift in Sources */,
 				68C558D41CB754090031719D /* IntelligentClockCell.swift in Sources */,
+				686A5EE51CDB16DE00EB8D0E /* AKPickerView.swift in Sources */,
 				9114D1F21C97AB05008CB4CE /* UserProtocolView.swift in Sources */,
 				91B04DDA1CB3D4F0007E67B0 /* UserViewControllerProtocol.swift in Sources */,
 				6859BC3E1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift in Sources */,
@@ -1874,9 +1925,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				686A5E9A1CD9E6A200EB8D0E /* UndoPKTest.swift in Sources */,
+				686A5E991CD9E6A200EB8D0E /* PKRecordsTest.swift in Sources */,
+				686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */,
 				918435DB1C7AD094005B6E92 /* ForgotPasswdTest.swift in Sources */,
 				918435E11C7C2B8E005B6E92 /* UploadPicture.swift in Sources */,
 				912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */,
+				686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */,
+				686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */,
 				918435DD1C7AF624005B6E92 /* SecurityCodeTest.swift in Sources */,
 				4CC499011CA9102800B2EE85 /* ContactsAccoundInfoTest.swift in Sources */,
 				9199DA251C48D2BF009672C4 /* SignUpTest.swift in Sources */,
@@ -2065,6 +2121,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2101,6 +2158,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				TARGETED_DEVICE_FAMILY = 1;

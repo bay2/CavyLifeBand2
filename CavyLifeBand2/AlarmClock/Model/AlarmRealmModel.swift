@@ -16,10 +16,7 @@ class AlarmRealmModel: Object {
     dynamic var isOpen = true
     dynamic var userId = ""
     
-    var owners: [AlarmRealmListModel] {
-        
-        return linkingObjects(AlarmRealmListModel.self, forProperty: "alarmRealmList")
-    }
+    let owners = LinkingObjects(fromType: AlarmRealmListModel.self, property: "alarmRealmList")
     
     func alarmDayToString() -> String {
         //十进制数字转成二进制字符串

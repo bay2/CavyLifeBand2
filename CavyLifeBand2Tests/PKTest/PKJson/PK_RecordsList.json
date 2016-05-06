@@ -1,0 +1,54 @@
+{
+  "code": "0000",
+  "msg": "success",
+  "waitList": [
+    {
+      "pkId": "101",
+      "type": "0",
+      "userId": "1003",
+      "avatarUrl": "",
+      "nickname": "BatMan",
+      "launchedTime": "2016-05-02 12:22:00",
+      "pkDuration": "7"
+    },
+    {
+      "pkId": "102",
+      "type": "1",
+      "userId": "1001",
+      "avatarUrl": "",
+      "nickname": "IronMan",
+      "launchedTime": "2016-05-02 11:22:00",
+      "pkDuration": "3"
+    }
+  ],
+  "dueList": [
+    {
+      "pkId": "103",
+      "userId": "1003",
+      "avatarUrl": "",
+      "nickname": "BatMan",
+      "beginTime": "2016-05-01 12:22:00",
+      "pkDuration": "7"
+    }
+  ],
+  "finishList": [
+    {
+      "pkId": "104",
+      "userId": "1003",
+      "avatarUrl": "",
+      "nickname": "BatMan",
+      "isWin": true,
+      "completeTime": "2016-04-29 12:22:00",
+      "pkDuration": "7"
+    },
+    {
+      "pkId": "105",
+      "userId": "1003",
+      "avatarUrl": "",
+      "nickname": "BatMan",
+      "isWin": false,
+      "completeTime": "2016-04-30 12:22:00",
+      "pkDuration": "7"
+    }
+  ]
+}

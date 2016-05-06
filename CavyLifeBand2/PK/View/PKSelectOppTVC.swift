@@ -23,7 +23,7 @@ class PKSelectOppTVC: UITableViewController, FriendInfoListDelegate {
         
         //TODO: 测试代码
         
-        _ = ["A"..."Z"].map { letter -> String in
+        _ = [1...10].map { letter -> String in
             Log.error(letter)
             return String(letter)
         }

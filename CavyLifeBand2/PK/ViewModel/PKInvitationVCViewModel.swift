@@ -25,13 +25,7 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
         }
     }
     
-    var timeArr: [String] = {
-        return ["",
-                "1",
-                "3",
-                "7",
-                ""]
-    }()
+    let timeArr: [String] = ["1", "2", "3", "4", "5"]
     
     var realm: Realm
     
