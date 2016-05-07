@@ -116,7 +116,7 @@ extension FollowFriendDelegate {
             return
         }
         
-        guard let friendInfo = friendList.friendListInfo.filter("friendId = \(friendId)").first else {
+        guard let friendInfo = friendList.friendListInfo.filter("friendId = '\(friendId)'").first else {
             return
         }
         

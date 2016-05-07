@@ -10,6 +10,7 @@ import UIKit
 import KSCrash
 import Log
 import EZSwiftExtensions
+import RealmSwift
 #if UITEST
 import OHHTTPStubs
 #endif
@@ -28,6 +29,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         let installation = KSCrashInstallationStandard.sharedInstance()
+        
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(
+            schemaVersion: 2,
+            migrationBlock: { migration, oldSchemaVersion in
+                
+        })
         
         installation.url = NSURL(string: CavyDefine.bugHDKey)
 
