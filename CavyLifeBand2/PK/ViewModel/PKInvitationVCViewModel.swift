@@ -64,6 +64,7 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
         
         pkWaitRealmModel.launchedTime = launchTimeStr
         
+        
         launchPK([pkWaitRealmModel], loginUserId: self.loginUserId, callBack: {
             let pkId = $0[0].pkId
             
@@ -71,6 +72,7 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
             self.pkWaitRealmModel.syncState = PKRecordsRealmSyncState.Synced.rawValue
             
             self.addPKWaitRealm(self.pkWaitRealmModel)
+            
         }, failure: {(errorMsg) in
             Log.warning("弹窗提示失败" + errorMsg)
         })

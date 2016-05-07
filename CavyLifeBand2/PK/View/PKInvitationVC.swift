@@ -64,8 +64,6 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     
     @IBAction func addAction(sender: UIButton) {
         
-        //TODO: 选择对手 未完成(push 的 VC 需要抛出一个block给我 数据为选择的人的userId，avatarUrl，nickname)
-        
         let pkSelectVC = StoryboardScene.PK.instantiatePKSelectOppTVC()
         
         pkSelectVC.delegate = self
@@ -79,8 +77,6 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
 
     @IBAction func commitAction(sender: UIButton) {
         
-        //TODO: 提交 未完成
-        
 //        let challenge = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView
 //                
 //        self.view .addSubview(challenge!)
@@ -91,6 +87,10 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
 //            make.height.equalTo(380)
 //            make.centerY.equalTo(self.view.snp_centerY)
 //        })
+        
+        dataSource?.launchPK()
+        
+        self.pushVC(StoryboardScene.PK.instantiatePKListVC())
         
     }
         
@@ -194,6 +194,8 @@ extension PKInvitationVC: AKPickerViewDelegate {
 extension PKInvitationVC: PKSelectOppTVCDelegate {
     
     func selectPKOpp(userId: String, nikeName: String, avatarUrl: String) {
+        
+        addBtn.af_setImageForState(.Normal, URL: NSURL(string: avatarUrl)!)
         dataSource?.setPKWaitCompetitorInfo(userId, nickName: nikeName, avatarUrl: avatarUrl)
     }
     

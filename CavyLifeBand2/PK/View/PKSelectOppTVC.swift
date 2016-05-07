@@ -22,16 +22,41 @@ extension ContactsFriendCellModelView {
     
 }
 
+protocol PKSelectOppInfoDataSource {
+    
+    func itemsData(didSelectRowAtIndexPath indexPath: NSIndexPath) -> (userId: String, nikeName: String, avatarUrl: String)
+    
+}
+
+extension PKSelectOppInfoDataSource {
+    
+    
+}
+
 protocol PKSelectOppTVCDelegate {
     
     func selectPKOpp(userId: String, nikeName: String, avatarUrl: String)
     
 }
 
+extension ContactsTableListModelView: PKSelectOppInfoDataSource {
+    
+    func itemsData(didSelectRowAtIndexPath indexPath: NSIndexPath) -> (userId: String, nikeName: String, avatarUrl: String) {
+        
+        let itemInfo = items[indexPath.row]
+        
+        return (itemInfo.friendId, itemInfo.name, itemInfo.headImagUrl)
+        
+    }
+    
+}
+
+typealias PKSelectOppDataSource = protocol<ContactsTableViewSectionDataSource, PKSelectOppInfoDataSource>
+
 
 class PKSelectOppTVC: UITableViewController, FriendInfoListDelegate, BaseViewControllerPresenter {
     
-    var dataSource: [ContactsTableViewSectionDataSource] = []
+    var dataSource: [PKSelectOppDataSource] = []
     
     var realm: Realm = try! Realm()
     
@@ -58,7 +83,7 @@ class PKSelectOppTVC: UITableViewController, FriendInfoListDelegate, BaseViewCon
      */
     func loadFriendData() {
         
-        dataSource = "ABCDEFGHIJKNMLOPQRXTVUWSYZ".characters.map { letter -> ContactsTableViewSectionDataSource? in
+        dataSource = "ABCDEFGHIJKNMLOPQRXTVUWSYZ".characters.map { letter -> PKSelectOppDataSource? in
             
             guard let queryResult = queryFriendListByLetter(String(letter)) else {
                 return nil
@@ -107,16 +132,13 @@ class PKSelectOppTVC: UITableViewController, FriendInfoListDelegate, BaseViewCon
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        guard let listModelView = dataSource[indexPath.section] as? ContactsTableListModelView else {
-            return
-        }
-        
-        let userId = listModelView.items[indexPath.row].friendId
-        let nikeName = listModelView.items[indexPath.row].name
-        let avatarUrl = listModelView.items[indexPath.row].headImagUrl
+        let selectOppInfo = dataSource[indexPath.section].itemsData(didSelectRowAtIndexPath: indexPath)
         
         
-        delegate?.selectPKOpp(userId, nikeName: nikeName, avatarUrl: avatarUrl)
+        delegate?.selectPKOpp(selectOppInfo.userId, nikeName: selectOppInfo.nikeName, avatarUrl: selectOppInfo.avatarUrl)
+        
+        self.popVC()
+        
     }
 
 }

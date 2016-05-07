@@ -142,7 +142,7 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
                 
                 var newItem = item
                 
-                if queryPKWaitRecordsRealm().count > 1 || queryPKDueRecordsRealm().count > 1 || queryPKFinishRecordsRealm().count > 1 {
+                if queryPKWaitRecordsRealm().count > 0 || queryPKDueRecordsRealm().count > 0 || queryPKFinishRecordsRealm().count > 0 {
                     newItem.nextView = StoryboardScene.PK.instantiatePKListVC()
                 } else {
                     newItem.nextView = StoryboardScene.PK.instantiatePKIntroduceVC()
