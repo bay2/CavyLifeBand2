@@ -183,6 +183,8 @@
 //账户信息
 "AccountInfo.Title" = "账户信息";
 "AccountInfo.LoginoutButton.Title" = "退出登录";
+"AccountInof.Photo" = "从手机相册中选择";
+"AccountInof.Camera" = "拍照";
 
 //闹钟
 "AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";
@@ -265,3 +267,4 @@
 "Home.Weather.Snow.Light" = "小雪";
 "Home.Weather.Snow.Middle" = "中雪";
 "Home.Weather.Snow.Heavy" = "大雪";
+

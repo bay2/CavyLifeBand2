@@ -230,14 +230,14 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
         ContactsWebApi.shareApi.followFriend(userId, friendId: friendId, follow: follow) { result in
             
             guard result.isSuccess else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error!)
                 return
             }
             
             let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
             
             guard resultMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: resultMsg.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.code!)
                 return
             }
             
@@ -300,14 +300,14 @@ extension ContactsFriendListVC {
         let deleteFriendNetDataParse: (Result<AnyObject, UserRequestErrorType>) -> Void = { reslut in
             
             guard reslut.isSuccess else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: reslut.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslut.error!)
                 return
             }
         
             let reslutMsg = try! CommenMsg(JSONDecoder(reslut.value!))
         
             guard reslutMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: reslutMsg.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslutMsg.code!)
                 return
             }
             

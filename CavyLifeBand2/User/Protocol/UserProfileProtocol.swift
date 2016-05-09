@@ -80,7 +80,7 @@ extension SetUserInfoRequestsDelegate {
         UserNetRequestData.shareApi.setProfile(userInfoPara) { result in
             
             guard result.isSuccess else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error!)
                 completeHandle?(false)
                 return
             }
@@ -88,7 +88,7 @@ extension SetUserInfoRequestsDelegate {
             let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
             
             guard resultMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: resultMsg.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.code!)
                 completeHandle?(false)
                 return
             }

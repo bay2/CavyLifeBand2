@@ -18,6 +18,7 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
     
     var selectTime: String?
     
+    
     var selectIndex: Int = 1 {
         didSet {
             selectTime = timeArr[selectIndex]
@@ -74,6 +75,8 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
             self.addPKWaitRealm(self.pkWaitRealmModel)
             
         }, failure: {(errorMsg) in
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: errorMsg)
             Log.warning("弹窗提示失败" + errorMsg)
         })
         

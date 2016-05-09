@@ -45,6 +45,8 @@ class ContactsPersonInfoCell: UITableViewCell {
     /// 分割线
     @IBOutlet weak var lineView: UIView!
     
+    weak var delegate: ContactsPersonInfoCellDelegate?
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -54,9 +56,16 @@ class ContactsPersonInfoCell: UITableViewCell {
         subTitleLab.textColor = UIColor(named: .ContactsIntrouduce)
         lineView.backgroundColor = UIColor(named: .ContactsCellLine)
         self.selectionStyle = .None
+        
+        headView.addTapGesture {[unowned self] _ in
+            
+            self.delegate?.onClickHeadView()
+            
+        }
+        
     }
     
-    func configCell(datasource: PresonInfoCellViewModel) {
+    func configCell(datasource: ContactsPersonInfoCellPresenter, delegate: ContactsPersonInfoCellDelegate) {
         
         headView.af_setImageWithURL(NSURL(string: datasource.avatarUrl)!, runImageTransitionIfCached: true)
         
@@ -65,6 +74,8 @@ class ContactsPersonInfoCell: UITableViewCell {
         subTitleLab.text = datasource.subTitle
         
         personRealtion(datasource.relation)
+        
+        self.delegate = delegate
         
     }
 

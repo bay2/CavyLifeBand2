@@ -250,14 +250,14 @@ struct ContactsFriendReqViewModel: ContactsReqFriendPortocols {
         let msgParse: CompletionHandlernType = {
             
             guard $0.isSuccess else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: $0.error)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle($0.error)
                 return
             }
             
             let resultMsg: CommenMsg = try! CommenMsg(JSONDecoder($0.value!))
             
             guard resultMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: resultMsg.code ?? "")
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.code ?? "")
                 return
             }
             
