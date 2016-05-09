@@ -6,9 +6,10 @@
 //  Copyright © 2016年 xuemincai. All rights reserved.
 //
 
+import UIKit
+
 class PresonInfoListCellViewModel: ContactsPersonInfoListCellPresenter, AnyObject {
     
-    typealias viewModeType = PresonInfoListCellViewModel
     var title: String
     var info: String
     var onClick: (Void -> Void)?
@@ -23,7 +24,7 @@ class PresonInfoListCellViewModel: ContactsPersonInfoListCellPresenter, AnyObjec
     
 }
 
-class PresonInfoCellViewModel: ContactsPersonInfoCellPresenter, AnyObject {
+class PresonInfoCellViewModel: ContactsPersonInfoCellPresenter, ContactsPersonInfoCellDelegate, AnyObject {
     
     var title: String
     var subTitle: String
@@ -37,6 +38,31 @@ class PresonInfoCellViewModel: ContactsPersonInfoCellPresenter, AnyObject {
         self.title = title
         self.subTitle = subTitle
         self.avatarUrl = avatarUrl
+        
+    }
+    
+    func onClickHeadView() {
+        
+        let actionSheet = UIAlertController(title: "", message: "", preferredStyle: .ActionSheet)
+        
+        let actionPhoto = UIAlertAction(title: L10n.AccountInofPhoto.string, style: .Default) {  _ in
+        }
+        
+        let actionCamera = UIAlertAction(title: L10n.AccountInofCamera.string, style: .Default) { _ in
+        }
+        
+        let actionCancel = UIAlertAction(title: L10n.CameraBack.string, style: .Cancel) { _ in
+            
+        }
+        
+        actionSheet.addAction(actionPhoto)
+        actionSheet.addAction(actionCamera)
+        actionSheet.addAction(actionCancel)
+        
+        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentVC(actionSheet)
+        
+        
+//        actionSheet.addAction(UIAlertAction)
         
     }
     

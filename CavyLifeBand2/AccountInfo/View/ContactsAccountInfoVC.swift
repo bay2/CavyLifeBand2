@@ -233,7 +233,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         if let cellViewModel = accountInfos[indexPath.row] as? PresonInfoCellViewModel {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
-            cell.configCell(cellViewModel)
+            cell.configCell(cellViewModel, delegate: cellViewModel)
             return cell
             
         }

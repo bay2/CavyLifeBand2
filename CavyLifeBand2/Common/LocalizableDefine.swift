@@ -309,6 +309,10 @@ enum L10n {
   case AccountInfoTitle
   /// 退出登录
   case AccountInfoLoginoutButtonTitle
+  /// 从手机相册中选择
+  case AccountInofPhoto
+  /// 拍照
+  case AccountInofCamera
   /// 手环振动提醒 取消传统声音唤醒体系
   case AlarmClockIntelligentClockTableFooterInfo
   /// 智能闹钟
@@ -431,6 +435,8 @@ enum L10n {
   case PKRecordsVCDueSectionTitle
   /// 已完成
   case PKRecordsVCFinishSectionTitle
+  /// 发起PK
+  case PKRecordsVCLaunchPkTitle
   /// 晴
   case HomeWeatherSun
   /// 多云
@@ -766,6 +772,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AccountInfo.Title")
       case .AccountInfoLoginoutButtonTitle:
         return L10n.tr("AccountInfo.LoginoutButton.Title")
+      case .AccountInofPhoto:
+        return L10n.tr("AccountInof.Photo")
+      case .AccountInofCamera:
+        return L10n.tr("AccountInof.Camera")
       case .AlarmClockIntelligentClockTableFooterInfo:
         return L10n.tr("AlarmClock.IntelligentClockTableFooter.Info")
       case .AlarmClockTitle:
@@ -888,6 +898,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("PK.RecordsVC.DueSectionTitle")
       case .PKRecordsVCFinishSectionTitle:
         return L10n.tr("PK.RecordsVC.FinishSectionTitle")
+      case .PKRecordsVCLaunchPkTitle:
+        return L10n.tr("PK.RecordsVC.LaunchPkTitle")
       case .HomeWeatherSun:
         return L10n.tr("Home.Weather.Sun")
       case .HomeWeatherCloudy:

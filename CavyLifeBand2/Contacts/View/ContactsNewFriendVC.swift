@@ -12,7 +12,11 @@ extension ContactsNewFriendData: ContactsTableViewSectionDataSource {
     
     var rowCount: Int { return items.count }
     
-    func createCell(cell: ContactsAddFriendCell, index: NSIndexPath) -> ContactsAddFriendCell {
+    func createCell(tableView: UITableView, index: NSIndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: index) as? ContactsAddFriendCell else {
+            fatalError()
+        }
         
         cell.configure(items[index.row], delegate: items[index.row])
         
@@ -28,7 +32,7 @@ class ContactsNewFriendVC: UIViewController, BaseViewControllerPresenter {
 
     @IBOutlet weak var newFriendTableView: UITableView!
     
-    var newFriendData: ContactsNewFriendData?
+    var newFriendData: ContactsNewFriendData!
     
     override func viewDidLoad() {
 
@@ -39,7 +43,7 @@ class ContactsNewFriendVC: UIViewController, BaseViewControllerPresenter {
         
         newFriendData = ContactsNewFriendData(viewController: self, tableView: newFriendTableView)
         
-        newFriendData?.loadData()
+        newFriendData.loadData()
 
     }
 
@@ -65,11 +69,8 @@ extension ContactsNewFriendVC {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 
-        guard let contactsCell = tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: indexPath) as? ContactsAddFriendCell else {
-            return tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: indexPath)
-        }
 
-        return newFriendData?.createCell(contactsCell, index: indexPath) ?? contactsCell
+        return newFriendData.createCell(tableView, index: indexPath)
 
     }
 

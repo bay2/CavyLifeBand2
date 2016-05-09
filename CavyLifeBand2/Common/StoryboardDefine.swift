@@ -190,9 +190,9 @@ struct StoryboardScene {
       return StoryboardScene.PK.PKInvitationVCScene.viewController() as! PKInvitationVC
     }
 
-    case PKRecordsVCScene = "PKRecordsVC"
-    static func instantiatePKRecordsVC() -> PKRecordsVC {
-      return StoryboardScene.PK.PKRecordsVCScene.viewController() as! PKRecordsVC
+    case PKListVCScene = "PKListVC"
+    static func instantiatePKListVC() -> PKListVC {
+      return StoryboardScene.PK.PKListVCScene.viewController() as! PKListVC
     }
 
     case PKRulesVCScene = "PKRulesVC"
@@ -200,9 +200,9 @@ struct StoryboardScene {
       return StoryboardScene.PK.PKRulesVCScene.viewController() as! PKRulesVC
     }
 
-    case PKTestViewControllerScene = "PKTestViewController"
-    static func instantiatePKTestViewController() -> PKTestViewController {
-      return StoryboardScene.PK.PKTestViewControllerScene.viewController() as! PKTestViewController
+    case PKSelectOppTVCScene = "PKSelectOppTVC"
+    static func instantiatePKSelectOppTVC() -> PKSelectOppTVC {
+      return StoryboardScene.PK.PKSelectOppTVCScene.viewController() as! PKSelectOppTVC
     }
   }
   enum Weather: StoryboardSceneType {

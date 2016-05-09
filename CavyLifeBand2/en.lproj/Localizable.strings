@@ -34,7 +34,6 @@
 "UserModuleErrorCode.UserNameNil" = "用户名不能为空";
 "UserModuleErrorCode.UnknownError" = "未知错误";
 
-
 // 首页
 "MainPage.SignInBtn" = "登入";
 "MainPage.SignUpBtn" = "加入豚鼠";
@@ -184,6 +183,8 @@
 //账户信息
 "AccountInfo.Title" = "账户信息";
 "AccountInfo.LoginoutButton.Title" = "退出登录";
+"AccountInof.Photo" = "从手机相册中选择";
+"AccountInof.Camera" = "拍照";
 
 //闹钟
 "AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";
@@ -249,8 +250,10 @@
 "PK.RecordsCell.UndoBtnTitle" = "撤销";
 "PK.RecordsCell.DeleteBtnTitle" = "删除";
 "PK.RecordsVC.WaitSectionTitle" = "待回应";
-"PK.RecordsVC.DueS/Users/JL/Documents/CavyTech/CavyLifeBand2ectionTitle" = "进行中";
+"PK.RecordsVC.DueSectionTitle" = "进行中";
 "PK.RecordsVC.FinishSectionTitle" = "已完成";
+"PK.RecordsVC.LaunchPkTitle" = "发起PK";
+
 
 // 天气
 "Home.Weather.Sun" = "晴";
@@ -264,3 +267,4 @@
 "Home.Weather.Snow.Light" = "小雪";
 "Home.Weather.Snow.Middle" = "中雪";
 "Home.Weather.Snow.Heavy" = "大雪";
+

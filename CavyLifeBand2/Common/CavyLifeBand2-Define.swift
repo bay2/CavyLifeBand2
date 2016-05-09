@@ -16,6 +16,7 @@ struct CavyDefine {
     
     // 服务器地址
     static let serverAddr = "http://115.28.144.243/cavylife"
+//    static let serverAddr = "http://192.168.100.214/cavylife"
     
     // webApi地址
     static let webApiAddr = serverAddr + "/api.do"

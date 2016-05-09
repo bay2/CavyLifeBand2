@@ -39,7 +39,6 @@ class RemindersSettingViewController: UIViewController, BaseViewControllerPresen
     
     var dataSource: RemindersSettingVCDataSource?
     
-    var realm: Realm = try! Realm()
     
     var navTitle: String { return L10n.HomeRightListTitleNotification.string }
     

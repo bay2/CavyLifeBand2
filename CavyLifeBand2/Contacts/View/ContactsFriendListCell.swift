@@ -52,6 +52,7 @@ class ContactsFriendListCell: UITableViewCell {
 
         nameLabel.text = dataSource.name
         hiddenCare = dataSource.hiddenCare
+        
         dataSource.setHeadImageView(self.headView)
 
     }
