@@ -69,21 +69,22 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
     
     func tableViewSetting() {
         
-        tableView.separatorStyle = .None
-        
-        tableView.tableFooterView = UIView()
-        
-        tableView.delegate = self
-        
-        tableView.dataSource = self
-        
-        tableView.tableFooterView = UIView()
-        
+        tableView.delegate           = self
+
+        tableView.dataSource         = self
+
+        tableView.separatorStyle     = .None
+
+        tableView.tableFooterView    = UIView()
+
+        tableView.tableFooterView    = UIView()
+
+        tableView.backgroundColor    = UIColor.clearColor()
+
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
-        tableView.backgroundColor = UIColor.clearColor()
-        
         tableView.registerNib(UINib.init(nibName: HelpAndFeedbackCellID, bundle: nil), forCellReuseIdentifier: HelpAndFeedbackCellID)
+        
     }
 
 }
@@ -125,15 +126,14 @@ extension HelpAndFeedbackListVC: UITableViewDelegate {
         
         let targetVC = WebViewController()
         
+        //消除引用循环
         weak var weakTargetVC = targetVC
         
         let navHandler: navBtnHandle =  {
             weakTargetVC!.pushVC(StoryboardScene.Relate.instantiateHelpAndFeedbackVC())
         }
-        
-        let webVM = HelpAndFeedBackWebViewModel(webUrlStr: "http://www.baidu.com", navAction: navHandler)
-        
-        targetVC.dataSource = webVM
+                
+        targetVC.dataSource = HelpAndFeedBackWebViewModel(webUrlStr: "http://www.baidu.com", navAction: navHandler)
         
         self.pushVC(targetVC)
 

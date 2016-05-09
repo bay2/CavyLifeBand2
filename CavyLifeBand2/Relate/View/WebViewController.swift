@@ -54,8 +54,6 @@ class WebViewController: UIViewController, BaseViewControllerPresenter {
         
         addLodingView()
         
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,10 +62,13 @@ class WebViewController: UIViewController, BaseViewControllerPresenter {
     }
     
     override func loadView() {
+        
         self.view = UIView()
         self.view.backgroundColor = UIColor.whiteColor()
+        
     }
     
+    //添加webview
     func addWebView() {
         
         self.view.addSubview(webView)
@@ -88,6 +89,7 @@ class WebViewController: UIViewController, BaseViewControllerPresenter {
         
     }
     
+    //添加转圈圈提示view
     func addLodingView() {
         
         self.view.addSubview(loadingView)

@@ -48,6 +48,10 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
         
         textView.placeholder = L10n.RelateHelpAndFeedbackTextViewPlaceHolder.string
         
+        textView.textContainerInset = UIEdgeInsetsMake(0, 5, 0, 5)
+        
+        textView.contentInset = UIEdgeInsetsMake(10, 0, 10, 0)
+        
         sendBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
         
         sendBtn.setTitle(L10n.RelateHelpAndFeedbackSendBtnTitle.string, forState: .Normal)

@@ -9,6 +9,7 @@
 import UIKit
 
 struct HelpAndFeedBackWebViewModel: WebVCDataSourceProtocol {
+    
     var navTitle: String = L10n.RelateHelpAndFeedbackNavTitle.string
     
     var navRightBtnTitle: String = L10n.RelateHelpAndFeedbackNavRightBtnTitle.string
@@ -29,36 +30,24 @@ struct HelpAndFeedBackWebViewModel: WebVCDataSourceProtocol {
 
 struct UseAndPrivateWebViewModel: WebVCDataSourceProtocol {
     
-    var navTitle: String = L10n.RelateAboutUseAndPrivate.string
-    
-//    var navRightBtnTitle: String = ""
+    var navTitle: String  = L10n.RelateAboutUseAndPrivate.string
     
     var webUrlStr: String = "http://www.baidu.com"
-    
-//    var navRightBtnAction: navBtnHandle = {}
     
 }
 
 struct CopyrightWebViewModel: WebVCDataSourceProtocol {
     
-    var navTitle: String = L10n.RelateAboutCopyrightNavTitle.string
-    
-//    var navRightBtnTitle: String = ""
+    var navTitle: String  = L10n.RelateAboutCopyrightNavTitle.string
     
     var webUrlStr: String = "http://www.baidu.com"
-    
-//    var navRightBtnAction: navBtnHandle = {}
     
 }
 
 struct OfficialWebViewModel: WebVCDataSourceProtocol {
     
-    var navTitle: String = L10n.RelateAboutOfficialWebsiteNavTitle.string
-    
-//    var navRightBtnTitle: String = ""
+    var navTitle: String  = L10n.RelateAboutOfficialWebsiteNavTitle.string
     
     var webUrlStr: String = "http://www.baidu.com"
-    
-//    var navRightBtnAction: navBtnHandle = {}
     
 }

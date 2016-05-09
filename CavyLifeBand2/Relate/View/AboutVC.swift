@@ -73,9 +73,7 @@ class AboutVC: UIViewController, BaseViewControllerPresenter {
             
             let targetVC = WebViewController()
             
-            let webVM = UseAndPrivateWebViewModel()
-            
-            targetVC.dataSource = webVM
+            targetVC.dataSource = UseAndPrivateWebViewModel()
             
             self.pushVC(targetVC)
         }
@@ -85,9 +83,7 @@ class AboutVC: UIViewController, BaseViewControllerPresenter {
             
             let targetVC = WebViewController()
             
-            let webVM = CopyrightWebViewModel()
-            
-            targetVC.dataSource = webVM
+            targetVC.dataSource = CopyrightWebViewModel()
             
             self.pushVC(targetVC)
         }
@@ -135,10 +131,8 @@ extension AboutVC: UITableViewDelegate {
             Log.info("进入官网")
             
             let targetVC = WebViewController()
-            
-            let webVM = OfficialWebViewModel()
-            
-            targetVC.dataSource = webVM
+                        
+            targetVC.dataSource = OfficialWebViewModel()
             
             self.pushVC(targetVC)
         }
