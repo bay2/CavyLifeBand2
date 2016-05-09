@@ -22,8 +22,9 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate {
 
         setupPieChartView()
         
+        addLegend()
 
-        
+        setPieChartsData()
         
         
     }
@@ -35,64 +36,80 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate {
     
     func setupPieChartView() {
         
-        
-        self.usePercentValuesEnabled = true;
-        self.drawSlicesUnderHoleEnabled = false;
-        self.holeRadiusPercent = 0.58;
-        self.transparentCircleRadiusPercent = 0.61;
-        self.descriptionText = "";
+        self.usePercentValuesEnabled = true
+        self.drawSlicesUnderHoleEnabled = true
+        self.holeRadiusPercent = 0.6
+        self.transparentCircleRadiusPercent = 0.61
+        self.descriptionText = ""
         self.noDataTextDescription = "You need to provide data for the chart."
-        self.setExtraOffsets(left: 5, top: 10, right: 5, bottom: 5)
-        self.drawCenterTextEnabled = true;
+        self.setExtraOffsets(left: 0, top: 5, right: 0, bottom: 5)
+        self.drawCenterTextEnabled = false // 中间不显示字
+        
+        self.drawHoleEnabled = true   // 中间是空的
+        self.rotationAngle = 0
+        self.rotationEnabled = true
+    
+    }
+    
+    func addLegend() {
 
-        let paragraphStyle: NSMutableParagraphStyle = NSParagraphStyle.defaultParagraphStyle().mutableCopy() as! NSMutableParagraphStyle
+        self.legend.position = .AboveChartRight
+        self.legend.form = .Circle
+        self.legend.formSize = 7
+        self.legend.textColor = UIColor(named: .ChartViewTextColor)
+        self.legend.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
+        self.legend.xEntrySpace = 10
         
-//        let a = NSMutableParagraphStyle.defaultParagraphStyle()
-        
-        paragraphStyle.lineBreakMode = .ByTruncatingTail
-//        paragraphStyle.lineBreakMode =   NSLineBreakByTruncatingTail;
-//        paragraphStyle.alignment = NSTextAlignmentCenter;
-        
-
-        
-        
-        
-        /*
-
-            
-            NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-            paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
-            paragraphStyle.alignment = NSTextAlignmentCenter;
-            
-            NSMutableAttributedString *centerText = [[NSMutableAttributedString alloc] initWithString:@"iOS Charts\nby Daniel Cohen Gindi"];
-            [centerText setAttributes:@{
-            NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:12.f],
-            NSParagraphStyleAttributeName: paragraphStyle
-            } range:NSMakeRange(0, centerText.length)];
-            [centerText addAttributes:@{
-            NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-Light" size:10.f],
-            NSForegroundColorAttributeName: UIColor.grayColor
-            } range:NSMakeRange(10, centerText.length - 10)];
-            [centerText addAttributes:@{
-            NSFontAttributeName: [UIFont fontWithName:@"HelveticaNeue-LightItalic" size:10.f],
-            NSForegroundColorAttributeName: [UIColor colorWithRed:51/255.f green:181/255.f blue:229/255.f alpha:1.f]
-            } range:NSMakeRange(centerText.length - 19, 19)];
-            chartView.centerAttributedText = centerText;
-            
-            chartView.drawHoleEnabled = YES;
-            chartView.rotationAngle = 0.0;
-            chartView.rotationEnabled = YES;
-            chartView.highlightPerTapEnabled = YES;
-            
-            ChartLegend *l = chartView.legend;
-            l.position = ChartLegendPositionRightOfChart;
-            l.xEntrySpace = 7.0;
-            l.yEntrySpace = 0.0;
-            l.yOffset = 0.0;
-        }*/
     }
     
     
+    func setPieChartsData() {
+        
+        let dataCount = 2
+        
+        var xVals: [String] = []
+        var yVals: [BarChartDataEntry] = []
+        
+        
+        for i in 0 ..< dataCount {
+            
+            yVals.append(BarChartDataEntry(value: sleepDegree[i], xIndex: i))
+            xVals.append(sleepName[i])
+        }
+        
+        let dataSet: PieChartDataSet = PieChartDataSet(yVals: yVals, label: "")
+        
+        dataSet.sliceSpace = 0
+        
+        var colors: [NSUIColor] = []
+        colors.append(UIColor(named: .ChartSleepDegreeDeep))
+        colors.append(UIColor(named: .ChartSleepDegreeLight))
+      
+        dataSet.colors = colors
+        
+        
+        
+//        dataSet.valueLinePart1OffsetPercentage = 0.8;
+//        dataSet.valueLinePart1Length = 0.3;
+//        dataSet.valueLinePart2Length = 0.4;
+//     //   dataSet.xValuePosition = PieChartValuePositionOutsideSlice;
+//        dataSet.yValuePosition = PieChartValuePositionOutsideSlice;
+        
+        
+        
+        let data = PieChartData(xVals: xVals, dataSet: dataSet)
+        let formatter = NSNumberFormatter()
+        formatter.numberStyle = .PercentStyle
+        formatter.maximumFractionDigits = 1
+        formatter.multiplier = 1
+        formatter.percentSymbol = " %"
+        data.setValueFormatter(formatter)
+        data.setValueFont(UIFont.systemFontOfSize(11))
+        data.setValueTextColor(UIColor.blackColor())
+        self.data = data
+        self.highlightValues(nil)
+    
+    }
     
     // MARK: -- ChartViewDelegate
     /**
@@ -102,7 +119,6 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate {
         
         Log.info("\(chartView)  \(entry)   \(dataSetIndex)  \(highlight)")
         
-        
-        
     }
+    
 }
