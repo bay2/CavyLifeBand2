@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import KMPlaceholderTextView
 
 class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
     
     @IBOutlet weak var sendBtn: UIButton!
     
-    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var textView: KMPlaceholderTextView!
     
     var navTitle: String { return L10n.RelateHelpAndFeedbackNavTitle.string }
     
@@ -41,7 +42,11 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
         
         textView.font = UIFont.systemFontOfSize(14.0)
         
+        textView.textColor = UIColor(named: .TextFieldTextColor)
         
+        textView.placeholderColor = UIColor(named: .RalateHelpFeedbackTextViewPlaceHolderColor)
+        
+        textView.placeholder = L10n.RelateHelpAndFeedbackTextViewPlaceHolder.string
         
         sendBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
         

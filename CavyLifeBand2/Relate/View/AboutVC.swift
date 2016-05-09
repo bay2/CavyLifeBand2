@@ -56,7 +56,7 @@ class AboutVC: UIViewController, BaseViewControllerPresenter {
         useAndPrivateLabel.font = UIFont.systemFontOfSize(14.0)
         
         useAndPrivateLabel.text = L10n.RelateAboutUseAndPrivate.string
-        copyrightLabel.text = L10n.RelateAboutCopyright.string
+        copyrightLabel.text = L10n.RelateAboutCopyrightInfo.string
         
         tableView.separatorStyle = .None
         tableView.tableFooterView = UIView()
@@ -70,10 +70,26 @@ class AboutVC: UIViewController, BaseViewControllerPresenter {
         
         useAndPrivateLabel.addTapGesture { sender in
             Log.info("前往使用和隐私政策网页")
+            
+            let targetVC = WebViewController()
+            
+            let webVM = UseAndPrivateWebViewModel()
+            
+            targetVC.dataSource = webVM
+            
+            self.pushVC(targetVC)
         }
         
         copyrightLabel.addTapGesture { sender in
             Log.info("前往版权网页")
+            
+            let targetVC = WebViewController()
+            
+            let webVM = CopyrightWebViewModel()
+            
+            targetVC.dataSource = webVM
+            
+            self.pushVC(targetVC)
         }
         
     }
@@ -117,6 +133,14 @@ extension AboutVC: UITableViewDelegate {
         
         if indexPath.row == tableDataSource.count - 1 {
             Log.info("进入官网")
+            
+            let targetVC = WebViewController()
+            
+            let webVM = OfficialWebViewModel()
+            
+            targetVC.dataSource = webVM
+            
+            self.pushVC(targetVC)
         }
         
     }

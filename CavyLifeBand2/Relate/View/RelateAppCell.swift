@@ -25,6 +25,7 @@ class RelateAppCell: UITableViewCell {
         // Initialization code
         
         logoImageView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        logoImageView.clipsToBounds = true
         
         titleLabel.font = UIFont.systemFontOfSize(16.0)
         sizeLabel.font = UIFont.systemFontOfSize(12.0)

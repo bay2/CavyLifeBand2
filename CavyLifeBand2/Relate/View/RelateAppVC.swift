@@ -53,6 +53,10 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
         
         tableView.registerNib(UINib.init(nibName: relateAppCellID, bundle: nil), forCellReuseIdentifier: relateAppCellID)
     }
+    
+    func downloadAction(sender: UIButton) {
+        Log.info("download action - \(sender.tag)")
+    }
 
 }
 
@@ -95,7 +99,7 @@ extension RelateAppVC: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(relateAppCellID, forIndexPath: indexPath) as? RelateAppCell
         
-        cell?.configure(tableDataSource[indexPath.row])
+        cell?.configure(tableDataSource[indexPath.section])
         
         return cell!
         

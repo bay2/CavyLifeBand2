@@ -18,6 +18,7 @@ pod 'OHHTTPStubs'
 pod 'OHHTTPStubs/Swift'
 pod 'Gifu'
 pod 'PgyUpdate'
+pod 'KMPlaceholderTextView'
 
 target :CavyLifeBand2Tests, :exclusive => true do
     pod 'OHHTTPStubs'
