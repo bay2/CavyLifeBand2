@@ -190,6 +190,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
      将数据库未同步的pk记录同步到服务器
      */
     func syncPKRecords() {
+        
         //删除pk
         if let finishList: [PKFinishRealmModel] = self.getUnSyncPKList(PKFinishRealmModel.self) {
             self.deletePKFinish(finishList, loginUserId: self.loginUserId, callBack: {
@@ -224,15 +225,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 Log.warning(errorMsg)
             })
         }
-        
-        //发起pk
-//        if let launchList: [PKWaitRealmModel] = self.getUnSyncWaitPKIdListWithType(.MeWaitOther) {
-//            self.launchPK(launchList, loginUserId: self.loginUserId, callBack: { (pkIdList) in
-//                for launch in launchList {
-//                    self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: launch.pkId)
-//                }
-//            })
-//        }
+
     }
 
     /**

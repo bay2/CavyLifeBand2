@@ -59,7 +59,6 @@ class LaunchPKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequest
         pkWaitRealmModel.userId = "103"
         pkWaitRealmModel.nickname = "Bat"
         pkWaitRealmModel.avatarUrl = ""
-        pkWaitRealmModel.launchedTime = "2016-05-03 12:00:00"
         pkWaitRealmModel.type = PKWaitType.MeWaitOther.rawValue
         pkWaitRealmModel.isAllowWatch = false
         pkWaitRealmModel.pkDuration = "3"
@@ -72,8 +71,9 @@ class LaunchPKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequest
             
             let pkId = $0[0].pkId
             
-            pkWaitRealmModel.pkId      = pkId
-            pkWaitRealmModel.syncState = PKRecordsRealmSyncState.Synced.rawValue
+            pkWaitRealmModel.launchedTime = "2016-05-03 12:00:00"
+            pkWaitRealmModel.pkId         = pkId
+            pkWaitRealmModel.syncState    = PKRecordsRealmSyncState.Synced.rawValue
             
             self.addPKWaitRealm(pkWaitRealmModel)
             

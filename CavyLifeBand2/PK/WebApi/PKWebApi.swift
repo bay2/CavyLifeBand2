@@ -287,7 +287,6 @@ extension PKWebRequestProtocol {
         for realm in waitRealms {
             
             let request: [String: AnyObject] = [UserNetRequsetKey.FriendID.rawValue: realm.userId,
-                                                UserNetRequsetKey.LaunchTime.rawValue: realm.launchedTime,
                                                 UserNetRequsetKey.PKDuration.rawValue: realm.pkDuration,
                                                 UserNetRequsetKey.IsAllowWatch.rawValue: realm.isAllowWatch]
             
