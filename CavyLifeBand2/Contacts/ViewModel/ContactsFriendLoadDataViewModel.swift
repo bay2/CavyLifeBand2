@@ -254,7 +254,7 @@ class ContactsSearchFriendData: ContactsAddFriendDataSync {
             let reslutMsg = try! ContactsSearchFriendMsg(JSONDecoder(reslut.value!))
             
             guard reslutMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslutMsg.commonMsg!.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslutMsg.commonMsg!.code)
                 return
             }
             
@@ -310,7 +310,7 @@ class ContactsNearbyFriendData: ContactsAddFriendDataSync {
             let reslutMsg = try! ContactsSearchFriendMsg(JSONDecoder(reslut.value!))
             
             guard reslutMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslutMsg.commonMsg!.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslutMsg.commonMsg!.code)
                 return
             }
             

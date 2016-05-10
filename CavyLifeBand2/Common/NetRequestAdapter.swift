@@ -43,8 +43,6 @@ extension ParameterEncoding {
 extension NetRequestAdapter {
     
     
-    
-    
     /**
      post 网络请求
      
@@ -98,7 +96,7 @@ extension NetRequestAdapter {
         
         Log.netRequestFormater(urlString, para: para)
         
-        let request = Alamofire.request(.POST, urlString, encoding: .Custom(closure), parameters: parameters).responseJSON { (response) -> Void in
+        let request = Alamofire.request(.POST, urlString, encoding: .JSON, parameters: parameters).responseJSON { (response) -> Void in
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 
@@ -124,6 +122,7 @@ extension NetRequestAdapter {
         
     }
     
+    
 }
 
 /**
@@ -133,8 +132,8 @@ extension NetRequestAdapter {
  */
 struct CommenMsg: JSONJoy {
     
-    var msg: String?
-    var code: String?
+    var msg: String
+    var code: String
     
     init(_ decoder: JSONDecoder) throws {
         

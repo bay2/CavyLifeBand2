@@ -237,7 +237,7 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
             let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
             
             guard resultMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.code)
                 return
             }
             
@@ -307,7 +307,7 @@ extension ContactsFriendListVC {
             let reslutMsg = try! CommenMsg(JSONDecoder(reslut.value!))
         
             guard reslutMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslutMsg.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslutMsg.code)
                 return
             }
             
