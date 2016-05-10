@@ -53,3 +53,15 @@ struct AboutCellModel: AboutCellDataSource {
         self.info = info
     }
 }
+
+struct HelpFeedbackCellModel: AboutCellDataSource {
+    var title: String
+    var info: String
+    var webUrlStr: String
+    
+    init(title: String, webStr: String, info: String = "") {
+        self.title = title
+        self.info = info
+        self.webUrlStr = webStr
+    }
+}
