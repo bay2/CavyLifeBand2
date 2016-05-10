@@ -5,3 +5,5 @@ CavyLifeBand2.xcodeproj/xcuserdata/*
 .idea/*
 Podfile.lock
 Gemfile.lock
+
+*.xccheckout
