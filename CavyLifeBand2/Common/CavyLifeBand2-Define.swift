@@ -242,6 +242,11 @@ enum UserNetRequsetKey: String {
     case AcceptTime = "acceptTime"
     case IsAllowWatch = "isAllowWatch"
     case FriendReqType = "type"
+    case FeedbackContent = "feedback"
+    case HelpList = "helpList"
+    case HelpId = "helpId"
+    case HelpTitle = "title"
+    case HelpWebUrl = "webUrl"
 }
 
 /**
@@ -290,4 +295,6 @@ enum UserNetRequestMethod: String {
     case UndoPK = "undoPK"
     case DeletePK = "deletePK"
     case AcceptPK = "acceptPK"
+    case GetHelpList = "getHelpList"
+    case SubmitFeedback = "submitFeedback"
 }

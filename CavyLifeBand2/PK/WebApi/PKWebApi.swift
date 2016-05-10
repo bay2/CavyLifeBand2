@@ -173,10 +173,10 @@ extension PKWebRequestProtocol {
                     return
                 }
                 
-                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
+                let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
+                guard resultMsg.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
                     return
                 }
                 
@@ -205,10 +205,10 @@ extension PKWebRequestProtocol {
                     return
                 }
                 
-                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
+                let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
+                guard resultMsg.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
                     return
                 }
                 
@@ -236,10 +236,10 @@ extension PKWebRequestProtocol {
                     return
                 }
                 
-                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
+                let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
+                guard resultMsg.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
                     return
                 }
                 

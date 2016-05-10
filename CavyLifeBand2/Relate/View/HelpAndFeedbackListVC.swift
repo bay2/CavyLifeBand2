@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JSONJoy
 
 class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
 
@@ -16,11 +17,15 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
     
     var navTitle: String { return L10n.RelateHelpAndFeedbackNavTitle.string }
     
+    var loadingView: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     lazy var rightBtn: UIButton? =  {
         
         let button = UIButton(type: .System)
         
-        button.frame = CGRectMake(0, 0, 58, 30)
+        let titleSize = L10n.RelateHelpAndFeedbackNavRightBtnTitle.string.boundingRectWithSize(CGSizeMake(100, 20), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(14.0)], context: nil)
+        
+        button.frame = CGRectMake(0, 0, titleSize.width, 30)
         button.setTitle(L10n.RelateHelpAndFeedbackNavRightBtnTitle.string, forState: .Normal)
         button.titleLabel?.font = UIFont.systemFontOfSize(14.0)
         button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
@@ -44,13 +49,19 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         
         updateNavUI()
         
-        tableDataSource = [AboutCellModel(title: "手环连接失败？"),
-                           AboutCellModel(title: "按了手环按钮没有亮灯？"),
-                           AboutCellModel(title: "安全功能如何使用？"),
-                           AboutCellModel(title: "手环不能记录睡眠？"),
-                           AboutCellModel(title: "手环不能记录计步？")]
+        addLodingView()
         
         tableViewSetting()
+        
+//        loadData()
+        
+        tableDataSource = [HelpFeedbackCellModel(title: "手环连接失败？", webStr: "http://www.baidu.com"),
+                           HelpFeedbackCellModel(title: "按了手环按钮没有亮灯？", webStr: "http://www.baidu.com"),
+                           HelpFeedbackCellModel(title: "安全功能如何使用？", webStr: "http://www.baidu.com"),
+                           HelpFeedbackCellModel(title: "手环不能记录睡眠？", webStr: "http://www.baidu.com"),
+                           HelpFeedbackCellModel(title: "手环不能记录计步？", webStr: "http://www.baidu.com")]
+        
+        
         
     }
 
@@ -85,6 +96,68 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         
         tableView.registerNib(UINib.init(nibName: HelpAndFeedbackCellID, bundle: nil), forCellReuseIdentifier: HelpAndFeedbackCellID)
         
+    }
+    
+    //添加转圈圈提示view
+    func addLodingView() {
+        
+        self.view.addSubview(loadingView)
+        
+        loadingView.hidesWhenStopped = true
+        
+        loadingView.activityIndicatorViewStyle = .Gray
+        
+        loadingView.snp_makeConstraints { make in
+            make.center.equalTo(self.view)
+            make.width.equalTo(50.0)
+            make.height.equalTo(50.0)
+        }
+        
+    }
+    
+    func loadData() {
+        
+        loadingView.startAnimating()
+        
+        do {
+            
+            try HelpFeedbackWebApi.shareApi.getHelpFeedbackList { result in
+                
+                self.loadingView.stopAnimating()
+                
+                guard result.isSuccess else {
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error)
+                    return
+                }
+                
+                let resultMsg = try! HelpFeedbackResponse(JSONDecoder(result.value!))
+                
+                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.commonMsg?.code ?? "")
+                    return
+                }
+                
+                guard let helpList = resultMsg.helpList else {
+                    
+                    return
+                
+                }
+                
+                for help in helpList {
+                    
+                    let celVM = HelpFeedbackCellModel(title: help.title, webStr: help.webUrl)
+                    
+                    self.tableDataSource.append(celVM)
+                    
+                    self.tableView.reloadData()
+                }
+                
+            }
+            
+        } catch let error {
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+        }
+
     }
 
 }
@@ -132,8 +205,10 @@ extension HelpAndFeedbackListVC: UITableViewDelegate {
         let navHandler: navBtnHandle =  {
             weakTargetVC!.pushVC(StoryboardScene.Relate.instantiateHelpAndFeedbackVC())
         }
+        
+        let cellVM = tableDataSource[indexPath.row] as? HelpFeedbackCellModel
                 
-        targetVC.dataSource = HelpAndFeedBackWebViewModel(webUrlStr: "http://www.baidu.com", navAction: navHandler)
+        targetVC.dataSource = HelpAndFeedBackWebViewModel(webUrlStr: cellVM?.webUrlStr ?? "www.baidu.com", navAction: navHandler)
         
         self.pushVC(targetVC)
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JSONJoy
 import KMPlaceholderTextView
 
 class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
@@ -63,6 +64,34 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
   
     @IBAction func sendAction(sender: UIButton) {
         Log.info("发送帮助与反馈")
+        
+        if textView.text.characters.count == 0 {
+            return
+        }
+        
+        do {
+            
+            try HelpFeedbackWebApi.shareApi.submitFeedback(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, feedback: textView.text) { result in
+                guard result.isSuccess else {
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error)
+                    return
+                }
+                
+                let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
+                
+                guard resultMsg.code == WebApiCode.Success.rawValue else {
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.code ?? "")
+                    return
+                }
+                
+                self.popVC()
+                
+            }
+            
+        } catch let error {
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+        }
+
     }
 
 }
