@@ -16,6 +16,7 @@ struct CavyDefine {
     
     // 服务器地址
     static let serverAddr = "http://115.28.144.243/cavylife"
+//    static let serverAddr = "http://192.168.100.214/cavylife"
     
     // webApi地址
     static let webApiAddr = serverAddr + "/api.do"
@@ -145,6 +146,7 @@ enum NotificationName: String {
     case HomeLeftAccountInfo
     case ReminderPhoneSwitchChange
     case ReminderPhoneScrollToSelect
+    case ContactsFirendReqDeleteItem
     
 }
 
@@ -190,6 +192,14 @@ enum WebApiCode: String {
  - Address:      地址
  - StepNum:      步数
  - SleepTime:    睡眠时间
+ - LaunchPkList: 发起PK列表
+ - UndoPkList:   撤销PK列表
+ - DelPkList:    删除已完成PK列表
+ - AcceptPkList: 接受PK列表
+ - LaunchTime:   发起PK的时间
+ - PKDuration:   PK时长
+ - PKId:         PK记录的ID
+ - AcceptTime:   接受PK的时间
  */
 enum UserNetRequsetKey: String {
     
@@ -222,8 +232,16 @@ enum UserNetRequsetKey: String {
     case VerifyMsg = "verifyMsg"
     case Longitude = "longitude"
     case Latitude = "latitude"
+    case LaunchPkList = "launchPkList"
+    case UndoPkList = "undoPkList"
+    case DelPkList = "delPkList"
+    case AcceptPkList = "acceptPkList"
+    case LaunchTime = "launchTime"
+    case PKDuration = "pkDuration"
+    case PKId = "pkId"
+    case AcceptTime = "acceptTime"
+    case IsAllowWatch = "isAllowWatch"
     case FriendReqType = "type"
-    
 }
 
 /**
@@ -245,6 +263,11 @@ enum UserNetRequsetKey: String {
  - ReportLocation:   上报坐标
  - SetTargetValue:   设置目标值
  - TargetValue:      查询目标值
+ - GetPKRecordList:  查询PK列表
+ - LaunchPK:         发起PK
+ - UndoPK:           撤销PK
+ - DeletePK:         删除已完成PK记录
+ - AcceptPK:         接受PK
  */
 enum UserNetRequestMethod: String {
     
@@ -262,4 +285,9 @@ enum UserNetRequestMethod: String {
     case FollowFriend = "followUser"
     case DeleteFriend = "deleteFriend"
     case ReportCoordinate = "setUserLBS"
+    case GetPKRecordList = "getPKRecordList"
+    case LaunchPK = "launchPK"
+    case UndoPK = "undoPK"
+    case DeletePK = "deletePK"
+    case AcceptPK = "acceptPK"
 }

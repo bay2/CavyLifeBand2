@@ -5,6 +5,7 @@ import UIKit
 extension UIImage {
   enum Asset: String {
     case AlarmClockAdd = "AlarmClockAdd"
+    case AlarmClockEmotyIcon = "AlarmClockEmotyIcon"
     case AlarmClockNavSave = "AlarmClockNavSave"
     case Backbtn = "backbtn"
     case CameraFlashAuto = "CameraFlashAuto"
@@ -69,6 +70,11 @@ extension UIImage {
     case PersonalInfoHonorLighted = "PersonalInfoHonorLighted"
     case PersonalInfoHonorNormal = "PersonalInfoHonorNormal"
     case PersonalInfoMale = "PersonalInfoMale"
+    case PKAttention = "PKAttention"
+    case PKInvitationAddBtn = "PKInvitationAddBtn"
+    case PKNextBtnNormal = "PKNextBtnNormal"
+    case PKNextBtnSelected = "PKNextBtnSelected"
+    case PKWinner = "PKWinner"
     case RightMenuAlarmClock = "RightMenuAlarmClock"
     case RightMenuCamera = "RightMenuCamera"
     case RightMenuNotice = "RightMenuNotice"

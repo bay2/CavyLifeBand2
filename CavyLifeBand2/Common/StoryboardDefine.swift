@@ -177,6 +177,34 @@ struct StoryboardScene {
       return StoryboardScene.Main.SignInViewScene.viewController() as! SignInViewController
     }
   }
+  enum PK: String, StoryboardSceneType {
+    static let storyboardName = "PK"
+
+    case PKIntroduceVCScene = "PKIntroduceVC"
+    static func instantiatePKIntroduceVC() -> PKIntroduceVC {
+      return StoryboardScene.PK.PKIntroduceVCScene.viewController() as! PKIntroduceVC
+    }
+
+    case PKInvitationVCScene = "PKInvitationVC"
+    static func instantiatePKInvitationVC() -> PKInvitationVC {
+      return StoryboardScene.PK.PKInvitationVCScene.viewController() as! PKInvitationVC
+    }
+
+    case PKListVCScene = "PKListVC"
+    static func instantiatePKListVC() -> PKListVC {
+      return StoryboardScene.PK.PKListVCScene.viewController() as! PKListVC
+    }
+
+    case PKRulesVCScene = "PKRulesVC"
+    static func instantiatePKRulesVC() -> PKRulesVC {
+      return StoryboardScene.PK.PKRulesVCScene.viewController() as! PKRulesVC
+    }
+
+    case PKSelectOppTVCScene = "PKSelectOppTVC"
+    static func instantiatePKSelectOppTVC() -> PKSelectOppTVC {
+      return StoryboardScene.PK.PKSelectOppTVCScene.viewController() as! PKSelectOppTVC
+    }
+  }
   enum Weather: StoryboardSceneType {
     static let storyboardName = "Weather"
   }

@@ -21,10 +21,11 @@ class ContactsAccountInfoUItests: XCTestCase {
         
         if #available(iOS 9.0, *) {
             
-            XCUIApplication().launch()
-            
             let app = XCUIApplication()
-            app.buttons["test"].tap()
+            
+            app.launchArguments = [ "ContactsAccountInfoUItests"]
+            app.launch()
+            app.buttons["HomeLeftMenu"].tap()
             app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).element.childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Image).element.tap()
         
         } else {

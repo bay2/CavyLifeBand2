@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum ChartViewStyle {
-    
-    case SleepChart
-    case StepChart
-    
-}
 
 protocol ChartViewProtocol {
     

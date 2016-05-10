@@ -10,8 +10,10 @@ import UIKit
 import EZSwiftExtensions
 
 class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
+
     var viewStyle: ChartViewStyle = .StepChart
+    
+    var timeBucketStyle: TimeBucketStyle = .Day
     
     var datas: [StepCharts] = []
     
@@ -20,16 +22,6 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
     
     /// 详情页
     var infoView: UICollectionView?
-    
-    override init(frame: CGRect) {
-        
-        super.init(frame: frame)
-
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     /**
      添加数据
@@ -90,6 +82,19 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
     // 添加详情页面
     func addInfoView() {
         
+        var infoViewHeight: CGFloat = 0
+        
+        switch viewStyle {
+            
+        case .SleepChart:
+
+            infoViewHeight  = chartViewHight + listcellHight * 3 + 20
+            
+        case .StepChart:
+            
+            infoViewHeight = chartViewHight + listcellHight * 4 + 20
+        }
+        
         // 详情的CollectionView
         let timeLayout = UICollectionViewFlowLayout()
         timeLayout.itemSize = CGSizeMake(ez.screenWidth, infoViewHeight)
@@ -141,13 +146,13 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
         } else {
             
             // 数据cell
-            
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChartInfoCollectionCell", forIndexPath: indexPath) as! ChartInfoCollectionCell
             
             cell.data = self.datas[indexPath.row]
             
             cell.viewStyle = self.viewStyle
-            
+            cell.timeBucketStyle = self.timeBucketStyle
+            cell.configAllView()
             
             return cell
 

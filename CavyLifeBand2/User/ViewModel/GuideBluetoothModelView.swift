@@ -122,7 +122,7 @@ struct GuideBandSuccess: GuideViewDataSource, GuideViewDelegate, QueryUserInfoRe
         let queryUserInfoProc: (UserProfile? -> Void) = {
             
             guard let userInfo = $0 else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(viewController, message: L10n.UserModuleErrorCodeNetError.string)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UserModuleErrorCodeNetError.string)
                 return
             }
             

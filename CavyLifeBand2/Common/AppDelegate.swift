@@ -9,9 +9,13 @@
 import UIKit
 import KSCrash
 import Log
+import EZSwiftExtensions
+import RealmSwift
 #if UITEST
 import OHHTTPStubs
 #endif
+
+var realm: Realm = try! Realm()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,8 +29,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             uiTestStub()
             
         #endif
-
+        
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1, migrationBlock: { migration, oldSchemaVersion in
+            
+            if oldSchemaVersion >= 1 {
+                return
+            }
+            
+            migration.enumerate(FriendInfoRealm.className()) {(oldObject, newObject) in
+                
+                let nikeName = oldObject!["nikeName"] as! String
+                newObject!["fullName"] = nikeName.chineseToSpell() + nikeName
+                
+            }
+            
+            
+        })
+        
         let installation = KSCrashInstallationStandard.sharedInstance()
+        
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(
+            schemaVersion: 2,
+            migrationBlock: { migration, oldSchemaVersion in
+                
+        })
         
         installation.url = NSURL(string: CavyDefine.bugHDKey)
 
@@ -39,11 +65,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
         }
         
-//        PgyUpdateManager.sharedPgyManager.startManagerWithAppId("")
-        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
-        PgyUpdateManager.sharedPgyManager().checkUpdate()
-        PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
         
+        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
+        PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
+        PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
+            
         return true
 
     }
@@ -54,8 +80,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         }
         
-        UIApplication.sharedApplication().openURL(NSURL(string: "\(updateDictionary["downloadURL"])")!)
+        let localBuild = ez.appBuild?.toInt() ?? 0
+        let newBuild = (updateDictionary["versionCode"] as? String ?? "").toInt() ?? 0
         
+        guard localBuild < newBuild else {
+            return
+        }
+        
+        PgyUpdateManager.sharedPgyManager().checkUpdate()
         
     }
 
@@ -72,6 +104,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
             
+        }
+        
+        if NSProcessInfo.processInfo().arguments.contains("ContactsAccountInfoUItests") {
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
         }
 
     
@@ -110,6 +146,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         if NSProcessInfo.processInfo().arguments.contains("AccountInfoSecurityUITest") {
+            
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
+            
+        }
+        
+        if NSProcessInfo.processInfo().arguments.contains("AlarmClockUITest") {
             
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "56d6ea3bd34635186c60492b"
             

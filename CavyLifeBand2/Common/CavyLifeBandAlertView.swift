@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import EZSwiftExtensions
 
 class CavyLifeBandAlertView {
 
@@ -20,15 +21,16 @@ class CavyLifeBandAlertView {
      - parameter title:   <#title description#>
      - parameter message: <#message description#>
      */
-   func showViewTitle(viewController: UIViewController?, title: String = "", message: String) {
+   func showViewTitle(title: String = "", message: String) {
 
         let alertView = UIAlertController(title: title, message: message, preferredStyle: .Alert)
 
         let defaultAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
 
         alertView.addAction(defaultAction)
-
-       viewController?.presentViewController(alertView, animated: true, completion: nil)
+    
+    
+       UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
 
     }
 
@@ -37,7 +39,7 @@ class CavyLifeBandAlertView {
      
      - parameter userErrorCode:
      */
-    func showViewTitle(viewController: UIViewController?, userErrorCode: UserRequestErrorType?) {
+    func showViewTitle(userErrorCode: UserRequestErrorType?) {
 
         let errorMessage = [UserRequestErrorType.EmailErr: L10n.UserModuleErrorCodeEmailError.string,
         UserRequestErrorType.EmailNil: L10n.UserModuleErrorCodeEmailNil.string,
@@ -55,7 +57,7 @@ class CavyLifeBandAlertView {
         
         let userError = userErrorCode ?? UserRequestErrorType.UnknownError
         
-        showViewTitle(viewController, title: "", message: errorMessage[userError]!)
+        showViewTitle("", message: errorMessage[userError]!)
 
     }
 
@@ -64,7 +66,7 @@ class CavyLifeBandAlertView {
      
      - parameter webApiErrorCode:
      */
-    func showViewTitle(viewController: UIViewController?, webApiErrorCode: String) {
+    func showViewTitle(webApiErrorCode: String) {
 
         let errorMessage = [WebApiCode.ParaError.rawValue: L10n.WebErrorCode1000.string,
         WebApiCode.UserPasswdError.rawValue: L10n.WebErrorCode1001.string,
@@ -77,11 +79,11 @@ class CavyLifeBandAlertView {
 
         if let message = errorMessage[webApiErrorCode] {
 
-            showViewTitle(viewController, title: "", message: message)
+            showViewTitle("", message: message)
 
         } else {
 
-            showViewTitle(viewController, title: "", message: L10n.UserModuleErrorCodeNetAPIError.string)
+            showViewTitle("", message: L10n.UserModuleErrorCodeNetAPIError.string)
 
         }
 

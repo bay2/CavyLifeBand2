@@ -22,8 +22,6 @@ class HomeTimeLineTableCell: UITableViewCell {
     /// 模块名字
     @IBOutlet weak var nameLabel: UILabel!
     
-    /// 时间
-    @IBOutlet weak var timeLabel: UILabel!
     
     /// 其他人名字
     @IBOutlet weak var othersName: UILabel!
@@ -37,7 +35,6 @@ class HomeTimeLineTableCell: UITableViewCell {
         
         imgView.image = dataSource.image
         nameLabel.text = dataSource.title
-        timeLabel.text = dataSource.time
         othersName.text = dataSource.others
         resultLabel.attributedText = dataSource.resultNum
         addAllViewLayout(dataSource.others)
@@ -55,7 +52,6 @@ class HomeTimeLineTableCell: UITableViewCell {
         headLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
         bottomLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
         nameLabel.textColor = UIColor(named: .HomeViewUserName)
-        timeLabel.textColor = UIColor(named: .ContactsIntrouduce)
         othersName.textColor = UIColor(named: .HomeViewUserName)
         resultLabel.textColor = UIColor(named: .HomeViewUserName)
     

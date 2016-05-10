@@ -39,12 +39,12 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate {
         self.usePercentValuesEnabled = true
         self.drawSlicesUnderHoleEnabled = true
         self.holeRadiusPercent = 0.6
-        self.transparentCircleRadiusPercent = 0.61
+        self.transparentCircleRadiusPercent = 0
         self.descriptionText = ""
         self.noDataTextDescription = "You need to provide data for the chart."
         self.setExtraOffsets(left: 0, top: 5, right: 0, bottom: 5)
         self.drawCenterTextEnabled = false // 中间不显示字
-        
+        self.holeColor = UIColor(named: .ChartViewBackground)
         self.drawHoleEnabled = true   // 中间是空的
         self.rotationAngle = 0
         self.rotationEnabled = true
@@ -66,11 +66,8 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate {
     func setPieChartsData() {
         
         let dataCount = 2
-        
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
-        
-        
         for i in 0 ..< dataCount {
             
             yVals.append(BarChartDataEntry(value: sleepDegree[i], xIndex: i))
@@ -78,24 +75,12 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate {
         }
         
         let dataSet: PieChartDataSet = PieChartDataSet(yVals: yVals, label: "")
-        
         dataSet.sliceSpace = 0
         
         var colors: [NSUIColor] = []
         colors.append(UIColor(named: .ChartSleepDegreeDeep))
         colors.append(UIColor(named: .ChartSleepDegreeLight))
-      
         dataSet.colors = colors
-        
-        
-        
-//        dataSet.valueLinePart1OffsetPercentage = 0.8;
-//        dataSet.valueLinePart1Length = 0.3;
-//        dataSet.valueLinePart2Length = 0.4;
-//     //   dataSet.xValuePosition = PieChartValuePositionOutsideSlice;
-//        dataSet.yValuePosition = PieChartValuePositionOutsideSlice;
-        
-        
         
         let data = PieChartData(xVals: xVals, dataSet: dataSet)
         let formatter = NSNumberFormatter()
@@ -108,7 +93,7 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate {
         data.setValueTextColor(UIColor.blackColor())
         self.data = data
         self.highlightValues(nil)
-    
+        self.animate(xAxisDuration: 1, yAxisDuration: 1)
     }
     
     // MARK: -- ChartViewDelegate

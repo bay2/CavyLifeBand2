@@ -9,22 +9,50 @@
 import UIKit
 import Charts
 
-let leftMaxValue = 1
-let leftLabelCCount = 1
-let legendLable = "Step"
-let legendColors = [UIColor(named: .ChartStepPillarColor)]
-let leftUnit = " k"
-let spaceBetweenLabel = dayTime.count / 3
-let dataCount = dayTime.count
 
 class ShowChartsView: BarChartView, ChartViewDelegate {
+    
+    var leftMaxValue = 1
+    var leftLabelCCount = 1
+    var legendLable = "Step"
+    var legendColors = [UIColor(named: .ChartStepPillarColor)]
+    var leftUnit = " k"
+    var spaceBetweenLabel = dayTime.count / 3
+    var dataCount = dayTime.count
+    
+    
+//    var viewStyle: ChartViewStyle = .StepChart
+    
+    var timeBucketStyle: TimeBucketStyle = .Day
     
     var chartsData: [PerStepChartData] = []
     
     var showValue: Bool = false
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    /**
+     配置所有视图 主入口
+     */
+    func configAllView() {
+        
+//        switch viewStyle {
+//            
+//        case .SleepChart:
+//            
+//            legendLable = "Sleep"
+//            legendColors = [UIColor(named: .ChartSleepDegreeDeep), UIColor(named: .ChartSleepDegreeLight)]
+//            leftUnit = " h"
+//            spaceBetweenLabel = dayTime.count / 3
+//            dataCount = dayTime.count
+//            
+//            
+//        case .StepChart:
+//            legendLable = "Step"
+//            legendColors = [UIColor(named: .ChartStepPillarColor)]
+//            leftUnit = " k"
+//            spaceBetweenLabel = dayTime.count / 3
+//            dataCount = dayTime.count
+//        }
+        
         
         self.backgroundColor = UIColor(named: .ChartViewBackground)
         
@@ -33,14 +61,12 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         addxAxis()
         addLeftAxis()
         addLegend()
-
-        setData(dataCount)
         
+        setData(dataCount)
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    
+    
     
     /**
      总设置
@@ -137,6 +163,10 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
             dataSet = BarChartDataSet(yVals: yVals, label: legendLable)
             dataSet.barSpace = 0.80
             dataSet.setColors(legendColors, alpha: 0.9)
+            dataSet.highlightAlpha = 0.2
+            dataSet.barShadowColor = UIColor.clearColor()
+            
+            
             var dataSets: [BarChartDataSet] = []
             dataSets.append(dataSet)
             let data = BarChartData(xVals: xVals, dataSets: dataSets)

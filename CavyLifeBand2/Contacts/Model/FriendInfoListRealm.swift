@@ -16,16 +16,9 @@ class FriendInfoRealm: Object {
     dynamic var nikeName = ""
     dynamic var headImage = ""
     dynamic var isFollow = false
+    dynamic var fullName = ""
     
-//    override static func primaryKey() -> String? {
-//        return "userId"
-//    }
-    
-    var owners: [FriendInfoListRealm] {
-        // Realm 并不会存储这个属性，因为这个属性只定义了 getter
-        // 定义“owners”，和 Person.dogs 建立反向关系
-        return linkingObjects(FriendInfoListRealm.self, forProperty: "friendListInfo")
-    }
+    let owners = LinkingObjects(fromType: FriendInfoListRealm.self, property: "friendListInfo")
     
 }
 

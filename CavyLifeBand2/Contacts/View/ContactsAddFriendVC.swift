@@ -87,6 +87,17 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        tableDictionary.map {(key, value) -> (UITableView, ContactsTableViewSectionDataSource) in
+            key.reloadData()
+            
+            return (key, value)
+        }
+        
+    }
+    
     /**
      加载数据
      */
@@ -329,13 +340,11 @@ extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
      */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: indexPath) as! ContactsAddFriendCell
-        
         guard let dataSourceViewModel = tableDictionary[tableView] else {
-            return cell
+            fatalError()
         }
         
-        return dataSourceViewModel.createCell(cell, index: indexPath)
+        return dataSourceViewModel.createCell(tableView, index: indexPath)
 
     }
     

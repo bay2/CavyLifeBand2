@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="EmergencyContactInfoCell" customModule="CavyLifeBand2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DR-B7-eL6">
+                        <rect key="frame" x="20" y="12" width="40" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KdT-gn-kSO">
+                        <rect key="frame" x="251" y="0.0" width="49" height="43"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <state key="normal" title="Button">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="deleteEmergencyContact:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8Wl-D0-7ka"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TLr-3L-zEN">
+                        <rect key="frame" x="70" y="14" width="161" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8DR-B7-eL6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5eq-W2-958"/>
+                    <constraint firstItem="8DR-B7-eL6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Hqm-F3-iQs"/>
+                    <constraint firstItem="TLr-3L-zEN" firstAttribute="centerY" secondItem="8DR-B7-eL6" secondAttribute="centerY" id="MD6-Wb-jn5"/>
+                    <constraint firstAttribute="bottom" secondItem="KdT-gn-kSO" secondAttribute="bottom" id="TnZ-D4-tao"/>
+                    <constraint firstItem="TLr-3L-zEN" firstAttribute="leading" secondItem="8DR-B7-eL6" secondAttribute="trailing" constant="10" id="VhQ-LA-z3W"/>
+                    <constraint firstItem="KdT-gn-kSO" firstAttribute="leading" secondItem="TLr-3L-zEN" secondAttribute="trailing" constant="20" id="eGu-zc-ZQl"/>
+                    <constraint firstItem="KdT-gn-kSO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="eH2-0Q-YUE"/>
+                    <constraint firstAttribute="trailing" secondItem="KdT-gn-kSO" secondAttribute="trailing" constant="20" id="o54-VF-kCF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="cancelBtn" destination="KdT-gn-kSO" id="uzF-bM-TC6"/>
+                <outlet property="nameLabel" destination="8DR-B7-eL6" id="YW0-yM-3lM"/>
+                <outlet property="phoneNumberLabel" destination="TLr-3L-zEN" id="87C-Aa-Jda"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>
