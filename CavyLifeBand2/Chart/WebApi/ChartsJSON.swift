@@ -9,6 +9,15 @@
 import UIKit
 import JSONJoy
 
+/**
+ *  时间段
+ */
+struct timeBucketStruct {
+    
+    var beginTime: NSData? = nil
+    var endTime: NSData? = nil
+}
+
 
 struct ChartsForStep: JSONJoy {
     

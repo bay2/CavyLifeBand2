@@ -21,38 +21,14 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     var dataCount = dayTime.count
     
     
-//    var viewStyle: ChartViewStyle = .StepChart
-    
     var timeBucketStyle: TimeBucketStyle = .Day
     
     var chartsData: [PerStepChartData] = []
-    
-    var showValue: Bool = false
     
     /**
      配置所有视图 主入口
      */
     func configAllView() {
-        
-//        switch viewStyle {
-//            
-//        case .SleepChart:
-//            
-//            legendLable = "Sleep"
-//            legendColors = [UIColor(named: .ChartSleepDegreeDeep), UIColor(named: .ChartSleepDegreeLight)]
-//            leftUnit = " h"
-//            spaceBetweenLabel = dayTime.count / 3
-//            dataCount = dayTime.count
-//            
-//            
-//        case .StepChart:
-//            legendLable = "Step"
-//            legendColors = [UIColor(named: .ChartStepPillarColor)]
-//            leftUnit = " k"
-//            spaceBetweenLabel = dayTime.count / 3
-//            dataCount = dayTime.count
-//        }
-        
         
         self.backgroundColor = UIColor(named: .ChartViewBackground)
         

@@ -26,8 +26,8 @@
 		4C5396C01CE190E600BCFAEB /* ShowStackedChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396BF1CE190E600BCFAEB /* ShowStackedChartsView.swift */; };
 		4C5396CA1CE1B28000BCFAEB /* ChartOtherSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */; };
 		4C5396CC1CE1B2CC00BCFAEB /* Charts.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C5396CB1CE1B2CC00BCFAEB /* Charts.json */; };
+		4C5396CE1CE1B83B00BCFAEB /* ChartInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396CD1CE1B83B00BCFAEB /* ChartInfoViewModel.swift */; };
 		4C6F14971CD9F454007E923B /* ChartsDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */; };
-		4C6F14991CDB245C007E923B /* ChartsNetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F14981CDB245C007E923B /* ChartsNetRequest.swift */; };
 		4C6F149B1CDC9B06007E923B /* ShowPieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */; };
 		4CB7A06E1CD095C400DFB8DC /* BandElectricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */; };
 		4CB7A06F1CD095C400DFB8DC /* BandElectricView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB7A0561CD095C400DFB8DC /* BandElectricView.xib */; };
@@ -326,8 +326,8 @@
 		4C5396BF1CE190E600BCFAEB /* ShowStackedChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStackedChartsView.swift; sourceTree = "<group>"; };
 		4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartOtherSetting.swift; sourceTree = "<group>"; };
 		4C5396CB1CE1B2CC00BCFAEB /* Charts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Charts.json; sourceTree = "<group>"; };
+		4C5396CD1CE1B83B00BCFAEB /* ChartInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInfoViewModel.swift; sourceTree = "<group>"; };
 		4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsDataRealm.swift; sourceTree = "<group>"; };
-		4C6F14981CDB245C007E923B /* ChartsNetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsNetRequest.swift; sourceTree = "<group>"; };
 		4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPieChartsView.swift; sourceTree = "<group>"; };
 		4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandElectricView.swift; sourceTree = "<group>"; };
 		4CB7A0561CD095C400DFB8DC /* BandElectricView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BandElectricView.xib; sourceTree = "<group>"; };
@@ -748,6 +748,7 @@
 			children = (
 				4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */,
 				4CB7A0CF1CD3497F00DFB8DC /* ChartBaseViewModel.swift */,
+				4C5396CD1CE1B83B00BCFAEB /* ChartInfoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -755,10 +756,9 @@
 		4CB7A0D01CD3497F00DFB8DC /* WebApi */ = {
 			isa = PBXGroup;
 			children = (
-				4C5396CB1CE1B2CC00BCFAEB /* Charts.json */,
 				4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */,
-				4C6F14981CDB245C007E923B /* ChartsNetRequest.swift */,
 				4CB7A0DE1CD35BF900DFB8DC /* ChartsJSON.swift */,
+				4C5396CB1CE1B2CC00BCFAEB /* Charts.json */,
 			);
 			path = WebApi;
 			sourceTree = "<group>";
@@ -1977,7 +1977,6 @@
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
 				91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */,
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
-				4C6F14991CDB245C007E923B /* ChartsNetRequest.swift in Sources */,
 				4C0BF9FC1CBCE4CE00DB06FC /* HomeStepViewModel.swift in Sources */,
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
@@ -2026,6 +2025,7 @@
 				6836557E1CBC84B7009373EA /* SecondsCollectionViewCell.swift in Sources */,
 				91E1B4C31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift in Sources */,
 				91ACEC601CB65456008ED8B0 /* GuideSetModelView.swift in Sources */,
+				4C5396CE1CE1B83B00BCFAEB /* ChartInfoViewModel.swift in Sources */,
 				4CB7A07C1CD095C400DFB8DC /* HomeTimeLineTableCell.swift in Sources */,
 				917B98BE1CB8E841008698F5 /* UserAchievementCell.swift in Sources */,
 				4CB7A0D11CD3497F00DFB8DC /* ChartBaseViewController.swift in Sources */,

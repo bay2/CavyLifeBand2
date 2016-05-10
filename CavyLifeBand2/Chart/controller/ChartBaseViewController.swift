@@ -8,13 +8,32 @@
 
 import UIKit
 import EZSwiftExtensions
+import Realm
+import RealmSwift
 import JSONJoy
 
 
-class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{
+class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol {
+    
+    var realm: Realm = try! Realm()
+    var userId: String = "" 
     
     var viewStyle: ChartViewStyle = .StepChart
     var stepData: ChartsForStep?
+    
+    private lazy var TimeBucketData: [timeBucketStruct] = {
+        
+        let chartData: [timeBucketStruct] = []
+        
+        
+        let list = self.realm.objects(ChartStepDataRealm).filter("userId = '\(self.userId)'")
+        
+    
+        
+        
+        return chartData
+        
+    }()
     
     /// 日 周 年 索引
     var upperButtonArray: [ChartTimeButton] = [ChartTimeButton(selectIndex: 0), ChartTimeButton(selectIndex: 1), ChartTimeButton(selectIndex: 2)]
@@ -80,13 +99,29 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter{
             
         }
         
-        // 添加到数据库
+        // 先判断 有数据 直接返回 有没有数据 然后 请求数据
+        if isExistChartsData() {
+            
+            return
+        }
         
         
         
+        // 请求数据   添加到数据库
+        //        let urlString = ""
+        //        let request: [ChartStepDataRealm] = Alamofire.request(.POST, urlString).responseJSON { (response) in
+        //        }
         
+        let request: [ChartStepDataRealm] = []
         
-        
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            
+            for date in request {
+                
+                self.addStepData(date)
+            }
+            
+        }
         
     }
     

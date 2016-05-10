@@ -24,15 +24,41 @@ class ChartStepDataRealm: Object {
 protocol ChartsRealmProtocol {
     
     var realm: Realm { get }
+    var userId: String { get }
     
+    
+    
+    func isExistChartsData() -> Bool
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
     
-    func queryStepData(userId: String, timeBucket: String, time: NSData) -> [ChartStepDataRealm]?
+    
+    
+//    func queryStepData(userId: String, timeBucket: String, time: NSData) -> [ChartStepDataRealm]?
     
 }
 
 
 extension ChartsRealmProtocol {
+    
+    /**
+     查询是否有数据
+     
+     - returns:
+     */
+    func isExistChartsData() -> Bool {
+        
+        
+        let list = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+        
+        if list.count <= 0 {
+            return false
+        }
+        
+        return true
+        
+    }
+    
+    
     
     /**
      添加计步数据
@@ -46,6 +72,7 @@ extension ChartsRealmProtocol {
         do {
             
             try realm.write {
+                
                 realm.add(chartsInfo, update: false)
             }
             
@@ -70,7 +97,7 @@ extension ChartsRealmProtocol {
      
      - returns:              数据数组
      */
-    func queryStepNumber(userId: String, beginTime: NSDate, endTime: NSDate) -> [ChartStepDataRealm]? {
+    func queryStepNumber(beginTime: NSDate, endTime: NSDate) -> [ChartStepDataRealm]? {
         
         if realm.objects(ChartStepDataRealm).count == 0 {
             return nil

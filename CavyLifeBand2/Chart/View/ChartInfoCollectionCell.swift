@@ -33,6 +33,8 @@ class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITabl
         
         if viewStyle == .SleepChart && timeBucketStyle == .Day {
             
+            
+            
             chartViewLayout(ShowPieChartsView())
             
         }

@@ -22,9 +22,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     var timeBucketStyle: TimeBucketStyle = .Day
     
     var chartsData: [PerStepChartData] = []
-    
-    var showValue: Bool = false
-    
+        
     /**
      配置所有视图 主入口
      */

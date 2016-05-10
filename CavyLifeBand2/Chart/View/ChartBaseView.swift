@@ -12,16 +12,19 @@ import EZSwiftExtensions
 class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var viewStyle: ChartViewStyle = .StepChart
-    
+
     var timeBucketStyle: TimeBucketStyle = .Day
-    
-    var datas: [StepCharts] = []
     
     /// 时间间隔选择
     var timeView: UICollectionView?
     
     /// 详情页
     var infoView: UICollectionView?
+    
+    var datas: [StepCharts] = []
+    
+    
+
     
     /**
      添加数据
