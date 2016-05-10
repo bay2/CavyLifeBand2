@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MJRefresh
 
 class RelateAppVC: UIViewController, BaseViewControllerPresenter {
     
@@ -18,9 +19,9 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
     
     var tableDataSource: [RelateAppCellDataSource] = [RelateAppCellDataSource]()
     
-    var totalIndex: Int = 0
+    var totalIndex: Int = Int(MAXINTERP)
     
-    var currentIndex: Int = 0
+    var currentIndex: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +36,8 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
         updateNavUI()
         
         baseTableSetting()
+        
+        loadDataByIndex()
         
     }
 
@@ -56,6 +59,9 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
         tableView.tableFooterView = UIView()
         
         tableView.registerNib(UINib.init(nibName: relateAppCellID, bundle: nil), forCellReuseIdentifier: relateAppCellID)
+        
+        self.tableView.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: #selector(RelateAppVC.loadDataByIndex))
+        
     }
     
     func downloadAction(sender: UIButton) {
@@ -65,6 +71,8 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
     }
     
     func goDetailInfoWeb(index: Int) {
+        
+        //TODO:前往查看详情H5
         Log.info("前往查看详情H5 - \(index)")
         
         let targetVC = WebViewController()
@@ -72,6 +80,27 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
         targetVC.dataSource = RelateAppDetailInfoWebViewModel()
         
         self.pushVC(targetVC)
+        
+    }
+
+    func loadDataByIndex() {
+        
+        //TODO:调接口加载数据"
+        Log.info("调接口加载数据")
+        
+//        totalIndex =
+        
+//        currentIndex = 
+        
+//        tableDataSource.append(<#T##newElement: Element##Element#>)
+        
+//        if currentIndex == totalIndex {
+//            self.tableView.mj_footer.endRefreshingWithNoMoreData()
+//        } else {
+//            self.tableView.mj_footer.endRefreshing()
+//        }
+        
+//        tableView.insertRowsAtIndexPaths(<#T##indexPaths: [NSIndexPath]##[NSIndexPath]#>, withRowAnimation: .None)
         
     }
 
