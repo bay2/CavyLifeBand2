@@ -51,3 +51,17 @@ struct OfficialWebViewModel: WebVCDataSourceProtocol {
     var webUrlStr: String = "http://www.baidu.com"
     
 }
+
+struct RelateAppDetailInfoWebViewModel: WebVCDataSourceProtocol {
+    
+    var navTitle: String = L10n.RelateRelateAppNavTitle.string
+    
+    var webUrlStr: String
+    
+    init(webUrlStr: String = "http://www.baidu.com") {
+        
+        self.webUrlStr = webUrlStr
+                
+    }
+    
+}

@@ -59,7 +59,20 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
     }
     
     func downloadAction(sender: UIButton) {
-        Log.info("download action - \(sender.tag)")
+        
+        goDetailInfoWeb(sender.tag)
+        
+    }
+    
+    func goDetailInfoWeb(index: Int) {
+        Log.info("前往查看详情H5 - \(index)")
+        
+        let targetVC = WebViewController()
+        
+        targetVC.dataSource = RelateAppDetailInfoWebViewModel()
+        
+        self.pushVC(targetVC)
+        
     }
 
 }
@@ -81,6 +94,8 @@ extension RelateAppVC: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
+        goDetailInfoWeb(indexPath.section)
     }
     
 }

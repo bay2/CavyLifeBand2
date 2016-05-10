@@ -268,7 +268,6 @@
 "Home.Weather.Snow.Middle" = "中雪";
 "Home.Weather.Snow.Heavy" = "大雪";
 
-<<<<<<< HEAD
 //相关
 "Relate.About.NavTitle" = "关于豚鼠";
 "Relate.About.CurrentVersion" = "当前版本";
@@ -284,5 +283,4 @@
 "Relate.HelpAndFeedback.TextViewPlaceHolder" = "请描述你的问题或意见";
 "Relate.RelateApp.NavTitle" = "相关App";
 "Relate.RelateAppCell.DownloadBtnTitle" = "下载";
-=======
->>>>>>> bay2/develop
+
