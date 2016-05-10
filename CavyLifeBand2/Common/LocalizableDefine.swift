@@ -459,6 +459,34 @@ enum L10n {
   case HomeWeatherSnowMiddle
   /// 大雪
   case HomeWeatherSnowHeavy
+  /// 关于豚鼠
+  case RelateAboutNavTitle
+  /// 当前版本
+  case RelateAboutCurrentVersion
+  /// 功能介绍
+  case RelateAboutFunctionIntroduce
+  /// 进入官网
+  case RelateAboutGoOfficialWebsite
+  /// 官网
+  case RelateAboutOfficialWebsiteNavTitle
+  /// 豚鼠科技 版权所有\nCopyright © 2014-2016 CavyTech\nAll Right Reserved
+  case RelateAboutCopyrightInfo
+  /// 版权信息
+  case RelateAboutCopyrightNavTitle
+  /// 使用条款和隐私政策
+  case RelateAboutUseAndPrivate
+  /// 帮助与反馈
+  case RelateHelpAndFeedbackNavTitle
+  /// 意见反馈
+  case RelateHelpAndFeedbackNavRightBtnTitle
+  /// 发送
+  case RelateHelpAndFeedbackSendBtnTitle
+  /// 请描述你的问题或意见
+  case RelateHelpAndFeedbackTextViewPlaceHolder
+  /// 相关App
+  case RelateRelateAppNavTitle
+  /// 下载
+  case RelateRelateAppCellDownloadBtnTitle
 }
 
 extension L10n: CustomStringConvertible {
@@ -922,6 +950,34 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.Weather.Snow.Middle")
       case .HomeWeatherSnowHeavy:
         return L10n.tr("Home.Weather.Snow.Heavy")
+      case .RelateAboutNavTitle:
+        return L10n.tr("Relate.About.NavTitle")
+      case .RelateAboutCurrentVersion:
+        return L10n.tr("Relate.About.CurrentVersion")
+      case .RelateAboutFunctionIntroduce:
+        return L10n.tr("Relate.About.FunctionIntroduce")
+      case .RelateAboutGoOfficialWebsite:
+        return L10n.tr("Relate.About.GoOfficialWebsite")
+      case .RelateAboutOfficialWebsiteNavTitle:
+        return L10n.tr("Relate.About.OfficialWebsiteNavTitle")
+      case .RelateAboutCopyrightInfo:
+        return L10n.tr("Relate.About.CopyrightInfo")
+      case .RelateAboutCopyrightNavTitle:
+        return L10n.tr("Relate.About.CopyrightNavTitle")
+      case .RelateAboutUseAndPrivate:
+        return L10n.tr("Relate.About.UseAndPrivate")
+      case .RelateHelpAndFeedbackNavTitle:
+        return L10n.tr("Relate.HelpAndFeedback.NavTitle")
+      case .RelateHelpAndFeedbackNavRightBtnTitle:
+        return L10n.tr("Relate.HelpAndFeedback.NavRightBtnTitle")
+      case .RelateHelpAndFeedbackSendBtnTitle:
+        return L10n.tr("Relate.HelpAndFeedback.SendBtnTitle")
+      case .RelateHelpAndFeedbackTextViewPlaceHolder:
+        return L10n.tr("Relate.HelpAndFeedback.TextViewPlaceHolder")
+      case .RelateRelateAppNavTitle:
+        return L10n.tr("Relate.RelateApp.NavTitle")
+      case .RelateRelateAppCellDownloadBtnTitle:
+        return L10n.tr("Relate.RelateAppCell.DownloadBtnTitle")
     }
   }
 

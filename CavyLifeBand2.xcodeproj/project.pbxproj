@@ -57,6 +57,7 @@
 		683655951CBE25DB009373EA /* ReminderSettingVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655941CBE25DB009373EA /* ReminderSettingVCViewModel.swift */; };
 		683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655961CBE261B009373EA /* SettingRealmModel.swift */; };
 		683655991CBE3C84009373EA /* AlarmRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655981CBE3C84009373EA /* AlarmRealmModel.swift */; };
+		684097081CE058A400A8BAD2 /* WebVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684097071CE058A400A8BAD2 /* WebVCViewModel.swift */; };
 		684C6AD81CC9BA1C000C176E /* PKJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD71CC9BA1C000C176E /* PKJSON.swift */; };
 		684C6ADA1CC9CCE4000C176E /* PKWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD91CC9CCE4000C176E /* PKWebApi.swift */; };
 		684C6ADF1CCA0506000C176E /* PKRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6ADE1CCA0506000C176E /* PKRealm.swift */; };
@@ -80,6 +81,17 @@
 		686A5EA21CD9E6DD00EB8D0E /* PK_OK.json in Resources */ = {isa = PBXBuildFile; fileRef = 686A5E9E1CD9E6DD00EB8D0E /* PK_OK.json */; };
 		686A5EA31CD9E6DD00EB8D0E /* PK_RecordsList.json in Resources */ = {isa = PBXBuildFile; fileRef = 686A5E9F1CD9E6DD00EB8D0E /* PK_RecordsList.json */; };
 		686A5EE51CDB16DE00EB8D0E /* AKPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5EE41CDB16DE00EB8D0E /* AKPickerView.swift */; };
+		686A5EEB1CDC309400EB8D0E /* Relate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 686A5EEA1CDC309400EB8D0E /* Relate.storyboard */; };
+		686A5EED1CDC30D100EB8D0E /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5EEC1CDC30D100EB8D0E /* AboutVC.swift */; };
+		686A5EEF1CDC35AE00EB8D0E /* HelpAndFeedbackListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5EEE1CDC35AE00EB8D0E /* HelpAndFeedbackListVC.swift */; };
+		686A5EF31CDC35E700EB8D0E /* HelpAndFeedbackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5EF21CDC35E700EB8D0E /* HelpAndFeedbackVC.swift */; };
+		686A5EF51CDC360000EB8D0E /* RelateAppVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5EF41CDC360000EB8D0E /* RelateAppVC.swift */; };
+		686A5EF81CDC3D4500EB8D0E /* AboutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5EF61CDC3D4500EB8D0E /* AboutCell.swift */; };
+		686A5EF91CDC3D4500EB8D0E /* AboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686A5EF71CDC3D4500EB8D0E /* AboutCell.xib */; };
+		686A5EFB1CDC474000EB8D0E /* AboutSectionEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5EFA1CDC474000EB8D0E /* AboutSectionEmptyView.swift */; };
+		686A5EFD1CDC694800EB8D0E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5EFC1CDC694800EB8D0E /* WebViewController.swift */; };
+		686A5F041CDC7F3900EB8D0E /* RelateAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5F021CDC7F3900EB8D0E /* RelateAppCell.swift */; };
+		686A5F051CDC7F3900EB8D0E /* RelateAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		68C558CB1CB74D1F0031719D /* AlarmClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */; };
@@ -338,6 +350,7 @@
 		683655941CBE25DB009373EA /* ReminderSettingVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderSettingVCViewModel.swift; sourceTree = "<group>"; };
 		683655961CBE261B009373EA /* SettingRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingRealmModel.swift; sourceTree = "<group>"; };
 		683655981CBE3C84009373EA /* AlarmRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmRealmModel.swift; sourceTree = "<group>"; };
+		684097071CE058A400A8BAD2 /* WebVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebVCViewModel.swift; sourceTree = "<group>"; };
 		684C6AD71CC9BA1C000C176E /* PKJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKJSON.swift; sourceTree = "<group>"; };
 		684C6AD91CC9CCE4000C176E /* PKWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWebApi.swift; sourceTree = "<group>"; };
 		684C6ADE1CCA0506000C176E /* PKRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRealm.swift; sourceTree = "<group>"; };
@@ -361,6 +374,17 @@
 		686A5E9E1CD9E6DD00EB8D0E /* PK_OK.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PK_OK.json; sourceTree = "<group>"; };
 		686A5E9F1CD9E6DD00EB8D0E /* PK_RecordsList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PK_RecordsList.json; sourceTree = "<group>"; };
 		686A5EE41CDB16DE00EB8D0E /* AKPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKPickerView.swift; sourceTree = "<group>"; };
+		686A5EEA1CDC309400EB8D0E /* Relate.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Relate.storyboard; sourceTree = "<group>"; };
+		686A5EEC1CDC30D100EB8D0E /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		686A5EEE1CDC35AE00EB8D0E /* HelpAndFeedbackListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackListVC.swift; sourceTree = "<group>"; };
+		686A5EF21CDC35E700EB8D0E /* HelpAndFeedbackVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackVC.swift; sourceTree = "<group>"; };
+		686A5EF41CDC360000EB8D0E /* RelateAppVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelateAppVC.swift; sourceTree = "<group>"; };
+		686A5EF61CDC3D4500EB8D0E /* AboutCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutCell.swift; sourceTree = "<group>"; };
+		686A5EF71CDC3D4500EB8D0E /* AboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutCell.xib; sourceTree = "<group>"; };
+		686A5EFA1CDC474000EB8D0E /* AboutSectionEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutSectionEmptyView.swift; sourceTree = "<group>"; };
+		686A5EFC1CDC694800EB8D0E /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		686A5F021CDC7F3900EB8D0E /* RelateAppCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelateAppCell.swift; sourceTree = "<group>"; };
+		686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelateAppCell.xib; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlarmClock.storyboard; sourceTree = "<group>"; };
@@ -717,6 +741,33 @@
 			path = PKJson;
 			sourceTree = "<group>";
 		};
+		686A5EE81CDC307300EB8D0E /* Relate */ = {
+			isa = PBXGroup;
+			children = (
+				686A5EE91CDC307300EB8D0E /* View */,
+			);
+			path = Relate;
+			sourceTree = "<group>";
+		};
+		686A5EE91CDC307300EB8D0E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				686A5EEA1CDC309400EB8D0E /* Relate.storyboard */,
+				686A5EEE1CDC35AE00EB8D0E /* HelpAndFeedbackListVC.swift */,
+				686A5EF21CDC35E700EB8D0E /* HelpAndFeedbackVC.swift */,
+				686A5EF41CDC360000EB8D0E /* RelateAppVC.swift */,
+				686A5EEC1CDC30D100EB8D0E /* AboutVC.swift */,
+				686A5EFC1CDC694800EB8D0E /* WebViewController.swift */,
+				684097071CE058A400A8BAD2 /* WebVCViewModel.swift */,
+				686A5EF61CDC3D4500EB8D0E /* AboutCell.swift */,
+				686A5EF71CDC3D4500EB8D0E /* AboutCell.xib */,
+				686A5F021CDC7F3900EB8D0E /* RelateAppCell.swift */,
+				686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */,
+				686A5EFA1CDC474000EB8D0E /* AboutSectionEmptyView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		68C558C81CB74CF90031719D /* AlarmClock */ = {
 			isa = PBXGroup;
 			children = (
@@ -1063,6 +1114,7 @@
 		917DA96A1C3B8EB700FF675D /* CavyLifeBand2 */ = {
 			isa = PBXGroup;
 			children = (
+				686A5EE81CDC307300EB8D0E /* Relate */,
 				9179DA971CD5E93800FCA63C /* AddressBook */,
 				68E977F11CC5D0FE00651724 /* PK */,
 				68C558C81CB74CF90031719D /* AlarmClock */,
@@ -1526,6 +1578,8 @@
 				913D0BD91C3FA126006EE7F8 /* Weather.storyboard in Resources */,
 				4C06E9F31CC0E79C0093EEFA /* HomeTimeLineTableCell.xib in Resources */,
 				91D192921C7DA87B00482019 /* colors.txt in Resources */,
+				686A5EEB1CDC309400EB8D0E /* Relate.storyboard in Resources */,
+				686A5EF91CDC3D4500EB8D0E /* AboutCell.xib in Resources */,
 				91E1B4C21CA510BD008ADEE6 /* Contacts.storyboard in Resources */,
 				91C3ED841C3BB637000A414D /* Localizable.strings in Resources */,
 				68C558CB1CB74D1F0031719D /* AlarmClock.storyboard in Resources */,
@@ -1568,6 +1622,7 @@
 				6836557F1CBC84B7009373EA /* SecondsCollectionViewCell.xib in Resources */,
 				91E1B4CA1CA510BD008ADEE6 /* ContactsLetterView.xib in Resources */,
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
+				686A5F051CDC7F3900EB8D0E /* RelateAppCell.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
 				6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */,
 				68E977F81CC600A100651724 /* PKRulesView.xib in Resources */,
@@ -1762,6 +1817,7 @@
 				91671C9A1C9AC5A10090BB3F /* HomeUserInfo.swift in Sources */,
 				6836557D1CBC84B7009373EA /* LineLayout.swift in Sources */,
 				4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */,
+				686A5EFD1CDC694800EB8D0E /* WebViewController.swift in Sources */,
 				9199E4881CAE4A7D00397883 /* AccountMangerProtocol.swift in Sources */,
 				4C0BFA041CBDE9F400DB06FC /* HomeWeatherView.swift in Sources */,
 				91E1B4FB1CA6A475008ADEE6 /* FriendInfoListOper.swift in Sources */,
@@ -1791,6 +1847,7 @@
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
 				4C0BF9F41CB7B5AF00DB06FC /* HomeRingView.swift in Sources */,
 				4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */,
+				686A5EEF1CDC35AE00EB8D0E /* HelpAndFeedbackListVC.swift in Sources */,
 				4C0BF9FE1CBCE58000DB06FC /* HomeSleepViewModel.swift in Sources */,
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,
 				917B98B91CB8E7CA008698F5 /* Font_Extension.swift in Sources */,
@@ -1826,7 +1883,9 @@
 				684C6ADF1CCA0506000C176E /* PKRealm.swift in Sources */,
 				91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */,
 				683655921CBE25A6009373EA /* SettingSwitchCellViewModel.swift in Sources */,
+				684097081CE058A400A8BAD2 /* WebVCViewModel.swift in Sources */,
 				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,
+				686A5EF81CDC3D4500EB8D0E /* AboutCell.swift in Sources */,
 				9104AA721CC4BF4B00FE03E7 /* ContactsReqFriendProtocol.swift in Sources */,
 				91E1B4DB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift in Sources */,
 				91E1B4D71CA510BD008ADEE6 /* ContactsAddFriendCell.swift in Sources */,
@@ -1839,6 +1898,7 @@
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
 				91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */,
+				686A5EFB1CDC474000EB8D0E /* AboutSectionEmptyView.swift in Sources */,
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
 				4C0BF9FC1CBCE4CE00DB06FC /* HomeStepViewModel.swift in Sources */,
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
@@ -1859,6 +1919,7 @@
 				6859BC851CD32D690050F6A0 /* EmergencyContactInfoCell.swift in Sources */,
 				68E977F61CC6008F00651724 /* PKRulesView.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
+				686A5EED1CDC30D100EB8D0E /* AboutVC.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
 				91ACEC671CB68D74008ED8B0 /* AccountInfoSecurityNetworkRequest.swift in Sources */,
 				91E1B4C91CA510BD008ADEE6 /* ContactsLetterView.swift in Sources */,
@@ -1866,11 +1927,14 @@
 				9141C7FE1C7D72CD003E24F2 /* ImageDefine.swift in Sources */,
 				683655311CBB7E43009373EA /* AlarmClockDateCollectionViewCell.swift in Sources */,
 				918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */,
+				686A5F041CDC7F3900EB8D0E /* RelateAppCell.swift in Sources */,
 				9150CAAE1CC66CBB00A398E9 /* UIWindowExtension.swift in Sources */,
 				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
 				4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
+				686A5EF31CDC35E700EB8D0E /* HelpAndFeedbackVC.swift in Sources */,
 				911D1D8B1CCFA3B800065053 /* BandElectricView.swift in Sources */,
+				686A5EF51CDC360000EB8D0E /* RelateAppVC.swift in Sources */,
 				9114D20E1C995CD2008CB4CE /* MenuTableViewCell.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
