@@ -98,7 +98,7 @@ extension NetRequestAdapter {
         
         Log.netRequestFormater(urlString, para: para)
         
-        let request = Alamofire.request(.POST, urlString, encoding: .Custom(closure), parameters: parameters).responseJSON { (response) -> Void in
+        let request = Alamofire.request(.POST, urlString, encoding: .JSON, parameters: parameters).responseJSON { (response) -> Void in
             
             dispatch_async(dispatch_get_main_queue()) { () -> Void in
                 
