@@ -63,7 +63,7 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
         dateFormatter.dateFromString("yyyy-MM-dd HH:mm:ss")        
         
         launchPK([pkWaitRealmModel], loginUserId: self.loginUserId, callBack: {
-            let pkId = $0[0].pkId
+            let pkId = $0[0]
             
             let launchTimeStr = dateFormatter.stringFromDate(NSDate())
             

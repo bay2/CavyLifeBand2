@@ -118,7 +118,7 @@ typealias FailureHandle = (String) -> Void
 
 protocol PKWebRequestProtocol {
     //发起PK
-    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([PKId]) -> Void)?, failure: FailureHandle?) -> Void
+    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([String]) -> Void)?, failure: FailureHandle?) -> Void
     //接受PK
     func acceptPKInvitation(dueRealms: [PKDueRealmModel], loginUserId: String, callBack: ((Void) -> Void)?, failure: FailureHandle?) -> Void
     //撤销PK
@@ -130,7 +130,7 @@ protocol PKWebRequestProtocol {
 
 extension PKWebRequestProtocol {
     
-    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([PKId]) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
+    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([String]) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
         
         do {
             
@@ -145,12 +145,12 @@ extension PKWebRequestProtocol {
                 
                 let resultMsg = try! LaunchPKResponse(JSONDecoder(result.value!))
                 
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
+                guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg.code ?? ""))
                     return
                 }
                 
-                callBack?(resultMsg.pkIdList!)
+                callBack?(resultMsg.pkId)
                 
             }
             

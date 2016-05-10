@@ -82,6 +82,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         syncUserInfo()
         
+        syncPKRecords()
+        
     }
     
     /**

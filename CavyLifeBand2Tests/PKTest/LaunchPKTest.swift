@@ -69,7 +69,7 @@ class LaunchPKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequest
             
             XCTAssertTrue(self.queryPKWaitRecordsRealm().count == 0)
             
-            let pkId = $0[0].pkId
+            let pkId = $0[0]
             
             pkWaitRealmModel.launchedTime = "2016-05-03 12:00:00"
             pkWaitRealmModel.pkId         = pkId

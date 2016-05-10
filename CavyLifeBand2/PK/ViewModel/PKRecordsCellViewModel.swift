@@ -93,7 +93,7 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
                 updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
                 
                 undoPK([pkRecord], loginUserId: self.loginUserId, callBack: {
-                    self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: self.pkRecord.pkId)
+                    self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: self.pkRecord.pkId)
                 }, failure: {
                     Log.warning("弹框提示" + $0)
                 })
@@ -196,7 +196,7 @@ struct PKFinishRecordsCellViewModel: PKCellProtocols {
         
         launchPK([waitRecord], loginUserId: self.loginUserId, callBack: {
             
-            let pkId = $0[0].pkId
+            let pkId = $0[0]
             
             waitRecord.pkId      = pkId
             waitRecord.syncState = PKRecordsRealmSyncState.Synced.rawValue

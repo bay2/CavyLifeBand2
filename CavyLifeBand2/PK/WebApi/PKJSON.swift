@@ -9,25 +9,22 @@ import JSONJoy
 
 struct LaunchPKResponse: JSONJoy {
     //通用消息头
-    var commonMsg: CommenMsg?
+    var commonMsg: CommenMsg
     
     //等待列表
-    var pkIdList: [PKId]?
+    var pkId: [String] = []
     
     init(_ decoder: JSONDecoder) throws {
+        
         commonMsg = try CommenMsg(decoder)
         
-        pkIdList = [PKId]()
-        
-        if let pkIdArray = decoder["pkIdList"].array {
-            
-            for pkId in pkIdArray {
-                
-                pkIdList?.append(try PKId(pkId))
-                
-            }
+        guard let pkIdArray = decoder["pkId"].array else {
+            return
         }
         
+        pkId = pkIdArray.map{ pkID -> String in
+            do { return try pkID.getString() } catch { return "" }
+        }
         
     }
 }
