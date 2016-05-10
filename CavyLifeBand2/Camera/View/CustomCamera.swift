@@ -66,10 +66,7 @@ class CustomCamera: UIViewController {
         
         UIApplication.sharedApplication().idleTimerDisabled = true
         
-        
-        
         cameraAllViewLayout()
-        
         
     }
     
@@ -121,6 +118,7 @@ class CustomCamera: UIViewController {
     
     // 重写LLSimpleCamera 的 block -- setOnError
     func cameraError(camera: LLSimpleCamera?, error: NSError?) {
+        
         Log.error("Camera error:\(error)")
         
         if error?.domain == LLSimpleCameraErrorDomain {
@@ -159,6 +157,7 @@ class CustomCamera: UIViewController {
     
     // 获取系统相册最后一张图片
     func getLastPhoto(){
+        
         Log.info("系统最后一张图片")
         
         // 查看是否有访问权限
@@ -213,7 +212,21 @@ class CustomCamera: UIViewController {
         // start recording
         let outputURL = self.applicationDocumentsDirectory().URLByAppendingPathComponent("cavy").URLByAppendingPathExtension("mov")
         
-        self.camera.startRecordingWithOutputUrl(outputURL)
+        self.camera.startRecordingWithOutputUrl(outputURL) {(camera, outputFileUrl, error) in
+            
+            // 保存视频
+            self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileUrl) {(assetUrl, error) -> Void in
+                if error != nil {
+                    Log.error("Save video fail:%@", error)
+                } else {
+                    //self.countOne = 0
+                    Log.info("Save video succeed.")
+                    self.getLastPhoto()
+                }
+                
+            }
+            
+        }
         
     }
     
@@ -238,30 +251,13 @@ class CustomCamera: UIViewController {
         self.shutterPhoto.setImage(UIImage(asset: .CamerVideoWait), forState: .Normal)
         
         // 保存录像
-        self.camera.stopRecording {(camera, outputFileURL, error) -> Void in
-            
-            // Viedo in outputURL cache
-            
-            Log.info("保存视频:outputFileURL: \(outputFileURL)")
-
-            // 保存视频
-            self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileURL) {(assetUrl, error) -> Void in
-                if error != nil {
-                    Log.error("Save video fail:%@", error)
-                } else {
-                    //self.countOne = 0
-                    Log.info("Save video succeed.")
-                    self.getLastPhoto()
-                }
-                
-            }
-            
-        }
+        self.camera.stopRecording()
         
     }
 
     // 取消录像
     func stopVideoNoSave() {
+        
         Log.info("取消录像")
         
         // 停止计时器 时间归零
@@ -277,7 +273,7 @@ class CustomCamera: UIViewController {
         
         self.shutterPhoto.setImage(UIImage(asset: .CamerVideoWait), forState: .Normal)
         // 保存录像
-        self.camera.stopRecording {(camera, outputFileURL, error) -> Void in}
+        self.camera.stopRecording()
 
     }
     
@@ -351,19 +347,13 @@ class CustomCamera: UIViewController {
     // 返回上一页
     @IBAction func backHome(sender: AnyObject) {
         
-        if isPhotoOrVideo {
-            
-            UIApplication.sharedApplication().idleTimerDisabled = false
-            
-            self.navigationController?.setNavigationBarHidden(false, animated: false)
-            self.navigationController?.popViewControllerAnimated(false)
-            
-            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
-            
-        } else {
-            
-            stopVideoNoSave()
-        }
+        UIApplication.sharedApplication().idleTimerDisabled = false
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.popViewControllerAnimated(false)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
+        stopVideoNoSave()
         
     }
     

@@ -6,7 +6,7 @@
 //  Copyright © 2016年 xuemincai. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension ContactsAddressBookFriendData: ContactsTableViewSectionDataSource {
     
@@ -14,7 +14,11 @@ extension ContactsAddressBookFriendData: ContactsTableViewSectionDataSource {
         return items.count
     }
     
-    func createCell(cell: ContactsAddFriendCell, index: NSIndexPath) -> ContactsAddFriendCell {
+    func createCell(tableview: UITableView, index: NSIndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView!.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: index) as? ContactsAddFriendCell else {
+            fatalError()
+        }
         
         cell.configure(items[index.row], delegate: items[index.row])
         
@@ -30,7 +34,11 @@ extension ContactsRecommendFriendData: ContactsTableViewSectionDataSource {
         return items.count
     }
     
-    func createCell(cell: ContactsAddFriendCell, index: NSIndexPath) -> ContactsAddFriendCell {
+    func createCell(tableview: UITableView, index: NSIndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView!.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: index) as? ContactsAddFriendCell else {
+            fatalError()
+        }
         
         cell.configure(items[index.row], delegate: items[index.row])
         
@@ -46,8 +54,14 @@ extension ContactsSearchFriendData: ContactsTableViewSectionDataSource {
         return items.count
     }
     
-    func createCell(cell: ContactsAddFriendCell, index: NSIndexPath) -> ContactsAddFriendCell {
+    func createCell(tableview: UITableView, index: NSIndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView!.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: index) as? ContactsAddFriendCell else {
+            fatalError()
+        }
+        
         cell.configure(items[index.row], delegate: items[index.row])
+        
         return cell
     }
     
@@ -59,8 +73,14 @@ extension ContactsNearbyFriendData: ContactsTableViewSectionDataSource {
         return items.count
     }
     
-    func createCell(cell: ContactsAddFriendCell, index: NSIndexPath) -> ContactsAddFriendCell {
+    func createCell(tableview: UITableView, index: NSIndexPath) -> UITableViewCell {
+        
+        guard let cell = tableView!.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: index) as? ContactsAddFriendCell else {
+            fatalError()
+        }
+        
         cell.configure(items[index.row], delegate: items[index.row])
+        
         return cell
     }
     

@@ -11,8 +11,6 @@ import SnapKit
 import EZSwiftExtensions
 
 
-
-
 class LeftMenViewController: UIViewController, HomeUserDelegate {
   
     @IBOutlet weak var userInfoView: HomeUserInfo!
@@ -73,17 +71,6 @@ class LeftMenViewController: UIViewController, HomeUserDelegate {
         leftTableView.registerNib(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell")
 
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -173,6 +160,8 @@ extension LeftMenViewController {
 
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
+        menuGroup[indexPath.section].refurbishNextView()
+        
         let nextView = menuGroup[indexPath.section].items[indexPath.row].nextView
         
         let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
@@ -192,11 +181,7 @@ extension LeftMenViewController {
      */
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 
-        if section == 0 {
-            return 16
-        }
-
-        return 10
+        return menuGroup[section].sectionHeight
 
     }
 

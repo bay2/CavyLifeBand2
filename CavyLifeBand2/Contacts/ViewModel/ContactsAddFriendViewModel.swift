@@ -79,7 +79,7 @@ struct ContactsAddFriendCellViewModel: ContactsAddFriendPortocols {
         
     }
     
-    func changeRequestBtnName(sender: UIButton) {
+    func clickCellBtn(sender: UIButton) {
         self.pushFirendReqView?()
     }
     
@@ -115,7 +115,7 @@ struct ContactsAddressBookViewModel: ContactsAddFriendPortocols {
         
     }
     
-    func changeRequestBtnName(sender: UIButton) {
+    func clickCellBtn(sender: UIButton) {
         self.pushFirendReqView?()
     }
     
@@ -151,7 +151,7 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendPortocols {
         
     }
     
-    func changeRequestBtnName(sender: UIButton) {
+    func clickCellBtn(sender: UIButton) {
         self.pushFirendReqView?()
     }
     
@@ -178,10 +178,10 @@ struct ContactsNewFriendCellViewModel: ContactsNewFriendPortocols {
     var introudce: String
     
     // 请求按钮 title
-    var requestBtnTitle: String { return L10n.ContactsListCellAgree.string}
+    var bottonTitle: String { return L10n.ContactsListCellAgree.string}
     
     // 按钮颜色
-    var requestBtnColor: UIColor { return UIColor(named: .ContactsAgreeButtonColor) }
+    var btnBGColor: UIColor { return UIColor(named: .ContactsAgreeButtonColor) }
     
     init(viewController: UIViewController, name: String = "", firendId: String = "", headImageUrl: String = "", introudce: String = "") {
         
@@ -193,13 +193,20 @@ struct ContactsNewFriendCellViewModel: ContactsNewFriendPortocols {
         
     }
     
-    func changeRequestBtnName(sender: UIButton) {
+    func clickCellBtn(sender: UIButton) {
         
-        sender.enabled = false
-        sender.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
-        sender.backgroundColor = UIColor.clearColor()
-        sender.setTitle(L10n.ContactsListCellAlreaydAdd.string, forState: .Normal)
-        sender.setTitleColor(UIColor(named: .ContactsIntrouduce), forState: .Normal)
+        ContactsWebApi.shareApi.agreeFriend(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, friendId: firendId) {
+            
+            if $0.isSuccess {
+                
+                sender.enabled = false
+                sender.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
+                sender.backgroundColor = UIColor.clearColor()
+                sender.setTitle(L10n.ContactsListCellAlreaydAdd.string, forState: .Normal)
+                sender.setTitleColor(UIColor(named: .ContactsIntrouduce), forState: .Normal)
+                
+            }
+        }
     }
     
 }
@@ -243,14 +250,14 @@ struct ContactsFriendReqViewModel: ContactsReqFriendPortocols {
         let msgParse: CompletionHandlernType = {
             
             guard $0.isSuccess else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, userErrorCode: $0.error)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle($0.error)
                 return
             }
             
             let resultMsg: CommenMsg = try! CommenMsg(JSONDecoder($0.value!))
             
             guard resultMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self.viewController, webApiErrorCode: resultMsg.code ?? "")
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.code ?? "")
                 return
             }
             

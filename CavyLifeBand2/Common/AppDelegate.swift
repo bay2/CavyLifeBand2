@@ -10,9 +10,12 @@ import UIKit
 import KSCrash
 import Log
 import EZSwiftExtensions
+import RealmSwift
 #if UITEST
 import OHHTTPStubs
 #endif
+
+var realm: Realm = try! Realm()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -27,7 +30,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         #endif
         
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1, migrationBlock: { migration, oldSchemaVersion in
+            
+            if oldSchemaVersion >= 1 {
+                return
+            }
+            
+            migration.enumerate(FriendInfoRealm.className()) {(oldObject, newObject) in
+                
+                let nikeName = oldObject!["nikeName"] as! String
+                newObject!["fullName"] = nikeName.chineseToSpell() + nikeName
+                
+            }
+            
+            
+        })
+        
         let installation = KSCrashInstallationStandard.sharedInstance()
+        
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(
+            schemaVersion: 2,
+            migrationBlock: { migration, oldSchemaVersion in
+                
+        })
         
         installation.url = NSURL(string: CavyDefine.bugHDKey)
 

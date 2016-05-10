@@ -18,6 +18,7 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
     
     var selectTime: String?
     
+    
     var selectIndex: Int = 1 {
         didSet {
             selectTime = timeArr[selectIndex]
@@ -25,15 +26,7 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
         }
     }
     
-    var timeArr: [String] = {
-        return ["",
-                "1",
-                "2",
-                "3",
-                "4",
-                "5",
-                ""]
-    }()
+    let timeArr: [String] = ["1", "2", "3", "4", "5"]
     
     var realm: Realm
     
@@ -72,6 +65,7 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
         
         pkWaitRealmModel.launchedTime = launchTimeStr
         
+        
         launchPK([pkWaitRealmModel], loginUserId: self.loginUserId, callBack: {
             let pkId = $0[0].pkId
             
@@ -79,7 +73,10 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
             self.pkWaitRealmModel.syncState = PKRecordsRealmSyncState.Synced.rawValue
             
             self.addPKWaitRealm(self.pkWaitRealmModel)
+            
         }, failure: {(errorMsg) in
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: errorMsg)
             Log.warning("弹窗提示失败" + errorMsg)
         })
         

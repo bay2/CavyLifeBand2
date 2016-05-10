@@ -22,12 +22,19 @@ protocol MenuGroupDataSource {
     var sectionHeight: CGFloat { get }
     
     var sectionView: UIView { get }
+    
+    mutating func refurbishNextView()
+    
 }
 
 extension MenuGroupDataSource {
     
     var rowCount: Int {
         return items.count
+    }
+    
+    mutating func refurbishNextView() {
+        
     }
     
 }
@@ -70,7 +77,7 @@ extension MenuCellDateSource {
  */
 protocol MenuCellDelegate {
     
-    var nextView: UIViewController { get }
+    var nextView: UIViewController { get set }
     
 }
 

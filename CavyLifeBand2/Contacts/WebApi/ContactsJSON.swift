@@ -16,15 +16,14 @@ import JSONJoy
 struct ContactsFriendListMsg: JSONJoy {
     
     //通用消息头
-    var commonMsg: CommenMsg?
+    var commonMsg: CommenMsg
     
     //好友信息
-    var friendInfos: [ContactsFriendInfo]?
+    var friendInfos: [ContactsFriendInfo] = []
     
     init(_ decoder: JSONDecoder) throws {
         
         commonMsg = try CommenMsg(decoder)
-        friendInfos = [ContactsFriendInfo]()
         
         guard let friendInfoArray =  decoder["friendInfos"].array else {
             friendInfos = [ContactsFriendInfo]()
@@ -33,7 +32,7 @@ struct ContactsFriendListMsg: JSONJoy {
         
         for friendInfo in friendInfoArray {
             
-            friendInfos?.append(try ContactsFriendInfo(friendInfo))
+            friendInfos.append(try ContactsFriendInfo(friendInfo))
             
         }
         
@@ -80,19 +79,19 @@ struct ContactsSearchFriendMsg: JSONJoy {
 struct ContactsFriendInfo: JSONJoy {
     
     //用户ID
-    var userId: String?
+    var userId: String
     
     //昵称
-    var nickName: String?
+    var nickName: String
     
     //头像
-    var avatarUrl: String?
+    var avatarUrl: String
     
     //是否关注
-    var isFoolow: Bool?
+    var isFoolow: Bool
     
     //计步数
-    var stepNum: Int?
+    var stepNum: Int
     
     //睡眠时间
     var sleepTime: String?

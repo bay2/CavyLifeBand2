@@ -17,6 +17,10 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
     let relateAppCellID = "RelateAppCell"
     
     var tableDataSource: [RelateAppCellDataSource] = [RelateAppCellDataSource]()
+    
+    var totalIndex: Int = 0
+    
+    var currentIndex: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
