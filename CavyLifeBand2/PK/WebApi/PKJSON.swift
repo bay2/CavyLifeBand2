@@ -48,16 +48,16 @@ struct PKId {
 
 struct PKRecordList: JSONJoy {
     //通用消息头
-    var commonMsg: CommenMsg?
+    var commonMsg: CommenMsg
     
     //等待列表
-    var waitList: [PKWaitRecord]?
+    var waitList: [PKWaitRecord]
     
     //进行中列表
-    var dueList: [PKDueRecord]?
+    var dueList: [PKDueRecord]
     
     //完成列表
-    var finishList: [PKFinishRecord]?
+    var finishList: [PKFinishRecord]
     
     init(_ decoder: JSONDecoder) throws {
         commonMsg = try CommenMsg(decoder)
@@ -73,7 +73,7 @@ struct PKRecordList: JSONJoy {
             
             for waitRecord in waitArray {
                 
-                waitList?.append(try PKWaitRecord(waitRecord))
+                waitList.append(try PKWaitRecord(waitRecord))
                 
             }
         }
@@ -82,7 +82,7 @@ struct PKRecordList: JSONJoy {
             
             for dueRecord in dueArray {
                 
-                dueList?.append(try PKDueRecord(dueRecord))
+                dueList.append(try PKDueRecord(dueRecord))
                 
             }
         }
@@ -91,7 +91,7 @@ struct PKRecordList: JSONJoy {
             
             for finishRecord in finishArray {
                 
-                finishList?.append(try PKFinishRecord(finishRecord))
+                finishList.append(try PKFinishRecord(finishRecord))
                 
             }
         }
