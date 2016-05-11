@@ -84,7 +84,7 @@ struct AccountInfoSecurityWeightCellViewModel: AccountInfoCellViewModelPresentab
     
     var isOpen: Bool {
         
-        guard let userInfo =  queryUserInfo(userId) else {
+        guard let userInfo: UserInfoModel =  queryUserInfo(userId) else {
             return true
         }
         
@@ -136,7 +136,7 @@ struct AccountInfoSecurityBirthdayCellViewModel: AccountInfoCellViewModelPresent
     
     var isOpen: Bool {
         
-        guard let userInfo =  queryUserInfo(userId) else {
+        guard let userInfo: UserInfoModel =  queryUserInfo(userId) else {
             return true
         }
         

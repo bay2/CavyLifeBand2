@@ -103,14 +103,14 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
             try ContactsWebApi.shareApi.getRecommendFriend {(result) in
                 
                 guard result.isSuccess else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error)
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
                     return
                 }
                 
                 let resultMsg = try! ContactsSearchFriendMsg(JSONDecoder(result.value!))
                 
                 guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.commonMsg?.code ?? "")
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.commonMsg?.code ?? "")
                     return
                 }
                 
@@ -126,7 +126,7 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
             }
             
         } catch let error {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
         }
         
     }
@@ -174,7 +174,7 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
                     
                     // 请求失败直接返回
                     guard $0.isSuccess else {
-                        CavyLifeBandAlertView.sharedIntance.showViewTitle($0.error)
+                        CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: $0.error)
                         return
                     }
                     
@@ -182,7 +182,7 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
                     let result = try! ContactsSearchFriendMsg(JSONDecoder($0.value!))
                     
                     guard result.commonMsg?.code == WebApiCode.Success.rawValue else {
-                        CavyLifeBandAlertView.sharedIntance.showViewTitle(result.commonMsg?.code ?? "")
+                        CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: result.commonMsg?.code ?? "")
                         return
                     }
                     
@@ -208,7 +208,7 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
                 
             } catch let error {
                 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(error as? UserRequestErrorType)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType)
                 
             }
             
@@ -254,7 +254,7 @@ class ContactsSearchFriendData: ContactsAddFriendDataSync {
             let reslutMsg = try! ContactsSearchFriendMsg(JSONDecoder(reslut.value!))
             
             guard reslutMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslutMsg.commonMsg!.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: reslutMsg.commonMsg!.code)
                 return
             }
             
@@ -273,7 +273,7 @@ class ContactsSearchFriendData: ContactsAddFriendDataSync {
         do {
             try ContactsWebApi.shareApi.searchFriendByUserName(searchText, callBack: searchDataParse)
         } catch let error {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
         }
         
     }
@@ -310,7 +310,7 @@ class ContactsNearbyFriendData: ContactsAddFriendDataSync {
             let reslutMsg = try! ContactsSearchFriendMsg(JSONDecoder(reslut.value!))
             
             guard reslutMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslutMsg.commonMsg!.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: reslutMsg.commonMsg!.code)
                 return
             }
             
@@ -329,7 +329,7 @@ class ContactsNearbyFriendData: ContactsAddFriendDataSync {
         do {
             try ContactsWebApi.shareApi.getNearbyFriend("\(coordinate.longitude)", latitude: "\(coordinate.latitude)", callBack: searchDataParse)
         } catch let error {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
         }
         
     }
@@ -364,7 +364,7 @@ class ContactsNewFriendData: ContactsAddFriendDataSync {
             let reslutMsg = try! ContactsFriendReqMsg(JSONDecoder(reslut.value!))
             
             guard reslutMsg.commendMsg?.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslutMsg.commendMsg?.code ?? "")
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: reslutMsg.commendMsg?.code ?? "")
                 return
             }
             

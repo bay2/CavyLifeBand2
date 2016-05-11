@@ -111,8 +111,9 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
       
         }
         
-        sender.selected = true
+        sender.selected   = true
         lastBtn?.selected = false
+        
         lastBtn = sender
         
     }
@@ -156,15 +157,17 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
             
         }
         
-        timePicker.delegate = self
+        timePicker.delegate   = self
         timePicker.dataSource = self
         
-        timePicker.font = UIFont(name: "HelveticaNeue-Light", size: 30)!
+        timePicker.font            = UIFont(name: "HelveticaNeue-Light", size: 30)!
         timePicker.highlightedFont = UIFont(name: "HelveticaNeue", size: 44)!
-        timePicker.textColor = UIColor(named: .AlarmClockTableCellDescriptionColor)
+        
+        timePicker.textColor            = UIColor(named: .AlarmClockTableCellDescriptionColor)
         timePicker.highlightedTextColor = UIColor(named: .AlarmClockTableCellTitleColor)
+        
         timePicker.pickerViewStyle = .Flat
-        timePicker.maskDisabled = false
+        timePicker.maskDisabled    = false
     }
     
     func dataSouceSetting() -> Void {

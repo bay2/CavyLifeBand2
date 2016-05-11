@@ -380,7 +380,7 @@ extension PKRecordsUpdateFormWeb  {
             try PKWebApi.shareApi.getPKRecordList(loginUserId) {(result) in
                 
                 guard result.isSuccess else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error ?? UserRequestErrorType.UnknownError)
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
                     return
                 }
                 

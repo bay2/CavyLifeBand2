@@ -43,8 +43,6 @@ extension ParameterEncoding {
 extension NetRequestAdapter {
     
     
-    
-    
     /**
      post 网络请求
      
@@ -124,6 +122,7 @@ extension NetRequestAdapter {
         
     }
     
+    
 }
 
 /**
@@ -133,8 +132,8 @@ extension NetRequestAdapter {
  */
 struct CommenMsg: JSONJoy {
     
-    var msg: String?
-    var code: String?
+    var msg: String
+    var code: String
     
     init(_ decoder: JSONDecoder) throws {
         

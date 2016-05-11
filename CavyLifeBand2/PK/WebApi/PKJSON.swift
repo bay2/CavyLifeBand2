@@ -57,12 +57,13 @@ struct PKRecordList: JSONJoy {
     var finishList: [PKFinishRecord]
     
     init(_ decoder: JSONDecoder) throws {
-        commonMsg = try CommenMsg(decoder)
         
-        waitList = [PKWaitRecord]()
-        
-        dueList = [PKDueRecord]()
-        
+        commonMsg  = try CommenMsg(decoder)
+
+        waitList   = [PKWaitRecord]()
+
+        dueList    = [PKDueRecord]()
+
         finishList = [PKFinishRecord]()
         
         
@@ -127,7 +128,7 @@ struct PKWaitRecord: JSONJoy {
         do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
         do { nickname = try decoder["nickname"].getString() } catch { nickname = "" }
         do { launchedTime = try decoder["launchedTime"].getString() } catch { launchedTime = "" }
-        do { pkDuration = try decoder["pkDuration"].getString() } catch { pkDuration = "" }
+        do { pkDuration   = try decoder["pkDuration"].getString() } catch { pkDuration = "" }
         
     }
     
@@ -154,11 +155,11 @@ struct PKDueRecord: JSONJoy {
     
     init(_ decoder: JSONDecoder) throws {
         
-        do { pkId = try decoder["pkId"].getString() } catch { pkId = "" }
-        do { userId = try decoder["userId"].getString() } catch { userId = "" }
-        do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
-        do { nickname = try decoder["nickname"].getString() } catch { nickname = "" }
-        do { beginTime = try decoder["beginTime"].getString() } catch { beginTime = "" }
+        do { pkId       = try decoder["pkId"].getString() } catch { pkId = "" }
+        do { userId     = try decoder["userId"].getString() } catch { userId = "" }
+        do { avatarUrl  = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
+        do { nickname   = try decoder["nickname"].getString() } catch { nickname = "" }
+        do { beginTime  = try decoder["beginTime"].getString() } catch { beginTime = "" }
         do { pkDuration = try decoder["pkDuration"].getString() } catch { pkDuration = "" }
         
     }
@@ -191,12 +192,12 @@ struct PKFinishRecord: JSONJoy {
         
         isWin = decoder["isWin"].bool
         
-        do { pkId = try decoder["pkId"].getString() } catch { pkId = "" }
-        do { userId = try decoder["userId"].getString() } catch { userId = "" }
-        do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
-        do { nickname = try decoder["nickname"].getString() } catch { nickname = "" }
+        do { pkId         = try decoder["pkId"].getString() } catch { pkId = "" }
+        do { userId       = try decoder["userId"].getString() } catch { userId = "" }
+        do { avatarUrl    = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
+        do { nickname     = try decoder["nickname"].getString() } catch { nickname = "" }
         do { completeTime = try decoder["completeTime"].getString() } catch { completeTime = "" }
-        do { pkDuration = try decoder["pkDuration"].getString() } catch { pkDuration = "" }
+        do { pkDuration   = try decoder["pkDuration"].getString() } catch { pkDuration = "" }
         
     }
     

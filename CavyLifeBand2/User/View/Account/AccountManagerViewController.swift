@@ -315,7 +315,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         if userProtocolView.checkboxBtn.isCheck != true {
             
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.SignUpReadProcotol.string)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: L10n.SignUpReadProcotol.string)
             return
             
         }

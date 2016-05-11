@@ -46,9 +46,9 @@ protocol UserInfoRealmOperateDelegate {
     var realm: Realm { get }
     
     func queryUserInfo(userId: String) -> UserInfoModel?
+    func queryUserInfo(userId: String) -> Results<UserInfoModel>
     func addUserInfo(userInfo: UserInfoModel) -> Bool
     func updateUserInfo(userId: String, updateCall: ((UserInfoModel) -> UserInfoModel)) -> Bool
-    func isUserExist(userId: String) -> Bool
     
 }
 
@@ -63,11 +63,8 @@ extension UserInfoRealmOperateDelegate {
      */
     func queryUserInfo(userId: String) -> UserInfoModel? {
         
-        if realm.objects(UserInfoModel).count == 0 {
-            return nil
-        }
         
-        let userInfo = realm.objects(UserInfoModel).filter("userId == '\(userId)'")
+        let userInfo: Results<UserInfoModel> = queryUserInfo(userId)
 
         if userInfo.count == 0 {
             return nil
@@ -75,6 +72,12 @@ extension UserInfoRealmOperateDelegate {
 
         return userInfo[0]
             
+    }
+    
+    func queryUserInfo(userId: String) -> Results<UserInfoModel> {
+        
+        return realm.objects(UserInfoModel).filter("userId == '\(userId)'")
+        
     }
 
     /**
@@ -113,7 +116,7 @@ extension UserInfoRealmOperateDelegate {
      */
     func updateUserInfo(userId: String, updateCall: ((UserInfoModel) -> UserInfoModel)) -> Bool {
 
-        guard var userInfoModel = queryUserInfo(userId) else {
+        guard var userInfoModel: UserInfoModel = queryUserInfo(userId) else {
             Log.error("User info not exist [\(userId)]")
             return false
         }
@@ -137,23 +140,6 @@ extension UserInfoRealmOperateDelegate {
 
         Log.info("Update user info success [\(userId)]")
         return true
-
-    }
-
-    /**
-     查询用户信息是否存在
-     
-     - parameter userId: 用户Id
-     
-     - returns:
-     */
-    func isUserExist(userId: String) -> Bool {
-
-        if let _ = queryUserInfo(userId) {
-            return true
-        }
-
-        return false
 
     }
 

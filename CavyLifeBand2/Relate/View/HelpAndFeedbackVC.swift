@@ -73,14 +73,14 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
             
             try HelpFeedbackWebApi.shareApi.submitFeedback(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, feedback: textView.text) { result in
                 guard result.isSuccess else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error)
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
                     return
                 }
                 
                 let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
                 guard resultMsg.code == WebApiCode.Success.rawValue else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.code ?? "")
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.code ?? "")
                     return
                 }
                 
@@ -89,7 +89,7 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
             }
             
         } catch let error {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
         }
 
     }

@@ -30,7 +30,6 @@ class HomeUserInfo: UIView {
 
     func configuration(delegate: HomeUserDelegate) {
 
-        delegate.iconImage.roundSquareImage()
         delegate.userName.textColor = UIColor(named: .HomeViewUserName)
         delegate.account.textColor = UIColor(named: .HomeViewAccount)
 
@@ -45,7 +44,6 @@ class HomeUserInfo: UIView {
 
 protocol HomeUserDelegate {
 
-    var iconImage: UIImageView { get }
     var userName: UILabel { get }
     var account: UILabel { get }
 

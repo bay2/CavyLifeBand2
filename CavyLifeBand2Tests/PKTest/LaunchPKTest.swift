@@ -29,6 +29,10 @@ class LaunchPKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequest
             
         }
         
+        self.deletePKRecordsRealm(PKWaitRealmModel.self)
+        self.deletePKRecordsRealm(PKDueRealmModel.self)
+        self.deletePKRecordsRealm(PKFinishRealmModel.self)
+        
     }
     
     override func tearDown() {
@@ -53,6 +57,8 @@ class LaunchPKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequest
     
     func testLaunchPK() {
         
+        let expectation = expectationWithDescription("testLaunchPK succeed")
+        
         let pkWaitRealmModel: PKWaitRealmModel = PKWaitRealmModel()
         pkWaitRealmModel.loginUserId = self.loginUserId
         pkWaitRealmModel.syncState = PKRecordsRealmSyncState.NotSync.rawValue
@@ -60,7 +66,7 @@ class LaunchPKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequest
         pkWaitRealmModel.nickname = "Bat"
         pkWaitRealmModel.avatarUrl = ""
         pkWaitRealmModel.type = PKWaitType.MeWaitOther.rawValue
-        pkWaitRealmModel.isAllowWatch = false
+        pkWaitRealmModel.isAllowWatch = PKAllowWatchState.OtherNoWatch.rawValue
         pkWaitRealmModel.pkDuration = "3"
         
         launchPK([pkWaitRealmModel], loginUserId: self.loginUserId, callBack: {
@@ -79,11 +85,17 @@ class LaunchPKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequest
             
             XCTAssertTrue(self.queryPKWaitRecordsRealm().count == 1)
             
+            expectation.fulfill()
+            
         }, failure: {(errorMsg) in
             
             XCTFail("网络请求失败")
+            
+            expectation.fulfill()
         
         })
+        
+        waitForExpectationsWithTimeout(timeout, handler: nil)
     
     }
     

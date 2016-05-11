@@ -52,23 +52,23 @@ extension ForgotPasswordDelegate where Self: UIViewController {
     func forgotPwd() {
 
         if userName.isEmpty && isEmail {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(.EmailNil)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: .EmailNil)
             return
         } else if userName.isEmpty {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(.PhoneNil)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: .PhoneNil)
             return
         }
 
         UserNetRequestData.shareApi.forgotPasswd(userName, passwd: passwd, safetyCode: safetyCode) { result in
             
             if result.isFailure {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
                 return
             }
             
             let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
-            if msg.code! != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(msg.code!)
+            if msg.code != WebApiCode.Success.rawValue {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.code)
                 return
             }
             
@@ -109,13 +109,13 @@ extension SendSafetyCodeDelegate where Self: UIViewController {
             self.sendSafetyCodeBtn.enabled = true
             
             if result.isFailure {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
                 return
             }
             
             let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
-            if msg.code! != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(msg.code!)
+            if msg.code != WebApiCode.Success.rawValue {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.code)
                 return
             }
             
@@ -150,15 +150,15 @@ extension SignUpDelegate where Self: UIViewController {
             
             if result.isFailure {
                 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
                 return
             }
             
             let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
             
-            if msg.commonMsg?.code! != WebApiCode.Success.rawValue {
+            if msg.commonMsg?.code != WebApiCode.Success.rawValue {
                 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(msg.commonMsg?.code ?? "")
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg?.code ?? "")
                 return
             }
             
@@ -195,14 +195,14 @@ extension SignInDelegate where Self: UIViewController {
             
             if result.isFailure {
                 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
                 return
             }
             
             let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
             
             if msg.commonMsg?.code != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(msg.commonMsg!.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg?.code ?? "")
                 return
             }
             
@@ -255,22 +255,22 @@ extension AccountMangerInputCheckDelegate where Self: UIViewController {
         if userName.isEmpty {
             
             if isEmail {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(.EmailNil)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: .EmailNil)
             } else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(.PhoneNil)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: .PhoneNil)
             }
             
             return false
         }
         
         if safetyCode.isEmpty {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(.SecurityCodeNil)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: .SecurityCodeNil)
             return false
         }
         
         if passwd.isEmpty {
             
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(.PassWdNil)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: .PassWdNil)
             return false
         }
         

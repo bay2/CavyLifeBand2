@@ -126,14 +126,14 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
                 self.loadingView.stopAnimating()
                 
                 guard result.isSuccess else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(result.error)
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
                     return
                 }
                 
                 let resultMsg = try! HelpFeedbackResponse(JSONDecoder(result.value!))
                 
                 guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.commonMsg?.code ?? "")
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.commonMsg?.code ?? "")
                     return
                 }
                 
@@ -155,7 +155,7 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
             }
             
         } catch let error {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
         }
 
     }

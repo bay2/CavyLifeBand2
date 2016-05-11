@@ -21,6 +21,8 @@ struct CavyDefine {
     // webApi地址
     static let webApiAddr = serverAddr + "/api.do"
     
+    static let updateImgAddr = serverAddr + "/api/userIcon.do"
+    
     // 邮箱验证码地址
     static let emailCodeAddr = serverAddr + "/imageCode.do"
     
@@ -242,6 +244,8 @@ enum UserNetRequsetKey: String {
     case AcceptTime = "acceptTime"
     case IsAllowWatch = "isAllowWatch"
     case FriendReqType = "type"
+    case FileName = "filename"
+    case Name = "name"
     case FeedbackContent = "feedback"
     case HelpList = "helpList"
     case HelpId = "helpId"
@@ -279,7 +283,7 @@ enum UserNetRequestMethod: String {
     case SendSecurityCode = "sendAuthCode"
     case SignUp = "userReg"
     case SignIn = "userLogin"
-    case UpdateAvatar
+    case UpdateAvatar = "setUserIcon"
     case ForgotPwd = "resetPsw"
     case UserProfile = "getUserInfo"
     case SetUserProfile = "setUserInfo"
