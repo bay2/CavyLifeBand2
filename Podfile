@@ -18,11 +18,8 @@ pod 'OHHTTPStubs'
 pod 'OHHTTPStubs/Swift'
 pod 'Gifu'
 pod 'PgyUpdate'
-<<<<<<< HEAD
 pod 'RandomKit'
-=======
 pod 'KMPlaceholderTextView'
->>>>>>> 08ce8e13fd566ee3f5e0d298335dd1ff3bac6929
 
 target :CavyLifeBand2Tests, :exclusive => true do
     pod 'OHHTTPStubs'
