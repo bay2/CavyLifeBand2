@@ -130,13 +130,13 @@ struct PKDueRecordsCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFr
     
     init(pkRecord: PKDueRealmModel) {
         
-        self.firendId = pkRecord.userId
+        self.firendId     = pkRecord.userId
         self.headImageUrl = pkRecord.avatarUrl
-        self.pkRecord = pkRecord
-        self.name = pkRecord.nickname
-        self.introudce = "\(pkRecord.pkDuration)" + L10n.PKRecordsCellDurationDescription.string
-        self.bottonTitle = ""
-        self.btnBGColor = UIColor.whiteColor()
+        self.pkRecord     = pkRecord
+        self.name         = pkRecord.nickname
+        self.introudce    = "\(pkRecord.pkDuration)" + L10n.PKRecordsCellDurationDescription.string
+        self.bottonTitle  = ""
+        self.btnBGColor   = UIColor.whiteColor()
         
     }
 

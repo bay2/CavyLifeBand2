@@ -48,8 +48,8 @@ class ForgotPasswdTest: XCTestCase {
                 
                 let resultVar = try! CommenMsg(JSONDecoder(reslut.value!))
                 
-                XCTAssertTrue(resultVar.code! == WebApiCode.Success.rawValue)
-                XCTAssertTrue(resultVar.msg! == "success")
+                XCTAssertTrue(resultVar.code == WebApiCode.Success.rawValue)
+                XCTAssertTrue(resultVar.msg == "success")
                 
                 expectation.fulfill()
             

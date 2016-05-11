@@ -61,6 +61,8 @@ class DeletePKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequest
         finishRealm.completeTime = "2016-05-02 12:00:00"
         finishRealm.pkDuration = "3"
         
+        let expectation = expectationWithDescription("testDeletePK succeed")
+        
         
         self.deletePKRecordsRealm(PKFinishRealmModel.self)
         
@@ -84,9 +86,14 @@ class DeletePKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequest
             
             XCTAssertTrue(finishRealm.syncState == PKRecordsRealmSyncState.Synced.rawValue)
             
+            expectation.fulfill()
+            
         }, failure: {(erreoMsg) in
             XCTFail("网络请求错误" + erreoMsg)
+            expectation.fulfill()
         })
+        
+        waitForExpectationsWithTimeout(timeout, handler: nil)
         
     }
     

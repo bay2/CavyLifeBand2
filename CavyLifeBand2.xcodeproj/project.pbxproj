@@ -185,7 +185,6 @@
 		91800A7E1CB38846000BDDF2 /* UserProfileProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91800A7D1CB38846000BDDF2 /* UserProfileProtocol.swift */; };
 		918435DB1C7AD094005B6E92 /* ForgotPasswdTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435DA1C7AD094005B6E92 /* ForgotPasswdTest.swift */; };
 		918435DD1C7AF624005B6E92 /* SecurityCodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435DC1C7AF624005B6E92 /* SecurityCodeTest.swift */; };
-		918435E11C7C2B8E005B6E92 /* UploadPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435E01C7C2B8E005B6E92 /* UploadPicture.swift */; };
 		918435E31C7C2C4E005B6E92 /* UploadPicture_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 918435E21C7C2C4E005B6E92 /* UploadPicture_Ok.json */; };
 		918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435EE1C7D629D005B6E92 /* ColorsDefine.swift */; };
 		918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435F21C7D6784005B6E92 /* LocalizableDefine.swift */; };
@@ -492,7 +491,6 @@
 		91800A7D1CB38846000BDDF2 /* UserProfileProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserProfileProtocol.swift; path = Protocol/UserProfileProtocol.swift; sourceTree = "<group>"; };
 		918435DA1C7AD094005B6E92 /* ForgotPasswdTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswdTest.swift; sourceTree = "<group>"; };
 		918435DC1C7AF624005B6E92 /* SecurityCodeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecurityCodeTest.swift; sourceTree = "<group>"; };
-		918435E01C7C2B8E005B6E92 /* UploadPicture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadPicture.swift; sourceTree = "<group>"; };
 		918435E21C7C2C4E005B6E92 /* UploadPicture_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = UploadPicture_Ok.json; sourceTree = "<group>"; };
 		918435EE1C7D629D005B6E92 /* ColorsDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsDefine.swift; sourceTree = "<group>"; };
 		918435F01C7D6641005B6E92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1163,7 +1161,6 @@
 				912D29DA1C6088B5005A06E9 /* SignInTest.swift */,
 				918435DA1C7AD094005B6E92 /* ForgotPasswdTest.swift */,
 				918435DC1C7AF624005B6E92 /* SecurityCodeTest.swift */,
-				918435E01C7C2B8E005B6E92 /* UploadPicture.swift */,
 				91F0361A1C8D2A1D003E059A /* ProfileTest.swift */,
 				917DA9821C3B8EB800FF675D /* Info.plist */,
 			);
@@ -2009,7 +2006,6 @@
 				686A5E991CD9E6A200EB8D0E /* PKRecordsTest.swift in Sources */,
 				686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */,
 				918435DB1C7AD094005B6E92 /* ForgotPasswdTest.swift in Sources */,
-				918435E11C7C2B8E005B6E92 /* UploadPicture.swift in Sources */,
 				912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */,
 				686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */,
 				686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */,
@@ -2198,7 +2194,7 @@
 					"\"SnapKit\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -2235,7 +2231,7 @@
 					"\"SnapKit\"",
 					"-ObjC",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" \"-D\" \"UITEST\"";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
