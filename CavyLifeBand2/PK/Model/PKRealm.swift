@@ -31,7 +31,7 @@ class PKWaitRealmModel: Object, PKRecordRealmDataSource {
      2，我接受请求，添加进行中Model，但还没同步到服务器，同步到服务器删除Model；
      3，撤销请求，但还没同步到服务器，同步到服务器后删除Model；
     */
-    dynamic var type: String = PKWaitType.MeWaitOther.rawValue
+    dynamic var type: Int = PKWaitType.MeWaitOther.rawValue
     dynamic var avatarUrl = ""
     dynamic var nickname = ""
     dynamic var launchedTime = ""
@@ -144,6 +144,9 @@ protocol PKRecordsRealmModelOperateDelegate {
     //更改已完成记录删除状态
     func updatePKFinishRealm(finishModel: PKFinishRealmModel) -> Bool
     
+    //更改进行中记录的开始时间
+    func changeDueBeginTime(pkDue: PKDueRealmModel, time: String) -> Bool
+    
 }
 
 
@@ -152,7 +155,7 @@ extension PKRecordsRealmModelOperateDelegate {
     func queryPKWaitRecordsRealm() -> Results<(PKWaitRealmModel)> {
         //loginUserID相等，且不是已撤销和已接受
         
-        let predicate = NSPredicate(format: "loginUserId = %@ AND type != %@ AND type != %@", loginUserId, PKWaitType.AcceptWait.rawValue, PKWaitType.UndoWait.rawValue)
+        let predicate = NSPredicate(format: "loginUserId = %@ AND type != %d AND type != %d", loginUserId, PKWaitType.AcceptWait.rawValue, PKWaitType.UndoWait.rawValue)
         
         let waitList = realm.objects(PKWaitRealmModel).filter(predicate)
 
@@ -292,6 +295,29 @@ extension PKRecordsRealmModelOperateDelegate {
         return true
     }
     
+    //更改进行中记录的开始时间
+    func changeDueBeginTime(pkDue: PKDueRealmModel, time: String) -> Bool {
+        let predicate = NSPredicate(format: "loginUserId = %@ AND pkId = %@", loginUserId, pkDue.pkId)
+        
+        guard realm.objects(PKDueRealmModel).filter(predicate).first != nil else {
+            Log.warning("\(#function) 该记录不存在")
+            return false
+        }
+        
+        realm.beginWrite()
+        
+        pkDue.beginTime = time
+        
+        do {
+            try realm.commitWrite()
+        } catch let error {
+            Log.error("\(#function) error = \(error)")
+            return false
+        }
+        
+        return true
+    }
+    
     func syncPKRecordsRealm<T: PKRecordRealmDataSource where T: Object>(modelClass: T.Type, pkId: String) -> Bool {
         
         let predicate = NSPredicate(format: "loginUserId = %@ AND pkId = %@", loginUserId, pkId)
@@ -352,7 +378,7 @@ extension PKRecordsRealmModelOperateDelegate {
     
     //未同步waitList 的 Array
     func getUnSyncWaitPKListWithType(type: PKWaitType) -> [PKWaitRealmModel]? {
-        let predicate = NSPredicate(format: "loginUserId = %@ AND syncState = %d And type = %@", loginUserId, PKRecordsRealmSyncState.NotSync.rawValue, type.rawValue)
+        let predicate = NSPredicate(format: "loginUserId = %@ AND syncState = %d And type = %d", loginUserId, PKRecordsRealmSyncState.NotSync.rawValue, type.rawValue)
         
         let waitList = realm.objects(PKWaitRealmModel).filter(predicate)
         
@@ -388,11 +414,11 @@ enum PKRecordsRealmSyncState: Int {
  
 }
 
-enum PKWaitType: String {
-    case MeWaitOther = "0"
-    case OtherWaitMe = "1"
-    case AcceptWait = "2"
-    case UndoWait = "3"
+enum PKWaitType: Int {
+    case MeWaitOther = 0
+    case OtherWaitMe = 1
+    case AcceptWait = 2
+    case UndoWait = 3
 }
 
 

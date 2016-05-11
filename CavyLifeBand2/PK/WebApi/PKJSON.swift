@@ -102,7 +102,7 @@ struct PKWaitRecord: JSONJoy {
     var pkId: String
     
     //等待类型 0等待对方接受；1对方等待我接受
-    var type: String
+    var type: Int
     
     //用户Id
     var userId: String
@@ -122,7 +122,7 @@ struct PKWaitRecord: JSONJoy {
     init(_ decoder: JSONDecoder) throws {
         
         do { pkId = try decoder["pkId"].getString() } catch { pkId = "" }
-        do { type = try decoder["type"].getString() } catch { type = "" }
+        do { type = try decoder["type"].getInt() } catch { type = 0 }
         do { userId = try decoder["userId"].getString() } catch { userId = "" }
         do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
         do { nickname = try decoder["nickname"].getString() } catch { nickname = "" }

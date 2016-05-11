@@ -208,8 +208,14 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         //接受pk
         if let acceptList: [PKDueRealmModel] = self.getUnSyncPKList(PKDueRealmModel.self) {
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFromString("yyyy-MM-dd HH:mm:ss")
+            
             self.acceptPKInvitation(acceptList, loginUserId: self.loginUserId, callBack: {
                 for accept in acceptList {
+                    
+                    self.changeDueBeginTime(accept, time: dateFormatter.stringFromDate(NSDate()))
                     self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: accept.pkId)
                 }
             }, failure: {(errorMsg) in

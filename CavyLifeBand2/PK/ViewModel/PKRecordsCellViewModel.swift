@@ -67,7 +67,6 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
             dueRealm.avatarUrl   = pkRecord.userId
             dueRealm.nickname    = pkRecord.nickname
             dueRealm.pkDuration  = pkRecord.pkDuration
-            dueRealm.beginTime   = dateFormatter.stringFromDate(NSDate())
             dueRealm.syncState   = PKRecordsRealmSyncState.NotSync.rawValue
             
             //把新的进行中记录加入数据库
@@ -75,6 +74,7 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
             
             //调接口接受PK,调接口成功后把那条刚加入数据库的进行中记录的同步状态改为已同步
             acceptPKInvitation([dueRealm], loginUserId: self.loginUserId, callBack: {
+                self.changeDueBeginTime(dueRealm, time: dateFormatter.stringFromDate(NSDate()))
                 self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: dueRealm.pkId)
             }, failure: {
                 Log.warning("弹框提示" + $0)
@@ -178,7 +178,7 @@ struct PKFinishRecordsCellViewModel: PKCellProtocols {
         
     }
     
-    func clickCellBtn() -> Void {
+    func clickCellBtn(sender: UIButton) -> Void {
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFromString("yyyy-MM-dd HH:mm:ss")
@@ -192,14 +192,16 @@ struct PKFinishRecordsCellViewModel: PKCellProtocols {
         waitRecord.nickname     = pkRecord.nickname
         waitRecord.pkDuration   = pkRecord.pkDuration
         waitRecord.syncState    = PKRecordsRealmSyncState.NotSync.rawValue
-        waitRecord.launchedTime = dateFormatter.stringFromDate(NSDate())
         
         launchPK([waitRecord], loginUserId: self.loginUserId, callBack: {
             
             let pkId = $0[0]
             
-            waitRecord.pkId      = pkId
-            waitRecord.syncState = PKRecordsRealmSyncState.Synced.rawValue
+            let launchTimeStr = dateFormatter.stringFromDate(NSDate())
+            
+            waitRecord.launchedTime = launchTimeStr
+            waitRecord.pkId         = pkId
+            waitRecord.syncState    = PKRecordsRealmSyncState.Synced.rawValue
             
             self.addPKWaitRealm(waitRecord)
             

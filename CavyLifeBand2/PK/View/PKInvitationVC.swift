@@ -88,8 +88,10 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
 //            make.centerY.equalTo(self.view.snp_centerY)
 //        })
         
-        dataSource?.launchPK()
-        
+        if dataSource?.pkWaitRealmModel.userId.characters.count != 0 {
+            dataSource?.launchPK()
+        }
+                
         self.pushVC(StoryboardScene.PK.instantiatePKListVC())
         
     }

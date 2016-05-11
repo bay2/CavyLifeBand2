@@ -62,7 +62,7 @@ class PKWebApi: NetRequestAdapter {
      undoPKList
      - parameter pkId:           PK记录的Id
      */
-    func undoPK(userId: String, undoPKList: [[String: String]], callBack: CompletionHandlernType? = nil) throws {
+    func undoPK(userId: String, undoPKList: [String], callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.UndoPK.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: userId,
@@ -82,7 +82,7 @@ class PKWebApi: NetRequestAdapter {
      delPkList
      - parameter pkId:           PK记录的Id
      */
-    func deletePK(userId: String, delPkList: [[String: String]], callBack: CompletionHandlernType? = nil) throws {
+    func deletePK(userId: String, delPkList: [String], callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.DeletePK.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: userId,
@@ -103,7 +103,7 @@ class PKWebApi: NetRequestAdapter {
      - parameter pkId:           PK记录的Id
      - parameter acceptTime:     接受时间
      */
-    func acceptPK(userId: String, acceptPkList: [[String: String]], callBack: CompletionHandlernType? = nil) throws {
+    func acceptPK(userId: String, acceptPkList: [String], callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.AcceptPK.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: userId,
@@ -151,6 +151,11 @@ extension PKWebRequestProtocol {
                     return
                 }
                 
+                guard resultMsg.pkId.count > 0 else {
+                    failure?("没有返回pkID")
+                    return
+                }
+                
                 callBack?(resultMsg.pkId)
                 
             }
@@ -165,7 +170,7 @@ extension PKWebRequestProtocol {
         
         do {
             
-            let pk: [[String: String]] = translateDueRealmToAcceptRequest(dueRealms)
+            let pk: [String] = translateDueRealmToAcceptRequest(dueRealms)
             
             try PKWebApi.shareApi.acceptPK(loginUserId, acceptPkList: pk) {(result) in
                 
@@ -197,7 +202,7 @@ extension PKWebRequestProtocol {
         
         do {
             
-            let pk: [[String: String]] = translateWaitRealmToUndoRequest(waitRealms)
+            let pk: [String] = translateWaitRealmToUndoRequest(waitRealms)
             
             try PKWebApi.shareApi.undoPK(loginUserId, undoPKList: pk) {(result) in
                 
@@ -228,7 +233,7 @@ extension PKWebRequestProtocol {
 
         do {
             
-            let pk: [[String: String]] = translateFinishRealmToDeleteRequest(finishRealms)
+            let pk: [String] = translateFinishRealmToDeleteRequest(finishRealms)
             
             try PKWebApi.shareApi.deletePK(loginUserId, delPkList: pk) {(result) in
                 
@@ -254,12 +259,12 @@ extension PKWebRequestProtocol {
     }
     
     //把数据库已完成记录转成删除PK接口的请求入参格式
-    func translateFinishRealmToDeleteRequest(finishRealms: [PKFinishRealmModel]) -> [[String: String]] {
-        var requests: [[String: String]] = [[String: String]]()
+    func translateFinishRealmToDeleteRequest(finishRealms: [PKFinishRealmModel]) -> [String] {
+        var requests: [String] = [String]()
         
         for realm in finishRealms {
             
-            let request: [String: String] = [UserNetRequsetKey.PKId.rawValue: realm.pkId]
+            let request: String = realm.pkId
             
             requests.append(request)
         }
@@ -268,12 +273,12 @@ extension PKWebRequestProtocol {
     }
     
     //把数据库待回应记录转成撤销PK接口的请求入参格式
-    func translateWaitRealmToUndoRequest(waitRealms: [PKWaitRealmModel]) -> [[String: String]] {
-        var requests: [[String: String]] = [[String: String]]()
+    func translateWaitRealmToUndoRequest(waitRealms: [PKWaitRealmModel]) -> [String] {
+        var requests: [String] = [String]()
         
         for realm in waitRealms {
             
-            let request: [String: String] = [UserNetRequsetKey.PKId.rawValue: realm.pkId]
+            let request: String = realm.pkId
             
             requests.append(request)
         }
@@ -298,14 +303,13 @@ extension PKWebRequestProtocol {
     }
     
     //把数据库接受的进行中记录转成接受PK接口的请求入参格式
-    func translateDueRealmToAcceptRequest(dueRealms: [PKDueRealmModel]) -> [[String: String]] {
-        var requests: [[String: String]] = [[String: String]]()
+    func translateDueRealmToAcceptRequest(dueRealms: [PKDueRealmModel]) -> [String] {
+        var requests: [String] = [String]()
         
         for realm in dueRealms {
             
-            let request: [String: String] = [UserNetRequsetKey.PKId.rawValue: realm.pkId,
-                                             UserNetRequsetKey.AcceptTime.rawValue: realm.beginTime]
-            
+            let request: String = realm.pkId
+                                            
             requests.append(request)
         }
         
@@ -370,7 +374,7 @@ protocol PKRecordsUpdateFormWeb: PKRecordsRealmModelOperateDelegate {
 extension PKRecordsUpdateFormWeb  {
     
     func loadDataFromWeb(loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
-        
+        Log.info(realm.path)
         do {
             
             try PKWebApi.shareApi.getPKRecordList(loginUserId) {(result) in
