@@ -99,7 +99,16 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     @IBAction func changeSeeAbleType(sender: UIButton) {
         
         if lastBtn != nil {
-            dataSource?.pkWaitRealmModel.isAllowWatch = !(dataSource?.pkWaitRealmModel.isAllowWatch)!
+            
+            switch dataSource?.pkWaitRealmModel.isAllowWatch ?? PKAllowWatchState.AllWatch.rawValue {
+            case PKAllowWatchState.AllWatch.rawValue:
+                dataSource?.pkWaitRealmModel.isAllowWatch = PKAllowWatchState.OtherNoWatch.rawValue
+            case PKAllowWatchState.OtherNoWatch.rawValue:
+                dataSource?.pkWaitRealmModel.isAllowWatch = PKAllowWatchState.AllWatch.rawValue
+            default:
+                break
+            }
+      
         }
         
         sender.selected = true
@@ -160,10 +169,16 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     
     func dataSouceSetting() -> Void {
         
-        
         self.timePicker.selectItem(dataSource!.selectIndex)
         
-        changeSeeAbleType(dataSource!.pkWaitRealmModel.isAllowWatch ? otherSeeAbleBtn : otherSeeUnableBtn)
+        switch dataSource!.pkWaitRealmModel.isAllowWatch {
+        case PKAllowWatchState.AllWatch.rawValue:
+            changeSeeAbleType(otherSeeAbleBtn)
+        case PKAllowWatchState.OtherNoWatch.rawValue:
+            changeSeeAbleType(otherSeeUnableBtn)
+        default:
+            break
+        }
         
     }
 

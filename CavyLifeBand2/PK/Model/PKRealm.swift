@@ -36,7 +36,7 @@ class PKWaitRealmModel: Object, PKRecordRealmDataSource {
     dynamic var nickname = ""
     dynamic var launchedTime = ""
     dynamic var pkDuration = ""
-    dynamic var isAllowWatch = false
+    dynamic var isAllowWatch: Int = PKAllowWatchState.OtherNoWatch.rawValue
     
     /**
      1，已同步；
@@ -412,6 +412,13 @@ enum PKRecordsRealmSyncState: Int {
     case Synced = 1
     case NotSync = 2
  
+}
+
+enum PKAllowWatchState: Int {
+    
+    case OtherNoWatch = 0
+    case AllWatch = 1
+    
 }
 
 enum PKWaitType: Int {
