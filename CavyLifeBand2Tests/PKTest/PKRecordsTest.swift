@@ -12,8 +12,8 @@ import JSONJoy
 import RealmSwift
 @testable import CavyLifeBand2
 
-class PKRecordsTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebTranslateToRealmProtocol {
-    
+class PKRecordsTest: XCTestCase, PKRecordsRealmModelOperateDelegate {
+   
     var loginUserId: String = "12"
     
     var realm: Realm = try! Realm()
@@ -28,6 +28,8 @@ class PKRecordsTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebTransl
             return fixture(stubPath!, headers: ["Content-Type" : "application/json"])
             
         }
+        
+        Log.info("\(realm.configuration.fileURL)")
         
     
     }
@@ -49,73 +51,68 @@ class PKRecordsTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebTransl
         
         do {
             
+            let expectation = expectationWithDescription("testGetPKRecords succeed")
+            
             try PKWebApi.shareApi.getPKRecordList(self.loginUserId) {(result) in
                 
-                let queue = dispatch_queue_create("handleWebJson", DISPATCH_QUEUE_SERIAL)
                 
-                dispatch_async(queue) {
-                    XCTAssertTrue(result.isSuccess)
-                    
-                    let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
-                    
-                    //验证打桩数据个数正确
-                    XCTAssertTrue(resultMsg.commonMsg?.code == WebApiCode.Success.rawValue)
-                    
-                    XCTAssertTrue(resultMsg.waitList?.count == 2)
-                    
-                    XCTAssertTrue(resultMsg.dueList?.count == 1)
-                    
-                    XCTAssertTrue(resultMsg.finishList?.count == 2)
-                    
-                    var waitRecordsRealm: [PKWaitRealmModel] = [PKWaitRealmModel]()
-                    
-                    var dueRecordsRealm: [PKDueRealmModel] = [PKDueRealmModel]()
-                    
-                    var finishRecordsRealm: [PKFinishRealmModel] = [PKFinishRealmModel]()
-                    
-                    //转换数据
-                    waitRecordsRealm = (resultMsg.waitList?.flatMap({
-                        return self.translateWaitModelToRealm($0)
-                    }))!
-                    
-                    dueRecordsRealm = (resultMsg.dueList?.flatMap({
-                        return self.translateDueModelToRealm($0)
-                    }))!
-                    
-                    finishRecordsRealm = (resultMsg.finishList?.flatMap({
-                        return self.translateFinishModelToRealm($0)
-                    }))!
-                    
-                    //验证打桩数据转成数据库数据并且存储成功
-                    dispatch_async(dispatch_get_main_queue()) {
-                        
-                        self.deletePKRecordsRealm(PKWaitRealmModel.self)
-                        self.deletePKRecordsRealm(PKDueRealmModel.self)
-                        self.deletePKRecordsRealm(PKFinishRealmModel.self)
-                        
-                        XCTAssertTrue(self.queryPKDueRecordsRealm().count == 0)
-                        XCTAssertTrue(self.queryPKWaitRecordsRealm().count == 0)
-                        XCTAssertTrue(self.queryPKFinishRecordsRealm().count == 0)
-                        
-                        self.savePKRecordsRealm(waitRecordsRealm)
-                        self.savePKRecordsRealm(dueRecordsRealm)
-                        self.savePKRecordsRealm(finishRecordsRealm)
-                        
-                        XCTAssertTrue(self.queryPKDueRecordsRealm().count == 1)
-                        XCTAssertTrue(self.queryPKWaitRecordsRealm().count == 2)
-                        XCTAssertTrue(self.queryPKFinishRecordsRealm().count == 2)
-                        
-                    }
-                    
+                XCTAssertTrue(result.isSuccess)
+                
+                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
+                
+                //验证打桩数据个数正确
+                XCTAssertTrue(resultMsg.commonMsg.code == WebApiCode.Success.rawValue)
+                
+                XCTAssertTrue(resultMsg.waitList.count == 2)
+                
+                XCTAssertTrue(resultMsg.dueList.count == 1)
+                
+                XCTAssertTrue(resultMsg.finishList.count == 2)
+                
+                //转换数据
+                let waitRecordsRealm: [PKWaitRealmModel]  = resultMsg.waitList.map {
+                    return PKWaitRealmModel(loginUserId: self.loginUserId, model: $0)
                 }
                 
+                let dueRecordsRealm: [PKDueRealmModel] = resultMsg.dueList.map {
+                    return PKDueRealmModel(loginUserId: self.loginUserId, model: $0)
+                }
+                
+                let finishRecordsRealm: [PKFinishRealmModel] = resultMsg.finishList.map {
+                    return PKFinishRealmModel(loginUserId: self.loginUserId, model: $0)
+                }
+                
+                //验证打桩数据转成数据库数据并且存储成功
+            
+                self.deletePKRecordsRealm(PKWaitRealmModel.self)
+                self.deletePKRecordsRealm(PKDueRealmModel.self)
+                self.deletePKRecordsRealm(PKFinishRealmModel.self)
+                
+                XCTAssertTrue(self.queryPKDueRecordsRealm().count == 0)
+                XCTAssertTrue(self.queryPKWaitRecordsRealm().count == 0)
+                XCTAssertTrue(self.queryPKFinishRecordsRealm().count == 0)
+                
+                self.savePKRecordsRealm(waitRecordsRealm)
+                self.savePKRecordsRealm(dueRecordsRealm)
+                self.savePKRecordsRealm(finishRecordsRealm)
+                
+                XCTAssertTrue(self.queryPKDueRecordsRealm().count == 1)
+                XCTAssertTrue(self.queryPKWaitRecordsRealm().count == 2)
+                XCTAssertTrue(self.queryPKFinishRecordsRealm().count == 2)
+                
+                expectation.fulfill()
+                
             }
+            
+            waitForExpectationsWithTimeout(timeout, handler: nil)
             
         } catch let error {
             
             Log.warning("弹框提示失败\(error)")
             
         }
+        
+       
 
     }
     

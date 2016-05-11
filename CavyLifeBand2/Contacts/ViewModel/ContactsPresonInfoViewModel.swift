@@ -141,7 +141,7 @@ extension PresonInfoCellViewModel: UIImagePickerControllerDelegate, UINavigation
             let reslutMsg = try! UplodPictureMsg(JSONDecoder($0.value ?? ""))
             
             guard reslutMsg.commonMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(reslutMsg.commonMsg.code)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: reslutMsg.commonMsg.code)
                 picker.dismissVC(completion: nil)
                 return
             }
