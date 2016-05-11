@@ -10,9 +10,11 @@ import UIKit
 import EZSwiftExtensions
 import RealmSwift
 
-class PKListVC: UIViewController, BaseViewControllerPresenter {
+class PKListVC: UIViewController, BaseViewControllerPresenter, PKRecordsUpdateFormWeb {
 
     @IBOutlet weak var pkListTableView: UITableView!
+    
+    var loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
     
     let realm = try! Realm()
     
@@ -52,6 +54,9 @@ class PKListVC: UIViewController, BaseViewControllerPresenter {
     override func viewDidAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
+        
+        self.loadDataFromWeb()
+        
     }
     
     func loadItemData() {
