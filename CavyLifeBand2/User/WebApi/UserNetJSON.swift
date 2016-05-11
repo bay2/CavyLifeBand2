@@ -9,7 +9,7 @@
 import Foundation
 import JSONJoy
 
-struct UserSignUpMsg {
+struct UserSignUpMsg: JSONJoy {
     
     var commonMsg: CommenMsg?
     var userId: String?
@@ -82,4 +82,18 @@ struct UserProfileMsg {
         
     }
 
+}
+
+struct UplodPictureMsg: JSONJoy {
+    
+    var commonMsg: CommenMsg
+    var iconUrl: String
+    
+    init(_ decoder: JSONDecoder) throws {
+        
+        commonMsg = try CommenMsg(decoder)
+        do { iconUrl = try decoder["iconUrl"].getString() } catch { iconUrl = "" }
+        
+    }
+    
 }

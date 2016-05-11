@@ -88,7 +88,7 @@ extension SetUserInfoRequestsDelegate {
             let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
             
             guard resultMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(resultMsg.code)
                 completeHandle?(false)
                 return
             }

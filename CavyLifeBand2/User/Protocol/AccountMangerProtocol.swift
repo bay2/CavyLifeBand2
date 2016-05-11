@@ -67,8 +67,8 @@ extension ForgotPasswordDelegate where Self: UIViewController {
             }
             
             let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
-            if msg.code! != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(msg.code!)
+            if msg.code != WebApiCode.Success.rawValue {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(msg.code)
                 return
             }
             
@@ -114,8 +114,8 @@ extension SendSafetyCodeDelegate where Self: UIViewController {
             }
             
             let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
-            if msg.code! != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(msg.code!)
+            if msg.code != WebApiCode.Success.rawValue {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(msg.code)
                 return
             }
             
@@ -156,7 +156,7 @@ extension SignUpDelegate where Self: UIViewController {
             
             let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
             
-            if msg.commonMsg?.code! != WebApiCode.Success.rawValue {
+            if msg.commonMsg?.code != WebApiCode.Success.rawValue {
                 
                 CavyLifeBandAlertView.sharedIntance.showViewTitle(msg.commonMsg?.code ?? "")
                 return
@@ -202,7 +202,7 @@ extension SignInDelegate where Self: UIViewController {
             let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
             
             if msg.commonMsg?.code != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(msg.commonMsg!.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(msg.commonMsg!.code)
                 return
             }
             
