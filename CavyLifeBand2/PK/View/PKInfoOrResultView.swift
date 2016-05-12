@@ -170,14 +170,13 @@ class PKInfoOrResultView: UIView {
         
         self.dataSource = model
         
-        userStepLabel.text       = dataSource?.userStepCount.toString
-        competitorStepLabel.text = dataSource?.competitorStepCount.toString
+        self.userStepLabel.text       = self.dataSource?.userStepCount.toString
+        self.competitorStepLabel.text = self.dataSource?.competitorStepCount.toString
 
         userNameLabel.text       = dataSource?.userName
         competitorNameLabel.text = dataSource?.competitorName
         
         timeTitleLabel.text = dataSource?.timeTitle
-        seeStateLabel.text  = dataSource?.seeStateTitle
         
         timeLabel.attributedText = dataSource?.timeFormatterStr()
         
@@ -193,7 +192,30 @@ class PKInfoOrResultView: UIView {
         
         userAvatarImageView.af_setImageWithURL(NSURL(string: dataSource?.userAvatarUrl ?? "")!, placeholderImage: nil, runImageTransitionIfCached: true)
         competitorAvatarImageView.af_setImageWithURL(NSURL(string: dataSource?.comprtitorAvatarUrl ?? "")!, placeholderImage: nil, runImageTransitionIfCached: true)
+        
+        loadInfoFromWeb()
 
+    }
+
+}
+
+extension PKInfoOrResultView: PKWebRequestProtocol {
+    
+    func loadInfoFromWeb() {
+        getPKInfo({ pkInfo in
+            
+            self.dataSource?.userStepCount = pkInfo.userStepCount
+            self.dataSource?.competitorStepCount = pkInfo.friendStepCount
+            self.dataSource?.isOtherCanSee = pkInfo.isAllowWatch == PKAllowWatchState.OtherNoWatch.rawValue ? false : true
+            
+            self.userStepLabel.text       = self.dataSource?.userStepCount.toString
+            self.competitorStepLabel.text = self.dataSource?.competitorStepCount.toString
+            self.seeStateLabel.text = self.dataSource?.seeStateTitle
+            
+        }, failure: { errorMsg in
+            Log.error(errorMsg)
+        })
+        
     }
 
 }
@@ -210,11 +232,11 @@ enum Winner {
 protocol PKInfoOrResultViewDataSource {
     var isPKEnd: Bool { get }
     
-    var isOtherCanSee: Bool { get }
+    var isOtherCanSee: Bool { get set }
     
-    var userStepCount: Int { get }
+    var userStepCount: Int { get set }
     
-    var competitorStepCount: Int { get }
+    var competitorStepCount: Int { get set }
     
     var userName: String { get }
     
@@ -260,7 +282,7 @@ struct PKInfoOrResultViewModel: PKInfoOrResultViewDataSource {
     
     var competitorName: String
     
-    var isOtherCanSee: Bool = true
+    var isOtherCanSee: Bool = false
     
     var userAvatarUrl: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar
     
@@ -364,7 +386,7 @@ struct PKInfoOrResultViewModel: PKInfoOrResultViewDataSource {
         return currentString
     }
     
-    init(pkWebInfo: PKInfoResponse? = nil, pkRealm: PKRecordRealmDataSource) {
+    init(pkRealm: PKRecordRealmDataSource) {
         
         self.isPKEnd = pkRealm is PKDueRealmModel ? false : true
         
@@ -373,12 +395,6 @@ struct PKInfoOrResultViewModel: PKInfoOrResultViewDataSource {
         self.comprtitorAvatarUrl = pkRealm.avatarUrl
         
         self.pkDuration = pkRealm.pkDuration
-        
-        self.isOtherCanSee = pkWebInfo?.isAllowWatch == PKAllowWatchState.OtherNoWatch.rawValue ? false : true
-        
-        self.userStepCount = pkWebInfo?.userStepCount ?? 0
-        
-        self.competitorStepCount = pkWebInfo?.friendStepCount ?? 0
         
         if pkRealm is PKDueRealmModel {
             let pk = pkRealm as! PKDueRealmModel

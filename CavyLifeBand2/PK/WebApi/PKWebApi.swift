@@ -144,7 +144,7 @@ protocol PKWebRequestProtocol {
     //删除PK
     func deletePKFinish(finishRealms: [PKFinishRealmModel], loginUserId: String, callBack: ((Void) -> Void)?, failure: FailureHandle?) -> Void
     //获取PK详细资料
-    func getPKInfo(loginUserId: String, callBack: ((PKInfoResponse) -> Void)?, failure: FailureHandle?) -> Void
+    func getPKInfo(callBack: ((PKInfoResponse) -> Void)?, failure: FailureHandle?) -> Void
     
 }
 
@@ -277,7 +277,7 @@ extension PKWebRequestProtocol {
         
     }
     
-    func getPKInfo(loginUserId: String, callBack: ((PKInfoResponse) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
+    func getPKInfo(callBack: ((PKInfoResponse) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
         do {
 
             try PKWebApi.shareApi.getPKInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {(result) in
