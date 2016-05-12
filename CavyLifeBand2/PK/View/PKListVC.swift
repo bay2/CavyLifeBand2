@@ -55,6 +55,22 @@ class PKListVC: UIViewController, BaseViewControllerPresenter, PKRecordsUpdateFo
         
         super.viewDidAppear(animated)
         
+        //未同步的删除pk
+        if self.getUnSyncPKList(PKFinishRealmModel.self) != nil {
+            return
+        }
+        
+        //未同步的接受pk
+        if self.getUnSyncPKList(PKDueRealmModel.self) != nil {
+           return
+        }
+        
+        //未同步的撤销pk
+        if self.getUnSyncWaitPKListWithType(.UndoWait) != nil {
+            return
+        }
+
+        
         self.loadDataFromWeb()
         
     }
