@@ -34,17 +34,13 @@ struct HelpFeedbackResponse: JSONJoy {
 }
 
 struct HelpFeedback {
-    
-    //帮助反馈Id
-    var helpId: String
-    
+
     var title: String
     
     var webUrl: String
     
     init(_ decoder: JSONDecoder) throws {
         
-        do { helpId = try decoder["helpId"].getString() } catch { helpId = "" }
         do { title = try decoder["title"].getString() } catch { title = "" }
         do { webUrl = try decoder["webUrl"].getString() } catch { webUrl = "" }
         
