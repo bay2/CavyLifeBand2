@@ -54,6 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
         })
         
+        LifeBandBle.shareInterface.startScaning()
+        
         installation.url = NSURL(string: CavyDefine.bugHDKey)
 
         installation.install()

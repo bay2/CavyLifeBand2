@@ -188,6 +188,8 @@
 		918435E31C7C2C4E005B6E92 /* UploadPicture_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 918435E21C7C2C4E005B6E92 /* UploadPicture_Ok.json */; };
 		918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435EE1C7D629D005B6E92 /* ColorsDefine.swift */; };
 		918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918435F21C7D6784005B6E92 /* LocalizableDefine.swift */; };
+		918AA22E1CE327DC0022AE30 /* LifeBandBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918AA22D1CE327DC0022AE30 /* LifeBandBLE.swift */; };
+		918AA2301CE328070022AE30 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AA22F1CE328070022AE30 /* CoreBluetooth.framework */; };
 		918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E26D21C88307900115C4E /* NSUserDefaultsExtension.swift */; };
 		918E26DC1C891CDE00115C4E /* SignInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E26DB1C891CDE00115C4E /* SignInUITests.swift */; };
 		9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */; };
@@ -496,6 +498,8 @@
 		918435F01C7D6641005B6E92 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		918435F11C7D6644005B6E92 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		918435F21C7D6784005B6E92 /* LocalizableDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizableDefine.swift; sourceTree = "<group>"; };
+		918AA22D1CE327DC0022AE30 /* LifeBandBLE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeBandBLE.swift; sourceTree = "<group>"; };
+		918AA22F1CE328070022AE30 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		918E26D21C88307900115C4E /* NSUserDefaultsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultsExtension.swift; sourceTree = "<group>"; };
 		918E26DB1C891CDE00115C4E /* SignInUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUITests.swift; sourceTree = "<group>"; };
 		91931FBDB93D6202BBC98835 /* Pods-CavyLifeBand2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -595,6 +599,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				918AA2301CE328070022AE30 /* CoreBluetooth.framework in Frameworks */,
 				FEEA59B0530DBF292999D652 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1128,6 +1133,7 @@
 		917DA96A1C3B8EB700FF675D /* CavyLifeBand2 */ = {
 			isa = PBXGroup;
 			children = (
+				918AA22C1CE327450022AE30 /* BLE */,
 				686A5EE81CDC307300EB8D0E /* Relate */,
 				9179DA971CD5E93800FCA63C /* AddressBook */,
 				68E977F11CC5D0FE00651724 /* PK */,
@@ -1181,6 +1187,14 @@
 				6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */,
 			);
 			path = CavyLifeBand2UITests;
+			sourceTree = "<group>";
+		};
+		918AA22C1CE327450022AE30 /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				918AA22D1CE327DC0022AE30 /* LifeBandBLE.swift */,
+			);
+			path = BLE;
 			sourceTree = "<group>";
 		};
 		9199E4891CAE4B0D00397883 /* Protocol */ = {
@@ -1464,6 +1478,7 @@
 		E460B001B67D19857BA48CA4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				918AA22F1CE328070022AE30 /* CoreBluetooth.framework */,
 				C848EB391C46240F001FA1BF /* AssetsLibrary.framework */,
 				24A7CFAEA8FAD0237C60B20B /* Pods.framework */,
 				8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */,
@@ -1904,6 +1919,7 @@
 				9104AA721CC4BF4B00FE03E7 /* ContactsReqFriendProtocol.swift in Sources */,
 				91E1B4DB1CA510BD008ADEE6 /* ContactRecommendFriendView.swift in Sources */,
 				91E1B4D71CA510BD008ADEE6 /* ContactsAddFriendCell.swift in Sources */,
+				918AA22E1CE327DC0022AE30 /* LifeBandBLE.swift in Sources */,
 				4C2B67EC1CCF49CD00512CC7 /* GuideViewConfigDefine.swift in Sources */,
 				916456451CE1C115002D2D87 /* AlamofireImageExtension.swift in Sources */,
 				683655951CBE25DB009373EA /* ReminderSettingVCViewModel.swift in Sources */,
