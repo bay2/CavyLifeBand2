@@ -28,18 +28,12 @@ class PKChallengeView: UIView {
     
     override func awakeFromNib() {
         baseSetting()
-        
-        dataSource = PKChallengeViewModel()
-        
-        dataSourceSetting()
     }
     
     /**
      基本样式设置
      */
     func baseSetting() -> Void {
-        
-        PKSeeStateLabel.font = dataSource?.matrixFont
         
         PKTimeTitleLabel.text       = L10n.PKChallengeViewPKTimeTitle.string
         PKInvitationRulesLabel.text = L10n.PKChallengeViewPKRules.string
@@ -71,7 +65,11 @@ class PKChallengeView: UIView {
     /**
      基于DataSource的设置
      */
-    func dataSourceSetting() -> Void {
+    func configure(model: PKChallengeViewDataSource) -> Void {
+        
+        self.dataSource = model
+        
+        PKSeeStateLabel.font = dataSource?.matrixFont
         
         userNameLabel.text       = dataSource?.userName
         competitorNameLabel.text = dataSource?.competitorName
@@ -111,9 +109,9 @@ extension PKChallengeViewDataSource {
 }
 
 struct PKChallengeViewModel: PKChallengeViewDataSource {
-    var competitorName: String { return "雪菜" }
+    var competitorName: String
     
-    var PKTime: String { return "5" }
+    var PKTime: String
     
     var seeState: String {
         if isOtherCanSee {
@@ -123,9 +121,21 @@ struct PKChallengeViewModel: PKChallengeViewDataSource {
         }
     }
     
-    var isOtherCanSee = true
+    var isOtherCanSee: Bool
     
-    var userAvatarUrl = ""
+    var userAvatarUrl = CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar
     
-    var comprtitorAvatarUrl = ""
+    var comprtitorAvatarUrl: String
+    
+    init(pkRealm: PKWaitRealmModel) {
+        
+        comprtitorAvatarUrl = pkRealm.avatarUrl
+        
+        competitorName = pkRealm.nickname
+        
+        PKTime = pkRealm.pkDuration
+        
+        isOtherCanSee = pkRealm.isAllowWatch == PKAllowWatchState.OtherNoWatch.rawValue ? false : true
+        
+    }
 }

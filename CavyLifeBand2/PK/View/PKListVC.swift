@@ -135,11 +135,11 @@ extension PKListVC {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        guard let pkInfoView = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView else {
+        guard let pkInfoView = dataSources[indexPath.section].getPKInfoView(indexPath) else {
+            
             return
+        
         }
-
-        pkInfoView.configure(PKInfoOrResultViewModel(pkRealm: dataSources[indexPath.section].getCellRealm(indexPath)))
         
         self.view.addSubview(pkInfoView)
         

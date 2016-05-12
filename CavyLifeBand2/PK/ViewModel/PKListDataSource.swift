@@ -65,8 +65,8 @@ protocol PKListDataSource {
 protocol PKListActionDelegate {
     
     func createRowActions(indexPath: NSIndexPath) -> [UITableViewRowAction]?
-    var isCanEditRow: Bool { get }
-    func getCellRealm(indexPath: NSIndexPath) -> PKRecordRealmDataSource
+    var isCanEditRow: Bool { get }    
+    func getPKInfoView(indexPath: NSIndexPath) -> UIView?
     
 }
 
@@ -135,6 +135,16 @@ struct PKWaitListDataSource: PKListDataProtocols {
         return self.item[indexPath.row].pkRecord
     }
     
+    func getPKInfoView(indexPath: NSIndexPath) -> UIView? {
+        guard let pkInfoView = NSBundle.mainBundle().loadNibNamed("PKChallengeView", owner: nil, options: nil).first as? PKChallengeView else {
+            return nil
+        }
+        
+        pkInfoView.configure(PKChallengeViewModel(pkRealm: self.item[indexPath.row].pkRecord))
+        
+        return pkInfoView
+    }
+    
 }
 
 /**
@@ -184,6 +194,16 @@ struct PKDueListDataSource: PKListDataProtocols {
     
     func getCellRealm(indexPath: NSIndexPath) -> PKRecordRealmDataSource {
         return self.item[indexPath.row].pkRecord
+    }
+    
+    func getPKInfoView(indexPath: NSIndexPath) -> UIView? {
+        guard let pkInfoView = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView else {
+            return nil
+        }
+        
+        pkInfoView.configure(PKInfoOrResultViewModel(pkRealm: self.item[indexPath.row].pkRecord))
+        
+        return pkInfoView
     }
     
 }
@@ -252,6 +272,16 @@ struct PKFinishListDataSource: PKListDataProtocols {
     
     func getCellRealm(indexPath: NSIndexPath) -> PKRecordRealmDataSource {
         return self.item[indexPath.row].pkRecord
+    }
+    
+    func getPKInfoView(indexPath: NSIndexPath) -> UIView? {
+        guard let pkInfoView = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView else {
+            return nil
+        }
+        
+        pkInfoView.configure(PKInfoOrResultViewModel(pkRealm: self.item[indexPath.row].pkRecord))
+        
+        return pkInfoView
     }
     
 }

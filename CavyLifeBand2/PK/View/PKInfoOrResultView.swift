@@ -39,15 +39,11 @@ class PKInfoOrResultView: UIView {
         self.clipsToBounds = true
         self.layer.cornerRadius = CavyDefine.commonCornerRadius
         
-        self.bringSubviewToFront(userAvatarImageView)
-        self.bringSubviewToFront(competitorAvatarImageView)
-        
         self.addSubview(winnerImageView)
         
         winnerImageView.hidden = true
         
         baseSetting()
-        
         
     }
     
@@ -74,11 +70,13 @@ class PKInfoOrResultView: UIView {
     }
     
     func winnerBoth() -> Void {
+        
         competitorAvatarImageView.snp_makeConstraints {(make) in
             
             make.leading.equalTo(topBGView.snp_centerX).offset(30)
             
             make.width.equalTo(smallAvatarWidth)
+            
         }
         
         userAvatarImageView.snp_makeConstraints {(make) in
