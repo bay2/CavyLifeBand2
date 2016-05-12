@@ -14,7 +14,7 @@ import AddressBook
 import Contacts
 import KeychainAccess
 
-class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate {
+class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate, PKRecordsUpdateFormWeb {
     
     enum MoveDirection {
         
@@ -47,6 +47,22 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     var loginUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
+    
+    var pkSycnCount: Int = 0 {
+        
+        didSet {
+            
+            if pkSycnCount == 3 {
+                
+                self.loadDataFromWeb()
+                
+                pkSycnCount = 0
+            
+            }
+            
+        }
+        
+    }
     
     override func viewDidLoad() {
         
@@ -202,9 +218,13 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                     self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: finish.pkId)
                 }
                 
+                self.pkSycnCount += 1
+                
             }, failure: {(errorMsg) in
                 Log.warning(errorMsg)
             })
+        } else {
+            self.pkSycnCount += 1
         }
         
         //接受pk
@@ -219,9 +239,13 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                     self.changeDueBeginTime(accept, time: dateFormatter.stringFromDate(NSDate()))
                     self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: accept.pkId)
                 }
+                
+                self.pkSycnCount += 1
             }, failure: {(errorMsg) in
                 Log.warning(errorMsg)
             })
+        } else {
+            self.pkSycnCount += 1
         }
         
         //撤销pk
@@ -230,9 +254,13 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 for undo in undoList {
                     self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: undo.pkId)
                 }
+                
+                self.pkSycnCount += 1
             }, failure: {(errorMsg) in
                 Log.warning(errorMsg)
             })
+        } else {
+            self.pkSycnCount += 1
         }
 
     }
