@@ -65,30 +65,6 @@ extension NetRequestAdapter {
             return (components.map { "\($0)=\($1)" } as [String]).joinWithSeparator("&")
         }
         
-        
-        // 自定义消息结构
-        let closure: ((URLRequestConvertible, [String: AnyObject]?) -> (NSMutableURLRequest, NSError?)) = {URLRequest, parameters in
-            
-            let mutableURLRequest = URLRequest.URLRequest
-            guard let parameters = parameters else { return (mutableURLRequest, nil) }
-            
-
-            if mutableURLRequest.valueForHTTPHeaderField("Content-Type") == nil {
-                mutableURLRequest.setValue(
-                    "application/x-www-form-urlencoded; charset=utf-8",
-                    forHTTPHeaderField: "Content-Type"
-                )
-            }
-            
-            mutableURLRequest.HTTPBody = query(parameters).dataUsingEncoding(
-                NSUTF8StringEncoding,
-                allowLossyConversion: false
-            )
-            
-            return (mutableURLRequest, nil)
-        
-        }
-        
         //发送API请求
         if para != nil {
             parameters = parameters.union(para!)
