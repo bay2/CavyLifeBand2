@@ -29,20 +29,6 @@ struct LaunchPKResponse: JSONJoy {
     }
 }
 
-struct PKId {
-    
-    //PK记录Id
-    var pkId: String
-
-    init(_ decoder: JSONDecoder) throws {
-        
-        do { pkId = try decoder["pkId"].getString() } catch { pkId = "" }
-        
-    }
-    
-}
-
-
 struct PKRecordList: JSONJoy {
     //通用消息头
     var commonMsg: CommenMsg
@@ -201,4 +187,29 @@ struct PKFinishRecord: JSONJoy {
         
     }
     
+}
+
+
+struct PKInfoResponse: JSONJoy {
+    //通用消息头
+    var commonMsg: CommenMsg
+    
+    //我的计步数
+    var userStepCount: Int
+    
+    //对方的计步数
+    var friendStepCount: Int
+    
+    //是否好友可见
+    var isAllowWatch: Int
+    
+    init(_ decoder: JSONDecoder) throws {
+        
+        commonMsg = try CommenMsg(decoder)
+        
+        do { userStepCount   = try decoder["userStepCount"].getInt() } catch { userStepCount = 0 }
+        do { friendStepCount = try decoder["friendStepCount"].getInt() } catch { friendStepCount = 0 }
+        do { isAllowWatch    = try decoder["isAllowWatch"].getInt() } catch { isAllowWatch = PKAllowWatchState.OtherNoWatch.rawValue }
+        
+    }
 }

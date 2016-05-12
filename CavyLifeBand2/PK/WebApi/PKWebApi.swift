@@ -113,6 +113,23 @@ class PKWebApi: NetRequestAdapter {
         
     }
     
+    /**
+     获取PK详细资料
+     
+     - parameter userId:   用户ID
+     - parameter callBack:
+     
+     - throws:
+     */
+    func getPKInfo(userId: String, callBack: CompletionHandlernType? = nil) throws {
+        
+        let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetPKInfo.rawValue,
+                                               UserNetRequsetKey.UserID.rawValue: userId]
+        
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
+        
+    }
+    
 }
 
 typealias FailureHandle = (String) -> Void
@@ -126,6 +143,8 @@ protocol PKWebRequestProtocol {
     func undoPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: ((Void) -> Void)?, failure: FailureHandle?) -> Void
     //删除PK
     func deletePKFinish(finishRealms: [PKFinishRealmModel], loginUserId: String, callBack: ((Void) -> Void)?, failure: FailureHandle?) -> Void
+    //获取PK详细资料
+    func getPKInfo(loginUserId: String, callBack: ((PKInfoResponse) -> Void)?, failure: FailureHandle?) -> Void
     
 }
 
@@ -256,6 +275,31 @@ extension PKWebRequestProtocol {
             failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
         }
         
+    }
+    
+    func getPKInfo(loginUserId: String, callBack: ((PKInfoResponse) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
+        do {
+
+            try PKWebApi.shareApi.getPKInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {(result) in
+                
+                guard result.isSuccess else {
+                    failure?(self.getErroMsgFromUserCode(result.error))
+                    return
+                }
+                
+                let resultMsg = try! PKInfoResponse(JSONDecoder(result.value!))
+                
+                guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg.code ?? ""))
+                    return
+                }
+                
+                callBack?(resultMsg)
+            }
+            
+        } catch let error {
+            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
+        }
     }
     
     //把数据库已完成记录转成删除PK接口的请求入参格式

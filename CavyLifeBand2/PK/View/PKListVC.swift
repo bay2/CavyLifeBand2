@@ -134,6 +134,22 @@ extension PKListVC {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
+        guard let pkInfoView = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView else {
+            return
+        }
+
+        pkInfoView.configure(PKInfoOrResultViewModel(pkRealm: dataSources[indexPath.section].getCellRealm(indexPath)))
+        
+        self.view.addSubview(pkInfoView)
+        
+        pkInfoView.snp_makeConstraints(closure: { make in
+            make.leading.equalTo(self.view).offset(20.0)
+            make.trailing.equalTo(self.view).offset(-20.0)
+            make.centerY.equalTo(self.view)
+            make.height.equalTo(380.0)
+        })
+        
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {

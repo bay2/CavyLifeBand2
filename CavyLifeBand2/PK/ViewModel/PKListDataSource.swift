@@ -66,6 +66,7 @@ protocol PKListActionDelegate {
     
     func createRowActions(indexPath: NSIndexPath) -> [UITableViewRowAction]?
     var isCanEditRow: Bool { get }
+    func getCellRealm(indexPath: NSIndexPath) -> PKRecordRealmDataSource
     
 }
 
@@ -130,6 +131,10 @@ struct PKWaitListDataSource: PKListDataProtocols {
         
     }
     
+    func getCellRealm(indexPath: NSIndexPath) -> PKRecordRealmDataSource {
+        return self.item[indexPath.row].pkRecord
+    }
+    
 }
 
 /**
@@ -175,6 +180,10 @@ struct PKDueListDataSource: PKListDataProtocols {
         
         return cell
         
+    }
+    
+    func getCellRealm(indexPath: NSIndexPath) -> PKRecordRealmDataSource {
+        return self.item[indexPath.row].pkRecord
     }
     
 }
@@ -239,6 +248,10 @@ struct PKFinishListDataSource: PKListDataProtocols {
         delAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
         return [delAction]
         
+    }
+    
+    func getCellRealm(indexPath: NSIndexPath) -> PKRecordRealmDataSource {
+        return self.item[indexPath.row].pkRecord
     }
     
 }

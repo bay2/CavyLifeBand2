@@ -105,16 +105,19 @@ struct LoginUserBaseInfo {
     
     var loginUserId: String
     var loginUsername: String
+    var loginAvatar: String
+    
     
     init(dictionary: [String: AnyObject]) {
         
         loginUserId = (dictionary["SignUserId"] as? String) ?? ""
         loginUsername = (dictionary["SignUserName"] as? String) ?? ""
+        loginAvatar = (dictionary["SignUserAvatar"] as? String) ?? ""
         
     }
     
     func serialize() -> [String: AnyObject] {
-        return ["SignUserId": loginUserId, "SignUserName": loginUsername]
+        return ["SignUserId": loginUserId, "SignUserName": loginUsername, "SignUserAvatar": loginAvatar]
     }
     
 }
@@ -301,4 +304,5 @@ enum UserNetRequestMethod: String {
     case AcceptPK = "acceptPK"
     case GetHelpList = "getHelpList"
     case SubmitFeedback = "submitFeedback"
+    case GetPKInfo = "getPKInfo"
 }

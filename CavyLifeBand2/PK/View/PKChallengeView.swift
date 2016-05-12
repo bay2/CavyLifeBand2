@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class PKChallengeView: UIView {
 
@@ -72,13 +73,13 @@ class PKChallengeView: UIView {
      */
     func dataSourceSetting() -> Void {
         
-//        userAvatarImageView.image       = dataSource?.userAvatar
-//        competitorAvatarImageView.image = dataSource?.comprtitorAvatar
-        
         userNameLabel.text       = dataSource?.userName
         competitorNameLabel.text = dataSource?.competitorName
         PKSeeStateLabel.text     = dataSource?.seeState
         PKTimeLabel.text         = dataSource?.PKTime
+        
+        userAvatarImageView.af_setImageWithURL(NSURL(string: dataSource?.userAvatarUrl ?? "")!, placeholderImage: nil, runImageTransitionIfCached: true)
+        competitorAvatarImageView.af_setImageWithURL(NSURL(string: dataSource?.comprtitorAvatarUrl ?? "")!, placeholderImage: nil, runImageTransitionIfCached: true)
 
     }
     
@@ -88,8 +89,8 @@ protocol PKChallengeViewDataSource {
     var userName: String { get }
     var competitorName: String { get }
     var PKTime: String { get }
-//    var userAvatar: UIImage { get }
-//    var comprtitorAvatar: UIImage { get }
+    var userAvatarUrl: String { get }
+    var comprtitorAvatarUrl: String { get }
     var seeState: String { get }
     var matrixFont: UIFont { get }
 }
@@ -123,4 +124,8 @@ struct PKChallengeViewModel: PKChallengeViewDataSource {
     }
     
     var isOtherCanSee = true
+    
+    var userAvatarUrl = ""
+    
+    var comprtitorAvatarUrl = ""
 }

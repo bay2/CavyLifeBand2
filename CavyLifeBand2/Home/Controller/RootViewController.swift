@@ -122,6 +122,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         updateSyncDate(userInfo)
         
         CavyDefine.userNickname = userInfo.nickname
+        CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar = userInfo.avatarUrl
         
     }
     
