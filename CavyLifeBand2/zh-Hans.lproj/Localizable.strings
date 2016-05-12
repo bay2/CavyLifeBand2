@@ -284,3 +284,12 @@
 "Relate.RelateApp.NavTitle" = "相关App";
 "Relate.RelateAppCell.DownloadBtnTitle" = "下载";
 
+//星期
+"AlarmDay.Monday" = "一";
+"AlarmDay.Tuesday" = "二";
+"AlarmDay.Wednesday" = "三";
+"AlarmDay.Thursday" = "四";
+"AlarmDay.Friday" = "五";
+"AlarmDay.Saturday" = "六";
+"AlarmDay.Sunday" = "日";
+
