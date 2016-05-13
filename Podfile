@@ -18,6 +18,8 @@ pod 'OHHTTPStubs'
 pod 'OHHTTPStubs/Swift'
 pod 'Gifu'
 pod 'PgyUpdate'
+pod 'Charts'
+pod 'Charts/Realm'
 pod 'RandomKit'
 pod 'KMPlaceholderTextView'
 

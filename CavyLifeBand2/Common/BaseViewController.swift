@@ -38,8 +38,6 @@ protocol BaseViewControllerPresenter {
     func configNavBar()
     func configNavItem()
     
-    var newTitleLable: UILabel? { get }
-    
     var barBgColor: UIColor { get }
     
 }
@@ -51,10 +49,6 @@ extension BaseViewControllerPresenter where Self: UIViewController {
     }
     
     var rightBtn: UIButton? {
-        return nil
-    }
-    
-    var newTitleLable: UILabel? {
         return nil
     }
     

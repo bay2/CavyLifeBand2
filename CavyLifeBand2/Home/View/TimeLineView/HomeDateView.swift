@@ -83,6 +83,23 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         return cell
     }
     
+    // 点击事件
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        collectionView.setContentOffset(CGPointMake(CGFloat(indexPath.row) * labelWidth, 0), animated: true)
+        // 通知绑定日期和时间轴的同步
+        NSNotificationCenter.defaultCenter().postNotificationName("changeTimeLinePage", object: nil, userInfo: ["currentPage": indexPath.row])
+    }
+    
+    // 可以点击
+    func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        
+        return true
+        
+    }
+    
+
+    
 
 }
 

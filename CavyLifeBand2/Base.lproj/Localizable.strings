@@ -34,6 +34,7 @@
 "UserModuleErrorCode.UserNameNil" = "用户名不能为空";
 "UserModuleErrorCode.UnknownError" = "未知错误";
 
+
 // 首页
 "MainPage.SignInBtn" = "登入";
 "MainPage.SignUpBtn" = "加入豚鼠";
@@ -138,6 +139,22 @@
 "Home.RightList.Title.Security" = "安全";
 "Home.RightList.Title.FirmwareUpgrade" = "固件升级";
 "Home.RightList.Title.BindingBand" = "绑定新的CavyBand";
+
+//Chart
+"Chart.Sleep" = "睡眠";
+"Chart.Step" = "计步";
+"Chart.TimeBucket.Day" = "日";
+"Chart.TimeBucket.Week" = "周";
+"Chart.TimeBucket.Month" = "月";
+"Chart.Target.Percent" = "目标完成度";
+"Chart.Sleep.Deep" = "深睡";
+"Chart.Sleep.Light" = "浅睡";
+"Chart.Sleep.Degree.Deep" = "深度";
+"Chart.Sleep.Degree.Light" = "浅度";
+"Chart.Step.Today.Step" = "步数";
+"Chart.Step.Week.Step" = "周总步数";
+"Chart.Step.Kilometer" = "行走公里数";
+"Chart.Step.TimeUsed" = "花费时长";
 
 //好友，联系人
 "Contacts.ListCell.Cavy" = "生活豚鼠";

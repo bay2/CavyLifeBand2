@@ -34,6 +34,15 @@ HomeStepRingColor : #fff956
 HomeRingViewBackground : #309a6e
 HomeTimeLineLineColor :#e5e5e5
 HomeTimeLinePKCellTextColor : #ff8259
+ChartBackground : #e5e5e5
+ChartSleepDegreeText : #ff5757
+ChartDeselectText : #00000066
+ChartSleepDegreeDeep : #2db6cf
+ChartSleepDegreeLight : #36f3ff
+ChartViewBackground : #4d4d4d
+ChartViewTextColor : #ffffff4D
+ChartGirdColor : #ffffff1A
+ChartStepPillarColor : #fff956
 ContactsTitleColor : #000000B3
 ContactsName : #000000
 ContactsIntrouduce : #0000004D
