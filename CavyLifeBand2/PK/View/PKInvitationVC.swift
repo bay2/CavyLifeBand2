@@ -22,6 +22,7 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         view
         
         return view
+
     }()
     
     var realm: Realm = try! Realm()
@@ -53,36 +54,43 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         
         dataSouceSetting()
         
+        updateNavUI()
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func addAction(sender: UIButton) {
         
-        Log.warning("选择对手 未完成")
+        let pkSelectVC = StoryboardScene.PK.instantiatePKSelectOppTVC()
         
-        Log.warning("push 的 VC 需要抛出一个block给我 数据为选择的人的userId，avatarUrl，nickname")
+        pkSelectVC.delegate = self
+        
+        self.pushVC(pkSelectVC)
+        
         
 //        dataSource?.setPKWaitCompetitorInfo(<#T##userId: String##String#>, nickName: <#T##String#>, avatarUrl: <#T##String#>)
         
     }
 
     @IBAction func commitAction(sender: UIButton) {
-        Log.warning("提交 未完成")
         
-        let challenge = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView
-                
-        self.view .addSubview(challenge!)
+//        let challenge = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView
+//                
+//        self.view .addSubview(challenge!)
+//        
+//        challenge?.snp_makeConstraints(closure: {(make) in
+//            make.leading.equalTo(self.view).offset(20)
+//            make.trailing.equalTo(self.view).offset(-20)
+//            make.height.equalTo(380)
+//            make.centerY.equalTo(self.view.snp_centerY)
+//        })
         
-        challenge?.snp_makeConstraints(closure: {(make) in
-            make.leading.equalTo(self.view).offset(20)
-            make.trailing.equalTo(self.view).offset(-20)
-            make.height.equalTo(380)
-            make.centerY.equalTo(self.view.snp_centerY)
-        })
+        dataSource?.launchPK()
+        
+        self.pushVC(StoryboardScene.PK.instantiatePKListVC())
         
     }
         
@@ -92,8 +100,9 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
             dataSource?.pkWaitRealmModel.isAllowWatch = !(dataSource?.pkWaitRealmModel.isAllowWatch)!
         }
         
-        sender.selected = true
+        sender.selected   = true
         lastBtn?.selected = false
+        
         lastBtn = sender
         
     }
@@ -137,15 +146,17 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
             
         }
         
-        timePicker.delegate = self
+        timePicker.delegate   = self
         timePicker.dataSource = self
         
-        timePicker.font = UIFont(name: "HelveticaNeue-Light", size: 30)!
+        timePicker.font            = UIFont(name: "HelveticaNeue-Light", size: 30)!
         timePicker.highlightedFont = UIFont(name: "HelveticaNeue", size: 44)!
-        timePicker.textColor = UIColor(named: .AlarmClockTableCellDescriptionColor)
+        
+        timePicker.textColor            = UIColor(named: .AlarmClockTableCellDescriptionColor)
         timePicker.highlightedTextColor = UIColor(named: .AlarmClockTableCellTitleColor)
+        
         timePicker.pickerViewStyle = .Flat
-        timePicker.maskDisabled = false
+        timePicker.maskDisabled    = false
     }
     
     func dataSouceSetting() -> Void {
@@ -179,6 +190,16 @@ extension PKInvitationVC: AKPickerViewDelegate {
     
     func pickerView(pickerView: AKPickerView, didSelectItem item: Int) {
         dataSource?.selectIndex = item
+    }
+    
+}
+
+extension PKInvitationVC: PKSelectOppTVCDelegate {
+    
+    func selectPKOpp(userId: String, nikeName: String, avatarUrl: String) {
+        
+        addBtn.af_setImageForState(.Normal, URL: NSURL(string: avatarUrl)!)
+        dataSource?.setPKWaitCompetitorInfo(userId, nickName: nikeName, avatarUrl: avatarUrl)
     }
     
 }

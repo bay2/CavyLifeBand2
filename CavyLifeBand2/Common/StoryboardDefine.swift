@@ -190,9 +190,9 @@ struct StoryboardScene {
       return StoryboardScene.PK.PKInvitationVCScene.viewController() as! PKInvitationVC
     }
 
-    case PKRecordsVCScene = "PKRecordsVC"
-    static func instantiatePKRecordsVC() -> PKRecordsVC {
-      return StoryboardScene.PK.PKRecordsVCScene.viewController() as! PKRecordsVC
+    case PKListVCScene = "PKListVC"
+    static func instantiatePKListVC() -> PKListVC {
+      return StoryboardScene.PK.PKListVCScene.viewController() as! PKListVC
     }
 
     case PKRulesVCScene = "PKRulesVC"
@@ -200,9 +200,32 @@ struct StoryboardScene {
       return StoryboardScene.PK.PKRulesVCScene.viewController() as! PKRulesVC
     }
 
-    case PKTestViewControllerScene = "PKTestViewController"
-    static func instantiatePKTestViewController() -> PKTestViewController {
-      return StoryboardScene.PK.PKTestViewControllerScene.viewController() as! PKTestViewController
+    case PKSelectOppTVCScene = "PKSelectOppTVC"
+    static func instantiatePKSelectOppTVC() -> PKSelectOppTVC {
+      return StoryboardScene.PK.PKSelectOppTVCScene.viewController() as! PKSelectOppTVC
+    }
+  }
+  enum Relate: String, StoryboardSceneType {
+    static let storyboardName = "Relate"
+
+    case AboutVCScene = "AboutVC"
+    static func instantiateAboutVC() -> AboutVC {
+      return StoryboardScene.Relate.AboutVCScene.viewController() as! AboutVC
+    }
+
+    case HelpAndFeedbackListVCScene = "HelpAndFeedbackListVC"
+    static func instantiateHelpAndFeedbackListVC() -> HelpAndFeedbackListVC {
+      return StoryboardScene.Relate.HelpAndFeedbackListVCScene.viewController() as! HelpAndFeedbackListVC
+    }
+
+    case HelpAndFeedbackVCScene = "HelpAndFeedbackVC"
+    static func instantiateHelpAndFeedbackVC() -> HelpAndFeedbackVC {
+      return StoryboardScene.Relate.HelpAndFeedbackVCScene.viewController() as! HelpAndFeedbackVC
+    }
+
+    case RelateAppVCScene = "RelateAppVC"
+    static func instantiateRelateAppVC() -> RelateAppVC {
+      return StoryboardScene.Relate.RelateAppVCScene.viewController() as! RelateAppVC
     }
   }
   enum Weather: StoryboardSceneType {

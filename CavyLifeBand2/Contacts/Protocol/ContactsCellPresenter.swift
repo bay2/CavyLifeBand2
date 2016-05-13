@@ -29,3 +29,7 @@ protocol ContactsPersonInfoCellPresenter {
     var relation: PersonRelation { get }
     
 }
+
+protocol ContactsPersonInfoCellDelegate: class {
+    func onClickHeadView()
+}

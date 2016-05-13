@@ -15,10 +15,13 @@ struct CavyDefine {
     static let bugHDKey = "https://collector.bughd.com/kscrash?key=9c009d806879cec4233b3b66b4264315"
     
     // 服务器地址
-    static let serverAddr = "http://115.28.144.243/cavylife"
+//    static let serverAddr = "http://115.28.144.243/cavylife"
+    static let serverAddr = "http://192.168.100.214/cavylife"
     
     // webApi地址
     static let webApiAddr = serverAddr + "/api.do"
+    
+    static let updateImgAddr = serverAddr + "/api/userIcon.do"
     
     // 邮箱验证码地址
     static let emailCodeAddr = serverAddr + "/imageCode.do"
@@ -241,6 +244,13 @@ enum UserNetRequsetKey: String {
     case AcceptTime = "acceptTime"
     case IsAllowWatch = "isAllowWatch"
     case FriendReqType = "type"
+    case FileName = "filename"
+    case Name = "name"
+    case FeedbackContent = "feedback"
+    case HelpList = "helpList"
+    case HelpId = "helpId"
+    case HelpTitle = "title"
+    case HelpWebUrl = "webUrl"
 }
 
 /**
@@ -273,7 +283,7 @@ enum UserNetRequestMethod: String {
     case SendSecurityCode = "sendAuthCode"
     case SignUp = "userReg"
     case SignIn = "userLogin"
-    case UpdateAvatar
+    case UpdateAvatar = "setUserIcon"
     case ForgotPwd = "resetPsw"
     case UserProfile = "getUserInfo"
     case SetUserProfile = "setUserInfo"
@@ -289,4 +299,6 @@ enum UserNetRequestMethod: String {
     case UndoPK = "undoPK"
     case DeletePK = "deletePK"
     case AcceptPK = "acceptPK"
+    case GetHelpList = "getHelpList"
+    case SubmitFeedback = "submitFeedback"
 }

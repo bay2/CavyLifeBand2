@@ -15,6 +15,8 @@ import RealmSwift
 import OHHTTPStubs
 #endif
 
+var realm: Realm = try! Realm()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -27,6 +29,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             uiTestStub()
             
         #endif
+        
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: UInt64(ez.appBuild!)!, migrationBlock: { migration, oldSchemaVersion in
+            
+            if oldSchemaVersion >= 4 {
+                return
+            }
+            
+            migration.enumerate(FriendInfoRealm.className()) {(oldObject, newObject) in
+                
+                let nikeName = oldObject!["nikeName"] as! String
+                newObject!["fullName"] = nikeName.chineseToSpell() + nikeName
+                
+            }
+            
+            
+        })
         
         let installation = KSCrashInstallationStandard.sharedInstance()
         

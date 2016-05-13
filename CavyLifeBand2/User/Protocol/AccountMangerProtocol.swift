@@ -62,13 +62,13 @@ extension ForgotPasswordDelegate where Self: UIViewController {
         UserNetRequestData.shareApi.forgotPasswd(userName, passwd: passwd, safetyCode: safetyCode) { result in
             
             if result.isFailure {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
                 return
             }
             
             let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
-            if msg.code! != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.code!)
+            if msg.code != WebApiCode.Success.rawValue {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.code)
                 return
             }
             
@@ -109,13 +109,13 @@ extension SendSafetyCodeDelegate where Self: UIViewController {
             self.sendSafetyCodeBtn.enabled = true
             
             if result.isFailure {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
                 return
             }
             
             let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
-            if msg.code! != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.code!)
+            if msg.code != WebApiCode.Success.rawValue {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.code)
                 return
             }
             
@@ -150,15 +150,15 @@ extension SignUpDelegate where Self: UIViewController {
             
             if result.isFailure {
                 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
                 return
             }
             
             let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
             
-            if msg.commonMsg?.code! != WebApiCode.Success.rawValue {
+            if msg.commonMsg?.code != WebApiCode.Success.rawValue {
                 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg!.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg?.code ?? "")
                 return
             }
             
@@ -195,14 +195,14 @@ extension SignInDelegate where Self: UIViewController {
             
             if result.isFailure {
                 
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
                 return
             }
             
             let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
             
             if msg.commonMsg?.code != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg!.code!)
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg?.code ?? "")
                 return
             }
             

@@ -21,8 +21,26 @@ protocol ContactsTableViewSectionDataSource {
     
     var rowCount: Int { get }
     
-    func createCell(cell: ContactsAddFriendCell, index: NSIndexPath) -> ContactsAddFriendCell
+    func createCell(tableview: UITableView, index: NSIndexPath) -> UITableViewCell
     
     func loadData()
+    
+    func createSectionView() -> UIView?
+    
+    var cellHeight: CGFloat { get }
+    
+    var sectionTitle: String { get }
+    
+}
+
+extension ContactsTableViewSectionDataSource {
+    
+    func createSectionView() -> UIView? {
+        return nil
+    }
+    
+    var cellHeight: CGFloat { return 66 }
+    
+    var sectionTitle: String { return "" }
     
 }

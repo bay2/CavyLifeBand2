@@ -9,6 +9,7 @@
 import Alamofire
 import Log
 import JSONJoy
+import RealmSwift
 
 class PKWebApi: NetRequestAdapter {
     
@@ -173,10 +174,10 @@ extension PKWebRequestProtocol {
                     return
                 }
                 
-                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
+                let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
+                guard resultMsg.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
                     return
                 }
                 
@@ -205,10 +206,10 @@ extension PKWebRequestProtocol {
                     return
                 }
                 
-                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
+                let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
+                guard resultMsg.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
                     return
                 }
                 
@@ -236,10 +237,10 @@ extension PKWebRequestProtocol {
                     return
                 }
                 
-                let resultMsg = try! PKRecordList(JSONDecoder(result.value!))
+                let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
+                guard resultMsg.code == WebApiCode.Success.rawValue else {
+                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
                     return
                 }
                 
@@ -358,6 +359,122 @@ extension PKWebRequestProtocol {
         
     }
 
+}
+
+protocol PKRecordsUpdateFormWeb: PKRecordsRealmModelOperateDelegate {
+    
+    func loadDataFromWeb(loginUserId: String)
+    var realm: Realm { get }
+    
+}
+
+extension PKRecordsUpdateFormWeb  {
+    
+    func loadDataFromWeb(loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
+        
+        do {
+            
+            try PKWebApi.shareApi.getPKRecordList(loginUserId) {(result) in
+                
+                guard result.isSuccess else {
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
+                    return
+                }
+                
+                let resultMsg = try! PKRecordList(JSONDecoder(result.value ?? ""))
+                
+                guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(message: resultMsg.commonMsg.code ?? "")
+                    return
+                }
+                
+                let waitRecordsRealm: [PKWaitRealmModel] = resultMsg.waitList.map {
+                    PKWaitRealmModel(model: $0)
+                }
+                
+                let dueRecordsRealm: [PKDueRealmModel] = resultMsg.dueList.map {
+                    PKDueRealmModel(model: $0)
+                }
+                
+                let finishRecordsRealm: [PKFinishRealmModel] = resultMsg.finishList.map {
+                    PKFinishRealmModel(model: $0)
+                }
+                
+                self.deletePKRecordsRealm(PKWaitRealmModel.self)
+                self.deletePKRecordsRealm(PKDueRealmModel.self)
+                self.deletePKRecordsRealm(PKFinishRealmModel.self)
+                
+                self.savePKRecordsRealm(waitRecordsRealm)
+                self.savePKRecordsRealm(dueRecordsRealm)
+                self.savePKRecordsRealm(finishRecordsRealm)
+                
+            }
+            
+        } catch let error {
+            
+            Log.warning("弹框提示失败\(error)")
+            
+        }
+        
+    }
+    
+    
+}
+
+extension PKWaitRealmModel {
+    
+    convenience init(loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, model: PKWaitRecord) {
+        
+        self.init()
+        
+        self.pkId         = model.pkId
+        self.loginUserId  = loginUserId
+        self.userId       = model.userId
+        self.avatarUrl    = model.avatarUrl
+        self.nickname     = model.nickname
+        self.type         = model.type
+        self.launchedTime = model.launchedTime
+        self.pkDuration   = model.pkDuration
+        
+    }
+    
+}
+
+extension PKDueRealmModel {
+    
+    convenience init(loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, model: PKDueRecord) {
+        
+        self.init()
+        
+        self.pkId        = model.pkId
+        self.loginUserId = loginUserId
+        self.userId      = model.userId
+        self.avatarUrl   = model.avatarUrl
+        self.nickname    = model.nickname
+        self.beginTime   = model.beginTime
+        self.pkDuration  = model.pkDuration
+        
+    }
+    
+}
+
+extension PKFinishRealmModel {
+    
+    convenience init(loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, model: PKFinishRecord) {
+        
+        self.init()
+        
+        self.pkId         = model.pkId
+        self.loginUserId  = loginUserId
+        self.userId       = model.userId
+        self.avatarUrl    = model.avatarUrl
+        self.nickname     = model.nickname
+        self.completeTime = model.completeTime
+        self.pkDuration   = model.pkDuration
+        self.isWin        = model.isWin
+        
+    }
+    
 }
 
 

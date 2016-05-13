@@ -9,11 +9,10 @@
 import UIKit
 import SnapKit
 import EZSwiftExtensions
+import RealmSwift
 
 
-
-
-class LeftMenViewController: UIViewController, HomeUserDelegate {
+class LeftMenViewController: UIViewController, HomeUserDelegate, UserInfoRealmOperateDelegate {
   
     @IBOutlet weak var userInfoView: HomeUserInfo!
     @IBOutlet weak var leftTableView: UITableView!
@@ -22,11 +21,14 @@ class LeftMenViewController: UIViewController, HomeUserDelegate {
     @IBOutlet weak var accountLab: UILabel!
     @IBOutlet weak var userNameLab: UILabel!
     
+    var realm = try! Realm()
+    
     var menuGroup: [MenuGroupDataSource] = []
     
-    var iconImage: UIImageView { return iconImageView }
     var userName: UILabel { return userNameLab }
     var account: UILabel { return accountLab }
+    
+    var notificationToken: NotificationToken? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +47,39 @@ class LeftMenViewController: UIViewController, HomeUserDelegate {
         
         addMenumenuGroupData(AppFeatureMenuGroupDataModel())
         addMenumenuGroupData(AppAboutMenuGroupDataModel())
-
+        
+        let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
+        
+        
+        notificationToken = userInfos.addNotificationBlock {(changes: RealmCollectionChange) in
+            
+            switch changes {
+                
+            case .Initial(let value):
+                self.updateUI(value)
+                
+            case .Update(let value, deletions: _, insertions: _, modifications: _):
+                self.updateUI(value)
+                
+            default:
+                break
+                
+            }
+            
+        }
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
+    }
+    
+    func updateUI(result: Results<UserInfoModel>) {
+        
+        self.userName.text = result.first?.nickname ?? ""
+        self.iconImageView.af_SetCircleImageWithURL(NSURL(string: result.first?.avatarUrl ?? "")!)
+        self.account.text = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername
+    
     }
     
     /**
@@ -73,17 +107,6 @@ class LeftMenViewController: UIViewController, HomeUserDelegate {
         leftTableView.registerNib(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell")
 
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -173,6 +196,8 @@ extension LeftMenViewController {
 
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
+        menuGroup[indexPath.section].refurbishNextView()
+        
         let nextView = menuGroup[indexPath.section].items[indexPath.row].nextView
         
         let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
@@ -192,11 +217,7 @@ extension LeftMenViewController {
      */
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 
-        if section == 0 {
-            return 16
-        }
-
-        return 10
+        return menuGroup[section].sectionHeight
 
     }
 

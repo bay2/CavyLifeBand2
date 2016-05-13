@@ -74,20 +74,29 @@ class UndoPKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequestPr
         XCTAssertTrue(pkWaitA.type == PKWaitType.UndoWait.rawValue)
         XCTAssertTrue(pkWaitA.syncState == PKRecordsRealmSyncState.NotSync.rawValue)
         
+        let expectation = expectationWithDescription("testGetPKRecords succeed")
+        
         undoPK([pkWaitA], loginUserId: self.loginUserId, callBack: {
             self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: pkWaitA.pkId)
             
             XCTAssertTrue(pkWaitA.syncState == PKRecordsRealmSyncState.Synced.rawValue)
             
+            expectation.fulfill()
+            
         }, failure: {(errorMsg) in
                 
             XCTFail("网络请求错误" + errorMsg)
+            
+            expectation.fulfill()
                 
         })
+        
+        waitForExpectationsWithTimeout(timeout, handler: nil)
         
     }
     
     func testUndoPKWithoutID() {
+        
         let pkWaitB: PKWaitRealmModel = PKWaitRealmModel()
         pkWaitB.pkId = ""
         pkWaitB.loginUserId = self.loginUserId

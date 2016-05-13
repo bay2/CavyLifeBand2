@@ -22,6 +22,8 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     
     var realm: Realm = try! Realm()
     
+    var notificationToken: NotificationToken? = nil
+    
     /// scrollView的ContectView
     @IBOutlet weak var contectView: UIView!
     
@@ -60,9 +62,17 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         accountInfoQuery()
         
-        addAllViews()
+        
         
         self.updateNavUI()
+        
+    }
+    
+    deinit {
+        
+        notificationToken?.stop()
+        
+        Log.info("deinit ContactsAccountInfoVC")
         
     }
     
@@ -71,10 +81,38 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
      */
     func accountInfoQuery() {
         
-        guard let accountInfo = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
-            Log.error("Get account info error !")
+        let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
+        
+        notificationToken = userInfos.addNotificationBlock { [weak self](changes: RealmCollectionChange)  in
+            
+            switch changes {
+                
+            case .Initial(let value):
+                self?.updateUI(value)
+                
+            case .Update(let value, deletions: _, insertions: _, modifications: _):
+                self?.updateUI(value)
+                
+            default:
+                break
+                
+            }
+        }
+        
+    }
+    
+    /**
+     更新UI
+     
+     - parameter userInfos: 用户信息
+     */
+    func updateUI(userInfos: Results<UserInfoModel>) {
+        
+        guard let accountInfo = userInfos.first else {
             return
         }
+        
+        accountInfos.removeAll()
         
         let userName = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername
         let gender = CavyDefine.definiteAccountSex(accountInfo.sex.toString)
@@ -92,6 +130,10 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         accountInfos.append(weightCellViewModel)
         accountInfos.append(birthCellViewModel)
         accountInfos.append(addressCellViewModel)
+        
+        self.tableView.reloadData()
+        
+        addAllViews()
         
     }
     
@@ -233,7 +275,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         if let cellViewModel = accountInfos[indexPath.row] as? PresonInfoCellViewModel {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
-            cell.configCell(cellViewModel)
+            cell.configCell(cellViewModel, delegate: cellViewModel)
             return cell
             
         }

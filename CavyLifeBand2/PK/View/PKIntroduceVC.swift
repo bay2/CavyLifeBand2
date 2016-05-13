@@ -54,14 +54,15 @@ class PKIntroduceVC: UIViewController, BaseViewControllerPresenter {
     
 
     func baseStting() -> Void {
+        
         nextBtn.setImage(UIImage(named: "PKNextBtnNormal"), forState: .Normal)
         nextBtn.setImage(UIImage(named: "PKNextBtnSelected"), forState: .Highlighted)
         
         titleLabel.text = L10n.PKIntroduceVCInfoTitle.string
-        infoLabel.text = L10n.PKIntroduceVCSelectInfo.string
+        infoLabel.text  = L10n.PKIntroduceVCSelectInfo.string
         
         titleLabel.textColor = UIColor(named: .PKIntroduceVCLabelColor)
-        infoLabel.textColor = UIColor(named: .PKIntroduceVCLabelColor)
+        infoLabel.textColor  = UIColor(named: .PKIntroduceVCLabelColor)
         
         infoImage.image = UIImage.imageWithColor(UIColor.lightGrayColor(), size: infoImage.size)
         
@@ -70,8 +71,7 @@ class PKIntroduceVC: UIViewController, BaseViewControllerPresenter {
 
     @IBAction func nextAction(sender: UIButton) {
         
-//        let targetVC = StoryboardScene.PK.instantiatePKInvitationVC()
-        let targetVC = StoryboardScene.PK.instantiatePKRulesVC()
+        let targetVC = StoryboardScene.PK.instantiatePKInvitationVC()
         self.pushVC(targetVC)
     
     }

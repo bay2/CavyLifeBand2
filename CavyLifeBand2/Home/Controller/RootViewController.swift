@@ -109,7 +109,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
      */
     func syncUserInfo() {
         
-        guard let userInfo = queryUserInfo(queryUserId) else {
+        guard let userInfo: UserInfoModel = queryUserInfo(queryUserId) else {
             
             querySyncDate()
             return

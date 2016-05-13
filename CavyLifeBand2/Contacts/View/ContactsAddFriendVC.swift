@@ -317,9 +317,6 @@ extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
             return 0
         }
         
-        
-        Log.error("\(dataSourceViewModel.rowCount)")
-        
         return dataSourceViewModel.rowCount
     }
     
@@ -343,13 +340,11 @@ extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
      */
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("ContactsAddFriendCell", forIndexPath: indexPath) as! ContactsAddFriendCell
-        
         guard let dataSourceViewModel = tableDictionary[tableView] else {
-            return cell
+            fatalError()
         }
         
-        return dataSourceViewModel.createCell(cell, index: indexPath)
+        return dataSourceViewModel.createCell(tableView, index: indexPath)
 
     }
     

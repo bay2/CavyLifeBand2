@@ -95,7 +95,7 @@ struct GuideSetLocationShare: GuideViewDataSource, GuideViewDelegate, UserInfoRe
         let userInfoModel = UserInfoModel(guideUserinfo: GuideUserInfo.userInfo)
         userInfoModel.isSync = false
         
-        if let _ = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
+        if let _: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
             
             updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) { _ in
                 return userInfoModel

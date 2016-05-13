@@ -23,13 +23,17 @@ extension ContactsAddFriendCellDelegate {
     var introduceFont: UIFont { return UIFont.systemFontOfSize(12) }
     
     // 按钮颜色
-    var requestBtnColor: UIColor { return UIColor(named: .ContactsAddFriendButtonColor) }
+    var btnBGColor: UIColor { return UIColor(named: .ContactsAddFriendButtonColor) }
     
     // 按钮字体大小
-    var requestBtnFont: UIFont { return UIFont.systemFontOfSize(14) }
+    var btnFont: UIFont { return UIFont.systemFontOfSize(14) }
     
     // 按钮title
-    var requestBtnTitle: String { return L10n.ContactsListCellAdd.string }
+    var bottonTitle: String { return L10n.ContactsListCellAdd.string }
+    
+    func clickCellBtn(sender: UIButton) -> Void {
+    }
+    
     
 }
 
