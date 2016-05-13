@@ -47,8 +47,14 @@ class LifeBandBle: NSObject, CBCentralManagerDelegate {
     func startScaning() {
         
         Log.error("startScaning")
-        let serviuce = [CBUUID(string: "14839AC4-7D7E-415C-9A42-167340CF2339")]
-        centraManager?.scanForPeripheralsWithServices(serviuce, options: nil)
+        centraManager?.scanForPeripheralsWithServices(nil, options: nil)
+        
+    }
+    
+    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String: AnyObject], RSSI: NSNumber) {
+        
+        Log.error("device: \(peripheral)")
+        Log.error("advertisementData: \(advertisementData)")
         
     }
     

@@ -28,7 +28,7 @@ class LaunchScreenViewController: UIViewController, LifeBandBleDelegate {
         
         if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
             UIApplication.sharedApplication().keyWindow?
-                .setRootViewController(UINavigationController(rootViewController: StoryboardScene.Main.instantiateMainPageView()),
+                .setRootViewController(StoryboardScene.Main.instantiateMainPageView(),
                                                                                transition: CATransition())
             return
         }
