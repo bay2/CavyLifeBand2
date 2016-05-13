@@ -18,28 +18,6 @@ protocol NetRequestAdapter {
     func netPostRequestAdapter(urlString: String, para: [String: AnyObject]?, completionHandler: CompletionHandlernType?)
 }
 
-extension ParameterEncoding {
-    
-     public func queryComponentsEx(key: String, _ value: AnyObject) -> [(String, String)] {
-        var components: [(String, String)] = []
-        
-        if let dictionary = value as? [String: AnyObject] {
-            for (nestedKey, value) in dictionary {
-                components += queryComponents("\(key)[\(nestedKey)]", value)
-            }
-        } else if let array = value as? [AnyObject] {
-            for value in array {
-                components += queryComponents("\(key)", value)
-            }
-        } else {
-            components.append((escape(key), escape("\(value)")))
-        }
-        
-        return components
-    }
-    
-}
-
 extension NetRequestAdapter {
     
     
@@ -53,17 +31,6 @@ extension NetRequestAdapter {
     func netPostRequestAdapter(urlString: String, para: [String: AnyObject]? = nil, completionHandler: CompletionHandlernType? = nil) {
         
         var parameters: [String: AnyObject] = ["phoneType": "ios", "language": UIDevice.deviceLanguage()]
-        
-        func query(parameters: [String: AnyObject]) -> String {
-            var components: [(String, String)] = []
-            
-            for key in parameters.keys.sort(<) {
-                let value = parameters[key]!
-                components += ParameterEncoding.URL.queryComponentsEx(key, value)
-            }
-            
-            return (components.map { "\($0)=\($1)" } as [String]).joinWithSeparator("&")
-        }
         
         //发送API请求
         if para != nil {
