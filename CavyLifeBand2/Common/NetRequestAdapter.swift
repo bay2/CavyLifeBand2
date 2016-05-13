@@ -79,7 +79,7 @@ extension NetRequestAdapter {
     func netGetRequestAdapter(urlString: String, para: [String: AnyObject]? = nil, completionHandler: CompletionHandlernType? = nil) {
         
         var parameters: [String: AnyObject] = ["phoneType": "ios", "language": UIDevice.deviceLanguage()]
-        
+
         //发送API请求
         if para != nil {
             parameters = parameters.union(para!)
