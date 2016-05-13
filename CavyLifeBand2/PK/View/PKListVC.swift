@@ -26,6 +26,8 @@ class PKListVC: UIViewController, BaseViewControllerPresenter, PKRecordsUpdateFo
     
     var notificationToken: NotificationToken?
     
+    var pkInfoView: UIView?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -151,21 +153,18 @@ extension PKListVC {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        guard let pkInfoView = dataSources[indexPath.section].getPKInfoView(indexPath) else {
-            
+        //展示pk详情的View
+        guard let pkView = dataSources[indexPath.section].getPKInfoView(indexPath) else {
             return
-        
         }
         
-        self.view.addSubview(pkInfoView)
+        pkInfoView = pkView
         
-        pkInfoView.snp_makeConstraints(closure: { make in
-            make.leading.equalTo(self.view).offset(20.0)
-            make.trailing.equalTo(self.view).offset(-20.0)
-            make.centerY.equalTo(self.view)
-            make.height.equalTo(380.0)
-        })
-        
+        pkInfoView!.addTapGesture { [unowned self] _ in
+            self.pkInfoView?.removeFromSuperview()
+        }
+
+        UIApplication.sharedApplication().keyWindow?.addSubview(pkInfoView!)
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {

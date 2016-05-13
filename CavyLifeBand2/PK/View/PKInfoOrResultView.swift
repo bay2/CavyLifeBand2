@@ -69,6 +69,7 @@ class PKInfoOrResultView: UIView {
         
     }
     
+    //双方打平的UI设置
     func winnerBoth() -> Void {
         
         competitorAvatarImageView.snp_makeConstraints {(make) in
@@ -89,6 +90,7 @@ class PKInfoOrResultView: UIView {
         competitorAvatarImageView.layer.cornerRadius = smallAvatarWidth / 2
     }
     
+    //对手赢的UI设置
     func winnerCompetitorSetting() -> Void {
         
         if dataSource?.isPKEnd == true {
@@ -126,7 +128,7 @@ class PKInfoOrResultView: UIView {
         userAvatarImageView.layer.cornerRadius = smallAvatarWidth / 2
     }
     
-    
+    //我赢的UI设置
     func winnerUserSetting() -> Void {
             
         if dataSource?.isPKEnd == true {
@@ -166,6 +168,7 @@ class PKInfoOrResultView: UIView {
         competitorAvatarImageView.layer.cornerRadius = smallAvatarWidth / 2
     }
     
+    //model数据设置ui
     func configure(model: PKInfoOrResultViewDataSource) -> Void {
         
         self.dataSource = model
@@ -201,6 +204,7 @@ class PKInfoOrResultView: UIView {
 
 extension PKInfoOrResultView: PKWebRequestProtocol {
     
+    //从服务器加载数据库没有的展示数据
     func loadInfoFromWeb() {
         getPKInfo({ pkInfo in
             
