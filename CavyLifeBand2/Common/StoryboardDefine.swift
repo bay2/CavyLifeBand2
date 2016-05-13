@@ -156,8 +156,13 @@ struct StoryboardScene {
       return StoryboardScene.InfoSecurity.AccountInfoSecurityVCScene.viewController() as! AccountInfoSecurityVC
     }
   }
-  enum LaunchScreen: StoryboardSceneType {
+  enum LaunchScreen: String, StoryboardSceneType {
     static let storyboardName = "LaunchScreen"
+
+    case LaunchScreenScene = "LaunchScreen"
+    static func instantiateLaunchScreen() -> UIViewController {
+      return StoryboardScene.LaunchScreen.LaunchScreenScene.viewController()
+    }
   }
   enum Main: String, StoryboardSceneType {
     static let storyboardName = "Main"
@@ -165,6 +170,11 @@ struct StoryboardScene {
     case AccountManagerViewScene = "AccountManagerView"
     static func instantiateAccountManagerView() -> AccountManagerViewController {
       return StoryboardScene.Main.AccountManagerViewScene.viewController() as! AccountManagerViewController
+    }
+
+    case LaunchScreenScene = "LaunchScreen"
+    static func instantiateLaunchScreen() -> LaunchScreenViewController {
+      return StoryboardScene.Main.LaunchScreenScene.viewController() as! LaunchScreenViewController
     }
 
     case MainPageViewScene = "MainPageView"
@@ -227,9 +237,6 @@ struct StoryboardScene {
     static func instantiateRelateAppVC() -> RelateAppVC {
       return StoryboardScene.Relate.RelateAppVCScene.viewController() as! RelateAppVC
     }
-  }
-  enum Weather: StoryboardSceneType {
-    static let storyboardName = "Weather"
   }
 }
 

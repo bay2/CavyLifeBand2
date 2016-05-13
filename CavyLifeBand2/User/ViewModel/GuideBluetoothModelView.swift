@@ -15,7 +15,7 @@ import Gifu
  *
  *  打开蓝牙
  */
-struct GuideBandBluetooth: GuideViewDataSource, GuideViewDelegate {
+struct GuideBandBluetooth: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView
@@ -44,7 +44,7 @@ struct GuideBandBluetooth: GuideViewDataSource, GuideViewDelegate {
  *
  *  打开手环
  */
-struct GuideBandOpenBand: GuideViewDataSource, GuideViewDelegate {
+struct GuideBandOpenBand: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView { return PictureView(title: L10n.GuideOpenCavy.string, titleInfo: L10n.GuideOpenCavyInfo.string, bottomInfo: L10n.GuideOpenCavySugg.string, midImage: AnimatableImageView(image: UIImage(asset: .GuideOpenBand))) }
@@ -67,7 +67,7 @@ struct GuideBandOpenBand: GuideViewDataSource, GuideViewDelegate {
  *
  *  手环连接中
  */
-struct GuideBandLinking: GuideViewDataSource, GuideViewDelegate {
+struct GuideBandLinking: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView
@@ -98,7 +98,7 @@ struct GuideBandLinking: GuideViewDataSource, GuideViewDelegate {
  *
  *  绑定成功
  */
-struct GuideBandSuccess: GuideViewDataSource, GuideViewDelegate, QueryUserInfoRequestsDelegate {
+struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView { return PictureView(title: L10n.GuidePairSuccess.string, titleInfo: L10n.GuidePairSuccessInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairSeccuss))) }
@@ -155,7 +155,7 @@ struct GuideBandSuccess: GuideViewDataSource, GuideViewDelegate, QueryUserInfoRe
  *
  *  连接失败
  */
-struct GuideBandFail: GuideViewDataSource, GuideViewDelegate {
+struct GuideBandFail: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView { return PictureView(title: L10n.GuidePairFail.string, titleInfo: L10n.GuidePairFailInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairFail))) }

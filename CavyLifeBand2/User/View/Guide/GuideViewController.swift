@@ -107,7 +107,6 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
         self.view.backgroundColor = viewDataSource.bgColor
         self.guideButton.setImage(viewDataSource.guideBtnImage, forState: .Normal)
-        self.guideButton.setImage(viewDataSource.guideBtnImagePress, forState: .Highlighted)
         
         let centerView = viewDataSource.centerView
         self.middleView.addSubview(centerView)

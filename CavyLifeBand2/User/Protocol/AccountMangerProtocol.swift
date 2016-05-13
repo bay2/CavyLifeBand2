@@ -210,10 +210,15 @@ extension SignInDelegate where Self: UIViewController {
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = self.userName
             
             let guideVC = StoryboardScene.Guide.instantiateGuideView()
-            let guideVM = GuideBandBluetooth()
+            var guideVM: GuideViewModelPotocols
+            
+            if LifeBandBle.shareInterface.centraManager?.state == .PoweredOn {
+                guideVM = GuideBandLinking()
+            } else {
+                guideVM = GuideBandBluetooth()
+            }
             
             guideVC.configView(guideVM, delegate: guideVM)
-            
             self.pushVC(guideVC)
             
             Log.info("[\(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)] Sign in succeess")

@@ -30,6 +30,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         #endif
         
+        realmConfig()
+        
+        crashConfig()
+        
+        pgyUpdateConfig()
+        
+        return true
+
+    }
+    
+    func pgyUpdateConfig() {
+    
+        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
+        PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
+        PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
+        
+    }
+    
+    func crashConfig() {
+        
+        let installation = KSCrashInstallationStandard.sharedInstance()
+        
+        installation.url = NSURL(string: CavyDefine.bugHDKey)
+        
+        installation.install()
+        installation.sendAllReportsWithCompletion(nil)
+        
+    }
+    
+    func realmConfig() {
+        
         Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1, migrationBlock: { migration, oldSchemaVersion in
             
             if oldSchemaVersion >= 1 {
@@ -46,34 +77,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         })
         
-        let installation = KSCrashInstallationStandard.sharedInstance()
-        
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
             schemaVersion: 2,
             migrationBlock: { migration, oldSchemaVersion in
                 
         })
         
-        LifeBandBle.shareInterface.startScaning()
-        
-        installation.url = NSURL(string: CavyDefine.bugHDKey)
-
-        installation.install()
-        installation.sendAllReportsWithCompletion(nil)
-        
-        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
-            self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
-        } else {
-            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
-        }
-        
-        
-        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
-        PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
-        PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
-            
-        return true
-
     }
     
     func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {
