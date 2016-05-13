@@ -172,14 +172,15 @@ struct AppAboutMenuGroupDataModel: MenuGroupDataSource {
         
         items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuAbout),
             title: L10n.HomeLifeListTitleAbout.string,
-            nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
+            nextView: StoryboardScene.Relate.instantiateAboutVC()))
         
         items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuHelp),
             title: L10n.HomeLifeListTitleHelp.string,
-            nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
+            nextView: StoryboardScene.Relate.instantiateHelpAndFeedbackListVC()))
         
         items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuApp),
             title: L10n.HomeLifeListTitleRelated.string,
-            nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
+            nextView: StoryboardScene.Relate.instantiateHelpAndFeedbackVC()))
     }
+    
 }

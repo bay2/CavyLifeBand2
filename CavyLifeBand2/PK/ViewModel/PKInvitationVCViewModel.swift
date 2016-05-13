@@ -35,12 +35,13 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
     init(realm: Realm) {
         self.realm = realm
         
-        self.loginUserId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        self.loginUserId  = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         self.competitorId = ""
         
         pkWaitRealmModel = PKWaitRealmModel()
+        
         pkWaitRealmModel.loginUserId = self.loginUserId
-        pkWaitRealmModel.syncState = PKRecordsRealmSyncState.NotSync.rawValue
+        pkWaitRealmModel.syncState   = PKRecordsRealmSyncState.NotSync.rawValue
         
     }
     
@@ -51,9 +52,11 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
     
     //设置待回应记录的对方的信息
     func setPKWaitCompetitorInfo(userId: String, nickName: String, avatarUrl: String) -> Void {
-        pkWaitRealmModel.userId = userId
+        
+        pkWaitRealmModel.userId    = userId
         pkWaitRealmModel.avatarUrl = avatarUrl
-        pkWaitRealmModel.nickname = nickName
+        pkWaitRealmModel.nickname  = nickName
+        
     }
     
     //调接口发起PK

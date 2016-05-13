@@ -59,10 +59,10 @@ class PKIntroduceVC: UIViewController, BaseViewControllerPresenter {
         nextBtn.setImage(UIImage(named: "PKNextBtnSelected"), forState: .Highlighted)
         
         titleLabel.text = L10n.PKIntroduceVCInfoTitle.string
-        infoLabel.text = L10n.PKIntroduceVCSelectInfo.string
+        infoLabel.text  = L10n.PKIntroduceVCSelectInfo.string
         
         titleLabel.textColor = UIColor(named: .PKIntroduceVCLabelColor)
-        infoLabel.textColor = UIColor(named: .PKIntroduceVCLabelColor)
+        infoLabel.textColor  = UIColor(named: .PKIntroduceVCLabelColor)
         
         infoImage.image = UIImage.imageWithColor(UIColor.lightGrayColor(), size: infoImage.size)
         

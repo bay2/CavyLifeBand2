@@ -24,6 +24,8 @@ class AccountInfoSecurityVC: UIViewController, UITableViewDelegate, UITableViewD
     
     var dataSources = [AccountInfoSecurityListDataSource]()
     
+    var notificationToken: NotificationToken?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -39,6 +41,7 @@ class AccountInfoSecurityVC: UIViewController, UITableViewDelegate, UITableViewD
         addTableView()
         
         updateNavUI()
+        
         
     }
     

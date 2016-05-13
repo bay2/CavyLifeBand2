@@ -51,7 +51,7 @@ class RemindersSettingViewController: UIViewController, BaseViewControllerPresen
 
         self.automaticallyAdjustsScrollViewInsets = false
         
-        tableExpandCellCount = 3
+        tableExpandCellCount = 2
         
         tableUnExpandHeight = tableSwitchCellHeight * CGFloat(tableExpandCellCount! - 1) + 2 * tableSectionHeight
         
@@ -186,8 +186,6 @@ extension RemindersSettingViewController: UITableViewDataSource {
             case 0:
                 cell?.configure(SettingSwitchPhoneCellViewModel(realm: realm, realmSetting: (dataSource?.settingListModel.settingRealmList[0])!))
                 cell?.delegate = self
-            case 2:
-                cell?.configure(SettingSwitchMessageCellViewModel(realm: realm, realmSetting: (dataSource?.settingListModel.settingRealmList[1])!))
             default:
                 break
             }
@@ -196,8 +194,6 @@ extension RemindersSettingViewController: UITableViewDataSource {
             case 0:
                 cell?.configure(SettingSwitchPhoneCellViewModel(realm: realm, realmSetting: (dataSource?.settingListModel.settingRealmList[0])!))
                 cell?.delegate = self
-            case 1:
-                cell?.configure(SettingSwitchMessageCellViewModel(realm: realm, realmSetting: (dataSource?.settingListModel.settingRealmList[1])!))
             default:
                 break
             }

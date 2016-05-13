@@ -61,6 +61,8 @@ class AcceptPKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequest
         pkWait.pkDuration = "3"
         pkWait.type = PKWaitType.OtherWaitMe.rawValue
         
+        let expectation = expectationWithDescription("testDeletePK succeed")
+        
         self.deletePKRecordsRealm(PKWaitRealmModel.self)
         self.deletePKRecordsRealm(PKDueRealmModel.self)
         
@@ -100,11 +102,15 @@ class AcceptPKTest: XCTestCase, PKRecordsRealmModelOperateDelegate, PKWebRequest
             self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: dueRealm.pkId)
             
             XCTAssertTrue(dueRealm.syncState == PKRecordsRealmSyncState.Synced.rawValue)
+            expectation.fulfill()
         }, failure: {(errorMsg) in
             
             XCTFail("弹框提示" + errorMsg)
+            expectation.fulfill()
             
         })
+        
+        waitForExpectationsWithTimeout(timeout, handler: nil)
         
     }
     

@@ -321,30 +321,40 @@ class UserNetRequestData: NetRequestAdapter {
      - parameter parameter:  UserID，Avater
      - parameter completion: 回调
      */
-    func uploadPicture(parameter: [String: AnyObject]?, completionHandler: CompletionHandlernType?) {
+    func uploadPicture(userId: String, filePath: String, completionHandler: CompletionHandlernType?) {
         
-        guard var para = parameter else {
-            Log.error("Parameter is nil")
-            completionHandler?(.Failure(.ParaNil))
-            return
+        Alamofire.upload(.POST, NSURL(string: CavyDefine.updateImgAddr)!, multipartFormData: { multipartFormData in
+            
+            multipartFormData.appendBodyPart(fileURL: NSURL(string: filePath)!, name: UserNetRequsetKey.Avater.rawValue)
+            multipartFormData.appendBodyPart(data: userId.dataUsingEncoding(NSUTF8StringEncoding)!, name: UserNetRequsetKey.UserID.rawValue)
+            
+            }) { encodingResult in
+                
+                switch encodingResult {
+                    
+                case .Success(request: let upload, streamingFromDisk: _, streamFileURL: _):
+                    upload.responseJSON {
+                        if $0.result.isFailure {
+                            completionHandler?(.Failure(.NetErr))
+                            Log.error("Network error")
+                            return
+                        }
+                        
+                        guard let responseResult = $0.result.value else {
+                            completionHandler?(.Failure(.NetErr))
+                            Log.error("Network error")
+                            return
+                        }
+                        
+                        completionHandler?(.Success(responseResult))
+                    }
+                    
+                case .Failure(let error):
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(message: error.toString)
+                    
+                }
+                
         }
-        
-        guard let image = para[UserNetRequsetKey.Avater.rawValue] as? UIImage else {
-            Log.error("Avater is nil")
-            completionHandler?(.Failure(.ParaErr))
-            return
-        }
-        
-        guard let _ = para[UserNetRequsetKey.UserID.rawValue] else {
-            Log.error("User ID is nil")
-            completionHandler?(.Failure(.ParaErr))
-            return
-        }
-        
-        para[UserNetRequsetKey.Avater.rawValue] = UIImagePNGRepresentation(image)
-        para[UserNetRequsetKey.Cmd.rawValue] = UserNetRequestMethod.UpdateAvatar.rawValue
-        
-        netPostRequestAdapter(CavyDefine.webApiAddr, para: para, completionHandler: completionHandler)
         
     }
 

@@ -22,6 +22,7 @@ class PKRulesView: UIView {
     @IBOutlet weak var howSeeInfoLabel: UILabel!
     
     override func awakeFromNib() {
+        
         howPKTitleLabel.text = L10n.PKRulesViewHowPKTitle.string
         howWinTitleLabel.text = L10n.PKRulesViewHowWinTitle.string
         howSeeTitleLabel.text = L10n.PKRulesViewHowSeeTitle.string
