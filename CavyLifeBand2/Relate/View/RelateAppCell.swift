@@ -19,7 +19,6 @@ class RelateAppCell: UITableViewCell {
     
     @IBOutlet weak var downloadBtn: UIButton!
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -39,7 +38,6 @@ class RelateAppCell: UITableViewCell {
         downloadBtn.clipsToBounds = true
         
         downloadBtn.addTarget(nil, action: Selector("downloadAction:"), forControlEvents: .TouchUpInside)
-        
         
     }
 
