@@ -24,9 +24,6 @@ class RelateAppCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        logoImageView.layer.cornerRadius = CavyDefine.commonCornerRadius
-        logoImageView.clipsToBounds = true
-        
         titleLabel.font = UIFont.systemFontOfSize(16.0)
         sizeLabel.font = UIFont.systemFontOfSize(12.0)
         infoLabel.font = UIFont.systemFontOfSize(12.0)
@@ -59,8 +56,8 @@ class RelateAppCell: UITableViewCell {
         sizeLabel.text = model.size
         
         infoLabel.text = model.info
-        
-        logoImageView.af_setImageWithURL(NSURL(string: model.logoImageUrlStr)!, placeholderImage: nil, runImageTransitionIfCached: true)
+
+        logoImageView.af_setCornerRadiusImageWithURL(NSURL(string: model.logoImageUrlStr)!, radius: CavyDefine.commonCornerRadius)
         
         downloadBtn.tag = model.index
         
@@ -80,6 +77,8 @@ protocol RelateAppCellDataSource {
     
     var index: Int { get }
     
+    var webUrlStr: String { get }
+    
 }
 
 struct RelateAppCellModel: RelateAppCellDataSource {
@@ -93,6 +92,8 @@ struct RelateAppCellModel: RelateAppCellDataSource {
         
     }
     
+    var webUrlStr: String
+    
     var trueSize: String
     
     var info: String {
@@ -105,15 +106,17 @@ struct RelateAppCellModel: RelateAppCellDataSource {
     
     var index: Int
     
-    init(info: String, size: String, title: String, logoStr: String, index: Int) {
-    
-        logoImageUrlStr = logoStr
+    init(gameModel: GameJSON, index: Int) {
         
-        self.title = title
+        title = gameModel.gamename
         
-        self.trueSize = size
+        trueSize = gameModel.filesize
         
-        self.trueInfo = info
+        trueInfo = gameModel.gamedesc
+        
+        logoImageUrlStr = gameModel.icon
+        
+        webUrlStr = gameModel.cavyAPPHtml
         
         self.index = index
         

@@ -33,7 +33,7 @@ struct HelpFeedbackResponse: JSONJoy {
     }
 }
 
-struct HelpFeedback {
+struct HelpFeedback: JSONJoy {
 
     var title: String
     

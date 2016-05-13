@@ -85,11 +85,12 @@ extension NetRequestAdapter {
             parameters = parameters.union(para!)
         }
         
-        Log.netRequestFormater(urlString, para: para)
+        Log.netRequestFormater(urlString, para: parameters)
         
         requestByAlamofire(.GET, urlString: urlString, parameters: parameters) { result in
             completionHandler?(result)
         }
+        
         
     }
     
@@ -101,9 +102,9 @@ extension NetRequestAdapter {
      - parameter parameters:        参数
      - parameter completionHandler: 回调
      */
-    func requestByAlamofire(method: Alamofire.Method, urlString: String, parameters: [String: AnyObject]? = nil, completionHandler: CompletionHandlernType? = nil) {
+    func requestByAlamofire(method: Alamofire.Method = .POST, urlString: String, parameters: [String: AnyObject]? = nil, completionHandler: CompletionHandlernType? = nil) {
         
-        let request = Alamofire.request(method, urlString, encoding: .JSON, parameters: parameters).responseJSON { response -> Void in
+        let request = Alamofire.request(method, urlString, encoding: method == .POST ? .JSON : .URL, parameters: parameters).responseJSON { response -> Void in
             
             dispatch_async(dispatch_get_main_queue()) {
                 

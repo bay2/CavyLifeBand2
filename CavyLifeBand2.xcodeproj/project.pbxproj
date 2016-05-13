@@ -96,6 +96,8 @@
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		68B4DED41CE1BBEC00BE041C /* HelpFeedbackJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */; };
 		68B4DED61CE1BDF600BE041C /* HelpFeedbackWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED51CE1BDF600BE041C /* HelpFeedbackWebApi.swift */; };
+		68B4DED81CE574E600BE041C /* RelateAppJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED71CE574E600BE041C /* RelateAppJSON.swift */; };
+		68B4DEDA1CE57B6E00BE041C /* RelateAppWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED91CE57B6E00BE041C /* RelateAppWebApi.swift */; };
 		68C558CB1CB74D1F0031719D /* AlarmClock.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */; };
 		68C558CD1CB74D3E0031719D /* IntelligentClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C558CC1CB74D3E0031719D /* IntelligentClockViewController.swift */; };
 		68C558CF1CB751050031719D /* IntelligentClockTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C558CE1CB751050031719D /* IntelligentClockTableFooterView.swift */; };
@@ -391,6 +393,8 @@
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpFeedbackJSON.swift; sourceTree = "<group>"; };
 		68B4DED51CE1BDF600BE041C /* HelpFeedbackWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpFeedbackWebApi.swift; sourceTree = "<group>"; };
+		68B4DED71CE574E600BE041C /* RelateAppJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelateAppJSON.swift; sourceTree = "<group>"; };
+		68B4DED91CE57B6E00BE041C /* RelateAppWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelateAppWebApi.swift; sourceTree = "<group>"; };
 		68C558CA1CB74D1F0031719D /* AlarmClock.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AlarmClock.storyboard; sourceTree = "<group>"; };
 		68C558CC1CB74D3E0031719D /* IntelligentClockViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockViewController.swift; sourceTree = "<group>"; };
 		68C558CE1CB751050031719D /* IntelligentClockTableFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockTableFooterView.swift; sourceTree = "<group>"; };
@@ -778,6 +782,8 @@
 			children = (
 				68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */,
 				68B4DED51CE1BDF600BE041C /* HelpFeedbackWebApi.swift */,
+				68B4DED71CE574E600BE041C /* RelateAppJSON.swift */,
+				68B4DED91CE57B6E00BE041C /* RelateAppWebApi.swift */,
 			);
 			path = WebApi;
 			sourceTree = "<group>";
@@ -1891,6 +1897,7 @@
 				4C0BFA0C1CBF34C700DB06FC /* HomeDateView.swift in Sources */,
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
 				68C558CF1CB751050031719D /* IntelligentClockTableFooterView.swift in Sources */,
+				68B4DEDA1CE57B6E00BE041C /* RelateAppWebApi.swift in Sources */,
 				9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */,
 				919FC6681CC613660062A1CB /* MainPageViewController.swift in Sources */,
 				9114D1F11C97AB05008CB4CE /* SignInViewController.swift in Sources */,
@@ -1938,6 +1945,7 @@
 				686A5EED1CDC30D100EB8D0E /* AboutVC.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
 				91ACEC671CB68D74008ED8B0 /* AccountInfoSecurityNetworkRequest.swift in Sources */,
+				68B4DED81CE574E600BE041C /* RelateAppJSON.swift in Sources */,
 				91E1B4C91CA510BD008ADEE6 /* ContactsLetterView.swift in Sources */,
 				68C558CD1CB74D3E0031719D /* IntelligentClockViewController.swift in Sources */,
 				9141C7FE1C7D72CD003E24F2 /* ImageDefine.swift in Sources */,

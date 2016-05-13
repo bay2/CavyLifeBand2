@@ -5,3 +5,4 @@ exclude:
   - CavyLifeBand2/Common/LocalizableDefine.swift
   - CavyLifeBand2/Common/ImageDefine.swift
   - CavyLifeBand2/Common/ColorsDefine.swift
+  - CavyLifeBand2/Common/AlamofireImageExtension.swift
