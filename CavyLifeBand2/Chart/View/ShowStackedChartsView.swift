@@ -21,7 +21,8 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     
     var timeBucketStyle: TimeBucketStyle = .Day
     
-    var chartsData: [PerStepChartData] = []
+    // 深睡浅睡柱状图
+    var chartsData: [PerSleepChartsData] = []
         
     /**
      配置所有视图 主入口
@@ -124,6 +125,8 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         }
         for i in 0 ..< count {
 
+//            let val1 = chartsData[i].deepSleep
+//            let var2 = chartsData[i].lightSleep
             
             let val1 = deepSleep[i]
             let val2 = lightSleep[i]

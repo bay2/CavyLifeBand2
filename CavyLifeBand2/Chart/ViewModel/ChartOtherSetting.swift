@@ -47,5 +47,7 @@ let weekTime = ["Mon", "Stu", "Wed", "Thu", "Fir", "Str", "Sun"]
 let deepSleep: [Double] = [3.5, 2.3, 1.3, 2, 2.5, 2.6, 1.9]
 let lightSleep: [Double] = [3.5, 2.3, 1.3, 2, 2.5, 2.6, 1.9]
 
-
+//MARK: 解析数据 一小时6条数据 一天 24小时
+let oneHourHav = 6
+let OneDayHave = 24
 

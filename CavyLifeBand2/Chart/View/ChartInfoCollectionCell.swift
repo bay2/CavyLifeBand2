@@ -8,40 +8,62 @@
 
 import UIKit
 import EZSwiftExtensions
-//import Charts
+import Realm
+import RealmSwift
 
-class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
+class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource, ChartsRealmProtocol{
 
     var viewStyle: ChartViewStyle = .StepChart
     var timeBucketStyle: TimeBucketStyle = .Day
     
-    var data: StepCharts?
+    /// 时间标签的String
+    var timeData: String = ""
 
     ///  列表展示信息
     var listView: UITableView?
     
     let dataCount = 4
     
+    var realm: Realm = try! Realm()
+    var userId: String = ""
+    
+    
+    var oldDeletData: StepCharts?
     
     /**
      配置
      */
     func configAllView() {
         
-        // 添加chartsView
         self.backgroundColor = UIColor(named: .ChartBackground)
+        
+        addChartsViewLayout()
+        
+        addInfoTableViewLayout()
+    }
+    
+    /**
+     添加 chartsView
+     */
+    func addChartsViewLayout() {
+        
+        
+//        let time: (beginTime: NSDate, endTime: NSDate) = NSDate().timeStringChangeToNSDate(timeData, timeBucket: timeBucketStyle)
         
         if viewStyle == .SleepChart && timeBucketStyle == .Day {
             
+            let peiChartView = ShowPieChartsView()
             
-            
-            chartViewLayout(ShowPieChartsView())
+//            peiChartView.chartsData = querySleepNumber(time.beginTime, endTime: time.endTime)!.first
+
+            chartViewLayout(peiChartView)
             
         }
         if viewStyle == .SleepChart && timeBucketStyle == .Week || timeBucketStyle == .Month {
             
             let stackChart = ShowStackedChartsView()
             stackChart.timeBucketStyle = self.timeBucketStyle
+//            stackChart.chartsData = querySleepNumber(time.beginTime, endTime: time.endTime)!
             stackChart.configAllView()
             chartViewLayout(stackChart)
             
@@ -52,30 +74,17 @@ class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITabl
             let chartView = ShowChartsView()
             chartView.timeBucketStyle = self.timeBucketStyle
             chartView.configAllView()
+//            chartView.chartsData = queryStepNumber(time.beginTime, endTime: time.endTime, timeBucket: timeBucketStyle)!.datas
             chartViewLayout(chartView)
             
         }
-        // 添加tableView
-        addInfoViewLayout()
-    }
-    
-    /**
-     ChartsView Layout
-     */
-    func chartViewLayout(view: UIView) {
-        self.addSubview(view)
-        
-        view.snp_makeConstraints { make in
-            make.top.equalTo(self)
-            make.centerX.equalTo(self)
-            make.size.equalTo(CGSize(width: infoViewWidth, height: chartViewHight))
-        }
+
     }
     
     /**
      添加tableView
      */
-    func addInfoViewLayout() {
+    func addInfoTableViewLayout() {
         
         var listViewHeight: CGFloat = 0
         
@@ -118,6 +127,20 @@ class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITabl
 
     }
     
+    /**
+     ChartsView Layout
+     */
+    func chartViewLayout(view: UIView) {
+        self.addSubview(view)
+        
+        view.snp_makeConstraints { make in
+            make.top.equalTo(self)
+            make.centerX.equalTo(self)
+            make.size.equalTo(CGSize(width: infoViewWidth, height: chartViewHight))
+        }
+    }
+    
+       
     // MARK: -- UITableViewDelegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -162,29 +185,19 @@ class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITabl
             }
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ChartInfoListCell", forIndexPath: indexPath) as! ChartInfoListCell
-            
             cell.leftLabel.text = dataSleepArray[indexPath.row]
             
             return cell
             
-            
         case .StepChart:
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ChartInfoListCell", forIndexPath: indexPath) as! ChartInfoListCell
-            
             cell.leftLabel.text = dataStepArray[indexPath.row]
             
             return cell
-            
-
-            
 
         }
         
-        
-        
-
     }
-    
     
 }

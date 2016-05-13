@@ -25,8 +25,10 @@
 		4C5396B51CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396B41CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift */; };
 		4C5396C01CE190E600BCFAEB /* ShowStackedChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396BF1CE190E600BCFAEB /* ShowStackedChartsView.swift */; };
 		4C5396CA1CE1B28000BCFAEB /* ChartOtherSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */; };
-		4C5396CC1CE1B2CC00BCFAEB /* Charts.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C5396CB1CE1B2CC00BCFAEB /* Charts.json */; };
 		4C5396CE1CE1B83B00BCFAEB /* ChartInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396CD1CE1B83B00BCFAEB /* ChartInfoViewModel.swift */; };
+		4C5396D01CE419EC00BCFAEB /* NSDate_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */; };
+		4C5396D21CE5B32000BCFAEB /* Charts.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C5396D11CE5B32000BCFAEB /* Charts.json */; };
+		4C5396D41CE5B40000BCFAEB /* ChartsOldDeletJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396D31CE5B40000BCFAEB /* ChartsOldDeletJSON.swift */; };
 		4C6F14971CD9F454007E923B /* ChartsDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */; };
 		4C6F149B1CDC9B06007E923B /* ShowPieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */; };
 		4CB7A06E1CD095C400DFB8DC /* BandElectricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */; };
@@ -325,8 +327,10 @@
 		4C5396B41CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsReqFriendProtocol.swift; sourceTree = "<group>"; };
 		4C5396BF1CE190E600BCFAEB /* ShowStackedChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStackedChartsView.swift; sourceTree = "<group>"; };
 		4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartOtherSetting.swift; sourceTree = "<group>"; };
-		4C5396CB1CE1B2CC00BCFAEB /* Charts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Charts.json; sourceTree = "<group>"; };
 		4C5396CD1CE1B83B00BCFAEB /* ChartInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInfoViewModel.swift; sourceTree = "<group>"; };
+		4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate_Extension.swift; sourceTree = "<group>"; };
+		4C5396D11CE5B32000BCFAEB /* Charts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Charts.json; sourceTree = "<group>"; };
+		4C5396D31CE5B40000BCFAEB /* ChartsOldDeletJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsOldDeletJSON.swift; sourceTree = "<group>"; };
 		4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsDataRealm.swift; sourceTree = "<group>"; };
 		4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPieChartsView.swift; sourceTree = "<group>"; };
 		4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandElectricView.swift; sourceTree = "<group>"; };
@@ -758,7 +762,8 @@
 			children = (
 				4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */,
 				4CB7A0DE1CD35BF900DFB8DC /* ChartsJSON.swift */,
-				4C5396CB1CE1B2CC00BCFAEB /* Charts.json */,
+				4C5396D11CE5B32000BCFAEB /* Charts.json */,
+				4C5396D31CE5B40000BCFAEB /* ChartsOldDeletJSON.swift */,
 			);
 			path = WebApi;
 			sourceTree = "<group>";
@@ -1343,6 +1348,7 @@
 				917B98B81CB8E7CA008698F5 /* Font_Extension.swift */,
 				4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */,
 				9150CAAD1CC66CBB00A398E9 /* UIWindowExtension.swift */,
+				4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -1700,7 +1706,7 @@
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
 				91DFA9201CD8C3820036B939 /* PKListSectionView.xib in Resources */,
 				68E977F41CC5D15C00651724 /* PK.storyboard in Resources */,
-				4C5396CC1CE1B2CC00BCFAEB /* Charts.json in Resources */,
+				4C5396D21CE5B32000BCFAEB /* Charts.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1975,6 +1981,7 @@
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				4C5396C01CE190E600BCFAEB /* ShowStackedChartsView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
+				4C5396D41CE5B40000BCFAEB /* ChartsOldDeletJSON.swift in Sources */,
 				91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */,
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
 				4C0BF9FC1CBCE4CE00DB06FC /* HomeStepViewModel.swift in Sources */,
@@ -2031,6 +2038,7 @@
 				4CB7A0D11CD3497F00DFB8DC /* ChartBaseViewController.swift in Sources */,
 				68E977FC1CC610DB00651724 /* PKRulesVC.swift in Sources */,
 				91E1B4D01CA510BD008ADEE6 /* ContactsPersonInfoListCell.swift in Sources */,
+				4C5396D01CE419EC00BCFAEB /* NSDate_Extension.swift in Sources */,
 				684C6ADA1CC9CCE4000C176E /* PKWebApi.swift in Sources */,
 				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
 				9114D1FB1C97AB05008CB4CE /* RulerScroller.swift in Sources */,

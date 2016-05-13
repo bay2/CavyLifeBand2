@@ -21,29 +21,35 @@ class ChartStepDataRealm: Object {
 
 }
 
+// MARK: Sleep
+class ChartSleepDataRealm: Object {
+    
+    dynamic var userId = ""
+    dynamic var time: NSDate? = nil
+    dynamic var deepSleep = 0
+    dynamic var lightSleep = 0
+    
+}
+
+// MARK: 协议
 protocol ChartsRealmProtocol {
     
     var realm: Realm { get }
     var userId: String { get }
     
-    
-    
     func isExistChartsData() -> Bool
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
+    func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData?
     
-    
-    
-//    func queryStepData(userId: String, timeBucket: String, time: NSData) -> [ChartStepDataRealm]?
-    
+    func addSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
+    func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData]?
 }
 
-
+// MARK: Step Extension
 extension ChartsRealmProtocol {
     
     /**
      查询是否有数据
-     
-     - returns:
      */
     func isExistChartsData() -> Bool {
         
@@ -58,16 +64,177 @@ extension ChartsRealmProtocol {
         
     }
     
-    
-    
     /**
      添加计步数据
-     
      - parameter chartsInfo: 用户的计步信息
-     
      - returns: 成功：true 失败： false
      */
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool {
+        
+        do {
+            
+            try realm.write {
+                
+                realm.add(chartsInfo, update: false)
+            }
+            
+        } catch {
+            
+            Log.error("Add charts info error [\(chartsInfo)]")
+            return false
+            
+        }
+        
+        Log.info("Add charts info success")
+        
+        return true
+        
+    }
+    
+    /**
+     查询 日周月下 某一时段的 数据信息
+     
+     - parameter userId:     用户ID
+     - parameter timeBucket: 日周月
+     - parameter time:       时间
+     */
+    func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData? {
+        
+        if realm.objects(ChartStepDataRealm).count == 0 {
+            return nil
+        }
+        
+        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > '\(beginTime)' AND time < '\(endTime)' ")
+        
+        if dataInfo.count == 0 {
+            return nil
+        }
+
+        var stepDatas: [ChartStepDataRealm] = []
+        
+        for data in dataInfo {
+            stepDatas.append(data)
+        }
+        
+        switch timeBucket {
+            
+        case .Day:
+
+            return returnHourChartsArray(stepDatas)
+            
+        case .Week:
+
+            return returnDayChartsArray(stepDatas)
+            
+        case .Month:
+            
+            return returnDayChartsArray(stepDatas)
+            
+        }
+     
+    }
+    
+    /**
+     按小时分组 一天24小时
+     */
+    func returnHourChartsArray(dataInfo: [ChartStepDataRealm]) -> StepChartsData {
+        
+        var stepChartsData: StepChartsData?
+        
+        var numTemp = 0
+        
+        for i in 0 ..< dataInfo.count {
+            
+            // 公里
+            stepChartsData!.totalKilometer += dataInfo[i].kilometer
+            // 步数
+            stepChartsData!.totalStep += dataInfo[i].step
+            
+            // 花费时长
+            if dataInfo[i].step != 0 {
+                
+                stepChartsData!.finishTime += 10
+            }
+            
+            // 柱状图数据
+            numTemp += dataInfo[i].step
+            
+            if (i + 1) / 6 == 0 {
+
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "HH"
+                let hour = dateFormatter.stringFromDate(dataInfo[i - 1].time!)
+                
+                let per = PerStepChartsData(time: hour, kilometer: numTemp)
+                
+                stepChartsData!.datas.append(per)
+                
+                numTemp = 0
+                
+            }
+            
+        }
+        
+        return stepChartsData!
+        
+    }
+    
+    /**
+     按天分组 一周七天 一个月30天
+     */
+    func returnDayChartsArray(dataInfo: [ChartStepDataRealm]) -> StepChartsData {
+        
+        var stepChartsData: StepChartsData?
+        
+        var numTemp = 0
+        
+        for i in 0 ..< dataInfo.count {
+            
+            // 公里
+            stepChartsData!.totalKilometer += dataInfo[i].kilometer
+            // 步数
+            stepChartsData!.totalStep += dataInfo[i].step
+            
+            // 花费时长
+            if dataInfo[i].step != 0 {
+                
+                stepChartsData!.finishTime += 10
+            }
+            
+            // 柱状图数据
+            numTemp += dataInfo[i].step
+            
+            if (i + 1) / 6 / 24 == 0 {
+                
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd"
+                let day = dateFormatter.stringFromDate(dataInfo[i - 1].time!)
+                
+                let per = PerStepChartsData(time: day, kilometer: numTemp)
+                
+                stepChartsData!.datas.append(per)
+                
+                numTemp = 0
+                
+            }
+            
+        }
+        
+        return stepChartsData!
+        
+    }
+
+}
+
+// MARK: Sleep Extension
+extension ChartsRealmProtocol {
+
+    /**
+     添加计步数据
+     - parameter chartsInfo: 用户的计步信息
+     - returns: 成功：true 失败： false
+     */
+    func addSleepData(chartsInfo: ChartSleepDataRealm) -> Bool {
         
         do {
             
@@ -94,63 +261,61 @@ extension ChartsRealmProtocol {
      - parameter userId:     用户ID
      - parameter timeBucket: 日周月
      - parameter time:       时间
-     
-     - returns:              数据数组
      */
-    func queryStepNumber(beginTime: NSDate, endTime: NSDate) -> [ChartStepDataRealm]? {
+    func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData]? {
         
-        if realm.objects(ChartStepDataRealm).count == 0 {
+        if realm.objects(ChartSleepDataRealm).count == 0 {
             return nil
         }
         
-        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > '\(beginTime)' AND time < '\(endTime)' ")
+        let dataInfo = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time > '\(beginTime)' AND time < '\(endTime)' ")
         
         if dataInfo.count == 0 {
             return nil
         }
         
-        var datas: [ChartStepDataRealm] = []
-
+        var sleepDatas: [ChartSleepDataRealm] = []
+        
         for data in dataInfo {
-            datas.append(data)
+            sleepDatas.append(data)
+        }
+            
+        return returnDayChartsArray(sleepDatas)
+        
+    }
+    
+    /**
+     睡眠一天一存
+     */
+    func returnDayChartsArray(dataInfo: [ChartSleepDataRealm]) -> [PerSleepChartsData] {
+        
+        var sleepChartsDatas: [PerSleepChartsData]?
+        
+        var deepTemp = 0
+        var lightTemp = 0
+        
+        for i in 0 ..< dataInfo.count {
+            
+            deepTemp += dataInfo[i].deepSleep
+            lightTemp += dataInfo[i].lightSleep
+            
+            if (i + 1) / 6 / 24 == 0 {
+                
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "dd"
+                let day = dateFormatter.stringFromDate(dataInfo[i - 1].time!)
+                
+                let per = PerSleepChartsData(time: day, deepSleep: deepTemp, lightSleep: lightTemp)
+                sleepChartsDatas!.append(per)
+                
+                deepTemp = 0
+                lightTemp = 0
+            }
+            
         }
         
-        return datas
-        
+        return sleepChartsDatas!
     }
-
     
- 
+    
 }
-
-
-
-/*
-
-
-class ChartSleepDataRealm: Object {
-    
-    dynamic var userId = ""
-    dynamic var timeBucket = ""
-    dynamic var timeInfo: NSData = NSData()
-    dynamic var chartName  = ""
-    dynamic var deepNumber: Float = 0
-    dynamic var lightNumber: Float = 0
-    dynamic var indexNumber = 0
-    dynamic var deepHour = 0
-    dynamic var deepMIn = 0
-    dynamic var lightHour  = 0
-    dynamic var lightMIn  = 0
-    dynamic var avarage  = 0
-    
-    override class func primaryKey() -> String? {
-        return "userId"
-    }
-}
-
-*/
-
-
-
-
-

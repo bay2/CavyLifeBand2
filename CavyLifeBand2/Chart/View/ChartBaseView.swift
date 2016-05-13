@@ -21,15 +21,24 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
     /// 详情页
     var infoView: UICollectionView?
     
-    var datas: [StepCharts] = []
+    var datas: [NSDate] = []
     
-    
+    var oldDeletDatas: [StepCharts] = []
 
+    func setOldDeletData(datas: [StepCharts]) {
+        
+        self.oldDeletDatas = datas
+        
+        addTimeBucketView()
+        
+        addInfoView()
+    }
+    
     
     /**
      添加数据
      */
-    func setData(datas: [StepCharts]) {
+    func setData(datas: [NSDate]) {
         
         self.datas = datas
         
@@ -69,8 +78,10 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
         timeView!.backgroundColor = UIColor.clearColor()
         timeView!.alwaysBounceHorizontal = true
         timeView!.showsHorizontalScrollIndicator = false
-        timeView!.contentSize = CGSizeMake(CGFloat(datas.count - 1) * timeButtonWidth, timeButtonHeight)
-        timeView!.contentOffset = CGPointMake(CGFloat(datas.count - 1) * timeButtonWidth, timeButtonHeight)
+        timeView!.contentSize = CGSizeMake(CGFloat(oldDeletDatas.count - 1) * timeButtonWidth, timeButtonHeight)
+        timeView!.contentOffset = CGPointMake(CGFloat(oldDeletDatas.count - 1) * timeButtonWidth, timeButtonHeight)
+//        timeView!.contentSize = CGSizeMake(CGFloat(datas.count - 1) * timeButtonWidth, timeButtonHeight)
+//        timeView!.contentOffset = CGPointMake(CGFloat(datas.count - 1) * timeButtonWidth, timeButtonHeight)
         timeView!.dataSource = self
         timeView!.delegate = self
         timeView!.registerClass(ChartTimeCollectionCell.self, forCellWithReuseIdentifier: "ChartTimeCollectionCell")
@@ -109,8 +120,10 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
         infoView!.backgroundColor = UIColor(named: .ChartBackground)
         infoView!.alwaysBounceHorizontal = true
         infoView!.showsHorizontalScrollIndicator = false
-        infoView!.contentSize = CGSizeMake(CGFloat(datas.count) * ez.screenWidth, timeButtonHeight)
-        infoView!.contentOffset = CGPointMake(CGFloat(datas.count) * ez.screenWidth, timeButtonHeight)
+        infoView!.contentSize = CGSizeMake(CGFloat(oldDeletDatas.count) * ez.screenWidth, timeButtonHeight)
+        infoView!.contentOffset = CGPointMake(CGFloat(oldDeletDatas.count) * ez.screenWidth, timeButtonHeight)
+//        infoView!.contentSize = CGSizeMake(CGFloat(datas.count) * ez.screenWidth, timeButtonHeight)
+//        infoView!.contentOffset = CGPointMake(CGFloat(datas.count) * ez.screenWidth, timeButtonHeight)
         infoView!.dataSource = self
         infoView!.delegate = self
         infoView!.scrollEnabled = false
@@ -127,7 +140,9 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
     // MARK: -- collectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return datas.count
+//        return datas.count
+        
+        return oldDeletDatas.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -138,7 +153,10 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChartTimeCollectionCell", forIndexPath: indexPath) as! ChartTimeCollectionCell
             
             cell.deselectStatus()
-            cell.label.text = datas[indexPath.row].time
+            
+            cell.label.text = oldDeletDatas[indexPath.row].time
+            
+//            cell.label.text = NSDate().dateChangeToLabelText(datas[indexPath.row], timeBucket: timeBucketStyle)
             
             if indexPath.item == datas.count - 1 {
                 cell.selectStatus()
@@ -151,7 +169,8 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
             // 数据cell
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChartInfoCollectionCell", forIndexPath: indexPath) as! ChartInfoCollectionCell
             
-            cell.data = self.datas[indexPath.row]
+             cell.oldDeletData = oldDeletDatas[indexPath.row]
+//            cell.timeData = NSDate().dateChangeToLabelText(datas[indexPath.row], timeBucket: timeBucketStyle)
             
             cell.viewStyle = self.viewStyle
             cell.timeBucketStyle = self.timeBucketStyle

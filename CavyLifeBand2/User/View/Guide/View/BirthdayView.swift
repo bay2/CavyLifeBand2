@@ -113,26 +113,12 @@ class BirthdayView: UIView, RulerViewDelegate {
     // 更改刻度尺状态
     func changeCountStatusForDayRuler(scrollRuler: RulerScroller) {
         // 通过年月日来判断 下面刻度尺的日期天数
-        let days = daysCount(yymmRuler.nowYear, month: yymmRuler.nowMonth)
+        let days = NSDate().daysCount(yymmRuler.nowYear, month: yymmRuler.nowMonth)
         
         dayRuler.initDayRuler(days, style: .DayRuler)
         
     }
     
-    // 计算当前月份的天数
-    func daysCount(year: Int, month: Int) -> Int {
-        
-        var daysArray = [0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        
-        if year % 400 == 0 || year % 100 != 0 && year % 4 == 0 {
-            
-            daysArray[2] += 1
-            
-        }
-        
-        return daysArray[month]
-        
-    }
     
     /*
     // Only override drawRect: if you perform custom drawing.

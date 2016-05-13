@@ -11,31 +11,21 @@ import EZSwiftExtensions
 import Realm
 import RealmSwift
 import JSONJoy
-
+import Alamofire
 
 class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol {
+    
+    
+    var stepOldDeletData: ChartsForStep?
+
+    
     
     var realm: Realm = try! Realm()
     var userId: String = "" 
     
     var viewStyle: ChartViewStyle = .StepChart
-    var stepData: ChartsForStep?
-    
-    private lazy var TimeBucketData: [timeBucketStruct] = {
-        
-        let chartData: [timeBucketStruct] = []
-        
-        
-        let list = self.realm.objects(ChartStepDataRealm).filter("userId = '\(self.userId)'")
-        
-    
-        
-        
-        return chartData
-        
-    }()
-    
-    /// 日 周 年 索引
+
+    /// 日 周 年 按钮
     var upperButtonArray: [ChartTimeButton] = [ChartTimeButton(selectIndex: 0), ChartTimeButton(selectIndex: 1), ChartTimeButton(selectIndex: 2)]
     
     /// ScrollView
@@ -59,7 +49,66 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
     }()
     
     var navTitle: String = ""
-
+    
+    // 懒加载数据
+    private lazy var timeBucketDatasArray: [[NSDate]] = {
+        
+        let list = self.realm.objects(ChartStepDataRealm).filter("userId = '\(self.userId)'")
+        
+        var chartData: [[NSDate]] = []
+        var dayDataArray: [NSDate] = []
+        var weekDateArray: [NSDate] = []
+        var monthDateArray: [NSDate] = []
+        
+        for i in 0 ... list.count {
+            
+            // 日 一个小时也 的时间段 一小时 6条 * 24 小时 = 一天的数据
+            dayDataArray.append(list.first!.time!)
+            // 余数
+            var mod = 5
+            
+            if i / 6 == mod {
+                
+                dayDataArray.append(list[i].time!)
+            }
+            
+            /// 周 的时间段
+            
+            weekDateArray.append(list.first!.time!)
+            
+            let index: Int = NSDate().indexInArray(list[i].time!)
+            
+            if  index != 0 {
+                
+                mod = (7 - (index + 1)) * 24 * 6
+            }
+            
+            if i / (6 * 24 * 7) == mod {
+                weekDateArray.append(list[i].time!)
+            }
+            
+            // 月 的时间段
+            dayDataArray.append(list.first!.time!)
+            
+            var monthArray: [String] = []
+            
+            monthArray.append(NSDate().dateChangeToMonthText(list.first!.time!))
+            if  monthArray.contains("\(NSDate().dateChangeToMonthText(list[i].time!))") == false {
+                
+                dayDataArray.append(list[i].time!)
+                
+            }
+            
+        }
+        
+        chartData.append(dayDataArray)
+        chartData.append(weekDateArray)
+        chartData.append(monthDateArray)
+        
+        return chartData
+        
+    }()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -72,6 +121,9 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
         
     }
     
+    /**
+     配置VC的VM
+     */
     func configChartBaseView(dataSource: ChartViewProtocol) {
         
         navTitle = dataSource.title
@@ -80,7 +132,7 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
         self.updateNavUI()
         
     }
-    
+
     /**
      解析数据 加到数据库
      */
@@ -91,7 +143,8 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
         
         do {
             
-            stepData = try ChartsForStep(JSONDecoder(data!))
+            
+            stepOldDeletData = try ChartsForStep(JSONDecoder(data!))
             
         } catch {
             
@@ -99,24 +152,24 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
             
         }
         
+        
         // 先判断 有数据 直接返回 有没有数据 然后 请求数据
         if isExistChartsData() {
             
             return
         }
         
-        
-        
-        // 请求数据   添加到数据库
-        //        let urlString = ""
-        //        let request: [ChartStepDataRealm] = Alamofire.request(.POST, urlString).responseJSON { (response) in
-        //        }
-        
-        let request: [ChartStepDataRealm] = []
+//        请求数据   添加到数据库
+//        let urlString = ""
+//        let request = Alamofire.request(.POST, urlString).responseJSON { (response) in
+//            
+//        }
+        // 假设有啊
+        let request1: [ChartStepDataRealm] = []
         
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
             
-            for date in request {
+            for date in request1 {
                 
                 self.addStepData(date)
             }
@@ -160,7 +213,10 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
             let detailView = ChartBaseView(frame: CGRectMake(ez.screenWidth  * CGFloat(i), 0, ez.screenWidth, ez.screenHeight - navHeight - timeButtonHeight))
             detailView.viewStyle = self.viewStyle
             detailView.timeBucketStyle = timeBucketStyleArray[i]
-            detailView.setData(stepData!.datas![i].stepCharts!)
+//            detailView.setData(timeBucketDatasArray[i])
+            
+            detailView.setOldDeletData(stepOldDeletData!.datas![i].stepCharts!)
+            
             scrollView.addSubview(detailView)
         }
         

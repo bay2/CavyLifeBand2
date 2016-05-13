@@ -18,12 +18,13 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     var legendColors = [UIColor(named: .ChartStepPillarColor)]
     var leftUnit = " k"
     var spaceBetweenLabel = dayTime.count / 3
-    var dataCount = dayTime.count
     
+    var dataCount = dayTime.count
     
     var timeBucketStyle: TimeBucketStyle = .Day
     
-    var chartsData: [PerStepChartData] = []
+    // 计步柱状图
+    var chartsData: [PerStepChartsData] = []
     
     /**
      配置所有视图 主入口
@@ -117,10 +118,18 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
+        
+        
+//        for i in 0 ..< chartsData.count {
+//            xVals.append(chartsData[i].time)
+//
+//            let dataEntry = BarChartDataEntry(value: Double(chartsData[i].kilometer), xIndex: i)
+//            yVals.append(dataEntry)
+//        }
+        
         for i in 0 ..< count {
+            
             xVals.append(dayTime[i])
-        }
-        for i in 0 ..< count {
             
             let val = dayData[i]
             let dataEntry = BarChartDataEntry(value: val, xIndex: i)

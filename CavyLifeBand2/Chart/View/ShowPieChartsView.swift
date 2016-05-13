@@ -11,7 +11,8 @@ import Charts
 
 class ShowPieChartsView: PieChartView, ChartViewDelegate {
     
-    var chartsData: [PerStepChartData] = []
+    // 饼状图
+    var chartsData: PerSleepChartsData?
     
     var showValue: Bool = false
     
@@ -70,6 +71,9 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate {
         var yVals: [BarChartDataEntry] = []
         for i in 0 ..< dataCount {
             
+//            let sleepDegreeArray = [Double(chartsData!.deepSleep), Double(chartsData!.lightSleep)]
+//            yVals.append(BarChartDataEntry(value: sleepDegreeArray[i], xIndex: i))
+
             yVals.append(BarChartDataEntry(value: sleepDegree[i], xIndex: i))
             xVals.append(sleepName[i])
         }
