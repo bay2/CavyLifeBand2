@@ -16,6 +16,8 @@ typealias CompletionHandlernType = (Result<AnyObject, UserRequestErrorType>) -> 
 protocol NetRequestAdapter {
     
     func netPostRequestAdapter(urlString: String, para: [String: AnyObject]?, completionHandler: CompletionHandlernType?)
+    
+    func netGetRequestAdapter(urlString: String, para: [String: AnyObject]?, completionHandler: CompletionHandlernType?)
 }
 
 extension ParameterEncoding {
@@ -54,40 +56,29 @@ extension NetRequestAdapter {
         
         var parameters: [String: AnyObject] = ["phoneType": "ios", "language": UIDevice.deviceLanguage()]
         
-        func query(parameters: [String: AnyObject]) -> String {
-            var components: [(String, String)] = []
-            
-            for key in parameters.keys.sort(<) {
-                let value = parameters[key]!
-                components += ParameterEncoding.URL.queryComponentsEx(key, value)
-            }
-            
-            return (components.map { "\($0)=\($1)" } as [String]).joinWithSeparator("&")
+        //发送API请求
+        if para != nil {
+            parameters = parameters.union(para!)
         }
         
+        Log.netRequestFormater(urlString, para: para)
         
-        // 自定义消息结构
-        let closure: ((URLRequestConvertible, [String: AnyObject]?) -> (NSMutableURLRequest, NSError?)) = {URLRequest, parameters in
-            
-            let mutableURLRequest = URLRequest.URLRequest
-            guard let parameters = parameters else { return (mutableURLRequest, nil) }
-            
-
-            if mutableURLRequest.valueForHTTPHeaderField("Content-Type") == nil {
-                mutableURLRequest.setValue(
-                    "application/x-www-form-urlencoded; charset=utf-8",
-                    forHTTPHeaderField: "Content-Type"
-                )
-            }
-            
-            mutableURLRequest.HTTPBody = query(parameters).dataUsingEncoding(
-                NSUTF8StringEncoding,
-                allowLossyConversion: false
-            )
-            
-            return (mutableURLRequest, nil)
-        
+        requestByAlamofire(.POST, urlString: urlString, parameters: parameters) { result in
+            completionHandler?(result)
         }
+        
+    }
+    
+    /**
+     get 网络请求
+     
+     - parameter urlString:         url
+     - parameter para:              参数
+     - parameter completionHandler: 回调
+     */
+    func netGetRequestAdapter(urlString: String, para: [String: AnyObject]? = nil, completionHandler: CompletionHandlernType? = nil) {
+        
+        var parameters: [String: AnyObject] = ["phoneType": "ios", "language": UIDevice.deviceLanguage()]
         
         //发送API请求
         if para != nil {
@@ -96,9 +87,25 @@ extension NetRequestAdapter {
         
         Log.netRequestFormater(urlString, para: para)
         
-        let request = Alamofire.request(.POST, urlString, encoding: .JSON, parameters: parameters).responseJSON { (response) -> Void in
+        requestByAlamofire(.GET, urlString: urlString, parameters: parameters) { result in
+            completionHandler?(result)
+        }
+        
+    }
+    
+    /**
+     网络请求
+     
+     - parameter method:            请求方法
+     - parameter urlString:         url
+     - parameter parameters:        参数
+     - parameter completionHandler: 回调
+     */
+    func requestByAlamofire(method: Alamofire.Method, urlString: String, parameters: [String: AnyObject]? = nil, completionHandler: CompletionHandlernType? = nil) {
+        
+        let request = Alamofire.request(method, urlString, encoding: .JSON, parameters: parameters).responseJSON { response -> Void in
             
-            dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            dispatch_async(dispatch_get_main_queue()) {
                 
                 if response.result.isFailure {
                     completionHandler?(.Failure(.NetErr))
@@ -113,16 +120,17 @@ extension NetRequestAdapter {
                 }
                 
                 completionHandler?(.Success(responseResult))
+                
             }
+            
         }
         
         if Log.enabled {
             debugPrint(request)
         }
-        
+
     }
-    
-    
+
 }
 
 /**
