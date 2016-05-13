@@ -16,6 +16,7 @@ struct CavyDefine {
     
     // 服务器地址
     static let serverAddr = "http://115.28.144.243/cavylife"
+//    static let serverAddr = "http://192.168.100.214/cavylife"
     
     // webApi地址
     static let webApiAddr = serverAddr + "/api.do"
@@ -24,6 +25,12 @@ struct CavyDefine {
     
     // 邮箱验证码地址
     static let emailCodeAddr = serverAddr + "/imageCode.do"
+    
+    // 官网Api地址
+    static let officialSiteAddr = "http://game.tunshu.com"
+    
+    //相关App地址
+    static let relateAppWebApiAddr = officialSiteAddr + "/appIndex/index"
     
     // 1/25 宽度间隙
     static let spacingWidth25 = ez.screenWidth / 25
@@ -104,16 +111,19 @@ struct LoginUserBaseInfo {
     
     var loginUserId: String
     var loginUsername: String
+    var loginAvatar: String
+    
     
     init(dictionary: [String: AnyObject]) {
         
         loginUserId = (dictionary["SignUserId"] as? String) ?? ""
         loginUsername = (dictionary["SignUserName"] as? String) ?? ""
+        loginAvatar = (dictionary["SignUserAvatar"] as? String) ?? ""
         
     }
     
     func serialize() -> [String: AnyObject] {
-        return ["SignUserId": loginUserId, "SignUserName": loginUsername]
+        return ["SignUserId": loginUserId, "SignUserName": loginUsername, "SignUserAvatar": loginAvatar]
     }
     
 }
@@ -168,6 +178,11 @@ enum WebApiCode: String {
     case DBError = "5002"
 }
 
+// web Get接口错误码定义
+enum WebGetApiCode: String {
+    case Success = "1001"
+}
+
 /**
  web api参数
  
@@ -201,6 +216,11 @@ enum WebApiCode: String {
  - PKDuration:   PK时长
  - PKId:         PK记录的ID
  - AcceptTime:   接受PK的时间
+ - IsAllowWatch: 是否好友可见
+ - FriendReqType:
+ - FileName:
+ - Name:
+ - FeedbackContent: 意见反馈内容
  */
 enum UserNetRequsetKey: String {
     
@@ -246,10 +266,10 @@ enum UserNetRequsetKey: String {
     case FileName = "filename"
     case Name = "name"
     case FeedbackContent = "feedback"
-    case HelpList = "helpList"
-    case HelpId = "helpId"
-    case HelpTitle = "title"
-    case HelpWebUrl = "webUrl"
+    case PageSize = "pagesize"
+    case PageNum = "pagenum"
+    case AC = "ac"
+    
 }
 
 /**
@@ -276,6 +296,10 @@ enum UserNetRequsetKey: String {
  - UndoPK:           撤销PK
  - DeletePK:         删除已完成PK记录
  - AcceptPK:         接受PK
+ - GetHelpList:      获取帮助与反馈列表
+ - SubmitFeedback:   提交意见反馈
+ - GetPKInfo:        获取pk信息
+ - CavyLife:         获取相关App
  */
 enum UserNetRequestMethod: String {
     
@@ -293,11 +317,13 @@ enum UserNetRequestMethod: String {
     case FollowFriend = "followUser"
     case DeleteFriend = "deleteFriend"
     case ReportCoordinate = "setUserLBS"
-    case GetPKRecordList = "getPKRecordList"
+    case GetPKRecordList = "getPkList"
     case LaunchPK = "launchPK"
     case UndoPK = "undoPK"
-    case DeletePK = "deletePK"
+    case DeletePK = "delePK"
     case AcceptPK = "acceptPK"
     case GetHelpList = "getHelpList"
     case SubmitFeedback = "submitFeedback"
+    case GetPKInfo = "getPKInfo"
+    case CavyLife = "cavylife"
 }

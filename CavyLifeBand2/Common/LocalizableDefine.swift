@@ -515,6 +515,20 @@ enum L10n {
   case RelateRelateAppNavTitle
   /// 下载
   case RelateRelateAppCellDownloadBtnTitle
+  /// 一
+  case AlarmDayMonday
+  /// 二
+  case AlarmDayTuesday
+  /// 三
+  case AlarmDayWednesday
+  /// 四
+  case AlarmDayThursday
+  /// 五
+  case AlarmDayFriday
+  /// 六
+  case AlarmDaySaturday
+  /// 日
+  case AlarmDaySunday
 }
 
 extension L10n: CustomStringConvertible {
@@ -1034,6 +1048,20 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Relate.RelateApp.NavTitle")
       case .RelateRelateAppCellDownloadBtnTitle:
         return L10n.tr("Relate.RelateAppCell.DownloadBtnTitle")
+      case .AlarmDayMonday:
+        return L10n.tr("AlarmDay.Monday")
+      case .AlarmDayTuesday:
+        return L10n.tr("AlarmDay.Tuesday")
+      case .AlarmDayWednesday:
+        return L10n.tr("AlarmDay.Wednesday")
+      case .AlarmDayThursday:
+        return L10n.tr("AlarmDay.Thursday")
+      case .AlarmDayFriday:
+        return L10n.tr("AlarmDay.Friday")
+      case .AlarmDaySaturday:
+        return L10n.tr("AlarmDay.Saturday")
+      case .AlarmDaySunday:
+        return L10n.tr("AlarmDay.Sunday")
     }
   }
 

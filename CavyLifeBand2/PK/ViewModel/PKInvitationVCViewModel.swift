@@ -63,17 +63,17 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
     func launchPK() -> Void {
         
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFromString("yyyy-MM-dd HH:mm:ss")
-        let launchTimeStr = dateFormatter.stringFromDate(NSDate())
-        
-        pkWaitRealmModel.launchedTime = launchTimeStr
-        
+        dateFormatter.dateFromString("yyyy-MM-dd HH:mm:ss")        
         
         launchPK([pkWaitRealmModel], loginUserId: self.loginUserId, callBack: {
-            let pkId = $0[0].pkId
             
-            self.pkWaitRealmModel.pkId      = pkId
-            self.pkWaitRealmModel.syncState = PKRecordsRealmSyncState.Synced.rawValue
+            let pkId = $0[0]
+            
+            let launchTimeStr = dateFormatter.stringFromDate(NSDate())
+            
+            self.pkWaitRealmModel.launchedTime = launchTimeStr
+            self.pkWaitRealmModel.pkId         = pkId
+            self.pkWaitRealmModel.syncState    = PKRecordsRealmSyncState.Synced.rawValue
             
             self.addPKWaitRealm(self.pkWaitRealmModel)
             
@@ -82,15 +82,6 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
             CavyLifeBandAlertView.sharedIntance.showViewTitle(message: errorMsg)
             Log.warning("弹窗提示失败" + errorMsg)
         })
-        
-//        launchPK([pkWaitRealmModel], loginUserId: self.loginUserId) {
-//            let pkId = $0[0].pkId
-//            
-//            self.pkWaitRealmModel.pkId      = pkId
-//            self.pkWaitRealmModel.syncState = PKRecordsRealmSyncState.Synced.rawValue
-//            
-//            self.addPKWaitRealm(self.pkWaitRealmModel)
-//        }
         
     }
     

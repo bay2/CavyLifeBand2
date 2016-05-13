@@ -9,42 +9,25 @@ import JSONJoy
 
 struct LaunchPKResponse: JSONJoy {
     //通用消息头
-    var commonMsg: CommenMsg?
+    var commonMsg: CommenMsg
     
     //等待列表
-    var pkIdList: [PKId]?
+    var pkId: [String] = []
     
     init(_ decoder: JSONDecoder) throws {
+        
         commonMsg = try CommenMsg(decoder)
         
-        pkIdList = [PKId]()
-        
-        if let pkIdArray = decoder["pkIdList"].array {
-            
-            for pkId in pkIdArray {
-                
-                pkIdList?.append(try PKId(pkId))
-                
-            }
+        guard let pkIdArray = decoder["pkId"].array else {
+            return
         }
         
+        pkId = pkIdArray.map{ pkID -> String in
+            do { return try pkID.getString() } catch { return "" }
+        }
         
     }
 }
-
-struct PKId {
-    
-    //PK记录Id
-    var pkId: String
-
-    init(_ decoder: JSONDecoder) throws {
-        
-        do { pkId = try decoder["pkId"].getString() } catch { pkId = "" }
-        
-    }
-    
-}
-
 
 struct PKRecordList: JSONJoy {
     //通用消息头
@@ -106,7 +89,7 @@ struct PKWaitRecord: JSONJoy {
     var pkId: String
     
     //等待类型 0等待对方接受；1对方等待我接受
-    var type: String
+    var type: Int
     
     //用户Id
     var userId: String
@@ -125,11 +108,11 @@ struct PKWaitRecord: JSONJoy {
     
     init(_ decoder: JSONDecoder) throws {
         
-        do { pkId         = try decoder["pkId"].getString() } catch { pkId = "" }
-        do { type         = try decoder["type"].getString() } catch { type = "" }
-        do { userId       = try decoder["userId"].getString() } catch { userId = "" }
-        do { avatarUrl    = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
-        do { nickname     = try decoder["nickname"].getString() } catch { nickname = "" }
+        do { pkId = try decoder["pkId"].getString() } catch { pkId = "" }
+        do { type = try decoder["type"].getInt() } catch { type = 0 }
+        do { userId = try decoder["userId"].getString() } catch { userId = "" }
+        do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
+        do { nickname = try decoder["nickname"].getString() } catch { nickname = "" }
         do { launchedTime = try decoder["launchedTime"].getString() } catch { launchedTime = "" }
         do { pkDuration   = try decoder["pkDuration"].getString() } catch { pkDuration = "" }
         
@@ -204,4 +187,29 @@ struct PKFinishRecord: JSONJoy {
         
     }
     
+}
+
+
+struct PKInfoResponse: JSONJoy {
+    //通用消息头
+    var commonMsg: CommenMsg
+    
+    //我的计步数
+    var userStepCount: Int
+    
+    //对方的计步数
+    var friendStepCount: Int
+    
+    //是否好友可见
+    var isAllowWatch: Int
+    
+    init(_ decoder: JSONDecoder) throws {
+        
+        commonMsg = try CommenMsg(decoder)
+        
+        do { userStepCount   = try decoder["userStepCount"].getInt() } catch { userStepCount = 0 }
+        do { friendStepCount = try decoder["friendStepCount"].getInt() } catch { friendStepCount = 0 }
+        do { isAllowWatch    = try decoder["isAllowWatch"].getInt() } catch { isAllowWatch = PKAllowWatchState.OtherNoWatch.rawValue }
+        
+    }
 }

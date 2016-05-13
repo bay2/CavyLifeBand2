@@ -14,7 +14,7 @@ import AddressBook
 import Contacts
 import KeychainAccess
 
-class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate {
+class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate, PKRecordsUpdateFormWeb {
     
     enum MoveDirection {
         
@@ -47,6 +47,22 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     var loginUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
+    
+    var pkSycnCount: Int = 0 {
+        
+        didSet {
+            
+            if pkSycnCount == 3 {
+                
+                self.loadDataFromWeb()
+                
+                pkSycnCount = 0
+            
+            }
+            
+        }
+        
+    }
     
     override func viewDidLoad() {
         
@@ -81,6 +97,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         }
         
         syncUserInfo()
+        
+        syncPKRecords()
         
     }
     
@@ -120,6 +138,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         updateSyncDate(userInfo)
         
         CavyDefine.userNickname = userInfo.nickname
+        CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar = userInfo.avatarUrl
         
     }
     
@@ -190,6 +209,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
      将数据库未同步的pk记录同步到服务器
      */
     func syncPKRecords() {
+        
         //删除pk
         if let finishList: [PKFinishRealmModel] = self.getUnSyncPKList(PKFinishRealmModel.self) {
             self.deletePKFinish(finishList, loginUserId: self.loginUserId, callBack: {
@@ -198,20 +218,34 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                     self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: finish.pkId)
                 }
                 
+                self.pkSycnCount += 1
+                
             }, failure: {(errorMsg) in
                 Log.warning(errorMsg)
             })
+        } else {
+            self.pkSycnCount += 1
         }
         
         //接受pk
         if let acceptList: [PKDueRealmModel] = self.getUnSyncPKList(PKDueRealmModel.self) {
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFromString("yyyy-MM-dd HH:mm:ss")
+            
             self.acceptPKInvitation(acceptList, loginUserId: self.loginUserId, callBack: {
                 for accept in acceptList {
+                    
+                    self.changeDueBeginTime(accept, time: dateFormatter.stringFromDate(NSDate()))
                     self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: accept.pkId)
                 }
+                
+                self.pkSycnCount += 1
             }, failure: {(errorMsg) in
                 Log.warning(errorMsg)
             })
+        } else {
+            self.pkSycnCount += 1
         }
         
         //撤销pk
@@ -220,19 +254,15 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 for undo in undoList {
                     self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: undo.pkId)
                 }
+                
+                self.pkSycnCount += 1
             }, failure: {(errorMsg) in
                 Log.warning(errorMsg)
             })
+        } else {
+            self.pkSycnCount += 1
         }
-        
-        //发起pk
-//        if let launchList: [PKWaitRealmModel] = self.getUnSyncWaitPKIdListWithType(.MeWaitOther) {
-//            self.launchPK(launchList, loginUserId: self.loginUserId, callBack: { (pkIdList) in
-//                for launch in launchList {
-//                    self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: launch.pkId)
-//                }
-//            })
-//        }
+
     }
 
     /**

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JSONJoy
 import MJRefresh
 
 class RelateAppVC: UIViewController, BaseViewControllerPresenter {
@@ -29,9 +30,6 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
         // Do any additional setup after loading the view.
         
         self.automaticallyAdjustsScrollViewInsets = false
-        
-        tableDataSource = [RelateAppCellModel(info: "这是豚鼠游戏", size: "11.0", title: "豚鼠游戏", logoStr: "", index: 0),
-                           RelateAppCellModel(info: "这是豚鼠手环", size: "12.0", title: "豚鼠手环", logoStr: "", index: 1)]
         
         updateNavUI()
         
@@ -72,35 +70,55 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
     
     func goDetailInfoWeb(index: Int) {
         
-        //TODO:前往查看详情H5
-        Log.info("前往查看详情H5 - \(index)")
-        
         let targetVC = WebViewController()
         
-        targetVC.dataSource = RelateAppDetailInfoWebViewModel()
+        targetVC.dataSource = RelateAppDetailInfoWebViewModel(webUrlStr: tableDataSource[index].webUrlStr)
         
         self.pushVC(targetVC)
         
     }
 
     func loadDataByIndex() {
-        
-        //TODO:调接口加载数据"
-        Log.info("调接口加载数据")
-        
-//        totalIndex =
-        
-//        currentIndex = 
-        
-//        tableDataSource.append(<#T##newElement: Element##Element#>)
-        
-//        if currentIndex == totalIndex {
-//            self.tableView.mj_footer.endRefreshingWithNoMoreData()
-//        } else {
-//            self.tableView.mj_footer.endRefreshing()
-//        }
-        
-//        tableView.insertRowsAtIndexPaths(<#T##indexPaths: [NSIndexPath]##[NSIndexPath]#>, withRowAnimation: .None)
+                
+        do {
+            
+            try RelateAppWebApi.shareApi.getRelateAppList(currentIndex) { result in
+                
+                guard result.isSuccess else {
+                    return
+                }
+                
+                let resultMsg = try! RelateAppResponse(JSONDecoder(result.value!))
+                
+                guard resultMsg.commonMsg.code == WebGetApiCode.Success.rawValue else {
+                    return
+                }
+                
+                self.currentIndex += 1
+                
+                if resultMsg.data.gamelist.count == 0 {
+                    self.tableView.mj_footer.endRefreshingWithNoMoreData()
+                    return
+                }
+                
+                let gameList = resultMsg.data.gamelist
+                
+                for i in 0..<gameList.count {
+                    
+                    self.tableDataSource.append(RelateAppCellModel(gameModel: gameList[i], index: self.tableDataSource.count))
+                    
+                    
+                }
+                
+                self.tableView.mj_footer.endRefreshing()
+                
+                self.tableView.reloadData()
+                
+            }
+            
+        } catch let error {
+            Log.error(error)
+        }
         
     }
 
