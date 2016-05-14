@@ -74,7 +74,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
             
-            
         })
         
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
