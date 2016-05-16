@@ -161,7 +161,6 @@ enum NotificationName: String {
     
 }
 
-
 // web 接口错误码定义
 enum WebApiCode: String {
 
@@ -176,12 +175,104 @@ enum WebApiCode: String {
     case SendSecutityCodeError = "1007"
     case SystemError = "5001"
     case DBError = "5002"
+    case NetError
+    
+    init(apiCode: String) {
+        switch apiCode {
+        case "0000":
+            self = WebApiCode.Success
+        case "1000":
+            self = WebApiCode.ParaError
+        case "1001":
+            self = WebApiCode.UserPasswdError
+        case "1002":
+            self = WebApiCode.PhoneNumError
+        case "1003":
+            self = WebApiCode.SecurityCodeError
+        case "1004":
+            self = WebApiCode.MobifyUserError
+        case "1005":
+            self = WebApiCode.UserExisted
+        case "1006":
+            self = WebApiCode.UserNotExisted
+        case "1007":
+            self = WebApiCode.SendSecutityCodeError
+        case "5001":
+            self = WebApiCode.SystemError
+        case "5002":
+            self = WebApiCode.DBError
+        default:
+            self = WebApiCode.NetError
+        }
+    
+    }
+}
+
+extension WebApiCode: CustomStringConvertible {
+    
+    var description: String {
+        
+        switch self {
+        case .Success:
+            return ""
+        case .ParaError:
+            return L10n.WebErrorCode1000.string
+        case .UserPasswdError:
+            return L10n.WebErrorCode1001.string
+        case .PhoneNumError:
+            return L10n.WebErrorCode1002.string
+        case .SecurityCodeError:
+            return L10n.WebErrorCode1003.string
+        case .MobifyUserError:
+            return L10n.WebErrorCode1004.string
+        case .UserExisted:
+            return L10n.WebErrorCode1005.string
+        case .UserNotExisted:
+            return L10n.WebErrorCode1006.string
+        case .SendSecutityCodeError:
+            return L10n.WebErrorCode1007.string
+        case .SystemError:
+            return L10n.WebErrorCode5001.string
+        case .DBError:
+            return L10n.WebErrorCode5002.string
+        case .NetError:
+            return L10n.UserModuleErrorCodeNetAPIError.string
+        }
+    
+    }
+
 }
 
 // web Get接口错误码定义
 enum WebGetApiCode: String {
     case Success = "1001"
+    case Unknown = "9001"
+    
+    init(apiCode: String) {
+        switch apiCode {
+        case "0000":
+            self = WebGetApiCode.Success
+        default:
+            self = WebGetApiCode.Unknown
+        }
+        
+    }
+    
 }
+
+extension WebGetApiCode: CustomStringConvertible {
+    var description: String {
+        
+        switch self {
+        case .Success:
+            return ""
+        case .Unknown:
+            return L10n.UserModuleErrorCodeUnknownError.string
+        }
+        
+    }
+}
+
 
 /**
  web api参数

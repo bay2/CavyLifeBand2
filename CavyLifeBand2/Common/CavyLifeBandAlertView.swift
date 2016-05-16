@@ -38,24 +38,10 @@ class CavyLifeBandAlertView {
      - parameter userErrorCode:
      */
     func showViewTitle(viewController: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController, userErrorCode: UserRequestErrorType?) {
-
-        let errorMessage = [UserRequestErrorType.EmailErr: L10n.UserModuleErrorCodeEmailError.string,
-        UserRequestErrorType.EmailNil: L10n.UserModuleErrorCodeEmailNil.string,
-        UserRequestErrorType.NetAPIErr: L10n.UserModuleErrorCodeNetAPIError.string,
-        UserRequestErrorType.NetErr: L10n.UserModuleErrorCodeNetError.string,
-        UserRequestErrorType.PassWdErr: L10n.UserModuleErrorCodePasswdError.string,
-        UserRequestErrorType.PassWdNil: L10n.UserModuleErrorCodePasswdNil.string,
-        UserRequestErrorType.PhoneNil: L10n.UserModuleErrorCodePhoneNil.string,
-        UserRequestErrorType.PhoneErr: L10n.UserModuleErrorCodePhoneError.string,
-        UserRequestErrorType.SecurityCodeErr: L10n.UserModuleErrorCodeSecurityError.string,
-        UserRequestErrorType.SecurityCodeNil: L10n.UserModuleErrorCodeSecurityNil.string,
-        UserRequestErrorType.UserNameErr: L10n.UserModuleErrorCodeUserNameError.string,
-        UserRequestErrorType.UserNameNil: L10n.UserModuleErrorCodeUserNameNil.string,
-        UserRequestErrorType.UnknownError: L10n.UserModuleErrorCodeUnknownError.string]
         
         let userError = userErrorCode ?? UserRequestErrorType.UnknownError
         
-        showViewTitle(viewController, message: errorMessage[userError]!)
+        showViewTitle(viewController, message: userError.description)
         
     }
 
@@ -66,25 +52,19 @@ class CavyLifeBandAlertView {
      */
     func showViewTitle(viewController: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController, webApiErrorCode: String) {
 
-        let errorMessage = [WebApiCode.ParaError.rawValue: L10n.WebErrorCode1000.string,
-        WebApiCode.UserPasswdError.rawValue: L10n.WebErrorCode1001.string,
-        WebApiCode.PhoneNumError.rawValue: L10n.WebErrorCode1002.string,
-        WebApiCode.SecurityCodeError.rawValue: L10n.WebErrorCode1003.string,
-        WebApiCode.MobifyUserError.rawValue: L10n.WebErrorCode1004.string,
-        WebApiCode.UserExisted.rawValue: L10n.WebErrorCode1005.string,
-        WebApiCode.UserNotExisted.rawValue: L10n.WebErrorCode1006.string,
-        WebApiCode.SendSecutityCodeError.rawValue: L10n.WebErrorCode1007.string]
+        showViewTitle(viewController, message: WebApiCode(apiCode: webApiErrorCode).description)
 
-        if let message = errorMessage[webApiErrorCode] {
-
-            showViewTitle(viewController, message: message)
-
-        } else {
-
-            showViewTitle(viewController, message: L10n.UserModuleErrorCodeNetAPIError.string)
-
-        }
-
+    }
+    
+    /**
+     通过web返回错误码提示错误信息:Get方法的API
+     
+     - parameter webGetApiErrorCode: 
+     */
+    func showViewTitle(viewController: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController, webGetApiErrorCode: String) {
+        
+        showViewTitle(viewController, message: WebGetApiCode(apiCode: webGetApiErrorCode).description)
+        
     }
     
 
