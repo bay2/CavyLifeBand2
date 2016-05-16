@@ -32,7 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: UInt64(ez.appBuild!)!, migrationBlock: { migration, oldSchemaVersion in
             
-            if oldSchemaVersion >= 6 {
+            if oldSchemaVersion > 6 {
                 return
             }
             
@@ -47,12 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         
         let installation = KSCrashInstallationStandard.sharedInstance()
-        
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 2,
-            migrationBlock: { migration, oldSchemaVersion in
-                
-        })
         
         installation.url = NSURL(string: CavyDefine.bugHDKey)
 
