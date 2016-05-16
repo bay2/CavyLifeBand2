@@ -7,7 +7,6 @@
 //
 
 import Alamofire
-import Log
 import JSONJoy
 import RealmSwift
 

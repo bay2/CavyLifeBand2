@@ -312,6 +312,7 @@ extension WebGetApiCode: CustomStringConvertible {
  - FileName:
  - Name:
  - FeedbackContent: 意见反馈内容
+ - PhoneList: 电话号码列表
  */
 enum UserNetRequsetKey: String {
     
@@ -360,6 +361,7 @@ enum UserNetRequsetKey: String {
     case PageSize = "pagesize"
     case PageNum = "pagenum"
     case AC = "ac"
+    case PhoneList = "phoneList"
     
 }
 
@@ -391,6 +393,7 @@ enum UserNetRequsetKey: String {
  - SubmitFeedback:   提交意见反馈
  - GetPKInfo:        获取pk信息
  - CavyLife:         获取相关App
+ - SetEmergencyPhone 上传紧急联系人电话号码列表
  */
 enum UserNetRequestMethod: String {
     
@@ -417,4 +420,5 @@ enum UserNetRequestMethod: String {
     case SubmitFeedback = "submitFeedback"
     case GetPKInfo = "getPKInfo"
     case CavyLife = "cavylife"
+    case SetEmergencyPhone = "setEmergencyPhone"
 }
