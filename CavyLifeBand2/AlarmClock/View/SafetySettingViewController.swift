@@ -124,10 +124,10 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
     
     func addEmergencyContact(sender: UIButton) {
         
-        
-        
         if contactModels.count == 3 {
-            Log.error("上限三人，不能再添加，据说要用弹框提示")
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: "紧急联系人上限三人")
+            
         } else {
             
             //展示系统通讯录 选择联系人
@@ -143,8 +143,12 @@ extension SafetySettingViewController: SCAddressBookPickerDelegate {
     
     func contactPicker(didSelectContact contact: SCAddressBookContact) {
         
-        //TODO: 这里返回联系人信息，可以在这里完成保存紧急联系人信息的操作
-        Log.warning("【联系人信息】姓名：\(contact.name), 手机号:\(contact.phoneName)")
+        let reamlModel = EmergencyContactRealmModel()
+        reamlModel.userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        reamlModel.contactName = contact.name
+        reamlModel.phoneNumber = contact.phoneName
+        
+        self.addEmergencyContact(reamlModel, listModel: contactRealms!)
         
     }
     
