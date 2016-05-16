@@ -61,9 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func realmConfig() {
         
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1, migrationBlock: { migration, oldSchemaVersion in
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: UInt64(ez.appBuild!)!, migrationBlock: { migration, oldSchemaVersion in
             
-            if oldSchemaVersion >= 1 {
+            if oldSchemaVersion >= 6 {
                 return
             }
             
