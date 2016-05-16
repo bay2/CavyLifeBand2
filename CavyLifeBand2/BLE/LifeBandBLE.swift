@@ -9,7 +9,8 @@
 import CoreBluetooth
 
 let serviceUUID = "14839AC4-7D7E-415C-9A42-167340CF2339"
-let commandCharacteristicUUID = "8B00ACE7-EB0B-49B0-BBE9-9AEE0A26E1A3"
+let sendCommandCharacteristicUUID = "8B00ACE7-EB0B-49B0-BBE9-9AEE0A26E1A3"
+let revcCommandCharacteristicUUID = "0734594A-A8E7-4B1A-A6B1-CD5243059A57"
 
 protocol LifeBandBleDelegate {
     
@@ -25,6 +26,8 @@ class LifeBandBle: NSObject, CBCentralManagerDelegate {
     var lifeBandBleDelegate: LifeBandBleDelegate?
     
     var centraManager: CBCentralManager?
+    
+    var peripheral: CBPeripheral!
     
     override init() {
         
@@ -68,7 +71,8 @@ class LifeBandBle: NSObject, CBCentralManagerDelegate {
         }
         
         Log.error("advertisementData: \(advertData.toHexString())")
-        peripheral.delegate = self
+        self.peripheral = peripheral
+        self.peripheral.delegate = self
         central.connectPeripheral(peripheral, options: nil)
         
         
@@ -102,7 +106,8 @@ extension LifeBandBle: CBPeripheralDelegate {
         _ = services.map { service -> CBService in
             
             if service.UUID.isEqual(CBUUID(string: serviceUUID)) {
-                peripheral.discoverCharacteristics(nil, forService: service)
+                peripheral.discoverServices(nil)
+//                peripheral.discoverCharacteristics(nil, forService: service)
             }
             
             return service
