@@ -252,6 +252,12 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
      */
     func onRightBtn() {
         Log.info("分享")
+        
+        let shareView = ShareView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
+        
+        UIApplication.sharedApplication().keyWindow?.addSubview(shareView)
+        
+        
     }
     
 

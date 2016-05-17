@@ -34,6 +34,7 @@
 "UserModuleErrorCode.UserNameNil" = "用户名不能为空";
 "UserModuleErrorCode.UnknownError" = "未知错误";
 
+
 // 首页
 "MainPage.SignInBtn" = "登入";
 "MainPage.SignUpBtn" = "加入豚鼠";
@@ -154,6 +155,7 @@
 "Chart.Step.Week.Step" = "周总步数";
 "Chart.Step.Kilometer" = "行走公里数";
 "Chart.Step.TimeUsed" = "花费时长";
+"Share" = "分享";
 
 //好友，联系人
 "Contacts.ListCell.Cavy" = "生活豚鼠";
@@ -299,4 +301,3 @@
 "Relate.HelpAndFeedback.TextViewPlaceHolder" = "请描述你的问题或意见";
 "Relate.RelateApp.NavTitle" = "相关App";
 "Relate.RelateAppCell.DownloadBtnTitle" = "下载";
-
