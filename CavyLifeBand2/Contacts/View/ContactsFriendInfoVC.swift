@@ -8,7 +8,7 @@
 
 import UIKit
 import EZSwiftExtensions
-import Log
+import JSONJoy
 
 class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -17,6 +17,12 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var infoTableView: UITableView!
     
     @IBOutlet weak var qualityTableView: UITableView!
+    
+    var friendId: String = ""
+    
+    var friendNickName: String = ""
+    
+    var webJsonModel: ContactPsersonInfoResponse?
     
     // TableView Identifier
     let infoHeadIdentifier = "FriendInfoHeadIdentifier"
@@ -29,12 +35,29 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
     let infoTitleArray = [L10n.ContactsShowInfoTransformNotes.string, L10n.ContactsShowInfoNotesName.string, L10n.ContactsShowInfoCity.string, L10n.ContactsShowInfoOld.string, L10n.ContactsShowInfoGender.string, L10n.ContactsShowInfoHeight.string, L10n.ContactsShowInfoWeight.string, L10n.ContactsShowInfoBirth.string]
     let qualityTitleArray = [L10n.ContactsShowInfoPK.string, L10n.ContactsShowInfoStep.string, L10n.ContactsShowInfoSleep.string]
     
+    var infoTableDS: [String: String] = [String: String]()
+    
+    lazy var infoTableCellVM: [PresonInfoListCellViewModel] = {
+        
+        return [PresonInfoListCellViewModel(title: L10n.ContactsShowInfoTransformNotes.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoNotesName.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoCity.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoOld.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoGender.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoHeight.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoWeight.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoBirth.string)]
+        
+    }()
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()        
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         addAllViews()
+        
+        loadFriendInfoByNet()
         
     }
     
@@ -77,6 +100,45 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+//    func archiveInfoDS() {
+//        for i in 0..<infoTitleArray.count {
+//            guard let value = webJsonModel
+//        }
+//    }
+    
+    /**
+     通过网络加载数据
+     */
+    func loadFriendInfoByNet() {
+        
+        do {
+            
+            try ContactsWebApi.shareApi.getContactPersonInfo(friendId: friendId) {(result)  in
+                
+                guard result.isSuccess else {
+                    Log.error(result.error?.description ?? "")
+                    return
+                }
+                
+                self.webJsonModel = try! ContactPsersonInfoResponse(JSONDecoder(result.value!))
+                
+                guard self.webJsonModel?.commendMsg.code == WebApiCode.Success.rawValue else {
+                    Log.error(WebApiCode(apiCode: self.webJsonModel!.commendMsg.code).description)
+                    return
+                }
+                
+                self.infoTableView.reloadData()
+                
+                
+            }
+            
+        } catch let error {
+            Log.error(error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+        }
+        
+    }
+    
+    
     /**
      tableView的基本设置
      */
@@ -107,7 +169,7 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         
         if tableView.isEqual(infoTableView) {
             
-            return infoCellCount + 1
+            return infoTableCellVM.count + 1
             
         } else {
             
@@ -152,7 +214,9 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
                 
                 // 个人信息
                 let cell = tableView.dequeueReusableCellWithIdentifier(infoHeadIdentifier, forIndexPath: indexPath) as! ContactsPersonInfoCell
-                cell.personRealtion(.FriendRelation)
+                
+                cell.configCell(ContactsFriendInfoCellDS(model: webJsonModel, nickName: friendNickName), delegate: self)
+                
                 return cell
                 
             } else if indexPath.row == infoCellCount {
@@ -171,9 +235,13 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
                 
                 cell.addData(infoTitleArray[indexPath.row], titleInfo: infoTitleArray[0], cellEditOrNot: true)
                 
+                cell.configCell(infoTableCellVM[indexPath.row])
+                
             } else {
                 
                 cell.addData(infoTitleArray[indexPath.row], titleInfo: "160", cellEditOrNot: false)
+                
+                cell.configCell(infoTableCellVM[indexPath.row])
                 
             }
             return cell
@@ -217,61 +285,14 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         }
         
     }
+
+}
+
+// MARK: - ContactsPersonInfoCellDelegate
+extension ContactsFriendInfoVC: ContactsPersonInfoCellDelegate {
     
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    func onClickHeadView() {
+        Log.info("放大头像？")
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

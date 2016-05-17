@@ -246,5 +246,26 @@ class ContactsWebApi: NetRequestAdapter {
         
     }
     
+    /**
+     查询好友信息
+     
+     - parameter userId:   用户Id
+     - parameter friendId: 好友Id
+     - parameter callBack: 回调
+     */
+    func getContactPersonInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, friendId: String, callBack: CompletionHandlernType? = nil) throws {
+        
+        if friendId.characters.count == 0 {
+            callBack?(.Failure(.FriendIdNil))
+        }
+        
+        let parametes: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetFriendInfo.rawValue,
+                                              UserNetRequsetKey.UserID.rawValue: userId,
+                                              UserNetRequsetKey.FriendID.rawValue: friendId]
+        
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
+        
+    }
+    
 }
 

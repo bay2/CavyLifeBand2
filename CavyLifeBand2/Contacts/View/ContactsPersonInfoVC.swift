@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Log
+import JSONJoy
 
 class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -26,12 +26,28 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    var friendId: String = ""
+    
+    var friendNickName: String = ""
+    
+    var webJsonModel: ContactPsersonInfoResponse?
+    
+    lazy var cellVM: [PresonInfoListCellViewModel] = {
+        
+        return [PresonInfoListCellViewModel(title: L10n.ContactsShowInfoCity.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoOld.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoGender.string)]
+    
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
 
         addTableView()
+        
+        loadFriendInfoByNet()
         
     }
     
@@ -57,6 +73,53 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.dataSource = self
         
         
+    }
+    
+    /**
+     通过网络加载数据
+     */
+    func loadFriendInfoByNet() {
+        
+        do {
+            
+            try ContactsWebApi.shareApi.getContactPersonInfo(friendId: friendId) {(result)  in
+                
+                guard result.isSuccess else {
+                    Log.error(result.error?.description ?? "")
+                    return
+                }
+                
+                self.webJsonModel = try! ContactPsersonInfoResponse(JSONDecoder(result.value!))
+                
+                guard self.webJsonModel?.commendMsg.code == WebApiCode.Success.rawValue else {
+                    Log.error(WebApiCode(apiCode: self.webJsonModel!.commendMsg.code).description)
+                    return
+                }
+                
+                self.analyzeWebData()
+                
+                self.tableView.reloadData()
+                
+            }
+            
+        } catch let error {
+            Log.error(error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+        }
+        
+    }
+
+    func analyzeWebData() {
+        self.cellVM[0] = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoCity.string, info: self.webJsonModel!.address)
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let birthDate = dateFormatter.dateFromString(self.webJsonModel!.birthday) ?? NSDate()
+        
+        let age = NSDate().yearsInBetweenDate(birthDate).toString
+        
+        self.cellVM[1] = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoOld.string, info: age)
+        self.cellVM[2] = PresonInfoListCellViewModel(title: L10n.ContactsShowInfoGender.string, info: self.webJsonModel!.sex == "0" ? "男" : "女")
+
     }
 
     // MARK: UITableView Delegate
@@ -94,7 +157,7 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
         if indexPath.row == 0 {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
-            cell.personRealtion(.StrangerRelation)
+            cell.configCell(ContactsStrangerInfoCellDS(model: webJsonModel, nickName: friendNickName), delegate: self)
             return cell
             
         } else if indexPath.row == 4 {
@@ -108,8 +171,7 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
             
-            cell.titleLabel.text = "身高"
-            cell.titleInfoLabel.text = "160"
+            cell.configCell(cellVM[indexPath.row - 1])
             
             return cell
         }
@@ -135,4 +197,13 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
     }
     */
 
+}
+
+// MARK: - ContactsPersonInfoCellDelegate
+extension ContactsPersonInfoVC: ContactsPersonInfoCellDelegate {
+    
+    func onClickHeadView() {
+        Log.info("放大头像？")
+    }
+    
 }

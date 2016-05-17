@@ -39,12 +39,18 @@ class ContactsPersonInfoListCell: UITableViewCell {
         titleInfoLabel.text = titleInfo
     }
     
-    func configCell(datasource: ContactsPersonInfoListCellPresenter) {
+    func configCell(datasource: ContactsPersonInfoListCellPresenter, cellEditOrNot: Bool = false) {
         
         self.datasource = datasource
         
         titleLabel.text = datasource.title
         titleInfoLabel.text = datasource.info
+        
+        if cellEditOrNot {
+            // 可编辑状态时候 右边是浅色的
+            titleInfoLabel.textColor = UIColor(named: .ContactsIntrouduce)
+            
+        }
         
     }
 
@@ -54,4 +60,7 @@ class ContactsPersonInfoListCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
 }
+
+

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Log
 
 /**
  联系人关系
@@ -172,3 +171,46 @@ class ContactsPersonInfoCell: UITableViewCell {
     }
     
 }
+
+struct ContactsFriendInfoCellDS: ContactsPersonInfoCellPresenter {
+    
+    var title: String
+    
+    var subTitle: String
+    
+    var avatarUrl: String
+    
+    var relation: PersonRelation = .FriendRelation
+    
+    init(model: ContactPsersonInfoResponse? = nil, nickName: String) {
+        
+        title = model?.remark ?? ""
+        
+        avatarUrl = model?.avatarUrl ?? ""
+        
+        subTitle = nickName
+        
+    }
+    
+}
+
+struct ContactsStrangerInfoCellDS: ContactsPersonInfoCellPresenter {
+    
+    var title: String
+    
+    var subTitle: String = ""
+    
+    var avatarUrl: String
+    
+    var relation: PersonRelation = .FriendRelation
+    
+    init(model: ContactPsersonInfoResponse? = nil, nickName: String) {
+        
+        title = nickName
+        
+        avatarUrl = model?.avatarUrl ?? ""
+        
+    }
+    
+}
+

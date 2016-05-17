@@ -17,7 +17,7 @@ class PresonInfoListCellViewModel: ContactsPersonInfoListCellPresenter, AnyObjec
     var info: String
     var onClick: (Void -> Void)?
     
-    init(title: String, info: String, onClick: (Void -> Void)? = nil) {
+    init(title: String, info: String = "", onClick: (Void -> Void)? = nil) {
         
         self.title = title
         self.info = info

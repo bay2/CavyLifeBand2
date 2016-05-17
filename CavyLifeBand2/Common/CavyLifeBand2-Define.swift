@@ -421,4 +421,5 @@ enum UserNetRequestMethod: String {
     case GetPKInfo = "getPKInfo"
     case CavyLife = "cavylife"
     case SetEmergencyPhone = "setEmergencyPhone"
+    case GetFriendInfo = "getFriendInfo"
 }

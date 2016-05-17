@@ -33,7 +33,11 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     
     var requestStyle: RequestStyle = .AddFriend
     
-    var navTitle: String { return L10n.ContactsTitle.string }
+    var navTitle: String {
+        
+        return L10n.ContactsTitle.string
+    
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,24 +114,24 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         requestTextField.textColor = UIColor(named: .TextFieldTextColor)
         
         
-//        switch requestStyle {
-//
-//            // 请求添加好友
-//        case .AddFriend:
-//                requestTextField.placeholder = L10n.ContactsRequestPlaceHolder.string
-//                sendButton.setTitle(L10n.ContactsRequestSendButton.string, forState: .Normal)
-//            
-//            // 修改备注名字
-//        case .ChangeNotesName:
-//                requestTextField.placeholder = L10n.ContactsChangeNotesNamePlaceHolder.string
-//                sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
-//            
-//            // 修改自己的昵称
-//        case .ChangeSelfName:
-//            requestTextField.placeholder = L10n.ContactsChangeSelfNamePlaceHolder.string
-//            sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
-//            
-//        }
+        switch requestStyle {
+
+            // 请求添加好友
+        case .AddFriend:
+                requestTextField.placeholder = L10n.ContactsRequestPlaceHolder.string
+                sendButton.setTitle(L10n.ContactsRequestSendButton.string, forState: .Normal)
+            
+            // 修改备注名字
+        case .ChangeNotesName:
+                requestTextField.placeholder = L10n.ContactsChangeNotesNamePlaceHolder.string
+                sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
+            
+            // 修改自己的昵称
+        case .ChangeSelfName:
+            requestTextField.placeholder = L10n.ContactsChangeSelfNamePlaceHolder.string
+            sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
+            
+        }
         
     }
     
