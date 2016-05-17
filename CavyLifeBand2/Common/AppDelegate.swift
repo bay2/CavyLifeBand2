@@ -36,6 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         pgyUpdateConfig()
         
+        Log.error("\(CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand)")
+        
         return true
 
     }

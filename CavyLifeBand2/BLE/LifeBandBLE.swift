@@ -18,8 +18,14 @@ protocol LifeBandBleDelegate {
     
 }
 
+extension LifeBandBleDelegate {
+    
+    func bleMangerState(bleState: CBCentralManagerState) {}
+    
+}
 
-class LifeBandBle: NSObject, CBCentralManagerDelegate {
+
+class LifeBandBle: NSObject {
     
     static var shareInterface = LifeBandBle()
     
@@ -27,7 +33,17 @@ class LifeBandBle: NSObject, CBCentralManagerDelegate {
     
     var centraManager: CBCentralManager?
     
-    var peripheral: CBPeripheral!
+    private var peripheral: CBPeripheral!
+    
+    private var peripheralName: String = ""
+    
+    private var sendCharacteristic: CBCharacteristic!
+    
+    private var revcCharacteristic: CBCharacteristic!
+    
+    private var connectComplete: (Void -> Void)?
+    
+    private var bindingComplete: (String -> Void)?
     
     override init() {
         
@@ -38,18 +54,6 @@ class LifeBandBle: NSObject, CBCentralManagerDelegate {
         
     }
     
-    /**
-     蓝牙状态更新
-     
-     - parameter central:
-     */
-    func centralManagerDidUpdateState(central: CBCentralManager) {
-        
-        Log.error("centralManagerDidUpdateState")
-        lifeBandBleDelegate?.bleMangerState(central.state)
-        
-    }
-    
     func startScaning() {
         
         Log.error("startScaning")
@@ -57,32 +61,77 @@ class LifeBandBle: NSObject, CBCentralManagerDelegate {
         
     }
     
-    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String: AnyObject], RSSI: NSNumber) {
+    func stopScaning() {
+        centraManager?.stopScan()
+    }
+    
+    /**
+     手环连接
+     
+     - parameter peripheralName:  手环名
+     - parameter connectComplete: 回调
+     */
+    func bleConnect(peripheralName: String, connectComplete: (Void -> Void)? = nil) {
         
+        self.connectComplete = connectComplete
         
-        guard let advertData = advertisementData["kCBAdvDataManufacturerData"] as? NSData else {
-            return
-        }
+        self.peripheralName = peripheralName
         
-        let data = advertData.arrayOfBytes()
+        self.startScaning()
         
-        guard data.last == 1 else {
-            return
-        }
+    }
+    
+    /**
+     断开连接
+     */
+    func bleDisconnect() {
         
-        Log.error("advertisementData: \(advertData.toHexString())")
+        self.centraManager?.cancelPeripheralConnection(self.peripheral)
+        
+    }
+    
+    /**
+     手环绑定
+     
+     - parameter bindingComplete: 回调
+     */
+    func bleBinding(bindingComplete: (String -> Void)? = nil) {
+        
+        self.bindingComplete = bindingComplete
+        
+        self.startScaning()
+        
+    }
+    
+    private func connect(central: CBCentralManager, peripheral: CBPeripheral) {
+        
         self.peripheral = peripheral
-        self.peripheral.delegate = self
+        peripheral.delegate = self
         central.connectPeripheral(peripheral, options: nil)
         
+    }
+    
+}
+
+extension LifeBandBle: CBCentralManagerDelegate {
+    
+    /**
+     蓝牙状态更新
+     
+     - parameter central:
+     */
+    func centralManagerDidUpdateState(central: CBCentralManager) {
+        
+        lifeBandBleDelegate?.bleMangerState(central.state)
         
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
         
-        Log.error("Connect to \(peripheral.name)")
+        self.connectComplete?()
+        
         peripheral.discoverServices(nil)
-        Log.error("CBPeripheralState is \(peripheral.state)")
+        
         central.stopScan()
         
     }
@@ -90,6 +139,33 @@ class LifeBandBle: NSObject, CBCentralManagerDelegate {
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         
         Log.error("Fail connect to: \(peripheral.name)")
+        
+    }
+    
+    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String: AnyObject], RSSI: NSNumber) {
+        
+        //连接设备
+        if peripheral.name == peripheralName {
+            
+            connect(central, peripheral: peripheral)
+            return
+            
+        }
+        
+        guard let advertData = advertisementData["kCBAdvDataManufacturerData"] as? NSData else {
+            return
+        }
+        
+        let data = advertData.arrayOfBytes()
+        
+        // 1 为点击绑定标识
+        guard data.last == 1 else {
+            return
+        }
+        
+        Log.error("advertisementData: \(advertData.toHexString())")
+        
+        bindingComplete?(peripheral.name ?? "")
         
     }
     
@@ -106,8 +182,7 @@ extension LifeBandBle: CBPeripheralDelegate {
         _ = services.map { service -> CBService in
             
             if service.UUID.isEqual(CBUUID(string: serviceUUID)) {
-                peripheral.discoverServices(nil)
-//                peripheral.discoverCharacteristics(nil, forService: service)
+                peripheral.discoverCharacteristics(nil, forService: service)
             }
             
             return service
@@ -121,10 +196,23 @@ extension LifeBandBle: CBPeripheralDelegate {
             return
         }
         
-        _ = service.characteristics.map {
-            $0.map {
-                return $0
+        guard let characteristics = service.characteristics else {
+            return
+        }
+        
+        _ = characteristics.map { (chara) -> CBCharacteristic in
+            
+            if chara.UUID.isEqual(CBUUID(string: sendCommandCharacteristicUUID)) {
+                sendCharacteristic = chara
             }
+            
+            if chara.UUID.isEqual(CBUUID(string: revcCommandCharacteristicUUID)) {
+                revcCharacteristic = chara
+            }
+            
+            peripheral.setNotifyValue(true, forCharacteristic: chara)
+            
+            return chara
         }
         
     }

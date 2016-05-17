@@ -90,14 +90,10 @@ extension RightViewController {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let nextView = menuGroup[indexPath.section].items[indexPath.row].nextView
-        
-        let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
-        
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
-        
+        menuGroup[indexPath.section].items[indexPath.row].onClickCell()
+
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

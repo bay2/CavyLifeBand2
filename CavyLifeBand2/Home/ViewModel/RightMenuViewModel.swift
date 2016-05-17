@@ -28,6 +28,32 @@ struct MenuViewModel: MenuProtocol {
     
 }
 
+struct UndoBindViewModel: MenuProtocol {
+    
+    var title: String
+    var icon: UIImage?
+    var nextView: UIViewController
+    
+    init(icon: UIImage? = nil, title: String, nextView: UIViewController) {
+        
+        self.icon = icon
+        self.title = title
+        self.nextView = nextView
+        
+    }
+    
+    func onClickCell() {
+        
+        let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        
+        CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = ""
+        
+        LifeBandBle.shareInterface.bleDisconnect()
+        
+    }
+    
+}
+
 
 /**
  *  手环功能菜单项
@@ -89,7 +115,7 @@ struct BindingBandMenuGroupDataModel: MenuGroupDataSource {
     
     init() {
         
-        items.append(MenuViewModel(title: L10n.HomeRightListTitleBindingBand.string,
+        items.append(UndoBindViewModel(title: L10n.HomeRightListTitleBindingBand.string,
             nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
         
     }

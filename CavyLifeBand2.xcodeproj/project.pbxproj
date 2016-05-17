@@ -460,6 +460,7 @@
 		916456441CE1C115002D2D87 /* AlamofireImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireImageExtension.swift; sourceTree = "<group>"; };
 		91671C941C9A7EC60090BB3F /* LeftHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftHeaderView.swift; sourceTree = "<group>"; };
 		91671C991C9AC5A10090BB3F /* HomeUserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeUserInfo.swift; sourceTree = "<group>"; };
+		916813881CE9CA2300E35561 /* CavyLifeBand2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CavyLifeBand2.entitlements; sourceTree = "<group>"; };
 		917936C61CBB8E34002936E3 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendLoadDataViewModel.swift; sourceTree = "<group>"; };
 		917936CA1CBCEB4B002936E3 /* SCLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLocationManager.swift; sourceTree = "<group>"; };
@@ -1115,6 +1116,7 @@
 		917DA96A1C3B8EB700FF675D /* CavyLifeBand2 */ = {
 			isa = PBXGroup;
 			children = (
+				916813881CE9CA2300E35561 /* CavyLifeBand2.entitlements */,
 				918AA22C1CE327450022AE30 /* BLE */,
 				686A5EE81CDC307300EB8D0E /* Relate */,
 				9179DA971CD5E93800FCA63C /* AddressBook */,
@@ -1546,6 +1548,11 @@
 					917DA9671C3B8EB700FF675D = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = QPTW8BT3J8;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 					917DA97B1C3B8EB800FF675D = {
 						CreatedOnToolsVersion = 7.2;
@@ -1806,7 +1813,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\n  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n  echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+			shellScript = "#if hash tailor 2>/dev/null; then\n#  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#  echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2168,6 +2175,7 @@
 			baseConfigurationReference = AD7D0502CC392B502E081F26 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CavyLifeBand2/CavyLifeBand2.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = YES;
@@ -2205,6 +2213,7 @@
 			baseConfigurationReference = 01513CBBEAFFF398A5D5CA79 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CavyLifeBand2/CavyLifeBand2.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = YES;

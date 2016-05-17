@@ -8,6 +8,7 @@
 import UIKit
 import EZSwiftExtensions
 import Gifu
+import RealmSwift
 
 
 /**
@@ -19,6 +20,7 @@ struct GuideBandBluetooth: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView
+    var hiddeGuideBtn: Bool { return true }
     
     init() {
         
@@ -44,19 +46,28 @@ struct GuideBandBluetooth: GuideViewModelPotocols {
  *
  *  打开手环
  */
-struct GuideBandOpenBand: GuideViewModelPotocols {
+struct GuideBandOpenBand: GuideViewModelPotocols  {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView { return PictureView(title: L10n.GuideOpenCavy.string, titleInfo: L10n.GuideOpenCavyInfo.string, bottomInfo: L10n.GuideOpenCavySugg.string, midImage: AnimatableImageView(image: UIImage(asset: .GuideOpenBand))) }
+    var hiddeGuideBtn: Bool { return true }
     
-    func onClickGuideOkBtn(viewController: UIViewController) {
+    
+    func onLoadView() {
         
-        let nextVC = StoryboardScene.Guide.instantiateGuideView()
-        let linkingVM = GuideBandLinking()
+        LifeBandBle.shareInterface.bleBinding {
+            
+            GuideUserInfo.userInfo.bandName = $0
+            
+            let rootViewController = StoryboardScene.Guide.instantiateGuideView()
+            let linkingVM = GuideBandLinking()
+            
+            rootViewController.configView(linkingVM, delegate: linkingVM)
+            
+            UIApplication.sharedApplication().keyWindow?.setRootViewController(UINavigationController(rootViewController: rootViewController))
+           
+        }
         
-        nextVC.configView(linkingVM, delegate: linkingVM)
-        
-        viewController.pushVC(nextVC)
         
     }
     
@@ -67,10 +78,12 @@ struct GuideBandOpenBand: GuideViewModelPotocols {
  *
  *  手环连接中
  */
-struct GuideBandLinking: GuideViewModelPotocols {
+struct GuideBandLinking: GuideViewModelPotocols  {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView
+    var hiddeGuideBtn: Bool { return true }
+    var realm: Realm = try! Realm()
     
     init() {
         
@@ -80,14 +93,16 @@ struct GuideBandLinking: GuideViewModelPotocols {
         
     }
     
-    func onClickGuideOkBtn(viewController: UIViewController) {
+    func onLoadView() {
         
-        let nextVC = StoryboardScene.Guide.instantiateGuideView()
-        let bandSuccessVM = GuideBandSuccess()
-        
-        nextVC.configView(bandSuccessVM, delegate: bandSuccessVM)
-        
-        viewController.pushVC(nextVC)
+        LifeBandBle.shareInterface.bleConnect(GuideUserInfo.userInfo.bandName) {
+            
+            
+            let rootViewController = StoryboardScene.Home.instantiateRootView()
+            
+            UIApplication.sharedApplication().keyWindow?.setRootViewController(rootViewController, transition: CATransition())
+            
+        }
         
     }
     
@@ -127,7 +142,7 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
             }
             
             // 没有目标值信息
-            guard userInfo.sleepTime?.isEmpty == true else {
+            guard userInfo.sleepTime.isEmpty == true else {
                 
                 UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
                 
@@ -143,7 +158,8 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
             
         }
         
-        queryUserInfoByNet(queryUserInfoProc)
+        queryUserInfoByNet(completeHeadle: queryUserInfoProc)
+        
         
     }
     
@@ -158,10 +174,9 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
 struct GuideBandFail: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideLinkCavy.string }
+    var hiddeGuideBtn: Bool { return true }
     var centerView: UIView { return PictureView(title: L10n.GuidePairFail.string, titleInfo: L10n.GuidePairFailInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairFail))) }
     
-    func onClickGuideOkBtn(viewController: UIViewController) {
-        
-    }
+    
     
 }

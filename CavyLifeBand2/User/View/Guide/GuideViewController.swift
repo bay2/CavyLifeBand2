@@ -48,13 +48,19 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
     }()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        LifeBandBle.shareInterface.lifeBandBleDelegate = self
+        
         
         allViewsLayOut()
 
         updateViewStyle()
         
         updateNavUI()
+        
+        delegate?.onLoadView()
         
     }
     
@@ -106,6 +112,8 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         }
         
         self.view.backgroundColor = viewDataSource.bgColor
+        
+        self.guideButton.hidden = viewDataSource.hiddeGuideBtn
         self.guideButton.setImage(viewDataSource.guideBtnImage, forState: .Normal)
         
         let centerView = viewDataSource.centerView
@@ -113,6 +121,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
         self.infoLabel.text = dataSource?.subTitle
         navTitle = viewDataSource.title
+        
         rightBtn?.setTitle(viewDataSource.rightItemBtnTitle, forState: .Normal)
         centerView.snp_makeConstraints { make in
             make.left.top.right.bottom.equalTo(middleView)
@@ -134,6 +143,10 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         delegate?.onClickGuideOkBtn(self)
         
     }
+    
+}
+
+extension GuideViewController: LifeBandBleDelegate {
     
 }
 

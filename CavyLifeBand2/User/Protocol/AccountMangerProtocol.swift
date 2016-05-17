@@ -183,13 +183,14 @@ protocol SignInDelegate {
     
     var userName: String { get }
     var passwd: String { get }
+    func signIn(callBack: (Void -> Void)?)
     
 }
 
 // MARK: - 登录协议扩展
 extension SignInDelegate where Self: UIViewController {
     
-    func signIn() {
+    func signIn(callBack: (Void -> Void)? = nil) {
         
         UserNetRequestData.shareApi.requestSignIn(userName, passwd: passwd) { result in
             
@@ -209,19 +210,9 @@ extension SignInDelegate where Self: UIViewController {
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = msg.userId ?? ""
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = self.userName
             
-            let guideVC = StoryboardScene.Guide.instantiateGuideView()
-            var guideVM: GuideViewModelPotocols
-            
-            if LifeBandBle.shareInterface.centraManager?.state == .PoweredOn {
-                guideVM = GuideBandLinking()
-            } else {
-                guideVM = GuideBandBluetooth()
-            }
-            
-            guideVC.configView(guideVM, delegate: guideVM)
-            self.pushVC(guideVC)
-            
             Log.info("[\(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)] Sign in succeess")
+            
+            callBack?()
             
         }
         
