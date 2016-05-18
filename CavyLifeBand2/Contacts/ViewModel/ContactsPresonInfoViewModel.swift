@@ -16,12 +16,14 @@ class PresonInfoListCellViewModel: ContactsPersonInfoListCellPresenter, AnyObjec
     var title: String
     var info: String
     var onClick: (Void -> Void)?
+    var infoTextColor: UIColor
     
-    init(title: String, info: String = "", onClick: (Void -> Void)? = nil) {
+    init(title: String, info: String = "", infoTextColor: UIColor = UIColor(named: .ContactsName), onClick: (Void -> Void)? = nil) {
         
         self.title = title
         self.info = info
         self.onClick = onClick
+        self.infoTextColor = infoTextColor
         
     }
     

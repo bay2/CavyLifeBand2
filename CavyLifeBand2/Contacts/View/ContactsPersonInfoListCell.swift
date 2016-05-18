@@ -46,11 +46,7 @@ class ContactsPersonInfoListCell: UITableViewCell {
         titleLabel.text = datasource.title
         titleInfoLabel.text = datasource.info
         
-        if cellEditOrNot {
-            // 可编辑状态时候 右边是浅色的
-            titleInfoLabel.textColor = UIColor(named: .ContactsIntrouduce)
-            
-        }
+        titleInfoLabel.textColor = datasource.infoTextColor
         
     }
 

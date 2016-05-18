@@ -15,32 +15,19 @@ class ContactsFriendQualityCell: UITableViewCell {
     @IBOutlet weak var imgView: UIImageView!
     
     /// 左边Label
-    @IBOutlet weak var infoLable: UILabel!
+    @IBOutlet weak var titleLable: UILabel!
     
     /// 右边数值Label
-    @IBOutlet weak var numberLabel: UILabel!
-    
-    /// 是否是可编辑状态
-    var cellEditOrNot: Bool = false
+    @IBOutlet weak var infoLabel: UILabel!
     
     override func awakeFromNib() {
         
         super.awakeFromNib()
         
         imgView.roundSquareImage()
-        numberLabel.textColor = UIColor(named: .ContactsTitleColor)
+        titleLable.textColor = UIColor(named: .ContactsTitleColor)
+        infoLabel.textColor = UIColor(named: .ContactsName)
         self.selectionStyle = .None
-        
-        if cellEditOrNot {
-            
-            // 可编辑状态时候 右边是浅色的
-            infoLable.textColor = UIColor(named: .ContactsIntrouduce)
-            
-        } else {
-            
-            infoLable.textColor = UIColor(named: .ContactsName)
-            
-        }
         
     }
     
@@ -50,15 +37,85 @@ class ContactsFriendQualityCell: UITableViewCell {
     func addData(image: UIImage, info: String, number: String) {
         
         imgView.image = image
-        infoLable.text = info
-        numberLabel.text = number
+        titleLable.text = info
+        infoLabel.text = number
         
+    }
+    
+    func configure(model: ContactsFriendQualityCellDataSource) {
+        imgView.image = model.iconImage
+        titleLable.text = model.title
+        infoLabel.text = model.info
+        infoLabel.textColor = model.infoTextColor
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state
+    }
+    
+}
+
+protocol ContactsFriendQualityCellDataSource {
+
+    var title: String { get }
+    
+    var info: String { get }
+    
+    var infoTextColor: UIColor { get }
+    
+    var iconImage: UIImage? { get }
+
+}
+
+struct PKQualityCellVM: ContactsFriendQualityCellDataSource {
+    
+    var title: String = L10n.ContactsShowInfoPK.string
+    
+    var infoTextColor: UIColor = UIColor(named: .ContactsIntrouduce)
+    
+    var iconImage: UIImage? = UIImage(named: "HomeListPK")
+    
+    var info: String = ""
+    
+}
+
+struct StepQualityCellVM: ContactsFriendQualityCellDataSource {
+    var title: String = L10n.ContactsShowInfoStep.string
+    
+    var infoTextColor: UIColor = UIColor(named: .ContactsName)
+    
+    var iconImage: UIImage? = UIImage(named: "HomeListStep")
+    
+    var info: String { get { return infoValue + "步" } }
+    
+    var infoValue: String
+    
+    init(infoValue: String = "") {
+        
+        self.infoValue = infoValue
+        
+    }
+    
+}
+
+struct SleepQualityCellVM: ContactsFriendQualityCellDataSource {
+    
+    var title: String = L10n.ContactsShowInfoSleep.string
+    
+    var infoTextColor: UIColor = UIColor(named: .ContactsName)
+    
+    var iconImage: UIImage? = UIImage(named: "HomeListSleep")
+    
+    var info: String { get { return infoValue } }
+    
+    var infoValue: String
+    
+    init(infoValue: String = "") {
+        
+        self.infoValue = infoValue
+        
     }
     
 }
