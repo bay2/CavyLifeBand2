@@ -356,7 +356,13 @@ extension ContactsFriendInfoVC: UITableViewDataSource {
 extension ContactsFriendInfoVC: ContactsPersonInfoCellDelegate {
     
     func onClickHeadView() {
-        Log.info("放大头像？")
+        
+        let viewFrame = CGRect(x: 0, y: 0, w: ez.screenWidth, h: ez.screenHeight)
+        
+        let view = FullScreenImageView(frame: viewFrame, imageUrlStr: self.webJsonModel?.avatarUrl ?? "")
+        
+        UIApplication.sharedApplication().keyWindow?.addSubview(view)
+        
     }
     
 }

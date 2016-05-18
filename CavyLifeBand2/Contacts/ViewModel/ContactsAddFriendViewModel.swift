@@ -226,7 +226,7 @@ struct ContactsFriendReqViewModel: ContactsReqFriendPortocols {
         return L10n.ContactsRequestSendButton.string
     }
     
-    var NavTitle: String = L10n.ContactsTitle.string
+    var navTitle: String = L10n.ContactsTitle.string
     
     var friendId: String
     

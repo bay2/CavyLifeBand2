@@ -19,7 +19,7 @@ protocol ContactsReqFriendViewControllerDataSource {
     
     var bottonTitle: String { get }
     
-    var NavTitle: String { get }
+    var navTitle: String { get }
     
 }
 

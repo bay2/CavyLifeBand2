@@ -35,7 +35,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     
     var navTitle: String {
         
-        return dataSource?.NavTitle ?? ""
+        return dataSource?.navTitle ?? ""
     
     }
     

@@ -74,6 +74,7 @@
 		6859BC941CD4776D0050F6A0 /* AlarmClockUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */; };
 		68648A711CEB2F66009D4BEE /* NSDate_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A701CEB2F66009D4BEE /* NSDate_Extension.swift */; };
 		68648A731CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */; };
+		68648A751CEC71B8009D4BEE /* FullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */; };
 		686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */; };
 		686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */; };
 		686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */; };
@@ -374,6 +375,7 @@
 		6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockUITest.swift; sourceTree = "<group>"; };
 		68648A701CEB2F66009D4BEE /* NSDate_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate_Extension.swift; sourceTree = "<group>"; };
 		68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactChangeRemarkVM.swift; sourceTree = "<group>"; };
+		68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageView.swift; sourceTree = "<group>"; };
 		686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptPKTest.swift; sourceTree = "<group>"; };
 		686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePKTest.swift; sourceTree = "<group>"; };
 		686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPKTest.swift; sourceTree = "<group>"; };
@@ -1454,6 +1456,7 @@
 				917B98BD1CB8E841008698F5 /* UserAchievementView.xib */,
 				91E1B4A91CA510BD008ADEE6 /* ContactsLetterView.swift */,
 				91E1B4AA1CA510BD008ADEE6 /* ContactsLetterView.xib */,
+				68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1977,6 +1980,7 @@
 				686A5EF31CDC35E700EB8D0E /* HelpAndFeedbackVC.swift in Sources */,
 				911D1D8B1CCFA3B800065053 /* BandElectricView.swift in Sources */,
 				686A5EF51CDC360000EB8D0E /* RelateAppVC.swift in Sources */,
+				68648A751CEC71B8009D4BEE /* FullScreenImageView.swift in Sources */,
 				9114D20E1C995CD2008CB4CE /* MenuTableViewCell.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,

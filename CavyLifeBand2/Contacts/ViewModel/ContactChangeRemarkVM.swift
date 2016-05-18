@@ -16,7 +16,7 @@ import EZSwiftExtensions
  */
 struct ContactsChangeRemarkViewModel: ContactsReqFriendPortocols {
     
-    var NavTitle: String = L10n.ContactsNavTitleRemark.string
+    var navTitle: String = L10n.ContactsNavTitleRemark.string
     
     var textFieldTitle: String = ""
     
