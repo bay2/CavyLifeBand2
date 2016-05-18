@@ -319,6 +319,12 @@ enum L10n {
   case ContactsChangeSelfNamePlaceHolder
   /// 哈喽，我是
   case ContactsRequestVerifyMsg
+  /// 修改备注
+  case ContactsNavTitleRemark
+  /// 账户信息
+  case ContactsNavTitleAccountInfo
+  /// 确定
+  case ContactsRequestSureButton
   /// 账户信息
   case AccountInfoTitle
   /// 退出登录
@@ -838,6 +844,12 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.ChangeSelfName.PlaceHolder")
       case .ContactsRequestVerifyMsg:
         return L10n.tr("Contacts.Request.VerifyMsg")
+      case .ContactsNavTitleRemark:
+        return L10n.tr("Contacts.NavTitle.Remark")
+      case .ContactsNavTitleAccountInfo:
+        return L10n.tr("Contacts.NavTitle.AccountInfo")
+      case .ContactsRequestSureButton:
+        return L10n.tr("Contacts.Request.SureButton")
       case .AccountInfoTitle:
         return L10n.tr("AccountInfo.Title")
       case .AccountInfoLoginoutButtonTitle:

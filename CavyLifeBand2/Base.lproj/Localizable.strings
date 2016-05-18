@@ -187,6 +187,9 @@
 "Contacts.ChangeSelfName.PlaceHolder" = "更改的昵称";
 "Contacts.Request.VerifyMsg" = "哈喽，我是";
 "Contacts.NavTitle.Remark" = "修改备注";
+"Contacts.NavTitle.AccountInfo" = "账户信息";
+"Contacts.Request.SureButton" = "确定";
+
 
 //账户信息
 "AccountInfo.Title" = "账户信息";

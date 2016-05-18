@@ -14,15 +14,17 @@ import UIKit
 protocol ContactsReqFriendViewControllerDataSource {
     
     var placeholderText: String { get }
-    var textFieldTitle: String { get }
+    
+    var textFieldTitle: String { set get }
     
     var bottonTitle: String { get }
+    
+    var NavTitle: String { get }
     
 }
 
 protocol ContactsReqFriendViewControllerDelegate {
     
-    var verifyMsg: String { set get }
     func onClickButton()
     
 }

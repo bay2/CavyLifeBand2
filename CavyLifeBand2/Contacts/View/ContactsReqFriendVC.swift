@@ -35,7 +35,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     
     var navTitle: String {
         
-        return L10n.ContactsTitle.string
+        return dataSource?.NavTitle ?? ""
     
     }
     
@@ -58,7 +58,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
      */
     @IBAction func sendRequest(sender: AnyObject) {
         
-        delegate?.verifyMsg = requestTextField.text ?? ""
+        dataSource?.textFieldTitle = requestTextField.text ?? ""
         delegate?.onClickButton()
         
         
@@ -114,24 +114,24 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         requestTextField.textColor = UIColor(named: .TextFieldTextColor)
         
         
-        switch requestStyle {
-
-            // 请求添加好友
-        case .AddFriend:
-                requestTextField.placeholder = L10n.ContactsRequestPlaceHolder.string
-                sendButton.setTitle(L10n.ContactsRequestSendButton.string, forState: .Normal)
-            
-            // 修改备注名字
-        case .ChangeNotesName:
-                requestTextField.placeholder = L10n.ContactsChangeNotesNamePlaceHolder.string
-                sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
-            
-            // 修改自己的昵称
-        case .ChangeSelfName:
-            requestTextField.placeholder = L10n.ContactsChangeSelfNamePlaceHolder.string
-            sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
-            
-        }
+//        switch requestStyle {
+//
+//            // 请求添加好友
+//        case .AddFriend:
+//                requestTextField.placeholder = L10n.ContactsRequestPlaceHolder.string
+//                sendButton.setTitle(L10n.ContactsRequestSendButton.string, forState: .Normal)
+//            
+//            // 修改备注名字
+//        case .ChangeNotesName:
+//                requestTextField.placeholder = L10n.ContactsChangeNotesNamePlaceHolder.string
+//                sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
+//            
+//            // 修改自己的昵称
+//        case .ChangeSelfName:
+//            requestTextField.placeholder = L10n.ContactsChangeSelfNamePlaceHolder.string
+//            sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
+//            
+//        }
         
     }
     
@@ -139,16 +139,5 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

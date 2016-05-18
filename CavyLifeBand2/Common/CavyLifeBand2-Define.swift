@@ -362,7 +362,7 @@ enum UserNetRequsetKey: String {
     case PageNum = "pagenum"
     case AC = "ac"
     case PhoneList = "phoneList"
-    
+    case Remarks = "remarks"
 }
 
 /**
@@ -394,6 +394,8 @@ enum UserNetRequsetKey: String {
  - GetPKInfo:        获取pk信息
  - CavyLife:         获取相关App
  - SetEmergencyPhone 上传紧急联系人电话号码列表
+ - GetFriendInfo     查询好友信息
+ - SetFriendRemark   设置好友备注
  */
 enum UserNetRequestMethod: String {
     
@@ -422,4 +424,6 @@ enum UserNetRequestMethod: String {
     case CavyLife = "cavylife"
     case SetEmergencyPhone = "setEmergencyPhone"
     case GetFriendInfo = "getFriendInfo"
+    case SetFriendRemark = "setFriendRemark"
+    
 }

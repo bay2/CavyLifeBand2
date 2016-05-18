@@ -73,6 +73,7 @@
 		6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */; };
 		6859BC941CD4776D0050F6A0 /* AlarmClockUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */; };
 		68648A711CEB2F66009D4BEE /* NSDate_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A701CEB2F66009D4BEE /* NSDate_Extension.swift */; };
+		68648A731CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */; };
 		686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */; };
 		686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */; };
 		686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */; };
@@ -372,6 +373,7 @@
 		6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyClockView.swift; sourceTree = "<group>"; };
 		6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockUITest.swift; sourceTree = "<group>"; };
 		68648A701CEB2F66009D4BEE /* NSDate_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate_Extension.swift; sourceTree = "<group>"; };
+		68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactChangeRemarkVM.swift; sourceTree = "<group>"; };
 		686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptPKTest.swift; sourceTree = "<group>"; };
 		686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePKTest.swift; sourceTree = "<group>"; };
 		686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPKTest.swift; sourceTree = "<group>"; };
@@ -1387,6 +1389,7 @@
 				91E1B4EF1CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift */,
 				917B98CC1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift */,
 				917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */,
+				68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1889,6 +1892,7 @@
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
 				68E977FA1CC6089D00651724 /* PKIntroduceVC.swift in Sources */,
 				9114D1ED1C97AB05008CB4CE /* MainPageButton.swift in Sources */,
+				68648A731CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift in Sources */,
 				91DFA91C1CD8445C0036B939 /* PKListVC.swift in Sources */,
 				91ACEC621CB654BD008ED8B0 /* GuideInfoModelView.swift in Sources */,
 				917936C71CBB8E34002936E3 /* BaseViewController.swift in Sources */,

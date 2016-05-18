@@ -216,9 +216,7 @@ struct ContactsNewFriendCellViewModel: ContactsNewFriendPortocols {
  */
 struct ContactsFriendReqViewModel: ContactsReqFriendPortocols {
     
-    var textFieldTitle: String {
-        return L10n.ContactsRequestVerifyMsg.string + CavyDefine.userNickname
-    }
+    var textFieldTitle: String = L10n.ContactsRequestVerifyMsg.string + CavyDefine.userNickname
     
     var placeholderText: String {
         return L10n.ContactsRequestPlaceHolder.string
@@ -228,7 +226,7 @@ struct ContactsFriendReqViewModel: ContactsReqFriendPortocols {
         return L10n.ContactsRequestSendButton.string
     }
     
-    var verifyMsg: String = L10n.ContactsRequestVerifyMsg.string + CavyDefine.userNickname
+    var NavTitle: String = L10n.ContactsTitle.string
     
     var friendId: String
     
@@ -267,7 +265,7 @@ struct ContactsFriendReqViewModel: ContactsReqFriendPortocols {
             
         }
         
-        ContactsWebApi.shareApi.addFriend(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, friendId: friendId, verifyMsg: verifyMsg, callBack: msgParse)
+        ContactsWebApi.shareApi.addFriend(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, friendId: friendId, verifyMsg: textFieldTitle, callBack: msgParse)
         
     }
     

@@ -18,7 +18,7 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
     
     @IBOutlet weak var qualityTableView: UITableView!
     
-    var navTitle: String { return L10n.ContactsTitle.string }
+    var navTitle: String { return L10n.ContactsNavTitleAccountInfo.string }
     
     let sectionCornerViewHeight: CGFloat = 10.0
     
@@ -234,14 +234,20 @@ extension ContactsFriendInfoVC: UITableViewDelegate {
             
             // 跳转到修改备注
             let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
-            requestVC.requestStyle = .ChangeNotesName
+            
+            let changeRemarkVM = ContactsChangeRemarkViewModel(viewController: requestVC, friendId: self.friendId)
+            
+            requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+            
             self.pushVC(requestVC)
             
         }
         
-        if tableView.isEqual(qualityTableView) && indexPath.row == 0 {
+        if tableView.isEqual(qualityTableView){
             
-            Log.info("PK页面")
+            if qualityTableCellVM[indexPath.row] is PKQualityCellVM {
+                Log.info("PK页面")
+            }
             
         }
         

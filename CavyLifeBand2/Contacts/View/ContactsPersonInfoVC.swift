@@ -9,7 +9,7 @@
 import UIKit
 import JSONJoy
 
-class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ContactsPersonInfoVC: UIViewController, BaseViewControllerPresenter {
     
 
     @IBOutlet weak var tableView: UITableView!
@@ -25,6 +25,8 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
         self.pushVC(requestVC)
         
     }
+    
+    var navTitle: String { return L10n.ContactsNavTitleAccountInfo.string }
     
     var friendId: String = ""
     
@@ -45,6 +47,8 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
 
+        updateNavUI()
+        
         addTableView()
         
         loadFriendInfoByNet()
@@ -124,32 +128,43 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
 
     // MARK: UITableView Delegate
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        return 1
-        
-    }
+  
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 5
+    
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
     }
+
+}
+
+// MARK: - UITableViewDelegate
+extension ContactsPersonInfoVC: UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         if indexPath.row == 0 {
-
             return 136
-            
         } else if indexPath.row == 4{
-            
             return 40
         } else {
-            
-            return 50 
+            return 50
         }
         
-        
+    }
+    
+}
+
+// MARK: - UITableViewDataSource
+extension ContactsPersonInfoVC: UITableViewDataSource {
+
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -161,7 +176,7 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
             return cell
             
         } else if indexPath.row == 4 {
-        
+            
             tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "ListwhiteCell")
             let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("ListwhiteCell")!
             
@@ -178,25 +193,6 @@ class ContactsPersonInfoVC: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
-    
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 // MARK: - ContactsPersonInfoCellDelegate
