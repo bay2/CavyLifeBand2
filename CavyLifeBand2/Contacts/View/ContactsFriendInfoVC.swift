@@ -10,13 +10,15 @@ import UIKit
 import EZSwiftExtensions
 import JSONJoy
 
-class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
 
     @IBOutlet weak var contectView: UIView!
     
     @IBOutlet weak var infoTableView: UITableView!
     
     @IBOutlet weak var qualityTableView: UITableView!
+    
+    var navTitle: String { return L10n.ContactsTitle.string }
     
     let sectionCornerViewHeight: CGFloat = 10.0
     
@@ -27,6 +29,7 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
     let avatarCellHeight: CGFloat = 120.0
     
     var infoTableViewHeight: CGFloat {
+        // |-infoListCell-120-|-16-|-infoTableCellVM.count * 50-|-底10-|
         return avatarCellHeight + CGFloat(infoTableCellVM.count) * normalCellHeight + sectionCornerViewHeight + sectionView16Height
     }
     
@@ -43,10 +46,7 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
     let qualityIdentifier = "FriendQualityIdentifier"
     let qualityWhiteIdentifier = "FriendQualityWhiteIdentifier"
     
-    let infoTitleArray = [L10n.ContactsShowInfoTransformNotes.string, L10n.ContactsShowInfoNotesName.string, L10n.ContactsShowInfoCity.string, L10n.ContactsShowInfoOld.string, L10n.ContactsShowInfoGender.string, L10n.ContactsShowInfoHeight.string, L10n.ContactsShowInfoWeight.string, L10n.ContactsShowInfoBirth.string]
-    
-    var infoTableDS: [String: String] = [String: String]()
-    
+    //个人信息cell VMs
     lazy var infoTableCellVM: [PresonInfoListCellViewModel] = {
         
         return [PresonInfoListCellViewModel(title: L10n.ContactsShowInfoNotesName.string, info: L10n.ContactsShowInfoTransformNotes.string, infoTextColor: UIColor(named: .ContactsIntrouduce)),
@@ -59,6 +59,7 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         
     }()
     
+    //生活信息Cell VMs
     lazy var qualityTableCellVM: [ContactsFriendQualityCellDataSource] = {
         return [StepQualityCellVM(),
                 SleepQualityCellVM(),
@@ -70,6 +71,8 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         
         super.viewDidLoad()        
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        updateNavUI()
         
         addAllViews()
         
@@ -92,10 +95,6 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
      */
     func addAllViews() {
         
-        // InfoTableView高度
-        // |-infoListCell-136-|-cellCount-1[infoListCell] * 50-|-边10-|
-//        let tableViewHeight = avatarCellHeight + CGFloat(infoTableCellVM.count) * normalCellHeight + sectionCornerViewHeight + sectionView16Height
-        
         // contentView 
         contectView.backgroundColor = UIColor(named: .HomeViewMainColor)
         contectView.snp_makeConstraints { make in
@@ -106,12 +105,13 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         infoTableView.snp_makeConstraints { make -> Void in
             make.height.equalTo(infoTableViewHeight)
         }
+        
         tableViewBaseSetting(infoTableView)
+        tableViewBaseSetting(qualityTableView)
+        
         infoTableView.registerNib(UINib(nibName: "ContactsPersonInfoCell", bundle: nil), forCellReuseIdentifier: infoHeadIdentifier)
         infoTableView.registerNib(UINib(nibName: "ContactsPersonInfoListCell", bundle: nil), forCellReuseIdentifier: infoBodyIdentifier)
         
-        // qualityTableView
-        tableViewBaseSetting(qualityTableView)
         qualityTableView.registerNib(UINib(nibName: "ContactsFriendQualityCell", bundle: nil), forCellReuseIdentifier: qualityIdentifier)
         
     }
@@ -138,6 +138,7 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         infoTableCellVM[5].info = self.webJsonModel?.weight ?? ""
         infoTableCellVM[6].info = birthStr
         
+        //这三个字段为空代表设置了不可显示
         if self.webJsonModel?.birthday == "" {
             infoTableCellVM.removeLast()
         }
@@ -150,9 +151,7 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
             infoTableCellVM.removeAtIndex(4)
         }
         
-        
         contectView.snp_updateConstraints { make in
-            // |-16-|-infoTableView-|-10-|-qualityTableView-170-|-20-|
             make.height.equalTo(infoTableViewHeight + 216)
         }
         
@@ -195,7 +194,6 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    
     /**
      tableView的基本设置
      */
@@ -213,34 +211,12 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    // MARK: - Tableview Delegate
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        
-        if tableView.isEqual(infoTableView) {
-            return 2
-        }
-        
-        return 1
+}
 
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if tableView.isEqual(infoTableView) {
-            
-            if section == 0 {
-                return 1
-            }
-            
-            return infoTableCellVM.count
-            
-        } else {
-            
-            return qualityTableCellVM.count
-        }
-    }
+
+// MARK: - UITableViewDelegate
+extension ContactsFriendInfoVC: UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
@@ -252,43 +228,10 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
-        if tableView.isEqual(infoTableView) {
-            
-            if indexPath.section == 0 {
-                // 个人信息
-                let cell = tableView.dequeueReusableCellWithIdentifier(infoHeadIdentifier, forIndexPath: indexPath) as! ContactsPersonInfoCell
-                
-                cell.configCell(ContactsFriendInfoCellDS(model: webJsonModel, nickName: friendNickName), delegate: self)
-                
-                return cell
-                
-            }
-            
-            // 其他
-            let cell = tableView.dequeueReusableCellWithIdentifier(infoBodyIdentifier, forIndexPath: indexPath) as! ContactsPersonInfoListCell
-            
-            cell.configCell(infoTableCellVM[indexPath.row])
-     
-            return cell
-            
-        } else {
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier(qualityIdentifier, forIndexPath: indexPath) as! ContactsFriendQualityCell
-            
-            cell.configure(qualityTableCellVM[indexPath.row])
-            
-            return cell
- 
-        }
-    }
-    
-    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         if tableView.isEqual(infoTableView) && indexPath.row == 0 {
-
+            
             // 跳转到修改备注
             let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
             requestVC.requestStyle = .ChangeNotesName
@@ -297,7 +240,7 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         }
         
         if tableView.isEqual(qualityTableView) && indexPath.row == 0 {
-    
+            
             Log.info("PK页面")
             
         }
@@ -313,7 +256,7 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         return sectionCornerViewHeight
         
     }
-
+    
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         if tableView.isEqual(qualityTableView) {
@@ -345,6 +288,69 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         let view = AboutSectionEmptyView(frame: viewFrame, cornerType: .Top)
         
         return view
+    }
+
+}
+
+// MARK: - UITableViewDataSource
+extension ContactsFriendInfoVC: UITableViewDataSource {
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        if tableView.isEqual(infoTableView) {
+            return 2
+        }
+        
+        return 1
+        
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if tableView.isEqual(infoTableView) {
+            
+            if section == 0 {
+                return 1
+            }
+            
+            return infoTableCellVM.count
+            
+        } else {
+            
+            return qualityTableCellVM.count
+        }
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        if tableView.isEqual(infoTableView) {
+            
+            if indexPath.section == 0 {
+                // 个人信息
+                let cell = tableView.dequeueReusableCellWithIdentifier(infoHeadIdentifier, forIndexPath: indexPath) as! ContactsPersonInfoCell
+                
+                cell.configCell(ContactsFriendInfoCellDS(model: webJsonModel, nickName: friendNickName), delegate: self)
+                
+                return cell
+                
+            }
+            
+            // 其他
+            let cell = tableView.dequeueReusableCellWithIdentifier(infoBodyIdentifier, forIndexPath: indexPath) as! ContactsPersonInfoListCell
+            
+            cell.configCell(infoTableCellVM[indexPath.row])
+            
+            return cell
+            
+        } else {
+            
+            let cell = tableView.dequeueReusableCellWithIdentifier(qualityIdentifier, forIndexPath: indexPath) as! ContactsFriendQualityCell
+            
+            cell.configure(qualityTableCellVM[indexPath.row])
+            
+            return cell
+            
+        }
     }
     
 }
