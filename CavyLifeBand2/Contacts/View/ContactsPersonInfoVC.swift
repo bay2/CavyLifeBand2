@@ -20,9 +20,14 @@ class ContactsPersonInfoVC: UIViewController, BaseViewControllerPresenter {
     @IBAction func requestAddFriend(sender: AnyObject) {
         
         /// 跳到添加好友 验证信息发送 页面
-        let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
-        requestVC.requestStyle = .AddFriend
-        self.pushVC(requestVC)
+        
+        let addFirendVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
+        
+        let firendReqViewModel = ContactsFriendReqViewModel(viewController: addFirendVC, friendId: self.friendId)
+        
+        addFirendVC.viewConfig(firendReqViewModel, delegate: firendReqViewModel)
+        
+        self.pushVC(addFirendVC)
         
     }
     
