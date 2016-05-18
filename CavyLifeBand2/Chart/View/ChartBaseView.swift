@@ -155,10 +155,13 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
             cell.deselectStatus()
             
             cell.label.text = oldDeletDatas[indexPath.row].time
+
+//            cell.label.text = datas[indexPath.row].time
             
 //            cell.label.text = NSDate().dateChangeToLabelText(datas[indexPath.row], timeBucket: timeBucketStyle)
-            
-            if indexPath.item == datas.count - 1 {
+//            if indexPath.item == datas.count - 1 {
+
+            if indexPath.item == oldDeletDatas.count - 1 {
                 cell.selectStatus()
             }
             
@@ -229,7 +232,9 @@ extension ChartBaseView: UIScrollViewDelegate {
         let countFloat = collView.contentOffset.x / timeButtonWidth
         var count = Int(countFloat)
         
-        if count < 1 || count > datas.count - 2 {
+        //         if count < 1 || count > datas.count - 2 {
+
+        if count < 1 || count > oldDeletDatas.count - 2 {
             return
         }
         if countFloat - CGFloat(count) >= 0.5 {
@@ -247,7 +252,8 @@ extension ChartBaseView: UIScrollViewDelegate {
     func changeButtonStauts(collectionView: UICollectionView, indexPath: NSIndexPath) {
         
         // 更改 选中日期的状态
-        for i in 0 ..< datas.count {
+        for i in 0 ..< oldDeletDatas.count {
+//            for i in 0 ..< datas.count {
             guard let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) as? ChartTimeCollectionCell else {
                 continue
             }

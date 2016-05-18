@@ -14,6 +14,13 @@ class ShareCollectionCell: UICollectionViewCell {
     var imgView = UIImageView()
     
     
+    func config(dataSource: ShareViewDataSource) {
+        imgView.image = dataSource.shareImage
+    }
+    
+    
+    
+    
     override init(frame: CGRect) {
        super.init(frame: frame)
         

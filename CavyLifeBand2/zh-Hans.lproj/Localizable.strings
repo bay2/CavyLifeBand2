@@ -155,7 +155,7 @@
 "Chart.Step.Week.Step" = "周总步数";
 "Chart.Step.Kilometer" = "行走公里数";
 "Chart.Step.TimeUsed" = "花费时长";
-"Share" = "分享";
+"Share.To" = "分享到";
 
 //好友，联系人
 "Contacts.ListCell.Cavy" = "生活豚鼠";

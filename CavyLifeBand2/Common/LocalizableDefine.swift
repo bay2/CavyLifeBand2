@@ -255,8 +255,8 @@ enum L10n {
   case ChartStepKilometer
   /// 花费时长
   case ChartStepTimeUsed
-  /// 分享
-  case Share
+  /// 分享到
+  case ShareTo
   /// 生活豚鼠
   case ContactsListCellCavy
   /// 搜索
@@ -776,8 +776,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Chart.Step.Kilometer")
       case .ChartStepTimeUsed:
         return L10n.tr("Chart.Step.TimeUsed")
-      case .Share:
-        return L10n.tr("Share")
+      case .ShareTo:
+        return L10n.tr("Share.To")
       case .ContactsListCellCavy:
         return L10n.tr("Contacts.ListCell.Cavy")
       case .ContactsSearchBarSearch:

@@ -34,7 +34,7 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
     lazy var leftBtn: UIButton? = {
         
         let leftItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
-        leftItemBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
+        leftItemBtn.setBackgroundImage(UIImage(asset: .NavBack), forState: .Normal)
         return leftItemBtn
         
         
@@ -42,9 +42,9 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
     
     lazy var rightBtn: UIButton? = {
         
-        let button = UIButton(frame: CGRectMake(0, 0, 60, 30))
-        button.setTitle("分享", forState: .Normal)
-        return button
+        let rightItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
+        rightItemBtn.setBackgroundImage(UIImage(asset: .NavShare), forState: .Normal)
+        return rightItemBtn
         
     }()
     

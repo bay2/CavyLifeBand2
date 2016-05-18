@@ -17,7 +17,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
         let button = UIButton(type: .System)
 
-        button.setBackgroundImage(UIImage(asset: .HomeLeftMenu), forState: .Normal)
+        button.setBackgroundImage(UIImage(asset: .NavMenu), forState: .Normal)
         
         return button
     }()
@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
         let button = UIButton(type: .System)
         button.size = CGSizeMake(30, 30)
-        button.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
+        button.setBackgroundImage(UIImage(asset: .NavBand), forState: .Normal)
         
         return button
         

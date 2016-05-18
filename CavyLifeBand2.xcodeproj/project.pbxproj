@@ -33,6 +33,8 @@
 		4C5396D41CE5B40000BCFAEB /* ChartsOldDeletJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396D31CE5B40000BCFAEB /* ChartsOldDeletJSON.swift */; };
 		4C6895F41CE96CFD00CAC412 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F31CE96CFD00CAC412 /* ShareView.swift */; };
 		4C6895F81CE9A7BE00CAC412 /* ShareCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F71CE9A7BE00CAC412 /* ShareCollectionCell.swift */; };
+		4C6895FA1CEAE28400CAC412 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6895F91CEAE28400CAC412 /* Assets.xcassets */; };
+		4C6895FC1CEAF24A00CAC412 /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895FB1CEAF24A00CAC412 /* ShareViewModel.swift */; };
 		4C6F14971CD9F454007E923B /* ChartsDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */; };
 		4C6F149B1CDC9B06007E923B /* ShowPieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */; };
 		4CB7A06E1CD095C400DFB8DC /* BandElectricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */; };
@@ -244,7 +246,6 @@
 		91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C3AE551C474305006B67AF /* Log_Extension.swift */; };
 		91C3ED841C3BB637000A414D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91C3ED861C3BB637000A414D /* Localizable.strings */; };
 		91D192921C7DA87B00482019 /* colors.txt in Resources */ = {isa = PBXBuildFile; fileRef = 91D192911C7DA87B00482019 /* colors.txt */; };
-		91D192941C7DB8DE00482019 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 91D192931C7DB8DE00482019 /* Assets.xcassets */; };
 		91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */; };
 		91DFA91C1CD8445C0036B939 /* PKListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DFA91B1CD8445C0036B939 /* PKListVC.swift */; };
 		91DFA91E1CD84DC20036B939 /* PKListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91DFA91D1CD84DC20036B939 /* PKListDataSource.swift */; };
@@ -351,6 +352,8 @@
 		4C5396D31CE5B40000BCFAEB /* ChartsOldDeletJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsOldDeletJSON.swift; sourceTree = "<group>"; };
 		4C6895F31CE96CFD00CAC412 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		4C6895F71CE9A7BE00CAC412 /* ShareCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareCollectionCell.swift; sourceTree = "<group>"; };
+		4C6895F91CEAE28400CAC412 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C6895FB1CEAF24A00CAC412 /* ShareViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
 		4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsDataRealm.swift; sourceTree = "<group>"; };
 		4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPieChartsView.swift; sourceTree = "<group>"; };
 		4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandElectricView.swift; sourceTree = "<group>"; };
@@ -576,7 +579,6 @@
 		91C3AE551C474305006B67AF /* Log_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log_Extension.swift; sourceTree = "<group>"; };
 		91C3ED871C3BB639000A414D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		91D192911C7DA87B00482019 /* colors.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = colors.txt; path = CavyLifeBand2/Common/colors.txt; sourceTree = SOURCE_ROOT; };
-		91D192931C7DB8DE00482019 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		91D274CF1C86AD55004F1AA7 /* CavyLifeBandAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CavyLifeBandAlertView.swift; sourceTree = "<group>"; };
 		91DFA91B1CD8445C0036B939 /* PKListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKListVC.swift; sourceTree = "<group>"; };
 		91DFA91D1CD84DC20036B939 /* PKListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKListDataSource.swift; sourceTree = "<group>"; };
@@ -787,6 +789,7 @@
 				4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */,
 				4CB7A0CF1CD3497F00DFB8DC /* ChartBaseViewModel.swift */,
 				4C5396CD1CE1B83B00BCFAEB /* ChartInfoViewModel.swift */,
+				4C6895FB1CEAF24A00CAC412 /* ShareViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1276,7 +1279,7 @@
 				913D0BCF1C3FA126006EE7F8 /* Camera */,
 				913D0BD21C3FA126006EE7F8 /* Weather */,
 				91C3ED891C3BB685000A414D /* Localization */,
-				91D192931C7DB8DE00482019 /* Assets.xcassets */,
+				4C6895F91CEAE28400CAC412 /* Assets.xcassets */,
 				917DA9741C3B8EB700FF675D /* LaunchScreen.storyboard */,
 				917DA9771C3B8EB700FF675D /* Info.plist */,
 			);
@@ -1744,6 +1747,7 @@
 				4CB7A0821CD095C400DFB8DC /* HomeUpperView.xib in Resources */,
 				91EB796C1CAE075C00ED3E67 /* Sign_In_Error.json in Resources */,
 				917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */,
+				4C6895FA1CEAE28400CAC412 /* Assets.xcassets in Resources */,
 				91EB796B1CAE075C00ED3E67 /* SecurityCode_Ok.json in Resources */,
 				4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */,
 				91EB79691CAE075C00ED3E67 /* Profile_Ok.json in Resources */,
@@ -1761,7 +1765,6 @@
 				91E1B4CC1CA510BD008ADEE6 /* ContactsFriendListCell.xib in Resources */,
 				91EB79661CAE075C00ED3E67 /* CommonResultOk.json in Resources */,
 				91E1B4CF1CA510BD008ADEE6 /* ContactsPersonInfoCell.xib in Resources */,
-				91D192941C7DB8DE00482019 /* Assets.xcassets in Resources */,
 				91EB796F1CAE075C00ED3E67 /* UploadPicture_Ok.json in Resources */,
 				91EB796E1CAE075C00ED3E67 /* Sign_Up_Ok.json in Resources */,
 				68C558D51CB754090031719D /* IntelligentClockCell.xib in Resources */,
@@ -2005,6 +2008,7 @@
 				4CB7A0D41CD3497F00DFB8DC /* ChartInfoListCell.swift in Sources */,
 				4CB7A0D31CD3497F00DFB8DC /* ChartInfoCollectionCell.swift in Sources */,
 				4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */,
+				4C6895FC1CEAF24A00CAC412 /* ShareViewModel.swift in Sources */,
 				686A5EEF1CDC35AE00EB8D0E /* HelpAndFeedbackListVC.swift in Sources */,
 				4C0BF9FE1CBCE58000DB06FC /* HomeSleepViewModel.swift in Sources */,
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,

@@ -15,8 +15,9 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
     var bottomView = UIView()
     var collectionView: UICollectionView?
     
-    let dataCount = 5
-    
+    let dataCount = 4
+    let shareDataArray = [ShareWeiboViewModel()]
+//    let shareDataArray = [ShareQQViewModel, ShareWechatViewModel, ShareWechatMomentsViewModel, ShareWeiboViewModel]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,7 +37,7 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
         let titleView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, 40))
         titleView.backgroundColor = UIColor(named: .HomeViewMainColor)
         let titleLabel = UILabel(frame: CGRectMake(0, 0, ez.screenWidth, 40))
-        titleLabel.text = "分享"
+        titleLabel.text = L10n.ShareTo.string
         titleLabel.textAlignment = .Center
         titleLabel.textColor = UIColor.whiteColor()
         titleView.addSubview(titleLabel)
@@ -60,17 +61,18 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
      */
     func addCollectionView() {
         
-        let inset: CGFloat = 14
+        let inset: CGFloat = 16
         let sizeWidth: CGFloat = 60
+        let space = (ez.screenWidth - inset * 2 - sizeWidth * 4) / 3
         
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSizeMake(sizeWidth, sizeWidth)
         layout.scrollDirection = .Horizontal
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = space
         
         layout.sectionInset = UIEdgeInsetsMake(0, inset, 0, inset)
         
-        collectionView = UICollectionView(frame: CGRectMake(inset, 64, (ez.screenWidth - inset * 2), 60), collectionViewLayout: layout)
+        collectionView = UICollectionView(frame: CGRectMake(0, 64, (ez.screenWidth), 60), collectionViewLayout: layout)
         collectionView!.contentSize = CGSizeMake(ez.screenWidth * 2, 60)
         collectionView!.contentOffset = CGPointMake(0, 60)
         collectionView!.backgroundColor = UIColor.whiteColor()
@@ -94,8 +96,9 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ShareCellIdentifier", forIndexPath: indexPath) as! ShareCollectionCell
+        let imgArray = [UIImage(asset: .ShareWechat), UIImage(asset: .ShareWechatmoments), UIImage(asset: .ShareQQ), UIImage(asset: .ShareWeibo), UIImage(asset: .ShareMore)]
         
-        cell.imgView.image = UIImage(named: "GuideOpenBand")
+        cell.imgView.image = imgArray[indexPath.item]
         
         return cell
     }
@@ -103,7 +106,7 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
     // 点击事件
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        Log.info("点我分享啊")
+        Log.info("点我分享啊\(indexPath.item)")
         
     }
     
