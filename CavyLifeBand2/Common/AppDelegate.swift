@@ -18,7 +18,7 @@ import OHHTTPStubs
 var realm: Realm = try! Realm()
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
 
     var window: UIWindow?
 

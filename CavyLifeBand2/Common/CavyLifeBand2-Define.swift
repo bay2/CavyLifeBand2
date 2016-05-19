@@ -63,6 +63,33 @@ struct CavyDefine {
         return accountSex
     }
     
+    /**
+     蓝牙连接Present视图
+     
+     - parameter viewController:
+     */
+    static func bluetoothPresentViewController(viewController: UIViewController) {
+        
+        UIApplication.sharedApplication().keyWindow?.layer.addAnimation(CATransition(), forKey: kCATransition)
+        
+        UIView.animateWithDuration(0.5) {
+            ez.topMostVC?.presentViewController(viewController, animated: false, completion: nil)
+        }
+        
+    }
+    
+    /**
+     蓝牙连接dismis视图
+     */
+    static func bluetoothDismisViewController() {
+        
+        UIApplication.sharedApplication().keyWindow?.layer.addAnimation(CATransition(), forKey: kCATransition)
+        
+        UIView.animateWithDuration(0.5) {
+            ez.topMostVC?.dismissViewControllerAnimated(false, completion: nil)
+        }
+        
+    }
     
 }
 

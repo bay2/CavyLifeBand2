@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EZSwiftExtensions
 
 /**
  *  @author xuemincai
@@ -22,6 +23,7 @@ protocol GuideViewDataSource {
     var guideBtnImage: UIImage { get }
     var rightItemBtnTitle: String { get }
     var hiddeGuideBtn: Bool { get }
+    var hiddeBackBtn: Bool { get }
     
 }
 
@@ -33,6 +35,7 @@ extension GuideViewDataSource {
     var guideBtnImage: UIImage { return UIImage(asset: .GuideRightBtn) }
     var bgColor: UIColor { return UIColor(named: .HomeViewMainColor) }
     var hiddeGuideBtn: Bool { return false }
+    var hiddeBackBtn: Bool { return false }
     
 }
 
@@ -46,13 +49,30 @@ protocol GuideViewDelegate {
     func onClickRight(viewController: UIViewController)
     func onClickGuideOkBtn(viewController: UIViewController)
     func onLoadView()
+    func onCilckBack(viewController: UIViewController)
     
 }
 
-extension GuideViewDelegate {
+ extension GuideViewDelegate {
     
     func onClickRight(viewController: UIViewController) {}
     func onLoadView() {}
     func onClickGuideOkBtn(viewController: UIViewController) {}
+    
+    func onCilckBack(viewController: UIViewController) {
+        
+        if viewController.navigationController?.viewControllers.count > 0 {
+            
+            viewController.popVC()
+            
+        } else {
+            
+            viewController.dismissVC(completion: nil)
+            
+        }
+        
+    }
+    
+    
     
 }

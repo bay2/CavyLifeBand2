@@ -9,6 +9,24 @@ import UIKit
 import EZSwiftExtensions
 import Gifu
 import RealmSwift
+import CoreBluetooth
+
+private extension BindScene {
+    
+    var hiddeBackBtn: Bool {
+        
+        switch self {
+            
+        case .SignInBind:
+            return true
+        case .SignUpBind:
+            return false
+        case .Rebind:
+            return true
+        }
+    }
+    
+}
 
 
 /**
@@ -16,10 +34,12 @@ import RealmSwift
  *
  *  打开蓝牙
  */
-struct GuideBandBluetooth: GuideViewModelPotocols {
+struct GuideBandBluetooth: GuideViewModelPotocols, LifeBandBleDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView
+    var hiddeBackBtn: Bool { return BindBandCtrl.bindScene.hiddeBackBtn }
+    
     var hiddeGuideBtn: Bool { return true }
     
     init() {
@@ -28,14 +48,37 @@ struct GuideBandBluetooth: GuideViewModelPotocols {
         
     }
     
-    func onClickGuideOkBtn(viewController: UIViewController) {
+    func onLoadView() {
         
-        let nextVC = StoryboardScene.Guide.instantiateGuideView()
+        LifeBandBle.shareInterface.lifeBandBleDelegate = self
+        gotoBindBand()
+        
+    }
+    
+    private func gotoBindBand() {
+        
+        if LifeBandBle.shareInterface.centraManager?.state != .PoweredOn {
+            return
+        }
+        
+        let rootVC = StoryboardScene.Guide.instantiateGuideView()
         let openBandVM = GuideBandOpenBand()
         
-        nextVC.configView(openBandVM, delegate: openBandVM)
+        rootVC.configView(openBandVM, delegate: openBandVM)
         
-        viewController.pushVC(nextVC)
+        CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: rootVC))
+        
+        Log.info("GuideBandBluetooth")
+        
+    }
+    
+    func bleMangerState(bleState: CBCentralManagerState) {
+        
+        if bleState != .PoweredOn {
+            return
+        }
+        
+        gotoBindBand()
         
     }
     
@@ -46,28 +89,47 @@ struct GuideBandBluetooth: GuideViewModelPotocols {
  *
  *  打开手环
  */
-struct GuideBandOpenBand: GuideViewModelPotocols  {
+struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView { return PictureView(title: L10n.GuideOpenCavy.string, titleInfo: L10n.GuideOpenCavyInfo.string, bottomInfo: L10n.GuideOpenCavySugg.string, midImage: AnimatableImageView(image: UIImage(asset: .GuideOpenBand))) }
-    var hiddeGuideBtn: Bool { return true }
+    var hiddeBackBtn: Bool { return BindBandCtrl.bindScene.hiddeBackBtn }
     
+    var hiddeGuideBtn: Bool { return true }
     
     func onLoadView() {
         
+        LifeBandBle.shareInterface.lifeBandBleDelegate = self
+        
         LifeBandBle.shareInterface.bleBinding {
             
-            GuideUserInfo.userInfo.bandName = $0
+            BindBandCtrl.bandName = $0
             
             let rootViewController = StoryboardScene.Guide.instantiateGuideView()
             let linkingVM = GuideBandLinking()
             
             rootViewController.configView(linkingVM, delegate: linkingVM)
             
-            UIApplication.sharedApplication().keyWindow?.setRootViewController(UINavigationController(rootViewController: rootViewController))
-           
+            CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: rootViewController))
+            
+            Log.info("GuideBandOpenBand")
+            
         }
         
+    }
+    
+    func onCilckBack(viewController: UIViewController) {
+        
+        ez.topMostVC?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
+    }
+    
+    func bleMangerState(bleState: CBCentralManagerState) {
+        
+        if bleState == .PoweredOn {
+            return
+        }
+        
+        CavyDefine.bluetoothDismisViewController()
         
     }
     
@@ -78,12 +140,13 @@ struct GuideBandOpenBand: GuideViewModelPotocols  {
  *
  *  手环连接中
  */
-struct GuideBandLinking: GuideViewModelPotocols  {
+struct GuideBandLinking: GuideViewModelPotocols, LifeBandBleDelegate  {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView
     var hiddeGuideBtn: Bool { return true }
     var realm: Realm = try! Realm()
+    var hiddeBackBtn: Bool { return true }
     
     init() {
         
@@ -95,13 +158,35 @@ struct GuideBandLinking: GuideViewModelPotocols  {
     
     func onLoadView() {
         
-        LifeBandBle.shareInterface.bleConnect(GuideUserInfo.userInfo.bandName) {
+        LifeBandBle.shareInterface.lifeBandBleDelegate = self
+        
+        LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName) {
             
+            let rootViewController = StoryboardScene.Guide.instantiateGuideView()
+            let bandVM = GuideBandSuccess()
             
-            let rootViewController = StoryboardScene.Home.instantiateRootView()
+            rootViewController.configView(bandVM, delegate: bandVM)
             
-            UIApplication.sharedApplication().keyWindow?.setRootViewController(rootViewController, transition: CATransition())
+            Log.info("GuideBandLinking")
             
+            CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: rootViewController))
+            
+        }
+        
+    }
+    
+    func bleMangerState(bleState: CBCentralManagerState) {
+        
+        if bleState == .PoweredOn {
+            return
+        }
+        
+        CavyDefine.bluetoothDismisViewController()
+        
+        UIApplication.sharedApplication().keyWindow?.layer.addAnimation(CATransition(), forKey: kCATransition)
+        
+        UIView.animateWithDuration(0.5) {
+            ez.topMostVC?.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(false, completion: nil)
         }
         
     }
@@ -118,6 +203,8 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView { return PictureView(title: L10n.GuidePairSuccess.string, titleInfo: L10n.GuidePairSuccessInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairSeccuss))) }
     var queryUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
+    
+    var hiddeBackBtn: Bool { return BindBandCtrl.bindScene != .SignUpBind }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -154,13 +241,17 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
             
             guideView.configView(guideVM, delegate: guideVM)
             
-            viewController.pushVC(guideView)
+            ez.topMostVC?.navigationController?.setViewControllers([guideView], animated: true)
             
         }
         
         queryUserInfoByNet(completeHeadle: queryUserInfoProc)
         
-        
+    }
+    
+    func onCilckBack(viewController: UIViewController) {
+        ez.topMostVC?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
+        LifeBandBle.shareInterface.bleDisconnect()
     }
     
 }
@@ -177,6 +268,11 @@ struct GuideBandFail: GuideViewModelPotocols {
     var hiddeGuideBtn: Bool { return true }
     var centerView: UIView { return PictureView(title: L10n.GuidePairFail.string, titleInfo: L10n.GuidePairFailInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairFail))) }
     
-    
+    func onClickGuideOkBtn(viewController: UIViewController) {
+        
+        LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName)
+        
+    }
     
 }
+

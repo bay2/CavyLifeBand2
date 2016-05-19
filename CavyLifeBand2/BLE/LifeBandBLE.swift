@@ -12,6 +12,16 @@ let serviceUUID = "14839AC4-7D7E-415C-9A42-167340CF2339"
 let sendCommandCharacteristicUUID = "8B00ACE7-EB0B-49B0-BBE9-9AEE0A26E1A3"
 let revcCommandCharacteristicUUID = "0734594A-A8E7-4B1A-A6B1-CD5243059A57"
 
+/**
+ *  手环绑定控制结构
+ */
+struct BindBandCtrl {
+    
+    static var bandName = ""
+    static var bindScene: BindScene = .SignUpBind
+    
+}
+
 protocol LifeBandBleDelegate {
     
     func bleMangerState(bleState: CBCentralManagerState)
@@ -33,7 +43,7 @@ class LifeBandBle: NSObject {
     
     var centraManager: CBCentralManager?
     
-    private var peripheral: CBPeripheral!
+    private var peripheral: CBPeripheral?
     
     private var peripheralName: String = ""
     
@@ -86,7 +96,13 @@ class LifeBandBle: NSObject {
      */
     func bleDisconnect() {
         
-        self.centraManager?.cancelPeripheralConnection(self.peripheral)
+        guard let peripheral = self.peripheral else {
+            return
+        }
+        
+        peripheralName = ""
+        
+        self.centraManager?.cancelPeripheralConnection(peripheral)
         
     }
     

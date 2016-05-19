@@ -12,7 +12,7 @@ import EZSwiftExtensions
 import Log
 import RealmSwift
 
-class SignInViewController: UIViewController, SignInDelegate, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, LifeBandBleDelegate, QueryUserInfoRequestsDelegate {
+class SignInViewController: UIViewController, SignInDelegate, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate {
 
     // 登入按钮
     @IBOutlet weak var signInBtn: MainPageButton!
@@ -86,8 +86,6 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         updateNavUI()
-        
-        LifeBandBle.shareInterface.lifeBandBleDelegate = self
         
     }
     
@@ -183,6 +181,9 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      */
      func onRightBtn() {
 
+        // 注册绑定场景
+        BindBandCtrl.bindScene = .SignUpBind
+        
         let guideVC = StoryboardScene.Guide.instantiateGuideView()
         let guideVM = GuideBandBluetooth()
         guideVC.configView(guideVM, delegate: guideVM)
@@ -211,19 +212,9 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     func gotoBinding() {
         
         let guideVC = StoryboardScene.Guide.instantiateGuideView()
-        let guideVM: GuideViewModelPotocols
         
-        if LifeBandBle.shareInterface.centraManager?.state == .PoweredOn {
-            
-            guideVM = GuideBandOpenBand()
-            guideVC.configView(guideVM, delegate: guideVM)
-            
-        } else {
-            
-            guideVM = GuideBandBluetooth()
-            guideVC.configView(guideVM, delegate: guideVM)
-            
-        }
+        let guideVM = GuideBandBluetooth()
+        guideVC.configView(guideVM, delegate: guideVM)
         
         self.pushVC(guideVC)
         
@@ -235,9 +226,11 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      - parameter sender: 
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
-        
 
         signIn() {
+            
+            // 登录绑定场景
+            BindBandCtrl.bindScene = .SignInBind
             
             let guideVC = StoryboardScene.Guide.instantiateGuideView()
             
@@ -256,7 +249,9 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
                 }
                 
                 // 手环已绑定，记录手环信息，root 页面中会根据此属性设置绑定的手环
-                GuideUserInfo.userInfo.bandName = bindBandValue
+//                GuideUserInfo.userInfo.bandName = bindBandValue
+                BindBandCtrl.bandName = bindBandValue
+                
                 
             }
             
@@ -282,7 +277,6 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
                 }
                 
             }
-            
             
         }
         

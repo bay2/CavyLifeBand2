@@ -63,8 +63,7 @@ struct GuideUserInfo {
     var isLocalShare: Bool
     var stepNum: Int
     var sleepTime: String
-    var bandName: String
-    var isRebing: Bool
+
     
     static var userInfo = GuideUserInfo()
     
@@ -79,10 +78,14 @@ struct GuideUserInfo {
         isLocalShare   = true
         stepNum        = 0
         sleepTime      = ""
-        bandName       = ""
-        isRebing       = false
         
     }
- 
     
 }
+
+enum BindScene {
+    
+    case SignUpBind, SignInBind, Rebind
+    
+}
+

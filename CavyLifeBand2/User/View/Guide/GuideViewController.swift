@@ -51,9 +51,6 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
         super.viewDidLoad()
         
-        LifeBandBle.shareInterface.lifeBandBleDelegate = self
-        
-        
         allViewsLayOut()
 
         updateViewStyle()
@@ -70,11 +67,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
     
     func onLeftBtnBack() {
         
-        if self.navigationController?.viewControllers.count > 1 {
-            self.popVC()
-        } else {
-            self.dismissVC(completion: nil)
-        }
+        delegate?.onCilckBack(self)
         
     }
     
@@ -106,6 +99,8 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
      更新视图风格
      */
     func updateViewStyle() {
+        
+        leftBtn?.hidden = dataSource?.hiddeBackBtn ?? false
         
         guard let viewDataSource = dataSource else {
             return
