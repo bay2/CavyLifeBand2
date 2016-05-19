@@ -57,6 +57,9 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         
         CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandName
+        
+        
+        
         CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = BindBandCtrl.bandName
         
         loadHomeView()
@@ -66,11 +69,14 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.showHomeView), name: NotificationName.HomeShowHomeView.rawValue, object: nil)
         
         LifeBandBle.shareInterface.lifeBandBleDelegate = self
-        LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName)
         
-        
+        // 需要等待 LifeBandBle.shareInterface 初始化，这里延时1s连接
+        NSTimer.runThisAfterDelay(seconds: 1) {
+            LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName)
+        }
         
     }
+    
     
     /**
      加载主页面视图

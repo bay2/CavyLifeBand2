@@ -228,7 +228,7 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
                 return
             }
             
-            // 没有目标值信息
+            // 有目标值信息
             guard userInfo.sleepTime.isEmpty == true else {
                 
                 UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
@@ -241,7 +241,15 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
             
             guideView.configView(guideVM, delegate: guideVM)
             
-            ez.topMostVC?.navigationController?.setViewControllers([guideView], animated: true)
+            viewController.pushVC(viewController)
+            
+        }
+        
+        // 重新绑定手环在这里设置信息，其他在RootViewController 设置
+        if BindBandCtrl.bindScene == .Rebind {
+            
+            let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+            CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandName
             
         }
         

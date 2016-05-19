@@ -30,16 +30,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             
         #endif
         
+        if ez.isRelease {
+            Log.enabled = false
+        }
+        
         realmConfig()
         
         crashConfig()
         
         pgyUpdateConfig()
         
-        Log.error("\(CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand)")
+        setRootViewController()
         
         return true
 
+    }
+    
+    func setRootViewController() {
+        
+        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
+            return
+        }
+        
+        let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        BindBandCtrl.bandName = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] ?? ""
+        
+        window?.rootViewController = StoryboardScene.Home.instantiateRootView()
+        
     }
     
     func pgyUpdateConfig() {
