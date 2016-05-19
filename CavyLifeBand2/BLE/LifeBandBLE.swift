@@ -216,7 +216,7 @@ extension LifeBandBle: CBPeripheralDelegate {
             return
         }
         
-        _ = characteristics.map { (chara) -> CBCharacteristic in
+        _ = characteristics.map { chara -> CBCharacteristic in
             
             if chara.UUID.isEqual(CBUUID(string: sendCommandCharacteristicUUID)) {
                 sendCharacteristic = chara

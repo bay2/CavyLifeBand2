@@ -26,6 +26,8 @@ class PKListVC: UIViewController, BaseViewControllerPresenter, PKRecordsUpdateFo
     
     var notificationToken: NotificationToken?
     
+    var pkInfoView: UIView?
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -54,6 +56,22 @@ class PKListVC: UIViewController, BaseViewControllerPresenter, PKRecordsUpdateFo
     override func viewDidAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
+        
+        //未同步的删除pk
+        if self.getUnSyncPKList(PKFinishRealmModel.self) != nil {
+            return
+        }
+        
+        //未同步的接受pk
+        if self.getUnSyncPKList(PKDueRealmModel.self) != nil {
+           return
+        }
+        
+        //未同步的撤销pk
+        if self.getUnSyncWaitPKListWithType(.UndoWait) != nil {
+            return
+        }
+
         
         self.loadDataFromWeb()
         
@@ -134,6 +152,19 @@ extension PKListVC {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
+        //展示pk详情的View
+        guard let pkView = dataSources[indexPath.section].getPKInfoView(indexPath) else {
+            return
+        }
+        
+        pkInfoView = pkView
+        
+        pkInfoView!.addTapGesture { [unowned self] _ in
+            self.pkInfoView?.removeFromSuperview()
+        }
+
+        UIApplication.sharedApplication().keyWindow?.addSubview(pkInfoView!)
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {

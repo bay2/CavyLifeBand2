@@ -227,7 +227,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
 
-        signIn() {
+        signIn {
             
             // 登录绑定场景
             BindBandCtrl.bindScene = .SignInBind

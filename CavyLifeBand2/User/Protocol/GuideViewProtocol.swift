@@ -55,9 +55,14 @@ protocol GuideViewDelegate {
 
  extension GuideViewDelegate {
     
-    func onClickRight(viewController: UIViewController) {}
-    func onLoadView() {}
-    func onClickGuideOkBtn(viewController: UIViewController) {}
+    func onClickRight(viewController: UIViewController) {
+    }
+    
+    func onLoadView() {
+    }
+    
+    func onClickGuideOkBtn(viewController: UIViewController) {
+    }
     
     func onCilckBack(viewController: UIViewController) {
         

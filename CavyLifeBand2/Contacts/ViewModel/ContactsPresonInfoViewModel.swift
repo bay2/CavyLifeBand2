@@ -146,6 +146,8 @@ extension PresonInfoCellViewModel: UIImagePickerControllerDelegate, UINavigation
                 return
             }
             
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar = reslutMsg.iconUrl
+            
             self.updateUserInfo(loginUserId) { userInfo -> UserInfoModel in
                 
                 userInfo.avatarUrl = reslutMsg.iconUrl

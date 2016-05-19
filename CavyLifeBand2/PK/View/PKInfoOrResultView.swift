@@ -39,25 +39,15 @@ class PKInfoOrResultView: UIView {
         self.clipsToBounds = true
         self.layer.cornerRadius = CavyDefine.commonCornerRadius
         
-        self.bringSubviewToFront(userAvatarImageView)
-        self.bringSubviewToFront(competitorAvatarImageView)
-        
         self.addSubview(winnerImageView)
         
         winnerImageView.hidden = true
         
-        dataSource = PKInfoOrResultViewModel()
-        
-        dataSourceSetting()
-        
         baseSetting()
-        
         
     }
     
     func baseSetting() -> Void {
-        
-        seeStateLabel.font = dataSource?.matrixFont
         
         seeStateLabel.textColor = UIColor(named: .PKInfoOrResultViewNormalTextColor)
         
@@ -79,12 +69,15 @@ class PKInfoOrResultView: UIView {
         
     }
     
+    //双方打平的UI设置
     func winnerBoth() -> Void {
+        
         competitorAvatarImageView.snp_makeConstraints {(make) in
             
             make.leading.equalTo(topBGView.snp_centerX).offset(30)
             
             make.width.equalTo(smallAvatarWidth)
+            
         }
         
         userAvatarImageView.snp_makeConstraints {(make) in
@@ -97,6 +90,7 @@ class PKInfoOrResultView: UIView {
         competitorAvatarImageView.layer.cornerRadius = smallAvatarWidth / 2
     }
     
+    //对手赢的UI设置
     func winnerCompetitorSetting() -> Void {
         
         if dataSource?.isPKEnd == true {
@@ -134,7 +128,7 @@ class PKInfoOrResultView: UIView {
         userAvatarImageView.layer.cornerRadius = smallAvatarWidth / 2
     }
     
-    
+    //我赢的UI设置
     func winnerUserSetting() -> Void {
             
         if dataSource?.isPKEnd == true {
@@ -174,19 +168,22 @@ class PKInfoOrResultView: UIView {
         competitorAvatarImageView.layer.cornerRadius = smallAvatarWidth / 2
     }
     
-    func dataSourceSetting() -> Void {
+    //model数据设置ui
+    func configure(model: PKInfoOrResultViewDataSource) -> Void {
         
-        userStepLabel.text       = dataSource?.userStepCount.toString
-        competitorStepLabel.text = dataSource?.competitorStepCount.toString
+        self.dataSource = model
+        
+        self.userStepLabel.text       = self.dataSource?.userStepCount.toString
+        self.competitorStepLabel.text = self.dataSource?.competitorStepCount.toString
 
         userNameLabel.text       = dataSource?.userName
         competitorNameLabel.text = dataSource?.competitorName
         
         timeTitleLabel.text = dataSource?.timeTitle
-        seeStateLabel.text  = dataSource?.seeStateTitle
         
         timeLabel.attributedText = dataSource?.timeFormatterStr()
         
+        seeStateLabel.font = dataSource?.matrixFont
         
         if dataSource?.winner == .User {
             winnerUserSetting()
@@ -195,7 +192,34 @@ class PKInfoOrResultView: UIView {
         } else {
             winnerBoth()
         }
+        
+        userAvatarImageView.af_setImageWithURL(NSURL(string: dataSource?.userAvatarUrl ?? "")!, placeholderImage: nil, runImageTransitionIfCached: true)
+        competitorAvatarImageView.af_setImageWithURL(NSURL(string: dataSource?.comprtitorAvatarUrl ?? "")!, placeholderImage: nil, runImageTransitionIfCached: true)
+        
+        loadInfoFromWeb()
 
+    }
+
+}
+
+extension PKInfoOrResultView: PKWebRequestProtocol {
+    
+    //从服务器加载数据库没有的展示数据
+    func loadInfoFromWeb() {
+        getPKInfo({ pkInfo in
+            
+            self.dataSource?.userStepCount = pkInfo.userStepCount
+            self.dataSource?.competitorStepCount = pkInfo.friendStepCount
+            self.dataSource?.isOtherCanSee = pkInfo.isAllowWatch == PKAllowWatchState.OtherNoWatch.rawValue ? false : true
+            
+            self.userStepLabel.text       = self.dataSource?.userStepCount.toString
+            self.competitorStepLabel.text = self.dataSource?.competitorStepCount.toString
+            self.seeStateLabel.text = self.dataSource?.seeStateTitle
+            
+        }, failure: { errorMsg in
+            Log.error(errorMsg)
+        })
+        
     }
 
 }
@@ -212,11 +236,11 @@ enum Winner {
 protocol PKInfoOrResultViewDataSource {
     var isPKEnd: Bool { get }
     
-    var isOtherCanSee: Bool { get }
+    var isOtherCanSee: Bool { get set }
     
-    var userStepCount: Int { get }
+    var userStepCount: Int { get set }
     
-    var competitorStepCount: Int { get }
+    var competitorStepCount: Int { get set }
     
     var userName: String { get }
     
@@ -230,8 +254,9 @@ protocol PKInfoOrResultViewDataSource {
     
     var matrixFont: UIFont { get }
     
-//    var userAvatar: UIImage { get }
-//    var comprtitorAvatar: UIImage { get }
+    var userAvatarUrl: String { get }
+    
+    var comprtitorAvatarUrl: String { get }
     
     func timeFormatterStr() -> NSMutableAttributedString
     
@@ -253,15 +278,23 @@ extension PKInfoOrResultViewDataSource {
 }
 
 struct PKInfoOrResultViewModel: PKInfoOrResultViewDataSource {
-    var isPKEnd: Bool = true
+    var isPKEnd: Bool
     
-    var userStepCount: Int = 123
+    var userStepCount: Int = 0
     
-    var competitorStepCount: Int = 1234
+    var competitorStepCount: Int = 0
     
-    var competitorName: String = "雪菜炒饭"
+    var competitorName: String
     
-    var isOtherCanSee: Bool = true
+    var isOtherCanSee: Bool = false
+    
+    var userAvatarUrl: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar
+    
+    var comprtitorAvatarUrl: String
+    
+    var pkDuration: String
+    
+    var beginTime: String = ""
     
     var timeTitle: String {
         if isPKEnd == true {
@@ -294,10 +327,34 @@ struct PKInfoOrResultViewModel: PKInfoOrResultViewDataSource {
      */
     func timeFormatterStr() -> NSMutableAttributedString {
         
-        if isPKEnd == true {
-            return addAttributeText("1")
+        if isPKEnd == true { //pk已结束，直接显示pk时长
+            
+            return addAttributeText(pkDuration)
+            
         } else {
-            return addAttributeText("1", hour: "2", minutes: "22")
+            if beginTime.characters.count > 0 {
+                
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                
+                let beginDate = dateFormatter.dateFromString(beginTime)
+                let duration  = pkDuration.toDouble() ?? 0
+                let endDate   = beginDate?.dateByAddingTimeInterval(duration * 24 * 60 * 60)
+                let nowDate   = NSDate()
+                
+                if endDate?.laterDate(nowDate) == endDate {
+                    
+                    let difDays  = nowDate.daysInBetweenDate(endDate!).toInt
+                    let difHours = nowDate.hoursInBetweenDate(endDate!).toInt % 24
+                    let difMins  = nowDate.minutesInBetweenDate(endDate!).toInt % 60
+                    
+                    return addAttributeText("\(difDays)", hour: "\(difHours)", minutes: "\(difMins)")
+                    
+                }
+                
+            }
+            
+            return addAttributeText("")
         }
 
     }
@@ -331,6 +388,23 @@ struct PKInfoOrResultViewModel: PKInfoOrResultViewDataSource {
         currentString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(12), range: NSMakeRange(day.length + dayUnit.length + hour.length + hourUnit.length + minutes.length, minUnit.length))
         
         return currentString
+    }
+    
+    init(pkRealm: PKRecordRealmDataSource) {
+        
+        self.isPKEnd = pkRealm is PKDueRealmModel ? false : true
+        
+        self.competitorName = pkRealm.nickname
+        
+        self.comprtitorAvatarUrl = pkRealm.avatarUrl
+        
+        self.pkDuration = pkRealm.pkDuration
+        
+        if pkRealm is PKDueRealmModel {
+            let pk = pkRealm as! PKDueRealmModel
+            self.beginTime = pk.beginTime
+        }
+        
     }
     
 }

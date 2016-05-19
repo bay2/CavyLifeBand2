@@ -227,6 +227,34 @@ enum L10n {
   case HomeRightListTitleFirmwareUpgrade
   /// 绑定新的CavyBand
   case HomeRightListTitleBindingBand
+  /// 睡眠
+  case ChartSleep
+  /// 计步
+  case ChartStep
+  /// 日
+  case ChartTimeBucketDay
+  /// 周
+  case ChartTimeBucketWeek
+  /// 月
+  case ChartTimeBucketMonth
+  /// 目标完成度
+  case ChartTargetPercent
+  /// 深睡
+  case ChartSleepDeep
+  /// 浅睡
+  case ChartSleepLight
+  /// 深度
+  case ChartSleepDegreeDeep
+  /// 浅度
+  case ChartSleepDegreeLight
+  /// 步数
+  case ChartStepTodayStep
+  /// 周总步数
+  case ChartStepWeekStep
+  /// 行走公里数
+  case ChartStepKilometer
+  /// 花费时长
+  case ChartStepTimeUsed
   /// 生活豚鼠
   case ContactsListCellCavy
   /// 搜索
@@ -487,6 +515,20 @@ enum L10n {
   case RelateRelateAppNavTitle
   /// 下载
   case RelateRelateAppCellDownloadBtnTitle
+  /// 一
+  case AlarmDayMonday
+  /// 二
+  case AlarmDayTuesday
+  /// 三
+  case AlarmDayWednesday
+  /// 四
+  case AlarmDayThursday
+  /// 五
+  case AlarmDayFriday
+  /// 六
+  case AlarmDaySaturday
+  /// 日
+  case AlarmDaySunday
 }
 
 extension L10n: CustomStringConvertible {
@@ -718,6 +760,34 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.RightList.Title.FirmwareUpgrade")
       case .HomeRightListTitleBindingBand:
         return L10n.tr("Home.RightList.Title.BindingBand")
+      case .ChartSleep:
+        return L10n.tr("Chart.Sleep")
+      case .ChartStep:
+        return L10n.tr("Chart.Step")
+      case .ChartTimeBucketDay:
+        return L10n.tr("Chart.TimeBucket.Day")
+      case .ChartTimeBucketWeek:
+        return L10n.tr("Chart.TimeBucket.Week")
+      case .ChartTimeBucketMonth:
+        return L10n.tr("Chart.TimeBucket.Month")
+      case .ChartTargetPercent:
+        return L10n.tr("Chart.Target.Percent")
+      case .ChartSleepDeep:
+        return L10n.tr("Chart.Sleep.Deep")
+      case .ChartSleepLight:
+        return L10n.tr("Chart.Sleep.Light")
+      case .ChartSleepDegreeDeep:
+        return L10n.tr("Chart.Sleep.Degree.Deep")
+      case .ChartSleepDegreeLight:
+        return L10n.tr("Chart.Sleep.Degree.Light")
+      case .ChartStepTodayStep:
+        return L10n.tr("Chart.Step.Today.Step")
+      case .ChartStepWeekStep:
+        return L10n.tr("Chart.Step.Week.Step")
+      case .ChartStepKilometer:
+        return L10n.tr("Chart.Step.Kilometer")
+      case .ChartStepTimeUsed:
+        return L10n.tr("Chart.Step.TimeUsed")
       case .ContactsListCellCavy:
         return L10n.tr("Contacts.ListCell.Cavy")
       case .ContactsSearchBarSearch:
@@ -978,6 +1048,20 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Relate.RelateApp.NavTitle")
       case .RelateRelateAppCellDownloadBtnTitle:
         return L10n.tr("Relate.RelateAppCell.DownloadBtnTitle")
+      case .AlarmDayMonday:
+        return L10n.tr("AlarmDay.Monday")
+      case .AlarmDayTuesday:
+        return L10n.tr("AlarmDay.Tuesday")
+      case .AlarmDayWednesday:
+        return L10n.tr("AlarmDay.Wednesday")
+      case .AlarmDayThursday:
+        return L10n.tr("AlarmDay.Thursday")
+      case .AlarmDayFriday:
+        return L10n.tr("AlarmDay.Friday")
+      case .AlarmDaySaturday:
+        return L10n.tr("AlarmDay.Saturday")
+      case .AlarmDaySunday:
+        return L10n.tr("AlarmDay.Sunday")
     }
   }
 
