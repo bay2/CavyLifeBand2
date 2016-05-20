@@ -90,6 +90,9 @@ class MainPageViewController: UIViewController {
             
             self.presentVC(UINavigationController(rootViewController: guideVC))
             
+            // 注册绑定场景
+            BindBandCtrl.bindScene = .SignUpBind
+            
         }
         
         signUpBtn.awakeFromNib()

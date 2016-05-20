@@ -1,50 +1,71 @@
-# 首页
-![](../DesignSketch/account_1.png)
+![](../DesignSketch/1.png)
+![](../DesignSketch/2.png)
+![](../DesignSketch/3.png)
+![](../DesignSketch/4.png)
+![](../DesignSketch/5.png)
+![](../DesignSketch/6.png)
+![](../DesignSketch/7.png)
+![](../DesignSketch/8.png)
+![](../DesignSketch/9.png)
+![](../DesignSketch/10.png)
+![](../DesignSketch/11.png)
+![](../DesignSketch/12.png)
+![](../DesignSketch/13.png)
+![](../DesignSketch/14.png)
+![](../DesignSketch/15.png)
+![](../DesignSketch/16.png)
+![](../DesignSketch/17.png)
+![](../DesignSketch/18.png)
+![](../DesignSketch/19.png)
+![](../DesignSketch/20.png)
+![](../DesignSketch/21.1.png)
+![](../DesignSketch/21.2.png)
+![](../DesignSketch/22.png)
+![](../DesignSketch/23.png)
+![](../DesignSketch/24.png)
+![](../DesignSketch/25.png)
+![](../DesignSketch/26.png)
+![](../DesignSketch/27.png)
+![](../DesignSketch/28.png)
+![](../DesignSketch/29.1.png)
+![](../DesignSketch/29.2.png)
+![](../DesignSketch/30.1.png)
+![](../DesignSketch/30.2.png)
+![](../DesignSketch/30.3.png)
+![](../DesignSketch/31.1.png)
+![](../DesignSketch/31.2.png)
+![](../DesignSketch/31.3.png)
+![](../DesignSketch/31.4.png)
+![](../DesignSketch/31.5.png)
+![](../DesignSketch/32.1.png)
+![](../DesignSketch/32.2.png)
+![](../DesignSketch/33.png)
+![](../DesignSketch/34.png)
+![](../DesignSketch/35.png)
+![](../DesignSketch/36.png)
+![](../DesignSketch/37.png)
+![](../DesignSketch/38.png)
+![](../DesignSketch/39.png)
+![](../DesignSketch/40.1.png)
+![](../DesignSketch/40.2.png)
+![](../DesignSketch/41.1.png)
+![](../DesignSketch/41.2.png)
+![](../DesignSketch/41.3.png)
+![](../DesignSketch/41.4.png)
+![](../DesignSketch/42.png)
+![](../DesignSketch/43.png)
+![](../DesignSketch/44.png)
+![](../DesignSketch/45.1.png)
+![](../DesignSketch/45.2.png)
+![](../DesignSketch/45.3.png)
+![](../DesignSketch/46.png)
+![](../DesignSketch/47.png)
+![](../DesignSketch/48.1.png)
+![](../DesignSketch/48.2.png)
+![](../DesignSketch/48.3.png)
+![](../DesignSketch/49.png)
+![](../DesignSketch/50.png)
 
-# 登录页
-![](../DesignSketch/account_2.png)
 
-# 手机注册页
-![](../DesignSketch/account_3.png)
 
-# 邮箱注册页
-![](../DesignSketch/account_4.png)
 
-# 手机忘记密码
-![](../DesignSketch/account_5.png)
-
-# 邮箱忘记密码
-![](../DesignSketch/account_5.png)
-
-# 引导页-性别
-![](../DesignSketch/boot_1.png)
-
-# 引导页-生日
-![](../DesignSketch/boot_2.png)
-
-# 引导页-身高
-![](../DesignSketch/boot_3.png)
-
-# 引导页-体重
-![](../DesignSketch/boot_4.png)
-
-# 引导页-智能通知
-![](../DesignSketch/boot_5.png)
-
-# 引导页-位置共享
-![](../DesignSketch/boot_6.png)
-
-# 引导页-打开蓝牙
-![](../DesignSketch/boot_7.png)
-
-# 引导页-启动手环
-![](../DesignSketch/boot_8.png)
-
-# 引导页-正在连接
-![](../DesignSketch/boot_9.png)
-
-# 引导页-配对成功
-![](../DesignSketch/boot_10.png)
-
-# 引导页-无法配对
-![](../DesignSketch/boot_11.png)

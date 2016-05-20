@@ -62,8 +62,6 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         accountInfoQuery()
         
-        
-        
         self.updateNavUI()
         
     }
@@ -171,11 +169,14 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         logoutButton.backgroundColor = UIColor(named: .ContactsAccountLogoutButton)
         logoutButton.setBackgroundColor(UIColor(named: .ContactsAccountLogoutButton), forState: .Normal)
         
+        // 退出按钮手势
         logoutButton.addTapGesture { _ in
             
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
             
             UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Main.instantiateMainPageView(), transition: CATransition())
+            
+            LifeBandBle.shareInterface.bleDisconnect()
             
         }
         
@@ -184,7 +185,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     /**
      添加TableView
      */
-    func  addTableView(){
+    func addTableView(){
         
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         tableView.backgroundColor = UIColor(named: .HomeViewMainColor)

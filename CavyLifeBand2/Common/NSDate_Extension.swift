@@ -125,7 +125,7 @@ extension NSDate {
             
         case .Day:
             
-            let timeDate:(year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time)
+            let timeDate: (year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time)
             let year = timeDate.year
             let month = timeDate.month
             let day = timeDate.day
@@ -158,7 +158,7 @@ extension NSDate {
             
             // beginTime
             
-            let timeDate1:(year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time1)
+            let timeDate1: (year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time1)
             let year = timeDate1.year
             let month = timeDate1.month
             let day = timeDate1.day
@@ -172,7 +172,7 @@ extension NSDate {
             
             if time2.contains(".") {
     
-                let timeDate2:(year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time2)
+                let timeDate2: (year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time2)
                 newYear = timeDate2.year
                 newMonth = timeDate2.month
                 

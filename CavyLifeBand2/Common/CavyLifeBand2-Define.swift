@@ -8,6 +8,7 @@
 
 import Foundation
 import EZSwiftExtensions
+import KeychainAccess
 
 struct CavyDefine {
     
@@ -44,6 +45,9 @@ struct CavyDefine {
     // 已登录用户信息
     static var loginUserBaseInfo = LoginUserBaseInfoStorage()
     
+    // 手环绑定信息
+    static var bindBandInfos = BindBandInfo()
+    
     // 已登录用户昵称
     static var userNickname = ""
     
@@ -67,13 +71,45 @@ struct CavyDefine {
         return accountSex
     }
     
+    // MARK - 蓝牙连接ViewController 跳转处理
+    /**
+     蓝牙连接Present视图
+     
+     - parameter viewController:
+     */
+    static func bluetoothPresentViewController(viewController: UIViewController) {
+        
+        UIApplication.sharedApplication().keyWindow?.layer.addAnimation(CATransition(), forKey: kCATransition)
+        
+        UIView.animateWithDuration(0.5) {
+            ez.topMostVC?.presentViewController(viewController, animated: false, completion: nil)
+        }
+        
+    }
+    
+    /**
+     蓝牙连接dismis视图
+     */
+    static func bluetoothDismisViewController() {
+        
+        UIApplication.sharedApplication().keyWindow?.layer.addAnimation(CATransition(), forKey: kCATransition)
+        
+        UIView.animateWithDuration(0.5) {
+            ez.topMostVC?.dismissViewControllerAnimated(false, completion: nil)
+        }
+        
+    }
     
 }
 
+// MARK: - 已登录的用户基本信息，存储NSUserDefaults
+
 /**
- *  @author xuemincai
- *
- *  已登录用户基本信息
+   已登录用户基本信息
+ 
+   - Author:
+    xuemincai
+ 
  */
 struct LoginUserBaseInfoStorage {
     
@@ -103,9 +139,11 @@ struct LoginUserBaseInfoStorage {
 }
 
 /**
- *  @author xuemincai
- *
- *  已登录用户信息
+ 已登录用户信息
+ 
+ - Author:
+ xuemincai
+ 
  */
 struct LoginUserBaseInfo {
     
@@ -115,8 +153,8 @@ struct LoginUserBaseInfo {
     
     
     init(dictionary: [String: AnyObject]) {
-        
-        loginUserId = (dictionary["SignUserId"] as? String) ?? ""
+
+        loginUserId   = (dictionary["SignUserId"] as? String) ?? ""
         loginUsername = (dictionary["SignUserName"] as? String) ?? ""
         loginAvatar = (dictionary["SignUserAvatar"] as? String) ?? ""
         
@@ -140,42 +178,93 @@ protocol LoginStorage {
 
 extension NSUserDefaults: LoginStorage { }
 
+// MARK: - 手环绑定信息存储 KeyChain
 /**
- 消息定义
- 
- - HomeLeftOnClickMenu:         点击菜单
- - HomeLeftOnClickCellPushView: 点击list
- - HomeLeftHiddenMenu:          隐藏菜单
- - HomeLeftAccountInfo:         点头像
+ *  手环绑定信息
  */
+struct BindBandInfo {
+    
+    private let keychain = Keychain(service: "com.cavytech.CavyLifeBand2")
+    
+    var bindBandInfo: BindBandInfoStorage {
+        
+        didSet {
+            save()
+        }
+        
+    }
+    
+    init() {
+        
+        guard let userMac = keychain[data: "CavyUserMAC"] else {
+            
+            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:])
+            return
+            
+        }
+        
+        guard let userBindBand = NSKeyedUnarchiver.unarchiveObjectWithData(userMac) as? [String: String] else {
+            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:])
+            return
+        }
+        
+        self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: userBindBand)
+        
+    }
+    
+    private func save() {
+        
+        keychain["CavyGameMAC"] = bindBandInfo.defaultBindBand
+        keychain[data: "CavyUserMAC"] = NSKeyedArchiver.archivedDataWithRootObject(bindBandInfo.userBindBand)
+        
+    }
+    
+    
+}
+
+struct BindBandInfoStorage {
+    
+    var defaultBindBand: String
+    var userBindBand: [String: String]
+    
+    
+}
+
+
+
+// MARK: - 通知消息定义
+
+
 enum NotificationName: String {
     
-    case HomeLeftOnClickMenu
-    case HomePushView
-    case HomeShowHomeView
-    case HomeRightOnClickMenu
-    case HomeLeftAccountInfo
+    case HomeLeftOnClickMenu           // 点击左侧菜单
+    case HomePushView                  // 跳转页面
+    case HomeShowHomeView              // 显示主页
+    case HomeRightOnClickMenu          // 点击右侧菜单
+    case HomeLeftAccountInfo           // 点击左侧头像，账号信息
     case ReminderPhoneSwitchChange
     case ReminderPhoneScrollToSelect
+    
+
     case ContactsFirendReqDeleteItem
     
 }
 
 
-// web 接口错误码定义
+// MARK: - 服务器返回码定义
 enum WebApiCode: String {
 
-    case Success = "0000"
-    case ParaError = "1000"
-    case UserPasswdError = "1001"
-    case PhoneNumError = "1002"
-    case SecurityCodeError = "1003"
-    case MobifyUserError = "1004"
-    case UserExisted = "1005"
-    case UserNotExisted = "1006"
+    case Success               = "0000"
+    case ParaError             = "1000"
+    case UserPasswdError       = "1001"
+    case PhoneNumError         = "1002"
+    case SecurityCodeError     = "1003"
+    case MobifyUserError       = "1004"
+    case UserExisted           = "1005"
+    case UserNotExisted        = "1006"
     case SendSecutityCodeError = "1007"
-    case SystemError = "5001"
-    case DBError = "5002"
+    case SystemError           = "5001"
+    case DBError               = "5002"
 }
 
 // web Get接口错误码定义
@@ -224,54 +313,59 @@ enum WebGetApiCode: String {
  */
 enum UserNetRequsetKey: String {
     
-    case Cmd = "cmd"
-    case PhoneNum = "phoneNum"
-    case Passwd = "pwd"
-    case SecurityCode = "authCode"
-    case UserName = "user"
-    case UserID = "userId"
-    case Avater = "imgFile"
-    case FriendID = "friendId"
-    case Flag = "flag"
-    case FriendIdList = "friendIds"
-    case Operate = "operate"
-    case NickName = "nickname"
-    case Sex = "sex"
-    case Height = "height"
-    case Weight = "weight"
-    case Birthday = "birthday"
-    case Address = "address"
-    case StepNum = "stepNum"
-    case SleepTime = "sleepTime"
-    case IsNotification = "isNotification"
-    case IsLocalShare = "isLocalShare"
-    case IsOpenBirthday = "isOpenBirthday"
-    case IsOpenHeight = "isOpenHeight"
-    case IsOpenWeight = "isOpenWeight"
-    case SearchType = "searchType"
-    case PhoneNumList = "phoneNumList"
-    case VerifyMsg = "verifyMsg"
-    case Longitude = "longitude"
-    case Latitude = "latitude"
-    case LaunchPkList = "launchPkList"
-    case UndoPkList = "undoPkList"
-    case DelPkList = "delPkList"
-    case AcceptPkList = "acceptPkList"
-    case LaunchTime = "launchTime"
-    case PKDuration = "pkDuration"
-    case PKId = "pkId"
-    case AcceptTime = "acceptTime"
-    case IsAllowWatch = "isAllowWatch"
-    case FriendReqType = "type"
-    case FileName = "filename"
-    case Name = "name"
+    case Cmd             = "cmd"
+    case PhoneNum        = "phoneNum"
+    case Passwd          = "pwd"
+    case SecurityCode    = "authCode"
+    case UserName        = "user"
+    case UserID          = "userId"
+    case Avater          = "imgFile"
+    case FriendID        = "friendId"
+    case Flag            = "flag"
+    case FriendIdList    = "friendIds"
+    case Operate         = "operate"
+    case NickName        = "nickname"
+    case Sex             = "sex"
+    case Height          = "height"
+    case Weight          = "weight"
+    case Birthday        = "birthday"
+    case Address         = "address"
+    case StepNum         = "stepNum"
+    case SleepTime       = "sleepTime"
+    case IsNotification  = "isNotification"
+    case IsLocalShare    = "isLocalShare"
+    case IsOpenBirthday  = "isOpenBirthday"
+    case IsOpenHeight    = "isOpenHeight"
+    case IsOpenWeight    = "isOpenWeight"
+    case SearchType      = "searchType"
+    case PhoneNumList    = "phoneNumList"
+    case VerifyMsg       = "verifyMsg"
+    case Longitude       = "longitude"
+    case Latitude        = "latitude"
+    case LaunchPkList    = "launchPkList"
+    case UndoPkList      = "undoPkList"
+    case DelPkList       = "delPkList"
+    case AcceptPkList    = "acceptPkList"
+    case LaunchTime      = "launchTime"
+    case PKDuration      = "pkDuration"
+    case PKId            = "pkId"
+    case AcceptTime      = "acceptTime"
+    case IsAllowWatch    = "isAllowWatch"
+    case FriendReqType   = "type"
+    case FileName        = "filename"
+    case Name            = "name"
     case FeedbackContent = "feedback"
-    case PageSize = "pagesize"
-    case PageNum = "pagenum"
-    case AC = "ac"
-    
+    case HelpList        = "helpList"
+    case HelpId          = "helpId"
+    case HelpTitle       = "title"
+    case HelpWebUrl      = "webUrl"
+    case PageSize        = "pagesize"
+    case PageNum         = "pagenum"
+    case AC              = "ac"
+
 }
 
+// MARK: - 服务器接口命令
 /**
  网络请求API
  
@@ -304,26 +398,26 @@ enum UserNetRequsetKey: String {
 enum UserNetRequestMethod: String {
     
     case SendSecurityCode = "sendAuthCode"
-    case SignUp = "userReg"
-    case SignIn = "userLogin"
-    case UpdateAvatar = "setUserIcon"
-    case ForgotPwd = "resetPsw"
-    case UserProfile = "getUserInfo"
-    case SetUserProfile = "setUserInfo"
-    case GetFriendList = "getFriendList"
-    case SearchFriend = "searchFriend"
-    case AddFriend = "addFriend"
+    case SignUp           = "userReg"
+    case SignIn           = "userLogin"
+    case UpdateAvatar     = "setUserIcon"
+    case ForgotPwd        = "resetPsw"
+    case UserProfile      = "getUserInfo"
+    case SetUserProfile   = "setUserInfo"
+    case GetFriendList    = "getFriendList"
+    case SearchFriend     = "searchFriend"
+    case AddFriend        = "addFriend"
     case GetFriendReqList = "getFriendReqList"
-    case FollowFriend = "followUser"
-    case DeleteFriend = "deleteFriend"
+    case FollowFriend     = "followUser"
+    case DeleteFriend     = "deleteFriend"
     case ReportCoordinate = "setUserLBS"
-    case GetPKRecordList = "getPkList"
-    case LaunchPK = "launchPK"
-    case UndoPK = "undoPK"
-    case DeletePK = "delePK"
-    case AcceptPK = "acceptPK"
-    case GetHelpList = "getHelpList"
-    case SubmitFeedback = "submitFeedback"
-    case GetPKInfo = "getPKInfo"
-    case CavyLife = "cavylife"
+    case GetPKRecordList  = "getPkList"
+    case LaunchPK         = "launchPK"
+    case UndoPK           = "undoPK"
+    case DeletePK         = "delePK"
+    case AcceptPK         = "acceptPK"
+    case GetHelpList      = "getHelpList"
+    case SubmitFeedback   = "submitFeedback"
+    case GetPKInfo        = "getPKInfo"
+    case CavyLife         = "cavylife"
 }

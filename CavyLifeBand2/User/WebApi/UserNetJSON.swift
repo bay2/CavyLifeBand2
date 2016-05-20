@@ -30,20 +30,20 @@ struct UserSignUpMsg: JSONJoy {
  */
 struct UserProfile {
     
-    var sex: String?
-    var height: String?
-    var weight: String?
-    var birthday: String?
-    var avatarUrl: String?
-    var address: String?
-    var nickName: String?
-    var stepNum: Int?
-    var sleepTime: String?
-    var isNotification: Bool?
-    var isLocalShare: Bool?
-    var isOpenBirthday: Bool?
-    var isOpenHeight: Bool?
-    var isOpenWeight: Bool?
+    var sex: String
+    var height: String
+    var weight: String
+    var birthday: String
+    var avatarUrl: String
+    var address: String
+    var nickName: String
+    var stepNum: Int
+    var sleepTime: String
+    var isNotification: Bool
+    var isLocalShare: Bool
+    var isOpenBirthday: Bool
+    var isOpenHeight: Bool
+    var isOpenWeight: Bool
     
     init(_ decoder: JSONDecoder) throws  {
         

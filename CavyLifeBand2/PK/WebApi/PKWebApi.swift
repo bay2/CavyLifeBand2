@@ -418,7 +418,7 @@ protocol PKRecordsUpdateFormWeb: PKRecordsRealmModelOperateDelegate {
 extension PKRecordsUpdateFormWeb  {
     
     func loadDataFromWeb(loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
-        Log.info(realm.path)
+        
         do {
             
             try PKWebApi.shareApi.getPKRecordList(loginUserId) {(result) in
