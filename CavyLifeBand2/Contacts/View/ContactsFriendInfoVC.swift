@@ -150,6 +150,8 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
             make.height.equalTo(infoTableViewHeight)
         }
         
+        qualityTableCellVM[0].infoValue = self.webJsonModel?.stepNum ?? ""
+        
     }
     
     /**

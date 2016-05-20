@@ -63,6 +63,8 @@ protocol ContactsFriendQualityCellDataSource {
     
     var info: String { get }
     
+    var infoValue: String { get set }
+    
     var infoTextColor: UIColor { get }
     
     var iconImage: UIImage? { get }
@@ -77,18 +79,25 @@ struct PKQualityCellVM: ContactsFriendQualityCellDataSource {
     
     var iconImage: UIImage? = UIImage(named: "HomeListPK")
     
-    var info: String = ""
+    var info: String { return infoValue  }
+    
+    var infoValue: String = ""
     
 }
 
 struct StepQualityCellVM: ContactsFriendQualityCellDataSource {
+    
     var title: String = L10n.ContactsShowInfoStep.string
     
     var infoTextColor: UIColor = UIColor(named: .ContactsName)
     
     var iconImage: UIImage? = UIImage(named: "HomeListStep")
     
-    var info: String { get { return infoValue + "步" } }
+    var info: String {
+        
+        return self.infoValue + "步"
+        
+    }
     
     var infoValue: String
     
@@ -108,7 +117,7 @@ struct SleepQualityCellVM: ContactsFriendQualityCellDataSource {
     
     var iconImage: UIImage? = UIImage(named: "HomeListSleep")
     
-    var info: String { get { return infoValue } }
+    var info: String { return infoValue }
     
     var infoValue: String
     
