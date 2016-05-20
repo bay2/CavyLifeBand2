@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "4827FB711B7812A1BA15F238B7D7CA1C74F9C550",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "AFCF1187B3E1A50FC1EE11CC0552DAE3AB7FC872" : 0,
+    "4827FB711B7812A1BA15F238B7D7CA1C74F9C550" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3145E69D-CD93-4E14-8961-EB4EC71A00D5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "AFCF1187B3E1A50FC1EE11CC0552DAE3AB7FC872" : "",
+    "4827FB711B7812A1BA15F238B7D7CA1C74F9C550" : "CavyLifeBand2"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CavyLifeBand2",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CavyLifeBand2.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/NNMMbaby\/CavyLifeBand2.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4827FB711B7812A1BA15F238B7D7CA1C74F9C550"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/bay2\/demo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "AFCF1187B3E1A50FC1EE11CC0552DAE3AB7FC872"
+    }
+  ]
+}

@@ -53,7 +53,8 @@ class ProfileTest: XCTestCase {
         
         let expectation = expectationWithDescription("testQueryProfile succeed")
         
-        userInfoModelView.queryUserInfoByNet {
+        
+        userInfoModelView.queryUserInfoByNet("56d6ea3bd34635186c60492b") {
            
             XCTAssert($0 != nil)
             

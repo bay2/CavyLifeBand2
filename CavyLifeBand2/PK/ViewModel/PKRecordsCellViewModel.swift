@@ -26,7 +26,7 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
     
     var headImageUrl: String
     
-    var firendId: String
+    var friendId: String
     
     var name: String
 
@@ -42,7 +42,7 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
         self.bottonTitle   = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? L10n.PKRecordsCellUndoBtnTitle.string : L10n.PKRecordsCellAcceptBtnTitle.string
         self.btnBGColor    = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? UIColor(named: .PKRecordsCellUndoBtnBGColor) : UIColor(named: .PKRecordsCellAcceptBtnBGColor)
         self.headImageUrl  = pkRecord.avatarUrl
-        self.firendId      = pkRecord.userId
+        self.friendId      = pkRecord.userId
         
     }
     
@@ -67,7 +67,6 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
             dueRealm.avatarUrl   = pkRecord.userId
             dueRealm.nickname    = pkRecord.nickname
             dueRealm.pkDuration  = pkRecord.pkDuration
-            dueRealm.beginTime   = dateFormatter.stringFromDate(NSDate())
             dueRealm.syncState   = PKRecordsRealmSyncState.NotSync.rawValue
             
             //把新的进行中记录加入数据库
@@ -75,6 +74,7 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
             
             //调接口接受PK,调接口成功后把那条刚加入数据库的进行中记录的同步状态改为已同步
             acceptPKInvitation([dueRealm], loginUserId: self.loginUserId, callBack: {
+                self.changeDueBeginTime(dueRealm, time: dateFormatter.stringFromDate(NSDate()))
                 self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: dueRealm.pkId)
             }, failure: {
                 Log.warning("弹框提示" + $0)
@@ -93,7 +93,7 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
                 updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
                 
                 undoPK([pkRecord], loginUserId: self.loginUserId, callBack: {
-                    self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: self.pkRecord.pkId)
+                    self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: self.pkRecord.pkId)
                 }, failure: {
                     Log.warning("弹框提示" + $0)
                 })
@@ -124,13 +124,13 @@ struct PKDueRecordsCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFr
     
     var pkRecord: PKDueRealmModel
     
-    var firendId: String
+    var friendId: String
     
     var headImageUrl: String
     
     init(pkRecord: PKDueRealmModel) {
         
-        self.firendId     = pkRecord.userId
+        self.friendId     = pkRecord.userId
         self.headImageUrl = pkRecord.avatarUrl
         self.pkRecord     = pkRecord
         self.name         = pkRecord.nickname
@@ -152,7 +152,7 @@ struct PKFinishRecordsCellViewModel: PKCellProtocols {
     
     var bottonTitle: String
     
-    var firendId: String
+    var friendId: String
     
     var headImageUrl: String
     
@@ -168,7 +168,7 @@ struct PKFinishRecordsCellViewModel: PKCellProtocols {
         
         self.realm         = realm
         self.pkRecord      = pkRecord
-        self.firendId      = pkRecord.userId
+        self.friendId      = pkRecord.userId
         self.headImageUrl  = pkRecord.avatarUrl
         self.loginUserId   = pkRecord.loginUserId
         self.name          = pkRecord.isWin ? L10n.PKRecordsCellYouWin.string : pkRecord.nickname + L10n.PKRecordsCellWin.string
@@ -178,7 +178,7 @@ struct PKFinishRecordsCellViewModel: PKCellProtocols {
         
     }
     
-    func clickCellBtn() -> Void {
+    func clickCellBtn(sender: UIButton) -> Void {
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFromString("yyyy-MM-dd HH:mm:ss")
@@ -192,14 +192,16 @@ struct PKFinishRecordsCellViewModel: PKCellProtocols {
         waitRecord.nickname     = pkRecord.nickname
         waitRecord.pkDuration   = pkRecord.pkDuration
         waitRecord.syncState    = PKRecordsRealmSyncState.NotSync.rawValue
-        waitRecord.launchedTime = dateFormatter.stringFromDate(NSDate())
         
         launchPK([waitRecord], loginUserId: self.loginUserId, callBack: {
             
-            let pkId = $0[0].pkId
+            let pkId = $0[0]
             
-            waitRecord.pkId      = pkId
-            waitRecord.syncState = PKRecordsRealmSyncState.Synced.rawValue
+            let launchTimeStr = dateFormatter.stringFromDate(NSDate())
+            
+            waitRecord.launchedTime = launchTimeStr
+            waitRecord.pkId         = pkId
+            waitRecord.syncState    = PKRecordsRealmSyncState.Synced.rawValue
             
             self.addPKWaitRealm(waitRecord)
             

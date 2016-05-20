@@ -7,7 +7,6 @@
 //
 
 import Alamofire
-import Log
 import JSONJoy
 import RealmSwift
 
@@ -18,13 +17,27 @@ class PKWebApi: NetRequestAdapter {
     /**
      获取PK列表
      
-     - parameter userId:   用户id
+     - parameter userId:   用户Id
+     - parameter type:     查询类型：0：查询用户自己的pk列表，1：查询好友的pk列表
+     - parameter friendId: 好友ID，当type=1时必选
      - parameter callBack: 回调
+     
+     - throws:
      */
-    func getPKRecordList(userId: String, callBack: CompletionHandlernType? = nil) throws {
+    func getPKRecordList(userId: String, type: Int = 0, friendId: String = "", callBack: CompletionHandlernType? = nil) throws {
+        
+        if type == 1 && friendId.characters.count == 0 {
+            
+            callBack?(.Failure(.FriendIdNil))
+            Log.error("friendId is nil")
+            return
+             
+        }
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetPKRecordList.rawValue,
-                                               UserNetRequsetKey.UserID.rawValue: userId]
+                                               UserNetRequsetKey.UserID.rawValue: userId,
+                                               UserNetRequsetKey.FriendReqType.rawValue: type,
+                                               UserNetRequsetKey.FriendID.rawValue: type]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
         
@@ -62,7 +75,7 @@ class PKWebApi: NetRequestAdapter {
      undoPKList
      - parameter pkId:           PK记录的Id
      */
-    func undoPK(userId: String, undoPKList: [[String: String]], callBack: CompletionHandlernType? = nil) throws {
+    func undoPK(userId: String, undoPKList: [String], callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.UndoPK.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: userId,
@@ -82,7 +95,7 @@ class PKWebApi: NetRequestAdapter {
      delPkList
      - parameter pkId:           PK记录的Id
      */
-    func deletePK(userId: String, delPkList: [[String: String]], callBack: CompletionHandlernType? = nil) throws {
+    func deletePK(userId: String, delPkList: [String], callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.DeletePK.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: userId,
@@ -103,11 +116,28 @@ class PKWebApi: NetRequestAdapter {
      - parameter pkId:           PK记录的Id
      - parameter acceptTime:     接受时间
      */
-    func acceptPK(userId: String, acceptPkList: [[String: String]], callBack: CompletionHandlernType? = nil) throws {
+    func acceptPK(userId: String, acceptPkList: [String], callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.AcceptPK.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: userId,
                                                UserNetRequsetKey.AcceptPkList.rawValue: acceptPkList]
+        
+        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
+        
+    }
+    
+    /**
+     获取PK详细资料
+     
+     - parameter userId:   用户ID
+     - parameter callBack:
+     
+     - throws:
+     */
+    func getPKInfo(userId: String, callBack: CompletionHandlernType? = nil) throws {
+        
+        let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetPKInfo.rawValue,
+                                               UserNetRequsetKey.UserID.rawValue: userId]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
         
@@ -119,19 +149,21 @@ typealias FailureHandle = (String) -> Void
 
 protocol PKWebRequestProtocol {
     //发起PK
-    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([PKId]) -> Void)?, failure: FailureHandle?) -> Void
+    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([String]) -> Void)?, failure: FailureHandle?) -> Void
     //接受PK
     func acceptPKInvitation(dueRealms: [PKDueRealmModel], loginUserId: String, callBack: ((Void) -> Void)?, failure: FailureHandle?) -> Void
     //撤销PK
     func undoPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: ((Void) -> Void)?, failure: FailureHandle?) -> Void
     //删除PK
     func deletePKFinish(finishRealms: [PKFinishRealmModel], loginUserId: String, callBack: ((Void) -> Void)?, failure: FailureHandle?) -> Void
+    //获取PK详细资料
+    func getPKInfo(callBack: ((PKInfoResponse) -> Void)?, failure: FailureHandle?) -> Void
     
 }
 
 extension PKWebRequestProtocol {
     
-    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([PKId]) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
+    func launchPK(waitRealms: [PKWaitRealmModel], loginUserId: String, callBack: (([String]) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
         
         do {
             
@@ -140,23 +172,29 @@ extension PKWebRequestProtocol {
             try PKWebApi.shareApi.launchPK(loginUserId, launchPKList: pk) {(result) in
                 
                 guard result.isSuccess else {
-                    failure?(self.getErroMsgFromUserCode(result.error))
+                    failure?(result.error?.description ?? "")
                     return
                 }
                 
                 let resultMsg = try! LaunchPKResponse(JSONDecoder(result.value!))
                 
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg?.code ?? ""))
+                guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
+                    failure?(WebApiCode(apiCode: resultMsg.commonMsg.code).description)
                     return
                 }
                 
-                callBack?(resultMsg.pkIdList!)
+                guard resultMsg.pkId.count > 0 else {
+                    failure?("没有返回pkID")
+                    return
+                }
+                
+                callBack?(resultMsg.pkId)
                 
             }
             
         } catch let error {
-            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
+            let err = error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError
+            failure?(err.description ?? "")
         }
 
     }
@@ -165,19 +203,19 @@ extension PKWebRequestProtocol {
         
         do {
             
-            let pk: [[String: String]] = translateDueRealmToAcceptRequest(dueRealms)
+            let pk: [String] = translateDueRealmToAcceptRequest(dueRealms)
             
             try PKWebApi.shareApi.acceptPK(loginUserId, acceptPkList: pk) {(result) in
                 
                 guard result.isSuccess else {
-                    failure?(self.getErroMsgFromUserCode(result.error))
+                    failure?(result.error?.description ?? "")
                     return
                 }
                 
                 let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
                 guard resultMsg.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
+                    failure?(WebApiCode(apiCode: resultMsg.code).description)
                     return
                 }
                 
@@ -187,7 +225,8 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
+            let err = error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError
+            failure?(err.description ?? "")
         }
         
     }
@@ -197,19 +236,19 @@ extension PKWebRequestProtocol {
         
         do {
             
-            let pk: [[String: String]] = translateWaitRealmToUndoRequest(waitRealms)
+            let pk: [String] = translateWaitRealmToUndoRequest(waitRealms)
             
             try PKWebApi.shareApi.undoPK(loginUserId, undoPKList: pk) {(result) in
                 
                 guard result.isSuccess else {
-                    failure?(self.getErroMsgFromUserCode(result.error))
+                    failure?(result.error?.description ?? "")
                     return
                 }
                 
                 let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
                 guard resultMsg.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
+                    failure?(WebApiCode(apiCode: resultMsg.code).description)
                     return
                 }
                 
@@ -218,7 +257,8 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
+            let err = error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError
+            failure?(err.description ?? "")
         }
         
     }
@@ -228,19 +268,19 @@ extension PKWebRequestProtocol {
 
         do {
             
-            let pk: [[String: String]] = translateFinishRealmToDeleteRequest(finishRealms)
+            let pk: [String] = translateFinishRealmToDeleteRequest(finishRealms)
             
             try PKWebApi.shareApi.deletePK(loginUserId, delPkList: pk) {(result) in
                 
                 guard result.isSuccess else {
-                    failure?(self.getErroMsgFromUserCode(result.error))
+                    failure?(result.error?.description ?? "")
                     return
                 }
                 
                 let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
                 guard resultMsg.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
+                    failure?(WebApiCode(apiCode: resultMsg.code).description)
                     return
                 }
                 
@@ -248,18 +288,45 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
+            let err = error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError
+            failure?(err.description ?? "")
         }
         
     }
     
+    func getPKInfo(callBack: ((PKInfoResponse) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
+        do {
+
+            try PKWebApi.shareApi.getPKInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {(result) in
+                
+                guard result.isSuccess else {
+                    failure?(result.error?.description ?? "")
+                    return
+                }
+                
+                let resultMsg = try! PKInfoResponse(JSONDecoder(result.value!))
+                
+                guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
+                    failure?(WebApiCode(apiCode: resultMsg.commonMsg.code).description)
+                    return
+                }
+                
+                callBack?(resultMsg)
+            }
+            
+        } catch let error {
+            let err = error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError
+            failure?(err.description ?? "")
+        }
+    }
+    
     //把数据库已完成记录转成删除PK接口的请求入参格式
-    func translateFinishRealmToDeleteRequest(finishRealms: [PKFinishRealmModel]) -> [[String: String]] {
-        var requests: [[String: String]] = [[String: String]]()
+    func translateFinishRealmToDeleteRequest(finishRealms: [PKFinishRealmModel]) -> [String] {
+        var requests: [String] = [String]()
         
         for realm in finishRealms {
             
-            let request: [String: String] = [UserNetRequsetKey.PKId.rawValue: realm.pkId]
+            let request: String = realm.pkId
             
             requests.append(request)
         }
@@ -268,12 +335,12 @@ extension PKWebRequestProtocol {
     }
     
     //把数据库待回应记录转成撤销PK接口的请求入参格式
-    func translateWaitRealmToUndoRequest(waitRealms: [PKWaitRealmModel]) -> [[String: String]] {
-        var requests: [[String: String]] = [[String: String]]()
+    func translateWaitRealmToUndoRequest(waitRealms: [PKWaitRealmModel]) -> [String] {
+        var requests: [String] = [String]()
         
         for realm in waitRealms {
             
-            let request: [String: String] = [UserNetRequsetKey.PKId.rawValue: realm.pkId]
+            let request: String = realm.pkId
             
             requests.append(request)
         }
@@ -288,7 +355,6 @@ extension PKWebRequestProtocol {
         for realm in waitRealms {
             
             let request: [String: AnyObject] = [UserNetRequsetKey.FriendID.rawValue: realm.userId,
-                                                UserNetRequsetKey.LaunchTime.rawValue: realm.launchedTime,
                                                 UserNetRequsetKey.PKDuration.rawValue: realm.pkDuration,
                                                 UserNetRequsetKey.IsAllowWatch.rawValue: realm.isAllowWatch]
             
@@ -299,64 +365,17 @@ extension PKWebRequestProtocol {
     }
     
     //把数据库接受的进行中记录转成接受PK接口的请求入参格式
-    func translateDueRealmToAcceptRequest(dueRealms: [PKDueRealmModel]) -> [[String: String]] {
-        var requests: [[String: String]] = [[String: String]]()
+    func translateDueRealmToAcceptRequest(dueRealms: [PKDueRealmModel]) -> [String] {
+        var requests: [String] = [String]()
         
         for realm in dueRealms {
             
-            let request: [String: String] = [UserNetRequsetKey.PKId.rawValue: realm.pkId,
-                                             UserNetRequsetKey.AcceptTime.rawValue: realm.beginTime]
-            
+            let request: String = realm.pkId
+                                            
             requests.append(request)
         }
         
         return requests
-    }
-
-    //user error code to string
-    func getErroMsgFromUserCode(userErrorCode: UserRequestErrorType?) -> String {
-        
-        let errorMessage = [UserRequestErrorType.EmailErr: L10n.UserModuleErrorCodeEmailError.string,
-                            UserRequestErrorType.EmailNil: L10n.UserModuleErrorCodeEmailNil.string,
-                            UserRequestErrorType.NetAPIErr: L10n.UserModuleErrorCodeNetAPIError.string,
-                            UserRequestErrorType.NetErr: L10n.UserModuleErrorCodeNetError.string,
-                            UserRequestErrorType.PassWdErr: L10n.UserModuleErrorCodePasswdError.string,
-                            UserRequestErrorType.PassWdNil: L10n.UserModuleErrorCodePasswdNil.string,
-                            UserRequestErrorType.PhoneNil: L10n.UserModuleErrorCodePhoneNil.string,
-                            UserRequestErrorType.PhoneErr: L10n.UserModuleErrorCodePhoneError.string,
-                            UserRequestErrorType.SecurityCodeErr: L10n.UserModuleErrorCodeSecurityError.string,
-                            UserRequestErrorType.SecurityCodeNil: L10n.UserModuleErrorCodeSecurityNil.string,
-                            UserRequestErrorType.UserNameErr: L10n.UserModuleErrorCodeUserNameError.string,
-                            UserRequestErrorType.UserNameNil: L10n.UserModuleErrorCodeUserNameNil.string,
-                            UserRequestErrorType.UnknownError: L10n.UserModuleErrorCodeUnknownError.string]
-        
-        let userError = userErrorCode ?? UserRequestErrorType.UnknownError
-        
-        return errorMessage[userError]!
-    }
-    
-    //web error code to string
-    func getErroMsgFromWebErrorCode(webErrorCode: String) -> String {
-    
-        let errorMessage = [WebApiCode.ParaError.rawValue: L10n.WebErrorCode1000.string,
-                            WebApiCode.UserPasswdError.rawValue: L10n.WebErrorCode1001.string,
-                            WebApiCode.PhoneNumError.rawValue: L10n.WebErrorCode1002.string,
-                            WebApiCode.SecurityCodeError.rawValue: L10n.WebErrorCode1003.string,
-                            WebApiCode.MobifyUserError.rawValue: L10n.WebErrorCode1004.string,
-                            WebApiCode.UserExisted.rawValue: L10n.WebErrorCode1005.string,
-                            WebApiCode.UserNotExisted.rawValue: L10n.WebErrorCode1006.string,
-                            WebApiCode.SendSecutityCodeError.rawValue: L10n.WebErrorCode1007.string]
-        
-        if let message = errorMessage[webErrorCode] {
-            
-            return message
-            
-        } else {
-        
-            return L10n.UserModuleErrorCodeNetAPIError.string
-        
-        }
-        
     }
 
 }
@@ -371,7 +390,7 @@ protocol PKRecordsUpdateFormWeb: PKRecordsRealmModelOperateDelegate {
 extension PKRecordsUpdateFormWeb  {
     
     func loadDataFromWeb(loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
-        
+
         do {
             
             try PKWebApi.shareApi.getPKRecordList(loginUserId) {(result) in
@@ -384,7 +403,7 @@ extension PKRecordsUpdateFormWeb  {
                 let resultMsg = try! PKRecordList(JSONDecoder(result.value ?? ""))
                 
                 guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(message: resultMsg.commonMsg.code ?? "")
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.commonMsg.code)
                     return
                 }
                 

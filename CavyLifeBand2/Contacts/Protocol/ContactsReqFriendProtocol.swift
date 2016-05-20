@@ -8,26 +8,34 @@
 
 import UIKit
 
+/**
+ *  请求添加好友view 数据源
+ */
 protocol ContactsReqFriendViewControllerDataSource {
     
     var placeholderText: String { get }
-    var textFieldTitle: String { get }
+    
+    var textFieldTitle: String { set get }
     
     var bottonTitle: String { get }
+    
+    var navTitle: String { get }
     
 }
 
 protocol ContactsReqFriendViewControllerDelegate {
     
-    var verifyMsg: String { set get }
     func onClickButton()
     
 }
 
+/**
+ *  请求完成删除添加好友列表处理
+ */
 protocol ContactsReqFriendDeleteItemDelegate {
     
     var viewController: UIViewController { get }
-    var firendId: String  { get }
+    var friendId: String  { get }
     var rowIndex: Int { get }
     
     func clickCellBtn(button: UIButton)
@@ -43,7 +51,7 @@ extension ContactsReqFriendDeleteItemDelegate {
      */
     func clickBtn(button: UIButton) {
         
-        let friendReqVM =  ContactsFriendReqViewModel(viewController: viewController, friendId: firendId) {
+        let friendReqVM =  ContactsFriendReqViewModel(viewController: viewController, friendId: friendId) {
             
             let userInfo: [NSObject: Int] = ["rowIndex": self.rowIndex]
             

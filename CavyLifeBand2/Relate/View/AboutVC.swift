@@ -64,28 +64,29 @@ class AboutVC: UIViewController, BaseViewControllerPresenter {
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         tableView.delegate = self
         tableView.dataSource = self
+        
     }
     
     func addGensture() {
         
-        useAndPrivateLabel.addTapGesture { sender in
+        useAndPrivateLabel.addTapGesture { [weak self] sender in
             Log.info("前往使用和隐私政策网页")
             
             let targetVC = WebViewController()
             
             targetVC.dataSource = UseAndPrivateWebViewModel()
             
-            self.pushVC(targetVC)
+            self?.pushVC(targetVC)
         }
         
-        copyrightLabel.addTapGesture { sender in
+        copyrightLabel.addTapGesture { [weak self] sender in
             Log.info("前往版权网页")
             
             let targetVC = WebViewController()
             
             targetVC.dataSource = CopyrightWebViewModel()
             
-            self.pushVC(targetVC)
+            self?.pushVC(targetVC)
         }
         
     }
@@ -128,13 +129,7 @@ extension AboutVC: UITableViewDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
         if indexPath.row == tableDataSource.count - 1 {
-            Log.info("进入官网")
-            
-            let targetVC = WebViewController()
-                        
-            targetVC.dataSource = OfficialWebViewModel()
-            
-            self.pushVC(targetVC)
+            UIApplication.sharedApplication().openURL(NSURL(string : "http://www.tunshu.com")!)
         }
         
     }

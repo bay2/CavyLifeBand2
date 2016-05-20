@@ -15,7 +15,7 @@ extension ContactsAddFriendCellViewModel {
     
     init(viewController: UIViewController, friendInfo: ContactsSearchFriendInfo) {
         
-        self.init(viewController: viewController, firendId: friendInfo.userId ?? "", name: friendInfo.nickName ?? "", headImageUrl: friendInfo.avatarUrl ?? "")
+        self.init(viewController: viewController, friendId: friendInfo.userId ?? "", name: friendInfo.nickName ?? "", headImageUrl: friendInfo.avatarUrl ?? "")
         
     }
     
@@ -25,7 +25,7 @@ extension ContactsRecommendCellViewModel {
     
      init(viewController: UIViewController, rowIndex: Int, friendInfo: ContactsSearchFriendInfo) {
         
-        self.init(viewController: viewController, rowIndex: rowIndex, firendId: friendInfo.userId, name: friendInfo.nickName, headImageUrl: friendInfo.avatarUrl)
+        self.init(viewController: viewController, rowIndex: rowIndex, friendId: friendInfo.userId, name: friendInfo.nickName, headImageUrl: friendInfo.avatarUrl)
         
     }
     
@@ -35,7 +35,7 @@ extension ContactsNearbyCellViewModel {
     
     init(viewController: UIViewController, friendInfo: ContactsSearchFriendInfo) {
         
-        self.init(viewController: viewController, firendId: friendInfo.userId ?? "", name: friendInfo.nickName ?? "", headImageUrl: friendInfo.avatarUrl ?? "", introudce: friendInfo.distance ?? "")
+        self.init(viewController: viewController, friendId: friendInfo.userId ?? "", name: friendInfo.nickName ?? "", headImageUrl: friendInfo.avatarUrl ?? "", introudce: friendInfo.distance ?? "")
         
     }
     
@@ -45,7 +45,7 @@ extension ContactsNewFriendCellViewModel {
     
     init(viewController: UIViewController, friendInfo: ContactsFriendReqInfo) {
         
-        self.init(viewController: viewController, firendId: friendInfo.userId ?? "", name: friendInfo.nickName ?? "", headImageUrl: friendInfo.avatarUrl ?? "", introudce: friendInfo.verifyMsg ?? "")
+        self.init(viewController: viewController, friendId: friendInfo.userId ?? "", name: friendInfo.nickName ?? "", headImageUrl: friendInfo.avatarUrl ?? "", introudce: friendInfo.verifyMsg ?? "")
         
     }
     
@@ -193,12 +193,12 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
                     //筛选好友信息
                     for firendInfo in friendInfos {
                         
-                        let firendId = firendInfo.userId ?? ""
+                        let friendId = firendInfo.userId ?? ""
                         let nickName = firendInfo.nickName ?? ""
                         let name = self.phoneNumInfos[firendInfo.phoneNum] ?? ""
                         let headImageUrl = firendInfo.avatarUrl ?? ""
                         
-                        self.items.append(ContactsAddressBookViewModel(viewController: self.viewController!, firendId: firendId, name: nickName, introudce: name, headImageUrl: headImageUrl))
+                        self.items.append(ContactsAddressBookViewModel(viewController: self.viewController!, friendId: friendId, name: nickName, introudce: name, headImageUrl: headImageUrl))
                         
                     }
                     

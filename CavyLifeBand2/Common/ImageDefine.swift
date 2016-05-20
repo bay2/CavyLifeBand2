@@ -17,6 +17,7 @@ extension UIImage {
     case CameraVideoStart = "CameraVideoStart"
     case CamerVideoWait = "CamerVideoWait"
     case Chosenbtn = "chosenbtn"
+    case ContactInfoAdd = "ContactInfoAdd"
     case ContactsAccountEditButton = "ContactsAccountEditButton"
     case ContactsAddrssBookNormal = "ContactsAddrssBookNormal"
     case ContactsAddrssBookSelected = "ContactsAddrssBookSelected"

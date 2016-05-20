@@ -128,7 +128,10 @@ extension EmergencyContactRealmListOperateDelegate {
                 Log.error("\(#function) error = \(error)")
                 return false
             }
+            
         }
+        
+        Log.error("\(#function) 已经添加该联系人")
         
         return true
     }

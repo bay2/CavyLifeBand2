@@ -53,13 +53,13 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         
         tableViewSetting()
         
-//        loadData()
+        loadData()
         
-        tableDataSource = [HelpFeedbackCellModel(title: "手环连接失败？", webStr: "http://www.baidu.com"),
-                           HelpFeedbackCellModel(title: "按了手环按钮没有亮灯？", webStr: "http://www.baidu.com"),
-                           HelpFeedbackCellModel(title: "安全功能如何使用？", webStr: "http://www.baidu.com"),
-                           HelpFeedbackCellModel(title: "手环不能记录睡眠？", webStr: "http://www.baidu.com"),
-                           HelpFeedbackCellModel(title: "手环不能记录计步？", webStr: "http://www.baidu.com")]
+//        tableDataSource = [HelpFeedbackCellModel(title: "手环连接失败？", webStr: "http://www.baidu.com"),
+//                           HelpFeedbackCellModel(title: "按了手环按钮没有亮灯？", webStr: "http://www.baidu.com"),
+//                           HelpFeedbackCellModel(title: "安全功能如何使用？", webStr: "http://www.baidu.com"),
+//                           HelpFeedbackCellModel(title: "手环不能记录睡眠？", webStr: "http://www.baidu.com"),
+//                           HelpFeedbackCellModel(title: "手环不能记录计步？", webStr: "http://www.baidu.com")]
         
         
         

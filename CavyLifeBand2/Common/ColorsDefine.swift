@@ -57,6 +57,33 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
     /// Alpha: 20% <br/> (0xffffff33)
     case CameraNoChoose
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e5e5e5"></span>
+    /// Alpha: 100% <br/> (0xe5e5e5ff)
+    case ChartBackground
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 40% <br/> (0x00000066)
+    case ChartDeselectText
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+    /// Alpha: 10% <br/> (0xffffff1a)
+    case ChartGirdColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#2db6cf"></span>
+    /// Alpha: 100% <br/> (0x2db6cfff)
+    case ChartSleepDegreeDeep
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#36f3ff"></span>
+    /// Alpha: 100% <br/> (0x36f3ffff)
+    case ChartSleepDegreeLight
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff5757"></span>
+    /// Alpha: 100% <br/> (0xff5757ff)
+    case ChartSleepDegreeText
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#fff956"></span>
+    /// Alpha: 100% <br/> (0xfff956ff)
+    case ChartStepPillarColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#4d4d4d"></span>
+    /// Alpha: 100% <br/> (0x4d4d4dff)
+    case ChartViewBackground
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
+    /// Alpha: 30% <br/> (0xffffff4d)
+    case ChartViewTextColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff6d01"></span>
     /// Alpha: 100% <br/> (0xff6d01ff)
     case ContactsAccountLogoutButton
@@ -335,6 +362,15 @@ extension UIColor {
       case .CameraBgColor: return 0x000000ff
       case .CameraChoose: return 0xffffffb3
       case .CameraNoChoose: return 0xffffff33
+      case .ChartBackground: return 0xe5e5e5ff
+      case .ChartDeselectText: return 0x00000066
+      case .ChartGirdColor: return 0xffffff1a
+      case .ChartSleepDegreeDeep: return 0x2db6cfff
+      case .ChartSleepDegreeLight: return 0x36f3ffff
+      case .ChartSleepDegreeText: return 0xff5757ff
+      case .ChartStepPillarColor: return 0xfff956ff
+      case .ChartViewBackground: return 0x4d4d4dff
+      case .ChartViewTextColor: return 0xffffff4d
       case .ContactsAccountLogoutButton: return 0xff6d01ff
       case .ContactsAddFriendButtonColor: return 0xff9138ff
       case .ContactsAgreeButtonColor: return 0x0dcf7fff

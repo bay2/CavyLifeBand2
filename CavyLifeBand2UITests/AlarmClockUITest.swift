@@ -54,9 +54,9 @@ class AlarmClockUITest: XCTestCase {
         
         let collectionViewsQuery = app.scrollViews.otherElements.collectionViews
         
-        collectionViewsQuery.buttons["one"].tap()
-        collectionViewsQuery.buttons["two"].tap()
-        collectionViewsQuery.buttons["three"].tap()
+        collectionViewsQuery.buttons["一"].tap()
+        collectionViewsQuery.buttons["二"].tap()
+        collectionViewsQuery.buttons["三"].tap()
         
         let datePickersQuery = app.scrollViews.otherElements.datePickers
         
@@ -85,8 +85,8 @@ class AlarmClockUITest: XCTestCase {
             
             let collectionViewsQuery = app.scrollViews.otherElements.collectionViews
             
-            collectionViewsQuery.buttons["one"].tap()
-            collectionViewsQuery.buttons["two"].tap()
+            collectionViewsQuery.buttons["一"].tap()
+            collectionViewsQuery.buttons["二"].tap()
             
             app.scrollViews.otherElements.datePickers.pickerWheels["00 minutes"].tap()
             
@@ -116,8 +116,8 @@ class AlarmClockUITest: XCTestCase {
             
             let collectionViewsQuery = app.scrollViews.otherElements.collectionViews
             
-            collectionViewsQuery.buttons["one"].tap()
-            collectionViewsQuery.buttons["two"].tap()
+            collectionViewsQuery.buttons["一"].tap()
+            collectionViewsQuery.buttons["二"].tap()
             
             app.scrollViews.otherElements.datePickers.pickerWheels["00 minutes"].tap()
             
@@ -128,9 +128,9 @@ class AlarmClockUITest: XCTestCase {
         
         let collectionViewsQuery = app.scrollViews.otherElements.collectionViews
         
-        collectionViewsQuery.buttons["one"].tap()
-        collectionViewsQuery.buttons["two"].tap()
-        collectionViewsQuery.buttons["three"].tap()
+        collectionViewsQuery.buttons["一"].tap()
+        collectionViewsQuery.buttons["二"].tap()
+        collectionViewsQuery.buttons["三"].tap()
         
         app.navigationBars["智能闹钟"].buttons["AlarmClockNavSave"].tap()
             

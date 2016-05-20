@@ -8,15 +8,36 @@
 
 import UIKit
 import EZSwiftExtensions
-import Log
+import JSONJoy
 
-class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
 
     @IBOutlet weak var contectView: UIView!
     
     @IBOutlet weak var infoTableView: UITableView!
     
     @IBOutlet weak var qualityTableView: UITableView!
+    
+    var navTitle: String { return L10n.ContactsNavTitleAccountInfo.string }
+    
+    let sectionCornerViewHeight: CGFloat = 10.0
+    
+    let sectionView16Height: CGFloat = 16.0
+    
+    let normalCellHeight: CGFloat = 50.0
+    
+    let avatarCellHeight: CGFloat = 120.0
+    
+    var infoTableViewHeight: CGFloat {
+        // |-infoListCell-120-|-16-|-infoTableCellVM.count * 50-|-底10-|
+        return avatarCellHeight + CGFloat(infoTableCellVM.count) * normalCellHeight + sectionCornerViewHeight + sectionView16Height
+    }
+    
+    var friendId: String = ""
+    
+    var friendNickName: String = ""
+    
+    var webJsonModel: ContactPsersonInfoResponse?
     
     // TableView Identifier
     let infoHeadIdentifier = "FriendInfoHeadIdentifier"
@@ -25,55 +46,144 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
     let qualityIdentifier = "FriendQualityIdentifier"
     let qualityWhiteIdentifier = "FriendQualityWhiteIdentifier"
     
-    var infoCellCount: Int = 8    // cell个数 八个为身高体重年龄全部可见
-    let infoTitleArray = [L10n.ContactsShowInfoTransformNotes.string, L10n.ContactsShowInfoNotesName.string, L10n.ContactsShowInfoCity.string, L10n.ContactsShowInfoOld.string, L10n.ContactsShowInfoGender.string, L10n.ContactsShowInfoHeight.string, L10n.ContactsShowInfoWeight.string, L10n.ContactsShowInfoBirth.string]
-    let qualityTitleArray = [L10n.ContactsShowInfoPK.string, L10n.ContactsShowInfoStep.string, L10n.ContactsShowInfoSleep.string]
+    //个人信息cell VMs
+    lazy var infoTableCellVM: [PresonInfoListCellViewModel] = {
+        
+        return [PresonInfoListCellViewModel(title: L10n.ContactsShowInfoNotesName.string, info: L10n.ContactsShowInfoTransformNotes.string, infoTextColor: UIColor(named: .ContactsIntrouduce)),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoCity.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoOld.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoGender.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoHeight.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoWeight.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoBirth.string)]
+        
+    }()
+    
+    //生活信息Cell VMs
+    lazy var qualityTableCellVM: [ContactsFriendQualityCellDataSource] = {
+        return [StepQualityCellVM(),
+                SleepQualityCellVM(),
+                PKQualityCellVM()]
+    
+    }()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()        
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
+        updateNavUI()
+        
         addAllViews()
+        
+        loadFriendInfoByNet()
         
     }
     
-    /**
-     返回按钮处理
-     */
-    func onLeftBtnBack() {
-        
-        self.navigationController?.popViewControllerAnimated(false)
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
-        
-    }
     
     /**
      添加 全部视图
      */
     func addAllViews() {
         
-        // InfoTableView高度
-        // |-infoListCell-136-|-cellCount-1[infoListCell] * 50-|-边10-|
-        let tableViewHeight = CGFloat(136 + (infoCellCount - 1) * 50 + 10)
-        
         // contentView 
         contectView.backgroundColor = UIColor(named: .HomeViewMainColor)
         contectView.snp_makeConstraints { make in
             // |-16-|-infoTableView-|-10-|-qualityTableView-170-|-20-|
-            make.height.equalTo(tableViewHeight + 216)
+            make.height.equalTo(infoTableViewHeight + 216)
         }
         
         infoTableView.snp_makeConstraints { make -> Void in
-            make.height.equalTo(tableViewHeight)
+            make.height.equalTo(infoTableViewHeight)
         }
+        
         tableViewBaseSetting(infoTableView)
+        tableViewBaseSetting(qualityTableView)
+        
         infoTableView.registerNib(UINib(nibName: "ContactsPersonInfoCell", bundle: nil), forCellReuseIdentifier: infoHeadIdentifier)
         infoTableView.registerNib(UINib(nibName: "ContactsPersonInfoListCell", bundle: nil), forCellReuseIdentifier: infoBodyIdentifier)
         
-        // qualityTableView
-        tableViewBaseSetting(qualityTableView)
         qualityTableView.registerNib(UINib(nibName: "ContactsFriendQualityCell", bundle: nil), forCellReuseIdentifier: qualityIdentifier)
+        
+    }
+    
+    /**
+     解析网络数据 -> 模型
+     */
+    func archiveInfoDS() {
+        
+        let dateF = NSDateFormatter()
+        dateF.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let birthDate = dateF.dateFromString(self.webJsonModel?.birthday ?? "") ?? NSDate()
+        let age = NSDate().yearsInBetweenDate(birthDate)
+        
+        dateF.dateFormat = "yyyy.MM.dd"
+        
+        let birthStr = dateF.stringFromDate(birthDate)
+        
+        infoTableCellVM[1].info = self.webJsonModel?.address ?? ""
+        infoTableCellVM[2].info = age.toString
+        infoTableCellVM[3].info = (self.webJsonModel?.sex ?? 0) == 0 ? "男" : "女"
+        infoTableCellVM[4].info = self.webJsonModel?.height ?? ""
+        infoTableCellVM[5].info = self.webJsonModel?.weight ?? ""
+        infoTableCellVM[6].info = birthStr
+        
+        //这三个字段为空代表设置了不可显示
+        if self.webJsonModel?.birthday == "" {
+            infoTableCellVM.removeLast()
+        }
+        
+        if self.webJsonModel?.weight == "" {
+            infoTableCellVM.removeAtIndex(5)
+        }
+        
+        if self.webJsonModel?.height == "" {
+            infoTableCellVM.removeAtIndex(4)
+        }
+        
+        contectView.snp_updateConstraints { make in
+            make.height.equalTo(infoTableViewHeight + 216)
+        }
+        
+        infoTableView.snp_updateConstraints { make -> Void in
+            make.height.equalTo(infoTableViewHeight)
+        }
+        
+        qualityTableCellVM[0].infoValue = self.webJsonModel?.stepNum ?? ""
+        
+    }
+    
+    /**
+     通过网络加载数据
+     */
+    func loadFriendInfoByNet() {
+        
+        do {
+            
+            try ContactsWebApi.shareApi.getContactPersonInfo(friendId: friendId) {(result)  in
+                
+                guard result.isSuccess else {
+                    Log.error(result.error?.description ?? "")
+                    return
+                }
+                
+                self.webJsonModel = try! ContactPsersonInfoResponse(JSONDecoder(result.value!))
+                
+                guard self.webJsonModel?.commendMsg.code == WebApiCode.Success.rawValue else {
+                    Log.error(WebApiCode(apiCode: self.webJsonModel!.commendMsg.code).description)
+                    return
+                }
+                
+                self.archiveInfoDS()
+                
+                self.infoTableView.reloadData()
+                
+            }
+            
+        } catch let error {
+            Log.error(error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+        }
         
     }
     
@@ -94,184 +204,167 @@ class ContactsFriendInfoVC: UIViewController, UITableViewDataSource, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+}
 
-    // MARK: - Tableview Delegate
+
+// MARK: - UITableViewDelegate
+extension ContactsFriendInfoVC: UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+        if tableView.isEqual(infoTableView) && indexPath.section == 0 {
+            
+            return avatarCellHeight
+            
+        } else {  return normalCellHeight }
+        
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if tableView.isEqual(infoTableView) && indexPath.row == 0 {
+            
+            // 跳转到修改备注
+            let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
+            
+            let changeRemarkVM = ContactsChangeRemarkViewModel(viewController: requestVC, friendId: self.friendId)
+            
+            requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+            
+            self.pushVC(requestVC)
+            
+        }
+        
+        if tableView.isEqual(qualityTableView){
+            
+            if qualityTableCellVM[indexPath.row] is PKQualityCellVM {
+                Log.info("PK页面")
+            }
+            
+        }
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        
+        if tableView.isEqual(infoTableView) && section == 0 {
+            return sectionView16Height
+        }
+        
+        return sectionCornerViewHeight
+        
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if tableView.isEqual(qualityTableView) {
+            return sectionCornerViewHeight
+        }
+        
+        return 0.01
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        
+        if tableView.isEqual(infoTableView) {
+            let view = UIView.init(frame: CGRect(x: 0, y: 0, w: tableView.frame.width, h: sectionView16Height))
+            
+            return view
+        }
+        
+        let viewFrame = CGRect(x: 0, y: 0, w: tableView.frame.width, h: sectionCornerViewHeight)
+        
+        let view = AboutSectionEmptyView(frame: viewFrame, cornerType: .Bottom)
+        
+        return view
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let viewFrame = CGRect(x: 0, y: 0, w: tableView.frame.width, h: sectionCornerViewHeight)
+        
+        let view = AboutSectionEmptyView(frame: viewFrame, cornerType: .Top)
+        
+        return view
+    }
+
+}
+
+// MARK: - UITableViewDataSource
+extension ContactsFriendInfoVC: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
+        if tableView.isEqual(infoTableView) {
+            return 2
+        }
+        
         return 1
-
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableView.isEqual(infoTableView) {
             
-            return infoCellCount + 1
+            if section == 0 {
+                return 1
+            }
+            
+            return infoTableCellVM.count
             
         } else {
             
-            return 5
+            return qualityTableCellVM.count
         }
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        if tableView.isEqual(infoTableView) {
-            
-            if indexPath.row == 0 {
-                
-                return 136
-                
-            } else if indexPath.row == infoCellCount {
-                
-                return 10
-                
-            }
-            
-            return 50
-            
-        } else {
-            
-            if indexPath.row == 0 || indexPath.row == 4 {
-                
-                return 10
-            }
-            
-            return 50
-            
-        }
-        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if tableView.isEqual(infoTableView) {
             
-            if indexPath.row == 0 {
-                
+            if indexPath.section == 0 {
                 // 个人信息
                 let cell = tableView.dequeueReusableCellWithIdentifier(infoHeadIdentifier, forIndexPath: indexPath) as! ContactsPersonInfoCell
-                cell.personRealtion(.FriendRelation)
-                return cell
                 
-            } else if indexPath.row == infoCellCount {
+                cell.configCell(ContactsFriendInfoCellDS(model: webJsonModel, nickName: friendNickName), delegate: self)
                 
-                // 最下面边空白
-                tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: infoWhiteIdentifier)
-                let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(infoWhiteIdentifier)!
                 return cell
                 
             }
             
-            // 其他数值
+            // 其他
             let cell = tableView.dequeueReusableCellWithIdentifier(infoBodyIdentifier, forIndexPath: indexPath) as! ContactsPersonInfoListCell
             
-            if indexPath.row == 1 {
-                
-                cell.addData(infoTitleArray[indexPath.row], titleInfo: infoTitleArray[0], cellEditOrNot: true)
-                
-            } else {
-                
-                cell.addData(infoTitleArray[indexPath.row], titleInfo: "160", cellEditOrNot: false)
-                
-            }
+            cell.configCell(infoTableCellVM[indexPath.row])
+            
             return cell
             
         } else {
             
-            if indexPath.row == 0 || indexPath.row == 4 {
-                
-                tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: qualityWhiteIdentifier)
-                let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier(qualityWhiteIdentifier)!
-                cell.backgroundColor = UIColor.whiteColor()
-                return cell
-                
-            }
-            
             let cell = tableView.dequeueReusableCellWithIdentifier(qualityIdentifier, forIndexPath: indexPath) as! ContactsFriendQualityCell
-            if indexPath.row == 1 {
-                cell.cellEditOrNot = true
-            }
+            
+            cell.configure(qualityTableCellVM[indexPath.row])
+            
             return cell
- 
-        }
-    }
-    
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if tableView.isEqual(infoTableView) && indexPath.row == 1 {
-
-            // 跳转到修改备注
-            let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
-            requestVC.requestStyle = .ChangeNotesName
-            self.pushVC(requestVC)
             
         }
-        
-        if tableView.isEqual(qualityTableView) && indexPath.row == 0 {
-    
-            Log.info("PK页面")
-            
-        }
-        
     }
     
+}
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+// MARK: - ContactsPersonInfoCellDelegate
+extension ContactsFriendInfoVC: ContactsPersonInfoCellDelegate {
+    
+    func onClickHeadView() {
+        
+        let viewFrame = CGRect(x: 0, y: 0, w: ez.screenWidth, h: ez.screenHeight)
+        
+        let view = FullScreenImageView(frame: viewFrame, imageUrlStr: self.webJsonModel?.avatarUrl ?? "")
+        
+        UIApplication.sharedApplication().keyWindow?.addSubview(view)
+        
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
 }

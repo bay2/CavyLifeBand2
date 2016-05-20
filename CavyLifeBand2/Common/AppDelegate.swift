@@ -18,7 +18,7 @@ import OHHTTPStubs
 var realm: Realm = try! Realm()
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
 
     var window: UIWindow?
 
@@ -29,6 +29,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             uiTestStub()
             
         #endif
+        
+        if ez.isRelease {
+            Log.enabled = false
+        }
+        
+        realmConfig()
+        
+        crashConfig()
+        
+        pgyUpdateConfig()
+        
+        setRootViewController()
+        
+        return true
+
+    }
+    
+    func setRootViewController() {
+        
+        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
+            return
+        }
+        
+        let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        BindBandCtrl.bandName = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] ?? ""
+        
+        window?.rootViewController = StoryboardScene.Home.instantiateRootView()
+        
+    }
+    
+    func pgyUpdateConfig() {
+    
+        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
+        PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
+        PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
+        
+    }
+    
+    func crashConfig() {
+        
+        let installation = KSCrashInstallationStandard.sharedInstance()
+        
+        installation.url = NSURL(string: CavyDefine.bugHDKey)
+        
+        installation.install()
+        installation.sendAllReportsWithCompletion(nil)
+        
+    }
+    
+    func realmConfig() {
         
         Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: UInt64(ez.appBuild!)!, migrationBlock: { migration, oldSchemaVersion in
             
@@ -43,29 +93,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
             
-            
         })
         
-        let installation = KSCrashInstallationStandard.sharedInstance()
-        
-        installation.url = NSURL(string: CavyDefine.bugHDKey)
-
-        installation.install()
-        installation.sendAllReportsWithCompletion(nil)
-        
-        if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
-            self.window?.rootViewController = StoryboardScene.Main.instantiateMainPageView()
-        } else {
-            self.window?.rootViewController = StoryboardScene.Home.instantiateRootView()
-        }
-        
-        
-        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
-        PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
-        PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
-            
-        return true
-
     }
     
     func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {

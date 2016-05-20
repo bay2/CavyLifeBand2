@@ -28,6 +28,45 @@ struct MenuViewModel: MenuProtocol {
     
 }
 
+struct UndoBindViewModel: MenuProtocol {
+    
+    var title: String
+    var icon: UIImage?
+    var nextView: UIViewController
+    
+    init(icon: UIImage? = nil, title: String) {
+        
+        self.icon = icon
+        self.title = title
+        
+        let guideVC = StoryboardScene.Guide.instantiateGuideView()
+        let guideVM = GuideBandBluetooth()
+        
+        guideVC.configView(guideVM, delegate: guideVM)
+        
+        self.nextView = guideVC
+        
+    }
+    
+    func onClickCell() {
+        
+        BindBandCtrl.bindScene = .Rebind
+        
+        let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        
+        CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = ""
+        
+        LifeBandBle.shareInterface.bleDisconnect()
+        
+        let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
+        
+    }
+    
+}
+
 
 /**
  *  手环功能菜单项
@@ -89,8 +128,7 @@ struct BindingBandMenuGroupDataModel: MenuGroupDataSource {
     
     init() {
         
-        items.append(MenuViewModel(title: L10n.HomeRightListTitleBindingBand.string,
-            nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
+        items.append(UndoBindViewModel(title: L10n.HomeRightListTitleBindingBand.string))
         
     }
     
@@ -180,7 +218,9 @@ struct AppAboutMenuGroupDataModel: MenuGroupDataSource {
         
         items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuApp),
             title: L10n.HomeLifeListTitleRelated.string,
-            nextView: StoryboardScene.Relate.instantiateHelpAndFeedbackVC()))
+            nextView: StoryboardScene.Relate.instantiateRelateAppVC()))
+        
+        
     }
     
 }

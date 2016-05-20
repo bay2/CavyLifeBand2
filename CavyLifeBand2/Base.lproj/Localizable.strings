@@ -32,7 +32,15 @@
 "UserModuleErrorCode.PasswdNil" = "密码不能为空";
 "UserModuleErrorCode.SecurityNil" = "验证码不能为空";
 "UserModuleErrorCode.UserNameNil" = "用户名不能为空";
+"UserModuleErrorCode.UserIdNil" = "用户Id不能为空";
 "UserModuleErrorCode.UnknownError" = "未知错误";
+"UserModuleErrorCode.FriendIdNil" = "好友Id不能为空";
+"UserModuleErrorCode.SearchTypeNil" = "搜索类型不能为空";
+"UserModuleErrorCode.ParaNil" = "参数有误";
+"UserModuleErrorCode.ParaError" = "参数有误";
+"UserModuleErrorCode.LBSNil" = "LBS不能为空";
+"UserModuleErrorCode.PhoneNumListNil" = "电话号码列表不能为空";
+
 
 // 首页
 "MainPage.SignInBtn" = "登入";
@@ -139,6 +147,22 @@
 "Home.RightList.Title.FirmwareUpgrade" = "固件升级";
 "Home.RightList.Title.BindingBand" = "绑定新的CavyBand";
 
+//Chart
+"Chart.Sleep" = "睡眠";
+"Chart.Step" = "计步";
+"Chart.TimeBucket.Day" = "日";
+"Chart.TimeBucket.Week" = "周";
+"Chart.TimeBucket.Month" = "月";
+"Chart.Target.Percent" = "目标完成度";
+"Chart.Sleep.Deep" = "深睡";
+"Chart.Sleep.Light" = "浅睡";
+"Chart.Sleep.Degree.Deep" = "深度";
+"Chart.Sleep.Degree.Light" = "浅度";
+"Chart.Step.Today.Step" = "步数";
+"Chart.Step.Week.Step" = "周总步数";
+"Chart.Step.Kilometer" = "行走公里数";
+"Chart.Step.TimeUsed" = "花费时长";
+
 //好友，联系人
 "Contacts.ListCell.Cavy" = "生活豚鼠";
 "Contacts.SearchBar.Search" = "搜索";
@@ -179,6 +203,10 @@
 "Contacts.ChangeNotesName.Button" = "确定";
 "Contacts.ChangeSelfName.PlaceHolder" = "更改的昵称";
 "Contacts.Request.VerifyMsg" = "哈喽，我是";
+"Contacts.NavTitle.Remark" = "修改备注";
+"Contacts.NavTitle.AccountInfo" = "账户信息";
+"Contacts.Request.SureButton" = "确定";
+
 
 //账户信息
 "AccountInfo.Title" = "账户信息";
@@ -283,3 +311,12 @@
 "Relate.HelpAndFeedback.TextViewPlaceHolder" = "请描述你的问题或意见";
 "Relate.RelateApp.NavTitle" = "相关App";
 "Relate.RelateAppCell.DownloadBtnTitle" = "下载";
+
+//星期
+"AlarmDay.Monday" = "一";
+"AlarmDay.Tuesday" = "二";
+"AlarmDay.Wednesday" = "三";
+"AlarmDay.Thursday" = "四";
+"AlarmDay.Friday" = "五";
+"AlarmDay.Saturday" = "六";
+"AlarmDay.Sunday" = "日";
