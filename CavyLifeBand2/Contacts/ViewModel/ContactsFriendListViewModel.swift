@@ -191,5 +191,4 @@ struct ContactsTableListModelView: ContactsAddFriendDataSync, ContactsTableViewS
         
     }
     
-    
 }

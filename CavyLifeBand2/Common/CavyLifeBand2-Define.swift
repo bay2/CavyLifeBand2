@@ -252,6 +252,7 @@ enum NotificationName: String {
 
 
 // MARK: - 服务器返回码定义
+
 enum WebApiCode: String {
 
     case Success               = "0000"
@@ -265,12 +266,104 @@ enum WebApiCode: String {
     case SendSecutityCodeError = "1007"
     case SystemError           = "5001"
     case DBError               = "5002"
+    case NetError
+    
+    init(apiCode: String) {
+        switch apiCode {
+        case "0000":
+            self = WebApiCode.Success
+        case "1000":
+            self = WebApiCode.ParaError
+        case "1001":
+            self = WebApiCode.UserPasswdError
+        case "1002":
+            self = WebApiCode.PhoneNumError
+        case "1003":
+            self = WebApiCode.SecurityCodeError
+        case "1004":
+            self = WebApiCode.MobifyUserError
+        case "1005":
+            self = WebApiCode.UserExisted
+        case "1006":
+            self = WebApiCode.UserNotExisted
+        case "1007":
+            self = WebApiCode.SendSecutityCodeError
+        case "5001":
+            self = WebApiCode.SystemError
+        case "5002":
+            self = WebApiCode.DBError
+        default:
+            self = WebApiCode.NetError
+        }
+    
+    }
+}
+
+extension WebApiCode: CustomStringConvertible {
+    
+    var description: String {
+        
+        switch self {
+        case .Success:
+            return ""
+        case .ParaError:
+            return L10n.WebErrorCode1000.string
+        case .UserPasswdError:
+            return L10n.WebErrorCode1001.string
+        case .PhoneNumError:
+            return L10n.WebErrorCode1002.string
+        case .SecurityCodeError:
+            return L10n.WebErrorCode1003.string
+        case .MobifyUserError:
+            return L10n.WebErrorCode1004.string
+        case .UserExisted:
+            return L10n.WebErrorCode1005.string
+        case .UserNotExisted:
+            return L10n.WebErrorCode1006.string
+        case .SendSecutityCodeError:
+            return L10n.WebErrorCode1007.string
+        case .SystemError:
+            return L10n.WebErrorCode5001.string
+        case .DBError:
+            return L10n.WebErrorCode5002.string
+        case .NetError:
+            return L10n.UserModuleErrorCodeNetAPIError.string
+        }
+    
+    }
+
 }
 
 // web Get接口错误码定义
 enum WebGetApiCode: String {
     case Success = "1001"
+    case Unknown = "9001"
+    
+    init(apiCode: String) {
+        switch apiCode {
+        case "0000":
+            self = WebGetApiCode.Success
+        default:
+            self = WebGetApiCode.Unknown
+        }
+        
+    }
+    
 }
+
+extension WebGetApiCode: CustomStringConvertible {
+    var description: String {
+        
+        switch self {
+        case .Success:
+            return ""
+        case .Unknown:
+            return L10n.UserModuleErrorCodeUnknownError.string
+        }
+        
+    }
+}
+
 
 /**
  web api参数
@@ -310,6 +403,7 @@ enum WebGetApiCode: String {
  - FileName:
  - Name:
  - FeedbackContent: 意见反馈内容
+ - PhoneList: 电话号码列表
  */
 enum UserNetRequsetKey: String {
     
@@ -362,7 +456,9 @@ enum UserNetRequsetKey: String {
     case PageSize        = "pagesize"
     case PageNum         = "pagenum"
     case AC              = "ac"
-
+    case PhoneList       = "phoneList"
+    case Remarks         = "remarks"
+    
 }
 
 // MARK: - 服务器接口命令
@@ -394,30 +490,37 @@ enum UserNetRequsetKey: String {
  - SubmitFeedback:   提交意见反馈
  - GetPKInfo:        获取pk信息
  - CavyLife:         获取相关App
+ - SetEmergencyPhone 上传紧急联系人电话号码列表
+ - GetFriendInfo     查询好友信息
+ - SetFriendRemark   设置好友备注
  */
 enum UserNetRequestMethod: String {
     
-    case SendSecurityCode = "sendAuthCode"
-    case SignUp           = "userReg"
-    case SignIn           = "userLogin"
-    case UpdateAvatar     = "setUserIcon"
-    case ForgotPwd        = "resetPsw"
-    case UserProfile      = "getUserInfo"
-    case SetUserProfile   = "setUserInfo"
-    case GetFriendList    = "getFriendList"
-    case SearchFriend     = "searchFriend"
-    case AddFriend        = "addFriend"
-    case GetFriendReqList = "getFriendReqList"
-    case FollowFriend     = "followUser"
-    case DeleteFriend     = "deleteFriend"
-    case ReportCoordinate = "setUserLBS"
-    case GetPKRecordList  = "getPkList"
-    case LaunchPK         = "launchPK"
-    case UndoPK           = "undoPK"
-    case DeletePK         = "delePK"
-    case AcceptPK         = "acceptPK"
-    case GetHelpList      = "getHelpList"
-    case SubmitFeedback   = "submitFeedback"
-    case GetPKInfo        = "getPKInfo"
-    case CavyLife         = "cavylife"
+    case SendSecurityCode  = "sendAuthCode"
+    case SignUp            = "userReg"
+    case SignIn            = "userLogin"
+    case UpdateAvatar      = "setUserIcon"
+    case ForgotPwd         = "resetPsw"
+    case UserProfile       = "getUserInfo"
+    case SetUserProfile    = "setUserInfo"
+    case GetFriendList     = "getFriendList"
+    case SearchFriend      = "searchFriend"
+    case AddFriend         = "addFriend"
+    case GetFriendReqList  = "getFriendReqList"
+    case FollowFriend      = "followUser"
+    case DeleteFriend      = "deleteFriend"
+    case ReportCoordinate  = "setUserLBS"
+    case GetPKRecordList   = "getPkList"
+    case LaunchPK          = "launchPK"
+    case UndoPK            = "undoPK"
+    case DeletePK          = "delePK"
+    case AcceptPK          = "acceptPK"
+    case GetHelpList       = "getHelpList"
+    case SubmitFeedback    = "submitFeedback"
+    case GetPKInfo         = "getPKInfo"
+    case CavyLife          = "cavylife"
+    case SetEmergencyPhone = "setEmergencyPhone"
+    case GetFriendInfo     = "getFriendInfo"
+    case SetFriendRemark   = "setFriendRemark"
+
 }

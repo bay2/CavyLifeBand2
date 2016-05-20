@@ -21,9 +21,59 @@ import CryptoSwift
  - ParamErr:  参数错误
  */
 enum UserRequestErrorType: ErrorType {
-    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, EmailNil, PhoneErr, PhoneNil, PassWdErr, PassWdNil, SecurityCodeErr, SecurityCodeNil, UserNameErr, UserNameNil, UserIdNil, SearchTypeNil, LBSNil, PhoneNumListNil, UnknownError
+    case NetErr, NetAPIErr, ParaNil, ParaErr, EmailErr, EmailNil, PhoneErr, PhoneNil, PassWdErr, PassWdNil, SecurityCodeErr, SecurityCodeNil, UserNameErr, UserNameNil, UserIdNil, SearchTypeNil, LBSNil, PhoneNumListNil, FriendIdNil, UnknownError
 }
 
+extension UserRequestErrorType: CustomStringConvertible {
+    
+    var description: String {
+        
+        switch self {
+        case .NetErr:
+            return L10n.UserModuleErrorCodeNetError.string
+        case .NetAPIErr:
+            return L10n.UserModuleErrorCodeNetAPIError.string
+        case .ParaNil:
+            return L10n.UserModuleErrorCodeParaNil.string
+        case .ParaErr:
+            return L10n.UserModuleErrorCodeParaError.string
+        case .EmailErr:
+            return L10n.UserModuleErrorCodeEmailError.string
+        case.EmailNil:
+            return L10n.UserModuleErrorCodeEmailNil.string
+        case .PhoneErr:
+            return L10n.UserModuleErrorCodePhoneError.string
+        case .PhoneNil:
+            return L10n.UserModuleErrorCodePhoneNil.string
+        case .PassWdErr:
+            return L10n.UserModuleErrorCodePasswdError.string
+        case .PassWdNil:
+            return L10n.UserModuleErrorCodePasswdNil.string
+        case .SecurityCodeErr:
+            return L10n.UserModuleErrorCodeSecurityError.string
+        case .SecurityCodeNil:
+            return L10n.UserModuleErrorCodeSecurityNil.string
+        case .UserNameErr:
+            return L10n.UserModuleErrorCodeUserNameError.string
+        case .UserNameNil:
+            return L10n.UserModuleErrorCodeUserNameNil.string
+        case .UserIdNil:
+            return L10n.UserModuleErrorCodeUserIdNil.string
+        case .SearchTypeNil:
+            return L10n.UserModuleErrorCodeSearchTypeNil.string
+        case .LBSNil:
+            return L10n.UserModuleErrorCodeLBSNil.string
+        case .PhoneNumListNil:
+            return L10n.UserModuleErrorCodePhoneNumListNil.string
+        case .FriendIdNil:
+            return L10n.UserModuleErrorCodeFriendIdNil.string
+        case .UnknownError:
+            return L10n.UserModuleErrorCodeUnknownError.string
+        }
+
+    }
+
+}
 
 
 class UserNetRequestData: NetRequestAdapter {

@@ -38,12 +38,12 @@ extension ContactsAddFriendCellDelegate {
 }
 
 /**
- *  切换到添加好友页面
+ *  切换到请求添加好友页面
  */
 protocol SwitchAddFirendReqView {
     
     var viewController: UIViewController { get }
-    var firendId: String { get }
+    var friendId: String { get }
     
     var pushFirendReqView: ((Void) -> Void)? { get }
     
@@ -55,7 +55,7 @@ extension SwitchAddFirendReqView {
         
         let addFirendVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
         
-        let firendReqViewModel = ContactsFriendReqViewModel(viewController: addFirendVC, friendId: self.firendId)
+        let firendReqViewModel = ContactsFriendReqViewModel(viewController: addFirendVC, friendId: self.friendId)
         
         addFirendVC.viewConfig(firendReqViewModel, delegate: firendReqViewModel)
         

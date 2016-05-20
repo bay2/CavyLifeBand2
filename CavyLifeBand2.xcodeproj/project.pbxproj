@@ -88,6 +88,7 @@
 		683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655961CBE261B009373EA /* SettingRealmModel.swift */; };
 		683655991CBE3C84009373EA /* AlarmRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655981CBE3C84009373EA /* AlarmRealmModel.swift */; };
 		684097081CE058A400A8BAD2 /* WebVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684097071CE058A400A8BAD2 /* WebVCViewModel.swift */; };
+		6849D3B31CE9AE82001CB7EC /* EmergencyWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6849D3B21CE9AE82001CB7EC /* EmergencyWebApi.swift */; };
 		684C6AD81CC9BA1C000C176E /* PKJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD71CC9BA1C000C176E /* PKJSON.swift */; };
 		684C6ADA1CC9CCE4000C176E /* PKWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD91CC9CCE4000C176E /* PKWebApi.swift */; };
 		684C6ADF1CCA0506000C176E /* PKRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6ADE1CCA0506000C176E /* PKRealm.swift */; };
@@ -101,6 +102,8 @@
 		6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */; };
 		6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */; };
 		6859BC941CD4776D0050F6A0 /* AlarmClockUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */; };
+		68648A731CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */; };
+		68648A751CEC71B8009D4BEE /* FullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */; };
 		686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */; };
 		686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */; };
 		686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */; };
@@ -406,6 +409,7 @@
 		683655961CBE261B009373EA /* SettingRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingRealmModel.swift; sourceTree = "<group>"; };
 		683655981CBE3C84009373EA /* AlarmRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmRealmModel.swift; sourceTree = "<group>"; };
 		684097071CE058A400A8BAD2 /* WebVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebVCViewModel.swift; sourceTree = "<group>"; };
+		6849D3B21CE9AE82001CB7EC /* EmergencyWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyWebApi.swift; sourceTree = "<group>"; };
 		684C6AD71CC9BA1C000C176E /* PKJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKJSON.swift; sourceTree = "<group>"; };
 		684C6AD91CC9CCE4000C176E /* PKWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKWebApi.swift; sourceTree = "<group>"; };
 		684C6ADE1CCA0506000C176E /* PKRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKRealm.swift; sourceTree = "<group>"; };
@@ -419,6 +423,8 @@
 		6859BC8D1CD34AAC0050F6A0 /* EmptyClockView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmptyClockView.xib; sourceTree = "<group>"; };
 		6859BC8F1CD354BA0050F6A0 /* EmptyClockView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyClockView.swift; sourceTree = "<group>"; };
 		6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockUITest.swift; sourceTree = "<group>"; };
+		68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactChangeRemarkVM.swift; sourceTree = "<group>"; };
+		68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageView.swift; sourceTree = "<group>"; };
 		686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptPKTest.swift; sourceTree = "<group>"; };
 		686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePKTest.swift; sourceTree = "<group>"; };
 		686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPKTest.swift; sourceTree = "<group>"; };
@@ -499,7 +505,7 @@
 		913D0BD11C3FA126006EE7F8 /* Camera.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Camera.storyboard; sourceTree = "<group>"; };
 		913D0BD71C3FA126006EE7F8 /* CavyLifeBand2-Define.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CavyLifeBand2-Define.swift"; sourceTree = "<group>"; };
 		9141C7FD1C7D72CD003E24F2 /* ImageDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDefine.swift; sourceTree = "<group>"; };
-		9144D1111CC0921F006002A8 /* ContactsTableViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewProtocol.swift; sourceTree = "<group>"; };
+		9144D1111CC0921F006002A8 /* ContactsTableViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsTableViewProtocol.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9150CAAD1CC66CBB00A398E9 /* UIWindowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindowExtension.swift; sourceTree = "<group>"; };
 		9150CAB51CC89EA600A398E9 /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
 		9150CAB91CC8D03800A398E9 /* RightMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightMenuViewModel.swift; sourceTree = "<group>"; };
@@ -604,7 +610,7 @@
 		91E1B4B51CA510BD008ADEE6 /* ContactsSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchBar.swift; sourceTree = "<group>"; };
 		91E1B4B61CA510BD008ADEE6 /* ContactsSearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSearchController.swift; sourceTree = "<group>"; };
 		91E1B4B81CA510BD008ADEE6 /* ContactsAddFriendCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsAddFriendCell.xib; sourceTree = "<group>"; };
-		91E1B4B91CA510BD008ADEE6 /* ContactsAddFriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC.swift; sourceTree = "<group>"; };
+		91E1B4B91CA510BD008ADEE6 /* ContactsAddFriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ContactsAddFriendVC.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		91E1B4BA1CA510BD008ADEE6 /* ContactsFriendListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendListVC.swift; sourceTree = "<group>"; };
 		91E1B4BC1CA510BD008ADEE6 /* ContactsReqFriendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsReqFriendVC.swift; sourceTree = "<group>"; };
 		91E1B4BD1CA510BD008ADEE6 /* ContactsTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTabButton.swift; sourceTree = "<group>"; };
@@ -854,6 +860,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		6849D3B11CE9AE55001CB7EC /* WebApi */ = {
+			isa = PBXGroup;
+			children = (
+				6849D3B21CE9AE82001CB7EC /* EmergencyWebApi.swift */,
+			);
+			path = WebApi;
+			sourceTree = "<group>";
+		};
 		684C6AD61CC9B99C000C176E /* WebApi */ = {
 			isa = PBXGroup;
 			children = (
@@ -937,6 +951,7 @@
 		68C558C81CB74CF90031719D /* AlarmClock */ = {
 			isa = PBXGroup;
 			children = (
+				6849D3B11CE9AE55001CB7EC /* WebApi */,
 				683655931CBE25AD009373EA /* Model */,
 				6836558E1CBE25A6009373EA /* ViewModel */,
 				68C558C91CB74D040031719D /* View */,
@@ -1494,6 +1509,7 @@
 				91E1B4EF1CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift */,
 				917B98CC1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift */,
 				917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */,
+				68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1558,6 +1574,7 @@
 				917B98BD1CB8E841008698F5 /* UserAchievementView.xib */,
 				91E1B4A91CA510BD008ADEE6 /* ContactsLetterView.swift */,
 				91E1B4AA1CA510BD008ADEE6 /* ContactsLetterView.xib */,
+				68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -2011,6 +2028,7 @@
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
 				68E977FA1CC6089D00651724 /* PKIntroduceVC.swift in Sources */,
 				9114D1ED1C97AB05008CB4CE /* MainPageButton.swift in Sources */,
+				68648A731CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift in Sources */,
 				4CB7A0711CD095C400DFB8DC /* HomeUserInfo.swift in Sources */,
 				91DFA91C1CD8445C0036B939 /* PKListVC.swift in Sources */,
 				91ACEC621CB654BD008ED8B0 /* GuideInfoModelView.swift in Sources */,
@@ -2104,6 +2122,8 @@
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
 				686A5EF31CDC35E700EB8D0E /* HelpAndFeedbackVC.swift in Sources */,
 				686A5EF51CDC360000EB8D0E /* RelateAppVC.swift in Sources */,
+				68648A751CEC71B8009D4BEE /* FullScreenImageView.swift in Sources */,
+				9114D20E1C995CD2008CB4CE /* MenuTableViewCell.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
 				4C06E9E91CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift in Sources */,
@@ -2129,6 +2149,9 @@
 				91E1B4D01CA510BD008ADEE6 /* ContactsPersonInfoListCell.swift in Sources */,
 				4C5396D01CE419EC00BCFAEB /* NSDate_Extension.swift in Sources */,
 				684C6ADA1CC9CCE4000C176E /* PKWebApi.swift in Sources */,
+				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
+				68648A711CEB2F66009D4BEE /* NSDate_Extension.swift in Sources */,
+				4C06E9E71CBF73B10093EEFA /* HomeDataCellFlowLayout.swift in Sources */,
 				9114D1FB1C97AB05008CB4CE /* RulerScroller.swift in Sources */,
 				91E1B4C61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift in Sources */,
 				6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */,
@@ -2142,6 +2165,7 @@
 				4CB7A0DF1CD35BF900DFB8DC /* ChartsJSON.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
 				6859BC821CD221A80050F6A0 /* EmergencyContactRealmModel.swift in Sources */,
+				6849D3B31CE9AE82001CB7EC /* EmergencyWebApi.swift in Sources */,
 				4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */,
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,

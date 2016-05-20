@@ -47,8 +47,22 @@ enum L10n {
   case UserModuleErrorCodeSecurityNil
   /// 用户名不能为空
   case UserModuleErrorCodeUserNameNil
+  /// 用户Id不能为空
+  case UserModuleErrorCodeUserIdNil
   /// 未知错误
   case UserModuleErrorCodeUnknownError
+  /// 好友Id不能为空
+  case UserModuleErrorCodeFriendIdNil
+  /// 搜索类型不能为空
+  case UserModuleErrorCodeSearchTypeNil
+  /// 参数有误
+  case UserModuleErrorCodeParaNil
+  /// 参数有误
+  case UserModuleErrorCodeParaError
+  /// LBS不能为空
+  case UserModuleErrorCodeLBSNil
+  /// 电话号码列表不能为空
+  case UserModuleErrorCodePhoneNumListNil
   /// 登入
   case MainPageSignInBtn
   /// 加入豚鼠
@@ -333,6 +347,12 @@ enum L10n {
   case ContactsChangeSelfNamePlaceHolder
   /// 哈喽，我是
   case ContactsRequestVerifyMsg
+  /// 修改备注
+  case ContactsNavTitleRemark
+  /// 账户信息
+  case ContactsNavTitleAccountInfo
+  /// 确定
+  case ContactsRequestSureButton
   /// 账户信息
   case AccountInfoTitle
   /// 退出登录
@@ -580,8 +600,22 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UserModuleErrorCode.SecurityNil")
       case .UserModuleErrorCodeUserNameNil:
         return L10n.tr("UserModuleErrorCode.UserNameNil")
+      case .UserModuleErrorCodeUserIdNil:
+        return L10n.tr("UserModuleErrorCode.UserIdNil")
       case .UserModuleErrorCodeUnknownError:
         return L10n.tr("UserModuleErrorCode.UnknownError")
+      case .UserModuleErrorCodeFriendIdNil:
+        return L10n.tr("UserModuleErrorCode.FriendIdNil")
+      case .UserModuleErrorCodeSearchTypeNil:
+        return L10n.tr("UserModuleErrorCode.SearchTypeNil")
+      case .UserModuleErrorCodeParaNil:
+        return L10n.tr("UserModuleErrorCode.ParaNil")
+      case .UserModuleErrorCodeParaError:
+        return L10n.tr("UserModuleErrorCode.ParaError")
+      case .UserModuleErrorCodeLBSNil:
+        return L10n.tr("UserModuleErrorCode.LBSNil")
+      case .UserModuleErrorCodePhoneNumListNil:
+        return L10n.tr("UserModuleErrorCode.PhoneNumListNil")
       case .MainPageSignInBtn:
         return L10n.tr("MainPage.SignInBtn")
       case .MainPageSignUpBtn:
@@ -866,6 +900,12 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.ChangeSelfName.PlaceHolder")
       case .ContactsRequestVerifyMsg:
         return L10n.tr("Contacts.Request.VerifyMsg")
+      case .ContactsNavTitleRemark:
+        return L10n.tr("Contacts.NavTitle.Remark")
+      case .ContactsNavTitleAccountInfo:
+        return L10n.tr("Contacts.NavTitle.AccountInfo")
+      case .ContactsRequestSureButton:
+        return L10n.tr("Contacts.Request.SureButton")
       case .AccountInfoTitle:
         return L10n.tr("AccountInfo.Title")
       case .AccountInfoLoginoutButtonTitle:

@@ -7,7 +7,6 @@
 //
 
 import Alamofire
-import Log
 import JSONJoy
 import RealmSwift
 
@@ -18,13 +17,27 @@ class PKWebApi: NetRequestAdapter {
     /**
      获取PK列表
      
-     - parameter userId:   用户id
+     - parameter userId:   用户Id
+     - parameter type:     查询类型：0：查询用户自己的pk列表，1：查询好友的pk列表
+     - parameter friendId: 好友ID，当type=1时必选
      - parameter callBack: 回调
+     
+     - throws:
      */
-    func getPKRecordList(userId: String, callBack: CompletionHandlernType? = nil) throws {
+    func getPKRecordList(userId: String, type: Int = 0, friendId: String = "", callBack: CompletionHandlernType? = nil) throws {
+        
+        if type == 1 && friendId.characters.count == 0 {
+            
+            callBack?(.Failure(.FriendIdNil))
+            Log.error("friendId is nil")
+            return
+             
+        }
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetPKRecordList.rawValue,
-                                               UserNetRequsetKey.UserID.rawValue: userId]
+                                               UserNetRequsetKey.UserID.rawValue: userId,
+                                               UserNetRequsetKey.FriendReqType.rawValue: type,
+                                               UserNetRequsetKey.FriendID.rawValue: type]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
         
@@ -159,14 +172,14 @@ extension PKWebRequestProtocol {
             try PKWebApi.shareApi.launchPK(loginUserId, launchPKList: pk) {(result) in
                 
                 guard result.isSuccess else {
-                    failure?(self.getErroMsgFromUserCode(result.error))
+                    failure?(result.error?.description ?? "")
                     return
                 }
                 
                 let resultMsg = try! LaunchPKResponse(JSONDecoder(result.value!))
                 
                 guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg.code ?? ""))
+                    failure?(WebApiCode(apiCode: resultMsg.commonMsg.code).description)
                     return
                 }
                 
@@ -180,7 +193,8 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
+            let err = error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError
+            failure?(err.description ?? "")
         }
 
     }
@@ -194,14 +208,14 @@ extension PKWebRequestProtocol {
             try PKWebApi.shareApi.acceptPK(loginUserId, acceptPkList: pk) {(result) in
                 
                 guard result.isSuccess else {
-                    failure?(self.getErroMsgFromUserCode(result.error))
+                    failure?(result.error?.description ?? "")
                     return
                 }
                 
                 let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
                 guard resultMsg.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
+                    failure?(WebApiCode(apiCode: resultMsg.code).description)
                     return
                 }
                 
@@ -211,7 +225,8 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
+            let err = error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError
+            failure?(err.description ?? "")
         }
         
     }
@@ -226,14 +241,14 @@ extension PKWebRequestProtocol {
             try PKWebApi.shareApi.undoPK(loginUserId, undoPKList: pk) {(result) in
                 
                 guard result.isSuccess else {
-                    failure?(self.getErroMsgFromUserCode(result.error))
+                    failure?(result.error?.description ?? "")
                     return
                 }
                 
                 let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
                 guard resultMsg.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
+                    failure?(WebApiCode(apiCode: resultMsg.code).description)
                     return
                 }
                 
@@ -242,7 +257,8 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
+            let err = error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError
+            failure?(err.description ?? "")
         }
         
     }
@@ -257,14 +273,14 @@ extension PKWebRequestProtocol {
             try PKWebApi.shareApi.deletePK(loginUserId, delPkList: pk) {(result) in
                 
                 guard result.isSuccess else {
-                    failure?(self.getErroMsgFromUserCode(result.error))
+                    failure?(result.error?.description ?? "")
                     return
                 }
                 
                 let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
                 guard resultMsg.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.code ?? ""))
+                    failure?(WebApiCode(apiCode: resultMsg.code).description)
                     return
                 }
                 
@@ -272,7 +288,8 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
+            let err = error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError
+            failure?(err.description ?? "")
         }
         
     }
@@ -283,14 +300,14 @@ extension PKWebRequestProtocol {
             try PKWebApi.shareApi.getPKInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {(result) in
                 
                 guard result.isSuccess else {
-                    failure?(self.getErroMsgFromUserCode(result.error))
+                    failure?(result.error?.description ?? "")
                     return
                 }
                 
                 let resultMsg = try! PKInfoResponse(JSONDecoder(result.value!))
                 
                 guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
-                    failure?(self.getErroMsgFromWebErrorCode(resultMsg.commonMsg.code ?? ""))
+                    failure?(WebApiCode(apiCode: resultMsg.commonMsg.code).description)
                     return
                 }
                 
@@ -298,7 +315,8 @@ extension PKWebRequestProtocol {
             }
             
         } catch let error {
-            failure?(self.getErroMsgFromUserCode(error as? UserRequestErrorType))
+            let err = error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError
+            failure?(err.description ?? "")
         }
     }
     
@@ -360,52 +378,6 @@ extension PKWebRequestProtocol {
         return requests
     }
 
-    //user error code to string
-    func getErroMsgFromUserCode(userErrorCode: UserRequestErrorType?) -> String {
-        
-        let errorMessage = [UserRequestErrorType.EmailErr: L10n.UserModuleErrorCodeEmailError.string,
-                            UserRequestErrorType.EmailNil: L10n.UserModuleErrorCodeEmailNil.string,
-                            UserRequestErrorType.NetAPIErr: L10n.UserModuleErrorCodeNetAPIError.string,
-                            UserRequestErrorType.NetErr: L10n.UserModuleErrorCodeNetError.string,
-                            UserRequestErrorType.PassWdErr: L10n.UserModuleErrorCodePasswdError.string,
-                            UserRequestErrorType.PassWdNil: L10n.UserModuleErrorCodePasswdNil.string,
-                            UserRequestErrorType.PhoneNil: L10n.UserModuleErrorCodePhoneNil.string,
-                            UserRequestErrorType.PhoneErr: L10n.UserModuleErrorCodePhoneError.string,
-                            UserRequestErrorType.SecurityCodeErr: L10n.UserModuleErrorCodeSecurityError.string,
-                            UserRequestErrorType.SecurityCodeNil: L10n.UserModuleErrorCodeSecurityNil.string,
-                            UserRequestErrorType.UserNameErr: L10n.UserModuleErrorCodeUserNameError.string,
-                            UserRequestErrorType.UserNameNil: L10n.UserModuleErrorCodeUserNameNil.string,
-                            UserRequestErrorType.UnknownError: L10n.UserModuleErrorCodeUnknownError.string]
-        
-        let userError = userErrorCode ?? UserRequestErrorType.UnknownError
-        
-        return errorMessage[userError]!
-    }
-    
-    //web error code to string
-    func getErroMsgFromWebErrorCode(webErrorCode: String) -> String {
-    
-        let errorMessage = [WebApiCode.ParaError.rawValue: L10n.WebErrorCode1000.string,
-                            WebApiCode.UserPasswdError.rawValue: L10n.WebErrorCode1001.string,
-                            WebApiCode.PhoneNumError.rawValue: L10n.WebErrorCode1002.string,
-                            WebApiCode.SecurityCodeError.rawValue: L10n.WebErrorCode1003.string,
-                            WebApiCode.MobifyUserError.rawValue: L10n.WebErrorCode1004.string,
-                            WebApiCode.UserExisted.rawValue: L10n.WebErrorCode1005.string,
-                            WebApiCode.UserNotExisted.rawValue: L10n.WebErrorCode1006.string,
-                            WebApiCode.SendSecutityCodeError.rawValue: L10n.WebErrorCode1007.string]
-        
-        if let message = errorMessage[webErrorCode] {
-            
-            return message
-            
-        } else {
-        
-            return L10n.UserModuleErrorCodeNetAPIError.string
-        
-        }
-        
-    }
-
 }
 
 protocol PKRecordsUpdateFormWeb: PKRecordsRealmModelOperateDelegate {
@@ -418,7 +390,7 @@ protocol PKRecordsUpdateFormWeb: PKRecordsRealmModelOperateDelegate {
 extension PKRecordsUpdateFormWeb  {
     
     func loadDataFromWeb(loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
-        
+
         do {
             
             try PKWebApi.shareApi.getPKRecordList(loginUserId) {(result) in
@@ -431,7 +403,7 @@ extension PKRecordsUpdateFormWeb  {
                 let resultMsg = try! PKRecordList(JSONDecoder(result.value ?? ""))
                 
                 guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(message: resultMsg.commonMsg.code ?? "")
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.commonMsg.code)
                     return
                 }
                 

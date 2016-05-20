@@ -12,6 +12,61 @@ import Log
 import Alamofire
 import JSONJoy
 
+extension ContactsRecommendFriendData: ContactsCellClickProtocol  {
+    
+    func onClickCell(viewController: UIViewController?, indexPath: NSIndexPath) {
+        
+        let requestVC = StoryboardScene.Contacts.instantiateContactsPersonInfoVC()
+        requestVC.friendId = self.items[indexPath.row].friendId
+        requestVC.friendNickName = self.items[indexPath.row].name
+        viewController?.pushVC(requestVC)
+        
+    }
+    
+}
+
+extension ContactsAddressBookFriendData: ContactsCellClickProtocol {
+
+    func onClickCell(viewController: UIViewController?, indexPath: NSIndexPath) {
+        
+        let requestVC = StoryboardScene.Contacts.instantiateContactsPersonInfoVC()
+        requestVC.friendId = self.items[indexPath.row].friendId
+        requestVC.friendNickName = self.items[indexPath.row].name
+        viewController?.pushVC(requestVC)
+        
+    }
+    
+}
+
+extension ContactsSearchFriendData: ContactsCellClickProtocol {
+
+    func onClickCell(viewController: UIViewController?, indexPath: NSIndexPath) {
+        
+        let requestVC = StoryboardScene.Contacts.instantiateContactsPersonInfoVC()
+        requestVC.friendId = self.items[indexPath.row].friendId
+        requestVC.friendNickName = self.items[indexPath.row].name
+        viewController?.pushVC(requestVC)
+        
+    }
+    
+}
+
+extension ContactsNearbyFriendData: ContactsCellClickProtocol {
+
+    func onClickCell(viewController: UIViewController?, indexPath: NSIndexPath) {
+        
+        let requestVC = StoryboardScene.Contacts.instantiateContactsPersonInfoVC()
+        requestVC.friendId = self.items[indexPath.row].friendId
+        requestVC.friendNickName = self.items[indexPath.row].name
+        viewController?.pushVC(requestVC)
+        
+    }
+    
+}
+
+
+typealias ContactsTableViewProtocols = protocol<ContactsTableViewSectionDataSource, ContactsCellClickProtocol>
+
 class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewControllerPresenter {
     
     enum ContactsTabButtonTag: Int {
@@ -45,7 +100,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
     var searchTableView: UITableView = UITableView(frame: CGRectMake(0, 40, ez.screenWidth, ez.screenHeight), style: .Plain)
     
     // tableview 字典
-    var tableDictionary: [UITableView: ContactsTableViewSectionDataSource] = [:]
+    var tableDictionary: [UITableView: ContactsTableViewProtocols] = [:]
     
     var recommendFriendData: ContactsRecommendFriendData?
     
@@ -103,7 +158,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
      */
     func loadData() {
         
-        tableDictionary = tableDictionary.map {(key, value) -> (UITableView, ContactsTableViewSectionDataSource) in
+        tableDictionary = tableDictionary.map {(key, value) -> (UITableView, ContactsTableViewProtocols) in
             
             let dataSource = value
             dataSource.loadData()
@@ -119,7 +174,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
      - parameter dataSource: 数据源
      - parameter tableView:  tableview
      */
-    func addTableViewData<T: ContactsTableViewSectionDataSource where T: ContactsAddFriendDataSync>(dataSource: T, tableView: UITableView) {
+    func addTableViewData<T: ContactsTableViewProtocols where T: ContactsAddFriendDataSync>(dataSource: T, tableView: UITableView) {
         
         tableDictionary[tableView] = dataSource
         
@@ -357,6 +412,12 @@ extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
+        guard let dataSourceViewModel = tableDictionary[tableView] else {
+            fatalError()
+        }
+        
+        return dataSourceViewModel.onClickCell(self, indexPath: indexPath)
         
     }
     

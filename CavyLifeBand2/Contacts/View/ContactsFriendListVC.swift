@@ -83,7 +83,9 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
                 Log.error("\(#function) result error (\(error))")
                 
             }
+            
         }
+        
     }
     
     /**
@@ -500,6 +502,13 @@ extension ContactsFriendListVC {
         
         let names = dataGroup?.contactsGroupList![indexPath.section].1
         names![indexPath.row].onClickCell(self)
+        
+        if indexPath.section != 0 {
+            let requestVC = StoryboardScene.Contacts.instantiateContactsFriendInfoVC()
+            requestVC.friendId = names![indexPath.row].friendId
+            requestVC.friendNickName = names![indexPath.row].name
+            self.pushVC(requestVC)
+        }
         
     }
     

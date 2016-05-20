@@ -33,6 +33,13 @@ protocol ContactsTableViewSectionDataSource {
     
 }
 
+protocol ContactsCellClickProtocol {
+    
+    func onClickCell(viewController: UIViewController?, indexPath: NSIndexPath)
+    
+}
+
+
 extension ContactsTableViewSectionDataSource {
     
     func createSectionView() -> UIView? {

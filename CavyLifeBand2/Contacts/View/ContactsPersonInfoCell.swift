@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Log
 
 /**
  联系人关系
@@ -69,10 +68,20 @@ class ContactsPersonInfoCell: UITableViewCell {
         
         headView.af_setImageWithURL(NSURL(string: datasource.avatarUrl)!, runImageTransitionIfCached: true)
         
-        titleLab.text = datasource.title
-        
-        subTitleLab.text = datasource.subTitle
-        
+        /**
+         如果备注名称为空字符串则主标题显示用户昵称，副标题为空字符串；
+         反之主标题显示备注，副标题显示用户昵称
+         */
+        if datasource.title == "" {
+            titleLab.text = datasource.subTitle
+            
+            subTitleLab.text = ""
+        } else {
+            titleLab.text = datasource.title
+            
+            subTitleLab.text = datasource.subTitle
+        }
+                
         personRealtion(datasource.relation)
         
         self.delegate = delegate
@@ -172,3 +181,46 @@ class ContactsPersonInfoCell: UITableViewCell {
     }
     
 }
+
+struct ContactsFriendInfoCellDS: ContactsPersonInfoCellPresenter {
+    
+    var title: String
+    
+    var subTitle: String
+    
+    var avatarUrl: String
+    
+    var relation: PersonRelation = .FriendRelation
+    
+    init(model: ContactPsersonInfoResponse? = nil, nickName: String) {
+        
+        title = model?.remark ?? ""
+        
+        avatarUrl = model?.avatarUrl ?? ""
+        
+        subTitle = nickName
+        
+    }
+    
+}
+
+struct ContactsStrangerInfoCellDS: ContactsPersonInfoCellPresenter {
+    
+    var title: String
+    
+    var subTitle: String = ""
+    
+    var avatarUrl: String
+    
+    var relation: PersonRelation = .FriendRelation
+    
+    init(model: ContactPsersonInfoResponse? = nil, nickName: String) {
+        
+        title = nickName
+        
+        avatarUrl = model?.avatarUrl ?? ""
+        
+    }
+    
+}
+

@@ -10,9 +10,12 @@ import UIKit
 import SnapKit
 import EZSwiftExtensions
 
+/**
+ *  添加好友cell数据源
+ */
 protocol ContactsAddFriendCellDataSource {
     
-    var firendId: String { get }
+    var friendId: String { get }
     var headImageUrl: String { get }
     var name: String { get }
     var introudce: String { get }
@@ -20,6 +23,9 @@ protocol ContactsAddFriendCellDataSource {
     
 }
 
+/**
+ *  添加好友cell代理
+ */
 protocol ContactsAddFriendCellDelegate {
     
     var nameTextColor: UIColor { get }

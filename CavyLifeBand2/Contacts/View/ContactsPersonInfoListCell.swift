@@ -39,12 +39,14 @@ class ContactsPersonInfoListCell: UITableViewCell {
         titleInfoLabel.text = titleInfo
     }
     
-    func configCell(datasource: ContactsPersonInfoListCellPresenter) {
+    func configCell(datasource: ContactsPersonInfoListCellPresenter, cellEditOrNot: Bool = false) {
         
         self.datasource = datasource
         
         titleLabel.text = datasource.title
         titleInfoLabel.text = datasource.info
+        
+        titleInfoLabel.textColor = datasource.infoTextColor
         
     }
 
@@ -54,4 +56,7 @@ class ContactsPersonInfoListCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
 }
+
+

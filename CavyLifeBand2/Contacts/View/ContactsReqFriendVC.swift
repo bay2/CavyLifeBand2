@@ -33,7 +33,11 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     
     var requestStyle: RequestStyle = .AddFriend
     
-    var navTitle: String { return L10n.ContactsTitle.string }
+    var navTitle: String {
+        
+        return dataSource?.navTitle ?? ""
+    
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +58,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
      */
     @IBAction func sendRequest(sender: AnyObject) {
         
-        delegate?.verifyMsg = requestTextField.text ?? ""
+        dataSource?.textFieldTitle = requestTextField.text ?? ""
         delegate?.onClickButton()
         
         
@@ -135,16 +139,5 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

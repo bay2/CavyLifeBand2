@@ -14,6 +14,7 @@ protocol ContactsPersonInfoListCellPresenter {
     
     var title: String { get }
     var info: String { get }
+    var infoTextColor: UIColor { get }
     var onClick: (Void -> Void)? { get }
     
 }

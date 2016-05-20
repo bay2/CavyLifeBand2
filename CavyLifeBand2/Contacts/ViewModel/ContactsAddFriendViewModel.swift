@@ -27,7 +27,7 @@ struct ContactsRecommendCellViewModel: ContactsAddFriendDelItemPortocols {
     
     var viewController: UIViewController
     
-    var firendId: String
+    var friendId: String
     
     var headImageUrl: String
     
@@ -37,10 +37,10 @@ struct ContactsRecommendCellViewModel: ContactsAddFriendDelItemPortocols {
     
     var rowIndex: Int
     
-    init(viewController: UIViewController, rowIndex: Int, firendId: String = "", name: String = "", headImageUrl: String = "") {
+    init(viewController: UIViewController, rowIndex: Int, friendId: String = "", name: String = "", headImageUrl: String = "") {
         
         self.viewController = viewController
-        self.firendId = firendId
+        self.friendId = friendId
         self.name = name
         self.headImageUrl = headImageUrl
         self.rowIndex = rowIndex
@@ -58,7 +58,7 @@ struct ContactsAddFriendCellViewModel: ContactsAddFriendPortocols {
     
     var viewController: UIViewController
     
-    var firendId: String
+    var friendId: String
     
     // 头像
     var headImageUrl: String
@@ -70,10 +70,10 @@ struct ContactsAddFriendCellViewModel: ContactsAddFriendPortocols {
     var introudce: String { return "" }
     
     
-    init(viewController: UIViewController, firendId: String = "", name: String = "", headImageUrl: String = "") {
+    init(viewController: UIViewController, friendId: String = "", name: String = "", headImageUrl: String = "") {
         
         self.viewController = viewController
-        self.firendId = firendId
+        self.friendId = friendId
         self.name = name
         self.headImageUrl = headImageUrl
         
@@ -94,7 +94,7 @@ struct ContactsAddressBookViewModel: ContactsAddFriendPortocols {
     
     var viewController: UIViewController
     
-    var firendId: String
+    var friendId: String
     
     // 头像
     var headImageUrl: String
@@ -105,12 +105,12 @@ struct ContactsAddressBookViewModel: ContactsAddFriendPortocols {
     // 副标题
     var introudce: String
     
-    init(viewController: UIViewController, firendId: String = "", name: String = "", introudce: String = "", headImageUrl: String = "") {
+    init(viewController: UIViewController, friendId: String = "", name: String = "", introudce: String = "", headImageUrl: String = "") {
         
         self.name = name
         self.headImageUrl = headImageUrl
         self.viewController = viewController
-        self.firendId = firendId
+        self.friendId = friendId
         self.introudce = introudce
         
     }
@@ -130,7 +130,7 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendPortocols {
     
     var viewController: UIViewController
     
-    var firendId: String
+    var friendId: String
     
     // 头像
     var headImageUrl: String
@@ -141,11 +141,11 @@ struct ContactsNearbyCellViewModel: ContactsAddFriendPortocols {
     // 副标题
     var introudce: String
     
-    init(viewController: UIViewController, name: String = "", firendId: String = "", headImageUrl: String = "", introudce: String = "") {
+    init(viewController: UIViewController, name: String = "", friendId: String = "", headImageUrl: String = "", introudce: String = "") {
         
         self.name = name
         self.headImageUrl = headImageUrl
-        self.firendId = firendId
+        self.friendId = friendId
         self.viewController = viewController
         self.introudce = introudce
         
@@ -166,7 +166,7 @@ struct ContactsNewFriendCellViewModel: ContactsNewFriendPortocols {
     
     var viewController: UIViewController
     
-    var firendId: String
+    var friendId: String
     
     // 头像
     var headImageUrl: String
@@ -183,9 +183,9 @@ struct ContactsNewFriendCellViewModel: ContactsNewFriendPortocols {
     // 按钮颜色
     var btnBGColor: UIColor { return UIColor(named: .ContactsAgreeButtonColor) }
     
-    init(viewController: UIViewController, name: String = "", firendId: String = "", headImageUrl: String = "", introudce: String = "") {
+    init(viewController: UIViewController, name: String = "", friendId: String = "", headImageUrl: String = "", introudce: String = "") {
         
-        self.firendId = firendId
+        self.friendId = friendId
         self.name = name
         self.headImageUrl = headImageUrl
         self.introudce = introudce
@@ -195,7 +195,7 @@ struct ContactsNewFriendCellViewModel: ContactsNewFriendPortocols {
     
     func clickCellBtn(sender: UIButton) {
         
-        ContactsWebApi.shareApi.agreeFriend(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, friendId: firendId) {
+        ContactsWebApi.shareApi.agreeFriend(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, friendId: friendId) {
             
             if $0.isSuccess {
                 
@@ -216,9 +216,7 @@ struct ContactsNewFriendCellViewModel: ContactsNewFriendPortocols {
  */
 struct ContactsFriendReqViewModel: ContactsReqFriendPortocols {
     
-    var textFieldTitle: String {
-        return L10n.ContactsRequestVerifyMsg.string + CavyDefine.userNickname
-    }
+    var textFieldTitle: String = L10n.ContactsRequestVerifyMsg.string + CavyDefine.userNickname
     
     var placeholderText: String {
         return L10n.ContactsRequestPlaceHolder.string
@@ -228,7 +226,7 @@ struct ContactsFriendReqViewModel: ContactsReqFriendPortocols {
         return L10n.ContactsRequestSendButton.string
     }
     
-    var verifyMsg: String = L10n.ContactsRequestVerifyMsg.string + CavyDefine.userNickname
+    var navTitle: String = L10n.ContactsTitle.string
     
     var friendId: String
     
@@ -267,7 +265,7 @@ struct ContactsFriendReqViewModel: ContactsReqFriendPortocols {
             
         }
         
-        ContactsWebApi.shareApi.addFriend(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, friendId: friendId, verifyMsg: verifyMsg, callBack: msgParse)
+        ContactsWebApi.shareApi.addFriend(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, friendId: friendId, verifyMsg: textFieldTitle, callBack: msgParse)
         
     }
     
