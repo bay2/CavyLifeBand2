@@ -72,7 +72,6 @@ class PKListVC: UIViewController, BaseViewControllerPresenter, PKRecordsUpdateFo
             return
         }
 
-        
         self.loadDataFromWeb()
         
     }

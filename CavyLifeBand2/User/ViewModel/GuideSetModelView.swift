@@ -10,12 +10,14 @@ import EZSwiftExtensions
 import Gifu
 import RealmSwift
 
+typealias GuideViewModelPotocols = protocol<GuideViewDataSource, GuideViewDelegate>
+
 /**
  *  @author xuemincai
  *
  *  设置通知提醒
  */
-struct GuideSetNoticeViewModel: GuideViewDataSource, GuideViewDelegate {
+struct GuideSetNoticeViewModel: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideSetting.string }
     var rightItemBtnTitle: String { return L10n.GuidePassButton.string }
@@ -55,7 +57,7 @@ struct GuideSetNoticeViewModel: GuideViewDataSource, GuideViewDelegate {
  *
  *  设置位置共享
  */
-struct GuideSetLocationShare: GuideViewDataSource, GuideViewDelegate, UserInfoRealmOperateDelegate {
+struct GuideSetLocationShare: GuideViewModelPotocols, UserInfoRealmOperateDelegate {
     
     var title: String { return L10n.GuideSetting.string }
     var rightItemBtnTitle: String { return L10n.GuidePassButton.string }

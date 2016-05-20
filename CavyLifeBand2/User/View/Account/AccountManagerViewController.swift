@@ -337,6 +337,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                 self.addUserInfo(userInfoModel)
                 
                 UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
+                
             }
             
         } else {

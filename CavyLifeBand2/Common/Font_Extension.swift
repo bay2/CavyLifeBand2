@@ -28,6 +28,7 @@ extension UIFont {
         italicFont = UIFont(descriptor: italicDescriptor, size: size)
         
         return italicFont
+        
     }
     
     

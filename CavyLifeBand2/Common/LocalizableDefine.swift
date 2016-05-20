@@ -241,6 +241,34 @@ enum L10n {
   case HomeRightListTitleFirmwareUpgrade
   /// 绑定新的CavyBand
   case HomeRightListTitleBindingBand
+  /// 睡眠
+  case ChartSleep
+  /// 计步
+  case ChartStep
+  /// 日
+  case ChartTimeBucketDay
+  /// 周
+  case ChartTimeBucketWeek
+  /// 月
+  case ChartTimeBucketMonth
+  /// 目标完成度
+  case ChartTargetPercent
+  /// 深睡
+  case ChartSleepDeep
+  /// 浅睡
+  case ChartSleepLight
+  /// 深度
+  case ChartSleepDegreeDeep
+  /// 浅度
+  case ChartSleepDegreeLight
+  /// 步数
+  case ChartStepTodayStep
+  /// 周总步数
+  case ChartStepWeekStep
+  /// 行走公里数
+  case ChartStepKilometer
+  /// 花费时长
+  case ChartStepTimeUsed
   /// 生活豚鼠
   case ContactsListCellCavy
   /// 搜索
@@ -766,6 +794,34 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.RightList.Title.FirmwareUpgrade")
       case .HomeRightListTitleBindingBand:
         return L10n.tr("Home.RightList.Title.BindingBand")
+      case .ChartSleep:
+        return L10n.tr("Chart.Sleep")
+      case .ChartStep:
+        return L10n.tr("Chart.Step")
+      case .ChartTimeBucketDay:
+        return L10n.tr("Chart.TimeBucket.Day")
+      case .ChartTimeBucketWeek:
+        return L10n.tr("Chart.TimeBucket.Week")
+      case .ChartTimeBucketMonth:
+        return L10n.tr("Chart.TimeBucket.Month")
+      case .ChartTargetPercent:
+        return L10n.tr("Chart.Target.Percent")
+      case .ChartSleepDeep:
+        return L10n.tr("Chart.Sleep.Deep")
+      case .ChartSleepLight:
+        return L10n.tr("Chart.Sleep.Light")
+      case .ChartSleepDegreeDeep:
+        return L10n.tr("Chart.Sleep.Degree.Deep")
+      case .ChartSleepDegreeLight:
+        return L10n.tr("Chart.Sleep.Degree.Light")
+      case .ChartStepTodayStep:
+        return L10n.tr("Chart.Step.Today.Step")
+      case .ChartStepWeekStep:
+        return L10n.tr("Chart.Step.Week.Step")
+      case .ChartStepKilometer:
+        return L10n.tr("Chart.Step.Kilometer")
+      case .ChartStepTimeUsed:
+        return L10n.tr("Chart.Step.TimeUsed")
       case .ContactsListCellCavy:
         return L10n.tr("Contacts.ListCell.Cavy")
       case .ContactsSearchBarSearch:
