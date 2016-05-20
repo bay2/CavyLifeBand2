@@ -103,6 +103,7 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
             }
 
             break
+            
         default:
             break
         }
