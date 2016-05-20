@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: UInt64(ez.appBuild!)!, migrationBlock: { migration, oldSchemaVersion in
             
-            if oldSchemaVersion >= 6 {
+            if oldSchemaVersion > 6 {
                 return
             }
             
