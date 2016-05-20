@@ -218,7 +218,9 @@ struct AppAboutMenuGroupDataModel: MenuGroupDataSource {
         
         items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuApp),
             title: L10n.HomeLifeListTitleRelated.string,
-            nextView: StoryboardScene.Relate.instantiateHelpAndFeedbackVC()))
+            nextView: StoryboardScene.Relate.instantiateRelateAppVC()))
+        
+        
     }
     
 }
