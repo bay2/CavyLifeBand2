@@ -45,6 +45,7 @@ struct CavyDefine {
     // 已登录用户信息
     static var loginUserBaseInfo = LoginUserBaseInfoStorage()
     
+    // 手环绑定信息
     static var bindBandInfos = BindBandInfo()
     
     // 已登录用户昵称
@@ -70,6 +71,7 @@ struct CavyDefine {
         return accountSex
     }
     
+    // MARK - 蓝牙连接ViewController 跳转处理
     /**
      蓝牙连接Present视图
      
@@ -100,10 +102,14 @@ struct CavyDefine {
     
 }
 
+// MARK: - 已登录的用户基本信息，存储NSUserDefaults
+
 /**
- *  @author xuemincai
- *
- *  已登录用户基本信息
+   已登录用户基本信息
+ 
+   - Author:
+    xuemincai
+ 
  */
 struct LoginUserBaseInfoStorage {
     
@@ -133,9 +139,11 @@ struct LoginUserBaseInfoStorage {
 }
 
 /**
- *  @author xuemincai
- *
- *  已登录用户信息
+ 已登录用户信息
+ 
+ - Author:
+ xuemincai
+ 
  */
 struct LoginUserBaseInfo {
     
@@ -158,6 +166,19 @@ struct LoginUserBaseInfo {
     
 }
 
+/**
+ *  @author xuemincai
+ *
+ *  存储协议
+ */
+protocol LoginStorage {
+    func objectForKey(key: String) -> AnyObject?
+    func setObject(object: AnyObject?, forKey: String)
+}
+
+extension NSUserDefaults: LoginStorage { }
+
+// MARK: - 手环绑定信息存储 KeyChain
 /**
  *  手环绑定信息
  */
@@ -209,41 +230,28 @@ struct BindBandInfoStorage {
     
 }
 
-/**
- *  @author xuemincai
- *
- *  存储协议
- */
-protocol LoginStorage {
-    func objectForKey(key: String) -> AnyObject?
-    func setObject(object: AnyObject?, forKey: String)
-}
 
-extension NSUserDefaults: LoginStorage { }
 
-/**
- 消息定义
- 
- - HomeLeftOnClickMenu:         点击菜单
- - HomeLeftOnClickCellPushView: 点击list
- - HomeLeftHiddenMenu:          隐藏菜单
- - HomeLeftAccountInfo:         点头像
- */
+// MARK: - 通知消息定义
+
+
 enum NotificationName: String {
     
-    case HomeLeftOnClickMenu
-    case HomePushView
-    case HomeShowHomeView
-    case HomeRightOnClickMenu
-    case HomeLeftAccountInfo
+    case HomeLeftOnClickMenu           // 点击左侧菜单
+    case HomePushView                  // 跳转页面
+    case HomeShowHomeView              // 显示主页
+    case HomeRightOnClickMenu          // 点击右侧菜单
+    case HomeLeftAccountInfo           // 点击左侧头像，账号信息
     case ReminderPhoneSwitchChange
     case ReminderPhoneScrollToSelect
+    
+
     case ContactsFirendReqDeleteItem
     
 }
 
 
-// web 接口错误码定义
+// MARK: - 服务器返回码定义
 enum WebApiCode: String {
 
     case Success               = "0000"
@@ -357,6 +365,7 @@ enum UserNetRequsetKey: String {
 
 }
 
+// MARK: - 服务器接口命令
 /**
  网络请求API
  

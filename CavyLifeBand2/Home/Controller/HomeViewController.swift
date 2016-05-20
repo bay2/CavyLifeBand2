@@ -11,6 +11,10 @@ import Log
 import EZSwiftExtensions
 
 
+/** 
+ 主页
+ 
+ */
 class HomeViewController: UIViewController, BaseViewControllerPresenter {
     
     var leftBtn: UIButton? = {
