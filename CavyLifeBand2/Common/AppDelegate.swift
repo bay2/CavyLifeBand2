@@ -95,12 +95,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             
         })
         
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(
-            schemaVersion: 2,
-            migrationBlock: { migration, oldSchemaVersion in
-                
-        })
-        
     }
     
     func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {
