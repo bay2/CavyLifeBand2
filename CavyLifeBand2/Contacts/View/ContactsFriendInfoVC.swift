@@ -76,8 +76,14 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
         
         addAllViews()
         
-        loadFriendInfoByNet()
         
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        loadFriendInfoByNet()
     }
     
     

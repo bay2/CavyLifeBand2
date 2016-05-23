@@ -211,6 +211,7 @@
 "AccountInfo.LoginoutButton.Title" = "退出登录";
 "AccountInof.Photo" = "从手机相册中选择";
 "AccountInof.Camera" = "拍照";
+"AccountInof.ChangeNickname.Placeholder" = "输入昵称";
 
 //闹钟
 "AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";

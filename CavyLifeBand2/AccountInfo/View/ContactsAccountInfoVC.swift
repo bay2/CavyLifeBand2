@@ -287,7 +287,20 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        return
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if accountInfos[indexPath.row] is PresonInfoCellViewModel {
+            
+            // 跳转到修改备注
+            let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
+            
+            let changeRemarkVM = UserChangeNicknameVM(viewController: requestVC)
+            
+            requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+            
+            self.pushVC(requestVC)
+            
+        }
 
     }
     

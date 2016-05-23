@@ -105,6 +105,7 @@
 		68648A731CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */; };
 		68648A751CEC71B8009D4BEE /* FullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */; };
 		68648A771CEEDFF6009D4BEE /* EmergencyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A761CEEDFF6009D4BEE /* EmergencyJSON.swift */; };
+		68648A7B1CF2AC73009D4BEE /* UserChangeNicknameVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A7A1CF2AC73009D4BEE /* UserChangeNicknameVM.swift */; };
 		686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */; };
 		686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */; };
 		686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */; };
@@ -427,6 +428,7 @@
 		68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactChangeRemarkVM.swift; sourceTree = "<group>"; };
 		68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageView.swift; sourceTree = "<group>"; };
 		68648A761CEEDFF6009D4BEE /* EmergencyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyJSON.swift; sourceTree = "<group>"; };
+		68648A7A1CF2AC73009D4BEE /* UserChangeNicknameVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChangeNicknameVM.swift; sourceTree = "<group>"; };
 		686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptPKTest.swift; sourceTree = "<group>"; };
 		686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePKTest.swift; sourceTree = "<group>"; };
 		686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPKTest.swift; sourceTree = "<group>"; };
@@ -1513,6 +1515,7 @@
 				917B98CC1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift */,
 				917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */,
 				68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */,
+				68648A7A1CF2AC73009D4BEE /* UserChangeNicknameVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1994,6 +1997,7 @@
 				4CB7A0771CD095C400DFB8DC /* HomeDateView.swift in Sources */,
 				685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */,
 				683655271CBB3B2C009373EA /* SettingSwitchTableViewCell.swift in Sources */,
+				68648A7B1CF2AC73009D4BEE /* UserChangeNicknameVM.swift in Sources */,
 				4CB7A0781CD095C400DFB8DC /* HomeDateViewCell.swift in Sources */,
 				9114D1F71C97AB05008CB4CE /* GoalView.swift in Sources */,
 				9150CAB61CC89EA600A398E9 /* RightViewController.swift in Sources */,
