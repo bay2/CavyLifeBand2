@@ -118,7 +118,7 @@ extension HomeTimeLineView: UIScrollViewDelegate {
     }
     
     /**
-      改变页数
+      改变页数 并重新解析数据
      
      - parameter sender: 通知
      */

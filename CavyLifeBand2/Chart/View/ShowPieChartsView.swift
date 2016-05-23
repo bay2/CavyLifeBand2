@@ -63,7 +63,6 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate {
         
     }
     
-    
     func setPieChartsData() {
         
         let dataCount = 2

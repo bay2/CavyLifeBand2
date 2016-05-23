@@ -8,8 +8,12 @@
 
 import UIKit
 import EZSwiftExtensions
+import RealmSwift
 
-class HomeUpperView: UIView {
+class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
+    
+    /// 天气
+    @IBOutlet weak var weatherView: UIView!
     
     /// 睡眠环
     @IBOutlet weak var sleepRing: UIView!
@@ -17,15 +21,28 @@ class HomeUpperView: UIView {
     ///  计步环
     @IBOutlet weak var stepRing: UIView!
     
-    /// 天气
-    @IBOutlet weak var weatherView: UIView!
     
     var viewController = UIViewController()
+    
+    var realm: Realm = try! Realm()
+    
+    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     /**
      适配
      */
     func allViewLayout() {
+        
+        // 天气
+        weatherView.snp_makeConstraints(closure: { make in
+            make.left.equalTo(self).offset(40)
+        })
+        let weather = NSBundle.mainBundle().loadNibNamed("HomeWeatherView", owner: nil, options: nil).first as? HomeWeatherView
+        weatherView.addSubview(weather!)
+        weather!.snp_makeConstraints { make in
+            make.left.right.top.bottom.equalTo(weatherView)
+        }
+        weather!.loadWeatherView()
         
         // 睡眠
         let sleepView = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
@@ -35,7 +52,8 @@ class HomeUpperView: UIView {
         sleepView!.snp_makeConstraints(closure: { make in
             make.left.right.top.bottom.equalTo(sleepRing)
         })
-        sleepView!.sleepRingWith(.SleepRing, targetHour: 7, targetMinute: 0, currentHour: 5, currentMinute: 10)
+        sleepView!.ringStyle = .SleepRing
+        sleepView!.ringDefaultSetting()
         sleepView!.addTapGesture {(_) in
             self.showSleepDetailView()
         }
@@ -49,22 +67,43 @@ class HomeUpperView: UIView {
             make.left.right.top.bottom.equalTo(stepRing)
 
         })
-        stepView!.stepRingWith(.StepRing, targetNumber: 80000, currentNumber: 50000)
+        stepView!.ringStyle = .StepRing
+        stepView!.ringDefaultSetting()
         stepView!.addTapGesture {(_) in
             self.showStepDetailView()
         }
         
-       // 天气
-        weatherView.snp_makeConstraints(closure: { make in
-            make.left.equalTo(self).offset(40)
-        })
-        let weather = NSBundle.mainBundle().loadNibNamed("HomeWeatherView", owner: nil, options: nil).first as? HomeWeatherView
-        weatherView.addSubview(weather!)
-        weather!.snp_makeConstraints { make in
-            make.left.right.top.bottom.equalTo(weatherView)
+        // 计步睡眠目标值
+        guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
+            return
         }
-        weather!.loadWeatherView()
         
+        let sleepString = userInfo.sleepTime
+        let sleepTimeArray = sleepString.componentsSeparatedByString(":")
+        let sleepTargetNumber = sleepTimeArray[0].toInt()! * 60 + sleepTimeArray[1].toInt()!
+        let stepTargetNumber = userInfo.stepNum
+        
+        // 计步失眠 当前值
+//        let result = queryTodayCurrentStepAndSleep()
+        
+        let stepCurrentNumber = 50
+        
+        let sleepCurrentNumber = 320
+
+        
+//        guard let stepCurrentNumber = result?.0 else {
+//            return
+//        }
+//        
+//        guard let sleepCurrentNumber = result?.1 else {
+//            return
+//        }
+        
+        stepView!.ringWithStyle(stepTargetNumber, currentNumber: stepCurrentNumber)
+        sleepView!.ringWithStyle(sleepTargetNumber, currentNumber: sleepCurrentNumber)
+
+        
+
     }
     
     func showSleepDetailView(){
@@ -86,5 +125,37 @@ class HomeUpperView: UIView {
     }
     
     
+    /*
+    lazy var sleepCurrentNumber: Int = {
+        
+        let number = 1
+        
+        return number
+    }()
+    
+    lazy var sleepTargetNumber: Int = {
+        
+        let number = 1
+        
+        
+        
+        return number
+    }()
+    
+    lazy var stepCurrentNumber: Int = {
+        
+        let number = 1
+        
+        return number
+    }()
+    
+    lazy var stepTargetNumber: Int = {
+        
+        let number = 1
+        
+        
+        return number
+    }()
+    */
     
 }

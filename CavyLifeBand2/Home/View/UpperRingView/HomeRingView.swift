@@ -25,64 +25,95 @@ class HomeRingView: UIView {
     /// 当前值
     @IBOutlet weak var currentLabel: UILabel?
     
-    /// 完成百分比
+    /// 完成百分比Label
     @IBOutlet weak var percentLabel: UILabel?
     
     var ringStyle: RingStyle = .SleepRing
     
+    var diameter: CGFloat = 0
+    var ringWidth: CGFloat = 0
+    var ringColor: UIColor = UIColor.clearColor()
     
     /**
-     计步模块
+     默认设置 布局 和 环形配置
      */
-    func  stepRingWith(ringStyle: RingStyle, targetNumber: Int, currentNumber: Int) {
-        
-        self.ringStyle = ringStyle
-        
-        addLabelText(targetNumber, currentNumber: currentNumber)
-        
+    func ringDefaultSetting(){
+
         allViewLayout()
         
-        ringView(targetNumber, currentNumber: currentNumber, diameter: ez.screenWidth * 0.55, ringWidth: 16, ringColor: UIColor(named: .HomeStepRingColor))
+        ringDefultView()
         
     }
     
     /**
-     睡眠模块
-     */
-    func  sleepRingWith(ringStyle: RingStyle, targetHour: Int, targetMinute: Int, currentHour: Int, currentMinute: Int) {
-        self.ringStyle = ringStyle
-        
-        let targetNumber = targetHour * 60 + targetMinute
-        let currentNumber = currentHour * 60 + currentMinute
-        
-        addLabelText(targetNumber, currentNumber: currentNumber)
-        
-        allViewLayout()
-        
-        ringView(targetNumber, currentNumber: currentNumber, diameter: ez.screenWidth * 0.4, ringWidth: 14, ringColor: UIColor(named: .HomeSleepRingColor))
-        
-    }
-    
-    
-    /**
-     环形
+     设置环形数据
      
-     - parameter ringStyle:     环Style
      - parameter targetNumber:  目标值
-     - parameter currentNumber: 当前值
-     - parameter diameter:      直径
-     - parameter ringWidth:     环宽
-     - parameter ringColor:     进度条颜色
+     - parameter currentNumber: 现在数值
      */
-    func ringView(targetNumber: Int, currentNumber: Int, diameter: CGFloat, ringWidth: CGFloat, ringColor: UIColor) {
+    func  ringWithStyle(targetNumber: Int, currentNumber: Int) {
         
-        let percent = percentNumber(targetNumber, currectNum: currentNumber)
+        addLabelText(targetNumber, currentNumber: currentNumber)
         
+        ringView(targetNumber, currentNumber: currentNumber)
+    }
+    
+    /**
+     默认全部视图布局
+     */
+    func allViewLayout() {
+        
+        switch ringStyle {
+            
+        case .SleepRing:
+            
+            imgView?.image = UIImage(asset: .HomeSleepRing)
+            imgView?.snp_makeConstraints(closure: { make in
+                
+                make.size.equalTo(30)
+                make.bottom.equalTo(currentLabel!).offset(-20)
+            })
+            percentLabel?.snp_makeConstraints(closure: { make in
+                make.bottom.equalTo(currentLabel!).offset(20)
+            })
+            
+        case .StepRing:
+            
+            imgView?.image = UIImage(asset: .HomeStepRing)
+            imgView?.snp_makeConstraints(closure: { make in
+                make.size.equalTo(46)
+                make.bottom.equalTo(currentLabel!).offset(-40)
+            })
+            percentLabel?.snp_makeConstraints(closure: { make in
+                make.bottom.equalTo(currentLabel!).offset(20)
+            })
+        }
+        
+    }
+   
+    /**
+     默认环形背景设置
+     */
+    func ringDefultView() {
+
+        switch ringStyle {
+            
+        case .StepRing:
+            
+            diameter = ez.screenWidth * 0.55
+            ringWidth = 16
+            ringColor = UIColor(named: .HomeStepRingColor)
+            
+        case .SleepRing:
+            
+            diameter = ez.screenWidth * 0.4
+            ringWidth = 14
+            ringColor = UIColor(named: .HomeSleepRingColor)
+            
+        }
         // 贝塞尔曲线
         let center = CGPoint(x: diameter / 2, y: diameter / 2)
         let redius = diameter / 2 - ringWidth / 2
-        let startA = CGFloat(M_PI)
-        let endA = CGFloat(M_PI - M_PI * 2 * Double(percent))
         
         // 背景bg
         let bgLayer = CAShapeLayer(layer: layer)
@@ -107,6 +138,29 @@ class HomeRingView: UIView {
             self.layer.addSublayer(lineLayer)
         }
         
+     
+    }
+    
+    /**
+     环形 数据进度条添加
+     
+     - parameter targetNumber:  目标值
+     - parameter currentNumber: 当前值
+     */
+    func ringView(targetNumber: Int, currentNumber: Int) {
+        
+        let percent = percentNumber(targetNumber, currectNum: currentNumber)
+        
+        // 贝塞尔曲线
+        let center = CGPoint(x: diameter / 2, y: diameter / 2)
+        let redius = diameter / 2 - ringWidth / 2
+        let startA = CGFloat(M_PI)
+        let middleA = startA - startA * 0.04
+        var endA = CGFloat(M_PI - M_PI * 2 * Double(percent))
+        if endA > middleA {
+            endA = middleA - 0.01
+        }
+        
         // 平头
         let lineBeginLayer = CAShapeLayer(layer: layer)
         lineBeginLayer.frame = self.bounds
@@ -114,9 +168,13 @@ class HomeRingView: UIView {
         lineBeginLayer.strokeColor = ringColor.CGColor
         lineBeginLayer.lineWidth = ringWidth
         
-        if percent > 0 {
+        if percent == 0 {
             
-            let lineBeginPath = UIBezierPath(arcCenter: center, radius: redius, startAngle: startA, endAngle: CGFloat(M_PI - M_PI * 2 * 0.03), clockwise: false)
+            return
+        }else if percent > 0 {
+            
+            let lineBeginPath = UIBezierPath(arcCenter: center, radius: redius, startAngle: startA, endAngle: middleA, clockwise: false)
+
             lineBeginLayer.path = lineBeginPath.CGPath
             self.layer.addSublayer(lineBeginLayer)
             
@@ -134,56 +192,20 @@ class HomeRingView: UIView {
         ringLayer.strokeColor = ringColor.CGColor
         ringLayer.lineWidth = ringWidth
         ringLayer.lineCap = kCALineCapRound
-        let path = UIBezierPath(arcCenter: center, radius: redius, startAngle: CGFloat(M_PI - M_PI * 2 * 0.03), endAngle: endA, clockwise: false)
+        let path = UIBezierPath(arcCenter: center, radius: redius, startAngle: middleA, endAngle: endA, clockwise: false)
         ringLayer.path = path.CGPath
         self.layer.addSublayer(ringLayer)
-        
-        
 
     }
     
     /**
-     适配
-     */
-    func allViewLayout() {
-        
-        switch ringStyle {
-            
-        case .SleepRing:
-            
-            imgView?.image = UIImage(asset: .HomeSleepRing)
-            imgView?.snp_makeConstraints(closure: { make in
-
-                make.size.equalTo(30)
-                make.bottom.equalTo(currentLabel!).offset(-20)
-            })
-            percentLabel?.snp_makeConstraints(closure: { make in
-                make.bottom.equalTo(currentLabel!).offset(20)
-            })
-            
-        case .StepRing:
-
-            imgView?.image = UIImage(asset: .HomeStepRing)
-            imgView?.snp_makeConstraints(closure: { make in
-                make.size.equalTo(46)
-                make.bottom.equalTo(currentLabel!).offset(-40)
-            })
-            percentLabel?.snp_makeConstraints(closure: { make in
-                make.bottom.equalTo(currentLabel!).offset(20)
-            })
-        }
-        
-    }
-    
-    /**
-     返回当前文本
+     返回当前数值文本
      */
     func addLabelText(targetNumber: Int, currentNumber: Int) {
         
          let percent = Int(percentNumber(targetNumber, currectNum: currentNumber) * 100)
         
         switch ringStyle {
-            
             
         case .SleepRing:
             
@@ -197,7 +219,6 @@ class HomeRingView: UIView {
             currentLabel!.attributedText = attrs
             
             percentLabel!.text = "\(L10n.HomeSleepRingPercerntText.string)\(percent)%"
-
             
         case .StepRing:
             
@@ -208,17 +229,22 @@ class HomeRingView: UIView {
             
             percentLabel?.text = "\(L10n.HomeStepRingPercerntText)\(percent)%"
             
-            
         }
         
     }
     
-       /**
+    /**
      返回百分比
      */
     func percentNumber(targetNum: Int, currectNum: Int) -> CGFloat {
         
         let percent = CGFloat(currectNum) / CGFloat(targetNum)
+        
+        if percent > 0 && percent < 0.01 {
+            
+            return 0.01
+    
+        }
         
         if percent > 1 {
             
@@ -227,7 +253,6 @@ class HomeRingView: UIView {
         }
         
         return percent
-        
         
     }
     

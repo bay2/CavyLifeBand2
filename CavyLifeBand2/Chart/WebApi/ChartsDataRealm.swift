@@ -43,6 +43,8 @@ protocol ChartsRealmProtocol {
     
     func addSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
     func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData]?
+    
+    func queryTodayCurrentStepAndSleep() -> (Int, Int)?
 }
 
 // MARK: Step Extension
@@ -317,5 +319,39 @@ extension ChartsRealmProtocol {
         return sleepChartsDatas!
     }
     
+    func queryTodayCurrentStepAndSleep() -> (Int, Int)? {
+        
+        var stepCount = 0
+        var sleepTime = 0
+        
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let beginString = dateFormatter.stringFromDate(NSDate())
+        let beginTimeString = beginString + " 00:00:00"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let beginTime = dateFormatter.dateFromString(beginTimeString)
+        let endTime = NSDate()
+        
+        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > '\(beginTime)' AND time < '\(endTime)' ")
+        
+        for stepRealm in dataInfo {
+            
+            stepCount = stepCount + stepRealm.step
+        }
+        
+        
+        let dataInfo2 = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time > '\(beginTime)' AND time < '\(endTime)' ")
+        
+        for sleepRealm in dataInfo2 {
+            
+            sleepTime = sleepTime + sleepRealm.deepSleep + sleepRealm.lightSleep
+        }
+        
+
+        
+        
+        return (3, 3)
+    }
     
 }

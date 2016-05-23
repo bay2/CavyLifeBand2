@@ -22,7 +22,6 @@ class HomeTimeLineTableCell: UITableViewCell {
     /// 模块名字
     @IBOutlet weak var nameLabel: UILabel!
     
-    
     /// 其他人名字
     @IBOutlet weak var othersName: UILabel!
     
@@ -35,9 +34,9 @@ class HomeTimeLineTableCell: UITableViewCell {
         
         imgView.image = dataSource.image
         nameLabel.text = dataSource.title
-        othersName.text = dataSource.others
+        othersName.text = dataSource.friendName
         resultLabel.attributedText = dataSource.resultNum
-        addAllViewLayout(dataSource.others)
+        addAllViewLayout(dataSource.friendName)
         
     }
     

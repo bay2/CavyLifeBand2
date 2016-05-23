@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import EZSwiftExtensions
 
 extension NSDate {
     
@@ -16,31 +16,21 @@ extension NSDate {
      */
     func dateChangeToLabelText(date: NSDate, timeBucket: TimeBucketStyle) -> String {
         
-        var text: String = ""
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd"
-        let  dateString = dateFormatter.stringFromDate(date)
-        var dates = dateString.componentsSeparatedByString("/")
-        let month = dates[0].toInt()
-        let day = dates[1].toInt()
-
         switch timeBucket {
             
         case .Day:
             
-            text = "\(month).\(day)"
-
+            return date.toString(format: "MM.dd")
+            
         case .Month:
             
-            text = "\(month)"
+            return date.toString(format: "MM")
             
         case .Week:
-
-            text = "\(month).\(day)-\(dayLastSunDayDate(date))"
+            
+            return "\(date.toString(format: "MM.dd"))\(dayLastSunDayDate(date))"
+            
         }
-        
-        return text
         
     }
     
@@ -125,7 +115,7 @@ extension NSDate {
             
         case .Day:
             
-            let timeDate:(year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time)
+            let timeDate: (year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time)
             let year = timeDate.year
             let month = timeDate.month
             let day = timeDate.day
@@ -158,7 +148,7 @@ extension NSDate {
             
             // beginTime
             
-            let timeDate1:(year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time1)
+            let timeDate1: (year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time1)
             let year = timeDate1.year
             let month = timeDate1.month
             let day = timeDate1.day
@@ -172,7 +162,7 @@ extension NSDate {
             
             if time2.contains(".") {
     
-                let timeDate2:(year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time2)
+                let timeDate2: (year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time2)
                 newYear = timeDate2.year
                 newMonth = timeDate2.month
                 
@@ -241,23 +231,29 @@ extension NSDate {
         let month = timeDates1[0].toInt()
         let day = timeDates1[1].toInt()
         return (year!, month!, day!)
+        
     }
     
-    
     /**
-     时间返回月份Label的Text
+     月 时间返回月份Label的Text
      */
     func dateChangeToMonthText(date: NSDate) -> String {
         
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd"
-        let month = dateFormatter.stringFromDate(date)
-       
-        return month
+        return date.toString(format: "MM")
         
     }
-
     
+    /**
+     年.月.日 返回Int 类型的 年月日
+     */
+    func homeTimeFormat(timeString: String) -> String {
+
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.dateFromString(timeString)
+        
+        return date!.toString(format: "yyy.MM.dd")
+        
+    }
     
 }

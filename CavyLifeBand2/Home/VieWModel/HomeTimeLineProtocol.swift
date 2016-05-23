@@ -12,8 +12,7 @@ protocol HomeTimeLineDataSource {
     
     var image: UIImage { get }
     var title: String { get }
-    var time: String { get }
-    var others: String{ get }
+    var friendName: String{ get }
     var resultNum: NSMutableAttributedString { get }
     
     

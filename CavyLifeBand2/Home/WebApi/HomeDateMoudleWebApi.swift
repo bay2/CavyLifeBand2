@@ -13,7 +13,6 @@ struct HomeTimeLineMoudle: JSONJoy {
     
     var image: String
     var name: String
-    var time: String
     var othersName: String
     var result: String
     
@@ -21,7 +20,6 @@ struct HomeTimeLineMoudle: JSONJoy {
         
         do{ image = try decoder[""].getString() } catch { image = "" }
         do{ name = try decoder[""].getString() } catch { name = "" }
-        do{ time = try decoder[""].getString() } catch { time = "" }
         do{ othersName = try decoder[""].getString()} catch { othersName = ""}
         do{ result = try decoder[""].getString()} catch { result = ""}
 
@@ -30,6 +28,7 @@ struct HomeTimeLineMoudle: JSONJoy {
 }
 
 struct HomeDateMoudle: JSONJoy {
+    
     var year: Int
     var month: Int
     var day: Int

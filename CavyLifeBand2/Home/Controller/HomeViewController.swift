@@ -8,8 +8,9 @@
 
 import UIKit
 import Log
+import JSONJoy
 import EZSwiftExtensions
-
+import RealmSwift
 
 class HomeViewController: UIViewController, BaseViewControllerPresenter {
     
@@ -22,7 +23,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         return button
     }()
     
-
     var rightBtn: UIButton? = {
         
         let button = UIButton(type: .System)
@@ -44,9 +44,17 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
     /// 下面时间轴View
     var timeLineView = HomeTimeLineView()
     
+    var realm: Realm = try! Realm()
+    
+    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
+    
+    // MARK: -- viewDidLoad
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        
+        parseHomeListData()
+        parseChartListData()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomePushView.rawValue, object: nil)
 
@@ -89,7 +97,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
             make.left.right.bottom.equalTo(self.view)
         }
         
-        
     }
     
     /**
@@ -124,6 +131,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
     }
     
+    // MARK: --- 解析数据 保存数据库
+    
     /**
      跳转到新的视图
      
@@ -138,7 +147,192 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         self.navigationController?.pushViewController(viewController, animated: false)
         
     }
-
+    
+    /**
+     解析主页时间轴数据 并保存
+     */
+    func parseHomeListData() {
+        
+        HomeListWebApi.shareApi.parseHomeListsData { result in
+            
+            guard result.isSuccess else {
+                Log.error("Parse Home Lists Data Error")
+                return
+            }
+            
+            do {
+                
+                Log.info(result.value!)
+                let netResult = try HomeListMsgs(JSONDecoder(result.value!))
+                
+                for list in netResult.msgLists {
+                    
+                    self.saveHomeListRealm(list)
+                }
+                
+            } catch let error {
+                
+                Log.error("\(#function) result error: \(error)")
+                
+            }
+            
+        }
+    }
+    
+    /**
+     将数据保存Realm
+     */
+    func saveHomeListRealm(result: HomeListMsg) {
+        
+        guard result.commonMsg.code == WebApiCode.Success.rawValue else {
+            
+            Log.error("Query home list error \(result.commonMsg.code)")
+            return
+            
+        }
+        
+        let homeListRealm = HomeListRealm()
+        
+        homeListRealm.userId = userId
+        
+        for infoList in result.achieveList {
+            
+            let achieveRealm = AchieveListRealm()
+            achieveRealm.achieve = infoList
+            
+            homeListRealm.achieveList.append(achieveRealm)
+        }
+        
+        for infoList in result.pkList {
+            
+            let pkRealm = PKListRealm()
+            
+            pkRealm.friendName = infoList.friendName!
+            pkRealm.pkId = infoList.pkId!
+            pkRealm.status = infoList.status!
+            
+            homeListRealm.pkList.append(pkRealm)
+            
+            
+        }
+        
+        for infoList in result.healthList {
+            
+            let healthRealm = HealthListRealm()
+            
+            healthRealm.friendId = infoList.friendId!
+            healthRealm.friendName = infoList.friendName!
+            
+            homeListRealm.healthList.append(healthRealm)
+            
+        }
+        
+        // 存储
+        
+        try! realm.write {
+            
+            realm.add(homeListRealm, update: false)
+            
+        }
+        
+    }
+    
+    /**
+     解析 计步睡眠数据 并保存Realm
+     */
+    func parseChartListData() {
+        
+        // 计步
+        ChartsWebApi.shareApi.parseSleepChartData { result in
+            
+            let chartStepRealm = ChartStepDataRealm()
+            
+            guard result.isSuccess else {
+                Log.error("Parse Home Lists Data Error")
+                return
+            }
+            
+            do {
+                
+                Log.info(result.value!)
+                
+                let netResult = try ChartStepMsg(JSONDecoder(result.value!))
+                
+                for list in netResult.stepList {
+                    
+                    chartStepRealm.userId = self.userId
+                    chartStepRealm.step = list.stepCount
+                    chartStepRealm.kilometer = Int(CGFloat(list.stepCount) * 0.0006)  // 相当于一部等于0.6米 公里数 = 步数 * 0.6 / 1000
+                    chartStepRealm.time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd hh:mm:ss")
+                }
+                
+            } catch let error {
+                
+                Log.error("\(#function) result error: \(error)")
+            }
+            
+            try! self.realm.write{
+                
+                self.realm.add(chartStepRealm, update: false)
+                
+            }
+                
+        }
+        
+        // 睡眠
+        ChartsWebApi.shareApi.parseSleepChartData { result in
+            
+            let chartSleepRealm = ChartSleepDataRealm()
+            
+            guard result.isSuccess else {
+                Log.error("Parse Home Lists Data Error")
+                return
+            }
+            
+            do {
+                
+                Log.info(result.value!)
+                
+                let netResult = try ChartSleepMsg(JSONDecoder(result.value!))
+                
+                for list in netResult.sleepList {
+                    
+                    chartSleepRealm.userId = self.userId
+                    chartSleepRealm.time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd hh:mm:ss")
+                    // 根据翻身情况判断深睡浅睡
+                    let condition = self.sleepCondition(list.rollCount)
+                    chartSleepRealm.deepSleep = condition.0
+                    chartSleepRealm.lightSleep = condition.1
+                    
+                }
+                
+            } catch let error {
+                
+                Log.error("\(#function) result error: \(error)")
+            }
+            
+            try! self.realm.write{
+                
+                self.realm.add(chartSleepRealm, update: false)
+                
+            }
+            
+        }
+        
+    }
+    
+    /**
+     根据翻身次数 确定 深睡浅睡的时间 单位： 分钟
+     
+     - parameter rollCount: 翻身次数
+     
+     - returns: （深睡， 浅睡）
+     */
+    func sleepCondition(rollCount: Int) -> (Int, Int) {
+        
+        return (123, 243)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

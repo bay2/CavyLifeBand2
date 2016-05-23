@@ -10,6 +10,7 @@ import UIKit
 import JSONJoy
 import EZSwiftExtensions
 
+// 数据库取出
 struct ChartStepData: JSONJoy {
     
     var userId: String
@@ -33,13 +34,6 @@ struct ChartStepData: JSONJoy {
     
 }
 
-// Step 单条数据
-struct PerStepChartsData {
-
-    var time: String
-    var kilometer: Int
-}
-
 // Step 整个数据 包括总步数 总公里数 花费时长
 struct StepChartsData {
     
@@ -47,8 +41,14 @@ struct StepChartsData {
     var totalStep: Int
     var totalKilometer: Int
     var finishTime: Int
-    //    var finishPrecent: Int
     
+}
+
+// Step 单条数据
+struct PerStepChartsData {
+    
+    var time: String
+    var kilometer: Int
 }
 
 // MARK: Sleep

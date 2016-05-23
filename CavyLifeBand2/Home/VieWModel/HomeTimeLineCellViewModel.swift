@@ -16,13 +16,11 @@ struct TimeLineStepViewModel: HomeTimeLineDataSource, HomeTimeLineDelegate {
     
     var image: UIImage { return UIImage(asset: .HomeListStep) }
     var title: String { return L10n.HomeTimeLineCellStep.string }
-    var others: String { return "" }
-    var time: String
+    var friendName: String { return "" }
     var resultNum: NSMutableAttributedString
     
 
-    init(timeLine: String, stepNumber: Int) {
-        time = timeLine
+    init(stepNumber: Int) {
         resultNum = NSMutableAttributedString().attributeString(String(stepNumber), numSize: 16, unit: L10n.GuideStep.string, unitSize: 14)
     }
     
@@ -41,12 +39,10 @@ struct TimeLineSleepViewModel: HomeTimeLineDataSource, HomeTimeLineDelegate {
     
     var image: UIImage { return UIImage(asset: .HomeListSleep) }
     var title: String { return L10n.HomeTimeLineCellSleep.string }
-    var others: String{ return "" }
-    var time: String
+    var friendName: String{ return "" }
     var resultNum: NSMutableAttributedString
     
-    init(timeLine: String, sleepHour: Int, sleepMin: Int) {
-        time = timeLine
+    init(sleepHour: Int, sleepMin: Int) {
         resultNum = NSMutableAttributedString().attributeString(String(sleepHour), numSize: 16, unit: L10n.HomeSleepRingUnitHour.string, unitSize: 14)
         resultNum.appendAttributedString(NSMutableAttributedString().attributeString(String(sleepMin), numSize: 16, unit: L10n.HomeSleepRingUnitMinute.string, unitSize: 14))
     }
@@ -65,12 +61,10 @@ struct TimeLineAchiveViewModel: HomeTimeLineDataSource, HomeTimeLineDelegate {
     
     var image: UIImage { return UIImage() }
     var title: String { return L10n.HomeTimeLineCellAchive.string }
-    var others: String{ return "" }
-    var time: String
+    var friendName: String{ return "" }
     var resultNum: NSMutableAttributedString
     
-    init(timeLine: String, result: String) {
-        time = timeLine
+    init(result: String) {
         resultNum = NSMutableAttributedString(string: "徽章")
     }
     
@@ -88,14 +82,12 @@ struct TimeLinePKViewModel: HomeTimeLineDataSource, HomeTimeLineDelegate {
     
     var image: UIImage { return UIImage(asset: .HomeListPK) }
     var title: String { return L10n.HomeTimeLineCellPK.string }
-    var time: String
-    var others: String
+    var friendName: String
     var resultNum: NSMutableAttributedString
     
     
-    init(timeLine: String, othersName: String, result: String) {
-        time = timeLine
-        others = othersName
+    init(othersName: String, result: String) {
+        friendName = othersName
         resultNum = NSMutableAttributedString(string: result)
     }
     
@@ -134,13 +126,11 @@ struct TimeLineHealthViewModel: HomeTimeLineDataSource, HomeTimeLineDelegate {
     
     var image: UIImage { return UIImage(asset: .HomeListHealth) }
     var title: String { return L10n.HomeTimeLineCellHealthiy.string }
-    var time: String
-    var others: String
+    var friendName: String
     var resultNum: NSMutableAttributedString{ return NSMutableAttributedString(string: L10n.HomeTimeLineHealthyCare.string) }
     
-    init(timeLine: String, othersName: String){
-        time = timeLine
-        others = othersName
+    init( othersName: String){
+        friendName = othersName
     }
     
     
