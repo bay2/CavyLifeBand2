@@ -129,7 +129,7 @@ extension AboutVC: UITableViewDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
         if indexPath.row == tableDataSource.count - 1 {
-            UIApplication.sharedApplication().openURL(NSURL(string : "http://www.tunshu.com")!)
+            UIApplication.sharedApplication().openURL(NSURL(string: "http://www.tunshu.com")!)
         }
         
     }

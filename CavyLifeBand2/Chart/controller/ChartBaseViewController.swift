@@ -76,7 +76,7 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
             
             weekDateArray.append(list.first!.time!)
             
-            let index: Int = NSDate().indexInArray(list[i].time!)
+            let index: Int = list[i].time!.indexInArray() - 1
             
             if  index != 0 {
                 

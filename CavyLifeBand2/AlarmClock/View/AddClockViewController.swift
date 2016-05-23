@@ -105,6 +105,7 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
      视图的基本样式设置
      */
     func baseSetView() -> Void {
+        
         separatorViewSeconde.backgroundColor = UIColor(named: .SettingSeparatorColor)
         
         alarmCircleTitleLabel.text = L10n.AlarmClockAlarmCircleTitle.string
@@ -128,6 +129,7 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
      用数据设置控件
      */
     func setByData() -> Void {
+        
         dataSource = AddClockVCViewModel(alarmModel: alarmModel)
         
         datePicker.datePickerMode = .Time
@@ -157,6 +159,7 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
     
     //action of the delete button
     @IBAction func deleteAlarm(sender: AnyObject) {
+        
         updateAlarmBlock!(model: dataSource!.alarmModel, isUpdate: addNewClock)
 
         self.popVC()

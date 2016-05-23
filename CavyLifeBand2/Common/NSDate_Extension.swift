@@ -65,15 +65,18 @@ extension NSDate {
     /**
      当前是这周的第几天
      */
-    func indexInArray(date: NSDate) -> Int {
+    func indexInArray() -> Int {
         
-        let weekName = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.Weekday, fromDate: self)
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "EEE"
-        let string = dateFormatter.stringFromDate(date)
-
-        return weekName.lastIndexOf(string)!
+        let days = components.weekday - 1
+        
+        if days == 0 {
+            return 7
+        }
+        
+        return days
         
     }
     
@@ -108,7 +111,7 @@ extension NSDate {
         let day = dates[2].toInt()
         
         ///  距离下一个周一的天数
-        let index = 6 - indexInArray(date)
+        let index = 6 - (self.indexInArray() - 1)
         /// 这个月有几天
         let days = daysCount(year!, month: month!)
         

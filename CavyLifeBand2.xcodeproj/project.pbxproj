@@ -242,6 +242,7 @@
 		91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B04DDB1CB3EC83007E67B0 /* GuideViewProtocol.swift */; };
 		91B04DE31CB4A39C007E67B0 /* AccountModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B04DE01CB4A39C007E67B0 /* AccountModelView.swift */; };
 		91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B04DE11CB4A39C007E67B0 /* GuideBluetoothModelView.swift */; };
+		91B49AEA1CF29B080017CC69 /* LifeBandCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B49AE91CF29B080017CC69 /* LifeBandCtrl.swift */; };
 		91BBB6061C671F1800EC1ED1 /* Sign_In_Error.json in Resources */ = {isa = PBXBuildFile; fileRef = 91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */; };
 		91C3AE501C461EA0006B67AF /* SecurityCode_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */; };
 		91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C3AE511C462FE5006B67AF /* String_Extension.swift */; };
@@ -578,6 +579,7 @@
 		91B04DDB1CB3EC83007E67B0 /* GuideViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuideViewProtocol.swift; path = Protocol/GuideViewProtocol.swift; sourceTree = "<group>"; };
 		91B04DE01CB4A39C007E67B0 /* AccountModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountModelView.swift; sourceTree = "<group>"; };
 		91B04DE11CB4A39C007E67B0 /* GuideBluetoothModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GuideBluetoothModelView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		91B49AE91CF29B080017CC69 /* LifeBandCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeBandCtrl.swift; sourceTree = "<group>"; };
 		91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Error.json; sourceTree = "<group>"; };
 		91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SecurityCode_Ok.json; sourceTree = "<group>"; };
 		91C3AE511C462FE5006B67AF /* String_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String_Extension.swift; sourceTree = "<group>"; };
@@ -1320,6 +1322,7 @@
 			isa = PBXGroup;
 			children = (
 				918AA22D1CE327DC0022AE30 /* LifeBandBLE.swift */,
+				91B49AE91CF29B080017CC69 /* LifeBandCtrl.swift */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -1964,7 +1967,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\n  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n  echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+			shellScript = "#if hash tailor 2>/dev/null; then\n#  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#  echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2034,6 +2037,7 @@
 				91ACEC621CB654BD008ED8B0 /* GuideInfoModelView.swift in Sources */,
 				917936C71CBB8E34002936E3 /* BaseViewController.swift in Sources */,
 				91DFA9221CD8C49F0036B939 /* PKListSectionView.swift in Sources */,
+				91B49AEA1CF29B080017CC69 /* LifeBandCtrl.swift in Sources */,
 				91E1B4F01CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift in Sources */,
 				4CB7A0DA1CD3497F00DFB8DC /* ChartTimeCollectionCell.swift in Sources */,
 				683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */,
@@ -2123,7 +2127,6 @@
 				686A5EF31CDC35E700EB8D0E /* HelpAndFeedbackVC.swift in Sources */,
 				686A5EF51CDC360000EB8D0E /* RelateAppVC.swift in Sources */,
 				68648A751CEC71B8009D4BEE /* FullScreenImageView.swift in Sources */,
-				9114D20E1C995CD2008CB4CE /* MenuTableViewCell.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
 				4C06E9E91CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift in Sources */,
@@ -2149,9 +2152,6 @@
 				91E1B4D01CA510BD008ADEE6 /* ContactsPersonInfoListCell.swift in Sources */,
 				4C5396D01CE419EC00BCFAEB /* NSDate_Extension.swift in Sources */,
 				684C6ADA1CC9CCE4000C176E /* PKWebApi.swift in Sources */,
-				C8ECCA2E1C4C7F2D00805826 /* Weather.swift in Sources */,
-				68648A711CEB2F66009D4BEE /* NSDate_Extension.swift in Sources */,
-				4C06E9E71CBF73B10093EEFA /* HomeDataCellFlowLayout.swift in Sources */,
 				9114D1FB1C97AB05008CB4CE /* RulerScroller.swift in Sources */,
 				91E1B4C61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift in Sources */,
 				6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */,

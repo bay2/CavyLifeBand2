@@ -18,17 +18,21 @@ class BandElectricView: UIView {
     }
     */
     
+    private let lable = UILabel()
+    private let shapeMake = CAShapeLayer()
+    
     required init?(coder aDecoder: NSCoder) {
+        
         super.init(coder: aDecoder)
+        drawElectricImage()
     }
     
     
+
     /**
-     配置电量视图
-     
-     - parameter percent: 百分比  1 ~ 0
+     绘制电量视图
      */
-    func configElectricImage(percent: CGFloat) {
+    func drawElectricImage() {
         
         let diameter = self.bounds.width
         let radius = diameter / 2
@@ -57,13 +61,11 @@ class BandElectricView: UIView {
         self.layer.addSublayer(electricFillLayer)
         
         // 创建图层蒙版
-        let shapeMake = CAShapeLayer()
-        let path = UIBezierPath(rect: CGRectMake(0, 0, self.bounds.width, self.bounds.width - (self.bounds.width * percent)))
+        let path = UIBezierPath(rect: CGRectMake(0, 0, self.bounds.width, self.bounds.width - (self.bounds.width * 0)))
         shapeMake.path = path.CGPath
         electricFillLayer.mask = shapeMake
         
-        let lable = UILabel()
-        lable.text = "\(percent * 100)%"
+        lable.text = "0%"
         lable.font = UIFont.boldSystemFontOfSize(18)
         lable.textColor = UIColor.whiteColor()
         self.addSubview(lable)
@@ -71,7 +73,21 @@ class BandElectricView: UIView {
             make.center.equalTo(self)
         }
         
+    }
+    
+    /**
+     配置电量视图
+     
+     - parameter percent: 百分比  1 ~ 0
+     */
+    func setElectric(percent: CGFloat) {
+        
+        let path = UIBezierPath(rect: CGRectMake(0, 0, self.bounds.width, self.bounds.width - (self.bounds.width * percent)))
+        shapeMake.path = path.CGPath
+        lable.text = "\(Int(percent * 100))%"
         
     }
+    
+    
 
 }

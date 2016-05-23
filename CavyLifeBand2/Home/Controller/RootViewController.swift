@@ -88,7 +88,9 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         // 需要等待 LifeBandBle.shareInterface 初始化，这里延时1s连接
         NSTimer.runThisAfterDelay(seconds: 1) {
-            LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName)
+            LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName) {
+                LifeBandCtrl.shareInterface.setDateToBand(NSDate())
+            }
         }
         
     }
