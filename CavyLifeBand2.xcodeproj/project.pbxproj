@@ -106,6 +106,7 @@
 		68648A751CEC71B8009D4BEE /* FullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */; };
 		68648A771CEEDFF6009D4BEE /* EmergencyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A761CEEDFF6009D4BEE /* EmergencyJSON.swift */; };
 		68648A7B1CF2AC73009D4BEE /* UserChangeNicknameVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A7A1CF2AC73009D4BEE /* UserChangeNicknameVM.swift */; };
+		68648A7D1CF2F8E8009D4BEE /* AccountSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A7C1CF2F8E8009D4BEE /* AccountSettingViewModel.swift */; };
 		686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */; };
 		686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */; };
 		686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */; };
@@ -429,6 +430,7 @@
 		68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageView.swift; sourceTree = "<group>"; };
 		68648A761CEEDFF6009D4BEE /* EmergencyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyJSON.swift; sourceTree = "<group>"; };
 		68648A7A1CF2AC73009D4BEE /* UserChangeNicknameVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChangeNicknameVM.swift; sourceTree = "<group>"; };
+		68648A7C1CF2F8E8009D4BEE /* AccountSettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewModel.swift; sourceTree = "<group>"; };
 		686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptPKTest.swift; sourceTree = "<group>"; };
 		686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePKTest.swift; sourceTree = "<group>"; };
 		686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPKTest.swift; sourceTree = "<group>"; };
@@ -1467,6 +1469,7 @@
 				91E1B4E91CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib */,
 				91E1B4A31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift */,
 				91E1B4E71CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift */,
+				68648A7C1CF2F8E8009D4BEE /* AccountSettingViewModel.swift */,
 				91E1B49C1CA50E0D008ADEE6 /* AccountInfo.storyboard */,
 			);
 			path = View;
@@ -2170,6 +2173,7 @@
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
 				6859BC821CD221A80050F6A0 /* EmergencyContactRealmModel.swift in Sources */,
 				6849D3B31CE9AE82001CB7EC /* EmergencyWebApi.swift in Sources */,
+				68648A7D1CF2F8E8009D4BEE /* AccountSettingViewModel.swift in Sources */,
 				4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */,
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,

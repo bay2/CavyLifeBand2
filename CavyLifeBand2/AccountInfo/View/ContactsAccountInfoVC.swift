@@ -300,6 +300,29 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             
             self.pushVC(requestVC)
             
+        } else {
+            
+            let nextVC = StoryboardScene.Guide.instantiateGuideView()
+                    
+            switch indexPath.row {
+            case 1:
+                let nextVM = AccountGenderViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            case 2:
+                let nextVM = AccountHeightViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            case 3:
+                let nextVM = AccountWeightViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            case 4:
+                let nextVM = AccountBirthdayViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            default:
+                break
+            }
+            
+            self.pushVC(nextVC)
+        
         }
 
     }
