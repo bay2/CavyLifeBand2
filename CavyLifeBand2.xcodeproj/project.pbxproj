@@ -106,6 +106,7 @@
 		68648A751CEC71B8009D4BEE /* FullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */; };
 		68648A771CEEDFF6009D4BEE /* EmergencyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A761CEEDFF6009D4BEE /* EmergencyJSON.swift */; };
 		68648A801CF3F125009D4BEE /* AccountSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A7F1CF3F125009D4BEE /* AccountSettingViewModel.swift */; };
+		68648A831CF3F234009D4BEE /* UpdateProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A821CF3F234009D4BEE /* UpdateProgressView.swift */; };
 		686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */; };
 		686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */; };
 		686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */; };
@@ -429,6 +430,7 @@
 		68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageView.swift; sourceTree = "<group>"; };
 		68648A761CEEDFF6009D4BEE /* EmergencyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyJSON.swift; sourceTree = "<group>"; };
 		68648A7F1CF3F125009D4BEE /* AccountSettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewModel.swift; sourceTree = "<group>"; };
+		68648A821CF3F234009D4BEE /* UpdateProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProgressView.swift; sourceTree = "<group>"; };
 		686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptPKTest.swift; sourceTree = "<group>"; };
 		686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePKTest.swift; sourceTree = "<group>"; };
 		686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPKTest.swift; sourceTree = "<group>"; };
@@ -898,6 +900,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		68648A811CF3F1A3009D4BEE /* FirmwareUpdate */ = {
+			isa = PBXGroup;
+			children = (
+				68648A821CF3F234009D4BEE /* UpdateProgressView.swift */,
+			);
+			path = FirmwareUpdate;
+			sourceTree = "<group>";
+		};
 		686A5E901CD9E6A200EB8D0E /* PKTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1273,6 +1283,7 @@
 			isa = PBXGroup;
 			children = (
 				916813881CE9CA2300E35561 /* CavyLifeBand2.entitlements */,
+				68648A811CF3F1A3009D4BEE /* FirmwareUpdate */,
 				918AA22C1CE327450022AE30 /* BLE */,
 				686A5EE81CDC307300EB8D0E /* Relate */,
 				9179DA971CD5E93800FCA63C /* AddressBook */,
@@ -2081,6 +2092,7 @@
 				4CB7A0D21CD3497F00DFB8DC /* ChartBaseView.swift in Sources */,
 				683655921CBE25A6009373EA /* SettingSwitchCellViewModel.swift in Sources */,
 				684097081CE058A400A8BAD2 /* WebVCViewModel.swift in Sources */,
+				68648A831CF3F234009D4BEE /* UpdateProgressView.swift in Sources */,
 				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,
 				4C6F149B1CDC9B06007E923B /* ShowPieChartsView.swift in Sources */,
 				4CB7A0D91CD3497F00DFB8DC /* ChartTimeButton.swift in Sources */,

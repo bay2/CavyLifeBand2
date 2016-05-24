@@ -553,6 +553,10 @@ enum L10n {
   case AlarmDaySaturday
   /// 日
   case AlarmDaySunday
+  /// 请勿退出应用或关闭手环
+  case UpdateProgressInfo
+  /// 手环正在升级
+  case UpdateProgressTitle
 }
 
 extension L10n: CustomStringConvertible {
@@ -1110,6 +1114,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AlarmDay.Saturday")
       case .AlarmDaySunday:
         return L10n.tr("AlarmDay.Sunday")
+      case .UpdateProgressInfo:
+        return L10n.tr("UpdateProgress.Info")
+      case .UpdateProgressTitle:
+        return L10n.tr("UpdateProgress.title")
     }
   }
 

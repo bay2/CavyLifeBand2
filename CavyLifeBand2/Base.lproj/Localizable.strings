@@ -322,3 +322,7 @@
 "AlarmDay.Friday" = "五";
 "AlarmDay.Saturday" = "六";
 "AlarmDay.Sunday" = "日";
+
+// 固件升级
+"UpdateProgress.Info" = "请勿退出应用或关闭手环";
+"UpdateProgress.title" = "手环正在升级";
