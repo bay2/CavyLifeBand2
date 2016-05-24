@@ -101,7 +101,7 @@ class GenderView: UIView {
             upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyChosen), forState: .Normal)
             downGenderBtn.setImage(UIImage(asset: .GuideGenderGirlGary), forState: .Normal)
             
-        }else {
+        } else {
             
             upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyGary), forState: .Normal)
             downGenderBtn.setImage(UIImage(asset: .GuideGenderGirlChosen), forState: .Normal)

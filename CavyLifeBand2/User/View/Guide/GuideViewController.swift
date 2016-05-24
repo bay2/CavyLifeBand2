@@ -53,12 +53,18 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
         allViewsLayOut()
 
-        updateViewStyle()
+//        updateViewStyle()
         
         updateNavUI()
         
         delegate?.onLoadView()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateViewStyle()
     }
     
     deinit {

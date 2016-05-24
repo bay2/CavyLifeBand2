@@ -345,6 +345,12 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 80% <br/> (0x000000cc)
     case TextFieldTextColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
+    /// Alpha: 100% <br/> (0x48d299ff)
+    case UpdateProgressViewProgressColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 100% <br/> (0x000000ff)
+    case UpdateProgressViewTextColor
 
     var rgbaValue: UInt32! {
       switch self {
@@ -458,6 +464,8 @@ extension UIColor {
       case .SignInSplitLine: return 0x00000033
       case .SignUpProtocolBtn: return 0x125faeff
       case .TextFieldTextColor: return 0x000000cc
+      case .UpdateProgressViewProgressColor: return 0x48d299ff
+      case .UpdateProgressViewTextColor: return 0x000000ff
       }
     }
 

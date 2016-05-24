@@ -144,7 +144,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     func syncUserInfo() {
         
         guard let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
-            
+        
             querySyncDate()
             return
         }
@@ -379,7 +379,11 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
 extension RootViewController: QueryUserInfoRequestsDelegate, UserInfoRealmOperateDelegate, SetUserInfoRequestsDelegate {
     
     var userInfoPara: [String: AnyObject] {
-        return updateUserInfoPara
+        get {
+            return updateUserInfoPara
+        }
+        
+        set { }
     }
     
 }

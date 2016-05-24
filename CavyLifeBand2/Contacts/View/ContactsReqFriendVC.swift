@@ -61,26 +61,8 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         dataSource?.textFieldTitle = requestTextField.text ?? ""
         delegate?.onClickButton()
         
-        
-        switch requestStyle {
-            
-        // 添加好友的回调
-        case .AddFriend:
-            Log.info("好友请求\(requestTextField.text)")
-            
-        // 修改备注的回调
-        case .ChangeNotesName:
-            Log.info("修改备注\(requestTextField.text)")
-            
-        // 修改自己的昵称
-        case .ChangeSelfName:
-            Log.info("修改昵称\(requestTextField.text)")
-            
-        }
-    
-        // 返回前页
-        
     }
+    
     
     
     /**
@@ -112,26 +94,6 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         requestTextField.placeholder = dataSource?.placeholderText
         requestTextField.text = dataSource?.textFieldTitle
         requestTextField.textColor = UIColor(named: .TextFieldTextColor)
-        
-        
-//        switch requestStyle {
-//
-//            // 请求添加好友
-//        case .AddFriend:
-//                requestTextField.placeholder = L10n.ContactsRequestPlaceHolder.string
-//                sendButton.setTitle(L10n.ContactsRequestSendButton.string, forState: .Normal)
-//            
-//            // 修改备注名字
-//        case .ChangeNotesName:
-//                requestTextField.placeholder = L10n.ContactsChangeNotesNamePlaceHolder.string
-//                sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
-//            
-//            // 修改自己的昵称
-//        case .ChangeSelfName:
-//            requestTextField.placeholder = L10n.ContactsChangeSelfNamePlaceHolder.string
-//            sendButton.setTitle(L10n.ContactsChangeNotesNameButton.string, forState: .Normal)
-//            
-//        }
         
     }
     

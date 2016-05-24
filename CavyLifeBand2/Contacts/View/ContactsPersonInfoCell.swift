@@ -32,8 +32,8 @@ class ContactsPersonInfoCell: UITableViewCell {
     /// 上面的Lable
     @IBOutlet weak var titleLab: UILabel!
     
-    
-    @IBOutlet weak var editButton: UIButton!
+    // 编辑图标
+    @IBOutlet weak var editImage: UIImageView!
     
     /// 徽章
     @IBOutlet weak var badgeView: UIImageView!
@@ -98,7 +98,7 @@ class ContactsPersonInfoCell: UITableViewCell {
         case .OwnRelation:
             
             // 自己的账户信息
-            editButton.hidden = false
+            editImage.hidden = false
             badgeView.hidden = true
             
             subTitleLab.snp_makeConstraints(closure: { make -> Void in
