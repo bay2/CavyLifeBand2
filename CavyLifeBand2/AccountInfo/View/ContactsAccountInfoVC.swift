@@ -302,6 +302,19 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             
         } else {
             
+            if indexPath.row == accountInfos.count - 1 {
+                // 跳转到修改地址
+                let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
+                
+                let changeRemarkVM = UserChangeAddressVM(viewController: requestVC)
+                
+                requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+                
+                self.pushVC(requestVC)
+                
+                return
+            }
+            
             let nextVC = StoryboardScene.Guide.instantiateGuideView()
                     
             switch indexPath.row {

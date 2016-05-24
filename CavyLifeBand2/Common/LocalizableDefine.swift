@@ -363,6 +363,8 @@ enum L10n {
   case AccountInofCamera
   /// 输入昵称
   case AccountInofChangeNicknamePlaceholder
+  /// 输入地址
+  case AccountInofChangeAddressPlaceholder
   /// 手环振动提醒 取消传统声音唤醒体系
   case AlarmClockIntelligentClockTableFooterInfo
   /// 智能闹钟
@@ -918,6 +920,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AccountInof.Camera")
       case .AccountInofChangeNicknamePlaceholder:
         return L10n.tr("AccountInof.ChangeNickname.Placeholder")
+      case .AccountInofChangeAddressPlaceholder:
+        return L10n.tr("AccountInof.ChangeAddress.Placeholder")
       case .AlarmClockIntelligentClockTableFooterInfo:
         return L10n.tr("AlarmClock.IntelligentClockTableFooter.Info")
       case .AlarmClockTitle:
