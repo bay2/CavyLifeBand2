@@ -31,7 +31,11 @@ class FullScreenImageView: UIView {
         
         self.addSubview(loadingView)
         
+<<<<<<< HEAD
         self.addTapGesture { [unowned self]  _ in
+=======
+        self.addTapGesture { [unowned self] _ in
+>>>>>>> c61851a12332edc486260b7cac7ce795d27c6c97
             self.removeFromSuperview()
         }
         

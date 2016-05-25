@@ -32,8 +32,8 @@ class ContactsPersonInfoCell: UITableViewCell {
     /// 上面的Lable
     @IBOutlet weak var titleLab: UILabel!
     
-    
-    @IBOutlet weak var editButton: UIButton!
+    // 编辑图标
+    @IBOutlet weak var editImage: UIImageView!
     
     /// 徽章
     @IBOutlet weak var badgeView: UIImageView!
@@ -66,7 +66,7 @@ class ContactsPersonInfoCell: UITableViewCell {
     
     func configCell(datasource: ContactsPersonInfoCellPresenter, delegate: ContactsPersonInfoCellDelegate) {
         
-        headView.af_setImageWithURL(NSURL(string: datasource.avatarUrl)!, runImageTransitionIfCached: true)
+        headView.af_setCircleImageWithURL(NSURL(string: datasource.avatarUrl)!, placeholderImage: UIImage(asset: .DefaultHead))
         
         /**
          如果备注名称为空字符串则主标题显示用户昵称，副标题为空字符串；
@@ -98,7 +98,7 @@ class ContactsPersonInfoCell: UITableViewCell {
         case .OwnRelation:
             
             // 自己的账户信息
-            editButton.hidden = false
+            editImage.hidden = false
             badgeView.hidden = true
             
             subTitleLab.snp_makeConstraints(closure: { make -> Void in

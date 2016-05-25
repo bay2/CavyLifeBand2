@@ -47,7 +47,7 @@ extension GuideViewDataSource {
 protocol GuideViewDelegate {
     
     func onClickRight(viewController: UIViewController)
-    func onClickGuideOkBtn(viewController: UIViewController)
+    mutating func onClickGuideOkBtn(viewController: UIViewController)
     func onLoadView()
     func onCilckBack(viewController: UIViewController)
     

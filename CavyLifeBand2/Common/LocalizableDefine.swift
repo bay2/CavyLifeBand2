@@ -361,6 +361,10 @@ enum L10n {
   case AccountInofPhoto
   /// 拍照
   case AccountInofCamera
+  /// 输入昵称
+  case AccountInofChangeNicknamePlaceholder
+  /// 输入地址
+  case AccountInofChangeAddressPlaceholder
   /// 手环振动提醒 取消传统声音唤醒体系
   case AlarmClockIntelligentClockTableFooterInfo
   /// 智能闹钟
@@ -551,6 +555,10 @@ enum L10n {
   case AlarmDaySaturday
   /// 日
   case AlarmDaySunday
+  /// 请勿退出应用或关闭手环
+  case UpdateProgressInfo
+  /// 手环正在升级
+  case UpdateProgressTitle
 }
 
 extension L10n: CustomStringConvertible {
@@ -916,6 +924,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AccountInof.Photo")
       case .AccountInofCamera:
         return L10n.tr("AccountInof.Camera")
+      case .AccountInofChangeNicknamePlaceholder:
+        return L10n.tr("AccountInof.ChangeNickname.Placeholder")
+      case .AccountInofChangeAddressPlaceholder:
+        return L10n.tr("AccountInof.ChangeAddress.Placeholder")
       case .AlarmClockIntelligentClockTableFooterInfo:
         return L10n.tr("AlarmClock.IntelligentClockTableFooter.Info")
       case .AlarmClockTitle:
@@ -1106,6 +1118,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AlarmDay.Saturday")
       case .AlarmDaySunday:
         return L10n.tr("AlarmDay.Sunday")
+      case .UpdateProgressInfo:
+        return L10n.tr("UpdateProgress.Info")
+      case .UpdateProgressTitle:
+        return L10n.tr("UpdateProgress.title")
     }
   }
 

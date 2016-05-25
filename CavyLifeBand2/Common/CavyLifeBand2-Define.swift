@@ -242,8 +242,8 @@ enum NotificationName: String {
     case HomeShowHomeView              // 显示主页
     case HomeRightOnClickMenu          // 点击右侧菜单
     case HomeLeftAccountInfo           // 点击左侧头像，账号信息
-    case ReminderPhoneSwitchChange
-    case ReminderPhoneScrollToSelect
+    case ReminderPhoneSwitchChange     // 提醒电话的开关改变
+    case ReminderPhoneScrollToSelect   // 提醒电话picker被滑动
     
 
     case ContactsFirendReqDeleteItem
@@ -458,7 +458,6 @@ enum UserNetRequsetKey: String {
     case AC              = "ac"
     case PhoneList       = "phoneList"
     case Remarks         = "remarks"
-    
 }
 
 // MARK: - 服务器接口命令
@@ -493,6 +492,8 @@ enum UserNetRequsetKey: String {
  - SetEmergencyPhone 上传紧急联系人电话号码列表
  - GetFriendInfo     查询好友信息
  - SetFriendRemark   设置好友备注
+ - SendEmergencyMsg  发送紧急消息
+ - GetEmergencyPhone 查询紧急联系人列表
  */
 enum UserNetRequestMethod: String {
     
@@ -522,5 +523,6 @@ enum UserNetRequestMethod: String {
     case SetEmergencyPhone = "setEmergencyPhone"
     case GetFriendInfo     = "getFriendInfo"
     case SetFriendRemark   = "setFriendRemark"
-
+    case SendEmergencyMsg  = "sendEmergencyMsg"
+    case GetEmergencyPhone = "getEmergencyPhone"
 }

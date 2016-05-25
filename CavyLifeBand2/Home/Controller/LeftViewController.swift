@@ -77,7 +77,7 @@ class LeftMenViewController: UIViewController, HomeUserDelegate, UserInfoRealmOp
     func updateUI(result: Results<UserInfoModel>) {
         
         self.userName.text = result.first?.nickname ?? ""
-        self.iconImageView.af_setCircleImageWithURL(NSURL(string: result.first?.avatarUrl ?? "")!)
+        self.iconImageView.af_setCircleImageWithURL(NSURL(string: result.first?.avatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
         self.account.text = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername
     
     }
