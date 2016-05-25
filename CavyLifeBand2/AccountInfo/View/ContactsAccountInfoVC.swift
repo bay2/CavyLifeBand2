@@ -287,7 +287,56 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        return
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if accountInfos[indexPath.row] is PresonInfoCellViewModel {
+            
+            // 跳转到修改备注
+            let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
+            
+            let changeRemarkVM = UserChangeNicknameVM(viewController: requestVC)
+            
+            requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+            
+            self.pushVC(requestVC)
+            
+        } else {
+            
+            if indexPath.row == accountInfos.count - 1 {
+                // 跳转到修改地址
+                let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
+                
+                let changeRemarkVM = UserChangeAddressVM(viewController: requestVC)
+                
+                requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+                
+                self.pushVC(requestVC)
+                
+                return
+            }
+            
+            let nextVC = StoryboardScene.Guide.instantiateGuideView()
+                    
+            switch indexPath.row {
+            case 1:
+                let nextVM = AccountGenderViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            case 2:
+                let nextVM = AccountHeightViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            case 3:
+                let nextVM = AccountWeightViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            case 4:
+                let nextVM = AccountBirthdayViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            default:
+                break
+            }
+            
+            self.pushVC(nextVC)
+        
+        }
 
     }
     

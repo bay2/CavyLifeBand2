@@ -37,6 +37,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
     }()
     
+   
+    
     var navTitle: String { return "" }
     
     /// 上部分 计步睡眠天气页面
@@ -92,7 +94,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
             make.top.equalTo(dateView).offset(50)
             make.left.right.bottom.equalTo(self.view)
         }
-        
         
     }
     

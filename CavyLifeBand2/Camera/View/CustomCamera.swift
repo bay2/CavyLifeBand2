@@ -248,7 +248,7 @@ class CustomCamera: UIViewController {
         self.lastImage.hidden = false
         self.videRecordTime.hidden = true
         
-        self.shutterPhoto.setImage(UIImage(asset: .CamerVideoWait), forState: .Normal)
+        self.shutterPhoto.setImage(UIImage(asset: .CameraVideoWait), forState: .Normal)
         
         // 保存录像
         self.camera.stopRecording()
@@ -271,7 +271,7 @@ class CustomCamera: UIViewController {
         self.lastImage.hidden = false
         self.videRecordTime.hidden = true
         
-        self.shutterPhoto.setImage(UIImage(asset: .CamerVideoWait), forState: .Normal)
+        self.shutterPhoto.setImage(UIImage(asset: .CameraVideoWait), forState: .Normal)
         // 保存录像
         self.camera.stopRecording()
 
@@ -422,7 +422,7 @@ class CustomCamera: UIViewController {
     // 更改到录像模式
     @IBAction func chooseVideoAction(sender: AnyObject) {
         isPhotoOrVideo = false
-        self.shutterPhoto.setImage(UIImage(asset: .CamerVideoWait), forState: .Normal)
+        self.shutterPhoto.setImage(UIImage(asset: .CameraVideoWait), forState: .Normal)
         self.changeToPhoto.setTitleColor(UIColor(named: .CameraNoChoose), forState: UIControlState.Normal)
         self.changeToVideo.setTitleColor(UIColor(named: .CameraChoose), forState: UIControlState.Normal)
     }
