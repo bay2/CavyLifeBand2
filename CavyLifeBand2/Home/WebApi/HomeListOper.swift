@@ -16,6 +16,10 @@ protocol HomeListRealmProtocol {
     var realm: Realm { set get }
     var userId: String { get }
     
+    func isExistHomeList(timeString: String) -> Bool
+    func addHomeList(homeList: HomeListRealm) -> Bool
+    func queryHomeList(time: String) -> HomeListRealm?
+    
 }
 
 extension HomeListRealmProtocol {
@@ -27,16 +31,34 @@ extension HomeListRealmProtocol {
      
      - returns:
      */
-    func queryHomeList(time: String) -> HomeListRealm? {
+    func queryHomeList(timeString: String) -> HomeListRealm? {
         
-        let list = realm.objects(HomeListRealm).filter("userId = '\(userId)' AND time = '\(time)'")
         
+        if isExistHomeList(timeString) == false {
+            
+          return HomeListRealm()
+            
+        }
+                
+        let list = realm.objects(HomeListRealm).filter("userId = '\(userId)' AND time = '\(timeString)'")
+        
+        if list.count == 0 {
+            
+            return HomeListRealm()
+
+        }
+
         return list.first
     }
     
-    func isExistHomeList() -> Bool {
+    /**
+     某一天是否存在 HomeList    
+     时间格式 yyyy.M.dd
+     */
+    func isExistHomeList(timeString: String) -> Bool {
+    
+        let list = realm.objects(HomeListRealm).filter("userId = '\(userId)' AND time = '\(timeString)'")
         
-        let list = realm.objects(HomeListRealm).filter("userId = '\(userId)'")
         if list.count == 0 {
             
             return false
@@ -44,13 +66,31 @@ extension HomeListRealmProtocol {
         } else {
             
             return true
+        }
+
+    }
+    
+    /**
+     添加到数据库
+     */
+    func addHomeList(homeList: HomeListRealm) -> Bool {
+        
+        do {
+            
+            try realm.write {
+                realm.add(homeList, update: false)
+            }
+            
+        } catch {
+            
+            Log.error("Add user info error [\(homeList)]")
+            return false
             
         }
         
-    }
-    
-    func saveHomeList(homeList: HomeListRealm) {
-        
+        Log.info("Add user info success")
+        return true
+
     }
     
     

@@ -33,13 +33,13 @@ struct ChartStepData: JSONJoy {
     }
     
 }
-
+ 
 // Step 整个数据 包括总步数 总公里数 花费时长
 struct StepChartsData {
     
     var datas: [PerStepChartsData] = []
     var totalStep: Int
-    var totalKilometer: Int
+    var totalKilometer: CGFloat
     var finishTime: Int
     
 }
@@ -57,6 +57,7 @@ struct PerSleepChartsData {
     var time: String
     var deepSleep: Int
     var lightSleep: Int
+    
 }
 
 

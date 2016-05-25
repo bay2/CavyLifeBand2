@@ -12,7 +12,7 @@ import JSONJoy
 import EZSwiftExtensions
 import RealmSwift
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol {
     
     var leftBtn: UIButton? = {
         
@@ -48,21 +48,30 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
     
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
+
+    var aphlaView: UIView?
+    var activityView: UIActivityIndicatorView?
+    
     // MARK: -- viewDidLoad
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        parseHomeListData()
         parseChartListData()
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomePushView.rawValue, object: nil)
 
         addAllView()
         
         self.updateNavUI()
         
-        // Do any additional setup after loading the view.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomePushView.rawValue, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showStepDetailView), name: NotificationName.HomeShowStepView.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showSleepDetailView), name: NotificationName.HomeShowSleepView.rawValue, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showPKDetailView), name: NotificationName.HomeShowPKView.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showAchieveDetailView), name: NotificationName.HomeShowAchieveView.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showHealthyDetailView), name: NotificationName.HomeShowHealthyView.rawValue, object: nil)
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -98,7 +107,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         }
         
     }
-    
+
     /**
      点击左侧按钮
      */
@@ -126,13 +135,11 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
      展示右侧菜单
      */
     func showRightView() {
-        
+    
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
         
     }
-    
-    // MARK: --- 解析数据 保存数据库
-    
+        
     /**
      跳转到新的视图
      
@@ -148,104 +155,17 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
     }
     
-    /**
-     解析主页时间轴数据 并保存
-     */
-    func parseHomeListData() {
-        
-        HomeListWebApi.shareApi.parseHomeListsData { result in
-            
-            guard result.isSuccess else {
-                Log.error("Parse Home Lists Data Error")
-                return
-            }
-            
-            do {
-                
-                Log.info(result.value!)
-                let netResult = try HomeListMsgs(JSONDecoder(result.value!))
-                
-                for list in netResult.msgLists {
-                    
-                    self.saveHomeListRealm(list)
-                }
-                
-            } catch let error {
-                
-                Log.error("\(#function) result error: \(error)")
-                
-            }
-            
-        }
-    }
-    
-    /**
-     将数据保存Realm
-     */
-    func saveHomeListRealm(result: HomeListMsg) {
-        
-        guard result.commonMsg.code == WebApiCode.Success.rawValue else {
-            
-            Log.error("Query home list error \(result.commonMsg.code)")
-            return
-            
-        }
-        
-        let homeListRealm = HomeListRealm()
-        
-        homeListRealm.userId = userId
-        
-        for infoList in result.achieveList {
-            
-            let achieveRealm = AchieveListRealm()
-            achieveRealm.achieve = infoList
-            
-            homeListRealm.achieveList.append(achieveRealm)
-        }
-        
-        for infoList in result.pkList {
-            
-            let pkRealm = PKListRealm()
-            
-            pkRealm.friendName = infoList.friendName!
-            pkRealm.pkId = infoList.pkId!
-            pkRealm.status = infoList.status!
-            
-            homeListRealm.pkList.append(pkRealm)
-            
-            
-        }
-        
-        for infoList in result.healthList {
-            
-            let healthRealm = HealthListRealm()
-            
-            healthRealm.friendId = infoList.friendId!
-            healthRealm.friendName = infoList.friendName!
-            
-            homeListRealm.healthList.append(healthRealm)
-            
-        }
-        
-        // 存储
-        
-        try! realm.write {
-            
-            realm.add(homeListRealm, update: false)
-            
-        }
-        
-    }
+    // MARK: --- 解析数据 保存数据库
     
     /**
      解析 计步睡眠数据 并保存Realm
      */
     func parseChartListData() {
         
+        if isExistStepChartsData() { return }
+        
         // 计步
-        ChartsWebApi.shareApi.parseSleepChartData { result in
-            
-            let chartStepRealm = ChartStepDataRealm()
+        ChartsWebApi.shareApi.parseStepChartData { result in
             
             guard result.isSuccess else {
                 Log.error("Parse Home Lists Data Error")
@@ -254,16 +174,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
             
             do {
                 
-                Log.info(result.value!)
-                
                 let netResult = try ChartStepMsg(JSONDecoder(result.value!))
-                
                 for list in netResult.stepList {
-                    
-                    chartStepRealm.userId = self.userId
-                    chartStepRealm.step = list.stepCount
-                    chartStepRealm.kilometer = Int(CGFloat(list.stepCount) * 0.0006)  // 相当于一部等于0.6米 公里数 = 步数 * 0.6 / 1000
-                    chartStepRealm.time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd hh:mm:ss")
+                    // 保存到数据库
+                    self.addStepListRealm(list)
                 }
                 
             } catch let error {
@@ -271,55 +185,65 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
                 Log.error("\(#function) result error: \(error)")
             }
             
-            try! self.realm.write{
-                
-                self.realm.add(chartStepRealm, update: false)
-                
-            }
-                
         }
+        
+        if isExistSleepChartsData() { return }
         
         // 睡眠
         ChartsWebApi.shareApi.parseSleepChartData { result in
-            
-            let chartSleepRealm = ChartSleepDataRealm()
-            
             guard result.isSuccess else {
                 Log.error("Parse Home Lists Data Error")
                 return
             }
-            
             do {
-                
                 Log.info(result.value!)
-                
                 let netResult = try ChartSleepMsg(JSONDecoder(result.value!))
-                
                 for list in netResult.sleepList {
-                    
-                    chartSleepRealm.userId = self.userId
-                    chartSleepRealm.time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd hh:mm:ss")
-                    // 根据翻身情况判断深睡浅睡
-                    let condition = self.sleepCondition(list.rollCount)
-                    chartSleepRealm.deepSleep = condition.0
-                    chartSleepRealm.lightSleep = condition.1
-                    
+                    // 保存到数据库
+                    self.addSleepListRealm(list)
                 }
                 
             } catch let error {
-                
                 Log.error("\(#function) result error: \(error)")
-            }
-            
-            try! self.realm.write{
-                
-                self.realm.add(chartSleepRealm, update: false)
-                
             }
             
         }
         
     }
+    
+    func addStepListRealm(list: StepMsg) {
+        
+        let chartStepRealm = ChartStepDataRealm()
+
+        chartStepRealm.userId = self.userId
+        chartStepRealm.step = list.stepCount
+        chartStepRealm.kilometer = CGFloat(list.stepCount) * 0.0006  // 相当于一部等于0.6米 公里数 = 步数 * 0.6 / 1000
+        
+        guard let date = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
+            return
+        }
+        
+        chartStepRealm.time = date
+        
+        self.addStepData(chartStepRealm)
+
+    }
+    
+    func addSleepListRealm(list: SleepMsg) {
+        let chartSleepRealm = ChartSleepDataRealm()
+
+        
+        chartSleepRealm.userId = self.userId
+        chartSleepRealm.time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss")
+        // 根据翻身情况判断深睡浅睡
+        let condition = self.sleepCondition(list.rollCount)
+        chartSleepRealm.deepSleep = condition.0
+        chartSleepRealm.lightSleep = condition.1
+        
+        self.addSleepData(chartSleepRealm)
+
+    }
+    
     
     /**
      根据翻身次数 确定 深睡浅睡的时间 单位： 分钟
@@ -333,9 +257,74 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         return (123, 243)
     }
     
-    override func didReceiveMemoryWarning() {
+    // MARK: 加载详情
+    /**
+     显示计步页面
+     */
+    func showStepDetailView(){
+        
+        let stepVM = ChartViewModel(title: L10n.ContactsShowInfoStep.string, chartStyle: .StepChart)
+        let chartVC = ChartBaseViewController()
+        chartVC.configChartBaseView(stepVM)
+        self.pushVC(chartVC)
+        
+    }
+    
+    /**
+     显示睡眠页面
+     */
+    func showSleepDetailView(){
+        
+        let sleepVM = ChartViewModel(title: L10n.ContactsShowInfoSleep.string, chartStyle: .SleepChart)
+        let chartVC = ChartBaseViewController()
+        chartVC.configChartBaseView(sleepVM)
+        self.pushVC(chartVC)
+        
+    }
+    
+    /**
+     显示PK页面
+     */
+    func showPKDetailView(notification: NSNotification){
+
+    }
+    
+    /**
+     显示成就页面
+     */
+    func showAchieveDetailView(notification: NSNotification){
+        
+    }
+    
+    /**
+     显示健康页面
+     */
+    func showHealthyDetailView(notification: NSNotification){
+        
+    }
+    
+    func addActivityIndicatorView() {
+        Log.info("添加指示器")
+        aphlaView = UIView(frame: UIScreen.mainScreen().bounds)
+        aphlaView!.backgroundColor = UIColor.blackColor()
+        aphlaView!.alpha = 0.3
+        self.view.addSubview(aphlaView!)
+        activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityView!.center = self.view.center
+        aphlaView!.addSubview(activityView!)
+        activityView!.startAnimating()
+    }
+  
+    func removeActivityIndicatorView() {
+        Log.info("移除指示器")
+        activityView?.stopAnimating()
+        aphlaView?.removeFromSuperview()
+    }
+    
+       override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 }
+

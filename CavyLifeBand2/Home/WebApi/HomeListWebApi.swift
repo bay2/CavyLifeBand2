@@ -20,39 +20,16 @@ class HomeListWebApi: NetRequestAdapter {
      */
     func parseHomeListData(dataString: String, callBack: CompletionHandlernType? = nil) {
         
-        let parameters: [String: AnyObject] = ["cmd": "index", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "dateString": dataString]
+         /*
+         cmd	是	string	index
+         userId	是	string	用户名
+         date	是	string	日期，格式为“yyyy-MM-dd”
+         */
+        
+        let parameters: [String: AnyObject] = ["cmd": "index", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "date": dataString]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
  
-    }
-    
-    /**
-     解析全部主页 homeLists 数据
-     */
-    func parseHomeListsData(callBack: CompletionHandlernType? = nil) {
-        
-        let parameters: [String: AnyObject] = ["cmd": "index", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
-        
-        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
-        
-    }
-    
-}
-
-struct HomeListMsgs:JSONJoy {
-    
-    var msgLists: [HomeListMsg] = []
-    
-    init(_ decoder: JSONDecoder) throws {
-        
-        guard let lists = decoder.array else {throw JSONError.WrongType}
-        
-        for list in lists {
-            
-            msgLists.append(try HomeListMsg(list))
-            
-        }
-
     }
     
 }
@@ -122,12 +99,14 @@ struct HealthList: JSONJoy {
     
     var friendId: String?
     var friendName: String?
+    var iconUrl: String?
     
     init(_ decoder: JSONDecoder) throws {
         
         do { friendId = try decoder["friendId"].getString() } catch { friendId = "" }
         do { friendName = try decoder["friendName"].getString() } catch { friendName = "" }
-
+        do { iconUrl = try decoder["iconUrl"].getString() } catch { iconUrl = "" }
+        
     }
     
 }

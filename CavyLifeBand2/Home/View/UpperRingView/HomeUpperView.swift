@@ -10,7 +10,10 @@ import UIKit
 import EZSwiftExtensions
 import RealmSwift
 
-class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
+class HomeUpperView: UIView, UserInfoRealmOperateDelegate, HomeListRealmProtocol {
+    
+    var realm: Realm = try! Realm()
+    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     /// 天气
     @IBOutlet weak var weatherView: UIView!
@@ -21,13 +24,8 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     ///  计步环
     @IBOutlet weak var stepRing: UIView!
     
-    
-    var viewController = UIViewController()
-    
-    var realm: Realm = try! Realm()
-    
-    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
-    
+    var viewController = UIViewController() 
+
     /**
      适配
      */
@@ -84,25 +82,17 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         let stepTargetNumber = userInfo.stepNum
         
         // 计步失眠 当前值
-//        let result = queryTodayCurrentStepAndSleep()
         
-        let stepCurrentNumber = 50
+        let time = NSDate().toString(format: "yyyy-MM-dd")
+        let result = queryHomeList(time)!
+//        let stepCurrentNumber = result.stepCount
+//        let sleepCurrentNumber = result.sleepTime
         
-        let sleepCurrentNumber = 320
-
-        
-//        guard let stepCurrentNumber = result?.0 else {
-//            return
-//        }
-//        
-//        guard let sleepCurrentNumber = result?.1 else {
-//            return
-//        }
+        let stepCurrentNumber = Int(arc4random_uniform(UInt32(stepTargetNumber + 1)))
+        let sleepCurrentNumber = Int(arc4random_uniform(UInt32(sleepTargetNumber + 1)))
         
         stepView!.ringWithStyle(stepTargetNumber, currentNumber: stepCurrentNumber)
         sleepView!.ringWithStyle(sleepTargetNumber, currentNumber: sleepCurrentNumber)
-
-        
 
     }
     
@@ -123,39 +113,5 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         
         self.viewController.pushVC(chartVC)
     }
-    
-    
-    /*
-    lazy var sleepCurrentNumber: Int = {
-        
-        let number = 1
-        
-        return number
-    }()
-    
-    lazy var sleepTargetNumber: Int = {
-        
-        let number = 1
-        
-        
-        
-        return number
-    }()
-    
-    lazy var stepCurrentNumber: Int = {
-        
-        let number = 1
-        
-        return number
-    }()
-    
-    lazy var stepTargetNumber: Int = {
-        
-        let number = 1
-        
-        
-        return number
-    }()
-    */
     
 }

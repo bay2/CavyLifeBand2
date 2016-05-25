@@ -15,9 +15,9 @@ import Log
 class ChartStepDataRealm: Object {
     
     dynamic var userId = ""
-    dynamic var time: NSDate? = nil
+    dynamic var time: NSDate = NSDate()
     dynamic var step = 0
-    dynamic var kilometer = 0
+    dynamic var kilometer: CGFloat = 0
 
 }
 
@@ -36,29 +36,77 @@ protocol ChartsRealmProtocol {
     
     var realm: Realm { get }
     var userId: String { get }
+
+    func queryHomeTimeBucket() -> [String]?
     
-    func isExistChartsData() -> Bool
+    func isExistStepChartsData() -> Bool
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData?
     
+    func isExistSleepChartsData() -> Bool
     func addSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
     func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData]?
     
-    func queryTodayCurrentStepAndSleep() -> (Int, Int)?
+}
+
+// MARK: Other Extension
+extension ChartsRealmProtocol {
+
+    // 返回主页的时间段
+    func queryHomeTimeBucket() -> [String]? {
+        let userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+
+        var resultArray: [String] = []
+        
+        let today = NSDate().toString(format: "yyyy.M.dd")
+        
+        let realmList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+
+        if realmList.count == 0 || realmList.first?.time == nil {
+            
+            return [today]
+        }
+
+        for perList in realmList {
+
+            let timeString = perList.time.toString(format: "yyyy.M.dd")
+
+            if resultArray.contains(timeString) == false {
+                
+                resultArray.append(timeString)
+            }
+            
+        }
+        // 如果没有今天的 就添加今天
+        if resultArray.contains("\(today)") == false {
+            resultArray.append(today)
+        }
+        return resultArray
+    }
+   
+    
+    
 }
 
 // MARK: Step Extension
 extension ChartsRealmProtocol {
     
     /**
-     查询是否有数据
+     查询是否有计步数据
      */
-    func isExistChartsData() -> Bool {
+    func isExistStepChartsData() -> Bool {
         
+        let lists = realm.objects(ChartStepDataRealm)
         
-        let list = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+        if lists.count == 0 {
+            
+            return false
+            
+        }
         
-        if list.count <= 0 {
+        let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+        
+        if personalList.count == 0 {
             return false
         }
         
@@ -72,7 +120,7 @@ extension ChartsRealmProtocol {
      - returns: 成功：true 失败： false
      */
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool {
-        
+
         do {
             
             try realm.write {
@@ -87,7 +135,7 @@ extension ChartsRealmProtocol {
             
         }
         
-        Log.info("Add charts info success")
+//        Log.info("Add charts info success")
         
         return true
         
@@ -95,13 +143,9 @@ extension ChartsRealmProtocol {
     
     /**
      查询 日周月下 某一时段的 数据信息
-     
-     - parameter userId:     用户ID
-     - parameter timeBucket: 日周月
-     - parameter time:       时间
      */
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData? {
-        
+
         if realm.objects(ChartStepDataRealm).count == 0 {
             return nil
         }
@@ -165,7 +209,7 @@ extension ChartsRealmProtocol {
 
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "HH"
-                let hour = dateFormatter.stringFromDate(dataInfo[i - 1].time!)
+                let hour = dateFormatter.stringFromDate(dataInfo[i - 1].time)
                 
                 let per = PerStepChartsData(time: hour, kilometer: numTemp)
                 
@@ -210,7 +254,7 @@ extension ChartsRealmProtocol {
                 
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "dd"
-                let day = dateFormatter.stringFromDate(dataInfo[i - 1].time!)
+                let day = dateFormatter.stringFromDate(dataInfo[i - 1].time)
                 
                 let per = PerStepChartsData(time: day, kilometer: numTemp)
                 
@@ -232,8 +276,30 @@ extension ChartsRealmProtocol {
 extension ChartsRealmProtocol {
 
     /**
+     查询是否有睡眠数据
+     */
+    func isExistSleepChartsData() -> Bool {
+        
+        
+        let list = realm.objects(ChartSleepDataRealm)
+        
+        if list.count == 0 {
+            return false
+        }
+        
+        let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
+        
+        if personalList.count == 0 {
+            return false
+        }
+        
+        return true
+        
+    }
+    
+    /**
      添加计步数据
-     - parameter chartsInfo: 用户的计步信息
+     - parameter chartsInfo: 用户的睡眠信息
      - returns: 成功：true 失败： false
      */
     func addSleepData(chartsInfo: ChartSleepDataRealm) -> Bool {
@@ -259,10 +325,6 @@ extension ChartsRealmProtocol {
     
     /**
      查询 日周月下 某一时段的 数据信息
-     
-     - parameter userId:     用户ID
-     - parameter timeBucket: 日周月
-     - parameter time:       时间
      */
     func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData]? {
         
@@ -318,40 +380,10 @@ extension ChartsRealmProtocol {
         
         return sleepChartsDatas!
     }
-    
-    func queryTodayCurrentStepAndSleep() -> (Int, Int)? {
-        
-        var stepCount = 0
-        var sleepTime = 0
-        
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let beginString = dateFormatter.stringFromDate(NSDate())
-        let beginTimeString = beginString + " 00:00:00"
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let beginTime = dateFormatter.dateFromString(beginTimeString)
-        let endTime = NSDate()
-        
-        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > '\(beginTime)' AND time < '\(endTime)' ")
-        
-        for stepRealm in dataInfo {
-            
-            stepCount = stepCount + stepRealm.step
-        }
-        
-        
-        let dataInfo2 = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time > '\(beginTime)' AND time < '\(endTime)' ")
-        
-        for sleepRealm in dataInfo2 {
-            
-            sleepTime = sleepTime + sleepRealm.deepSleep + sleepRealm.lightSleep
-        }
-        
 
-        
-        
-        return (3, 3)
-    }
     
 }
+
+
+
+

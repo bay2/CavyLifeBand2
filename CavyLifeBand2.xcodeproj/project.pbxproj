@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C06E9E91CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C06E9E81CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift */; };
 		4C0BF9E91CB78F0500DB06FC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */; };
 		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
 		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
@@ -15,8 +14,6 @@
 		4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */; };
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C2B67DC1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */; };
-		4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67DD1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift */; };
-		4C2B67E21CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */; };
 		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4C4C602A1CE5C4790026C045 /* GuideViewConfigDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C60291CE5C4790026C045 /* GuideViewConfigDefine.swift */; };
 		4C4C602D1CE5C4A10026C045 /* ContactRecommendFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C602B1CE5C4A10026C045 /* ContactRecommendFriendView.swift */; };
@@ -72,6 +69,9 @@
 		4CD5AAC31CEEB36A0011CD13 /* HomeListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */; };
 		4CD5AAC51CEEE22E0011CD13 /* HomeListOper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */; };
 		4CD5AAC71CF2E1D10011CD13 /* ChartsWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC61CF2E1D10011CD13 /* ChartsWebApi.swift */; };
+		4CD5AAC91CF42D310011CD13 /* HomeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC81CF42D310011CD13 /* HomeListViewModel.swift */; };
+		4CD5AACB1CF42DB40011CD13 /* HomeListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AACA1CF42DB40011CD13 /* HomeListProtocol.swift */; };
+		4CD5AAD11CF583420011CD13 /* HomeDateTimeLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5AACF1CF583420011CD13 /* HomeDateTimeLineCell.xib */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
 		683655271CBB3B2C009373EA /* SettingSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */; };
 		683655281CBB3B2C009373EA /* SettingSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683655261CBB3B2C009373EA /* SettingSwitchTableViewCell.xib */; };
@@ -326,7 +326,6 @@
 		0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		4C06E9E81CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDateMoudleWebApi.swift; sourceTree = "<group>"; };
 		4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -334,8 +333,6 @@
 		4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWeatherWebApi.swift; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString_Extension.swift; sourceTree = "<group>"; };
-		4C2B67DD1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineCellViewModel.swift; sourceTree = "<group>"; };
-		4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTimeLineProtocol.swift; sourceTree = "<group>"; };
 		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4C4C60291CE5C4790026C045 /* GuideViewConfigDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewConfigDefine.swift; sourceTree = "<group>"; };
 		4C4C602B1CE5C4A10026C045 /* ContactRecommendFriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactRecommendFriendView.swift; sourceTree = "<group>"; };
@@ -391,6 +388,9 @@
 		4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListRealm.swift; sourceTree = "<group>"; };
 		4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListOper.swift; sourceTree = "<group>"; };
 		4CD5AAC61CF2E1D10011CD13 /* ChartsWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsWebApi.swift; sourceTree = "<group>"; };
+		4CD5AAC81CF42D310011CD13 /* HomeListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListViewModel.swift; sourceTree = "<group>"; };
+		4CD5AACA1CF42DB40011CD13 /* HomeListProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListProtocol.swift; sourceTree = "<group>"; };
+		4CD5AACF1CF583420011CD13 /* HomeDateTimeLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDateTimeLineCell.xib; sourceTree = "<group>"; };
 		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		683655261CBB3B2C009373EA /* SettingSwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingSwitchTableViewCell.xib; sourceTree = "<group>"; };
@@ -680,8 +680,8 @@
 		4C0BF9E71CB78F0500DB06FC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				4C2B67DD1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift */,
-				4C2B67E11CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift */,
+				4CD5AACA1CF42DB40011CD13 /* HomeListProtocol.swift */,
+				4CD5AAC81CF42D310011CD13 /* HomeListViewModel.swift */,
 				9150CAB91CC8D03800A398E9 /* RightMenuViewModel.swift */,
 			);
 			name = ViewModel;
@@ -691,11 +691,10 @@
 		4C0BFA081CBF27A900DB06FC /* WebApi */ = {
 			isa = PBXGroup;
 			children = (
-				4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */,
-				4C06E9E81CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift */,
 				4CD5AABD1CEDA6030011CD13 /* HomeListWebApi.swift */,
 				4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */,
 				4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */,
+				4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */,
 			);
 			path = WebApi;
 			sourceTree = "<group>";
@@ -727,6 +726,7 @@
 				4CB7A0641CD095C400DFB8DC /* HomeTimeLineTableCell.swift */,
 				4CB7A0651CD095C400DFB8DC /* HomeTimeLineTableCell.xib */,
 				4CB7A05D1CD095C400DFB8DC /* HomeDataCellFlowLayout.swift */,
+				4CD5AACF1CF583420011CD13 /* HomeDateTimeLineCell.xib */,
 			);
 			path = TimeLineView;
 			sourceTree = "<group>";
@@ -734,9 +734,9 @@
 		4CB7A0671CD095C400DFB8DC /* UpperRingView */ = {
 			isa = PBXGroup;
 			children = (
+				4CB7A06A1CD095C400DFB8DC /* HomeUpperView.swift */,
 				4CB7A0681CD095C400DFB8DC /* HomeRingView.swift */,
 				4CB7A0691CD095C400DFB8DC /* HomeRingView.xib */,
-				4CB7A06A1CD095C400DFB8DC /* HomeUpperView.swift */,
 				4CB7A06B1CD095C400DFB8DC /* HomeUpperView.xib */,
 				4CB7A06C1CD095C400DFB8DC /* HomeWeatherView.swift */,
 				4CB7A06D1CD095C400DFB8DC /* HomeWeatherView.xib */,
@@ -1780,6 +1780,7 @@
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
 				6859BC8E1CD34AAC0050F6A0 /* EmptyClockView.xib in Resources */,
 				68E977F81CC600A100651724 /* PKRulesView.xib in Resources */,
+				4CD5AAD11CF583420011CD13 /* HomeDateTimeLineCell.xib in Resources */,
 				68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */,
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
 				91DFA9201CD8C3820036B939 /* PKListSectionView.xib in Resources */,
@@ -1951,7 +1952,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if hash tailor 2>/dev/null; then\n#  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n# echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
+			shellScript = "if hash tailor 2>/dev/null; then\n  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1968,6 +1969,7 @@
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
 				6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
+				4CD5AACB1CF42DB40011CD13 /* HomeListProtocol.swift in Sources */,
 				4CD5AAC71CF2E1D10011CD13 /* ChartsWebApi.swift in Sources */,
 				6836557D1CBC84B7009373EA /* LineLayout.swift in Sources */,
 				4C5396CA1CE1B28000BCFAEB /* ChartOtherSetting.swift in Sources */,
@@ -2071,6 +2073,7 @@
 				91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */,
 				686A5EFB1CDC474000EB8D0E /* AboutSectionEmptyView.swift in Sources */,
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
+				4CD5AAC91CF42D310011CD13 /* HomeListViewModel.swift in Sources */,
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
 				4CB7A0731CD095C400DFB8DC /* MenuTableViewCell.swift in Sources */,
@@ -2081,7 +2084,6 @@
 				4C5396B51CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift in Sources */,
 				4CB7A0761CD095C400DFB8DC /* HomeDateTimeLineCell.swift in Sources */,
 				913D0BDB1C3FA126006EE7F8 /* CavyLifeBand2-Define.swift in Sources */,
-				4C2B67E21CCE0CBE00512CC7 /* HomeTimeLineProtocol.swift in Sources */,
 				91E1B4CD1CA510BD008ADEE6 /* ContactsNewFriendVC.swift in Sources */,
 				91E1B4CE1CA510BD008ADEE6 /* ContactsPersonInfoCell.swift in Sources */,
 				4CB7A06E1CD095C400DFB8DC /* BandElectricView.swift in Sources */,
@@ -2111,7 +2113,6 @@
 				686A5EF51CDC360000EB8D0E /* RelateAppVC.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
-				4C06E9E91CC08B8E0093EEFA /* HomeDateMoudleWebApi.swift in Sources */,
 				4CB7A0721CD095C400DFB8DC /* LeftHeaderView.swift in Sources */,
 				4C0BF9E91CB78F0500DB06FC /* HomeViewController.swift in Sources */,
 				685204E91CB7938C004179B0 /* AddClockViewController.swift in Sources */,
@@ -2147,7 +2148,6 @@
 				4CB7A0DF1CD35BF900DFB8DC /* ChartsJSON.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
 				6859BC821CD221A80050F6A0 /* EmergencyContactRealmModel.swift in Sources */,
-				4C2B67DE1CCE0BBE00512CC7 /* HomeTimeLineCellViewModel.swift in Sources */,
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,
 				683655821CBC85BE009373EA /* SecondsTableViewCell.swift in Sources */,

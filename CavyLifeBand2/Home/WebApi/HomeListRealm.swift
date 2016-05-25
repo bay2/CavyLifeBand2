@@ -14,8 +14,8 @@ class HomeListRealm: Object {
     
     // 用户名
     dynamic var userId: String = ""
-    // 时间
-    dynamic var time: NSDate?  = nil
+    // 时间 yyyy.M.dd
+    dynamic var time: String  = ""
     // 步数
     dynamic var stepCount: Int = 0
     // 睡眠时间
@@ -26,6 +26,8 @@ class HomeListRealm: Object {
     let pkList      = List<PKListRealm>()
     // 健康列表
     let healthList  = List<HealthListRealm>()
+    
+    
     
 }
 
@@ -47,6 +49,7 @@ class HealthListRealm: Object {
     
     dynamic var friendId: String = ""
     dynamic var friendName: String = ""
+    dynamic var iconUrl: String = ""
     
 }
 
