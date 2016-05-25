@@ -132,7 +132,7 @@ struct TimeLinePKViewModel: HomeTimeLineDataSource, HomeTimeLineDelegate {
  */
 struct TimeLineHealthViewModel: HomeTimeLineDataSource, HomeTimeLineDelegate {
     
-    var image: UIImage { return UIImage(asset: .HomeListHealth) }
+    var image: UIImage { return UIImage.imageWithColor(UIColor.redColor(), size: CGSize(width: 200, height: 200)) }
     var title: String { return L10n.HomeTimeLineCellHealthiy.string }
     var time: String
     var others: String

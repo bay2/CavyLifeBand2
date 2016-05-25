@@ -76,8 +76,8 @@ class PKChallengeView: UIView {
         PKSeeStateLabel.text     = dataSource?.seeState
         PKTimeLabel.text         = dataSource?.PKTime
         
-        userAvatarImageView.af_setImageWithURL(NSURL(string: dataSource?.userAvatarUrl ?? "")!, placeholderImage: nil, runImageTransitionIfCached: true)
-        competitorAvatarImageView.af_setImageWithURL(NSURL(string: dataSource?.comprtitorAvatarUrl ?? "")!, placeholderImage: nil, runImageTransitionIfCached: true)
+        userAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.userAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
+        competitorAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.comprtitorAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
 
     }
     

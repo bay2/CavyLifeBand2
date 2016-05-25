@@ -12,8 +12,8 @@ import SnapKit
 
 class MainPageViewController: UIViewController {
     
-    var imageViews = [UIImageView(image: UIImage(asset: .PageImage1)), UIImageView(image: UIImage(asset: .PageImage1)),
-                      UIImageView(image: UIImage(asset: .PageImage1)), UIImageView(image: UIImage(asset: .PageImage1))]
+    var imageViews = [UIImageView(image: UIImage(asset: .Banner_1)), UIImageView(image: UIImage(asset: .Banner_2)),
+                      UIImageView(image: UIImage(asset: .Banner_3)), UIImageView(image: UIImage(asset: .Splash))]
 
     @IBOutlet weak var pageScrollView: UIScrollView!
     
@@ -104,9 +104,6 @@ class MainPageViewController: UIViewController {
         self.view.addSubview(signInBtn)
         self.view.addSubview(signUpBtn)
         
-        signUpBtn.hidden = true
-        signInBtn.hidden = true
-        
         buttonLayout()
         
     }
@@ -179,14 +176,6 @@ class MainPageViewController: UIViewController {
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
         
         pageCtrl.currentPage = Int(scrollView.contentOffset.x / ez.screenWidth)
-        
-        if pageCtrl.currentPage == imageViews.count - 1{
-            signInBtn.hidden = false
-            signUpBtn.hidden = false
-        } else {
-            signInBtn.hidden = true
-            signUpBtn.hidden = true
-        }
         
     }
     
