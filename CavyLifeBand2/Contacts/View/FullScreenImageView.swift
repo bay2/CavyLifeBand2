@@ -31,7 +31,7 @@ class FullScreenImageView: UIView {
         
         self.addSubview(loadingView)
         
-        self.addTapGesture { (sender) in
+        self.addTapGesture { [unowned self] _ in
             self.removeFromSuperview()
         }
         
@@ -43,7 +43,7 @@ class FullScreenImageView: UIView {
         
         loadingView.startAnimating()
         
-        imageView.af_setImageWithURL(NSURL(string: imageUrlStr ?? "")!, placeholderImage: nil, runImageTransitionIfCached: true) { [unowned self] (result) in
+        imageView.af_setImageWithURL(NSURL(string: imageUrlStr ?? "")!, placeholderImage: nil, runImageTransitionIfCached: true) { [unowned self] _ in
             self.loadingView.stopAnimating()
         }
         

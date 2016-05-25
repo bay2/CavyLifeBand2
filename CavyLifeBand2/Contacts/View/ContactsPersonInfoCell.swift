@@ -66,7 +66,7 @@ class ContactsPersonInfoCell: UITableViewCell {
     
     func configCell(datasource: ContactsPersonInfoCellPresenter, delegate: ContactsPersonInfoCellDelegate) {
         
-        headView.af_setImageWithURL(NSURL(string: datasource.avatarUrl)!, runImageTransitionIfCached: true)
+        headView.af_setCircleImageWithURL(NSURL(string: datasource.avatarUrl)!, placeholderImage: UIImage(asset: .DefaultHead))
         
         /**
          如果备注名称为空字符串则主标题显示用户昵称，副标题为空字符串；
