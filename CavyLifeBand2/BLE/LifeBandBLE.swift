@@ -59,8 +59,8 @@ class LifeBandBle: NSObject {
     // 蓝牙消息发送队列
     private var writeToPeripheralQueue: [String] = []
     
-    // 蓝牙消息处理队列
-    private var peripheralResponsdQueue: [(cmd: UInt8, msgProc: (NSData -> Void)?, timeCount: Int)] = []
+    // 蓝牙消息处理回调
+    private var peripheralResponsd: [UInt8: (NSData -> Void)] = [:]
     
 
 // MARK: - 初始化
@@ -120,15 +120,28 @@ class LifeBandBle: NSObject {
      
      - parameter msg: 消息内容
      */
-    func sendMsgToBand(msg: String, cmd: UInt8 = 0, msgProc: (NSData -> Void)? = nil) {
+    func sendMsgToBand(msg: String) -> Self {
         
         writeToPeripheralQueue.append(msg)
+        return self
+        
+    }
+    
+    /**
+     安装接受处理
+     
+     - parameter cmd:     命令字 (cmd不能为0)
+     - parameter msgProc: 处理回调
+     */
+    func installCmd(cmd: UInt8, msgProc: (NSData -> Void)) -> Self {
         
         if cmd == 0 {
-            return
+            return self
         }
         
-        peripheralResponsdQueue.append((cmd: cmd, msgProc: msgProc, timeCount: 0))
+        peripheralResponsd[cmd] = msgProc
+        
+        return self
         
     }
     
@@ -328,23 +341,12 @@ extension LifeBandBle: CBPeripheralDelegate {
         guard dataArray[0] == 36 else {
             return
         }
-        
-        if self.peripheralResponsdQueue.count < 0 {
+
+        guard let responsd = peripheralResponsd[dataArray[1]] else {
             return
         }
         
-        
-        for (index, element) in self.peripheralResponsdQueue.enumerate() {
-            
-            guard element.cmd == dataArray[1] else {
-                continue
-            }
-            
-            self.peripheralResponsdQueue[index].msgProc?(data)
-            self.peripheralResponsdQueue.removeAtIndex(index)
-            return
-            
-        }
+        responsd(data)
         
     }
     

@@ -13,6 +13,7 @@ import Log
 import AddressBook
 import Contacts
 import KeychainAccess
+import Datez
 
 class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate, PKRecordsUpdateFormWeb, LifeBandBleDelegate {
     
@@ -74,6 +75,11 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandName
         
+        let date = NSDate(timeIntervalSinceReferenceDate: 0.hours.timeInterval)
+        
+        let dateString =  (date.gregorian + 10.minute).date.toString()
+        
+        print(dateString)
         
         
         CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = BindBandCtrl.bandName
@@ -90,6 +96,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         NSTimer.runThisAfterDelay(seconds: 1) {
             LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName) {
                 LifeBandCtrl.shareInterface.setDateToBand(NSDate())
+                LifeBandCtrl.shareInterface.seLifeBandModel()
             }
         }
         
