@@ -14,7 +14,7 @@ import EZSwiftExtensions
 /**
  *  修改备注
  */
-struct ContactsChangeRemarkViewModel: ContactsReqFriendPortocols {
+class ContactsChangeRemarkViewModel: ContactsReqFriendPortocols {
     
     var navTitle: String = L10n.ContactsNavTitleRemark.string
     
@@ -45,7 +45,7 @@ struct ContactsChangeRemarkViewModel: ContactsReqFriendPortocols {
     
     func onClickButton() {
         
-        let msgParse: CompletionHandlernType = {
+        let msgParse: CompletionHandlernType = { [unowned self] in
             
             guard $0.isSuccess else {
                 CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: $0.error)

@@ -16,7 +16,10 @@ class EmergencyContactInfoCell: UITableViewCell {
     
     @IBOutlet weak var cancelBtn: UIButton!
     
-    var viewModel: EmergencyContactInfoDataSource?
+    var index: NSIndexPath?
+    
+//    var viewModel: EmergencyContactInfoDataSource?
+    weak var delegate: EmergencyContactInfoDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,21 +37,24 @@ class EmergencyContactInfoCell: UITableViewCell {
         
     }
     
-    func configure(model: EmergencyContactInfoDataSource) -> Void {
-        self.viewModel = model
+    func configure(dataSource: EmergencyContactInfoDataSource, delegate: EmergencyContactInfoDelegate, indexPath: NSIndexPath) -> Void {
+        self.delegate = delegate
         
-        self.nameLabel.text = model.name
-        self.phoneNumberLabel.text = model.phoneNumber
+        self.nameLabel.text = dataSource.name
+        self.phoneNumberLabel.text = dataSource.phoneNumber
+        
+        self.index = indexPath
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
+        
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
     
     @IBAction func deleteEmergencyContact(sender: UIButton) {
-        self.viewModel?.cancelEmergencyContact()
+        self.delegate?.cancelEmergencyContact(self.index!)
     }
     
 }
@@ -56,29 +62,22 @@ class EmergencyContactInfoCell: UITableViewCell {
 protocol EmergencyContactInfoDataSource {
     var name: String { get }
     var phoneNumber: String { get }
-    func cancelEmergencyContact() -> Void
 }
 
-struct EmergencyContactInfoCellViewModel: EmergencyContactInfoDataSource, EmergencyContactRealmListOperateDelegate {
+@objc protocol EmergencyContactInfoDelegate {
+    func cancelEmergencyContact(index: NSIndexPath) -> Void
+}
+
+struct EmergencyContactInfoCellViewModel: EmergencyContactInfoDataSource {
     
     var name: String
     var phoneNumber: String
-    var realmModel: EmergencyContactRealmModel
     
-    var realm: Realm
-    var userId: String
-    
-    init(model: EmergencyContactRealmModel, realm: Realm){
-        self.name = model.contactName
-        self.phoneNumber = model.phoneNumber
-        self.realmModel = model
+    init(name: String, phone: String){
         
-        self.realm = realm
-        self.userId = model.userId
-    }
-    
-    func cancelEmergencyContact() -> Void {
-        self.deleteEmergencyContactRealm(self.realmModel)
+        self.name = name
+        self.phoneNumber = phone
+        
     }
     
 }

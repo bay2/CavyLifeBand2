@@ -56,7 +56,7 @@ extension QueryUserInfoRequestsDelegate {
  */
 protocol SetUserInfoRequestsDelegate {
     
-    var userInfoPara: [String: AnyObject] { get }
+    var userInfoPara: [String: AnyObject] { get set }
     
     func setUserInfo(completeHandle: (Bool -> Void)?)
     

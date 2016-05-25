@@ -211,6 +211,8 @@
 "AccountInfo.LoginoutButton.Title" = "退出登录";
 "AccountInof.Photo" = "从手机相册中选择";
 "AccountInof.Camera" = "拍照";
+"AccountInof.ChangeNickname.Placeholder" = "输入昵称";
+"AccountInof.ChangeAddress.Placeholder" = "输入地址";
 
 //闹钟
 "AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";
@@ -318,4 +320,8 @@
 "AlarmDay.Friday" = "五";
 "AlarmDay.Saturday" = "六";
 "AlarmDay.Sunday" = "日";
+
+// 固件升级
+"UpdateProgress.Info" = "请勿退出应用或关闭手环";
+"UpdateProgress.title" = "手环正在升级";
 

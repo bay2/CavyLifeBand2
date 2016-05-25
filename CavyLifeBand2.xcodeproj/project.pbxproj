@@ -104,6 +104,9 @@
 		6859BC941CD4776D0050F6A0 /* AlarmClockUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */; };
 		68648A731CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */; };
 		68648A751CEC71B8009D4BEE /* FullScreenImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */; };
+		68648A771CEEDFF6009D4BEE /* EmergencyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A761CEEDFF6009D4BEE /* EmergencyJSON.swift */; };
+		68648A801CF3F125009D4BEE /* AccountSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A7F1CF3F125009D4BEE /* AccountSettingViewModel.swift */; };
+		68648A831CF3F234009D4BEE /* UpdateProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A821CF3F234009D4BEE /* UpdateProgressView.swift */; };
 		686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */; };
 		686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */; };
 		686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */; };
@@ -425,6 +428,9 @@
 		6859BC931CD4776D0050F6A0 /* AlarmClockUITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmClockUITest.swift; sourceTree = "<group>"; };
 		68648A721CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactChangeRemarkVM.swift; sourceTree = "<group>"; };
 		68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullScreenImageView.swift; sourceTree = "<group>"; };
+		68648A761CEEDFF6009D4BEE /* EmergencyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyJSON.swift; sourceTree = "<group>"; };
+		68648A7F1CF3F125009D4BEE /* AccountSettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewModel.swift; sourceTree = "<group>"; };
+		68648A821CF3F234009D4BEE /* UpdateProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProgressView.swift; sourceTree = "<group>"; };
 		686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptPKTest.swift; sourceTree = "<group>"; };
 		686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePKTest.swift; sourceTree = "<group>"; };
 		686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPKTest.swift; sourceTree = "<group>"; };
@@ -864,6 +870,7 @@
 			isa = PBXGroup;
 			children = (
 				6849D3B21CE9AE82001CB7EC /* EmergencyWebApi.swift */,
+				68648A761CEEDFF6009D4BEE /* EmergencyJSON.swift */,
 			);
 			path = WebApi;
 			sourceTree = "<group>";
@@ -883,6 +890,22 @@
 				684C6ADE1CCA0506000C176E /* PKRealm.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		68648A7E1CF3F125009D4BEE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				68648A7F1CF3F125009D4BEE /* AccountSettingViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		68648A811CF3F1A3009D4BEE /* FirmwareUpdate */ = {
+			isa = PBXGroup;
+			children = (
+				68648A821CF3F234009D4BEE /* UpdateProgressView.swift */,
+			);
+			path = FirmwareUpdate;
 			sourceTree = "<group>";
 		};
 		686A5E901CD9E6A200EB8D0E /* PKTest */ = {
@@ -1260,6 +1283,7 @@
 			isa = PBXGroup;
 			children = (
 				916813881CE9CA2300E35561 /* CavyLifeBand2.entitlements */,
+				68648A811CF3F1A3009D4BEE /* FirmwareUpdate */,
 				918AA22C1CE327450022AE30 /* BLE */,
 				686A5EE81CDC307300EB8D0E /* Relate */,
 				9179DA971CD5E93800FCA63C /* AddressBook */,
@@ -1451,6 +1475,7 @@
 		91E1B49A1CA50DEF008ADEE6 /* AccountInfo */ = {
 			isa = PBXGroup;
 			children = (
+				68648A7E1CF3F125009D4BEE /* ViewModel */,
 				91E1B49B1CA50DEF008ADEE6 /* View */,
 			);
 			path = AccountInfo;
@@ -1978,6 +2003,7 @@
 				68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
+				68648A801CF3F125009D4BEE /* AccountSettingViewModel.swift in Sources */,
 				6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
 				6836557D1CBC84B7009373EA /* LineLayout.swift in Sources */,
@@ -2062,9 +2088,11 @@
 				684C6ADF1CCA0506000C176E /* PKRealm.swift in Sources */,
 				91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */,
 				4C4C602E1CE5C4A10026C045 /* ContactsAddFriendCell.swift in Sources */,
+				68648A771CEEDFF6009D4BEE /* EmergencyJSON.swift in Sources */,
 				4CB7A0D21CD3497F00DFB8DC /* ChartBaseView.swift in Sources */,
 				683655921CBE25A6009373EA /* SettingSwitchCellViewModel.swift in Sources */,
 				684097081CE058A400A8BAD2 /* WebVCViewModel.swift in Sources */,
+				68648A831CF3F234009D4BEE /* UpdateProgressView.swift in Sources */,
 				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,
 				4C6F149B1CDC9B06007E923B /* ShowPieChartsView.swift in Sources */,
 				4CB7A0D91CD3497F00DFB8DC /* ChartTimeButton.swift in Sources */,
