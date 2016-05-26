@@ -72,6 +72,8 @@ class PKSelectOppTVC: UITableViewController, FriendInfoListDelegate, BaseViewCon
         
         super.viewDidLoad()
         
+        updateNavUI()
+        
         loadFriendData()
         
         self.tableView.registerNib(UINib(nibName: "ContactsFriendListCell", bundle: nil), forCellReuseIdentifier: "ContactsFriendListCell")

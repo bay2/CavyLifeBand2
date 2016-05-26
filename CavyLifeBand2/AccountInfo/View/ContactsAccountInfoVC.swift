@@ -62,8 +62,6 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         accountInfoQuery()
         
-        
-        
         self.updateNavUI()
         
     }
@@ -171,11 +169,14 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         logoutButton.backgroundColor = UIColor(named: .ContactsAccountLogoutButton)
         logoutButton.setBackgroundColor(UIColor(named: .ContactsAccountLogoutButton), forState: .Normal)
         
+        // 退出按钮手势
         logoutButton.addTapGesture { _ in
             
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
             
             UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Main.instantiateMainPageView(), transition: CATransition())
+            
+            LifeBandBle.shareInterface.bleDisconnect()
             
         }
         
@@ -184,7 +185,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     /**
      添加TableView
      */
-    func  addTableView(){
+    func addTableView(){
         
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
@@ -286,7 +287,56 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        return
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if accountInfos[indexPath.row] is PresonInfoCellViewModel {
+            
+            // 跳转到修改备注
+            let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
+            
+            let changeRemarkVM = UserChangeNicknameVM(viewController: requestVC)
+            
+            requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+            
+            self.pushVC(requestVC)
+            
+        } else {
+            
+            if indexPath.row == accountInfos.count - 1 {
+                // 跳转到修改地址
+                let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
+                
+                let changeRemarkVM = UserChangeAddressVM(viewController: requestVC)
+                
+                requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+                
+                self.pushVC(requestVC)
+                
+                return
+            }
+            
+            let nextVC = StoryboardScene.Guide.instantiateGuideView()
+                    
+            switch indexPath.row {
+            case 1:
+                let nextVM = AccountGenderViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            case 2:
+                let nextVM = AccountHeightViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            case 3:
+                let nextVM = AccountWeightViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            case 4:
+                let nextVM = AccountBirthdayViewModel()
+                nextVC.configView(nextVM, delegate: nextVM)
+            default:
+                break
+            }
+            
+            self.pushVC(nextVC)
+        
+        }
 
     }
     

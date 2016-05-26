@@ -14,7 +14,7 @@ import AddressBook
 import Contacts
 import KeychainAccess
 
-class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate {
+class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate, PKRecordsUpdateFormWeb, LifeBandBleDelegate {
     
     enum MoveDirection {
         
@@ -48,11 +48,35 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     
     var loginUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
+    var pkSycnCount: Int = 0 {
+        
+        didSet {
+            
+            if pkSycnCount == 3 {
+                
+                self.loadDataFromWeb()
+                
+                pkSycnCount = 0
+            
+            }
+            
+        }
+        
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         Log.info("\(realm.configuration.fileURL)")
+        
+        let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        
+        CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandName
+        
+        
+        
+        CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = BindBandCtrl.bandName
         
         loadHomeView()
             
@@ -60,7 +84,15 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickBandMenu), name: NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.showHomeView), name: NotificationName.HomeShowHomeView.rawValue, object: nil)
         
+        LifeBandBle.shareInterface.lifeBandBleDelegate = self
+        
+        // 需要等待 LifeBandBle.shareInterface 初始化，这里延时1s连接
+        NSTimer.runThisAfterDelay(seconds: 1) {
+            LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName)
+        }
+        
     }
+    
     
     /**
      加载主页面视图
@@ -81,6 +113,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         }
         
         syncUserInfo()
+        
+        syncPKRecords()
         
     }
     
@@ -109,8 +143,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
      */
     func syncUserInfo() {
         
-        guard let userInfo: UserInfoModel = queryUserInfo(queryUserId) else {
-            
+        guard let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
+        
             querySyncDate()
             return
         }
@@ -120,6 +154,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         updateSyncDate(userInfo)
         
         CavyDefine.userNickname = userInfo.nickname
+        CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar = userInfo.avatarUrl
         
     }
     
@@ -154,7 +189,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 return
             }
             
-            self.updateUserInfo(self.queryUserId) {
+            self.updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
                 $0.isSync = true
                 return $0
             }
@@ -176,7 +211,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
             
             CavyDefine.userNickname = userInfo.nickName ?? ""
             
-            let userInfoModel = UserInfoModel(userId: self.queryUserId, userProfile: userInfo)
+            let userInfoModel = UserInfoModel(userId: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, userProfile: userInfo)
             
             self.userCoordinateReport(userInfoModel.isLocalShare)
             
@@ -190,6 +225,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
      将数据库未同步的pk记录同步到服务器
      */
     func syncPKRecords() {
+        
         //删除pk
         if let finishList: [PKFinishRealmModel] = self.getUnSyncPKList(PKFinishRealmModel.self) {
             self.deletePKFinish(finishList, loginUserId: self.loginUserId, callBack: {
@@ -198,20 +234,34 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                     self.syncPKRecordsRealm(PKFinishRealmModel.self, pkId: finish.pkId)
                 }
                 
+                self.pkSycnCount += 1
+                
             }, failure: {(errorMsg) in
                 Log.warning(errorMsg)
             })
+        } else {
+            self.pkSycnCount += 1
         }
         
         //接受pk
         if let acceptList: [PKDueRealmModel] = self.getUnSyncPKList(PKDueRealmModel.self) {
+            
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFromString("yyyy-MM-dd HH:mm:ss")
+            
             self.acceptPKInvitation(acceptList, loginUserId: self.loginUserId, callBack: {
                 for accept in acceptList {
+                    
+                    self.changeDueBeginTime(accept, time: dateFormatter.stringFromDate(NSDate()))
                     self.syncPKRecordsRealm(PKDueRealmModel.self, pkId: accept.pkId)
                 }
+                
+                self.pkSycnCount += 1
             }, failure: {(errorMsg) in
                 Log.warning(errorMsg)
             })
+        } else {
+            self.pkSycnCount += 1
         }
         
         //撤销pk
@@ -220,19 +270,15 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 for undo in undoList {
                     self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: undo.pkId)
                 }
+                
+                self.pkSycnCount += 1
             }, failure: {(errorMsg) in
                 Log.warning(errorMsg)
             })
+        } else {
+            self.pkSycnCount += 1
         }
-        
-        //发起pk
-//        if let launchList: [PKWaitRealmModel] = self.getUnSyncWaitPKIdListWithType(.MeWaitOther) {
-//            self.launchPK(launchList, loginUserId: self.loginUserId, callBack: { (pkIdList) in
-//                for launch in launchList {
-//                    self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: launch.pkId)
-//                }
-//            })
-//        }
+
     }
 
     /**
@@ -332,10 +378,12 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
 
 extension RootViewController: QueryUserInfoRequestsDelegate, UserInfoRealmOperateDelegate, SetUserInfoRequestsDelegate {
     
-    var queryUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
-    
     var userInfoPara: [String: AnyObject] {
-        return updateUserInfoPara
+        get {
+            return updateUserInfoPara
+        }
+        
+        set { }
     }
     
 }
@@ -346,24 +394,24 @@ extension UserInfoModel {
         
         self.init()
         
-        self.userId = userId
-        self.nickname = userProfile.nickName!
-        self.sex = userProfile.sex!.toInt() ?? 0
-        self.address = userProfile.address!
-        self.avatarUrl = userProfile.avatarUrl!
-        self.birthday = userProfile.birthday!
-        self.height = userProfile.height!
-        self.weight = userProfile.weight!
-        self.sleepTime = userProfile.sleepTime!
-        self.stepNum = userProfile.stepNum!
-        
-        self.isLocalShare = userProfile.isLocalShare!
-        self.isNotification = userProfile.isNotification!
-        self.isOpenHeight = userProfile.isOpenHeight!
-        self.isOpenWeight = userProfile.isOpenWeight!
-        self.isOpenBirthday = userProfile.isOpenBirthday!
-        self.isSync = true
-        
+        self.userId         = userId
+        self.nickname       = userProfile.nickName
+        self.sex            = userProfile.sex.toInt() ?? 0
+        self.address        = userProfile.address
+        self.avatarUrl      = userProfile.avatarUrl
+        self.birthday       = userProfile.birthday
+        self.height         = userProfile.height
+        self.weight         = userProfile.weight
+        self.sleepTime      = userProfile.sleepTime
+        self.stepNum        = userProfile.stepNum
+
+        self.isLocalShare   = userProfile.isLocalShare
+        self.isNotification = userProfile.isNotification
+        self.isOpenHeight   = userProfile.isOpenHeight
+        self.isOpenWeight   = userProfile.isOpenWeight
+        self.isOpenBirthday = userProfile.isOpenBirthday
+        self.isSync         = true
+
     }
     
 }

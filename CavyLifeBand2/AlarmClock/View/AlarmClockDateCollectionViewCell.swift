@@ -18,17 +18,31 @@ class AlarmClockDateCollectionViewCell: UICollectionViewCell {
     
     var number: Int? {
         didSet {
-            let numberFormatter = NSNumberFormatter()
-            numberFormatter.numberStyle = .SpellOutStyle
-            var numberStr = numberFormatter.stringFromNumber(NSNumber.init(integer: number!))
-            
-            if number! == 7 {
-                numberStr = "日"
-            }
-            
+            let numberStr = getDateStrByInt(number ?? 0)
             
             dateBtn.setTitle(numberStr, forState: .Normal)
             dateBtn.setTitle(numberStr, forState: .Selected)
+        }
+    }
+    
+    func getDateStrByInt(number: Int) -> String {
+        switch number {
+        case 1:
+            return L10n.AlarmDayMonday.string
+        case 2:
+            return L10n.AlarmDayTuesday.string
+        case 3:
+            return L10n.AlarmDayWednesday.string
+        case 4:
+            return L10n.AlarmDayThursday.string
+        case 5:
+            return L10n.AlarmDayFriday.string
+        case 6:
+            return L10n.AlarmDaySaturday.string
+        case 7:
+            return L10n.AlarmDaySunday.string
+        default:
+            return ""
         }
     }
     

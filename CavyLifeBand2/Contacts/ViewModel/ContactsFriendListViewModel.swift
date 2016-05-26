@@ -38,7 +38,7 @@ struct ContactsFriendCellModelView: ContactsFriendListDataSource {
     }
     
     func setHeadImageView(headImage: UIImageView) {
-        headImage.af_setImageWithURL(NSURL(string: headImagUrl)!, runImageTransitionIfCached: true)
+        headImage.af_setCircleImageWithURL(NSURL(string: headImagUrl)!)
     }
     
     /**
@@ -65,7 +65,7 @@ struct ContactsAddFriendViewModel: ContactsFriendListDataSource {
     var friendId: String { return "" }
     
     // 头像
-    var headImage: UIImageView { return UIImageView(image: UIImage(asset: .ContactsListAdd)) }
+    var headImage: UIImageView { return UIImageView(image: UIImage(asset: .PKInvitationAddBtn)) }
     
     // 是否隐藏关注图标
     var hiddenCare: Bool = true
@@ -82,7 +82,7 @@ struct ContactsAddFriendViewModel: ContactsFriendListDataSource {
     }
     
     func setHeadImageView(headImage: UIImageView) {
-        headImage.image = UIImage(asset: .ContactsListAdd)
+        headImage.image = UIImage(asset: .PKInvitationAddBtn)
     }
     
 }
@@ -190,6 +190,5 @@ struct ContactsTableListModelView: ContactsAddFriendDataSync, ContactsTableViewS
         return letterView
         
     }
-    
     
 }

@@ -89,6 +89,11 @@ extension ContactsNewFriendVC {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        
+        let requestVC = StoryboardScene.Contacts.instantiateContactsPersonInfoVC()
+        requestVC.friendId = newFriendData.items[indexPath.row].friendId
+        requestVC.friendNickName = newFriendData.items[indexPath.row].name
+        self.pushVC(requestVC)
 
     }
 

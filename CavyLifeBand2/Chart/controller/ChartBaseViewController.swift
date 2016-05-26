@@ -34,7 +34,7 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
     lazy var leftBtn: UIButton? = {
         
         let leftItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
-        leftItemBtn.setBackgroundImage(UIImage(asset: .NavBack), forState: .Normal)
+        leftItemBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
         return leftItemBtn
         
         

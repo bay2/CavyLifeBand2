@@ -8,8 +8,26 @@
 
 import Foundation
 
-
 extension NSDate {
+    
+    /**
+     A年到B年间隔的年数
+     */
+    func yearsInBetweenDate(date: NSDate) -> Int {
+        
+        let dateF = NSDateFormatter()
+        dateF.dateFormat = "yyyy"
+        
+        let selfYearStr = dateF.stringFromDate(self)
+        let otherYesrStr = dateF.stringFromDate(date)
+        
+        let selfYear = selfYearStr.toInt() ?? 0
+        let otherYesr = otherYesrStr.toInt() ?? 0
+        
+        let diffYear = selfYear - otherYesr
+        
+        return diffYear
+    }
     
     /**
      时间返回Label的Text
@@ -125,7 +143,7 @@ extension NSDate {
             
         case .Day:
             
-            let timeDate:(year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time)
+            let timeDate: (year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time)
             let year = timeDate.year
             let month = timeDate.month
             let day = timeDate.day
@@ -158,7 +176,7 @@ extension NSDate {
             
             // beginTime
             
-            let timeDate1:(year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time1)
+            let timeDate1: (year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time1)
             let year = timeDate1.year
             let month = timeDate1.month
             let day = timeDate1.day
@@ -172,7 +190,7 @@ extension NSDate {
             
             if time2.contains(".") {
     
-                let timeDate2:(year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time2)
+                let timeDate2: (year: Int, month: Int, day: Int) = changeMonthPointDayToInt(time2)
                 newYear = timeDate2.year
                 newMonth = timeDate2.month
                 

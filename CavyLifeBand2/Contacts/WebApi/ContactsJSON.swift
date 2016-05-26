@@ -194,3 +194,40 @@ struct ContactsFriendReqInfo {
         
     }
 }
+
+/**
+ *  好友详细信息
+ */
+struct ContactPsersonInfoResponse: JSONJoy {
+    
+    var commendMsg: CommenMsg
+    var avatarUrl: String
+    var isHonour: Bool
+    var remark: String
+    var sex: String
+    var height: String
+    var weight: String
+    var birthday: String
+    var stepNum: String
+    var sleepTime: String
+    var address: String
+    
+    init(_ decoder: JSONDecoder) throws {
+        
+        commendMsg = try CommenMsg(decoder)
+        
+        isHonour = decoder["isHonour"].bool
+        
+        do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
+        do { remark = try decoder["remark"].getString() } catch { remark = "" }
+        do { sex = try decoder["sex"].getString() } catch { sex = "" }
+        do { height = try decoder["height"].getString() } catch { height = "" }
+        do { weight = try decoder["weight"].getString() } catch { weight = "" }
+        do { birthday = try decoder["birthday"].getString() } catch { birthday = "" }
+        do { stepNum = try decoder["stepNum"].getString() } catch { stepNum = "" }
+        do { sleepTime = try decoder["sleepTime"].getString() } catch { sleepTime = "" }
+        do { address = try decoder["address"].getString() } catch { address = "" }
+
+    }
+
+}

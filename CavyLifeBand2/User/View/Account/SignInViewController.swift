@@ -10,8 +10,9 @@ import UIKit
 import SnapKit
 import EZSwiftExtensions
 import Log
+import RealmSwift
 
-class SignInViewController: UIViewController, SignInDelegate, BaseViewControllerPresenter {
+class SignInViewController: UIViewController, SignInDelegate, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate {
 
     // 登入按钮
     @IBOutlet weak var signInBtn: MainPageButton!
@@ -27,6 +28,8 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
 
     // 忘记密码按钮
     @IBOutlet weak var forgetPasswdBtn: UIButton!
+    
+    var realm: Realm = try! Realm()
     
     var userName: String {
         return userNameTextField.text!
@@ -178,6 +181,9 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      */
      func onRightBtn() {
 
+        // 注册绑定场景
+        BindBandCtrl.bindScene = .SignUpBind
+        
         let guideVC = StoryboardScene.Guide.instantiateGuideView()
         let guideVM = GuideBandBluetooth()
         guideVC.configView(guideVM, delegate: guideVM)
@@ -199,6 +205,20 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         self.pushVC(forgotVC)
 
     }
+    
+    /**
+     手环绑定流程
+     */
+    func gotoBinding() {
+        
+        let guideVC = StoryboardScene.Guide.instantiateGuideView()
+        
+        let guideVM = GuideBandBluetooth()
+        guideVC.configView(guideVM, delegate: guideVM)
+        
+        self.pushVC(guideVC)
+        
+    }
 
     /**
      点击登录
@@ -207,7 +227,58 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
 
-        signIn()
+        signIn {
+            
+            // 登录绑定场景
+            BindBandCtrl.bindScene = .SignInBind
+            
+            let guideVC = StoryboardScene.Guide.instantiateGuideView()
+            
+            let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+            
+            // 查询不到用户信息，走绑定流程
+            if let bindBandValue = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] {
+                
+                // 没绑定并且蓝牙没打开
+                if bindBandValue.isEmpty {
+                
+                    //用户未绑定，走绑定流程
+                    self.gotoBinding()
+                    return
+                    
+                }
+                
+                // 手环已绑定，记录手环信息，root 页面中会根据此属性设置绑定的手环
+//                GuideUserInfo.userInfo.bandName = bindBandValue
+                BindBandCtrl.bandName = bindBandValue
+                
+                
+            }
+            
+            // 通过查询用户信息判断是否是老的豚鼠用户
+            self.queryUserInfoByNet(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
+                
+                guard let userProfile = $0 else {
+                    return
+                }
+                
+                // 老用户进入引导页
+                if userProfile.sleepTime.isEmpty {
+                    
+                    let guideVM = GuideGenderViewModel()
+                    guideVC.configView(guideVM, delegate: guideVM)
+                    self.pushVC(guideVC)
+                    
+                    
+                } else {
+                    
+                    UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
+                    
+                }
+                
+            }
+            
+        }
         
     }
     

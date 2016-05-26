@@ -11,13 +11,17 @@ import Log
 import EZSwiftExtensions
 
 
+/** 
+ 主页
+ 
+ */
 class HomeViewController: UIViewController, BaseViewControllerPresenter {
     
     var leftBtn: UIButton? = {
         
         let button = UIButton(type: .System)
 
-        button.setBackgroundImage(UIImage(asset: .NavMenu), forState: .Normal)
+        button.setBackgroundImage(UIImage(asset: .HomeLeftMenu), forState: .Normal)
         
         return button
     }()
@@ -27,11 +31,13 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
         let button = UIButton(type: .System)
         button.size = CGSizeMake(30, 30)
-        button.setBackgroundImage(UIImage(asset: .NavBand), forState: .Normal)
+        button.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
         
         return button
         
     }()
+    
+   
     
     var navTitle: String { return "" }
     
@@ -88,7 +94,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
             make.top.equalTo(dateView).offset(50)
             make.left.right.bottom.equalTo(self.view)
         }
-        
         
     }
     

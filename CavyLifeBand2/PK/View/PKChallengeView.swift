@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class PKChallengeView: UIView {
 
@@ -27,18 +28,12 @@ class PKChallengeView: UIView {
     
     override func awakeFromNib() {
         baseSetting()
-        
-        dataSource = PKChallengeViewModel()
-        
-        dataSourceSetting()
     }
     
     /**
      基本样式设置
      */
     func baseSetting() -> Void {
-        
-        PKSeeStateLabel.font = dataSource?.matrixFont
         
         PKTimeTitleLabel.text       = L10n.PKChallengeViewPKTimeTitle.string
         PKInvitationRulesLabel.text = L10n.PKChallengeViewPKRules.string
@@ -70,15 +65,19 @@ class PKChallengeView: UIView {
     /**
      基于DataSource的设置
      */
-    func dataSourceSetting() -> Void {
+    func configure(model: PKChallengeViewDataSource) -> Void {
         
-//        userAvatarImageView.image       = dataSource?.userAvatar
-//        competitorAvatarImageView.image = dataSource?.comprtitorAvatar
+        self.dataSource = model
+        
+        PKSeeStateLabel.font = dataSource?.matrixFont
         
         userNameLabel.text       = dataSource?.userName
         competitorNameLabel.text = dataSource?.competitorName
         PKSeeStateLabel.text     = dataSource?.seeState
         PKTimeLabel.text         = dataSource?.PKTime
+        
+        userAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.userAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
+        competitorAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.comprtitorAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
 
     }
     
@@ -88,8 +87,8 @@ protocol PKChallengeViewDataSource {
     var userName: String { get }
     var competitorName: String { get }
     var PKTime: String { get }
-//    var userAvatar: UIImage { get }
-//    var comprtitorAvatar: UIImage { get }
+    var userAvatarUrl: String { get }
+    var comprtitorAvatarUrl: String { get }
     var seeState: String { get }
     var matrixFont: UIFont { get }
 }
@@ -110,9 +109,9 @@ extension PKChallengeViewDataSource {
 }
 
 struct PKChallengeViewModel: PKChallengeViewDataSource {
-    var competitorName: String { return "雪菜" }
+    var competitorName: String
     
-    var PKTime: String { return "5" }
+    var PKTime: String
     
     var seeState: String {
         if isOtherCanSee {
@@ -122,5 +121,21 @@ struct PKChallengeViewModel: PKChallengeViewDataSource {
         }
     }
     
-    var isOtherCanSee = true
+    var isOtherCanSee: Bool
+    
+    var userAvatarUrl = CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar
+    
+    var comprtitorAvatarUrl: String
+    
+    init(pkRealm: PKWaitRealmModel) {
+        
+        comprtitorAvatarUrl = pkRealm.avatarUrl
+        
+        competitorName = pkRealm.nickname
+        
+        PKTime = pkRealm.pkDuration
+        
+        isOtherCanSee = pkRealm.isAllowWatch == PKAllowWatchState.OtherNoWatch.rawValue ? false : true
+        
+    }
 }

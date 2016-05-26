@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import EZSwiftExtensions
 
 protocol PKSectionDataSource {
     
@@ -65,7 +66,8 @@ protocol PKListDataSource {
 protocol PKListActionDelegate {
     
     func createRowActions(indexPath: NSIndexPath) -> [UITableViewRowAction]?
-    var isCanEditRow: Bool { get }
+    var isCanEditRow: Bool { get }    
+    func getPKInfoView(indexPath: NSIndexPath) -> UIView?
     
 }
 
@@ -130,6 +132,35 @@ struct PKWaitListDataSource: PKListDataProtocols {
         
     }
     
+    func getCellRealm(indexPath: NSIndexPath) -> PKRecordRealmDataSource {
+        return self.item[indexPath.row].pkRecord
+    }
+    
+    func getPKInfoView(indexPath: NSIndexPath) -> UIView? {
+        
+        let maskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
+        maskView.backgroundColor = UIColor(named: .HomeViewMaskColor)
+        
+        guard let pkInfoView = NSBundle.mainBundle().loadNibNamed("PKChallengeView", owner: nil, options: nil).first as? PKChallengeView else {
+            return nil
+        }
+        
+        pkInfoView.configure(PKChallengeViewModel(pkRealm: self.item[indexPath.row].pkRecord))
+        
+        pkInfoView.addTapGesture { sender in }
+        
+        maskView.addSubview(pkInfoView)
+        
+        pkInfoView.snp_makeConstraints(closure: { make in
+            make.leading.equalTo(maskView).offset(20.0)
+            make.trailing.equalTo(maskView).offset(-20.0)
+            make.centerY.equalTo(maskView)
+            make.height.equalTo(360.0)
+        })
+        
+        return maskView
+    }
+    
 }
 
 /**
@@ -175,6 +206,35 @@ struct PKDueListDataSource: PKListDataProtocols {
         
         return cell
         
+    }
+    
+    func getCellRealm(indexPath: NSIndexPath) -> PKRecordRealmDataSource {
+        return self.item[indexPath.row].pkRecord
+    }
+    
+    func getPKInfoView(indexPath: NSIndexPath) -> UIView? {
+        
+        let maskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
+        maskView.backgroundColor = UIColor(named: .HomeViewMaskColor)
+        
+        guard let pkInfoView = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView else {
+            return nil
+        }
+        
+        pkInfoView.configure(PKInfoOrResultViewModel(pkRealm: self.item[indexPath.row].pkRecord))
+        
+        pkInfoView.addTapGesture { sender in }
+        
+        maskView.addSubview(pkInfoView)
+        
+        pkInfoView.snp_makeConstraints(closure: { make in
+            make.leading.equalTo(maskView).offset(20.0)
+            make.trailing.equalTo(maskView).offset(-20.0)
+            make.centerY.equalTo(maskView)
+            make.height.equalTo(380.0)
+        })
+        
+        return maskView
     }
     
 }
@@ -239,6 +299,35 @@ struct PKFinishListDataSource: PKListDataProtocols {
         delAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
         return [delAction]
         
+    }
+    
+    func getCellRealm(indexPath: NSIndexPath) -> PKRecordRealmDataSource {
+        return self.item[indexPath.row].pkRecord
+    }
+    
+    func getPKInfoView(indexPath: NSIndexPath) -> UIView? {
+        
+        let maskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
+        maskView.backgroundColor = UIColor(named: .HomeViewMaskColor)
+        
+        guard let pkInfoView = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView else {
+            return nil
+        }
+        
+        pkInfoView.configure(PKInfoOrResultViewModel(pkRealm: self.item[indexPath.row].pkRecord))
+        
+        pkInfoView.addTapGesture { sender in }
+        
+        maskView.addSubview(pkInfoView)
+        
+        pkInfoView.snp_makeConstraints(closure: { make in
+            make.leading.equalTo(maskView).offset(20.0)
+            make.trailing.equalTo(maskView).offset(-20.0)
+            make.centerY.equalTo(maskView)
+            make.height.equalTo(380.0)
+        })
+        
+        return maskView
     }
     
 }

@@ -14,7 +14,7 @@ import EZSwiftExtensions
  *
  *  性别view model
  */
-struct GuideGenderViewModel: GuideViewDataSource, GuideViewDelegate {
+struct GuideGenderViewModel: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
@@ -45,7 +45,7 @@ struct GuideGenderViewModel: GuideViewDataSource, GuideViewDelegate {
  *
  *  生日 view model
  */
-struct GuideBirthdayViewModel: GuideViewDataSource, GuideViewDelegate {
+struct GuideBirthdayViewModel: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
@@ -75,7 +75,7 @@ struct GuideBirthdayViewModel: GuideViewDataSource, GuideViewDelegate {
  *
  *  身高 view model
  */
-struct GuideHeightViewModel: GuideViewDataSource, GuideViewDelegate {
+struct GuideHeightViewModel: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
@@ -104,7 +104,7 @@ struct GuideHeightViewModel: GuideViewDataSource, GuideViewDelegate {
  *
  *  体重 view model
  */
-struct GuideWeightViewModel: GuideViewDataSource, GuideViewDelegate {
+struct GuideWeightViewModel: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
@@ -134,7 +134,7 @@ struct GuideWeightViewModel: GuideViewDataSource, GuideViewDelegate {
  *
  *  目标设置view Model
  */
-struct GuideGoalViewModel: GuideViewDataSource, GuideViewDelegate {
+struct GuideGoalViewModel: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
