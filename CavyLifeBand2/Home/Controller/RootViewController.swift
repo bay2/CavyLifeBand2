@@ -89,12 +89,12 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         NSTimer.runThisAfterDelay(seconds: 1) {
             LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName) {
                 LifeBandCtrl.shareInterface.setDateToBand(NSDate())
-                LifeBandCtrl.shareInterface.seLifeBandModel()
+//                LifeBandCtrl.shareInterface.seLifeBandModel()
                 
-                LifeBandSyncData.shareInterface.syncDataFormBand(NSDate()) {
+                LifeBandSyncData.shareInterface.syncDataFormBand(NSDate(fromString: "2016-05-26 12:00:00", format: "yyyy-MM-dd HH:mm:ss")!) {
                     
                     $0.success {  titlsAndSteps in
-                        print("\(titlsAndSteps)")
+//                        print("\(titlsAndSteps)")
                     }
                     .failure { error in
                         

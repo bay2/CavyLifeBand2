@@ -8,6 +8,15 @@
 
 import Foundation
 
+enum LifeBandModelType: Int {
+
+    case Time  = 2
+    case Alarm = 4
+    case LLA   = 8
+    case Tilt  = 16
+    case Step  = 32
+}
+
 /**
  手环控制类 实现手环功能接口
  
@@ -225,6 +234,10 @@ class LifeBandCtrl {
         LifeBandBle.shareInterface.sendMsgToBand("%CFG=3,1")
         LifeBandBle.shareInterface.sendMsgToBand("%CFG=4,1")
         LifeBandBle.shareInterface.sendMsgToBand("%CFG=5,1")
+        
+    }
+    
+    func getLifeBandModel() {
         
     }
     

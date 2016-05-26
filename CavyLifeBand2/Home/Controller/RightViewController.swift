@@ -25,17 +25,15 @@ class RightViewController: UIViewController {
         addMenumenuGroupData(BandHardwareMenuGroupDataModel())
         addMenumenuGroupData(BindingBandMenuGroupDataModel())
         
-//        bandElectricView.configElectricImage(0.0)
-//        
-        NSTimer.runThisEvery(seconds: 1) { _ in
-            
-            LifeBandCtrl.shareInterface.getBandElectric { [unowned self] electric in
-                
-                self.bandElectricView.setElectric(CGFloat(electric))
-                
-            }
-            
-        }
+//        NSTimer.runThisEvery(seconds: 1) { _ in
+//            
+//            LifeBandCtrl.shareInterface.getBandElectric { [unowned self] electric in
+//                
+//                self.bandElectricView.setElectric(CGFloat(electric))
+//                
+//            }
+//            
+//        }
 
     }
 

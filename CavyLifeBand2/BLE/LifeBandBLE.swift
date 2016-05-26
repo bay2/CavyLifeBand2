@@ -122,6 +122,7 @@ class LifeBandBle: NSObject {
      */
     func sendMsgToBand(msg: String) -> Self {
         
+        Log.info("sendMsgToBand msg = \(msg)")
         writeToPeripheralQueue.append(msg)
         return self
         

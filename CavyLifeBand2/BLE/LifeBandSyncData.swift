@@ -8,6 +8,7 @@
 
 import Foundation
 import Datez
+import EZSwiftExtensions
 
 enum LifeBandSyncDataError: ErrorType {
     case PacketNoError
@@ -63,16 +64,26 @@ class LifeBandSyncData {
     }
     
     // 同步数据day定义
-    enum SyncDateCtrl {
+    enum SyncDateCtrl: Int, CustomStringConvertible {
+        
+        init(beginDate: NSDate) {
+            
+            let dayCount = NSDate().daysInBetweenDate(beginDate).toInt
+            
+            // 目前只支持两天
+            self = dayCount == 0 ? SyncDateCtrl.Today : SyncDateCtrl.Yesterday
+            
+        }
+        
         
         init(dateCmd: UInt8) {
             
             switch dateCmd {
-            case 0:
+            case 2:
                 self = .Today
             case 1:
                 self = .Yesterday
-            case 2:
+            case 0:
                 self = .BeforeYesterday
             default:
                 self = .Today
@@ -82,15 +93,26 @@ class LifeBandSyncData {
         
         func toDate() -> NSDate {
             
-            let newDate = NSDate()
+            switch self {
+            case .Today:
+                return NSDate().gregorian.beginningOfDay.date
+            case .Yesterday:
+                return (NSDate().gregorian - 1.day).beginningOfDay.date
+            case .BeforeYesterday:
+                return (NSDate().gregorian - 2.day).beginningOfDay.date
+            }
+            
+        }
+        
+        var description: String {
             
             switch self {
             case .Today:
-               return newDate
+                return "Today"
             case .Yesterday:
-                return (newDate.gregorian - 1.day).date
+                return "Yesterday"
             case .BeforeYesterday:
-                return (newDate.gregorian - 2.day).date
+                return "BeforeYesterday"
             }
             
         }
@@ -149,17 +171,17 @@ class LifeBandSyncData {
      - - -
      
      */
-    func syncDataFormBand(date: NSDate, reslut: LifeBandSyncReslut<[TitlsAndSteps], LifeBandSyncDataError> -> Void) {
+    func syncDataFormBand(beginDate: NSDate, reslut: LifeBandSyncReslut<[TitlsAndSteps], LifeBandSyncDataError> -> Void) {
         
+        let dayCmd   = SyncDateCtrl(beginDate: beginDate)
         
-        let dayCount = NSDate().daysInBetweenDate(date).toInt
+        let newBeginDate = transformNewDate(beginDate)
         
-        // 目前只支持两天
-        let dayCmd   = (dayCount == 0 ? SyncDateCtrl.Today : SyncDateCtrl.Yesterday)
-        
-        let hour     = date.toString(format: "HH").toInt() ?? 0
-        let min      = date.toString(format: "mm").toInt() ?? 0
+        let hour     = newBeginDate.toString(format: "HH").toInt() ?? 0
+        let min      = newBeginDate.toString(format: "mm").toInt() ?? 0
         let timeCmd  = (hour * 60 + min) / 10
+        
+        Log.info("\(newBeginDate.toString(format: "yyyy-MM-dd HH:mm:ss"))")
         
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) {
             
@@ -170,13 +192,39 @@ class LifeBandSyncData {
             
             LifeBandBle.shareInterface.installCmd(0xDA) { [unowned self] data in
                 
-                self.saveTiltsAndStepsData(dayCount, data: data, reslut: reslut)
+                Log.info("syncDataFormBand ---- \(data)")
+                
+                self.saveTiltsAndStepsData(newBeginDate, data: data, reslut: reslut)
                 
             }
-            .sendMsgToBand("%SYNC=Day\(dayCmd.hashValue)\(timeCmd)\n")
+            .sendMsgToBand("%SYNC=\(dayCmd.rawValue),\(timeCmd)\n")
+            
+            Log.info("Band sync begin")
             
         }
 
+    }
+    
+    /**
+     转换新的时间
+     
+     - parameter beginDate: 开始时间
+     
+     - returns: 返回新的时间
+     */
+    func transformNewDate(beginDate: NSDate) -> NSDate {
+        
+        let dayCount = (NSDate() - beginDate).totalDays
+        
+        let yesterday = (NSDate().gregorian - 1.day).beginningOfDay.date
+        
+        switch dayCount {
+        case 0,1:
+            return beginDate
+        default:
+            return yesterday
+        }
+        
     }
     
     
@@ -188,7 +236,7 @@ class LifeBandSyncData {
      
      - returns: 数据是否同步完成 完成: true, 未完成: false
      */
-    private func saveTiltsAndStepsData(dayCount: Int, data : NSData, reslut: LifeBandSyncReslut<[TitlsAndSteps], LifeBandSyncDataError> -> Void) -> Bool {
+    private func saveTiltsAndStepsData(beginDate: NSDate, data : NSData, reslut: LifeBandSyncReslut<[TitlsAndSteps], LifeBandSyncDataError> -> Void) -> Bool {
         
         if data[2...3].uint16 == 0xFFFF {
             
@@ -199,7 +247,10 @@ class LifeBandSyncData {
             // app校验到数据有问题，手环还是会不断的发送数据，所以只要搜到0xFFFF才认为同步完成。
             // 如果同步失败并且在1分钟内没有收到0xFFFF，会重新设置为没有同步状态，用户可以继续同步。
             syncState = .NoSync
+            
+            Log.info("Band sync end")
             return true
+            
         }
         
         if data.length <= 4 {
@@ -207,19 +258,25 @@ class LifeBandSyncData {
             return false
         }
         
-        guard (packetNo + 1) == data[3] else {
-            reslut(.Failure(.PacketNoError))
-            return false
-        }
+        //TODO: 等FW解决包序号问题，再把这里放开
+//        guard (packetNo + 1) == data[3] else {
+//            reslut(.Failure(.PacketNoError))
+//            return false
+//        }
         
         syncState = .Sync
         
-        print("packetNo = \(packetNo)")
-        
+        Log.info("\(SyncDateCtrl(dateCmd: data[2])) - Packet No \(data[3])")
         
         for i in 4..<data.length where i % 4 == 0  {
             
-            tiltsAndStepsInfo.append(dataTransformTitlsAndSteps(SyncDateCtrl(dateCmd: data[2]), data: data[i...i+3]))
+            let dataTiltsAndStep = dataTransformTitlsAndSteps(SyncDateCtrl(dateCmd: data[2]), data: data[i...i+3])
+            
+            if dataTiltsAndStep.steps == 0 && dataTiltsAndStep.tilts == 0 {
+                continue
+            }
+            
+            tiltsAndStepsInfo.append(dataTiltsAndStep)
             
         }
         
@@ -241,15 +298,11 @@ class LifeBandSyncData {
         
         let no    = Int(data[0])
         let tilts = Int(data[1])
-        let step  = Int(data[2...3].uint16)
+        let step  = Int(data[2...3].uint16.bigEndian) // 这里需要做大小端转换
         
+        let newDate = (dateCmd.toDate().gregorian + (no * 10).minute).date
         
-        // 获取凌晨时间
-        guard var newDate = NSDate(fromString: dateCmd.toDate().toString(format: "yyyy-MM-dd"), format: "yyy-MM-dd") else {
-            fatalError()
-        }
-        
-        newDate = (newDate.gregorian + (no * 10).day).date
+        Log.info("\(dateCmd) - \(no) - \(data) - \(newDate.toString(format: "yyyy-MM-dd HH:mm:ss"), tilts, step)")
         
         return (newDate, tilts, step)
         
