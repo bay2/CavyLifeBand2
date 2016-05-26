@@ -27,9 +27,6 @@ class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITabl
     var realm: Realm = try! Realm()
     var userId: String = ""
     
-    
-    var oldDeletData: StepCharts?
-    
     /**
      配置
      */

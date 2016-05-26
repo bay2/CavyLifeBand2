@@ -31,54 +31,50 @@ extension NSDate {
     
     /**
      时间返回Label的Text
+     * 日：23
+     * 周：4.23-29
+     * 月：4
      */
-    func dateChangeToLabelText(date: NSDate, timeBucket: TimeBucketStyle) -> String {
+    func dateChangeToLabelText(timeBucket: TimeBucketStyle) -> String {
         
-        var text: String = ""
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd"
-        let  dateString = dateFormatter.stringFromDate(date)
-        var dates = dateString.componentsSeparatedByString("/")
-        let month = dates[0].toInt()
-        let day = dates[1].toInt()
-
         switch timeBucket {
             
         case .Day:
             
-            text = "\(month).\(day)"
+            return self.toString(format: "dd")
 
         case .Month:
             
-            text = "\(month)"
+            return self.toString(format: "M")
             
         case .Week:
+            
+            let timeString = self.toString(format: "M.dd")
+            
+            return "\(timeString)-\(sunInCurrentWeeks())"
 
-            text = "\(month).\(day)-\(dayLastSunDayDate(date))"
         }
-        
-        return text
         
     }
     
     /**
      当前是这周的第几天
      */
-    func indexInArray(date: NSDate) -> Int {
+    func indexInWeek() -> Int {
         
-        let weekName = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+//        let weekName = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+//        
+//        let dateFormatter = NSDateFormatter()
+//        dateFormatter.dateFormat = "EEE"
+//        let string = dateFormatter.stringFromDate(date)
+//        return weekName.lastIndexOf(string)!
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "EEE"
-        let string = dateFormatter.stringFromDate(date)
+        return 0
 
-        return weekName.lastIndexOf(string)!
-        
     }
     
     /**
-      计算当前月份的天数
+      返回当前月份的天数
      */
     func daysCount(year: Int, month: Int) -> Int {
         
@@ -97,18 +93,14 @@ extension NSDate {
     /**
      某一天所在周的 周日的 date 的NSDate
      */
-    func dayLastSunDayDate(date: NSDate) -> String {
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyy/MM/dd"
-        let  dateString = dateFormatter.stringFromDate(date)
-        var dates = dateString.componentsSeparatedByString("/")
-        let year = dates[0].toInt()
-        let month = dates[1].toInt()
-        let day = dates[2].toInt()
+    func sunInCurrentWeeks() -> String {
+   
+        let year = self.toString(format: "yyyy").toInt()
+        let month = self.toString(format: "M").toInt()
+        let day = self.toString(format: "dd").toInt()
         
         ///  距离下一个周一的天数
-        let index = 6 - indexInArray(date)
+        let index = 6 - indexInWeek()
         /// 这个月有几天
         let days = daysCount(year!, month: month!)
         
@@ -131,7 +123,6 @@ extension NSDate {
      字符串转时间段
      */
     func timeStringChangeToNSDate(time: String, timeBucket: TimeBucketStyle) -> (NSDate, NSDate){
-        
         
         Log.info(time)
         

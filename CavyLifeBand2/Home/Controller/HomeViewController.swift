@@ -37,8 +37,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         
     }()
     
-   
-    
     var navTitle: String { return "" }
     
     /// 上部分 计步睡眠天气页面

@@ -37,10 +37,11 @@ protocol ChartsRealmProtocol {
     var realm: Realm { get }
     var userId: String { get }
     
-    func isExistChartsData() -> Bool
+    func isExistStepChartsData() -> Bool
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData?
     
+    func isExistSleepChartsData() -> Bool
     func addSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
     func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData]?
 }
@@ -51,12 +52,12 @@ extension ChartsRealmProtocol {
     /**
      查询是否有数据
      */
-    func isExistChartsData() -> Bool {
+    func isExistStepChartsData() -> Bool {
         
         
         let list = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
         
-        if list.count <= 0 {
+        if list.count == 0 {
             return false
         }
         
@@ -228,6 +229,21 @@ extension ChartsRealmProtocol {
 
 // MARK: Sleep Extension
 extension ChartsRealmProtocol {
+    
+    /**
+     查询是否有数据
+     */
+    func isExistSleepChartsData() -> Bool {
+        
+        let list = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
+        
+        if list.count == 0 {
+            return false
+        }
+        
+        return true
+        
+    }
 
     /**
      添加计步数据

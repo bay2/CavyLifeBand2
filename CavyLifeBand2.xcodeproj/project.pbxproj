@@ -29,8 +29,6 @@
 		4C5396CA1CE1B28000BCFAEB /* ChartOtherSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */; };
 		4C5396CE1CE1B83B00BCFAEB /* ChartInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396CD1CE1B83B00BCFAEB /* ChartInfoViewModel.swift */; };
 		4C5396D01CE419EC00BCFAEB /* NSDate_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */; };
-		4C5396D21CE5B32000BCFAEB /* Charts.json in Resources */ = {isa = PBXBuildFile; fileRef = 4C5396D11CE5B32000BCFAEB /* Charts.json */; };
-		4C5396D41CE5B40000BCFAEB /* ChartsOldDeletJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396D31CE5B40000BCFAEB /* ChartsOldDeletJSON.swift */; };
 		4C6895F41CE96CFD00CAC412 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F31CE96CFD00CAC412 /* ShareView.swift */; };
 		4C6895F81CE9A7BE00CAC412 /* ShareCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F71CE9A7BE00CAC412 /* ShareCollectionCell.swift */; };
 		4C6895FA1CEAE28400CAC412 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6895F91CEAE28400CAC412 /* Assets.xcassets */; };
@@ -356,8 +354,6 @@
 		4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartOtherSetting.swift; sourceTree = "<group>"; };
 		4C5396CD1CE1B83B00BCFAEB /* ChartInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInfoViewModel.swift; sourceTree = "<group>"; };
 		4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate_Extension.swift; sourceTree = "<group>"; };
-		4C5396D11CE5B32000BCFAEB /* Charts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Charts.json; sourceTree = "<group>"; };
-		4C5396D31CE5B40000BCFAEB /* ChartsOldDeletJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsOldDeletJSON.swift; sourceTree = "<group>"; };
 		4C6895F31CE96CFD00CAC412 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		4C6895F71CE9A7BE00CAC412 /* ShareCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareCollectionCell.swift; sourceTree = "<group>"; };
 		4C6895F91CEAE28400CAC412 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -785,18 +781,18 @@
 			isa = PBXGroup;
 			children = (
 				4CB7A0C51CD3497F00DFB8DC /* ChartBaseView.swift */,
-				4CB7A0CC1CD3497F00DFB8DC /* ChartTimeButton.swift */,
 				4CB7A0CD1CD3497F00DFB8DC /* ChartTimeCollectionCell.swift */,
 				4CB7A0C61CD3497F00DFB8DC /* ChartInfoCollectionCell.swift */,
+				4C6895F31CE96CFD00CAC412 /* ShareView.swift */,
+				4C6895F71CE9A7BE00CAC412 /* ShareCollectionCell.swift */,
+				4CB7A0E51CD4793F00DFB8DC /* ShowChartsView.swift */,
+				4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */,
+				4C5396BF1CE190E600BCFAEB /* ShowStackedChartsView.swift */,
 				4CB7A0C71CD3497F00DFB8DC /* ChartInfoListCell.swift */,
 				4CB7A0C81CD3497F00DFB8DC /* ChartInfoListCell.xib */,
 				4CB7A0CA1CD3497F00DFB8DC /* ChartSleepInfoCell.swift */,
 				4CB7A0CB1CD3497F00DFB8DC /* ChartSleepInfoCell.xib */,
-				4CB7A0E51CD4793F00DFB8DC /* ShowChartsView.swift */,
-				4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */,
-				4C5396BF1CE190E600BCFAEB /* ShowStackedChartsView.swift */,
-				4C6895F31CE96CFD00CAC412 /* ShareView.swift */,
-				4C6895F71CE9A7BE00CAC412 /* ShareCollectionCell.swift */,
+				4CB7A0CC1CD3497F00DFB8DC /* ChartTimeButton.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -817,8 +813,6 @@
 			children = (
 				4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */,
 				4CB7A0DE1CD35BF900DFB8DC /* ChartsJSON.swift */,
-				4C5396D11CE5B32000BCFAEB /* Charts.json */,
-				4C5396D31CE5B40000BCFAEB /* ChartsOldDeletJSON.swift */,
 			);
 			path = WebApi;
 			sourceTree = "<group>";
@@ -1831,7 +1825,6 @@
 				9114D1F31C97AB05008CB4CE /* Guide.storyboard in Resources */,
 				91DFA9201CD8C3820036B939 /* PKListSectionView.xib in Resources */,
 				68E977F41CC5D15C00651724 /* PK.storyboard in Resources */,
-				4C5396D21CE5B32000BCFAEB /* Charts.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1998,7 +1991,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\n  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n  echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+			shellScript = "#if hash tailor 2>/dev/null; then\n#  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#  echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2117,7 +2110,6 @@
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
 				4C5396C01CE190E600BCFAEB /* ShowStackedChartsView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
-				4C5396D41CE5B40000BCFAEB /* ChartsOldDeletJSON.swift in Sources */,
 				91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */,
 				686A5EFB1CDC474000EB8D0E /* AboutSectionEmptyView.swift in Sources */,
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
