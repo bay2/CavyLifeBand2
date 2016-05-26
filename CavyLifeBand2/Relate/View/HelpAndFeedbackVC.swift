@@ -63,7 +63,6 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
     }
   
     @IBAction func sendAction(sender: UIButton) {
-        Log.info("发送帮助与反馈")
         
         if textView.text.characters.count == 0 {
             return

@@ -64,13 +64,13 @@ class HomeTimeLineTableCell: UITableViewCell {
         // 判断PK 成就
         if name == "" {
             
-            nameLabel.snp_makeConstraints(closure: {(make) in
+            nameLabel.snp_remakeConstraints(closure: {(make) in
                 make.centerY.equalTo(imgView)
             })
             
         } else {
             
-            nameLabel.snp_makeConstraints(closure: {(make) in
+            nameLabel.snp_remakeConstraints(closure: {(make) in
                 make.centerY.equalTo(imgView).offset(-10)
             })
         }

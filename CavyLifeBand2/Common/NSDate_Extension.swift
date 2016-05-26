@@ -12,6 +12,25 @@ import EZSwiftExtensions
 extension NSDate {
     
     /**
+     A年到B年间隔的年数
+     */
+    func yearsInBetweenDate(date: NSDate) -> Int {
+        
+        let dateF = NSDateFormatter()
+        dateF.dateFormat = "yyyy"
+        
+        let selfYearStr = dateF.stringFromDate(self)
+        let otherYesrStr = dateF.stringFromDate(date)
+        
+        let selfYear = selfYearStr.toInt() ?? 0
+        let otherYesr = otherYesrStr.toInt() ?? 0
+        
+        let diffYear = selfYear - otherYesr
+        
+        return diffYear
+    }
+    
+    /**
      时间返回Label的Text
      */
     func dateChangeToLabelText(date: NSDate, timeBucket: TimeBucketStyle) -> String {

@@ -143,7 +143,7 @@ struct HomeListPKViewModel: HomeListViewModelProtocol {
  */
 struct HomeListHealthViewModel: HomeListViewModelProtocol {
     
-    var image: UIImage { return UIImage(asset: .HomeListHealth) }
+    var image: UIImage { return UIImage() }
     var title: String { return L10n.HomeTimeLineCellHealthiy.string }
     var friendName: String
     var friendIconUrl: String

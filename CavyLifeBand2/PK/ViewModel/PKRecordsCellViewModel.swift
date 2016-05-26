@@ -26,7 +26,7 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
     
     var headImageUrl: String
     
-    var firendId: String
+    var friendId: String
     
     var name: String
 
@@ -42,7 +42,7 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
         self.bottonTitle   = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? L10n.PKRecordsCellUndoBtnTitle.string : L10n.PKRecordsCellAcceptBtnTitle.string
         self.btnBGColor    = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? UIColor(named: .PKRecordsCellUndoBtnBGColor) : UIColor(named: .PKRecordsCellAcceptBtnBGColor)
         self.headImageUrl  = pkRecord.avatarUrl
-        self.firendId      = pkRecord.userId
+        self.friendId      = pkRecord.userId
         
     }
     
@@ -124,13 +124,13 @@ struct PKDueRecordsCellViewModel: ContactsAddFriendCellDataSource, ContactsAddFr
     
     var pkRecord: PKDueRealmModel
     
-    var firendId: String
+    var friendId: String
     
     var headImageUrl: String
     
     init(pkRecord: PKDueRealmModel) {
         
-        self.firendId     = pkRecord.userId
+        self.friendId     = pkRecord.userId
         self.headImageUrl = pkRecord.avatarUrl
         self.pkRecord     = pkRecord
         self.name         = pkRecord.nickname
@@ -152,7 +152,7 @@ struct PKFinishRecordsCellViewModel: PKCellProtocols {
     
     var bottonTitle: String
     
-    var firendId: String
+    var friendId: String
     
     var headImageUrl: String
     
@@ -168,7 +168,7 @@ struct PKFinishRecordsCellViewModel: PKCellProtocols {
         
         self.realm         = realm
         self.pkRecord      = pkRecord
-        self.firendId      = pkRecord.userId
+        self.friendId      = pkRecord.userId
         self.headImageUrl  = pkRecord.avatarUrl
         self.loginUserId   = pkRecord.loginUserId
         self.name          = pkRecord.isWin ? L10n.PKRecordsCellYouWin.string : pkRecord.nickname + L10n.PKRecordsCellWin.string

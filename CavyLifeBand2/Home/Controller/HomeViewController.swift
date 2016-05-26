@@ -33,6 +33,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
     }()
     
+   
+    
     var navTitle: String { return "" }
     
     /// 上部分 计步睡眠天气页面
@@ -89,8 +91,9 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
-        upperView!.allViewLayout()
-        upperView!.viewController = self
+        
+        upperView?.allViewLayout()
+        upperView?.viewController = self
         view.addSubview(upperView!)
         
         view.addSubview(dateView)

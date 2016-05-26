@@ -15,7 +15,7 @@ extension UIImageView {
         
         self.image = placeholderImage?.af_imageRoundedIntoCircle()
         
-        self.af_setImageWithURL(URL, runImageTransitionIfCached: true) { response in
+        self.af_setImageWithURL(URL) { response in
             
             if response.result.isFailure {
                 return
@@ -34,7 +34,7 @@ extension UIImageView {
         
         self.image = placeholderImage?.af_imageWithRoundedCornerRadius(radius, divideRadiusByImageScale: divideRadiusByImageScale)
         
-        self.af_setImageWithURL(URL, runImageTransitionIfCached: true) { response in
+        self.af_setImageWithURL(URL) { response in
             
             if response.result.isFailure {
                 return

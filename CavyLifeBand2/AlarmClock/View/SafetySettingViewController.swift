@@ -8,8 +8,9 @@
 
 import UIKit
 import RealmSwift
+import JSONJoy
 
-class SafetySettingViewController: UIViewController, BaseViewControllerPresenter, EmergencyContactRealmListOperateDelegate {
+class SafetySettingViewController: UIViewController, BaseViewControllerPresenter {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,18 +26,11 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
     
     let ContactInfoCell   = "EmergencyContactInfoCell"
     
-    var realm: Realm = try! Realm()
-    
-    var notificationToken: NotificationToken?
-    
     var userId: String = { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }()
     
     var navTitle: String { return L10n.HomeRightListTitleSecurity.string }
     
     var contactModels: [EmergencyContactInfoCellViewModel] = [EmergencyContactInfoCellViewModel]()
-    
-    var contactRealms: EmergencyContactRealmListModel?
-    
     
     override func viewDidLoad() {
         
@@ -46,18 +40,8 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         
         self.navigationItem.title = L10n.SettingSafetyTitle.string
         
-        loadContactFromRealm()
+        loadContactFromWeb()
         
-        notificationToken = realm.addNotificationBlock { _, _ in
-            
-            self.loadContactFromRealm()
-            
-            self.tableView.reloadData()
-            
-        }
-        
-        Log.info(realm.configuration.fileURL)
-
         tableView.rowHeight       = 50.0
         tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
         tableView.tableHeaderView = UIView()
@@ -84,30 +68,133 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         contactPicker.pickerDelegate = self
         
         updateNavUI()
+        
+        loadContactFromWeb()
+        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func loadContactFromRealm() -> Void {
-        contactRealms = queryEmergencyContactList()
-        
-        contactModels.removeAll()
-
-        if let count = contactRealms?.emergencyContactRealmList.count {
+    
+    func loadContactFromWeb() {
+     
+        do {
             
-            for i in 0..<count {
+            try EmergencyWebApi.shareApi.getEmergencyList { [unowned self] result in
                 
-                let contactVM = EmergencyContactInfoCellViewModel(model: contactRealms!.emergencyContactRealmList[i], realm: self.realm)
+                self.contactModels.removeAll()
                 
-                contactModels.append(contactVM)
+                guard result.isSuccess else {
+                    Log.error(result.error?.description ?? "")
+                    return
+                }
+                
+                let resultMsg = try! EmergencyListResponse(JSONDecoder(result.value!))
+                
+                guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
+                    Log.error(WebApiCode(apiCode: resultMsg.commonMsg.code).description)
+                    return
+                }
+                
+                if resultMsg.phoneList.count > 0 {
+                    
+                    for i in 0..<resultMsg.phoneList.count {
+                        
+                        let contactVM = EmergencyContactInfoCellViewModel(name: resultMsg.phoneList[i].name, phone: resultMsg.phoneList[i].phoneNum)
+                        
+                        self.contactModels.append(contactVM)
+                    }
+                    
+                }
+                
+                self.tableView.reloadData()
+                
             }
-            
+        
+        } catch let error  {
+            Log.error(error)
         }
         
+    }
+    
+    func addEmergency(contact: SCAddressBookContact) {
         
+        var phoneArr: [[String: String]] = [[String: String]]()
+        
+        for model in self.contactModels {
+            
+            if contact.name == model.name && contact.phoneName == model.phoneNumber {
+                Log.info("联系人重复，已添加")
+                return
+            }
+            
+            let dic = [UserNetRequsetKey.Name.rawValue: model.name,
+                       UserNetRequsetKey.PhoneNum.rawValue: model.phoneNumber]
+            phoneArr.append(dic)
+        }
+        
+        phoneArr.append([UserNetRequsetKey.Name.rawValue: contact.name,
+            UserNetRequsetKey.PhoneNum.rawValue: contact.phoneName])
+        
+        setEmergencyList(phoneArr) {
+            let cellVM = EmergencyContactInfoCellViewModel(name: contact.name, phone: contact.phoneName)
+            
+            self.contactModels.insertAsFirst(cellVM)
+            
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    func deleteEmergency(index: Int) {
+        
+        var phoneArr: [[String: String]] = [[String: String]]()
+        
+        for model in self.contactModels {
+            let dic = [UserNetRequsetKey.Name.rawValue: model.name,
+                       UserNetRequsetKey.PhoneNum.rawValue: model.phoneNumber]
+            phoneArr.append(dic)
+        }
+        
+        phoneArr.removeAtIndex(index)
+        
+        setEmergencyList(phoneArr) {
+            self.contactModels.removeAtIndex(index)
+            
+            self.tableView.reloadData()
+        }
+        
+    }
+    
+    func setEmergencyList(phoneList: [[String: String]], callBack: (Void -> Void)) {
+        
+        do {
+            
+            try EmergencyWebApi.shareApi.setEmergencyPhoneList(phoneList) { result in
+                
+                guard result.isSuccess else {
+                    Log.error(result.error?.description ?? "")
+                    return
+                }
+                
+                let resultMsg = try! EmergencyListResponse(JSONDecoder(result.value!))
+                
+                guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
+                    Log.error(WebApiCode(apiCode: resultMsg.commonMsg.code).description)
+                    return
+                }
+                
+                callBack()
+                
+            }
+            
+        } catch let error  {
+            Log.error(error)
+        }
+
+    
     }
     
     /**
@@ -124,10 +211,10 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
     
     func addEmergencyContact(sender: UIButton) {
         
-        
-        
         if contactModels.count == 3 {
-            Log.error("上限三人，不能再添加，据说要用弹框提示")
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: "紧急联系人上限三人")
+            
         } else {
             
             //展示系统通讯录 选择联系人
@@ -143,9 +230,8 @@ extension SafetySettingViewController: SCAddressBookPickerDelegate {
     
     func contactPicker(didSelectContact contact: SCAddressBookContact) {
         
-        //TODO: 这里返回联系人信息，可以在这里完成保存紧急联系人信息的操作
-        Log.warning("【联系人信息】姓名：\(contact.name), 手机号:\(contact.phoneName)")
-        
+        addEmergency(contact)
+   
     }
     
 }
@@ -190,7 +276,7 @@ extension SafetySettingViewController: UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCellWithIdentifier(ContactInfoCell, forIndexPath: indexPath) as? EmergencyContactInfoCell
             
-            cell?.configure(contactModels[indexPath.row - 1])
+            cell?.configure(contactModels[indexPath.row - 1], delegate: self, indexPath: indexPath)
             
             return cell!
             
@@ -247,4 +333,12 @@ extension SafetySettingViewController: UITableViewDelegate {
         return tableFooterView
     }
     
+}
+
+extension SafetySettingViewController: EmergencyContactInfoDelegate {
+
+    func cancelEmergencyContact(index: NSIndexPath) {
+        deleteEmergency(index.row - 1)
+    }
+
 }

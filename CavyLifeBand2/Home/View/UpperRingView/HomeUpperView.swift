@@ -52,7 +52,7 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, HomeListRealmProtocol
         })
         sleepView!.ringStyle = .SleepRing
         sleepView!.ringDefaultSetting()
-        sleepView!.addTapGesture {(_) in
+        sleepView!.addTapGesture { _ in
             self.showSleepDetailView()
         }
         

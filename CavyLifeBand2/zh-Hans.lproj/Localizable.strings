@@ -32,7 +32,14 @@
 "UserModuleErrorCode.PasswdNil" = "密码不能为空";
 "UserModuleErrorCode.SecurityNil" = "验证码不能为空";
 "UserModuleErrorCode.UserNameNil" = "用户名不能为空";
+"UserModuleErrorCode.UserIdNil" = "用户Id不能为空";
 "UserModuleErrorCode.UnknownError" = "未知错误";
+"UserModuleErrorCode.FriendIdNil" = "好友Id不能为空";
+"UserModuleErrorCode.SearchTypeNil" = "搜索类型不能为空";
+"UserModuleErrorCode.ParaNil" = "参数有误";
+"UserModuleErrorCode.ParaError" = "参数有误";
+"UserModuleErrorCode.LBSNil" = "LBS不能为空";
+"UserModuleErrorCode.PhoneNumListNil" = "电话号码列表不能为空";
 
 // 首页
 "MainPage.SignInBtn" = "登入";
@@ -195,12 +202,17 @@
 "Contacts.ChangeNotesName.Button" = "确定";
 "Contacts.ChangeSelfName.PlaceHolder" = "更改的昵称";
 "Contacts.Request.VerifyMsg" = "哈喽，我是";
+"Contacts.NavTitle.Remark" = "修改备注";
+"Contacts.NavTitle.AccountInfo" = "账户信息";
+"Contacts.Request.SureButton" = "确定";
 
 //账户信息
 "AccountInfo.Title" = "账户信息";
 "AccountInfo.LoginoutButton.Title" = "退出登录";
 "AccountInof.Photo" = "从手机相册中选择";
 "AccountInof.Camera" = "拍照";
+"AccountInof.ChangeNickname.Placeholder" = "输入昵称";
+"AccountInof.ChangeAddress.Placeholder" = "输入地址";
 
 //闹钟
 "AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";
@@ -308,4 +320,8 @@
 "AlarmDay.Friday" = "五";
 "AlarmDay.Saturday" = "六";
 "AlarmDay.Sunday" = "日";
+
+// 固件升级
+"UpdateProgress.Info" = "请勿退出应用或关闭手环";
+"UpdateProgress.title" = "手环正在升级";
 

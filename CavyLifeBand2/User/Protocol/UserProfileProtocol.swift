@@ -13,9 +13,8 @@ import Log
 
 protocol QueryUserInfoRequestsDelegate {
     
-    var queryUserId: String { get }
     
-    func queryUserInfoByNet(completeHeadle: (UserProfile? -> Void)?)
+    func queryUserInfoByNet(queryUserId: String, completeHeadle: (UserProfile? -> Void)?)
     
 }
 
@@ -25,7 +24,7 @@ extension QueryUserInfoRequestsDelegate {
     /**
      查询用户信息
      */
-    func queryUserInfoByNet(completeHandle: (UserProfile? -> Void)? = nil) {
+    func queryUserInfoByNet(queryUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, completeHeadle completeHandle: (UserProfile? -> Void)? = nil) {
         
         UserNetRequestData.shareApi.queryProfile(queryUserId) { result in
             
@@ -57,7 +56,7 @@ extension QueryUserInfoRequestsDelegate {
  */
 protocol SetUserInfoRequestsDelegate {
     
-    var userInfoPara: [String: AnyObject] { get }
+    var userInfoPara: [String: AnyObject] { get set }
     
     func setUserInfo(completeHandle: (Bool -> Void)?)
     

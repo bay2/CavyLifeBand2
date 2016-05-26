@@ -78,6 +78,20 @@ extension MenuCellDateSource {
 protocol MenuCellDelegate {
     
     var nextView: UIViewController { get set }
+    func onClickCell()
+    
+}
+
+extension MenuCellDelegate {
+    
+    func onClickCell() {
+        
+        let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
+        
+    }
     
 }
 

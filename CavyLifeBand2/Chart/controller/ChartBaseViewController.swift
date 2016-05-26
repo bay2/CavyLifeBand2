@@ -111,8 +111,8 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
         
         super.viewDidLoad()
         
+        parserData()
         allViewLayout()
-        
     }
     
     /**

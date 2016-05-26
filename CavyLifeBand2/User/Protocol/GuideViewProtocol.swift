@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EZSwiftExtensions
 
 /**
  *  @author xuemincai
@@ -20,8 +21,9 @@ protocol GuideViewDataSource {
     var bgColor: UIColor { get }
     var centerView: UIView { get }
     var guideBtnImage: UIImage { get }
-    var guideBtnImagePress: UIImage { get }
     var rightItemBtnTitle: String { get }
+    var hiddeGuideBtn: Bool { get }
+    var hiddeBackBtn: Bool { get }
     
 }
 
@@ -31,8 +33,9 @@ extension GuideViewDataSource {
     var subTitle: String { return "" }
     var rightItemBtnTitle: String { return "" }
     var guideBtnImage: UIImage { return UIImage(asset: .GuideRightBtn) }
-    var guideBtnImagePress: UIImage { return UIImage(asset: .GuideRightBtnPressed) }
     var bgColor: UIColor { return UIColor(named: .HomeViewMainColor) }
+    var hiddeGuideBtn: Bool { return false }
+    var hiddeBackBtn: Bool { return false }
     
 }
 
@@ -44,12 +47,37 @@ extension GuideViewDataSource {
 protocol GuideViewDelegate {
     
     func onClickRight(viewController: UIViewController)
-    func onClickGuideOkBtn(viewController: UIViewController)
+    mutating func onClickGuideOkBtn(viewController: UIViewController)
+    func onLoadView()
+    func onCilckBack(viewController: UIViewController)
     
 }
 
-extension GuideViewDelegate {
+ extension GuideViewDelegate {
     
-    func onClickRight(viewController: UIViewController) {}
+    func onClickRight(viewController: UIViewController) {
+    }
+    
+    func onLoadView() {
+    }
+    
+    func onClickGuideOkBtn(viewController: UIViewController) {
+    }
+    
+    func onCilckBack(viewController: UIViewController) {
+        
+        if viewController.navigationController?.viewControllers.count > 0 {
+            
+            viewController.popVC()
+            
+        } else {
+            
+            viewController.dismissVC(completion: nil)
+            
+        }
+        
+    }
+    
+    
     
 }

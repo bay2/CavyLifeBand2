@@ -48,14 +48,23 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
     }()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
         allViewsLayOut()
 
-        updateViewStyle()
+//        updateViewStyle()
         
         updateNavUI()
         
+        delegate?.onLoadView()
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateViewStyle()
     }
     
     deinit {
@@ -64,11 +73,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
     
     func onLeftBtnBack() {
         
-        if self.navigationController?.viewControllers.count > 1 {
-            self.popVC()
-        } else {
-            self.dismissVC(completion: nil)
-        }
+        delegate?.onCilckBack(self)
         
     }
     
@@ -101,19 +106,23 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
      */
     func updateViewStyle() {
         
+        leftBtn?.hidden = dataSource?.hiddeBackBtn ?? false
+        
         guard let viewDataSource = dataSource else {
             return
         }
         
         self.view.backgroundColor = viewDataSource.bgColor
+        
+        self.guideButton.hidden = viewDataSource.hiddeGuideBtn
         self.guideButton.setImage(viewDataSource.guideBtnImage, forState: .Normal)
-        self.guideButton.setImage(viewDataSource.guideBtnImagePress, forState: .Highlighted)
         
         let centerView = viewDataSource.centerView
         self.middleView.addSubview(centerView)
         
         self.infoLabel.text = dataSource?.subTitle
         navTitle = viewDataSource.title
+        
         rightBtn?.setTitle(viewDataSource.rightItemBtnTitle, forState: .Normal)
         centerView.snp_makeConstraints { make in
             make.left.top.right.bottom.equalTo(middleView)
@@ -135,6 +144,10 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         delegate?.onClickGuideOkBtn(self)
         
     }
+    
+}
+
+extension GuideViewController: LifeBandBleDelegate {
     
 }
 

@@ -48,12 +48,11 @@ class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDele
         collectionView!.backgroundColor = UIColor.whiteColor()
         collectionView!.showsHorizontalScrollIndicator = false
         collectionView!.alwaysBounceHorizontal = true
-        collectionView!.contentSize = CGSizeMake(CGFloat(dateArray.count) * ez.screenWidth, 0)
-        collectionView!.contentOffset = CGPointMake(CGFloat(dateArray.count) * ez.screenWidth, 0)
+        collectionView!.contentSize = CGSizeMake(CGFloat(dateArray.count) * ez.screenWidth, 200)
+        collectionView!.contentOffset = CGPointMake(CGFloat(dateArray.count) * ez.screenWidth, 200)
         collectionView!.dataSource = self
         collectionView!.delegate = self
         collectionView!.registerNib(UINib(nibName: "HomeDateTimeLineCell", bundle: nil), forCellWithReuseIdentifier: "HomeDateTimeLineCell")
-//        collectionView!.registerClass(HomeDateTimeLineCell.self, forCellWithReuseIdentifier: "HomeDateTimeLineCell")
         self.addSubview(collectionView!)
         collectionView!.snp_makeConstraints { make in
             make.left.top.right.bottom.equalTo(self)

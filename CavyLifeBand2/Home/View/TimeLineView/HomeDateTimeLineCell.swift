@@ -231,8 +231,9 @@ extension HomeDateTimeLineCell {
         let sectionView = NSBundle.mainBundle().loadNibNamed("HomeTimeLineSection", owner: nil, options: nil).first as! HomeTimeLineSection
         
         if section == 0 {
-            
             sectionView.lineView.hidden = true
+        } else {
+            sectionView.lineView.hidden = false
         }
         
         return sectionView
@@ -264,10 +265,9 @@ extension HomeDateTimeLineCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("HomeTimeLineTableCell", forIndexPath: indexPath) as! HomeTimeLineTableCell
 
         cell.headLine.hidden = false
-        cell.headLine.hidden = false
+        cell.bottomLine.hidden = false
 
         if indexPath.section == 0 {
-            
             cell.headLine.hidden = true
         }
 
@@ -275,6 +275,7 @@ extension HomeDateTimeLineCell {
             
             cell.bottomLine.hidden = true
         }
+        
         let viewModel = datasViewModels[indexPath.section]
         
         cell.configVM(viewModel)
