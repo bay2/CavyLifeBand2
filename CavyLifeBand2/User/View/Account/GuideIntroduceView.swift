@@ -48,7 +48,7 @@ struct GuideRemindDataSource: GuideIntroduceViewDataSource {
     
     var info: String = "来电振动提醒，不漏接一个重要来电"
     
-    var image: UIImage = UIImage(named: "banner_1")!
+    var image: UIImage = UIImage(named: "banner_2")!
 }
 
 struct GuidePKDataSource: GuideIntroduceViewDataSource {
@@ -56,7 +56,7 @@ struct GuidePKDataSource: GuideIntroduceViewDataSource {
     
     var info: String = "实时查看与好友计步PK详情\n让走路成为一种乐趣"
     
-    var image: UIImage = UIImage(named: "banner_2")!
+    var image: UIImage = UIImage(named: "banner_3")!
 }
 
 struct GuideSafetyDataSource: GuideIntroduceViewDataSource {
@@ -64,7 +64,7 @@ struct GuideSafetyDataSource: GuideIntroduceViewDataSource {
     
     var info: String = "遇到紧急情况，连按4下按钮\n立即向联系人发送求救信息"
     
-    var image: UIImage = UIImage(named: "banner_3")!
+    var image: UIImage = UIImage(named: "banner_1")!
 }
 
 struct GuideLoginDataSource: GuideIntroduceViewDataSource {
