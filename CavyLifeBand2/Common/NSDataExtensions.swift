@@ -81,7 +81,7 @@ extension NSData {
             
             let count = self.length / sizeof(Int8)
             var rawBytes = [Int8](count: count, repeatedValue: 0)
-            self.getBytes(&rawBytes, length:count * sizeof(Int8))
+            self.getBytes(&rawBytes, length: count * sizeof(Int8))
             
             var urlString = ""
             
@@ -213,7 +213,7 @@ extension String {
             }
             
             //For the rest of the string, loop through the
-            while(!stringBuffer.isEmpty) {
+            while !stringBuffer.isEmpty {
                 
                 var foundEncoding = false
                 for urlEncoding in urlEncodings {
@@ -231,7 +231,7 @@ extension String {
                 if !foundEncoding {
                     for character in stringBuffer.unicodeScalars {
                         
-                        bytes.append( UInt8(character.value) )
+                        bytes.append(UInt8(character.value))
                         stringBuffer = String(stringBuffer.characters.dropFirst())
                         break
                     }
@@ -257,7 +257,7 @@ extension NSData {
         
     }
     
-    subscript (subRange: Range<Int>) -> NSData {
+    subscript(subRange: Range<Int>) -> NSData {
         
         let bytesArray = self.arrayOfBytes()
         

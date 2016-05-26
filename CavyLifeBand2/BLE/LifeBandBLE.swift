@@ -84,7 +84,7 @@ class LifeBandBle: NSObject {
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             
-            while(true) {
+            while true {
                 
                 NSThread.sleepForTimeInterval(1)
                 

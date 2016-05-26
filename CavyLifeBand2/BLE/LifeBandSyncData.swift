@@ -186,7 +186,7 @@ class LifeBandSyncData {
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) {
             
             // 等待同步完成，再继续同步
-            while (self.syncState == .Sync) {
+            while self.syncState == .Sync {
                 NSThread.sleepForTimeInterval(1)
             }
             
@@ -219,7 +219,7 @@ class LifeBandSyncData {
         let yesterday = (NSDate().gregorian - 1.day).beginningOfDay.date
         
         switch dayCount {
-        case 0,1:
+        case 0, 1:
             return beginDate
         default:
             return yesterday
@@ -236,7 +236,7 @@ class LifeBandSyncData {
      
      - returns: 数据是否同步完成 完成: true, 未完成: false
      */
-    private func saveTiltsAndStepsData(beginDate: NSDate, data : NSData, reslut: LifeBandSyncReslut<[TitlsAndSteps], LifeBandSyncDataError> -> Void) -> Bool {
+    private func saveTiltsAndStepsData(beginDate: NSDate, data: NSData, reslut: LifeBandSyncReslut<[TitlsAndSteps], LifeBandSyncDataError> -> Void) -> Bool {
         
         if data[2...3].uint16 == 0xFFFF {
             
@@ -294,7 +294,7 @@ class LifeBandSyncData {
      
      - returns: 时间，睡眠信息，步数
      */
-    private func dataTransformTitlsAndSteps(dateCmd: SyncDateCtrl, data :NSData) -> TitlsAndSteps {
+    private func dataTransformTitlsAndSteps(dateCmd: SyncDateCtrl, data: NSData) -> TitlsAndSteps {
         
         let no    = Int(data[0])
         let tilts = Int(data[1])
