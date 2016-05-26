@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import EZSwiftExtensions
 
 extension NSDate {
     
@@ -34,31 +35,21 @@ extension NSDate {
      */
     func dateChangeToLabelText(date: NSDate, timeBucket: TimeBucketStyle) -> String {
         
-        var text: String = ""
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd"
-        let  dateString = dateFormatter.stringFromDate(date)
-        var dates = dateString.componentsSeparatedByString("/")
-        let month = dates[0].toInt()
-        let day = dates[1].toInt()
-
         switch timeBucket {
             
         case .Day:
             
-            text = "\(month).\(day)"
-
+            return date.toString(format: "MM.dd")
+            
         case .Month:
             
-            text = "\(month)"
+            return date.toString(format: "MM")
             
         case .Week:
-
-            text = "\(month).\(day)-\(dayLastSunDayDate(date))"
+            
+            return "\(date.toString(format: "MM.dd"))\(dayLastSunDayDate(date))"
+            
         }
-        
-        return text
         
     }
     
@@ -262,23 +253,29 @@ extension NSDate {
         let month = timeDates1[0].toInt()
         let day = timeDates1[1].toInt()
         return (year!, month!, day!)
+        
     }
     
-    
     /**
-     时间返回月份Label的Text
+     月 时间返回月份Label的Text
      */
     func dateChangeToMonthText(date: NSDate) -> String {
         
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd"
-        let month = dateFormatter.stringFromDate(date)
-       
-        return month
+        return date.toString(format: "MM")
         
     }
-
     
+    /**
+     年.月.日 返回Int 类型的 年月日
+     */
+    func homeTimeFormat(timeString: String) -> String {
+
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.dateFromString(timeString)
+        
+        return date!.toString(format: "yyy.MM.dd")
+        
+    }
     
 }

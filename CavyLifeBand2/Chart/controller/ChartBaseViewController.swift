@@ -17,11 +17,9 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
     
     
     var stepOldDeletData: ChartsForStep?
-
-    
     
     var realm: Realm = try! Realm()
-    var userId: String = "" 
+    var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
     
     var viewStyle: ChartViewStyle = .StepChart
 
@@ -63,18 +61,17 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
         for i in 0 ... list.count {
             
             // 日 一个小时也 的时间段 一小时 6条 * 24 小时 = 一天的数据
-            dayDataArray.append(list.first!.time!)
+            dayDataArray.append(list.first!.time)
             // 余数
             var mod = 5
             
             if i / 6 == mod {
                 
-                dayDataArray.append(list[i].time!)
+                dayDataArray.append(list[i].time)
             }
             
-            /// 周 的时间段
-            
-            weekDateArray.append(list.first!.time!)
+            // 周 的时间段
+            weekDateArray.append(list.first!.time)
             
             let index: Int = list[i].time!.indexInArray() - 1
             
@@ -84,18 +81,18 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
             }
             
             if i / (6 * 24 * 7) == mod {
-                weekDateArray.append(list[i].time!)
+                weekDateArray.append(list[i].time)
             }
             
             // 月 的时间段
-            dayDataArray.append(list.first!.time!)
+            dayDataArray.append(list.first!.time)
             
             var monthArray: [String] = []
             
-            monthArray.append(NSDate().dateChangeToMonthText(list.first!.time!))
-            if  monthArray.contains("\(NSDate().dateChangeToMonthText(list[i].time!))") == false {
+            monthArray.append(NSDate().dateChangeToMonthText(list.first!.time))
+            if  monthArray.contains("\(NSDate().dateChangeToMonthText(list[i].time))") == false {
                 
-                dayDataArray.append(list[i].time!)
+                dayDataArray.append(list[i].time)
                 
             }
             
@@ -109,16 +106,13 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
         
     }()
     
+    // MARK: -- ViewDidLoad
     override func viewDidLoad() {
         
         super.viewDidLoad()
-
-        parserData()
         
+        parserData()
         allViewLayout()
-        
-        parserData()
-        
     }
     
     /**
@@ -154,7 +148,7 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
         
         
         // 先判断 有数据 直接返回 有没有数据 然后 请求数据
-        if isExistChartsData() {
+        if isExistStepChartsData() {
             
             return
         }
@@ -177,7 +171,6 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
         }
         
     }
-    
     
     /**
      所有视图的布局
