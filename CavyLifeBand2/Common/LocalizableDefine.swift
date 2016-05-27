@@ -387,6 +387,14 @@ enum L10n {
   case AlarmClockEmptyViewTitle
   /// 手环震动唤醒，远离传统闹铃噪声
   case AlarmClockEmptyViewInfo
+  /// 提醒一次
+  case AlarmClockNoCircleInfo
+  /// 每天
+  case AlarmClockCircleEverydayInfo
+  /// 工作日
+  case AlarmClockCircleWeekdayInfo
+  /// 双休日
+  case AlarmClockCircleWeekendInfo
   /// 安全
   case SettingSafetyTitle
   /// 点击添加
@@ -948,6 +956,14 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AlarmClock.EmptyView.Title")
       case .AlarmClockEmptyViewInfo:
         return L10n.tr("AlarmClock.EmptyView.Info")
+      case .AlarmClockNoCircleInfo:
+        return L10n.tr("AlarmClock.NoCircle.Info")
+      case .AlarmClockCircleEverydayInfo:
+        return L10n.tr("AlarmClock.CircleEveryday.Info")
+      case .AlarmClockCircleWeekdayInfo:
+        return L10n.tr("AlarmClock.CircleWeekday.Info")
+      case .AlarmClockCircleWeekendInfo:
+        return L10n.tr("AlarmClock.CircleWeekend.Info")
       case .SettingSafetyTitle:
         return L10n.tr("Setting.Safety.Title")
       case .SettingSafetyTableCellContactButton:

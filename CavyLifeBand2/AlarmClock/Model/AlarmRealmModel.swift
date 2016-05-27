@@ -42,20 +42,42 @@ class AlarmRealmModel: Object {
         
         var daysStr = ""
         
-        for j in 0..<arr.count {
+        if arr.count == 0 { //不设置周期，则显示“提醒一次”
             
-            var day: String = numberFormatter.stringFromNumber(NSNumber.init(integer: arr[j]))!
+            daysStr = L10n.AlarmClockNoCircleInfo.string
             
-            if arr[j] == 7 {
-                day = "日"
+        } else if arr.count == 7 { //周期选了7天，则显示“每天”
+            
+            daysStr = L10n.AlarmClockCircleEverydayInfo.string
+            
+        } else if arr.elementsEqual([6, 7]) { //周期选了周六周日，则显示“双休日”
+            
+            daysStr = L10n.AlarmClockCircleWeekendInfo.string
+            
+        } else if arr.elementsEqual([1, 2, 3, 4, 5]) { //周期选了周一至周五，则显示“工作日”
+            
+            daysStr = L10n.AlarmClockCircleWeekdayInfo.string
+            
+        } else {
+            
+            for j in 0..<arr.count {
+                
+                var day: String = numberFormatter.stringFromNumber(NSNumber.init(integer: arr[j]))!
+                
+                if arr[j] == 7 {
+                    day = "日"
+                }
+                
+                if j == 0 {
+                    daysStr += day
+                } else {
+                    daysStr += ",\(day)"
+                }
             }
             
-            if j == 0 {
-                daysStr += day
-            } else {
-                daysStr += ",\(day)"
-            }
         }
+        
+        
         
         return daysStr
     }
