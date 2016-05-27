@@ -109,6 +109,8 @@
 		68648A771CEEDFF6009D4BEE /* EmergencyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A761CEEDFF6009D4BEE /* EmergencyJSON.swift */; };
 		68648A801CF3F125009D4BEE /* AccountSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A7F1CF3F125009D4BEE /* AccountSettingViewModel.swift */; };
 		68648A831CF3F234009D4BEE /* UpdateProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A821CF3F234009D4BEE /* UpdateProgressView.swift */; };
+		68648A891CF6936D009D4BEE /* GuideIntroduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A881CF6936D009D4BEE /* GuideIntroduceView.swift */; };
+		68648A8B1CF699C9009D4BEE /* GuideIntroduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68648A8A1CF699C9009D4BEE /* GuideIntroduceView.xib */; };
 		686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */; };
 		686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */; };
 		686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */; };
@@ -434,6 +436,8 @@
 		68648A761CEEDFF6009D4BEE /* EmergencyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyJSON.swift; sourceTree = "<group>"; };
 		68648A7F1CF3F125009D4BEE /* AccountSettingViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountSettingViewModel.swift; sourceTree = "<group>"; };
 		68648A821CF3F234009D4BEE /* UpdateProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProgressView.swift; sourceTree = "<group>"; };
+		68648A881CF6936D009D4BEE /* GuideIntroduceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideIntroduceView.swift; sourceTree = "<group>"; };
+		68648A8A1CF699C9009D4BEE /* GuideIntroduceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideIntroduceView.xib; sourceTree = "<group>"; };
 		686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptPKTest.swift; sourceTree = "<group>"; };
 		686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePKTest.swift; sourceTree = "<group>"; };
 		686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPKTest.swift; sourceTree = "<group>"; };
@@ -1111,6 +1115,8 @@
 				9114D1D11C97AB05008CB4CE /* SignInViewController.swift */,
 				9114D1D21C97AB05008CB4CE /* UserProtocolView.swift */,
 				919FC6671CC613660062A1CB /* MainPageViewController.swift */,
+				68648A881CF6936D009D4BEE /* GuideIntroduceView.swift */,
+				68648A8A1CF699C9009D4BEE /* GuideIntroduceView.xib */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -1801,6 +1807,7 @@
 				6859BC861CD32D690050F6A0 /* EmergencyContactInfoCell.xib in Resources */,
 				91E1B4D81CA510BD008ADEE6 /* ContactsAddFriendCell.xib in Resources */,
 				4CB7A0801CD095C400DFB8DC /* HomeRingView.xib in Resources */,
+				68648A8B1CF699C9009D4BEE /* GuideIntroduceView.xib in Resources */,
 				68E9780E1CC758CE00651724 /* PKChallengeView.xib in Resources */,
 				91A2EC911CB350D200361952 /* InfoSecurity.storyboard in Resources */,
 				91E1B4CC1CA510BD008ADEE6 /* ContactsFriendListCell.xib in Resources */,
@@ -2022,6 +2029,7 @@
 				4CB7A0751CD095C400DFB8DC /* HomeDataCellFlowLayout.swift in Sources */,
 				4CB7A0771CD095C400DFB8DC /* HomeDateView.swift in Sources */,
 				685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */,
+				68648A891CF6936D009D4BEE /* GuideIntroduceView.swift in Sources */,
 				683655271CBB3B2C009373EA /* SettingSwitchTableViewCell.swift in Sources */,
 				4CB7A0781CD095C400DFB8DC /* HomeDateViewCell.swift in Sources */,
 				9114D1F71C97AB05008CB4CE /* GoalView.swift in Sources */,
