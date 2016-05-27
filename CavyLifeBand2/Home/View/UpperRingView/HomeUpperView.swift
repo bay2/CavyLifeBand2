@@ -9,8 +9,9 @@
 import UIKit
 import EZSwiftExtensions
 import RealmSwift
+import Datez
 
-class HomeUpperView: UIView, UserInfoRealmOperateDelegate, HomeListRealmProtocol {
+class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     
     var realm: Realm = try! Realm()
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
@@ -24,7 +25,16 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, HomeListRealmProtocol
     ///  计步环
     @IBOutlet weak var stepRing: UIView!
     
-    var viewController = UIViewController() 
+    var sleepView: HomeRingView!
+    
+    var stepView: HomeRingView!
+    
+    var viewController = UIViewController()
+    
+    override func awakeFromNib() {
+        allViewLayout()
+        configStepAndSleepValue()
+    }
 
     /**
      适配
@@ -35,41 +45,62 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, HomeListRealmProtocol
         weatherView.snp_makeConstraints(closure: { make in
             make.left.equalTo(self).offset(40)
         })
-        let weather = NSBundle.mainBundle().loadNibNamed("HomeWeatherView", owner: nil, options: nil).first as? HomeWeatherView
-        weatherView.addSubview(weather!)
-        weather!.snp_makeConstraints { make in
+        
+        
+        guard let weather = NSBundle.mainBundle().loadNibNamed("HomeWeatherView", owner: nil, options: nil).first as? HomeWeatherView else {
+            fatalError("loadNibNamed view(HomeWeatherView) error")
+        }
+        
+        weatherView.addSubview(weather)
+        weather.snp_makeConstraints { make in
             make.left.right.top.bottom.equalTo(weatherView)
         }
-        weather!.loadWeatherView()
+        weather.loadWeatherView()
         
         // 睡眠
-        let sleepView = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
-        sleepRing.addSubview(sleepView!)
+        guard let loadSleepView = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView else {
+            fatalError("loadNibNamed view(HomeRingView) error")
+        }
+        
+        self.sleepView = loadSleepView
+        
+        sleepRing.addSubview(self.sleepView)
         sleepRing.layer.cornerRadius = sleepRing.frame.width / 2
-        sleepView!.layer.cornerRadius = sleepView!.frame.width / 2
-        sleepView!.snp_makeConstraints(closure: { make in
+        self.sleepView.layer.cornerRadius = self.sleepView.frame.width / 2
+        self.sleepView.snp_makeConstraints(closure: { make in
             make.left.right.top.bottom.equalTo(sleepRing)
         })
-        sleepView!.ringStyle = .SleepRing
-        sleepView!.ringDefaultSetting()
-        sleepView!.addTapGesture { _ in
+        self.sleepView.ringStyle = .SleepRing
+        self.sleepView.ringDefaultSetting()
+        self.sleepView.addTapGesture { [unowned self] _ in
             self.showSleepDetailView()
         }
         
+        
         // 计步
-        let stepView = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView
-        stepRing.addSubview(stepView!)
-        stepRing.layer.cornerRadius = stepView!.frame.width / 2
-        stepView!.layer.cornerRadius = stepView!.frame.width / 2
-        stepView!.snp_makeConstraints(closure: { make in
+        guard let loadStepView = NSBundle.mainBundle().loadNibNamed("HomeRingView", owner: nil, options: nil).first as? HomeRingView else {
+            fatalError("")
+        }
+        
+        self.stepView = loadStepView
+        
+        stepRing.addSubview(self.stepView)
+        stepRing.layer.cornerRadius = self.stepView.frame.width / 2
+        self.stepView.layer.cornerRadius = self.stepView.frame.width / 2
+        self.stepView.snp_makeConstraints(closure: { make in
             make.left.right.top.bottom.equalTo(stepRing)
 
         })
-        stepView!.ringStyle = .StepRing
-        stepView!.ringDefaultSetting()
-        stepView!.addTapGesture {(_) in
+        
+        self.stepView.ringStyle = .StepRing
+        self.stepView.ringDefaultSetting()
+        self.stepView.addTapGesture { [unowned self] _ in
             self.showStepDetailView()
         }
+        
+    }
+    
+    func configStepAndSleepValue() {
         
         // 计步睡眠目标值
         guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
@@ -83,17 +114,24 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, HomeListRealmProtocol
         
         // 计步失眠 当前值
         
-        let time = NSDate().toString(format: "yyyy-MM-dd")
-        let result = queryHomeList(time)!
-//        let stepCurrentNumber = result.stepCount
-//        let sleepCurrentNumber = result.sleepTime
+        let time = NSDate()
+        let resultStep = self.queryStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)
+        let resultSeelp = self.querySleepNumber(time.gregorian.beginningOfDay.date, endTime: time)
         
-        let stepCurrentNumber = Int(arc4random_uniform(UInt32(stepTargetNumber + 1)))
-        let sleepCurrentNumber = Int(arc4random_uniform(UInt32(sleepTargetNumber + 1)))
-        
-        stepView!.ringWithStyle(stepTargetNumber, currentNumber: stepCurrentNumber)
-        sleepView!.ringWithStyle(sleepTargetNumber, currentNumber: sleepCurrentNumber)
 
+        let stepCurrentNumber = resultStep.totalStep
+        var sleepCurrentNumber = 0
+        
+        //TODO: 这里要补充睡眠算法
+        for sleep in resultSeelp {
+            
+            sleepCurrentNumber += sleep.tilts
+            
+        }
+        
+        stepView.ringWithStyle(stepTargetNumber, currentNumber: stepCurrentNumber)
+        sleepView.ringWithStyle(sleepTargetNumber, currentNumber: sleepCurrentNumber)
+        
     }
     
     func showSleepDetailView(){
