@@ -267,12 +267,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case PageIndicatorTintColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#0dcf7f"></span>
-    /// Alpha: 100% <br/> (0x0dcf7fff)
-    case RalateAppCellDeleteBtnBGColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
-    /// Alpha: 100% <br/> (0xffffffff)
-    case RalateAppCellDeleteBtnTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#8d8d8d"></span>
+    /// Alpha: 100% <br/> (0x8d8d8dff)
+    case RalateAppCellImageBorderColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#b8b8b8"></span>
     /// Alpha: 100% <br/> (0xb8b8b8ff)
     case RalateAppCellInfoColor
@@ -282,6 +279,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#585858"></span>
     /// Alpha: 100% <br/> (0x585858ff)
     case RalateAppCellTitleColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f4f4f4"></span>
+    /// Alpha: 100% <br/> (0xf4f4f4ff)
+    case RalateAppTableBGColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#585858"></span>
     /// Alpha: 100% <br/> (0x585858ff)
     case RalateHelpFeedbackCellTitleColor
@@ -438,11 +438,11 @@ extension UIColor {
       case .PKRulesViewTitleColor: return 0x000000b3
       case .PKTimePickerSeparatorColor: return 0xe5e5e5ff
       case .PageIndicatorTintColor: return 0x00000033
-      case .RalateAppCellDeleteBtnBGColor: return 0x0dcf7fff
-      case .RalateAppCellDeleteBtnTitleColor: return 0xffffffff
+      case .RalateAppCellImageBorderColor: return 0x8d8d8dff
       case .RalateAppCellInfoColor: return 0xb8b8b8ff
       case .RalateAppCellSizeColor: return 0x8d8d8dff
       case .RalateAppCellTitleColor: return 0x585858ff
+      case .RalateAppTableBGColor: return 0xf4f4f4ff
       case .RalateHelpFeedbackCellTitleColor: return 0x585858ff
       case .RalateHelpFeedbackSendBtnBGColor: return 0xffd954ff
       case .RalateHelpFeedbackSendBtnTitleColor: return 0xb46e00ff

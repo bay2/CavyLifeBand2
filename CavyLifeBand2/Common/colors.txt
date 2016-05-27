@@ -110,8 +110,8 @@ RalateHelpFeedbackSendBtnTitleColor : #b46e00
 RalateAppCellTitleColor : #585858
 RalateAppCellInfoColor : #b8b8b8
 RalateAppCellSizeColor : #8d8d8d
-RalateAppCellDeleteBtnBGColor : #0dcf7f
-RalateAppCellDeleteBtnTitleColor : #ffffff
+RalateAppCellImageBorderColor : #8d8d8d
+RalateAppTableBGColor : #f4f4f4
 
 UpdateProgressViewTextColor: #000000
 UpdateProgressViewProgressColor: #48d299
