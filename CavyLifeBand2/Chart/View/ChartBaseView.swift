@@ -8,9 +8,13 @@
 
 import UIKit
 import EZSwiftExtensions
+import RealmSwift
 
-class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ChartsRealmProtocol {
 
+    var realm: Realm = try! Realm()
+    var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+    
     var viewStyle: ChartViewStyle = .StepChart
 
     var timeBucketStyle: TimeBucketStyle = .Day
@@ -21,21 +25,69 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
     /// 详情页
     var infoView: UICollectionView?
     
-    var dates: [NSDate] = []
-    
+    var dates: [String] = []
     
     /**
-     添加数据
+     入口
      */
-    func setData(date: [NSDate]) {
+    func configView() {
         
-        self.dates = date
-        
-        Log.info(self.dates)
+        dates = setData()
         
         addTimeBucketView()
         
         addInfoView()
+    }
+    
+    /**
+     添加数据
+     */
+    func setData() -> [String] {
+        
+        let dateStringArray = queryTimeBucketFromFirstDay()!
+        var returnArray: [String] = [dateStringArray[0]]
+        
+        let firstDate = NSDate(fromString: dateStringArray[0], format: "yyyy.M.d")
+        let indexInWeek = firstDate!.indexInWeek()
+        var monthArray = [firstDate!.toString(format: "M")]
+        
+        for i in 1 ... dateStringArray.count {
+            
+            switch timeBucketStyle {
+                
+            case .Day:
+                
+                returnArray = dateStringArray
+            
+            case .Week:
+                
+                if (i + indexInWeek) % 7 == 0 {
+                    
+                    returnArray.append(dateStringArray[i])
+                }
+                
+            case .Month:
+
+                let date = NSDate(fromString: dateStringArray[i], format: "yyyy.M.d")
+                let month = date!.toString(format: "M")
+                
+                if monthArray.contains(month) {
+                    
+                    continue
+                    
+                } else {
+                    
+                    monthArray.append(month)
+                    returnArray.append(dateStringArray[i])
+                    
+                }
+            }
+            
+        }
+        
+        
+        return returnArray
+
     }
     
     
@@ -140,7 +192,8 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
             
             cell.deselectStatus()
             
-            cell.label.text =  dates[indexPath.row].dateChangeToLabelText(timeBucketStyle)
+            cell.label.text = NSDate(fromString: dates[indexPath.item], format: "yyyy.M.d")!.dateChangeToLabelText(timeBucketStyle)
+            // dates[indexPath.row].dateChangeToLabelText(timeBucketStyle)
             
             if indexPath.item == dates.count - 1 {
 
@@ -154,7 +207,8 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
             // 数据 List Cell
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChartInfoCollectionCell", forIndexPath: indexPath) as! ChartInfoCollectionCell
             
-            cell.timeData = dates[indexPath.row].dateChangeToLabelText(timeBucketStyle)
+            cell.timeData = NSDate(fromString: dates[indexPath.item], format: "yyyy.M.d")!.dateChangeToLabelText(timeBucketStyle)
+            // dates[indexPath.row].dateChangeToLabelText(timeBucketStyle)
             
             cell.viewStyle = self.viewStyle
             cell.timeBucketStyle = self.timeBucketStyle

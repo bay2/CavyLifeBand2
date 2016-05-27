@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import EZSwiftExtensions
 
 extension NSDate {
     
@@ -59,6 +60,8 @@ extension NSDate {
     
     /**
      当前是这周的第几天
+     * 0 - 6
+     * 6 周二
      */
     func indexInWeek() -> Int {
         
@@ -69,7 +72,7 @@ extension NSDate {
 //        let string = dateFormatter.stringFromDate(date)
 //        return weekName.lastIndexOf(string)!
         
-        return 0
+        return 6
 
     }
     
@@ -250,23 +253,29 @@ extension NSDate {
         let month = timeDates1[0].toInt()
         let day = timeDates1[1].toInt()
         return (year!, month!, day!)
+        
     }
     
+//    /**
+//     月 时间返回月份Label的Text
+//     */
+//    func dateChangeToMonthText(date: NSDate) -> String {
+//        
+//        return date.toString(format: "MM")
+//        
+//    }
     
     /**
-     时间返回月份Label的Text
+     年.月.日 返回Int 类型的 年月日
      */
-    func dateChangeToMonthText(date: NSDate) -> String {
-        
-        
+    func homeTimeFormat(timeString: String) -> String {
+
         let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd"
-        let month = dateFormatter.stringFromDate(date)
-       
-        return month
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.dateFromString(timeString)
+        
+        return date!.toString(format: "yyy.MM.dd")
         
     }
-
-    
     
 }

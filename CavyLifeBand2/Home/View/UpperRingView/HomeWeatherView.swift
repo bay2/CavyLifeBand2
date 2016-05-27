@@ -72,7 +72,6 @@ class HomeWeatherView: UIView {
                 
                 let netResult = try HomeWeatherMsg(JSONDecoder(result.value!))
                 
-                Log.info(netResult)
                 self.temperature.text = "\(netResult.tmp!)°C"
                 self.addAirCondition(netResult.pm25!)
                 self.addCondImage(netResult.cond!)

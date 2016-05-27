@@ -74,8 +74,6 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandName
         
-        
-        
         CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = BindBandCtrl.bandName
         
         loadHomeView()

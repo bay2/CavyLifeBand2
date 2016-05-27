@@ -16,7 +16,7 @@ import Alamofire
 class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol {
     
     var realm: Realm = try! Realm()
-    var userId: String = "" 
+    var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
     
     var viewStyle: ChartViewStyle = .StepChart
 
@@ -43,27 +43,16 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
     }()
     
     var navTitle: String = ""
-    var timeBucketDatasArray: [[NSDate]] = []
-    
+
     // MARK: viewDidLoad
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-
-        timeBucketDatasArray = addTimeBucketDatasArray()
-//        allViewLayout()
         
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        
-        super.viewWillAppear(animated)
         
         allViewLayout()
-
+        
     }
-    
-    
+
     
     /**
      配置VC的VM
@@ -110,9 +99,7 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
             let detailView = ChartBaseView(frame: CGRectMake(ez.screenWidth  * CGFloat(i), 0, ez.screenWidth, ez.screenHeight - navHeight - timeButtonHeight))
             detailView.viewStyle = self.viewStyle
             detailView.timeBucketStyle = timeBucketStyleArray[i]
-            
-            detailView.setData(timeBucketDatasArray[i])
-            
+            detailView.configView()
             scrollView.addSubview(detailView)
         }
         
@@ -157,76 +144,6 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
         
     }
     
-    // MARK: 数据库请求数据
-    /**
-     数据库取出数据
-     */
-    func addTimeBucketDatasArray() -> [[NSDate]] {
-        
-        let list = self.realm.objects(ChartStepDataRealm).filter("userId = '\(self.userId)'")
-        
-        var chartData: [[NSDate]] = []
-        var dayDataArray: [NSDate] = []
-        var weekDateArray: [NSDate] = []
-        let monthDateArray: [NSDate] = []
-        
-        if list.count == 0 {
-            
-            return[[NSDate()],[NSDate()],[NSDate()]]
-        }
-        
-        for i in 0 ... list.count {
-            
-            // 日 一个小时也 的时间段 一小时 6条 * 24 小时 = 一天的数据
-            dayDataArray.append(list.first!.time!)
-            // 余数
-            var mod = 5
-            
-            if i / 6 == mod {
-                
-                dayDataArray.append(list[i].time!)
-            }
-            
-            /// 周 的时间段
-            
-            weekDateArray.append(list.first!.time!)
-            
-            let index: Int = list[i].time!.indexInWeek() 
-            
-            if  index != 0 {
-                
-                mod = (7 - (index + 1)) * 24 * 6
-            }
-            
-            if i / (6 * 24 * 7) == mod {
-                weekDateArray.append(list[i].time!)
-            }
-            
-            // 月 的时间段
-            dayDataArray.append(list.first!.time!)
-            
-            var monthArray: [String] = []
-            
-            monthArray.append(NSDate().dateChangeToMonthText(list.first!.time!))
-            if  monthArray.contains("\(NSDate().dateChangeToMonthText(list[i].time!))") == false {
-                
-                dayDataArray.append(list[i].time!)
-                
-            }
-            
-        }
-        
-        chartData.append(dayDataArray)
-        chartData.append(weekDateArray)
-        chartData.append(monthDateArray)
-        
-        Log.info(chartData)
-        return chartData
-        
-    }
-    
-
-
 }
 
 // MARK: UIScrollViewDelegate

@@ -22,24 +22,30 @@ class HomeTimeLineTableCell: UITableViewCell {
     /// 模块名字
     @IBOutlet weak var nameLabel: UILabel!
     
-    
     /// 其他人名字
     @IBOutlet weak var othersName: UILabel!
     
     /// 结果值
     @IBOutlet weak var resultLabel: UILabel!
     
-    
-    func cellConfig(dataSource: HomeTimeLineDataSource, delegate: HomeTimeLineDelegate) {
+    func configVM(dataSource: HomeListViewModelProtocol) {
         
-        
-        imgView.image = dataSource.image
+        if dataSource.friendIconUrl == "" {
+            
+            imgView.image = dataSource.image
+            
+        } else {
+            
+            imgView.af_setCircleImageWithURL(NSURL(string: dataSource.friendIconUrl)!)
+        }
+
         nameLabel.text = dataSource.title
-        othersName.text = dataSource.others
+        othersName.text = dataSource.friendName
         resultLabel.attributedText = dataSource.resultNum
-        addAllViewLayout(dataSource.others)
+        addAllViewLayout(dataSource.friendName)
         
     }
+
     
     /**
      所有视图的布局
