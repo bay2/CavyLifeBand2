@@ -29,16 +29,8 @@ class HomeTimeLineTableCell: UITableViewCell {
     @IBOutlet weak var resultLabel: UILabel!
     
     func configVM(dataSource: HomeListViewModelProtocol) {
-        
-        if dataSource.friendIconUrl == "" {
-            
-            imgView.image = dataSource.image
-            
-        } else {
-            
-            imgView.af_setCircleImageWithURL(NSURL(string: dataSource.friendIconUrl)!)
-        }
 
+        imgView.image = dataSource.image
         nameLabel.text = dataSource.title
         othersName.text = dataSource.friendName
         resultLabel.attributedText = dataSource.resultNum
@@ -54,7 +46,6 @@ class HomeTimeLineTableCell: UITableViewCell {
         
         imgView.layer.masksToBounds = true
         imgView.layer.cornerRadius = imgView.frame.width / 2
-        
         headLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
         bottomLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
         nameLabel.textColor = UIColor(named: .HomeViewUserName)

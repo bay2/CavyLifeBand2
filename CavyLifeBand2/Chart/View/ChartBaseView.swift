@@ -51,7 +51,7 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
         let indexInWeek = firstDate!.indexInWeek()
         var monthArray = [firstDate!.toString(format: "M")]
         
-        for i in 1 ... dateStringArray.count {
+        for i in 1 ..< dateStringArray.count {
             
             switch timeBucketStyle {
                 
@@ -67,29 +67,20 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
                 }
                 
             case .Month:
-
-                let date = NSDate(fromString: dateStringArray[i], format: "yyyy.M.d")
-                let month = date!.toString(format: "M")
                 
-                if monthArray.contains(month) {
-                    
-                    continue
-                    
-                } else {
+                let month: String = NSDate(fromString: dateStringArray[i], format: "yyyy.M.d")!.toString(format: "M")
+                if monthArray.contains(month) == false {
                     
                     monthArray.append(month)
                     returnArray.append(dateStringArray[i])
-                    
                 }
             }
             
         }
         
-        
         return returnArray
 
     }
-    
     
     // 添加时间段的视图
     func addTimeBucketView() {
@@ -193,7 +184,6 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
             cell.deselectStatus()
             
             cell.label.text = NSDate(fromString: dates[indexPath.item], format: "yyyy.M.d")!.dateChangeToLabelText(timeBucketStyle)
-            // dates[indexPath.row].dateChangeToLabelText(timeBucketStyle)
             
             if indexPath.item == dates.count - 1 {
 
@@ -207,8 +197,7 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
             // 数据 List Cell
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChartInfoCollectionCell", forIndexPath: indexPath) as! ChartInfoCollectionCell
             
-            cell.timeData = NSDate(fromString: dates[indexPath.item], format: "yyyy.M.d")!.dateChangeToLabelText(timeBucketStyle)
-            // dates[indexPath.row].dateChangeToLabelText(timeBucketStyle)
+            cell.timeString = dates[indexPath.item]
             
             cell.viewStyle = self.viewStyle
             cell.timeBucketStyle = self.timeBucketStyle

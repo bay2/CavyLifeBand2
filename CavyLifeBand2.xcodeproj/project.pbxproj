@@ -21,7 +21,6 @@
 		4C5396B51CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396B41CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift */; };
 		4C5396C01CE190E600BCFAEB /* ShowStackedChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396BF1CE190E600BCFAEB /* ShowStackedChartsView.swift */; };
 		4C5396CA1CE1B28000BCFAEB /* ChartOtherSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */; };
-		4C5396CE1CE1B83B00BCFAEB /* ChartInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396CD1CE1B83B00BCFAEB /* ChartInfoViewModel.swift */; };
 		4C5396D01CE419EC00BCFAEB /* NSDate_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */; };
 		4C6895F41CE96CFD00CAC412 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F31CE96CFD00CAC412 /* ShareView.swift */; };
 		4C6895F81CE9A7BE00CAC412 /* ShareCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F71CE9A7BE00CAC412 /* ShareCollectionCell.swift */; };
@@ -347,7 +346,6 @@
 		4C5396B41CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsReqFriendProtocol.swift; sourceTree = "<group>"; };
 		4C5396BF1CE190E600BCFAEB /* ShowStackedChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStackedChartsView.swift; sourceTree = "<group>"; };
 		4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartOtherSetting.swift; sourceTree = "<group>"; };
-		4C5396CD1CE1B83B00BCFAEB /* ChartInfoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInfoViewModel.swift; sourceTree = "<group>"; };
 		4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate_Extension.swift; sourceTree = "<group>"; };
 		4C6895F31CE96CFD00CAC412 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		4C6895F71CE9A7BE00CAC412 /* ShareCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareCollectionCell.swift; sourceTree = "<group>"; };
@@ -804,7 +802,6 @@
 			children = (
 				4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */,
 				4CB7A0CF1CD3497F00DFB8DC /* ChartBaseViewModel.swift */,
-				4C5396CD1CE1B83B00BCFAEB /* ChartInfoViewModel.swift */,
 				4C6895FB1CEAF24A00CAC412 /* ShareViewModel.swift */,
 			);
 			path = ViewModel;
@@ -2176,7 +2173,6 @@
 				6836557E1CBC84B7009373EA /* SecondsCollectionViewCell.swift in Sources */,
 				91E1B4C31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift in Sources */,
 				91ACEC601CB65456008ED8B0 /* GuideSetModelView.swift in Sources */,
-				4C5396CE1CE1B83B00BCFAEB /* ChartInfoViewModel.swift in Sources */,
 				4CB7A07C1CD095C400DFB8DC /* HomeTimeLineTableCell.swift in Sources */,
 				917B98BE1CB8E841008698F5 /* UserAchievementCell.swift in Sources */,
 				4C4C602A1CE5C4790026C045 /* GuideViewConfigDefine.swift in Sources */,

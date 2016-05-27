@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 import Log
-
+import Datez
 
 // MARK: Step
 class ChartStepDataRealm: Object {
@@ -56,8 +56,6 @@ extension ChartsRealmProtocol {
     func queryTimeBucketFromFirstDay() -> [String]? {
         
         let userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-
-        var resultArray: [String] = []
         
         let today = NSDate().toString(format: "yyyy.M.d")
         
@@ -68,21 +66,10 @@ extension ChartsRealmProtocol {
             return [today]
         }
 
-        for perList in realmList {
-
-            let timeString = perList.time.toString(format: "yyyy.M.d")
-
-            if resultArray.contains(timeString) == false {
+        let firstDate = realmList.first?.time
+        
+        return firstDate!.untilTodayArrayWithFormatter("yyy.M.d")
                 
-                resultArray.append(timeString)
-            }
-            
-        }
-        // 如果没有今天的 就添加今天
-        if resultArray.contains("\(today)") == false {
-            resultArray.append(today)
-        }
-        return resultArray
     }
    
     
@@ -146,12 +133,12 @@ extension ChartsRealmProtocol {
      查询 日周月下 某一时段的 数据信息
      */
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData? {
-
+        
         if realm.objects(ChartStepDataRealm).count == 0 {
             return nil
         }
-        
-        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > '\(beginTime)' AND time < '\(endTime)' ")
+  
+        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@ ", beginTime, endTime)
         
         if dataInfo.count == 0 {
             return nil

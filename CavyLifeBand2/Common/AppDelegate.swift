@@ -30,10 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             
         #endif
         
-        if ez.isRelease {
-            Log.enabled = false
-        }
-        
+//        if ez.isRelease {
+//            Log.enabled = false
+//        }
+//        
         realmConfig()
         
         crashConfig()

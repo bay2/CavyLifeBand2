@@ -153,6 +153,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
             let healthRealm = HealthListRealm()
             
             healthRealm.friendId = infoList.friendId!
+            healthRealm.iconUrl = infoList.iconUrl!
             healthRealm.friendName = infoList.friendName!
             homeListRealm.healthList.append(healthRealm)
             
@@ -208,6 +209,8 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         if listRealm.healthList.count > 0 {
             
             for list in listRealm.healthList {
+                
+                Log.info(list.iconUrl)
                 
                 listVM.append(HomeListHealthViewModel(othersName: list.friendName, iconUrl: list.iconUrl))
             }

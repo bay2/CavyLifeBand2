@@ -130,7 +130,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
             
             let val1 = deepSleep[i]
             let val2 = lightSleep[i]
-            
+                        
             let dataEntrys = BarChartDataEntry(values: [val1, val2], xIndex: i)
             
         

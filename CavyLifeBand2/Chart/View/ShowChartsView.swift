@@ -33,17 +33,14 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         
         self.backgroundColor = UIColor(named: .ChartViewBackground)
         
+        setData(dataCount)
         setupBarLineChartView()
         
         addxAxis()
         addLeftAxis()
         addLegend()
         
-        setData(dataCount)
     }
-    
-    
-    
     
     /**
      总设置
@@ -119,6 +116,9 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
         
+//        if chartsData.count == 0 {
+//            return 
+//        }
         
 //        for i in 0 ..< chartsData.count {
 //            xVals.append(chartsData[i].time)

@@ -11,18 +11,19 @@ import EZSwiftExtensions
 import Realm
 import RealmSwift
 
-class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource, ChartsRealmProtocol{
+class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol{
 
     var viewStyle: ChartViewStyle = .StepChart
     var timeBucketStyle: TimeBucketStyle = .Day
+    let listCount = 4
     
     /// 时间标签的String
-    var timeData: String = ""
+    var timeString: String = ""
 
     ///  列表展示信息
     var listView: UITableView?
-    
-    let dataCount = 4
+
+    var listDataArray: [String] = []
     
     var realm: Realm = try! Realm()
     var userId: String = ""
@@ -34,19 +35,32 @@ class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITabl
         
         self.backgroundColor = UIColor(named: .ChartBackground)
         
-        addChartsViewLayout()
+        addChartsView()
         
-        addInfoTableViewLayout()
+        addInfoTableView()
     }
     
     /**
      添加 chartsView
      */
-    func addChartsViewLayout() {
+    func addChartsView() {
         
+        let date = NSDate(fromString: timeString, format: "yyyy.M.d")!
         
-//        let time: (beginTime: NSDate, endTime: NSDate) = NSDate().timeStringChangeToNSDate(timeData, timeBucket: timeBucketStyle)
+        let time: (beginTime: NSDate, endTime: NSDate) = date.timeStringChangeToNSDate(timeBucketStyle)
         
+        if viewStyle == .StepChart {
+            
+            let chartView = ShowChartsView()
+            chartView.timeBucketStyle = self.timeBucketStyle
+            
+            let stepRealms =  queryStepNumber(time.beginTime, endTime: time.endTime, timeBucket: timeBucketStyle)
+//            chartView.chartsData = stepRealms!.datas
+            
+            chartViewLayout(chartView)
+            chartView.configAllView()
+        }
+
         if viewStyle == .SleepChart && timeBucketStyle == .Day {
             
             let peiChartView = ShowPieChartsView()
@@ -66,22 +80,12 @@ class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITabl
             
         }
         
-        if viewStyle == .StepChart {
-            
-            let chartView = ShowChartsView()
-            chartView.timeBucketStyle = self.timeBucketStyle
-            chartView.configAllView()
-//            chartView.chartsData = queryStepNumber(time.beginTime, endTime: time.endTime, timeBucket: timeBucketStyle)!.datas
-            chartViewLayout(chartView)
-            
-        }
-
     }
     
     /**
      添加tableView
      */
-    func addInfoTableViewLayout() {
+    func addInfoTableView() {
         
         var listViewHeight: CGFloat = 0
         
@@ -139,17 +143,20 @@ class ChartInfoCollectionCell: UICollectionViewCell, UITableViewDelegate, UITabl
     
        
     // MARK: -- UITableViewDelegate
+}
+extension ChartInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         switch viewStyle {
             
         case .SleepChart:
             
-            return dataCount - 1
+            return listCount - 1
             
         case .StepChart:
             
-            return dataCount
+            return listCount
         }
         
     }
