@@ -88,13 +88,13 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
     let searchController = ContactsSearchController(searchResultsController: StoryboardScene.Contacts.instantiateSearchResultView())
     
     // 通讯录好友view
-    var addressBookTableView: UITableView = UITableView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight), style: .Plain)
+    var addressBookTableView: UITableView = UITableView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight - 164), style: .Plain)
     
     // 推荐好友View
-    var recommendView: ContactRecommendFriendView = ContactRecommendFriendView(frame: CGRectMake(ez.screenWidth, 0, ez.screenWidth, ez.screenHeight))
+    var recommendView: ContactRecommendFriendView = ContactRecommendFriendView(frame: CGRectMake(ez.screenWidth, 0, ez.screenWidth, ez.screenHeight - 164))
     
     // 附近好友View
-    var nearbyTableView: UITableView = UITableView(frame: CGRectMake(ez.screenWidth * 2, 0, ez.screenWidth, ez.screenHeight), style: .Plain)
+    var nearbyTableView: UITableView = UITableView(frame: CGRectMake(ez.screenWidth * 2, 0, ez.screenWidth, ez.screenHeight - 164), style: .Plain)
     
     // 搜索结果tableview
     var searchTableView: UITableView = UITableView(frame: CGRectMake(0, 40, ez.screenWidth, ez.screenHeight), style: .Plain)

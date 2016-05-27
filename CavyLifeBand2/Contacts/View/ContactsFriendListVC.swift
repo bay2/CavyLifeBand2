@@ -251,7 +251,11 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
 
 }
 
-extension ContactsFriendListVC {
+extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
     
     /**
      cell 编辑结束
@@ -400,6 +404,13 @@ extension ContactsFriendListVC {
         cell?.showEditing(true)
         
         return .Delete
+        
+    }
+    
+    /**
+     ！！！这个方法必须实现，不然左滑无效果
+     */
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
     }
     
