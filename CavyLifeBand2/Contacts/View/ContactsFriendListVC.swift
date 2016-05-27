@@ -285,7 +285,7 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
         }
         
         let concernAction = createFollowAction(indexPath)
-        let pkRowAction = createPkAction()
+        let pkRowAction = createPkAction(indexPath)
         let deleteRowAction = createDelAction(indexPath)
        
         return [deleteRowAction, concernAction, pkRowAction]
@@ -341,12 +341,26 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
     /**
      创建PK按钮
      */
-    func createPkAction() -> UITableViewRowAction {
+    func createPkAction(indexPath: NSIndexPath) -> UITableViewRowAction {
         
-        let pkRowAction = UITableViewRowAction(style: .Default, title: " PK ") {_, _ in
+        let pkRowAction = UITableViewRowAction(style: .Default, title: " PK ") {[unowned self] _, _ in
             
             self.contactsTable.editing = false
             
+            var friendList = self.dataGroup!.contactsGroupList![indexPath.section].1
+            
+            let friendVM = friendList[indexPath.row] as! ContactsFriendCellModelView
+            
+            let targetVC = StoryboardScene.PK.instantiatePKInvitationVC()
+            
+            let dataSource = PKInvitationVCViewModel(realm: self.realm)
+            
+            dataSource.setPKWaitCompetitorInfo(friendVM.friendId, nickName: friendVM.name, avatarUrl: friendVM.headImagUrl)
+            
+            targetVC.dataSource = dataSource
+            
+            self.pushVC(targetVC)
+                        
         }
         
         pkRowAction.backgroundColor = UIColor(named: .ContactsPKBtnColor)
