@@ -70,10 +70,6 @@ class LeftMenViewController: UIViewController, HomeUserDelegate, UserInfoRealmOp
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        
-    }
-    
     func updateUI(result: Results<UserInfoModel>) {
         
         self.userName.text = result.first?.nickname ?? ""

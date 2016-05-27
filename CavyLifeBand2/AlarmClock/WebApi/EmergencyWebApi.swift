@@ -25,7 +25,7 @@ class EmergencyWebApi: NetRequestAdapter, EmergencyContactRealmListOperateDelega
      
      - throws:
      */
-    func setEmergencyPhoneList(phoneList: [[String : String]], callBack: CompletionHandlernType? = nil) throws {
+    func setEmergencyPhoneList(phoneList: [[String: String]], callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.SetEmergencyPhone.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: self.userId,

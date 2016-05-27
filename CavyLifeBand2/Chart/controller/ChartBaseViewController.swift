@@ -73,9 +73,9 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
             // 周 的时间段
             weekDateArray.append(list.first!.time)
             
-            let index: Int = NSDate().indexInArray(list[i].time)
+            let index: Int = list[i].time.indexInArray() - 1
             
-            if  index != 0 {
+            if index != 0 {
                 
                 mod = (7 - (index + 1)) * 24 * 6
             }

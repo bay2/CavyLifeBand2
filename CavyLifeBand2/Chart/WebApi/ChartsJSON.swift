@@ -48,15 +48,14 @@ struct StepChartsData {
 struct PerStepChartsData {
     
     var time: String
-    var kilometer: Int
+    var kilometer: CGFloat
 }
 
 // MARK: Sleep
 struct PerSleepChartsData {
     
     var time: String
-    var deepSleep: Int
-    var lightSleep: Int
+    var tilts: Int
     
 }
 
