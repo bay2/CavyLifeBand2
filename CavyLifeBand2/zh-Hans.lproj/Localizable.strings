@@ -205,6 +205,8 @@
 "Contacts.NavTitle.Remark" = "修改备注";
 "Contacts.NavTitle.AccountInfo" = "账户信息";
 "Contacts.Request.SureButton" = "确定";
+"Contacts.EmptyView.NearbyInfo" = "附近暂时未搜索到";
+"Contacts.EmptyView.AddressBookInfo" = "手机通讯录中的好友中\n还没加入豚鼠";
 
 //账户信息
 "AccountInfo.Title" = "账户信息";

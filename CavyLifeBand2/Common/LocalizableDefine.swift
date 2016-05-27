@@ -353,6 +353,10 @@ enum L10n {
   case ContactsNavTitleAccountInfo
   /// 确定
   case ContactsRequestSureButton
+  /// 附近暂时未搜索到
+  case ContactsEmptyViewNearbyInfo
+  /// 手机通讯录中的好友中\n还没加入豚鼠
+  case ContactsEmptyViewAddressBookInfo
   /// 账户信息
   case AccountInfoTitle
   /// 退出登录
@@ -922,6 +926,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.NavTitle.AccountInfo")
       case .ContactsRequestSureButton:
         return L10n.tr("Contacts.Request.SureButton")
+      case .ContactsEmptyViewNearbyInfo:
+        return L10n.tr("Contacts.EmptyView.NearbyInfo")
+      case .ContactsEmptyViewAddressBookInfo:
+        return L10n.tr("Contacts.EmptyView.AddressBookInfo")
       case .AccountInfoTitle:
         return L10n.tr("AccountInfo.Title")
       case .AccountInfoLoginoutButtonTitle:

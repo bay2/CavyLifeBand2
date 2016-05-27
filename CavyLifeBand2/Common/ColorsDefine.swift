@@ -132,6 +132,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f2f2f2"></span>
     /// Alpha: 100% <br/> (0xf2f2f2ff)
     case ContactsSectionColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#cccccc"></span>
+    /// Alpha: 100% <br/> (0xccccccff)
+    case ContactsTableEmptyTextColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 70% <br/> (0x000000b3)
     case ContactsTitleColor
@@ -393,6 +396,7 @@ extension UIColor {
       case .ContactsSearchBarColor: return 0xe6e6e6ff
       case .ContactsSearchFlagViewBg: return 0xffffff66
       case .ContactsSectionColor: return 0xf2f2f2ff
+      case .ContactsTableEmptyTextColor: return 0xccccccff
       case .ContactsTitleColor: return 0x000000b3
       case .ContactsUndoCareBtnColor: return 0x929292ff
       case .EmergencyContactCellAddBtnTitleColor: return 0xb8b8b8ff

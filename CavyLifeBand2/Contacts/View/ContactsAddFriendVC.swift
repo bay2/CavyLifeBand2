@@ -106,6 +106,12 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
     
     var addressBookFriendData: ContactsAddressBookFriendData?
     
+    var emptyViewRecommend: ContactListEmptyView?
+    
+    var emptyViewNearby: ContactListEmptyView?
+    
+    var emptyViewAddressBook: ContactListEmptyView?
+    
     // 主按钮视图
     @IBOutlet weak var buttonView: UIView!
 
@@ -132,7 +138,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
         addContactsTabButton()
         
         addScrollerView()
-        
+                
         addTableViewData(ContactsRecommendFriendData(viewController: self, tableView: recommendView.tableView), tableView: recommendView.tableView)
         addTableViewData(ContactsAddressBookFriendData(viewController: self, tableView: addressBookTableView), tableView: addressBookTableView)
         addTableViewData(ContactsSearchFriendData(viewController: self, tableView: searchTableView), tableView: searchTableView)
@@ -222,6 +228,22 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
 
     }
     
+    func createEmptyView() {
+        
+        emptyViewNearby = NSBundle.mainBundle().loadNibNamed("ContactListEmptyView", owner: nil, options: nil).first as? ContactListEmptyView
+        emptyViewNearby!.frame = nearbyTableView.frame
+        self.scrollView.addSubview(emptyViewNearby!)
+        
+        emptyViewRecommend = NSBundle.mainBundle().loadNibNamed("ContactListEmptyView", owner: nil, options: nil).first as? ContactListEmptyView
+        emptyViewRecommend!.frame = recommendView.frame
+        self.scrollView.addSubview(emptyViewRecommend!)
+        
+        emptyViewAddressBook = NSBundle.mainBundle().loadNibNamed("ContactListEmptyView", owner: nil, options: nil).first as? ContactListEmptyView
+        emptyViewAddressBook!.frame = nearbyTableView.frame
+        self.scrollView.addSubview(emptyViewAddressBook!)
+        
+    }
+    
     func createSearchTableView() {
         
         configureTableView(searchTableView)
@@ -248,7 +270,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
      创建通讯录添加好友视图
      */
     func createAddressBookView() {
-
+        
         configureTableView(self.addressBookTableView)
         self.scrollView.addSubview(self.addressBookTableView)
 
