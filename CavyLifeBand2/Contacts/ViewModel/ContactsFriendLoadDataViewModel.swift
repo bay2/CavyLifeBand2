@@ -60,7 +60,7 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
     weak var viewController: UIViewController?
     weak var tableView: UITableView?
     
-    init(viewController: UIViewController, tableView: UITableView, view: ContactListEmptyView? = nil) {
+    init(viewController: UIViewController, tableView: UITableView) {
         
         self.viewController = viewController
         self.tableView = tableView
@@ -121,8 +121,6 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
                     self.items.append(friendCellViewModel)
                 }
                 
-                if resultMsg.friendInfos?.count == 0 { self.tableView?.hidden = true }
-                
                 self.tableView!.reloadData()
                 
             }
@@ -149,7 +147,6 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
         
         self.viewController = viewController
         self.tableView = tableView
-        
     }
     
     /**
@@ -203,8 +200,6 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
                         self.items.append(ContactsAddressBookViewModel(viewController: self.viewController!, friendId: friendId, name: nickName, introudce: name, headImageUrl: headImageUrl))
                         
                     }
-                    
-                    if friendInfos.count == 0 { self.tableView?.hidden = true }
                     
                     self.tableView!.reloadData()
                     
@@ -325,9 +320,7 @@ class ContactsNearbyFriendData: ContactsAddFriendDataSync {
             for friendInfo in friendInfos {
                 self.items.append(ContactsNearbyCellViewModel(viewController: self.viewController!, friendInfo: friendInfo))
             }
-            
-            if friendInfos.count == 0 { self.tableView?.hidden = true }
-            
+
             self.tableView!.reloadData()
             
         }

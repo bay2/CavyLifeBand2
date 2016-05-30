@@ -106,6 +106,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
     
     var addressBookFriendData: ContactsAddressBookFriendData?
     
+    // 三个空数据提示view
     var emptyViewRecommend: ContactListEmptyView?
     
     var emptyViewNearby: ContactListEmptyView?
@@ -215,6 +216,9 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
         
         createScrollView()
         
+        // 空数据View
+        createEmptyView()
+        
         // 通讯录好友 按照名字首字母分组和联系人页面一样
         createAddressBookView()
 
@@ -228,21 +232,38 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
 
     }
     
+    /**
+     配置全部三个空数据View
+     */
     func createEmptyView() {
         
-        emptyViewNearby = NSBundle.mainBundle().loadNibNamed("ContactListEmptyView", owner: nil, options: nil).first as? ContactListEmptyView
+        emptyViewNearby = createSingleEmptyView()
         emptyViewNearby!.frame = nearbyTableView.frame
+        emptyViewNearby?.displayInfo = L10n.ContactsEmptyViewNearbyInfo.string
         self.scrollView.addSubview(emptyViewNearby!)
         
-        emptyViewRecommend = NSBundle.mainBundle().loadNibNamed("ContactListEmptyView", owner: nil, options: nil).first as? ContactListEmptyView
-        emptyViewRecommend!.frame = recommendView.frame
+        emptyViewRecommend = createSingleEmptyView()
+        emptyViewRecommend!.frame = recommendView.tableView.frame
         self.scrollView.addSubview(emptyViewRecommend!)
         
-        emptyViewAddressBook = NSBundle.mainBundle().loadNibNamed("ContactListEmptyView", owner: nil, options: nil).first as? ContactListEmptyView
-        emptyViewAddressBook!.frame = nearbyTableView.frame
+        emptyViewAddressBook = createSingleEmptyView()
+        emptyViewAddressBook!.frame = addressBookTableView.frame
+        emptyViewAddressBook?.displayInfo = L10n.ContactsEmptyViewAddressBookInfo.string
         self.scrollView.addSubview(emptyViewAddressBook!)
         
     }
+    
+    /**
+     创建单个空数据View实例
+     
+     - returns: ContactListEmptyView
+     */
+    func createSingleEmptyView() -> ContactListEmptyView {
+        let view = NSBundle.mainBundle().loadNibNamed("ContactListEmptyView", owner: nil, options: nil).first as? ContactListEmptyView
+        
+        return view!
+    }
+    
     
     func createSearchTableView() {
         
@@ -391,7 +412,14 @@ extension ContactsAddFriendVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let dataSourceViewModel = tableDictionary[tableView] else {
+            tableView.hidden = true
             return 0
+        }
+        
+        if dataSourceViewModel.rowCount == 0 {
+            tableView.hidden = true
+        } else {
+            tableView.hidden = false
         }
         
         return dataSourceViewModel.rowCount
