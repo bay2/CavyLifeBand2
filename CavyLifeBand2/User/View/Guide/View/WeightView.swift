@@ -91,8 +91,16 @@ class WeightView: UIView {
     }
     
     func rotaryKnobDidChange(){
-
-        valueLabel.text = String(format: "%.1f", rotaryView!.value)
+        
+        var weight = rotaryView?.value ?? 0.0
+        
+        let decimals = weight % 1
+        
+        // floor 向下取整
+        if decimals < 0.5 { weight = floor(weight) }
+        else { weight = floor(weight) + 0.5 }
+        
+        valueLabel.text = String(format: "%.1f", weight)
 
     }
     
