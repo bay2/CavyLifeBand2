@@ -96,6 +96,51 @@ class PKFinishRealmModel: Object, PKRecordRealmDataSource {
     
 }
 
+/**
+ *  pk 数据库 单条记录操作
+ */
+protocol SinglePKRealmModelOperateDelegate {
+    
+    var realm: Realm { get }
+    
+    // 通过pkId 获取进行中pk记录
+    func getPKDueRecordByPKId(pkid: String) -> PKDueRealmModel?
+    
+    // 通过PKId 获取已完成pk记录
+    func getPKFinishRecordByPKId(pkid: String) -> PKFinishRealmModel?
+    
+}
+
+extension SinglePKRealmModelOperateDelegate {
+
+    func getPKDueRecordByPKId(pkid: String) -> PKDueRealmModel? {
+        let predicate = NSPredicate(format: "pkId = %@", pkid)
+        
+        guard let due = realm.objects(PKDueRealmModel).filter(predicate).first else {
+            Log.warning("\(#function) 该记录不存在")
+            return nil
+        }
+        
+        return due
+    }
+    
+    func getPKFinishRecordByPKId(pkid: String) -> PKFinishRealmModel? {
+        let predicate = NSPredicate(format: "pkId = %@", pkid)
+        
+        guard let finish = realm.objects(PKFinishRealmModel).filter(predicate).first else {
+            Log.warning("\(#function) 该记录不存在")
+            return nil
+        }
+        
+        return finish
+    }
+
+}
+
+
+/**
+ *  pk 数据库 列表操作
+ */
 protocol PKRecordsRealmModelOperateDelegate {
     
     var realm: Realm { get }
@@ -151,6 +196,7 @@ protocol PKRecordsRealmModelOperateDelegate {
 
 
 extension PKRecordsRealmModelOperateDelegate {
+    
     
     func queryPKWaitRecordsRealm() -> Results<(PKWaitRealmModel)> {
         //loginUserID相等，且不是已撤销和已接受

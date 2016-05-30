@@ -111,6 +111,8 @@
 		68648A831CF3F234009D4BEE /* UpdateProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A821CF3F234009D4BEE /* UpdateProgressView.swift */; };
 		68648A891CF6936D009D4BEE /* GuideIntroduceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648A881CF6936D009D4BEE /* GuideIntroduceView.swift */; };
 		68648A8B1CF699C9009D4BEE /* GuideIntroduceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68648A8A1CF699C9009D4BEE /* GuideIntroduceView.xib */; };
+		68648ADF1CF83CFB009D4BEE /* ContactListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68648ADE1CF83CFB009D4BEE /* ContactListEmptyView.swift */; };
+		68648AE11CF83D0A009D4BEE /* ContactListEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68648AE01CF83D0A009D4BEE /* ContactListEmptyView.xib */; };
 		686A5E961CD9E6A200EB8D0E /* AcceptPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */; };
 		686A5E971CD9E6A200EB8D0E /* DeletePKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */; };
 		686A5E981CD9E6A200EB8D0E /* LaunchPKTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */; };
@@ -442,6 +444,8 @@
 		68648A821CF3F234009D4BEE /* UpdateProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateProgressView.swift; sourceTree = "<group>"; };
 		68648A881CF6936D009D4BEE /* GuideIntroduceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideIntroduceView.swift; sourceTree = "<group>"; };
 		68648A8A1CF699C9009D4BEE /* GuideIntroduceView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideIntroduceView.xib; sourceTree = "<group>"; };
+		68648ADE1CF83CFB009D4BEE /* ContactListEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactListEmptyView.swift; sourceTree = "<group>"; };
+		68648AE01CF83D0A009D4BEE /* ContactListEmptyView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactListEmptyView.xib; sourceTree = "<group>"; };
 		686A5E911CD9E6A200EB8D0E /* AcceptPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcceptPKTest.swift; sourceTree = "<group>"; };
 		686A5E921CD9E6A200EB8D0E /* DeletePKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeletePKTest.swift; sourceTree = "<group>"; };
 		686A5E931CD9E6A200EB8D0E /* LaunchPKTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPKTest.swift; sourceTree = "<group>"; };
@@ -1621,6 +1625,8 @@
 				91E1B4A91CA510BD008ADEE6 /* ContactsLetterView.swift */,
 				91E1B4AA1CA510BD008ADEE6 /* ContactsLetterView.xib */,
 				68648A741CEC71B8009D4BEE /* FullScreenImageView.swift */,
+				68648ADE1CF83CFB009D4BEE /* ContactListEmptyView.swift */,
+				68648AE01CF83D0A009D4BEE /* ContactListEmptyView.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1811,6 +1817,7 @@
 				4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */,
 				91EB79691CAE075C00ED3E67 /* Profile_Ok.json in Resources */,
 				91A2EC941CB350D200361952 /* AccountInfoSecurityCell.xib in Resources */,
+				68648AE11CF83D0A009D4BEE /* ContactListEmptyView.xib in Resources */,
 				91EB79581CAC049700ED3E67 /* SearchFrendListResult.json in Resources */,
 				917B98BF1CB8E841008698F5 /* UserAchievementCell.xib in Resources */,
 				91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */,
@@ -2106,6 +2113,7 @@
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
 				4CB7A0701CD095C400DFB8DC /* BandInfoView.swift in Sources */,
 				4CD5AABE1CEDA6030011CD13 /* HomeListWebApi.swift in Sources */,
+				68648ADF1CF83CFB009D4BEE /* ContactListEmptyView.swift in Sources */,
 				917B98C01CB8E841008698F5 /* UserAchievementView.swift in Sources */,
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
 				4CD5AAC51CEEE22E0011CD13 /* HomeListOper.swift in Sources */,

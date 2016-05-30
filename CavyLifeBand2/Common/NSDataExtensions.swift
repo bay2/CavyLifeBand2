@@ -257,9 +257,13 @@ extension NSData {
         
     }
     
-    subscript(subRange: Range<Int>) -> NSData {
+    subscript(subRange: Range<Int>) -> NSData? {
         
         let bytesArray = self.arrayOfBytes()
+        
+        if bytesArray.count <= subRange.endIndex {
+            return nil
+        }
         
         return NSData(bytes: Array(bytesArray[subRange]))
         

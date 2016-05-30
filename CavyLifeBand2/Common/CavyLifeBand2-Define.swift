@@ -203,7 +203,7 @@ struct BindBandInfo {
             
         }
         
-        guard let userBindBand = NSKeyedUnarchiver.unarchiveObjectWithData(userMac) as? [String: String] else {
+        guard let userBindBand = NSKeyedUnarchiver.unarchiveObjectWithData(userMac) as? [String: NSData] else {
             self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:])
             return
         }
@@ -225,7 +225,7 @@ struct BindBandInfo {
 struct BindBandInfoStorage {
     
     var defaultBindBand: String
-    var userBindBand: [String: String]
+    var userBindBand: [String: NSData]
     
     
 }

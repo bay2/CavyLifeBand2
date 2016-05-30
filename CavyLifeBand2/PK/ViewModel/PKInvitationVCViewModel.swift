@@ -14,8 +14,6 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
     
     var loginUserId: String
     
-    var competitorId: String
-    
     var selectTime: String?
     
     
@@ -36,7 +34,6 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
         self.realm = realm
         
         self.loginUserId  = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-        self.competitorId = ""
         
         pkWaitRealmModel = PKWaitRealmModel()
         

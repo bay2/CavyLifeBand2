@@ -18,7 +18,7 @@ struct GuideGenderViewModel: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var centerView: UIView { return GenderView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight)) }
+    var centerView: UIView = GenderView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight)) 
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -49,7 +49,7 @@ struct GuideBirthdayViewModel: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var centerView: UIView { return BirthdayView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight)) }
+    var centerView: UIView = BirthdayView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight))
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -79,7 +79,7 @@ struct GuideHeightViewModel: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var centerView: UIView { return HightView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight)) }
+    var centerView: UIView = HightView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight))
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -108,7 +108,7 @@ struct GuideWeightViewModel: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var centerView: UIView { return WeightView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight)) }
+    var centerView: UIView = WeightView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight))
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         

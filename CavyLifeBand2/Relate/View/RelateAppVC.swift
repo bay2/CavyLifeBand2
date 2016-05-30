@@ -50,21 +50,13 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
         
         tableView.dataSource = self
         
-        tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
-        
-        tableView.separatorStyle = .None
+        tableView.backgroundColor = UIColor(named: .RalateAppTableBGColor)
         
         tableView.tableFooterView = UIView()
         
         tableView.registerNib(UINib.init(nibName: relateAppCellID, bundle: nil), forCellReuseIdentifier: relateAppCellID)
         
         self.tableView.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: #selector(RelateAppVC.loadDataByIndex))
-        
-    }
-    
-    func downloadAction(sender: UIButton) {
-        
-        goDetailInfoWeb(sender.tag)
         
     }
     
@@ -105,8 +97,7 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
                 
                 for i in 0..<gameList.count {
                     
-                    self.tableDataSource.append(RelateAppCellModel(gameModel: gameList[i], index: self.tableDataSource.count))
-                    
+                    self.tableDataSource.append(RelateAppCellModel(gameModel: gameList[i]))
                     
                 }
                 
@@ -127,22 +118,27 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
 // MARK: - UITableViewDelegate
 extension RelateAppVC: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 10.0
-    }
-    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 92.0
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIView()
-    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-        goDetailInfoWeb(indexPath.section)
+        goDetailInfoWeb(indexPath.row)
+        
+    }
+    
+    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if cell.respondsToSelector(Selector("setSeparatorInset:")) {
+            cell.separatorInset = UIEdgeInsetsZero
+        }
+        if cell.respondsToSelector(Selector("setLayoutMargins:")) {
+            cell.layoutMargins = UIEdgeInsetsZero
+        }
+        
     }
     
 }
@@ -151,18 +147,18 @@ extension RelateAppVC: UITableViewDelegate {
 extension RelateAppVC: UITableViewDataSource {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return tableDataSource.count
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return tableDataSource.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(relateAppCellID, forIndexPath: indexPath) as? RelateAppCell
         
-        cell?.configure(tableDataSource[indexPath.section])
+        cell?.configure(tableDataSource[indexPath.row])
         
         return cell!
         

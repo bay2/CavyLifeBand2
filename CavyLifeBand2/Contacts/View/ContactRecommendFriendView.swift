@@ -18,7 +18,7 @@ class ContactRecommendFriendView: UIView {
         super.init(frame: frame)
         
         // 添加 SearchController 和 TableView
-        tableView.frame = CGRectMake(0, 44, ez.screenWidth, ez.screenHeight)
+        tableView.frame = CGRectMake(0, 44, ez.screenWidth, frame.height - 44)
         addSubview(tableView)
         tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
         self.backgroundColor = UIColor(named: .HomeViewMainColor)
