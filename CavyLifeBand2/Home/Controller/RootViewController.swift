@@ -73,9 +73,21 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         
-        CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandName
+        CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
         
-        CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = BindBandCtrl.bandName
+        if BindBandCtrl.bandMacAddress.length == 6 {
+            CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = BindBandCtrl.bandName +
+                "," +
+                String(format:"%02X:%02X:%02X:%02X:%02X:%02X",
+                BindBandCtrl.bandMacAddress[0],
+                BindBandCtrl.bandMacAddress[1],
+                BindBandCtrl.bandMacAddress[2],
+                BindBandCtrl.bandMacAddress[3],
+                BindBandCtrl.bandMacAddress[4],
+                BindBandCtrl.bandMacAddress[5])
+        }
+        
+        Log.info("defaultBindBand = \(CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand)")
         
         loadHomeView()
             
@@ -87,7 +99,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         // 需要等待 LifeBandBle.shareInterface 初始化，这里延时1s连接
         NSTimer.runThisAfterDelay(seconds: 1) {
-            LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName) {
+            LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandMacAddress) {
                 LifeBandCtrl.shareInterface.setDateToBand(NSDate())
 //                LifeBandCtrl.shareInterface.seLifeBandModel()
                 self.syncDataFormBand()
