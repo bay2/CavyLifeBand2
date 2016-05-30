@@ -212,7 +212,7 @@ extension PKInvitationVC: PKSelectOppTVCDelegate {
     
     
     func addBtnSetCompetitor(avatarUrl: String) {
-        addBtn.af_setImageForState(.Normal, URL: NSURL(string: avatarUrl)!)
+        addBtn.af_setImageForState(.Normal, URL: NSURL(string: avatarUrl)!, placeHolderImage: UIImage(named: "DefaultHead"))
     }
     
 }
