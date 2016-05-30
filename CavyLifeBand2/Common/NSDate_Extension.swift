@@ -51,7 +51,7 @@ extension NSDate {
             
         case .Week:
             
-            let index = self.indexInWeek()
+            let index = self.indexInArray()
             var monday = self
             let sunDay = (self.gregorian + (6 - index).day).date
             
@@ -79,13 +79,19 @@ extension NSDate {
      * 0 - 6
      * 6 周二
      */
-    func indexInWeek() -> Int {
+
+    func indexInArray() -> Int {
         
-        let weekName = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.Weekday, fromDate: self)
         
-        let string = self.toString(format: "EEE")
+        let days = components.weekday - 1
         
-        return weekName.lastIndexOf(string)!
+        if days == 0 {
+            return 7
+        }
+        
+        return days
         
     }
     
@@ -105,39 +111,6 @@ extension NSDate {
         return daysArray[month]
 
     }
-    
-    /**
-     某一天所在周的 周日的 date 的NSDate
-     */
-//    func sunInCurrentWeeks() -> String {
-//   
-//        let year = self.toString(format: "yyyy").toInt()
-//        let month = self.toString(format: "M").toInt()
-//        let day = self.toString(format: "d").toInt()
-//        
-//        ///  距离下一个周一的天数
-//        let index = 6 - indexInWeek()
-//        /// 这个月有几天
-//        let days = daysCount(year!, month: month!)
-//        
-//        var newMonth = month!
-//        var newDay = day! + index
-//        
-//        if newDay > days && newDay < 7 {
-//            
-//            newDay = newDay - days
-//            newMonth = newMonth + 1
-//        
-//        }
-//        
-//        if month > 12 { newMonth = 1 }
-//
-//        if newMonth != month { return"-\(newMonth).\(newDay)" }
-//        if newDay == day { return "" }
-//
-//        return "-\(newDay)"
-//        
-//    }
     
     /**
      时间转时间段
@@ -163,7 +136,7 @@ extension NSDate {
             
             // 举例 4.11-15 4.28-5.3 12.29-1.4
 
-            let index = self.indexInWeek()
+            let index = self.indexInArray()
             var monday = self
             let sunDay = (self.gregorian + (6 - index).day).date
             

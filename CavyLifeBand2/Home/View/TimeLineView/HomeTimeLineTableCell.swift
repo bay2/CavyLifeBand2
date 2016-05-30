@@ -30,7 +30,15 @@ class HomeTimeLineTableCell: UITableViewCell {
     
     func configVM(dataSource: HomeListViewModelProtocol) {
 
-        imgView.image = dataSource.image
+        Log.info(dataSource.friendIconUrl)
+        
+        if dataSource.friendIconUrl == "" {
+            
+            imgView.image = dataSource.image
+            
+        } else {
+            imgView.af_setCircleImageWithURL(NSURL(string: dataSource.friendIconUrl)!, placeholderImage: UIImage(asset: .DefaultHead))
+        }
         nameLabel.text = dataSource.title
         othersName.text = dataSource.friendName
         resultLabel.attributedText = dataSource.resultNum

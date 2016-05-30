@@ -90,7 +90,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
         
-        upperView?.allViewLayout()
         upperView?.viewController = self
         view.addSubview(upperView!)
         
@@ -212,36 +211,34 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
     }
     
+    /**
+     添加计步信息
+     
+     - author: sim cai
+     - date: 16-05-27 10:05:27
+     
+     
+     - parameter list: 计步信息JSON
+     */
     func addStepListRealm(list: StepMsg) {
-        
-        let chartStepRealm = ChartStepDataRealm()
-
-        chartStepRealm.userId = self.userId
-        chartStepRealm.step = list.stepCount
-        chartStepRealm.kilometer = CGFloat(list.stepCount) * 0.0006  // 相当于一部等于0.6米 公里数 = 步数 * 0.6 / 1000
         
         guard let date = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
             return
         }
         
-        chartStepRealm.time = date
-        
-        self.addStepData(chartStepRealm)
+        self.addStepData(ChartStepDataRealm(userId: self.userId, time: date, step: list.stepCount))
 
     }
     
     func addSleepListRealm(list: SleepMsg) {
-        let chartSleepRealm = ChartSleepDataRealm()
-
         
-        chartSleepRealm.userId = self.userId
-        chartSleepRealm.time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss")
-        // 根据翻身情况判断深睡浅睡
-        let condition = self.sleepCondition(list.rollCount)
-        chartSleepRealm.deepSleep = condition.0
-        chartSleepRealm.lightSleep = condition.1
+        guard let time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
+            Log.error("Time from erro [\(list.dateTime)]")
+            return
+        }
         
-        self.addSleepData(chartSleepRealm)
+        
+        self.addSleepData(ChartSleepDataRealm(userId: self.userId, time: time, tilts: list.rollCount))
 
     }
     
@@ -290,10 +287,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 
     }
     
+    
     /**
      显示成就页面
      */
     func showAchieveDetailView(notification: NSNotification){
+        
         
     }
     
@@ -301,6 +300,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      显示健康页面
      */
     func showHealthyDetailView(notification: NSNotification){
+        
+        
+        let requestVC = StoryboardScene.Contacts.instantiateContactsFriendInfoVC()
+//        requestVC.friendId = names![indexPath.row].friendId
+//        requestVC.friendNickName = names![indexPath.row].name
+        self.pushVC(requestVC)
         
     }
     

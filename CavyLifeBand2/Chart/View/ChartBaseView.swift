@@ -48,7 +48,7 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
         var returnArray: [String] = [dateStringArray[0]]
         
         let firstDate = NSDate(fromString: dateStringArray[0], format: "yyyy.M.d")
-        let indexInWeek = firstDate!.indexInWeek()
+        let indexInWeek = firstDate!.indexInArray()
         var monthArray = [firstDate!.toString(format: "M")]
         
         for i in 1 ..< dateStringArray.count {
@@ -213,6 +213,8 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 
         changeButtonStauts(collectionView, indexPath: indexPath)
+        // 添加新的页面的解析
+        
         
     }
     

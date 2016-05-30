@@ -13,6 +13,7 @@ import Log
 import AddressBook
 import Contacts
 import KeychainAccess
+import Datez
 
 class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate, PKRecordsUpdateFormWeb, LifeBandBleDelegate {
     
@@ -86,11 +87,14 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         // 需要等待 LifeBandBle.shareInterface 初始化，这里延时1s连接
         NSTimer.runThisAfterDelay(seconds: 1) {
-            LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName)
+            LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName) {
+                LifeBandCtrl.shareInterface.setDateToBand(NSDate())
+//                LifeBandCtrl.shareInterface.seLifeBandModel()
+                self.syncDataFormBand()
+            }
         }
         
     }
-    
     
     /**
      加载主页面视图
