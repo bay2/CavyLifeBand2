@@ -14,7 +14,7 @@ class HomeListRealm: Object {
     
     // 用户名
     dynamic var userId: String = ""
-    // 时间 yyyy.M.dd
+    // 时间 yyyy.M.d
     dynamic var time: String  = ""
     // 步数
     dynamic var stepCount: Int = 0

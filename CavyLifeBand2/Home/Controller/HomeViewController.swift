@@ -33,8 +33,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
     }()
     
-   
-    
     var navTitle: String { return "" }
     
     /// 上部分 计步睡眠天气页面
@@ -289,10 +287,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 
     }
     
+    
     /**
      显示成就页面
      */
     func showAchieveDetailView(notification: NSNotification){
+        
         
     }
     
@@ -300,6 +300,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      显示健康页面
      */
     func showHealthyDetailView(notification: NSNotification){
+        
+        
+        let requestVC = StoryboardScene.Contacts.instantiateContactsFriendInfoVC()
+//        requestVC.friendId = names![indexPath.row].friendId
+//        requestVC.friendNickName = names![indexPath.row].name
+        self.pushVC(requestVC)
         
     }
     
