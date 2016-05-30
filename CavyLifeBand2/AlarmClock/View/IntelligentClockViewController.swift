@@ -61,6 +61,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -78,6 +79,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
         tableBaseSetting()
         
         if let empty = NSBundle.mainBundle().loadNibNamed("EmptyClockView", owner: nil, options: nil).first as? EmptyClockView {
+            
             emptyView = empty
             
             self.view.addSubview(emptyView!)
@@ -90,6 +92,8 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
             })
             
         }
+        
+        dataSource?.alarmListModel
         
     }
     
@@ -112,6 +116,11 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
      跳转添加闹钟
      */
     func onRightBtn() {
+        
+        if dataSource?.alarmListModel.alarmRealmList.count >= 2 {
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.AlarmClockAlarmClockCountError.string)
+            return
+        }
         
         let targetVC = StoryboardScene.AlarmClock.instantiateAddClockViewController()
         
@@ -158,24 +167,53 @@ extension IntelligentClockViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        guard let count = dataSource?.alarmListModel.alarmRealmList.count else {
-            return 0
-        }
-        
-        return count
+        return dataSource?.alarmListModel.alarmRealmList.count ?? 0
 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(intelligentClockCellID, forIndexPath: indexPath) as? IntelligentClockCell
+        guard let cell = tableView.dequeueReusableCellWithIdentifier(intelligentClockCellID, forIndexPath: indexPath) as? IntelligentClockCell else {
+            fatalError()
+        }
         
-        cell?.configure(IntelligentClockCellViewModel(alarm: dataSource!.alarmListModel.alarmRealmList[indexPath.row], index: indexPath.row))
+        guard let dataSource = dataSource else {
+            fatalError()
+        }
         
-        cell?.delegate = self
+        cell.configure(IntelligentClockCellViewModel(alarm: dataSource.alarmListModel.alarmRealmList[indexPath.row], index: indexPath.row))
         
-        return cell!
+        cell.delegate = self
         
+        setAlarmToBand(indexPath)
+        
+        return cell
+        
+    }
+    
+    /**
+     设置手环闹钟
+     
+     - parameter indexPath: 索引
+     */
+    func setAlarmToBand(indexPath: NSIndexPath) {
+        
+        guard let dataSource = dataSource else {
+            fatalError()
+        }
+        
+        if let time = NSDate(fromString: dataSource.alarmListModel.alarmRealmList[indexPath.row].alarmTime, format: "HH:mm") {
+            
+            let week = UInt8(dataSource.alarmListModel.alarmRealmList[indexPath.row].alarmDay)
+            
+            if dataSource.alarmListModel.alarmRealmList[indexPath.row].isOpen == false {
+                LifeBandCtrl.shareInterface.setAlarmToBand(indexPath.row, time: time, week: week, model: .Off)
+            } else {
+                let model: LifeBandCtrl.BandAlarmType = week == 0 ? .Immediate : .Cycle
+                LifeBandCtrl.shareInterface.setAlarmToBand(indexPath.row, time: time, week: week, model: model)
+            }
+            
+        }
     }
     
 }
@@ -199,6 +237,7 @@ extension IntelligentClockViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         let tableHeaderView = IntelligentClockTableHeaderView(frame: CGRect(x: 0, y: 0, w: ez.screenWidth - tableViewMargin * 2, h: tableSectionHederHeight))
         
         return tableHeaderView

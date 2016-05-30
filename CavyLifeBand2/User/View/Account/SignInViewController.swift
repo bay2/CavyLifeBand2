@@ -240,7 +240,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
             if let bindBandValue = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] {
                 
                 // 没绑定并且蓝牙没打开
-                if bindBandValue.isEmpty {
+                if bindBandValue.length == 0 {
                 
                     //用户未绑定，走绑定流程
                     self.gotoBinding()
@@ -250,7 +250,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
                 
                 // 手环已绑定，记录手环信息，root 页面中会根据此属性设置绑定的手环
 //                GuideUserInfo.userInfo.bandName = bindBandValue
-                BindBandCtrl.bandName = bindBandValue
+                BindBandCtrl.bandMacAddress = bindBandValue
                 
                 
             }

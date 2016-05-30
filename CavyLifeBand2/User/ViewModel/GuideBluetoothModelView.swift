@@ -103,7 +103,8 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
         
         LifeBandBle.shareInterface.bleBinding {
             
-            BindBandCtrl.bandName = $0
+            BindBandCtrl.bandName       = $0
+            BindBandCtrl.bandMacAddress = $1
             
             let rootViewController = StoryboardScene.Guide.instantiateGuideView()
             let linkingVM = GuideBandLinking()
@@ -160,7 +161,7 @@ struct GuideBandLinking: GuideViewModelPotocols, LifeBandBleDelegate  {
         
         LifeBandBle.shareInterface.lifeBandBleDelegate = self
         
-        LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName) {
+        LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandMacAddress) {
             
             let rootViewController = StoryboardScene.Guide.instantiateGuideView()
             let bandVM = GuideBandSuccess()
@@ -249,7 +250,7 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
         if BindBandCtrl.bindScene == .Rebind {
             
             let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-            CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandName
+            CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
             
         }
         
@@ -278,7 +279,7 @@ struct GuideBandFail: GuideViewModelPotocols {
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
-        LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandName)
+        LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandMacAddress)
         
     }
     

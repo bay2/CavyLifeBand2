@@ -22,6 +22,7 @@ pod 'Charts'
 pod 'Charts/Realm'
 pod 'RandomKit'
 pod 'KMPlaceholderTextView'
+pod 'Datez'
 
 target :CavyLifeBand2Tests, :exclusive => true do
     pod 'OHHTTPStubs'

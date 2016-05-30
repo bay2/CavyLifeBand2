@@ -19,6 +19,7 @@ class AlarmRealmModel: Object {
     let owners = LinkingObjects(fromType: AlarmRealmListModel.self, property: "alarmRealmList")
     
     func alarmDayToString() -> String {
+        
         //十进制数字转成二进制字符串
         let binarySum = String(alarmDay, radix: 2)
         

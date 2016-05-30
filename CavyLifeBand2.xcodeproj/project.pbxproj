@@ -183,6 +183,7 @@
 		9114D1FD1C97AB05008CB4CE /* WeightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E01C97AB05008CB4CE /* WeightView.swift */; };
 		9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */; };
 		9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */; };
+		911FDB781CF7F2CE00F2E42E /* RootViewControllerExtSavaStepSleep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 911FDB771CF7F2CE00F2E42E /* RootViewControllerExtSavaStepSleep.swift */; };
 		9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */; };
 		912D29DB1C6088B5005A06E9 /* SignInTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912D29DA1C6088B5005A06E9 /* SignInTest.swift */; };
 		912D29DD1C609FFD005A06E9 /* Sign_Up_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 912D29DC1C609FFD005A06E9 /* Sign_Up_Ok.json */; };
@@ -249,6 +250,9 @@
 		91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B04DDB1CB3EC83007E67B0 /* GuideViewProtocol.swift */; };
 		91B04DE31CB4A39C007E67B0 /* AccountModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B04DE01CB4A39C007E67B0 /* AccountModelView.swift */; };
 		91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B04DE11CB4A39C007E67B0 /* GuideBluetoothModelView.swift */; };
+		91B49AEA1CF29B080017CC69 /* LifeBandCtrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B49AE91CF29B080017CC69 /* LifeBandCtrl.swift */; };
+		91B49AED1CF446540017CC69 /* LifeBandSyncData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B49AEC1CF446540017CC69 /* LifeBandSyncData.swift */; };
+		91B49AF01CF45E870017CC69 /* NSDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B49AEF1CF45E870017CC69 /* NSDataExtensions.swift */; };
 		91B49C7E1CF56CD00017CC69 /* GuideLinking.gif in Resources */ = {isa = PBXBuildFile; fileRef = 91B49C7C1CF56CD00017CC69 /* GuideLinking.gif */; };
 		91BBB6061C671F1800EC1ED1 /* Sign_In_Error.json in Resources */ = {isa = PBXBuildFile; fileRef = 91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */; };
 		91C3AE501C461EA0006B67AF /* SecurityCode_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */; };
@@ -513,6 +517,7 @@
 		9114D1E01C97AB05008CB4CE /* WeightView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeightView.swift; sourceTree = "<group>"; };
 		9114D1E21C97AB05008CB4CE /* UserNetJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetJSON.swift; sourceTree = "<group>"; };
 		9114D1E31C97AB05008CB4CE /* UserNetRequestData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNetRequestData.swift; sourceTree = "<group>"; };
+		911FDB771CF7F2CE00F2E42E /* RootViewControllerExtSavaStepSleep.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewControllerExtSavaStepSleep.swift; sourceTree = "<group>"; };
 		912019451CD1AF3A00D8BC4C /* CavyLifeBand2-Swift.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CavyLifeBand2-Swift.h"; path = "CavyLifeBand2/CavyLifeBand2-Swift.h"; sourceTree = SOURCE_ROOT; };
 		9122AB191C7D766C00E2C31E /* StoryboardDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardDefine.swift; sourceTree = "<group>"; };
 		912D29DA1C6088B5005A06E9 /* SignInTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTest.swift; sourceTree = "<group>"; };
@@ -593,6 +598,9 @@
 		91B04DDB1CB3EC83007E67B0 /* GuideViewProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GuideViewProtocol.swift; path = Protocol/GuideViewProtocol.swift; sourceTree = "<group>"; };
 		91B04DE01CB4A39C007E67B0 /* AccountModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountModelView.swift; sourceTree = "<group>"; };
 		91B04DE11CB4A39C007E67B0 /* GuideBluetoothModelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = GuideBluetoothModelView.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		91B49AE91CF29B080017CC69 /* LifeBandCtrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeBandCtrl.swift; sourceTree = "<group>"; };
+		91B49AEC1CF446540017CC69 /* LifeBandSyncData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeBandSyncData.swift; sourceTree = "<group>"; };
+		91B49AEF1CF45E870017CC69 /* NSDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDataExtensions.swift; sourceTree = "<group>"; };
 		91B49C7C1CF56CD00017CC69 /* GuideLinking.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GuideLinking.gif; sourceTree = "<group>"; };
 		91BBB6051C671F1800EC1ED1 /* Sign_In_Error.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Sign_In_Error.json; sourceTree = "<group>"; };
 		91C3AE4F1C461EA0006B67AF /* SecurityCode_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SecurityCode_Ok.json; sourceTree = "<group>"; };
@@ -695,6 +703,7 @@
 				4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */,
 				9150CAB51CC89EA600A398E9 /* RightViewController.swift */,
 				4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */,
+				911FDB771CF7F2CE00F2E42E /* RootViewControllerExtSavaStepSleep.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1357,6 +1366,8 @@
 			isa = PBXGroup;
 			children = (
 				918AA22D1CE327DC0022AE30 /* LifeBandBLE.swift */,
+				91B49AE91CF29B080017CC69 /* LifeBandCtrl.swift */,
+				91B49AEC1CF446540017CC69 /* LifeBandSyncData.swift */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -1459,6 +1470,7 @@
 		91D274CB1C86ABA1004F1AA7 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				91B49AEF1CF45E870017CC69 /* NSDataExtensions.swift */,
 				916456441CE1C115002D2D87 /* AlamofireImageExtension.swift */,
 				91C3AE511C462FE5006B67AF /* String_Extension.swift */,
 				91C3AE551C474305006B67AF /* Log_Extension.swift */,
@@ -2081,6 +2093,7 @@
 				91ACEC621CB654BD008ED8B0 /* GuideInfoModelView.swift in Sources */,
 				917936C71CBB8E34002936E3 /* BaseViewController.swift in Sources */,
 				91DFA9221CD8C49F0036B939 /* PKListSectionView.swift in Sources */,
+				91B49AEA1CF29B080017CC69 /* LifeBandCtrl.swift in Sources */,
 				91E1B4F01CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift in Sources */,
 				4CB7A0DA1CD3497F00DFB8DC /* ChartTimeCollectionCell.swift in Sources */,
 				683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */,
@@ -2091,6 +2104,7 @@
 				68B4DED61CE1BDF600BE041C /* HelpFeedbackWebApi.swift in Sources */,
 				91B04DE31CB4A39C007E67B0 /* AccountModelView.swift in Sources */,
 				4CB7A07A1CD095C400DFB8DC /* HomeTimeLineSection.swift in Sources */,
+				91B49AED1CF446540017CC69 /* LifeBandSyncData.swift in Sources */,
 				918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */,
 				68E978061CC62B5600651724 /* PKInvitationVC.swift in Sources */,
 				91DFA91E1CD84DC20036B939 /* PKListDataSource.swift in Sources */,
@@ -2139,6 +2153,8 @@
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
 				4CB7A0731CD095C400DFB8DC /* MenuTableViewCell.swift in Sources */,
+				91B49AF01CF45E870017CC69 /* NSDataExtensions.swift in Sources */,
+				911FDB781CF7F2CE00F2E42E /* RootViewControllerExtSavaStepSleep.swift in Sources */,
 				91E1B4F71CA65E1C008ADEE6 /* ContactsWebApi.swift in Sources */,
 				68E978151CC77D8C00651724 /* PKInfoOrResultView.swift in Sources */,
 				91800A7E1CB38846000BDDF2 /* UserProfileProtocol.swift in Sources */,

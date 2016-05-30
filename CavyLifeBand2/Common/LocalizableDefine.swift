@@ -399,6 +399,8 @@ enum L10n {
   case AlarmClockCircleWeekdayInfo
   /// 双休日
   case AlarmClockCircleWeekendInfo
+  /// 手环最多只能添加2个闹钟
+  case AlarmClockAlarmClockCountError
   /// 安全
   case SettingSafetyTitle
   /// 点击添加
@@ -972,6 +974,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AlarmClock.CircleWeekday.Info")
       case .AlarmClockCircleWeekendInfo:
         return L10n.tr("AlarmClock.CircleWeekend.Info")
+      case .AlarmClockAlarmClockCountError:
+        return L10n.tr("AlarmClock.AlarmClockCountError")
       case .SettingSafetyTitle:
         return L10n.tr("Setting.Safety.Title")
       case .SettingSafetyTableCellContactButton:
