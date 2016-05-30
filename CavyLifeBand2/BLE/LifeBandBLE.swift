@@ -18,8 +18,9 @@ let revcCommandCharacteristicUUID = "0734594A-A8E7-4B1A-A6B1-CD5243059A57"
  */
 struct BindBandCtrl {
     
-    static var bandName = ""
-    static var bindScene: BindScene = .SignUpBind
+    static var bandMacAddress: NSData = NSData()
+    static var bandName: String      = ""
+    static var bindScene: BindScene   = .SignUpBind
     
 }
 
@@ -46,7 +47,7 @@ class LifeBandBle: NSObject {
     
     private var peripheral: CBPeripheral?
     
-    private var peripheralName: String = ""
+    private var peripheralMacAddress: NSData = NSData()
     
     private var sendCharacteristic: CBCharacteristic?
     
@@ -54,7 +55,7 @@ class LifeBandBle: NSObject {
     
     private var connectComplete: (Void -> Void)?
     
-    private var bindingComplete: (String -> Void)?
+    private var bindingComplete: ((String, NSData) -> Void)?
     
     // 蓝牙消息发送队列
     private var writeToPeripheralQueue: [String] = []
@@ -174,11 +175,11 @@ class LifeBandBle: NSObject {
      - parameter peripheralName:  手环名
      - parameter connectComplete: 回调
      */
-    func bleConnect(peripheralName: String, connectComplete: (Void -> Void)? = nil) {
+    func bleConnect(peripheralMacAddress: NSData, connectComplete: (Void -> Void)? = nil) {
         
         self.connectComplete = connectComplete
         
-        self.peripheralName = peripheralName
+        self.peripheralMacAddress = peripheralMacAddress
         
         self.startScaning()
         
@@ -193,7 +194,7 @@ class LifeBandBle: NSObject {
             return
         }
         
-        peripheralName = ""
+        peripheralMacAddress = NSData()
         
         self.centraManager?.cancelPeripheralConnection(peripheral)
         
@@ -204,7 +205,7 @@ class LifeBandBle: NSObject {
      
      - parameter bindingComplete: 回调
      */
-    func bleBinding(bindingComplete: (String -> Void)? = nil) {
+    func bleBinding(bindingComplete: ((String, NSData) -> Void)? = nil) {
         
         self.bindingComplete = bindingComplete
         
@@ -257,19 +258,23 @@ extension LifeBandBle: CBCentralManagerDelegate {
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String: AnyObject], RSSI: NSNumber) {
         
-        //连接设备
-        if peripheral.name == peripheralName {
-            
-            connect(central, peripheral: peripheral)
-            return
-            
-        }
-        
+
+        // kCBAdvDataManufacturerData
         guard let advertData = advertisementData["kCBAdvDataManufacturerData"] as? NSData else {
             return
         }
         
+         Log.info("\(advertData.toHexString())")
+        
         let data = advertData.arrayOfBytes()
+        
+        let macAddress = advertData[0...5]
+        
+        //连接设备
+        if macAddress == peripheralMacAddress {
+            connect(central, peripheral: peripheral)
+            return
+        }
         
         // 1 为点击绑定标识
         guard data.last == 1 else {
@@ -278,7 +283,7 @@ extension LifeBandBle: CBCentralManagerDelegate {
         
         Log.error("advertisementData: \(advertData.toHexString())")
         
-        bindingComplete?(peripheral.name ?? "")
+        bindingComplete?(peripheral.name ?? "", macAddress ?? NSData(bytes: [0, 0, 0, 0, 0, 0]))
         
     }
     

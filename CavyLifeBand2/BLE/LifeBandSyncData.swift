@@ -238,7 +238,7 @@ class LifeBandSyncData {
      */
     private func saveTiltsAndStepsData(beginDate: NSDate, data: NSData, reslut: LifeBandSyncReslut<[TitlsAndSteps], LifeBandSyncDataError> -> Void) -> Bool {
         
-        if data[2...3].uint16 == 0xFFFF {
+        if data[2...3]?.uint16 == 0xFFFF {
             
             reslut(.Success(tiltsAndStepsInfo))
             packetNo = 0
@@ -270,7 +270,9 @@ class LifeBandSyncData {
         
         for i in 4..<data.length where i % 4 == 0  {
             
-            let dataTiltsAndStep = dataTransformTitlsAndSteps(SyncDateCtrl(dateCmd: data[2]), data: data[i...i+3])
+            guard let dataTiltsAndStep = dataTransformTitlsAndSteps(SyncDateCtrl(dateCmd: data[2]), data: data[i...i+3] ?? NSData(bytes: [0, 0])) else {
+                continue
+            }
             
             if dataTiltsAndStep.steps == 0 && dataTiltsAndStep.tilts == 0 {
                 continue
@@ -294,11 +296,11 @@ class LifeBandSyncData {
      
      - returns: 时间，睡眠信息，步数
      */
-    private func dataTransformTitlsAndSteps(dateCmd: SyncDateCtrl, data: NSData) -> TitlsAndSteps {
+    private func dataTransformTitlsAndSteps(dateCmd: SyncDateCtrl, data: NSData) -> TitlsAndSteps? {
         
         let no    = Int(data[0])
         let tilts = Int(data[1])
-        let step  = Int(data[2...3].uint16.bigEndian) // 这里需要做大小端转换
+        let step  = Int((data[2...3] ?? NSData(bytes: [0, 0])).uint16.bigEndian) // 这里需要做大小端转换
         
         let newDate = (dateCmd.toDate().gregorian + (no * 10).minute).date
         
