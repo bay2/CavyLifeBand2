@@ -19,7 +19,7 @@ let revcCommandCharacteristicUUID = "0734594A-A8E7-4B1A-A6B1-CD5243059A57"
 struct BindBandCtrl {
     
     static var bandMacAddress: NSData = NSData()
-    static var bandName:  String      = ""
+    static var bandName: String      = ""
     static var bindScene: BindScene   = .SignUpBind
     
 }

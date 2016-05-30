@@ -78,7 +78,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         if BindBandCtrl.bandMacAddress.length == 6 {
             CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = BindBandCtrl.bandName +
                 "," +
-                String(format:"%02X:%02X:%02X:%02X:%02X:%02X",
+                String(format: "%02X:%02X:%02X:%02X:%02X:%02X",
                 BindBandCtrl.bandMacAddress[0],
                 BindBandCtrl.bandMacAddress[1],
                 BindBandCtrl.bandMacAddress[2],
