@@ -8,17 +8,25 @@
 
 import UIKit
 import EZSwiftExtensions
+import RealmSwift
 
-class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ChartsRealmProtocol {
 
+    var realm: Realm = try! Realm()
+    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId}
+    
     /// 时间轴滑块
     var collectionView: UICollectionView?
     
-    var dataArray: Array<HomeDateMoudle> = []
-    var dateCount = 20
+    var dateArray: [String] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        
+        self.dateArray = self.queryHomeTimeBucket()!
+            
+        
         
         collectionViewLayOut(frame)
         
@@ -40,11 +48,11 @@ class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDele
         collectionView!.backgroundColor = UIColor.whiteColor()
         collectionView!.showsHorizontalScrollIndicator = false
         collectionView!.alwaysBounceHorizontal = true
-        collectionView!.contentSize = CGSizeMake(CGFloat(dateCount) * ez.screenWidth, 0)
-        collectionView!.contentOffset = CGPointMake(CGFloat(dateCount) * ez.screenWidth, 0)
+        collectionView!.contentSize = CGSizeMake(CGFloat(dateArray.count) * ez.screenWidth, 200)
+        collectionView!.contentOffset = CGPointMake(CGFloat(dateArray.count) * ez.screenWidth, 200)
         collectionView!.dataSource = self
         collectionView!.delegate = self
-        collectionView!.registerClass(HomeDateTimeLineCell.self, forCellWithReuseIdentifier: "HomeDateTimeLineCell")
+        collectionView!.registerNib(UINib(nibName: "HomeDateTimeLineCell", bundle: nil), forCellWithReuseIdentifier: "HomeDateTimeLineCell")
         self.addSubview(collectionView!)
         collectionView!.snp_makeConstraints { make in
             make.left.top.right.bottom.equalTo(self)
@@ -58,14 +66,15 @@ class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDele
     // MARK: -- collectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return dateCount
+        return dateArray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeDateTimeLineCell", forIndexPath: indexPath) as! HomeDateTimeLineCell
-        
-        
+                
+        cell.timeString = dateArray[indexPath.item]
+        cell.configLayout()
         return cell
     }
 
@@ -100,7 +109,7 @@ extension HomeTimeLineView: UIScrollViewDelegate {
         var count = Int(countFloat)
         Log.info(count)
         
-        if count < 1 || count > dateCount - 2 {
+        if count < 0 || count > dateArray.count {
             return
         }
         
@@ -118,7 +127,7 @@ extension HomeTimeLineView: UIScrollViewDelegate {
     }
     
     /**
-      改变页数
+      改变页数 并重新解析数据
      
      - parameter sender: 通知
      */

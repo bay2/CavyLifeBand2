@@ -42,6 +42,7 @@ class IntelligentClockCell: UITableViewCell {
     }
     
     func configure(dataSource: IntelligentClockCellDataSource) -> Void {
+        
         timeLabel.text = dataSource.time
 
         dayLabel.text  = dataSource.day
@@ -69,6 +70,7 @@ protocol IntelligentClockCellDataSource {
 }
 
 struct IntelligentClockCellViewModel: IntelligentClockCellDataSource {
+    
     var time: String
     
     var day: String

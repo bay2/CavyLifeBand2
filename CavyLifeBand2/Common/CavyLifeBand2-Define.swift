@@ -203,7 +203,7 @@ struct BindBandInfo {
             
         }
         
-        guard let userBindBand = NSKeyedUnarchiver.unarchiveObjectWithData(userMac) as? [String: String] else {
+        guard let userBindBand = NSKeyedUnarchiver.unarchiveObjectWithData(userMac) as? [String: NSData] else {
             self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:])
             return
         }
@@ -225,7 +225,7 @@ struct BindBandInfo {
 struct BindBandInfoStorage {
     
     var defaultBindBand: String
-    var userBindBand: [String: String]
+    var userBindBand: [String: NSData]
     
     
 }
@@ -247,6 +247,11 @@ enum NotificationName: String {
     
 
     case ContactsFirendReqDeleteItem
+    case HomeShowStepView                   // 主页push 计步页面
+    case HomeShowSleepView                  // 主页push 睡眠页面
+    case HomeShowPKView                     // 主页push PK页面
+    case HomeShowAchieveView                  // 主页push 徽章页面
+    case HomeShowHealthyView                // 主页push 健康页面
     
 }
 

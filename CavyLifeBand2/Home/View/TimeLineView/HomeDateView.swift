@@ -8,8 +8,13 @@
 
 import UIKit
 import EZSwiftExtensions
+import RealmSwift
 
-class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ChartsRealmProtocol {
+    
+    var realm: Realm = try! Realm()
+    
+    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     /// label宽度
     var labelWidth = ez.screenWidth / 3
@@ -17,12 +22,15 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     /// 日期滑块
     var collectionView: UICollectionView?
     
-    /// 数据个数
-    var dateCount: Int = 20
+    // 时间轴数据
+    var dateArray: [String] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        dateArray = queryHomeTimeBucket()!
+        Log.info(dateArray)
+
         addAllViewLayout()
         
 
@@ -42,8 +50,9 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         collectionView!.backgroundColor = UIColor(named: .HomeViewMainColor)
         collectionView!.showsHorizontalScrollIndicator = false
         collectionView!.alwaysBounceHorizontal = true
-        collectionView!.contentSize = CGSizeMake(CGFloat(dateCount) * labelWidth, 0)
-        collectionView!.contentOffset = CGPointMake(CGFloat(dateCount - 1) * labelWidth, 0)
+        
+        collectionView!.contentSize = CGSizeMake(CGFloat(dateArray.count) * labelWidth, 100)
+        collectionView!.contentOffset = CGPointMake(CGFloat(dateArray.count - 1) * labelWidth, 100)
         collectionView!.snp_makeConstraints { make in
             make.left.right.top.bottom.equalTo(self)
         }
@@ -70,7 +79,7 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     // MARK: -- collectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return dateCount
+        return dateArray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -78,7 +87,7 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeDateCell", forIndexPath: indexPath) as! HomeDateViewCell
         
-        cell.dateLabel.text = "2016.4.\(indexPath.row)"
+        cell.dateLabel.text = dateArray[indexPath.row]   //"2016.4.\(indexPath.row)"
         
         return cell
     }
@@ -131,7 +140,7 @@ extension HomeDateView: UIScrollViewDelegate {
         
         var count = Int(countFloat)
         
-        if count < 1 || count > dateCount - 2 {
+        if count < 0 || count > dateArray.count {
             return
         }
         

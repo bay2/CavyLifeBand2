@@ -8,14 +8,11 @@
 
 import UIKit
 import Log
+import JSONJoy
 import EZSwiftExtensions
+import RealmSwift
 
-
-/** 
- 主页
- 
- */
-class HomeViewController: UIViewController, BaseViewControllerPresenter {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol {
     
     var leftBtn: UIButton? = {
         
@@ -26,7 +23,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         return button
     }()
     
-
     var rightBtn: UIButton? = {
         
         let button = UIButton(type: .System)
@@ -50,17 +46,34 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
     /// 下面时间轴View
     var timeLineView = HomeTimeLineView()
     
+    var realm: Realm = try! Realm()
+    
+    var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
+    
+
+    var aphlaView: UIView?
+    var activityView: UIActivityIndicatorView?
+    
+    // MARK: -- viewDidLoad
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomePushView.rawValue, object: nil)
+        parseChartListData()
 
         addAllView()
         
         self.updateNavUI()
         
-        // Do any additional setup after loading the view.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomePushView.rawValue, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showStepDetailView), name: NotificationName.HomeShowStepView.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showSleepDetailView), name: NotificationName.HomeShowSleepView.rawValue, object: nil)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showPKDetailView), name: NotificationName.HomeShowPKView.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showAchieveDetailView), name: NotificationName.HomeShowAchieveView.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showHealthyDetailView), name: NotificationName.HomeShowHealthyView.rawValue, object: nil)
+    
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -78,8 +91,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
-        upperView!.allViewLayout()
-        upperView!.viewController = self
+        
+        upperView?.viewController = self
         view.addSubview(upperView!)
         
         view.addSubview(dateView)
@@ -96,7 +109,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         }
         
     }
-    
+
     /**
      点击左侧按钮
      */
@@ -124,11 +137,11 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
      展示右侧菜单
      */
     func showRightView() {
-        
+    
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
         
     }
-    
+        
     /**
      跳转到新的视图
      
@@ -143,10 +156,175 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter {
         self.navigationController?.pushViewController(viewController, animated: false)
         
     }
+    
+    // MARK: --- 解析数据 保存数据库
+    
+    /**
+     解析 计步睡眠数据 并保存Realm
+     */
+    func parseChartListData() {
+        
+        if isExistStepChartsData() { return }
+        
+        // 计步
+        ChartsWebApi.shareApi.parseStepChartData { result in
+            
+            guard result.isSuccess else {
+                Log.error("Parse Home Lists Data Error")
+                return
+            }
+            
+            do {
+                
+                let netResult = try ChartStepMsg(JSONDecoder(result.value!))
+                for list in netResult.stepList {
+                    // 保存到数据库
+                    self.addStepListRealm(list)
+                }
+                
+            } catch let error {
+                
+                Log.error("\(#function) result error: \(error)")
+            }
+            
+        }
+        
+        if isExistSleepChartsData() { return }
+        
+        // 睡眠
+        ChartsWebApi.shareApi.parseSleepChartData { result in
+            guard result.isSuccess else {
+                Log.error("Parse Home Lists Data Error")
+                return
+            }
+            do {
+                Log.info(result.value!)
+                let netResult = try ChartSleepMsg(JSONDecoder(result.value!))
+                for list in netResult.sleepList {
+                    // 保存到数据库
+                    self.addSleepListRealm(list)
+                }
+                
+            } catch let error {
+                Log.error("\(#function) result error: \(error)")
+            }
+            
+        }
+        
+    }
+    
+    /**
+     添加计步信息
+     
+     - author: sim cai
+     - date: 16-05-27 10:05:27
+     
+     
+     - parameter list: 计步信息JSON
+     */
+    func addStepListRealm(list: StepMsg) {
+        
+        guard let date = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
+            return
+        }
+        
+        self.addStepData(ChartStepDataRealm(userId: self.userId, time: date, step: list.stepCount))
 
-    override func didReceiveMemoryWarning() {
+    }
+    
+    func addSleepListRealm(list: SleepMsg) {
+        
+        guard let time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
+            Log.error("Time from erro [\(list.dateTime)]")
+            return
+        }
+        
+        
+        self.addSleepData(ChartSleepDataRealm(userId: self.userId, time: time, tilts: list.rollCount))
+
+    }
+    
+    
+    /**
+     根据翻身次数 确定 深睡浅睡的时间 单位： 分钟
+     
+     - parameter rollCount: 翻身次数
+     
+     - returns: （深睡， 浅睡）
+     */
+    func sleepCondition(rollCount: Int) -> (Int, Int) {
+        
+        return (123, 243)
+    }
+    
+    // MARK: 加载详情
+    /**
+     显示计步页面
+     */
+    func showStepDetailView(){
+        
+        let stepVM = ChartViewModel(title: L10n.ContactsShowInfoStep.string, chartStyle: .StepChart)
+        let chartVC = ChartBaseViewController()
+        chartVC.configChartBaseView(stepVM)
+        self.pushVC(chartVC)
+        
+    }
+    
+    /**
+     显示睡眠页面
+     */
+    func showSleepDetailView(){
+        
+        let sleepVM = ChartViewModel(title: L10n.ContactsShowInfoSleep.string, chartStyle: .SleepChart)
+        let chartVC = ChartBaseViewController()
+        chartVC.configChartBaseView(sleepVM)
+        self.pushVC(chartVC)
+        
+    }
+    
+    /**
+     显示PK页面
+     */
+    func showPKDetailView(notification: NSNotification){
+
+    }
+    
+    /**
+     显示成就页面
+     */
+    func showAchieveDetailView(notification: NSNotification){
+        
+    }
+    
+    /**
+     显示健康页面
+     */
+    func showHealthyDetailView(notification: NSNotification){
+        
+    }
+    
+    func addActivityIndicatorView() {
+        Log.info("添加指示器")
+        aphlaView = UIView(frame: UIScreen.mainScreen().bounds)
+        aphlaView!.backgroundColor = UIColor.blackColor()
+        aphlaView!.alpha = 0.3
+        self.view.addSubview(aphlaView!)
+        activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+        activityView!.center = self.view.center
+        aphlaView!.addSubview(activityView!)
+        activityView!.startAnimating()
+    }
+  
+    func removeActivityIndicatorView() {
+        Log.info("移除指示器")
+        activityView?.stopAnimating()
+        aphlaView?.removeFromSuperview()
+    }
+    
+       override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
 }
+

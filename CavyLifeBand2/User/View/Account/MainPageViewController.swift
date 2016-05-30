@@ -14,6 +14,11 @@ class MainPageViewController: UIViewController {
     
     var imageViews = [UIImageView(image: UIImage(asset: .Banner_1)), UIImageView(image: UIImage(asset: .Banner_2)),
                       UIImageView(image: UIImage(asset: .Banner_3)), UIImageView(image: UIImage(asset: .Splash))]
+    
+    var guidePageDatasources: [GuideIntroduceViewDataSource] = [GuideSafetyDataSource(), GuideRemindDataSource(),
+                                                                GuidePKDataSource(), GuideLoginDataSource()]
+    
+
 
     @IBOutlet weak var pageScrollView: UIScrollView!
     
@@ -39,11 +44,11 @@ class MainPageViewController: UIViewController {
         
         configScrollView()
         
-        loadImageView()
+        configureGuidePageView()
+                
+        configButton()
         
         configPageCtrl()
-        
-        configButton()
         
         self.navBar?.translucent = false
         self.navigationController?.navigationBarHidden = true
@@ -65,7 +70,7 @@ class MainPageViewController: UIViewController {
      */
     func configScrollView() {
         
-        pageScrollView.contentSize = CGSizeMake(ez.screenWidth * CGFloat(imageViews.count), ez.screenHeight)
+        pageScrollView.contentSize = CGSizeMake(ez.screenWidth * CGFloat(guidePageDatasources.count), ez.screenHeight)
         
     }
     
@@ -114,31 +119,34 @@ class MainPageViewController: UIViewController {
     func configPageCtrl() {
         
         pageCtrl.currentPage = 0
-        pageCtrl.numberOfPages = imageViews.count
+        pageCtrl.numberOfPages = guidePageDatasources.count
         
         self.view.addSubview(pageCtrl)
         
         pageCtrl.snp_makeConstraints { make in
             
             make.centerX.equalTo(self.view)
-            make.bottom.equalTo(self.view).offset(-((buttonSize.height * 3) - (pageCtrl.size.height / 2)))
+            make.centerY.equalTo(self.signInBtn.snp_top).offset(-CavyDefine.spacingWidth25 * 2)
             
         }
         
     }
     
     /**
-     加载图片
+     配置导航背景页面
      */
-    func loadImageView() {
+    func configureGuidePageView() {
         
-        var i = 0
-        
-        for imageView in imageViews {
+        for i in 0..<guidePageDatasources.count {
             
-            imageView.frame = CGRectMake(CGFloat(i) * ez.screenWidth, 0, ez.screenWidth, ez.screenHeight)
-            pageScrollView.addSubview(imageView)
-            i += 1
+            let guide = NSBundle.mainBundle().loadNibNamed("GuideIntroduceView", owner: nil, options: nil).first as! GuideIntroduceView
+            
+            guide.configure(guidePageDatasources[i])
+            
+            guide.frame = CGRectMake(CGFloat(i) * ez.screenWidth, 0, ez.screenWidth, ez.screenHeight)
+            
+            pageScrollView.addSubview(guide)
+            
             
         }
         

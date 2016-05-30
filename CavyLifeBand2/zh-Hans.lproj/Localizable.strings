@@ -41,6 +41,7 @@
 "UserModuleErrorCode.LBSNil" = "LBS不能为空";
 "UserModuleErrorCode.PhoneNumListNil" = "电话号码列表不能为空";
 
+
 // 首页
 "MainPage.SignInBtn" = "登入";
 "MainPage.SignUpBtn" = "加入豚鼠";
@@ -206,6 +207,7 @@
 "Contacts.NavTitle.AccountInfo" = "账户信息";
 "Contacts.Request.SureButton" = "确定";
 
+
 //账户信息
 "AccountInfo.Title" = "账户信息";
 "AccountInfo.LoginoutButton.Title" = "退出登录";
@@ -226,6 +228,7 @@
 "AlarmClock.AlarmCircle.AlertTitle" = "请选择闹钟周期";
 "AlarmClock.EmptyView.Title" = "未设置闹钟";
 "AlarmClock.EmptyView.Info" = "手环震动唤醒，远离传统闹铃噪声";
+"AlarmClock.AlarmClockCountError" = "手环最多只能添加2个闹钟";
 
 //设置
 "Setting.Safety.Title" = "安全";
@@ -319,9 +322,13 @@
 "AlarmDay.Thursday" = "四";
 "AlarmDay.Friday" = "五";
 "AlarmDay.Saturday" = "六";
+<<<<<<< HEAD
+"AlarmDay.Sunday" = "日";
+=======
 "AlarmDay.Sunday" = "日";
 
 // 固件升级
 "UpdateProgress.Info" = "请勿退出应用或关闭手环";
 "UpdateProgress.title" = "手环正在升级";
 
+>>>>>>> c61851a12332edc486260b7cac7ce795d27c6c97

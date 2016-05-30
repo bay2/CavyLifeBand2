@@ -30,9 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             
         #endif
         
-        if ez.isRelease {
-            Log.enabled = false
-        }
+//        if ez.isRelease {
+//            Log.enabled = false
+//        }
         
         realmConfig()
         
@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         }
         
         let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-        BindBandCtrl.bandName = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] ?? ""
+        BindBandCtrl.bandMacAddress = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] ?? NSData()
         
         window?.rootViewController = StoryboardScene.Home.instantiateRootView()
         

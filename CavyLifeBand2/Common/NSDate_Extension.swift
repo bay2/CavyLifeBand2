@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import EZSwiftExtensions
 
 extension NSDate {
     
@@ -34,46 +35,39 @@ extension NSDate {
      */
     func dateChangeToLabelText(date: NSDate, timeBucket: TimeBucketStyle) -> String {
         
-        var text: String = ""
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MM/dd"
-        let  dateString = dateFormatter.stringFromDate(date)
-        var dates = dateString.componentsSeparatedByString("/")
-        let month = dates[0].toInt()
-        let day = dates[1].toInt()
-
         switch timeBucket {
             
         case .Day:
             
-            text = "\(month).\(day)"
-
+            return date.toString(format: "MM.dd")
+            
         case .Month:
             
-            text = "\(month)"
+            return date.toString(format: "MM")
             
         case .Week:
-
-            text = "\(month).\(day)-\(dayLastSunDayDate(date))"
+            
+            return "\(date.toString(format: "MM.dd"))\(dayLastSunDayDate(date))"
+            
         }
-        
-        return text
         
     }
     
     /**
      当前是这周的第几天
      */
-    func indexInArray(date: NSDate) -> Int {
+    func indexInArray() -> Int {
         
-        let weekName = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+        let calendar = NSCalendar.currentCalendar()
+        let components = calendar.components(.Weekday, fromDate: self)
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "EEE"
-        let string = dateFormatter.stringFromDate(date)
-
-        return weekName.lastIndexOf(string)!
+        let days = components.weekday - 1
+        
+        if days == 0 {
+            return 7
+        }
+        
+        return days
         
     }
     
@@ -108,7 +102,7 @@ extension NSDate {
         let day = dates[2].toInt()
         
         ///  距离下一个周一的天数
-        let index = 6 - indexInArray(date)
+        let index = 6 - (self.indexInArray() - 1)
         /// 这个月有几天
         let days = daysCount(year!, month: month!)
         
@@ -259,23 +253,29 @@ extension NSDate {
         let month = timeDates1[0].toInt()
         let day = timeDates1[1].toInt()
         return (year!, month!, day!)
+        
     }
     
-    
     /**
-     时间返回月份Label的Text
+     月 时间返回月份Label的Text
      */
     func dateChangeToMonthText(date: NSDate) -> String {
         
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "dd"
-        let month = dateFormatter.stringFromDate(date)
-       
-        return month
+        return date.toString(format: "MM")
         
     }
-
     
+    /**
+     年.月.日 返回Int 类型的 年月日
+     */
+    func homeTimeFormat(timeString: String) -> String {
+
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = dateFormatter.dateFromString(timeString)
+        
+        return date!.toString(format: "yyy.MM.dd")
+        
+    }
     
 }
