@@ -241,6 +241,16 @@ enum L10n {
   case HomeRightListTitleFirmwareUpgrade
   /// 绑定新的CavyBand
   case HomeRightListTitleBindingBand
+  /// 我的CavyBand
+  case BandTitle
+  /// 固件版本: 
+  case BandFWVersion
+  /// 手环未连接
+  case BandDisconnectTitle
+  /// 开启蓝牙，按下手环
+  case BandDisconnectFWVersionTitle
+  /// 按钮自动连接
+  case BandDisconnectBandNameTitle
   /// 睡眠
   case ChartSleep
   /// 计步
@@ -804,6 +814,16 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.RightList.Title.FirmwareUpgrade")
       case .HomeRightListTitleBindingBand:
         return L10n.tr("Home.RightList.Title.BindingBand")
+      case .BandTitle:
+        return L10n.tr("Band.Title")
+      case .BandFWVersion:
+        return L10n.tr("Band.FWVersion")
+      case .BandDisconnectTitle:
+        return L10n.tr("Band.Disconnect.Title")
+      case .BandDisconnectFWVersionTitle:
+        return L10n.tr("Band.Disconnect.FWVersion.Title")
+      case .BandDisconnectBandNameTitle:
+        return L10n.tr("Band.Disconnect.BandName.Title")
       case .ChartSleep:
         return L10n.tr("Chart.Sleep")
       case .ChartStep:

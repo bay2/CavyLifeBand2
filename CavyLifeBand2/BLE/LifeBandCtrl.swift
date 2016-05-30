@@ -17,11 +17,21 @@ enum LifeBandModelType: Int {
     case Step  = 32
 }
 
+enum LifeBandCtrlNotificationName: String {
+    case BandButtonEvenClick2
+    case BandButtonEvenClick4
+}
+
 /**
  手环控制类 实现手环功能接口
  
  */
 class LifeBandCtrl {
+    
+    struct LifeBandInfo {
+        var fwVersion: Int
+        var model: Int
+    }
     
     enum BandAlarmType {
         case Off        // 关闭
@@ -29,7 +39,11 @@ class LifeBandCtrl {
         case Cycle      // 循环周期
     }
     
-   static let shareInterface = LifeBandCtrl()
+    static let shareInterface = LifeBandCtrl()
+    
+    var buttonCount = 0
+    
+    
     
     /**
      设置手环震动
@@ -237,7 +251,91 @@ class LifeBandCtrl {
         
     }
     
-    func getLifeBandModel() {
+    /**
+     获取手环信息
+     
+     - author: sim cai
+     - date: 2016-05-30
+     
+     - parameter closure: 回调
+     
+     - - -
+     - note: 手环硬件接口文档
+     
+     command:
+     ?SYSTEM\n
+     
+     responsd(17 bytes): \
+     $ 0xC1 B[2] B[3] B[4] B[5] ~ B[16]  \
+      \
+     B[2]: device state \
+     B[3]: func enable status \
+     bit 0         1          2         3         4        5         6         7 \
+     X         time    alarm   lla       tilt      step    X        X \
+     B[4]: hw version = 23 \
+     B[5]: fw version = 	15 \
+     B[6]: current magnetometer calibrated status, \
+     if value = 3, mean calibrate OK, value = 0, not OK
+     
+     B[8~9]: factory mag_off_x value ( mag_off_x = (int)(B[8]<<8 | B[9]) ) \
+     B[10~11]: factory mag_off_y value ( mag_off_y = (int)(B[10]<<8 | B[11]) ) \
+     B[12~13]: factory mag_off_z value ( mag_off_z = (int)(B[12]<<8 | B[13]) ) \
+     B[14~15]: factory mag_radius value ( radius = (uint)(B[14]<<8 | B[15]) ) \
+     B[16]: checksum
+     
+     - - -
+     */
+    func getLifeBandInfo(closure: (LifeBandInfo -> Void)) {
+        
+        LifeBandBle.shareInterface.installCmd(0xc1) { data in
+            
+            let fwVersion = Int(data[5] ?? 0)
+            let model = Int(data[3] ?? 0)
+            
+            let lifeBandInfo = LifeBandInfo(fwVersion: fwVersion, model: model)
+            
+            closure(lifeBandInfo)
+            
+        }
+        .sendMsgToBand("?SYSTEM\n")
+        
+    }
+    
+    /**
+     安装按钮事件
+     
+     - author: sim cai
+     - date: 2016-05-30
+     */
+    func installButtonEven() {
+        
+        LifeBandBle.shareInterface.installCmd(0xD1) { data in
+            
+            if self.buttonCount == 0 {
+                
+                NSTimer.runThisAfterDelay(seconds: 4, after: {
+                    
+                    Log.info("Button count \(self.buttonCount)")
+                    
+                    self.buttonCount = 0
+                    
+                    if self.buttonCount > 1 && self.buttonCount < 4 {
+                        NSNotificationCenter.defaultCenter().postNotificationName(LifeBandCtrlNotificationName.BandButtonEvenClick2.rawValue, object: nil)
+                    }
+                    
+                    if self.buttonCount >= 4 {
+                        NSNotificationCenter.defaultCenter().postNotificationName(LifeBandCtrlNotificationName.BandButtonEvenClick4.rawValue, object: nil)
+                    }
+                    
+                })
+                
+            }
+            
+            if data[2] == 1 {
+                self.buttonCount += 1
+            }
+            
+        }
         
     }
     

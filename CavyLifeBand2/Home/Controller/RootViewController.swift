@@ -14,6 +14,7 @@ import AddressBook
 import Contacts
 import KeychainAccess
 import Datez
+import CoreBluetooth
 
 class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate, PKRecordsUpdateFormWeb, LifeBandBleDelegate {
     
@@ -76,8 +77,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
         
         if BindBandCtrl.bandMacAddress.length == 6 {
-            CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = BindBandCtrl.bandName +
-                "," +
+            CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = LifeBandBle.shareInterface.getPeripheralName() + "," +
                 String(format: "%02X:%02X:%02X:%02X:%02X:%02X",
                 BindBandCtrl.bandMacAddress[0],
                 BindBandCtrl.bandMacAddress[1],
@@ -99,9 +99,24 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         // 需要等待 LifeBandBle.shareInterface 初始化，这里延时1s连接
         NSTimer.runThisAfterDelay(seconds: 1) {
+            
             LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandMacAddress) {
+                
                 LifeBandCtrl.shareInterface.setDateToBand(NSDate())
-//                LifeBandCtrl.shareInterface.seLifeBandModel()
+                
+                let lifeBandModel = (LifeBandModelType.LLA.rawValue | LifeBandModelType.Step.rawValue | LifeBandModelType.Tilt.rawValue)
+                LifeBandCtrl.shareInterface.getLifeBandInfo {
+                    
+                    // 如果不等于生活手环模式，则重新设置生活手环模式
+                    if $0.model & lifeBandModel  != lifeBandModel {
+                        LifeBandCtrl.shareInterface.seLifeBandModel()
+                    }
+                    
+                    BindBandCtrl.fwVersion = $0.fwVersion
+                    
+                }
+                
+                LifeBandCtrl.shareInterface.installButtonEven()
                 self.syncDataFormBand()
             }
         }
@@ -375,6 +390,15 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
             }
         }
 
+    }
+    
+    func bleMangerState(bleState: CBCentralManagerState) {
+        
+        if bleState == .PoweredOn &&
+            (LifeBandBle.shareInterface.getConnectState() == .Connected || LifeBandBle.shareInterface.getConnectState() == .Connecting) {
+            LifeBandBle.shareInterface.startScaning()
+        }
+        
     }
 
 
