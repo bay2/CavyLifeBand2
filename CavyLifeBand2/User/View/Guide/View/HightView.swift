@@ -75,7 +75,6 @@ class HightView: UIView, RulerViewDelegate {
             make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 12 + 66)
         }
         
-       
     }
     
     // 时刻更新 身高 刻度尺的当前值
