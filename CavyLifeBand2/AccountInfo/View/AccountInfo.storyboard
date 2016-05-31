@@ -134,10 +134,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="badgeInfo" destination="lYr-16-XXH" id="nzt-t3-4Tc"/>
-                        <outlet property="badgeTitle" destination="GjD-D6-Ti7" id="C6k-aU-QOe"/>
                         <outlet property="badgeView" destination="svq-EI-1IG" id="gs4-NT-ohr"/>
-                        <outlet property="collectionView" destination="mq1-Eh-GGD" id="y9C-Q4-zct"/>
                         <outlet property="contectView" destination="2kq-FW-Ftn" id="dlW-OK-zC3"/>
                         <outlet property="logoutButton" destination="8Yp-Im-6HQ" id="EJX-nd-rhz"/>
                         <outlet property="tableView" destination="vQ9-pg-oVp" id="cPd-ni-HUp"/>

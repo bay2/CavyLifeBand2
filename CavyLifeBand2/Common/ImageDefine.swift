@@ -70,7 +70,7 @@ extension UIImage {
     case Medal5000 = "Medal5000"
     case Medal500000 = "Medal500000"
     case Medal5000000 = "Medal5000000"
-    case Medal5000000ighted = "Medal5000000ighted"
+    case Medal5000000Lighted = "Medal5000000Lighted"
     case Medal500000Lighted = "Medal500000Lighted"
     case Medal5000Lighted = "Medal5000Lighted"
     case LeftMenuAbout = "LeftMenuAbout"

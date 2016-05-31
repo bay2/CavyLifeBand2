@@ -12,7 +12,7 @@ import JSONJoy
 import EZSwiftExtensions
 import RealmSwift
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate {
     
     var leftBtn: UIButton? = {
         
@@ -283,7 +283,28 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     /**
      显示PK页面
      */
-    func showPKDetailView(notification: NSNotification){
+    func showPKDetailView(notification: NSNotification) {
+        // SinglePKRealmModelOperateDelegate
+        let status = notification.userInfo!["status"] as! String
+        let pkId = notification.userInfo!["pkId"] as! String
+        
+        // 在进行 PK状态：1:进行中 2：已完成
+        if status.contains("\(L10n.PKRecordsVCDueSectionTitle.string)") {
+            
+            let pkModel = self.getPKDueRecordByPKId(pkId)! as PKDueRealmModel
+            
+            pushPKVC(pkModel)
+            
+        } else {
+            // 已经结束
+            
+            let pkModel: PKFinishRealmModel = getPKFinishRecordByPKId(pkId)!
+            
+            pushPKVC(pkModel)
+        }
+        
+        
+
 
     }
     
@@ -294,17 +315,53 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     func showAchieveDetailView(notification: NSNotification){
         
         
+        let maskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
+        maskView.backgroundColor = UIColor(named: .HomeViewMaskColor)
+        
+        maskView.addTapGesture { tap in
+            maskView.removeFromSuperview()
+        }
+
+        let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
+
+        maskView.addSubview(achieveView!)
+
+        achieveView!.snp_makeConstraints(closure: { make in
+            make.leading.equalTo(maskView).offset(20.0)
+            make.trailing.equalTo(maskView).offset(-20.0)
+            make.centerY.equalTo(maskView)
+            make.height.equalTo(380.0)
+        })
+        
+        
+        UIApplication.sharedApplication().keyWindow?.addSubview(maskView)
+        
     }
     
     /**
      显示健康页面
      */
-    func showHealthyDetailView(notification: NSNotification){
-        
+    func showHealthyDetailView(notification: NSNotification) {
         
         let requestVC = StoryboardScene.Contacts.instantiateContactsFriendInfoVC()
-//        requestVC.friendId = names![indexPath.row].friendId
-//        requestVC.friendNickName = names![indexPath.row].name
+
+        let userInfo = notification.userInfo
+        
+        guard let friendName = userInfo?["friendName"] as? String else {
+            return
+        }
+        
+        guard let friendId = userInfo?["friendId"] as? String else {
+            return
+        }
+        
+        if friendName != "" && friendId != "" {
+        
+            requestVC.friendNickName = friendName
+            requestVC.friendId = friendId
+
+        }
+
         self.pushVC(requestVC)
         
     }
@@ -325,6 +382,37 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         Log.info("移除指示器")
         activityView?.stopAnimating()
         aphlaView?.removeFromSuperview()
+    }
+    
+    func pushPKVC(pkModel: PKRecordRealmDataSource) {
+        
+        let maskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
+        maskView.backgroundColor = UIColor(named: .HomeViewMaskColor)
+        
+        maskView.addTapGesture { tap in
+            maskView.removeFromSuperview()
+        }
+        
+        guard let pkInfoView = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView else {
+            return
+        }
+        
+        pkInfoView.configure(PKInfoOrResultViewModel(pkRealm: pkModel))
+        
+        pkInfoView.addTapGesture { sender in }
+        
+        maskView.addSubview(pkInfoView)
+        
+        pkInfoView.snp_makeConstraints(closure: { make in
+            make.leading.equalTo(maskView).offset(20.0)
+            make.trailing.equalTo(maskView).offset(-20.0)
+            make.centerY.equalTo(maskView)
+            make.height.equalTo(380.0)
+        })
+        
+        
+        UIApplication.sharedApplication().keyWindow?.addSubview(maskView)
+        
     }
     
        override func didReceiveMemoryWarning() {

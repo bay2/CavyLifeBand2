@@ -238,6 +238,9 @@ class HomeRingView: UIView {
      */
     func percentNumber(targetNum: Int, currectNum: Int) -> CGFloat {
         
+        if targetNum == 0 {
+            return 0 
+        }
         let percent = CGFloat(currectNum) / CGFloat(targetNum)
         
         if percent > 0 && percent < 0.01 {
