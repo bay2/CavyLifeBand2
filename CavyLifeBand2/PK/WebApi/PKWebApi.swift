@@ -134,9 +134,10 @@ class PKWebApi: NetRequestAdapter {
      
      - throws:
      */
-    func getPKInfo(userId: String, callBack: CompletionHandlernType? = nil) throws {
+    func getPKInfo(userId: String, pkId: String, callBack: CompletionHandlernType? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetPKInfo.rawValue,
+                                               UserNetRequsetKey.PKId.rawValue: pkId,
                                                UserNetRequsetKey.UserID.rawValue: userId]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
@@ -157,7 +158,7 @@ protocol PKWebRequestProtocol {
     //删除PK
     func deletePKFinish(finishRealms: [PKFinishRealmModel], loginUserId: String, callBack: ((Void) -> Void)?, failure: FailureHandle?) -> Void
     //获取PK详细资料
-    func getPKInfo(callBack: ((PKInfoResponse) -> Void)?, failure: FailureHandle?) -> Void
+    func getPKInfo(pkId: String, callBack: ((PKInfoResponse) -> Void)?, failure: FailureHandle?) -> Void
     
 }
 
@@ -294,10 +295,10 @@ extension PKWebRequestProtocol {
         
     }
     
-    func getPKInfo(callBack: ((PKInfoResponse) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
+    func getPKInfo(pkId: String, callBack: ((PKInfoResponse) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
         do {
 
-            try PKWebApi.shareApi.getPKInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {(result) in
+            try PKWebApi.shareApi.getPKInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, pkId: pkId) {(result) in
                 
                 guard result.isSuccess else {
                     failure?(result.error?.description ?? "")

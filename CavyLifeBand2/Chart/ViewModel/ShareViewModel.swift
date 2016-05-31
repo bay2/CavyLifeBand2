@@ -14,6 +14,8 @@ protocol ShareViewDataSource {
     
     var shareImage: UIImage { get }
     
+    var type: ShareType { get }
+    
     func onCilck()
     
 }
@@ -21,7 +23,9 @@ protocol ShareViewDataSource {
 
 struct ShareQQViewModel: ShareViewDataSource {
     
-    var shareImage: UIImage { return UIImage(asset: .ShareQQ) }
+    var shareImage: UIImage = UIImage(asset: .ShareQQ)
+    
+    var type: ShareType = ShareTypeQQ
     
     func onCilck() {
         
@@ -34,8 +38,9 @@ struct ShareQQViewModel: ShareViewDataSource {
 
 struct ShareWechatViewModel: ShareViewDataSource {
     
-    var shareImage: UIImage { return UIImage(asset: .ShareWechat) }
+    var shareImage: UIImage = UIImage(asset: .ShareWechat) 
 
+    var type: ShareType = ShareTypeWeixiSession
     
     init() {
         
@@ -47,8 +52,10 @@ struct ShareWechatViewModel: ShareViewDataSource {
 
 struct ShareWechatMomentsViewModel: ShareViewDataSource {
     
-    var shareImage: UIImage { return UIImage(asset: .ShareWechatmoments) }
+    var shareImage: UIImage = UIImage(asset: .ShareWechatmoments) 
 
+    var type: ShareType = ShareTypeWeixiTimeline
+    
     init() {
         
     }
@@ -59,11 +66,14 @@ struct ShareWechatMomentsViewModel: ShareViewDataSource {
 
 struct ShareWeiboViewModel: ShareViewDataSource {
     
-    var shareImage: UIImage { return UIImage(asset: .ShareWeibo) }
+    var shareImage: UIImage = UIImage(asset: .ShareWeibo)
 
+    var type: ShareType = ShareTypeSinaWeibo
+    
     init() {
         
     }
+    
     func onCilck() {
         
     }

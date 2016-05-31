@@ -51,12 +51,12 @@ class PresonInfoCellViewModel: NSObject, ContactsPersonInfoCellPresenter, Contac
         
         let actionSheet = UIAlertController(title: "", message: "", preferredStyle: .ActionSheet)
         
-        let actionPhoto = UIAlertAction(title: L10n.AccountInofPhoto.string, style: .Default) { [unowned self]  _ in
+        let actionPhoto = UIAlertAction(title: L10n.AccountInfoPhoto.string, style: .Default) { [unowned self]  _ in
             
             self.openImagePicker(.PhotoLibrary)
         }
         
-        let actionCamera = UIAlertAction(title: L10n.AccountInofCamera.string, style: .Default) { _ in
+        let actionCamera = UIAlertAction(title: L10n.AccountInfoCamera.string, style: .Default) { _ in
             self.openImagePicker(.Camera)
         }
         
@@ -107,21 +107,10 @@ extension PresonInfoCellViewModel: UIImagePickerControllerDelegate, UINavigation
         
         newImage = newImage.af_imageScaledToSize(CGSize(width: 128, height: 128))
         
-        guard let imageData = UIImagePNGRepresentation(newImage) else {
+        guard let savePath: String = newImage.writeToChacheDocument(String.random(30, "a"..."z")) else {
+            Log.error("图片保存失败")
             return
         }
-        
-        let urls = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
-        
-        var savePath = urls[0]
-        
-        var imageName = String.random(30, "a"..."z")
-        imageName = imageName.stringByAppendingString(".png")
-        
-        savePath = savePath + "/" + imageName
-        
-        imageData.writeToFile(savePath, atomically: false)
-        
         
         let activityView = UIActivityIndicatorView()
         activityView.centerX = picker.view.centerX
