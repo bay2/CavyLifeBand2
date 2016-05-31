@@ -107,12 +107,15 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
             return
         }
         
-        let sleepString = userInfo.sleepTime
+        var sleepString = userInfo.sleepTime
+        if sleepString == "" {
+            sleepString = "0:0"
+        }
         let sleepTimeArray = sleepString.componentsSeparatedByString(":")
         let sleepTargetNumber = sleepTimeArray[0].toInt()! * 60 + sleepTimeArray[1].toInt()!
         let stepTargetNumber = userInfo.stepNum
         
-        // 计步失眠 当前值
+        // 计步睡眠 当前值
         
         let time = NSDate()
         let resultStep = self.queryStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)
