@@ -9,26 +9,37 @@
 import UIKit
 import Charts
 
-class ShowPieChartsView: PieChartView, ChartViewDelegate {
+class ShowPieChartsView: PieChartView, ChartViewDelegate  {
     
     // 饼状图
-    var chartsData: PerSleepChartsData?
-    
     var showValue: Bool = false
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    var deepSleep: Double  = 0
+    var lightSleep: Double = 0
+    
+    convenience init(frame: CGRect, deepSleep: Double, lightSleep: Double) {
+       
+        self.init(frame: frame)
+        
+        self.deepSleep  = deepSleep
+        self.lightSleep = lightSleep
         
         self.backgroundColor = UIColor(named: .ChartViewBackground)
-
+        
         setupPieChartView()
         
         addLegend()
-
+        
         setPieChartsData()
         
+    }
+    
+    override init(frame: CGRect) {
+        
+        super.init(frame: frame)
         
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -68,29 +79,31 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate {
         let dataCount = 2
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
+        var colors: [NSUIColor] = []
+        let sleepDegreeArray = [Double(self.deepSleep), Double(self.lightSleep)]
+        
         for i in 0 ..< dataCount {
             
-//            let sleepDegreeArray = [Double(chartsData!.deepSleep), Double(chartsData!.lightSleep)]
-//            yVals.append(BarChartDataEntry(value: sleepDegreeArray[i], xIndex: i))
-
-            yVals.append(BarChartDataEntry(value: sleepDegree[i], xIndex: i))
+            yVals.append(BarChartDataEntry(value: sleepDegreeArray[i], xIndex: i))
             xVals.append(sleepName[i])
+            
         }
+        
+        colors.append(UIColor(named: .ChartSleepDegreeDeep))
+        colors.append(UIColor(named: .ChartSleepDegreeLight))
         
         let dataSet: PieChartDataSet = PieChartDataSet(yVals: yVals, label: "")
         dataSet.sliceSpace = 0
-        
-        var colors: [NSUIColor] = []
-        colors.append(UIColor(named: .ChartSleepDegreeDeep))
-        colors.append(UIColor(named: .ChartSleepDegreeLight))
         dataSet.colors = colors
         
         let data = PieChartData(xVals: xVals, dataSet: dataSet)
+        
         let formatter = NSNumberFormatter()
         formatter.numberStyle = .PercentStyle
         formatter.maximumFractionDigits = 1
         formatter.multiplier = 1
         formatter.percentSymbol = " %"
+        
         data.setValueFormatter(formatter)
         data.setValueFont(UIFont.systemFontOfSize(11))
         data.setValueTextColor(UIColor.blackColor())

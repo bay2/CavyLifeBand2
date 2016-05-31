@@ -116,21 +116,13 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         let stepTargetNumber = userInfo.stepNum
         
         // 计步睡眠 当前值
-        
         let time = NSDate()
         let resultStep = self.queryStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)
-        let resultSeelp = self.querySleepNumber(time.gregorian.beginningOfDay.date, endTime: time)
+        let resultSeelp = self.querySleepInfoDay(time.gregorian.beginningOfDay.date, endTime: time)
         
 
         let stepCurrentNumber = resultStep.totalStep
-        var sleepCurrentNumber = 0
-        
-        //TODO: 这里要补充睡眠算法
-        for sleep in resultSeelp {
-            
-            sleepCurrentNumber += sleep.tilts
-            
-        }
+        let sleepCurrentNumber = Int(resultSeelp.0)
         
         stepView.ringWithStyle(stepTargetNumber, currentNumber: stepCurrentNumber)
         sleepView.ringWithStyle(sleepTargetNumber, currentNumber: sleepCurrentNumber)

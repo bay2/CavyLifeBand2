@@ -22,7 +22,13 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     var timeBucketStyle: TimeBucketStyle = .Day
     
     // 深睡浅睡柱状图
-    var chartsData: [PerSleepChartsData] = []
+    var chartsData: [(deepSleep: Double, lightSleep: Double)] = [] {
+        
+        didSet {
+            setData(7)
+        }
+        
+    }
         
     /**
      配置所有视图 主入口
@@ -39,8 +45,6 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         
         setData(7)
     }
-    
-    
     
     
     /**
@@ -125,14 +129,10 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         }
         for i in 0 ..< count {
 
-//            let val1 = chartsData[i].deepSleep
-//            let var2 = chartsData[i].lightSleep
-            
-            let val1 = deepSleep[i]
-            let val2 = lightSleep[i]
+            let val1 = chartsData[i].deepSleep
+            let val2 = chartsData[i].lightSleep
                         
             let dataEntrys = BarChartDataEntry(values: [val1, val2], xIndex: i)
-            
         
             yVals.append(dataEntrys)
         }
@@ -175,11 +175,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
      点击事件
      */
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-        
         Log.info("\(chartView)  \(entry)   \(dataSetIndex)  \(highlight)")
-        
-        
-        
     }
     
 }

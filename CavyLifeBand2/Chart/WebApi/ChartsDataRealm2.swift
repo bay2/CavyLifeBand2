@@ -74,9 +74,8 @@ protocol ChartsRealmProtocol {
     func isExistSleepChartsData() -> Bool
     func addSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
     func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData]
-//    func querySleepInfo(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double)
+    func querySleepInfo(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double)
     func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)]
-    func querySleepInfoDay(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double)
     
 }
 
@@ -86,7 +85,6 @@ extension ChartsRealmProtocol {
     func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(ChartStepDataRealm)> {
         return realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
     }
-
 
     // 返回 第一天开始的时间段
     func queryTimeBucketFromFirstDay() -> [String]? {
@@ -315,21 +313,21 @@ extension ChartsRealmProtocol {
      */
     func validSleep(beginTime: NSDate, endTime: NSDate) -> Int {
         
+        let loopNum        = ((endTime - beginTime).totalMinutes) / 10
         var minustsCount   = 0
-        var longSleepCount = 0 // 长时间睡眠计数
-        var testCount = 0
+        var longSleepCount = 0// 长时间睡眠计数
         
         Log.info("validSleep Begin")
         
-        let sleepDatas = transformSleepData(beginTime, endTime: endTime)
-        let stepDatas = transformStepData(beginTime, endTime: endTime)
-        
-        for timeIndex in 0..<sleepDatas.count {
+        for timeIndex in 0...loopNum {
             
-            let beginIndex = (timeIndex == 0 ? 0 : timeIndex - 1)
-            let endIndex   = (timeIndex == sleepDatas.endIndex - 1 ? timeIndex : timeIndex + 1)
+            let curTime      = (beginTime.gregorian + (timeIndex * 10).minutes)
+            let newBeginTime = (curTime - 10.minutes).date
+            let newEndTime   = (curTime + 10.minutes).date
             
-            var tiltsTotal = sleepDatas[beginIndex...endIndex].reduce(0, combine: +)
+            var sleepDataInfo = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", newBeginTime, newEndTime)
+            
+            var tiltsTotal = sumTilts(sleepDataInfo)
             
             // 条件1：之前10分钟tilt数量+当前10分钟tilt +之后10分钟tilt数量<30
             if tiltsTotal >= 30 {
@@ -337,7 +335,9 @@ extension ChartsRealmProtocol {
                 continue
             }
             
-            tiltsTotal = sleepDatas[timeIndex]
+            sleepDataInfo = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time == %@", curTime.date)
+            
+            tiltsTotal = sumTilts(sleepDataInfo)
             
             // 条件2：当前10分钟tilt<15
             if tiltsTotal >= 15 {
@@ -345,41 +345,31 @@ extension ChartsRealmProtocol {
                 continue
             }
             
-            // 条件3：当前10分钟step<30
-            let stepTotal = stepDatas[timeIndex]
+            let stepDataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time == %@", curTime.date)
+            
+            let stepTotal = sumStep(stepDataInfo)
+            
             if stepTotal >= 30 {
                 longSleepCount = 0
                 continue
             }
             
-            // 退出无睡眠状态,减掉无效计数
-            if (stepTotal != 0 || tiltsTotal != 0) {
-                
-                if longSleepCount >= noSleepTime {
-                    minustsCount -= longSleepCount
-                }
-                
-                longSleepCount = 0
-            }
-
             minustsCount += 1
-            testCount += 1
             
             // 无数据计数
             if stepTotal == 0 && tiltsTotal == 0 {
                 longSleepCount += 1
             }
             
+            // 退出无睡眠状态,减掉无效计数
+            if longSleepCount >= minustsCount && (stepTotal != 0 || tiltsTotal != 0) {
+                minustsCount -= longSleepCount
+            }
+            
             
         }
         
-        if longSleepCount >= noSleepTime {
-            minustsCount -= longSleepCount
-        }
-        
         Log.info("validSleep end")
-        
-        Log.info("validSleep testCount = \(testCount)")
         
         return minustsCount
     }
@@ -397,22 +387,22 @@ extension ChartsRealmProtocol {
      */
     func sumDeepSleep(beginTime: NSDate, endTime: NSDate) -> Int {
         
+        let loopNum        = ((endTime - beginTime).totalMinutes) / 10
         var minustsCount   = 0
         var longSleepCount = 0 // 长时间睡眠计数
-        var testCount = 0
         
-        Log.info("sumDeepSleep Begin")
-        
-        let sleepDatas = transformSleepData(beginTime, endTime: endTime)
-        let stepDatas = transformStepData(beginTime, endTime: endTime)
-        
-        for timeIndex in 0..<sleepDatas.count {
+        for timeIndex in 0...loopNum {
             
-            if sleepDatas[timeIndex] != 0 || stepDatas[timeIndex] != 0 {
+            let curTime = (beginTime.gregorian + (timeIndex * 10).minutes).date
+            
+            let stepDataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time == %@", curTime)
+            let sleepDataInfo = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time == %@", curTime)
+            
+            if sumStep(stepDataInfo) != 0 || sumTilts(sleepDataInfo) != 0 {
                 
                 // 退出无睡眠状态,减掉无效计数
                 if longSleepCount >= noSleepTime {
-                    minustsCount -= longSleepCount
+                    minustsCount -= noSleepTime
                 }
                 
                 longSleepCount = 0
@@ -422,59 +412,43 @@ extension ChartsRealmProtocol {
             minustsCount += 1
             longSleepCount += 1
             
-            testCount += 1
-            
         }
-        
-        if longSleepCount >= noSleepTime {
-            minustsCount -= longSleepCount
-        }
-        
-        Log.info("sumDeepSleep end")
-        
-        Log.info("sumDeepSleep testCount = \(testCount)")
         
         return minustsCount
         
     }
     
-    func transformSleepData(beginTime: NSDate, endTime: NSDate) -> [Int] {
-        
-        let realmSleepData = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
-        
-        let dataSize = ((endTime - beginTime).totalMinutes + 1) / 10
-        
-        var reslutArray = Array<Int>(count: dataSize, repeatedValue: 0)
-        
-        for data in realmSleepData {
-            
-            let index = (data.time - beginTime).totalMinutes / 10
-            reslutArray[index] = data.tilts
+    /**
+     统计翻身次数
+     
+     - author: sim cai
+     - date: 2016-05-31
+     
+     - parameter sleepData: 睡眠数据
+     
+     - returns: 翻身次数
+     */
+    func sumTilts(sleepData: Results<(ChartSleepDataRealm)>) -> Int {
+        return sleepData.reduce(0) {(tilts: Int, dateRealm :ChartSleepDataRealm) -> Int in
+            tilts + dateRealm.tilts
         }
-        
-        return reslutArray
-        
     }
     
-    func transformStepData(beginTime: NSDate, endTime: NSDate) -> [Int] {
-        
-        let realmStepData = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
-        
-        let dataSize = ((endTime - beginTime).totalMinutes + 1) / 10
-        
-        var reslutArray = Array<Int>(count: dataSize, repeatedValue: 0)
-        
-        for data in realmStepData {
-            
-            let index = (data.time - beginTime).totalMinutes / 10
-            reslutArray[index] = data.step
+    /**
+     统计步数
+     
+     - author: sim cai
+     - date: 2016-05-31
+     
+     - parameter StepData: 计步数据
+     
+     - returns: 步数
+     */
+    func sumStep(StepData: Results<(ChartStepDataRealm)>) -> Int {
+        return StepData.reduce(0) {(tilts: Int, dateRealm :ChartStepDataRealm) -> Int in
+            tilts + dateRealm.step
         }
-        
-        return reslutArray
-        
     }
-    
-
     
     /**
      查询睡眠信息
@@ -495,28 +469,7 @@ extension ChartsRealmProtocol {
         
         let lightSleep = Double(sleepTime) - Double(deepSleep) * 0.9
         
-        Log.info("sleepTime =\(sleepTime), deepSleep = \(deepSleep), lightSleep = \(lightSleep)")
-        
         return (Double(sleepTime), Double(deepSleep), lightSleep)
-    }
-    
-    /**
-     查询一天的睡眠信息
-     
-     - author: sim cai
-     - date: 2016-06-01
-     
-     - parameter beginTime: 开始时间
-     - parameter endTime:   结束时间
-     
-     - returns: (总的睡眠时间, 深睡, 浅睡)
-     */
-    func querySleepInfoDay(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double) {
-        
-        let newBeginTime = (beginTime.gregorian.beginningOfDay - 6.hour).date
-        let newEndTime = (newBeginTime.gregorian + 24.day).date
-        
-        return querySleepInfo(newBeginTime, endTime: newEndTime)
     }
     
     /**
@@ -536,8 +489,6 @@ extension ChartsRealmProtocol {
         
         let dayTotal = (endTime - beginTime).totalDays
         
-        Log.info("querySleepInfoDays Begin \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
-        
         for i in 0...dayTotal {
             
             // 从前天的晚上6点开始算起
@@ -547,8 +498,6 @@ extension ChartsRealmProtocol {
             reslutData.append(querySleepInfo(newBeginTime, endTime: newEndTime))
             
         }
-        
-        Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
         
         return reslutData
         
