@@ -63,14 +63,13 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         self.updateNavUI()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomePushView.rawValue, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showStepDetailView), name: NotificationName.HomeShowStepView.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showSleepDetailView), name: NotificationName.HomeShowSleepView.rawValue, object: nil)
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showPKDetailView), name: NotificationName.HomeShowPKView.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showAchieveDetailView), name: NotificationName.HomeShowAchieveView.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showHealthyDetailView), name: NotificationName.HomeShowHealthyView.rawValue, object: nil)
+        addNotificationObserver(NotificationName.HomePushView.rawValue, selector: #selector(HomeViewController.pushNextView))
+        addNotificationObserver(NotificationName.HomeShowStepView.rawValue, selector: #selector(HomeViewController.showStepDetailView))
+        addNotificationObserver(NotificationName.HomeShowSleepView.rawValue, selector: #selector(HomeViewController.showSleepDetailView))
+        addNotificationObserver(NotificationName.HomeShowPKView.rawValue, selector: #selector(HomeViewController.showPKDetailView))
+        addNotificationObserver(NotificationName.HomeShowAchieveView.rawValue, selector: #selector(HomeViewController.showAchieveDetailView))
+        addNotificationObserver(NotificationName.HomeShowHealthyView.rawValue, selector: #selector(HomeViewController.showHealthyDetailView))
+        addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
     
     }
     
@@ -79,6 +78,16 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         upperView!.frame = CGRectMake(0, 0, ez.screenWidth, 96 + ez.screenWidth * 0.55)
 
+    }
+    
+    /**
+     手环断线通知
+     
+     - author: sim cai
+     - date: 2016-05-31
+     */
+    func bandDesconnect() {
+        rightBtn?.setBackgroundImage(UIImage(asset: .HomeDisBandMenu), forState: .Normal)
     }
     
     /**
@@ -100,6 +109,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             make.left.right.equalTo(self.view)
             make.height.equalTo(50)
         }
+        
         view.addSubview(timeLineView)
         timeLineView.snp_makeConstraints { make in
             make.top.equalTo(dateView).offset(50)

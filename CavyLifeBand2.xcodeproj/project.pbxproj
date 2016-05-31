@@ -196,9 +196,11 @@
 		9150CAB61CC89EA600A398E9 /* RightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9150CAB51CC89EA600A398E9 /* RightViewController.swift */; };
 		9150CABA1CC8D03800A398E9 /* RightMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9150CAB91CC8D03800A398E9 /* RightMenuViewModel.swift */; };
 		9150CABC1CC8D12D00A398E9 /* MenuProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9150CABB1CC8D12D00A398E9 /* MenuProtocol.swift */; };
+		9157BE411CFD687B0020BF66 /* StepSleepReportedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9157BE401CFD687B0020BF66 /* StepSleepReportedData.swift */; };
 		915921041C9005E000ECD04E /* SignUpPhoneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915921031C9005E000ECD04E /* SignUpPhoneUITests.swift */; };
 		915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915FFAA51C4E0CA500A492F7 /* AppDelegate.swift */; };
 		916456451CE1C115002D2D87 /* AlamofireImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 916456441CE1C115002D2D87 /* AlamofireImageExtension.swift */; };
+		917644D41CFDA26300AB469B /* RootViewControllerExtBand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917644D31CFDA26300AB469B /* RootViewControllerExtBand.swift */; };
 		917936C71CBB8E34002936E3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936C61CBB8E34002936E3 /* BaseViewController.swift */; };
 		917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */; };
 		917936CB1CBCEB4B002936E3 /* SCLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917936CA1CBCEB4B002936E3 /* SCLocationManager.swift */; };
@@ -531,10 +533,12 @@
 		9150CAB51CC89EA600A398E9 /* RightViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightViewController.swift; sourceTree = "<group>"; };
 		9150CAB91CC8D03800A398E9 /* RightMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightMenuViewModel.swift; sourceTree = "<group>"; };
 		9150CABB1CC8D12D00A398E9 /* MenuProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuProtocol.swift; sourceTree = "<group>"; };
+		9157BE401CFD687B0020BF66 /* StepSleepReportedData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepSleepReportedData.swift; sourceTree = "<group>"; };
 		915921031C9005E000ECD04E /* SignUpPhoneUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPhoneUITests.swift; sourceTree = "<group>"; };
 		915FFAA51C4E0CA500A492F7 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		916456441CE1C115002D2D87 /* AlamofireImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireImageExtension.swift; sourceTree = "<group>"; };
 		916813881CE9CA2300E35561 /* CavyLifeBand2.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = CavyLifeBand2.entitlements; sourceTree = "<group>"; };
+		917644D31CFDA26300AB469B /* RootViewControllerExtBand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewControllerExtBand.swift; sourceTree = "<group>"; };
 		917936C61CBB8E34002936E3 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		917936C81CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendLoadDataViewModel.swift; sourceTree = "<group>"; };
 		917936CA1CBCEB4B002936E3 /* SCLocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCLocationManager.swift; sourceTree = "<group>"; };
@@ -704,6 +708,7 @@
 				9150CAB51CC89EA600A398E9 /* RightViewController.swift */,
 				4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */,
 				911FDB771CF7F2CE00F2E42E /* RootViewControllerExtSavaStepSleep.swift */,
+				917644D31CFDA26300AB469B /* RootViewControllerExtBand.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -726,6 +731,7 @@
 				4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */,
 				4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */,
 				4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */,
+				9157BE401CFD687B0020BF66 /* StepSleepReportedData.swift */,
 			);
 			path = WebApi;
 			sourceTree = "<group>";
@@ -2059,6 +2065,7 @@
 				9114D1F21C97AB05008CB4CE /* UserProtocolView.swift in Sources */,
 				91B04DDA1CB3D4F0007E67B0 /* UserViewControllerProtocol.swift in Sources */,
 				6859BC3E1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift in Sources */,
+				917644D41CFDA26300AB469B /* RootViewControllerExtBand.swift in Sources */,
 				68E9780C1CC758B400651724 /* PKChallengeView.swift in Sources */,
 				91E1B4DD1CA510BD008ADEE6 /* ContactsTabButton.swift in Sources */,
 				4CB7A07E1CD095C400DFB8DC /* HomeTimeLineView.swift in Sources */,
@@ -2085,6 +2092,7 @@
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,
 				917B98B91CB8E7CA008698F5 /* Font_Extension.swift in Sources */,
 				91C3AE521C462FE5006B67AF /* String_Extension.swift in Sources */,
+				9157BE411CFD687B0020BF66 /* StepSleepReportedData.swift in Sources */,
 				68E977FA1CC6089D00651724 /* PKIntroduceVC.swift in Sources */,
 				9114D1ED1C97AB05008CB4CE /* MainPageButton.swift in Sources */,
 				68648A731CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift in Sources */,

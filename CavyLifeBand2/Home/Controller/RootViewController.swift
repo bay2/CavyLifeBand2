@@ -14,9 +14,8 @@ import AddressBook
 import Contacts
 import KeychainAccess
 import Datez
-import CoreBluetooth
 
-class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate, PKRecordsUpdateFormWeb, LifeBandBleDelegate {
+class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate, PKRecordsUpdateFormWeb  {
     
     enum MoveDirection {
         
@@ -50,6 +49,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     
     var loginUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
+    var syncDataTime: NSTimer?
+    
     var pkSycnCount: Int = 0 {
         
         didSet {
@@ -68,6 +69,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     
     deinit {
         removeNotificationObserver()
+        syncDataTime?.invalidate()
     }
     
     override func viewDidLoad() {
@@ -95,54 +97,18 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         loadHomeView()
             
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickMenu), name: NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickBandMenu), name: NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.showHomeView), name: NotificationName.HomeShowHomeView.rawValue, object: nil)
-        
-        LifeBandBle.shareInterface.lifeBandBleDelegate = self
-        
-        // 需要等待 LifeBandBle.shareInterface 初始化，这里延时1s连接
-        NSTimer.runThisAfterDelay(seconds: 1) {
-            
-            LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandMacAddress) {
-                
-                LifeBandCtrl.shareInterface.setDateToBand(NSDate())
-                
-                let lifeBandModel = (LifeBandModelType.LLA.rawValue | LifeBandModelType.Step.rawValue | LifeBandModelType.Tilt.rawValue)
-                LifeBandCtrl.shareInterface.getLifeBandInfo {
-                    
-                    // 如果不等于生活手环模式，则重新设置生活手环模式
-                    if $0.model & lifeBandModel  != lifeBandModel {
-                        LifeBandCtrl.shareInterface.seLifeBandModel()
-                    }
-                    
-                    BindBandCtrl.fwVersion = $0.fwVersion
-                    
-                }
-                
-                LifeBandCtrl.shareInterface.installButtonEven()
-                self.syncDataFormBand()
-            }
-        }
-        
+        addNotificationObserver(NotificationName.HomeLeftOnClickMenu.rawValue, selector: #selector(RootViewController.onClickMenu))
+        addNotificationObserver(NotificationName.HomeRightOnClickMenu.rawValue, selector: #selector(RootViewController.onClickBandMenu))
+        addNotificationObserver(NotificationName.HomeShowHomeView.rawValue, selector: #selector(RootViewController.showHomeView))
         addNotificationObserver(LifeBandCtrlNotificationName.BandButtonEvenClick4.rawValue, selector: #selector(RootViewController.callEmergency))
         
-    }
-    
-    /**
-     向紧急联系人发消息
-     
-     - author: sim cai
-     - date: 2016-05-31
-     */
-    func callEmergency() {
+        // 断线之后尝试连接
+        addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(RootViewController.bandConnect))
         
-        do { try EmergencyWebApi.shareApi.sendEmergencyMsg() }
-        catch let error
-        { Log.error("Cell EmergencyWebApi.shareApi.sendEmergencyMsg error (\(error))") }
+        bandInit()
+        
         
     }
-    
     
     /**
      加载主页面视图
@@ -413,16 +379,6 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
 
     }
     
-    func bleMangerState(bleState: CBCentralManagerState) {
-        
-        if bleState == .PoweredOn &&
-            (LifeBandBle.shareInterface.getConnectState() == .Connected || LifeBandBle.shareInterface.getConnectState() == .Connecting) {
-            LifeBandBle.shareInterface.startScaning()
-        }
-        
-    }
-
-
     /*
     // MARK: - Navigation
 

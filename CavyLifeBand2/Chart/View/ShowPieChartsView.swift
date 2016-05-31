@@ -54,7 +54,7 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate {
     
     func addLegend() {
 
-        self.legend.position = .AboveChartRight
+        self.legend.horizontalAlignment = .Right
         self.legend.form = .Circle
         self.legend.formSize = 7
         self.legend.textColor = UIColor(named: .ChartViewTextColor)

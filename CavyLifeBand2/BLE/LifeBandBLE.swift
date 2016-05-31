@@ -212,6 +212,8 @@ class LifeBandBle: NSObject {
     func bleConnect(peripheralMacAddress: NSData, connectComplete: (Void -> Void)? = nil) {
         
         if getConnectState() == .Connected {
+            
+            Log.info("bleConnect end")
             connectComplete?()
             return
         }
@@ -266,7 +268,6 @@ class LifeBandBle: NSObject {
         self.peripheral = peripheral
         peripheral.delegate = self
         central.connectPeripheral(peripheral, options: nil)
-        Log.info("bleConnect end")
         
     }
     
@@ -301,7 +302,6 @@ extension LifeBandBle: CBCentralManagerDelegate {
     }
     
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        startScaning()
         NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
     }
     
@@ -377,6 +377,8 @@ extension LifeBandBle: CBPeripheralDelegate {
         _ = characteristics.map { chara -> CBCharacteristic in
             
             if chara.UUID.isEqual(CBUUID(string: sendCommandCharacteristicUUID)) {
+                
+                Log.info("bleConnect end")
                 self.connectComplete?()
                 sendCharacteristic = chara
             }
@@ -397,8 +399,6 @@ extension LifeBandBle: CBPeripheralDelegate {
         guard let data = characteristic.value else {
             return
         }
-        
-        Log.info(data.toHexString())
         
         let dataArray = data.arrayOfBytes()
         
