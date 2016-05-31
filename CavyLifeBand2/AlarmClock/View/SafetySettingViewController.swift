@@ -150,6 +150,11 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
     
     func deleteEmergency(index: Int) {
         
+        // 防止点击过快造成数组越界的情况
+        if index >= self.contactModels.count {
+            return
+        }
+        
         var phoneArr: [[String: String]] = [[String: String]]()
         
         for model in self.contactModels {

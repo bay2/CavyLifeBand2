@@ -207,6 +207,8 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
     
     var hiddeBackBtn: Bool { return BindBandCtrl.bindScene != .SignUpBind }
     
+//    let viewController: UIViewController?
+    
     func onClickGuideOkBtn(viewController: UIViewController) {
         
         if queryUserId.isEmpty {
@@ -242,7 +244,7 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
             
             guideView.configView(guideVM, delegate: guideVM)
             
-            viewController.pushVC(viewController)
+            viewController.pushVC(guideView)
             
         }
         

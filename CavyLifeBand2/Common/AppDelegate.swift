@@ -40,6 +40,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         pgyUpdateConfig()
         
+        registerShareSdk()
+        
         setRootViewController()
         
         return true
@@ -64,6 +66,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
         PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
         PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
+        
+    }
+    
+    func registerShareSdk() {
+        
+        ShareSDK.registerApp("12dda1a902dc9")
+        
+        // 新浪微博
+        ShareSDK.connectSinaWeiboWithAppKey("3896444646", appSecret: "aeea3f7222fb54b4f65e2be9edd7df47", redirectUri: "http://sns.whalecloud.com/sina2/callback", weiboSDKCls: WeiboSDK.classForCoder())
+        
+        // QQ
+        ShareSDK.connectQQWithAppId("1105413066", qqApiCls: QQApiInterface.classForCoder())
+        
+        // Wechat
+        ShareSDK.connectWeChatTimelineWithAppId("", appSecret: "", wechatCls: WXApi.classForCoder())
+        ShareSDK.connectWeChatSessionWithAppId("", appSecret: "", wechatCls: WXApi.classForCoder())
         
     }
     
@@ -184,7 +202,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
     
 #endif
 
-
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
@@ -207,5 +224,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    // MARK: - 如果使用SSO（可以简单理解成跳客户端授权），以下方法是必要的
+    
+    func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        
+        return ShareSDK.handleOpenURL(url, wxDelegate: self)
+        
+    }
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        
+        return ShareSDK.handleOpenURL(url, sourceApplication: sourceApplication, annotation: annotation, wxDelegate: self)
+        
+    }
 
 }

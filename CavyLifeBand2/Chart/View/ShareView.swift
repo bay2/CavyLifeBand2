@@ -15,9 +15,17 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
     var bottomView = UIView()
     var collectionView: UICollectionView?
     
-    let dataCount = 4
-    let shareDataArray = [ShareWeiboViewModel()]
-//    let shareDataArray = [ShareQQViewModel, ShareWechatViewModel, ShareWechatMomentsViewModel, ShareWeiboViewModel]
+    let shareDataArray: [ShareViewDataSource] = [ShareWechatViewModel(), ShareWechatMomentsViewModel(),
+                                                 ShareQQViewModel(), ShareWeiboViewModel()]
+    
+    var publishContent : ISSContent = ShareSDK.content("分享内容",
+                                                       defaultContent: "默认分享内容，没内容时显示",
+                                                       image: ShareSDK.jpegImageWithImage(UIImage(named: "banner_home"), quality: 1.0),
+                                                       title: "标题",
+                                                       url: "http://www.tunshu.com",
+                                                       description: "测试分享",
+                                                       mediaType: SSPublishContentMediaTypeImage)
+    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -90,15 +98,14 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
     // MARK: -- collectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return dataCount
+        return shareDataArray.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ShareCellIdentifier", forIndexPath: indexPath) as! ShareCollectionCell
-        let imgArray = [UIImage(asset: .ShareWechat), UIImage(asset: .ShareWechatmoments), UIImage(asset: .ShareQQ), UIImage(asset: .ShareWeibo), UIImage(asset: .ShareMore)]
         
-        cell.imgView.image = imgArray[indexPath.item]
+        cell.imgView.image = shareDataArray[indexPath.item].shareImage
         
         return cell
     }
@@ -107,6 +114,8 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
         Log.info("点我分享啊\(indexPath.item)")
+        
+        share(shareDataArray[indexPath.item].type)
         
     }
     
@@ -117,7 +126,40 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
         
     }
     
-    
+    /**
+     分享
+     
+     - parameter type: 分享的平台类型
+     */
+    func share(type: ShareType) {
+        
+        let urls = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
+        
+        var savePath = urls[0]
+        
+        let imageFullName = CavyDefine.shareImageName.stringByAppendingString(".png")
+        
+        savePath = savePath + "/" + imageFullName
+        
+        publishContent.setImage(ShareSDK.imageWithPath(savePath))
+        
+        ShareSDK.shareContent(publishContent, type: type, authOptions: nil, statusBarTips: false) { (shareType, state, platformShareInfo, error, end) in
+            
+            switch state{
+                
+            case SSResponseStateSuccess:
+                Log.info("分享成功")
+                let alert = UIAlertView(title: "分享成功", message: "分享成功", delegate: self, cancelButtonTitle: "取消")
+                alert.show()
+            case SSResponseStateFail:    Log.error("分享失败,错误描述:\(error)")
+            case SSResponseStateCancel:  Log.info("分享取消")
+                
+            default:
+                break
+            }
+            
+        }
 
+    }
     
 }

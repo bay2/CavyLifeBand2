@@ -12,7 +12,7 @@
             <rect key="frame" x="0.0" y="0.0" width="510" height="66"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Gt6-Nb-1Nf" id="VZd-RJ-3O9">
-                <rect key="frame" x="0.0" y="0.0" width="510" height="66"/>
+                <rect key="frame" x="0.0" y="0.0" width="510" height="65"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LBN-Me-Lrl">
@@ -41,7 +41,7 @@
                             <constraint firstAttribute="width" secondItem="F7a-ka-HWe" secondAttribute="height" multiplier="1:1" id="ccg-sb-3kS"/>
                         </constraints>
                     </imageView>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m3o-Mf-nr0">
+                    <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m3o-Mf-nr0">
                         <rect key="frame" x="0.0" y="66" width="510" height="0.0"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

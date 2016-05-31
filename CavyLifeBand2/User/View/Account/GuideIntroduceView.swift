@@ -44,25 +44,25 @@ protocol GuideIntroduceViewDataSource {
 }
 
 struct GuideRemindDataSource: GuideIntroduceViewDataSource {
-    var title: String = "来电提醒"
+    var title: String = L10n.GuidePhoneRemindTitle.string
     
-    var info: String = "来电振动提醒，不漏接一个重要来电"
+    var info: String = L10n.GuidePhoneRemindInfo.string
     
     var image: UIImage = UIImage(named: "banner_2")!
 }
 
 struct GuidePKDataSource: GuideIntroduceViewDataSource {
-    var title: String = "计步PK"
+    var title: String = L10n.GuidePKTitle.string
     
-    var info: String = "实时查看与好友计步PK详情\n让走路成为一种乐趣"
+    var info: String = L10n.GuidePKInfo.string
     
     var image: UIImage = UIImage(named: "banner_3")!
 }
 
 struct GuideSafetyDataSource: GuideIntroduceViewDataSource {
-    var title: String = "安全服务"
+    var title: String = L10n.GuideSafetyServiceTitle.string
     
-    var info: String = "遇到紧急情况，连按4下按钮\n立即向联系人发送求救信息"
+    var info: String = L10n.GuideSafetyServiceInfo.string
     
     var image: UIImage = UIImage(named: "banner_1")!
 }

@@ -17,7 +17,7 @@ protocol AccountItemDataSource {
     associatedtype viewModeType
 }
 
-class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UserInfoRealmOperateDelegate
+class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITableViewDelegate, UITableViewDataSource, UserInfoRealmOperateDelegate //, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
 {
     
     var realm: Realm = try! Realm()
@@ -208,33 +208,19 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             // |-16-|-tableView-|-10-|-badgeView-10- -50- -8- collectionView -|-20-|-logoutButton-50-|-20-|
             make.height.equalTo(68 + height)
         }
-        badgeTitle.textColor = UIColor(named: .ContactsTitleColor)
-        badgeTitle.text = L10n.ContactsShowInfoAchievement.string
         
-        // 成就数值显示
-        let string = String.numberDecimalFormatter(badgeStep)
-        badgeInfo.text = "\(string)\(L10n.GuideStep.string)"
-        badgeInfo.font = UIFont.italicFontWithSize(16)
-        badgeInfo.textColor = UIColor(named: .ContactsAccountLogoutButton)
+        let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
         
-        collectionView.layer.cornerRadius = CavyDefine.commonCornerRadius
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.registerNib(UINib(nibName: "ContactsAccountBadgeCell", bundle: nil), forCellWithReuseIdentifier: "collectionIdentifier")
-        collectionView.snp_makeConstraints { make in
-            // |-10-|-50-|-8-|-(badgeCount / 3 * 112 + 20)-|
-            make.height.equalTo(height)
+        badgeView.addSubview(achieveView!)
+        achieveView!.snp_makeConstraints { make in
+            make.left.right.top.bottom.equalTo(badgeView)
         }
-
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
     
     // MARK: - UITableView Delegate
     
@@ -339,53 +325,5 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         }
 
     }
-    
-    
-    // MARK: - UICollectionView Delegate
-    
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return badgeCount
-        
-    }
-    
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        
-        return 1
-        
-    }
-    
-    
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collectionIdentifier", forIndexPath: indexPath)
-        
-        return cell
-    }
-    
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        return CGSizeMake(90, 132)
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
-        
-        return 0
-        
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
-        
-        return 0
-    }
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
-        
-        
-        return UIEdgeInsetsMake(0, 0, 0, 0)
-    }
-    
-
 }
 
