@@ -153,6 +153,12 @@
 "Home.RightList.Title.FirmwareUpgrade" = "固件升级";
 "Home.RightList.Title.BindingBand" = "绑定新的CavyBand";
 
+"Band.Title" = "我的CavyBand";
+"Band.FWVersion" = "固件版本: ";
+"Band.Disconnect.Title" = "手环未连接";
+"Band.Disconnect.FWVersion.Title" = "开启蓝牙，按下手环";
+"Band.Disconnect.BandName.Title" = "按钮自动连接";
+
 //Chart
 "Chart.Sleep" = "睡眠";
 "Chart.Step" = "计步";
@@ -341,5 +347,3 @@
 // 固件升级
 "UpdateProgress.Info" = "请勿退出应用或关闭手环";
 "UpdateProgress.title" = "手环正在升级";
-
->>>>>>> c61851a12332edc486260b7cac7ce795d27c6c97

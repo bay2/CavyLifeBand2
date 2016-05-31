@@ -204,8 +204,6 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         if listRealm.healthList.count > 0 {
             
             for list in listRealm.healthList {
-                
-                Log.info(list.iconUrl)
                 listVM.append(HomeListHealthViewModel(othersName: list.friendName, iconUrl: list.iconUrl, friendId: list.friendId))
             }
         }

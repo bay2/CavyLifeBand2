@@ -51,6 +51,7 @@ extension UIImage {
     case GuideWeightBg = "GuideWeightBg"
     case GuideWeightNiddle = "GuideWeightNiddle"
     case HomeBandMenu = "HomeBandMenu"
+    case HomeDisBandMenu = "HomeDisBandMenu"
     case HomeLeftMenu = "HomeLeftMenu"
     case HomeListHonor = "HomeListHonor"
     case HomeListPK = "HomeListPK"

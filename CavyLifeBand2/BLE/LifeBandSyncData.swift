@@ -181,8 +181,6 @@ class LifeBandSyncData {
         let min      = newBeginDate.toString(format: "mm").toInt() ?? 0
         let timeCmd  = (hour * 60 + min) / 10
         
-        Log.info("\(newBeginDate.toString(format: "yyyy-MM-dd HH:mm:ss"))")
-        
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0)) {
             
             // 等待同步完成，再继续同步
@@ -199,7 +197,7 @@ class LifeBandSyncData {
             }
             .sendMsgToBand("%SYNC=\(dayCmd.rawValue),\(timeCmd)\n")
             
-            Log.info("Band sync begin")
+            Log.info("Band sync begin ----  \(newBeginDate.toString(format: "yyyy-MM-dd HH:mm:ss"))")
             
         }
 

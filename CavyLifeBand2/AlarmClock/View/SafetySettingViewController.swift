@@ -235,7 +235,11 @@ extension SafetySettingViewController: SCAddressBookPickerDelegate {
     
     func contactPicker(didSelectContact contact: SCAddressBookContact) {
         
-        addEmergency(contact)
+        var newContact = contact
+        
+        newContact.phoneName = contact.phoneName.stringByReplacingOccurrencesOfString("-", withString: "")
+        
+        addEmergency(newContact)
    
     }
     

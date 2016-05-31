@@ -18,7 +18,7 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
     let shareDataArray: [ShareViewDataSource] = [ShareWechatViewModel(), ShareWechatMomentsViewModel(),
                                                  ShareQQViewModel(), ShareWeiboViewModel()]
     
-    var publishContent : ISSContent = ShareSDK.content("分享内容",
+    var publishContent: ISSContent = ShareSDK.content("分享内容",
                                                        defaultContent: "默认分享内容，没内容时显示",
                                                        image: ShareSDK.jpegImageWithImage(UIImage(named: "banner_home"), quality: 1.0),
                                                        title: "标题",
@@ -143,7 +143,7 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
         
         publishContent.setImage(ShareSDK.imageWithPath(savePath))
         
-        ShareSDK.shareContent(publishContent, type: type, authOptions: nil, statusBarTips: false) { (shareType, state, platformShareInfo, error, end) in
+        ShareSDK.shareContent(publishContent, type: type, authOptions: nil, statusBarTips: false) {(shareType, state, platformShareInfo, error, end) in
             
             switch state{
                 
@@ -151,8 +151,10 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
                 Log.info("分享成功")
                 let alert = UIAlertView(title: "分享成功", message: "分享成功", delegate: self, cancelButtonTitle: "取消")
                 alert.show()
-            case SSResponseStateFail:    Log.error("分享失败,错误描述:\(error)")
-            case SSResponseStateCancel:  Log.info("分享取消")
+            case SSResponseStateFail:
+                Log.error("分享失败,错误描述:\(error)")
+            case SSResponseStateCancel:
+                Log.info("分享取消")
                 
             default:
                 break

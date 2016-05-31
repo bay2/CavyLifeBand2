@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         let button = UIButton(type: .System)
         button.size = CGSizeMake(30, 30)
-        button.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
+        button.setBackgroundImage(UIImage(asset: .HomeDisBandMenu), forState: .Normal)
         
         return button
         
@@ -48,9 +48,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
-
     var aphlaView: UIView?
     var activityView: UIActivityIndicatorView?
+    
+    deinit {
+        removeNotificationObserver()
+    }
     
     // MARK: -- viewDidLoad
     override func viewDidLoad() {
@@ -63,14 +66,16 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         self.updateNavUI()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.pushNextView), name: NotificationName.HomePushView.rawValue, object: nil)
+        addNotificationObserver(NotificationName.HomePushView.rawValue, selector: #selector(HomeViewController.pushNextView))
+        addNotificationObserver(NotificationName.HomeShowStepView.rawValue, selector: #selector(HomeViewController.showStepDetailView))
+        addNotificationObserver(NotificationName.HomeShowSleepView.rawValue, selector: #selector(HomeViewController.showSleepDetailView))
+        addNotificationObserver(NotificationName.HomeShowPKView.rawValue, selector: #selector(HomeViewController.showPKDetailView))
+        addNotificationObserver(NotificationName.HomeShowAchieveView.rawValue, selector: #selector(HomeViewController.showAchieveDetailView))
+        addNotificationObserver(NotificationName.HomeShowHealthyView.rawValue, selector: #selector(HomeViewController.showHealthyDetailView))
+        addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
+        addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showStepDetailView), name: NotificationName.HomeShowStepView.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showSleepDetailView), name: NotificationName.HomeShowSleepView.rawValue, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showPKDetailView), name: NotificationName.HomeShowPKView.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showAchieveDetailView), name: NotificationName.HomeShowAchieveView.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HomeViewController.showHealthyDetailView), name: NotificationName.HomeShowHealthyView.rawValue, object: nil)
     
     }
     
@@ -79,6 +84,26 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         upperView!.frame = CGRectMake(0, 0, ez.screenWidth, 96 + ez.screenWidth * 0.55)
 
+    }
+    
+    /**
+     手环断线通知
+     
+     - author: sim cai
+     - date: 2016-05-31
+     */
+    func bandDesconnect() {
+        rightBtn?.setBackgroundImage(UIImage(asset: .HomeDisBandMenu), forState: .Normal)
+    }
+    
+    /**
+     手环连接
+     
+     - author: sim cai
+     - date: 2016-05-31
+     */
+    func bandConnect() {
+        rightBtn?.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
     }
     
     /**
@@ -100,6 +125,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             make.left.right.equalTo(self.view)
             make.height.equalTo(50)
         }
+        
         view.addSubview(timeLineView)
         timeLineView.snp_makeConstraints { make in
             make.top.equalTo(dateView).offset(50)
@@ -242,19 +268,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 
     }
     
-    
-    /**
-     根据翻身次数 确定 深睡浅睡的时间 单位： 分钟
-     
-     - parameter rollCount: 翻身次数
-     
-     - returns: （深睡， 浅睡）
-     */
-    func sleepCondition(rollCount: Int) -> (Int, Int) {
-        
-        return (123, 243)
-    }
-    
     // MARK: 加载详情
     /**
      显示计步页面
@@ -303,9 +316,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             pushPKVC(pkModel)
         }
         
-        
-
-
     }
     
     
