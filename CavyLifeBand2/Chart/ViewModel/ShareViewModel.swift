@@ -16,8 +16,6 @@ protocol ShareViewDataSource {
     
     var type: ShareType { get }
     
-    func onCilck()
-    
 }
 
 
@@ -27,9 +25,6 @@ struct ShareQQViewModel: ShareViewDataSource {
     
     var type: ShareType = ShareTypeQQ
     
-    func onCilck() {
-        
-    }
     init() {
     
     }
@@ -45,9 +40,7 @@ struct ShareWechatViewModel: ShareViewDataSource {
     init() {
         
     }
-    func onCilck() {
-        
-    }
+
 }
 
 struct ShareWechatMomentsViewModel: ShareViewDataSource {
@@ -59,9 +52,7 @@ struct ShareWechatMomentsViewModel: ShareViewDataSource {
     init() {
         
     }
-    func onCilck() {
-        
-    }
+
 }
 
 struct ShareWeiboViewModel: ShareViewDataSource {
@@ -74,7 +65,4 @@ struct ShareWeiboViewModel: ShareViewDataSource {
         
     }
     
-    func onCilck() {
-        
-    }
 }
