@@ -51,6 +51,8 @@ struct CavyDefine {
     // 已登录用户昵称
     static var userNickname = ""
     
+    static var shareImageName: String = "CavyLifeBand2ShareImage"
+    
     /**
      性别数字转汉字
      
@@ -463,6 +465,7 @@ enum UserNetRequsetKey: String {
     case AC              = "ac"
     case PhoneList       = "phoneList"
     case Remarks         = "remarks"
+    case StepsList       = "stepsList"
 }
 
 // MARK: - 服务器接口命令
@@ -530,4 +533,5 @@ enum UserNetRequestMethod: String {
     case SetFriendRemark   = "setFriendRemark"
     case SendEmergencyMsg  = "sendEmergencyMsg"
     case GetEmergencyPhone = "getEmergencyPhone"
+    case SetStepCount      = "setStepCount"
 }

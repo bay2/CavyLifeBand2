@@ -57,6 +57,8 @@ struct HomeListSleepViewModel: HomeListViewModelProtocol {
     func onClickCell() {
 
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowSleepView.rawValue, object: nil)
+        
+
     }
  
     
@@ -72,36 +74,32 @@ struct HomeListAchiveViewModel: HomeListViewModelProtocol {
     var friendName: String{ return "" }
     var friendIconUrl: String { return "" }
     var resultNum: NSMutableAttributedString
-    
-    init(stepCount: Int) {
+    // 0 ~ 5 共6个徽章 返回编号
+    init(medalIndex: Int) {
         
-        switch stepCount {
+        switch medalIndex {
             
-        case 0 ..< 5000:
+        case 0 :
+
+            self.image = UIImage(asset: .Medal5000Lighted)
+        case 1:
             
-            self.image = UIImage()
+            self.image = UIImage(asset: .Medal20000Lighted)
+        case 2:
             
-        case 5000 ..< 20000:
+            self.image = UIImage(asset: .Medal100000Lighted)
+        case 3:
             
-            self.image = UIImage(asset: .Medal5000)
-        case 20000 ..< 100000:
+            self.image = UIImage(asset: .Medal500000Lighted)
+        case 4:
             
-            self.image = UIImage(asset: .Medal20000)
-        case 100000 ..< 500000:
-            
-            self.image = UIImage(asset: .Medal100000)
-        case 500000 ..< 1000000:
-            
-            self.image = UIImage(asset: .Medal500000)
-        case 1000000 ..< 5000000:
-            
-            self.image = UIImage(asset: .Medal1000000)
+            self.image = UIImage(asset: .Medal1000000Lighted)
  
         default:
-            self.image = UIImage(asset: .Medal5000000)
+            self.image = UIImage(asset: .Medal5000000Lighted)
         }
-        
-        resultNum = NSMutableAttributedString(string: "\(stepCount)\(L10n.GuideStep.string)")
+        let stepArray = [5000, 20000, 100000, 500000, 1000000, 5000000]
+        resultNum = NSMutableAttributedString(string: "\(stepArray[medalIndex])\(L10n.GuideStep.string)")
         
     }
     
@@ -133,7 +131,9 @@ struct HomeListPKViewModel: HomeListViewModelProtocol {
     
     func onClickCell() {
 
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowPKView.rawValue, object: nil)
+        let userInfo = ["pkId": self.pkId, "status": String(self.resultNum)]
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowPKView.rawValue, object: nil, userInfo: userInfo)
     }
     
 }
@@ -146,18 +146,33 @@ struct HomeListHealthViewModel: HomeListViewModelProtocol {
     var image: UIImage { return UIImage() }
     var title: String { return L10n.HomeTimeLineCellHealthiy.string }
     var friendName: String
+    var friendId: String
     var friendIconUrl: String
     var resultNum: NSMutableAttributedString{ return NSMutableAttributedString(string: L10n.HomeTimeLineHealthyCare.string) }
     
-    init(othersName: String, iconUrl: String){
+    init(othersName: String, iconUrl: String, friendId: String){
         friendName = othersName
         friendIconUrl = iconUrl
+        self.friendId = friendId
+
     }
     
     func onClickCell() {
+        
+        var userInfo = ["friendName": "", "friendId": ""]
+        
+        if friendName != "" && friendId != "" {
+            
+            userInfo = ["friendName": self.friendName, "friendId": self.friendId]
 
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHealthyView.rawValue, object: nil)
+        }
+        
+        Log.info("\(userInfo)")
+       
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHealthyView.rawValue, object: nil, userInfo: userInfo)
+        
     }
+    
     
 }
  

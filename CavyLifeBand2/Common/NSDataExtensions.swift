@@ -261,7 +261,7 @@ extension NSData {
         
         let bytesArray = self.arrayOfBytes()
         
-        if bytesArray.count <= subRange.endIndex {
+        if bytesArray.count < subRange.endIndex {
             return nil
         }
         

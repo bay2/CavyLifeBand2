@@ -10,4 +10,19 @@
 #define CavyLifeBand2_Swift_h
 #import <PgyUpdate/PgyUpdateManager.h>
 
+/*----------share----------*/
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDK/ISSPlatformApp.h>
+
+//腾讯SDK头文件
+#import <TencentOpenAPI/TencentOAuth.h>
+#import <TencentOpenAPI/QQApiInterface.h>
+
+//微信SDK头文件
+#import "WXApi.h"
+
+//新浪微博SDK头文件
+#import "WeiboSDK.h"
+/*----------share----------*/
+
 #endif /* CavyLifeBand2_Swift_h */

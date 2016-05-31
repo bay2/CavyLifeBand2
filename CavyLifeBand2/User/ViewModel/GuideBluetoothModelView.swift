@@ -103,7 +103,6 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
         
         LifeBandBle.shareInterface.bleBinding {
             
-            BindBandCtrl.bandName       = $0
             BindBandCtrl.bandMacAddress = $1
             
             let rootViewController = StoryboardScene.Guide.instantiateGuideView()
@@ -114,6 +113,7 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
             CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: rootViewController))
             
             Log.info("GuideBandOpenBand")
+            LifeBandBle.shareInterface.lifeBandBleDelegate = nil
             
         }
         
@@ -207,6 +207,8 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
     
     var hiddeBackBtn: Bool { return BindBandCtrl.bindScene != .SignUpBind }
     
+//    let viewController: UIViewController?
+    
     func onClickGuideOkBtn(viewController: UIViewController) {
         
         if queryUserId.isEmpty {
@@ -242,7 +244,7 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
             
             guideView.configView(guideVM, delegate: guideVM)
             
-            viewController.pushVC(viewController)
+            viewController.pushVC(guideView)
             
         }
         

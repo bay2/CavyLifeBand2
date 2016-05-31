@@ -14,12 +14,10 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     
     var leftMaxValue = 1
     var leftLabelCCount = 1
-    var legendLable = "Step"
+    var legdendLabel = L10n.ChartStep.string
     var legendColors = [UIColor(named: .ChartStepPillarColor)]
     var leftUnit = " k"
     var spaceBetweenLabel = dayTime.count / 3
-    
-    var dataCount = dayTime.count
     
     var timeBucketStyle: TimeBucketStyle = .Day
     
@@ -33,17 +31,14 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         
         self.backgroundColor = UIColor(named: .ChartViewBackground)
         
+        setData(chartsData.count)
         setupBarLineChartView()
         
         addxAxis()
         addLeftAxis()
         addLegend()
         
-        setData(dataCount)
     }
-    
-    
-    
     
     /**
      总设置
@@ -51,6 +46,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     func setupBarLineChartView() {
         
         self.descriptionText = ""
+        // 提醒您注意运动哦，没有您的运动数据哦！
         self.noDataTextDescription = "You need to provide data for the chart."
         self.dragEnabled = false
         self.setScaleEnabled(false)
@@ -100,7 +96,10 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func addLegend() {
         
-        self.legend.position = .AboveChartRight
+//        self.legend.position = .AboveChartRight
+        self.legend.horizontalAlignment = .Right
+//        self.legend.verticalAlignment = .Top
+//        self.legend.orientation = .Horizontal
         self.legend.form = .Circle
         self.legend.formSize = 5
         self.legend.textColor = UIColor(named: .ChartViewTextColor)
@@ -119,23 +118,16 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
         
-        
-//        for i in 0 ..< chartsData.count {
-//            xVals.append(chartsData[i].time)
-//
-//            let dataEntry = BarChartDataEntry(value: Double(chartsData[i].kilometer), xIndex: i)
-//            yVals.append(dataEntry)
-//        }
-        
-        for i in 0 ..< count {
-            
-            xVals.append(dayTime[i])
-            
-            let val = dayData[i]
-            let dataEntry = BarChartDataEntry(value: val, xIndex: i)
-            yVals.append(dataEntry)
+        if chartsData.count == 0 {
+            return 
         }
         
+        for i in 0 ..< chartsData.count {
+            xVals.append(chartsData[i].time)
+
+            let dataEntry = BarChartDataEntry(value: Double(chartsData[i].kilometer), xIndex: i)
+            yVals.append(dataEntry)
+        }
         
         var dataSet = BarChartDataSet()
         if self.data?.dataSetCount > 0 {
@@ -145,7 +137,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     
         } else {
             
-            dataSet = BarChartDataSet(yVals: yVals, label: legendLable)
+            dataSet = BarChartDataSet(yVals: yVals, label: legdendLabel)
             dataSet.barSpace = 0.80
             dataSet.setColors(legendColors, alpha: 0.9)
             dataSet.highlightAlpha = 0.2
@@ -163,10 +155,8 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
             // 动画
             self.animate(yAxisDuration: 2)
             }
-    
 
     }
-    
     
     // MARK: -- ChartViewDelegate
     /**
@@ -175,9 +165,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         
         Log.info("\(chartView)  \(entry)   \(dataSetIndex)  \(highlight)")
-        
-   
-        
+ 
     }
     
 }

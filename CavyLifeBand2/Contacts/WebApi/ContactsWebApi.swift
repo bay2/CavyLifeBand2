@@ -237,10 +237,13 @@ class ContactsWebApi: NetRequestAdapter {
      */
     func followFriend(userId: String, friendId: String, follow: Bool, callBack: CompletionHandlernType? = nil) {
         
+        let isFollow = follow ? 1 : 0
+        
+        
         let parametes: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.FollowFriend.rawValue,
                                               UserNetRequsetKey.UserID.rawValue: userId,
                                               UserNetRequsetKey.FriendID.rawValue: friendId,
-                                              UserNetRequsetKey.Operate.rawValue: follow]
+                                              UserNetRequsetKey.Operate.rawValue: isFollow]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parametes, completionHandler: callBack)
         

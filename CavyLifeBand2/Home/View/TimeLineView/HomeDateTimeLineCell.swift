@@ -78,7 +78,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         // 如果数据库存在数据 就直接返回
         if isExistHomeList(timeString) { return }
         
-        let date = NSDate(fromString: timeString, format: "yyyy.M.dd")
+        let date = NSDate(fromString: timeString, format: "yyyy.M.d")
         let time = date!.toString(format: "yyyy-MM-dd")
         // 不存在 解析数据 并保存
         HomeListWebApi.shareApi.parseHomeListData(time) { result in
@@ -153,6 +153,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
             let healthRealm = HealthListRealm()
             
             healthRealm.friendId = infoList.friendId!
+            healthRealm.iconUrl = infoList.iconUrl!
             healthRealm.friendName = infoList.friendName!
             homeListRealm.healthList.append(healthRealm)
             
@@ -194,12 +195,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
             
             for list in listRealm.achieveList {
                 
-                if list.achieve < 5000 {
-                    
-                    continue
-                }
-                
-                listVM.append(HomeListAchiveViewModel(stepCount: list.achieve))
+                listVM.append(HomeListAchiveViewModel(medalIndex: list.achieve))
             }
         }
         
@@ -208,8 +204,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         if listRealm.healthList.count > 0 {
             
             for list in listRealm.healthList {
-                
-                listVM.append(HomeListHealthViewModel(othersName: list.friendName, iconUrl: list.iconUrl))
+                listVM.append(HomeListHealthViewModel(othersName: list.friendName, iconUrl: list.iconUrl, friendId: list.friendId))
             }
         }
 

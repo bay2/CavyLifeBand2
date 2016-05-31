@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="7fL-7h-TBI" customClass="ContactListEmptyView" customModule="CavyLifeBand2" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvL-hd-lkS">
+                    <rect key="frame" x="260" y="261" width="80" height="80"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ContactBlankPage" translatesAutoresizingMaskIntoConstraints="NO" id="efn-j5-aNB">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="QCO-dI-mnw"/>
+                                <constraint firstAttribute="width" secondItem="efn-j5-aNB" secondAttribute="height" multiplier="1:1" id="hRO-IM-fxr"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DW8-Hx-Xdb">
+                            <rect key="frame" x="0.0" y="80" width="80" height="0.0"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="JHy-6a-gDs"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="DW8-Hx-Xdb" secondAttribute="trailing" id="6c1-VI-d4I"/>
+                        <constraint firstItem="efn-j5-aNB" firstAttribute="centerX" secondItem="DW8-Hx-Xdb" secondAttribute="centerX" id="Vni-gN-FK5"/>
+                        <constraint firstAttribute="leading" secondItem="DW8-Hx-Xdb" secondAttribute="leading" id="cPk-gK-z14"/>
+                        <constraint firstAttribute="top" secondItem="efn-j5-aNB" secondAttribute="top" id="gWB-6B-BLr"/>
+                        <constraint firstAttribute="bottom" secondItem="DW8-Hx-Xdb" secondAttribute="bottom" id="j7b-Pr-Q1y"/>
+                        <constraint firstItem="efn-j5-aNB" firstAttribute="bottom" secondItem="DW8-Hx-Xdb" secondAttribute="top" id="rKs-mX-XWG"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="fvL-hd-lkS" firstAttribute="centerX" secondItem="7fL-7h-TBI" secondAttribute="centerX" id="0Ze-va-a3a"/>
+                <constraint firstItem="fvL-hd-lkS" firstAttribute="centerY" secondItem="7fL-7h-TBI" secondAttribute="centerY" id="M7G-xl-cOC"/>
+            </constraints>
+            <connections>
+                <outlet property="infoLabel" destination="DW8-Hx-Xdb" id="Ktf-wq-VTQ"/>
+            </connections>
+            <point key="canvasLocation" x="1000" y="178"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ContactBlankPage" width="80" height="80"/>
+    </resources>
+</document>

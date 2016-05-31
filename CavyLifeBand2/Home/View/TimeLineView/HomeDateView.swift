@@ -28,7 +28,7 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        dateArray = queryHomeTimeBucket()!
+        dateArray = queryTimeBucketFromFirstDay()!
         Log.info(dateArray)
 
         addAllViewLayout()
@@ -71,7 +71,7 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         imgView.image = UIImage(asset: .HomeTimelineCorn)
         
         // 接受通知
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeDatePage), name: "ChangeDatePage", object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeDatePage), name: "ChangeDatePage", object: nil)
 
     }
     
@@ -158,18 +158,18 @@ extension HomeDateView: UIScrollViewDelegate {
     
     }
     
-    /**
-     改变CollectionView对应页数
-     
-     - parameter sender:
-     */
-    func changeDatePage(sender: NSNotification){
-        
-        let count = sender.userInfo!["currentPage"] as! CGFloat
-        
-        self.collectionView!.setContentOffset(CGPointMake(count * labelWidth, 0), animated: true)
-        
-    }
+//    /**
+//     改变CollectionView对应页数
+//     
+//     - parameter sender:
+//     */
+//    func changeDatePage(sender: NSNotification){
+//        
+//        let count = sender.userInfo!["currentPage"] as! CGFloat
+//        
+//        self.collectionView!.setContentOffset(CGPointMake(count * labelWidth, 0), animated: true)
+//        
+//    }
     
 
 }

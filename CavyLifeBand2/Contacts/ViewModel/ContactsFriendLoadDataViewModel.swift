@@ -147,7 +147,6 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
         
         self.viewController = viewController
         self.tableView = tableView
-        
     }
     
     /**
@@ -321,7 +320,7 @@ class ContactsNearbyFriendData: ContactsAddFriendDataSync {
             for friendInfo in friendInfos {
                 self.items.append(ContactsNearbyCellViewModel(viewController: self.viewController!, friendInfo: friendInfo))
             }
-            
+
             self.tableView!.reloadData()
             
         }

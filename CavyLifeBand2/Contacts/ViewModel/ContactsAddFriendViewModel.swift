@@ -47,6 +47,10 @@ struct ContactsRecommendCellViewModel: ContactsAddFriendDelItemPortocols {
         
     }
     
+    func clickCellBtn(sender: UIButton) {
+        self.clickBtn(sender)
+    }
+    
 }
 
 /**

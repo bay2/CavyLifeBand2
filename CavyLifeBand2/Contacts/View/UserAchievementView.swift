@@ -7,39 +7,29 @@
 //
 
 import UIKit
+import RealmSwift
 
-/**
- 
- 使用示例
- 
- let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
- 
- achieveView?.frame = CGRect(x: 20, y: 20, w: ez.screenWidth - 40, h: 342)
- 
- achieveView?.achievementsList = [UserAchievementCellViewModel(),
-                                  UserAchievementCellViewModel(),
-                                  UserAchievementCellViewModel()]
- 
- achieveView?.achievementCount = 500000
- 
- */
-
-class UserAchievementView: UIView {
+class UserAchievementView: UIView, UserInfoRealmOperateDelegate {
 
     let userAchievementViewCollectionCell = "UserAchievementCell"
     
     let cellSize  = CGSizeMake(90, 132)
+    
+    /// 徽章个数
+    var medalCount = 6
     
     var achievementsList: [AchievementDataSource]?
     
     var achievementCount: Int? {
         
         didSet {
-            infoLabel.text = infoStrFormatter(transformNumberStyle(achievementCount!))
+            infoLabel.text = infoStrFormatter(String.numberDecimalFormatter(achievementCount!))
         }
     
     }
     
+    var realm: Realm = try! Realm()
+    var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
 
     /// 成就标题Label
     @IBOutlet weak var titleLabel: UILabel!
@@ -49,9 +39,16 @@ class UserAchievementView: UIView {
     
     /// 成就图标展示视图
     @IBOutlet weak var collectionView: UICollectionView!
-    
+        
     override func awakeFromNib() {
-
+        
+        
+        guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
+            return
+        }
+        
+        achievementsList = configWithMadelIndex(0)
+        
         // 成就标题Label样式设置
         titleLabel.text      = L10n.ContactsShowInfoAchievement.string
         titleLabel.textColor = UIColor(named: .ContactsTitleColor)
@@ -75,9 +72,40 @@ class UserAchievementView: UIView {
         self.clipsToBounds      = true
         self.layer.cornerRadius = CavyDefine.commonCornerRadius
         
+        guard let achieveIndex = userInfo.achievementType.toInt() else {
+            return
+        }
+        
+        achievementsList = configWithMadelIndex(achieveIndex)
         
     }
     
+    /**
+     传进来的指数  
+     0:没有成就; 1:5000步;2:20000步;3:1000000步;4：500000步;5：1000000步;6：5000000步;
+     
+     - parameter index: 传进来的指数
+     
+     - returns: 徽章数组
+     */
+    func configWithMadelIndex(index: Int = 0) -> [AchievementDataSource]? {
+
+        var array: [AchievementDataSource] = []
+
+        for i in 0 ..< medalCount {
+            
+            array.append(UserAchievementCellViewModel(madelIndex: i, isAchieve: 0))
+        }
+        
+        for i in 0 ..< index  {
+            
+            let vm = UserAchievementCellViewModel(madelIndex: index, isAchieve: 1)
+            array[i] = vm
+            
+        }
+        
+        return array
+    }
     
     
 
@@ -85,25 +113,7 @@ class UserAchievementView: UIView {
 
 // MARK: - Tool Functions
 extension UserAchievementView {
-    
-    /**
-     转换数字格式 ep:50000 -> 50,000
-     
-     - parameter number: Int数据
-     
-     - returns: String
-     */
-    func transformNumberStyle(number: Int = 0) -> String {
-        
-        let numberFormatter = NSNumberFormatter()
-        
-        numberFormatter.numberStyle = NSNumberFormatterStyle.DecimalStyle
-        
-        let numberStr = numberFormatter.stringFromNumber(NSNumber(integer: number))
-        
-        return numberStr!
-        
-    }
+
     
     /**
      infoLabel 的 text 格式化
@@ -130,8 +140,7 @@ extension UserAchievementView: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-//        return cellCount
-        return achievementsList!.count
+        return medalCount
         
     }
     
@@ -180,5 +189,4 @@ extension UserAchievementView: UICollectionViewDelegateFlowLayout {
     }
     
 }
-
 

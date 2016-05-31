@@ -175,4 +175,8 @@ extension PKListVC {
         return dataSources[indexPath.section].isCanEditRow
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
 }
