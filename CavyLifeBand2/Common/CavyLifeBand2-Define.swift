@@ -51,6 +51,8 @@ struct CavyDefine {
     // 已登录用户昵称
     static var userNickname = ""
     
+    static var shareImageName: String = "CavyLifeBand2ShareImage"
+    
     /**
      性别数字转汉字
      

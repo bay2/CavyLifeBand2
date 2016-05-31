@@ -27,4 +27,34 @@ extension UIImage {
         return  newImg
     }
 
+    /**
+     将图片存到沙盒的Cache文件
+     
+     - parameter imageName: 图片名称
+     
+     - returns: 文件路径（失败则为空）
+     */
+    func writeToChacheDocument(imageName: String) -> String {
+        
+        guard let imageData = UIImagePNGRepresentation(self) else {
+            Log.error("image data get fail")
+            return ""
+        }
+        
+        let urls = NSSearchPathForDirectoriesInDomains(.CachesDirectory, .UserDomainMask, true)
+        
+        var savePath = urls[0]
+        
+        let imageFullName = imageName.stringByAppendingString(".png")
+        
+        savePath = savePath + "/" + imageFullName
+        
+        guard imageData.writeToFile(savePath, atomically: false) == true else {
+            Log.error("save image fail")
+            return ""
+        }
+        
+        return savePath
+    }
+    
 }

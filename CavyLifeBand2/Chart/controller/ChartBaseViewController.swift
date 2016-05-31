@@ -135,12 +135,31 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
      分享
      */
     func onRightBtn() {
-        Log.info("分享")
+        
+        clipImage()
         
         let shareView = ShareView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
         
         UIApplication.sharedApplication().keyWindow?.addSubview(shareView)
+                
+    }
+    
+    /**
+     截图
+     
+     - returns: UIImage
+     */
+    func clipImage() {
         
+        UIGraphicsBeginImageContextWithOptions(self.view.size, false, 0);
+        
+        self.view.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext();
+        
+        UIGraphicsEndImageContext();
+        
+        image.writeToChacheDocument(CavyDefine.shareImageName)
         
     }
     

@@ -159,6 +159,18 @@ enum L10n {
   case GuidePairFail
   /// 确保手环有电，并且位于手机的连接范围
   case GuidePairFailInfo
+  /// 来电提醒
+  case GuidePhoneRemindTitle
+  /// 来电振动提醒，不漏接一个重要来电
+  case GuidePhoneRemindInfo
+  /// 计步PK
+  case GuidePKTitle
+  /// 实时查看与好友计步PK详情\n让走路成为一种乐趣
+  case GuidePKInfo
+  /// 安全服务
+  case GuideSafetyServiceTitle
+  /// 遇到紧急情况，连按4下按钮\n立即向联系人发送求救信息
+  case GuideSafetyServiceInfo
   /// 忘记密码了?
   case ForgotTitle
   /// 新密码
@@ -364,13 +376,13 @@ enum L10n {
   /// 退出登录
   case AccountInfoLoginoutButtonTitle
   /// 从手机相册中选择
-  case AccountInofPhoto
+  case AccountInfoPhoto
   /// 拍照
-  case AccountInofCamera
+  case AccountInfoCamera
   /// 输入昵称
-  case AccountInofChangeNicknamePlaceholder
+  case AccountInfoChangeNicknamePlaceholder
   /// 输入地址
-  case AccountInofChangeAddressPlaceholder
+  case AccountInfoChangeAddressPlaceholder
   /// 手环振动提醒 取消传统声音唤醒体系
   case AlarmClockIntelligentClockTableFooterInfo
   /// 智能闹钟
@@ -736,6 +748,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Guide.PairFail")
       case .GuidePairFailInfo:
         return L10n.tr("Guide.PairFailInfo")
+      case .GuidePhoneRemindTitle:
+        return L10n.tr("Guide.PhoneRemind.Title")
+      case .GuidePhoneRemindInfo:
+        return L10n.tr("Guide.PhoneRemind.Info")
+      case .GuidePKTitle:
+        return L10n.tr("Guide.PK.Title")
+      case .GuidePKInfo:
+        return L10n.tr("Guide.PK.Info")
+      case .GuideSafetyServiceTitle:
+        return L10n.tr("Guide.SafetyService.Title")
+      case .GuideSafetyServiceInfo:
+        return L10n.tr("Guide.SafetyService.Info")
       case .ForgotTitle:
         return L10n.tr("Forgot.Title")
       case .ForgotPasswdTextField:
@@ -940,14 +964,14 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AccountInfo.Title")
       case .AccountInfoLoginoutButtonTitle:
         return L10n.tr("AccountInfo.LoginoutButton.Title")
-      case .AccountInofPhoto:
-        return L10n.tr("AccountInof.Photo")
-      case .AccountInofCamera:
-        return L10n.tr("AccountInof.Camera")
-      case .AccountInofChangeNicknamePlaceholder:
-        return L10n.tr("AccountInof.ChangeNickname.Placeholder")
-      case .AccountInofChangeAddressPlaceholder:
-        return L10n.tr("AccountInof.ChangeAddress.Placeholder")
+      case .AccountInfoPhoto:
+        return L10n.tr("AccountInfo.Photo")
+      case .AccountInfoCamera:
+        return L10n.tr("AccountInfo.Camera")
+      case .AccountInfoChangeNicknamePlaceholder:
+        return L10n.tr("AccountInfo.ChangeNickname.Placeholder")
+      case .AccountInfoChangeAddressPlaceholder:
+        return L10n.tr("AccountInfo.ChangeAddress.Placeholder")
       case .AlarmClockIntelligentClockTableFooterInfo:
         return L10n.tr("AlarmClock.IntelligentClockTableFooter.Info")
       case .AlarmClockTitle:

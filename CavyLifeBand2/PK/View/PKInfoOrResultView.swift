@@ -196,7 +196,11 @@ class PKInfoOrResultView: UIView {
         userAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.userAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
         competitorAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.comprtitorAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
         
-        loadInfoFromWeb()
+        guard let pkId = dataSource?.pkId else {
+            return
+        }
+        
+        loadInfoFromWeb(pkId)
 
     }
 
@@ -205,8 +209,10 @@ class PKInfoOrResultView: UIView {
 extension PKInfoOrResultView: PKWebRequestProtocol {
     
     //从服务器加载数据库没有的展示数据
-    func loadInfoFromWeb() {
-        getPKInfo({ pkInfo in
+    func loadInfoFromWeb(pkId: String) {
+        
+        
+        getPKInfo(pkId, callBack: { pkInfo in
             
             self.dataSource?.userStepCount = pkInfo.userStepCount
             self.dataSource?.competitorStepCount = pkInfo.friendStepCount
@@ -258,6 +264,8 @@ protocol PKInfoOrResultViewDataSource {
     
     var comprtitorAvatarUrl: String { get }
     
+    var pkId: String { get }
+    
     func timeFormatterStr() -> NSMutableAttributedString
     
 }
@@ -278,6 +286,8 @@ extension PKInfoOrResultViewDataSource {
 }
 
 struct PKInfoOrResultViewModel: PKInfoOrResultViewDataSource {
+    var pkId: String
+    
     var isPKEnd: Bool
     
     var userStepCount: Int = 0
@@ -399,6 +409,8 @@ struct PKInfoOrResultViewModel: PKInfoOrResultViewDataSource {
         self.comprtitorAvatarUrl = pkRealm.avatarUrl
         
         self.pkDuration = pkRealm.pkDuration
+        
+        self.pkId = pkRealm.pkId
         
         if pkRealm is PKDueRealmModel {
             let pk = pkRealm as! PKDueRealmModel
