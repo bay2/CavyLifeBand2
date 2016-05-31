@@ -23,7 +23,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
     ///  列表展示信息
     var listView: UITableView?
 
-    var listDataArray: [String] = ["","","",""]
+    var listDataArray: [String] = []
     
     var realm: Realm = try! Realm()
     var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
@@ -162,7 +162,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         let minutes = stepRealm.finishTime
 
         guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
-            return ["0","0","0","0\(L10n.HomeSleepRingUnitMinute.string)"]
+            return ["0", "0", "0", "0\(L10n.HomeSleepRingUnitMinute.string)"]
         }
         
         let stepTargetNumber = userInfo.stepNum
@@ -194,7 +194,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         
         var percent = 0
         
-        let newSleepData = sleepRealm.reduce((0, 0, 0)) { (count: (Double, Double, Double), sleepData: (Double, Double, Double)) -> (Double, Double, Double) in
+        let newSleepData = sleepRealm.reduce((0, 0, 0)) {(count: (Double, Double, Double), sleepData: (Double, Double, Double)) -> (Double, Double, Double) in
             return (((count.0 + sleepData.0)), ((count.1 + sleepData.1)), ((count.2 + sleepData.2)))
         }
         

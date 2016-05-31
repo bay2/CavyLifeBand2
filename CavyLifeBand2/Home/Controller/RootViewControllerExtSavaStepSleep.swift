@@ -76,7 +76,7 @@ extension RootViewController: ChartsRealmProtocol {
      
      - parameter steps:
      */
-    func saveStepsToRealm(steps: [( NSDate, Int)]) {
+    func saveStepsToRealm(steps: [(NSDate, Int)]) {
         
         _ = steps.map {(date: NSDate, steps: Int) -> (NSDate, Int)? in
             

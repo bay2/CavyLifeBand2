@@ -48,7 +48,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
-
     var aphlaView: UIView?
     var activityView: UIActivityIndicatorView?
     
@@ -75,6 +74,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(NotificationName.HomeShowHealthyView.rawValue, selector: #selector(HomeViewController.showHealthyDetailView))
         addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
         addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
+        
+        
     
     }
     
@@ -267,19 +268,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 
     }
     
-    
-    /**
-     根据翻身次数 确定 深睡浅睡的时间 单位： 分钟
-     
-     - parameter rollCount: 翻身次数
-     
-     - returns: （深睡， 浅睡）
-     */
-    func sleepCondition(rollCount: Int) -> (Int, Int) {
-        
-        return (123, 243)
-    }
-    
     // MARK: 加载详情
     /**
      显示计步页面
@@ -328,9 +316,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             pushPKVC(pkModel)
         }
         
-        
-
-
     }
     
     

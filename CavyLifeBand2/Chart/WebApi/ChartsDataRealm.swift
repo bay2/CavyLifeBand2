@@ -74,6 +74,7 @@ protocol ChartsRealmProtocol {
     func isExistSleepChartsData() -> Bool
     func addSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
     func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData]
+    func queryAllSleepInfo(userId: String) -> Results<(ChartSleepDataRealm)>
 //    func querySleepInfo(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double)
     func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)]
     func querySleepInfoDay(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double)
@@ -262,6 +263,20 @@ extension ChartsRealmProtocol {
     }
     
     /**
+     查询所有睡眠数据
+     
+     - author: sim cai
+     - date: 2016-06-01
+     
+     - parameter userId: 用户id
+     
+     - returns:
+     */
+    func queryAllSleepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(ChartSleepDataRealm)> {
+        return realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
+    }
+    
+    /**
      添加计步数据
      - parameter chartsInfo: 用户的睡眠信息
      - returns: 成功：true 失败： false
@@ -326,8 +341,8 @@ extension ChartsRealmProtocol {
         
         for timeIndex in 0..<sleepDatas.count {
             
-            let beginIndex = (timeIndex == 0 ? 0 : timeIndex - 1)
-            let endIndex   = (timeIndex == sleepDatas.endIndex - 1 ? timeIndex : timeIndex + 1)
+            let beginIndex = timeIndex == 0 ? 0 : timeIndex - 1
+            let endIndex   = timeIndex == sleepDatas.endIndex - 1 ? timeIndex : timeIndex + 1
             
             var tiltsTotal = sleepDatas[beginIndex...endIndex].reduce(0, combine: +)
             
@@ -353,7 +368,7 @@ extension ChartsRealmProtocol {
             }
             
             // 退出无睡眠状态,减掉无效计数
-            if (stepTotal != 0 || tiltsTotal != 0) {
+            if stepTotal != 0 || tiltsTotal != 0 {
                 
                 if longSleepCount >= noSleepTime {
                     minustsCount -= longSleepCount

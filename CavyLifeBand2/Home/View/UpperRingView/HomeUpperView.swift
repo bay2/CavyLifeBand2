@@ -31,9 +31,42 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     
     var viewController = UIViewController()
     
+    var notificationToken: NotificationToken?
+    
     override func awakeFromNib() {
         allViewLayout()
         configStepAndSleepValue()
+        
+        configRealm()
+        
+
+    }
+    
+    func configRealm() {
+        
+        let stepRealmReslut = queryAllStepInfo()
+        let sleepRealmReslut = queryAllSleepInfo()
+        
+        notificationToken = stepRealmReslut.addNotificationBlock { change in
+            
+            switch change {
+            case .Update(_, deletions: _, insertions: _, modifications: _):
+                self.configStepValue()
+            default:
+                break
+            }
+            
+        }
+        
+        notificationToken = sleepRealmReslut.addNotificationBlock { change in
+            switch change {
+            case .Update(_, deletions: _, insertions: _, modifications: _):
+                self.configSleepValue()
+            default:
+                break
+            }
+        }
+        
     }
 
     /**
@@ -102,6 +135,13 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     
     func configStepAndSleepValue() {
         
+        configSleepValue()
+        configStepValue()
+        
+    }
+    
+    func configSleepValue() {
+        
         // 计步睡眠目标值
         guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
             return
@@ -111,21 +151,35 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         if sleepString == "" {
             sleepString = "0:0"
         }
+        
         let sleepTimeArray = sleepString.componentsSeparatedByString(":")
         let sleepTargetNumber = sleepTimeArray[0].toInt()! * 60 + sleepTimeArray[1].toInt()!
-        let stepTargetNumber = userInfo.stepNum
         
         // 计步睡眠 当前值
         let time = NSDate()
-        let resultStep = self.queryStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)
         let resultSeelp = self.querySleepInfoDay(time.gregorian.beginningOfDay.date, endTime: time)
-        
-
-        let stepCurrentNumber = resultStep.totalStep
         let sleepCurrentNumber = Int(resultSeelp.0)
         
-        stepView.ringWithStyle(stepTargetNumber, currentNumber: stepCurrentNumber)
+        
         sleepView.ringWithStyle(sleepTargetNumber, currentNumber: sleepCurrentNumber)
+        
+    }
+    
+    func configStepValue() {
+        
+        // 计步睡眠目标值
+        guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
+            return
+        }
+        
+        let stepTargetNumber = userInfo.stepNum
+        
+        let time = NSDate()
+        let resultStep = self.queryStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)
+        
+         let stepCurrentNumber = resultStep.totalStep
+        
+        stepView.ringWithStyle(stepTargetNumber, currentNumber: stepCurrentNumber)
         
     }
     
