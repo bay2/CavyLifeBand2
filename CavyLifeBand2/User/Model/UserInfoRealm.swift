@@ -18,22 +18,23 @@ class UserInfoModel: Object {
 //    return []
 //  }
     
-    dynamic var userId         = ""
-    dynamic var sex            = 0
-    dynamic var height         = ""
-    dynamic var weight         = ""
-    dynamic var birthday       = ""
-    dynamic var avatarUrl      = ""
-    dynamic var address        = ""
-    dynamic var nickname       = ""
-    dynamic var stepNum        = 0
-    dynamic var sleepTime      = ""
-    dynamic var isNotification = true
-    dynamic var isLocalShare   = true
-    dynamic var isOpenBirthday = true
-    dynamic var isOpenHeight   = true
-    dynamic var isOpenWeight   = true
-    dynamic var isSync         = false
+    dynamic var userId          = ""
+    dynamic var sex             = 0
+    dynamic var height          = ""
+    dynamic var weight          = ""
+    dynamic var birthday        = ""
+    dynamic var avatarUrl       = ""
+    dynamic var address         = ""
+    dynamic var nickname        = ""
+    dynamic var stepNum         = 0
+    dynamic var sleepTime       = ""
+    dynamic var isNotification  = true
+    dynamic var isLocalShare    = true
+    dynamic var isOpenBirthday  = true
+    dynamic var isOpenHeight    = true
+    dynamic var isOpenWeight    = true
+    dynamic var isSync          = false
+    dynamic var achievementType = ""
 
     override class func primaryKey() -> String? {
         return "userId"

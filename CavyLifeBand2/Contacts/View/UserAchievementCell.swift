@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import JSONJoy
 import Log
 
 class UserAchievementCell: UICollectionViewCell {
@@ -20,7 +19,7 @@ class UserAchievementCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        achieveImageView.image = UIImage(asset: .GuideGenderBoyChosen)
+//        achieveImageView.image = UIImage(asset: .Medal5000)
         
         achieveTitleLabel.textColor = UIColor(named: .ContactsLetterColor)
         
@@ -29,20 +28,19 @@ class UserAchievementCell: UICollectionViewCell {
     
     func configure(dataSource: AchievementDataSource) {
         
+        Log.info(dataSource)
         
-        achieveTitleLabel.text = dataSource.title
+        achieveTitleLabel.text = achieveLabelArray[dataSource.index]
        
         if dataSource.isAchieve == 1 {
             
-//            achieveImageView.image = UIImage(asset: )
+            achieveImageView.image = achieveImageLight[dataSource.index]
             
         } else {
             
-//            achieveImageView.image = UIImage(asset: )
+            achieveImageView.image = achieveImage[dataSource.index]
             
         }
-        
-        Log.info("|\(self.className)| ----- TODO  显示图片没换")
         
     }
     
@@ -52,29 +50,49 @@ class UserAchievementCell: UICollectionViewCell {
 
 protocol AchievementDataSource {
     
-    var title: String { get }
+    var index: Int { get }
     
     var isAchieve: Int { get }
     
 }
 
-struct UserAchievementCellViewModel: AchievementDataSource, JSONJoy {
+struct UserAchievementCellViewModel: AchievementDataSource {
     
-    var title: String
+    var index: Int
     
     var isAchieve: Int
     
-    init(_ decoder: JSONDecoder) throws {
+    init(madelIndex: Int, isAchieve: Int = 1) {
         
-        do { title = try decoder["title"].getString() } catch { title = "" }
-        do { isAchieve = try decoder["isAchieve"].getInt() } catch { isAchieve = 1 }
-        
-    }
-    
-    init(title: String = "累计5000步", isAchieve: Int = 1) {
-        self.title = title
+        self.index = madelIndex
         self.isAchieve = isAchieve
     }
     
 }
+
+/// 成就的LabelText
+let achieveLabelArray: [String] = ["\(L10n.HomeTimeLineAchiveBadge.string)5000\(L10n.GuideStep.string)",
+                                   "\(L10n.HomeTimeLineAchiveBadge.string)20000\(L10n.GuideStep.string)",
+                                   "\(L10n.HomeTimeLineAchiveBadge.string)100000\(L10n.GuideStep.string)",
+                                   "\(L10n.HomeTimeLineAchiveBadge.string)500000\(L10n.GuideStep.string)",
+                                   "\(L10n.HomeTimeLineAchiveBadge.string)1000000\(L10n.GuideStep.string)",
+                                   "\(L10n.HomeTimeLineAchiveBadge.string)5000000\(L10n.GuideStep.string)",]
+/// 成就的灰色图标
+let achieveImage = [UIImage(asset: .Medal5000),
+                    UIImage(asset: .Medal20000),
+                    UIImage(asset: .Medal100000),
+                    UIImage(asset: .Medal500000),
+                    UIImage(asset: .Medal1000000),
+                    UIImage(asset: .Medal5000000)]
+
+/// 成就点亮的图标
+let achieveImageLight = [UIImage(asset: .Medal5000Lighted),
+                         UIImage(asset: .Medal20000Lighted),
+                         UIImage(asset: .Medal100000Lighted),
+                         UIImage(asset: .Medal500000Lighted),
+                         UIImage(asset: .Medal1000000Lighted),
+                         UIImage(asset: .Medal5000000Lighted)]
+
+
+
 

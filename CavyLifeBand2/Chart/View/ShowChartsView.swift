@@ -14,6 +14,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     
     var leftMaxValue = 1
     var leftLabelCCount = 1
+    var legdendLabel = L10n.ChartStep.string
     var legendColors = [UIColor(named: .ChartStepPillarColor)]
     var leftUnit = " k"
     var spaceBetweenLabel = dayTime.count / 3
@@ -133,7 +134,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     
         } else {
             
-            dataSet = BarChartDataSet(yVals: yVals, label: "")
+            dataSet = BarChartDataSet(yVals: yVals, label: legdendLabel)
             dataSet.barSpace = 0.80
             dataSet.setColors(legendColors, alpha: 0.9)
             dataSet.highlightAlpha = 0.2
