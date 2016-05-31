@@ -27,7 +27,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         let button = UIButton(type: .System)
         button.size = CGSizeMake(30, 30)
-        button.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
+        button.setBackgroundImage(UIImage(asset: .HomeDisBandMenu), forState: .Normal)
         
         return button
         
@@ -52,6 +52,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     var aphlaView: UIView?
     var activityView: UIActivityIndicatorView?
     
+    deinit {
+        removeNotificationObserver()
+    }
+    
     // MARK: -- viewDidLoad
     override func viewDidLoad() {
         
@@ -70,6 +74,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(NotificationName.HomeShowAchieveView.rawValue, selector: #selector(HomeViewController.showAchieveDetailView))
         addNotificationObserver(NotificationName.HomeShowHealthyView.rawValue, selector: #selector(HomeViewController.showHealthyDetailView))
         addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
+        addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
     
     }
     
@@ -88,6 +93,16 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func bandDesconnect() {
         rightBtn?.setBackgroundImage(UIImage(asset: .HomeDisBandMenu), forState: .Normal)
+    }
+    
+    /**
+     手环连接
+     
+     - author: sim cai
+     - date: 2016-05-31
+     */
+    func bandConnect() {
+        rightBtn?.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
     }
     
     /**

@@ -242,7 +242,6 @@ extension ChartsRealmProtocol {
      */
     func isExistSleepChartsData() -> Bool {
         
-        
         let list = realm.objects(ChartSleepDataRealm)
         
         if list.count == 0 {
