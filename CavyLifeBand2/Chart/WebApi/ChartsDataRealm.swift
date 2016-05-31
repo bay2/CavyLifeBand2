@@ -205,12 +205,11 @@ extension ChartsRealmProtocol {
     
     /**
      按天分组 一周七天 一个月30天
-     */
-    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(ChartStepDataRealm)>) -> StepChartsData {
+     */    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(ChartStepDataRealm)>) -> StepChartsData {
         
         var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0)
         
-        let maxNum = (endTime - beginTime).totalDays
+        let maxNum = (endTime - beginTime).totalDays + 1
         
         for i in 1...maxNum {
             stepChartsData.datas.append(PerStepChartsData(time: "\(i)", kilometer: 0))
@@ -224,7 +223,6 @@ extension ChartsRealmProtocol {
             stepChartsData.totalStep += data.step
             stepChartsData.finishTime += 10
             stepChartsData.datas[index].kilometer += data.kilometer
-            
             
         }
         

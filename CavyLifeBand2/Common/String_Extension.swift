@@ -66,13 +66,13 @@ extension String {
     }
     
     /**
-     数字转格式化字符 千位分隔格式
+     数字转格式化字符 千位分隔格式 ep:50000 -> 50,000
      
      - parameter num: 需转换数字
      
      - returns: 转换后的字符串
      */
-    static func  numberDecimalFormatter(num: Int) -> String {
+    static func  numberDecimalFormatter(num: Int = 0) -> String {
     
         let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = .DecimalStyle
@@ -81,6 +81,5 @@ extension String {
         return string!
     }
     
-    
-    
+       
 }

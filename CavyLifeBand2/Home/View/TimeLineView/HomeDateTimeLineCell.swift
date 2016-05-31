@@ -195,12 +195,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
             
             for list in listRealm.achieveList {
                 
-                if list.achieve < 5000 {
-                    
-                    continue
-                }
-                
-                listVM.append(HomeListAchiveViewModel(stepCount: list.achieve))
+                listVM.append(HomeListAchiveViewModel(medalIndex: list.achieve))
             }
         }
         
@@ -211,8 +206,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
             for list in listRealm.healthList {
                 
                 Log.info(list.iconUrl)
-                
-                listVM.append(HomeListHealthViewModel(othersName: list.friendName, iconUrl: list.iconUrl))
+                listVM.append(HomeListHealthViewModel(othersName: list.friendName, iconUrl: list.iconUrl, friendId: list.friendId))
             }
         }
 

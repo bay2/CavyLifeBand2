@@ -44,6 +44,7 @@ struct UserProfile {
     var isOpenBirthday: Bool
     var isOpenHeight: Bool
     var isOpenWeight: Bool
+    var achievementType: String
     
     init(_ decoder: JSONDecoder) throws  {
         
@@ -61,6 +62,8 @@ struct UserProfile {
         do { isOpenBirthday = decoder["isLocalShare"].bool }
         do { isOpenHeight = decoder["isOpenHeight"].bool }
         do { isOpenWeight = decoder["isOpenWeight"].bool }
+        do { achievementType = try decoder["achievementType"].getString() } catch { achievementType = "0" }
+
     }
     
 }
