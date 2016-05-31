@@ -98,20 +98,20 @@ class PKInfoOrResultView: UIView {
             
             winnerImageView.hidden = false
             
-            winnerImageView.snp_makeConstraints {(make) in
+            winnerImageView.snp_updateConstraints {(make) in
                 make.trailing.equalTo(competitorAvatarImageView.snp_trailing)
                 make.top.equalTo(competitorAvatarImageView.snp_top).offset(-6)
             }
         }
         
-        competitorAvatarImageView.snp_makeConstraints {(make) in
+        competitorAvatarImageView.snp_updateConstraints {(make) in
             
             make.leading.equalTo(topBGView.snp_centerX)
             
             make.width.equalTo(bigAvatarWidth)
         }
         
-        userAvatarImageView.snp_makeConstraints {(make) in
+        userAvatarImageView.snp_updateConstraints {(make) in
             
             make.trailing.equalTo(topBGView.snp_centerX).offset(-30)
             
@@ -136,7 +136,7 @@ class PKInfoOrResultView: UIView {
             
             winnerImageView.hidden = false
             
-            winnerImageView.snp_makeConstraints {(make) in
+            winnerImageView.snp_updateConstraints {(make) in
                 make.trailing.equalTo(userAvatarImageView.snp_trailing)
                 make.top.equalTo(userAvatarImageView.snp_top).offset(-6)
             }
@@ -144,14 +144,14 @@ class PKInfoOrResultView: UIView {
         
         competitorNameLabel.text = dataSource?.competitorName
         
-        competitorAvatarImageView.snp_makeConstraints {(make) in
+        competitorAvatarImageView.snp_updateConstraints {(make) in
             
             make.leading.equalTo(topBGView.snp_centerX).offset(30)
             
             make.width.equalTo(smallAvatarWidth)
         }
         
-        userAvatarImageView.snp_makeConstraints {(make) in
+        userAvatarImageView.snp_updateConstraints {(make) in
             
             make.trailing.equalTo(topBGView.snp_centerX)
             
@@ -212,7 +212,7 @@ extension PKInfoOrResultView: PKWebRequestProtocol {
     func loadInfoFromWeb(pkId: String) {
         
         
-        getPKInfo(pkId, callBack: { pkInfo in
+        getPKInfo(pkId, callBack: { [unowned self] pkInfo in
             
             self.dataSource?.userStepCount = pkInfo.userStepCount
             self.dataSource?.competitorStepCount = pkInfo.friendStepCount
@@ -221,6 +221,14 @@ extension PKInfoOrResultView: PKWebRequestProtocol {
             self.userStepLabel.text       = self.dataSource?.userStepCount.toString
             self.competitorStepLabel.text = self.dataSource?.competitorStepCount.toString
             self.seeStateLabel.text = self.dataSource?.seeStateTitle
+            
+            if self.dataSource?.winner == .User {
+                self.winnerUserSetting()
+            } else if self.dataSource?.winner == .Competitor {
+                self.winnerCompetitorSetting()
+            } else {
+                self.winnerBoth()
+            }
             
         }, failure: { errorMsg in
             Log.error(errorMsg)
