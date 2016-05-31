@@ -18,7 +18,7 @@ enum LifeBandModelType: Int {
 }
 
 enum LifeBandCtrlNotificationName: String {
-    case BandButtonEvenClick2
+    case BandButtonEvenClick1
     case BandButtonEvenClick4
 }
 
@@ -315,25 +315,23 @@ class LifeBandCtrl {
                 
                 NSTimer.runThisAfterDelay(seconds: 4, after: {
                     
-                    Log.info("Button count \(self.buttonCount)")
-                    
-                    self.buttonCount = 0
-                    
-                    if self.buttonCount > 1 && self.buttonCount < 4 {
-                        NSNotificationCenter.defaultCenter().postNotificationName(LifeBandCtrlNotificationName.BandButtonEvenClick2.rawValue, object: nil)
-                    }
-                    
                     if self.buttonCount >= 4 {
                         NSNotificationCenter.defaultCenter().postNotificationName(LifeBandCtrlNotificationName.BandButtonEvenClick4.rawValue, object: nil)
                     }
+                    
+                    self.buttonCount = 0
                     
                 })
                 
             }
             
+            NSNotificationCenter.defaultCenter().postNotificationName(LifeBandCtrlNotificationName.BandButtonEvenClick1.rawValue, object: nil)
+            
             if data[2] == 1 {
                 self.buttonCount += 1
             }
+            
+            Log.info("Button count \(self.buttonCount)")
             
         }
         

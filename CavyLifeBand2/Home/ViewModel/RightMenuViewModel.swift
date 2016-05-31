@@ -52,9 +52,6 @@ struct UndoBindViewModel: MenuProtocol {
         
         BindBandCtrl.bindScene = .Rebind
         
-        let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-        CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = NSData()
-        
         LifeBandBle.shareInterface.bleDisconnect()
         
         let userInfo = ["nextView": nextView] as [NSObject: AnyObject]

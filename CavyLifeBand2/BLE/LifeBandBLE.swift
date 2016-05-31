@@ -211,6 +211,11 @@ class LifeBandBle: NSObject {
      */
     func bleConnect(peripheralMacAddress: NSData, connectComplete: (Void -> Void)? = nil) {
         
+        if getConnectState() == .Connected {
+            connectComplete?()
+            return
+        }
+        
         self.connectComplete = connectComplete
         
         self.peripheralMacAddress = peripheralMacAddress
@@ -261,6 +266,7 @@ class LifeBandBle: NSObject {
         self.peripheral = peripheral
         peripheral.delegate = self
         central.connectPeripheral(peripheral, options: nil)
+        Log.info("bleConnect end")
         
     }
     
@@ -311,7 +317,6 @@ extension LifeBandBle: CBCentralManagerDelegate {
             return
         }
 
-        // kCBAdvDataManufacturerData
         guard let advertData = advertisementData["kCBAdvDataManufacturerData"] as? NSData else {
             return
         }

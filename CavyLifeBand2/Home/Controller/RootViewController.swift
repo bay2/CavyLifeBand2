@@ -66,6 +66,10 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
     }
     
+    deinit {
+        removeNotificationObserver()
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -121,7 +125,24 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
             }
         }
         
+        addNotificationObserver(LifeBandCtrlNotificationName.BandButtonEvenClick4.rawValue, selector: #selector(RootViewController.callEmergency))
+        
     }
+    
+    /**
+     向紧急联系人发消息
+     
+     - author: sim cai
+     - date: 2016-05-31
+     */
+    func callEmergency() {
+        
+        do { try EmergencyWebApi.shareApi.sendEmergencyMsg() }
+        catch let error
+        { Log.error("Cell EmergencyWebApi.shareApi.sendEmergencyMsg error (\(error))") }
+        
+    }
+    
     
     /**
      加载主页面视图
