@@ -20,10 +20,10 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
     
     var publishContent : ISSContent = ShareSDK.content("分享内容",
                                                        defaultContent: "默认分享内容，没内容时显示",
-                                                       image: ShareSDK.jpegImageWithImage(UIImage(named: "ContactsCare"), quality: 1.0),
+                                                       image: ShareSDK.jpegImageWithImage(UIImage(named: "banner_home"), quality: 1.0),
                                                        title: "标题",
-                                                       url: "http://www.mob.com",
-                                                       description: "测试信息",
+                                                       url: "http://www.tunshu.com",
+                                                       description: "测试分享",
                                                        mediaType: SSPublishContentMediaTypeImage)
     
     
