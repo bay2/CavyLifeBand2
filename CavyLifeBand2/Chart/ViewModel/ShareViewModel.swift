@@ -24,10 +24,6 @@ struct ShareQQViewModel: ShareViewDataSource {
     var shareImage: UIImage = UIImage(asset: .ShareQQ)
     
     var type: ShareType = ShareTypeQQ
-    
-    init() {
-    
-    }
 
 }
 
@@ -36,10 +32,6 @@ struct ShareWechatViewModel: ShareViewDataSource {
     var shareImage: UIImage = UIImage(asset: .ShareWechat) 
 
     var type: ShareType = ShareTypeWeixiSession
-    
-    init() {
-        
-    }
 
 }
 
@@ -48,10 +40,6 @@ struct ShareWechatMomentsViewModel: ShareViewDataSource {
     var shareImage: UIImage = UIImage(asset: .ShareWechatmoments) 
 
     var type: ShareType = ShareTypeWeixiTimeline
-    
-    init() {
-        
-    }
 
 }
 
@@ -60,9 +48,5 @@ struct ShareWeiboViewModel: ShareViewDataSource {
     var shareImage: UIImage = UIImage(asset: .ShareWeibo)
 
     var type: ShareType = ShareTypeSinaWeibo
-    
-    init() {
-        
-    }
     
 }
