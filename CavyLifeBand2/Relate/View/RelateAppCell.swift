@@ -17,8 +17,6 @@ class RelateAppCell: UITableViewCell {
     @IBOutlet weak var sizeLabel: UILabel!
     @IBOutlet weak var infoLabel: UILabel!
     
-    @IBOutlet weak var downloadBtn: UIButton!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,13 +29,10 @@ class RelateAppCell: UITableViewCell {
         sizeLabel.textColor = UIColor(named: .RalateAppCellSizeColor)
         infoLabel.textColor = UIColor(named: .RalateAppCellInfoColor)
         
-        downloadBtn.setBackgroundColor(UIColor(named: .RalateAppCellDeleteBtnBGColor), forState: .Normal)
-        downloadBtn.setTitleColor(UIColor(named: .RalateAppCellDeleteBtnTitleColor), forState: .Normal)
-        downloadBtn.setTitle(L10n.RelateRelateAppCellDownloadBtnTitle.string, forState: .Normal)
-        downloadBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
-        downloadBtn.clipsToBounds = true
-        
-        downloadBtn.addTarget(nil, action: Selector("downloadAction:"), forControlEvents: .TouchUpInside)
+        logoImageView.layer.borderWidth = 1.0 / 3
+        logoImageView.layer.borderColor =  UIColor(named: .RalateAppCellImageBorderColor).CGColor
+        logoImageView.layer.cornerRadius = 12.0
+        logoImageView.clipsToBounds = true
         
     }
 
@@ -55,9 +50,7 @@ class RelateAppCell: UITableViewCell {
         
         infoLabel.text = model.info
 
-        logoImageView.af_setCornerRadiusImageWithURL(NSURL(string: model.logoImageUrlStr)!, radius: CavyDefine.commonCornerRadius)
-        
-        downloadBtn.tag = model.index
+        logoImageView.af_setCornerRadiusImageWithURL(NSURL(string: model.logoImageUrlStr)!, radius: 12)
         
     }
     
@@ -72,8 +65,6 @@ protocol RelateAppCellDataSource {
     var size: String { get }
     
     var info: String { get }
-    
-    var index: Int { get }
     
     var webUrlStr: String { get }
     
@@ -94,29 +85,19 @@ struct RelateAppCellModel: RelateAppCellDataSource {
     
     var trueSize: String
     
-    var info: String {
+    var info: String 
     
-        get { return "简介：" + trueInfo }
-    
-    }
-    
-    var trueInfo: String
-    
-    var index: Int
-    
-    init(gameModel: GameJSON, index: Int) {
+    init(gameModel: GameJSON) {
         
         title = gameModel.gamename
         
         trueSize = gameModel.filesize
         
-        trueInfo = gameModel.gamedesc
+        info = gameModel.gamedesc
         
         logoImageUrlStr = gameModel.icon
         
         webUrlStr = gameModel.cavyAPPHtml
-        
-        self.index = index
         
     }
 

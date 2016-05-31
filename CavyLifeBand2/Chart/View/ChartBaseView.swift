@@ -8,9 +8,13 @@
 
 import UIKit
 import EZSwiftExtensions
+import RealmSwift
 
-class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ChartsRealmProtocol {
 
+    var realm: Realm = try! Realm()
+    var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+    
     var viewStyle: ChartViewStyle = .StepChart
 
     var timeBucketStyle: TimeBucketStyle = .Day
@@ -21,32 +25,62 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
     /// 详情页
     var infoView: UICollectionView?
     
-    var datas: [NSDate] = []
+    var dates: [String] = []
     
-    var oldDeletDatas: [StepCharts] = []
-
-    func setOldDeletData(datas: [StepCharts]) {
+    /**
+     入口
+     */
+    func configView() {
         
-        self.oldDeletDatas = datas
+        dates = setData()
         
         addTimeBucketView()
         
         addInfoView()
     }
-    
     
     /**
      添加数据
      */
-    func setData(datas: [NSDate]) {
+    func setData() -> [String] {
         
-        self.datas = datas
+        let dateStringArray = queryTimeBucketFromFirstDay()!
+        var returnArray: [String] = [dateStringArray[0]]
         
-        addTimeBucketView()
+        let firstDate = NSDate(fromString: dateStringArray[0], format: "yyyy.M.d")
+        let indexInWeek = firstDate!.indexInArray()
+        var monthArray = [firstDate!.toString(format: "M")]
         
-        addInfoView()
+        for i in 1 ..< dateStringArray.count {
+            
+            switch timeBucketStyle {
+                
+            case .Day:
+                
+                returnArray = dateStringArray
+            
+            case .Week:
+                
+                if (i + indexInWeek) % 7 == 0 {
+                    
+                    returnArray.append(dateStringArray[i])
+                }
+                
+            case .Month:
+                
+                let month: String = NSDate(fromString: dateStringArray[i], format: "yyyy.M.d")!.toString(format: "M")
+                if monthArray.contains(month) == false {
+                    
+                    monthArray.append(month)
+                    returnArray.append(dateStringArray[i])
+                }
+            }
+            
+        }
+        
+        return returnArray
+
     }
-    
     
     // 添加时间段的视图
     func addTimeBucketView() {
@@ -78,10 +112,8 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
         timeView!.backgroundColor = UIColor.clearColor()
         timeView!.alwaysBounceHorizontal = true
         timeView!.showsHorizontalScrollIndicator = false
-        timeView!.contentSize = CGSizeMake(CGFloat(oldDeletDatas.count - 1) * timeButtonWidth, timeButtonHeight)
-        timeView!.contentOffset = CGPointMake(CGFloat(oldDeletDatas.count - 1) * timeButtonWidth, timeButtonHeight)
-//        timeView!.contentSize = CGSizeMake(CGFloat(datas.count - 1) * timeButtonWidth, timeButtonHeight)
-//        timeView!.contentOffset = CGPointMake(CGFloat(datas.count - 1) * timeButtonWidth, timeButtonHeight)
+        timeView!.contentSize = CGSizeMake(CGFloat(dates.count) * timeButtonWidth, timeButtonHeight)
+        timeView!.contentOffset = CGPointMake(CGFloat(dates.count) * timeButtonWidth, timeButtonHeight)
         timeView!.dataSource = self
         timeView!.delegate = self
         timeView!.registerClass(ChartTimeCollectionCell.self, forCellWithReuseIdentifier: "ChartTimeCollectionCell")
@@ -120,10 +152,8 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
         infoView!.backgroundColor = UIColor(named: .ChartBackground)
         infoView!.alwaysBounceHorizontal = true
         infoView!.showsHorizontalScrollIndicator = false
-        infoView!.contentSize = CGSizeMake(CGFloat(oldDeletDatas.count) * ez.screenWidth, timeButtonHeight)
-        infoView!.contentOffset = CGPointMake(CGFloat(oldDeletDatas.count) * ez.screenWidth, timeButtonHeight)
-//        infoView!.contentSize = CGSizeMake(CGFloat(datas.count) * ez.screenWidth, timeButtonHeight)
-//        infoView!.contentOffset = CGPointMake(CGFloat(datas.count) * ez.screenWidth, timeButtonHeight)
+        infoView!.contentSize = CGSizeMake(CGFloat(dates.count) * ez.screenWidth, timeButtonHeight)
+        infoView!.contentOffset = CGPointMake(CGFloat(dates.count) * ez.screenWidth, timeButtonHeight)
         infoView!.dataSource = self
         infoView!.delegate = self
         infoView!.scrollEnabled = false
@@ -140,25 +170,23 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
     // MARK: -- collectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-//        return datas.count
+        return dates.count
         
-        return oldDeletDatas.count
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
-        // 时间标注
+        // 时间 横滑 cell
         if collectionView == timeView! {
             
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChartTimeCollectionCell", forIndexPath: indexPath) as! ChartTimeCollectionCell
             
             cell.deselectStatus()
             
-            cell.label.text = oldDeletDatas[indexPath.row].time
+            cell.label.text = NSDate(fromString: dates[indexPath.item], format: "yyyy.M.d")!.dateChangeToLabelText(timeBucketStyle)
             
-//            cell.label.text = NSDate().dateChangeToLabelText(datas[indexPath.row], timeBucket: timeBucketStyle)
-            
-            if indexPath.item == datas.count - 1 {
+            if indexPath.item == dates.count - 1 {
+
                 cell.selectStatus()
             }
             
@@ -166,11 +194,10 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
             
         } else {
             
-            // 数据cell
+            // 数据 List Cell
             let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChartInfoCollectionCell", forIndexPath: indexPath) as! ChartInfoCollectionCell
             
-             cell.oldDeletData = oldDeletDatas[indexPath.row]
-//            cell.timeData = NSDate().dateChangeToLabelText(datas[indexPath.row], timeBucket: timeBucketStyle)
+            cell.timeString = dates[indexPath.item]
             
             cell.viewStyle = self.viewStyle
             cell.timeBucketStyle = self.timeBucketStyle
@@ -186,6 +213,8 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 
         changeButtonStauts(collectionView, indexPath: indexPath)
+        // 添加新的页面的解析
+        
         
     }
     
@@ -229,7 +258,10 @@ extension ChartBaseView: UIScrollViewDelegate {
         let countFloat = collView.contentOffset.x / timeButtonWidth
         var count = Int(countFloat)
         
-        if count < 1 || count > datas.count - 2 {
+//        if count < 1 || count > dates.count - 2 {
+
+        if count < 0 || count > dates.count {
+
             return
         }
         if countFloat - CGFloat(count) >= 0.5 {
@@ -247,7 +279,7 @@ extension ChartBaseView: UIScrollViewDelegate {
     func changeButtonStauts(collectionView: UICollectionView, indexPath: NSIndexPath) {
         
         // 更改 选中日期的状态
-        for i in 0 ..< datas.count {
+            for i in 0 ..< dates.count {
             guard let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) as? ChartTimeCollectionCell else {
                 continue
             }

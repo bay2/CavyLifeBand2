@@ -38,7 +38,7 @@ protocol ContactsReqFriendDeleteItemDelegate {
     var friendId: String  { get }
     var rowIndex: Int { get }
     
-    func clickCellBtn(button: UIButton)
+    func clickBtn(button: UIButton)
     
 }
 

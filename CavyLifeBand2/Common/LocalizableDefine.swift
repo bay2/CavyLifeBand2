@@ -279,6 +279,8 @@ enum L10n {
   case ChartStepKilometer
   /// 花费时长
   case ChartStepTimeUsed
+  /// 分享到
+  case ShareTo
   /// 生活豚鼠
   case ContactsListCellCavy
   /// 搜索
@@ -363,6 +365,10 @@ enum L10n {
   case ContactsNavTitleAccountInfo
   /// 确定
   case ContactsRequestSureButton
+  /// 附近暂时未搜索到
+  case ContactsEmptyViewNearbyInfo
+  /// 手机通讯录中的好友中\n还没加入豚鼠
+  case ContactsEmptyViewAddressBookInfo
   /// 账户信息
   case AccountInfoTitle
   /// 退出登录
@@ -397,6 +403,14 @@ enum L10n {
   case AlarmClockEmptyViewTitle
   /// 手环震动唤醒，远离传统闹铃噪声
   case AlarmClockEmptyViewInfo
+  /// 提醒一次
+  case AlarmClockNoCircleInfo
+  /// 每天
+  case AlarmClockCircleEverydayInfo
+  /// 工作日
+  case AlarmClockCircleWeekdayInfo
+  /// 双休日
+  case AlarmClockCircleWeekendInfo
   /// 手环最多只能添加2个闹钟
   case AlarmClockAlarmClockCountError
   /// 安全
@@ -852,6 +866,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Chart.Step.Kilometer")
       case .ChartStepTimeUsed:
         return L10n.tr("Chart.Step.TimeUsed")
+      case .ShareTo:
+        return L10n.tr("Share.To")
       case .ContactsListCellCavy:
         return L10n.tr("Contacts.ListCell.Cavy")
       case .ContactsSearchBarSearch:
@@ -936,6 +952,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.NavTitle.AccountInfo")
       case .ContactsRequestSureButton:
         return L10n.tr("Contacts.Request.SureButton")
+      case .ContactsEmptyViewNearbyInfo:
+        return L10n.tr("Contacts.EmptyView.NearbyInfo")
+      case .ContactsEmptyViewAddressBookInfo:
+        return L10n.tr("Contacts.EmptyView.AddressBookInfo")
       case .AccountInfoTitle:
         return L10n.tr("AccountInfo.Title")
       case .AccountInfoLoginoutButtonTitle:
@@ -970,6 +990,14 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AlarmClock.EmptyView.Title")
       case .AlarmClockEmptyViewInfo:
         return L10n.tr("AlarmClock.EmptyView.Info")
+      case .AlarmClockNoCircleInfo:
+        return L10n.tr("AlarmClock.NoCircle.Info")
+      case .AlarmClockCircleEverydayInfo:
+        return L10n.tr("AlarmClock.CircleEveryday.Info")
+      case .AlarmClockCircleWeekdayInfo:
+        return L10n.tr("AlarmClock.CircleWeekday.Info")
+      case .AlarmClockCircleWeekendInfo:
+        return L10n.tr("AlarmClock.CircleWeekend.Info")
       case .AlarmClockAlarmClockCountError:
         return L10n.tr("AlarmClock.AlarmClockCountError")
       case .SettingSafetyTitle:

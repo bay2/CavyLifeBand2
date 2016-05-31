@@ -10,7 +10,7 @@ import UIKit
 import EZSwiftExtensions
 import RealmSwift
 
-class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ChartsRealmProtocol {
+class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
 
     var realm: Realm = try! Realm()
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId}
@@ -24,7 +24,7 @@ class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDele
         super.init(frame: frame)
         
         
-        self.dateArray = self.queryHomeTimeBucket()!
+        self.dateArray = self.queryTimeBucketFromFirstDay()!
             
         
         
@@ -47,7 +47,8 @@ class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDele
         collectionView = UICollectionView(frame: frame, collectionViewLayout: lineLayout)
         collectionView!.backgroundColor = UIColor.whiteColor()
         collectionView!.showsHorizontalScrollIndicator = false
-        collectionView!.alwaysBounceHorizontal = true
+        collectionView!.alwaysBounceHorizontal = false
+        collectionView!.scrollEnabled = false
         collectionView!.contentSize = CGSizeMake(CGFloat(dateArray.count) * ez.screenWidth, 200)
         collectionView!.contentOffset = CGPointMake(CGFloat(dateArray.count) * ez.screenWidth, 200)
         collectionView!.dataSource = self
@@ -77,6 +78,20 @@ class HomeTimeLineView: UIView, UICollectionViewDataSource, UICollectionViewDele
         cell.configLayout()
         return cell
     }
+
+    /**
+     改变页数 并重新解析数据
+     
+     - parameter sender: 通知
+     */
+    func changeTimeLinePage(sender: NSNotification){
+        
+        let count = sender.userInfo!["currentPage"] as! CGFloat
+        
+        self.collectionView!.setContentOffset(CGPointMake(count * ez.screenWidth, 0), animated: true)
+        
+    }
+    
 
 }
 
@@ -123,19 +138,6 @@ extension HomeTimeLineView: UIScrollViewDelegate {
         
         // 通知绑定日期和时间轴的同步
         NSNotificationCenter.defaultCenter().postNotificationName("ChangeDatePage", object: nil, userInfo: ["currentPage": count])
-        
-    }
-    
-    /**
-      改变页数 并重新解析数据
-     
-     - parameter sender: 通知
-     */
-    func changeTimeLinePage(sender: NSNotification){
-        
-        let count = sender.userInfo!["currentPage"] as! CGFloat
-        
-        self.collectionView!.setContentOffset(CGPointMake(count * ez.screenWidth, 0), animated: true)
         
     }
     

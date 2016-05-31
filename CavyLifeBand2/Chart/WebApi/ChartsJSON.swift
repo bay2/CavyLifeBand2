@@ -33,6 +33,8 @@ struct ChartStepData: JSONJoy {
     }
     
 }
+
+// MARK: 显示数据时候的结构体
  
 // Step 整个数据 包括总步数 总公里数 花费时长
 struct StepChartsData {
@@ -51,12 +53,14 @@ struct PerStepChartsData {
     var kilometer: CGFloat
 }
 
-// MARK: Sleep
+
+// Sleep 单条数据
 struct PerSleepChartsData {
     
     var time: String
     var tilts: Int
-    
+    var totalTime: Int 
+
 }
 
 

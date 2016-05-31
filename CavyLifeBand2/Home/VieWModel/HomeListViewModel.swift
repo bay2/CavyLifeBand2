@@ -152,6 +152,7 @@ struct HomeListHealthViewModel: HomeListViewModelProtocol {
     init(othersName: String, iconUrl: String){
         friendName = othersName
         friendIconUrl = iconUrl
+        
     }
     
     func onClickCell() {

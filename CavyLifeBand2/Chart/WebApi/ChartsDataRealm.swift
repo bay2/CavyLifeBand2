@@ -60,9 +60,8 @@ protocol ChartsRealmProtocol {
     var userId: String { get }
 
     // MARK: Other
-    func queryHomeTimeBucket() -> [String]?
-    
-    
+    func queryTimeBucketFromFirstDay() -> [String]?
+   
     // MARK: 计步
     func isExistStepChartsData() -> Bool
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
@@ -83,37 +82,24 @@ extension ChartsRealmProtocol {
         return realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
     }
 
-    // 返回主页的时间段
-    func queryHomeTimeBucket() -> [String]? {
+
+    // 返回 第一天开始的时间段
+    func queryTimeBucketFromFirstDay() -> [String]? {
         
-        var resultArray: [String] = []
-        
-        let today = NSDate().toString(format: "yyyy.M.dd")
-        
-        let realmList = queryAllStepInfo()
+        let userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+
+        let realmList = queryAllStepInfo(userId)
 
         if realmList.count == 0 || realmList.first?.time == nil {
             
-            return [today]
+            return [NSDate().toString(format: "yyy.M.d")]
         }
+
+        let firstDate = realmList.first!.time
         
-        for perList in realmList {
-
-            let timeString = perList.time.toString(format: "yyyy.M.dd")
-
-            if resultArray.contains(timeString) == false {
+        return firstDate.untilTodayArrayWithFormatter("yyy.M.d")
                 
-                resultArray.append(timeString)
-            }
-            
         }
-        
-        // 如果没有今天的 就添加今天
-        if resultArray.contains("\(today)") == false {
-            resultArray.append(today)
-        }
-        return resultArray
-    }
     
 }
 
@@ -224,7 +210,7 @@ extension ChartsRealmProtocol {
         
         var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0)
         
-        let maxNum = (endTime - beginTime).components.day
+        let maxNum = (endTime - beginTime).totalDays
         
         for i in 1...maxNum {
             stepChartsData.datas.append(PerStepChartsData(time: "\(i)", kilometer: 0))
@@ -250,7 +236,7 @@ extension ChartsRealmProtocol {
 
 // MARK: Sleep Extension
 extension ChartsRealmProtocol {
-
+    
     /**
      查询是否有睡眠数据
      */
@@ -305,11 +291,12 @@ extension ChartsRealmProtocol {
     func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData] {
         
         let dataInfo = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
-        
+
         let sleepDatas = dataInfo.map { chartSleepDataRealm -> PerSleepChartsData in
-            return PerSleepChartsData(time: chartSleepDataRealm.time.toString(format: "d"), tilts: chartSleepDataRealm.tilts)
-        }
             
+            return PerSleepChartsData(time: chartSleepDataRealm.time.toString(format: "d"), tilts: chartSleepDataRealm.tilts, totalTime: 0)
+        }
+        
         return sleepDatas
         
     }

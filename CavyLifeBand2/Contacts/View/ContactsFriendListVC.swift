@@ -251,7 +251,11 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
 
 }
 
-extension ContactsFriendListVC {
+extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
     
     /**
      cell 编辑结束
@@ -281,7 +285,7 @@ extension ContactsFriendListVC {
         }
         
         let concernAction = createFollowAction(indexPath)
-        let pkRowAction = createPkAction()
+        let pkRowAction = createPkAction(indexPath)
         let deleteRowAction = createDelAction(indexPath)
        
         return [deleteRowAction, concernAction, pkRowAction]
@@ -337,12 +341,26 @@ extension ContactsFriendListVC {
     /**
      创建PK按钮
      */
-    func createPkAction() -> UITableViewRowAction {
+    func createPkAction(indexPath: NSIndexPath) -> UITableViewRowAction {
         
-        let pkRowAction = UITableViewRowAction(style: .Default, title: " PK ") {_, _ in
+        let pkRowAction = UITableViewRowAction(style: .Default, title: " PK ") {[unowned self] _, _ in
             
             self.contactsTable.editing = false
             
+            var friendList = self.dataGroup!.contactsGroupList![indexPath.section].1
+            
+            let friendVM = friendList[indexPath.row] as! ContactsFriendCellModelView
+            
+            let targetVC = StoryboardScene.PK.instantiatePKInvitationVC()
+            
+            let dataSource = PKInvitationVCViewModel(realm: self.realm)
+            
+            dataSource.setPKWaitCompetitorInfo(friendVM.friendId, nickName: friendVM.name, avatarUrl: friendVM.headImagUrl)
+            
+            targetVC.dataSource = dataSource
+            
+            self.pushVC(targetVC)
+                        
         }
         
         pkRowAction.backgroundColor = UIColor(named: .ContactsPKBtnColor)
@@ -400,6 +418,13 @@ extension ContactsFriendListVC {
         cell?.showEditing(true)
         
         return .Delete
+        
+    }
+    
+    /**
+     ！！！这个方法必须实现，不然左滑无效果
+     */
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
     }
     

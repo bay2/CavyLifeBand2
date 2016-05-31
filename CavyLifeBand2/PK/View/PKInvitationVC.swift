@@ -48,7 +48,11 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         self.automaticallyAdjustsScrollViewInsets = false
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
-        dataSource = PKInvitationVCViewModel(realm: realm)
+        if dataSource == nil {
+            dataSource = PKInvitationVCViewModel(realm: realm)
+        } else {
+            addBtnSetCompetitor(dataSource!.pkWaitRealmModel.avatarUrl)
+        }
         
         baseSetting()
         
@@ -70,23 +74,9 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         
         self.pushVC(pkSelectVC)
         
-        
-//        dataSource?.setPKWaitCompetitorInfo(<#T##userId: String##String#>, nickName: <#T##String#>, avatarUrl: <#T##String#>)
-        
     }
 
     @IBAction func commitAction(sender: UIButton) {
-        
-//        let challenge = NSBundle.mainBundle().loadNibNamed("PKInfoOrResultView", owner: nil, options: nil).first as? PKInfoOrResultView
-//                
-//        self.view .addSubview(challenge!)
-//        
-//        challenge?.snp_makeConstraints(closure: {(make) in
-//            make.leading.equalTo(self.view).offset(20)
-//            make.trailing.equalTo(self.view).offset(-20)
-//            make.height.equalTo(380)
-//            make.centerY.equalTo(self.view.snp_centerY)
-//        })
         
         if dataSource?.pkWaitRealmModel.userId.characters.count != 0 {
             dataSource?.launchPK()
@@ -215,8 +205,14 @@ extension PKInvitationVC: PKSelectOppTVCDelegate {
     
     func selectPKOpp(userId: String, nikeName: String, avatarUrl: String) {
         
-        addBtn.af_setImageForState(.Normal, URL: NSURL(string: avatarUrl)!)
+        addBtnSetCompetitor(avatarUrl)
         dataSource?.setPKWaitCompetitorInfo(userId, nickName: nikeName, avatarUrl: avatarUrl)
+        
+    }
+    
+    
+    func addBtnSetCompetitor(avatarUrl: String) {
+        addBtn.af_setImageForState(.Normal, URL: NSURL(string: avatarUrl)!, placeHolderImage: UIImage(named: "DefaultHead"))
     }
     
 }

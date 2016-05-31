@@ -29,16 +29,16 @@ class HomeTimeLineTableCell: UITableViewCell {
     @IBOutlet weak var resultLabel: UILabel!
     
     func configVM(dataSource: HomeListViewModelProtocol) {
+
+        Log.info(dataSource.friendIconUrl)
         
         if dataSource.friendIconUrl == "" {
             
             imgView.image = dataSource.image
             
         } else {
-            
-            imgView.af_setCircleImageWithURL(NSURL(string: dataSource.friendIconUrl)!)
+            imgView.af_setCircleImageWithURL(NSURL(string: dataSource.friendIconUrl)!, placeholderImage: UIImage(asset: .DefaultHead))
         }
-
         nameLabel.text = dataSource.title
         othersName.text = dataSource.friendName
         resultLabel.attributedText = dataSource.resultNum
@@ -54,7 +54,6 @@ class HomeTimeLineTableCell: UITableViewCell {
         
         imgView.layer.masksToBounds = true
         imgView.layer.cornerRadius = imgView.frame.width / 2
-        
         headLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
         bottomLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
         nameLabel.textColor = UIColor(named: .HomeViewUserName)
@@ -64,15 +63,15 @@ class HomeTimeLineTableCell: UITableViewCell {
         // 判断PK 成就
         if name == "" {
             
-            nameLabel.snp_remakeConstraints(closure: {(make) in
+            nameLabel.snp_remakeConstraints{ make in
                 make.centerY.equalTo(imgView)
-            })
+            }
             
         } else {
             
-            nameLabel.snp_remakeConstraints(closure: {(make) in
+            nameLabel.snp_remakeConstraints{ make in
                 make.centerY.equalTo(imgView).offset(-10)
-            })
+            }
         }
         
     }
