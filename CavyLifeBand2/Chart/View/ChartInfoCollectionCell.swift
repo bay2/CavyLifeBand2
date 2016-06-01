@@ -64,6 +64,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
             
             chartViewLayout(chartView)
             chartView.configAllView()
+            
         }
 
         if viewStyle == .SleepChart && timeBucketStyle == .Day {

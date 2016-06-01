@@ -17,7 +17,6 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     var legendColors: [UIColor] = [UIColor(named: .ChartSleepDegreeDeep), UIColor(named: .ChartSleepDegreeLight)]
     var leftUnit = " h"
     var spaceBetweenLabel = dayTime.count / 3
-    var dataCount = dayTime.count
     
     var timeBucketStyle: TimeBucketStyle = .Day
     
@@ -37,7 +36,8 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         addLeftAxis()
         addLegend()
         
-        setData(7)
+        setData(chartsData.count)
+        
     }
     
     

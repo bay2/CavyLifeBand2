@@ -54,6 +54,8 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         self.rightAxis.enabled = false
         self.delegate = self
         self.maxVisibleValueCount = leftMaxValue
+        self.highlightPerTapEnabled = true
+        
     }
 
     /**
@@ -143,12 +145,12 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
             
             var dataSets: [BarChartDataSet] = []
             dataSets.append(dataSet)
+            
             let data = BarChartData(xVals: xVals, dataSets: dataSets)
             data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10))
             // 默认不显示数值
-            data.setValueTextColor(UIColor.clearColor())
+//            data.setValueTextColor(UIColor.redColor())
             self.data = data
-            
             // 动画
             self.animate(yAxisDuration: 2)
             }
@@ -161,8 +163,19 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         
+        
+        
+//        chartView.data!.setValueTextColor(UIColor.yellowColor())
+        
+        
+        let selectIndexNum = self.data?.dataSets.first?.yValForXIndex(dataSetIndex)
+        
+        Log.info(selectIndexNum)
+        
+        
         Log.info("\(chartView)  \(entry)   \(dataSetIndex)  \(highlight)")
  
+        
     }
     
 }
