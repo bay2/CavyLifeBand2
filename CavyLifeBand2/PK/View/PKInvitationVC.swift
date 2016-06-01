@@ -77,10 +77,15 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     }
 
     @IBAction func commitAction(sender: UIButton) {
-        
-        if dataSource?.pkWaitRealmModel.userId.characters.count != 0 {
-            dataSource?.launchPK()
+    
+        guard dataSource?.pkWaitRealmModel.userId.characters.count != 0 else {
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: L10n.PKInvitationVCSelectFriend.string)
+            
+            return
         }
+        
+        dataSource?.launchPK()
                 
         self.pushVC(StoryboardScene.PK.instantiatePKListVC())
         
