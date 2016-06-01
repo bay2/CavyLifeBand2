@@ -324,5 +324,6 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         }
 
     }
+    
 }
 

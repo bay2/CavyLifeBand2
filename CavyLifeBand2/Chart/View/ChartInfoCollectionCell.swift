@@ -23,7 +23,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
     ///  列表展示信息
     var listView: UITableView?
 
-    var listDataArray: [String] = ["","","",""]
+    var listDataArray: [String] = []
     
     var realm: Realm = try! Realm()
     var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
@@ -36,8 +36,6 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         self.backgroundColor = UIColor(named: .ChartBackground)
         
         addChartsView()
-        
-        
         
         addInfoTableView()
     }
@@ -69,18 +67,26 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
 
         if viewStyle == .SleepChart && timeBucketStyle == .Day {
             
-            let peiChartView = ShowPieChartsView()
+            let sleepInfo = querySleepInfoDay(time.beginTime, endTime: time.endTime)
+            listDataArray = infoViewSleepListArray([sleepInfo])
             
-//            peiChartView.chartsData = querySleepNumber(time.beginTime, endTime: time.endTime).first
-
+            let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: sleepInfo.1, lightSleep: sleepInfo.2)
+            
             chartViewLayout(peiChartView)
             
         }
+        
         if viewStyle == .SleepChart && (timeBucketStyle == .Week || timeBucketStyle == .Month) {
             
+            let sleepInfo = self.querySleepInfoDays(time.beginTime, endTime: time.endTime)
             let stackChart = ShowStackedChartsView()
+            
+            listDataArray = infoViewSleepListArray(sleepInfo)
+            
             stackChart.timeBucketStyle = self.timeBucketStyle
-//            stackChart.chartsData = querySleepNumber(time.beginTime, endTime: time.endTime)
+            
+            stackChart.chartsData = sleepInfo.map { ($0.1, $0.2) }
+            
             stackChart.configAllView()
             chartViewLayout(stackChart)
             
@@ -157,7 +163,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         let minutes = stepRealm.finishTime
 
         guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
-            return ["0","0","0","0\(L10n.HomeSleepRingUnitMinute.string)"]
+            return ["0", "0", "0", "0\(L10n.HomeSleepRingUnitMinute.string)"]
         }
         
         let stepTargetNumber = userInfo.stepNum
@@ -183,17 +189,19 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
     /**
      Charts睡眠详情页面 下面的TableView的cell上数值的 Array
      */
-    func infoViewSleepListArray(sleepRealm: PerSleepChartsData) -> [String]{
+    func infoViewSleepListArray(sleepRealm: [(Double, Double, Double)]) -> [String] {
         
         var resultArray: [String] = []
-        let tilts = sleepRealm.tilts
         
-        Log.info(tilts)
-        
-        // 翻身确定深睡浅睡？
-        let deepSleep = 0
-        let lightSleep = 0
         var percent = 0
+        
+        let newSleepData = sleepRealm.reduce((0, 0, 0)) {(count: (Double, Double, Double), sleepData: (Double, Double, Double)) -> (Double, Double, Double) in
+            return (((count.0 + sleepData.0)), ((count.1 + sleepData.1)), ((count.2 + sleepData.2)))
+        }
+        
+        let totalTime  = Int(newSleepData.0) * 10
+        let deepSleep  = Int(newSleepData.1) * 10
+        let lightSleep = Int(newSleepData.2) * 10
         
         guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
             return ["0\(L10n.HomeSleepRingUnitMinute.string)", "0\(L10n.HomeSleepRingUnitMinute.string)", "0%"]
@@ -204,7 +212,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         let targetMinutes = array[0].toInt()! * 60 + array[1].toInt()!
         
         if targetMinutes != 0 {
-            percent = sleepRealm.totalTime * 100 / targetMinutes
+            percent = totalTime * 100 / targetMinutes
         }
         if percent > 100 {
             percent = 100
@@ -259,6 +267,7 @@ extension ChartInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
                 
                 cell.roundSleepView.backgroundColor = sleepDegree[indexPath.row]
                 cell.sleepDegree.text  = dataSleepArray[indexPath.row]
+                cell.rightLabel.text = listDataArray[indexPath.row]
                 
                 return cell
                 
@@ -266,6 +275,7 @@ extension ChartInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ChartInfoListCell", forIndexPath: indexPath) as! ChartInfoListCell
             cell.leftLabel.text = dataSleepArray[indexPath.row]
+            cell.rightLabel.text = listDataArray[indexPath.row]
             
             return cell
             

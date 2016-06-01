@@ -103,7 +103,6 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
         
         LifeBandBle.shareInterface.bleBinding {
             
-            BindBandCtrl.bandName       = $0
             BindBandCtrl.bandMacAddress = $1
             
             let rootViewController = StoryboardScene.Guide.instantiateGuideView()
@@ -114,6 +113,7 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
             CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: rootViewController))
             
             Log.info("GuideBandOpenBand")
+            LifeBandBle.shareInterface.lifeBandBleDelegate = nil
             
         }
         

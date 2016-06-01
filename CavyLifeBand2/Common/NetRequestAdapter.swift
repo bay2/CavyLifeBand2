@@ -11,11 +11,40 @@ import Log
 import EZSwiftExtensions
 import JSONJoy
 
+
+extension Result {
+    
+    func success(@noescape closure: (Value -> Void)) -> Result {
+        
+        switch self {
+        case .Success(let value):
+            closure(value)
+        default:
+            break
+        }
+        
+        return self
+    }
+    
+    func failure(@noescape closure: (Error -> Void)) -> Result {
+        
+        switch self {
+        case .Failure(let error):
+            closure(error)
+        default:
+            break
+        }
+        
+        return self
+    }
+    
+}
+
 typealias CompletionHandlernType = (Result<AnyObject, UserRequestErrorType>) -> Void
 
 protocol NetRequestAdapter {
     
-    func netPostRequestAdapter(urlString: String, para: [String: AnyObject]?, completionHandler: CompletionHandlernType?)
+    func netPostRequestAdapter(urlString: String, para: [String: AnyObject]?, completionHandler: CompletionHandlernType?) -> Request
     
     func netGetRequestAdapter(urlString: String, para: [String: AnyObject]?, completionHandler: CompletionHandlernType?)
 }
@@ -30,7 +59,7 @@ extension NetRequestAdapter {
      - parameter para:              参数
      - parameter completionHandler: 回调
      */
-    func netPostRequestAdapter(urlString: String, para: [String: AnyObject]? = nil, completionHandler: CompletionHandlernType? = nil) {
+    func netPostRequestAdapter(urlString: String, para: [String: AnyObject]? = nil, completionHandler: CompletionHandlernType? = nil) -> Request {
         
         var parameters: [String: AnyObject] = ["phoneType": "ios", "language": UIDevice.deviceLanguage()]
         
@@ -41,11 +70,12 @@ extension NetRequestAdapter {
         
         Log.netRequestFormater(urlString, para: para)
         
-        requestByAlamofire(.POST, urlString: urlString, parameters: parameters) { result in
+        return requestByAlamofire(.POST, urlString: urlString, parameters: parameters) { result in
             completionHandler?(result)
         }
         
     }
+    
     
     /**
      get 网络请求
@@ -69,7 +99,6 @@ extension NetRequestAdapter {
             completionHandler?(result)
         }
         
-        
     }
     
     /**
@@ -80,7 +109,7 @@ extension NetRequestAdapter {
      - parameter parameters:        参数
      - parameter completionHandler: 回调
      */
-    func requestByAlamofire(method: Alamofire.Method = .POST, urlString: String, parameters: [String: AnyObject]? = nil, completionHandler: CompletionHandlernType? = nil) {
+    func requestByAlamofire(method: Alamofire.Method = .POST, urlString: String, parameters: [String: AnyObject]? = nil, completionHandler: CompletionHandlernType? = nil) -> Request {
         
         let request = Alamofire.request(method, urlString, encoding: method == .POST ? .JSON : .URL, parameters: parameters).responseJSON { response -> Void in
             
@@ -107,6 +136,8 @@ extension NetRequestAdapter {
         if Log.enabled {
             debugPrint(request)
         }
+        
+        return request
 
     }
 

@@ -99,6 +99,13 @@
 "Guide.PairFail" = "无法配对";
 "Guide.PairFailInfo" = "确保手环有电，并且位于手机的连接范围";
 
+"Guide.PhoneRemind.Title" = "来电提醒";
+"Guide.PhoneRemind.Info" = "来电振动提醒，不漏接一个重要来电";
+"Guide.PK.Title" = "计步PK";
+"Guide.PK.Info" = "实时查看与好友计步PK详情\n让走路成为一种乐趣";
+"Guide.SafetyService.Title" = "安全服务";
+"Guide.SafetyService.Info" = "遇到紧急情况，连按4下按钮\n立即向联系人发送求救信息";
+
 // 忘记密码页面
 "Forgot.Title" = "忘记密码了?";
 "Forgot.PasswdTextField" = "新密码";
@@ -145,6 +152,12 @@
 "Home.RightList.Title.Security" = "安全";
 "Home.RightList.Title.FirmwareUpgrade" = "固件升级";
 "Home.RightList.Title.BindingBand" = "绑定新的CavyBand";
+
+"Band.Title" = "我的CavyBand";
+"Band.FWVersion" = "固件版本: ";
+"Band.Disconnect.Title" = "手环未连接";
+"Band.Disconnect.FWVersion.Title" = "开启蓝牙，按下手环";
+"Band.Disconnect.BandName.Title" = "按钮自动连接";
 
 //Chart
 "Chart.Sleep" = "睡眠";
@@ -213,10 +226,10 @@
 //账户信息
 "AccountInfo.Title" = "账户信息";
 "AccountInfo.LoginoutButton.Title" = "退出登录";
-"AccountInof.Photo" = "从手机相册中选择";
-"AccountInof.Camera" = "拍照";
-"AccountInof.ChangeNickname.Placeholder" = "输入昵称";
-"AccountInof.ChangeAddress.Placeholder" = "输入地址";
+"AccountInfo.Photo" = "从手机相册中选择";
+"AccountInfo.Camera" = "拍照";
+"AccountInfo.ChangeNickname.Placeholder" = "输入昵称";
+"AccountInfo.ChangeAddress.Placeholder" = "输入地址";
 
 //闹钟
 "AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";
@@ -334,5 +347,3 @@
 // 固件升级
 "UpdateProgress.Info" = "请勿退出应用或关闭手环";
 "UpdateProgress.title" = "手环正在升级";
-
->>>>>>> c61851a12332edc486260b7cac7ce795d27c6c97

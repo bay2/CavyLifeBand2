@@ -15,7 +15,7 @@ import Contacts
 import KeychainAccess
 import Datez
 
-class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate, PKRecordsUpdateFormWeb, LifeBandBleDelegate {
+class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate, PKRecordsUpdateFormWeb  {
     
     enum MoveDirection {
         
@@ -49,6 +49,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     
     var loginUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
+    var syncDataTime: NSTimer?
+    
     var pkSycnCount: Int = 0 {
         
         didSet {
@@ -65,6 +67,11 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
     }
     
+    deinit {
+        removeNotificationObserver()
+        syncDataTime?.invalidate()
+    }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -76,8 +83,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
         
         if BindBandCtrl.bandMacAddress.length == 6 {
-            CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = BindBandCtrl.bandName +
-                "," +
+            CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = LifeBandBle.shareInterface.getPeripheralName() + "," +
                 String(format: "%02X:%02X:%02X:%02X:%02X:%02X",
                 BindBandCtrl.bandMacAddress[0],
                 BindBandCtrl.bandMacAddress[1],
@@ -91,20 +97,16 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         loadHomeView()
             
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickMenu), name: NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.onClickBandMenu), name: NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RootViewController.showHomeView), name: NotificationName.HomeShowHomeView.rawValue, object: nil)
+        addNotificationObserver(NotificationName.HomeLeftOnClickMenu.rawValue, selector: #selector(RootViewController.onClickMenu))
+        addNotificationObserver(NotificationName.HomeRightOnClickMenu.rawValue, selector: #selector(RootViewController.onClickBandMenu))
+        addNotificationObserver(NotificationName.HomeShowHomeView.rawValue, selector: #selector(RootViewController.showHomeView))
+        addNotificationObserver(LifeBandCtrlNotificationName.BandButtonEvenClick4.rawValue, selector: #selector(RootViewController.callEmergency))
         
-        LifeBandBle.shareInterface.lifeBandBleDelegate = self
+        // 断线之后尝试连接
+        addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(RootViewController.bandConnect))
         
-        // 需要等待 LifeBandBle.shareInterface 初始化，这里延时1s连接
-        NSTimer.runThisAfterDelay(seconds: 1) {
-            LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandMacAddress) {
-                LifeBandCtrl.shareInterface.setDateToBand(NSDate())
-//                LifeBandCtrl.shareInterface.seLifeBandModel()
-                self.syncDataFormBand()
-            }
-        }
+        bandInit()
+        
         
     }
     
@@ -376,8 +378,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         }
 
     }
-
-
+    
     /*
     // MARK: - Navigation
 

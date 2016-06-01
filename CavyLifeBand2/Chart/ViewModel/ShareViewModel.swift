@@ -14,57 +14,39 @@ protocol ShareViewDataSource {
     
     var shareImage: UIImage { get }
     
-    func onCilck()
+    var type: ShareType { get }
     
 }
 
 
 struct ShareQQViewModel: ShareViewDataSource {
     
-    var shareImage: UIImage { return UIImage(asset: .ShareQQ) }
+    var shareImage: UIImage = UIImage(asset: .ShareQQ)
     
-    func onCilck() {
-        
-    }
-    init() {
-    
-    }
+    var type: ShareType = ShareTypeQQ
 
 }
 
 struct ShareWechatViewModel: ShareViewDataSource {
     
-    var shareImage: UIImage { return UIImage(asset: .ShareWechat) }
+    var shareImage: UIImage = UIImage(asset: .ShareWechat) 
 
-    
-    init() {
-        
-    }
-    func onCilck() {
-        
-    }
+    var type: ShareType = ShareTypeWeixiSession
+
 }
 
 struct ShareWechatMomentsViewModel: ShareViewDataSource {
     
-    var shareImage: UIImage { return UIImage(asset: .ShareWechatmoments) }
+    var shareImage: UIImage = UIImage(asset: .ShareWechatmoments) 
 
-    init() {
-        
-    }
-    func onCilck() {
-        
-    }
+    var type: ShareType = ShareTypeWeixiTimeline
+
 }
 
 struct ShareWeiboViewModel: ShareViewDataSource {
     
-    var shareImage: UIImage { return UIImage(asset: .ShareWeibo) }
+    var shareImage: UIImage = UIImage(asset: .ShareWeibo)
 
-    init() {
-        
-    }
-    func onCilck() {
-        
-    }
+    var type: ShareType = ShareTypeSinaWeibo
+    
 }

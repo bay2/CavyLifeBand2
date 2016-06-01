@@ -30,8 +30,6 @@ class HomeTimeLineTableCell: UITableViewCell {
     
     func configVM(dataSource: HomeListViewModelProtocol) {
 
-        Log.info(dataSource.friendIconUrl)
-        
         if dataSource.friendIconUrl == "" {
             
             imgView.image = dataSource.image

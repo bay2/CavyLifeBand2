@@ -57,6 +57,8 @@ class CustomCamera: UIViewController {
         camera.start()         // start Camera
         
         self.navigationController?.navigationBarHidden = true
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomCamera.photoAndVideo), name: LifeBandCtrlNotificationName.BandButtonEvenClick1.rawValue, object: nil)
     }
     
     
@@ -292,9 +294,9 @@ class CustomCamera: UIViewController {
         Log.info(timerCount)
         
 
-        let hour = timerCount / 3600
+        let hour    = timerCount / 3600
         let minutes = timerCount / 60
-        let second = timerCount - hour * 3600 - minutes * 60
+        let second  = timerCount - hour * 3600 - minutes * 60
         
         if hour < 10 && minutes < 10 && second < 10 {
             
@@ -359,6 +361,16 @@ class CustomCamera: UIViewController {
     
     // 照相和摄影
     @IBAction func takePhotoAndVideo(sender: AnyObject) {
+        photoAndVideo()
+    }
+    
+    /**
+     照相或摄影
+     
+     - author: sim cai
+     - date: 2016-05-31
+     */
+    func photoAndVideo() {
         
         // isPhotoOrVideo = true 照相
         if isPhotoOrVideo {
@@ -367,14 +379,14 @@ class CustomCamera: UIViewController {
                 if error != nil{
                     return
                 }
-            
+                
                 self.camera.start()
                 self.lastImage.setImage(image, forState: UIControlState.Normal)
                 
                 UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                 
-                }
-        
+            }
+            
         }else{
             // isPhotoOrVideo = false 摄影
             if self.camera.recording == false {
@@ -388,6 +400,7 @@ class CustomCamera: UIViewController {
                 self.stopVideo()
             }
         }
+        
     }
     
     // 打开相册

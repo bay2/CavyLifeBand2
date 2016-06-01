@@ -19,8 +19,8 @@ let revcCommandCharacteristicUUID = "0734594A-A8E7-4B1A-A6B1-CD5243059A57"
 struct BindBandCtrl {
     
     static var bandMacAddress: NSData = NSData()
-    static var bandName: String      = ""
     static var bindScene: BindScene   = .SignUpBind
+    static var fwVersion: Int         = 0
     
 }
 
@@ -33,6 +33,16 @@ protocol LifeBandBleDelegate {
 extension LifeBandBleDelegate {
     
     func bleMangerState(bleState: CBCentralManagerState) {}
+    
+}
+
+enum BandBleNotificationName: String {
+    
+    /// 手环连接通知
+    case BandConnectNotification
+    
+    /// 手环断开通知
+    case BandDesconnectNotification
     
 }
 
@@ -70,7 +80,6 @@ class LifeBandBle: NSObject {
         
         super.init()
         
-        Log.error("LifeBandBle")
         centraManager = CBCentralManager(delegate: self, queue: nil)
         initSendToBandQueue()
         
@@ -147,6 +156,30 @@ class LifeBandBle: NSObject {
         
     }
     
+    /**
+     获取连接状态
+     
+     - author: sim cai
+     - date: 2016-05-30
+     
+     - returns: 连接状态
+     */
+    func getConnectState() -> CBPeripheralState {
+        return peripheral?.state ?? .Disconnected
+    }
+    
+    /**
+     获取设备名称
+     
+     - author: sim cai
+     - date: 2016-05-30
+     
+     - returns: 设备名称
+     */
+    func getPeripheralName() -> String {
+        return peripheral?.name ?? ""
+    }
+    
 
 // MARK: - 扫描蓝牙设备
     
@@ -155,7 +188,7 @@ class LifeBandBle: NSObject {
      */
     func startScaning() {
         
-        Log.error("startScaning")
+        Log.info("startScaning")
         centraManager?.scanForPeripheralsWithServices(nil, options: nil)
         
     }
@@ -164,6 +197,7 @@ class LifeBandBle: NSObject {
      停止扫描
      */
     func stopScaning() {
+        Log.info("stopScaning")
         centraManager?.stopScan()
     }
 
@@ -177,11 +211,19 @@ class LifeBandBle: NSObject {
      */
     func bleConnect(peripheralMacAddress: NSData, connectComplete: (Void -> Void)? = nil) {
         
+        if getConnectState() == .Connected {
+            
+            Log.info("bleConnect end")
+            connectComplete?()
+            return
+        }
+        
         self.connectComplete = connectComplete
         
         self.peripheralMacAddress = peripheralMacAddress
         
         self.startScaning()
+        Log.info("bleConnect")
         
     }
     
@@ -194,6 +236,7 @@ class LifeBandBle: NSObject {
             return
         }
         
+        Log.info("bleDisconnect")
         peripheralMacAddress = NSData()
         
         self.centraManager?.cancelPeripheralConnection(peripheral)
@@ -207,6 +250,7 @@ class LifeBandBle: NSObject {
      */
     func bleBinding(bindingComplete: ((String, NSData) -> Void)? = nil) {
         
+        Log.info("bleBinding")
         self.bindingComplete = bindingComplete
         
         self.startScaning()
@@ -238,6 +282,12 @@ extension LifeBandBle: CBCentralManagerDelegate {
      */
     func centralManagerDidUpdateState(central: CBCentralManager) {
         
+        if central.state == .PoweredOn {
+            bleConnect(self.peripheralMacAddress)
+        } else {
+            NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
+        }
+        
         lifeBandBleDelegate?.bleMangerState(central.state)
         
     }
@@ -245,26 +295,32 @@ extension LifeBandBle: CBCentralManagerDelegate {
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
         
         peripheral.discoverServices(nil)
-        
+        stopScaning()
         central.stopScan()
+        NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandConnectNotification.rawValue, object: nil)
         
     }
     
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
+    }
+    
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
-        
         Log.error("Fail connect to: \(peripheral.name)")
-        
     }
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String: AnyObject], RSSI: NSNumber) {
         
+        if self.peripheral?.state == .Connected {
+            Log.error("peripheral is connected")
+            central.stopScan()
+            return
+        }
 
-        // kCBAdvDataManufacturerData
         guard let advertData = advertisementData["kCBAdvDataManufacturerData"] as? NSData else {
             return
         }
         
-         Log.info("\(advertData.toHexString())")
         
         let data = advertData.arrayOfBytes()
         
@@ -281,7 +337,7 @@ extension LifeBandBle: CBCentralManagerDelegate {
             return
         }
         
-        Log.error("advertisementData: \(advertData.toHexString())")
+        Log.info("advertisementData: \(advertData.toHexString())")
         
         bindingComplete?(peripheral.name ?? "", macAddress ?? NSData(bytes: [0, 0, 0, 0, 0, 0]))
         
@@ -321,6 +377,8 @@ extension LifeBandBle: CBPeripheralDelegate {
         _ = characteristics.map { chara -> CBCharacteristic in
             
             if chara.UUID.isEqual(CBUUID(string: sendCommandCharacteristicUUID)) {
+                
+                Log.info("bleConnect end")
                 self.connectComplete?()
                 sendCharacteristic = chara
             }

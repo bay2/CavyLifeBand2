@@ -72,6 +72,10 @@ class ContactsSortAndGroup: NSObject {
      */
     func firstCharactor(name: String) -> String {
         
+        if name.isEmpty {
+            return ""
+        }
+        
         let str = CFStringCreateMutableCopy(nil, 0, name)
         
         var returnStr = String()

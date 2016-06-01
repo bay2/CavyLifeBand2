@@ -185,7 +185,7 @@ class UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDeleg
     }
     
     var placeholderText: String {
-        return L10n.AccountInofChangeNicknamePlaceholder.string
+        return L10n.AccountInfoChangeNicknamePlaceholder.string
     }
     
     var bottonTitle: String {
@@ -245,7 +245,7 @@ class UserChangeAddressVM: ContactsReqFriendPortocols, SetUserInfoRequestsDelega
     }
     
     var placeholderText: String {
-        return L10n.AccountInofChangeAddressPlaceholder.string
+        return L10n.AccountInfoChangeAddressPlaceholder.string
     }
     
     var bottonTitle: String {

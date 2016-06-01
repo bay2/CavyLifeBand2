@@ -33,7 +33,7 @@ if [ ! -z "$BUGHD_PROJECT_ID" ] && [ ! -z "$BUGHD_API_TOKEN" ]; then
   echo "* Uploading to BugHD      *"
   echo "***************************"
   fir p $OUTPUTDIR/$APP_NAME.ipa \
-  -m  $OUTPUTDIR/$APP_NAME.dSYM.zip \
+  -m  $OUTPUTDIR/$APP_NAME.app.dSYM.zip \
   -P $BUGHD_PROJECT_ID \
   -T $BUGHD_API_TOKEN
 fi

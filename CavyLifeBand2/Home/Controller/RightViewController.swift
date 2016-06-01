@@ -8,6 +8,7 @@
 
 import UIKit
 import EZSwiftExtensions
+import CoreBluetooth
 
 
 class RightViewController: UIViewController {
@@ -15,6 +16,10 @@ class RightViewController: UIViewController {
     @IBOutlet weak var menuTabelView: UITableView!
     var menuGroup: [MenuGroupDataSource] = []
     @IBOutlet weak var bandElectricView: BandElectricView!
+    
+    @IBOutlet weak var fwVersion: UILabel!
+    @IBOutlet weak var bandName: UILabel!
+    @IBOutlet weak var bandTitle: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,16 +30,55 @@ class RightViewController: UIViewController {
         addMenumenuGroupData(BandHardwareMenuGroupDataModel())
         addMenumenuGroupData(BindingBandMenuGroupDataModel())
         
-//        NSTimer.runThisEvery(seconds: 1) { _ in
-//            
-//            LifeBandCtrl.shareInterface.getBandElectric { [unowned self] electric in
-//                
-//                self.bandElectricView.setElectric(CGFloat(electric))
-//                
-//            }
-//            
-//        }
+        NSTimer.runThisEvery(seconds: 30) { _ in
+            
+            LifeBandCtrl.shareInterface.getBandElectric { [unowned self] electric in
+                
+                self.bandElectricView.setElectric(CGFloat(electric))
+                
+            }
+            
+        }
+        
+        checkBandLining()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RightViewController.checkBandLining), name: BandBleNotificationName.BandConnectNotification.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RightViewController.checkBandLining), name: BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
+        
 
+    }
+    
+    deinit {
+        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: BandBleNotificationName.BandConnectNotification.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
+        
+    }
+    
+    /**
+     检查连接状态
+     
+     - author: sim cai
+     - date: 2016-05-30
+     */
+    func checkBandLining() {
+        
+        if LifeBandBle.shareInterface.getConnectState() != .Connected {
+            
+            bandTitle.text = L10n.BandDisconnectTitle.string
+            fwVersion.text = L10n.BandDisconnectFWVersionTitle.string
+            bandName.text  = L10n.BandDisconnectBandNameTitle.string
+            self.bandElectricView.setElectric(0)
+            
+        } else {
+            
+            bandTitle.text = L10n.BandTitle.string
+            fwVersion.text = L10n.BandFWVersion.string + "\(BindBandCtrl.fwVersion)"
+            bandName.text  = LifeBandBle.shareInterface.getPeripheralName()
+            
+        }
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
