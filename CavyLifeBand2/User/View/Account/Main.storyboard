@@ -137,6 +137,7 @@
                     <connections>
                         <outlet property="forgetPasswdBtn" destination="URx-WZ-oqJ" id="SLw-3u-Swa"/>
                         <outlet property="passwdTextField" destination="hVG-TM-RqG" id="2CK-ky-375"/>
+                        <outlet property="separatorLine" destination="ttQ-NM-VcE" id="2jj-Tv-EFi"/>
                         <outlet property="signInBtn" destination="N1v-w3-cuR" id="xf7-AG-IdW"/>
                         <outlet property="textFieldView" destination="r3d-DE-zZQ" id="aW5-i3-T4M"/>
                         <outlet property="userNameTextField" destination="uNl-PL-77D" id="qdT-Tg-HmM"/>

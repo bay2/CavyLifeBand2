@@ -125,7 +125,7 @@ extension BaseViewControllerPresenter where Self: UIViewController {
         let titleLable = UILabel(frame: CGRectMake(0, 0, 60, 44))
         titleLable.text = navTitle
         titleLable.textAlignment = .Center
-        titleLable.textColor = UIColor(named: .ContactsTitleColor)
+        titleLable.textColor = UIColor(named: .AColor)
         
         titleLable.font = UIFont.systemFontOfSize(18)
         

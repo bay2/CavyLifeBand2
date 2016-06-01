@@ -113,7 +113,7 @@ enum L10n {
   case GuideWeight
   /// 目标
   case GuideGoal
-  /// 运动步数
+  /// 计步
   case GuideGoalStep
   /// 睡眠
   case GuideGoalSleep
@@ -123,8 +123,12 @@ enum L10n {
   case GuideAverage
   /// 推荐
   case GuideRecommend
-  /// 可以更好地帮助健康统计哦
+  /// 可以更好的帮助健康统计哦！
   case GuideIntroduce
+  /// 分钟
+  case GuideMinute
+  /// 小时
+  case GuideHour
   /// 设置
   case GuideSetting
   /// 跳过
@@ -724,6 +728,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Guide.Recommend")
       case .GuideIntroduce:
         return L10n.tr("Guide.Introduce")
+      case .GuideMinute:
+        return L10n.tr("Guide.Minute")
+      case .GuideHour:
+        return L10n.tr("Guide.Hour")
       case .GuideSetting:
         return L10n.tr("Guide.Setting")
       case .GuidePassButton:

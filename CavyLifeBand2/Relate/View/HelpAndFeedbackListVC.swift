@@ -28,7 +28,7 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         button.frame = CGRectMake(0, 0, titleSize.width, 30)
         button.setTitle(L10n.RelateHelpAndFeedbackNavRightBtnTitle.string, forState: .Normal)
         button.titleLabel?.font = UIFont.systemFontOfSize(14.0)
-        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        button.setTitleColor(UIColor(named: .AColor), forState: .Normal)
         
         return button
         

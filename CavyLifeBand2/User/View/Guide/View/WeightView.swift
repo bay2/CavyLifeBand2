@@ -44,7 +44,7 @@ class WeightView: UIView {
         
         titleLab.text = L10n.GuideWeight.string
         titleLab.font = UIFont.systemFontOfSize(18)
-        titleLab.textColor = UIColor(named: .GuideColorCC)
+        titleLab.textColor = UIColor(named: .EColor)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(CavyDefine.spacingWidth25 * 23, 18))
@@ -71,8 +71,8 @@ class WeightView: UIView {
         // 当前值
         valueLabel.text = "60.0"
         valueLabel.textAlignment = .Center
-        valueLabel.textColor = UIColor(named: .GuideColorCC)
-        valueLabel.font = UIFont.systemFontOfSize(50)
+        valueLabel.textColor = UIColor(named: .EColor)
+        valueLabel.font = UIFont.systemFontOfSize(42)
         valueLabel.snp_makeConstraints { make -> Void in
             make.centerX.equalTo(self)
             make.centerY.equalTo(self.rotaryView!.snp_bottom)
@@ -81,7 +81,7 @@ class WeightView: UIView {
         // kg 标签
         KGLabel.text = "kg"
         KGLabel.textAlignment = .Center
-        KGLabel.textColor = UIColor(named: .GuideColorCC)
+        KGLabel.textColor = UIColor(named: .EColor)
         KGLabel.font = UIFont.systemFontOfSize(30)
         KGLabel.snp_makeConstraints { make -> Void in
             make.centerY.equalTo(valueLabel).offset(3)

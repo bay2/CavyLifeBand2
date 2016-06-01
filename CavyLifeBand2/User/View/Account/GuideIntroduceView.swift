@@ -19,6 +19,9 @@ class GuideIntroduceView: UIView {
     override func awakeFromNib() {
         bottomBGView.backgroundColor = UIColor(named: .HomeViewMainColor)
         topBGView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        titleLabel.textColor = UIColor(named: .AColor)
+        infoLabel.textColor = UIColor(named: .AColor)
     }
     
     func configure(model: GuideIntroduceViewDataSource) {

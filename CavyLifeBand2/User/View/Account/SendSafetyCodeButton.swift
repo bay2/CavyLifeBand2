@@ -20,7 +20,7 @@ class SendSafetyCodeButton: UIButton {
 
         self.setTitle(L10n.SignUpSendSafetyCode.string, forState: .Normal)
         self.titleLabel!.font = UIFont.systemFontOfSize(14)
-        self.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        self.setTitleColor(UIColor(named: .FColor), forState: .Normal)
 
     }
 

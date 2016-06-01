@@ -62,9 +62,9 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     lazy var rightBtn: UIButton? =  {
         
         let button = UIButton(type: .System)
-        button.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        button.setTitleColor(UIColor(named: .AColor), forState: .Normal)
         button.frame = CGRectMake(0, 0, 60, 30)
-        button.titleLabel?.font = UIFont.systemFontOfSize(16)
+        button.titleLabel?.font = UIFont.systemFontOfSize(14)
         return button
         
     }()
