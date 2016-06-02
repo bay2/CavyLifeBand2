@@ -14,8 +14,11 @@ import AddressBook
 import Contacts
 import KeychainAccess
 import Datez
+import CoreTelephony
 
 class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtocol, PKRecordsRealmModelOperateDelegate, PKRecordsUpdateFormWeb  {
+    
+    var vibrateSeconds: Int = 0
     
     enum MoveDirection {
         
@@ -39,6 +42,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     }
 
     var homeVC: UINavigationController?
+    
     var leftVC: LeftMenViewController?
     var bandMenuVC: RightViewController?
     let homeMaskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
@@ -50,6 +54,10 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     var loginUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
     var syncDataTime: NSTimer?
+    
+    var callCenter: CTCallCenter?
+    
+    var notificationSetingList: NotificationToken?
     
     var pkSycnCount: Int = 0 {
         
@@ -78,22 +86,6 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         Log.info("\(realm.configuration.fileURL)")
         
-        let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-        
-        CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
-        
-        if BindBandCtrl.bandMacAddress.length == 6 {
-            CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = LifeBandBle.shareInterface.getPeripheralName() + "," +
-                String(format: "%02X:%02X:%02X:%02X:%02X:%02X",
-                BindBandCtrl.bandMacAddress[0],
-                BindBandCtrl.bandMacAddress[1],
-                BindBandCtrl.bandMacAddress[2],
-                BindBandCtrl.bandMacAddress[3],
-                BindBandCtrl.bandMacAddress[4],
-                BindBandCtrl.bandMacAddress[5])
-        }
-        
-        Log.info("defaultBindBand = \(CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand)")
         
         loadHomeView()
             
@@ -107,6 +99,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         bandInit()
         
+        phoneCallInit()
         
     }
     
