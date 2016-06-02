@@ -389,11 +389,12 @@ extension ChartsRealmProtocol {
             minustsCount += 1
             testCount += 1
             
+//            Log.info("\(timeIndex)----\((beginTime.gregorian + (timeIndex * 10).minute).date.toString(format: "MM-dd HH:mm"))----\(stepDatas[timeIndex])----\(sleepDatas[timeIndex])")
+            
             // 无数据计数
             if stepTotal == 0 && tiltsTotal == 0 {
                 longSleepCount += 1
             }
-            
             
         }
         
@@ -470,7 +471,7 @@ extension ChartsRealmProtocol {
             return []
         }
         
-        let dataSize = ((endTime - beginTime).totalMinutes + 1) / 10
+        let dataSize = ((endTime - beginTime).totalMinutes) / 10 + 1
         
         var reslutArray = Array<Int>(count: dataSize, repeatedValue: 0)
         
@@ -492,7 +493,7 @@ extension ChartsRealmProtocol {
             return []
         }
         
-        let dataSize = ((endTime - beginTime).totalMinutes + 1) / 10
+        let dataSize = ((endTime - beginTime).totalMinutes) / 10  + 1
         
         var reslutArray = Array<Int>(count: dataSize, repeatedValue: 0)
         
@@ -517,7 +518,7 @@ extension ChartsRealmProtocol {
      
      - returns: (总的睡眠时间, 深睡, 浅睡)
      */
-    func querySleepInfo(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double) {
+    private func querySleepInfo(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double) {
         
         let sleepTime = validSleep(beginTime, endTime: endTime)
         
@@ -544,7 +545,7 @@ extension ChartsRealmProtocol {
     func querySleepInfoDay(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double) {
         
         let newBeginTime = (beginTime.gregorian.beginningOfDay - 6.hour).date
-        let newEndTime = (newBeginTime.gregorian + 24.day).date
+        let newEndTime = endTime
         
         return querySleepInfo(newBeginTime, endTime: newEndTime)
     }

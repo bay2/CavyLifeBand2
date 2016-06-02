@@ -10,8 +10,9 @@ import UIKit
 import EZSwiftExtensions
 import RealmSwift
 import JSONJoy
+import Datez
 
-class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource, HomeListRealmProtocol {
+class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource, HomeListRealmProtocol, ChartsRealmProtocol {
     
     var realm: Realm = try! Realm()
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
@@ -21,7 +22,9 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     // 当日的时间
     var timeString: String = ""
     
-    var notificationToken: NotificationToken?
+    var notificationHomeListToken: NotificationToken?
+    var notificationStepToken: NotificationToken?
+    var notificationSleepToken: NotificationToken?
     
     // VM 数组
     var datasViewModels: [HomeListViewModelProtocol] = []
@@ -29,13 +32,6 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     override func awakeFromNib() {
         
         addCollectionView()
-        
-        notificationToken = realm.addNotificationBlock {(notification, realm) in
-            
-            self.datasViewModels = self.queryRealmGetViewModelLists()
-            self.tableView.reloadData()
-            
-        }
         
     }
     
@@ -46,8 +42,121 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         
         parseDataToHomeListRealm()
         
-        datasViewModels = queryRealmGetViewModelLists()
-        self.tableView.reloadData()
+        initNotificationHomeList()
+        initNotificationStep()
+        initNotificationSleep()
+        
+        
+    }
+    
+    /**
+     主页列表数据库数据监控
+     
+     - author: sim cai
+     - date: 2016-06-02
+     
+     - returns:
+     */
+    func initNotificationHomeList() {
+        
+        notificationHomeListToken = self.queryHomeList(timeString).addNotificationBlock { [unowned self] change in
+            
+            switch change {
+            case .Initial(let value):
+                self.datasViewModels = self.queryRealmGetViewModelLists(value)
+                self.tableView.reloadData()
+            case .Update(let value, deletions: _, insertions: _, modifications: _):
+                self.datasViewModels = self.queryRealmGetViewModelLists(value)
+                self.tableView.reloadData()
+            default:
+                break
+            }
+            
+        }
+        
+    }
+    
+    /**
+     睡眠数据库数据监控
+     
+     - author: sim cai
+     - date: 2016-06-02
+     
+     - returns: <#return value description#>
+     */
+    func initNotificationSleep() {
+        
+        guard let curDate = NSDate(fromString: timeString, format: "yyyy.M.d") else {
+            fatalError("时间格式不正确\(timeString)")
+        }
+        
+        let endDate = curDate.gregorian.isToday ? NSDate() : (curDate.gregorian.beginningOfDay + 24.hour).date
+        
+        Log.info("\(curDate.toString(format: "yyyy.M.d HH:mm:ss")) -------- \(endDate.toString(format: "yyyy.M.d HH:mm:ss"))")
+        
+        
+        notificationSleepToken = self.queryAllStepInfo(userId).addNotificationBlock { [unowned self] chage in
+            
+            switch chage {
+                
+            case .Initial(_):
+                self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: Int(self.querySleepInfoDay(curDate, endTime: endDate).0))
+                self.tableView.reloadData()
+                
+            case .Update(_, deletions: _, insertions: _, modifications: _):
+                if curDate.gregorian.isToday {
+                    self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: Int(self.querySleepInfoDay(curDate, endTime: endDate).0))
+                    self.tableView.reloadData()
+                }
+                
+            default:
+                break
+                
+                
+            }
+            
+        }
+        
+    }
+    
+    /**
+     计步数据库数据监控
+     
+     - author: sim cai
+     - date: 2016-06-02
+     
+     - returns: <#return value description#>
+     */
+    func initNotificationStep() {
+        
+        guard let curDate = NSDate(fromString: timeString, format: "yyyy.M.d") else {
+            fatalError("时间格式不正确\(timeString)")
+        }
+        
+        let endDate = curDate.gregorian.isToday ? NSDate() : (curDate.gregorian.beginningOfDay + 24.hour).date
+        
+        
+        notificationStepToken = self.queryAllStepInfo(userId).addNotificationBlock { [unowned self] chage in
+            
+            switch chage {
+                
+            case .Initial(_):
+                self.datasViewModels[0] = HomeListStepViewModel(stepNumber: self.queryStepNumber(curDate, endTime: endDate, timeBucket: TimeBucketStyle.Day).totalStep)
+                self.tableView.reloadData()
+
+            case .Update(_, deletions: _, insertions: _, modifications: _):
+                if curDate.gregorian.isToday {
+                    self.datasViewModels[0] = HomeListStepViewModel(stepNumber: self.queryStepNumber(curDate, endTime: endDate, timeBucket: TimeBucketStyle.Day).totalStep)
+                    self.tableView.reloadData()
+                }
+                
+            default:
+                break
+                
+                
+            }
+            
+        }
         
     }
 
@@ -166,17 +275,20 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     /**
      数据库数据 转换 VM数组
      */
-    func queryRealmGetViewModelLists() -> [HomeListViewModelProtocol] {
-        
-        // 从数据库获取数据
-        let listRealm: HomeListRealm = queryHomeList(timeString)!
+    func queryRealmGetViewModelLists(homeListRealm: Results<(HomeListRealm)>) -> [HomeListViewModelProtocol] {
         
         // 转成 VM数组
         var listVM: [HomeListViewModelProtocol] = []
         
+        guard let listRealm = homeListRealm.first else {
+            listVM.append(HomeListStepViewModel(stepNumber: 0))
+            listVM.append(HomeListSleepViewModel(sleepTime: 0))
+            return listVM
+        }
+        
         // 计步睡眠
-        listVM.append(HomeListStepViewModel(stepNumber: listRealm.stepCount))
-        listVM.append(HomeListSleepViewModel(sleepTime: listRealm.sleepTime))
+        listVM.append(HomeListStepViewModel(stepNumber: 0))
+        listVM.append(HomeListSleepViewModel(sleepTime: 0))
 
         // PK
         if listRealm.pkList.count > 0 {
@@ -200,7 +312,6 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         }
         
         // 健康列表
-        
         if listRealm.healthList.count > 0 {
             
             for list in listRealm.healthList {
@@ -217,6 +328,8 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
 extension HomeDateTimeLineCell {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        
+        Log.info("\(datasViewModels.count)")
         
         return datasViewModels.count
     }

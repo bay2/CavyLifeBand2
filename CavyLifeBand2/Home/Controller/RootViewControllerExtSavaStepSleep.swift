@@ -52,10 +52,10 @@ extension RootViewController: ChartsRealmProtocol {
                 // 上报睡眠信息
                 StepSleepReportedData.shareApi.sleepReportedDataToWebServer(sleeps).responseJSON {
                     $0.result.success { value in
-                        self.saveStepsToRealm(sleeps)
+                        self.saveTiltsToRealm(sleeps)
                     }
                     .failure { error in
-                        self.saveStepsToRealm(sleeps)
+                        self.saveTiltsToRealm(sleeps)
                     }
                 }
                 
@@ -98,7 +98,7 @@ extension RootViewController: ChartsRealmProtocol {
      
      - parameter steps:
      */
-    func saveTiltsToRealm(steps: [(date: NSDate, titls: Int)]) {
+    func saveTiltsToRealm(steps: [(NSDate, Int)]) {
         
         _ = steps.map {(date: NSDate, tilts: Int) -> (NSDate, Int)? in
             
