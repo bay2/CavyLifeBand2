@@ -57,9 +57,9 @@ struct PerStepChartsData {
 // Sleep 单条数据
 struct PerSleepChartsData {
     
-    var time: String
-    var tilts: Int
-    var totalTime: Int 
+    var time: NSDate
+    var deepSleep: Int
+    var lightSleep: Int
 
 }
 

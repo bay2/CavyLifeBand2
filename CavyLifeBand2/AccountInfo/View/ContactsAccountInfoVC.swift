@@ -17,8 +17,7 @@ protocol AccountItemDataSource {
     associatedtype viewModeType
 }
 
-class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITableViewDelegate, UITableViewDataSource, UserInfoRealmOperateDelegate //, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
-{
+class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITableViewDelegate, UITableViewDataSource, UserInfoRealmOperateDelegate {
     
     var realm: Realm = try! Realm()
     
