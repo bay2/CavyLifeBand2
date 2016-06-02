@@ -19,8 +19,6 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
     lazy var timePicker: AKPickerView = {
         let view = AKPickerView()
         
-        view
-        
         return view
 
     }()
@@ -123,10 +121,15 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         timeUnitLabel.text     = "(\(L10n.PKInvitationVCTimeUnit))"
         PKStateLabel.text      = L10n.PKInvitationVCPKState.string
         
-        selectFriendLabel.textColor = UIColor(named: .PKIntroduceVCLabelColor)
-        selectTimeLabel.textColor   = UIColor(named: .PKIntroduceVCLabelColor)
-        timeUnitLabel.textColor     = UIColor(named: .PKIntroduceVCLabelColor)
-        PKStateLabel.textColor      = UIColor(named: .PKIntroduceVCLabelColor)
+        selectFriendLabel.textColor = UIColor(named: .EColor)
+        selectTimeLabel.textColor   = UIColor(named: .EColor)
+        timeUnitLabel.textColor     = UIColor(named: .EColor)
+        PKStateLabel.textColor      = UIColor(named: .EColor)
+        
+        selectFriendLabel.font = UIFont.mediumSystemFontOfSize(16.0)
+        selectTimeLabel.font   = UIFont.mediumSystemFontOfSize(16.0)
+        timeUnitLabel.font     = UIFont.mediumSystemFontOfSize(12.0)
+        PKStateLabel.font      = UIFont.mediumSystemFontOfSize(16.0)
         
         addBtn.clipsToBounds      = true
         addBtn.layer.cornerRadius = addBtn.frame.size.width / 2
@@ -137,13 +140,38 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         otherSeeUnableBtn.setTitle(L10n.PKInvitationVCPKOtherSeeUnable.string, forState: .Normal)
         otherSeeAbleBtn.setTitle(L10n.PKInvitationVCPKOtherSeeAble.string, forState: .Normal)
         
-        otherSeeAbleBtn.setTitleColor(UIColor(named: .PKInvitationVCSeeStateBtnSelectedColor), forState: .Selected)
-        otherSeeAbleBtn.setTitleColor(UIColor(named: .PKInvitationVCSeeStateBtnNormalColor), forState: .Normal)
+        otherSeeAbleBtn.setTitleColor(UIColor(named: .EColor), forState: .Selected)
+        otherSeeAbleBtn.setTitleColor(UIColor(named: .GColor), forState: .Normal)
+        otherSeeAbleBtn.titleLabel?.font = UIFont.mediumSystemFontOfSize(14.0)
         
-        otherSeeUnableBtn.setTitleColor(UIColor(named: .PKInvitationVCSeeStateBtnSelectedColor), forState: .Selected)
-        otherSeeUnableBtn.setTitleColor(UIColor(named: .PKInvitationVCSeeStateBtnNormalColor), forState: .Normal)
+        otherSeeUnableBtn.setTitleColor(UIColor(named: .EColor), forState: .Selected)
+        otherSeeUnableBtn.setTitleColor(UIColor(named: .GColor), forState: .Normal)
+        otherSeeUnableBtn.titleLabel?.font = UIFont.mediumSystemFontOfSize(14.0)
         
         timePickerContainerView.addSubview(timePicker)
+        
+        let topLine = UIView()
+        let bottomLine = UIView()
+        
+        topLine.backgroundColor = UIColor(named: .LColor)
+        bottomLine.backgroundColor = UIColor(named: .LColor)
+        
+        timePickerContainerView.addSubview(topLine)
+        timePickerContainerView.addSubview(bottomLine)
+        
+        topLine.snp_makeConstraints { (make) in
+            make.leading.equalTo(timePickerContainerView)
+            make.trailing.equalTo(timePickerContainerView)
+            make.top.equalTo(timePickerContainerView)
+            make.height.equalTo(1.0)
+        }
+        
+        bottomLine.snp_makeConstraints { (make) in
+            make.leading.equalTo(timePickerContainerView)
+            make.trailing.equalTo(timePickerContainerView)
+            make.bottom.equalTo(timePickerContainerView)
+            make.height.equalTo(1.0)
+        }
         
         timePicker.snp_makeConstraints {(make) in
             make.center.equalTo(timePickerContainerView.snp_center)
@@ -155,11 +183,11 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         timePicker.delegate   = self
         timePicker.dataSource = self
         
-        timePicker.font            = UIFont(name: "HelveticaNeue-Light", size: 30)!
-        timePicker.highlightedFont = UIFont(name: "HelveticaNeue", size: 44)!
+        timePicker.font            = UIFont.mediumSystemFontOfSize(30.0)
+        timePicker.highlightedFont = UIFont.mediumSystemFontOfSize(42.0)
         
-        timePicker.textColor            = UIColor(named: .AlarmClockTableCellDescriptionColor)
-        timePicker.highlightedTextColor = UIColor(named: .AlarmClockTableCellTitleColor)
+        timePicker.textColor            = UIColor(named: .GColor)
+        timePicker.highlightedTextColor = UIColor(named: .EColor)
         
         timePicker.pickerViewStyle = .Flat
         timePicker.maskDisabled    = false

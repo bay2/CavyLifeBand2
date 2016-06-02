@@ -211,6 +211,7 @@
 "Contacts.ShowInfo.Weight" = "体重";
 "Contacts.ShowInfo.Birth" = "生日";
 "Contacts.ShowInfo.PK" = "PK";
+"Contacts.ShowInfo.PKSubInfo" = "点击查看";
 "Contacts.ShowInfo.Step" = "计步";
 "Contacts.ShowInfo.Sleep" = "睡眠";
 "Contacts.ShowInfo.Achievement" = "成就";
@@ -232,6 +233,7 @@
 "AccountInfo.Camera" = "拍照";
 "AccountInfo.ChangeNickname.Placeholder" = "输入昵称";
 "AccountInfo.ChangeAddress.Placeholder" = "输入地址";
+"AccountInfo.AchieveView.NumPrefix" = "您已累计行走";
 
 //闹钟
 "AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";

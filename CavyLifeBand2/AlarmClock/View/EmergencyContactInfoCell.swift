@@ -26,15 +26,15 @@ class EmergencyContactInfoCell: UITableViewCell {
         // Initialization code
         self.selectionStyle = .None
         
-        self.nameLabel.textColor = UIColor(named: .EmergencyContactCellInfoLabelColor)
-        self.phoneNumberLabel.textColor = UIColor(named: .EmergencyContactCellInfoLabelColor)
-        self.cancelBtn.setTitleColor(UIColor(named: .EmergencyContactCellCancelBtnTitleColor), forState: .Normal)
+        nameLabel.textColor = UIColor(named: .KColor)
+        phoneNumberLabel.textColor = UIColor(named: .KColor)
+        cancelBtn.setTitleColor(UIColor(named: .HColor), forState: .Normal)
         
-        self.nameLabel.font = UIFont.systemFontOfSize(16.0)
-        self.phoneNumberLabel.font = UIFont.systemFontOfSize(12.0)
+        nameLabel.font = UIFont.mediumSystemFontOfSize(16.0)
+        phoneNumberLabel.font = UIFont.systemFontOfSize(12.0)
         
-        self.cancelBtn.setTitle(L10n.SettingSafetyTableEmergencyContactCancelBtn.string, forState: .Normal)
-        
+        cancelBtn.setTitle(L10n.SettingSafetyTableEmergencyContactCancelBtn.string, forState: .Normal)
+        cancelBtn.titleLabel?.font = UIFont.mediumSystemFontOfSize(16.0)
     }
     
     func configure(dataSource: EmergencyContactInfoDataSource, delegate: EmergencyContactInfoDelegate, indexPath: NSIndexPath) -> Void {

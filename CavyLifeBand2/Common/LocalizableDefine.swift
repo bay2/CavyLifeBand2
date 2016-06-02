@@ -359,6 +359,8 @@ enum L10n {
   case ContactsShowInfoBirth
   /// PK
   case ContactsShowInfoPK
+  /// 点击查看
+  case ContactsShowInfoPKSubInfo
   /// 计步
   case ContactsShowInfoStep
   /// 睡眠
@@ -397,6 +399,8 @@ enum L10n {
   case AccountInfoChangeNicknamePlaceholder
   /// 输入地址
   case AccountInfoChangeAddressPlaceholder
+  /// 您已累计行走
+  case AccountInfoAchieveViewNumPrefix
   /// 手环振动提醒 取消传统声音唤醒体系
   case AlarmClockIntelligentClockTableFooterInfo
   /// 智能闹钟
@@ -962,6 +966,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.ShowInfo.Birth")
       case .ContactsShowInfoPK:
         return L10n.tr("Contacts.ShowInfo.PK")
+      case .ContactsShowInfoPKSubInfo:
+        return L10n.tr("Contacts.ShowInfo.PKSubInfo")
       case .ContactsShowInfoStep:
         return L10n.tr("Contacts.ShowInfo.Step")
       case .ContactsShowInfoSleep:
@@ -1000,6 +1006,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AccountInfo.ChangeNickname.Placeholder")
       case .AccountInfoChangeAddressPlaceholder:
         return L10n.tr("AccountInfo.ChangeAddress.Placeholder")
+      case .AccountInfoAchieveViewNumPrefix:
+        return L10n.tr("AccountInfo.AchieveView.NumPrefix")
       case .AlarmClockIntelligentClockTableFooterInfo:
         return L10n.tr("AlarmClock.IntelligentClockTableFooter.Info")
       case .AlarmClockTitle:

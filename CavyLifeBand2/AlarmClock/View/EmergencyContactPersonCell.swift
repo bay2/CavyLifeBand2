@@ -20,10 +20,11 @@ class EmergencyContactPersonCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        titleLabel.textColor = UIColor(named: .SettingTableCellTitleColor)
+        titleLabel.textColor = UIColor(named: .EColor)
+        titleLabel.font = UIFont.mediumSystemFontOfSize(16.0)
         
-        addBtn.setTitleColor(UIColor(named: .SettingTableCellInfoGrayColor), forState: .Normal)
-        
+        addBtn.setTitleColor(UIColor(named: .GColor), forState: .Normal)
+        addBtn.titleLabel?.font = UIFont.mediumSystemFontOfSize(16.0)
         addBtn.addTarget(nil, action: #selector(SafetySettingViewController.addEmergencyContact(_:)), forControlEvents: .TouchUpInside)
     }
     

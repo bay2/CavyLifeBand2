@@ -12,9 +12,6 @@ class SecondsTableViewCell: UITableViewCell {
     
     lazy var pickerView: AKPickerView = {
         let view = AKPickerView()
-        
-        view
-        
         return view
     }()
     
@@ -58,9 +55,11 @@ class SecondsTableViewCell: UITableViewCell {
         }
         
         pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 30)!
-        pickerView.highlightedFont = UIFont(name: "HelveticaNeue", size: 45)!
-        pickerView.textColor = UIColor(named: .AlarmClockTableCellDescriptionColor)
-        pickerView.highlightedTextColor = UIColor(named: .AlarmClockTableCellTitleColor)
+        pickerView.highlightedFont = UIFont(name: "HelveticaNeue", size: 42)!
+        
+        pickerView.textColor = UIColor(named: .GColor)
+        pickerView.highlightedTextColor = UIColor(named: .EColor)
+        
         pickerView.pickerViewStyle = .Flat
         pickerView.maskDisabled = false
         pickerView.reloadData()

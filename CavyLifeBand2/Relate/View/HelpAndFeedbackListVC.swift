@@ -138,9 +138,7 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
                 }
                 
                 guard let helpList = resultMsg.helpList else {
-                    
                     return
-                
                 }
                 
                 for help in helpList {
