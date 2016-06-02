@@ -26,13 +26,13 @@ class WebViewController: UIViewController, BaseViewControllerPresenter {
             return nil
         }
         
-        let titleSize = self.navRightBtnTitle.boundingRectWithSize(CGSizeMake(100, 20), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(14.0)], context: nil)
+        let titleSize = self.navRightBtnTitle.boundingRectWithSize(CGSizeMake(100, 20), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.mediumSystemFontOfSize(14.0)], context: nil)
         
         let button = UIButton(type: .System)
         
         button.frame = CGRectMake(0, 0, titleSize.width, 30)
         button.setTitle(self.navRightBtnTitle, forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(14.0)
+        button.titleLabel?.font = UIFont.mediumSystemFontOfSize(14.0)
         button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         
         return button

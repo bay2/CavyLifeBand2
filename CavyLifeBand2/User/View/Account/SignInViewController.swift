@@ -62,7 +62,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         
         let button = UIButton(type: .System)
         button.setTitleColor(UIColor(named: .AColor), forState: .Normal)
-        button.titleLabel?.font = UIFont.systemFontOfSize(14)
+        button.titleLabel?.font = UIFont.mediumSystemFontOfSize(14)
         button.frame = CGRectMake(0, 0, 60, 30)
         button.setTitle(L10n.SignUpSignUpBtn.string, forState: .Normal)
         return button

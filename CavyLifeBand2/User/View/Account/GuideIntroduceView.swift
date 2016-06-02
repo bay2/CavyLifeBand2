@@ -22,6 +22,9 @@ class GuideIntroduceView: UIView {
         
         titleLabel.textColor = UIColor(named: .AColor)
         infoLabel.textColor = UIColor(named: .AColor)
+        
+        titleLabel.font = UIFont.mediumSystemFontOfSize(18.0)
+        infoLabel.font = UIFont.systemFontOfSize(14.0)
     }
     
     func configure(model: GuideIntroduceViewDataSource) {

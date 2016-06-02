@@ -48,7 +48,7 @@ class PictureView: UIView {
         self.addSubview(middleImgView)
         self.addSubview(bottomLab)
         
-        titleLab.font = UIFont.systemFontOfSize(18)
+        titleLab.font = UIFont.mediumSystemFontOfSize(18)
         titleLab.textColor = UIColor(named: .EColor)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { make -> Void in
@@ -72,7 +72,7 @@ class PictureView: UIView {
             make.center.equalTo(self)
         }
         
-        bottomLab.font = UIFont.systemFontOfSize(14)
+        bottomLab.font = UIFont.mediumSystemFontOfSize(14)
         bottomLab.textColor = UIColor(named: .GColor)
         bottomLab.textAlignment = .Center
         bottomLab.snp_makeConstraints { make -> Void in

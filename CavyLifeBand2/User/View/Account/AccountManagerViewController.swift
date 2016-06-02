@@ -64,7 +64,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         let button = UIButton(type: .System)
         button.setTitleColor(UIColor(named: .AColor), forState: .Normal)
         button.frame = CGRectMake(0, 0, 60, 30)
-        button.titleLabel?.font = UIFont.systemFontOfSize(14)
+        button.titleLabel?.font = UIFont.mediumSystemFontOfSize(14)
         return button
         
     }()

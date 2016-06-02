@@ -74,7 +74,7 @@ class GoalView: UIView {
 
         // 页面名称
         titleLab.text = L10n.GuideGoal.string
-        titleLab.font = UIFont.systemFontOfSize(18)
+        titleLab.font = UIFont.mediumSystemFontOfSize(18)
         titleLab.textColor = UIColor(named: .EColor)
         titleLab.snp_makeConstraints { make -> Void in
             make.top.equalTo(self).offset(ez.screenWidth * 0.08)
@@ -90,7 +90,7 @@ class GoalView: UIView {
         // 单位：步
         stepUnit.text = L10n.GuideStep.string
         stepUnit.textColor = UIColor(named: .EColor)
-        stepUnit.font = UIFont.systemFontOfSize(14)
+        stepUnit.font = UIFont.mediumSystemFontOfSize(14)
         stepUnit.snp_makeConstraints { make -> Void in
             make.right.equalTo(self).offset(0 - ez.screenWidth * 0.08)
         }
@@ -98,14 +98,14 @@ class GoalView: UIView {
         // 目标步数
         stepValue.text = String(stepCurrentValue)
         stepValue.textColor = UIColor(named: .EColor)
-        stepValue.font = UIFont.systemFontOfSize(30)
+        stepValue.font = UIFont.mediumSystemFontOfSize(30)
         stepValue.snp_makeConstraints { make -> Void in
             make.top.equalTo(titleLab).offset(ez.screenWidth * 0.14)
         }
         
         // 计步模块
         stepModlue.text = L10n.GuideGoalStep.string
-        stepModlue.font = UIFont.systemFontOfSize(14)
+        stepModlue.font = UIFont.mediumSystemFontOfSize(14)
         stepModlue.textColor = UIColor(named: .EColor)
         stepModlue.snp_makeConstraints { make -> Void in
             make.left.equalTo(self).offset(ez.screenWidth * 0.08)
@@ -119,7 +119,7 @@ class GoalView: UIView {
         
         // 平均值线
         stepPinAvg.textColor = UIColor(named: .HColor)
-        stepPinAvg.font = UIFont.systemFontOfSize(14)
+        stepPinAvg.font = UIFont.mediumSystemFontOfSize(14)
         stepPineLine.backgroundColor = UIColor(named: .HColor)
         stepPineLine.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.04)
@@ -132,7 +132,7 @@ class GoalView: UIView {
         
         // 推荐值线
         stepPinRecom.textColor = UIColor(named: .HColor)
-        stepPinRecom.font = UIFont.systemFontOfSize(14)
+        stepPinRecom.font = UIFont.mediumSystemFontOfSize(14)
         stepPinRecomLIne.backgroundColor = UIColor(named: .HColor)
         stepPinRecomLIne.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.04)
@@ -151,13 +151,14 @@ class GoalView: UIView {
         
         // 单位：分钟
         sleepMMUnit.text = L10n.GuideMinute.string
-        sleepMMUnit.font = UIFont.systemFontOfSize(14)
+        sleepMMUnit.font = UIFont.mediumSystemFontOfSize(14)
         sleepMMUnit.textColor = UIColor(named: .EColor)
         sleepMMUnit.snp_makeConstraints { make -> Void in
             make.right.equalTo(self).offset(0 - ez.screenWidth * 0.08)
         }
         sleepMMValue.text = String(mmCurrentValue)
         sleepMMValue.textColor = UIColor(named: .EColor)
+        sleepMMValue.font = UIFont.mediumSystemFontOfSize(30)
         sleepMMValue.snp_makeConstraints { make -> Void in
             make.top.equalTo(stepSlider).offset(ez.screenWidth * 0.22)
         }
@@ -165,13 +166,14 @@ class GoalView: UIView {
         // 单位：小时
         sleepHHUnit.text = L10n.GuideHour.string
         sleepHHUnit.textColor = UIColor(named: .EColor)
-        sleepHHUnit.font = UIFont.systemFontOfSize(14)
+        sleepHHUnit.font = UIFont.mediumSystemFontOfSize(14)
         sleepHHValue.text = String(hhCurrentValue)
+        sleepHHValue.font = UIFont.mediumSystemFontOfSize(30)
         sleepHHValue.textColor = UIColor(named: .EColor)
         
         // 睡眠模块
         sleepModlue.text = L10n.GuideGoalSleep.string
-        sleepModlue.font = UIFont.systemFontOfSize(14)
+        sleepModlue.font = UIFont.mediumSystemFontOfSize(14)
         sleepModlue.textColor = UIColor(named: .EColor)
         sleepModlue.snp_makeConstraints { make -> Void in
             make.left.equalTo(self).offset(ez.screenWidth * 0.08)
@@ -185,7 +187,7 @@ class GoalView: UIView {
 
         // 平均值线
         sleepPinAvgLab.textColor = UIColor(named: .HColor)
-        sleepPinAvgLab.font = UIFont.systemFontOfSize(14)
+        sleepPinAvgLab.font = UIFont.mediumSystemFontOfSize(14)
         sleepPineAvgLine.backgroundColor = UIColor(named: .HColor)
         sleepPineAvgLine.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.04)
@@ -203,7 +205,7 @@ class GoalView: UIView {
             make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
         }
         sleepPinRecomLab.textColor = UIColor(named: .HColor)
-        sleepPinRecomLab.font = UIFont.systemFontOfSize(14)
+        sleepPinRecomLab.font = UIFont.mediumSystemFontOfSize(14)
         sleepPinRecomLab.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.06 - 14)
         }

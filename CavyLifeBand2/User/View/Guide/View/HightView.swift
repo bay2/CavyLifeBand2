@@ -46,7 +46,7 @@ class HightView: UIView, RulerViewDelegate {
         heightLabel.text = heightRuler.rulerScroll.currentValue
         
         titleLab.text = L10n.GuideHeight.string
-        titleLab.font = UIFont.systemFontOfSize(18)
+        titleLab.font = UIFont.mediumSystemFontOfSize(18)
         titleLab.textColor = UIColor(named: .EColor)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { make -> Void in
@@ -56,7 +56,7 @@ class HightView: UIView, RulerViewDelegate {
         }
         
         heightLabel.text = "160"
-        heightLabel.font = UIFont.systemFontOfSize(50)
+        heightLabel.font = UIFont.mediumSystemFontOfSize(50)
         heightLabel.textColor = UIColor(named: .EColor)
         heightLabel.textAlignment = NSTextAlignment.Center
         heightLabel.snp_makeConstraints { make -> Void in
@@ -66,7 +66,7 @@ class HightView: UIView, RulerViewDelegate {
         }
         
         CMLabel.text = "CM"
-        CMLabel.font = UIFont.systemFontOfSize(30)
+        CMLabel.font = UIFont.mediumSystemFontOfSize(30)
         CMLabel.textColor = UIColor(named: .EColor)
         CMLabel.textAlignment = NSTextAlignment.Center
         CMLabel.snp_makeConstraints { make -> Void in

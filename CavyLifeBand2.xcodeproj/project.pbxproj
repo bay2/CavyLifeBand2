@@ -1687,8 +1687,8 @@
 				917DA9651C3B8EB700FF675D /* Frameworks */,
 				917DA9661C3B8EB700FF675D /* Resources */,
 				9C96EDCAA15349112C23D4D1 /* Embed Pods Frameworks */,
-				014978E6D44FBCCACD14AACB /* Copy Pods Resources */,
 				FA2D68840715E9D8900A434B /* Tailor */,
+				014978E6D44FBCCACD14AACB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2024,7 +2024,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\n  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n  echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+			shellScript = "#if hash tailor 2>/dev/null; then\n#  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#  echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

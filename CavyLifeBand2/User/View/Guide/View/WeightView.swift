@@ -43,7 +43,7 @@ class WeightView: UIView {
         rotaryView!.addSubview(KGLabel)
         
         titleLab.text = L10n.GuideWeight.string
-        titleLab.font = UIFont.systemFontOfSize(18)
+        titleLab.font = UIFont.mediumSystemFontOfSize(18)
         titleLab.textColor = UIColor(named: .EColor)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { make -> Void in
@@ -72,7 +72,7 @@ class WeightView: UIView {
         valueLabel.text = "60.0"
         valueLabel.textAlignment = .Center
         valueLabel.textColor = UIColor(named: .EColor)
-        valueLabel.font = UIFont.systemFontOfSize(42)
+        valueLabel.font = UIFont.mediumSystemFontOfSize(42)
         valueLabel.snp_makeConstraints { make -> Void in
             make.centerX.equalTo(self)
             make.centerY.equalTo(self.rotaryView!.snp_bottom)
@@ -82,7 +82,7 @@ class WeightView: UIView {
         KGLabel.text = "kg"
         KGLabel.textAlignment = .Center
         KGLabel.textColor = UIColor(named: .EColor)
-        KGLabel.font = UIFont.systemFontOfSize(30)
+        KGLabel.font = UIFont.mediumSystemFontOfSize(30)
         KGLabel.snp_makeConstraints { make -> Void in
             make.centerY.equalTo(valueLabel).offset(3)
             make.left.equalTo(valueLabel.snp_right)

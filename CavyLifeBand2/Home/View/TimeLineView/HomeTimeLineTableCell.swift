@@ -38,7 +38,11 @@ class HomeTimeLineTableCell: UITableViewCell {
             imgView.af_setCircleImageWithURL(NSURL(string: dataSource.friendIconUrl)!, placeholderImage: UIImage(asset: .DefaultHead))
         }
         nameLabel.text = dataSource.title
+        nameLabel.textColor = UIColor(named: .EColor)
+        nameLabel.font = UIFont.systemFontOfSize(16.0)
         othersName.text = dataSource.friendName
+        othersName.textColor = UIColor(named: .EColor)
+        othersName.font = UIFont.systemFontOfSize(12.0)
         resultLabel.attributedText = dataSource.resultNum
         addAllViewLayout(dataSource.friendName)
         

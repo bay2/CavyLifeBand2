@@ -42,7 +42,7 @@ class BirthdayView: UIView, RulerViewDelegate {
         self.addSubview(titleLab)
         
         titleLab.text = L10n.GuideBirthday.string
-        titleLab.font = UIFont.systemFontOfSize(18)
+        titleLab.font = UIFont.mediumSystemFontOfSize(18)
         titleLab.textColor = UIColor(named: .EColor)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { make -> Void in
@@ -51,7 +51,7 @@ class BirthdayView: UIView, RulerViewDelegate {
             make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 2)
         }
         
-        yyMMLabel.font = UIFont.systemFontOfSize(42)
+        yyMMLabel.font = UIFont.mediumSystemFontOfSize(42)
         yyMMLabel.textColor = UIColor(named: .EColor)
         yyMMLabel.textAlignment = NSTextAlignment.Center
         yyMMLabel.snp_makeConstraints { make -> Void in

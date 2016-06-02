@@ -19,7 +19,7 @@ class SendSafetyCodeButton: UIButton {
     override func drawRect(rect: CGRect) {
 
         self.setTitle(L10n.SignUpSendSafetyCode.string, forState: .Normal)
-        self.titleLabel!.font = UIFont.systemFontOfSize(14)
+        self.titleLabel!.font = UIFont.mediumSystemFontOfSize(14)
         self.setTitleColor(UIColor(named: .FColor), forState: .Normal)
 
     }

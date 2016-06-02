@@ -77,6 +77,7 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
             
             let button = upperButtonArray[i]
             button.frame = CGRectMake(ez.screenWidth / 3 * CGFloat(i), 0, timeButtonWidth, timeButtonHeight)
+            button.titleLabel?.font = UIFont.systemFontOfSize(16.0)
             button.addTarget(self, action: #selector(changeButtonStatus(_:)), forControlEvents: .TouchUpInside)
             self.view.addSubview(button)
         }

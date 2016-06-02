@@ -40,7 +40,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
         let rightBtn = UIButton(type: .System)
         rightBtn.setTitleColor(UIColor(named: .AColor), forState: .Normal)
-        rightBtn.titleLabel?.font = UIFont.systemFontOfSize(14)
+        rightBtn.titleLabel?.font = UIFont.mediumSystemFontOfSize(14)
         rightBtn.frame = CGRectMake(0, 0, 60, 30)
         
         return rightBtn

@@ -127,7 +127,7 @@ extension BaseViewControllerPresenter where Self: UIViewController {
         titleLable.textAlignment = .Center
         titleLable.textColor = UIColor(named: .AColor)
         
-        titleLable.font = UIFont.systemFontOfSize(18)
+        titleLable.font = UIFont.mediumSystemFontOfSize(18)
         
         self.navigationItem.titleView = titleLable
     }
