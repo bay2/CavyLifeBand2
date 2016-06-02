@@ -12,12 +12,12 @@ import Charts
 
 class ShowChartsView: BarChartView, ChartViewDelegate {
     
-    var leftMaxValue = 1
+    var leftMaxValue = 5
     var leftLabelCCount = 1
     var legdendLabel = L10n.ChartStep.string
     var legendColors = [UIColor(named: .ChartStepPillarColor)]
     var leftUnit = " k"
-    var spaceBetweenLabel = dayTime.count / 3
+    var spaceBetweenLabel = 7
     
     var timeBucketStyle: TimeBucketStyle = .Day
     
@@ -30,6 +30,10 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     func configAllView() {
         
         self.backgroundColor = UIColor(named: .ChartViewBackground)
+        
+        if timeBucketStyle == .Month {
+            spaceBetweenLabel = chartsData.count / 3
+        }
         
         setData(chartsData.count)
         setupBarLineChartView()
@@ -55,7 +59,6 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         self.delegate = self
         self.maxVisibleValueCount = leftMaxValue
         self.highlightPerTapEnabled = true
-        
     }
 
     /**
@@ -91,6 +94,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         leftAxis.spaceTop = 0.1
         leftAxis.spaceBottom = 0.15
         leftAxis.axisMinValue = 0
+  
     }
     
     /**
@@ -98,10 +102,8 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func addLegend() {
         
-//        self.legend.position = .AboveChartRight
         self.legend.horizontalAlignment = .Right
-//        self.legend.verticalAlignment = .Top
-//        self.legend.orientation = .Horizontal
+        self.legend.verticalAlignment = .Top
         self.legend.form = .Circle
         self.legend.formSize = 5
         self.legend.textColor = UIColor(named: .ChartViewTextColor)
@@ -151,8 +153,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
             
             let data = BarChartData(xVals: xVals, dataSets: dataSets)
             data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10))
-            // 默认不显示数值
-//            data.setValueTextColor(UIColor.redColor())
+
             self.data = data
             // 动画
             self.animate(yAxisDuration: 2)
@@ -166,18 +167,11 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         
-        
-        
-//        chartView.data!.setValueTextColor(UIColor.yellowColor())
-        
-        
         let selectIndexNum = self.data?.dataSets.first?.yValForXIndex(dataSetIndex)
         
         Log.info(selectIndexNum)
-        
-        
+
         Log.info("\(chartView)  \(entry)   \(dataSetIndex)  \(highlight)")
- 
         
     }
     

@@ -8,33 +8,36 @@
 
 import UIKit
 import Charts
+import EZSwiftExtensions
 
 class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     
     var leftMaxValue = 1
     var leftLabelCCount = 1
-    var legendLable = "Sleep"
+    var legendLable = L10n.ChartSleep.string
     var legendColors: [UIColor] = [UIColor(named: .ChartSleepDegreeDeep), UIColor(named: .ChartSleepDegreeLight)]
     var leftUnit = " h"
-    var spaceBetweenLabel = dayTime.count / 3
-    
     var timeBucketStyle: TimeBucketStyle = .Day
+    var spaceBetweenLabel = 0
+    var chartsXvalFormatter = "EEE"
     
     // 深睡浅睡柱状图
-    var chartsData: [(deepSleep: Double, lightSleep: Double)] = [] {
-        
-        didSet {
-            setData(7)
-        }
-        
-    }
-        
+    var chartsData: [PerSleepChartsData] = []
+    
     /**
      配置所有视图 主入口
      */
     func configAllView() {
         
+        Log.info(chartsData)
+        
         self.backgroundColor = UIColor(named: .ChartViewBackground)
+        
+        if timeBucketStyle == .Month {
+            chartsXvalFormatter = "d"
+            spaceBetweenLabel = 2
+        }
+        
         
         setupBarLineChartView()
         
@@ -53,9 +56,9 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     func setupBarLineChartView() {
         
         self.delegate = self
-        self.descriptionText = ""
-        self.noDataTextDescription = "You need to provide data for the chart."
-        
+        // 当没有数据时候显示 空
+        self.descriptionText = "    "
+        self.noDataTextDescription = "    "
         self.dragEnabled = false
         self.setScaleEnabled(false)
         self.drawValueAboveBarEnabled = true
@@ -72,33 +75,32 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     func addxAxis(){
         
         let xAxis = self.xAxis
-        xAxis.labelHeight = 8
+        xAxis.labelHeight = 12
         xAxis.labelPosition = .Bottom
         xAxis.labelFont = UIFont.systemFontOfSize(10)
         xAxis.gridColor = UIColor(named: .ChartGirdColor)
         xAxis.labelTextColor =  UIColor(named: .ChartGirdColor)
         xAxis.drawGridLinesEnabled = false
+        // 下面名字显示间隔
         xAxis.spaceBetweenLabels = spaceBetweenLabel
         
     }
     
     /**
-     添加左边刻度
+     添加左边刻度 什么都没有
      */
     func addLeftAxis() {
         
-        // 左边刻度
+        // 左边刻度 什么也没有
         let leftAxis = self.leftAxis
-        leftAxis.labelFont = UIFont.systemFontOfSize(12)
-        leftAxis.labelCount = leftLabelCCount
-        leftAxis.valueFormatter = NSNumberFormatter()
-        leftAxis.valueFormatter!.maximumFractionDigits = 1
-        leftAxis.valueFormatter!.positiveSuffix = leftUnit
+        // 字号为0
+        leftAxis.labelFont = UIFont.systemFontOfSize(0)
+        leftAxis.labelCount = 0
         leftAxis.labelPosition = .OutsideChart
-        leftAxis.labelTextColor = UIColor(named: .ChartGirdColor)
         leftAxis.spaceTop = 0.1
         leftAxis.spaceBottom = 0.15
         leftAxis.axisMinValue = 0
+        
     }
     
     /**
@@ -107,6 +109,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     func addLegend() {
         
         self.legend.horizontalAlignment = .Right
+        self.legend.verticalAlignment = .Top
         self.legend.form = .Circle
         self.legend.formSize = 5
         self.legend.textColor = UIColor(named: .ChartViewTextColor)
@@ -124,13 +127,18 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
+        
         for i in 0 ..< count {
-            xVals.append(weekTime[i])
+            
+            let timeString = chartsData[i].time.toString(format: chartsXvalFormatter)
+            xVals.append(timeString)
+            
         }
+        
         for i in 0 ..< count {
 
-            let val1 = chartsData[i].deepSleep
-            let val2 = chartsData[i].lightSleep
+            let val1 = Double(chartsData[i].deepSleep)
+            let val2 = Double(chartsData[i].lightSleep)
                         
             let dataEntrys = BarChartDataEntry(values: [val1, val2], xIndex: i)
         
@@ -146,8 +154,8 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
             
         } else {
             
-            dataSet = BarChartDataSet(yVals: yVals, label: legendLable)
-            dataSet.barSpace = 0.80
+            dataSet = BarChartDataSet(yVals: yVals, label: "")// legendLable)
+            dataSet.barSpace = 0.75
             dataSet.setColors(legendColors, alpha: 0.9)
             dataSet.highlightAlpha = 0.2
             dataSet.barShadowColor = UIColor.clearColor()
@@ -166,9 +174,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
             self.animate(yAxisDuration: 2)
         }
         
-        
     }
-    
     
     // MARK: -- ChartViewDelegate
     /**
