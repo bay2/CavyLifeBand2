@@ -47,8 +47,8 @@ struct HomeListSleepViewModel: HomeListViewModelProtocol {
     
     init(sleepTime: Int) {
         
-        let sleepHour = sleepTime / 60
-        let sleepMin = sleepTime - sleepHour * 60
+        let sleepHour = sleepTime / 6
+        let sleepMin = (sleepTime - sleepHour * 6) * 10
         resultNum = NSMutableAttributedString().attributeString(String(sleepHour), numSize: 16, unit: L10n.HomeSleepRingUnitHour.string, unitSize: 14)
         resultNum.appendAttributedString(NSMutableAttributedString().attributeString(String(sleepMin), numSize: 16, unit: L10n.HomeSleepRingUnitMinute.string, unitSize: 14))
     }
@@ -97,6 +97,7 @@ struct HomeListAchiveViewModel: HomeListViewModelProtocol {
         default:
             self.image = UIImage(asset: .Medal5000000Lighted)
         }
+        
         let stepArray = [5000, 20000, 100000, 500000, 1000000, 5000000]
         resultNum = NSMutableAttributedString(string: "\(stepArray[medalIndex])\(L10n.GuideStep.string)")
         
