@@ -36,6 +36,7 @@ protocol SettingRealmListOperateDelegate {
     var userId: String { get }
     
     func querySettingList() -> SettingRealmListModel?
+    func queryAllSettingList() -> Results<(SettingRealmListModel)> 
     func updateSettingList(settingListModel: SettingRealmListModel) -> Bool
 
 }
@@ -49,7 +50,8 @@ protocol SettingRealmOperateDelegate {
     func addSetting(settingModel: SettingRealmModel) -> Bool
     func updateSettingOpen(settingType: String, userId: String, settingOpen: Bool) -> Bool
     func updateSettingInfo(settingType: String, userId: String, settingInfo: Int) -> Bool
-    func isSettingExist(settingType: String, userId: String) -> Bool 
+    func isSettingExist(settingType: String, userId: String) -> Bool
+    
 }
 
 extension SettingRealmListOperateDelegate {
@@ -65,6 +67,10 @@ extension SettingRealmListOperateDelegate {
         let settingList = realm.objects(SettingRealmListModel).filter("userId = '\(userId)'")
         
         return settingList.first
+    }
+    
+    func queryAllSettingList() -> Results<(SettingRealmListModel)> {
+        return realm.objects(SettingRealmListModel).filter("userId = '\(userId)'")
     }
     
     func updateSettingList(settingListModel: SettingRealmListModel) -> Bool{

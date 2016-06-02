@@ -339,6 +339,10 @@ extension ChartsRealmProtocol {
         let sleepDatas = transformSleepData(beginTime, endTime: endTime)
         let stepDatas = transformStepData(beginTime, endTime: endTime)
         
+        if stepDatas.isEmpty && stepDatas.isEmpty {
+            return 0
+        }
+        
         for timeIndex in 0..<sleepDatas.count {
             
             let beginIndex = timeIndex == 0 ? 0 : timeIndex - 1
@@ -414,12 +418,15 @@ extension ChartsRealmProtocol {
         
         var minustsCount   = 0
         var longSleepCount = 0 // 长时间睡眠计数
-        var testCount = 0
         
         Log.info("sumDeepSleep Begin")
         
         let sleepDatas = transformSleepData(beginTime, endTime: endTime)
         let stepDatas = transformStepData(beginTime, endTime: endTime)
+        
+        if stepDatas.isEmpty && stepDatas.isEmpty {
+            return 0
+        }
         
         for timeIndex in 0..<sleepDatas.count {
             
@@ -437,7 +444,6 @@ extension ChartsRealmProtocol {
             minustsCount += 1
             longSleepCount += 1
             
-            testCount += 1
             
         }
         
@@ -447,8 +453,6 @@ extension ChartsRealmProtocol {
         
         Log.info("sumDeepSleep end")
         
-        Log.info("sumDeepSleep testCount = \(testCount)")
-        
         return minustsCount
         
     }
@@ -456,6 +460,10 @@ extension ChartsRealmProtocol {
     func transformSleepData(beginTime: NSDate, endTime: NSDate) -> [Int] {
         
         let realmSleepData = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
+        
+        if realmSleepData.isEmpty {
+            return []
+        }
         
         let dataSize = ((endTime - beginTime).totalMinutes + 1) / 10
         
@@ -474,6 +482,10 @@ extension ChartsRealmProtocol {
     func transformStepData(beginTime: NSDate, endTime: NSDate) -> [Int] {
         
         let realmStepData = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
+        
+        if realmStepData.count == 0 {
+            return []
+        }
         
         let dataSize = ((endTime - beginTime).totalMinutes + 1) / 10
         

@@ -30,13 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             
         #endif
         
-//        if ez.isRelease {
-//            Log.enabled = false
-//        }
+        if ez.isRelease {
+            Log.enabled = false
+            crashConfig()
+        }
         
         realmConfig()
-        
-        crashConfig()
         
         pgyUpdateConfig()
         
@@ -48,6 +47,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
 
     }
     
+    /**
+     首页设置
+     
+     - author: sim cai
+     - date: 2016-06-01
+     */
     func setRootViewController() {
         
         if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
@@ -61,6 +66,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
+    /**
+     蒲公英升级
+     
+     - author: sim cai
+     - date: 2016-06-01
+     */
     func pgyUpdateConfig() {
     
         PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
@@ -69,6 +80,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
+    /**
+     分享SDK
+     
+     - author: sim cai
+     - date: 2016-06-01
+     */
     func registerShareSdk() {
         
         ShareSDK.registerApp("12dda1a902dc9")
@@ -85,6 +102,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
+    /**
+     异常上报
+     
+     - author: sim cai
+     - date: 2016-06-01
+     */
     func crashConfig() {
         
         let installation = KSCrashInstallationStandard.sharedInstance()
@@ -96,6 +119,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
+    /**
+     realm 数据合并配置
+     
+     - author: sim cai
+     - date: 2016-06-01
+     */
     func realmConfig() {
         
         Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: UInt64(ez.appBuild!)!, migrationBlock: { migration, oldSchemaVersion in
@@ -115,6 +144,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
+    /**
+     蒲公英更新检查
+     
+     - author: sim cai
+     - date: 2016-06-01
+     
+     - parameter updateMethodWithDictionary: <#updateMethodWithDictionary description#>
+     */
     func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {
         
         guard let updateDictionary = updateMethodWithDictionary else {

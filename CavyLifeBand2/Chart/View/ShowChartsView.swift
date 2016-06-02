@@ -96,10 +96,8 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func addLegend() {
         
-//        self.legend.position = .AboveChartRight
         self.legend.horizontalAlignment = .Right
-//        self.legend.verticalAlignment = .Top
-//        self.legend.orientation = .Horizontal
+        self.legend.verticalAlignment = .Top
         self.legend.form = .Circle
         self.legend.formSize = 5
         self.legend.textColor = UIColor(named: .ChartViewTextColor)

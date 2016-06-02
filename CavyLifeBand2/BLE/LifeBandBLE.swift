@@ -73,6 +73,8 @@ class LifeBandBle: NSObject {
     // 蓝牙消息处理回调
     private var peripheralResponsd: [UInt8: (NSData -> Void)] = [:]
     
+    private static var isRebend = false
+    
 
 // MARK: - 初始化
     
@@ -251,6 +253,7 @@ class LifeBandBle: NSObject {
     func bleBinding(bindingComplete: ((String, NSData) -> Void)? = nil) {
         
         Log.info("bleBinding")
+        LifeBandBle.isRebend  = true
         self.bindingComplete = bindingComplete
         
         self.startScaning()
@@ -327,7 +330,7 @@ extension LifeBandBle: CBCentralManagerDelegate {
         let macAddress = advertData[0...5]
         
         //连接设备
-        if macAddress == peripheralMacAddress {
+        if macAddress == peripheralMacAddress && LifeBandBle.isRebend == false {
             connect(central, peripheral: peripheral)
             return
         }
@@ -338,6 +341,8 @@ extension LifeBandBle: CBCentralManagerDelegate {
         }
         
         Log.info("advertisementData: \(advertData.toHexString())")
+        
+        LifeBandBle.isRebend = false
         
         bindingComplete?(peripheral.name ?? "", macAddress ?? NSData(bytes: [0, 0, 0, 0, 0, 0]))
         
