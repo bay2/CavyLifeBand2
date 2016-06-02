@@ -12,7 +12,6 @@ import EZSwiftExtensions
 /**
  *  计步cell
  */
-
 struct HomeListStepViewModel: HomeListViewModelProtocol {
     
     var image: UIImage { return UIImage(asset: .HomeListStep) }

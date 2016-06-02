@@ -36,6 +36,7 @@ class StepSleepReportedData: NetRequestAdapter {
                                          UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId,
                                          UserNetRequsetKey.StepsList.rawValue: stepInfos]
         
+        
         return netPostRequestAdapter(CavyDefine.webApiAddr, para: para)
         
     }

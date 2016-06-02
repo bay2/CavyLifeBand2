@@ -31,7 +31,9 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     
     var viewController = UIViewController()
     
-    var notificationToken: NotificationToken?
+    var stepNotificationToken: NotificationToken?
+    
+    var sleepNotificationToken: NotificationToken?
     
     override func awakeFromNib() {
         allViewLayout()
@@ -47,7 +49,7 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         let stepRealmReslut = queryAllStepInfo()
         let sleepRealmReslut = queryAllSleepInfo()
         
-        notificationToken = stepRealmReslut.addNotificationBlock { change in
+        stepNotificationToken = stepRealmReslut.addNotificationBlock { change in
             
             switch change {
             case .Update(_, deletions: _, insertions: _, modifications: _):
@@ -58,7 +60,7 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
             
         }
         
-        notificationToken = sleepRealmReslut.addNotificationBlock { change in
+        sleepNotificationToken = sleepRealmReslut.addNotificationBlock { change in
             switch change {
             case .Update(_, deletions: _, insertions: _, modifications: _):
                 self.configSleepValue()
@@ -158,8 +160,7 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         // 计步睡眠 当前值
         let time = NSDate()
         let resultSeelp = self.querySleepInfoDay(time.gregorian.beginningOfDay.date, endTime: time)
-        let sleepCurrentNumber = Int(resultSeelp.0)
-        
+        let sleepCurrentNumber = Int(resultSeelp.0 * 10)
         
         sleepView.ringWithStyle(sleepTargetNumber, currentNumber: sleepCurrentNumber)
         

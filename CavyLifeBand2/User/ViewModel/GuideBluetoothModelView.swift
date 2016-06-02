@@ -18,9 +18,9 @@ private extension BindScene {
         switch self {
             
         case .SignInBind:
-            return true
-        case .SignUpBind:
             return false
+        case .SignUpBind:
+            return true
         case .Rebind:
             return true
         }
