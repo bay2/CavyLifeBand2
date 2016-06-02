@@ -12,12 +12,12 @@ import Charts
 
 class ShowChartsView: BarChartView, ChartViewDelegate {
     
-    var leftMaxValue = 1
+    var leftMaxValue = 5
     var leftLabelCCount = 1
     var legdendLabel = L10n.ChartStep.string
     var legendColors = [UIColor(named: .ChartStepPillarColor)]
     var leftUnit = " k"
-    var spaceBetweenLabel = dayTime.count / 3
+    var spaceBetweenLabel = 7
     
     var timeBucketStyle: TimeBucketStyle = .Day
     
@@ -30,6 +30,10 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     func configAllView() {
         
         self.backgroundColor = UIColor(named: .ChartViewBackground)
+        
+        if timeBucketStyle == .Month {
+            spaceBetweenLabel = chartsData.count / 3
+        }
         
         setData(chartsData.count)
         setupBarLineChartView()
@@ -54,6 +58,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         self.rightAxis.enabled = false
         self.delegate = self
         self.maxVisibleValueCount = leftMaxValue
+        self.highlightPerTapEnabled = true
     }
 
     /**
@@ -89,6 +94,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         leftAxis.spaceTop = 0.1
         leftAxis.spaceBottom = 0.15
         leftAxis.axisMinValue = 0
+  
     }
     
     /**
@@ -144,12 +150,11 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
             
             var dataSets: [BarChartDataSet] = []
             dataSets.append(dataSet)
+            
             let data = BarChartData(xVals: xVals, dataSets: dataSets)
             data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10))
-            // 默认不显示数值
-            data.setValueTextColor(UIColor.clearColor())
+
             self.data = data
-            
             // 动画
             self.animate(yAxisDuration: 2)
             }
@@ -162,8 +167,12 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         
+        let selectIndexNum = self.data?.dataSets.first?.yValForXIndex(dataSetIndex)
+        
+        Log.info(selectIndexNum)
+
         Log.info("\(chartView)  \(entry)   \(dataSetIndex)  \(highlight)")
- 
+        
     }
     
 }

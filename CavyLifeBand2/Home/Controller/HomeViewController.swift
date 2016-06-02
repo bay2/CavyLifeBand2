@@ -81,8 +81,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(NotificationName.HomeShowHealthyView.rawValue, selector: #selector(HomeViewController.showHealthyDetailView))
         addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
         addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
-        
-        
     
     }
     
@@ -168,7 +166,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      展示右侧菜单
      */
     func showRightView() {
-    
+        
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeRightOnClickMenu.rawValue, object: nil)
         
     }
@@ -313,14 +311,14 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             
             let pkModel = self.getPKDueRecordByPKId(pkId)! as PKDueRealmModel
             
-            pushPKVC(pkModel)
+            popPKVC(pkModel)
             
         } else {
             // 已经结束
             
             let pkModel: PKFinishRealmModel = getPKFinishRecordByPKId(pkId)!
             
-            pushPKVC(pkModel)
+            popPKVC(pkModel)
         }
         
     }
@@ -349,7 +347,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             make.centerY.equalTo(maskView)
             make.height.equalTo(380.0)
         })
-        
         
         UIApplication.sharedApplication().keyWindow?.addSubview(maskView)
         
@@ -383,25 +380,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
     }
     
-    func addActivityIndicatorView() {
-        Log.info("添加指示器")
-        aphlaView = UIView(frame: UIScreen.mainScreen().bounds)
-        aphlaView!.backgroundColor = UIColor.blackColor()
-        aphlaView!.alpha = 0.3
-        self.view.addSubview(aphlaView!)
-        activityView = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-        activityView!.center = self.view.center
-        aphlaView!.addSubview(activityView!)
-        activityView!.startAnimating()
-    }
-  
-    func removeActivityIndicatorView() {
-        Log.info("移除指示器")
-        activityView?.stopAnimating()
-        aphlaView?.removeFromSuperview()
-    }
-    
-    func pushPKVC(pkModel: PKRecordRealmDataSource) {
+    /**
+     显示PK View
+     */
+    func popPKVC(pkModel: PKRecordRealmDataSource) {
         
         let maskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
         maskView.backgroundColor = UIColor(named: .HomeViewMaskColor)
@@ -426,7 +408,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             make.centerY.equalTo(maskView)
             make.height.equalTo(380.0)
         })
-        
         
         UIApplication.sharedApplication().keyWindow?.addSubview(maskView)
         

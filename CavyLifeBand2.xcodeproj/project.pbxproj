@@ -272,7 +272,6 @@
 		91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E1B49C1CA50E0D008ADEE6 /* AccountInfo.storyboard */; };
 		91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4A01CA510BD008ADEE6 /* ContactsSortAndGroup.swift */; };
 		91E1B4C21CA510BD008ADEE6 /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 91E1B4A21CA510BD008ADEE6 /* Contacts.storyboard */; };
-		91E1B4C31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4A31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift */; };
 		91E1B4C61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4A61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift */; };
 		91E1B4C71CA510BD008ADEE6 /* ContactsFriendQualityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4A71CA510BD008ADEE6 /* ContactsFriendQualityCell.swift */; };
 		91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E1B4A81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib */; };
@@ -295,7 +294,6 @@
 		91E1B4DD1CA510BD008ADEE6 /* ContactsTabButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4BD1CA510BD008ADEE6 /* ContactsTabButton.swift */; };
 		91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4E31CA513A4008ADEE6 /* ContactRecommendFriendTV.swift */; };
 		91E1B4E81CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4E71CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift */; };
-		91E1B4EA1CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91E1B4E91CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib */; };
 		91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4ED1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift */; };
 		91E1B4F01CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4EF1CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift */; };
 		91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E1B4F41CA53C96008ADEE6 /* ContactsJSON.swift */; };
@@ -623,7 +621,6 @@
 		91E1B49C1CA50E0D008ADEE6 /* AccountInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AccountInfo.storyboard; sourceTree = "<group>"; };
 		91E1B4A01CA510BD008ADEE6 /* ContactsSortAndGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsSortAndGroup.swift; sourceTree = "<group>"; };
 		91E1B4A21CA510BD008ADEE6 /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
-		91E1B4A31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountBadgeCell.swift; sourceTree = "<group>"; };
 		91E1B4A61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendInfoVC.swift; sourceTree = "<group>"; };
 		91E1B4A71CA510BD008ADEE6 /* ContactsFriendQualityCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendQualityCell.swift; sourceTree = "<group>"; };
 		91E1B4A81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsFriendQualityCell.xib; sourceTree = "<group>"; };
@@ -646,7 +643,6 @@
 		91E1B4BD1CA510BD008ADEE6 /* ContactsTabButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTabButton.swift; sourceTree = "<group>"; };
 		91E1B4E31CA513A4008ADEE6 /* ContactRecommendFriendTV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactRecommendFriendTV.swift; sourceTree = "<group>"; };
 		91E1B4E71CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccountInfoVC.swift; sourceTree = "<group>"; };
-		91E1B4E91CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactsAccountBadgeCell.xib; sourceTree = "<group>"; };
 		91E1B4ED1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsFriendListViewModel.swift; sourceTree = "<group>"; };
 		91E1B4EF1CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendViewModel.swift; sourceTree = "<group>"; };
 		91E1B4F41CA53C96008ADEE6 /* ContactsJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsJSON.swift; sourceTree = "<group>"; };
@@ -1518,8 +1514,6 @@
 		91E1B49B1CA50DEF008ADEE6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				91E1B4E91CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib */,
-				91E1B4A31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift */,
 				91E1B4E71CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift */,
 				91E1B49C1CA50E0D008ADEE6 /* AccountInfo.storyboard */,
 			);
@@ -1831,7 +1825,6 @@
 				917B98BF1CB8E841008698F5 /* UserAchievementCell.xib in Resources */,
 				91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */,
 				917B98C11CB8E841008698F5 /* UserAchievementView.xib in Resources */,
-				91E1B4EA1CA51F2C008ADEE6 /* ContactsAccountBadgeCell.xib in Resources */,
 				6859BC861CD32D690050F6A0 /* EmergencyContactInfoCell.xib in Resources */,
 				91E1B4D81CA510BD008ADEE6 /* ContactsAddFriendCell.xib in Resources */,
 				4CB7A0801CD095C400DFB8DC /* HomeRingView.xib in Resources */,
@@ -2027,7 +2020,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if hash tailor 2>/dev/null; then\n#  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#  echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
+			shellScript = "if hash tailor 2>/dev/null; then\n tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n  echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2215,7 +2208,6 @@
 				9114D1FA1C97AB05008CB4CE /* PictureView.swift in Sources */,
 				68B4DED41CE1BBEC00BE041C /* HelpFeedbackJSON.swift in Sources */,
 				6836557E1CBC84B7009373EA /* SecondsCollectionViewCell.swift in Sources */,
-				91E1B4C31CA510BD008ADEE6 /* ContactsAccountBadgeCell.swift in Sources */,
 				91ACEC601CB65456008ED8B0 /* GuideSetModelView.swift in Sources */,
 				4CB7A07C1CD095C400DFB8DC /* HomeTimeLineTableCell.swift in Sources */,
 				917B98BE1CB8E841008698F5 /* UserAchievementCell.swift in Sources */,

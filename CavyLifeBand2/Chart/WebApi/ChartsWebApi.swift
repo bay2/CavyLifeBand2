@@ -54,7 +54,7 @@ class ChartsWebApi: NetRequestAdapter {
      */
     func parseSleepChartsData(startDate: String? = "", endDate: String? = "", callBack: CompletionHandlernType? = nil) {
         
-        let parameters: [String: AnyObject] = ["cmd": "reportSleepInfo", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "startDate": startDate!, "startDate": endDate!]
+        let parameters: [String: AnyObject] = ["cmd": "getSleepTime", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "startDate": startDate!, "startDate": endDate!]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
         
