@@ -188,8 +188,10 @@ extension ChartsRealmProtocol {
         
         var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0)
         
+        
         // 初始化0~23 24 小时
         for i in 0...23 {
+            
             stepChartsData.datas.append(PerStepChartsData(time: "\(i)", kilometer: 0))
         }
         
@@ -307,13 +309,16 @@ extension ChartsRealmProtocol {
      */
     func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData] {
         
-        let dataInfo = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
-
-        let sleepDatas = dataInfo.map { chartSleepDataRealm -> PerSleepChartsData in
-            
-            return PerSleepChartsData(time: chartSleepDataRealm.time.toString(format: "d"), tilts: chartSleepDataRealm.tilts, totalTime: 0)
-        }
+        var sleepDatas: [PerSleepChartsData] = []
         
+        var index = 0
+        
+        sleepDatas = querySleepInfoDays(beginTime, endTime: endTime).map {
+            let newDate = (beginTime.gregorian + index.day).date
+            index += 1
+            return PerSleepChartsData(time: newDate, deepSleep: Int($0.1), lightSleep: Int($0.2))
+        }
+
         return sleepDatas
         
     }
@@ -488,8 +493,6 @@ extension ChartsRealmProtocol {
         return reslutArray
         
     }
-    
-
     
     /**
      查询睡眠信息
