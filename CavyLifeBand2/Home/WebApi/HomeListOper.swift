@@ -18,7 +18,7 @@ protocol HomeListRealmProtocol {
     
     func isExistHomeList(timeString: String) -> Bool
     func addHomeList(homeList: HomeListRealm) -> Bool
-    func queryHomeList(time: String) -> HomeListRealm?
+    func queryHomeList(timeString: String) -> Results<(HomeListRealm)> 
     
 }
 
@@ -31,24 +31,9 @@ extension HomeListRealmProtocol {
      
      - returns:
      */
-    func queryHomeList(timeString: String) -> HomeListRealm? {
-        
-        
-        if isExistHomeList(timeString) == false {
-            
-          return HomeListRealm()
-            
-        }
-                
-        let list = realm.objects(HomeListRealm).filter("userId = '\(userId)' AND time = '\(timeString)'")
-        
-        if list.count == 0 {
-            
-            return HomeListRealm()
-
-        }
-
-        return list.first
+    func queryHomeList(timeString: String) -> Results<(HomeListRealm)> {
+        Log.info("userId = \(userId)")
+        return realm.objects(HomeListRealm).filter("userId = '\(userId)' AND time = '\(timeString)'")
     }
     
     /**
