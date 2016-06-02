@@ -54,8 +54,8 @@ class SecondsTableViewCell: UITableViewCell {
             make.width.equalTo(220.0)
         }
         
-        pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 30)!
-        pickerView.highlightedFont = UIFont(name: "HelveticaNeue", size: 42)!
+        pickerView.font = UIFont.mediumSystemFontOfSize(30.0)
+        pickerView.highlightedFont = UIFont.mediumSystemFontOfSize(42.0)
         
         pickerView.textColor = UIColor(named: .GColor)
         pickerView.highlightedTextColor = UIColor(named: .EColor)
@@ -72,9 +72,9 @@ class SecondsTableViewCell: UITableViewCell {
         
         let separatorView2 = UIView()
         
-        separatorView1.backgroundColor = UIColor(named: .SettingSeparatorColor)
+        separatorView1.backgroundColor = UIColor(named: .LColor)
         
-        separatorView2.backgroundColor = UIColor(named: .SettingSeparatorColor)
+        separatorView2.backgroundColor = UIColor(named: .LColor)
         
         self.contentView.addSubview(separatorView1)
         

@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
     }
     
     func setRootViewController() {
-        
+        CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = "5746b9e3d346350b387adb38"
         if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
             return
         }
