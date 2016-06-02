@@ -20,9 +20,9 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
     /// 时间标签的String
     var timeString: String = ""
 
-    ///  列表展示信息
+    /// 列表展示信息
     var listView: UITableView?
-
+    // 列表展示数据值
     var listDataArray: [String] = []
     
     var realm: Realm = try! Realm()
@@ -62,14 +62,17 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
             
             chartViewLayout(chartView)
             chartView.configAllView()
+            
         }
 
         if viewStyle == .SleepChart && timeBucketStyle == .Day {
             
-            let sleepInfo = querySleepInfoDay(time.beginTime, endTime: time.endTime)
-            listDataArray = infoViewSleepListArray([sleepInfo])
             
-            let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: sleepInfo.1, lightSleep: sleepInfo.2)
+            let sleepInfo = querySleepNumber(time.beginTime, endTime: time.endTime)
+            
+            listDataArray = infoViewSleepListArray(sleepInfo)
+            
+            let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: sleepInfo.first!.deepSleep, lightSleep: sleepInfo.first!.lightSleep)
             
             chartViewLayout(peiChartView)
             
@@ -77,14 +80,18 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         
         if viewStyle == .SleepChart && (timeBucketStyle == .Week || timeBucketStyle == .Month) {
             
-            let sleepInfo = self.querySleepInfoDays(time.beginTime, endTime: time.endTime)
             let stackChart = ShowStackedChartsView()
+            
+            let sleepInfo = querySleepNumber(time.beginTime, endTime: time.endTime)
             
             listDataArray = infoViewSleepListArray(sleepInfo)
             
             stackChart.timeBucketStyle = self.timeBucketStyle
             
-            stackChart.chartsData = sleepInfo.map { ($0.1, $0.2) }
+            stackChart.chartsData = sleepInfo.map{
+                
+                return PerSleepChartsData(time: $0.time, deepSleep: $0.deepSleep, lightSleep: $0.lightSleep)
+            }
             
             stackChart.configAllView()
             chartViewLayout(stackChart)
@@ -188,19 +195,11 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
     /**
      Charts睡眠详情页面 下面的TableView的cell上数值的 Array
      */
-    func infoViewSleepListArray(sleepRealm: [(Double, Double, Double)]) -> [String] {
+    func infoViewSleepListArray(sleepInfo: [PerSleepChartsData]) -> [String] {
         
         var resultArray: [String] = []
         
         var percent = 0
-        
-        let newSleepData = sleepRealm.reduce((0, 0, 0)) {(count: (Double, Double, Double), sleepData: (Double, Double, Double)) -> (Double, Double, Double) in
-            return (((count.0 + sleepData.0)), ((count.1 + sleepData.1)), ((count.2 + sleepData.2)))
-        }
-        
-        let totalTime  = Int(newSleepData.0) * 10
-        let deepSleep  = Int(newSleepData.1) * 10
-        let lightSleep = Int(newSleepData.2) * 10
         
         guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
             return ["0\(L10n.HomeSleepRingUnitMinute.string)", "0\(L10n.HomeSleepRingUnitMinute.string)", "0%"]
@@ -210,13 +209,43 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         let array = sleepTarge.componentsSeparatedByString(":")
         let targetMinutes = array[0].toInt()! * 60 + array[1].toInt()!
         
+        let  sleepNumber = 0
+        
+        // 60% 格式 所以 * 100
         if targetMinutes != 0 {
-            percent = totalTime * 100 / targetMinutes
+            
+            switch timeBucketStyle {
+                
+            case .Day:
+                percent = sleepNumber / targetMinutes * 100
+                
+            case .Week:
+                
+                percent = sleepNumber / targetMinutes * 7 * 100
+                
+            case .Month:
+                
+                let currentDay = timeString.componentsSeparatedByString(".")
+                let days = NSDate().daysCount(currentDay[0].toInt()!, month: currentDay[1].toInt()!)
+                percent = sleepNumber / targetMinutes * days * 100
+                
+            }
         }
+        
         if percent > 100 {
             percent = 100
         }
         
+        var deepSleep: Int  = 0
+        var lightSleep: Int = 0
+
+        for perData in sleepInfo {
+            
+            deepSleep += perData.deepSleep
+            lightSleep += perData.lightSleep
+            
+        }
+       
         resultArray.append("\(deepSleep / 60)\(L10n.HomeSleepRingUnitHour.string)\(deepSleep % 60)\(L10n.HomeSleepRingUnitMinute.string)")
         resultArray.append("\(lightSleep / 60)\(L10n.HomeSleepRingUnitHour.string)\(lightSleep % 60)\(L10n.HomeSleepRingUnitMinute.string)")
         resultArray.append("\(percent)%")
