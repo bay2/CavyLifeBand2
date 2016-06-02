@@ -48,16 +48,16 @@ class PictureView: UIView {
         self.addSubview(middleImgView)
         self.addSubview(bottomLab)
         
-        titleLab.font = UIFont.systemFontOfSize(18)
-        titleLab.textColor = UIColor(named: .GuideColorCC)
+        titleLab.font = UIFont.mediumSystemFontOfSize(18)
+        titleLab.textColor = UIColor(named: .EColor)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { make -> Void in
             make.centerX.equalTo(self)
             make.bottom.equalTo(self.titleInfo.snp_top).offset(-10)
         }
         
-        titleInfo.font = UIFont.systemFontOfSize(12)
-        titleInfo.textColor = UIColor(named: .GuideColor99)
+        titleInfo.font = UIFont.systemFontOfSize(14)
+        titleInfo.textColor = UIColor(named: .FColor)
         titleInfo.textAlignment = .Center
         titleInfo.snp_makeConstraints { make -> Void in
             make.centerX.equalTo(self)
@@ -72,8 +72,8 @@ class PictureView: UIView {
             make.center.equalTo(self)
         }
         
-        bottomLab.font = UIFont.systemFontOfSize(12)
-        bottomLab.textColor = UIColor(named: .GuideColor66)
+        bottomLab.font = UIFont.mediumSystemFontOfSize(14)
+        bottomLab.textColor = UIColor(named: .GColor)
         bottomLab.textAlignment = .Center
         bottomLab.snp_makeConstraints { make -> Void in
             make.top.equalTo(middleImgView.snp_bottom)

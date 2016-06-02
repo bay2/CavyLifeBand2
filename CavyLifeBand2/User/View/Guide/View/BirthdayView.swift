@@ -42,8 +42,8 @@ class BirthdayView: UIView, RulerViewDelegate {
         self.addSubview(titleLab)
         
         titleLab.text = L10n.GuideBirthday.string
-        titleLab.font = UIFont.systemFontOfSize(18)
-        titleLab.textColor = UIColor(named: .GuideColorCC)
+        titleLab.font = UIFont.mediumSystemFontOfSize(18)
+        titleLab.textColor = UIColor(named: .EColor)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(birthRulerWidth, 18))
@@ -51,8 +51,8 @@ class BirthdayView: UIView, RulerViewDelegate {
             make.top.equalTo(self).offset(CavyDefine.spacingWidth25 * 2)
         }
         
-        yyMMLabel.font = UIFont.systemFontOfSize(40)
-        yyMMLabel.textColor = UIColor(named: .GuideColorCC)
+        yyMMLabel.font = UIFont.mediumSystemFontOfSize(42)
+        yyMMLabel.textColor = UIColor(named: .EColor)
         yyMMLabel.textAlignment = NSTextAlignment.Center
         yyMMLabel.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(birthRulerWidth, 40))
@@ -78,8 +78,8 @@ class BirthdayView: UIView, RulerViewDelegate {
         yymmRuler.initYearMonthRuler(currentYear!, monthValue: currentMonth!, style: .YearMonthRuler)
         yyMMLabel.text = yymmRuler.rulerScroll.currentValue
         
-        dayLabel.font = UIFont.systemFontOfSize(40)
-        dayLabel.textColor = UIColor(named: .GuideColorCC)
+        dayLabel.font = UIFont.systemFontOfSize(42)
+        dayLabel.textColor = UIColor(named: .EColor)
         dayLabel.textAlignment = NSTextAlignment.Center
         dayLabel.snp_makeConstraints { make -> Void in
             make.size.equalTo(CGSizeMake(birthRulerWidth, 40))

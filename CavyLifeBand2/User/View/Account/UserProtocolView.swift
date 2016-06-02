@@ -22,11 +22,11 @@ class UserProtocolView: UIView {
     override func drawRect(rect: CGRect) {
 
         desText.text = L10n.SignUpProcotolViewTitle.string
-        desText.textColor = UIColor.whiteColor()
+        desText.textColor = UIColor(named: .AColor)
         desText.font = UIFont.systemFontOfSize(14)
 
         protocolBtn.setTitle(L10n.SignUpProcotolViewBtn.string, forState: .Normal)
-        protocolBtn.setTitleColor(UIColor(named: .SignUpProtocolBtn), forState: .Normal)
+        protocolBtn.setTitleColor(UIColor(named: .CColor), forState: .Normal)
         protocolBtn.titleLabel!.font = UIFont.systemFontOfSize(14)
         
         defineViewLayout()

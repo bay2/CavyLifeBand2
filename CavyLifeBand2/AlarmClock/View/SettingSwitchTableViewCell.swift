@@ -30,7 +30,8 @@ class SettingSwitchTableViewCell: UITableViewCell {
         
         descriptionLabel.hidden = true
 
-        titleLabel.textColor    = UIColor(named: .SettingTableCellTitleColor)
+        titleLabel.textColor = UIColor(named: .EColor)
+        titleLabel.font      = UIFont.mediumSystemFontOfSize(16.0)
         
         self.selectionStyle = .None
         
@@ -47,15 +48,15 @@ class SettingSwitchTableViewCell: UITableViewCell {
             
         case .RedDescription:
             descriptionLabel.hidden = false
-            descriptionLabel.font = UIFont.systemFontOfSize(14.0)
-            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoYellowColor)
+            descriptionLabel.font = UIFont.systemFontOfSize(12.0)
+            descriptionLabel.textColor = UIColor(named: .JColor)
             NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingSwitchTableViewCell.setDescription(_:)),
                                                              name: NotificationName.ReminderPhoneScrollToSelect.rawValue, object: nil)
             
         case .GrayDescription:
             descriptionLabel.hidden = false
             descriptionLabel.font = UIFont.systemFontOfSize(12.0)
-            descriptionLabel.textColor = UIColor(named: .SettingTableCellInfoGrayColor)
+            descriptionLabel.textColor = UIColor(named: .GColor)
             
         case .NoneDescription:
             descriptionLabel.hidden = true

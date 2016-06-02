@@ -138,6 +138,12 @@ class HomeRingView: UIView {
             self.layer.addSublayer(lineLayer)
         }
         
+        // 百分比Label
+        percentLabel?.textColor = UIColor(named: .AColor)
+        percentLabel?.font = UIFont.mediumSystemFontOfSize(12.0)
+        
+        // 当前示数Label
+        currentLabel?.textColor = UIColor(named: .AColor)
      
     }
     
@@ -225,7 +231,7 @@ class HomeRingView: UIView {
             let step = String(currentNumber)
             let stepUnit = "\(L10n.GuideStep.string)"
             
-            currentLabel!.attributedText =  NSMutableAttributedString().attributeString(step, numSize: 32, unit: stepUnit, unitSize: 18)
+            currentLabel!.attributedText =  NSMutableAttributedString().attributeString(step, numSize: 30, unit: stepUnit, unitSize: 16)
             
             percentLabel?.text = "\(L10n.HomeStepRingPercerntText)\(percent)%"
             

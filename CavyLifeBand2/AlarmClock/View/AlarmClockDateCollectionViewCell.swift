@@ -52,8 +52,10 @@ class AlarmClockDateCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        dateBtn.setTitleColor(UIColor(named: .AlarmClockDateBtnTextNormalColor), forState: .Normal)
-        dateBtn.setTitleColor(UIColor(named: .AlarmClockDateBtnTextSelectedColor), forState: .Selected)
+        dateBtn.setTitleColor(UIColor(named: .FColor), forState: .Normal)
+        dateBtn.setTitleColor(UIColor(named: .AColor), forState: .Selected)
+        
+        dateBtn.titleLabel?.font = UIFont.mediumSystemFontOfSize(16.0)
         
         dateBtn.setBackgroundColor(UIColor(named: .AlarmClockDateBtnBGNormalColor), forState: .Normal)
         dateBtn.setBackgroundColor(UIColor(named: .AlarmClockDateBtnBGSelectedColor), forState: .Selected)

@@ -75,13 +75,13 @@ struct PKQualityCellVM: ContactsFriendQualityCellDataSource {
     
     var title: String = L10n.ContactsShowInfoPK.string
     
-    var infoTextColor: UIColor = UIColor(named: .ContactsIntrouduce)
+    var infoTextColor: UIColor = UIColor(named: .GColor)
     
     var iconImage: UIImage? = UIImage(named: "HomeListPK")
     
     var info: String { return infoValue  }
     
-    var infoValue: String = ""
+    var infoValue: String = L10n.ContactsShowInfoPKSubInfo.string
     
 }
 
@@ -89,7 +89,7 @@ struct StepQualityCellVM: ContactsFriendQualityCellDataSource {
     
     var title: String = L10n.ContactsShowInfoStep.string
     
-    var infoTextColor: UIColor = UIColor(named: .ContactsName)
+    var infoTextColor: UIColor = UIColor(named: .EColor)
     
     var iconImage: UIImage? = UIImage(named: "HomeListStep")
     
@@ -113,7 +113,7 @@ struct SleepQualityCellVM: ContactsFriendQualityCellDataSource {
     
     var title: String = L10n.ContactsShowInfoSleep.string
     
-    var infoTextColor: UIColor = UIColor(named: .ContactsName)
+    var infoTextColor: UIColor = UIColor(named: .EColor)
     
     var iconImage: UIImage? = UIImage(named: "HomeListSleep")
     

@@ -49,8 +49,8 @@ class AboutVC: UIViewController, BaseViewControllerPresenter {
     func baseUISetting() {
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
-        copyrightLabel.textColor = UIColor(named: .RelateAboutCopyrightColor)
-        useAndPrivateLabel.textColor = UIColor(named: .RelateAboutUseAndPrivateColor)
+        copyrightLabel.textColor = UIColor(named: .BColor)
+        useAndPrivateLabel.textColor = UIColor(named: .CColor)
         
         copyrightLabel.font = UIFont.systemFontOfSize(12.0)
         useAndPrivateLabel.font = UIFont.systemFontOfSize(14.0)
