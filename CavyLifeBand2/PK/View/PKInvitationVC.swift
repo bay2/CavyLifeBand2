@@ -159,21 +159,21 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         timePickerContainerView.addSubview(topLine)
         timePickerContainerView.addSubview(bottomLine)
         
-        topLine.snp_makeConstraints { (make) in
+        topLine.snp_makeConstraints { make in
             make.leading.equalTo(timePickerContainerView)
             make.trailing.equalTo(timePickerContainerView)
             make.top.equalTo(timePickerContainerView)
             make.height.equalTo(1.0)
         }
         
-        bottomLine.snp_makeConstraints { (make) in
+        bottomLine.snp_makeConstraints { make in
             make.leading.equalTo(timePickerContainerView)
             make.trailing.equalTo(timePickerContainerView)
             make.bottom.equalTo(timePickerContainerView)
             make.height.equalTo(1.0)
         }
         
-        timePicker.snp_makeConstraints {(make) in
+        timePicker.snp_makeConstraints { make in
             make.center.equalTo(timePickerContainerView.snp_center)
             make.width.equalTo(timePickerContainerView.snp_width)
             make.height.equalTo(timePickerContainerView.snp_height)

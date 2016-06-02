@@ -113,23 +113,19 @@ extension NetRequestAdapter {
         
         let request = Alamofire.request(method, urlString, encoding: method == .POST ? .JSON : .URL, parameters: parameters).responseJSON { response -> Void in
             
-            dispatch_async(dispatch_get_main_queue()) {
-                
-                if response.result.isFailure {
-                    completionHandler?(.Failure(.NetErr))
-                    Log.error("Network error")
-                    return
-                }
-                
-                guard let responseResult = response.result.value else {
-                    completionHandler?(.Failure(.NetErr))
-                    Log.error("Network error")
-                    return
-                }
-                
-                completionHandler?(.Success(responseResult))
-                
+            if response.result.isFailure {
+                completionHandler?(.Failure(.NetErr))
+                Log.error("Network error")
+                return
             }
+            
+            guard let responseResult = response.result.value else {
+                completionHandler?(.Failure(.NetErr))
+                Log.error("Network error")
+                return
+            }
+            
+            completionHandler?(.Success(responseResult))
             
         }
         

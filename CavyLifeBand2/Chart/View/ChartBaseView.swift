@@ -258,8 +258,6 @@ extension ChartBaseView: UIScrollViewDelegate {
         let countFloat = collView.contentOffset.x / timeButtonWidth
         var count = Int(countFloat)
         
-//        if count < 1 || count > dates.count - 2 {
-
         if count < 0 || count > dates.count {
 
             return

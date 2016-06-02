@@ -276,6 +276,8 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         self.pushVC(nextView)
         
+//        ez.topMostVC?.pushVC(nextView)
+        
     }
 
 
@@ -290,7 +292,6 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                 
                 self.emailSafetyCode.image = image
             }
-            
         }
         
     }

@@ -48,11 +48,9 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         allViewLayout()
         
     }
-
     
     /**
      配置VC的VM
@@ -174,12 +172,6 @@ extension ChartBaseViewController: UIScrollViewDelegate {
         
         scrollViewEndAction(scrollView)
         
-    }
-    
-    // 滑动拖拽
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        scrollViewEndAction(scrollView)
     }
     
     /**
