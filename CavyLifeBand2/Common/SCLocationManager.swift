@@ -57,18 +57,26 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
     /**
      更新GSP位置
      */
-    func startUpdateLocation(complete: (CLLocationCoordinate2D -> Void)? = nil, cityComplete: (String -> Void)? = nil) {
+    func startUpdateLocation(complete: (CLLocationCoordinate2D -> Void)? = nil) {
         
         if CLLocationManager.authorizationStatus() == .Denied || CLLocationManager.authorizationStatus() == .Restricted {
             
             return
         }
         
-        locationManager.delegate = self
-        locationManager.distanceFilter = 10.0
-        locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
         self.complete = complete
+    
+    }
+    
+    func startUpdateLocationCity(cityComplete: (String -> Void)? = nil) {
+        
+        if CLLocationManager.authorizationStatus() == .Denied || CLLocationManager.authorizationStatus() == .Restricted {
+            
+            return
+        }
+        
+        locationManager.startUpdatingLocation()
         self.cityComplete = cityComplete
         
     }
@@ -97,7 +105,7 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
                 return
             }
             
-            _ = placemarks.map {[unowned self]  in
+            _ = placemarks.map {
                 self.cityComplete?($0.locality ?? "")
             }
             

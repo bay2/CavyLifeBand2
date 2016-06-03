@@ -40,21 +40,31 @@ class HomeWeatherView: UIView {
     func loadWeatherView() {
        
         // 确定城市名字索引
-        var cityChinese = ""
-        SCLocationManager.shareInterface.startUpdateLocation {
-            cityChinese = $0
+        var cityResult = ""
+        SCLocationManager.shareInterface.startUpdateLocationCity {
+            cityResult = $0
             // 去掉市
-            let index = cityChinese.rangeOfString("市")
-            cityChinese.removeRange(index!)
+            let index = cityResult.rangeOfString("市")
+            if index != nil {
+                
+                cityResult.removeRange(index!)
+                
+            }
             
             // 转换拼音
-            let str = CFStringCreateMutableCopy(nil, 0, cityChinese)
+            let str = CFStringCreateMutableCopy(nil, 0, cityResult)
             if CFStringTransform(str, nil, kCFStringTransformMandarinLatin, false) {}
             if CFStringTransform(str, nil, kCFStringTransformStripDiacritics, false) {}
+            if CFStringTransform(str, nil, kCFStringTransformStripDiacritics, false) {}
             self.city = String(str)
+            
             // 删除中间的空格 hang zhou => hangzhou
-            let spaceIndex = self.city.rangeOfString(" ")
-            self.city.removeRange(spaceIndex!)
+            if self.city.contains(" ") {
+                
+                let spaceIndex = self.city.rangeOfString(" ")
+                self.city.removeRange(spaceIndex!)
+                
+            }
             
             Log.info(self.city)
 

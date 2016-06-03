@@ -65,17 +65,16 @@ protocol ChartsRealmProtocol {
     func queryTimeBucketFromFirstDay() -> [String]?
    
     // MARK: 计步
-    func isExistStepChartsData() -> Bool
+    func isNeedUpdateStepData() -> Bool
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData
     func queryAllStepInfo(userId: String) -> Results<(ChartStepDataRealm)>
     
     // MARK: 睡眠
-    func isExistSleepChartsData() -> Bool
+    func isNeedUpdateSleepData() -> Bool
     func addSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
     func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData]
     func queryAllSleepInfo(userId: String) -> Results<(ChartSleepDataRealm)>
-//    func querySleepInfo(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double)
     func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)]
     func querySleepInfoDay(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double)
     
@@ -113,28 +112,40 @@ extension ChartsRealmProtocol {
 extension ChartsRealmProtocol {
     
     /**
-     查询是否有计步数据
+     是否需要请求数据
+     1.没有数据 需要请求
+     2.当前登录账号没有数据 需要请求
+     2.最后一条数据距离现在时间 大于10分钟 需要请求
+     
+     - returns: true 需要更新 false 不需要更新
      */
-    func isExistStepChartsData() -> Bool {
+    func isNeedUpdateStepData() -> Bool {
         
-        let lists = realm.objects(ChartStepDataRealm)
+        // 1
+        let list = realm.objects(ChartStepDataRealm)
         
-        if lists.count == 0 {
-            
+        if list.count == 0 {
             return false
-            
         }
         
+        // 2
         let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
         
         if personalList.count == 0 {
             return false
         }
         
-        return true
+        // 3
+        let totalMinutes = (NSDate() - personalList.last!.time).totalMinutes
+        Log.info(totalMinutes)
+        
+        if totalMinutes > 10 {
+            return true
+        }
+        
+        return false
         
     }
-    
     /**
      添加计步数据
      - parameter chartsInfo: 用户的计步信息
@@ -244,26 +255,41 @@ extension ChartsRealmProtocol {
 extension ChartsRealmProtocol {
     
     /**
-     查询是否有睡眠数据
+     是否需要请求数据 
+     1.没有数据 需要请求
+     2.当前登录账号没有数据 需要请求
+     2.最后一条数据距离现在时间 大于10分钟 需要请求
+     
+     - returns: true 需要更新 false 不需要更新
      */
-    func isExistSleepChartsData() -> Bool {
+    func isNeedUpdateSleepData() -> Bool {
         
+        // 1
         let list = realm.objects(ChartSleepDataRealm)
         
         if list.count == 0 {
             return false
         }
         
+        // 2
         let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
         
         if personalList.count == 0 {
             return false
         }
         
-        return true
+        // 3
+        let totalMinutes = (NSDate() - personalList.last!.time).totalMinutes
+        Log.info(totalMinutes)
+        
+        if totalMinutes > 10 {
+            return true
+        }
+        
+        return false
         
     }
-    
+
     /**
      查询所有睡眠数据
      
