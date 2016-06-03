@@ -11,13 +11,13 @@ import UIKit
 extension ContactsAddFriendCellDelegate {
     
     // 名字字体颜色
-    var nameTextColor: UIColor { return UIColor(named: .EColor) }
+    var nameTextColor: UIColor { return UIColor(named: .ContactsName) }
     
     // 名字字体大小
-    var nameFont: UIFont { return UIFont.mediumSystemFontOfSize(16) }
+    var nameFont: UIFont { return UIFont.systemFontOfSize(16) }
     
     // 副标题字体颜色
-    var introductTextColor: UIColor { return UIColor(named: .FColor) }
+    var introductTextColor: UIColor { return UIColor(named: .ContactsIntrouduce) }
     
     // 副标题字体大小
     var introduceFont: UIFont { return UIFont.systemFontOfSize(12) }
@@ -26,7 +26,7 @@ extension ContactsAddFriendCellDelegate {
     var btnBGColor: UIColor { return UIColor(named: .ContactsAddFriendButtonColor) }
     
     // 按钮字体大小
-    var btnFont: UIFont { return UIFont.mediumSystemFontOfSize(16) }
+    var btnFont: UIFont { return UIFont.systemFontOfSize(14) }
     
     // 按钮title
     var bottonTitle: String { return L10n.ContactsListCellAdd.string }

@@ -12,6 +12,9 @@ class SecondsTableViewCell: UITableViewCell {
     
     lazy var pickerView: AKPickerView = {
         let view = AKPickerView()
+        
+        view
+        
         return view
     }()
     
@@ -54,12 +57,10 @@ class SecondsTableViewCell: UITableViewCell {
             make.width.equalTo(220.0)
         }
         
-        pickerView.font = UIFont.mediumSystemFontOfSize(30.0)
-        pickerView.highlightedFont = UIFont.mediumSystemFontOfSize(42.0)
-        
-        pickerView.textColor = UIColor(named: .GColor)
-        pickerView.highlightedTextColor = UIColor(named: .EColor)
-        
+        pickerView.font = UIFont(name: "HelveticaNeue-Light", size: 30)!
+        pickerView.highlightedFont = UIFont(name: "HelveticaNeue", size: 45)!
+        pickerView.textColor = UIColor(named: .AlarmClockTableCellDescriptionColor)
+        pickerView.highlightedTextColor = UIColor(named: .AlarmClockTableCellTitleColor)
         pickerView.pickerViewStyle = .Flat
         pickerView.maskDisabled = false
         pickerView.reloadData()
@@ -72,9 +73,9 @@ class SecondsTableViewCell: UITableViewCell {
         
         let separatorView2 = UIView()
         
-        separatorView1.backgroundColor = UIColor(named: .LColor)
+        separatorView1.backgroundColor = UIColor(named: .SettingSeparatorColor)
         
-        separatorView2.backgroundColor = UIColor(named: .LColor)
+        separatorView2.backgroundColor = UIColor(named: .SettingSeparatorColor)
         
         self.contentView.addSubview(separatorView1)
         

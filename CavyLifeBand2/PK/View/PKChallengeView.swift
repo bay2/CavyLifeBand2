@@ -24,9 +24,6 @@ class PKChallengeView: UIView {
     @IBOutlet weak var PKSeeStateLabel: UILabel!
     @IBOutlet weak var PKInvitationRulesLabel: UILabel!
     
-    @IBOutlet weak var topLine: UIView!
-    @IBOutlet weak var bottomLine: UIView!
-    
     var dataSource: PKChallengeViewDataSource?
     
     override func awakeFromNib() {
@@ -43,24 +40,13 @@ class PKChallengeView: UIView {
 
         rulesIconImageView.image    = UIImage(named: "PKAttention")
         
-        userNameLabel.textColor          = UIColor(named: .EColor)
-        competitorNameLabel.textColor    = UIColor(named: .EColor)
-        PKTimeTitleLabel.textColor       = UIColor(named: .EColor)
-        PKSeeStateLabel.textColor        = UIColor(named: .EColor)
-        PKTimeLabel.textColor            = UIColor(named: .EColor)
-        PKTimeUnitLabel.textColor        = UIColor(named: .EColor)
-        PKInvitationRulesLabel.textColor = UIColor(named: .JColor)
-        
-        topLine.backgroundColor = UIColor(named: .LColor)
-        bottomLine.backgroundColor = UIColor(named: .LColor)
-        
-        userNameLabel.font          = UIFont.mediumSystemFontOfSize(14.0)
-        competitorNameLabel.font    = UIFont.mediumSystemFontOfSize(14.0)
-        PKTimeTitleLabel.font       = UIFont.mediumSystemFontOfSize(14.0)
-        PKSeeStateLabel.font        = UIFont.mediumSystemFontOfSize(14.0)
-        PKTimeLabel.font            = UIFont.mediumSystemFontOfSize(30.0)
-        PKTimeUnitLabel.font        = UIFont.mediumSystemFontOfSize(12.0)
-        PKInvitationRulesLabel.font = UIFont.mediumSystemFontOfSize(12.0)
+        userNameLabel.textColor          = UIColor(named: .PKChallengeViewNormalTitleColor)
+        competitorNameLabel.textColor    = UIColor(named: .PKChallengeViewNormalTitleColor)
+        PKTimeTitleLabel.textColor       = UIColor(named: .PKChallengeViewNormalTitleColor)
+        PKSeeStateLabel.textColor        = UIColor(named: .PKChallengeViewNormalTitleColor)
+        PKTimeLabel.textColor            = UIColor(named: .PKChallengeViewNormalTitleColor)
+        PKTimeUnitLabel.textColor        = UIColor(named: .PKChallengeViewNormalTitleColor)
+        PKInvitationRulesLabel.textColor = UIColor(named: .PKChallengeViewRulesTitleColor)
         
         userAvatarImageView.roundSquareImage()
         competitorAvatarImageView.roundSquareImage()

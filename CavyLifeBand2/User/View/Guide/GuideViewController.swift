@@ -39,8 +39,8 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
     var rightBtn: UIButton? = {
         
         let rightBtn = UIButton(type: .System)
-        rightBtn.setTitleColor(UIColor(named: .AColor), forState: .Normal)
-        rightBtn.titleLabel?.font = UIFont.mediumSystemFontOfSize(14)
+        rightBtn.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        rightBtn.titleLabel?.font = UIFont.systemFontOfSize(16)
         rightBtn.frame = CGRectMake(0, 0, 60, 30)
         
         return rightBtn
@@ -55,7 +55,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
 
 //        updateViewStyle()
         
-//        updateNavUI()
+        updateNavUI()
         
         delegate?.onLoadView()
         
@@ -82,8 +82,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
      */
     func allViewsLayOut(){
         
-        infoLabel.textColor = UIColor(named: .AColor)
-        infoLabel.font = UIFont.systemFontOfSize(14)
+        infoLabel.textColor = UIColor(named: .GuideColor66)
         infoLabel.snp_makeConstraints { make -> Void in
             make.top.equalTo(self.view)
         }
@@ -123,8 +122,6 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
         self.infoLabel.text = dataSource?.subTitle
         navTitle = viewDataSource.title
-        
-        updateNavUI()
         
         rightBtn?.setTitle(viewDataSource.rightItemBtnTitle, forState: .Normal)
         centerView.snp_makeConstraints { make in
