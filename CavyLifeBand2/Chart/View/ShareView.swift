@@ -33,7 +33,7 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
         self.backgroundColor = UIColor(gray: 1, alpha: 0.4)
         let backView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight - 148))
         backView.backgroundColor = UIColor.clearColor()
-        backView.addTapGesture { pan in
+        backView.addTapGesture { [unowned self] pan in
             self.removeFromSuperview()
         }
         self.addSubview(backView)
@@ -62,6 +62,10 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        Log.info("deinit")
     }
     
     /**
@@ -117,6 +121,8 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
         
         share(shareDataArray[indexPath.item].type)
         
+        self.removeFromSuperview()
+    
     }
     
     // 可以点击
@@ -143,13 +149,13 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
         
         publishContent.setImage(ShareSDK.imageWithPath(savePath))
         
-        ShareSDK.shareContent(publishContent, type: type, authOptions: nil, statusBarTips: false) {(shareType, state, platformShareInfo, error, end) in
+        ShareSDK.shareContent(publishContent, type: type, authOptions: nil, statusBarTips: true) {(shareType, state, platformShareInfo, error, end) in
             
             switch state{
                 
             case SSResponseStateSuccess:
                 Log.info("分享成功")
-                let alert = UIAlertView(title: "分享成功", message: "分享成功", delegate: self, cancelButtonTitle: "取消")
+                let alert = UIAlertView(title: "分享成功", message: "分享成功", delegate: self, cancelButtonTitle: "确定")
                 alert.show()
             case SSResponseStateFail:
                 Log.error("分享失败,错误描述:\(error)")
@@ -161,6 +167,7 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
             }
             
         }
+        
 
     }
     
