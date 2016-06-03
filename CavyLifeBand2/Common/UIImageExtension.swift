@@ -118,10 +118,10 @@ extension UIImage {
         switch self.imageOrientation {
         case .Left, .LeftMirrored, .Right, .RightMirrored:
 
-            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.height,self.size.width), self.CGImage);
-        
+            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.height, self.size.width), self.CGImage)
+            
         default:
-            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.width,self.size.height), self.CGImage);
+            CGContextDrawImage(ctx, CGRectMake(0, 0, self.size.width, self.size.height), self.CGImage)
             
         }
         

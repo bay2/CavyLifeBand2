@@ -1,4 +1,4 @@
- //
+//
 //  CustomCamera.swift
 //  CavyLifeBand2
 //
