@@ -49,7 +49,7 @@ class PhotoAlbum: UIViewController, UIScrollViewDelegate{
         
         for i in 0  ..< fetchResults.count  {
             
-            let asset = fetchResults[i] as! PHAsset
+            let asset = fetchResults[i] as! PHAsset 
             
             self.assetResult.append(asset)
         }
