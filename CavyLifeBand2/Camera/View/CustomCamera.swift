@@ -372,10 +372,11 @@ class CustomCamera: UIViewController {
      */
     func photoAndVideo() {
         
-        // isPhotoOrVideo = true 照相
         if isPhotoOrVideo {
+            
             Log.info("照相")
-            self.camera.capture {(camera, image, metadata, error) -> Void in
+            
+            self.camera.capture ({(camera, image, metadata, error) -> Void in
                 if error != nil{
                     return
                 }
@@ -383,12 +384,14 @@ class CustomCamera: UIViewController {
                 self.camera.start()
                 self.lastImage.setImage(image, forState: UIControlState.Normal)
                 
-                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                let newimage: UIImage = image.imageRotateNormal()
                 
-            }
+                UIImageWriteToSavedPhotosAlbum(newimage, nil, nil, nil)
+
+            }, exactSeenImage: true)
             
         }else{
-            // isPhotoOrVideo = false 摄影
+
             if self.camera.recording == false {
                 
                 // start recording
@@ -448,6 +451,5 @@ class CustomCamera: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
-}
+    
+ }
