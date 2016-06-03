@@ -11,6 +11,7 @@ import RealmSwift
 import Log
 import Datez
 
+/// 长时间没有数据，12 = 2小时， 12 * 10分钟
 let noSleepTime = 12
 
 
@@ -350,13 +351,19 @@ extension ChartsRealmProtocol {
         
         for timeIndex in 0..<sleepDatas.count {
             
-            let beginIndex = timeIndex == 0 ? 0 : timeIndex - 1
-            let endIndex   = timeIndex == sleepDatas.endIndex - 1 ? timeIndex : timeIndex + 1
+            // 前后计算范围
+            let range = 2
+            
+            // 如果timeIndex为前range个数组，则开始所以从0开始
+            let beginIndex = timeIndex <= range ? 0 : timeIndex - range
+            
+            // 如果timeIndex为最后两个元素，则以最末尾作为结束
+            let endIndex   = timeIndex > sleepDatas.count - (range + 1) ? sleepDatas.count - 1 : timeIndex + range
             
             var tiltsTotal = sleepDatas[beginIndex...endIndex].reduce(0, combine: +)
             
-            // 条件1：之前10分钟tilt数量+当前10分钟tilt +之后10分钟tilt数量<30
-            if tiltsTotal >= 30 {
+            // 条件1：之前10分钟tilt数量+当前10分钟tilt +之后10分钟tilt数量<40
+            if tiltsTotal >= 40 {
                 longSleepCount = 0
                 continue
             }
@@ -463,6 +470,17 @@ extension ChartsRealmProtocol {
         
     }
     
+    /**
+     将数据库中的睡眠数据转成10分钟存储的数组
+     
+     - author: sim cai
+     - date: 2016-06-03
+     
+     - parameter beginTime: 开始时间
+     - parameter endTime:   结束时间
+     
+     - returns: 成功: 返回10分钟为一个单位的数据; 指定时间有没有效数据,返回空数组
+     */
     func transformSleepData(beginTime: NSDate, endTime: NSDate) -> [Int] {
         
         let realmSleepData = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
@@ -485,6 +503,17 @@ extension ChartsRealmProtocol {
         
     }
     
+    /**
+     将数据库中的计步数据转成10分钟存储的数组
+     
+     - author: sim cai
+     - date: 2016-06-03
+     
+     - parameter beginTime: 开始时间
+     - parameter endTime:   结束时间
+     
+     - returns: 成功: 返回10分钟为一个单位的数据; 指定时间有没有效数据,返回空数组
+     */
     func transformStepData(beginTime: NSDate, endTime: NSDate) -> [Int] {
         
         let realmStepData = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)

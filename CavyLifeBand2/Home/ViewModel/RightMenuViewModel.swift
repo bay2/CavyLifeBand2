@@ -9,6 +9,9 @@ import UIKit
 import EZSwiftExtensions
 import RealmSwift
 
+
+let testFile = "http://yqall02.baidupcs.com/file/5ce3feb0fd7375d35473d39a9b431d22?bkt=p3-14005ce3feb0fd7375d35473d39a9b431d22a2433166000000020000&fid=3039866875-250528-417674506424270&time=1464939970&sign=FDTAXGERLBH-DCb740ccc5511e5e8fedcff06b081203-k6FsYfsDS8PhjZweRtApg4cr2yg%3D&to=qyac&fm=Yan,B,T,t&sta_dx=0&sta_cs=0&sta_ft=bin&sta_ct=0&fm2=Yangquan,B,T,t&newver=1&newfm=1&secfm=1&flow_ver=3&pkey=14005ce3feb0fd7375d35473d39a9b431d22a2433166000000020000&sl=68354126&expires=8h&rt=pr&r=143632530&mlogid=3586934051265084403&vuk=3039866875&vbdid=682077470&fin=Cavy2PR3F17.bin&slt=pm&uta=0&rtype=1&iv=0&isw=0&dp-logid=3586934051265084403&dp-callid=0.1.1"
+
 /**
  *  菜单项 view model
  */
@@ -16,7 +19,7 @@ struct MenuViewModel: MenuProtocol {
     
     var title: String
     var icon: UIImage?
-    var nextView: UIViewController
+    var nextView: UIViewController?
     
     init(icon: UIImage? = nil, title: String, nextView: UIViewController) {
         
@@ -28,11 +31,40 @@ struct MenuViewModel: MenuProtocol {
     
 }
 
+struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
+    
+    var title: String
+    var icon: UIImage?
+    var nextView: UIViewController? = nil
+    
+    init(icon: UIImage? = nil, title: String) {
+        
+        self.icon = icon
+        self.title = title
+
+        
+    }
+    
+    func onClickCell() {
+        
+//        let updateView =  UpdateProgressView()
+        
+        self.downloadFirmware(testFile).progress { (bytesRead, totalBytesRead, totalBytesExpectedToRead) in
+            
+            UpdateProgressView(frame: CGRect(x: 0, y: 0, width: UpdateProgressView.viewW, height: UpdateProgressView.viewH))
+            
+            Log.info("bytesRead = \(bytesRead), totalBytesRead = \(totalBytesRead), totalBytesExpectedToRead = \(totalBytesExpectedToRead) \((Float(totalBytesRead) / Float(totalBytesExpectedToRead)) * 100)%")
+        }
+        
+    }
+    
+}
+
 struct UndoBindViewModel: MenuProtocol {
     
     var title: String
     var icon: UIImage?
-    var nextView: UIViewController
+    var nextView: UIViewController?
     
     init(icon: UIImage? = nil, title: String) {
         
@@ -54,7 +86,11 @@ struct UndoBindViewModel: MenuProtocol {
         
         LifeBandBle.shareInterface.bleDisconnect()
         
-        let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
+        guard let newNextView = nextView else {
+            return
+        }
+        
+        let userInfo = ["nextView": newNextView] as [NSObject: AnyObject]
         
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
@@ -106,8 +142,7 @@ struct BandHardwareMenuGroupDataModel: MenuGroupDataSource {
     
     init() {
         
-        items.append(MenuViewModel(title: L10n.HomeRightListTitleFirmwareUpgrade.string,
-            nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
+        items.append(UpdateFWViewModel(title: L10n.HomeRightListTitleFirmwareUpgrade.string))
         
     }
     

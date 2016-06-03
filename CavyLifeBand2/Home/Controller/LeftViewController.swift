@@ -194,7 +194,9 @@ extension LeftMenViewController {
         
         menuGroup[indexPath.section].refurbishNextView()
         
-        let nextView = menuGroup[indexPath.section].items[indexPath.row].nextView
+        guard let nextView = menuGroup[indexPath.section].items[indexPath.row].nextView else {
+            return
+        }
         
         let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
         
