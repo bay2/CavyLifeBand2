@@ -31,7 +31,8 @@ class AccountInfoSecurityCell: UITableViewCell {
         
         super.awakeFromNib()
         
-        titleLabel.textColor = UIColor(named: .ContactsTitleColor)
+        titleLabel.textColor = UIColor(named: .EColor)
+        titleLabel.font = UIFont.mediumSystemFontOfSize(16.0)
         
     }
     

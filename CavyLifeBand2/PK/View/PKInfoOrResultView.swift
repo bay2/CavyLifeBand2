@@ -23,6 +23,9 @@ class PKInfoOrResultView: UIView {
     @IBOutlet weak var seeStateLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
+    @IBOutlet weak var topLine: UIView!
+    @IBOutlet weak var bottomLine: UIView!
+    
     let smallAvatarWidth: CGFloat = 80.0
     let bigAvatarWidth: CGFloat = 110.0
     
@@ -49,9 +52,22 @@ class PKInfoOrResultView: UIView {
     
     func baseSetting() -> Void {
         
-        seeStateLabel.textColor = UIColor(named: .PKInfoOrResultViewNormalTextColor)
+        userNameLabel.textColor       = UIColor(named: .EColor)
+        competitorNameLabel.textColor = UIColor(named: .EColor)
+        userStepLabel.textColor       = UIColor(named: .EColor)
+        competitorStepLabel.textColor = UIColor(named: .EColor)
+        seeStateLabel.textColor       = UIColor(named: .EColor)
+        timeTitleLabel.textColor      = UIColor(named: .EColor)
         
-        timeTitleLabel.textColor = UIColor(named: .PKInfoOrResultViewNormalTextColor)
+        userNameLabel.font       = UIFont.mediumSystemFontOfSize(14.0)
+        competitorNameLabel.font = UIFont.mediumSystemFontOfSize(24.0)
+        userStepLabel.font       = UIFont.mediumSystemFontOfSize(14.0)
+        competitorStepLabel.font = UIFont.mediumSystemFontOfSize(24.0)
+        seeStateLabel.font       = UIFont.mediumSystemFontOfSize(14.0)
+        timeTitleLabel.font      = UIFont.mediumSystemFontOfSize(14.0)
+        
+        topLine.backgroundColor = UIColor(named: .LColor)
+        bottomLine.backgroundColor = UIColor(named: .LColor)
         
         userAvatarImageView.layer.borderColor       = UIColor.whiteColor().CGColor
         competitorAvatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
@@ -118,11 +134,11 @@ class PKInfoOrResultView: UIView {
             make.width.equalTo(smallAvatarWidth)
         }
         
-        competitorNameLabel.font = UIFont.systemFontOfSize(18)
-        competitorStepLabel.font = UIFont.boldSystemFontOfSize(32)
+        competitorNameLabel.font = UIFont.mediumSystemFontOfSize(18)
+        competitorStepLabel.font = UIFont.mediumSystemFontOfSize(32)
         
-        competitorStepLabel.textColor = UIColor(named: .PKInfoOrResultViewWinnerTextColor)
-        competitorNameLabel.textColor = UIColor(named: .PKInfoOrResultViewWinnerTextColor)
+        competitorStepLabel.textColor = UIColor(named: .IColor)
+        competitorNameLabel.textColor = UIColor(named: .IColor)
         
         competitorAvatarImageView.layer.cornerRadius = bigAvatarWidth / 2
         userAvatarImageView.layer.cornerRadius = smallAvatarWidth / 2
@@ -158,11 +174,11 @@ class PKInfoOrResultView: UIView {
             make.width.equalTo(bigAvatarWidth)
         }
         
-        userNameLabel.font = UIFont.systemFontOfSize(18)
-        userStepLabel.font = UIFont.boldSystemFontOfSize(32)
+        userNameLabel.font = UIFont.mediumSystemFontOfSize(18)
+        userStepLabel.font = UIFont.mediumSystemFontOfSize(32)
         
-        userNameLabel.textColor = UIColor(named: .PKInfoOrResultViewWinnerTextColor)
-        userStepLabel.textColor = UIColor(named: .PKInfoOrResultViewWinnerTextColor)
+        userNameLabel.textColor = UIColor(named: .IColor)
+        userStepLabel.textColor = UIColor(named: .IColor)
         
         userAvatarImageView.layer.cornerRadius = bigAvatarWidth / 2
         competitorAvatarImageView.layer.cornerRadius = smallAvatarWidth / 2
@@ -393,17 +409,17 @@ struct PKInfoOrResultViewModel: PKInfoOrResultViewDataSource {
         
         let currentString = NSMutableAttributedString(string: string)
         
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(24), range: NSMakeRange(0, day.length))
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(12), range: NSMakeRange(day.length, dayUnit.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.mediumSystemFontOfSize(24), range: NSMakeRange(0, day.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.mediumSystemFontOfSize(12), range: NSMakeRange(day.length, dayUnit.length))
         
         if isPKEnd == true {
             return currentString
         }
         
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(24), range: NSMakeRange(day.length + dayUnit.length, hour.length))
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(12), range: NSMakeRange(day.length + dayUnit.length + hour.length, hourUnit.length))
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(24), range: NSMakeRange(day.length + dayUnit.length + hour.length + hourUnit.length, minutes.length))
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.boldSystemFontOfSize(12), range: NSMakeRange(day.length + dayUnit.length + hour.length + hourUnit.length + minutes.length, minUnit.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.mediumSystemFontOfSize(24), range: NSMakeRange(day.length + dayUnit.length, hour.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.mediumSystemFontOfSize(12), range: NSMakeRange(day.length + dayUnit.length + hour.length, hourUnit.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.mediumSystemFontOfSize(24), range: NSMakeRange(day.length + dayUnit.length + hour.length + hourUnit.length, minutes.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.mediumSystemFontOfSize(12), range: NSMakeRange(day.length + dayUnit.length + hour.length + hourUnit.length + minutes.length, minUnit.length))
         
         return currentString
     }

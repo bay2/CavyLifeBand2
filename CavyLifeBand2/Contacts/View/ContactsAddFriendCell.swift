@@ -63,9 +63,15 @@ class ContactsAddFriendCell: UITableViewCell {
         super.awakeFromNib()
 
         headView.roundSquareImage()
-        nameLabel.textColor = UIColor(named: .ContactsName)
-        introduceLabel.textColor = UIColor(named: .ContactsIntrouduce)
+        nameLabel.textColor = UIColor(named: .EColor)
+        nameLabel.font = UIFont.mediumSystemFontOfSize(16.0)
+        
+        introduceLabel.textColor = UIColor(named: .FColor)
+        introduceLabel.font = UIFont.systemFontOfSize(12.0)
+        
         requestBtn.setCornerRadius(radius: CavyDefine.commonCornerRadius)
+        requestBtn.titleLabel?.font = UIFont.mediumSystemFontOfSize(16.0)
+        requestBtn.titleLabel?.textColor = UIColor(named: .AColor)
         
         let cellBgView = UIView()
         cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)

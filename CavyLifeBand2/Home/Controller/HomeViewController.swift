@@ -27,7 +27,14 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         let button = UIButton(type: .System)
         button.size = CGSizeMake(30, 30)
-        button.setBackgroundImage(UIImage(asset: .HomeDisBandMenu), forState: .Normal)
+        
+        if LifeBandBle.shareInterface.getConnectState() == .Connected {
+            button.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
+        } else {
+            button.setBackgroundImage(UIImage(asset: .HomeDisBandMenu), forState: .Normal)
+        }
+        
+        
         
         return button
         

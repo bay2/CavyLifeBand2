@@ -25,6 +25,14 @@ class HomeWeatherView: UIView {
     /// 当前城市
     var city = "hangzou"
     
+    override func awakeFromNib() {
+        temperature.textColor = UIColor(named: .AColor)
+        temperature.font = UIFont.mediumSystemFontOfSize(16.0)
+        
+        airQuality.textColor = UIColor(named: .AColor)
+        airQuality.font = UIFont.mediumSystemFontOfSize(12.0)
+    }
+    
 
     /**
      加载天气视图

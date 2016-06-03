@@ -62,9 +62,9 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     lazy var rightBtn: UIButton? =  {
         
         let button = UIButton(type: .System)
-        button.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        button.setTitleColor(UIColor(named: .AColor), forState: .Normal)
         button.frame = CGRectMake(0, 0, 60, 30)
-        button.titleLabel?.font = UIFont.systemFontOfSize(16)
+        button.titleLabel?.font = UIFont.mediumSystemFontOfSize(14)
         return button
         
     }()
@@ -276,6 +276,8 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         self.pushVC(nextView)
         
+//        ez.topMostVC?.pushVC(nextView)
+        
     }
 
 
@@ -290,7 +292,6 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                 
                 self.emailSafetyCode.image = image
             }
-            
         }
         
     }

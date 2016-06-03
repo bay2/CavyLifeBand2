@@ -22,10 +22,13 @@ class ChartSleepInfoCell: UITableViewCell {
         // Initialization code
         
         roundSleepView.layer.masksToBounds = true
-        roundSleepView.layer.cornerRadius = roundSleepView.frame.size.height / 2 
-        sleepDegree.textColor = UIColor(named: .HomeViewUserName)
+        roundSleepView.layer.cornerRadius = roundSleepView.frame.size.height / 2
         
-        rightLabel.textColor = UIColor(named: .HomeViewUserName)
+        sleepDegree.textColor = UIColor(named: .EColor)
+        rightLabel.textColor = UIColor(named: .EColor)
+        
+        sleepDegree.font = UIFont.mediumSystemFontOfSize(16.0)
+        rightLabel.font = UIFont.mediumSystemFontOfSize(16.0)
         
         self.selectionStyle = .None
 
