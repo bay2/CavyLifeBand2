@@ -59,6 +59,14 @@ class CustomCamera: UIViewController {
         self.navigationController?.navigationBarHidden = true
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomCamera.photoAndVideo), name: LifeBandCtrlNotificationName.BandButtonEvenClick1.rawValue, object: nil)
+        
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        
+        // 更改UIStatusBar背景颜色
+        let statusBarView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
+        statusBarView.backgroundColor = UIColor.blackColor()
+        camera.view.addSubview(statusBarView)
+        
     }
     
     
@@ -69,6 +77,13 @@ class CustomCamera: UIViewController {
         UIApplication.sharedApplication().idleTimerDisabled = true
         
         cameraAllViewLayout()
+        
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: false)
         
     }
     
@@ -372,10 +387,11 @@ class CustomCamera: UIViewController {
      */
     func photoAndVideo() {
         
-        // isPhotoOrVideo = true 照相
         if isPhotoOrVideo {
+            
             Log.info("照相")
-            self.camera.capture {(camera, image, metadata, error) -> Void in
+            
+            self.camera.capture ({(camera, image, metadata, error) -> Void in
                 if error != nil{
                     return
                 }
@@ -383,12 +399,14 @@ class CustomCamera: UIViewController {
                 self.camera.start()
                 self.lastImage.setImage(image, forState: UIControlState.Normal)
                 
-                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+                let newimage: UIImage = image.imageRotateNormal()
                 
-            }
+                UIImageWriteToSavedPhotosAlbum(newimage, nil, nil, nil)
+
+            }, exactSeenImage: true)
             
         }else{
-            // isPhotoOrVideo = false 摄影
+
             if self.camera.recording == false {
                 
                 // start recording
@@ -448,6 +466,5 @@ class CustomCamera: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
-}
+    
+ }

@@ -45,19 +45,14 @@ class SafetySettingTableFooterView: UIView {
         }
         
         cornerView.layer.mask      = maskLayer
-
         cornerView.backgroundColor = UIColor.whiteColor()
         
-        titleLabel.font      = UIFont.systemFontOfSize(16.0)
-
-        titleLabel.textColor = UIColor(named: .SettingTableFooterInfoColor)
-
+        titleLabel.font      = UIFont.mediumSystemFontOfSize(16.0)
+        titleLabel.textColor = UIColor(named: .AColor)
         titleLabel.text      = L10n.SettingSafetyTableFooterTitle.string
         
         descriptionLabel.font          = UIFont.systemFontOfSize(12.0)
-
-        descriptionLabel.textColor     = UIColor(named: .SettingTableFooterInfoColor)
-
+        descriptionLabel.textColor     = UIColor(named: .AColor)
         descriptionLabel.text          = L10n.SettingSafetyTableFooterInfo.string
 
         descriptionLabel.numberOfLines = 0
@@ -74,10 +69,8 @@ class SafetySettingTableFooterView: UIView {
             make.top.equalTo(titleLabel.snp_bottom).offset(10.0)
         }
         
-        
         self.updateConstraintsIfNeeded()
         self.layoutIfNeeded()
-        
         
     }
     
