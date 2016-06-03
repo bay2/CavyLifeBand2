@@ -74,7 +74,7 @@ class RulerScroller: UIScrollView {
                     lineLabel.font = UIFont.systemFontOfSize(14)
                     lineLabel.frame = CGRectMake(birthRulerWidth / 2 + CGFloat(lineSpace * i) - 30, 8, 60, 14)
                     lineLabel.textAlignment = .Center
-                    lineLabel.textColor = UIColor(named: .GColor)
+                    lineLabel.textColor = UIColor(named: .GuideColor99)
                     lineLabel.text = String((i + beforSpace) / lineCount) + ".1"
                     
                     /// 长线
@@ -114,7 +114,7 @@ class RulerScroller: UIScrollView {
                     lineLabel.font = UIFont.systemFontOfSize(14)
                     lineLabel.frame = CGRectMake(birthRulerWidth / 2 + CGFloat(lineSpace * (i - 1)) - birthRulerHeight / 2, 8, 60, 14)
                     lineLabel.textAlignment = .Center
-                    lineLabel.textColor = UIColor(named: .GColor)
+                    lineLabel.textColor = UIColor(named: .GuideColor99)
                     lineLabel.text = String(i)
                     
                     /// 长线
@@ -159,7 +159,7 @@ class RulerScroller: UIScrollView {
                     lineLabel.font = UIFont.systemFontOfSize(14)
                     lineLabel.frame = CGRectMake(heightRulerShortLine - 10, heightRulerHeight / 2 + CGFloat(lineSpace * (i - minHeight)) - 7, heightRulerWidth - heightRulerShortLine, 14)
                     lineLabel.textAlignment = .Left
-                    lineLabel.textColor = UIColor(named: .GColor)
+                    lineLabel.textColor = UIColor(named: .GuideColor99)
                     lineLabel.text = String(i)
                     
                     self.addSubview(longLine)

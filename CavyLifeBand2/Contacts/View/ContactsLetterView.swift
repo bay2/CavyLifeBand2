@@ -20,8 +20,8 @@ class ContactsLetterView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        title.font = UIFont.systemFontOfSize(14)
-        title.textColor = UIColor(named: .GColor)
+        title.font = UIFont.systemFontOfSize(16)
+        title.textColor = UIColor(named: .ContactsLetterColor)
         self.backgroundColor =  UIColor(named: .ContactsSectionColor)
         
     }

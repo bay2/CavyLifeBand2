@@ -58,7 +58,6 @@ private class AKCollectionViewCell: UICollectionViewCell {
 	var label: UILabel!
 	var imageView: UIImageView!
 	var font = UIFont.systemFontOfSize(UIFont.systemFontSize())
-    var textColor = UIColor.blackColor()  // DEmo
 	var highlightedFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
     var highlightedTextColor = UIColor.blackColor()
 	var _selected: Bool = false {
@@ -68,7 +67,7 @@ private class AKCollectionViewCell: UICollectionViewCell {
 			animation.duration = 0.15
 			self.label.layer.addAnimation(animation, forKey: "")
 			self.label.font = self.selected ? self.highlightedFont : self.font
-            self.label.textColor = self.selected ? self.highlightedTextColor : self.textColor
+            self.label.textColor = self.selected ? self.highlightedTextColor : UIColor.blackColor()
 		}
 	}
 
@@ -537,7 +536,6 @@ public class AKPickerView: UIView, UICollectionViewDataSource, UICollectionViewD
 			cell.label.textColor = self.textColor
 			cell.label.highlightedTextColor = self.highlightedTextColor
 			cell.label.font = self.font
-            cell.textColor = self.textColor
 			cell.font = self.font
 			cell.highlightedFont = self.highlightedFont
             cell.highlightedTextColor = self.highlightedTextColor

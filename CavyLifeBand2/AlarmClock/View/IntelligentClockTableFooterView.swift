@@ -46,11 +46,11 @@ class IntelligentClockTableFooterView: UIView {
         cornerView.backgroundColor = UIColor.whiteColor()
         
         // 信息Label设置
-        infoLabel.font          = UIFont.mediumSystemFontOfSize(12.0)
+        infoLabel.font          = UIFont.systemFontOfSize(12)
 
         infoLabel.text          = L10n.AlarmClockIntelligentClockTableFooterInfo.string
 
-        infoLabel.textColor     = UIColor(named: .AColor)
+        infoLabel.textColor     = UIColor(named: .AlarmClockSettingDescriptionColor)
 
         infoLabel.textAlignment = .Center
         

@@ -32,12 +32,5 @@ extension UIFont {
     }
     
     
-    static func mediumSystemFontOfSize(size: CGFloat) -> UIFont {
-        
-        return UIFont.Font(.HelveticaNeue, type: .Medium, size: size)
-        
-    }
-    
-    
 }
 

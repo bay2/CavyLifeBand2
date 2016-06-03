@@ -150,11 +150,9 @@
                 <outlet property="PKTimeLabel" destination="lcv-we-f5o" id="HYx-lO-aXN"/>
                 <outlet property="PKTimeTitleLabel" destination="rG1-i0-TFA" id="JR0-wn-Mxa"/>
                 <outlet property="PKTimeUnitLabel" destination="kp4-Vi-qwz" id="CGe-tr-irF"/>
-                <outlet property="bottomLine" destination="gev-3X-JxZ" id="WkY-Kx-ONq"/>
                 <outlet property="competitorAvatarImageView" destination="QjY-G7-f0h" id="OfC-xP-Ynf"/>
                 <outlet property="competitorNameLabel" destination="Dox-cK-ZQe" id="KYg-ic-JVw"/>
                 <outlet property="rulesIconImageView" destination="y9Q-dA-N18" id="BCq-pG-j9Y"/>
-                <outlet property="topLine" destination="2vP-FO-L9d" id="xHw-dp-hLb"/>
                 <outlet property="userAvatarImageView" destination="kfF-ig-KcM" id="ygH-wz-pOa"/>
                 <outlet property="userNameLabel" destination="c8l-dj-gKE" id="zWl-hF-HXG"/>
             </connections>

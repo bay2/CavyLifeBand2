@@ -24,8 +24,6 @@ class RightViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTopViewLabel()
-        
         configTableView()
         
         addMenumenuGroupData(BandFeatureMenuGroupDataModel())
@@ -55,16 +53,6 @@ class RightViewController: UIViewController {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: BandBleNotificationName.BandConnectNotification.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().removeObserver(self, name: BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
         
-    }
-    
-    func setTopViewLabel() {
-        bandTitle.textColor = UIColor(named: .EColor)
-        fwVersion.textColor = UIColor(named: .FColor)
-        bandName.textColor  = UIColor(named: .FColor)
-        
-        bandTitle.font = UIFont.mediumSystemFontOfSize(18.0)
-        fwVersion.font = UIFont.systemFontOfSize(12.0)
-        bandName.font  = UIFont.systemFontOfSize(12.0)
     }
     
     /**

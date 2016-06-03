@@ -57,8 +57,8 @@ class ContactsTabButton: UIButton {
         nameLabel = UILabel()
         self.addSubview(nameLabel)
         nameLabel.textAlignment = .Center
-        nameLabel.textColor = UIColor(named: .BColor)
-        nameLabel.font = UIFont.mediumSystemFontOfSize(14)
+        nameLabel.textColor = UIColor(named: .ContactsFindFriendLight)
+        nameLabel.font = UIFont.systemFontOfSize(14)
         nameLabel.text = searchBtnTitle[searchBtnType.hashValue]
         nameLabel.snp_makeConstraints { make -> Void in
             
@@ -88,7 +88,7 @@ class ContactsTabButton: UIButton {
     func selectButtonStatus() {
         
         imgView.image = searchBtnImgSelected[searchBtnType.hashValue]
-        nameLabel.textColor = UIColor(named: .AColor)
+        nameLabel.textColor = UIColor(named: .ContactsFindFriendDark)
         flagView.hidden = false
         
     }
@@ -99,7 +99,7 @@ class ContactsTabButton: UIButton {
     func deselectButtonStatus() {
         
         imgView.image = searchBtnImgDefault[searchBtnType.hashValue]
-        nameLabel.textColor = UIColor(named: .BColor)
+        nameLabel.textColor = UIColor(named: .ContactsFindFriendLight)
         flagView.hidden = true
     }
     

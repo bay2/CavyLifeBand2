@@ -22,7 +22,7 @@ struct HomeListStepViewModel: HomeListViewModelProtocol {
     
     
     init(stepNumber: Int) {
-        resultNum = NSMutableAttributedString().attributeString(String(stepNumber), numSize: 30, unit: L10n.GuideStep.string, unitSize: 12)
+        resultNum = NSMutableAttributedString().attributeString(String(stepNumber), numSize: 16, unit: L10n.GuideStep.string, unitSize: 14)
     }
     
     func onClickCell() {
@@ -46,11 +46,11 @@ struct HomeListSleepViewModel: HomeListViewModelProtocol {
     var resultNum: NSMutableAttributedString
     
     init(sleepTime: Int) {
-
+        
         let sleepHour = sleepTime / 6
         let sleepMin = (sleepTime - sleepHour * 6) * 10
-        resultNum = NSMutableAttributedString().attributeString(String(sleepHour), numSize: 30, unit: L10n.HomeSleepRingUnitHour.string, unitSize: 12)
-        resultNum.appendAttributedString(NSMutableAttributedString().attributeString(String(sleepMin), numSize: 30, unit: L10n.HomeSleepRingUnitMinute.string, unitSize: 12))
+        resultNum = NSMutableAttributedString().attributeString(String(sleepHour), numSize: 16, unit: L10n.HomeSleepRingUnitHour.string, unitSize: 14)
+        resultNum.appendAttributedString(NSMutableAttributedString().attributeString(String(sleepMin), numSize: 16, unit: L10n.HomeSleepRingUnitMinute.string, unitSize: 14))
     }
     
     func onClickCell() {
@@ -78,7 +78,7 @@ struct HomeListAchiveViewModel: HomeListViewModelProtocol {
         
         switch medalIndex {
             
-        case 0:
+        case 0 :
 
             self.image = UIImage(asset: .Medal5000Lighted)
         case 1:

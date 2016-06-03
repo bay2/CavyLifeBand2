@@ -51,17 +51,16 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate {
         
         // 成就标题Label样式设置
         titleLabel.text      = L10n.ContactsShowInfoAchievement.string
-        titleLabel.textColor = UIColor(named: .EColor)
-        titleLabel.font      = UIFont.mediumSystemFontOfSize(16.0)
+        titleLabel.textColor = UIColor(named: .ContactsTitleColor)
         
         
         // 斜体字体
-        let font   = UIFont.mediumSystemFontOfSize(14.0)
+        let font   = UIFont.italicFontWithSize(16)
         
         // 成就详情Label样式设置
         infoLabel.text      = infoStrFormatter()
         infoLabel.font      = font
-        infoLabel.textColor = UIColor(named: .KColor)
+        infoLabel.textColor = UIColor(named: .ContactsAccountLogoutButton)
         
         // 成就图标展示视图设置
         collectionView.delegate   = self
@@ -118,14 +117,14 @@ extension UserAchievementView {
     
     /**
      infoLabel 的 text 格式化
-     ep:"0" -> "您已累计行走0步"
+     ep:"0" -> "0 步"
      
      - parameter info: info字符串
      
      - returns: String
      */
     func infoStrFormatter(info: String = "0") -> String {
-        return "\(L10n.AccountInfoAchieveViewNumPrefix)\(info)\(L10n.GuideStep.string)"
+        return "\(info) \(L10n.GuideStep.string)"
     }
 
 }

@@ -44,7 +44,7 @@ class GenderView: UIView {
 
         titleLab.text = L10n.GuideMine.string
         titleLab.font = UIFont.systemFontOfSize(18)
-        titleLab.textColor = UIColor(named: .EColor)
+        titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { make -> Void in
             make.top.equalTo(self)

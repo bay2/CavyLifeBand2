@@ -51,13 +51,9 @@ class ContactsPersonInfoCell: UITableViewCell {
         super.awakeFromNib()
 
         headView.roundSquareImage()
-        titleLab.textColor = UIColor(named: .EColor)
-        subTitleLab.textColor = UIColor(named: .FColor)
-        
-        titleLab.font = UIFont.mediumSystemFontOfSize(18.0)
-        subTitleLab.font = UIFont.mediumSystemFontOfSize(12.0)
-        
-        lineView.backgroundColor = UIColor(named: .LColor)
+        titleLab.textColor = UIColor(named: .ContactsName)
+        subTitleLab.textColor = UIColor(named: .ContactsIntrouduce)
+        lineView.backgroundColor = UIColor(named: .ContactsCellLine)
         self.selectionStyle = .None
         
         headView.addTapGesture {[unowned self] _ in

@@ -15,9 +15,6 @@ extension UIColor {
 
 extension UIColor {
   enum Name {
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffffff"></span>
-    /// Alpha: 100% <br/> (0xffffffff)
-    case AColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f2f2f2"></span>
     /// Alpha: 100% <br/> (0xf2f2f2ff)
     case AlarmClockDateBtnBGNormalColor
@@ -51,12 +48,6 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 70% <br/> (0x000000b3)
     case AlarmClockTableCellTitleColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#91e4c2"></span>
-    /// Alpha: 100% <br/> (0x91e4c2ff)
-    case BColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#2b7e5c"></span>
-    /// Alpha: 100% <br/> (0x2b7e5cff)
-    case CColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 100% <br/> (0x000000ff)
     case CameraBgColor
@@ -150,12 +141,6 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#929292"></span>
     /// Alpha: 100% <br/> (0x929292ff)
     case ContactsUndoCareBtnColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#3aa87a"></span>
-    /// Alpha: 100% <br/> (0x3aa87aff)
-    case DColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#585858"></span>
-    /// Alpha: 100% <br/> (0x585858ff)
-    case EColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#b8b8b8"></span>
     /// Alpha: 100% <br/> (0xb8b8b8ff)
     case EmergencyContactCellAddBtnTitleColor
@@ -165,12 +150,6 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
     /// Alpha: 100% <br/> (0x48d299ff)
     case EmergencyContactCellInfoLabelColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#8d8d8d"></span>
-    /// Alpha: 100% <br/> (0x8d8d8dff)
-    case FColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#b8b8b8"></span>
-    /// Alpha: 100% <br/> (0xb8b8b8ff)
-    case GColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#38e797"></span>
     /// Alpha: 100% <br/> (0x38e797ff)
     case GuideBandBluetoothColor
@@ -198,9 +177,6 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
     /// Alpha: 100% <br/> (0x48d299ff)
     case GuideSetPermission
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#cccccc"></span>
-    /// Alpha: 100% <br/> (0xccccccff)
-    case HColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#309a6e"></span>
     /// Alpha: 100% <br/> (0x309a6eff)
     case HomeRingViewBackground
@@ -234,18 +210,6 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 70% <br/> (0x000000b3)
     case HomeViewUserName
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff7200"></span>
-    /// Alpha: 100% <br/> (0xff7200ff)
-    case IColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff9138"></span>
-    /// Alpha: 100% <br/> (0xff9138ff)
-    case JColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#48d299"></span>
-    /// Alpha: 100% <br/> (0x48d299ff)
-    case KColor
-    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e0e0e0"></span>
-    /// Alpha: 100% <br/> (0xe0e0e0ff)
-    case LColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffd954"></span>
     /// Alpha: 100% <br/> (0xffd954ff)
     case MainPageBtn
@@ -393,7 +357,6 @@ extension UIColor {
 
     var rgbaValue: UInt32! {
       switch self {
-      case .AColor: return 0xffffffff
       case .AlarmClockDateBtnBGNormalColor: return 0xf2f2f2ff
       case .AlarmClockDateBtnBGSelectedColor: return 0xff993fff
       case .AlarmClockDateBtnTextNormalColor: return 0x858585ff
@@ -405,8 +368,6 @@ extension UIColor {
       case .AlarmClockSettingTitleColor: return 0x000000b3
       case .AlarmClockTableCellDescriptionColor: return 0x0000004d
       case .AlarmClockTableCellTitleColor: return 0x000000b3
-      case .BColor: return 0x91e4c2ff
-      case .CColor: return 0x2b7e5cff
       case .CameraBgColor: return 0x000000ff
       case .CameraChoose: return 0xffffffb3
       case .CameraNoChoose: return 0xffffff33
@@ -438,13 +399,9 @@ extension UIColor {
       case .ContactsTableEmptyTextColor: return 0xccccccff
       case .ContactsTitleColor: return 0x000000b3
       case .ContactsUndoCareBtnColor: return 0x929292ff
-      case .DColor: return 0x3aa87aff
-      case .EColor: return 0x585858ff
       case .EmergencyContactCellAddBtnTitleColor: return 0xb8b8b8ff
       case .EmergencyContactCellCancelBtnTitleColor: return 0xddddddff
       case .EmergencyContactCellInfoLabelColor: return 0x48d299ff
-      case .FColor: return 0x8d8d8dff
-      case .GColor: return 0xb8b8b8ff
       case .GuideBandBluetoothColor: return 0x38e797ff
       case .GuideBirthRulerLineColor: return 0x00000080
       case .GuideColor33: return 0x00000033
@@ -454,7 +411,6 @@ extension UIColor {
       case .GuideLineColor: return 0xccccccff
       case .GuideSetInfoColor: return 0x1dbcffff
       case .GuideSetPermission: return 0x48d299ff
-      case .HColor: return 0xccccccff
       case .HomeRingViewBackground: return 0x309a6eff
       case .HomeSleepRingColor: return 0x36f3ffff
       case .HomeStepRingColor: return 0xfff956ff
@@ -466,10 +422,6 @@ extension UIColor {
       case .HomeViewMainColor: return 0x48d299ff
       case .HomeViewMaskColor: return 0x00000066
       case .HomeViewUserName: return 0x000000b3
-      case .IColor: return 0xff7200ff
-      case .JColor: return 0xff9138ff
-      case .KColor: return 0x48d299ff
-      case .LColor: return 0xe0e0e0ff
       case .MainPageBtn: return 0xffd954ff
       case .MainPageBtnText: return 0xb46e00ff
       case .MainPageSelectedBtn: return 0xecbc46ff

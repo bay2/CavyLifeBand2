@@ -21,8 +21,7 @@ class UserAchievementCell: UICollectionViewCell {
         
 //        achieveImageView.image = UIImage(asset: .Medal5000)
         
-        achieveTitleLabel.textColor = UIColor(named: .GColor)
-        achieveTitleLabel.font = UIFont.systemFontOfSize(12.0)
+        achieveTitleLabel.textColor = UIColor(named: .ContactsLetterColor)
         
     }
     
@@ -72,12 +71,12 @@ struct UserAchievementCellViewModel: AchievementDataSource {
 }
 
 /// 成就的LabelText
-let achieveLabelArray: [String] = ["5000\(L10n.GuideStep.string)",
-                                   "20000\(L10n.GuideStep.string)",
-                                   "100000\(L10n.GuideStep.string)",
-                                   "500000\(L10n.GuideStep.string)",
-                                   "1000000\(L10n.GuideStep.string)",
-                                   "5000000\(L10n.GuideStep.string)",]
+let achieveLabelArray: [String] = ["\(L10n.HomeTimeLineAchiveBadge.string)5000\(L10n.GuideStep.string)",
+                                   "\(L10n.HomeTimeLineAchiveBadge.string)20000\(L10n.GuideStep.string)",
+                                   "\(L10n.HomeTimeLineAchiveBadge.string)100000\(L10n.GuideStep.string)",
+                                   "\(L10n.HomeTimeLineAchiveBadge.string)500000\(L10n.GuideStep.string)",
+                                   "\(L10n.HomeTimeLineAchiveBadge.string)1000000\(L10n.GuideStep.string)",
+                                   "\(L10n.HomeTimeLineAchiveBadge.string)5000000\(L10n.GuideStep.string)",]
 /// 成就的灰色图标
 let achieveImage = [UIImage(asset: .Medal5000),
                     UIImage(asset: .Medal20000),

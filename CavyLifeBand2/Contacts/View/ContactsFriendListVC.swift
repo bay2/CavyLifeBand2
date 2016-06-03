@@ -333,7 +333,6 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
         
         deleteRowAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
         
-        
         return deleteRowAction
         
     }

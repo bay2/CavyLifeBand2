@@ -26,8 +26,8 @@ extension NSMutableAttributedString {
         
         let currentString = NSMutableAttributedString(string: "\(num)\(unit)")
         
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.mediumSystemFontOfSize(numSize), range: NSMakeRange(0, num.length))
-        currentString.addAttribute(NSFontAttributeName, value: UIFont.mediumSystemFontOfSize(unitSize), range: NSMakeRange(currentString.length - unit.length, unit.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(numSize), range: NSMakeRange(0, num.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(unitSize), range: NSMakeRange(currentString.length - unit.length, unit.length))
         
         return currentString
 

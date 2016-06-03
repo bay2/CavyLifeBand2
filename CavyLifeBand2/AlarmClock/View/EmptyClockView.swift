@@ -24,11 +24,11 @@ class EmptyClockView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        titleLabel.textColor = UIColor(named: .DColor)
-        infoLabel.textColor = UIColor(named: .DColor)
+        titleLabel.textColor = UIColor(named: .AlarmClockEmptyLabelColor)
+        infoLabel.textColor = UIColor(named: .AlarmClockEmptyLabelColor)
         
-        titleLabel.font = UIFont.mediumSystemFontOfSize(18.0)
-        infoLabel.font = UIFont.mediumSystemFontOfSize(14.0)
+        titleLabel.font = UIFont.systemFontOfSize(16.0)
+        infoLabel.font = UIFont.systemFontOfSize(14.0)
         
         titleLabel.text = L10n.AlarmClockEmptyViewTitle.string
         infoLabel.text = L10n.AlarmClockEmptyViewInfo.string
