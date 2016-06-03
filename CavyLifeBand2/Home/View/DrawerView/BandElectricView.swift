@@ -66,8 +66,8 @@ class BandElectricView: UIView {
         electricFillLayer.mask = shapeMake
         
         lable.text = "0%"
-        lable.font = UIFont.boldSystemFontOfSize(18)
-        lable.textColor = UIColor.whiteColor()
+        lable.font = UIFont.mediumSystemFontOfSize(18.0)
+        lable.textColor = UIColor(named: .AColor)
         self.addSubview(lable)
         lable.snp_makeConstraints { make in
             make.center.equalTo(self)

@@ -35,7 +35,7 @@ class ChartTimeCollectionCell: UICollectionViewCell {
      */
     func selectStatus() {
         
-        label.textColor = UIColor.whiteColor()
+        label.textColor = UIColor(named: .AColor)
 
     }
     
@@ -44,7 +44,7 @@ class ChartTimeCollectionCell: UICollectionViewCell {
      */
     func deselectStatus() {
         
-        label.textColor = UIColor(named: .ChartDeselectText)
+        label.textColor = UIColor(named: .GColor)
 
     }
     

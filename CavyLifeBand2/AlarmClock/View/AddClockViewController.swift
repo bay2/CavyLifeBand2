@@ -62,13 +62,6 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
 
         self.automaticallyAdjustsScrollViewInsets = false
         
-//        self.navigationItem.title = L10n.AlarmClockTitle.string
-        
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AlarmClockNavSave"),
-//                                                                 style: .Plain,
-//                                                                 target: self,
-//                                                                 action: #selector(rightBarBtnAciton(_:)))
-//
         collectionView.registerNib(UINib(nibName: AddClockCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: AddClockCollectionViewCell)
         
         updateNavUI()
@@ -108,21 +101,20 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
         
         separatorViewSeconde.backgroundColor = UIColor(named: .SettingSeparatorColor)
         
-        alarmCircleTitleLabel.text = L10n.AlarmClockAlarmCircleTitle.string
+        alarmCircleTitleLabel.text      = L10n.AlarmClockAlarmCircleTitle.string
+        alarmCircleTitleLabel.textColor = UIColor(named: .EColor)
+        alarmCircleTitleLabel.font      = UIFont.mediumSystemFontOfSize(16.0)
         
-        alarmCircleTitleLabel.textColor = UIColor(named: .AlarmClockSettingTitleColor)
+        alarmCircleSubTitleLabel.text      = L10n.AlarmClockAlarmCircleSubTitle.string
+        alarmCircleSubTitleLabel.textColor = UIColor(named: .FColor)
+        alarmCircleSubTitleLabel.font      = UIFont.mediumSystemFontOfSize(14.0)
         
-        alarmCircleSubTitleLabel.text = L10n.AlarmClockAlarmCircleSubTitle.string
-        
-        alarmCircleSubTitleLabel.textColor = UIColor(named: .AlarmClockSettingDescriptionColor)
-        
-        alarmCircleDescriptionLabel.text = L10n.AlarmClockAlarmCircleDescription.string
-        
-        alarmCircleDescriptionLabel.textColor = UIColor(named: .AlarmClockSettingDescription2Color)
+        alarmCircleDescriptionLabel.text      = L10n.AlarmClockAlarmCircleDescription.string
+        alarmCircleDescriptionLabel.textColor = UIColor(named: .GColor)
+        alarmCircleDescriptionLabel.font      = UIFont.systemFontOfSize(12.0)
         
         deleteBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
-        
-        deleteBtn.backgroundColor = UIColor(named: .AlarmClockDeleteBtnBGColor)
+        deleteBtn.backgroundColor    = UIColor(named: .AlarmClockDeleteBtnBGColor)
     }
     
     /**

@@ -30,13 +30,11 @@ class HomeUserInfo: UIView {
 
     func configuration(delegate: HomeUserDelegate) {
 
-        delegate.userName.textColor = UIColor(named: .HomeViewUserName)
-        delegate.account.textColor = UIColor(named: .HomeViewAccount)
+        delegate.userName.textColor = UIColor(named: .EColor)
+        delegate.account.textColor = UIColor(named: .FColor)
 
-        let font = UIFont.systemFontOfSize(18)
-        font.fontWithSize(0.23)
-        delegate.userName.font = font
-        delegate.account.font = UIFont.systemFontOfSize(14)
+        delegate.userName.font = UIFont.mediumSystemFontOfSize(18.0)
+        delegate.account.font = UIFont.mediumSystemFontOfSize(12)
 
     }
 
