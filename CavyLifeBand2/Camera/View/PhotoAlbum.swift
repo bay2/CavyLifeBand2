@@ -38,6 +38,24 @@ class PhotoAlbum: UIViewController, UIScrollViewDelegate{
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        // 更改UIStatusBar背景颜色
+        let statusBarView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
+        statusBarView.backgroundColor = UIColor.blackColor()
+        self.view.addSubview(statusBarView)
+
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: false)
+        
+    }
+    
     // 照片库 [PFAsset]
     func loadAssetResult(){
         
