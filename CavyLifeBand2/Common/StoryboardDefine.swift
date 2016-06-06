@@ -228,9 +228,6 @@ struct StoryboardScene {
       return StoryboardScene.Relate.RelateAppVCScene.viewController() as! RelateAppVC
     }
   }
-  enum Weather: StoryboardSceneType {
-    static let storyboardName = "Weather"
-  }
 }
 
 struct StoryboardSegue {

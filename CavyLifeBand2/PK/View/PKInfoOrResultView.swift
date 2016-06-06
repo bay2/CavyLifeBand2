@@ -60,8 +60,8 @@ class PKInfoOrResultView: UIView {
         timeTitleLabel.textColor      = UIColor(named: .EColor)
         
         userNameLabel.font       = UIFont.mediumSystemFontOfSize(14.0)
-        competitorNameLabel.font = UIFont.mediumSystemFontOfSize(24.0)
-        userStepLabel.font       = UIFont.mediumSystemFontOfSize(14.0)
+        competitorNameLabel.font = UIFont.mediumSystemFontOfSize(14.0)
+        userStepLabel.font       = UIFont.mediumSystemFontOfSize(24.0)
         competitorStepLabel.font = UIFont.mediumSystemFontOfSize(24.0)
         seeStateLabel.font       = UIFont.mediumSystemFontOfSize(14.0)
         timeTitleLabel.font      = UIFont.mediumSystemFontOfSize(14.0)

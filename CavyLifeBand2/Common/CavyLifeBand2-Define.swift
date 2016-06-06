@@ -59,7 +59,7 @@ struct CavyDefine {
     
     static var sinaShareAppSecret: String = "aeea3f7222fb54b4f65e2be9edd7df47"
     
-    static var sinaShareAppRedirectUri: String = ""
+    static var sinaShareAppRedirectUri: String = "https://api.weibo.com/oauth2/default.html"
     
     static var qqShareAppKey: String = "1105413066"
     

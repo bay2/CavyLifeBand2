@@ -23,9 +23,13 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
     
     @IBOutlet weak var alarmCircleDescriptionLabel: UILabel!
     
-    @IBOutlet weak var separatorViewSeconde: UIView!
+    @IBOutlet weak var separatorLineOne: UIView!
     
-    @IBOutlet weak var LCDeleteBtnHeight: NSLayoutConstraint!
+    @IBOutlet weak var separatorLineTwo: UIView!
+    
+    @IBOutlet weak var bottomView: UIView!
+    
+    @IBOutlet weak var bottomViewHeightLC: NSLayoutConstraint!
     
     let AddClockCollectionViewCell = "AlarmClockDateCollectionViewCell"
     
@@ -99,7 +103,8 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
      */
     func baseSetView() -> Void {
         
-        separatorViewSeconde.backgroundColor = UIColor(named: .SettingSeparatorColor)
+        separatorLineOne.backgroundColor = UIColor(named: .LColor)
+        separatorLineTwo.backgroundColor = UIColor(named: .LColor)
         
         alarmCircleTitleLabel.text      = L10n.AlarmClockAlarmCircleTitle.string
         alarmCircleTitleLabel.textColor = UIColor(named: .EColor)
@@ -133,9 +138,11 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
         deleteBtn.setTitle(L10n.AlarmClockDeleteBtnTitle.string, forState: .Normal)
         
         if addNewClock {
-            LCDeleteBtnHeight.constant = 0
+            bottomViewHeightLC.constant = 0
+            bottomView.hidden = true
         } else {
-            LCDeleteBtnHeight.constant = 50
+            bottomViewHeightLC.constant = 90
+            bottomView.hidden = false
         }
 
     }
