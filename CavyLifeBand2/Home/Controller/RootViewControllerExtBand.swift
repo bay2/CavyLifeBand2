@@ -29,6 +29,14 @@ extension RootViewController: LifeBandBleDelegate {
         
     }
     
+    func bandReConnect() {
+        
+        NSTimer.runThisAfterDelay(seconds: 30) { 
+            self.bandConnect()
+        }
+        
+    }
+    
     /**
      手环连接处理
      
@@ -40,6 +48,7 @@ extension RootViewController: LifeBandBleDelegate {
         if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
             return
         }
+        
         
         LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandMacAddress) {
             
@@ -62,6 +71,9 @@ extension RootViewController: LifeBandBleDelegate {
             LifeBandCtrl.shareInterface.installButtonEven()
             self.syncDataFormBand()
         }
+            
+        
+        
         
     }
     

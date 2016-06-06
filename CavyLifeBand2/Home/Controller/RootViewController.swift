@@ -95,7 +95,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         addNotificationObserver(LifeBandCtrlNotificationName.BandButtonEvenClick4.rawValue, selector: #selector(RootViewController.callEmergency))
         
         // 断线之后尝试连接
-        addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(RootViewController.bandConnect))
+        addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(RootViewController.bandReConnect))
         
         bandInit()
         

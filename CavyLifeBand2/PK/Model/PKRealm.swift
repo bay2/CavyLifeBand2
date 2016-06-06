@@ -66,9 +66,9 @@ class PKDueRealmModel: Object, PKRecordRealmDataSource {
      */
     dynamic var syncState = PKRecordsRealmSyncState.Synced.rawValue
     
-    override class func primaryKey() -> String? {
-        return "pkId"
-    }
+//    override class func primaryKey() -> String? {
+//        return "pkId"
+//    }
     
 }
 

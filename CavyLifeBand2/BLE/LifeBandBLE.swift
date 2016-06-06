@@ -12,9 +12,9 @@ import EZSwiftExtensions
 let serviceUUID = "14839AC4-7D7E-415C-9A42-167340CF2339"
 let sendCommandCharacteristicUUID = "8B00ACE7-EB0B-49B0-BBE9-9AEE0A26E1A3"
 let revcCommandCharacteristicUUID = "0734594A-A8E7-4B1A-A6B1-CD5243059A57"
-let oadServiceUUID     = "f000ffc0-0451-4000-b000-000000000000"
-let oadImgIdentifyUUID = "f000ffc1-0451-4000-b000-000000000000"
-let oadImgBlockUUID    = "f000ffc2-0451-4000-b000-000000000000"
+let oadServiceUUID     = "F000FFC0-0451-4000-B000-000000000000"
+let oadImgIdentifyUUID = "F000FFC1-0451-4000-B000-000000000000"
+let oadImgBlockUUID    = "F000FFC2-0451-4000-B000-000000000000"
 
 /**
  *  手环绑定控制结构
@@ -90,13 +90,15 @@ class LifeBandBle: NSObject {
     static var resendData: NSData = NSData()
     
     /// 期望接收的文件数据索引
-    static var fileDataExIndex: UInt16 = 0
+    static var fileDataExIndex: Int = 0
+    
+    static var remainsLenght: Int = 0
     
     var oadIdenifyCharacteristic: CBCharacteristic?
     
     var oadBlockCharacteristic: CBCharacteristic?
     
-    var updateFWCompletionHander: ((UpdateFirmwareReslut<UpdateFirmwareError>) -> Void)?
+    var updateFWCompletionHander: ((UpdateFirmwareReslut<Double,UpdateFirmwareError>) -> Void)?
     
     
 
@@ -186,9 +188,11 @@ class LifeBandBle: NSObject {
         }
         
         if mode == 0 {
-            writeToPeripheralQueue.append((oadIdenifyCharacteristic, data))
+            self.peripheral?.writeValue(data, forCharacteristic: oadIdenifyCharacteristic, type: .WithoutResponse)
+//            writeToPeripheralQueue.append((oadIdenifyCharacteristic, data))
         } else {
-            writeToPeripheralQueue.append((oadBlockCharacteristic, data))
+//            writeToPeripheralQueue.append((oadBlockCharacteristic, data))
+            self.peripheral?.writeValue(data, forCharacteristic: oadBlockCharacteristic, type: .WithoutResponse)
         }
         
     }
@@ -420,9 +424,20 @@ extension LifeBandBle: CBPeripheralDelegate {
             return service
         }
         
+        _ = services.map { service -> CBService in
+            
+            if service.UUID.isEqual(CBUUID(string: oadServiceUUID)) {
+                peripheral.discoverCharacteristics(nil, forService: service)
+            }
+            
+            return service
+        }
+        
     }
     
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+        
+        Log.info("\(service)")
         
         searchOADCharacteristics(peripheral, service: service)
         
@@ -439,15 +454,16 @@ extension LifeBandBle: CBPeripheralDelegate {
             if chara.UUID.isEqual(CBUUID(string: sendCommandCharacteristicUUID)) {
                 
                 Log.info("bleConnect end")
-                self.connectComplete?()
                 sendCharacteristic = chara
+                self.connectComplete?()
+                
             }
             
             if chara.UUID.isEqual(CBUUID(string: revcCommandCharacteristicUUID)) {
                 revcCharacteristic = chara
+                peripheral.setNotifyValue(true, forCharacteristic: chara)
             }
             
-            peripheral.setNotifyValue(true, forCharacteristic: chara)
             
             return chara
         }
@@ -465,6 +481,8 @@ extension LifeBandBle: CBPeripheralDelegate {
      */
     func searchOADCharacteristics(peripheral: CBPeripheral, service: CBService) {
         
+        Log.info("\(service)")
+        
         guard service.UUID.isEqual(CBUUID(string: oadServiceUUID)) else {
             return
         }
@@ -478,13 +496,15 @@ extension LifeBandBle: CBPeripheralDelegate {
             if chara.UUID.isEqual(CBUUID(string: oadImgIdentifyUUID)) {
                 
                 oadIdenifyCharacteristic = chara
+                peripheral.setNotifyValue(true, forCharacteristic: chara)
             }
             
             if chara.UUID.isEqual(CBUUID(string: oadImgBlockUUID)) {
                 oadBlockCharacteristic = chara
+                peripheral.setNotifyValue(true, forCharacteristic: chara)
             }
             
-            peripheral.setNotifyValue(true, forCharacteristic: chara)
+            
             
             return chara
         }

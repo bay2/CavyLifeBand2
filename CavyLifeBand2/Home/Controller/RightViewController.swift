@@ -34,11 +34,7 @@ class RightViewController: UIViewController {
         
         NSTimer.runThisEvery(seconds: 30) { _ in
             
-            LifeBandCtrl.shareInterface.getBandElectric { [unowned self] electric in
-                
-                self.bandElectricView.setElectric(CGFloat(electric))
-                
-            }
+            self.getBandElectric()
             
         }
         
@@ -48,6 +44,17 @@ class RightViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RightViewController.checkBandLining), name: BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
         
 
+    }
+    
+    func getBandElectric() {
+        
+        LifeBandCtrl.shareInterface.getBandElectric { [unowned self] electric in
+            
+            self.bandElectricView.setElectric(CGFloat(electric))
+            self.fwVersion.text = L10n.BandFWVersion.string + "\(BindBandCtrl.fwVersion)"
+            
+        }
+        
     }
     
     deinit {
@@ -87,6 +94,7 @@ class RightViewController: UIViewController {
             bandTitle.text = L10n.BandTitle.string
             fwVersion.text = L10n.BandFWVersion.string + "\(BindBandCtrl.fwVersion)"
             bandName.text  = LifeBandBle.shareInterface.getPeripheralName()
+            getBandElectric()
             
         }
         
