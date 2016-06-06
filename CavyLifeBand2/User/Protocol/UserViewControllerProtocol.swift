@@ -111,7 +111,7 @@ extension UserViewControllerPresentable where Self: UIViewController {
         
         rightBtn.setTitle(title, forState: .Normal)
         rightBtn.frame = CGRectMake(0, 0, 60, 30)
-        rightBtn.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        rightBtn.setTitleColor(UIColor(named: .AColor), forState: .Normal)
         rightBtn.addTapGesture { [unowned self]  _ in
             self.onClickRightBtn()
         }

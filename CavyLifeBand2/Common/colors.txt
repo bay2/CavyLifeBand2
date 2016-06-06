@@ -116,3 +116,17 @@ RalateAppTableBGColor : #f4f4f4
 
 UpdateProgressViewTextColor: #000000
 UpdateProgressViewProgressColor: #48d299
+
+
+AColor: #ffffff
+BColor: #91e4c2
+CColor: #2b7e5c
+DColor: #3aa87a
+EColor: #585858
+FColor: #8d8d8d
+GColor: #b8b8b8
+HColor: #cccccc
+IColor: #ff7200
+JColor: #ff9138
+KColor: #48d299
+LColor: #e0e0e0

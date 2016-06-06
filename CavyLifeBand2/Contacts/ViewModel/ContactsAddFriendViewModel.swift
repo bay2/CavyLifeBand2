@@ -207,7 +207,7 @@ struct ContactsNewFriendCellViewModel: ContactsNewFriendPortocols {
                 sender.setBackgroundColor(UIColor.clearColor(), forState: .Normal)
                 sender.backgroundColor = UIColor.clearColor()
                 sender.setTitle(L10n.ContactsListCellAlreaydAdd.string, forState: .Normal)
-                sender.setTitleColor(UIColor(named: .ContactsIntrouduce), forState: .Normal)
+                sender.setTitleColor(UIColor(named: .FColor), forState: .Normal)
                 
             }
         }

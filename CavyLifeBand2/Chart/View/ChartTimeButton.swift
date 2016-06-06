@@ -32,8 +32,8 @@ class ChartTimeButton: UIButton {
         nameLabel = UILabel()
         self.addSubview(nameLabel)
         nameLabel.textAlignment = .Center
-        nameLabel.textColor = UIColor(named: .ContactsFindFriendLight)
-        nameLabel.font = UIFont.systemFontOfSize(16)
+        nameLabel.textColor = UIColor(named: .BColor)
+        nameLabel.font = UIFont.mediumSystemFontOfSize(16)
         nameLabel.text = searchBtnTitle[selectIndex]
         nameLabel.snp_makeConstraints { make -> Void in
             make.left.right.top.bottom.equalTo(self)
@@ -58,17 +58,17 @@ class ChartTimeButton: UIButton {
      */
     func selectStatus() {
         
-        nameLabel.textColor = UIColor(named: .ContactsFindFriendDark)
+        nameLabel.textColor = UIColor(named: .AColor)
         flagView.hidden = false
         
     }
     
     /**
-     选中的状态
+     未选中的状态
      */
     func deselectStatus() {
         
-        nameLabel.textColor = UIColor(named: .ContactsFindFriendLight)
+        nameLabel.textColor = UIColor(named: .BColor)
         flagView.hidden = true
     }
     

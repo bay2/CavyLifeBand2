@@ -42,6 +42,10 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
         
     }()
     
+    lazy var shareView: ShareView = {
+        return ShareView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
+    }()
+    
     var navTitle: String = ""
 
     // MARK: viewDidLoad
@@ -75,6 +79,7 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
             
             let button = upperButtonArray[i]
             button.frame = CGRectMake(ez.screenWidth / 3 * CGFloat(i), 0, timeButtonWidth, timeButtonHeight)
+            button.titleLabel?.font = UIFont.systemFontOfSize(16.0)
             button.addTarget(self, action: #selector(changeButtonStatus(_:)), forControlEvents: .TouchUpInside)
             self.view.addSubview(button)
         }
@@ -135,8 +140,6 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
     func onRightBtn() {
         
         clipImage()
-        
-        let shareView = ShareView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
         
         UIApplication.sharedApplication().keyWindow?.addSubview(shareView)
                 
