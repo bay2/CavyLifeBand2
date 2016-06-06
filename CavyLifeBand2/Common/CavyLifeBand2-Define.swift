@@ -53,7 +53,6 @@ struct CavyDefine {
     
     static var shareImageName: String = "CavyLifeBand2ShareImage"
     
-<<<<<<< HEAD
     static var shareSDKAppKey: String = "12dda1a902dc9"
     
     static var sinaShareAppKey: String = "3896444646"
@@ -68,8 +67,6 @@ struct CavyDefine {
     
     static var wechatShareAppSecret: String = "41058772462b6033ea37a9c9f7ef0bb2"
     
-=======
->>>>>>> a5cceb87fce30fe5705263c47b2fab3116eb9530
     /**
      性别数字转汉字
      

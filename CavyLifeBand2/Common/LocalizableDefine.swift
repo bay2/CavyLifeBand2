@@ -113,7 +113,7 @@ enum L10n {
   case GuideWeight
   /// 目标
   case GuideGoal
-  /// 运动步数
+  /// 计步
   case GuideGoalStep
   /// 睡眠
   case GuideGoalSleep
@@ -123,8 +123,12 @@ enum L10n {
   case GuideAverage
   /// 推荐
   case GuideRecommend
-  /// 可以更好地帮助健康统计哦
+  /// 可以更好的帮助健康统计哦！
   case GuideIntroduce
+  /// 分钟
+  case GuideMinute
+  /// 小时
+  case GuideHour
   /// 设置
   case GuideSetting
   /// 跳过
@@ -355,6 +359,8 @@ enum L10n {
   case ContactsShowInfoBirth
   /// PK
   case ContactsShowInfoPK
+  /// 点击查看
+  case ContactsShowInfoPKSubInfo
   /// 计步
   case ContactsShowInfoStep
   /// 睡眠
@@ -393,6 +399,8 @@ enum L10n {
   case AccountInfoChangeNicknamePlaceholder
   /// 输入地址
   case AccountInfoChangeAddressPlaceholder
+  /// 您已累计行走
+  case AccountInfoAchieveViewNumPrefix
   /// 手环振动提醒 取消传统声音唤醒体系
   case AlarmClockIntelligentClockTableFooterInfo
   /// 智能闹钟
@@ -724,6 +732,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Guide.Recommend")
       case .GuideIntroduce:
         return L10n.tr("Guide.Introduce")
+      case .GuideMinute:
+        return L10n.tr("Guide.Minute")
+      case .GuideHour:
+        return L10n.tr("Guide.Hour")
       case .GuideSetting:
         return L10n.tr("Guide.Setting")
       case .GuidePassButton:
@@ -954,6 +966,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.ShowInfo.Birth")
       case .ContactsShowInfoPK:
         return L10n.tr("Contacts.ShowInfo.PK")
+      case .ContactsShowInfoPKSubInfo:
+        return L10n.tr("Contacts.ShowInfo.PKSubInfo")
       case .ContactsShowInfoStep:
         return L10n.tr("Contacts.ShowInfo.Step")
       case .ContactsShowInfoSleep:
@@ -992,6 +1006,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("AccountInfo.ChangeNickname.Placeholder")
       case .AccountInfoChangeAddressPlaceholder:
         return L10n.tr("AccountInfo.ChangeAddress.Placeholder")
+      case .AccountInfoAchieveViewNumPrefix:
+        return L10n.tr("AccountInfo.AchieveView.NumPrefix")
       case .AlarmClockIntelligentClockTableFooterInfo:
         return L10n.tr("AlarmClock.IntelligentClockTableFooter.Info")
       case .AlarmClockTitle:

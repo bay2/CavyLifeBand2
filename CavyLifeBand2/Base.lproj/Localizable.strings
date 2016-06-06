@@ -74,12 +74,14 @@
 "Guide.Height" = "身高";
 "Guide.Weight" = "体重";
 "Guide.Goal" = "目标";
-"Guide.GoalStep" = "运动步数";
+"Guide.GoalStep" = "计步";
 "Guide.GoalSleep" = "睡眠";
 "Guide.Step" = "步";
 "Guide.Average" = "平均";
 "Guide.Recommend" = "推荐";
-"Guide.Introduce" = "可以更好地帮助健康统计哦";
+"Guide.Introduce" = "可以更好的帮助健康统计哦！";
+"Guide.Minute" = "分钟";
+"Guide.Hour" = "小时";
 
 "Guide.Setting" = "设置";
 "Guide.PassButton" = "跳过";
@@ -209,6 +211,7 @@
 "Contacts.ShowInfo.Weight" = "体重";
 "Contacts.ShowInfo.Birth" = "生日";
 "Contacts.ShowInfo.PK" = "PK";
+"Contacts.ShowInfo.PKSubInfo" = "点击查看";
 "Contacts.ShowInfo.Step" = "计步";
 "Contacts.ShowInfo.Sleep" = "睡眠";
 "Contacts.ShowInfo.Achievement" = "成就";
@@ -230,6 +233,7 @@
 "AccountInfo.Camera" = "拍照";
 "AccountInfo.ChangeNickname.Placeholder" = "输入昵称";
 "AccountInfo.ChangeAddress.Placeholder" = "输入地址";
+"AccountInfo.AchieveView.NumPrefix" = "您已累计行走";
 
 //闹钟
 "AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";

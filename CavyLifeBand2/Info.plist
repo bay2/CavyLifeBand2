@@ -52,11 +52,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-<<<<<<< HEAD
 	<string>13</string>
-=======
-	<string>11</string>
->>>>>>> a5cceb87fce30fe5705263c47b2fab3116eb9530
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>sinaweibo</string>
@@ -94,5 +90,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

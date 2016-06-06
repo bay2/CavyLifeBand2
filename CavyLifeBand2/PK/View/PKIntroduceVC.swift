@@ -35,6 +35,7 @@ class PKIntroduceVC: UIViewController, BaseViewControllerPresenter {
         updateNavUI()
         
         let rulesView = NSBundle.mainBundle().loadNibNamed("PKRulesView", owner: nil, options: nil).first as? PKRulesView
+        rulesView?.configure(PKIntroduceVCViewDataSource())
         rulesContainerView.addSubview(rulesView!)
         
         rulesView?.snp_makeConstraints(closure: {(make) in
@@ -61,8 +62,11 @@ class PKIntroduceVC: UIViewController, BaseViewControllerPresenter {
         titleLabel.text = L10n.PKIntroduceVCInfoTitle.string
         infoLabel.text  = L10n.PKIntroduceVCSelectInfo.string
         
-        titleLabel.textColor = UIColor(named: .PKIntroduceVCLabelColor)
-        infoLabel.textColor  = UIColor(named: .PKIntroduceVCLabelColor)
+        titleLabel.textColor = UIColor(named: .AColor)
+        infoLabel.textColor  = UIColor(named: .GColor)
+        
+        titleLabel.font = UIFont.systemFontOfSize(14.0)
+        infoLabel.font = UIFont.mediumSystemFontOfSize(14.0)
         
         infoImage.image = UIImage.imageWithColor(UIColor.lightGrayColor(), size: infoImage.size)
         

@@ -38,8 +38,12 @@ class ContactsFriendListCell: UITableViewCell {
 
         headView.roundSquareImage()
 
-        nameLabel.textColor = UIColor(named: .ContactsName)
-        nameLabel.font = UIFont.systemFontOfSize(16)
+        nameLabel.textColor = UIColor(named: .EColor)
+        nameLabel.font = UIFont.mediumSystemFontOfSize(16)
+        
+        topLine.backgroundColor = UIColor(named: .LColor)
+        bottomLine.backgroundColor = UIColor(named: .LColor)
+        
         let cellBgView = UIView()
         cellBgView.backgroundColor = UIColor(named: .ContactsCellSelect)
         self.selectedBackgroundView = cellBgView

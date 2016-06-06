@@ -55,13 +55,13 @@ protocol MenuCellDateSource {
 extension MenuCellDateSource {
     
     var titleColor: UIColor {
-        return UIColor.whiteColor()
+        return UIColor(named: .AColor)
     }
     
     var titleFont: UIFont {
         
-        let font = UIFont.systemFontOfSize(16)
-        font.fontWithSize(0.23)
+        let font = UIFont.mediumSystemFontOfSize(16)
+       
         return font
         
     }
