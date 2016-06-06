@@ -21,13 +21,13 @@ class RelateAppCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        titleLabel.font = UIFont.mediumSystemFontOfSize(16.0)
+        titleLabel.font = UIFont.systemFontOfSize(16.0)
         sizeLabel.font = UIFont.systemFontOfSize(12.0)
-        infoLabel.font = UIFont.mediumSystemFontOfSize(14.0)
+        infoLabel.font = UIFont.systemFontOfSize(12.0)
         
-        titleLabel.textColor = UIColor(named: .EColor)
-        sizeLabel.textColor = UIColor(named: .FColor)
-        infoLabel.textColor = UIColor(named: .GColor)
+        titleLabel.textColor = UIColor(named: .RalateAppCellTitleColor)
+        sizeLabel.textColor = UIColor(named: .RalateAppCellSizeColor)
+        infoLabel.textColor = UIColor(named: .RalateAppCellInfoColor)
         
         logoImageView.layer.borderWidth = 1.0 / 3
         logoImageView.layer.borderColor =  UIColor(named: .RalateAppCellImageBorderColor).CGColor

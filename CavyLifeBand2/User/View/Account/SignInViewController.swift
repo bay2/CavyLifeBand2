@@ -29,9 +29,6 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     // 忘记密码按钮
     @IBOutlet weak var forgetPasswdBtn: UIButton!
     
-    // textfield之间的分割线
-    @IBOutlet weak var separatorLine: UIView!
-    
     var realm: Realm = try! Realm()
     
     var userName: String {
@@ -61,8 +58,8 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     var rightBtn: UIButton? = {
         
         let button = UIButton(type: .System)
-        button.setTitleColor(UIColor(named: .AColor), forState: .Normal)
-        button.titleLabel?.font = UIFont.mediumSystemFontOfSize(14)
+        button.setTitleColor(UIColor(named: .SignInMainTextColor), forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(16)
         button.frame = CGRectMake(0, 0, 60, 30)
         button.setTitle(L10n.SignUpSignUpBtn.string, forState: .Normal)
         return button
@@ -78,8 +75,6 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         
         // 设置控件title
         setSubViewTitle()
-        
-        separatorLine.backgroundColor = UIColor(named: .LColor)
         
         userNameTextField.becomeFirstResponder()
         userNameTextField.backgroundColor = UIColor.whiteColor()
@@ -112,8 +107,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         passwdTextField.placeholder = L10n.SignInPasswdTextField.string
         
         forgetPasswdBtn.titleLabel?.text = L10n.SignInForgotPasswdBtn.string
-        forgetPasswdBtn.setTitleColor(UIColor(named: .AColor), forState: .Normal)
-        forgetPasswdBtn.titleLabel?.font = UIFont.systemFontOfSize(14.0)
+        forgetPasswdBtn.setTitleColor(UIColor(named: .SignInForgotPwdBtnText), forState: .Normal)
         
         signInBtn.titleLabel?.text = L10n.SignInPasswdTextField.string
         

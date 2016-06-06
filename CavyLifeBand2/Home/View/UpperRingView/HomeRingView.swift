@@ -156,7 +156,12 @@ class HomeRingView: UIView {
             lineLayer.path = linePath.CGPath
             self.layer.addSublayer(lineLayer)
         }
+<<<<<<< HEAD
 
+=======
+        
+     
+>>>>>>> a5cceb87fce30fe5705263c47b2fab3116eb9530
     }
     
     /**
@@ -243,7 +248,7 @@ class HomeRingView: UIView {
             let step = String(currentNumber)
             let stepUnit = "\(L10n.GuideStep.string)"
             
-            currentLabel!.attributedText =  NSMutableAttributedString().attributeString(step, numSize: 30, unit: stepUnit, unitSize: 16)
+            currentLabel!.attributedText =  NSMutableAttributedString().attributeString(step, numSize: 32, unit: stepUnit, unitSize: 18)
             
             percentLabel?.text = "\(L10n.HomeStepRingPercerntText)\(percent)%"
             

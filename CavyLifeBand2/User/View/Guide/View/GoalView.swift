@@ -74,8 +74,7 @@ class GoalView: UIView {
 
         // 页面名称
         titleLab.text = L10n.GuideGoal.string
-        titleLab.font = UIFont.mediumSystemFontOfSize(18)
-        titleLab.textColor = UIColor(named: .EColor)
+        titleLab.textColor = UIColor(named: .GuideColorCC)
         titleLab.snp_makeConstraints { make -> Void in
             make.top.equalTo(self).offset(ez.screenWidth * 0.08)
         }
@@ -89,24 +88,21 @@ class GoalView: UIView {
     func  stepMoudleLayout() {
         // 单位：步
         stepUnit.text = L10n.GuideStep.string
-        stepUnit.textColor = UIColor(named: .EColor)
-        stepUnit.font = UIFont.mediumSystemFontOfSize(14)
+        stepUnit.textColor = UIColor(named: .GuideColorCC)
         stepUnit.snp_makeConstraints { make -> Void in
             make.right.equalTo(self).offset(0 - ez.screenWidth * 0.08)
         }
         
         // 目标步数
         stepValue.text = String(stepCurrentValue)
-        stepValue.textColor = UIColor(named: .EColor)
-        stepValue.font = UIFont.mediumSystemFontOfSize(30)
+        stepValue.textColor = UIColor(named: .GuideColorCC)
         stepValue.snp_makeConstraints { make -> Void in
             make.top.equalTo(titleLab).offset(ez.screenWidth * 0.14)
         }
         
         // 计步模块
         stepModlue.text = L10n.GuideGoalStep.string
-        stepModlue.font = UIFont.mediumSystemFontOfSize(14)
-        stepModlue.textColor = UIColor(named: .EColor)
+        stepModlue.textColor = UIColor(named: .GuideColorCC)
         stepModlue.snp_makeConstraints { make -> Void in
             make.left.equalTo(self).offset(ez.screenWidth * 0.08)
         }
@@ -118,9 +114,8 @@ class GoalView: UIView {
         }
         
         // 平均值线
-        stepPinAvg.textColor = UIColor(named: .HColor)
-        stepPinAvg.font = UIFont.mediumSystemFontOfSize(14)
-        stepPineLine.backgroundColor = UIColor(named: .HColor)
+        stepPinAvg.textColor = UIColor(named: .GuideColor33)
+        stepPineLine.backgroundColor = UIColor(named: .GuideColor33)
         stepPineLine.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.04)
             make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
@@ -131,9 +126,8 @@ class GoalView: UIView {
         }
         
         // 推荐值线
-        stepPinRecom.textColor = UIColor(named: .HColor)
-        stepPinRecom.font = UIFont.mediumSystemFontOfSize(14)
-        stepPinRecomLIne.backgroundColor = UIColor(named: .HColor)
+        stepPinRecom.textColor = UIColor(named: .GuideColor33)
+        stepPinRecomLIne.backgroundColor = UIColor(named: .GuideColor33)
         stepPinRecomLIne.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.04)
             make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
@@ -149,32 +143,26 @@ class GoalView: UIView {
     // 添加睡眠目标模块
     func sleepModuleLayout(){
         
-        // 单位：分钟
-        sleepMMUnit.text = L10n.GuideMinute.string
-        sleepMMUnit.font = UIFont.mediumSystemFontOfSize(14)
-        sleepMMUnit.textColor = UIColor(named: .EColor)
+        // 单位：min
+        sleepMMUnit.text = "min"
+        sleepMMUnit.textColor = UIColor(named: .GuideColorCC)
         sleepMMUnit.snp_makeConstraints { make -> Void in
             make.right.equalTo(self).offset(0 - ez.screenWidth * 0.08)
         }
         sleepMMValue.text = String(mmCurrentValue)
-        sleepMMValue.textColor = UIColor(named: .EColor)
-        sleepMMValue.font = UIFont.mediumSystemFontOfSize(30)
+        sleepMMValue.textColor = UIColor(named: .GuideColorCC)
         sleepMMValue.snp_makeConstraints { make -> Void in
             make.top.equalTo(stepSlider).offset(ez.screenWidth * 0.22)
         }
 
-        // 单位：小时
-        sleepHHUnit.text = L10n.GuideHour.string
-        sleepHHUnit.textColor = UIColor(named: .EColor)
-        sleepHHUnit.font = UIFont.mediumSystemFontOfSize(14)
+        // 单位： h
+        sleepHHUnit.textColor = UIColor(named: .GuideColorCC)
         sleepHHValue.text = String(hhCurrentValue)
-        sleepHHValue.font = UIFont.mediumSystemFontOfSize(30)
-        sleepHHValue.textColor = UIColor(named: .EColor)
+        sleepHHValue.textColor = UIColor(named: .GuideColorCC)
         
         // 睡眠模块
         sleepModlue.text = L10n.GuideGoalSleep.string
-        sleepModlue.font = UIFont.mediumSystemFontOfSize(14)
-        sleepModlue.textColor = UIColor(named: .EColor)
+        sleepModlue.textColor = UIColor(named: .GuideColorCC)
         sleepModlue.snp_makeConstraints { make -> Void in
             make.left.equalTo(self).offset(ez.screenWidth * 0.08)
         }
@@ -186,9 +174,8 @@ class GoalView: UIView {
         }
 
         // 平均值线
-        sleepPinAvgLab.textColor = UIColor(named: .HColor)
-        sleepPinAvgLab.font = UIFont.mediumSystemFontOfSize(14)
-        sleepPineAvgLine.backgroundColor = UIColor(named: .HColor)
+        sleepPinAvgLab.textColor = UIColor(named: .GuideColor33)
+        sleepPineAvgLine.backgroundColor = UIColor(named: .GuideColor33)
         sleepPineAvgLine.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.04)
             make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
@@ -199,13 +186,12 @@ class GoalView: UIView {
         }
         
         // 推荐值线
-        sleepPinRecomLine.backgroundColor = UIColor(named: .HColor)
+        sleepPinRecomLine.backgroundColor = UIColor(named: .GuideColor33)
         sleepPinRecomLine.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.04)
             make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
         }
-        sleepPinRecomLab.textColor = UIColor(named: .HColor)
-        sleepPinRecomLab.font = UIFont.mediumSystemFontOfSize(14)
+        sleepPinRecomLab.textColor = UIColor(named: .GuideColor33)
         sleepPinRecomLab.snp_makeConstraints { make -> Void in
             make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.06 - 14)
         }

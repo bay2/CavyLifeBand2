@@ -54,6 +54,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      - date: 2016-06-01
      */
     func setRootViewController() {
+        
         if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
             return
         }
@@ -87,17 +88,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      */
     func registerShareSdk() {
         
-        ShareSDK.registerApp(CavyDefine.shareSDKAppKey)
+        ShareSDK.registerApp("12dda1a902dc9")
         
         // 新浪微博
-        ShareSDK.connectSinaWeiboWithAppKey(CavyDefine.sinaShareAppKey, appSecret: CavyDefine.sinaShareAppSecret, redirectUri: CavyDefine.sinaShareAppRedirectUri, weiboSDKCls: WeiboSDK.classForCoder())
+        ShareSDK.connectSinaWeiboWithAppKey("3896444646", appSecret: "aeea3f7222fb54b4f65e2be9edd7df47", redirectUri: "http://sns.whalecloud.com/sina2/callback", weiboSDKCls: WeiboSDK.classForCoder())
         
         // QQ
-        ShareSDK.connectQQWithAppId(CavyDefine.qqShareAppKey, qqApiCls: QQApiInterface.classForCoder())
+        ShareSDK.connectQQWithAppId("1105413066", qqApiCls: QQApiInterface.classForCoder())
         
         // Wechat
-        ShareSDK.connectWeChatTimelineWithAppId(CavyDefine.wechatShareAppKey, appSecret: CavyDefine.wechatShareAppSecret, wechatCls: WXApi.classForCoder())
-        ShareSDK.connectWeChatSessionWithAppId(CavyDefine.wechatShareAppKey, appSecret: CavyDefine.wechatShareAppSecret, wechatCls: WXApi.classForCoder())
+        ShareSDK.connectWeChatTimelineWithAppId("", appSecret: "", wechatCls: WXApi.classForCoder())
+        ShareSDK.connectWeChatSessionWithAppId("", appSecret: "", wechatCls: WXApi.classForCoder())
         
     }
     

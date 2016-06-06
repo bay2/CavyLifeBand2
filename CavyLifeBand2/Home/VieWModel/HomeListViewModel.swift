@@ -22,7 +22,7 @@ struct HomeListStepViewModel: HomeListViewModelProtocol {
     
     
     init(stepNumber: Int) {
-        resultNum = NSMutableAttributedString().attributeString(String(stepNumber), numSize: 30, unit: L10n.GuideStep.string, unitSize: 12)
+        resultNum = NSMutableAttributedString().attributeString(String(stepNumber), numSize: 16, unit: L10n.GuideStep.string, unitSize: 14)
     }
     
     func onClickCell() {
@@ -46,11 +46,11 @@ struct HomeListSleepViewModel: HomeListViewModelProtocol {
     var resultNum: NSMutableAttributedString
     
     init(sleepTime: Int) {
-
+        
         let sleepHour = sleepTime / 6
         let sleepMin = (sleepTime - sleepHour * 6) * 10
-        resultNum = NSMutableAttributedString().attributeString(String(sleepHour), numSize: 30, unit: L10n.HomeSleepRingUnitHour.string, unitSize: 12)
-        resultNum.appendAttributedString(NSMutableAttributedString().attributeString(String(sleepMin), numSize: 30, unit: L10n.HomeSleepRingUnitMinute.string, unitSize: 12))
+        resultNum = NSMutableAttributedString().attributeString(String(sleepHour), numSize: 16, unit: L10n.HomeSleepRingUnitHour.string, unitSize: 14)
+        resultNum.appendAttributedString(NSMutableAttributedString().attributeString(String(sleepMin), numSize: 16, unit: L10n.HomeSleepRingUnitMinute.string, unitSize: 14))
     }
     
     func onClickCell() {
@@ -76,6 +76,7 @@ struct HomeListAchiveViewModel: HomeListViewModelProtocol {
     // 0 ~ 5 共6个徽章 返回编号
     init(medalIndex: Int) {
         
+<<<<<<< HEAD
 //        switch medalIndex {
 //            
 //        case 0:
@@ -97,6 +98,29 @@ struct HomeListAchiveViewModel: HomeListViewModelProtocol {
 //        default:
 //            self.image = UIImage(asset: .Medal5000000Lighted)
 //        }
+=======
+        switch medalIndex {
+            
+        case 0 :
+
+            self.image = UIImage(asset: .Medal5000Lighted)
+        case 1:
+            
+            self.image = UIImage(asset: .Medal20000Lighted)
+        case 2:
+            
+            self.image = UIImage(asset: .Medal100000Lighted)
+        case 3:
+            
+            self.image = UIImage(asset: .Medal500000Lighted)
+        case 4:
+            
+            self.image = UIImage(asset: .Medal1000000Lighted)
+ 
+        default:
+            self.image = UIImage(asset: .Medal5000000Lighted)
+        }
+>>>>>>> a5cceb87fce30fe5705263c47b2fab3116eb9530
         
         let stepArray = [5000, 20000, 100000, 500000, 1000000, 5000000]
         resultNum = NSMutableAttributedString().attributeString(String(stepArray[medalIndex]), numSize: 28, unit: L10n.GuideStep.string, unitSize: 12)

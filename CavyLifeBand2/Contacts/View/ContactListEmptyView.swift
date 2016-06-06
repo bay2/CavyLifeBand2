@@ -19,8 +19,7 @@ class ContactListEmptyView: UIView {
     }
     
     override func awakeFromNib() {
-        infoLabel.textColor = UIColor(named: .HColor)
-        infoLabel.font = UIFont.mediumSystemFontOfSize(14.0)
+        infoLabel.textColor = UIColor(named: .ContactsTableEmptyTextColor)
         self.backgroundColor = UIColor.whiteColor()
     }
 

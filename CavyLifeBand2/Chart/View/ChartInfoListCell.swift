@@ -18,12 +18,9 @@ class ChartInfoListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        leftLabel.textColor = UIColor(named: .EColor)
-        rightLabel.textColor = UIColor(named: .EColor)
+        leftLabel.textColor = UIColor(named: .HomeViewUserName)
+        rightLabel.textColor = UIColor(named: .HomeViewUserName)
 
-        leftLabel.font = UIFont.mediumSystemFontOfSize(16.0)
-        rightLabel.font = UIFont.mediumSystemFontOfSize(16.0)
-        
         self.selectionStyle = .None
         
         

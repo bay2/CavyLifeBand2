@@ -32,7 +32,7 @@ class ContactsPersonInfoVC: UIViewController, BaseViewControllerPresenter {
         
     }
     
-    var navTitle: String { return L10n.ContactsTitle.string }
+    var navTitle: String { return L10n.ContactsNavTitleAccountInfo.string }
     
     var friendId: String = ""
     

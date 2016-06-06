@@ -18,7 +18,7 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
     
     @IBOutlet weak var qualityTableView: UITableView!
     
-    var navTitle: String { return L10n.ContactsTitle.string }
+    var navTitle: String { return L10n.ContactsNavTitleAccountInfo.string }
     
     let sectionCornerViewHeight: CGFloat = 10.0
     
@@ -49,7 +49,7 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
     //个人信息cell VMs
     lazy var infoTableCellVM: [PresonInfoListCellViewModel] = {
         
-        return [PresonInfoListCellViewModel(title: L10n.ContactsShowInfoNotesName.string, info: L10n.ContactsShowInfoTransformNotes.string, infoTextColor: UIColor(named: .GColor)),
+        return [PresonInfoListCellViewModel(title: L10n.ContactsShowInfoNotesName.string, info: L10n.ContactsShowInfoTransformNotes.string, infoTextColor: UIColor(named: .ContactsIntrouduce)),
                 PresonInfoListCellViewModel(title: L10n.ContactsShowInfoCity.string),
                 PresonInfoListCellViewModel(title: L10n.ContactsShowInfoOld.string),
                 PresonInfoListCellViewModel(title: L10n.ContactsShowInfoGender.string),

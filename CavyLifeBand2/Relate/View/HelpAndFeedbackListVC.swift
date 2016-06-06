@@ -23,12 +23,12 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         
         let button = UIButton(type: .System)
         
-        let titleSize = L10n.RelateHelpAndFeedbackNavRightBtnTitle.string.boundingRectWithSize(CGSizeMake(100, 20), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.mediumSystemFontOfSize(14.0)], context: nil)
+        let titleSize = L10n.RelateHelpAndFeedbackNavRightBtnTitle.string.boundingRectWithSize(CGSizeMake(100, 20), options: .UsesLineFragmentOrigin, attributes: [NSFontAttributeName: UIFont.systemFontOfSize(14.0)], context: nil)
         
         button.frame = CGRectMake(0, 0, titleSize.width, 30)
         button.setTitle(L10n.RelateHelpAndFeedbackNavRightBtnTitle.string, forState: .Normal)
-        button.titleLabel?.font = UIFont.mediumSystemFontOfSize(14.0)
-        button.setTitleColor(UIColor(named: .AColor), forState: .Normal)
+        button.titleLabel?.font = UIFont.systemFontOfSize(14.0)
+        button.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         
         return button
         
@@ -138,7 +138,9 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
                 }
                 
                 guard let helpList = resultMsg.helpList else {
+                    
                     return
+                
                 }
                 
                 for help in helpList {
