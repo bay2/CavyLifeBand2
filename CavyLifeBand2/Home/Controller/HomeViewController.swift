@@ -34,8 +34,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             button.setBackgroundImage(UIImage(asset: .HomeDisBandMenu), forState: .Normal)
         }
         
-        
-        
         return button
         
     }()
@@ -193,7 +191,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func parseChartListData() {
         
-        if isExistStepChartsData() { return }
+        if isNeedUpdateStepData() == false { return }
         
         // 计步
         ChartsWebApi.shareApi.parseStepChartData { result in
@@ -218,8 +216,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             
         }
         
-        if isExistSleepChartsData() { return }
-        
+        if isNeedUpdateSleepData() == false { return }
         // 睡眠
         ChartsWebApi.shareApi.parseSleepChartData { result in
             guard result.isSuccess else {

@@ -24,7 +24,7 @@ class PKRulesVC: UIViewController, BaseViewControllerPresenter {
         updateNavUI()
         
         let rulesView = NSBundle.mainBundle().loadNibNamed("PKRulesView", owner: nil, options: nil).first as? PKRulesView
-        
+        rulesView?.configure(PKRulesVCViewDataSource())
         self.view.addSubview(rulesView!)
         
         rulesView?.snp_makeConstraints(closure: {(make) in

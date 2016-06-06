@@ -210,7 +210,7 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
     init() {
         
         let guideSet = StoryboardScene.Guide.instantiateGuideView()
-        let guideViewModel = GuideGoalViewModel()
+        let guideViewModel = GuideGoalViewModel(viewStyle: .RightMenu)
         guideSet.configView(guideViewModel, delegate: guideViewModel)
         
         items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuTarget),

@@ -90,9 +90,9 @@ class PKFinishRealmModel: Object, PKRecordRealmDataSource {
      */
     dynamic var syncState = PKRecordsRealmSyncState.Synced.rawValue
     
-    override class func primaryKey() -> String? {
-        return "pkId"
-    }
+//    override class func primaryKey() -> String? {
+//        return "pkId"
+//    }
     
 }
 
@@ -114,7 +114,7 @@ protocol SinglePKRealmModelOperateDelegate {
 extension SinglePKRealmModelOperateDelegate {
 
     func getPKDueRecordByPKId(pkid: String) -> PKDueRealmModel? {
-        let predicate = NSPredicate(format: "pkId = %@", pkid)
+        let predicate = NSPredicate(format: "pkId = %@ AND loginUserId = %@", pkid, CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
         guard let due = realm.objects(PKDueRealmModel).filter(predicate).first else {
             Log.warning("\(#function) 该记录不存在")
@@ -125,7 +125,7 @@ extension SinglePKRealmModelOperateDelegate {
     }
     
     func getPKFinishRecordByPKId(pkid: String) -> PKFinishRealmModel? {
-        let predicate = NSPredicate(format: "pkId = %@", pkid)
+        let predicate = NSPredicate(format: "pkId = %@ AND loginUserId = %@", pkid, CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
         guard let finish = realm.objects(PKFinishRealmModel).filter(predicate).first else {
             Log.warning("\(#function) 该记录不存在")

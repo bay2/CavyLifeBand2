@@ -58,7 +58,7 @@ class EmergencyWebApi: NetRequestAdapter, EmergencyContactRealmListOperateDelega
      */
     func sendEmergencyMsg(callBack: CompletionHandlernType? = nil) throws {
         
-        SCLocationManager.shareInterface.startUpdateLocation({ coordinate in
+        SCLocationManager.shareInterface.startUpdateLocation { coordinate in
             
             let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.SendEmergencyMsg.rawValue,
                 UserNetRequsetKey.UserID.rawValue: self.userId,
@@ -67,7 +67,7 @@ class EmergencyWebApi: NetRequestAdapter, EmergencyContactRealmListOperateDelega
             
             self.netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
             
-        }, cityComplete: nil)
+        }
         
     }
     

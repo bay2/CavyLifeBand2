@@ -42,6 +42,10 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
         
     }()
     
+    lazy var shareView: ShareView = {
+        return ShareView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
+    }()
+    
     var navTitle: String = ""
 
     // MARK: viewDidLoad
@@ -136,8 +140,6 @@ class ChartBaseViewController: UIViewController, BaseViewControllerPresenter, Ch
     func onRightBtn() {
         
         clipImage()
-        
-        let shareView = ShareView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
         
         UIApplication.sharedApplication().keyWindow?.addSubview(shareView)
                 
