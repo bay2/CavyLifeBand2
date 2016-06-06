@@ -178,7 +178,7 @@ extension NSDate {
         
         var returnArray: [String] = []
         
-        let daysCount = (NSDate() - self).totalDays 
+        let daysCount = (NSDate() - self).totalDays + 1
         
         if daysCount < 1 {
             

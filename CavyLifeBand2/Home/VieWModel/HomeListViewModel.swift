@@ -68,7 +68,7 @@ struct HomeListSleepViewModel: HomeListViewModelProtocol {
  */
 struct HomeListAchiveViewModel: HomeListViewModelProtocol {
     
-    var image: UIImage
+    var image: UIImage { return UIImage(asset: .HomeListHonor) }
     var title: String { return L10n.HomeTimeLineCellAchive.string }
     var friendName: String{ return "" }
     var friendIconUrl: String { return "" }
@@ -76,6 +76,29 @@ struct HomeListAchiveViewModel: HomeListViewModelProtocol {
     // 0 ~ 5 共6个徽章 返回编号
     init(medalIndex: Int) {
         
+<<<<<<< HEAD
+//        switch medalIndex {
+//            
+//        case 0:
+//
+//            self.image = UIImage(asset: .Medal5000Lighted)
+//        case 1:
+//            
+//            self.image = UIImage(asset: .Medal20000Lighted)
+//        case 2:
+//            
+//            self.image = UIImage(asset: .Medal100000Lighted)
+//        case 3:
+//            
+//            self.image = UIImage(asset: .Medal500000Lighted)
+//        case 4:
+//            
+//            self.image = UIImage(asset: .Medal1000000Lighted)
+// 
+//        default:
+//            self.image = UIImage(asset: .Medal5000000Lighted)
+//        }
+=======
         switch medalIndex {
             
         case 0 :
@@ -97,10 +120,10 @@ struct HomeListAchiveViewModel: HomeListViewModelProtocol {
         default:
             self.image = UIImage(asset: .Medal5000000Lighted)
         }
+>>>>>>> a5cceb87fce30fe5705263c47b2fab3116eb9530
         
         let stepArray = [5000, 20000, 100000, 500000, 1000000, 5000000]
-        resultNum = NSMutableAttributedString(string: "\(stepArray[medalIndex])\(L10n.GuideStep.string)")
-        
+        resultNum = NSMutableAttributedString().attributeString(String(stepArray[medalIndex]), numSize: 28, unit: L10n.GuideStep.string, unitSize: 12)
     }
     
     func onClickCell() {

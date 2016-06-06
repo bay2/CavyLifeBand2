@@ -86,8 +86,9 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         let sleepDegreeArray = [Double(self.deepSleep), Double(self.lightSleep)]
         
         if deepSleep == 0 && lightSleep == 0 {
-            
+
             lineAndTextColor = UIColor.clearColor()
+
         }
         
         for i in 0 ..< dataCount {
@@ -114,11 +115,15 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         formatter.multiplier = 1
         formatter.percentSymbol = " %"
         
-        dataSet.valueLinePart1OffsetPercentage = 0.8
-        dataSet.valueLinePart1Length = 0.5
-        dataSet.valueLinePart2Length = 0.5
-        dataSet.yValuePosition = .OutsideSlice
-        dataSet.valueLineColor = lineAndTextColor
+        // 如果深睡浅睡都为0 指出来的线不知道起点在哪 error
+        if deepSleep != 0 && lightSleep != 0 {
+            
+            dataSet.valueLinePart1OffsetPercentage = 0.8
+            dataSet.valueLinePart1Length = 0.5
+            dataSet.valueLinePart2Length = 0.5
+            dataSet.yValuePosition = .OutsideSlice
+            dataSet.valueLineColor = lineAndTextColor
+        }
         
         data.setValueFormatter(formatter)
         data.setValueFont(UIFont.systemFontOfSize(11))
@@ -126,7 +131,13 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
 
         self.data = data
         self.highlightValues(nil)
-        self.animate(xAxisDuration: 1, yAxisDuration: 1)
+        
+        // 如果深睡浅睡都为0 动效也不知道从哪开始 会有error
+        if deepSleep != 0 && lightSleep != 0 {
+            
+            self.animate(xAxisDuration: 1, yAxisDuration: 1)
+        }
+        
     }
     
     // MARK: -- ChartViewDelegate

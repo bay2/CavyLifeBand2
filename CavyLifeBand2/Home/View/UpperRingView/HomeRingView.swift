@@ -34,6 +34,7 @@ class HomeRingView: UIView {
     var ringWidth: CGFloat = 0
     var ringColor: UIColor = UIColor.clearColor()
     
+    
     /**
      默认设置 布局 和 环形配置
      */
@@ -95,7 +96,14 @@ class HomeRingView: UIView {
      默认环形背景设置
      */
     func ringDefultView() {
-
+        
+        // 百分比Label
+        percentLabel?.textColor = UIColor(named: .AColor)
+        percentLabel?.font = UIFont.mediumSystemFontOfSize(12.0)
+        
+        // 当前示数Label
+        currentLabel?.textColor = UIColor(named: .AColor)
+     
         switch ringStyle {
             
         case .StepRing:
@@ -104,13 +112,24 @@ class HomeRingView: UIView {
             ringWidth = 16
             ringColor = UIColor(named: .HomeStepRingColor)
             
+            currentLabel!.attributedText =  NSMutableAttributedString().attributeString("0", numSize: 30, unit: L10n.GuideStep.string, unitSize: 16)
+            
+            percentLabel?.text = "\(L10n.HomeStepRingPercerntText.string)\(0)%"
+            
         case .SleepRing:
             
             diameter = ez.screenWidth * 0.4
             ringWidth = 14
             ringColor = UIColor(named: .HomeSleepRingColor)
+
+            let attrs: NSMutableAttributedString = NSMutableAttributedString().attributeString("0", numSize: 16, unit: L10n.HomeSleepRingUnitHour.string, unitSize: 12)
+            attrs.appendAttributedString(NSMutableAttributedString().attributeString("0", numSize: 16, unit: L10n.HomeSleepRingUnitMinute.string, unitSize: 12))
+            currentLabel!.attributedText = attrs
+            
+            percentLabel!.text = "\(L10n.HomeSleepRingPercerntText.string)\(0)%"
             
         }
+        
         // 贝塞尔曲线
         let center = CGPoint(x: diameter / 2, y: diameter / 2)
         let redius = diameter / 2 - ringWidth / 2
@@ -137,8 +156,12 @@ class HomeRingView: UIView {
             lineLayer.path = linePath.CGPath
             self.layer.addSublayer(lineLayer)
         }
+<<<<<<< HEAD
+
+=======
         
      
+>>>>>>> a5cceb87fce30fe5705263c47b2fab3116eb9530
     }
     
     /**

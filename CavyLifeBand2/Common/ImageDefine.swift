@@ -91,6 +91,7 @@ extension UIImage {
     case PersonalInfoHonorNormal = "PersonalInfoHonorNormal"
     case PersonalInfoMale = "PersonalInfoMale"
     case PKAttention = "PKAttention"
+    case PKHelp = "PKHelp"
     case PKInvitationAddBtn = "PKInvitationAddBtn"
     case PKNextBtnNormal = "PKNextBtnNormal"
     case PKWinner = "PKWinner"

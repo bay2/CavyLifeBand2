@@ -90,7 +90,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     }
     
     deinit {
-        Log.error("deinit SignInViewController")
+        Log.info("deinit SignInViewController")
     }
     
     override func didReceiveMemoryWarning() {
@@ -256,7 +256,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
             }
             
             // 通过查询用户信息判断是否是老的豚鼠用户
-            self.queryUserInfoByNet(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
+            self.queryUserInfoByNet(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, vc: self) {
                 
                 guard let userProfile = $0 else {
                     return

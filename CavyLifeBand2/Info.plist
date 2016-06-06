@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.1</string>
+	<string>1.0.2</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -40,9 +40,23 @@
 				<string>wb3896444646</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>CavyLifeBand2Wechat</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>wx5369dd21e588ac2b</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
+<<<<<<< HEAD
+	<string>13</string>
+=======
 	<string>11</string>
+>>>>>>> a5cceb87fce30fe5705263c47b2fab3116eb9530
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>sinaweibo</string>

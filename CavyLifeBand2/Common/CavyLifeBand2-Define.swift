@@ -53,6 +53,23 @@ struct CavyDefine {
     
     static var shareImageName: String = "CavyLifeBand2ShareImage"
     
+<<<<<<< HEAD
+    static var shareSDKAppKey: String = "12dda1a902dc9"
+    
+    static var sinaShareAppKey: String = "3896444646"
+    
+    static var sinaShareAppSecret: String = "aeea3f7222fb54b4f65e2be9edd7df47"
+    
+    static var sinaShareAppRedirectUri: String = "https://api.weibo.com/oauth2/default.html"
+    
+    static var qqShareAppKey: String = "1105413066"
+    
+    static var wechatShareAppKey: String = "wx5369dd21e588ac2b"
+    
+    static var wechatShareAppSecret: String = "41058772462b6033ea37a9c9f7ef0bb2"
+    
+=======
+>>>>>>> a5cceb87fce30fe5705263c47b2fab3116eb9530
     /**
      性别数字转汉字
      

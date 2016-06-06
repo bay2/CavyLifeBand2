@@ -66,6 +66,22 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         super.didReceiveMemoryWarning()
     }
     
+    lazy var rightBtn: UIButton? =  {
+        
+        let button = UIButton(type: .System)
+        button.frame = CGRectMake(0, 0, 30, 30)
+        button.setBackgroundImage(UIImage(asset: .PKHelp), forState: .Normal)
+        
+        return button
+        
+    }()
+    
+    func onRightBtn() -> Void {
+        
+        self.pushVC(StoryboardScene.PK.instantiatePKRulesVC())
+   
+    }
+    
     @IBAction func addAction(sender: UIButton) {
         
         let pkSelectVC = StoryboardScene.PK.instantiatePKSelectOppTVC()

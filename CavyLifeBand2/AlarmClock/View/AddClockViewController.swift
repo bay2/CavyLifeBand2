@@ -23,9 +23,13 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
     
     @IBOutlet weak var alarmCircleDescriptionLabel: UILabel!
     
-    @IBOutlet weak var separatorViewSeconde: UIView!
+    @IBOutlet weak var separatorLineOne: UIView!
     
-    @IBOutlet weak var LCDeleteBtnHeight: NSLayoutConstraint!
+    @IBOutlet weak var separatorLineTwo: UIView!
+    
+    @IBOutlet weak var bottomView: UIView!
+    
+    @IBOutlet weak var bottomViewHeightLC: NSLayoutConstraint!
     
     let AddClockCollectionViewCell = "AlarmClockDateCollectionViewCell"
     
@@ -62,13 +66,6 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
 
         self.automaticallyAdjustsScrollViewInsets = false
         
-//        self.navigationItem.title = L10n.AlarmClockTitle.string
-        
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "AlarmClockNavSave"),
-//                                                                 style: .Plain,
-//                                                                 target: self,
-//                                                                 action: #selector(rightBarBtnAciton(_:)))
-//
         collectionView.registerNib(UINib(nibName: AddClockCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: AddClockCollectionViewCell)
         
         updateNavUI()
@@ -106,23 +103,23 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
      */
     func baseSetView() -> Void {
         
-        separatorViewSeconde.backgroundColor = UIColor(named: .SettingSeparatorColor)
+        separatorLineOne.backgroundColor = UIColor(named: .LColor)
+        separatorLineTwo.backgroundColor = UIColor(named: .LColor)
         
-        alarmCircleTitleLabel.text = L10n.AlarmClockAlarmCircleTitle.string
+        alarmCircleTitleLabel.text      = L10n.AlarmClockAlarmCircleTitle.string
+        alarmCircleTitleLabel.textColor = UIColor(named: .EColor)
+        alarmCircleTitleLabel.font      = UIFont.mediumSystemFontOfSize(16.0)
         
-        alarmCircleTitleLabel.textColor = UIColor(named: .AlarmClockSettingTitleColor)
+        alarmCircleSubTitleLabel.text      = L10n.AlarmClockAlarmCircleSubTitle.string
+        alarmCircleSubTitleLabel.textColor = UIColor(named: .FColor)
+        alarmCircleSubTitleLabel.font      = UIFont.mediumSystemFontOfSize(14.0)
         
-        alarmCircleSubTitleLabel.text = L10n.AlarmClockAlarmCircleSubTitle.string
-        
-        alarmCircleSubTitleLabel.textColor = UIColor(named: .AlarmClockSettingDescriptionColor)
-        
-        alarmCircleDescriptionLabel.text = L10n.AlarmClockAlarmCircleDescription.string
-        
-        alarmCircleDescriptionLabel.textColor = UIColor(named: .AlarmClockSettingDescription2Color)
+        alarmCircleDescriptionLabel.text      = L10n.AlarmClockAlarmCircleDescription.string
+        alarmCircleDescriptionLabel.textColor = UIColor(named: .GColor)
+        alarmCircleDescriptionLabel.font      = UIFont.systemFontOfSize(12.0)
         
         deleteBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
-        
-        deleteBtn.backgroundColor = UIColor(named: .AlarmClockDeleteBtnBGColor)
+        deleteBtn.backgroundColor    = UIColor(named: .AlarmClockDeleteBtnBGColor)
     }
     
     /**
@@ -141,9 +138,11 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
         deleteBtn.setTitle(L10n.AlarmClockDeleteBtnTitle.string, forState: .Normal)
         
         if addNewClock {
-            LCDeleteBtnHeight.constant = 0
+            bottomViewHeightLC.constant = 0
+            bottomView.hidden = true
         } else {
-            LCDeleteBtnHeight.constant = 50
+            bottomViewHeightLC.constant = 90
+            bottomView.hidden = false
         }
 
     }

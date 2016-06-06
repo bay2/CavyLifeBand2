@@ -14,7 +14,7 @@ import Log
 protocol QueryUserInfoRequestsDelegate {
     
     
-    func queryUserInfoByNet(queryUserId: String, completeHeadle: (UserProfile? -> Void)?)
+    func queryUserInfoByNet(queryUserId: String, vc: UIViewController?, completeHeadle: (UserProfile? -> Void)?)
     
 }
 
@@ -24,11 +24,12 @@ extension QueryUserInfoRequestsDelegate {
     /**
      查询用户信息
      */
-    func queryUserInfoByNet(queryUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, completeHeadle completeHandle: (UserProfile? -> Void)? = nil) {
+    func queryUserInfoByNet(queryUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, vc: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController, completeHeadle completeHandle: (UserProfile? -> Void)? = nil) {
         
         UserNetRequestData.shareApi.queryProfile(queryUserId) { result in
             
             guard result.isSuccess else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(vc, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
                 completeHandle?(nil)
                 return
             }
@@ -36,6 +37,7 @@ extension QueryUserInfoRequestsDelegate {
             let resultMsg = try! UserProfileMsg(JSONDecoder(result.value!))
             
             guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(vc, webApiErrorCode: resultMsg.commonMsg?.code ?? "")
                 completeHandle?(nil)
                 return
             }
