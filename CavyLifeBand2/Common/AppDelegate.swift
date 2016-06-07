@@ -149,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      - author: sim cai
      - date: 2016-06-01
      
-     - parameter updateMethodWithDictionary: <#updateMethodWithDictionary description#>
+     - parameter updateMethodWithDictionary: 
      */
     func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {
         

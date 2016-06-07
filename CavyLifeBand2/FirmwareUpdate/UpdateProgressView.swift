@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EZSwiftExtensions
 
 /// UpdateProgressView(frame: CGRect(x: 0, y: 0, width: UpdateProgressView.viewW, height: UpdateProgressView.viewH))
 
@@ -34,6 +35,10 @@ class UpdateProgressView: UIView {
     var progressView: UIView
     
     private var progress: Double = 0.0
+    
+    private static var markView = UIView()
+    
+    private static let updateProgressView =  UpdateProgressView(frame: CGRect(x: 0, y: 0, width: UpdateProgressView.viewW, height: UpdateProgressView.viewH))
     
     // MARK: - LifeCircle
     deinit {
@@ -158,14 +163,13 @@ class UpdateProgressView: UIView {
     /**
      更新进度条
      */
-    func updateProgress(progress: Double, completion: ((progress: Double) -> Void)) {
+    func updateProgress(progress: Double, completion: ((progress: Double) -> Void)? = nil) {
         
         if progress > 1.0 {
             self.progress = 1.0
         } else {
             self.progress = progress
         }
-        
         
         titleLabel.text = L10n.UpdateProgressTitle.string + (self.progress * 100).toInt.toString + "%"
         
@@ -180,9 +184,54 @@ class UpdateProgressView: UIView {
             self.progressAlphaView.layoutIfNeeded()
         }) { [unowned self] result in
             
-            completion(progress: self.progress)
+            completion?(progress: self.progress)
                         
         }
+        
+    }
+    
+    /**
+     显示
+     
+     - author: sim cai
+     - date: 2016-06-03
+     */
+    static func show() -> UpdateProgressView {
+        
+        UpdateProgressView.markView.backgroundColor = UIColor(named: .HomeViewMaskColor)
+        
+        guard let superView = UIApplication.sharedApplication().keyWindow?.rootViewController?.view else {
+            return UpdateProgressView.updateProgressView
+        }
+        
+        superView.addSubview(UpdateProgressView.markView)
+        
+        
+        UpdateProgressView.markView.snp_makeConstraints { (make) in
+            make.top.bottom.left.right.equalTo(superView)
+        }
+        
+        markView.addSubview(UpdateProgressView.updateProgressView)
+        UpdateProgressView.updateProgressView.snp_makeConstraints { (make) in
+            make.center.equalTo(markView)
+            make.width.equalTo(UpdateProgressView.viewW)
+            make.height.equalTo(UpdateProgressView.viewH)
+        }
+        
+        return UpdateProgressView.updateProgressView
+        
+    }
+    
+    /**
+     隐藏
+     
+     - author: sim cai
+     - date: 2016-06-03
+     */
+    static func hide() {
+        
+        UpdateProgressView.markView.removeFromSuperview()
+        UpdateProgressView.updateProgressView.updateProgress(0, completion: nil)
         
     }
     
