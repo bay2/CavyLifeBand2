@@ -34,8 +34,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             button.setBackgroundImage(UIImage(asset: .HomeDisBandMenu), forState: .Normal)
         }
         
-        
-        
         return button
         
     }()
@@ -193,11 +191,51 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func parseChartListData() {
         
-        if isExistStepChartsData() { return }
+        var startDate = ""
+        var endDate = ""
         
-        // 计步
-        ChartsWebApi.shareApi.parseStepChartData { result in
+        if isNeedUpdateStepData() {
             
+            let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+            
+            if personalList.count != 0 {
+                
+                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd")
+                endDate = NSDate().toString(format: "yyyy-MM-dd")
+                
+            }
+        }
+        
+        parseStepDate(startDate, endDate: endDate)
+        
+        
+        if isNeedUpdateSleepData() {
+            
+            let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
+            
+            if personalList.count != 0 {
+                
+                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd")
+                endDate = NSDate().toString(format: "yyyy-MM-dd")
+                
+            }
+            
+        }
+        
+        parseSleepDate(startDate, endDate: endDate)
+ 
+    }
+    
+      /**
+     解析计步数据
+     时间格式： yyyy-MM-dd
+     有时间：更新数据
+     没有时间：解析全部数据
+     */
+    func parseStepDate(startDate: String, endDate: String) {
+
+        ChartsWebApi.shareApi.parseStepChartsData(startDate, endDate: endDate) { result in
+
             guard result.isSuccess else {
                 Log.error("Parse Home Lists Data Error")
                 return
@@ -217,11 +255,19 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             }
             
         }
-        
-        if isExistSleepChartsData() { return }
-        
-        // 睡眠
-        ChartsWebApi.shareApi.parseSleepChartData { result in
+
+    }
+    
+    /**
+     解析睡眠数据
+     时间格式： yyyy-MM-dd
+     有时间：更新数据
+     没有时间：解析全部数据
+     */
+    func parseSleepDate(startDate: String, endDate: String) {
+
+        ChartsWebApi.shareApi.parseSleepChartsData(startDate, endDate: endDate) { result in
+            
             guard result.isSuccess else {
                 Log.error("Parse Home Lists Data Error")
                 return
@@ -239,10 +285,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             }
             
         }
-        
+
     }
     
-    /**
+      /**
      添加计步信息
      
      - author: sim cai

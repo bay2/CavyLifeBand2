@@ -70,9 +70,6 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         }
         imgView.image = UIImage(asset: .HomeTimelineCorn)
         
-        // 接受通知
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeDatePage), name: "ChangeDatePage", object: nil)
-
     }
     
     
@@ -144,7 +141,6 @@ extension HomeDateView: UIScrollViewDelegate {
             return
         }
         
-        
         if countFloat - CGFloat(count) >= 0.5 {
             
             count += 1
@@ -158,19 +154,5 @@ extension HomeDateView: UIScrollViewDelegate {
     
     }
     
-//    /**
-//     改变CollectionView对应页数
-//     
-//     - parameter sender:
-//     */
-//    func changeDatePage(sender: NSNotification){
-//        
-//        let count = sender.userInfo!["currentPage"] as! CGFloat
-//        
-//        self.collectionView!.setContentOffset(CGPointMake(count * labelWidth, 0), animated: true)
-//        
-//    }
-    
-
 }
 

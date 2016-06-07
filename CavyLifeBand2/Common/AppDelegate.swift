@@ -30,10 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             
         #endif
         
-        if ez.isRelease {
-            Log.enabled = false
-            crashConfig()
-        }
+//        if ez.isRelease {
+//            Log.enabled = false
+//            crashConfig()
+//        }
         
         realmConfig()
         
@@ -149,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      - author: sim cai
      - date: 2016-06-01
      
-     - parameter updateMethodWithDictionary: <#updateMethodWithDictionary description#>
+     - parameter updateMethodWithDictionary: 
      */
     func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {
         

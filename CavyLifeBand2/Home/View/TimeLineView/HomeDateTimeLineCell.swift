@@ -27,7 +27,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     var notificationSleepToken: NotificationToken?
     
     // VM 数组
-    var datasViewModels: [HomeListViewModelProtocol] = []
+    var datasViewModels: [HomeListViewModelProtocol] = [HomeListStepViewModel(stepNumber: 0), HomeListSleepViewModel(sleepTime: 0)]
     
     override func awakeFromNib() {
         
@@ -63,10 +63,11 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
             
             switch change {
             case .Initial(let value):
-                self.datasViewModels = self.queryRealmGetViewModelLists(value)
+                self.datasViewModels += self.queryRealmGetViewModelLists(value)
                 self.tableView.reloadData()
             case .Update(let value, deletions: _, insertions: _, modifications: _):
-                self.datasViewModels = self.queryRealmGetViewModelLists(value)
+                self.datasViewModels[1...self.datasViewModels.count - 1].removeAll()
+                self.datasViewModels += self.queryRealmGetViewModelLists(value)
                 self.tableView.reloadData()
             default:
                 break
@@ -82,7 +83,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      - author: sim cai
      - date: 2016-06-02
      
-     - returns: <#return value description#>
+     - returns:
      */
     func initNotificationSleep() {
         
@@ -281,14 +282,8 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         var listVM: [HomeListViewModelProtocol] = []
         
         guard let listRealm = homeListRealm.first else {
-            listVM.append(HomeListStepViewModel(stepNumber: 0))
-            listVM.append(HomeListSleepViewModel(sleepTime: 0))
             return listVM
         }
-        
-        // 计步睡眠
-        listVM.append(HomeListStepViewModel(stepNumber: 0))
-        listVM.append(HomeListSleepViewModel(sleepTime: 0))
 
         // PK
         if listRealm.pkList.count > 0 {

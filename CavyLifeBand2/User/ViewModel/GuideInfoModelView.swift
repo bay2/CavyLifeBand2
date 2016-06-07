@@ -119,7 +119,7 @@ struct GuideWeightViewModel: GuideViewModelPotocols {
         GuideUserInfo.userInfo.weight = weightView.weightString
         
         let nextVC = StoryboardScene.Guide.instantiateGuideView()
-        let goalVM = GuideGoalViewModel()
+        let goalVM = GuideGoalViewModel(viewStyle: .Guide)
         
         nextVC.configView(goalVM, delegate: goalVM)
         
@@ -127,6 +127,11 @@ struct GuideWeightViewModel: GuideViewModelPotocols {
         
     }
     
+}
+
+enum GoalViewStyle {
+    case Guide
+    case RightMenu
 }
 
 /**
@@ -139,8 +144,11 @@ struct GuideGoalViewModel: GuideViewModelPotocols {
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
     var centerView: UIView
+    var viewStyle: GoalViewStyle
     
-    init() {
+    init(viewStyle: GoalViewStyle) {
+        
+        self.viewStyle = viewStyle
         
         guard let goalView = NSBundle.mainBundle().loadNibNamed("GoalView", owner: nil, options: nil).first as? GoalView else {
             self.centerView = UIView()
@@ -167,13 +175,22 @@ struct GuideGoalViewModel: GuideViewModelPotocols {
         GuideUserInfo.userInfo.sleepTime = goalView.sleepTimeString
         GuideUserInfo.userInfo.stepNum = goalView.stepCurrentValue
         
-        let nextVC = StoryboardScene.Guide.instantiateGuideView()
+        if self.viewStyle == .Guide {
         
-        let setVM = GuideSetNoticeViewModel()
-        
-        nextVC.configView(setVM, delegate: setVM)
-        
-        viewController.pushVC(nextVC)
+            let nextVC = StoryboardScene.Guide.instantiateGuideView()
+            
+            let setVM = GuideSetNoticeViewModel()
+            
+            nextVC.configView(setVM, delegate: setVM)
+            
+            viewController.pushVC(nextVC)
+            
+        } else {
+            
+            // 返回主页
+            viewController.popVC()
+            
+        }
         
     }
     

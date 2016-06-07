@@ -16,34 +16,11 @@ class ChartsWebApi: NetRequestAdapter {
     static var shareApi = ChartsWebApi()
     
     /**
-     计步的时间段数据
-     */
-    func parseStepChartData(callBack: CompletionHandlernType? = nil) {
-        
-        let parameters: [String: AnyObject] = ["cmd": "getStepCount", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
-        
-        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
-        
-    }
-    
-    /**
-     睡眠的时间段数据
-     */
-    func parseSleepChartData(callBack: CompletionHandlernType? = nil) {
-        
-        let parameters: [String: AnyObject] = ["cmd": "getSleepTime", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
-        
-        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
-        
-    }
-
-    
-    /**
-     计步的时间段数据
+     计步的时间段数据  
      */
     func parseStepChartsData(startDate: String? = "", endDate: String? = "", callBack: CompletionHandlernType? = nil) {
         
-        let parameters: [String: AnyObject] = ["cmd": "getStepCount", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "startDate": startDate!, "startDate": endDate!]
+        let parameters: [String: AnyObject] = ["cmd": "getStepCount", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "startDate": startDate!, "endDate": endDate!]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
         
@@ -54,7 +31,7 @@ class ChartsWebApi: NetRequestAdapter {
      */
     func parseSleepChartsData(startDate: String? = "", endDate: String? = "", callBack: CompletionHandlernType? = nil) {
         
-        let parameters: [String: AnyObject] = ["cmd": "getSleepTime", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "startDate": startDate!, "startDate": endDate!]
+        let parameters: [String: AnyObject] = ["cmd": "getSleepInfo", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "startDate": startDate!, "endDate": endDate!]
         
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
         

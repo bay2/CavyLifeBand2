@@ -37,7 +37,7 @@ extension CoordinateReport {
      */
     private func reportServer() {
         
-        SCLocationManager.shareInterface.startUpdateLocation({ coordinate in
+        SCLocationManager.shareInterface.startUpdateLocation { coordinate in
             
             let parameter = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.ReportCoordinate.rawValue,
                 UserNetRequsetKey.UserID.rawValue: self.userId,
@@ -46,7 +46,7 @@ extension CoordinateReport {
             
             self.netPostRequestAdapter(CavyDefine.webApiAddr, para: parameter)
             
-            }, cityComplete: nil)
+            }
         
     }
     
