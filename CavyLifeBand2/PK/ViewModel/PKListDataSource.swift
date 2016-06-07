@@ -296,7 +296,7 @@ struct PKFinishListDataSource: PKListDataProtocols {
             
         }
         
-        delAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
+        delAction.backgroundColor = UIColor(named: .NColor)
         return [delAction]
         
     }

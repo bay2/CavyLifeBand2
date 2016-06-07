@@ -165,8 +165,11 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         // 退出登录按钮
         logoutButton.setTitle(L10n.AccountInfoLoginoutButtonTitle.string, forState: .Normal)
         logoutButton.layer.cornerRadius = CavyDefine.commonCornerRadius
-        logoutButton.backgroundColor = UIColor(named: .ContactsAccountLogoutButton)
-        logoutButton.setBackgroundColor(UIColor(named: .ContactsAccountLogoutButton), forState: .Normal)
+        logoutButton.backgroundColor = UIColor(named: .QColor)
+        logoutButton.setBackgroundColor(UIColor(named: .QColor), forState: .Normal)
+        logoutButton.titleLabel?.font = UIFont.mediumSystemFontOfSize(18.0)
+        logoutButton.setTitleColor(UIColor(named: .AColor), forState: .Normal)
+        
         
         // 退出按钮手势
         logoutButton.addTapGesture { _ in

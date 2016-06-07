@@ -246,6 +246,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#e0e0e0"></span>
     /// Alpha: 100% <br/> (0xe0e0e0ff)
     case LColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#f2f2f2"></span>
+    /// Alpha: 100% <br/> (0xf2f2f2ff)
+    case MColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffd954"></span>
     /// Alpha: 100% <br/> (0xffd954ff)
     case MainPageBtn
@@ -255,6 +258,15 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ecbc46"></span>
     /// Alpha: 100% <br/> (0xecbc46ff)
     case MainPageSelectedBtn
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#dddddd"></span>
+    /// Alpha: 100% <br/> (0xddddddff)
+    case NColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ffd46c"></span>
+    /// Alpha: 100% <br/> (0xffd46cff)
+    case OColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#b46e00"></span>
+    /// Alpha: 100% <br/> (0xb46e00ff)
+    case PColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 70% <br/> (0x000000b3)
     case PKChallengeViewNormalTitleColor
@@ -306,6 +318,12 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
     /// Alpha: 20% <br/> (0x00000033)
     case PageIndicatorTintColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff6749"></span>
+    /// Alpha: 100% <br/> (0xff6749ff)
+    case QColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#000000"></span>
+    /// Alpha: 100% <br/> (0x000000ff)
+    case RColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#8d8d8d"></span>
     /// Alpha: 100% <br/> (0x8d8d8dff)
     case RalateAppCellImageBorderColor
@@ -470,9 +488,13 @@ extension UIColor {
       case .JColor: return 0xff9138ff
       case .KColor: return 0x48d299ff
       case .LColor: return 0xe0e0e0ff
+      case .MColor: return 0xf2f2f2ff
       case .MainPageBtn: return 0xffd954ff
       case .MainPageBtnText: return 0xb46e00ff
       case .MainPageSelectedBtn: return 0xecbc46ff
+      case .NColor: return 0xddddddff
+      case .OColor: return 0xffd46cff
+      case .PColor: return 0xb46e00ff
       case .PKChallengeViewNormalTitleColor: return 0x000000b3
       case .PKChallengeViewRulesTitleColor: return 0xff7200ff
       case .PKChallengeViewTopViewBGColor: return 0xff7200ff
@@ -490,6 +512,8 @@ extension UIColor {
       case .PKRulesViewTitleColor: return 0x000000b3
       case .PKTimePickerSeparatorColor: return 0xe5e5e5ff
       case .PageIndicatorTintColor: return 0x00000033
+      case .QColor: return 0xff6749ff
+      case .RColor: return 0x000000ff
       case .RalateAppCellImageBorderColor: return 0x8d8d8dff
       case .RalateAppCellInfoColor: return 0xb8b8b8ff
       case .RalateAppCellSizeColor: return 0x8d8d8dff

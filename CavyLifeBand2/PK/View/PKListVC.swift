@@ -42,7 +42,8 @@ class PKListVC: UIViewController, BaseViewControllerPresenter, PKRecordsUpdateFo
         addDataSource(PKFinishListDataSource(realm: self.realm))
         
         //修改PK按钮UI
-        launchPKBtn.setBackgroundColor(UIColor(named: .PKRecordsCellPKAgainBtnBGColor), forState: .Normal)
+        launchPKBtn.setBackgroundColor(UIColor(named: .JColor), forState: .Normal)
+        launchPKBtn.setTitleColor(UIColor(named: .AColor), forState: .Normal)
         launchPKBtn.setTitle(L10n.PKRecordsVCLaunchPkTitle.string, forState: .Normal)
         
         loadItemData()
