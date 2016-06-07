@@ -101,9 +101,7 @@ struct HomeListAchiveViewModel: HomeListViewModelProtocol {
         let stepArray = [5000, 20000, 100000, 500000, 1000000, 5000000]
         
         resultNum = NSMutableAttributedString().attributeString(stepArray[medalIndex].toString, numSize: 30, unit: L10n.GuideStep.string, unitSize: 12)
-   
-//        resultNum = NSMutableAttributedString(string: "\(stepArray[medalIndex])\(L10n.GuideStep.string)")
-        
+
     }
     
     func onClickCell() {
@@ -129,7 +127,7 @@ struct HomeListPKViewModel: HomeListViewModelProtocol {
     init(friendName: String, pkId: String, result: String) {
         self.friendName = friendName
         self.pkId = pkId
-        resultNum = NSMutableAttributedString(string: result)
+        resultNum = NSMutableAttributedString().attributeString(result, numSize: 24, unit: "", unitSize: 0)
     }
     
     func onClickCell() {
