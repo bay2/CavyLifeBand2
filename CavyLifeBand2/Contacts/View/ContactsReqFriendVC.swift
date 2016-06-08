@@ -29,7 +29,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     @IBOutlet weak var requestTextField: UITextField!
     
     /// Button
-    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var sendButton: MainPageButton!
     
     var requestStyle: RequestStyle = .AddFriend
     
@@ -85,10 +85,6 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         
         textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
-        sendButton.layer.cornerRadius = CavyDefine.commonCornerRadius
-        sendButton.setTitleColor(UIColor(named: .MainPageBtnText), forState: .Normal)
-        sendButton.setBackgroundColor(UIColor(named: .MainPageBtn), forState: .Normal)
-        sendButton.backgroundColor = UIColor(named: .MainPageBtn)
         sendButton.setTitle(dataSource?.bottonTitle, forState: .Normal)
         
         requestTextField.placeholder = dataSource?.placeholderText

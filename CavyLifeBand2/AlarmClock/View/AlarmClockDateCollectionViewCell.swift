@@ -57,8 +57,8 @@ class AlarmClockDateCollectionViewCell: UICollectionViewCell {
         
         dateBtn.titleLabel?.font = UIFont.mediumSystemFontOfSize(16.0)
         
-        dateBtn.setBackgroundColor(UIColor(named: .AlarmClockDateBtnBGNormalColor), forState: .Normal)
-        dateBtn.setBackgroundColor(UIColor(named: .AlarmClockDateBtnBGSelectedColor), forState: .Selected)
+        dateBtn.setBackgroundColor(UIColor(named: .MColor), forState: .Normal)
+        dateBtn.setBackgroundColor(UIColor(named: .JColor), forState: .Selected)
         
         dateBtn.highlighted = false
         
