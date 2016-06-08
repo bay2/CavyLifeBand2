@@ -231,7 +231,6 @@
 		918AA2301CE328070022AE30 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AA22F1CE328070022AE30 /* CoreBluetooth.framework */; };
 		918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E26D21C88307900115C4E /* NSUserDefaultsExtension.swift */; };
 		918E26DC1C891CDE00115C4E /* SignInUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918E26DB1C891CDE00115C4E /* SignInUITests.swift */; };
-		918EBCB91D05DB2A00258D08 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 918EBCB81D05DB2A00258D08 /* Default-568h@2x.png */; };
 		9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */; };
 		9199DA251C48D2BF009672C4 /* SignUpTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199DA241C48D2BF009672C4 /* SignUpTest.swift */; };
 		9199E4881CAE4A7D00397883 /* AccountMangerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9199E4871CAE4A7D00397883 /* AccountMangerProtocol.swift */; };
@@ -581,7 +580,6 @@
 		918AA22F1CE328070022AE30 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		918E26D21C88307900115C4E /* NSUserDefaultsExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultsExtension.swift; sourceTree = "<group>"; };
 		918E26DB1C891CDE00115C4E /* SignInUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInUITests.swift; sourceTree = "<group>"; };
-		918EBCB81D05DB2A00258D08 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		91931FBDB93D6202BBC98835 /* Pods-CavyLifeBand2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9197CF9D1C58BADE00E5D1C9 /* NetRequestAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequestAdapter.swift; sourceTree = "<group>"; };
 		9199DA241C48D2BF009672C4 /* SignUpTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpTest.swift; sourceTree = "<group>"; };
@@ -1291,7 +1289,6 @@
 		917DA95F1C3B8EB700FF675D = {
 			isa = PBXGroup;
 			children = (
-				918EBCB81D05DB2A00258D08 /* Default-568h@2x.png */,
 				917DA96A1C3B8EB700FF675D /* CavyLifeBand2 */,
 				917DA97F1C3B8EB800FF675D /* CavyLifeBand2Tests */,
 				917DA98A1C3B8EB800FF675D /* CavyLifeBand2UITests */,
@@ -1845,7 +1842,6 @@
 				68C558D51CB754090031719D /* IntelligentClockCell.xib in Resources */,
 				91EB796D1CAE075C00ED3E67 /* Sign_In_Ok.json in Resources */,
 				917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */,
-				918EBCB91D05DB2A00258D08 /* Default-568h@2x.png in Resources */,
 				91E1B4D11CA510BD008ADEE6 /* ContactsPersonInfoListCell.xib in Resources */,
 				6836557F1CBC84B7009373EA /* SecondsCollectionViewCell.xib in Resources */,
 				91E1B4CA1CA510BD008ADEE6 /* ContactsLetterView.xib in Resources */,
@@ -2027,7 +2023,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\n  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n  echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+			shellScript = "if hash tailor 2>/dev/null; then\n tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -10,9 +10,11 @@ import EZSwiftExtensions
 import RealmSwift
 
 
+//TODO: 固件升级测试数据
 let testFile = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F17.bin"
 let testFile30 = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2H25F30.bin"
-let testFile31 = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F31.bin"
+let testFile31E = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F31e.bin"
+let testFile31 = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F31e.bin"
 
 /**
  *  菜单项 view model
@@ -52,7 +54,7 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
         
         let updateView = UpdateProgressView.show()
         
-        
+        //TODO: 固件升级，等服务器接口完成，这边补充版本校验和下载地址获取
         self.downloadFirmware(testFile31) {
             
                 LifeBandBle.shareInterface.updateFirmware($0) {
