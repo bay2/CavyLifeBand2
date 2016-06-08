@@ -91,64 +91,6 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
         
         self.collectionView!.setContentOffset(CGPointMake(count * ez.screenWidth, 0), animated: true)
         
-        // TODO：保护机制 如果没有怎么办呢
-//        let pageIndex = Int(count)
-//        let cell = collectionView!.dequeueReusableCellWithReuseIdentifier("HomeDateTimeLineCell", forIndexPath: NSIndexPath(forItem: pageIndex, inSection: 0)) as! HomeDateTimeLineCell
-//        cell.timeString = dateArray[pageIndex]
-//        cell.configLayout()
-        
-        
     }
-    
 
 }
-
-// MARK: - UIScrollViewDelegate
-/*
-extension HomeTimeLineView: UIScrollViewDelegate {
-    
-    // 停止拖拽
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        
-        scrollViewEndAction(scrollView)
-        
-    }
-    
-    // 滑动拖拽
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        scrollViewEndAction(scrollView)
-        
-    }
-    
-    /**
-     滑动结束事件
-     */
-    func scrollViewEndAction(scrollView: UIScrollView) {
-        
-        let collView = scrollView as! UICollectionView
-        
-        let countFloat = collView.contentOffset.x / ez.screenWidth
-        
-        var count = Int(countFloat)
-        Log.info(count)
-        
-        if count < 0 || count > dateArray.count {
-            return
-        }
-        
-        
-        if countFloat - CGFloat(count) >= 0.5 {
-            
-            count += 1
-        }
-        
-        collView.setContentOffset(CGPointMake(CGFloat(count) * ez.screenWidth, 0), animated: true)
-        
-        // 通知绑定日期和时间轴的同步
-        NSNotificationCenter.defaultCenter().postNotificationName("ChangeDatePage", object: nil, userInfo: ["currentPage": count])
-        
-    }
-    
-}
-*/
