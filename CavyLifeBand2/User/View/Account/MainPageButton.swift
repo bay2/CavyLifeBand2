@@ -20,13 +20,13 @@ class MainPageButton: UIButton {
     
     override func awakeFromNib() {
         
-        self.setTitleColor(UIColor(named: .MainPageBtnText), forState: .Normal)
-        self.setBackgroundColor(UIColor(named: .MainPageBtn), forState: .Normal)
+        self.setTitleColor(UIColor(named: .PColor), forState: .Normal)
+        self.setBackgroundColor(UIColor(named: .OColor), forState: .Normal)
         
         self.layer.masksToBounds = true
         self.layer.cornerRadius = CavyDefine.commonCornerRadius
         
-        self.titleLabel?.font = UIFont.systemFontOfSize(18)
+        self.titleLabel?.font = UIFont.mediumSystemFontOfSize(18)
         
     }
     

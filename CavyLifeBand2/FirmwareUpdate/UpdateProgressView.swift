@@ -207,12 +207,12 @@ class UpdateProgressView: UIView {
         superView.addSubview(UpdateProgressView.markView)
         
         
-        UpdateProgressView.markView.snp_makeConstraints { (make) in
+        UpdateProgressView.markView.snp_makeConstraints { make in
             make.top.bottom.left.right.equalTo(superView)
         }
         
         markView.addSubview(UpdateProgressView.updateProgressView)
-        UpdateProgressView.updateProgressView.snp_makeConstraints { (make) in
+        UpdateProgressView.updateProgressView.snp_makeConstraints { make in
             make.center.equalTo(markView)
             make.width.equalTo(UpdateProgressView.viewW)
             make.height.equalTo(UpdateProgressView.viewH)

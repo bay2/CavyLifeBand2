@@ -37,8 +37,10 @@ extension HomeListRealmProtocol {
     }
     
     /**
-     某一天是否存在 HomeList    
-     时间格式 yyyy.M.d
+     某一天是否存在 HomeList
+    
+     - parameter timeString: 时间格式 yyyy.M.d
+     - returns: true 存在数据 false 不存在数据
      */
     func isExistHomeList(timeString: String) -> Bool {
     

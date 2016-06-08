@@ -101,7 +101,7 @@ struct HomeListPKViewModel: HomeListViewModelProtocol {
     init(friendName: String, pkId: String, result: String) {
         self.friendName = friendName
         self.pkId = pkId
-        resultNum = NSMutableAttributedString(string: result)
+        resultNum = NSMutableAttributedString().attributeString(result, numSize: 24, unit: "", unitSize: 0)
     }
     
     func onClickCell() {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CryptoSwift
 
 extension NSData {
     
@@ -268,6 +269,57 @@ extension NSData {
         return NSData(bytes: Array(bytesArray[subRange]))
         
     }
+
+    func crc16Sub(imageCRC: UInt16, byte: UInt8) -> UInt16 {
+        
+        var crc: UInt16 = imageCRC
+        let poly: UInt16 = 0x1021
+        var msb = false
+        
+        var newByte = byte
+        
+        for _ in 0..<8  {
+            
+            if (crc & 0x8000) > 0 {
+                msb = true
+            } else {
+                msb = false
+            }
+            
+            crc <<= 1
+            
+            if (newByte & 0x80) > 0 {
+                crc |= 0x0001
+            }
+            
+            if msb {
+                crc ^= poly
+            }
+            
+            newByte <<= 1
+            
+        }
+
+        crc &= 0xffff
+        return crc
+        
+    }
+    
+    func crc16() -> UInt16 {
+        
+        var imageCRC: UInt16 = 0
+        
+        for data in self.arrayOfBytes() {
+            imageCRC = crc16Sub(imageCRC, byte: data)
+        }
+        
+        imageCRC = crc16Sub(imageCRC, byte: 0)
+        imageCRC = crc16Sub(imageCRC, byte: 0)
+        
+        return imageCRC
+    }
+    
+
     
 }
 

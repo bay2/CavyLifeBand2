@@ -40,7 +40,7 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
         self.name          = pkRecord.nickname
         self.introudce     = pkRecord.pkDuration + L10n.PKRecordsCellDurationDescription.string
         self.bottonTitle   = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? L10n.PKRecordsCellUndoBtnTitle.string : L10n.PKRecordsCellAcceptBtnTitle.string
-        self.btnBGColor    = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? UIColor(named: .PKRecordsCellUndoBtnBGColor) : UIColor(named: .PKRecordsCellAcceptBtnBGColor)
+        self.btnBGColor    = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? UIColor(named: .NColor) : UIColor(named: .RColor)
         self.headImageUrl  = pkRecord.avatarUrl
         self.friendId      = pkRecord.userId
         

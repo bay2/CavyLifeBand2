@@ -66,6 +66,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         super.viewDidLoad()
         
         parseChartListData()
+        parseHomeListData()
 
         addAllView()
         
@@ -185,6 +186,13 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     }
     
     // MARK: --- 解析数据 保存数据库
+    
+    /**
+     解析全部HomeList数据
+     */
+    func parseHomeListData() {
+        
+    }
     
     /**
      解析 计步睡眠数据 并保存Realm

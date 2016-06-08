@@ -99,8 +99,7 @@ class LifeBandBle: NSObject {
     
     var oadBlockCharacteristic: CBCharacteristic?
     
-    var updateFWCompletionHander: ((UpdateFirmwareReslut <Double,UpdateFirmwareError>) -> Void)?
-    
+    var updateFWCompletionHander: ((UpdateFirmwareReslut<Double, UpdateFirmwareError>) -> Void)?
     
 
 // MARK: - 初始化
@@ -183,7 +182,7 @@ class LifeBandBle: NSObject {
      */
     func oadSendToBand(data: NSData, mode: Int) {
         
-        guard let oadIdenifyCharacteristic = self.oadIdenifyCharacteristic, let oadBlockCharacteristic = self.oadBlockCharacteristic else {
+        guard let oadIdenifyCharacteristic = self.oadIdenifyCharacteristic, oadBlockCharacteristic = self.oadBlockCharacteristic else {
             Log.error("oadSendToBand error")
             return
         }

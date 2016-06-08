@@ -103,18 +103,14 @@ extension LifeBandBle {
             return false
         }
         
-        guard let crc = newData.crc32() else {
+        guard let crc: UInt16 = newData.crc16() else {
             return false
         }
         
-//        guard let crc = LifeBandBle.binData.crc16() else {
-//            return false
-//        }
-        
         LifeBandBle.remainsLenght = LifeBandBle.binData.length
         
-        sendData.append(crc[0])
-        sendData.append(crc[1])
+        sendData.append(UInt8(crc & 0x00ff))
+        sendData.append(UInt8((crc & 0xff00) >> 8))
         sendData.append(0xFF)
         sendData.append(0xFF)
         sendData.append(0x00)
@@ -257,7 +253,7 @@ extension FirmwareDownload {
         
         var newFilePath: NSURL = NSURL()
         
-        return Alamofire.download(.GET, url) { (temporaryURL, response) -> NSURL in
+        return Alamofire.download(.GET, url) {(temporaryURL, response) -> NSURL in
             
             let fileManager = NSFileManager.defaultManager()
             let directoryURL = fileManager.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)[0]
@@ -270,7 +266,7 @@ extension FirmwareDownload {
             
             return newFilePath
             
-        }.response(completionHandler: { (_, _, _, error) in
+        }.response(completionHandler: {(_, _, _, error) in
             
             if  error != nil {
                 return
