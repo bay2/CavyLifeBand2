@@ -63,9 +63,9 @@ struct CavyDefine {
     
     static var qqShareAppKey: String = "1105413066"
     
-    static var wechatShareAppKey: String = ""
+    static var wechatShareAppKey: String = "wx5369dd21e588ac2b"
     
-    static var wechatShareAppSecret: String = ""
+    static var wechatShareAppSecret: String = "41058772462b6033ea37a9c9f7ef0bb2"
     
     /**
      性别数字转汉字
