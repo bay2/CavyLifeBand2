@@ -99,7 +99,7 @@ class LifeBandBle: NSObject {
     
     var oadBlockCharacteristic: CBCharacteristic?
     
-    var updateFWCompletionHander: ((UpdateFirmwareReslut<Double,UpdateFirmwareError>) -> Void)?
+    var updateFWCompletionHander: ((UpdateFirmwareReslut <Double,UpdateFirmwareError>) -> Void)?
     
     
 
