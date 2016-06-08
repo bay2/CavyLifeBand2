@@ -23,7 +23,7 @@ extension ContactsAddFriendCellDelegate {
     var introduceFont: UIFont { return UIFont.systemFontOfSize(12) }
     
     // 按钮颜色
-    var btnBGColor: UIColor { return UIColor(named: .ContactsAddFriendButtonColor) }
+    var btnBGColor: UIColor { return UIColor(named: .JColor) }
     
     // 按钮字体大小
     var btnFont: UIFont { return UIFont.mediumSystemFontOfSize(16) }

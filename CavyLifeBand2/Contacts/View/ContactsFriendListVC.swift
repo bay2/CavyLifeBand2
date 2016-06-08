@@ -364,7 +364,7 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
                         
         }
         
-        pkRowAction.backgroundColor = UIColor(named: .ContactsPKBtnColor)
+        pkRowAction.backgroundColor = UIColor(named: .JColor)
 
         return pkRowAction
 
