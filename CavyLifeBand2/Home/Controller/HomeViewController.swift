@@ -200,23 +200,22 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             
             if personalList.count != 0 {
                 
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd")
-                endDate = NSDate().toString(format: "yyyy-MM-dd")
+                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
+                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
                 
             }
         }
         
         parseStepDate(startDate, endDate: endDate)
-        
-        
+                
         if isNeedUpdateSleepData() {
             
             let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
             
             if personalList.count != 0 {
                 
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd")
-                endDate = NSDate().toString(format: "yyyy-MM-dd")
+                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
+                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
                 
             }
             

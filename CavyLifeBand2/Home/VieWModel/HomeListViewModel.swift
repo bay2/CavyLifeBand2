@@ -57,9 +57,7 @@ struct HomeListSleepViewModel: HomeListViewModelProtocol {
 
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowSleepView.rawValue, object: nil)
         
-
     }
- 
     
 }
 
@@ -75,28 +73,6 @@ struct HomeListAchiveViewModel: HomeListViewModelProtocol {
     var resultNum: NSMutableAttributedString
     // 0 ~ 5 共6个徽章 返回编号
     init(medalIndex: Int) {
-        
-//        switch medalIndex {
-//            
-//        case 0:
-//
-//            self.image = UIImage(asset: .Medal5000Lighted)
-//        case 1:
-//            
-//            self.image = UIImage(asset: .Medal20000Lighted)
-//        case 2:
-//            
-//            self.image = UIImage(asset: .Medal100000Lighted)
-//        case 3:
-//            
-//            self.image = UIImage(asset: .Medal500000Lighted)
-//        case 4:
-//            
-//            self.image = UIImage(asset: .Medal1000000Lighted)
-// 
-//        default:
-//            self.image = UIImage(asset: .Medal5000000Lighted)
-//        }
         
         let stepArray = [5000, 20000, 100000, 500000, 1000000, 5000000]
         resultNum = NSMutableAttributedString().attributeString(String(stepArray[medalIndex]), numSize: 28, unit: L10n.GuideStep.string, unitSize: 12)
@@ -171,7 +147,6 @@ struct HomeListHealthViewModel: HomeListViewModelProtocol {
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHealthyView.rawValue, object: nil, userInfo: userInfo)
         
     }
-    
     
 }
  

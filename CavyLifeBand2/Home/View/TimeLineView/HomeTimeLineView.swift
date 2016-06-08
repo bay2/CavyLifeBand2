@@ -27,7 +27,6 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
         self.dateArray = self.queryTimeBucketFromFirstDay()!
             
         
-        
         collectionViewLayOut(frame)
         
     }
@@ -73,7 +72,9 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeDateTimeLineCell", forIndexPath: indexPath) as! HomeDateTimeLineCell
-                
+        
+        Log.info(indexPath)
+        
         cell.timeString = dateArray[indexPath.item]
         cell.configLayout()
         return cell
@@ -90,12 +91,20 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
         
         self.collectionView!.setContentOffset(CGPointMake(count * ez.screenWidth, 0), animated: true)
         
+        // TODO：保护机制 如果没有怎么办呢
+//        let pageIndex = Int(count)
+//        let cell = collectionView!.dequeueReusableCellWithReuseIdentifier("HomeDateTimeLineCell", forIndexPath: NSIndexPath(forItem: pageIndex, inSection: 0)) as! HomeDateTimeLineCell
+//        cell.timeString = dateArray[pageIndex]
+//        cell.configLayout()
+        
+        
     }
     
 
 }
 
 // MARK: - UIScrollViewDelegate
+/*
 extension HomeTimeLineView: UIScrollViewDelegate {
     
     // 停止拖拽
@@ -142,5 +151,4 @@ extension HomeTimeLineView: UIScrollViewDelegate {
     }
     
 }
-
-
+*/

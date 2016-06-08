@@ -32,15 +32,6 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     ///  徽章视图
     @IBOutlet weak var badgeView: UIView!
     
-    /// 成就数值
-    @IBOutlet weak var badgeInfo: UILabel!
-    
-    /// 成就
-    @IBOutlet weak var badgeTitle: UILabel!
-    
-    /// 徽章视图
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     /// 退出登录
     @IBOutlet weak var logoutButton: UIButton!
     
@@ -64,7 +55,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         self.updateNavUI()
         
     }
-    
+   
     deinit {
         
         notificationToken?.stop()
@@ -149,7 +140,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         let collectionViewHeight = CGFloat((badgeCount / 3) * 132)
 
         // contentView
-        contectView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        contectView.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         
         contectView.backgroundColor = UIColor(named: .HomeViewMainColor)
         contectView.snp_makeConstraints { make in
@@ -158,13 +149,12 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             make.height.equalTo(16 + tableViewHeight + 10 + 68 + collectionViewHeight + 20 + 50 + 20)
         }
         
-        
         addTableView()
         addBadgeView(collectionViewHeight)
         
         // 退出登录按钮
         logoutButton.setTitle(L10n.AccountInfoLoginoutButtonTitle.string, forState: .Normal)
-        logoutButton.layer.cornerRadius = CavyDefine.commonCornerRadius
+        logoutButton.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         logoutButton.backgroundColor = UIColor(named: .ContactsAccountLogoutButton)
         logoutButton.setBackgroundColor(UIColor(named: .ContactsAccountLogoutButton), forState: .Normal)
         
@@ -186,8 +176,9 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
      */
     func addTableView(){
         
-        tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
-        tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
+//        tableView.clipsToBounds = true
+        tableView.setCornerRadius(radius: CavyDefine.commonCornerRadius)
+        tableView.backgroundColor = UIColor.whiteColor() //(named: .HomeViewMainColor)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.bounces = false
@@ -201,7 +192,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
      */
     func addBadgeView(height: CGFloat) {
         
-        badgeView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        badgeView.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         badgeView.snp_makeConstraints { make in
             
             // |-16-|-tableView-|-10-|-badgeView-10- -50- -8- collectionView -|-20-|-logoutButton-50-|-20-|

@@ -27,7 +27,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     var notificationSleepToken: NotificationToken?
     
     // VM 数组
-    var datasViewModels: [HomeListViewModelProtocol] = []
+    var datasViewModels: [HomeListViewModelProtocol] = [HomeListStepViewModel(stepNumber: 0), HomeListSleepViewModel(sleepTime: 0)]
     
     override func awakeFromNib() {
         
@@ -142,6 +142,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
                 
             case .Initial(_):
                 self.datasViewModels[0] = HomeListStepViewModel(stepNumber: self.queryStepNumber(curDate, endTime: endDate, timeBucket: TimeBucketStyle.Day).totalStep)
+                Log.info("\(self.timeString) ---- self.datasViewModels[0] = \(self.datasViewModels[0])")
                 self.tableView.reloadData()
 
             case .Update(_, deletions: _, insertions: _, modifications: _):
@@ -287,8 +288,8 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         }
         
         // 计步睡眠
-        listVM.append(HomeListStepViewModel(stepNumber: 0))
-        listVM.append(HomeListSleepViewModel(sleepTime: 0))
+        listVM.append(datasViewModels[0])
+        listVM.append(datasViewModels[1])
 
         // PK
         if listRealm.pkList.count > 0 {

@@ -62,13 +62,13 @@ protocol ChartsRealmProtocol {
     var userId: String { get }
 
     // MARK: Other
+    func queryAllStepInfo(userId: String) -> Results<(ChartStepDataRealm)>
     func queryTimeBucketFromFirstDay() -> [String]?
    
     // MARK: 计步
     func isNeedUpdateStepData() -> Bool
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData
-    func queryAllStepInfo(userId: String) -> Results<(ChartStepDataRealm)>
     
     // MARK: 睡眠
     func isNeedUpdateSleepData() -> Bool
