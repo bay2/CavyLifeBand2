@@ -363,6 +363,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#2b7e5c"></span>
     /// Alpha: 100% <br/> (0x2b7e5cff)
     case RelateAboutUseAndPrivateColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#ff5656"></span>
+    /// Alpha: 100% <br/> (0xff5656ff)
+    case SColor
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#cccccc"></span>
     /// Alpha: 100% <br/> (0xccccccff)
     case SettingSeparatorColor
@@ -527,6 +530,7 @@ extension UIColor {
       case .RelateAboutCellTitleColor: return 0x585858ff
       case .RelateAboutCopyrightColor: return 0x91e4c2ff
       case .RelateAboutUseAndPrivateColor: return 0x2b7e5cff
+      case .SColor: return 0xff5656ff
       case .SettingSeparatorColor: return 0xccccccff
       case .SettingTableCellInfoGrayColor: return 0x0000004d
       case .SettingTableCellInfoYellowColor: return 0xff9138ff
