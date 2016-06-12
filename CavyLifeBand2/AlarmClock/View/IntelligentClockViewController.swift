@@ -90,7 +90,6 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
                 make.center.equalTo(self.view.snp_center)
                 
             })
-            
         }
         
         dataSource?.alarmListModel
@@ -126,7 +125,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
         
         targetVC.addNewClock = true
         
-        targetVC.updateAlarmBlock = {(alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
+        targetVC.updateAlarmBlock = { (alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
             
             self.dataSource?.addAlarm(alarm)
             

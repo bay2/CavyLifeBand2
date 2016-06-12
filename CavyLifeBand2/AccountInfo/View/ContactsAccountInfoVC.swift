@@ -80,7 +80,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
-        notificationToken = userInfos.addNotificationBlock { [weak self](changes: RealmCollectionChange)  in
+        notificationToken = userInfos.addNotificationBlock { [weak self] (changes: RealmCollectionChange)  in
             
             switch changes {
                 
