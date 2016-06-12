@@ -282,9 +282,9 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             // 跳转到修改备注
             let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
             
-            let changeRemarkVM = UserChangeNicknameVM(viewController: requestVC)
+            let changeNicknameVM = UserChangeNicknameVM(viewController: requestVC)
             
-            requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+            requestVC.viewConfig(changeNicknameVM)
             
             self.pushVC(requestVC)
             
@@ -296,7 +296,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
                 
                 let changeRemarkVM = UserChangeAddressVM(viewController: requestVC)
                 
-                requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+                requestVC.viewConfig(changeRemarkVM)
                 
                 self.pushVC(requestVC)
                 
