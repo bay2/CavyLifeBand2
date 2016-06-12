@@ -132,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
                 return
             }
             
-            migration.enumerate(FriendInfoRealm.className()) {(oldObject, newObject) in
+            migration.enumerate(FriendInfoRealm.className()) { (oldObject, newObject) in
                 
                 let nikeName = oldObject!["nikeName"] as! String
                 newObject!["fullName"] = nikeName.chineseToSpell() + nikeName

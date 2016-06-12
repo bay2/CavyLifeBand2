@@ -98,7 +98,7 @@ extension AddressBookDataSource {
         
         let keysToFetch = [CNContactFormatter.descriptorForRequiredKeysForStyle(CNContactFormatterStyle.FullName), CNContactPhoneNumbersKey]
         
-        try! addressBook.enumerateContactsWithFetchRequest(CNContactFetchRequest(keysToFetch: keysToFetch)) {(contact, pointer) in
+        try! addressBook.enumerateContactsWithFetchRequest(CNContactFetchRequest(keysToFetch: keysToFetch)) { (contact, pointer) in
             
             let phone = contact.phoneNumbers.first
             guard let phoneNumber = phone?.value as? CNPhoneNumber else {

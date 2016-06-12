@@ -152,7 +152,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        tableDictionary.map {(key, value) -> (UITableView, ContactsTableViewSectionDataSource) in
+        tableDictionary.map { (key, value) -> (UITableView, ContactsTableViewSectionDataSource) in
             key.reloadData()
             
             return (key, value)
@@ -165,7 +165,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
      */
     func loadData() {
         
-        tableDictionary = tableDictionary.map {(key, value) -> (UITableView, ContactsTableViewProtocols) in
+        tableDictionary = tableDictionary.map { (key, value) -> (UITableView, ContactsTableViewProtocols) in
             
             let dataSource = value
             dataSource.loadData()

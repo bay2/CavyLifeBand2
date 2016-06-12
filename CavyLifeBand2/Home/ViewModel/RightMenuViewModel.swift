@@ -238,7 +238,7 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
      */
     mutating func refurbishNextView() {
         
-        items = items.map {(item) -> MenuProtocol in
+        items = items.map { (item) -> MenuProtocol in
             
             if item.title == L10n.HomeLifeListTitlePK.string {
                 

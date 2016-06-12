@@ -170,7 +170,7 @@ extension PKWebRequestProtocol {
             
             let pk: [[String: AnyObject]] = translateWaitRealmToLaunchRequest(waitRealms)
             
-            try PKWebApi.shareApi.launchPK(loginUserId, launchPKList: pk) {(result) in
+            try PKWebApi.shareApi.launchPK(loginUserId, launchPKList: pk) { (result) in
                 
                 guard result.isSuccess else {
                     failure?(result.error?.description ?? "")
@@ -206,7 +206,7 @@ extension PKWebRequestProtocol {
             
             let pk: [String] = translateDueRealmToAcceptRequest(dueRealms)
             
-            try PKWebApi.shareApi.acceptPK(loginUserId, acceptPkList: pk) {(result) in
+            try PKWebApi.shareApi.acceptPK(loginUserId, acceptPkList: pk) { (result) in
                 
                 guard result.isSuccess else {
                     failure?(result.error?.description ?? "")
@@ -239,7 +239,7 @@ extension PKWebRequestProtocol {
             
             let pk: [String] = translateWaitRealmToUndoRequest(waitRealms)
             
-            try PKWebApi.shareApi.undoPK(loginUserId, undoPKList: pk) {(result) in
+            try PKWebApi.shareApi.undoPK(loginUserId, undoPKList: pk) { (result) in
                 
                 guard result.isSuccess else {
                     failure?(result.error?.description ?? "")
@@ -271,7 +271,7 @@ extension PKWebRequestProtocol {
             
             let pk: [String] = translateFinishRealmToDeleteRequest(finishRealms)
             
-            try PKWebApi.shareApi.deletePK(loginUserId, delPkList: pk) {(result) in
+            try PKWebApi.shareApi.deletePK(loginUserId, delPkList: pk) { (result) in
                 
                 guard result.isSuccess else {
                     failure?(result.error?.description ?? "")
@@ -298,7 +298,7 @@ extension PKWebRequestProtocol {
     func getPKInfo(pkId: String, callBack: ((PKInfoResponse) -> Void)? = nil, failure: FailureHandle? = nil) -> Void {
         do {
 
-            try PKWebApi.shareApi.getPKInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, pkId: pkId) {(result) in
+            try PKWebApi.shareApi.getPKInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, pkId: pkId) { (result) in
                 
                 guard result.isSuccess else {
                     failure?(result.error?.description ?? "")
@@ -394,7 +394,7 @@ extension PKRecordsUpdateFormWeb  {
 
         do {
             
-            try PKWebApi.shareApi.getPKRecordList(loginUserId) {(result) in
+            try PKWebApi.shareApi.getPKRecordList(loginUserId) { (result) in
                 
                 guard result.isSuccess else {
                     CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error ?? UserRequestErrorType.UnknownError)

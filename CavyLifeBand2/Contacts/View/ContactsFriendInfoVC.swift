@@ -176,7 +176,7 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
         
         do {
             
-            try ContactsWebApi.shareApi.getContactPersonInfo(friendId: friendId) {(result)  in
+            try ContactsWebApi.shareApi.getContactPersonInfo(friendId: friendId) { (result)  in
                 
                 guard result.isSuccess else {
                     Log.error(result.error?.description ?? "")

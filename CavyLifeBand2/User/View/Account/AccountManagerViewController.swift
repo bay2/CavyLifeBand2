@@ -286,7 +286,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
      */
     func refreshEmailSafetyCode() {
         
-        Alamofire.request(.GET, CavyDefine.emailCodeAddr).responseImage {(response) -> Void in
+        Alamofire.request(.GET, CavyDefine.emailCodeAddr).responseImage { (response) -> Void in
             
             if let image = response.result.value {
                 

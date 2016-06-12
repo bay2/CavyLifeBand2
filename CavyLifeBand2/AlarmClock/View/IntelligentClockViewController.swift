@@ -84,7 +84,7 @@ class IntelligentClockViewController: UIViewController, BaseViewControllerPresen
             
             self.view.addSubview(emptyView!)
             
-            emptyView?.snp_makeConstraints(closure: {(make) in
+            emptyView?.snp_makeConstraints(closure: { (make) in
                 make.width.equalTo(self.view)
                 make.height.equalTo(150)
                 make.center.equalTo(self.view.snp_center)
@@ -248,7 +248,7 @@ extension IntelligentClockViewController: UITableViewDelegate {
         
         targetVC.alarmModel = (dataSource?.getAlarmModelCopyByIndex(indexPath.row))!
         
-        targetVC.updateAlarmBlock = {(alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
+        targetVC.updateAlarmBlock = { (alarm: AlarmRealmModel, isUpdate: Bool) -> Void in
             
             Log.info(alarm)
             
