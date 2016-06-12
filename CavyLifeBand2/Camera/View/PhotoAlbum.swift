@@ -102,12 +102,11 @@ class PhotoAlbum: UIViewController, UIScrollViewDelegate{
             imgRequestOptions.deliveryMode = .HighQualityFormat
             
             // 获取照片
-            PHImageManager.defaultManager().requestImageForAsset(myAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenHeight), contentMode: .AspectFill, options: imgRequestOptions) {(result, info) -> Void in
+            PHImageManager.defaultManager().requestImageForAsset(myAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenHeight), contentMode: .AspectFill, options: imgRequestOptions) { (result, info) -> Void in
                 
                 imageView.image = result
                 
             }
-            
         }
         
     }

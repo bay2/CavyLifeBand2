@@ -119,6 +119,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         self.guideButton.setImage(viewDataSource.guideBtnImage, forState: .Normal)
         
         let centerView = viewDataSource.centerView
+        middleView.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         self.middleView.addSubview(centerView)
         
         self.infoLabel.text = dataSource?.subTitle

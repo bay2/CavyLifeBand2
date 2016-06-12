@@ -78,7 +78,7 @@ extension RootViewController: ChartsRealmProtocol {
      */
     func saveStepsToRealm(steps: [(NSDate, Int)]) {
         
-        _ = steps.map {(date: NSDate, steps: Int) -> (NSDate, Int)? in
+        _ = steps.map { (date: NSDate, steps: Int) -> (NSDate, Int)? in
             
             if steps == 0 {
                 return nil
@@ -100,7 +100,7 @@ extension RootViewController: ChartsRealmProtocol {
      */
     func saveTiltsToRealm(steps: [(NSDate, Int)]) {
         
-        _ = steps.map {(date: NSDate, tilts: Int) -> (NSDate, Int)? in
+        _ = steps.map { (date: NSDate, tilts: Int) -> (NSDate, Int)? in
             
             if tilts == 0 {
                 return nil

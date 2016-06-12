@@ -95,7 +95,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         addNotificationObserver(LifeBandCtrlNotificationName.BandButtonEvenClick4.rawValue, selector: #selector(RootViewController.callEmergency))
         
         // 断线之后尝试连接
-        addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(RootViewController.bandReConnect))
+        addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(RootViewController.bandConnect))
         
         bandInit()
         
@@ -245,7 +245,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 
                 self.pkSycnCount += 1
                 
-            }, failure: {(errorMsg) in
+            }, failure: { (errorMsg) in
                 Log.warning(errorMsg)
             })
         } else {
@@ -266,7 +266,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 }
                 
                 self.pkSycnCount += 1
-            }, failure: {(errorMsg) in
+            }, failure: { (errorMsg) in
                 Log.warning(errorMsg)
             })
         } else {
@@ -281,7 +281,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 }
                 
                 self.pkSycnCount += 1
-            }, failure: {(errorMsg) in
+            }, failure: { (errorMsg) in
                 Log.warning(errorMsg)
             })
         } else {

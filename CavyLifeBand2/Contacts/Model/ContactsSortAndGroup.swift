@@ -57,7 +57,7 @@ class ContactsSortAndGroup: NSObject {
 
         }
 
-        contactsGroupList = dataDic.sort {(str1, str2) -> Bool in
+        contactsGroupList = dataDic.sort { (str1, str2) -> Bool in
             return str1.0 < str2.0
         }
 

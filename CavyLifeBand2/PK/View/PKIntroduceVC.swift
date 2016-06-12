@@ -38,7 +38,7 @@ class PKIntroduceVC: UIViewController, BaseViewControllerPresenter {
         rulesView?.configure(PKIntroduceVCViewDataSource())
         rulesContainerView.addSubview(rulesView!)
         
-        rulesView?.snp_makeConstraints(closure: {(make) in
+        rulesView?.snp_makeConstraints(closure: { (make) in
             make.top.equalTo(rulesContainerView.snp_top)
             make.leading.equalTo(rulesContainerView.snp_leading)
             make.trailing.equalTo(rulesContainerView.snp_trailing)

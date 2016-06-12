@@ -325,7 +325,7 @@ extension SafetySettingViewController: UITableViewDelegate {
         
         tableHeaderView.addSubview(whiteView)
         
-        whiteView.snp_makeConstraints {(make) in
+        whiteView.snp_makeConstraints { (make) in
             make.bottom.equalTo(tableHeaderView.snp_bottom)
             make.height.equalTo(10)
             make.leading.equalTo(tableHeaderView.snp_leading)

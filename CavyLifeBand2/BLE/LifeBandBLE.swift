@@ -101,7 +101,6 @@ class LifeBandBle: NSObject {
     
     var updateFWCompletionHander: ((UpdateFirmwareReslut<Double, UpdateFirmwareError>) -> Void)?
     
-    
 
 // MARK: - 初始化
     

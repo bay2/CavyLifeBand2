@@ -149,7 +149,7 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
         
         publishContent.setImage(ShareSDK.imageWithPath(savePath))
         
-        ShareSDK.shareContent(publishContent, type: type, authOptions: nil, statusBarTips: true) {(shareType, state, platformShareInfo, error, end) in
+        ShareSDK.shareContent(publishContent, type: type, authOptions: nil, statusBarTips: true) { (shareType, state, platformShareInfo, error, end) in
             
             switch state{
                 
