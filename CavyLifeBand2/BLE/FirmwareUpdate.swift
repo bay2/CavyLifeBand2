@@ -257,7 +257,7 @@ extension FirmwareDownload {
         
         var newFilePath: NSURL = NSURL()
         
-        return Alamofire.download(.GET, url) { (temporaryURL, response) -> NSURL in
+        return Alamofire.download(.GET, url) { temporaryURL, response -> NSURL in
             
             let fileManager = NSFileManager.defaultManager()
             let directoryURL = fileManager.URLsForDirectory(.CachesDirectory, inDomains: .UserDomainMask)[0]
@@ -270,7 +270,7 @@ extension FirmwareDownload {
             
             return newFilePath
             
-        }.response(completionHandler: { (_, _, _, error) in
+        }.response(completionHandler: { _, _, _, error in
             
             if  error != nil {
                 return
