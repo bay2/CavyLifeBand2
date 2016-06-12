@@ -313,8 +313,10 @@ class GoalView: UIView {
         
         
         let step = String(format: "%.0f", stepSlider.value)
-        let stepInt: Int = Int(step)! * 100
-        self.stepValue.text = "\(stepInt)"
+
+        stepCurrentValue = Int(step)! * 100
+        
+        self.stepValue.text = "\(stepCurrentValue)"
         
     }
     
@@ -322,6 +324,9 @@ class GoalView: UIView {
     func sleepSliderAction(){
         
         let (hour, min) = minutesChangeToHours(Int(sleepSlider.value))
+        
+        hhCurrentValue = hour
+        mmCurrentValue = min
         
         self.sleepHHValue.text = String(hour)
         self.sleepMMValue.text = String(min)

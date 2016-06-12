@@ -19,10 +19,8 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         case ChangeSelfName
         
     }
-    
-    var delegate: ContactsReqFriendViewControllerDelegate?
-    var dataSource: ContactsReqFriendViewControllerDataSource?
-    
+
+    var viewModel: ContactsReqFriendPortocols?
     @IBOutlet weak var textFieldView: UIView!
     
     /// TextField
@@ -35,7 +33,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     
     var navTitle: String {
         
-        return dataSource?.navTitle ?? ""
+        return viewModel?.navTitle ?? ""
     
     }
     
@@ -58,8 +56,8 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
      */
     @IBAction func sendRequest(sender: AnyObject) {
         
-        dataSource?.textFieldTitle = requestTextField.text ?? ""
-        delegate?.onClickButton()
+        viewModel?.textFieldTitle = requestTextField.text ?? ""
+        viewModel?.onClickButton()
         
     }
     
@@ -70,13 +68,11 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
      
      - parameter dataSource:
      */
-    func viewConfig(dataSource: ContactsReqFriendViewControllerDataSource, delegate: ContactsReqFriendViewControllerDelegate) {
+    func viewConfig(model: ContactsReqFriendPortocols) {
         
-        self.delegate = delegate
-        self.dataSource = dataSource
+        self.viewModel = model
         
     }
-    
     
     /**
      布局
@@ -85,10 +81,10 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         
         textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
-        sendButton.setTitle(dataSource?.bottonTitle, forState: .Normal)
+        sendButton.setTitle(viewModel?.bottonTitle, forState: .Normal)
         
-        requestTextField.placeholder = dataSource?.placeholderText
-        requestTextField.text = dataSource?.textFieldTitle
+        requestTextField.placeholder = viewModel?.placeholderText
+        requestTextField.text = viewModel?.textFieldTitle
         requestTextField.textColor = UIColor(named: .TextFieldTextColor)
         
     }

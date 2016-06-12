@@ -26,7 +26,7 @@ class ContactsPersonInfoVC: UIViewController, BaseViewControllerPresenter {
         
         let firendReqViewModel = ContactsFriendReqViewModel(viewController: addFirendVC, friendId: self.friendId)
         
-        addFirendVC.viewConfig(firendReqViewModel, delegate: firendReqViewModel)
+        addFirendVC.viewConfig(firendReqViewModel)
         
         self.pushVC(addFirendVC)
         

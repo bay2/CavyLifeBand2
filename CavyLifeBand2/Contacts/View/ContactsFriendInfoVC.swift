@@ -49,13 +49,7 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
     //个人信息cell VMs
     lazy var infoTableCellVM: [PresonInfoListCellViewModel] = {
         
-        return [PresonInfoListCellViewModel(title: L10n.ContactsShowInfoNotesName.string, info: L10n.ContactsShowInfoTransformNotes.string, infoTextColor: UIColor(named: .GColor)),
-                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoCity.string),
-                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoOld.string),
-                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoGender.string),
-                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoHeight.string),
-                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoWeight.string),
-                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoBirth.string)]
+        return defaultInfoTableCellVM
         
     }()
     
@@ -66,6 +60,19 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
                 PKQualityCellVM()]
     
     }()
+    
+    static var defaultInfoTableCellVM = {
+        
+        return [PresonInfoListCellViewModel(title: L10n.ContactsShowInfoNotesName.string, info: L10n.ContactsShowInfoTransformNotes.string, infoTextColor: UIColor(named: .GColor)),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoCity.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoOld.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoGender.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoHeight.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoWeight.string),
+                PresonInfoListCellViewModel(title: L10n.ContactsShowInfoBirth.string)]
+        
+    }()
+
     
     override func viewDidLoad() {
         
@@ -127,6 +134,8 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
         dateF.dateFormat = "yyyy.MM.dd"
         
         let birthStr = dateF.stringFromDate(birthDate)
+        
+        infoTableCellVM = ContactsFriendInfoVC.defaultInfoTableCellVM
         
         infoTableCellVM[1].info = self.webJsonModel?.address ?? ""
         infoTableCellVM[2].info = age.toString
@@ -236,7 +245,7 @@ extension ContactsFriendInfoVC: UITableViewDelegate {
             
             let changeRemarkVM = ContactsChangeRemarkViewModel(viewController: requestVC, friendId: self.friendId)
             
-            requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+            requestVC.viewConfig(changeRemarkVM)
             
             self.pushVC(requestVC)
             
