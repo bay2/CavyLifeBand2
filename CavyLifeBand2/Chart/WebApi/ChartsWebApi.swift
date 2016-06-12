@@ -20,8 +20,11 @@ class ChartsWebApi: NetRequestAdapter {
      */
     func parseStepChartsData(startDate: String? = "", endDate: String? = "", callBack: CompletionHandlernType? = nil) {
         
-        let parameters: [String: AnyObject] = ["cmd": "getStepCount", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "startDate": startDate!, "endDate": endDate!]
+        var parameters: [String: AnyObject] = ["cmd": "getStepCount", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "startDate": startDate!, "endDate": endDate!]
         
+        if startDate == "" && endDate == ""  {
+            parameters = ["cmd": "getStepCount", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+        }
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
         
     }
@@ -31,8 +34,11 @@ class ChartsWebApi: NetRequestAdapter {
      */
     func parseSleepChartsData(startDate: String? = "", endDate: String? = "", callBack: CompletionHandlernType? = nil) {
         
-        let parameters: [String: AnyObject] = ["cmd": "getSleepInfo", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "startDate": startDate!, "endDate": endDate!]
+        var parameters: [String: AnyObject] = ["cmd": "getSleepInfo", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, "startDate": startDate!, "endDate": endDate!]
         
+        if startDate == "" && endDate == ""  {
+            parameters = ["cmd": "getSleepInfo", "userId": CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+        }
         netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
         
     }
