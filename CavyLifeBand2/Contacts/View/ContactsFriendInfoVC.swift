@@ -83,8 +83,6 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
         
         addAllViews()
         
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -165,7 +163,8 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
             make.height.equalTo(infoTableViewHeight)
         }
         
-        qualityTableCellVM[0].infoValue = self.webJsonModel?.stepNum ?? ""
+        qualityTableCellVM[0].infoValue = self.webJsonModel?.stepNum.toString ?? ""
+        qualityTableCellVM[1].infoValue = self.webJsonModel?.sleepTime ?? ""
         
     }
     
@@ -193,6 +192,8 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
                 self.archiveInfoDS()
                 
                 self.infoTableView.reloadData()
+                
+                self.qualityTableView.reloadData()
                 
             }
             

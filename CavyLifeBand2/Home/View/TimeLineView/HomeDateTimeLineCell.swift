@@ -280,7 +280,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      数据库数据 转换 VM数组
      */
     func queryRealmGetViewModelLists(homeListRealm: Results<(HomeListRealm)>) -> [HomeListViewModelProtocol] {
-        
+    
         // 转成 VM数组
         var listVM: [HomeListViewModelProtocol] = [HomeListStepViewModel(stepNumber: 0), HomeListSleepViewModel(sleepTime: 0)]
         
