@@ -13,6 +13,10 @@ let serviceUUID = "14839AC4-7D7E-415C-9A42-167340CF2339"
 let sendCommandCharacteristicUUID = "8B00ACE7-EB0B-49B0-BBE9-9AEE0A26E1A3"
 let revcCommandCharacteristicUUID = "0734594A-A8E7-4B1A-A6B1-CD5243059A57"
 
+let oadServiceUUID     = "F000FFC0-0451-4000-B000-000000000000"
+let oadImgIdentifyUUID = "F000FFC1-0451-4000-B000-000000000000"
+let oadImgBlockUUID    = "F000FFC2-0451-4000-B000-000000000000"
+
 /**
  *  手环绑定控制结构
  */
@@ -55,7 +59,7 @@ class LifeBandBle: NSObject {
     
     var centraManager: CBCentralManager?
     
-    private var peripheral: CBPeripheral?
+    var peripheral: CBPeripheral?
     
     private var peripheralMacAddress: NSData = NSData()
     
@@ -68,12 +72,34 @@ class LifeBandBle: NSObject {
     private var bindingComplete: ((String, NSData) -> Void)?
     
     // 蓝牙消息发送队列
-    private var writeToPeripheralQueue: [String] = []
+    private var writeToPeripheralQueue: [(CBCharacteristic, NSData)] = []
     
     // 蓝牙消息处理回调
     private var peripheralResponsd: [UInt8: (NSData -> Void)] = [:]
     
     private static var isRebend = false
+    
+    // MARK: - 固件升级属性定义
+    
+    /// 是否处于更新状态
+    static var isUpdataing = false
+    
+    /// 文件数据
+    static var binData: NSData!
+    
+    /// 重发数据
+    static var resendData: NSData = NSData()
+    
+    /// 期望接收的文件数据索引
+    static var fileDataExIndex: Int = 0
+    
+    static var remainsLenght: Int = 0
+    
+    var oadIdenifyCharacteristic: CBCharacteristic?
+    
+    var oadBlockCharacteristic: CBCharacteristic?
+    
+    var updateFWCompletionHander: ((UpdateFirmwareReslut<Double, UpdateFirmwareError>) -> Void)?
     
 
 // MARK: - 初始化
@@ -100,10 +126,6 @@ class LifeBandBle: NSObject {
                 
                 NSThread.sleepForTimeInterval(1)
                 
-                guard let characteristic = self.sendCharacteristic else {
-                    continue
-                }
-                
                 guard self.peripheral?.state == .Connected else {
                     continue
                 }
@@ -112,11 +134,8 @@ class LifeBandBle: NSObject {
                     continue
                 }
                 
-                guard let data = firstData.dataUsingEncoding(NSUTF8StringEncoding) else {
-                    continue
-                }
                 
-                self.peripheral?.writeValue(data, forCharacteristic: characteristic, type: .WithoutResponse)
+                self.peripheral?.writeValue(firstData.1, forCharacteristic: firstData.0, type: .WithoutResponse)
                 
                 self.writeToPeripheralQueue.removeAtIndex(0)
                 
@@ -134,9 +153,47 @@ class LifeBandBle: NSObject {
      */
     func sendMsgToBand(msg: String) -> Self {
         
+        guard let data = msg.dataUsingEncoding(NSUTF8StringEncoding) else {
+            Log.error("sendMsgToBand error")
+            return self
+        }
+        
+        guard let characteristic = self.sendCharacteristic else {
+            Log.error("sendMsgToBand error")
+            return self
+        }
+        
         Log.info("sendMsgToBand msg = \(msg)")
-        writeToPeripheralQueue.append(msg)
+        
+        writeToPeripheralQueue.append((characteristic, data))
+        
         return self
+        
+    }
+    
+    /**
+     升级发送接口
+     
+     - author: sim cai
+     - date: 2016-06-02
+     
+     - parameter data: 数据
+     - parameter mode: 模式
+     */
+    func oadSendToBand(data: NSData, mode: Int) {
+        
+        guard let oadIdenifyCharacteristic = self.oadIdenifyCharacteristic, oadBlockCharacteristic = self.oadBlockCharacteristic else {
+            Log.error("oadSendToBand error")
+            return
+        }
+        
+        if mode == 0 {
+            self.peripheral?.writeValue(data, forCharacteristic: oadIdenifyCharacteristic, type: .WithoutResponse)
+//            writeToPeripheralQueue.append((oadIdenifyCharacteristic, data))
+        } else {
+//            writeToPeripheralQueue.append((oadBlockCharacteristic, data))
+            self.peripheral?.writeValue(data, forCharacteristic: oadBlockCharacteristic, type: .WithoutResponse)
+        }
         
     }
     
@@ -255,7 +312,6 @@ class LifeBandBle: NSObject {
         Log.info("bleBinding")
         LifeBandBle.isRebend  = true
         self.bindingComplete = bindingComplete
-        
         self.startScaning()
         
     }
@@ -367,9 +423,22 @@ extension LifeBandBle: CBPeripheralDelegate {
             return service
         }
         
+        _ = services.map { service -> CBService in
+            
+            if service.UUID.isEqual(CBUUID(string: oadServiceUUID)) {
+                peripheral.discoverCharacteristics(nil, forService: service)
+            }
+            
+            return service
+        }
+        
     }
     
     func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+        
+        Log.info("\(service)")
+        
+        searchOADCharacteristics(peripheral, service: service)
         
         guard service.UUID.isEqual(CBUUID(string: serviceUUID)) else {
             return
@@ -384,26 +453,80 @@ extension LifeBandBle: CBPeripheralDelegate {
             if chara.UUID.isEqual(CBUUID(string: sendCommandCharacteristicUUID)) {
                 
                 Log.info("bleConnect end")
-                self.connectComplete?()
                 sendCharacteristic = chara
+                self.connectComplete?()
+                
             }
             
             if chara.UUID.isEqual(CBUUID(string: revcCommandCharacteristicUUID)) {
                 revcCharacteristic = chara
+                peripheral.setNotifyValue(true, forCharacteristic: chara)
             }
             
-            peripheral.setNotifyValue(true, forCharacteristic: chara)
             
             return chara
         }
         
     }
     
+    /**
+     搜索OAD
+     
+     - author: sim cai
+     - date: 2016-06-02
+     
+     - parameter peripheral:      设备
+     - parameter characteristics: 特征
+     */
+    func searchOADCharacteristics(peripheral: CBPeripheral, service: CBService) {
+        
+        Log.info("\(service)")
+        
+        guard service.UUID.isEqual(CBUUID(string: oadServiceUUID)) else {
+            return
+        }
+        
+        guard let characteristics = service.characteristics else {
+            return
+        }
+        
+        _ = characteristics.map { chara -> CBCharacteristic in
+            
+            if chara.UUID.isEqual(CBUUID(string: oadImgIdentifyUUID)) {
+                
+                oadIdenifyCharacteristic = chara
+                peripheral.setNotifyValue(true, forCharacteristic: chara)
+            }
+            
+            if chara.UUID.isEqual(CBUUID(string: oadImgBlockUUID)) {
+                oadBlockCharacteristic = chara
+                peripheral.setNotifyValue(true, forCharacteristic: chara)
+            }
+            
+            
+            
+            return chara
+        }
+        
+    }
+    
+    /**
+     蓝牙消息接收
+     
+     - author: sim cai
+     - date: 2016-06-03
+     
+     - parameter peripheral:
+     - parameter characteristic:
+     - parameter error:
+     */
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         
         guard let data = characteristic.value else {
             return
         }
+        
+        prepareFirmwareDataToBand(data)
         
         let dataArray = data.arrayOfBytes()
         

@@ -66,6 +66,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         super.viewDidLoad()
         
         parseChartListData()
+        parseHomeListData()
 
         addAllView()
         
@@ -187,6 +188,13 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     // MARK: --- 解析数据 保存数据库
     
     /**
+     解析全部HomeList数据
+     */
+    func parseHomeListData() {
+        
+    }
+    
+    /**
      解析 计步睡眠数据 并保存Realm
      */
     func parseChartListData() {
@@ -200,23 +208,22 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             
             if personalList.count != 0 {
                 
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd")
-                endDate = NSDate().toString(format: "yyyy-MM-dd")
+                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
+                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
                 
             }
         }
         
         parseStepDate(startDate, endDate: endDate)
-        
-        
+                
         if isNeedUpdateSleepData() {
             
             let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
             
             if personalList.count != 0 {
                 
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd")
-                endDate = NSDate().toString(format: "yyyy-MM-dd")
+                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
+                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
                 
             }
             
@@ -384,6 +391,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         }
 
         let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
+        
+        achieveView?.configWithAchieveIndex((notification.object as? Int) ?? 0)
 
         maskView.addSubview(achieveView!)
 

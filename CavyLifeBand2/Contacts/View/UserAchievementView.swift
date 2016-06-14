@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class UserAchievementView: UIView, UserInfoRealmOperateDelegate {
+class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
 
     let userAchievementViewCollectionCell = "UserAchievementCell"
     
@@ -24,12 +24,17 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate {
         
         didSet {
             infoLabel.text = infoStrFormatter(String.numberDecimalFormatter(achievementCount!))
+            self.collectionView.reloadData()
         }
     
     }
     
     var realm: Realm = try! Realm()
+    
     var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+    
+    // 判断本地是否需要点灯
+    let stepArray = [0, 5000, 20000, 100000, 500000, 1000000, 5000000]
 
     /// 成就标题Label
     @IBOutlet weak var titleLabel: UILabel!
@@ -42,54 +47,77 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate {
         
     override func awakeFromNib() {
         
+//        for chartsData in queryAllStepInfo(userId) {
+//            achievementCount! += chartsData.step
+//        }
+        
+        achievementCount = queryAllStepInfo(userId).reduce(0) {
+            $0.0! + $0.1.step
+        }
+        
+        Log.info(achievementCount!)
+        
+        infoLabel.text = infoStrFormatter(String.numberDecimalFormatter(achievementCount!))
+        Log.info(infoLabel.text)
         
         guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
             return
         }
         
-        achievementsList = configWithMadelIndex(0)
+        configWithAchieveIndex(0)
         
         // 成就标题Label样式设置
         titleLabel.text      = L10n.ContactsShowInfoAchievement.string
         titleLabel.textColor = UIColor(named: .EColor)
         titleLabel.font      = UIFont.mediumSystemFontOfSize(16.0)
         
-        
         // 斜体字体
         let font   = UIFont.mediumSystemFontOfSize(14.0)
         
         // 成就详情Label样式设置
-        infoLabel.text      = infoStrFormatter()
         infoLabel.font      = font
         infoLabel.textColor = UIColor(named: .KColor)
         
         // 成就图标展示视图设置
         collectionView.delegate   = self
         collectionView.dataSource = self
+        collectionView.scrollEnabled = false 
         collectionView.showsVerticalScrollIndicator = false
         collectionView.registerNib(UINib(nibName: userAchievementViewCollectionCell, bundle: nil), forCellWithReuseIdentifier: userAchievementViewCollectionCell)
         
+        self.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         
-        self.clipsToBounds      = true
-        self.layer.cornerRadius = CavyDefine.commonCornerRadius
-        
-        guard let achieveIndex = userInfo.achievementType.toInt() else {
+        guard var achieveIndex = userInfo.achievementType.toInt() else {
             return
         }
         
-        achievementsList = configWithMadelIndex(achieveIndex)
+        var locationIndex = 1
+        
+        for i in 0 ..< stepArray.count {
+            
+            if achievementCount >= stepArray[i] {
+                locationIndex += 1
+            }
+        }
+        
+        if locationIndex > achieveIndex {
+            
+            achieveIndex = locationIndex
+            // 上报 成就徽章是否点亮
+            userInfo.achievementType = String(achieveIndex)
+        }
         
     }
     
     /**
-     传进来的指数  
+     传进来的指数 
+     
      0:没有成就; 1:5000步;2:20000步;3:1000000步;4：500000步;5：1000000步;6：5000000步;
-     
      - parameter index: 传进来的指数
-     
+     - Jessica
      - returns: 徽章数组
      */
-    func configWithMadelIndex(index: Int = 0) -> [AchievementDataSource]? {
+    func configWithAchieveIndex(index: Int = 0) {
 
         var array: [AchievementDataSource] = []
 
@@ -100,16 +128,17 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate {
         
         for i in 0 ..< index  {
             
-            let vm = UserAchievementCellViewModel(madelIndex: index, isAchieve: 1)
+            let vm = UserAchievementCellViewModel(madelIndex: i, isAchieve: 1)
             array[i] = vm
             
         }
         
-        return array
+        achievementsList = array
+        
+        achievementCount = stepArray[index]
+        
     }
     
-    
-
 }
 
 // MARK: - Tool Functions

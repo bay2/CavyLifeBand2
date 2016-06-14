@@ -30,11 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             
         #endif
         
-//        if ez.isRelease {
-//            Log.enabled = false
-//            crashConfig()
-//        }
-        
+        #if RELEASE
+            Log.enabled = false
+            crashConfig()
+        #endif
+    
         realmConfig()
         
         pgyUpdateConfig()
@@ -132,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
                 return
             }
             
-            migration.enumerate(FriendInfoRealm.className()) {(oldObject, newObject) in
+            migration.enumerate(FriendInfoRealm.className()) { (oldObject, newObject) in
                 
                 let nikeName = oldObject!["nikeName"] as! String
                 newObject!["fullName"] = nikeName.chineseToSpell() + nikeName
@@ -149,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      - author: sim cai
      - date: 2016-06-01
      
-     - parameter updateMethodWithDictionary: <#updateMethodWithDictionary description#>
+     - parameter updateMethodWithDictionary: 
      */
     func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {
         

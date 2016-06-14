@@ -41,6 +41,7 @@ extension RootViewController: LifeBandBleDelegate {
             return
         }
         
+        
         LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandMacAddress) {
             
             self.saveMacAddress()
@@ -62,6 +63,9 @@ extension RootViewController: LifeBandBleDelegate {
             LifeBandCtrl.shareInterface.installButtonEven()
             self.syncDataFormBand()
         }
+            
+        
+        
         
     }
     
@@ -103,7 +107,7 @@ extension RootViewController: LifeBandBleDelegate {
         }
         
         Log.info("defaultBindBand = \(CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand)")
-        
+//        defaultBindBand = Cavy2-D525,25:D5:4B:F8:E6:A0
     }
     
 }

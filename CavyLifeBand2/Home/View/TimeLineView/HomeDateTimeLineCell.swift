@@ -27,12 +27,16 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     var notificationSleepToken: NotificationToken?
     
     // VM 数组
-    var datasViewModels: [HomeListViewModelProtocol] = []
+    private var datasViewModels: [HomeListViewModelProtocol] = [HomeListStepViewModel(stepNumber: 0), HomeListSleepViewModel(sleepTime: 0)]
     
     override func awakeFromNib() {
-        
         addCollectionView()
-        
+    }
+    
+    deinit {
+        notificationHomeListToken?.stop()
+        notificationStepToken?.stop()
+        notificationSleepToken?.stop()
     }
     
     /**
@@ -45,7 +49,6 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         initNotificationHomeList()
         initNotificationStep()
         initNotificationSleep()
-        
         
     }
     
@@ -82,7 +85,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      - author: sim cai
      - date: 2016-06-02
      
-     - returns: <#return value description#>
+     - returns:
      */
     func initNotificationSleep() {
         
@@ -125,7 +128,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      - author: sim cai
      - date: 2016-06-02
      
-     - returns: <#return value description#>
+     - returns:
      */
     func initNotificationStep() {
         
@@ -189,6 +192,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         
         let date = NSDate(fromString: timeString, format: "yyyy.M.d")
         let time = date!.toString(format: "yyyy-MM-dd")
+        
         // 不存在 解析数据 并保存
         HomeListWebApi.shareApi.parseHomeListData(time) { result in
             
@@ -276,19 +280,16 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      数据库数据 转换 VM数组
      */
     func queryRealmGetViewModelLists(homeListRealm: Results<(HomeListRealm)>) -> [HomeListViewModelProtocol] {
-        
+    
         // 转成 VM数组
-        var listVM: [HomeListViewModelProtocol] = []
+        var listVM: [HomeListViewModelProtocol] = [HomeListStepViewModel(stepNumber: 0), HomeListSleepViewModel(sleepTime: 0)]
         
         guard let listRealm = homeListRealm.first else {
-            listVM.append(HomeListStepViewModel(stepNumber: 0))
-            listVM.append(HomeListSleepViewModel(sleepTime: 0))
             return listVM
         }
         
-        // 计步睡眠
-        listVM.append(HomeListStepViewModel(stepNumber: 0))
-        listVM.append(HomeListSleepViewModel(sleepTime: 0))
+        listVM[0] = self.datasViewModels[0]
+        listVM[1] = self.datasViewModels[1]
 
         // PK
         if listRealm.pkList.count > 0 {

@@ -95,7 +95,7 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
         
         let locationObj = CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
         
-        geocoder.reverseGeocodeLocation(locationObj) {(placemark, error) -> Void in
+        geocoder.reverseGeocodeLocation(locationObj) { (placemark, error) -> Void in
             
             if error != nil {
                 return

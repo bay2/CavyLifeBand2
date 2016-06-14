@@ -9,6 +9,14 @@ import UIKit
 import EZSwiftExtensions
 import RealmSwift
 
+
+//TODO: 固件升级测试数据
+let testFile = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F17.bin"
+let testFile30 = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2H25F30.bin"
+let testFile31E = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F31e.bin"
+let testFile31 = "https://attachments.tower.im/tower/e1396addf18d45479f1ef20925f6e13b?download=true&filename=Cavy2PR3F32b.bin"
+
+
 /**
  *  菜单项 view model
  */
@@ -16,7 +24,7 @@ struct MenuViewModel: MenuProtocol {
     
     var title: String
     var icon: UIImage?
-    var nextView: UIViewController
+    var nextView: UIViewController?
     
     init(icon: UIImage? = nil, title: String, nextView: UIViewController) {
         
@@ -28,11 +36,69 @@ struct MenuViewModel: MenuProtocol {
     
 }
 
+struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
+    
+    var title: String
+    var icon: UIImage?
+    var nextView: UIViewController? = nil
+    var filePath: String = ""
+    
+    init(icon: UIImage? = nil, title: String) {
+        
+        self.icon = icon
+        self.title = title
+
+        
+    }
+    
+    func onClickCell() {
+        
+        let updateView = UpdateProgressView.show()
+        
+        //TODO: 固件升级，等服务器接口完成，这边补充版本校验和下载地址获取
+        self.downloadFirmware(testFile31) {
+            
+                LifeBandBle.shareInterface.updateFirmware($0) {
+                    
+                    $0.success { value in
+                        
+                        updateView.updateProgress(0.5 + value / 2) { progress in
+                            
+                            if progress != 1 {
+                                return
+                            }
+                            
+                            UpdateProgressView.hide()
+                            
+                        }
+                    }
+                }
+            
+            }.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+            
+            var percentage = (Double(totalBytesRead) / Double(totalBytesExpectedToRead)) * 100
+            
+            percentage = percentage == 100 ? 99 : percentage
+            
+            Log.info("percentage = \(percentage)")
+            
+            ez.runThisInMainThread {
+                
+                updateView.updateProgress(percentage / 100 / 2)
+                
+            }
+            
+        }
+        
+    }
+    
+}
+
 struct UndoBindViewModel: MenuProtocol {
     
     var title: String
     var icon: UIImage?
-    var nextView: UIViewController
+    var nextView: UIViewController?
     
     init(icon: UIImage? = nil, title: String) {
         
@@ -54,7 +120,11 @@ struct UndoBindViewModel: MenuProtocol {
         
         LifeBandBle.shareInterface.bleDisconnect()
         
-        let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
+        guard let newNextView = nextView else {
+            return
+        }
+        
+        let userInfo = ["nextView": newNextView] as [NSObject: AnyObject]
         
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
@@ -106,8 +176,7 @@ struct BandHardwareMenuGroupDataModel: MenuGroupDataSource {
     
     init() {
         
-        items.append(MenuViewModel(title: L10n.HomeRightListTitleFirmwareUpgrade.string,
-            nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
+        items.append(UpdateFWViewModel(title: L10n.HomeRightListTitleFirmwareUpgrade.string))
         
     }
     
@@ -170,7 +239,7 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
      */
     mutating func refurbishNextView() {
         
-        items = items.map {(item) -> MenuProtocol in
+        items = items.map { (item) -> MenuProtocol in
             
             if item.title == L10n.HomeLifeListTitlePK.string {
                 

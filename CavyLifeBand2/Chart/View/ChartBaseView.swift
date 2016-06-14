@@ -18,7 +18,7 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
     var viewStyle: ChartViewStyle = .StepChart
 
     var timeBucketStyle: TimeBucketStyle = .Day
-    
+
     /// 时间间隔选择
     var timeView: UICollectionView?
     
@@ -149,6 +149,7 @@ class ChartBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSourc
         timeLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         
         infoView = UICollectionView(frame: CGRectMake(0, 0, ez.screenWidth, infoViewHeight), collectionViewLayout: timeLayout)
+        infoView!.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         infoView!.backgroundColor = UIColor(named: .ChartBackground)
         infoView!.alwaysBounceHorizontal = true
         infoView!.showsHorizontalScrollIndicator = false

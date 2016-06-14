@@ -119,12 +119,12 @@ extension HomeDateView: UIScrollViewDelegate {
         
     }
     
-    // 滑动拖拽
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        scrollViewEndAction(scrollView)
-
-    }
+//    // 滑动拖拽
+//    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        
+//        scrollViewEndAction(scrollView)
+//
+//    }
 
     /**
      滑动结束事件

@@ -27,7 +27,7 @@ class PKRulesVC: UIViewController, BaseViewControllerPresenter {
         rulesView?.configure(PKRulesVCViewDataSource())
         self.view.addSubview(rulesView!)
         
-        rulesView?.snp_makeConstraints(closure: {(make) in
+        rulesView?.snp_makeConstraints(closure: { (make) in
             make.top.equalTo(self.view.snp_top).offset(rulesViewMargin)
             make.leading.equalTo(self.view.snp_leading).offset(rulesViewMargin)
             make.trailing.equalTo(self.view.snp_trailing).offset(-rulesViewMargin)

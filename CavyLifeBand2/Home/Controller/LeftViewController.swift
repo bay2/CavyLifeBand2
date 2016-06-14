@@ -51,7 +51,7 @@ class LeftMenViewController: UIViewController, HomeUserDelegate, UserInfoRealmOp
         let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
         
-        notificationToken = userInfos.addNotificationBlock {(changes: RealmCollectionChange) in
+        notificationToken = userInfos.addNotificationBlock { (changes: RealmCollectionChange) in
             
             switch changes {
                 
@@ -194,7 +194,9 @@ extension LeftMenViewController {
         
         menuGroup[indexPath.section].refurbishNextView()
         
-        let nextView = menuGroup[indexPath.section].items[indexPath.row].nextView
+        guard let nextView = menuGroup[indexPath.section].items[indexPath.row].nextView else {
+            return
+        }
         
         let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
         

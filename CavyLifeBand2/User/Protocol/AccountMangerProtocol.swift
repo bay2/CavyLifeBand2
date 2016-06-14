@@ -104,7 +104,7 @@ extension SendSafetyCodeDelegate where Self: UIViewController {
         
         let para = [UserNetRequsetKey.PhoneNum.rawValue: userName]
         
-        UserNetRequestData.shareApi.requestPhoneSecurityCode(para) {(result) in
+        UserNetRequestData.shareApi.requestPhoneSecurityCode(para) { (result) in
             
             self.sendSafetyCodeBtn.enabled = true
             

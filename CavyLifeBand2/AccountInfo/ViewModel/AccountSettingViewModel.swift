@@ -172,7 +172,7 @@ struct AccountWeightViewModel: AccountSettingModelPotocols {
 /**
  *  登录用户修改昵称
  */
-class UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDelegate, UserInfoRealmOperateDelegate {
+struct UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDelegate, UserInfoRealmOperateDelegate {
     
     var realm: Realm = try! Realm()
     
@@ -210,11 +210,11 @@ class UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDeleg
     
     func onClickButton() {
         
-        setUserInfo { [unowned self] in
+        setUserInfo {
             
             if $0 {
                 
-                self.updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) { [unowned self] in
+                self.updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) { 
                     $0.nickname = self.textFieldTitle
                     return $0
                 }
@@ -232,7 +232,7 @@ class UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDeleg
 /**
  *  登录用户修改地址
  */
-class UserChangeAddressVM: ContactsReqFriendPortocols, SetUserInfoRequestsDelegate, UserInfoRealmOperateDelegate {
+struct UserChangeAddressVM: ContactsReqFriendPortocols, SetUserInfoRequestsDelegate, UserInfoRealmOperateDelegate {
     
     var realm: Realm = try! Realm()
     
@@ -270,11 +270,11 @@ class UserChangeAddressVM: ContactsReqFriendPortocols, SetUserInfoRequestsDelega
     
     func onClickButton() {
         
-        setUserInfo { [unowned self] in
+        setUserInfo {
             
             if $0 {
                 
-                self.updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) { [unowned self] in
+                self.updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
                     $0.address = self.textFieldTitle
                     return $0
                 }

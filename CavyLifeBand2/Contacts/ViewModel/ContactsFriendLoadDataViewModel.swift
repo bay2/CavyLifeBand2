@@ -100,7 +100,7 @@ class ContactsRecommendFriendData: ContactsAddFriendDataSync {
         
         do {
             
-            try ContactsWebApi.shareApi.getRecommendFriend {(result) in
+            try ContactsWebApi.shareApi.getRecommendFriend { (result) in
                 
                 guard result.isSuccess else {
                     CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
@@ -157,7 +157,7 @@ class ContactsAddressBookFriendData: AddressBookDataSource, ContactsAddFriendDat
         var phoneNumList = [String]()
         
         // 获取通信电话信息
-        getAddresBookPhoneInfo {(firstName, lastName, phoneNum) in
+        getAddresBookPhoneInfo { (firstName, lastName, phoneNum) in
             
             self.phoneNumInfos += [phoneNum: "\(firstName)\(lastName)"]
             phoneNumList.append(phoneNum)
