@@ -43,7 +43,7 @@ class GenderView: UIView {
         self.addSubview(downGenderBtn)
 
         titleLab.text = L10n.GuideMine.string
-        titleLab.font = UIFont.systemFontOfSize(18)
+        titleLab.font = UIFont.mediumSystemFontOfSize(18)
         titleLab.textColor = UIColor(named: .EColor)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { make -> Void in
