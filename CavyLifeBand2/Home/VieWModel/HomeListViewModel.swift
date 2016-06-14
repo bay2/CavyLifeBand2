@@ -71,8 +71,12 @@ struct HomeListAchiveViewModel: HomeListViewModelProtocol {
     var friendName: String{ return "" }
     var friendIconUrl: String { return "" }
     var resultNum: NSMutableAttributedString
+    var medalIndex: Int
+    
     // 0 ~ 5 共6个徽章 返回编号
     init(medalIndex: Int) {
+        
+        self.medalIndex = medalIndex
         
         let stepArray = [5000, 20000, 100000, 500000, 1000000, 5000000]
         resultNum = NSMutableAttributedString().attributeString(String(stepArray[medalIndex]), numSize: 28, unit: L10n.GuideStep.string, unitSize: 12)
@@ -80,7 +84,7 @@ struct HomeListAchiveViewModel: HomeListViewModelProtocol {
     
     func onClickCell() {
 
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowAchieveView.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowAchieveView.rawValue, object: medalIndex)
     }
     
 }

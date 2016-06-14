@@ -73,7 +73,7 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
                     }
                 }
             
-            }.progress { (bytesRead, totalBytesRead, totalBytesExpectedToRead) in
+            }.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
             
             var percentage = (Double(totalBytesRead) / Double(totalBytesExpectedToRead)) * 100
             

@@ -30,7 +30,11 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
     }
     
     var realm: Realm = try! Realm()
+    
     var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+    
+    // 判断本地是否需要点灯
+    let stepArray = [0, 5000, 20000, 100000, 500000, 1000000, 5000000]
 
     /// 成就标题Label
     @IBOutlet weak var titleLabel: UILabel!
@@ -60,7 +64,7 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
             return
         }
         
-        achievementsList = configWithAchieveIndex(0)
+        configWithAchieveIndex(0)
         
         // 成就标题Label样式设置
         titleLabel.text      = L10n.ContactsShowInfoAchievement.string
@@ -87,9 +91,6 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
             return
         }
         
-        // 判断本地是否需要点灯
-        let stepArray = [5000, 20000, 100000, 500000, 1000000, 5000000]
-        
         var locationIndex = 1
         
         for i in 0 ..< stepArray.count {
@@ -99,15 +100,12 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
             }
         }
         
-        
         if locationIndex > achieveIndex {
             
             achieveIndex = locationIndex
             // 上报 成就徽章是否点亮
             userInfo.achievementType = String(achieveIndex)
         }
-        
-        achievementsList = configWithAchieveIndex(achieveIndex)
         
     }
     
@@ -119,7 +117,7 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
      - Jessica
      - returns: 徽章数组
      */
-    func configWithAchieveIndex(index: Int = 0) -> [AchievementDataSource]? {
+    func configWithAchieveIndex(index: Int = 0) {
 
         var array: [AchievementDataSource] = []
 
@@ -130,16 +128,17 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         
         for i in 0 ..< index  {
             
-            let vm = UserAchievementCellViewModel(madelIndex: index, isAchieve: 1)
+            let vm = UserAchievementCellViewModel(madelIndex: i, isAchieve: 1)
             array[i] = vm
             
         }
         
-        return array
+        achievementsList = array
+        
+        achievementCount = stepArray[index]
+        
     }
     
-    
-
 }
 
 // MARK: - Tool Functions
