@@ -262,6 +262,7 @@
 "Setting.SafetyTableFooter.Title" = "紧急报警";
 "Setting.SafetyTableFooter.Info" = "紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。";
 "Setting.SafetyTableEmergencyContact.CancelBtn" = "取消";
+"Setting.SafetyTableEmergency.AlertMsg" = "紧急联系人上限三人";
 "Setting.ReminderPhoneCall.Title" = "来电提醒";
 "Setting.ReminderPhoneCall.Description" = "秒未接提醒";
 "Setting.ReminderMessage.Title" = "短信提醒";
@@ -351,4 +352,5 @@
 // 固件升级
 "UpdateProgress.Info" = "请勿退出应用或关闭手环";
 "UpdateProgress.title" = "手环正在升级";
+"UpdateFirmware.BandDisconnect.AlertMsg" = "请先连接手环";
 

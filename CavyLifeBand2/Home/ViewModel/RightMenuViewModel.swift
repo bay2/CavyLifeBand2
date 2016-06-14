@@ -8,6 +8,7 @@
 import UIKit
 import EZSwiftExtensions
 import RealmSwift
+import JSONJoy
 
 
 //TODO: 固件升级测试数据
@@ -51,6 +52,12 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
     }
     
     func onClickCell() {
+        
+        // 如果手环没连接，return
+        if LifeBandBle.shareInterface.getConnectState() != .Connected {
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareBandDisconnectAlertMsg.string)
+            return
+        }
         
         let updateView = UpdateProgressView.show()
         
