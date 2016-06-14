@@ -2423,6 +2423,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
+				);
 				INFOPLIST_FILE = CavyLifeBand2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2461,6 +2471,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
+				);
 				INFOPLIST_FILE = CavyLifeBand2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2495,10 +2515,34 @@
 			baseConfigurationReference = 2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/MOBFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public/PgyUpdate\"",
+					"\"${PODS_ROOT}/Headers/Public/ShareSDK2\"",
+				);
 				INFOPLIST_FILE = CavyLifeBand2Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/SinaWeiboSDK\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/WeChatSDK\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/CavyLifeBand2-Swift.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CavyLifeBand2.app/CavyLifeBand2";
 			};
 			name = Debug;
@@ -2508,10 +2552,34 @@
 			baseConfigurationReference = 91931FBDB93D6202BBC98835 /* Pods-CavyLifeBand2Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/MOBFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public/PgyUpdate\"",
+					"\"${PODS_ROOT}/Headers/Public/ShareSDK2\"",
+				);
 				INFOPLIST_FILE = CavyLifeBand2Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/SinaWeiboSDK\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/WeChatSDK\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/CavyLifeBand2-Swift.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CavyLifeBand2.app/CavyLifeBand2";
 			};
 			name = Release;
@@ -2521,12 +2589,35 @@
 			baseConfigurationReference = 62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public/ShareSDK2\"",
+					"\"${PODS_ROOT}/Headers/Public/PgyUpdate\"",
+					"\"${PODS_ROOT}/Headers/Public/MOBFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = CavyLifeBand2UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/WeChatSDK\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/SinaWeiboSDK\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/CavyLifeBand2-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_TARGET_NAME = CavyLifeBand2;
 				USES_XCTRUNNER = YES;
@@ -2538,12 +2629,35 @@
 			baseConfigurationReference = 0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public/ShareSDK2\"",
+					"\"${PODS_ROOT}/Headers/Public/PgyUpdate\"",
+					"\"${PODS_ROOT}/Headers/Public/MOBFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = CavyLifeBand2UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/WeChatSDK\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/SinaWeiboSDK\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/CavyLifeBand2-Swift.h";
 				TEST_TARGET_NAME = CavyLifeBand2;
 				USES_XCTRUNNER = YES;
 			};

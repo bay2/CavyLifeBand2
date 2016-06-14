@@ -312,7 +312,6 @@ class LifeBandBle: NSObject {
         Log.info("bleBinding")
         LifeBandBle.isRebend  = true
         self.bindingComplete = bindingComplete
-        
         self.startScaning()
         
     }
