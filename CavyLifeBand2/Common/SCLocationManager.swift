@@ -89,6 +89,8 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
      */
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
+        locationManager.stopUpdatingLocation()
+        
         let geocoder = CLGeocoder()
         
         self.coordinate = locations[0].coordinate
@@ -111,7 +113,7 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
             
         }
         
-        locationManager.stopUpdatingLocation()
+        
         complete?(locations[0].coordinate)
         
     }

@@ -341,6 +341,7 @@ class LifeBandCtrl {
                 
                 
                 LifeBandBle.shareInterface.sendMsgToBand("%OPR=1,1\n command")
+              
                 Log.info("Buttion Long press")
                 
             }
