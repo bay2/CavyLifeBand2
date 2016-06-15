@@ -125,9 +125,18 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         
         for model in self.contactModels {
             
-            if contact.name == model.name && contact.phoneName == model.phoneNumber {
-                Log.info("联系人重复，已添加")
-                return
+            if contact.name == model.name {
+                
+                for phone in contact.phoneList {
+                    
+                    if phone ==  model.phoneNumber{
+                        
+                         Log.info("联系人重复，已添加")
+                           return
+                    }
+                 
+                }
+
             }
             
             let dic = [UserNetRequsetKey.Name.rawValue: model.name,
@@ -135,16 +144,16 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
             phoneArr.append(dic)
         }
         
-        phoneArr.append([UserNetRequsetKey.Name.rawValue: contact.name,
-            UserNetRequsetKey.PhoneNum.rawValue: contact.phoneName])
+//        phoneArr.append([UserNetRequsetKey.Name.rawValue: contact.name,
+//            UserNetRequsetKey.PhoneNum.rawValue: contact.phoneName])
+//        
+//        setEmergencyList(phoneArr) {
+//            let cellVM = EmergencyContactInfoCellViewModel(name: contact.name, phone: contact.phoneName)
+//            
+//            self.contactModels.insertAsFirst(cellVM)
         
-        setEmergencyList(phoneArr) {
-            let cellVM = EmergencyContactInfoCellViewModel(name: contact.name, phone: contact.phoneName)
-            
-            self.contactModels.insertAsFirst(cellVM)
-            
             self.tableView.reloadData()
-        }
+//        }
         
     }
     
@@ -235,10 +244,10 @@ extension SafetySettingViewController: SCAddressBookPickerDelegate {
     
     func contactPicker(didSelectContact contact: SCAddressBookContact) {
         
-        var newContact = contact
+        let
+        newContact = contact
         
-        newContact.phoneName = contact.phoneName.stringByReplacingOccurrencesOfString("-", withString: "")
-        
+        Log.info(newContact.phoneList)
         addEmergency(newContact)
    
     }
