@@ -327,16 +327,30 @@ class LifeBandCtrl {
             
             NSNotificationCenter.defaultCenter().postNotificationName(LifeBandCtrlNotificationName.BandButtonEvenClick1.rawValue, object: nil)
             
+            /**
+             *  0,  button released
+             1,  button pressed
+             3,  long pressed
+             */
             if data[2] == 1 {
                 self.buttonCount += 1
+                
+                Log.info("Button count \(self.buttonCount)")
+                
+            } else if  data[2] == 3 {
+                
+                
+                LifeBandBle.shareInterface.sendMsgToBand("%OPR=1,1\n command")
+              
+                Log.info("Buttion Long press")
+                
             }
             
-            Log.info("Button count \(self.buttonCount)")
-            
+           
         }
         
     }
     
     
-    
+
 }

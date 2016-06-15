@@ -63,25 +63,34 @@ extension RootViewController: LifeBandBleDelegate {
             LifeBandCtrl.shareInterface.installButtonEven()
             self.syncDataFormBand()
         }
-            
-        
-        
-        
     }
+    
     
     /**
      向紧急联系人发消息
-     
+     成功后手环振动一次
      - author: sim cai
      - date: 2016-05-31
      */
-    func callEmergency() {
-        
-        do { try EmergencyWebApi.shareApi.sendEmergencyMsg() }
-        catch let error
-        { Log.error("Cell EmergencyWebApi.shareApi.sendEmergencyMsg error (\(error))") }
-        
+
+    func callEmergency()  {
+        do {
+            try EmergencyWebApi.shareApi.sendEmergencyMsg {
+                
+                result in
+                
+                if  result.isSuccess {
+                    
+                       LifeBandCtrl.shareInterface.vibrate(1)
+                }
+            }
+        }catch let error {
+             Log.error("Cell EmergencyWebApi.shareApi.sendEmergencyMsg error (\(error))")
+        }
+    
     }
+    
+    
     
     /**
      保存mac地址

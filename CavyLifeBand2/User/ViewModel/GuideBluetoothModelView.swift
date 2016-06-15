@@ -93,8 +93,8 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView { return PictureView(title: L10n.GuideOpenCavy.string, titleInfo: L10n.GuideOpenCavyInfo.string, bottomInfo: L10n.GuideOpenCavySugg.string, midImage: AnimatableImageView(image: UIImage(asset: .GuideOpenBand))) }
-    var hiddeBackBtn: Bool { return BindBandCtrl.bindScene.hiddeBackBtn }
-    
+    var hiddeBackBtn: Bool { return false }//BindBandCtrl.bindScene.hiddeBackBtn }
+    var queryUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     var hiddeGuideBtn: Bool { return true }
     
     func onLoadView() {
@@ -103,7 +103,7 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
         
         LifeBandBle.shareInterface.bleBinding {
             
-            BindBandCtrl.bandMacAddress = $1
+                BindBandCtrl.bandMacAddress = $1
             
             let rootViewController = StoryboardScene.Guide.instantiateGuideView()
             let linkingVM = GuideBandLinking()
@@ -121,7 +121,18 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
     
     func onCilckBack(viewController: UIViewController) {
         
-        ez.topMostVC?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
+        // 注册流程时候 返回注册登录首页
+        if queryUserId.isEmpty {
+        
+            ez.topMostVC?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
+            
+        } else {
+        // 登录流程 返回登录页面
+            // TODO: 没有新的注册的号码 进行测试
+            viewController.navigationController?.popToRootViewControllerAnimated(true)
+            
+        }
+        
     }
     
     func bleMangerState(bleState: CBCentralManagerState) {
