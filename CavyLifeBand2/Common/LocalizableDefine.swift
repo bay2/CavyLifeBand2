@@ -607,6 +607,8 @@ enum L10n {
   case UpdateProgressTitle
   /// 请先连接手环
   case UpdateFirmwareBandDisconnectAlertMsg
+  /// 固件版本已最新版本
+  case UpdateFirmwareIsNewVersionAlertMsg
 }
 
 extension L10n: CustomStringConvertible {
@@ -1218,6 +1220,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UpdateProgress.title")
       case .UpdateFirmwareBandDisconnectAlertMsg:
         return L10n.tr("UpdateFirmware.BandDisconnect.AlertMsg")
+      case .UpdateFirmwareIsNewVersionAlertMsg:
+        return L10n.tr("UpdateFirmware.IsNewVersion.AlertMsg")
     }
   }
 

@@ -48,10 +48,12 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
         
         self.icon = icon
         self.title = title
-
         
     }
     
+    /**
+     版本校验和下载地址获取
+     */
     func onClickCell() {
         
         // 如果手环没连接，return
@@ -62,27 +64,97 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
         
         let updateView = UpdateProgressView.show()
         
-        //TODO: 固件升级，等服务器接口完成，这边补充版本校验和下载地址获取
+        // TODO 接口和手环版本格式改好后放开注释
+        
+        // 固件版本校验
+//        LifeBandCtrl.shareInterface.getLifeBandInfo {
+//            
+//            let fwVersion = $0.fwVersion
+//            
+//            do {
+        
+//                try FirmwareUpdateWebApi.shareApi.getVersion(fwVersion.toString) { result in
+//                    
+//                    guard result.isSuccess else {
+//                        UpdateProgressView.hide()
+//                        CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
+//                        return
+//                    }
+//                    
+//                    let resultMsg = try! FirmwareUpdateResponse(JSONDecoder(result.value!))
+//                    
+//                    guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+//                        UpdateProgressView.hide()
+//                        CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.commonMsg?.code ?? "")
+//                        return
+//                    }
+//                    
+//                    guard let versionList = resultMsg.versionList else {
+//                        UpdateProgressView.hide()
+//                        CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareIsNewVersionAlertMsg.string)
+//                        return
+//                    }
+//                    
+//                    guard versionList.count > 0 else {
+//                        UpdateProgressView.hide()
+//                        CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareIsNewVersionAlertMsg.string)
+//                        return
+//                    }
+//                    
+//                    let localIsLast = fwVersion.toString.compare(versionList[0].version, options: .NumericSearch, range: nil, locale: nil) == .OrderedDescending
+//                    
+//                    guard localIsLast == false else {
+//                        UpdateProgressView.hide()
+//                        CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareIsNewVersionAlertMsg.string)
+//                        return
+//                    
+//                    }
+                
+//                    self.downloadAndUpdateFW(versionList[0].url, updateView: updateView)
+                
+                self.downloadAndUpdateFW("", updateView: updateView)
+                
+//                }
+                
+//            } catch let error {
+//                
+//                CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+//                return
+//                
+//            }
+            
+//        }
+        
+    }
+    
+    /**
+     下载并更新固件
+     
+     - parameter downLoadUrl: 下载地址
+     */
+    func downloadAndUpdateFW(downLoadUrl: String, updateView: UpdateProgressView) {
+        
+        // TODO 改成传来的url
         self.downloadFirmware(testFile31) {
             
-                LifeBandBle.shareInterface.updateFirmware($0) {
+            LifeBandBle.shareInterface.updateFirmware($0) {
+                
+                $0.success { value in
                     
-                    $0.success { value in
+                    updateView.updateProgress(0.5 + value / 2) { progress in
                         
-                        updateView.updateProgress(0.5 + value / 2) { progress in
-                            
-                            if progress != 1 {
-                                return
-                            }
-                            
-                            UpdateProgressView.hide()
-                            
+                        if progress != 1 {
+                            return
                         }
+                        
+                        UpdateProgressView.hide()
+                        
                     }
                 }
+            }
             
-            }.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
-            
+        }.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+                
             var percentage = (Double(totalBytesRead) / Double(totalBytesExpectedToRead)) * 100
             
             percentage = percentage == 100 ? 99 : percentage
@@ -94,9 +166,9 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
                 updateView.updateProgress(percentage / 100 / 2)
                 
             }
-            
+                
         }
-        
+
     }
     
 }

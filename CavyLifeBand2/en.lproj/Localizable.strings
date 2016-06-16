@@ -353,3 +353,4 @@
 "UpdateProgress.Info" = "请勿退出应用或关闭手环";
 "UpdateProgress.title" = "手环正在升级";
 "UpdateFirmware.BandDisconnect.AlertMsg" = "请先连接手环";
+"UpdateFirmware.IsNewVersion.AlertMsg" = "固件版本已最新版本";
