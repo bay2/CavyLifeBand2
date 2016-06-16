@@ -316,6 +316,7 @@ class LifeBandCtrl {
                 NSTimer.runThisAfterDelay(seconds: 4, after: {
                     
                     if self.buttonCount >= 4 {
+                        LifeBandCtrl.shareInterface.vibrate(1)
                         NSNotificationCenter.defaultCenter().postNotificationName(LifeBandCtrlNotificationName.BandButtonEvenClick4.rawValue, object: nil)
                     }
                     

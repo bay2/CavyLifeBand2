@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      */
     func pgyUpdateConfig() {
     
-        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
+        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("9bb10b86bf5f62f10ec4f83d1c9847e7")
         PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
         PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
         
