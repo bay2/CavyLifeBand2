@@ -73,7 +73,7 @@ class ProfileTest: XCTestCase {
                 UserNetRequsetKey.SleepTime.rawValue: "4:58",
                 UserNetRequsetKey.StepNum.rawValue: 8000]
             
-            XCTAssert($0?.nickName == expectationResult["nickname"] as? String, "期望值 = \(expectationResult["nickname"]) , 实际值 = \($0?.nickName!)")
+            XCTAssert($0?.nickName == expectationResult["nickname"] as? String, "期望值 = \(expectationResult["nickname"]) , 实际值 = \($0?.nickName)")
             XCTAssert($0?.sex == expectationResult["sex"] as? String, "期望值 = \(expectationResult["sex"]) , 实际值 = \($0?.sex)")
             XCTAssert($0?.height == expectationResult["height"] as? String, "期望值 = \(expectationResult["height"]) , 实际值 = \($0?.height)")
             XCTAssert($0?.weight == expectationResult["weight"] as? String, "期望值 = \(expectationResult["weight"]) , 实际值 = \($0?.weight)")

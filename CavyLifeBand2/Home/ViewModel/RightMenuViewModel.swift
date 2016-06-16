@@ -15,7 +15,8 @@ import JSONJoy
 let testFile = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F17.bin"
 let testFile30 = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2H25F30.bin"
 let testFile31E = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F31e.bin"
-let testFile31 = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F31e.bin"
+let testFile31 = "https://attachments.tower.im/tower/e1396addf18d45479f1ef20925f6e13b?download=true&filename=Cavy2PR3F32b.bin"
+
 
 /**
  *  菜单项 view model
