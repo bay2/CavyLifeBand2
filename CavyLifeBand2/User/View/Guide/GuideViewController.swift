@@ -57,7 +57,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
 //        updateNavUI()
         
-        delegate?.onLoadView()
+//        delegate?.onLoadView()
         
     }
     
@@ -65,6 +65,8 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         super.viewWillAppear(animated)
         
         updateViewStyle()
+        
+        delegate?.onLoadView()
     }
     
     deinit {
