@@ -119,43 +119,78 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         
     }
     
+    /**
+     如果有多个号码 添加提示
+     
+     - parameter contact: 返回的联系人信息
+     */
+    
     func addEmergency(contact: SCAddressBookContact) {
         
-        var phoneArr: [[String: String]] = [[String: String]]()
+        guard  contact.phoneList.count > 0 else {
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.SettingSafetyPhoneNumberError.string)
+            
+            return
+    }
+        //MARK: 单个联系人
+        if contact.phoneList.count == 1
+        {
+        
+            configSendPara(contact.name, phoneNumber: contact.phoneList[0])
+            
+            //MARK: 多个联系人
+        }else
+            
+        {
+            
+            let  sheet = UIActionSheet(title: contact.name, delegate:self, cancelButtonTitle:L10n.SettingSafetyPhoneNumberCancel.string  , destructiveButtonTitle: nil)
+            
+            for phoneNumber in contact.phoneList {
+                
+                sheet.addButtonWithTitle(phoneNumber)
+            }
+            
+            sheet.showInView(self.view)
+        }
+
+    }
+   
+    
+    
+    func configSendPara(name: String , phoneNumber: String) {
+        
+        var phoneArr: [[String:String]] = [[:]]
         
         for model in self.contactModels {
             
-            if contact.name == model.name {
+            if phoneNumber ==  model.phoneNumber{
                 
-                for phone in contact.phoneList {
-                    
-                    if phone ==  model.phoneNumber{
-                        
-                         Log.info("联系人重复，已添加")
-                           return
-                    }
-                 
-                }
-
+                Log.info("联系人重复，已添加")
+                return
             }
+            
             
             let dic = [UserNetRequsetKey.Name.rawValue: model.name,
                        UserNetRequsetKey.PhoneNum.rawValue: model.phoneNumber]
             phoneArr.append(dic)
         }
         
-//        phoneArr.append([UserNetRequsetKey.Name.rawValue: contact.name,
-//            UserNetRequsetKey.PhoneNum.rawValue: contact.phoneName])
-//        
-//        setEmergencyList(phoneArr) {
-//            let cellVM = EmergencyContactInfoCellViewModel(name: contact.name, phone: contact.phoneName)
-//            
-//            self.contactModels.insertAsFirst(cellVM)
+        phoneArr.append([UserNetRequsetKey.Name.rawValue: name,
+            UserNetRequsetKey.PhoneNum.rawValue: phoneNumber])
         
+        setEmergencyList(phoneArr) {
+            
+            let cellVM = EmergencyContactInfoCellViewModel(name:name, phone: phoneNumber)
+            
+            self.contactModels.insertAsFirst(cellVM)
+            
             self.tableView.reloadData()
-//        }
+            
+        }
         
     }
+    
     
     func deleteEmergency(index: Int) {
         
@@ -359,4 +394,18 @@ extension SafetySettingViewController: EmergencyContactInfoDelegate {
         deleteEmergency(index.row - 1)
     }
 
+}
+
+
+// MARK:  -UIActionSheetDelegate
+extension SafetySettingViewController :UIActionSheetDelegate
+{
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        
+        guard buttonIndex != 0 else {
+            return
+        }
+    
+        configSendPara(actionSheet.title, phoneNumber: actionSheet.buttonTitleAtIndex(buttonIndex)!)
+    }
 }

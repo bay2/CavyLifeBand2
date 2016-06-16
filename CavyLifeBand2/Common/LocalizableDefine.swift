@@ -439,6 +439,10 @@ enum L10n {
   case SettingSafetyTableCellContactButton
   /// 紧急联系人
   case SettingSafetyTableCellContactTitle
+  /// 手机号格式错误，无法发送短信
+  case SettingSafetyPhoneNumberError
+  /// 取消
+  case SettingSafetyPhoneNumberCancel
   /// GPS定位
   case SettingSafetyTableCellGPSTitle
   /// 紧急报警
@@ -1046,6 +1050,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Setting.SafetyTableCell.ContactButton")
       case .SettingSafetyTableCellContactTitle:
         return L10n.tr("Setting.SafetyTableCell.ContactTitle")
+      case .SettingSafetyPhoneNumberError:
+        return L10n.tr("Setting.SafetyPhoneNumberError")
+      case .SettingSafetyPhoneNumberCancel:
+        return L10n.tr("Setting.SafetyPhoneNumberCancel")
       case .SettingSafetyTableCellGPSTitle:
         return L10n.tr("Setting.SafetyTableCell.GPSTitle")
       case .SettingSafetyTableFooterTitle:

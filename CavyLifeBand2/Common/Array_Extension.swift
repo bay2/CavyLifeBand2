@@ -69,20 +69,26 @@ extension Array {
      */
     
   public  func valiMobile(mobile: String) -> String? {
+    
+    var  newMobile = mobile
         
-        guard mobile.length == 11 else {
+    newMobile =  newMobile.stringByReplacingOccurrencesOfString("-", withString: "").stringByReplacingOccurrencesOfString("+86", withString: "").stringByReplacingOccurrencesOfString(" ", withString: "")
+  
+        guard newMobile.length == 11 else {
             
             return nil
         }
         
-        let isMatch1 =  NSPredicate(format: "SELF MATCHES" + "\(Cm)").evaluateWithObject(mobile)
-        let isMatch2 =  NSPredicate(format: "SELF MATCHES" + "\(Cu)").evaluateWithObject(mobile)
-        let isMatch3 =  NSPredicate(format: "SELF MATCHES" + "\(Ct)").evaluateWithObject(mobile)
+        let isMatch1 =  NSPredicate(format: "SELF MATCHES %@", "\(Cm)").evaluateWithObject(newMobile)
+        let isMatch2 =  NSPredicate(format: "SELF MATCHES %@", "\(Cu)").evaluateWithObject(newMobile)
+        let isMatch3 =  NSPredicate(format: "SELF MATCHES %@", "\(Ct)").evaluateWithObject(newMobile)
 
+    
         
         if isMatch1 || isMatch2 || isMatch3 {
             
-            return mobile
+            return newMobile
+            
         }else
         {
             return nil

@@ -74,16 +74,11 @@ extension RootViewController: LifeBandBleDelegate {
      */
 
     func callEmergency()  {
+        
+         
+        
         do {
-            try EmergencyWebApi.shareApi.sendEmergencyMsg {
-                
-                result in
-                
-                if  result.isSuccess {
-                    
-                       LifeBandCtrl.shareInterface.vibrate(1)
-                }
-            }
+            try EmergencyWebApi.shareApi.sendEmergencyMsg()
         }catch let error {
              Log.error("Cell EmergencyWebApi.shareApi.sendEmergencyMsg error (\(error))")
         }
