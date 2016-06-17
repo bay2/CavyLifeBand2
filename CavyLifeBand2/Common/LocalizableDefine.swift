@@ -451,7 +451,7 @@ enum L10n {
   case SettingSafetyTableFooterInfo
   /// 取消
   case SettingSafetyTableEmergencyContactCancelBtn
-  /// 紧急联系人上限三人
+  /// 紧急联系人上限3人
   case SettingSafetyTableEmergencyAlertMsg
   /// 来电提醒
   case SettingReminderPhoneCallTitle
@@ -613,6 +613,12 @@ enum L10n {
   case UpdateFirmwareBandDisconnectAlertMsg
   /// 固件版本已最新版本
   case UpdateFirmwareIsNewVersionAlertMsg
+  /// 下拉同步数据...
+  case HomeRefreshIdle
+  /// 松开同步数据...
+  case HomeRefreshPulling
+  ///   正在同步数据...
+  case HomeRefreshRefreshing
 }
 
 extension L10n: CustomStringConvertible {
@@ -1230,6 +1236,12 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UpdateFirmware.BandDisconnect.AlertMsg")
       case .UpdateFirmwareIsNewVersionAlertMsg:
         return L10n.tr("UpdateFirmware.IsNewVersion.AlertMsg")
+      case .HomeRefreshIdle:
+        return L10n.tr("Home.Refresh.Idle")
+      case .HomeRefreshPulling:
+        return L10n.tr("Home.Refresh.Pulling")
+      case .HomeRefreshRefreshing:
+        return L10n.tr("Home.Refresh.Refreshing")
     }
   }
 
