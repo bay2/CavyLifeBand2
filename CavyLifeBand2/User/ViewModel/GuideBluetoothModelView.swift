@@ -20,9 +20,9 @@ private extension BindScene {
         case .SignInBind:
             return false
         case .SignUpBind:
-            return true
+            return false
         case .Rebind:
-            return true
+            return false
         }
     }
     
@@ -125,6 +125,16 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
         if queryUserId.isEmpty {
         
             ez.topMostVC?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
+            
+        } else if BindBandCtrl.bindScene == .Rebind {
+            
+            viewController.dismissVC(completion: nil)
+            
+            guard let rootVC = UIApplication.sharedApplication().keyWindow?.rootViewController as? RootViewController else {
+                return
+            }
+            
+            rootVC.homeVC?.popToRootViewControllerAnimated(false)
             
         } else {
         // 登录流程 返回登录页面
@@ -264,6 +274,9 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
             
             let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
             CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
+            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView())
+            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView())
+            return
             
         }
         
@@ -272,8 +285,10 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
     }
     
     func onCilckBack(viewController: UIViewController) {
-        ez.topMostVC?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
         LifeBandBle.shareInterface.bleDisconnect()
+
+        ez.topMostVC?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
+        
     }
     
 }

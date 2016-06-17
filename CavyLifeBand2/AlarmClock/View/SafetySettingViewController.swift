@@ -262,7 +262,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         
         if contactModels.count == 3 {
             
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: "紧急联系人上限三人")
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.SettingSafetyTableEmergencyAlertMsg.string)
             
         } else {
             
