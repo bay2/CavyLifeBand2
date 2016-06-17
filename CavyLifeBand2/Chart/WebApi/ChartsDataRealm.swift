@@ -33,7 +33,7 @@ class ChartStepDataRealm: Object {
         self.kilometer = CGFloat(self.step) * 0.0006// 相当于一部等于0.6米 公里数 = 步数 * 0.6 / 1000
     }
     
-
+    
 }
 
 // MARK: Sleep
@@ -61,15 +61,16 @@ protocol ChartsRealmProtocol {
     
     var realm: Realm { get }
     var userId: String { get }
-
+    
     // MARK: Other
     func queryAllStepInfo(userId: String) -> Results<(ChartStepDataRealm)>
     func queryTimeBucketFromFirstDay() -> [String]?
-   
+    
     // MARK: 计步
     func isNeedUpdateStepData() -> Bool
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData
+    func removeStepData(chartsInfo: ChartStepDataRealm) -> Bool
     
     // MARK: 睡眠
     func isNeedUpdateSleepData() -> Bool
@@ -87,24 +88,24 @@ extension ChartsRealmProtocol {
     func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(ChartStepDataRealm)> {
         return realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
     }
-
+    
     // 返回 第一天开始的时间段
     func queryTimeBucketFromFirstDay() -> [String]? {
-                
+        
         let userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-
+        
         let realmList = queryAllStepInfo(userId)
-
+        
         if realmList.count == 0 || realmList.first?.time == nil {
             
             return [NSDate().toString(format: "yyy.M.d")]
         }
-
+        
         let firstDate = realmList.first!.time
         
         return firstDate.untilTodayArrayWithFormatter("yyy.M.d")
-                
-        }
+        
+    }
     
 }
 
@@ -152,6 +153,9 @@ extension ChartsRealmProtocol {
         // 查询 当前数据的时间对应的值不同就更新  否则不添加
         // TODO:
         
+        
+        
+        
         do {
             
             try realm.write {
@@ -188,7 +192,7 @@ extension ChartsRealmProtocol {
             return returnDayChartsArray(beginTime, endTime: endTime, dataInfo: dataInfo)
             
         }
-     
+        
     }
     
     /**
@@ -247,7 +251,39 @@ extension ChartsRealmProtocol {
         return stepChartsData
         
     }
-
+    
+    /**
+     删除某条数据
+     
+     - parameter chartsInfo: <#chartsInfo description#>
+     
+     - returns: <#return value description#>
+     */
+    func removeStepData(chartsInfo: ChartStepDataRealm) -> Bool {
+        
+        self.realm.beginWrite()
+                
+        self.realm.delete(chartsInfo)
+            
+        do {
+            
+            try self.realm.commitWrite()
+            
+        } catch let error {
+            
+            Log.error("\(#function) error = \(error)")
+            
+            return false
+        }
+        Log.info("delete charts info success")
+        
+        return true
+        
+        
+    }
+    
+    
+    
 }
 
 // MARK: Sleep Extension
@@ -280,7 +316,7 @@ extension ChartsRealmProtocol {
         return false
         
     }
-
+    
     /**
      查询所有睡眠数据
      
@@ -335,7 +371,7 @@ extension ChartsRealmProtocol {
             index += 1
             return PerSleepChartsData(time: newDate, deepSleep: Int($0.1), lightSleep: Int($0.2))
         }
-
+        
         return sleepDatas
         
     }
@@ -408,11 +444,11 @@ extension ChartsRealmProtocol {
                 
                 longSleepCount = 0
             }
-
+            
             minustsCount += 1
             testCount += 1
             
-//            Log.info("\(timeIndex)----\((beginTime.gregorian + (timeIndex * 10).minute).date.toString(format: "MM-dd HH:mm"))----\(stepDatas[timeIndex])----\(sleepDatas[timeIndex])")
+            //            Log.info("\(timeIndex)----\((beginTime.gregorian + (timeIndex * 10).minute).date.toString(format: "MM-dd HH:mm"))----\(stepDatas[timeIndex])----\(sleepDatas[timeIndex])")
             
             // 无数据计数
             if stepTotal == 0 && tiltsTotal == 0 {
