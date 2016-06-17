@@ -65,7 +65,7 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
      */
     func loadFriendListDataByNet() {
         
-        ContactsWebApi.shareApi.getFriendList(userId) {(result) in
+        ContactsWebApi.shareApi.getFriendList(userId) { (result) in
             
             guard result.isSuccess else {
                 
@@ -331,7 +331,7 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
         let deleteRowAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellDelete.string, handler: deleteActionProc)
         
         
-        deleteRowAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
+        deleteRowAction.backgroundColor = UIColor(named: .NColor)
         
         
         return deleteRowAction
@@ -380,7 +380,7 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
         var names = self.dataGroup!.contactsGroupList![indexPath.section].1
         
         let concernActionTitle = cell!.hiddenCare ? L10n.ContactsListCellCare.string : L10n.ContactsListCellUndoCare.string
-        let concernActionColor = cell!.hiddenCare ? UIColor(named: .ContactsCareBtnColor) : UIColor(named: .ContactsUndoCareBtnColor)
+        let concernActionColor = cell!.hiddenCare ? UIColor(named: .SColor) : UIColor(named: .FColor)
         
         let concernAction = UITableViewRowAction(style: .Default, title: concernActionTitle) {
             (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in

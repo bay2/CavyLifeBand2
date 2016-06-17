@@ -4,7 +4,7 @@
 //
 //  Created by JL on 16/5/24.
 //  Copyright © 2016年 xuemincai. All rights reserved.
-//
+//  固件升级
 
 import UIKit
 import EZSwiftExtensions

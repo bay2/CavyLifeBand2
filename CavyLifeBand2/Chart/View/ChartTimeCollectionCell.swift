@@ -17,7 +17,7 @@ class ChartTimeCollectionCell: UICollectionViewCell {
         
         self.backgroundColor = UIColor.clearColor()
         self.addSubview(label)
-        label.snp_makeConstraints {(make) in
+        label.snp_makeConstraints { (make) in
             make.size.equalTo(CGSizeMake(70, 30))
             make.center.equalTo(self)
         }

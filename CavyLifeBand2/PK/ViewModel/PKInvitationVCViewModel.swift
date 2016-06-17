@@ -74,7 +74,7 @@ struct PKInvitationVCViewModel: PKRecordsRealmModelOperateDelegate, PKWebRequest
             
             self.addPKWaitRealm(self.pkWaitRealmModel)
             
-        }, failure: {(errorMsg) in
+        }, failure: { (errorMsg) in
             
             CavyLifeBandAlertView.sharedIntance.showViewTitle(message: errorMsg)
             Log.warning("弹窗提示失败" + errorMsg)

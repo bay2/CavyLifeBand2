@@ -10,10 +10,11 @@ import UIKit
 import AddressBookUI
 import ContactsUI
 
+
 struct SCAddressBookContact {
     
     var name: String
-    var phoneName: String
+    var phoneList: [String]
     
 }
 
@@ -63,12 +64,22 @@ extension SCAddressBookPicker: CNContactPickerDelegate {
      */
     func contactPicker(picker: CNContactPickerViewController, didSelectContact contact: CNContact) {
         
-        let phone = contact.phoneNumbers.first
-        guard let phoneNumber = phone?.value as? CNPhoneNumber else {
-            return
+        let phoneArr = contact.phoneNumbers
+        var returnPhoneNumArr: [String] = []
+       
+        
+        for phone in phoneArr {
+            
+            guard let phoneNumber = phone.value as? CNPhoneNumber else {
+                return
+            }
+          
+            returnPhoneNumArr.append(phoneNumber.stringValue)
         }
         
-        let contactInfo = SCAddressBookContact(name: contact.familyName + contact.givenName, phoneName: phoneNumber.stringValue)
+        let contactInfo = SCAddressBookContact(name: contact.familyName + contact.givenName, phoneList: returnPhoneNumArr.getPhoneNumArr())
+        
+       
         
         pickerDelegate?.contactPicker(didSelectContact: contactInfo)
         
@@ -98,15 +109,15 @@ extension SCAddressBookPicker: ABPeoplePickerNavigationControllerDelegate {
         
         guard let phoneNumUnmanaged = ABMultiValueCopyValueAtIndex(phoneNums, 0) else {
             
-            let contactInfo = SCAddressBookContact(name: lastName + firstName, phoneName: phoneNum)
-            pickerDelegate?.contactPicker(didSelectContact: contactInfo)
+//            let contactInfo = SCAddressBookContact(name: lastName + firstName, phoneName: phoneNum)
+//            pickerDelegate?.contactPicker(didSelectContact: contactInfo)
             return
         }
         
         phoneNum = phoneNumUnmanaged.takeRetainedValue() as? String ?? ""
         
-        let contactInfo = SCAddressBookContact(name: lastName + firstName, phoneName: phoneNum)
-        pickerDelegate?.contactPicker(didSelectContact: contactInfo)
+//        let contactInfo = SCAddressBookContact(name: lastName + firstName, phoneName: phoneNum)
+//        pickerDelegate?.contactPicker(didSelectContact: contactInfo)
         
     }
     

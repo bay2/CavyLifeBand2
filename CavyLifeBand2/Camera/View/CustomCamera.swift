@@ -198,7 +198,7 @@ class CustomCamera: UIViewController {
         // 最后一张
         let lastAsset = fetchResults.lastObject as! PHAsset
         var returnImg = UIImage()
-        PHImageManager.defaultManager().requestImageForAsset(lastAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenWidth), contentMode: .AspectFill, options: nil) {(result, info) -> Void in
+        PHImageManager.defaultManager().requestImageForAsset(lastAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenWidth), contentMode: .AspectFill, options: nil) { (result, info) -> Void in
             returnImg = result!
         }
                 
@@ -229,10 +229,10 @@ class CustomCamera: UIViewController {
         // start recording
         let outputURL = self.applicationDocumentsDirectory().URLByAppendingPathComponent("cavy").URLByAppendingPathExtension("mov")
         
-        self.camera.startRecordingWithOutputUrl(outputURL) {(camera, outputFileUrl, error) in
+        self.camera.startRecordingWithOutputUrl(outputURL) { (camera, outputFileUrl, error) in
             
             // 保存视频
-            self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileUrl) {(assetUrl, error) -> Void in
+            self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileUrl) { (assetUrl, error) -> Void in
                 if error != nil {
                     Log.error("Save video fail:%@", error)
                 } else {
@@ -391,7 +391,7 @@ class CustomCamera: UIViewController {
             
             Log.info("照相")
             
-            self.camera.capture ({(camera, image, metadata, error) -> Void in
+            self.camera.capture ({ (camera, image, metadata, error) -> Void in
                 if error != nil{
                     return
                 }

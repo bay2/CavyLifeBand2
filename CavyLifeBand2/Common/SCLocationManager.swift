@@ -89,13 +89,15 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
      */
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
+        locationManager.stopUpdatingLocation()
+        
         let geocoder = CLGeocoder()
         
         self.coordinate = locations[0].coordinate
         
         let locationObj = CLLocation(latitude: locations[0].coordinate.latitude, longitude: locations[0].coordinate.longitude)
         
-        geocoder.reverseGeocodeLocation(locationObj) {(placemark, error) -> Void in
+        geocoder.reverseGeocodeLocation(locationObj) { (placemark, error) -> Void in
             
             if error != nil {
                 return
@@ -111,7 +113,7 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
             
         }
         
-        locationManager.stopUpdatingLocation()
+        
         complete?(locations[0].coordinate)
         
     }

@@ -57,7 +57,7 @@ extension SwitchAddFirendReqView {
         
         let firendReqViewModel = ContactsFriendReqViewModel(viewController: addFirendVC, friendId: self.friendId)
         
-        addFirendVC.viewConfig(firendReqViewModel, delegate: firendReqViewModel)
+        addFirendVC.viewConfig(firendReqViewModel)
         
         self.viewController.pushVC(addFirendVC)
         

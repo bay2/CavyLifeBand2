@@ -136,3 +136,4 @@ OColor: #ffd46c
 PColor: #b46e00
 QColor: #ff6749
 RColor: #odcf7f
+SColor: #ff5656

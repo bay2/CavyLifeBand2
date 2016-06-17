@@ -208,7 +208,7 @@ struct ContactPsersonInfoResponse: JSONJoy {
     var height: String
     var weight: String
     var birthday: String
-    var stepNum: String
+    var stepNum: Int
     var sleepTime: String
     var address: String
     
@@ -224,7 +224,7 @@ struct ContactPsersonInfoResponse: JSONJoy {
         do { height = try decoder["height"].getString() } catch { height = "" }
         do { weight = try decoder["weight"].getString() } catch { weight = "" }
         do { birthday = try decoder["birthday"].getString() } catch { birthday = "" }
-        do { stepNum = try decoder["stepNum"].getString() } catch { stepNum = "" }
+        do { stepNum = try decoder["stepNum"].getInt() } catch { stepNum = 0 }
         do { sleepTime = try decoder["sleepTime"].getString() } catch { sleepTime = "" }
         do { address = try decoder["address"].getString() } catch { address = "" }
 

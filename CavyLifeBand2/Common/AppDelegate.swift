@@ -30,11 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             
         #endif
         
-//        if ez.isRelease {
-//            Log.enabled = false
-//            crashConfig()
-//        }
-        
+        #if RELEASE
+            Log.enabled = false
+            crashConfig()
+        #endif
+    
         realmConfig()
         
         pgyUpdateConfig()
@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      */
     func pgyUpdateConfig() {
     
-        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
+        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("9bb10b86bf5f62f10ec4f83d1c9847e7")
         PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
         PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
         
@@ -132,7 +132,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
                 return
             }
             
-            migration.enumerate(FriendInfoRealm.className()) {(oldObject, newObject) in
+            migration.enumerate(FriendInfoRealm.className()) { (oldObject, newObject) in
                 
                 let nikeName = oldObject!["nikeName"] as! String
                 newObject!["fullName"] = nikeName.chineseToSpell() + nikeName

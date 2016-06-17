@@ -51,7 +51,7 @@ class LeftMenViewController: UIViewController, HomeUserDelegate, UserInfoRealmOp
         let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
         
-        notificationToken = userInfos.addNotificationBlock {(changes: RealmCollectionChange) in
+        notificationToken = userInfos.addNotificationBlock { (changes: RealmCollectionChange) in
             
             switch changes {
                 

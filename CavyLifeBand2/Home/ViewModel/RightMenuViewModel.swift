@@ -11,10 +11,11 @@ import RealmSwift
 
 
 //TODO: 固件升级测试数据
-let testFile = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F17.bin"
-let testFile30 = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2H25F30.bin"
+let testFile    = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F17.bin"
+let testFile30  = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2H25F30.bin"
 let testFile31E = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F31e.bin"
-let testFile31 = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F31e.bin"
+let testFile31  = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F31e.bin"
+
 
 /**
  *  菜单项 view model
@@ -73,7 +74,7 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
                     }
                 }
             
-            }.progress { (bytesRead, totalBytesRead, totalBytesExpectedToRead) in
+            }.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
             
             var percentage = (Double(totalBytesRead) / Double(totalBytesExpectedToRead)) * 100
             
@@ -238,7 +239,7 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
      */
     mutating func refurbishNextView() {
         
-        items = items.map {(item) -> MenuProtocol in
+        items = items.map { (item) -> MenuProtocol in
             
             if item.title == L10n.HomeLifeListTitlePK.string {
                 

@@ -78,7 +78,7 @@ class HomeWeatherView: UIView {
      */
     func loadWeahDate() {
         
-        HomeWeatherWebApi.shareApi.parseWeatherData(city) {(result) in
+        HomeWeatherWebApi.shareApi.parseWeatherData(city) { (result) in
             
             guard result.isSuccess else {
                 

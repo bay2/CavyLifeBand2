@@ -158,6 +158,7 @@
 		68E978111CC7698900651724 /* PKInvitationVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978101CC7698900651724 /* PKInvitationVCViewModel.swift */; };
 		68E978151CC77D8C00651724 /* PKInfoOrResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */; };
 		68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E978161CC77DE500651724 /* PKInfoOrResultView.xib */; };
+		887C75B81D114AB2009EA1F6 /* Array_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887C75B71D114AB2009EA1F6 /* Array_Extension.swift */; };
 		9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */; };
 		9104AA701CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */; };
 		910DFED31D0029E0009B944D /* FirmwareUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910DFED21D0029E0009B944D /* FirmwareUpdate.swift */; };
@@ -494,6 +495,7 @@
 		68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKInfoOrResultView.swift; sourceTree = "<group>"; };
 		68E978161CC77DE500651724 /* PKInfoOrResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKInfoOrResultView.xib; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		887C75B71D114AB2009EA1F6 /* Array_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array_Extension.swift; sourceTree = "<group>"; };
 		9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtSearch.swift; sourceTree = "<group>"; };
 		9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtDataSource.swift; sourceTree = "<group>"; };
 		910DFED21D0029E0009B944D /* FirmwareUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdate.swift; sourceTree = "<group>"; };
@@ -1487,6 +1489,7 @@
 				4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */,
 				9150CAAD1CC66CBB00A398E9 /* UIWindowExtension.swift */,
 				4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */,
+				887C75B71D114AB2009EA1F6 /* Array_Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -2023,7 +2026,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if hash tailor 2>/dev/null; then\n#tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
+			shellScript = "if hash tailor 2>/dev/null; then\n tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n else\necho \"warning: Please install Tailor from https://tailor.sh\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2181,6 +2184,7 @@
 				68E977F61CC6008F00651724 /* PKRulesView.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				686A5EED1CDC30D100EB8D0E /* AboutVC.swift in Sources */,
+				887C75B81D114AB2009EA1F6 /* Array_Extension.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
 				91ACEC671CB68D74008ED8B0 /* AccountInfoSecurityNetworkRequest.swift in Sources */,
 				68B4DED81CE574E600BE041C /* RelateAppJSON.swift in Sources */,
@@ -2423,44 +2427,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = YES;
-				INFOPLIST_FILE = CavyLifeBand2/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = (
+				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"-framework",
-					"\"Alamofire\"",
-					"-framework",
-					"\"AlamofireImage\"",
-					"-framework",
-					"\"EZSwiftExtensions\"",
-					"-framework",
-					"\"Log\"",
-					"-framework",
-					"\"MJRefresh\"",
-					"-framework",
-					"\"SnapKit\"",
-					"-ObjC",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
 				);
-				OTHER_SWIFT_FLAGS = "-DDEBUG $(inherited) \"-D\" \"COCOAPODS\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";
-				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
-				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Debug;
-		};
-		917DA9921C3B8EB800FF675D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 01513CBBEAFFF398A5D5CA79 /* Pods.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = CavyLifeBand2/CavyLifeBand2.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				ENABLE_BITCODE = YES;
 				INFOPLIST_FILE = CavyLifeBand2/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2488,6 +2464,54 @@
 				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
+			name = Debug;
+		};
+		917DA9921C3B8EB800FF675D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01513CBBEAFFF398A5D5CA79 /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CavyLifeBand2/CavyLifeBand2.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
+				);
+				INFOPLIST_FILE = CavyLifeBand2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"AlamofireImage\"",
+					"-framework",
+					"\"EZSwiftExtensions\"",
+					"-framework",
+					"\"Log\"",
+					"-framework",
+					"\"MJRefresh\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-ObjC",
+				);
+				OTHER_SWIFT_FLAGS = "-DRELEASE $(inherited) \"-D\" \"COCOAPODS\"";
+				PRODUCT_BUNDLE_IDENTIFIER = com.cavytech.CavyLifeBand2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/$(SWIFT_MODULE_NAME)-Swift.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "$(SWIFT_MODULE_NAME)-Swift.h";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
 			name = Release;
 		};
 		917DA9941C3B8EB800FF675D /* Debug */ = {
@@ -2495,10 +2519,34 @@
 			baseConfigurationReference = 2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/MOBFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public/PgyUpdate\"",
+					"\"${PODS_ROOT}/Headers/Public/ShareSDK2\"",
+				);
 				INFOPLIST_FILE = CavyLifeBand2Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/SinaWeiboSDK\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/WeChatSDK\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/CavyLifeBand2-Swift.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CavyLifeBand2.app/CavyLifeBand2";
 			};
 			name = Debug;
@@ -2508,10 +2556,34 @@
 			baseConfigurationReference = 91931FBDB93D6202BBC98835 /* Pods-CavyLifeBand2Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/MOBFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public/PgyUpdate\"",
+					"\"${PODS_ROOT}/Headers/Public/ShareSDK2\"",
+				);
 				INFOPLIST_FILE = CavyLifeBand2Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/SinaWeiboSDK\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/WeChatSDK\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/CavyLifeBand2-Swift.h";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CavyLifeBand2.app/CavyLifeBand2";
 			};
 			name = Release;
@@ -2521,12 +2593,35 @@
 			baseConfigurationReference = 62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public/ShareSDK2\"",
+					"\"${PODS_ROOT}/Headers/Public/PgyUpdate\"",
+					"\"${PODS_ROOT}/Headers/Public/MOBFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = CavyLifeBand2UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/WeChatSDK\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/SinaWeiboSDK\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/CavyLifeBand2-Swift.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TEST_TARGET_NAME = CavyLifeBand2;
 				USES_XCTRUNNER = YES;
@@ -2538,12 +2633,35 @@
 			baseConfigurationReference = 0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/UI\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Core\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/QQConnectSDK\"",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Connection\"",
+					"\"${PODS_ROOT}/PgyUpdate/PgySDK/sdk\"",
+					"\"${PODS_ROOT}/MOBFoundation\"",
+					"$(inherited)",
+				);
+				HEADER_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/Headers/Public/ShareSDK2\"",
+					"\"${PODS_ROOT}/Headers/Public/PgyUpdate\"",
+					"\"${PODS_ROOT}/Headers/Public/MOBFoundation\"",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = CavyLifeBand2UITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/WeChatSDK\"",
+					"$(inherited)",
+					"\"${PODS_ROOT}/ShareSDK2/ShareSDK/Extend/SinaWeiboSDK\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = cavytech.CavyLifeBand2UITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "CavyLifeBand2/CavyLifeBand2-Swift.h";
 				TEST_TARGET_NAME = CavyLifeBand2;
 				USES_XCTRUNNER = YES;
 			};

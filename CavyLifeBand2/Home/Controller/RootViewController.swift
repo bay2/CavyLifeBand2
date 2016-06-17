@@ -245,7 +245,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 
                 self.pkSycnCount += 1
                 
-            }, failure: {(errorMsg) in
+            }, failure: { (errorMsg) in
                 Log.warning(errorMsg)
             })
         } else {
@@ -266,7 +266,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 }
                 
                 self.pkSycnCount += 1
-            }, failure: {(errorMsg) in
+            }, failure: { (errorMsg) in
                 Log.warning(errorMsg)
             })
         } else {
@@ -281,7 +281,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 }
                 
                 self.pkSycnCount += 1
-            }, failure: {(errorMsg) in
+            }, failure: { (errorMsg) in
                 Log.warning(errorMsg)
             })
         } else {

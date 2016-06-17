@@ -61,7 +61,7 @@ extension ContactsReqFriendDeleteItemDelegate {
         
         let addFirendVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
         
-        addFirendVC.viewConfig(friendReqVM, delegate: friendReqVM)
+        addFirendVC.viewConfig(friendReqVM)
         
         viewController.pushVC(addFirendVC)
         

@@ -71,7 +71,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
-        notificationToken = userInfos.addNotificationBlock { [weak self](changes: RealmCollectionChange)  in
+        notificationToken = userInfos.addNotificationBlock { [weak self] (changes: RealmCollectionChange)  in
             
             switch changes {
                 
@@ -273,9 +273,9 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             // 跳转到修改备注
             let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
             
-            let changeRemarkVM = UserChangeNicknameVM(viewController: requestVC)
+            let changeNicknameVM = UserChangeNicknameVM(viewController: requestVC)
             
-            requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+            requestVC.viewConfig(changeNicknameVM)
             
             self.pushVC(requestVC)
             
@@ -287,7 +287,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
                 
                 let changeRemarkVM = UserChangeAddressVM(viewController: requestVC)
                 
-                requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+                requestVC.viewConfig(changeRemarkVM)
                 
                 self.pushVC(requestVC)
                 
