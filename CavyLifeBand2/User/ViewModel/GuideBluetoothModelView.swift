@@ -274,6 +274,9 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
             
             let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
             CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
+            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView())
+            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView())
+            return
             
         }
         
