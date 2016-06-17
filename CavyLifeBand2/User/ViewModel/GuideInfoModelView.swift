@@ -8,6 +8,8 @@
 
 import UIKit
 import EZSwiftExtensions
+import RealmSwift
+import JSONJoy
 
 /**
  *  @author xuemincai
@@ -139,12 +141,13 @@ enum GoalViewStyle {
  *
  *  目标设置view Model
  */
-struct GuideGoalViewModel: GuideViewModelPotocols {
+struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
     var centerView: UIView
     var viewStyle: GoalViewStyle
+    var realm: Realm = try! Realm()
     
     init(viewStyle: GoalViewStyle) {
         
@@ -162,17 +165,82 @@ struct GuideGoalViewModel: GuideViewModelPotocols {
         goalView.sliderStepAttribute(6000, recommandValue: 8000, minValue: 0, maxValue: 20000)
         goalView.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 2, minM: 0, maxH: 12, maxM: 00)
 
+        self.centerView = goalView
         
         switch viewStyle {
         case .Guide:
             break
         case .RightMenu:
+            
+            queryUserInfoByNet{ resultUserInfo in
+                
+                guard let userInfo = resultUserInfo else {
+                    return
+                }
+                
+                goalView.sliderStepToValue(userInfo.stepNum)
+                
+                self.setGoalViewSleepValue(userInfo.sleepTime, view: goalView)
+                
+            }
+            
+           
+        }
+
+    }
+    
+    func setGoalViewSleepValue(value: String, view: GoalView) {
+        
+        let sleepArr = value.componentsSeparatedByString(":")
+        
+        switch sleepArr.count {
+        case 0:
+            view.sliderSleepToValue(0, minute: 0)
+        case 1:
+            view.sliderSleepToValue(sleepArr[0].toInt() ?? 0, minute: 0)
+        case 2:
+            view.sliderSleepToValue(sleepArr[0].toInt() ?? 0, minute: 0)
+        default:
+            view.sliderSleepToValue(sleepArr[0].toInt() ?? 0, minute: sleepArr[1].toInt() ?? 0)
+        }
+
+    }
+    
+    /**
+     为两种style区分返回方法的不同
+     
+     作为左边侧栏进入时，按返回将数据改为不保存返回，将数值改为用户上次设置的数据
+     
+     - parameter viewController:
+     */
+    func onCilckBack(viewController: UIViewController) {
+        
+        switch viewStyle {
+        case .Guide:
+            break
+        case .RightMenu:
+            let goalView = self.centerView as? GoalView
+            
+            guard let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
+                return
+            }
+            
+            goalView!.sliderStepToValue(userInfo.stepNum)
+            
+            setGoalViewSleepValue(userInfo.sleepTime, view: goalView!)
+            
             break
         }
         
-        
-        
-        self.centerView = goalView
+        if viewController.navigationController?.viewControllers.count > 1 {
+            
+            viewController.popVC()
+            
+        } else {
+            
+            viewController.dismissVC(completion: nil)
+            
+        }
         
     }
     
@@ -182,10 +250,10 @@ struct GuideGoalViewModel: GuideViewModelPotocols {
             return
         }
         
-        GuideUserInfo.userInfo.sleepTime = goalView.sleepTimeString
-        GuideUserInfo.userInfo.stepNum = goalView.stepCurrentValue
-        
         if self.viewStyle == .Guide {
+            
+            GuideUserInfo.userInfo.sleepTime = goalView.sleepTimeString
+            GuideUserInfo.userInfo.stepNum = goalView.stepCurrentValue
         
             let nextVC = StoryboardScene.Guide.instantiateGuideView()
             
@@ -197,11 +265,69 @@ struct GuideGoalViewModel: GuideViewModelPotocols {
             
         } else {
             
-            // 返回主页
-            viewController.popVC()
+            // 调接口上传目标设置
+            uploadGoalData {
+                // 返回主页
+                viewController.popVC()
+            }
             
         }
         
+    }
+    
+    /**
+     上传目标设置到服务器
+     
+     - parameter completeHandler:
+     */
+    func uploadGoalData(completeHandler: (Void -> Void)) {
+        
+        guard let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
+            return
+        }
+        
+        let goalView = self.centerView as? GoalView
+        
+        let updateUserInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId,
+                                                       UserNetRequsetKey.StepNum.rawValue: goalView!.stepCurrentValue,
+                                                       UserNetRequsetKey.SleepTime.rawValue: goalView!.sleepTimeString,
+                                                       UserNetRequsetKey.Sex.rawValue: userInfo.sex.toString,
+                                                       UserNetRequsetKey.Height.rawValue: userInfo.height,
+                                                       UserNetRequsetKey.Weight.rawValue: userInfo.weight,
+                                                       UserNetRequsetKey.Birthday.rawValue: userInfo.birthday,
+                                                       UserNetRequsetKey.Address.rawValue: userInfo.address,
+                                                       UserNetRequsetKey.IsNotification.rawValue: userInfo.isNotification,
+                                                       UserNetRequsetKey.IsLocalShare.rawValue: userInfo.isLocalShare,
+                                                       UserNetRequsetKey.IsOpenBirthday.rawValue: userInfo.isOpenBirthday,
+                                                       UserNetRequsetKey.IsOpenHeight.rawValue: userInfo.isOpenHeight,
+                                                       UserNetRequsetKey.IsOpenWeight.rawValue: userInfo.isOpenWeight]
+        
+        UserNetRequestData.shareApi.setProfile(updateUserInfoPara) { result in
+            
+            guard result.isSuccess else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error!)
+                return
+            }
+            
+            let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
+            
+            guard resultMsg.code == WebApiCode.Success.rawValue else {
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.code)
+                return
+            }
+            
+            Log.info("Update user info success")
+            
+            self.updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
+                $0.sleepTime = goalView!.sleepTimeString
+                $0.stepNum = goalView!.stepCurrentValue
+                return $0
+            }
+            
+            completeHandler()
+            
+        }
+
     }
     
 }

@@ -292,6 +292,38 @@ class GoalView: UIView {
         self.sleepSlider.addTarget(self, action: #selector(GoalView.sleepSliderAction), forControlEvents: UIControlEvents.ValueChanged)
     }
     
+    /**
+     将睡眠滑杆滑到指定值
+     
+     - parameter hour:   小时
+     - parameter minute: 分钟
+     */
+    func sliderSleepToValue(hour: Int, minute: Int) {
+        
+        sleepHHValue.text = String(hour)
+        sleepMMValue.text = String(minute)
+        
+        let recCount = hourChangeToMinutes(hour, minutes: minute)
+        
+        self.sleepSlider.value = Float(recCount)
+        
+    }
+    
+    /**
+     将计步滑杆滑到指定值
+     
+     - parameter value: 值
+     */
+    func sliderStepToValue(value: Int) {
+        
+        stepValue.text = String(value)
+        
+        let recomSlider = Float(value / 100)
+        
+        self.stepSlider.value = recomSlider
+        
+    }
+    
 
     // 小时转分钟 10一个刻度
     func hourChangeToMinutes(hour: Int, minutes: Int) -> Int{
