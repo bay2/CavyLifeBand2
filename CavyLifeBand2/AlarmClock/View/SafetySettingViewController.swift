@@ -11,17 +11,17 @@ import RealmSwift
 import JSONJoy
 
 class SafetySettingViewController: UIViewController, BaseViewControllerPresenter {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     let tableViewMargin: CGFloat          = 20.0
     
-    let tableSectionHeaderHeight: CGFloat = 20.0
-    
-    let tableSectionFooterHeight: CGFloat = 100.0
-    
-    let safetySwitchCell  = "SettingSwitchTableViewCell"
+    let tableSectionHeaderHeight: CGFloat    = 20.0
 
+    let tableSectionFooterHeight: CGFloat = 100.0
+
+    let safetySwitchCell  = "SettingSwitchTableViewCell"
+    
     let safetyContactCell = "EmergencyContactPersonCell"
     
     let ContactInfoCell   = "EmergencyContactInfoCell"
@@ -79,7 +79,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
     }
     
     func loadContactFromWeb() {
-     
+        
         do {
             
             try EmergencyWebApi.shareApi.getEmergencyList { [unowned self] result in
@@ -105,6 +105,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
                         let contactVM = EmergencyContactInfoCellViewModel(name: resultMsg.phoneList[i].name, phone: resultMsg.phoneList[i].phoneNum)
                         
                         self.contactModels.append(contactVM)
+                        
                     }
                     
                 }
@@ -112,7 +113,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
                 self.tableView.reloadData()
                 
             }
-        
+            
         } catch let error  {
             Log.error(error)
         }
@@ -132,11 +133,11 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
             CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.SettingSafetyPhoneNumberError.string)
             
             return
-    }
+        }
         //MARK: 单个联系人
         if contact.phoneList.count == 1
         {
-        
+            
             configSendPara(contact.name, phoneNumber: contact.phoneList[0])
             
             //MARK: 多个联系人
@@ -144,7 +145,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
             
         {
             
-            let  sheet = UIActionSheet(title: contact.name, delegate:self, cancelButtonTitle:L10n.SettingSafetyPhoneNumberCancel.string  , destructiveButtonTitle: nil)
+            let  sheet = UIActionSheet(title: contact.name, delegate: self, cancelButtonTitle: L10n.SettingSafetyPhoneNumberCancel.string, destructiveButtonTitle: nil)
             
             for phoneNumber in contact.phoneList {
                 
@@ -153,14 +154,14 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
             
             sheet.showInView(self.view)
         }
-
-    }
-   
-    
-    
-    func configSendPara(name: String , phoneNumber: String) {
         
-        var phoneArr: [[String:String]] = [[:]]
+    }
+    
+    
+    
+    func configSendPara(name: String, phoneNumber: String) {
+        
+        var phoneArr: Array<[String: String]> = []
         
         for model in self.contactModels {
             
@@ -170,9 +171,9 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
                 return
             }
             
-            
             let dic = [UserNetRequsetKey.Name.rawValue: model.name,
                        UserNetRequsetKey.PhoneNum.rawValue: model.phoneNumber]
+            
             phoneArr.append(dic)
         }
         
@@ -181,7 +182,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         
         setEmergencyList(phoneArr) {
             
-            let cellVM = EmergencyContactInfoCellViewModel(name:name, phone: phoneNumber)
+            let cellVM = EmergencyContactInfoCellViewModel(name: name, phone: phoneNumber)
             
             self.contactModels.insertAsFirst(cellVM)
             
@@ -242,8 +243,8 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         } catch let error  {
             Log.error(error)
         }
-
-    
+        
+        
     }
     
     /**
@@ -284,7 +285,7 @@ extension SafetySettingViewController: SCAddressBookPickerDelegate {
         
         Log.info(newContact.phoneList)
         addEmergency(newContact)
-   
+        
     }
     
 }
@@ -389,23 +390,26 @@ extension SafetySettingViewController: UITableViewDelegate {
 }
 
 extension SafetySettingViewController: EmergencyContactInfoDelegate {
-
+    
     func cancelEmergencyContact(index: NSIndexPath) {
         deleteEmergency(index.row - 1)
     }
-
+    
 }
 
 
 // MARK:  -UIActionSheetDelegate
-extension SafetySettingViewController :UIActionSheetDelegate
+extension SafetySettingViewController: UIActionSheetDelegate
 {
+    
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         
         guard buttonIndex != 0 else {
             return
         }
-    
+        
         configSendPara(actionSheet.title, phoneNumber: actionSheet.buttonTitleAtIndex(buttonIndex)!)
+        
     }
+    
 }

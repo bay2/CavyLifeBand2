@@ -79,8 +79,6 @@ extension SCAddressBookPicker: CNContactPickerDelegate {
         
         let contactInfo = SCAddressBookContact(name: contact.familyName + contact.givenName, phoneList: returnPhoneNumArr.getPhoneNumArr())
         
-       
-        
         pickerDelegate?.contactPicker(didSelectContact: contactInfo)
         
         
@@ -103,23 +101,26 @@ extension SCAddressBookPicker: ABPeoplePickerNavigationControllerDelegate {
             lastName = lastNameUnmanaged.takeRetainedValue() as? String ?? ""
         }
         
-        var phoneNum = ""
+        var returnNumArr: [String] = []
         
         let phoneNums: ABMultiValueRef = ABRecordCopyValue(person, kABPersonPhoneProperty).takeRetainedValue()
-        
-        guard let phoneNumUnmanaged = ABMultiValueCopyValueAtIndex(phoneNums, 0) else {
+ 
+        guard let phoneNumArr = ABMultiValueCopyArrayOfAllValues(phoneNums)?.takeRetainedValue()  else {
             
-//            let contactInfo = SCAddressBookContact(name: lastName + firstName, phoneName: phoneNum)
-//            pickerDelegate?.contactPicker(didSelectContact: contactInfo)
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.SettingSafetyPhoneNumberError.string)
+            
             return
         }
         
-        phoneNum = phoneNumUnmanaged.takeRetainedValue() as? String ?? ""
+        for i in phoneNumArr as Array {
+            
+            returnNumArr.append(i as? String ?? "")
+        }
+
+        let contactInfo = SCAddressBookContact(name: lastName + firstName, phoneList: returnNumArr.getPhoneNumArr())
         
-//        let contactInfo = SCAddressBookContact(name: lastName + firstName, phoneName: phoneNum)
-//        pickerDelegate?.contactPicker(didSelectContact: contactInfo)
+        pickerDelegate?.contactPicker(didSelectContact: contactInfo)
         
     }
-    
     
 }
