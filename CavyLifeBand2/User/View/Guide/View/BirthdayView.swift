@@ -78,7 +78,7 @@ class BirthdayView: UIView, RulerViewDelegate {
         yymmRuler.initYearMonthRuler(currentYear!, monthValue: currentMonth!, style: .YearMonthRuler)
         yyMMLabel.text = yymmRuler.rulerScroll.currentValue
         
-        dayLabel.font = UIFont.systemFontOfSize(42)
+        dayLabel.font = UIFont.mediumSystemFontOfSize(42)
         dayLabel.textColor = UIColor(named: .EColor)
         dayLabel.textAlignment = NSTextAlignment.Center
         dayLabel.snp_makeConstraints { make -> Void in

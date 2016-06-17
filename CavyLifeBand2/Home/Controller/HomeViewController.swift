@@ -91,7 +91,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
         addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
         // 后台进入前台 同步数据
-        addNotificationObserver("updateHomeViewData", selector:  #selector(refreshingStatus))
+        addNotificationObserver("updateHomeViewData", selector: #selector(refreshingStatus))
  
 
     }
@@ -166,7 +166,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         let header = MJRefreshHeader(refreshingBlock: {
             
-            RootViewController().syncDataFormBand()
+//            RootViewController().syncDataFormBand()
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
                 

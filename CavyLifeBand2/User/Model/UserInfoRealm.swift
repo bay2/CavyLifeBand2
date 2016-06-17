@@ -49,6 +49,7 @@ protocol UserInfoRealmOperateDelegate {
     func queryUserInfo(userId: String) -> UserInfoModel?
     func queryUserInfo(userId: String) -> Results<UserInfoModel>
     func addUserInfo(userInfo: UserInfoModel) -> Bool
+    func updateUserInfo(userInfo: UserInfoModel) -> Bool
     func updateUserInfo(userId: String, updateCall: ((UserInfoModel) -> UserInfoModel)) -> Bool
     
 }
@@ -106,6 +107,33 @@ extension UserInfoRealmOperateDelegate {
         Log.info("Add user info success")
         return true
 
+    }
+    
+    /**
+     更新用户信息
+     
+     - parameter userInfo: 用户信息
+     
+     - returns:
+     */
+    func updateUserInfo(userInfo: UserInfoModel) -> Bool {
+        
+        do {
+            
+            try realm.write {
+                realm.add(userInfo, update: true)
+            }
+            
+        } catch {
+            
+            Log.error("Update user info error [\(userInfo)]")
+            return false
+            
+        }
+        
+        Log.info("Update user info success")
+        return true
+        
     }
 
     /**

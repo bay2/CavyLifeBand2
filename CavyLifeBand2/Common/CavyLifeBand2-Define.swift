@@ -425,6 +425,7 @@ extension WebGetApiCode: CustomStringConvertible {
  - Name:
  - FeedbackContent: 意见反馈内容
  - PhoneList: 电话号码列表
+ - Version: 固件当前版本
  */
 enum UserNetRequsetKey: String {
     
@@ -480,6 +481,7 @@ enum UserNetRequsetKey: String {
     case PhoneList       = "phoneList"
     case Remarks         = "remarks"
     case StepsList       = "stepsList"
+    case Version         = "version"
 }
 
 // MARK: - 服务器接口命令
@@ -516,6 +518,7 @@ enum UserNetRequsetKey: String {
  - SetFriendRemark   设置好友备注
  - SendEmergencyMsg  发送紧急消息
  - GetEmergencyPhone 查询紧急联系人列表
+ - GetVersion        查询版本信息
  */
 enum UserNetRequestMethod: String {
     
@@ -548,4 +551,5 @@ enum UserNetRequestMethod: String {
     case SendEmergencyMsg  = "sendEmergencyMsg"
     case GetEmergencyPhone = "getEmergencyPhone"
     case SetStepCount      = "setStepCount"
+    case GetVersion        = "getVersion"
 }

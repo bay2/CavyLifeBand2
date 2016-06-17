@@ -152,18 +152,18 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
      */
     func syncUserInfo() {
         
-        guard let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
+//        guard let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
         
             querySyncDate()
-            return
-        }
-        
-        userCoordinateReport(userInfo.isLocalShare)
-        
-        updateSyncDate(userInfo)
-        
-        CavyDefine.userNickname = userInfo.nickname
-        CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar = userInfo.avatarUrl
+//            return
+//        }
+//        
+//        userCoordinateReport(userInfo.isLocalShare)
+//        
+//        updateSyncDate(userInfo)
+//        
+//        CavyDefine.userNickname = userInfo.nickname
+//        CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar = userInfo.avatarUrl
         
     }
     
@@ -224,7 +224,11 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
             
             self.userCoordinateReport(userInfoModel.isLocalShare)
             
-            self.addUserInfo(userInfoModel)
+            if let _: UserInfoModel = self.queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
+                self.updateUserInfo(userInfoModel)
+            } else {
+                self.addUserInfo(userInfoModel)
+            }
             
         }
         

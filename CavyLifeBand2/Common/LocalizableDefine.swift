@@ -451,6 +451,8 @@ enum L10n {
   case SettingSafetyTableFooterInfo
   /// 取消
   case SettingSafetyTableEmergencyContactCancelBtn
+  /// 紧急联系人上限3人
+  case SettingSafetyTableEmergencyAlertMsg
   /// 来电提醒
   case SettingReminderPhoneCallTitle
   /// 秒未接提醒
@@ -607,6 +609,10 @@ enum L10n {
   case UpdateProgressInfo
   /// 手环正在升级
   case UpdateProgressTitle
+  /// 请先连接手环
+  case UpdateFirmwareBandDisconnectAlertMsg
+  /// 固件版本已最新版本
+  case UpdateFirmwareIsNewVersionAlertMsg
   /// 下拉同步数据...
   case HomeRefreshIdle
   /// 松开同步数据...
@@ -1068,6 +1074,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Setting.SafetyTableFooter.Info")
       case .SettingSafetyTableEmergencyContactCancelBtn:
         return L10n.tr("Setting.SafetyTableEmergencyContact.CancelBtn")
+      case .SettingSafetyTableEmergencyAlertMsg:
+        return L10n.tr("Setting.SafetyTableEmergency.AlertMsg")
       case .SettingReminderPhoneCallTitle:
         return L10n.tr("Setting.ReminderPhoneCall.Title")
       case .SettingReminderPhoneCallDescription:
@@ -1224,6 +1232,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UpdateProgress.Info")
       case .UpdateProgressTitle:
         return L10n.tr("UpdateProgress.title")
+      case .UpdateFirmwareBandDisconnectAlertMsg:
+        return L10n.tr("UpdateFirmware.BandDisconnect.AlertMsg")
+      case .UpdateFirmwareIsNewVersionAlertMsg:
+        return L10n.tr("UpdateFirmware.IsNewVersion.AlertMsg")
       case .HomeRefreshIdle:
         return L10n.tr("Home.Refresh.Idle")
       case .HomeRefreshPulling:
