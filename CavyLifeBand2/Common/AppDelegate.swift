@@ -250,6 +250,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
+        // 进入前台时候 显示下拉刷新数据 发送通知 主页更新数据
+        NSNotificationCenter.defaultCenter().postNotificationName("updateHomeViewData", object: nil)
     }
 
     func applicationDidBecomeActive(application: UIApplication) {

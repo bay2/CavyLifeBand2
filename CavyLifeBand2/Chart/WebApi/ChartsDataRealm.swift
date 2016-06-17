@@ -88,10 +88,9 @@ extension ChartsRealmProtocol {
         return realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
     }
 
-
     // 返回 第一天开始的时间段
     func queryTimeBucketFromFirstDay() -> [String]? {
-        
+                
         let userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
 
         let realmList = queryAllStepInfo(userId)
@@ -148,6 +147,10 @@ extension ChartsRealmProtocol {
      - returns: 成功：true 失败： false
      */
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool {
+        
+        // chartsInfo
+        // 查询 当前数据的时间对应的值不同就更新  否则不添加
+        // TODO:
         
         do {
             

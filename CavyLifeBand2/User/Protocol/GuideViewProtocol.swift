@@ -66,7 +66,7 @@ protocol GuideViewDelegate {
     
     func onCilckBack(viewController: UIViewController) {
         
-        if viewController.navigationController?.viewControllers.count > 0 {
+        if viewController.navigationController?.viewControllers.count > 1 {
             
             viewController.popVC()
             

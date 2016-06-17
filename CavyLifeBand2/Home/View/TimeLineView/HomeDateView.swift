@@ -25,10 +25,13 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     // 时间轴数据
     var dateArray: [String] = []
     
+    var notificationTimeStringArrayToken: NotificationToken?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        dateArray = queryTimeBucketFromFirstDay()!
+        initNotificationDateStringArray()
+        
         Log.info(dateArray)
 
         addAllViewLayout()
@@ -39,6 +42,45 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    deinit {
+        
+        notificationTimeStringArrayToken?.stop()
+        
+    }
+    
+    
+    /**
+     数据库下载完更新视图监控
+     */
+    func initNotificationDateStringArray() {
+        
+        notificationTimeStringArrayToken = self.queryAllStepInfo(userId).addNotificationBlock { [unowned self] change in
+            
+            switch change {
+                
+            case .Initial(_):
+                
+                self.dateArray = self.queryTimeBucketFromFirstDay()!
+                self.collectionView!.reloadData()
+                self.collectionView!.setContentOffset(CGPointMake(CGFloat(self.dateArray.count - 1 ) * self.labelWidth, 0), animated: false)
+                
+            case .Update(_, deletions: _, insertions: _, modifications: _):
+                
+                self.dateArray = self.queryTimeBucketFromFirstDay()!
+                self.collectionView!.reloadData()
+                self.collectionView!.setContentOffset(CGPointMake(CGFloat(self.dateArray.count - 1 ) * self.labelWidth, 0), animated: false)
+                
+            default:
+                break
+                
+                
+            }
+            
+        }
+
+    }
+    
     
     func addAllViewLayout() {
         
@@ -104,9 +146,6 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
         
     }
     
-
-    
-
 }
 
 // MARK: - UIScrollViewDelegate
@@ -119,13 +158,13 @@ extension HomeDateView: UIScrollViewDelegate {
         
     }
     
-//    // 滑动拖拽
-//    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-//        
-//        scrollViewEndAction(scrollView)
-//
-//    }
-
+    // 滑动拖拽
+    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        scrollViewEndAction(scrollView)
+        
+    }
+    
     /**
      滑动结束事件
      */
