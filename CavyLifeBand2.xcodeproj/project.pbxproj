@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C0BF9E91CB78F0500DB06FC /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */; };
 		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
 		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
 		4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E61CB78F0500DB06FC /* Home.storyboard */; };
@@ -28,6 +27,7 @@
 		4C6895FC1CEAF24A00CAC412 /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895FB1CEAF24A00CAC412 /* ShareViewModel.swift */; };
 		4C6F14971CD9F454007E923B /* ChartsDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */; };
 		4C6F149B1CDC9B06007E923B /* ShowPieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */; };
+		4CB16D6B1D1130A7006858B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB16D6A1D1130A7006858B5 /* HomeViewController.swift */; };
 		4CB7A06E1CD095C400DFB8DC /* BandElectricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */; };
 		4CB7A06F1CD095C400DFB8DC /* BandElectricView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB7A0561CD095C400DFB8DC /* BandElectricView.xib */; };
 		4CB7A0701CD095C400DFB8DC /* BandInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0571CD095C400DFB8DC /* BandInfoView.swift */; };
@@ -342,7 +342,6 @@
 		0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E61CB78F0500DB06FC /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -363,6 +362,7 @@
 		4C6895FB1CEAF24A00CAC412 /* ShareViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
 		4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsDataRealm.swift; sourceTree = "<group>"; };
 		4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPieChartsView.swift; sourceTree = "<group>"; };
+		4CB16D6A1D1130A7006858B5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandElectricView.swift; sourceTree = "<group>"; };
 		4CB7A0561CD095C400DFB8DC /* BandElectricView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BandElectricView.xib; sourceTree = "<group>"; };
 		4CB7A0571CD095C400DFB8DC /* BandInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandInfoView.swift; sourceTree = "<group>"; };
@@ -703,7 +703,7 @@
 		4C0BF9E21CB78F0500DB06FC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4C0BF9E31CB78F0500DB06FC /* HomeViewController.swift */,
+				4CB16D6A1D1130A7006858B5 /* HomeViewController.swift */,
 				4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */,
 				9150CAB51CC89EA600A398E9 /* RightViewController.swift */,
 				4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */,
@@ -2023,7 +2023,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\n tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+			shellScript = "#if hash tailor 2>/dev/null; then\n#tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2037,6 +2037,7 @@
 				4CD5AAC31CEEB36A0011CD13 /* HomeListRealm.swift in Sources */,
 				910DFED31D0029E0009B944D /* FirmwareUpdate.swift in Sources */,
 				68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */,
+				4CB16D6B1D1130A7006858B5 /* HomeViewController.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
 				68648A801CF3F125009D4BEE /* AccountSettingViewModel.swift in Sources */,
@@ -2202,7 +2203,6 @@
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
 				4CB7A0721CD095C400DFB8DC /* LeftHeaderView.swift in Sources */,
-				4C0BF9E91CB78F0500DB06FC /* HomeViewController.swift in Sources */,
 				685204E91CB7938C004179B0 /* AddClockViewController.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				683655991CBE3C84009373EA /* AlarmRealmModel.swift in Sources */,

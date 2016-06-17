@@ -603,6 +603,12 @@ enum L10n {
   case UpdateProgressInfo
   /// 手环正在升级
   case UpdateProgressTitle
+  /// 下拉同步数据...
+  case HomeRefreshIdle
+  /// 松开同步数据...
+  case HomeRefreshPulling
+  ///   正在同步数据...
+  case HomeRefreshRefreshing
 }
 
 extension L10n: CustomStringConvertible {
@@ -1210,6 +1216,12 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UpdateProgress.Info")
       case .UpdateProgressTitle:
         return L10n.tr("UpdateProgress.title")
+      case .HomeRefreshIdle:
+        return L10n.tr("Home.Refresh.Idle")
+      case .HomeRefreshPulling:
+        return L10n.tr("Home.Refresh.Pulling")
+      case .HomeRefreshRefreshing:
+        return L10n.tr("Home.Refresh.Refreshing")
     }
   }
 

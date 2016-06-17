@@ -352,3 +352,7 @@
 "UpdateProgress.Info" = "请勿退出应用或关闭手环";
 "UpdateProgress.title" = "手环正在升级";
 
+// 主页同步数据
+"Home.Refresh.Idle" = "下拉同步数据...";
+"Home.Refresh.Pulling" = "松开同步数据...";
+"Home.Refresh.Refreshing" = "  正在同步数据...";
