@@ -63,13 +63,13 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
                 
                 self.dateArray = self.queryTimeBucketFromFirstDay()!
                 self.collectionView!.reloadData()
-                self.collectionView!.setContentOffset(CGPointMake(CGFloat(self.dateArray.count - 1 ) * self.labelWidth, 0), animated: false)
+                self.collectionView!.setContentOffset(CGPointMake(CGFloat(self.dateArray.count - 1) * self.labelWidth, 0), animated: false)
                 
             case .Update(_, deletions: _, insertions: _, modifications: _):
                 
                 self.dateArray = self.queryTimeBucketFromFirstDay()!
                 self.collectionView!.reloadData()
-                self.collectionView!.setContentOffset(CGPointMake(CGFloat(self.dateArray.count - 1 ) * self.labelWidth, 0), animated: false)
+                self.collectionView!.setContentOffset(CGPointMake(CGFloat(self.dateArray.count - 1) * self.labelWidth, 0), animated: false)
                 
             default:
                 break
