@@ -159,8 +159,8 @@
 "Band.Title" = "我的CavyBand";
 "Band.FWVersion" = "固件版本: ";
 "Band.Disconnect.Title" = "手环未连接";
-"Band.Disconnect.FWVersion.Title" = "开启蓝牙，按下手环";
-"Band.Disconnect.BandName.Title" = "按钮自动连接";
+"Band.Disconnect.FWVersion.Title" = "按钮自动连接";
+"Band.Disconnect.BandName.Title" = "开启蓝牙，按下手环";
 
 //Chart
 "Chart.Sleep" = "睡眠";
