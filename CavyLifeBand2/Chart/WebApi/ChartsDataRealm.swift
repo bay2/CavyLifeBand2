@@ -397,7 +397,7 @@ extension ChartsRealmProtocol {
         let sleepDatas = transformSleepData(beginTime, endTime: endTime)
         let stepDatas = transformStepData(beginTime, endTime: endTime)
         
-        if stepDatas.isEmpty && sleepDatas.isEmpty {
+        if stepDatas.isEmpty || sleepDatas.isEmpty {
             return 0
         }
         
@@ -429,6 +429,7 @@ extension ChartsRealmProtocol {
             }
             
             // 条件3：当前10分钟step<30
+            
             let stepTotal = stepDatas[timeIndex]
             if stepTotal >= 30 {
                 longSleepCount = 0

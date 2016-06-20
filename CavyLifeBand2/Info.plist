@@ -68,7 +68,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>请点击[好]允许访问如果不允许则无法使用安全功能,开启定位功能--&gt;设置--&gt;隐私--&gt;定位服务 打开该服务</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-peripheral</string>
