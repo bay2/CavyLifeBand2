@@ -28,13 +28,21 @@ class PKListVC: UIViewController, BaseViewControllerPresenter, PKRecordsUpdateFo
     
     var pkInfoView: UIView?
     
+    @IBOutlet weak var bottomSeparatorLine: UIView!
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
         updateNavUI()
         
+        bottomSeparatorLine.backgroundColor = UIColor(named: .LColor)
+        
         pkListTableView.registerNib(UINib(nibName: "ContactsAddFriendCell", bundle: nil), forCellReuseIdentifier: "ContactsAddFriendCell")
+        pkListTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        pkListTableView.separatorStyle = .SingleLine
+        pkListTableView.separatorColor = UIColor(named: .LColor)
+        pkListTableView.tableFooterView = UIView()
         
         //添加数据源
         addDataSource(PKWaitListDataSource(realm: self.realm))
@@ -140,7 +148,7 @@ class PKListVC: UIViewController, BaseViewControllerPresenter, PKRecordsUpdateFo
 }
 
 // MARK: - TableView
-extension PKListVC {
+extension PKListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         return dataSources[indexPath.section].createCell(tableView, indexPath: indexPath)

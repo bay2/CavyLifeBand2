@@ -133,7 +133,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         // InfoTableView高度
         // |-infoListCell-136-|-cellCount-1[infoListCell] * 50-|-边10-|
-        let tableViewHeight = CGFloat(136 + (accountInfos.count - 1) * 50 + 10)
+        let tableViewHeight = CGFloat(130 + (accountInfos.count - 1) * 50 + 10 + 16)
         
         // collectionView 高度
         // |-(badgeCount / 3） *（20 + 112）-|
@@ -219,48 +219,73 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 1
+        return 2
         
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
         
-        return accountInfos.count
+        return accountInfos.count - 1
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             
-            return 136
+            return 130
             
         } else {
             
             return 50
         }
         
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 10
+        }
         
+        return 0.01
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 16
+        }
+        
+        return 0.01
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if let cellViewModel = accountInfos[indexPath.row] as? PresonInfoListCellViewModel {
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
-            cell.configCell(cellViewModel)
-            return cell
-            
-        }
         
-        if let cellViewModel = accountInfos[indexPath.row] as? PresonInfoCellViewModel {
+        if indexPath.section == 0 {
             
+            let cellViewModel = accountInfos[indexPath.row] as! PresonInfoCellViewModel
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
             cell.configCell(cellViewModel, delegate: cellViewModel)
             return cell
             
+        } else {
+            
+            let cellViewModel = accountInfos[indexPath.row + 1] as? PresonInfoListCellViewModel
+            let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
+            cell.configCell(cellViewModel!)
+            return cell
+            
         }
-        
-        return tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
 
     }
     
@@ -268,8 +293,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if accountInfos[indexPath.row] is PresonInfoCellViewModel {
-            
+        if indexPath.section == 0 {
             // 跳转到修改备注
             let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
             
@@ -278,10 +302,9 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             requestVC.viewConfig(changeNicknameVM)
             
             self.pushVC(requestVC)
-            
         } else {
             
-            if indexPath.row == accountInfos.count - 1 {
+            if indexPath.row == accountInfos.count - 2 {
                 // 跳转到修改地址
                 let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
                 
@@ -297,16 +320,16 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             let nextVC = StoryboardScene.Guide.instantiateGuideView()
                     
             switch indexPath.row {
-            case 1:
+            case 0:
                 let nextVM = AccountGenderViewModel()
                 nextVC.configView(nextVM, delegate: nextVM)
-            case 2:
+            case 1:
                 let nextVM = AccountHeightViewModel()
                 nextVC.configView(nextVM, delegate: nextVM)
-            case 3:
+            case 2:
                 let nextVM = AccountWeightViewModel()
                 nextVC.configView(nextVM, delegate: nextVM)
-            case 4:
+            case 3:
                 let nextVM = AccountBirthdayViewModel()
                 nextVC.configView(nextVM, delegate: nextVM)
             default:

@@ -76,7 +76,12 @@ class PKSelectOppTVC: UITableViewController, FriendInfoListDelegate, BaseViewCon
         
         loadFriendData()
         
-        self.tableView.registerNib(UINib(nibName: "ContactsFriendListCell", bundle: nil), forCellReuseIdentifier: "ContactsFriendListCell")
+        tableView.registerNib(UINib(nibName: "ContactsFriendListCell", bundle: nil), forCellReuseIdentifier: "ContactsFriendListCell")
+        
+        tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        tableView.separatorStyle = .SingleLine
+        tableView.separatorColor = UIColor(named: .LColor)
+        tableView.tableFooterView = UIView()
         
     }
     

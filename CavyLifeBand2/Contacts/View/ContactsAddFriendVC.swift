@@ -187,7 +187,6 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
         
     }
     
-
     /**
      添加 Searchutton
      */
@@ -328,8 +327,12 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
     func configureTableView(tableView: UITableView) {
         
         tableView.registerNib(UINib(nibName: "ContactsAddFriendCell", bundle: nil), forCellReuseIdentifier: "ContactsAddFriendCell")
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         tableView.backgroundColor = UIColor.whiteColor()
+        
+        tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        tableView.separatorStyle = .SingleLine
+        tableView.separatorColor = UIColor(named: .LColor)
+        tableView.tableFooterView = UIView()
         
         tableView.dataSource = self
         tableView.delegate = self

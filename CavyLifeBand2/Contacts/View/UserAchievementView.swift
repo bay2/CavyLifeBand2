@@ -13,7 +13,7 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
 
     let userAchievementViewCollectionCell = "UserAchievementCell"
     
-    let cellSize  = CGSizeMake(90, 132)
+    let cellSize  = CGSizeMake(90, 122)
     
     /// 徽章个数
     var medalCount = 6

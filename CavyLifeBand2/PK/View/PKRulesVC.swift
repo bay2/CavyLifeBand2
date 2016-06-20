@@ -10,7 +10,7 @@ import UIKit
 
 class PKRulesVC: UIViewController, BaseViewControllerPresenter {
 
-    let rulesViewMargin: CGFloat = 40.0
+    let rulesViewMargin: CGFloat = 20.0
     
     var navTitle: String { return L10n.PKPKTitle.string }
     
@@ -28,7 +28,7 @@ class PKRulesVC: UIViewController, BaseViewControllerPresenter {
         self.view.addSubview(rulesView!)
         
         rulesView?.snp_makeConstraints(closure: { (make) in
-            make.top.equalTo(self.view.snp_top).offset(rulesViewMargin)
+            make.top.equalTo(self.view.snp_top).offset(30)
             make.leading.equalTo(self.view.snp_leading).offset(rulesViewMargin)
             make.trailing.equalTo(self.view.snp_trailing).offset(-rulesViewMargin)
         })

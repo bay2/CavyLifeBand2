@@ -61,7 +61,9 @@ class BirthdayView: UIView, RulerViewDelegate {
         }
         
         yymmRuler.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(birthRulerWidth, birthRulerHeight))
+            make.height.equalTo(birthRulerHeight)
+            make.leading.equalTo(self).offset(10)
+            make.trailing.equalTo(self).offset(-10)
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(middleViewHeight / 2 - birthRulerHeight - rulerBetweenSpace / 2)
         }
@@ -88,7 +90,9 @@ class BirthdayView: UIView, RulerViewDelegate {
         }
         
         dayRuler.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(birthRulerWidth, 60))
+            make.height.equalTo(60)
+            make.leading.equalTo(self).offset(10)
+            make.trailing.equalTo(self).offset(-10)
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(middleViewHeight / 2 + rulerBetweenSpace + birthRulerHeight)
         }

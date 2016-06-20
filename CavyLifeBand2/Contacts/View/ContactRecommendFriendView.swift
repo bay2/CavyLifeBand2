@@ -21,6 +21,12 @@ class ContactRecommendFriendView: UIView {
         tableView.frame = CGRectMake(0, 44, ez.screenWidth, frame.height - 44)
         addSubview(tableView)
         tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        tableView.separatorStyle = .SingleLine
+        tableView.separatorColor = UIColor(named: .LColor)
+        tableView.tableFooterView = UIView()
+        
         self.backgroundColor = UIColor(named: .HomeViewMainColor)
     }
     
