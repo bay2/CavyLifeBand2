@@ -78,7 +78,7 @@ class PKSelectOppTVC: UITableViewController, FriendInfoListDelegate, BaseViewCon
         
         tableView.registerNib(UINib(nibName: "ContactsFriendListCell", bundle: nil), forCellReuseIdentifier: "ContactsFriendListCell")
         
-        tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
         tableView.separatorStyle = .SingleLine
         tableView.separatorColor = UIColor(named: .LColor)
         tableView.tableFooterView = UIView()

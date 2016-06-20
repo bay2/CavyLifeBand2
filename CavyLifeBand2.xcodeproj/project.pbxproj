@@ -1583,6 +1583,7 @@
 		91E1B4E01CA510DD008ADEE6 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				4C4C602C1CE5C4A10026C045 /* ContactsAddFriendCell.swift */,
 				91E1B4B81CA510BD008ADEE6 /* ContactsAddFriendCell.xib */,
 				91E1B4AB1CA510BD008ADEE6 /* ContactsFriendListCell.swift */,
 				91E1B4AC1CA510BD008ADEE6 /* ContactsFriendListCell.xib */,
@@ -1633,7 +1634,6 @@
 			isa = PBXGroup;
 			children = (
 				4C4C602B1CE5C4A10026C045 /* ContactRecommendFriendView.swift */,
-				4C4C602C1CE5C4A10026C045 /* ContactsAddFriendCell.swift */,
 				917B98BA1CB8E841008698F5 /* UserAchievementCell.swift */,
 				917B98BB1CB8E841008698F5 /* UserAchievementCell.xib */,
 				917B98BC1CB8E841008698F5 /* UserAchievementView.swift */,
@@ -2034,6 +2034,7 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if hash tailor 2>/dev/null; then\n    tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n    echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -148,7 +148,6 @@ extension PresonInfoCellViewModel: UIImagePickerControllerDelegate, UINavigation
             
             picker.dismissVC(completion: nil)
             
-            
         }
         
     }

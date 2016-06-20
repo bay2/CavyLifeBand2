@@ -329,7 +329,7 @@ class ContactsAddFriendVC: UIViewController, UIScrollViewDelegate, BaseViewContr
         tableView.registerNib(UINib(nibName: "ContactsAddFriendCell", bundle: nil), forCellReuseIdentifier: "ContactsAddFriendCell")
         tableView.backgroundColor = UIColor.whiteColor()
         
-        tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
         tableView.separatorStyle = .SingleLine
         tableView.separatorColor = UIColor(named: .LColor)
         tableView.tableFooterView = UIView()

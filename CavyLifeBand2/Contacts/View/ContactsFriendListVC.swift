@@ -63,12 +63,12 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
     }
     
     func setTableView() {
-        contactsTable.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        contactsTable.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
         contactsTable.separatorStyle = .SingleLine
         contactsTable.separatorColor = UIColor(named: .LColor)
         contactsTable.tableFooterView = UIView()
         
-        searchCtrlView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        searchCtrlView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
         searchCtrlView.separatorStyle = .SingleLine
         searchCtrlView.separatorColor = UIColor(named: .LColor)
         searchCtrlView.tableFooterView = UIView()

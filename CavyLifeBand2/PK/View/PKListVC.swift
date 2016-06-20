@@ -39,7 +39,7 @@ class PKListVC: UIViewController, BaseViewControllerPresenter, PKRecordsUpdateFo
         bottomSeparatorLine.backgroundColor = UIColor(named: .LColor)
         
         pkListTableView.registerNib(UINib(nibName: "ContactsAddFriendCell", bundle: nil), forCellReuseIdentifier: "ContactsAddFriendCell")
-        pkListTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
+        pkListTableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
         pkListTableView.separatorStyle = .SingleLine
         pkListTableView.separatorColor = UIColor(named: .LColor)
         pkListTableView.tableFooterView = UIView()
