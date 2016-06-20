@@ -269,6 +269,8 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
             uploadGoalData {
                 // 返回主页
                 viewController.popVC()
+                // 目标值改变 通知 主页圆环更新
+                NSNotificationCenter.defaultCenter().postNotificationName("updateUpperViewRing", object: nil)
             }
             
         }
