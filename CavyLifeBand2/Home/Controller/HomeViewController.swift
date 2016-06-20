@@ -9,8 +9,16 @@
 import UIKit
 import Log
 import JSONJoy
+import SnapKit
 import EZSwiftExtensions
 import RealmSwift
+import MJRefresh
+
+
+let dateViewHeight: CGFloat = 50.0
+// 大环是 0.55 大环顶部距离NavBar高度是 96
+let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
+let navBarHeight: CGFloat = 64.0
 
 class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate {
     
@@ -40,6 +48,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     
     var navTitle: String { return "" }
     
+    var scrollView = UIScrollView()
+    
     /// 上部分 计步睡眠天气页面
     var upperView: HomeUpperView?
     
@@ -66,10 +76,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         super.viewDidLoad()
         
         parseChartListData()
-        parseHomeListData()
 
         addAllView()
-        
+        addRefresh()
+
         self.updateNavUI()
         
         addNotificationObserver(NotificationName.HomePushView.rawValue, selector: #selector(HomeViewController.pushNextView))
@@ -80,15 +90,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(NotificationName.HomeShowHealthyView.rawValue, selector: #selector(HomeViewController.showHealthyDetailView))
         addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
         addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
-    
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        upperView!.frame = CGRectMake(0, 0, ez.screenWidth, 96 + ez.screenWidth * 0.55)
+        // 后台进入前台 同步数据
+        addNotificationObserver("updateHomeViewData", selector: #selector(refreshingStatus))
+ 
 
     }
+
     
     /**
      手环断线通知
@@ -117,27 +124,71 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
-        upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
-        
-        upperView?.viewController = self
-        view.addSubview(upperView!)
-        
-        view.addSubview(dateView)
-        dateView.backgroundColor = UIColor.whiteColor()
-        dateView.snp_makeConstraints { make in
-            make.top.equalTo(self.view).offset(96 + ez.screenWidth * 0.55)
-            make.left.right.equalTo(self.view)
-            make.height.equalTo(50)
+        self.view.addSubview(scrollView)
+        scrollView.contentSize = CGSizeMake(ez.screenWidth, navBarHeight + navBarHeight)
+        scrollView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        scrollView.delegate = self
+        scrollView.snp_makeConstraints { (make) in
+            make.left.right.bottom.top.equalTo(self.view)
         }
         
-        view.addSubview(timeLineView)
-        timeLineView.snp_makeConstraints { make in
-            make.top.equalTo(dateView).offset(50)
-            make.left.right.bottom.equalTo(self.view)
+        upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
+        upperView?.viewController = self
+        scrollView.addSubview(upperView!)
+        upperView!.snp_updateConstraints { make in
+            make.top.left.right.equalTo(0)
+            make.size.equalTo(CGSizeMake(ez.screenWidth, ringViewHeight))
+            make.centerX.equalTo(0)
+            
+        }
+        
+        scrollView.addSubview(dateView)
+        dateView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        dateView.snp_updateConstraints { make in
+            make.top.equalTo(scrollView).offset(ringViewHeight)
+            make.left.right.equalTo(scrollView)
+            make.height.equalTo(dateViewHeight)
+        }
+        
+        scrollView.addSubview(timeLineView)
+        timeLineView.snp_updateConstraints { make in
+            make.top.equalTo(dateView.snp_bottom)
+            make.size.equalTo(CGSizeMake(ez.screenWidth, ez.screenHeight - navBarHeight - ringViewHeight - dateViewHeight))
+            make.centerX.equalTo(0)
         }
         
     }
 
+    /**
+     添加下拉刷新
+     */
+    func addRefresh() {
+        
+        let header = MJRefreshHeader(refreshingBlock: {
+            
+            //MARK: 手动刷新
+            RootViewController().syncDataFormBand(false)
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
+                
+                self.scrollView.mj_header.endRefreshing()
+            })
+
+        })
+
+        header.backgroundColor = UIColor(named: .HomeViewMainColor)
+        scrollView.mj_header = header
+        
+    }
+    
+    /**
+     同步数据
+     */
+    func refreshingStatus() {
+        
+        scrollView.mj_header.beginRefreshing()
+    }
+    
     /**
      点击左侧按钮
      */
@@ -186,13 +237,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     }
     
     // MARK: --- 解析数据 保存数据库
-    
-    /**
-     解析全部HomeList数据
-     */
-    func parseHomeListData() {
-        
-    }
     
     /**
      解析 计步睡眠数据 并保存Realm
@@ -376,7 +420,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
     }
     
-    
     /**
      显示成就页面
      */
@@ -474,4 +517,79 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     }
     
 }
+
+// MARK: UIScrollViewDelegate
+
+var oldOffSet: CGFloat = 0
+
+extension HomeViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        
+        // 禁止上拉
+        if scrollView.contentOffset.y > 0 {
+            
+            scrollView.setContentOffset(CGPointMake(0, 0), animated: false)
+            return
+        }
+        
+        // head 最高60
+        if scrollView.contentOffset.y < -60 {
+            
+            scrollView.setContentOffset(CGPointMake(0, -60), animated: false)
+            return
+        }
+        
+        // 判断 下滑时候
+        scrollView.mj_header.removeSubviews()
+        let label = UILabel()
+        scrollView.mj_header.addSubview(label)
+        label.snp_makeConstraints { make in
+            make.center.equalTo(0)
+            make.size.equalTo(CGSizeMake(ez.screenWidth, 20))
+        }
+        label.text = ""
+        label.font = UIFont.systemFontOfSize(12)
+        label.textColor = UIColor.whiteColor()
+        label.textAlignment = .Center
+        
+        if scrollView.mj_header.state == MJRefreshState.Idle {
+            
+            label.text = L10n.HomeRefreshIdle.string
+            
+        }
+        
+        if scrollView.mj_header.state == MJRefreshState.Pulling {
+            
+            label.text = L10n.HomeRefreshPulling.string
+
+        }
+        
+        if scrollView.mj_header.state == MJRefreshState.Refreshing {
+            
+            // 添加活动指示器旋转
+            let activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
+            scrollView.mj_header.addSubview(activityView)
+            activityView.snp_makeConstraints{ make in
+                make.centerX.equalTo(0).offset(-40)
+                make.size.equalTo(CGSizeMake(20, 20))
+                make.centerY.equalTo(0)
+            }
+            // 添加文字
+            activityView.startAnimating()
+            
+            label.snp_remakeConstraints{ make in
+                make.left.equalTo(activityView.snp_right)
+                make.centerY.equalTo(0)
+            }
+            label.text = L10n.HomeRefreshRefreshing.string
+
+        }
+        
+    }
+    
+    
+}
+
+
 
