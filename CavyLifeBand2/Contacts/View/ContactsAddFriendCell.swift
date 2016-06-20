@@ -63,6 +63,9 @@ class ContactsAddFriendCell: UITableViewCell {
         super.awakeFromNib()
 
         headView.roundSquareImage()
+        headView.layer.borderWidth = 1
+        headView.layer.borderColor = UIColor.whiteColor().CGColor
+        
         nameLabel.textColor = UIColor(named: .EColor)
         nameLabel.font = UIFont.mediumSystemFontOfSize(16.0)
         

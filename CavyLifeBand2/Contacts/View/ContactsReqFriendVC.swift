@@ -21,6 +21,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     }
 
     var viewModel: ContactsReqFriendPortocols?
+    
     @IBOutlet weak var textFieldView: UIView!
     
     /// TextField
@@ -80,6 +81,8 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     func requestViewLayout() {
         
         textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        sendButton.layer.masksToBounds = true
+        sendButton.layer.cornerRadius = 3
         
         sendButton.setTitle(viewModel?.bottonTitle, forState: .Normal)
         
