@@ -170,7 +170,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             RootViewController().syncDataFormBand(false)
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
-                
                 self.scrollView.mj_header.endRefreshing()
             })
 
@@ -256,10 +255,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
                 endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
                 
             }
+            
+            parseStepDate(startDate, endDate: endDate)
+            
         }
         
-        parseStepDate(startDate, endDate: endDate)
-                
+        
         if isNeedUpdateSleepData() {
             
             let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
@@ -271,9 +272,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
                 
             }
             
+            parseSleepDate(startDate, endDate: endDate)
+            
         }
         
-        parseSleepDate(startDate, endDate: endDate)
  
     }
     
@@ -364,7 +366,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             Log.error("Time from erro [\(list.dateTime)]")
             return
         }
-        
         
         self.addSleepData(ChartSleepDataRealm(userId: self.userId, time: time, tilts: list.rollCount))
 

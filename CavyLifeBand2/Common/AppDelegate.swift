@@ -43,6 +43,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         setRootViewController()
         
+        NSNotificationCenter.defaultCenter().postNotificationName("updateHomeViewData", object: nil)
+
         return true
 
     }

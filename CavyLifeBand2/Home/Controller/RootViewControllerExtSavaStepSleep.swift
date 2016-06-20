@@ -91,7 +91,6 @@ extension RootViewController: ChartsRealmProtocol {
      */
     func saveStepsToRealm(steps: [(NSDate, Int)]) {
         
-        
         for i in 0 ..< steps.count {
             
             if i == 0 {
@@ -114,17 +113,6 @@ extension RootViewController: ChartsRealmProtocol {
             
         }
         
-        //        _ = steps.map { (date: NSDate, steps: Int) -> (NSDate, Int)? in
-        //            
-        //            if steps == 0 {
-        //                return nil
-        //            }
-        //            
-        //            
-        //            self.addStepData(ChartStepDataRealm(time: date, step: steps))
-        //            return (date, steps)
-        //        }
-        
     }
     
     /**
@@ -133,19 +121,60 @@ extension RootViewController: ChartsRealmProtocol {
      - author: sim cai
      - date: 2016-05-31
      
-     - parameter steps:
+     - parameter sleeps:
      */
-    func saveTiltsToRealm(steps: [(NSDate, Int)]) {
+    func saveTiltsToRealm(sleeps: [(NSDate, Int)]) {
         
-        _ = steps.map { (date: NSDate, tilts: Int) -> (NSDate, Int)? in
+        let realmArray = self.queryAllSleepInfo(userId)
+        
+
+        
+        for i in 0 ..< sleeps.count {
             
-            if tilts == 0 {
-                return nil
+            if realmArray.count == 0 {
+                
+                self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
+
+            } else {
+                
+                return
             }
             
-            self.addSleepData(ChartSleepDataRealm(time: date, tilts: tilts))
-            return (date, tilts)
+            
+            if i == 0 {
+                
+                
+                let lastRealmTime = realmArray.last?.time
+                
+                if lastRealmTime == nil || sleeps[0].0.compare(lastRealmTime!) == .OrderedSame {
+                    
+                    removeSleepData(self.queryAllSleepInfo(userId).last!)
+                    
+                }
+                
+            }
+            
+            if sleeps[i].1 == 0 {
+                continue
+            }
+
+            self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
+            
         }
+        
+
+        
+        
+//        
+//        _ = steps.map { (date: NSDate, tilts: Int) -> (NSDate, Int)? in
+//            
+//            if tilts == 0 {
+//                return nil
+//            }
+//            
+//            self.addSleepData(ChartSleepDataRealm(time: date, tilts: tilts))
+//            return (date, tilts)
+//        }
         
     }
     
