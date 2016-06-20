@@ -64,6 +64,7 @@ protocol ChartsRealmProtocol {
     
     // MARK: Other
     func queryAllStepInfo(userId: String) -> Results<(ChartStepDataRealm)>
+    func queryAllSleepInfo(userId: String) -> Results<(ChartSleepDataRealm)>
     func queryTimeBucketFromFirstDay() -> [String]?
     
     // MARK: 计步
@@ -76,10 +77,10 @@ protocol ChartsRealmProtocol {
     func isNeedUpdateSleepData() -> Bool
     func addSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
     func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData]
-    func queryAllSleepInfo(userId: String) -> Results<(ChartSleepDataRealm)>
     func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)]
     func querySleepInfoDay(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double)
-    
+    func removeSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
+
 }
 
 // MARK: Other Extension
@@ -131,7 +132,7 @@ extension ChartsRealmProtocol {
             return true
         }
         
-        let totalMinutes = (NSDate() - personalList.last!.time).totalMinutes
+        let totalMinutes = (NSDate().gregorian.beginningOfDay.date - personalList.last!.time).totalMinutes
         Log.info(totalMinutes)
         
         if totalMinutes > 10 {
@@ -148,13 +149,6 @@ extension ChartsRealmProtocol {
      - returns: 成功：true 失败： false
      */
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool {
-        
-        // chartsInfo
-        // 查询 当前数据的时间对应的值不同就更新  否则不添加
-        // TODO:
-        
-        
-        
         
         do {
             
@@ -253,11 +247,11 @@ extension ChartsRealmProtocol {
     }
     
     /**
-     删除某条数据
+     删除某条计步数据
      
-     - parameter chartsInfo: <#chartsInfo description#>
+     - parameter chartsInfo: 计步
      
-     - returns: <#return value description#>
+     - returns: 是否成功
      */
     func removeStepData(chartsInfo: ChartStepDataRealm) -> Bool {
         
@@ -666,6 +660,38 @@ extension ChartsRealmProtocol {
         return reslutData
         
     }
+    
+    /**
+     删除某条睡眠数据
+     
+     - parameter chartsInfo: 要删除的睡眠数据
+     
+     - returns: 是否成功
+     */
+    func removeSleepData(chartsInfo: ChartSleepDataRealm) -> Bool {
+        
+        self.realm.beginWrite()
+        
+        self.realm.delete(chartsInfo)
+        
+        do {
+            
+            try self.realm.commitWrite()
+            
+        } catch let error {
+            
+            Log.error("\(#function) error = \(error)")
+            
+            return false
+        }
+        Log.info("delete charts info success")
+        
+        return true
+        
+        
+    }
+    
+
     
 }
 

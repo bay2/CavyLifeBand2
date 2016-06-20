@@ -35,12 +35,16 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     
     var sleepNotificationToken: NotificationToken?
     
+
     override func awakeFromNib() {
+        
         allViewLayout()
         configStepAndSleepValue()
         
         configRealm()
-        
+
+        // 接受改变目标后回来改变视图的通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateUpperViewRing), name: "updateUpperViewRing", object: nil)
 
     }
     
@@ -200,6 +204,16 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         chartVC.configChartBaseView(stepVM)
         
         self.viewController.pushVC(chartVC)
+    }
+    
+    /**
+     更新视图
+     修改目标值时候 更新视图
+     */
+    func updateUpperViewRing() {
+        
+        configStepAndSleepValue()
+        
     }
     
 }
