@@ -256,11 +256,11 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
             GuideUserInfo.userInfo.stepNum = goalView.stepCurrentValue
         
             let nextVC = StoryboardScene.Guide.instantiateGuideView()
-            
-            let setVM = GuideSetNoticeViewModel()
-            
+
+            let setVM = GuideSetLocationShare()
+
             nextVC.configView(setVM, delegate: setVM)
-            
+
             viewController.pushVC(nextVC)
             
         } else {

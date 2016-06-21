@@ -25,10 +25,10 @@ extension CoordinateReport {
     func coordinateReportServer() {
         
         reportServer()
-        
-        NSTimer.runThisEvery(seconds: 5 * 60) { _ in
-            self.reportServer()
-        }
+//        MARK:   先注释掉
+//        NSTimer.runThisEvery(seconds: 5 * 60) { _ in
+//            self.reportServer()
+//        }
    
     }
     

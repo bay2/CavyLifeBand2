@@ -7,3 +7,4 @@
 */
 "CFBundleDisplayName" = "生活手环2";
 "CFBundleName" = "生活手环2";
+"NSLocationWhenInUseUsageDescription" = "开启定位功能->设置->隐私->定位服务 打开该服务";

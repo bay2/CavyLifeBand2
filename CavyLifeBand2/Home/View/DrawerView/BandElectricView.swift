@@ -20,6 +20,7 @@ class BandElectricView: UIView {
     
     private let lable = UILabel()
     private let shapeMake = CAShapeLayer()
+    private let backImage = UIImageView()
     
     required init?(coder aDecoder: NSCoder) {
         
@@ -73,6 +74,10 @@ class BandElectricView: UIView {
             make.center.equalTo(self)
         }
         
+        backImage.image = UIImage(asset: .RightMenuDisconnect)
+        backImage.frame = self.bounds
+        self.addSubview(backImage)
+        
     }
     
     /**
@@ -80,14 +85,20 @@ class BandElectricView: UIView {
      
      - parameter percent: 百分比  1 ~ 0
      */
-    func setElectric(percent: CGFloat) {
+    func setElectric(percent: CGFloat?, isConnect: Bool) {
         
-        let path = UIBezierPath(rect: CGRectMake(0, 0, self.bounds.width, self.bounds.width - (self.bounds.width * percent)))
-        shapeMake.path = path.CGPath
-        lable.text = "\(Int(percent * 100))%"
+        if isConnect {
+            
+            backImage.hidden = true
+            let path = UIBezierPath(rect: CGRectMake(0, 0, self.bounds.width, self.bounds.width - (self.bounds.width * percent!)))
+            shapeMake.path = path.CGPath
+            lable.text = "\(Int(percent! * 100))%"
+
+        }else
+        {
+            backImage.hidden = false
+        }
         
     }
-    
-    
 
 }
