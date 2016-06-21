@@ -205,7 +205,12 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
             return ["0\(L10n.HomeSleepRingUnitMinute.string)", "0\(L10n.HomeSleepRingUnitMinute.string)", "0%"]
         }
         
-        let sleepTarge = userInfo.sleepTime
+        var sleepTarge = userInfo.sleepTime
+        
+        if sleepTarge == "" {
+            sleepTarge = "0:0"
+        }
+        
         let array = sleepTarge.componentsSeparatedByString(":")
         let targetMinutes = array[0].toInt()! * 60 + array[1].toInt()!
         
