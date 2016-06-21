@@ -434,7 +434,7 @@ class CustomCamera: UIViewController {
 
         photoVC.totalCount = fetchResults.count
         photoVC.currentCount = fetchResults.count
-        photoVC.loadIndex = fetchResults.count - 10
+        photoVC.loadIndex = fetchResults.count - 10 < 0 ? 0 : fetchResults.count - 10
         
         self.presentVC(photoVC)
 
