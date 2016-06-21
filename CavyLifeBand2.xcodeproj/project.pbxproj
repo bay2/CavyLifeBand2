@@ -27,6 +27,8 @@
 		4C6895FC1CEAF24A00CAC412 /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895FB1CEAF24A00CAC412 /* ShareViewModel.swift */; };
 		4C6F14971CD9F454007E923B /* ChartsDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */; };
 		4C6F149B1CDC9B06007E923B /* ShowPieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */; };
+		4C6F887D1D18E86100CF0093 /* GuideLinking@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F887B1D18E86100CF0093 /* GuideLinking@2x.gif */; };
+		4C6F887E1D18E86100CF0093 /* GuideLinking@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4C6F887C1D18E86100CF0093 /* GuideLinking@3x.gif */; };
 		4CB16D6B1D1130A7006858B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB16D6A1D1130A7006858B5 /* HomeViewController.swift */; };
 		4CB7A06E1CD095C400DFB8DC /* BandElectricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */; };
 		4CB7A06F1CD095C400DFB8DC /* BandElectricView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB7A0561CD095C400DFB8DC /* BandElectricView.xib */; };
@@ -365,6 +367,8 @@
 		4C6895FB1CEAF24A00CAC412 /* ShareViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
 		4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsDataRealm.swift; sourceTree = "<group>"; };
 		4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPieChartsView.swift; sourceTree = "<group>"; };
+		4C6F887B1D18E86100CF0093 /* GuideLinking@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GuideLinking@2x.gif"; sourceTree = "<group>"; };
+		4C6F887C1D18E86100CF0093 /* GuideLinking@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GuideLinking@3x.gif"; sourceTree = "<group>"; };
 		4CB16D6A1D1130A7006858B5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandElectricView.swift; sourceTree = "<group>"; };
 		4CB7A0561CD095C400DFB8DC /* BandElectricView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BandElectricView.xib; sourceTree = "<group>"; };
@@ -1094,6 +1098,8 @@
 		9114D1BC1C97A1BB008CB4CE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				4C6F887B1D18E86100CF0093 /* GuideLinking@2x.gif */,
+				4C6F887C1D18E86100CF0093 /* GuideLinking@3x.gif */,
 				91B49C7C1CF56CD00017CC69 /* GuideLinking.gif */,
 			);
 			path = Resource;
@@ -1833,6 +1839,7 @@
 				4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */,
 				91EB79691CAE075C00ED3E67 /* Profile_Ok.json in Resources */,
 				91A2EC941CB350D200361952 /* AccountInfoSecurityCell.xib in Resources */,
+				4C6F887E1D18E86100CF0093 /* GuideLinking@3x.gif in Resources */,
 				68648AE11CF83D0A009D4BEE /* ContactListEmptyView.xib in Resources */,
 				91EB79581CAC049700ED3E67 /* SearchFrendListResult.json in Resources */,
 				917B98BF1CB8E841008698F5 /* UserAchievementCell.xib in Resources */,
@@ -1850,6 +1857,7 @@
 				91EB796F1CAE075C00ED3E67 /* UploadPicture_Ok.json in Resources */,
 				91EB796E1CAE075C00ED3E67 /* Sign_Up_Ok.json in Resources */,
 				68C558D51CB754090031719D /* IntelligentClockCell.xib in Resources */,
+				4C6F887D1D18E86100CF0093 /* GuideLinking@2x.gif in Resources */,
 				91EB796D1CAE075C00ED3E67 /* Sign_In_Ok.json in Resources */,
 				917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */,
 				91E1B4D11CA510BD008ADEE6 /* ContactsPersonInfoListCell.xib in Resources */,
@@ -2033,7 +2041,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if hash tailor 2>/dev/null; then\n#   tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#   echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
+			shellScript = "if hash tailor 2>/dev/null; then\ntailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\necho \"warning: Please install Tailor from https://tailor.sh\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

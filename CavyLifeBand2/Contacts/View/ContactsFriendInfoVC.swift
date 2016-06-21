@@ -214,6 +214,7 @@ class ContactsFriendInfoVC: UIViewController, BaseViewControllerPresenter{
         tableView.bounces = false
         tableView.separatorStyle = .None
         tableView.showsVerticalScrollIndicator = false
+
     }
     
     override func didReceiveMemoryWarning() {
