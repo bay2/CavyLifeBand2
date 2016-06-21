@@ -85,7 +85,7 @@ class BandElectricView: UIView {
      
      - parameter percent: 百分比  1 ~ 0
      */
-    func setElectric(percent: CGFloat? ,isConnect: Bool) {
+    func setElectric(percent: CGFloat?, isConnect: Bool) {
         
         if isConnect {
             
@@ -98,6 +98,7 @@ class BandElectricView: UIView {
         {
             backImage.hidden = false
         }
-    
+        
     }
+
 }

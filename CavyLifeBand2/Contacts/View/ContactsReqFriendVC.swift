@@ -10,7 +10,7 @@ import UIKit
 import MHRotaryKnob
 import Log
 
-class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter,UITextFieldDelegate {
+class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UITextFieldDelegate {
 
     enum RequestStyle {
         

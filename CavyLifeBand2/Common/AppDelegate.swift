@@ -15,7 +15,7 @@ import OHHTTPStubs
 #endif
 
 var realm: Realm = try! Realm()
-let kPGY_APP_ID = "9bb10b86bf5f62f10ec4f83d1c9847e7"
+let PGYAPPID = "9bb10b86bf5f62f10ec4f83d1c9847e7"
 
 
 @UIApplicationMain
@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      */
     func pgyUpdateConfig() {
     
-        PgyUpdateManager.sharedPgyManager().startManagerWithAppId(kPGY_APP_ID)
+        PgyUpdateManager.sharedPgyManager().startManagerWithAppId(PGYAPPID)
         PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
         PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
         
@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      */
     func crashConfig() {
         
-       PgyManager.sharedPgyManager().startManagerWithAppId(kPGY_APP_ID)
+       PgyManager.sharedPgyManager().startManagerWithAppId(PGYAPPID)
         
     }
     

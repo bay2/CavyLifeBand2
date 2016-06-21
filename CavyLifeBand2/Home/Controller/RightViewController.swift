@@ -50,7 +50,7 @@ class RightViewController: UIViewController {
         
         LifeBandCtrl.shareInterface.getBandElectric { [unowned self] electric in
             
-            self.bandElectricView.setElectric(CGFloat(electric),isConnect: true)
+            self.bandElectricView.setElectric(CGFloat(electric), isConnect: true)
             self.fwVersion.text = L10n.BandFWVersion.string + "\(BindBandCtrl.fwVersion)"
             
         }
