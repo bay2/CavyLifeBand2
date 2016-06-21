@@ -329,6 +329,21 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
             
             signUp {
                 
+                if $0 == WebApiCode.UserExisted.rawValue {
+                    
+                    let alertView = UIAlertController(title: "", message: WebApiCode(apiCode: $0).description, preferredStyle: .Alert)
+                    
+                    let signInAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+                    let reSinUpAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+                    
+                    alertView.addAction(signInAction)
+                    alertView.addAction(reSinUpAction)
+                    
+                    self.presentViewController(alertView, animated: true, completion: nil)
+                    
+                    return
+                }
+                
                 GuideUserInfo.userInfo.userId = $0
                 
                 Log.info("[\(GuideUserInfo.userInfo.userId)] Sign up success")
