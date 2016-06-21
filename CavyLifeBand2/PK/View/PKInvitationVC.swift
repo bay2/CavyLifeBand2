@@ -149,9 +149,12 @@ class PKInvitationVC: UIViewController, BaseViewControllerPresenter {
         
         addBtn.clipsToBounds      = true
         addBtn.layer.cornerRadius = addBtn.frame.size.width / 2
+
+        addBtn.setBackgroundImage(UIImage(asset: .PKInvitationAddBtn), forState: .Normal)
+        addBtn.setBackgroundImage(UIImage(asset: .PKInvitationAddBtnHighLight), forState: .Highlighted)
         
-        addBtn.setBackgroundImage(UIImage(named: "PKInvitationAddBtn"), forState: .Normal)
-        commitBtn.setImage(UIImage(named: "GuideRightBtn"), forState: .Normal)
+        commitBtn.setImage(UIImage(asset: .GuideRightBtn), forState: .Normal)
+        commitBtn.setImage(UIImage(asset: .GuideRightBtnHighLight), forState: .Normal)
         
         otherSeeUnableBtn.setTitle(L10n.PKInvitationVCPKOtherSeeUnable.string, forState: .Normal)
         otherSeeAbleBtn.setTitle(L10n.PKInvitationVCPKOtherSeeAble.string, forState: .Normal)

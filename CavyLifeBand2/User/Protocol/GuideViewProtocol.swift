@@ -21,6 +21,7 @@ protocol GuideViewDataSource {
     var bgColor: UIColor { get }
     var centerView: UIView { get }
     var guideBtnImage: UIImage { get }
+    var guideBtnHighLightImage: UIImage { get }
     var rightItemBtnTitle: String { get }
     var hiddeGuideBtn: Bool { get }
     var hiddeBackBtn: Bool { get }
@@ -33,6 +34,7 @@ extension GuideViewDataSource {
     var subTitle: String { return "" }
     var rightItemBtnTitle: String { return "" }
     var guideBtnImage: UIImage { return UIImage(asset: .GuideRightBtn) }
+    var guideBtnHighLightImage: UIImage { return UIImage(asset: .GuideRightBtnHighLight) }
     var bgColor: UIColor { return UIColor(named: .HomeViewMainColor) }
     var hiddeGuideBtn: Bool { return false }
     var hiddeBackBtn: Bool { return false }
