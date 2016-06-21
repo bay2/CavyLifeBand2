@@ -23,6 +23,9 @@ protocol MenuGroupDataSource {
     
     var sectionView: UIView { get }
     
+    var titleColor: UIColor { get }
+    
+    
     mutating func refurbishNextView()
     
 }
@@ -54,9 +57,6 @@ protocol MenuCellDateSource {
 
 extension MenuCellDateSource {
     
-    var titleColor: UIColor {
-        return UIColor(named: .AColor)
-    }
     
     var titleFont: UIFont {
         

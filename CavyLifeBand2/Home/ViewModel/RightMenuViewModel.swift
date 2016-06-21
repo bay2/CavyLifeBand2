@@ -26,12 +26,15 @@ struct MenuViewModel: MenuProtocol {
     var title: String
     var icon: UIImage?
     var nextView: UIViewController?
+    var titleColor: UIColor
     
-    init(icon: UIImage? = nil, title: String, nextView: UIViewController) {
+    
+    init(icon: UIImage? = nil, title: String, titleColor: UIColor = UIColor(named: .AColor),  nextView: UIViewController) {
         
         self.icon = icon
         self.title = title
         self.nextView = nextView
+        self.titleColor = titleColor
         
     }
     
@@ -43,11 +46,14 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
     var icon: UIImage?
     var nextView: UIViewController? = nil
     var filePath: String = ""
+    var titleColor: UIColor = UIColor.whiteColor()
     
-    init(icon: UIImage? = nil, title: String) {
+    
+    init(icon: UIImage? = nil, title: String, titleColor: UIColor) {
         
         self.icon = icon
         self.title = title
+        self.titleColor = titleColor
         
     }
     
@@ -178,11 +184,14 @@ struct UndoBindViewModel: MenuProtocol {
     var title: String
     var icon: UIImage?
     var nextView: UIViewController?
+    var titleColor: UIColor
     
-    init(icon: UIImage? = nil, title: String) {
+    
+    init(icon: UIImage? = nil, title: String, titleColor: UIColor = UIColor.whiteColor()) {
         
         self.icon = icon
         self.title = title
+        self.titleColor = titleColor
         
         let guideVC = StoryboardScene.Guide.instantiateGuideView()
         let guideVM = GuideBandBluetooth()
@@ -214,31 +223,32 @@ struct UndoBindViewModel: MenuProtocol {
 
 
 /**
- *  手环功能菜单项
+ *  手环功能菜单项  连接状态和非连接状态的切换
  */
 struct BandFeatureMenuGroupDataModel: MenuGroupDataSource {
     
     var items: [MenuProtocol] = []
     var sectionView: UIView = UIView()
     var sectionHeight: CGFloat = 16
+    var titleColor = UIColor(named: .AColor)
     
-    init() {
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .RightMenuCamera),
-            title: L10n.HomeRightListTitleCamera.string,
-            nextView: StoryboardScene.Camera.instantiateCustomCameraView()))
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .RightMenuNotice),
-            title: L10n.HomeRightListTitleNotification.string,
-            nextView: StoryboardScene.AlarmClock.instantiateRemindersSettingViewController()))
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .RightMenuAlarmClock),
-            title: L10n.HomeRightListTitleAlarmClock.string,
-            nextView: StoryboardScene.AlarmClock.instantiateIntelligentClockViewController()))
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .RightMenuSecurity),
-            title: L10n.HomeRightListTitleSecurity.string,
-            nextView: StoryboardScene.AlarmClock.instantiateSafetySettingViewController()))
+    init(isConnect: Bool) {
+            
+        items.append(MenuViewModel(icon: UIImage(asset: isConnect ? .RightMenuCamera : .RightMenuAlarmClock_disable),
+                title: L10n.HomeRightListTitleCamera.string, titleColor: UIColor(named: isConnect ? .AColor : .BColor),
+                nextView: StoryboardScene.Camera.instantiateCustomCameraView()))
+            
+        items.append(MenuViewModel(icon: UIImage(asset: isConnect ? .RightMenuNotice : .RightMenuNotice_disable),
+                title: L10n.HomeRightListTitleNotification.string, titleColor: UIColor(named: isConnect ? .AColor : .BColor),
+                nextView: StoryboardScene.AlarmClock.instantiateRemindersSettingViewController()))
+            
+        items.append(MenuViewModel(icon: UIImage(asset: isConnect ? .RightMenuAlarmClock : .RightMenuAlarmClock_disable),
+                title: L10n.HomeRightListTitleAlarmClock.string, titleColor: UIColor(named: isConnect ? .AColor : .BColor),
+                nextView: StoryboardScene.AlarmClock.instantiateIntelligentClockViewController()))
+            
+        items.append(MenuViewModel(icon: UIImage(asset: isConnect ? .RightMenuSecurity : .RightMenuSecurity_disable),
+                title: L10n.HomeRightListTitleSecurity.string, titleColor: UIColor(named: isConnect ? .AColor : .BColor),
+                nextView: StoryboardScene.AlarmClock.instantiateSafetySettingViewController()))
         
     }
     
@@ -252,10 +262,13 @@ struct BandHardwareMenuGroupDataModel: MenuGroupDataSource {
     var items: [MenuProtocol] = []
     var sectionView: UIView = LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
     var sectionHeight: CGFloat = 10
+    var titleColor = UIColor(named: .AColor)
     
-    init() {
+    
+    
+    init(isConnect: Bool) {
         
-        items.append(UpdateFWViewModel(title: L10n.HomeRightListTitleFirmwareUpgrade.string))
+        items.append(UpdateFWViewModel(title: L10n.HomeRightListTitleFirmwareUpgrade.string, titleColor: isConnect ? titleColor : UIColor(named: .BColor)))
         
     }
     
@@ -269,6 +282,7 @@ struct BindingBandMenuGroupDataModel: MenuGroupDataSource {
     var items: [MenuProtocol] = []
     var sectionView: UIView = LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
     var sectionHeight: CGFloat = 10
+    var titleColor = UIColor.whiteColor()
     
     init() {
         
@@ -287,6 +301,8 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
     var sectionView: UIView = UIView()
     var sectionHeight: CGFloat = 16
     var realm: Realm = try! Realm()
+    var titleColor = UIColor.whiteColor()
+    
     var loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
     
     init() {
@@ -349,6 +365,7 @@ struct AppAboutMenuGroupDataModel: MenuGroupDataSource {
     var items: [MenuProtocol] = []
     var sectionView: UIView = LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 10))
     var sectionHeight: CGFloat = 10
+    var titleColor = UIColor.whiteColor()
     
     init() {
         
