@@ -148,7 +148,7 @@
 "Home.LifeList.Title.PK" = "PK";
 "Home.LifeList.Title.About" = "关于";
 "Home.LifeList.Title.Help" = "帮助与反馈";
-"Home.LifeList.Title.Related" = "相关APP";
+"Home.LifeList.Title.Related" = "APP推荐";
 "Home.RightList.Title.Camera" = "遥控相机";
 "Home.RightList.Title.Notification" = "提醒";
 "Home.RightList.Title.AlarmClock" = "智能闹钟";
@@ -339,7 +339,7 @@
 "Relate.HelpAndFeedback.NavRightBtnTitle" = "意见反馈";
 "Relate.HelpAndFeedback.SendBtnTitle" = "发送";
 "Relate.HelpAndFeedback.TextViewPlaceHolder" = "请描述你的问题或意见";
-"Relate.RelateApp.NavTitle" = "相关App";
+"Relate.RelateApp.NavTitle" = "APP推荐";
 "Relate.RelateAppCell.DownloadBtnTitle" = "下载";
 
 //星期

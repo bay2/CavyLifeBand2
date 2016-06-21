@@ -30,7 +30,7 @@ struct CavyDefine {
     // 官网Api地址
     static let officialSiteAddr = "http://game.tunshu.com"
     
-    //相关App地址
+    //APP推荐地址
     static let relateAppWebApiAddr = officialSiteAddr + "/appIndex/index"
     
     // 1/25 宽度间隙
@@ -512,7 +512,7 @@ enum UserNetRequsetKey: String {
  - GetHelpList:      获取帮助与反馈列表
  - SubmitFeedback:   提交意见反馈
  - GetPKInfo:        获取pk信息
- - CavyLife:         获取相关App
+ - CavyLife:         获取APP推荐
  - SetEmergencyPhone 上传紧急联系人电话号码列表
  - GetFriendInfo     查询好友信息
  - SetFriendRemark   设置好友备注

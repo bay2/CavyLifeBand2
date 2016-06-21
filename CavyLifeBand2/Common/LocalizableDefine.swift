@@ -243,7 +243,7 @@ enum L10n {
   case HomeLifeListTitleAbout
   /// 帮助与反馈
   case HomeLifeListTitleHelp
-  /// 相关APP
+  /// APP推荐
   case HomeLifeListTitleRelated
   /// 遥控相机
   case HomeRightListTitleCamera
@@ -587,7 +587,7 @@ enum L10n {
   case RelateHelpAndFeedbackSendBtnTitle
   /// 请描述你的问题或意见
   case RelateHelpAndFeedbackTextViewPlaceHolder
-  /// 相关App
+  /// APP推荐
   case RelateRelateAppNavTitle
   /// 下载
   case RelateRelateAppCellDownloadBtnTitle
