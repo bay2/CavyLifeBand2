@@ -38,7 +38,7 @@ struct ContactsFriendCellModelView: ContactsFriendListDataSource {
     }
     
     func setHeadImageView(headImage: UIImageView) {
-        headImage.af_setCircleImageWithURL(NSURL(string: headImagUrl)!)
+        headImage.af_setCircleImageWithURL(NSURL(string: headImagUrl)!, placeholderImage: UIImage(named: "DefaultHead"))
     }
     
     /**

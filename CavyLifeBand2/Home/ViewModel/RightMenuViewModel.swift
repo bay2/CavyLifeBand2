@@ -347,7 +347,7 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
 struct AppAboutMenuGroupDataModel: MenuGroupDataSource {
     
     var items: [MenuProtocol] = []
-    var sectionView: UIView = LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
+    var sectionView: UIView = LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 10))
     var sectionHeight: CGFloat = 10
     
     init() {

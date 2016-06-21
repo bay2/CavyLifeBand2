@@ -158,7 +158,15 @@ extension SignUpDelegate where Self: UIViewController {
             
             if msg.commonMsg?.code != WebApiCode.Success.rawValue {
                 
+                //TODO 注册出现用户已存在情况需要特殊跳转流程
+//                if msg.commonMsg?.code == WebApiCode.UserExisted.rawValue {
+//                    callBack?(WebApiCode.UserExisted.rawValue)
+//                } else {
+//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg?.code ?? "")
+//                }
+                
                 CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg?.code ?? "")
+                
                 return
             }
             

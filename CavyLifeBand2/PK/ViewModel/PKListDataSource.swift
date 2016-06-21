@@ -155,7 +155,7 @@ struct PKWaitListDataSource: PKListDataProtocols {
             make.leading.equalTo(maskView).offset(20.0)
             make.trailing.equalTo(maskView).offset(-20.0)
             make.centerY.equalTo(maskView)
-            make.height.equalTo(360.0)
+            make.height.equalTo(380.0)
         })
         
         return maskView

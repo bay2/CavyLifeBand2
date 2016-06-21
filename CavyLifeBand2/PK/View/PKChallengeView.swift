@@ -68,8 +68,8 @@ class PKChallengeView: UIView {
         userAvatarImageView.layer.borderColor       = UIColor.whiteColor().CGColor
         competitorAvatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
         
-        userAvatarImageView.layer.borderWidth       = 3.0
-        competitorAvatarImageView.layer.borderWidth = 3.0
+        userAvatarImageView.layer.borderWidth       = 2.0
+        competitorAvatarImageView.layer.borderWidth = 2.0
         
         self.clipsToBounds = true
         self.layer.cornerRadius = CavyDefine.commonCornerRadius
