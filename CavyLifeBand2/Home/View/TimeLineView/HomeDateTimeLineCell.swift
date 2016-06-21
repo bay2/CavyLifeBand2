@@ -291,17 +291,18 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         listVM[0] = self.datasViewModels[0]
         listVM[1] = self.datasViewModels[1]
 
-        // PK
-        if listRealm.pkList.count > 0 {
-
-            for list in listRealm.pkList {
-                
-                // PK状态：1:进行中 2：已完成
-                let pkStaus = list.status == 1 ? L10n.PKRecordsVCDueSectionTitle.string : L10n.PKRecordsVCFinishSectionTitle.string
-                listVM.append(HomeListPKViewModel(friendName: list.friendName, pkId: list.pkId, result: pkStaus))
-            }
-            
-        }
+        // 隐藏PK模块
+//        // PK
+//        if listRealm.pkList.count > 0 {
+//
+//            for list in listRealm.pkList {
+//                
+//                // PK状态：1:进行中 2：已完成
+//                let pkStaus = list.status == 1 ? L10n.PKRecordsVCDueSectionTitle.string : L10n.PKRecordsVCFinishSectionTitle.string
+//                listVM.append(HomeListPKViewModel(friendName: list.friendName, pkId: list.pkId, result: pkStaus))
+//            }
+//            
+//        }
         
         // 成就列表
         if listRealm.achieveList.count > 0 {
