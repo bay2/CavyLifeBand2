@@ -66,6 +66,8 @@
 "SignUp.ProcotolViewBtn"     = "《豚鼠科技服务协议》";
 "SignUp.SignUpBtn"           = "注册";
 "SignUp.ReadProcotol"        = "请先阅读《豚鼠科技服务协议》";
+"SignUp.ReSignUp"            = "重新注册";
+"SignUp.DirectSinIn"         = "直接登录";
 
 // 引导页
 "Guide.MyInfo"                = "我的信息";

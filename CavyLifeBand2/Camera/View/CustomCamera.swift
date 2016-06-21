@@ -83,6 +83,8 @@ class CustomCamera: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: LifeBandCtrlNotificationName.BandButtonEvenClick1.rawValue, object: nil)
+        
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: false)
         
     }
@@ -191,9 +193,11 @@ class CustomCamera: UIViewController {
         let fetchOptions = PHFetchOptions()
         let fetchResults = PHAsset.fetchAssetsWithOptions(fetchOptions)
         
-        if fetchResults.countOfAssetsWithMediaType(.Image) > 0 {
-            Log.info(fetchResults.count)
+        guard fetchResults.countOfAssetsWithMediaType(.Image) > 0 else {
+            return
         }
+        
+        Log.info(fetchResults.count)
         
         // 最后一张
         let lastAsset = fetchResults.lastObject as! PHAsset
@@ -432,7 +436,7 @@ class CustomCamera: UIViewController {
 
         photoVC.totalCount = fetchResults.count
         photoVC.currentCount = fetchResults.count
-        photoVC.loadIndex = fetchResults.count - 10
+        photoVC.loadIndex = fetchResults.count - 10 < 0 ? 0 : fetchResults.count - 10
         
         self.presentVC(photoVC)
 

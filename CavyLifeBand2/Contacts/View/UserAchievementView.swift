@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import EZSwiftExtensions
 
 class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
 
@@ -79,10 +80,10 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         infoLabel.textColor = UIColor(named: .KColor)
         
         // 成就图标展示视图设置
-        collectionView.delegate   = self
-        collectionView.dataSource = self
-        collectionView.scrollEnabled = false 
-        collectionView.showsVerticalScrollIndicator = false
+        collectionView.delegate      = self
+        collectionView.dataSource    = self
+        collectionView.scrollEnabled = false
+        collectionView.showsVerticalScrollIndicator = ez.screenWidth <= 320 ? true : false
         collectionView.registerNib(UINib(nibName: userAchievementViewCollectionCell, bundle: nil), forCellWithReuseIdentifier: userAchievementViewCollectionCell)
         
         self.setCornerRadius(radius: CavyDefine.commonCornerRadius)
