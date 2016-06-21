@@ -193,9 +193,11 @@ class CustomCamera: UIViewController {
         let fetchOptions = PHFetchOptions()
         let fetchResults = PHAsset.fetchAssetsWithOptions(fetchOptions)
         
-        if fetchResults.countOfAssetsWithMediaType(.Image) > 0 {
-            Log.info(fetchResults.count)
+        guard fetchResults.countOfAssetsWithMediaType(.Image) > 0 else {
+            return
         }
+        
+        Log.info(fetchResults.count)
         
         // 最后一张
         let lastAsset = fetchResults.lastObject as! PHAsset
