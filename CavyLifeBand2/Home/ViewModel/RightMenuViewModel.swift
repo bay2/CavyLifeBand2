@@ -299,17 +299,18 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
             title: L10n.HomeLifeListTitleTarget.string,
             nextView: guideSet))
         
-        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuInformation),
-            title: L10n.HomeLifeListTitleInfoOpen.string,
-            nextView: StoryboardScene.InfoSecurity.AccountInfoSecurityVCScene.viewController()))
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuFriend),
-            title: L10n.HomeLifeListTitleFriend.string,
-            nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuPK),
-            title: L10n.HomeLifeListTitlePK.string,
-            nextView: StoryboardScene.PK.instantiatePKListVC()))
+        //TODO 第一版隐藏 信息公开，好友，PK 功能模块
+//        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuInformation),
+//            title: L10n.HomeLifeListTitleInfoOpen.string,
+//            nextView: StoryboardScene.InfoSecurity.AccountInfoSecurityVCScene.viewController()))
+//        
+//        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuFriend),
+//            title: L10n.HomeLifeListTitleFriend.string,
+//            nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
+//        
+//        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuPK),
+//            title: L10n.HomeLifeListTitlePK.string,
+//            nextView: StoryboardScene.PK.instantiatePKListVC()))
         
     }
     
