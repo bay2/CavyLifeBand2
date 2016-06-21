@@ -55,6 +55,10 @@ class MainPageViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(animated: Bool) {
+        LifeBandBle.shareInterface.stopScaning()
+    }
+    
     deinit {
         Log.error("deinit MainPageViewController")
     }

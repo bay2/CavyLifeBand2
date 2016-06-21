@@ -101,6 +101,10 @@ enum L10n {
   case SignUpSignUpBtn
   /// 请先阅读《豚鼠科技服务协议》
   case SignUpReadProcotol
+  /// 重新注册
+  case SignUpReSignUp
+  /// 直接登录
+  case SignUpDirectSinIn
   /// 我的信息
   case GuideMyInfo
   /// 我是
@@ -724,6 +728,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("SignUp.SignUpBtn")
       case .SignUpReadProcotol:
         return L10n.tr("SignUp.ReadProcotol")
+      case .SignUpReSignUp:
+        return L10n.tr("SignUp.ReSignUp")
+      case .SignUpDirectSinIn:
+        return L10n.tr("SignUp.DirectSinIn")
       case .GuideMyInfo:
         return L10n.tr("Guide.MyInfo")
       case .GuideMine:

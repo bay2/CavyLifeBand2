@@ -328,13 +328,28 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         if dataSource?.isSignUp == true {
             
             signUp {
-                
+            
                 if $0 == WebApiCode.UserExisted.rawValue {
-                    
+                
                     let alertView = UIAlertController(title: "", message: WebApiCode(apiCode: $0).description, preferredStyle: .Alert)
                     
-                    let signInAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
-                    let reSinUpAction = UIAlertAction(title: "OK", style: .Cancel, handler: nil)
+                    let signInAction = UIAlertAction(title: L10n.SignUpDirectSinIn.string, style: .Cancel) { [unowned self] (action) in
+                        
+                        self.view.endEditing(true)
+                        
+                        self.presentViewController(UINavigationController(rootViewController: StoryboardScene.Main.instantiateSignInView()), animated: true, completion: nil)
+                        
+                    }
+
+                    let reSinUpAction = UIAlertAction(title: L10n.SignUpReSignUp.string, style: .Default) { [unowned self] (action) in
+                        self.userNameTextField.text = ""
+                        
+                        self.safetyCodeTextField.text = ""
+                        
+                        self.passwdTextField.text = ""
+                        
+                        self.userNameTextField.becomeFirstResponder()
+                    }
                     
                     alertView.addAction(signInAction)
                     alertView.addAction(reSinUpAction)
@@ -343,7 +358,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                     
                     return
                 }
-                
+                                
                 GuideUserInfo.userInfo.userId = $0
                 
                 Log.info("[\(GuideUserInfo.userInfo.userId)] Sign up success")
