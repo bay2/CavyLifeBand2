@@ -86,6 +86,7 @@ extension UIImage {
     case LeftMenuTarget = "LeftMenuTarget"
     case RightMenuAlarmClock = "RightMenuAlarmClock"
     case RightMenuCamera = "RightMenuCamera"
+    case RightMenuDisconnect = "RightMenuDisconnect"
     case RightMenuNotice = "RightMenuNotice"
     case RightMenuSecurity = "RightMenuSecurity"
     case PersonalInfoEdit = "PersonalInfoEdit"

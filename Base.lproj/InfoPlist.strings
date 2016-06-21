@@ -7,3 +7,4 @@
 */
 "CFBundleDisplayName" = "CavyBand 2";
 "CFBundleName" = "CavyBand 2";
+"NSLocationWhenInUseUsageDescription" = "开启定位功能->设置->隐私->定位服务 打开该服务";

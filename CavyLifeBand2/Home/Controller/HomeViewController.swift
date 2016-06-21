@@ -169,9 +169,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             //MARK: 手动刷新
             RootViewController().syncDataFormBand(false)
             
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+                
                 self.scrollView.mj_header.endRefreshing()
-            })
+            }
 
         })
 

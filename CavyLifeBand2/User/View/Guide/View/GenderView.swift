@@ -53,6 +53,7 @@ class GenderView: UIView {
         }
         
         upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyChosen), forState: .Normal)
+        upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyChosen), forState: .Highlighted)
         upGenderBtn.snp_makeConstraints { make -> Void in
             make.size.equalTo(genderBtnSize)
             make.centerX.equalTo(self)
@@ -60,6 +61,7 @@ class GenderView: UIView {
         }
         
         downGenderBtn.setImage(UIImage(asset: .GuideGenderGirlGary), forState: .Normal)
+        downGenderBtn.setImage(UIImage(asset: .GuideGenderGirlChosen), forState: .Highlighted)
         downGenderBtn.snp_makeConstraints { make -> Void in
             make.size.equalTo(genderBtnSize)
             make.centerX.equalTo(self)

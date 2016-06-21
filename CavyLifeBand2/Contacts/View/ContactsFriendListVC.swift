@@ -52,12 +52,26 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
         
         loadFirendListData()
         
+        setTableView()
+        
         notificationToken = realm.addNotificationBlock { _, _ in
             
             self.loadFirendListData()
             
         }
         
+    }
+    
+    func setTableView() {
+        contactsTable.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
+        contactsTable.separatorStyle = .SingleLine
+        contactsTable.separatorColor = UIColor(named: .LColor)
+        contactsTable.tableFooterView = UIView()
+        
+        searchCtrlView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
+        searchCtrlView.separatorStyle = .SingleLine
+        searchCtrlView.separatorColor = UIColor(named: .LColor)
+        searchCtrlView.tableFooterView = UIView()
     }
     
     /**
@@ -258,19 +272,6 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     /**
-     cell 编辑结束
-     
-     - parameter tableView:
-     - parameter indexPath:
-     */
-    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsFriendListCell
-        cell?.showEditing(false)
-        
-    }
-    
-    /**
      左滑按钮
      
      - parameter tableView:
@@ -413,10 +414,6 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 0 {
             return .None
         }
-        
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsFriendListCell
-        
-        cell?.showEditing(true)
         
         return .Delete
         

@@ -212,6 +212,12 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         }
         
         let array = sleepTarge.componentsSeparatedByString(":")
+        
+        guard array.count == 2 else {
+            
+            return resultArray
+        }
+        
         let targetMinutes = array[0].toInt()! * 60 + array[1].toInt()!
         
         let  sleepNumber = 0

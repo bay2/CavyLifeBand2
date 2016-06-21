@@ -10,7 +10,7 @@ import UIKit
 import MHRotaryKnob
 import Log
 
-class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
+class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UITextFieldDelegate {
 
     enum RequestStyle {
         
@@ -42,6 +42,8 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        requestTextField.delegate = self
         
         updateNavUI()
 
@@ -95,6 +97,21 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    //MARK: UITextFieldDelegate
+    
+    /**
+        限制输入的字符串长度为10
+     */
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        guard textField.text?.length < 10 else {
+            return false
+        }
+        
+        return true
     }
 
 }

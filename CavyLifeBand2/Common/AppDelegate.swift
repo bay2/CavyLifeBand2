@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import KSCrash
 import Log
 import EZSwiftExtensions
 import RealmSwift
@@ -16,6 +15,8 @@ import OHHTTPStubs
 #endif
 
 var realm: Realm = try! Realm()
+let PGYAPPID = "9bb10b86bf5f62f10ec4f83d1c9847e7"
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
@@ -75,9 +76,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      */
     func pgyUpdateConfig() {
     
-        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("9bb10b86bf5f62f10ec4f83d1c9847e7")
+        PgyUpdateManager.sharedPgyManager().startManagerWithAppId(PGYAPPID)
         PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
         PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
+        
+    }
+    
+    /**
+     自动异常上报
+     
+     - author: sim cai
+     - date: 2016-06-01
+     */
+    func crashConfig() {
+        
+       PgyManager.sharedPgyManager().startManagerWithAppId(PGYAPPID)
         
     }
     
@@ -103,22 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
-    /**
-     异常上报
-     
-     - author: sim cai
-     - date: 2016-06-01
-     */
-    func crashConfig() {
-        
-        let installation = KSCrashInstallationStandard.sharedInstance()
-        
-        installation.url = NSURL(string: CavyDefine.bugHDKey)
-        
-        installation.install()
-        installation.sendAllReportsWithCompletion(nil)
-        
-    }
+
     
     /**
      realm 数据合并配置

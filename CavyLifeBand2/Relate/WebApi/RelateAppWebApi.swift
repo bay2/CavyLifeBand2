@@ -15,7 +15,7 @@ class RelateAppWebApi: NetRequestAdapter {
     static var shareApi = RelateAppWebApi()
     
     /**
-     获取相关App信息
+     获取APP推荐信息
      
      - parameter callBack: 回调
      - parameter pagenum:  当前页
