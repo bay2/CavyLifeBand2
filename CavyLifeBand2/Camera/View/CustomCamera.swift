@@ -83,6 +83,8 @@ class CustomCamera: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: LifeBandCtrlNotificationName.BandButtonEvenClick1.rawValue, object: nil)
+        
         UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: false)
         
     }
