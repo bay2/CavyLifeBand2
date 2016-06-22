@@ -87,6 +87,9 @@ extension UIColor {
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#fff956"></span>
     /// Alpha: 100% <br/> (0xfff956ff)
     case ChartStepPillarColor
+    /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#72e4b5"></span>
+    /// Alpha: 100% <br/> (0x72e4b5ff)
+    case ChartSubTimeBucketViewBg
     /// <span style="display:block;width:3em;height:2em;border:1px solid black;background:#4d4d4d"></span>
     /// Alpha: 100% <br/> (0x4d4d4dff)
     case ChartViewBackground
@@ -438,6 +441,7 @@ extension UIColor {
       case .ChartSleepDegreeLight: return 0x36f3ffff
       case .ChartSleepDegreeText: return 0xff5757ff
       case .ChartStepPillarColor: return 0xfff956ff
+      case .ChartSubTimeBucketViewBg: return 0x72e4b5ff
       case .ChartViewBackground: return 0x4d4d4dff
       case .ChartViewTextColor: return 0xffffff4d
       case .ContactsAccountLogoutButton: return 0xff6d01ff

@@ -154,8 +154,11 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         }
         
         var sleepString = userInfo.sleepTime
+        
         if sleepString == "" {
+            
             sleepString = "0:0"
+            
         }
         
         let sleepTimeArray = sleepString.componentsSeparatedByString(":")
@@ -191,8 +194,8 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     func showSleepDetailView(){
         
         let sleepVM = ChartViewModel(title: L10n.ContactsShowInfoSleep.string, chartStyle: .SleepChart)
-        let chartVC = ChartBaseViewController()
-        chartVC.configChartBaseView(sleepVM)
+        let chartVC = ChartsViewController()
+        chartVC.configChartsView(sleepVM)
         
         self.viewController.pushVC(chartVC)
     }
@@ -200,8 +203,8 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     func showStepDetailView(){
         
         let stepVM = ChartViewModel(title: L10n.ContactsShowInfoStep.string, chartStyle: .StepChart)
-        let chartVC = ChartBaseViewController()
-        chartVC.configChartBaseView(stepVM)
+        let chartVC = ChartsViewController()
+        chartVC.configChartsView(stepVM)
         
         self.viewController.pushVC(chartVC)
     }

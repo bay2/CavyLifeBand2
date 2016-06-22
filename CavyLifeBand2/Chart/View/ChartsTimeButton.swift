@@ -1,5 +1,5 @@
 //
-//  ChartTimeButton.swift
+//  ChartsTimeButton.swift
 //  CavyLifeBand2
 //
 //  Created by Jessica on 16/4/27.
@@ -9,9 +9,8 @@
 import UIKit
 import EZSwiftExtensions
 
-class ChartTimeButton: UIButton {
+class ChartsTimeButton: UIButton {
 
-    
     let searchBtnTitle: Array<String> = [L10n.ChartTimeBucketDay.string, L10n.ChartTimeBucketWeek.string, L10n.ChartTimeBucketMonth.string]
     
     //当前按钮类型
@@ -19,9 +18,6 @@ class ChartTimeButton: UIButton {
 
     //按钮文字
     private var nameLabel: UILabel!
-    
-    //按钮被选中标志
-    private var flagView: UIView!
     
     convenience init(frame: CGRect = CGRectMake(0, 0, 0, 0), selectIndex: Int) {
         
@@ -39,18 +35,6 @@ class ChartTimeButton: UIButton {
             make.left.right.top.bottom.equalTo(self)
         }
         
-        flagView = UIView()
-        self.addSubview(flagView)
-        flagView.backgroundColor = UIColor(named: .ContactsSearchFlagViewBg)
-        flagView.hidden = true
-        flagView.snp_makeConstraints { make -> Void in
-            
-            make.size.equalTo(CGSizeMake(ez.screenWidth / 3, 4))
-            make.bottom.equalTo(self)
-            make.centerX.equalTo(self)
-            
-        }
-        
     }
     
     /**
@@ -59,7 +43,6 @@ class ChartTimeButton: UIButton {
     func selectStatus() {
         
         nameLabel.textColor = UIColor(named: .AColor)
-        flagView.hidden = false
         
     }
     
@@ -69,7 +52,7 @@ class ChartTimeButton: UIButton {
     func deselectStatus() {
         
         nameLabel.textColor = UIColor(named: .BColor)
-        flagView.hidden = true
+
     }
     
 

@@ -1,5 +1,5 @@
 //
-//  ChartInfoCollectionCell.swift
+//  ChartsInfoCollectionCell.swift
 //  CavyLifeBand2
 //
 //  Created by Jessica on 16/4/28.
@@ -11,7 +11,7 @@ import EZSwiftExtensions
 import Realm
 import RealmSwift
 
-class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserInfoRealmOperateDelegate {
+class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserInfoRealmOperateDelegate {
 
     var viewStyle: ChartViewStyle = .StepChart
     var timeBucketStyle: TimeBucketStyle = .Day
@@ -22,6 +22,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
 
     /// 列表展示信息
     var listView: UITableView?
+    
     // 列表展示数据值
     var listDataArray: [String] = []
     
@@ -45,58 +46,66 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
      */
     func addChartsView() {
         
-        let date = NSDate(fromString: timeString, format: "yyyy.M.d")!
-        
-        let time: (beginTime: NSDate, endTime: NSDate) = date.timeStringChangeToNSDate(timeBucketStyle)
-        
-        if viewStyle == .StepChart {
-            
-            let chartView = ShowChartsView()
-            chartView.timeBucketStyle = self.timeBucketStyle
-            
-            let stepRealms =  queryStepNumber(time.beginTime, endTime: time.endTime, timeBucket: timeBucketStyle)
-            
-            listDataArray = infoViewStepListArray(stepRealms)
-            listView?.reloadData()
-            chartView.chartsData = stepRealms.datas
-            
-            chartViewLayout(chartView)
-            chartView.configAllView()
-            
-        }
-
-        if viewStyle == .SleepChart && timeBucketStyle == .Day {
-            
-            
-            let sleepInfo = querySleepNumber(time.beginTime, endTime: time.endTime)
-            
-            listDataArray = infoViewSleepListArray(sleepInfo)
-            
-            let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: sleepInfo.first!.deepSleep, lightSleep: sleepInfo.first!.lightSleep)
-            
-            chartViewLayout(peiChartView)
-            
+        let chartsView = UIView()
+        chartsView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        self.addSubview(chartsView)
+        chartsView.snp_makeConstraints { make in
+            make.top.equalTo(self)
+            make.centerX.equalTo(self)
+            make.size.equalTo(CGSize(width: ez.screenWidth, height: chartViewHight))
         }
         
-        if viewStyle == .SleepChart && (timeBucketStyle == .Week || timeBucketStyle == .Month) {
-            
-            let stackChart = ShowStackedChartsView()
-            
-            let sleepInfo = querySleepNumber(time.beginTime, endTime: time.endTime)
-            
-            listDataArray = infoViewSleepListArray(sleepInfo)
-            
-            stackChart.timeBucketStyle = self.timeBucketStyle
-            
-            stackChart.chartsData = sleepInfo.map{
-                
-                return PerSleepChartsData(time: $0.time, deepSleep: $0.deepSleep, lightSleep: $0.lightSleep)
-            }
-            
-            stackChart.configAllView()
-            chartViewLayout(stackChart)
-            
-        }
+//        let date = NSDate(fromString: timeString, format: "yyyy.M.d")!
+//        
+//        let time: (beginTime: NSDate, endTime: NSDate) = date.timeStringChangeToNSDate(timeBucketStyle)
+//        
+//        if viewStyle == .StepChart {
+//            
+//            let chartView = ShowChartsView()
+//            chartView.timeBucketStyle = self.timeBucketStyle
+//            
+//            let stepRealms =  queryStepNumber(time.beginTime, endTime: time.endTime, timeBucket: timeBucketStyle)
+//            
+//            listDataArray = infoViewStepListArray(stepRealms)
+//            listView?.reloadData()
+//            chartView.chartsData = stepRealms.datas
+//            
+//            chartViewLayout(chartView)
+//            chartView.configAllView()
+//            
+//        }
+//
+//        if viewStyle == .SleepChart && timeBucketStyle == .Day {
+//            
+//            
+//            let sleepInfo = querySleepNumber(time.beginTime, endTime: time.endTime)
+//            
+//            listDataArray = infoViewSleepListArray(sleepInfo)
+//            
+//            let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: sleepInfo.first!.deepSleep, lightSleep: sleepInfo.first!.lightSleep)
+//            chartViewLayout(peiChartView)
+//            
+//        }
+//        
+//        if viewStyle == .SleepChart && (timeBucketStyle == .Week || timeBucketStyle == .Month) {
+//            
+//            let stackChart = ShowStackedChartsView()
+//            
+//            let sleepInfo = querySleepNumber(time.beginTime, endTime: time.endTime)
+//            
+//            listDataArray = infoViewSleepListArray(sleepInfo)
+//            
+//            stackChart.timeBucketStyle = self.timeBucketStyle
+//            
+//            stackChart.chartsData = sleepInfo.map{
+//                
+//                return PerSleepChartsData(time: $0.time, deepSleep: $0.deepSleep, lightSleep: $0.lightSleep)
+//            }
+//            
+//            stackChart.configAllView()
+//            chartViewLayout(stackChart)
+//            
+//        }
         
     }
     
@@ -122,15 +131,18 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         listBottomView.snp_makeConstraints { make in
             make.top.equalTo(self).offset(chartViewHight)
             make.centerX.equalTo(self)
-            make.size.equalTo(CGSize(width: infoViewWidth, height: listViewHeight))
+            make.size.equalTo(CGSize(width: ez.screenWidth, height: listViewHeight))
         }
         listBottomView.backgroundColor = UIColor.whiteColor()
         
         listView = UITableView()
-        listBottomView.addSubview(listView!)
+        listView!.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
+        listView!.separatorStyle = .SingleLine
+        listView!.separatorColor = UIColor(named: .LColor)
         listView!.backgroundColor = UIColor.whiteColor()
-        
 
+        listBottomView.addSubview(listView!)
+        
         listView!.snp_makeConstraints { make in
             make.top.equalTo(listBottomView).offset(10)
             make.centerX.equalTo(self)
@@ -155,7 +167,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         view.snp_makeConstraints { make in
             make.top.equalTo(self)
             make.centerX.equalTo(self)
-            make.size.equalTo(CGSize(width: infoViewWidth, height: chartViewHight))
+            make.size.equalTo(CGSize(width: ez.screenWidth, height: chartViewHight))
         }
     }
     
@@ -205,7 +217,14 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
             return ["0\(L10n.HomeSleepRingUnitMinute.string)", "0\(L10n.HomeSleepRingUnitMinute.string)", "0%"]
         }
         
-        let sleepTarge = userInfo.sleepTime
+        var sleepTarge = userInfo.sleepTime
+        
+        if sleepTarge == "" {
+            
+            sleepTarge = "0:0"
+            
+        }
+        
         let array = sleepTarge.componentsSeparatedByString(":")
         
         guard array.count == 2 else {
@@ -262,7 +281,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
 }
 
 // MARK: -- UITableViewDelegate
-extension ChartInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
+extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -289,7 +308,7 @@ extension ChartInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
         let dataStepArray: [String] = [L10n.ChartStepTodayStep.string, L10n.ChartStepKilometer.string, L10n.ChartTargetPercent.string, L10n.ChartStepTimeUsed.string]
         let dataSleepArray: [String] = [L10n.ChartSleepDegreeDeep.string + L10n.ChartSleep.string, L10n.ChartSleepDegreeLight.string + L10n.ChartSleep.string, L10n.ChartTargetPercent.string]
         
-        let sleepDegree: [UIColor] = [UIColor(named: .ChartSleepDegreeLight), UIColor(named: .ChartSleepDegreeDeep)]
+        let sleepDegree: [UIColor] = [UIColor.whiteColor(), UIColor(named: .ChartSubTimeBucketViewBg)]
         
         switch viewStyle {
             
@@ -301,7 +320,7 @@ extension ChartInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
                 
                 cell.roundSleepView.backgroundColor = sleepDegree[indexPath.row]
                 cell.sleepDegree.text  = dataSleepArray[indexPath.row]
-                cell.rightLabel.text = listDataArray[indexPath.row]
+                cell.rightLabel.text = "8" //listDataArray[indexPath.row]
                 
                 return cell
                 
@@ -309,7 +328,7 @@ extension ChartInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ChartInfoListCell", forIndexPath: indexPath) as! ChartInfoListCell
             cell.leftLabel.text = dataSleepArray[indexPath.row]
-            cell.rightLabel.text = listDataArray[indexPath.row]
+            cell.rightLabel.text = "8"// listDataArray[indexPath.row]
             
             return cell
             
@@ -317,7 +336,7 @@ extension ChartInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ChartInfoListCell", forIndexPath: indexPath) as! ChartInfoListCell
             cell.leftLabel.text = dataStepArray[indexPath.row]
-            cell.rightLabel.text = listDataArray[indexPath.row]
+            cell.rightLabel.text = "8"// listDataArray[indexPath.row]
             
             return cell
 

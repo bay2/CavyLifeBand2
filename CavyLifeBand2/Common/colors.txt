@@ -35,6 +35,7 @@ HomeRingViewBackground : #309a6e
 HomeTimeLineLineColor :#e5e5e5
 HomeTimeLinePKCellTextColor : #ff8259
 ChartBackground : #e5e5e5
+ChartSubTimeBucketViewBg : #72e4b5
 ChartSleepDegreeText : #ff5757
 ChartDeselectText : #00000066
 ChartSleepDegreeDeep : #2db6cf

@@ -27,7 +27,7 @@ class UserInfoModel: Object {
     dynamic var address         = ""
     dynamic var nickname        = ""
     dynamic var stepNum         = 0
-    dynamic var sleepTime       = ""
+    dynamic var sleepTime       = "0:0"
     dynamic var isNotification  = true
     dynamic var isLocalShare    = true
     dynamic var isOpenBirthday  = true
