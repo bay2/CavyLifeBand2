@@ -57,9 +57,9 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
         
         sendBtn.setTitle(L10n.RelateHelpAndFeedbackSendBtnTitle.string, forState: .Normal)
         
-        sendBtn.backgroundColor = UIColor(named: .RalateHelpFeedbackSendBtnBGColor)
+        sendBtn.backgroundColor = UIColor(named: .OColor)
         
-        sendBtn.setTitleColor(UIColor(named: .RalateHelpFeedbackSendBtnTitleColor), forState: .Normal)
+        sendBtn.setTitleColor(UIColor(named: .PColor), forState: .Normal)
     }
   
     @IBAction func sendAction(sender: UIButton) {
@@ -68,22 +68,24 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
             return
         }
         
+        self.view.endEditing(true)
+        
         do {
             
-            try HelpFeedbackWebApi.shareApi.submitFeedback(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, feedback: textView.text) { result in
+            try HelpFeedbackWebApi.shareApi.submitFeedback(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, feedback: textView.text) { [unowned self] result in
                 guard result.isSuccess else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
+                    self.createTimer(CavyLifeBandAlertView.sharedIntance.showViewTitleWithoutAction(userErrorCode: result.error), result: "0")
                     return
                 }
                 
                 let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
                 
                 guard resultMsg.code == WebApiCode.Success.rawValue else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.code ?? "")
+                    self.createTimer(CavyLifeBandAlertView.sharedIntance.showViewTitleWithoutAction(webApiErrorCode: resultMsg.code ?? ""), result: "0")
                     return
                 }
                 
-                self.popVC()
+                self.createTimer(CavyLifeBandAlertView.sharedIntance.showViewTitleWithoutAction(message: L10n.RelateHelpAndFeedbackSendSuccessAlertMsg.string), result: "1")
                 
             }
             
@@ -92,5 +94,42 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
         }
 
     }
-
+    
+    /**
+     隐藏alert
+     时间器的灰调
+     
+     - parameter sender: 
+     */
+    func dismissAlert(sender: NSTimer) {
+        
+        guard let alert: UIAlertController = sender.userInfo?["alert"] as? UIAlertController else {
+            return
+        }
+        
+        let result = sender.userInfo?["result"] as? String
+        
+        alert.dismissViewControllerAnimated(true) {
+            
+            guard result == "1" else {
+                return
+            }
+            
+            self.popVC()
+            
+        }
+        
+    }
+    
+    /**
+     建立时间器 自动隐藏alert
+     
+     - parameter alert:
+     - parameter result:
+     */
+    func createTimer(alert: UIAlertController, result: String) {
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(HelpAndFeedbackVC.dismissAlert(_:)), userInfo: ["alert": alert, "result": result], repeats: false)
+    }
+    
+  
 }
