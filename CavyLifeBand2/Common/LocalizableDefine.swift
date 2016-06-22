@@ -591,6 +591,8 @@ enum L10n {
   case RelateHelpAndFeedbackSendBtnTitle
   /// 请描述你的问题或意见
   case RelateHelpAndFeedbackTextViewPlaceHolder
+  /// 发送成功
+  case RelateHelpAndFeedbackSendSuccessAlertMsg
   /// APP推荐
   case RelateRelateAppNavTitle
   /// 下载
@@ -1218,6 +1220,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Relate.HelpAndFeedback.SendBtnTitle")
       case .RelateHelpAndFeedbackTextViewPlaceHolder:
         return L10n.tr("Relate.HelpAndFeedback.TextViewPlaceHolder")
+      case .RelateHelpAndFeedbackSendSuccessAlertMsg:
+        return L10n.tr("Relate.HelpAndFeedback.SendSuccessAlertMsg")
       case .RelateRelateAppNavTitle:
         return L10n.tr("Relate.RelateApp.NavTitle")
       case .RelateRelateAppCellDownloadBtnTitle:
