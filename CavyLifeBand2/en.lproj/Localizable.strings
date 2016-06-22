@@ -340,6 +340,7 @@
 "Relate.HelpAndFeedback.NavRightBtnTitle" = "意见反馈";
 "Relate.HelpAndFeedback.SendBtnTitle" = "发送";
 "Relate.HelpAndFeedback.TextViewPlaceHolder" = "请描述你的问题或意见";
+"Relate.HelpAndFeedback.SendSuccessAlertMsg" = "发送成功";
 "Relate.RelateApp.NavTitle" = "APP推荐";
 "Relate.RelateAppCell.DownloadBtnTitle" = "下载";
 
