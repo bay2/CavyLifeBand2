@@ -79,6 +79,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 
         addAllView()
         addRefresh()
+        scrollView.mj_header.beginRefreshing()
 
         self.updateNavUI()
         
@@ -298,6 +299,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             do {
                 
                 let netResult = try ChartStepMsg(JSONDecoder(result.value!))
+
+                
                 for list in netResult.stepList {
                     // 保存到数据库
                     self.addStepListRealm(list)

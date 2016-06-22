@@ -93,7 +93,7 @@ extension RootViewController: ChartsRealmProtocol {
         
         for i in 0 ..< steps.count {
             
-            if i == 0 {
+            if i == 0 && self.queryAllStepInfo(userId).count > 0 {
                 
                 let lastRealmTime = self.queryAllStepInfo(userId).last?.time
                 
