@@ -366,3 +366,8 @@
 "Home.Refresh.Idle" = "下拉同步数据...";
 "Home.Refresh.Pulling" = "松开同步数据...";
 "Home.Refresh.Refreshing" = "  正在同步数据...";
+
+// 弹窗相关
+"Alert.SureAction.Title"     = "确认";
+"Alert.CancelAction.Title"   = "取消";
+"Alert.UndoPKWaitRecord.Msg" = "确认撤销此次PK？";
