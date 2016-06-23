@@ -35,7 +35,7 @@ class HomeTimeLineTableCell: UITableViewCell {
             imgView.image = dataSource.image
             
         } else {
-            imgView.af_setCircleImageWithURL(NSURL(string: dataSource.friendIconUrl)!, placeholderImage: UIImage(asset: .DefaultHead))
+            imgView.af_setCircleImageWithURL(NSURL(string: dataSource.friendIconUrl)!, placeholderImage: UIImage(asset: .DefaultHead_small))
         }
         
         nameLabel.text = dataSource.title

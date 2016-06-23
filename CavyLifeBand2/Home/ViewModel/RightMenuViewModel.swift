@@ -29,7 +29,7 @@ struct MenuViewModel: MenuProtocol {
     var titleColor: UIColor
     
     
-    init(icon: UIImage? = nil, title: String, titleColor: UIColor = UIColor(named: .AColor),  nextView: UIViewController) {
+    init(icon: UIImage? = nil, title: String, titleColor: UIColor = UIColor(named: .AColor), nextView: UIViewController) {
         
         self.icon = icon
         self.title = title

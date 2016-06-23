@@ -109,7 +109,7 @@ class ContactsAddFriendCell: UITableViewCell {
         self.requestBtn.backgroundColor = delegate.btnBGColor
 
         self.labelLayout(dataSource)
-        headView.af_setCircleImageWithURL(NSURL(string: dataSource.headImageUrl)!, placeholderImage: UIImage(asset: .DefaultHead))
+        headView.af_setCircleImageWithURL(NSURL(string: dataSource.headImageUrl)!, placeholderImage: UIImage(asset: .DefaultHead_small))
         
     }
 

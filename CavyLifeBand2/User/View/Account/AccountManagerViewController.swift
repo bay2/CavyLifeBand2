@@ -367,6 +367,10 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                 userInfoModel.isSync = false
                 self.addUserInfo(userInfoModel)
                 
+                
+                //TODO: 登录成功后需添加 绑定
+                
+               
                 // 注册成功后显示首页
                 UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
                 UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: {
