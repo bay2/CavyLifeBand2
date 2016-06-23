@@ -39,8 +39,14 @@ let listcellHight: CGFloat = 50
 /// 详情页面 宽
 let infoViewWidth: CGFloat = ez.screenWidth - insetSpace * 2
 
-let weekTime = ["Mon", "Stu", "Wed", "Thu", "Fir", "Str", "Sun"]
-
+//let weekTime = ["Mon", "Stu", "Wed", "Thu", "Fir", "Str", "Sun"]
+let weekArray: [String] = [L10n.AlarmDayMonday.string,
+                           L10n.AlarmDayTuesday.string,
+                           L10n.AlarmDayWednesday.string,
+                           L10n.AlarmDayThursday.string,
+                           L10n.AlarmDayFriday.string,
+                           L10n.AlarmDaySaturday.string,
+                           L10n.AlarmDaySunday.string]
 //MARK: 解析数据 一小时6条数据 一天 24小时
 let oneHourHav = 6
 let OneDayHave = 24

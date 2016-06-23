@@ -72,7 +72,7 @@ class ChartsViewController: UIViewController, BaseViewControllerPresenter, Chart
      */
     func allViewLayout() {
         
-        self.view.backgroundColor = UIColor(named: .ChartBackground)
+        self.view.backgroundColor = UIColor.whiteColor()
         
         // 周日年
         for i in 0 ..< 3 {
@@ -91,9 +91,10 @@ class ChartsViewController: UIViewController, BaseViewControllerPresenter, Chart
             make.top.equalTo(self.view).offset(timeButtonHeight)
             make.left.right.bottom.equalTo(self.view)
         }
-        scrollView.backgroundColor = UIColor(named: .ChartBackground)
+        scrollView.backgroundColor = UIColor.whiteColor()//(named: .ChartBackground)
         scrollView.contentSize = CGSizeMake(ez.screenWidth * 3, 0)
         scrollView.pagingEnabled = false
+        scrollView.scrollEnabled = false 
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.backgroundColor = UIColor.clearColor()
         

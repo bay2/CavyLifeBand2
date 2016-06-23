@@ -27,7 +27,6 @@
 		4C9E0B4C1D1A395200DBC1FC /* ChartSleepInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B361D1A395200DBC1FC /* ChartSleepInfoCell.swift */; };
 		4C9E0B4D1D1A395200DBC1FC /* ChartSleepInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E0B371D1A395200DBC1FC /* ChartSleepInfoCell.xib */; };
 		4C9E0B4E1D1A395200DBC1FC /* ChartsTimeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B381D1A395200DBC1FC /* ChartsTimeButton.swift */; };
-		4C9E0B4F1D1A395200DBC1FC /* ChartTimeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B391D1A395200DBC1FC /* ChartTimeCollectionCell.swift */; };
 		4C9E0B501D1A395200DBC1FC /* ShareCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B3A1D1A395200DBC1FC /* ShareCollectionCell.swift */; };
 		4C9E0B511D1A395200DBC1FC /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B3B1D1A395200DBC1FC /* ShareView.swift */; };
 		4C9E0B521D1A395200DBC1FC /* ShowChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B3C1D1A395200DBC1FC /* ShowChartsView.swift */; };
@@ -72,8 +71,9 @@
 		4CD5AAC91CF42D310011CD13 /* HomeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC81CF42D310011CD13 /* HomeListViewModel.swift */; };
 		4CD5AACB1CF42DB40011CD13 /* HomeListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AACA1CF42DB40011CD13 /* HomeListProtocol.swift */; };
 		4CD5AAD11CF583420011CD13 /* HomeDateTimeLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5AACF1CF583420011CD13 /* HomeDateTimeLineCell.xib */; };
-		4CE1DBA31D1A54B100A67FDD /* ChartsBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DBA21D1A54B100A67FDD /* ChartsBaseView.swift */; };
-		4CE1DBA51D1A74BC00A67FDD /* ChartsSubTimeBucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DBA41D1A74BC00A67FDD /* ChartsSubTimeBucketCell.swift */; };
+		4CE1DBAB1D1BAE4800A67FDD /* ChartsBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DBA81D1BAE4800A67FDD /* ChartsBaseView.swift */; };
+		4CE1DBAC1D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DBA91D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift */; };
+		4CE1DBAD1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DBAA1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
 		683655271CBB3B2C009373EA /* SettingSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */; };
 		683655281CBB3B2C009373EA /* SettingSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683655261CBB3B2C009373EA /* SettingSwitchTableViewCell.xib */; };
@@ -360,13 +360,12 @@
 		4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate_Extension.swift; sourceTree = "<group>"; };
 		4C6895F91CEAE28400CAC412 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C9E0B301D1A395200DBC1FC /* ChartsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
-		4C9E0B331D1A395200DBC1FC /* ChartsInfoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartsInfoCollectionCell.swift; path = View/ChartsInfoCollectionCell.swift; sourceTree = "<group>"; };
+		4C9E0B331D1A395200DBC1FC /* ChartsInfoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsInfoCollectionCell.swift; sourceTree = "<group>"; };
 		4C9E0B341D1A395200DBC1FC /* ChartInfoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInfoListCell.swift; sourceTree = "<group>"; };
 		4C9E0B351D1A395200DBC1FC /* ChartInfoListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChartInfoListCell.xib; sourceTree = "<group>"; };
 		4C9E0B361D1A395200DBC1FC /* ChartSleepInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartSleepInfoCell.swift; sourceTree = "<group>"; };
 		4C9E0B371D1A395200DBC1FC /* ChartSleepInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChartSleepInfoCell.xib; sourceTree = "<group>"; };
-		4C9E0B381D1A395200DBC1FC /* ChartsTimeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChartsTimeButton.swift; path = View/ChartsTimeButton.swift; sourceTree = "<group>"; };
-		4C9E0B391D1A395200DBC1FC /* ChartTimeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartTimeCollectionCell.swift; sourceTree = "<group>"; };
+		4C9E0B381D1A395200DBC1FC /* ChartsTimeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsTimeButton.swift; sourceTree = "<group>"; };
 		4C9E0B3A1D1A395200DBC1FC /* ShareCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareCollectionCell.swift; sourceTree = "<group>"; };
 		4C9E0B3B1D1A395200DBC1FC /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		4C9E0B3C1D1A395200DBC1FC /* ShowChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowChartsView.swift; sourceTree = "<group>"; };
@@ -411,8 +410,9 @@
 		4CD5AAC81CF42D310011CD13 /* HomeListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListViewModel.swift; sourceTree = "<group>"; };
 		4CD5AACA1CF42DB40011CD13 /* HomeListProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListProtocol.swift; sourceTree = "<group>"; };
 		4CD5AACF1CF583420011CD13 /* HomeDateTimeLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDateTimeLineCell.xib; sourceTree = "<group>"; };
-		4CE1DBA21D1A54B100A67FDD /* ChartsBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsBaseView.swift; sourceTree = "<group>"; };
-		4CE1DBA41D1A74BC00A67FDD /* ChartsSubTimeBucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsSubTimeBucketCell.swift; sourceTree = "<group>"; };
+		4CE1DBA81D1BAE4800A67FDD /* ChartsBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsBaseView.swift; sourceTree = "<group>"; };
+		4CE1DBA91D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsSubTimeBucketCell.swift; sourceTree = "<group>"; };
+		4CE1DBAA1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsSubTimeBucketFlowLayout.swift; sourceTree = "<group>"; };
 		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		683655261CBB3B2C009373EA /* SettingSwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingSwitchTableViewCell.xib; sourceTree = "<group>"; };
@@ -749,7 +749,6 @@
 			isa = PBXGroup;
 			children = (
 				4C9E0B2F1D1A395200DBC1FC /* controller */,
-				4CE1DBA11D1A3D9B00A67FDD /* ViewNew */,
 				4C9E0B311D1A395200DBC1FC /* View */,
 				4C9E0B3F1D1A395200DBC1FC /* ViewModel */,
 				4C9E0B431D1A395200DBC1FC /* WebApi */,
@@ -768,16 +767,20 @@
 		4C9E0B311D1A395200DBC1FC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4CE1DBA81D1BAE4800A67FDD /* ChartsBaseView.swift */,
+				4C9E0B331D1A395200DBC1FC /* ChartsInfoCollectionCell.swift */,
+				4C9E0B381D1A395200DBC1FC /* ChartsTimeButton.swift */,
+				4CE1DBA91D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift */,
+				4CE1DBAA1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift */,
 				4C9E0B341D1A395200DBC1FC /* ChartInfoListCell.swift */,
 				4C9E0B351D1A395200DBC1FC /* ChartInfoListCell.xib */,
 				4C9E0B361D1A395200DBC1FC /* ChartSleepInfoCell.swift */,
 				4C9E0B371D1A395200DBC1FC /* ChartSleepInfoCell.xib */,
-				4C9E0B391D1A395200DBC1FC /* ChartTimeCollectionCell.swift */,
-				4C9E0B3A1D1A395200DBC1FC /* ShareCollectionCell.swift */,
-				4C9E0B3B1D1A395200DBC1FC /* ShareView.swift */,
 				4C9E0B3C1D1A395200DBC1FC /* ShowChartsView.swift */,
 				4C9E0B3D1D1A395200DBC1FC /* ShowPieChartsView.swift */,
 				4C9E0B3E1D1A395200DBC1FC /* ShowStackedChartsView.swift */,
+				4C9E0B3A1D1A395200DBC1FC /* ShareCollectionCell.swift */,
+				4C9E0B3B1D1A395200DBC1FC /* ShareView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -863,17 +866,6 @@
 				4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */,
 			);
 			path = ContactsJson;
-			sourceTree = "<group>";
-		};
-		4CE1DBA11D1A3D9B00A67FDD /* ViewNew */ = {
-			isa = PBXGroup;
-			children = (
-				4CE1DBA21D1A54B100A67FDD /* ChartsBaseView.swift */,
-				4C9E0B381D1A395200DBC1FC /* ChartsTimeButton.swift */,
-				4CE1DBA41D1A74BC00A67FDD /* ChartsSubTimeBucketCell.swift */,
-				4C9E0B331D1A395200DBC1FC /* ChartsInfoCollectionCell.swift */,
-			);
-			name = ViewNew;
 			sourceTree = "<group>";
 		};
 		669D8264DE153DBB0A215E22 /* Pods */ = {
@@ -2044,7 +2036,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if hash tailor 2>/dev/null; then\n#   tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#   echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
+			shellScript = "if hash tailor 2>/dev/null; then\n   tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n   echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2053,23 +2045,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4CE1DBA31D1A54B100A67FDD /* ChartsBaseView.swift in Sources */,
 				68D6ED5F1CB7AEE700E1A1FB /* SafetySettingViewController.swift in Sources */,
 				685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */,
 				4CD5AAC31CEEB36A0011CD13 /* HomeListRealm.swift in Sources */,
 				910DFED31D0029E0009B944D /* FirmwareUpdate.swift in Sources */,
 				68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */,
+				4CE1DBAC1D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift in Sources */,
 				4CB16D6B1D1130A7006858B5 /* HomeViewController.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
 				68648A801CF3F125009D4BEE /* AccountSettingViewModel.swift in Sources */,
-				4C9E0B4F1D1A395200DBC1FC /* ChartTimeCollectionCell.swift in Sources */,
 				6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
 				4CD5AACB1CF42DB40011CD13 /* HomeListProtocol.swift in Sources */,
 				4C9E0B471D1A395200DBC1FC /* ChartsViewController.swift in Sources */,
 				6836557D1CBC84B7009373EA /* LineLayout.swift in Sources */,
-				4CE1DBA51D1A74BC00A67FDD /* ChartsSubTimeBucketCell.swift in Sources */,
 				4CB7A0811CD095C400DFB8DC /* HomeUpperView.swift in Sources */,
 				4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */,
 				686A5EFD1CDC694800EB8D0E /* WebViewController.swift in Sources */,
@@ -2099,6 +2089,7 @@
 				91E1B4DD1CA510BD008ADEE6 /* ContactsTabButton.swift in Sources */,
 				4CB7A07E1CD095C400DFB8DC /* HomeTimeLineView.swift in Sources */,
 				68A453531D0F96E800552521 /* FirmwareUpdateJSON.swift in Sources */,
+				4CE1DBAD1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift in Sources */,
 				6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */,
 				9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
@@ -2154,6 +2145,7 @@
 				4C9E0B551D1A395200DBC1FC /* ChartBaseViewModel.swift in Sources */,
 				917B98C01CB8E841008698F5 /* UserAchievementView.swift in Sources */,
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
+				4CE1DBAB1D1BAE4800A67FDD /* ChartsBaseView.swift in Sources */,
 				4CD5AAC51CEEE22E0011CD13 /* HomeListOper.swift in Sources */,
 				68C558CF1CB751050031719D /* IntelligentClockTableFooterView.swift in Sources */,
 				68B4DEDA1CE57B6E00BE041C /* RelateAppWebApi.swift in Sources */,

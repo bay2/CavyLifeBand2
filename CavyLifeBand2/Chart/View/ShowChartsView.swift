@@ -9,16 +9,15 @@
 import UIKit
 import Charts
 
+var spaceBetweenLabels = 0 // X轴 显示Label的个数
 
 class ShowChartsView: BarChartView, ChartViewDelegate {
-    
-    var leftMaxValue = 5
-    var leftLabelCCount = 1
-    var legdendLabel = L10n.ChartStep.string
-    var legendColors = [UIColor(named: .ChartStepPillarColor)]
+
+    var legendColors = [UIColor.whiteColor()]
+    var legdendText = L10n.ChartStep.string
+    var legendTextColor = UIColor.whiteColor()
     var leftUnit = " k"
-    var spaceBetweenLabel = 7
-    
+
     var timeBucketStyle: TimeBucketStyle = .Day
     
     // 计步柱状图
@@ -29,19 +28,17 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func configAllView() {
         
-        self.backgroundColor = UIColor(named: .ChartViewBackground)
+        self.backgroundColor = UIColor(named: .HomeViewMainColor)
         
-        if timeBucketStyle == .Month {
-            spaceBetweenLabel = chartsData.count / 3
-        }
+        setData(chartsData.count) // 设置数据
         
-        setData(chartsData.count)
         setupBarLineChartView()
         
         addxAxis()
-        addLeftAxis()
+        
         addLegend()
         
+
     }
     
     /**
@@ -49,54 +46,64 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func setupBarLineChartView() {
         
-        self.descriptionText = ""
-        // 提醒您注意运动哦，没有您的运动数据哦！
-        self.noDataTextDescription = "You need to provide data for the chart."
-        self.dragEnabled = false
-        self.setScaleEnabled(false)
-        self.drawValueAboveBarEnabled = true
-        self.rightAxis.enabled = false
-        self.delegate = self
-        self.maxVisibleValueCount = leftMaxValue
-        self.highlightPerTapEnabled = true
+        noDataTextDescription = "You need to provide data for the chart." // 没有数据的时显示
+        drawBordersEnabled = false //是否在折线图上添加边框
+        drawGridBackgroundEnabled = false // 是否显示表格颜色
+        drawBarShadowEnabled = false //柱状图没有数据的部分是否显示阴影效果
+        
+        drawValueAboveBarEnabled = true
+        
+        rightAxis.enabled = false // Y轴方向左边 不放轴
+        leftAxis.enabled = false // Y轴方向右边 不放轴
+        
+        delegate = self
+        highlightPerTapEnabled = true // 点击时是否高亮
+                if timeBucketStyle != .Month {
+            
+            dragEnabled = false // 是否可以拖拽
+            setScaleEnabled(false)
+            pinchZoomEnabled = false
+
+        }
+        
+        descriptionText = "3k"
+        descriptionFont = UIFont.systemFontOfSize(12)
+        descriptionTextPosition = CGPointMake(20, 0)
+        descriptionTextColor = UIColor.whiteColor()
+        
     }
 
     /**
      添加网格
      */
     func addxAxis(){
-        
+    
         let xAxis = self.xAxis
-        xAxis.labelHeight = 8
-        xAxis.labelPosition = .Bottom
-        xAxis.labelFont = UIFont.systemFontOfSize(10)
-        xAxis.gridColor = UIColor(named: .ChartGirdColor)
-        xAxis.labelTextColor =  UIColor(named: .ChartGirdColor)
-        xAxis.drawGridLinesEnabled = false
-        xAxis.spaceBetweenLabels = spaceBetweenLabel
+        xAxis.drawGridLinesEnabled = false // 是否显示尺线
+        xAxis.drawAxisLineEnabled = false //是否显示X轴
+        xAxis.drawLabelsEnabled = true  //是否显示X轴数值
+        xAxis.labelPosition = .Bottom //设置X轴的位置 默认在上方
+        xAxis.labelTextColor =  UIColor.whiteColor()
+        
+        switch timeBucketStyle {
+        case .Day:
+            
+            spaceBetweenLabels = 5
+
+        case .Week:
+
+            spaceBetweenLabels = 0
+
+        case .Month:
+
+            spaceBetweenLabels = 3
+
+        }
+        
+        xAxis.setLabelsToSkip(spaceBetweenLabels) //设置横坐标显示的间隔
 
     }
-    
-    /**
-     添加左边刻度
-     */
-    func addLeftAxis() {
-        
-        // 左边刻度
-        let leftAxis = self.leftAxis
-        leftAxis.labelFont = UIFont.systemFontOfSize(12)
-        leftAxis.labelCount = leftLabelCCount
-        leftAxis.valueFormatter = NSNumberFormatter()
-        leftAxis.valueFormatter!.maximumFractionDigits = 1
-        leftAxis.valueFormatter!.positiveSuffix = leftUnit
-        leftAxis.labelPosition = .OutsideChart
-        leftAxis.labelTextColor = UIColor(named: .ChartGirdColor)
-        leftAxis.spaceTop = 0.1
-        leftAxis.spaceBottom = 0.15
-        leftAxis.axisMinValue = 0
-  
-    }
-    
+
     /**
      添加右上角标志
      */
@@ -105,8 +112,8 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         self.legend.horizontalAlignment = .Right
         self.legend.verticalAlignment = .Top
         self.legend.form = .Circle
-        self.legend.formSize = 5
-        self.legend.textColor = UIColor(named: .ChartViewTextColor)
+        self.legend.formSize = 10
+        self.legend.textColor = UIColor.whiteColor()
         self.legend.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
         self.legend.xEntrySpace = 10
         
@@ -119,17 +126,32 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func setData(count: Int) {
         
+        
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
         
         if chartsData.count == 0 {
-            return 
+            
+            return
+            
         }
         
         for i in 0 ..< chartsData.count {
-            xVals.append(chartsData[i].time)
+            
+            if timeBucketStyle == .Week {
+                
+                xVals.append(weekArray[i])
 
-            let dataEntry = BarChartDataEntry(value: Double(chartsData[i].kilometer), xIndex: i)
+            } else {
+                
+                xVals.append(chartsData[i].time)
+                
+            }
+            // 假数据
+            let dataEntry = BarChartDataEntry(value: Double(arc4random_uniform(30)+1)/10, xIndex: i)
+        
+//            let dataEntry = BarChartDataEntry(value: Double(chartsData[i].kilometer), xIndex: i)
+            
             yVals.append(dataEntry)
         }
         
@@ -141,18 +163,19 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     
         } else {
             
-            dataSet = BarChartDataSet(yVals: yVals, label: legdendLabel)
+            dataSet = BarChartDataSet(yVals: yVals, label: legdendText)
             dataSet.barSpace = 0.80
             dataSet.setColors(legendColors, alpha: 0.9)
+            dataSet.valueTextColor = UIColor.whiteColor()
             dataSet.highlightAlpha = 0.2
             dataSet.barShadowColor = UIColor.clearColor()
-            
+            dataSet.drawValuesEnabled = false
             
             var dataSets: [BarChartDataSet] = []
             dataSets.append(dataSet)
             
             let data = BarChartData(xVals: xVals, dataSets: dataSets)
-            data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 10))
+            data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 12))
 
             self.data = data
             // 动画
@@ -167,12 +190,22 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         
-        let selectIndexNum = self.data?.dataSets.first?.yValForXIndex(dataSetIndex)
+        Log.info("\n\(chartView)\n\(entry)\n\(dataSetIndex)\n\(highlight)")
+        chartView.data?.setDrawValues(true)
+     
+        chartView.setNeedsDisplay()
         
-        Log.info(selectIndexNum)
-
-        Log.info("\(chartView)  \(entry)   \(dataSetIndex)  \(highlight)")
         
     }
+    
+    func chartValueNothingSelected(chartView: ChartViewBase) {
+        
+        chartView.data?.setDrawValues(false)
+        
+        chartView.setNeedsDisplay()
+
+    }
+    
+   
     
 }
