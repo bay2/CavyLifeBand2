@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         setRootViewController()
         
-        NSNotificationCenter.defaultCenter().postNotificationName("updateHomeViewData", object: nil)
+       
 
         return true
 
@@ -60,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
             return
         }
+        
         
         let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         BindBandCtrl.bandMacAddress = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] ?? NSData()

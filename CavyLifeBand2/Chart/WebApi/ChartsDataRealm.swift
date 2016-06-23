@@ -72,6 +72,7 @@ protocol ChartsRealmProtocol {
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData
     func removeStepData(chartsInfo: ChartStepDataRealm) -> Bool
+    func delecSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool
     
     // MARK: 睡眠
     func isNeedUpdateSleepData() -> Bool
@@ -80,7 +81,7 @@ protocol ChartsRealmProtocol {
     func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)]
     func querySleepInfoDay(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double)
     func removeSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
-
+    
 }
 
 // MARK: Other Extension
@@ -196,7 +197,6 @@ extension ChartsRealmProtocol {
         
         var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0)
         
-        
         // 初始化0~23 24 小时
         for i in 0...23 {
             
@@ -212,7 +212,7 @@ extension ChartsRealmProtocol {
             stepChartsData.totalKilometer += data.kilometer
             stepChartsData.finishTime += 10
             stepChartsData.datas[index].kilometer += data.kilometer
-            
+ 
         }
         
         return stepChartsData
@@ -256,9 +256,9 @@ extension ChartsRealmProtocol {
     func removeStepData(chartsInfo: ChartStepDataRealm) -> Bool {
         
         self.realm.beginWrite()
-                
+        
         self.realm.delete(chartsInfo)
-            
+        
         do {
             
             try self.realm.commitWrite()
@@ -276,7 +276,42 @@ extension ChartsRealmProtocol {
         
     }
     
+    /**
+     删除某一段时间的数据
+     
+     - parameter beginTime: <#beginTime description#>
+     - parameter endTime:   <#endTime description#>
+     
+     - returns: <#return value description#>
+     */
     
+    func delecSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool {
+        
+        
+        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
+        
+        self.realm.beginWrite()
+        
+        for data in dataInfo {
+        
+            self.realm.delete(data)
+        }
+        
+        do {
+            
+            try self.realm.commitWrite()
+            
+        } catch let error {
+            
+            Log.error("\(#function) error = \(error)")
+            
+            return false
+        }
+        Log.info("delete charts info success")
+        
+        return true
+        
+    }
     
 }
 
@@ -684,15 +719,14 @@ extension ChartsRealmProtocol {
             
             return false
         }
+        
         Log.info("delete charts info success")
         
         return true
         
         
     }
-    
 
-    
 }
 
 
