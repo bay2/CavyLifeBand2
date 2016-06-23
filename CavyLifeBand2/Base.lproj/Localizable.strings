@@ -110,6 +110,8 @@
 "Guide.PK.Info"               = "实时查看与好友计步PK详情\n让走路成为一种乐趣";
 "Guide.SafetyService.Title"   = "安全服务";
 "Guide.SafetyService.Info"    = "遇到紧急情况，连按4下按钮\n立即向联系人发送求救信息";
+"Guide.LifeBand.Title"        = "豚鼠手环";
+"Guide.LifeBand.Info"         = "开启我的豚鼠生活";
 
 // 忘记密码页面
 "Forgot.Title"                = "忘记密码了?";

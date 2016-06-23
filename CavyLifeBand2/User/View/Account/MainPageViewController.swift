@@ -12,11 +12,8 @@ import SnapKit
 
 class MainPageViewController: UIViewController {
     
-    var imageViews = [UIImageView(image: UIImage(asset: .Banner_1)), UIImageView(image: UIImage(asset: .Banner_2)),
-                      UIImageView(image: UIImage(asset: .Banner_3)), UIImageView(image: UIImage(asset: .Splash))]
-    
     var guidePageDatasources: [GuideIntroduceViewDataSource] = [GuideSafetyDataSource(), GuideRemindDataSource(),
-                                                                GuidePKDataSource(), GuideLoginDataSource()]
+                                                                GuidePKDataSource(), GuideLifeBandDataSource()]
     
 
 

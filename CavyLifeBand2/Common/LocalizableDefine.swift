@@ -179,6 +179,10 @@ enum L10n {
   case GuideSafetyServiceTitle
   /// 遇到紧急情况，连按4下按钮\n立即向联系人发送求救信息
   case GuideSafetyServiceInfo
+  /// 豚鼠手环
+  case GuideLifeBandTitle
+  /// 开启我的豚鼠生活
+  case GuideLifeBandInfo
   /// 忘记密码了?
   case ForgotTitle
   /// 新密码
@@ -808,6 +812,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Guide.SafetyService.Title")
       case .GuideSafetyServiceInfo:
         return L10n.tr("Guide.SafetyService.Info")
+      case .GuideLifeBandTitle:
+        return L10n.tr("Guide.LifeBand.Title")
+      case .GuideLifeBandInfo:
+        return L10n.tr("Guide.LifeBand.Info")
       case .ForgotTitle:
         return L10n.tr("Forgot.Title")
       case .ForgotPasswdTextField:
