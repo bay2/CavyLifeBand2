@@ -15,12 +15,14 @@ class RightViewController: UIViewController {
     
     @IBOutlet weak var menuTabelView: UITableView!
     var menuGroup: [MenuGroupDataSource] = []
+    var isConnect: Bool   = false
+    
     @IBOutlet weak var bandElectricView: BandElectricView!
     
     @IBOutlet weak var fwVersion: UILabel!
     @IBOutlet weak var bandName: UILabel!
     @IBOutlet weak var bandTitle: UILabel!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,8 +30,8 @@ class RightViewController: UIViewController {
         
         configTableView()
         
-        addMenumenuGroupData(BandFeatureMenuGroupDataModel())
-        addMenumenuGroupData(BandHardwareMenuGroupDataModel())
+        addMenumenuGroupData(BandFeatureMenuGroupDataModel(isConnect: false))
+        addMenumenuGroupData(BandHardwareMenuGroupDataModel(isConnect: false))
         addMenumenuGroupData(BindingBandMenuGroupDataModel())
         
         NSTimer.runThisEvery(seconds: 30) { _ in
@@ -43,7 +45,7 @@ class RightViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RightViewController.checkBandLining), name: BandBleNotificationName.BandConnectNotification.rawValue, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(RightViewController.checkBandLining), name: BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
         
-
+        
     }
     
     func getBandElectric() {
@@ -89,6 +91,13 @@ class RightViewController: UIViewController {
             bandName.text  = L10n.BandDisconnectBandNameTitle.string
             self.bandElectricView.setElectric(nil, isConnect: false)
             
+            isConnect  = false
+            clearMenuMenuGroupData()
+            addMenumenuGroupData(BandFeatureMenuGroupDataModel(isConnect: false))
+            addMenumenuGroupData(BandHardwareMenuGroupDataModel(isConnect: false))
+            addMenumenuGroupData(BindingBandMenuGroupDataModel())
+            menuTabelView.reloadData()
+            
         } else {
             
             bandTitle.text = L10n.BandTitle.string
@@ -96,11 +105,17 @@ class RightViewController: UIViewController {
             bandName.text  = LifeBandBle.shareInterface.getPeripheralName()
             getBandElectric()
             
+            isConnect  = true
+            clearMenuMenuGroupData()
+            addMenumenuGroupData(BandFeatureMenuGroupDataModel(isConnect: true))
+            addMenumenuGroupData(BandHardwareMenuGroupDataModel(isConnect: true))
+            addMenumenuGroupData(BindingBandMenuGroupDataModel())
+            menuTabelView.reloadData()
         }
         
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -115,6 +130,14 @@ class RightViewController: UIViewController {
         self.menuGroup.append(menuGroup)
     }
     
+    /**
+     连接状态改变的时候重新添加数据来显示
+     */
+    func  clearMenuMenuGroupData() {
+        
+        self.menuGroup.removeAll()
+    }
+    
     func configTableView() {
         
         menuTabelView.registerNib(UINib(nibName: "MenuTableViewCell", bundle: nil), forCellReuseIdentifier: "MenuTableViewCell")
@@ -123,7 +146,7 @@ class RightViewController: UIViewController {
     }
     
     
-
+    
 }
 
 // MARK: - tableview 扩展
@@ -132,8 +155,13 @@ extension RightViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuTableViewCell", forIndexPath: indexPath)
+        
         guard let menuCell = cell as? MenuTableViewCell else {
             return cell
+        }
+        
+        if !isConnect && indexPath.row < 4 {
+            cell.selectionStyle = .None
         }
         
         let cellViewModel = menuGroup[indexPath.section].items[indexPath.row]
@@ -161,14 +189,23 @@ extension RightViewController {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        menuGroup[indexPath.section].items[indexPath.row].onClickCell()
-
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        if isConnect {
+            
+            menuGroup[indexPath.section].items[indexPath.row].onClickCell()
+            tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            
+        }else
         
+        {
+            if indexPath.section == 2 {
+                menuGroup[indexPath.section].items[indexPath.row].onClickCell()
+                tableView.deselectRowAtIndexPath(indexPath, animated: false)
+            }
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return menuGroup[indexPath.section].items[indexPath.row].cellHeight
     }
-
+    
 }

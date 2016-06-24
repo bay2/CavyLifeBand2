@@ -196,4 +196,26 @@ extension NSDate {
         return returnArray
     }
     
+    
+    /**
+     格式化输出当天 day 时间
+     
+     - parameter newDate: <#newDate description#>
+     
+     - returns: <#return value description#>
+     */
+    
+    func formartDate(newDate: NSDate) -> NSDate {
+        
+        let formart = NSDateFormatter()
+        formart.dateFormat = "YYYY-MM-dd"
+        
+        let dateStr = formart.stringFromDate(newDate)
+        
+        let date = formart.dateFromString(dateStr)
+        
+        return date!
+        
+    }
+    
 }

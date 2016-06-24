@@ -157,12 +157,7 @@ class AccountPageSwitchUITests: XCTestCase {
      */
     func loginOrder() {
         
-        
-        
-        
-        
         if #available(iOS 9.0, *) {
-            
             
             let app = XCUIApplication()
             let guideButton = app.buttons["GuideRightBtn"]

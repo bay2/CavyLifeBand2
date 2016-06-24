@@ -101,6 +101,10 @@ enum L10n {
   case SignUpSignUpBtn
   /// 请先阅读《豚鼠科技服务协议》
   case SignUpReadProcotol
+  /// 重新注册
+  case SignUpReSignUp
+  /// 直接登录
+  case SignUpDirectSinIn
   /// 我的信息
   case GuideMyInfo
   /// 我是
@@ -175,6 +179,10 @@ enum L10n {
   case GuideSafetyServiceTitle
   /// 遇到紧急情况，连按4下按钮\n立即向联系人发送求救信息
   case GuideSafetyServiceInfo
+  /// 豚鼠手环
+  case GuideLifeBandTitle
+  /// 开启我的豚鼠生活
+  case GuideLifeBandInfo
   /// 忘记密码了?
   case ForgotTitle
   /// 新密码
@@ -593,6 +601,8 @@ enum L10n {
   case RelateHelpAndFeedbackSendBtnTitle
   /// 请描述你的问题或意见
   case RelateHelpAndFeedbackTextViewPlaceHolder
+  /// 发送成功
+  case RelateHelpAndFeedbackSendSuccessAlertMsg
   /// APP推荐
   case RelateRelateAppNavTitle
   /// 下载
@@ -625,6 +635,12 @@ enum L10n {
   case HomeRefreshPulling
   ///   正在同步数据...
   case HomeRefreshRefreshing
+  /// 确认
+  case AlertSureActionTitle
+  /// 取消
+  case AlertCancelActionTitle
+  /// 确认撤销此次PK？
+  case AlertUndoPKWaitRecordMsg
 }
 
 extension L10n: CustomStringConvertible {
@@ -730,6 +746,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("SignUp.SignUpBtn")
       case .SignUpReadProcotol:
         return L10n.tr("SignUp.ReadProcotol")
+      case .SignUpReSignUp:
+        return L10n.tr("SignUp.ReSignUp")
+      case .SignUpDirectSinIn:
+        return L10n.tr("SignUp.DirectSinIn")
       case .GuideMyInfo:
         return L10n.tr("Guide.MyInfo")
       case .GuideMine:
@@ -804,6 +824,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Guide.SafetyService.Title")
       case .GuideSafetyServiceInfo:
         return L10n.tr("Guide.SafetyService.Info")
+      case .GuideLifeBandTitle:
+        return L10n.tr("Guide.LifeBand.Title")
+      case .GuideLifeBandInfo:
+        return L10n.tr("Guide.LifeBand.Info")
       case .ForgotTitle:
         return L10n.tr("Forgot.Title")
       case .ForgotPasswdTextField:
@@ -1222,6 +1246,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Relate.HelpAndFeedback.SendBtnTitle")
       case .RelateHelpAndFeedbackTextViewPlaceHolder:
         return L10n.tr("Relate.HelpAndFeedback.TextViewPlaceHolder")
+      case .RelateHelpAndFeedbackSendSuccessAlertMsg:
+        return L10n.tr("Relate.HelpAndFeedback.SendSuccessAlertMsg")
       case .RelateRelateAppNavTitle:
         return L10n.tr("Relate.RelateApp.NavTitle")
       case .RelateRelateAppCellDownloadBtnTitle:
@@ -1254,6 +1280,12 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.Refresh.Pulling")
       case .HomeRefreshRefreshing:
         return L10n.tr("Home.Refresh.Refreshing")
+      case .AlertSureActionTitle:
+        return L10n.tr("Alert.SureAction.Title")
+      case .AlertCancelActionTitle:
+        return L10n.tr("Alert.CancelAction.Title")
+      case .AlertUndoPKWaitRecordMsg:
+        return L10n.tr("Alert.UndoPKWaitRecord.Msg")
     }
   }
 

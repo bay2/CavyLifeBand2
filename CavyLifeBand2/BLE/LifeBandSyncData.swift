@@ -67,13 +67,14 @@ class LifeBandSyncData {
     enum SyncDateCtrl: Int, CustomStringConvertible {
         
         init(beginDate: NSDate) {
+ 
+            let dayCount = NSDate().formartDate(NSDate()).daysInBetweenDate(NSDate().formartDate(beginDate)).toInt
             
-            let dayCount = NSDate().daysInBetweenDate(beginDate).toInt
-            
-            // 目前只支持两天
             self = dayCount == 0 ? SyncDateCtrl.Today : SyncDateCtrl.Yesterday
             
         }
+        
+        
         
         
         init(dateCmd: UInt8) {
@@ -122,7 +123,9 @@ class LifeBandSyncData {
         case Today           // 今天
     }
     
-
+    
+ 
+    
     
     /**
      从手环同步计步睡眠时间
@@ -194,13 +197,13 @@ class LifeBandSyncData {
                 
                 self.saveTiltsAndStepsData(newBeginDate, data: data, reslut: reslut)
                 
-            }
-            .sendMsgToBand("%SYNC=\(dayCmd.rawValue),\(timeCmd)\n")
+                }
+                .sendMsgToBand("%SYNC=\(dayCmd.rawValue),\(timeCmd)\n")
             
             Log.info("Band sync begin ----  \(newBeginDate.toString(format: "yyyy-MM-dd HH:mm:ss"))")
             
         }
-
+        
     }
     
     /**
@@ -257,10 +260,10 @@ class LifeBandSyncData {
         }
         
         //TODO: 等FW解决包序号问题，再把这里放开
-//        guard (packetNo + 1) == data[3] else {
-//            reslut(.Failure(.PacketNoError))
-//            return false
-//        }
+        //        guard (packetNo + 1) == data[3] else {
+        //            reslut(.Failure(.PacketNoError))
+        //            return false
+        //        }
         
         syncState = .Sync
         

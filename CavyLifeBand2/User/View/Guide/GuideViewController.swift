@@ -119,6 +119,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
         self.guideButton.hidden = viewDataSource.hiddeGuideBtn
         self.guideButton.setImage(viewDataSource.guideBtnImage, forState: .Normal)
+        self.guideButton.setImage(viewDataSource.guideBtnHighLightImage, forState: .Highlighted)
         
         let centerView = viewDataSource.centerView
         middleView.setCornerRadius(radius: CavyDefine.commonCornerRadius)
