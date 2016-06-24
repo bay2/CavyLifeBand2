@@ -123,8 +123,20 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
         
         // 注册流程时候 返回注册登录首页
         if queryUserId.isEmpty {
-        
-            ez.topMostVC?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
+            
+            let vc = ez.topMostVC?.presentingViewController as? UINavigationController
+            
+            // 从登录页面 点击右上角注册按钮 进入的注册流程
+            // 因返回到登录页面
+            if vc?.viewControllers[0] is SignInViewController {
+                vc!.popToRootViewControllerAnimated(false)
+                vc!.dismissVC(completion: nil)
+            } else {
+                
+                // 直接走的注册流程
+                
+                ez.topMostVC?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
+            }
             
         } else if BindBandCtrl.bindScene == .Rebind {
             
