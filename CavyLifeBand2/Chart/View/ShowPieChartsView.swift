@@ -21,10 +21,16 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
        
         self.init(frame: frame)
         
-        self.deepSleep  = deepSleep
-        self.lightSleep = lightSleep
+        /**
+         *  添加假数据
+         */
+        self.deepSleep = 120
+        self.lightSleep = 278
         
-        self.backgroundColor = UIColor(named: .ChartViewBackground)
+//        self.deepSleep  = deepSleep
+//        self.lightSleep = lightSleep
+        
+        self.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         setupPieChartView()
         
@@ -48,20 +54,26 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
     
     func setupPieChartView() {
         
+
         self.usePercentValuesEnabled = true
         self.drawSlicesUnderHoleEnabled = true
         self.holeRadiusPercent = 0.6
         self.transparentCircleRadiusPercent = 0
-        self.descriptionText = "         "
-        self.noDataTextDescription = "            "
+        self.noDataTextDescription = "You need to provide data for the chart."
         // 不允许点击放大
         self.highlightPerTapEnabled = false
         self.setExtraOffsets(left: 0, top: 1, right: 0, bottom: 1)
         self.drawCenterTextEnabled = false // 中间不显示字
-        self.holeColor = UIColor(named: .ChartViewBackground)
+        self.holeColor = UIColor(named: .HomeViewMainColor)
         self.drawHoleEnabled = true   // 中间是空的
         self.rotationAngle = 0
         self.rotationEnabled = true
+        
+        descriptionText = "\((lightSleep + deepSleep) / 60 + 1)h"
+        descriptionFont = UIFont.systemFontOfSize(12)
+        descriptionTextPosition = CGPointMake(20, 0)
+        descriptionTextColor = UIColor.whiteColor()
+        
     }
     
     func addLegend() {
@@ -69,8 +81,8 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         self.legend.horizontalAlignment = .Right
         self.legend.verticalAlignment = .Top
         self.legend.form = .Circle
-        self.legend.formSize = 7
-        self.legend.textColor = UIColor(named: .ChartViewTextColor)
+        self.legend.formSize = 10
+        self.legend.textColor = UIColor.whiteColor()//(named: .ChartViewTextColor)
         self.legend.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
         self.legend.xEntrySpace = 10
         
@@ -81,9 +93,9 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         let dataCount = 2
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
-        var colors: [NSUIColor] = []
+        let colors: [NSUIColor] = [UIColor.whiteColor(), UIColor(named: .ChartSubTimeBucketViewBg)]
         var lineAndTextColor = UIColor.whiteColor()
-        let sleepDegreeArray = [Double(self.deepSleep), Double(self.lightSleep)]
+        let sleepDegreeArray = [Double(self.lightSleep), Double(self.deepSleep)]
         
         if deepSleep == 0 && lightSleep == 0 {
 
@@ -93,19 +105,16 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         
         for i in 0 ..< dataCount {
             
-            let sleepName = ["\(L10n.ChartSleepDeep.string)", "\(L10n.ChartSleepLight.string)"]
+            let sleepName = ["\(L10n.ChartSleepLight.string)", "\(L10n.ChartSleepDeep.string)"]
             yVals.append(BarChartDataEntry(value: sleepDegreeArray[i], xIndex: i))
             xVals.append(sleepName[i])
             
         }
         
-        colors.append(UIColor(named: .ChartSleepDegreeDeep))
-        colors.append(UIColor(named: .ChartSleepDegreeLight))
         
         let dataSet: PieChartDataSet = PieChartDataSet(yVals: yVals, label: "")
         dataSet.sliceSpace = 0
         dataSet.colors = colors
-        
         
         let data = PieChartData(xVals: xVals, dataSet: dataSet)
         

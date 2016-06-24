@@ -172,15 +172,20 @@
 "Chart.TimeBucket.Day"     = "日";
 "Chart.TimeBucket.Week"    = "周";
 "Chart.TimeBucket.Month"   = "月";
+
 "Chart.Target.Percent"     = "目标完成度";
+"Chart.Step.Today.Step"    = "步数";
+"Chart.Step.Kilometer"     = "路程";
+"Chart.Step.TimeUsed"      = "用时";
+"Chart.Step.Week.Step"     = "周总步数";
+"Chart.Step.Average.Step"  = "日均步数";
+"Chart.Step.Month.Step"    = "月总步数";
+
 "Chart.Sleep.Deep"         = "深睡";
 "Chart.Sleep.Light"        = "浅睡";
 "Chart.Sleep.Degree.Deep"  = "深度";
 "Chart.Sleep.Degree.Light" = "浅度";
-"Chart.Step.Today.Step"    = "步数";
-"Chart.Step.Week.Step"     = "周总步数";
-"Chart.Step.Kilometer"     = "行走公里数";
-"Chart.Step.TimeUsed"      = "花费时长";
+"Chart.Sleep.Average."     = "日均睡眠";
 "Share.To"                 = "分享到";
 
 //好友，联系人
@@ -356,14 +361,14 @@
 "AlarmDay.Sunday"    = "日";
 
 // 固件升级
-"UpdateProgress.Info"  = "请勿退出应用或关闭手环";
-"UpdateProgress.title" = "手环正在升级";
+"UpdateProgress.Info"                    = "请勿退出应用或关闭手环";
+"UpdateProgress.title"                   = "手环正在升级";
 "UpdateFirmware.BandDisconnect.AlertMsg" = "请先连接手环";
-"UpdateFirmware.IsNewVersion.AlertMsg" = "固件版本已最新版本";
+"UpdateFirmware.IsNewVersion.AlertMsg"   = "固件版本已最新版本";
 
 // 主页同步数据
-"Home.Refresh.Idle" = "下拉同步数据...";
-"Home.Refresh.Pulling" = "松开同步数据...";
+"Home.Refresh.Idle"       = "下拉同步数据...";
+"Home.Refresh.Pulling"    = "松开同步数据...";
 "Home.Refresh.Refreshing" = "  正在同步数据...";
 
 // 弹窗相关
