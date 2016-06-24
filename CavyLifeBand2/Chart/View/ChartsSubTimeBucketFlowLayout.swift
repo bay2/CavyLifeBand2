@@ -14,7 +14,6 @@ class ChartsSubTimeBucketFlowLayout: UICollectionViewFlowLayout {
     let itemWidth: CGFloat = ez.screenWidth / 5
     let itemHeight: CGFloat = 44
 
-    
     override func prepareLayout() {
         
         self.itemSize = CGSizeMake(itemWidth, itemHeight)
@@ -27,7 +26,6 @@ class ChartsSubTimeBucketFlowLayout: UICollectionViewFlowLayout {
         self.sectionInset = UIEdgeInsetsMake(0, inset, 0, inset)
         
     }
-    
     
     override func shouldInvalidateLayoutForBoundsChange(newBounds: CGRect) -> Bool {
         return true
@@ -52,7 +50,6 @@ class ChartsSubTimeBucketFlowLayout: UICollectionViewFlowLayout {
             attrs.alpha = 1 - 0.2 * fabs(itemCenterX - centerX) / itemWidth
             
         }
-        
         
         return array
     }

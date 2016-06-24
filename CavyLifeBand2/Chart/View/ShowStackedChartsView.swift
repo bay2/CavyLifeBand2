@@ -20,7 +20,6 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     var leftUnit = " h"
     var timeBucketStyle: TimeBucketStyle = .Day
     var spaceBetweenLabel = 0
-    var chartsXvalFormatter = "EEE"
     
     // 深睡浅睡柱状图
     var chartsData: [PerSleepChartsData] = []
@@ -137,15 +136,22 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
         
-        for i in 0 ..< count {
-            
-            let timeString = chartsData[i].time.toString(format: chartsXvalFormatter)
-            xVals.append(timeString)
-            
-        }
-        
-        for i in 0 ..< count {
 
+        for i in 0 ..< count {
+            
+            // xVals
+            if timeBucketStyle == .Week {
+                
+                xVals.append(weekArray[i])
+                
+            } else {
+                
+                let timeString = chartsData[i].time.toString(format: "d")
+                xVals.append(timeString)
+                
+            }
+
+            // yVals
             // 随机产生数据
             let val1 = Double(arc4random_uniform(200) + 1)// 浅睡
             let val2 = Double(arc4random_uniform(200) + 1)// 深睡

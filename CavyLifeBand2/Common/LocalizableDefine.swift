@@ -279,6 +279,18 @@ enum L10n {
   case ChartTimeBucketMonth
   /// 目标完成度
   case ChartTargetPercent
+  /// 步数
+  case ChartStepTodayStep
+  /// 路程
+  case ChartStepKilometer
+  /// 用时
+  case ChartStepTimeUsed
+  /// 周总步数
+  case ChartStepWeekStep
+  /// 日均步数
+  case ChartStepAverageStep
+  /// 月总步数
+  case ChartStepMonthStep
   /// 深睡
   case ChartSleepDeep
   /// 浅睡
@@ -287,14 +299,8 @@ enum L10n {
   case ChartSleepDegreeDeep
   /// 浅度
   case ChartSleepDegreeLight
-  /// 步数
-  case ChartStepTodayStep
-  /// 周总步数
-  case ChartStepWeekStep
-  /// 行走公里数
-  case ChartStepKilometer
-  /// 花费时长
-  case ChartStepTimeUsed
+  /// 日均睡眠
+  case ChartSleepAverage
   /// 分享到
   case ShareTo
   /// 生活豚鼠
@@ -902,6 +908,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Chart.TimeBucket.Month")
       case .ChartTargetPercent:
         return L10n.tr("Chart.Target.Percent")
+      case .ChartStepTodayStep:
+        return L10n.tr("Chart.Step.Today.Step")
+      case .ChartStepKilometer:
+        return L10n.tr("Chart.Step.Kilometer")
+      case .ChartStepTimeUsed:
+        return L10n.tr("Chart.Step.TimeUsed")
+      case .ChartStepWeekStep:
+        return L10n.tr("Chart.Step.Week.Step")
+      case .ChartStepAverageStep:
+        return L10n.tr("Chart.Step.Average.Step")
+      case .ChartStepMonthStep:
+        return L10n.tr("Chart.Step.Month.Step")
       case .ChartSleepDeep:
         return L10n.tr("Chart.Sleep.Deep")
       case .ChartSleepLight:
@@ -910,14 +928,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Chart.Sleep.Degree.Deep")
       case .ChartSleepDegreeLight:
         return L10n.tr("Chart.Sleep.Degree.Light")
-      case .ChartStepTodayStep:
-        return L10n.tr("Chart.Step.Today.Step")
-      case .ChartStepWeekStep:
-        return L10n.tr("Chart.Step.Week.Step")
-      case .ChartStepKilometer:
-        return L10n.tr("Chart.Step.Kilometer")
-      case .ChartStepTimeUsed:
-        return L10n.tr("Chart.Step.TimeUsed")
+      case .ChartSleepAverage:
+        return L10n.tr("Chart.Sleep.Average.")
       case .ShareTo:
         return L10n.tr("Share.To")
       case .ContactsListCellCavy:

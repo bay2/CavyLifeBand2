@@ -15,6 +15,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
 
     var viewStyle: ChartViewStyle = .StepChart
     var timeBucketStyle: TimeBucketStyle = .Day
+    
     let listCount = 4
     
     /// 时间标签的String
@@ -167,14 +168,14 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         
         view.snp_makeConstraints { make in
             make.edges.equalTo(UIEdgeInsets(top: 15, left: 20, bottom: -20, right: -10))
-            make.centerX.equalTo(chartsView)
+//            make.centerX.equalTo(chartsView)
         }
     }
     
     /**
      Charts计步详情页面 下面的TableView的cell上数值的 Array
      */
-    func infoViewStepListArray(stepRealm: StepChartsData) -> [String]{
+    private func infoViewStepListArray(stepRealm: StepChartsData) -> [String]{
        
         var resultArray: [String] = []
         var percent = 0
@@ -207,7 +208,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
     /**
      Charts睡眠详情页面 下面的TableView的cell上数值的 Array
      */
-    func infoViewSleepListArray(sleepInfo: [PerSleepChartsData]) -> [String] {
+    private func infoViewSleepListArray(sleepInfo: [PerSleepChartsData]) -> [String] {
         
         var resultArray: [String] = []
         
@@ -305,8 +306,21 @@ extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let dataStepArray: [String] = [L10n.ChartStepTodayStep.string, L10n.ChartStepKilometer.string, L10n.ChartTargetPercent.string, L10n.ChartStepTimeUsed.string]
+        var dataStepArray: [String] = [L10n.ChartStepTodayStep.string, L10n.ChartStepKilometer.string, L10n.ChartTargetPercent.string, L10n.ChartStepTimeUsed.string]
 
+        switch timeBucketStyle {
+        case .Week:
+            dataStepArray = [L10n.ChartStepWeekStep.string, L10n.ChartStepKilometer.string, L10n.ChartStepAverageStep.string, L10n.ChartStepTimeUsed.string]
+        case .Month:
+            
+            dataStepArray = [L10n.ChartStepMonthStep.string, L10n.ChartStepKilometer.string, L10n.ChartStepAverageStep.string, L10n.ChartStepTimeUsed.string]
+
+        default:
+            dataStepArray = [L10n.ChartStepTodayStep.string, L10n.ChartStepKilometer.string, L10n.ChartTargetPercent.string, L10n.ChartStepTimeUsed.string]
+
+            
+        }
+        
         let sleepStatusArray: [SleepStatus] = [.LightSleep, .DeepSleep]
         
         switch viewStyle {
@@ -324,7 +338,14 @@ extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
             }
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ChartInfoListCell", forIndexPath: indexPath) as! ChartInfoListCell
-            cell.leftLabel.text = L10n.ChartTargetPercent.string
+            
+            switch timeBucketStyle {
+            case.Day:
+                cell.leftLabel.text = L10n.ChartTargetPercent.string
+            case .Week, .Month:
+                cell.leftLabel.text = L10n.ChartSleepAverage.string
+            }
+            
             cell.rightLabel.text = listDataArray[indexPath.row]
             
             return cell

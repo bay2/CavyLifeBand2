@@ -190,7 +190,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         
-        Log.info("\n\(chartView)\n\(entry)\n\(dataSetIndex)\n\(highlight)")
+//        Log.info("\n\(chartView)\n\(entry)\n\(dataSetIndex)\n\(highlight)")
         chartView.data?.setDrawValues(true)
      
         chartView.setNeedsDisplay()

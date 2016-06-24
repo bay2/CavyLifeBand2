@@ -10,7 +10,7 @@ import UIKit
 import EZSwiftExtensions
 import RealmSwift
 
-class ChartsBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ChartsRealmProtocol{
+class ChartsBaseView: UIView, UICollectionViewDelegateFlowLayout, ChartsRealmProtocol{
     
     var realm: Realm = try! Realm()
     var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
@@ -153,8 +153,11 @@ class ChartsBaseView: UIView, UICollectionViewDelegate, UICollectionViewDataSour
         }
         
     }
+}
+
+// MARK: -- collectionView Delegate
+extension ChartsBaseView: UICollectionViewDelegate, UICollectionViewDataSource {
     
-    // MARK: -- collectionView Delegate
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return dates.count
@@ -237,7 +240,7 @@ extension ChartsBaseView: UIScrollViewDelegate {
         let countFloat = collView.contentOffset.x / subTimeButtonWidth
         var count = Int(countFloat)
         
-        if count < 0 || count > dates.count {
+        if count < 0 || count > dates.count - 1 {
             
             return
         }
@@ -254,21 +257,6 @@ extension ChartsBaseView: UIScrollViewDelegate {
      切换时间段按钮状态改变
      */
     func changeButtonStauts(collectionView: UICollectionView, indexPath: NSIndexPath) {
-        
-//        // 更改 选中日期的状态
-//        for i in 0 ..< dates.count {
-//            guard let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) as? ChartsSubTimeBucketCell else {
-//                continue
-//            }
-////            cell.deselectStatus()
-//        }
-//        
-//        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? ChartsSubTimeBucketCell else {
-//            return
-//        }
-        
-//        cell.selectStatus()
-        
         collectionView.setContentOffset(CGPointMake(CGFloat(indexPath.item) * subTimeButtonWidth, 0), animated: false)
         infoView!.setContentOffset(CGPointMake(CGFloat(indexPath.item) * ez.screenWidth, 0), animated: false)
         
