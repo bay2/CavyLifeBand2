@@ -69,6 +69,10 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         
     }()
     
+    override func viewWillAppear(animated: Bool) {
+        LifeBandBle.shareInterface.stopScaning()
+    }
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -243,23 +247,17 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
             let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
             
             // 查询不到用户信息，走绑定流程
-            if let bindBandValue = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] {
+            guard let bindBandValue = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] else {
                 
-                // 没绑定并且蓝牙没打开
-                if bindBandValue.length == 0 {
-                
-                    //用户未绑定，走绑定流程
-                    self.gotoBinding()
-                    return
-                    
-                }
-                
-                // 手环已绑定，记录手环信息，root 页面中会根据此属性设置绑定的手环
-//                GuideUserInfo.userInfo.bandName = bindBandValue
-                BindBandCtrl.bandMacAddress = bindBandValue
-                
-                
+                //用户未绑定，走绑定流程
+                self.gotoBinding()
+                return
+  
             }
+            
+            // 手环已绑定，记录手环信息，root 页面中会根据此属性设置绑定的手环
+            //                GuideUserInfo.userInfo.bandName = bindBandValue
+            BindBandCtrl.bandMacAddress = bindBandValue
             
             // 通过查询用户信息判断是否是老的豚鼠用户
             self.queryUserInfoByNet(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, vc: self) {
