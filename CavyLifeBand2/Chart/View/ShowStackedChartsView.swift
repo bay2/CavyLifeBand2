@@ -15,11 +15,11 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     var leftMaxValue = 1
     var leftLabelCCount = 1
     var legendLable = L10n.ChartSleep.string
-    var legendColors: [UIColor] = [UIColor(named: .ChartSleepDegreeDeep), UIColor(named: .ChartSleepDegreeLight)]
+    var legendColors: [UIColor] = [UIColor.whiteColor(), UIColor(named: .ChartSubTimeBucketViewBg)]
+    
     var leftUnit = " h"
     var timeBucketStyle: TimeBucketStyle = .Day
     var spaceBetweenLabel = 0
-    var chartsXvalFormatter = "EEE"
     
     // 深睡浅睡柱状图
     var chartsData: [PerSleepChartsData] = []
@@ -31,21 +31,16 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         
         Log.info(chartsData)
         
-        self.backgroundColor = UIColor(named: .ChartViewBackground)
+        self.backgroundColor = UIColor(named: .HomeViewMainColor)
         
-        if timeBucketStyle == .Month {
-            chartsXvalFormatter = "d"
-            spaceBetweenLabel = 2
-        }
-        
+        setData(chartsData.count)
         
         setupBarLineChartView()
         
         addxAxis()
-        addLeftAxis()
+
         addLegend()
         
-        setData(chartsData.count)
         
     }
     
@@ -55,17 +50,32 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
      */
     func setupBarLineChartView() {
         
-        self.delegate = self
-        // 当没有数据时候显示 空
-        self.descriptionText = "    "
-        self.noDataTextDescription = "    "
-        self.dragEnabled = false
-        self.setScaleEnabled(false)
-        self.drawValueAboveBarEnabled = true
-        self.rightAxis.enabled = false
-        self.maxVisibleValueCount = 5
-        self.pinchZoomEnabled = false
-        self.drawBarShadowEnabled = false
+        noDataTextDescription = "You need to provide data for the chart." // 没有数据的时显示
+        drawBordersEnabled = false //是否在折线图上添加边框
+        drawGridBackgroundEnabled = false // 是否显示表格颜色
+        drawBarShadowEnabled = false //柱状图没有数据的部分是否显示阴影效果
+        doubleTapToZoomEnabled = false
+        
+        drawValueAboveBarEnabled = true
+        
+        rightAxis.enabled = false // Y轴方向左边 不放轴
+        leftAxis.enabled = false // Y轴方向右边 不放轴
+        
+        delegate = self
+        highlightPerTapEnabled = true // 点击时是否高亮
+        
+        if timeBucketStyle != .Month {
+            
+            dragEnabled = false // 是否可以拖拽
+            setScaleEnabled(false)
+            pinchZoomEnabled = false
+            
+        }
+
+        descriptionText = "12h"
+        descriptionFont = UIFont.systemFontOfSize(12)
+        descriptionTextPosition = CGPointMake(20, 0)
+        descriptionTextColor = UIColor.whiteColor()
         
     }
     
@@ -75,34 +85,34 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     func addxAxis(){
         
         let xAxis = self.xAxis
-        xAxis.labelHeight = 12
-        xAxis.labelPosition = .Bottom
-        xAxis.labelFont = UIFont.systemFontOfSize(10)
-        xAxis.gridColor = UIColor(named: .ChartGirdColor)
-        xAxis.labelTextColor =  UIColor(named: .ChartGirdColor)
-        xAxis.drawGridLinesEnabled = false
-        // 下面名字显示间隔
-        xAxis.spaceBetweenLabels = spaceBetweenLabel
+        xAxis.drawGridLinesEnabled = false // 是否显示尺线
+        xAxis.drawAxisLineEnabled = false //是否显示X轴
+        xAxis.drawLabelsEnabled = true  //是否显示X轴数值
+        xAxis.labelPosition = .Bottom //设置X轴的位置 默认在上方
+        xAxis.labelTextColor =  UIColor.whiteColor()
+        
+        switch timeBucketStyle {
+        case .Day:
+            
+            spaceBetweenLabels = 5
+            
+        case .Week:
+            
+            spaceBetweenLabels = 0
+            
+        case .Month:
+            
+            spaceBetweenLabels = 3
+            
+        }
+        
+        xAxis.setLabelsToSkip(spaceBetweenLabels) //设置横坐标显示的间隔
+
+        
         
     }
     
-    /**
-     添加左边刻度 什么都没有
-     */
-    func addLeftAxis() {
-        
-        // 左边刻度 什么也没有
-        let leftAxis = self.leftAxis
-        // 字号为0
-        leftAxis.labelFont = UIFont.systemFontOfSize(0)
-        leftAxis.labelCount = 0
-        leftAxis.labelPosition = .OutsideChart
-        leftAxis.spaceTop = 0.1
-        leftAxis.spaceBottom = 0.15
-        leftAxis.axisMinValue = 0
-        
-    }
-    
+
     /**
      添加右上角标志
      */
@@ -111,8 +121,8 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         self.legend.horizontalAlignment = .Right
         self.legend.verticalAlignment = .Top
         self.legend.form = .Circle
-        self.legend.formSize = 5
-        self.legend.textColor = UIColor(named: .ChartViewTextColor)
+        self.legend.formSize = 10
+        self.legend.textColor = UIColor.whiteColor()
         self.legend.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
         self.legend.xEntrySpace = 10
         
@@ -128,18 +138,30 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
         
-        for i in 0 ..< count {
-            
-            let timeString = chartsData[i].time.toString(format: chartsXvalFormatter)
-            xVals.append(timeString)
-            
-        }
-        
-        for i in 0 ..< count {
 
-            let val1 = Double(chartsData[i].deepSleep)
-            let val2 = Double(chartsData[i].lightSleep)
-                        
+        for i in 0 ..< count {
+            
+            // xVals
+            if timeBucketStyle == .Week {
+                
+                xVals.append(weekArray[i])
+                
+            } else {
+                
+                let timeString = chartsData[i].time.toString(format: "d")
+                xVals.append(timeString)
+                
+            }
+
+            // yVals
+            // 随机产生数据
+            let val1 = Double(arc4random_uniform(200) + 1)// 浅睡
+            let val2 = Double(arc4random_uniform(200) + 1)// 深睡
+            
+            // 数据库取出的
+//            let val1 = Double(chartsData[i].deepSleep)
+//            let val2 = Double(chartsData[i].lightSleep)
+            
             let dataEntrys = BarChartDataEntry(values: [val1, val2], xIndex: i)
         
             yVals.append(dataEntrys)
@@ -156,10 +178,10 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
             
             dataSet = BarChartDataSet(yVals: yVals, label: "")// legendLable)
             dataSet.barSpace = 0.75
-            dataSet.setColors(legendColors, alpha: 0.9)
+            dataSet.setColors(legendColors, alpha: 1)
             dataSet.highlightAlpha = 0.2
             dataSet.barShadowColor = UIColor.clearColor()
-            dataSet.stackLabels = ["\(L10n.ChartSleepDeep.string)", "\(L10n.ChartSleepLight.string)" ]
+            dataSet.stackLabels = ["\(L10n.ChartSleepLight.string)", "\(L10n.ChartSleepDeep.string)" ]
             
             
             var dataSets: [BarChartDataSet] = []
@@ -171,7 +193,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
             self.data = data
             
             // 动画
-            self.animate(yAxisDuration: 2)
+            self.animate(yAxisDuration: 0)
         }
         
     }
@@ -181,7 +203,22 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
      点击事件
      */
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
-        Log.info("\(chartView)  \(entry)   \(dataSetIndex)  \(highlight)")
+        
+        Log.info("\n\(chartView)\n\(entry)\n\(dataSetIndex)\n\(highlight)")
+        chartView.data?.setDrawValues(true)
+        
+        chartView.setNeedsDisplay()
+        
+        
     }
+    
+    func chartValueNothingSelected(chartView: ChartViewBase) {
+        
+        chartView.data?.setDrawValues(false)
+        
+        chartView.setNeedsDisplay()
+        
+    }
+    
     
 }

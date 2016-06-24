@@ -13,7 +13,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ggv-SX-h4L">
-                    <rect key="frame" x="30" y="40" width="13" height="13"/>
+                    <rect key="frame" x="20" y="40" width="13" height="13"/>
                     <color key="backgroundColor" red="0.1137254902" green="0.73725490199999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="13" id="WVB-j6-toy"/>
@@ -21,13 +21,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="深度睡眠" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b86-gZ-cdr">
-                    <rect key="frame" x="53" y="37" width="64" height="20"/>
+                    <rect key="frame" x="43" y="37" width="64" height="20"/>
                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6小时12分钟" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rgr-bX-aeE">
-                    <rect key="frame" x="434" y="36" width="96" height="21"/>
+                    <rect key="frame" x="444" y="36" width="96" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -36,9 +36,9 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="b86-gZ-cdr" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="20r-C4-gMd"/>
-                <constraint firstAttribute="trailing" secondItem="rgr-bX-aeE" secondAttribute="trailing" constant="30" id="2O2-LY-N0o"/>
+                <constraint firstAttribute="trailing" secondItem="rgr-bX-aeE" secondAttribute="trailing" constant="20" id="2O2-LY-N0o"/>
                 <constraint firstItem="ggv-SX-h4L" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Rnn-9l-NFe"/>
-                <constraint firstItem="ggv-SX-h4L" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="30" id="TEY-Ko-9lO"/>
+                <constraint firstItem="ggv-SX-h4L" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="TEY-Ko-9lO"/>
                 <constraint firstItem="b86-gZ-cdr" firstAttribute="leading" secondItem="ggv-SX-h4L" secondAttribute="trailing" constant="10" id="Tw0-9w-nkk"/>
                 <constraint firstItem="rgr-bX-aeE" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="afC-K2-jis"/>
             </constraints>
@@ -48,7 +48,7 @@
                 <outlet property="roundSleepView" destination="ggv-SX-h4L" id="ze2-1s-MdN"/>
                 <outlet property="sleepDegree" destination="b86-gZ-cdr" id="Uyv-gJ-WPJ"/>
             </connections>
-            <point key="canvasLocation" x="526" y="342.5"/>
+            <point key="canvasLocation" x="436" y="286.5"/>
         </view>
     </objects>
 </document>

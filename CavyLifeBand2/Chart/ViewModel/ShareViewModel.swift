@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 protocol ShareViewDataSource {
     
     var shareImage: UIImage { get }

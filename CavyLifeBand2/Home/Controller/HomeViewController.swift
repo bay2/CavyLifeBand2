@@ -333,6 +333,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
                 Log.info(result.value!)
                 let netResult = try ChartSleepMsg(JSONDecoder(result.value!))
                 for list in netResult.sleepList {
+                    
+                    Log.info(list)
                     // 保存到数据库
                     self.addSleepListRealm(list)
                 }
@@ -382,8 +384,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     func showStepDetailView(){
         
         let stepVM = ChartViewModel(title: L10n.ContactsShowInfoStep.string, chartStyle: .StepChart)
-        let chartVC = ChartBaseViewController()
-        chartVC.configChartBaseView(stepVM)
+        let chartVC = ChartsViewController()
+        chartVC.configChartsView(stepVM)
         self.pushVC(chartVC)
         
     }
@@ -394,8 +396,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     func showSleepDetailView(){
         
         let sleepVM = ChartViewModel(title: L10n.ContactsShowInfoSleep.string, chartStyle: .SleepChart)
-        let chartVC = ChartBaseViewController()
-        chartVC.configChartBaseView(sleepVM)
+        let chartVC = ChartsViewController()
+        chartVC.configChartsView(sleepVM)
         self.pushVC(chartVC)
         
     }

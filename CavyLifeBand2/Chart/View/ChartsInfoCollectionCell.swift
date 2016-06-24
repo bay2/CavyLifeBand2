@@ -1,5 +1,5 @@
 //
-//  ChartInfoCollectionCell.swift
+//  ChartsInfoCollectionCell.swift
 //  CavyLifeBand2
 //
 //  Created by Jessica on 16/4/28.
@@ -11,17 +11,21 @@ import EZSwiftExtensions
 import Realm
 import RealmSwift
 
-class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserInfoRealmOperateDelegate {
+class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserInfoRealmOperateDelegate {
 
     var viewStyle: ChartViewStyle = .StepChart
     var timeBucketStyle: TimeBucketStyle = .Day
+    
     let listCount = 4
     
     /// 时间标签的String
     var timeString: String = ""
 
+    // 图标视图
+    var chartsView = UIView()
     /// 列表展示信息
     var listView: UITableView?
+    
     // 列表展示数据值
     var listDataArray: [String] = []
     
@@ -33,7 +37,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
      */
     func configAllView() {
         
-        self.backgroundColor = UIColor(named: .ChartBackground)
+        self.backgroundColor = UIColor.whiteColor()//(named: .ChartBackground)
         
         addChartsView()
         
@@ -44,6 +48,14 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
      添加 chartsView
      */
     func addChartsView() {
+        
+        chartsView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        self.addSubview(chartsView)
+        chartsView.snp_makeConstraints { make in
+            make.top.equalTo(self)
+            make.centerX.equalTo(self)
+            make.size.equalTo(CGSize(width: ez.screenWidth, height: chartViewHight))
+        }
         
         let date = NSDate(fromString: timeString, format: "yyyy.M.d")!
         
@@ -73,7 +85,6 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
             listDataArray = infoViewSleepListArray(sleepInfo)
             
             let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: sleepInfo.first!.deepSleep, lightSleep: sleepInfo.first!.lightSleep)
-            
             chartViewLayout(peiChartView)
             
         }
@@ -122,15 +133,18 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         listBottomView.snp_makeConstraints { make in
             make.top.equalTo(self).offset(chartViewHight)
             make.centerX.equalTo(self)
-            make.size.equalTo(CGSize(width: infoViewWidth, height: listViewHeight))
+            make.size.equalTo(CGSize(width: ez.screenWidth, height: listViewHeight))
         }
         listBottomView.backgroundColor = UIColor.whiteColor()
         
         listView = UITableView()
-        listBottomView.addSubview(listView!)
+        listView!.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
+        listView!.separatorStyle = .SingleLine
+        listView!.separatorColor = UIColor(named: .LColor)
         listView!.backgroundColor = UIColor.whiteColor()
-        
 
+        listBottomView.addSubview(listView!)
+        
         listView!.snp_makeConstraints { make in
             make.top.equalTo(listBottomView).offset(10)
             make.centerX.equalTo(self)
@@ -138,7 +152,6 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         }
         listView!.delegate = self
         listView!.dataSource = self
-        listView!.separatorStyle = .None
         listView!.scrollEnabled = false
         
         listView!.registerNib(UINib(nibName: "ChartInfoListCell", bundle: nil), forCellReuseIdentifier: "ChartInfoListCell")
@@ -150,19 +163,19 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
      ChartsView Layout
      */
     func chartViewLayout(view: UIView) {
-        self.addSubview(view)
+        
+        chartsView.addSubview(view)
         
         view.snp_makeConstraints { make in
-            make.top.equalTo(self)
-            make.centerX.equalTo(self)
-            make.size.equalTo(CGSize(width: infoViewWidth, height: chartViewHight))
+            make.edges.equalTo(UIEdgeInsets(top: 15, left: 20, bottom: -20, right: -10))
+//            make.centerX.equalTo(chartsView)
         }
     }
     
     /**
      Charts计步详情页面 下面的TableView的cell上数值的 Array
      */
-    func infoViewStepListArray(stepRealm: StepChartsData) -> [String]{
+    private func infoViewStepListArray(stepRealm: StepChartsData) -> [String]{
        
         var resultArray: [String] = []
         var percent = 0
@@ -195,7 +208,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
     /**
      Charts睡眠详情页面 下面的TableView的cell上数值的 Array
      */
-    func infoViewSleepListArray(sleepInfo: [PerSleepChartsData]) -> [String] {
+    private func infoViewSleepListArray(sleepInfo: [PerSleepChartsData]) -> [String] {
         
         var resultArray: [String] = []
         
@@ -208,7 +221,9 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
         var sleepTarge = userInfo.sleepTime
         
         if sleepTarge == "" {
+            
             sleepTarge = "0:0"
+            
         }
         
         let array = sleepTarge.componentsSeparatedByString(":")
@@ -267,7 +282,7 @@ class ChartInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserIn
 }
 
 // MARK: -- UITableViewDelegate
-extension ChartInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
+extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -291,10 +306,22 @@ extension ChartInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let dataStepArray: [String] = [L10n.ChartStepTodayStep.string, L10n.ChartStepKilometer.string, L10n.ChartTargetPercent.string, L10n.ChartStepTimeUsed.string]
-        let dataSleepArray: [String] = [L10n.ChartSleepDegreeDeep.string + L10n.ChartSleep.string, L10n.ChartSleepDegreeLight.string + L10n.ChartSleep.string, L10n.ChartTargetPercent.string]
+        var dataStepArray: [String] = [L10n.ChartStepTodayStep.string, L10n.ChartStepKilometer.string, L10n.ChartTargetPercent.string, L10n.ChartStepTimeUsed.string]
+
+        switch timeBucketStyle {
+        case .Week:
+            dataStepArray = [L10n.ChartStepWeekStep.string, L10n.ChartStepKilometer.string, L10n.ChartStepAverageStep.string, L10n.ChartStepTimeUsed.string]
+        case .Month:
+            
+            dataStepArray = [L10n.ChartStepMonthStep.string, L10n.ChartStepKilometer.string, L10n.ChartStepAverageStep.string, L10n.ChartStepTimeUsed.string]
+
+        default:
+            dataStepArray = [L10n.ChartStepTodayStep.string, L10n.ChartStepKilometer.string, L10n.ChartTargetPercent.string, L10n.ChartStepTimeUsed.string]
+
+            
+        }
         
-        let sleepDegree: [UIColor] = [UIColor(named: .ChartSleepDegreeLight), UIColor(named: .ChartSleepDegreeDeep)]
+        let sleepStatusArray: [SleepStatus] = [.LightSleep, .DeepSleep]
         
         switch viewStyle {
             
@@ -304,16 +331,21 @@ extension ChartInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
                 
                 let cell = tableView.dequeueReusableCellWithIdentifier("ChartSleepInfoCell", forIndexPath: indexPath) as! ChartSleepInfoCell
                 
-                cell.roundSleepView.backgroundColor = sleepDegree[indexPath.row]
-                cell.sleepDegree.text  = dataSleepArray[indexPath.row]
-                cell.rightLabel.text = listDataArray[indexPath.row]
-                
+
+                cell.configSleepCell(sleepStatusArray[indexPath.row], text: "8")
                 return cell
                 
             }
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ChartInfoListCell", forIndexPath: indexPath) as! ChartInfoListCell
-            cell.leftLabel.text = dataSleepArray[indexPath.row]
+            
+            switch timeBucketStyle {
+            case.Day:
+                cell.leftLabel.text = L10n.ChartTargetPercent.string
+            case .Week, .Month:
+                cell.leftLabel.text = L10n.ChartSleepAverage.string
+            }
+            
             cell.rightLabel.text = listDataArray[indexPath.row]
             
             return cell

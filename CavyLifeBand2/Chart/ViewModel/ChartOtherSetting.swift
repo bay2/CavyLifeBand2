@@ -24,21 +24,29 @@ enum TimeBucketStyle: String {
 
 /// 时间段 宽度
 let timeButtonWidth = ez.screenWidth / 3
+let subTimeButtonWidth = ez.screenWidth / 5
 /// 时间段 高度
-let timeButtonHeight: CGFloat = 44
+let timeButtonHeight: CGFloat = 50
+let subTimeButtonHeight: CGFloat = 44
 /// 左右inset
 let insetSpace: CGFloat = 20
-/// 详情 - chart 高度
-let chartViewHight: CGFloat = 212
+/// 详情 - chart 高度  |-40-|-210-|-30-|
+let chartViewHight: CGFloat = 280
 /// 详情 -list - cell 高度
-let listcellHight: CGFloat = 42
+let listcellHight: CGFloat = 50
 /// 详情-list 高度
 //let listViewHight: CGFloat = listcellHight * 4 + 20
 /// 详情页面 宽
 let infoViewWidth: CGFloat = ez.screenWidth - insetSpace * 2
 
-let weekTime = ["Mon", "Stu", "Wed", "Thu", "Fir", "Str", "Sun"]
-
+//let weekTime = ["Mon", "Stu", "Wed", "Thu", "Fir", "Str", "Sun"]
+let weekArray: [String] = [L10n.AlarmDayMonday.string,
+                           L10n.AlarmDayTuesday.string,
+                           L10n.AlarmDayWednesday.string,
+                           L10n.AlarmDayThursday.string,
+                           L10n.AlarmDayFriday.string,
+                           L10n.AlarmDaySaturday.string,
+                           L10n.AlarmDaySunday.string]
 //MARK: 解析数据 一小时6条数据 一天 24小时
 let oneHourHav = 6
 let OneDayHave = 24

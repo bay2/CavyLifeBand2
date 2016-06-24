@@ -18,12 +18,26 @@
 		4C4C602D1CE5C4A10026C045 /* ContactRecommendFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C602B1CE5C4A10026C045 /* ContactRecommendFriendView.swift */; };
 		4C4C602E1CE5C4A10026C045 /* ContactsAddFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C602C1CE5C4A10026C045 /* ContactsAddFriendCell.swift */; };
 		4C5396B51CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396B41CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift */; };
-		4C5396C01CE190E600BCFAEB /* ShowStackedChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396BF1CE190E600BCFAEB /* ShowStackedChartsView.swift */; };
-		4C5396CA1CE1B28000BCFAEB /* ChartOtherSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */; };
 		4C5396D01CE419EC00BCFAEB /* NSDate_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */; };
-		4C6895F41CE96CFD00CAC412 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F31CE96CFD00CAC412 /* ShareView.swift */; };
-		4C6895F81CE9A7BE00CAC412 /* ShareCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895F71CE9A7BE00CAC412 /* ShareCollectionCell.swift */; };
 		4C6895FA1CEAE28400CAC412 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6895F91CEAE28400CAC412 /* Assets.xcassets */; };
+		4C9E0B471D1A395200DBC1FC /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B301D1A395200DBC1FC /* ChartsViewController.swift */; };
+		4C9E0B491D1A395200DBC1FC /* ChartsInfoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B331D1A395200DBC1FC /* ChartsInfoCollectionCell.swift */; };
+		4C9E0B4A1D1A395200DBC1FC /* ChartInfoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B341D1A395200DBC1FC /* ChartInfoListCell.swift */; };
+		4C9E0B4B1D1A395200DBC1FC /* ChartInfoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E0B351D1A395200DBC1FC /* ChartInfoListCell.xib */; };
+		4C9E0B4C1D1A395200DBC1FC /* ChartSleepInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B361D1A395200DBC1FC /* ChartSleepInfoCell.swift */; };
+		4C9E0B4D1D1A395200DBC1FC /* ChartSleepInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E0B371D1A395200DBC1FC /* ChartSleepInfoCell.xib */; };
+		4C9E0B4E1D1A395200DBC1FC /* ChartsTimeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B381D1A395200DBC1FC /* ChartsTimeButton.swift */; };
+		4C9E0B501D1A395200DBC1FC /* ShareCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B3A1D1A395200DBC1FC /* ShareCollectionCell.swift */; };
+		4C9E0B511D1A395200DBC1FC /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B3B1D1A395200DBC1FC /* ShareView.swift */; };
+		4C9E0B521D1A395200DBC1FC /* ShowChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B3C1D1A395200DBC1FC /* ShowChartsView.swift */; };
+		4C9E0B531D1A395200DBC1FC /* ShowPieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B3D1D1A395200DBC1FC /* ShowPieChartsView.swift */; };
+		4C9E0B541D1A395200DBC1FC /* ShowStackedChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B3E1D1A395200DBC1FC /* ShowStackedChartsView.swift */; };
+		4C9E0B551D1A395200DBC1FC /* ChartBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B401D1A395200DBC1FC /* ChartBaseViewModel.swift */; };
+		4C9E0B561D1A395200DBC1FC /* ChartOtherSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B411D1A395200DBC1FC /* ChartOtherSetting.swift */; };
+		4C9E0B571D1A395200DBC1FC /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B421D1A395200DBC1FC /* ShareViewModel.swift */; };
+		4C9E0B581D1A395200DBC1FC /* ChartsDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B441D1A395200DBC1FC /* ChartsDataRealm.swift */; };
+		4C9E0B591D1A395200DBC1FC /* ChartsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B451D1A395200DBC1FC /* ChartsJSON.swift */; };
+		4C9E0B5A1D1A395200DBC1FC /* ChartsWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B461D1A395200DBC1FC /* ChartsWebApi.swift */; };
 		4C6895FC1CEAF24A00CAC412 /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6895FB1CEAF24A00CAC412 /* ShareViewModel.swift */; };
 		4C6F14971CD9F454007E923B /* ChartsDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */; };
 		4C6F149B1CDC9B06007E923B /* ShowPieChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */; };
@@ -53,28 +67,19 @@
 		4CB7A0821CD095C400DFB8DC /* HomeUpperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB7A06B1CD095C400DFB8DC /* HomeUpperView.xib */; };
 		4CB7A0831CD095C400DFB8DC /* HomeWeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A06C1CD095C400DFB8DC /* HomeWeatherView.swift */; };
 		4CB7A0841CD095C400DFB8DC /* HomeWeatherView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB7A06D1CD095C400DFB8DC /* HomeWeatherView.xib */; };
-		4CB7A0D11CD3497F00DFB8DC /* ChartBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0C31CD3497F00DFB8DC /* ChartBaseViewController.swift */; };
-		4CB7A0D21CD3497F00DFB8DC /* ChartBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0C51CD3497F00DFB8DC /* ChartBaseView.swift */; };
-		4CB7A0D31CD3497F00DFB8DC /* ChartInfoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0C61CD3497F00DFB8DC /* ChartInfoCollectionCell.swift */; };
-		4CB7A0D41CD3497F00DFB8DC /* ChartInfoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0C71CD3497F00DFB8DC /* ChartInfoListCell.swift */; };
-		4CB7A0D51CD3497F00DFB8DC /* ChartInfoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB7A0C81CD3497F00DFB8DC /* ChartInfoListCell.xib */; };
-		4CB7A0D71CD3497F00DFB8DC /* ChartSleepInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0CA1CD3497F00DFB8DC /* ChartSleepInfoCell.swift */; };
-		4CB7A0D81CD3497F00DFB8DC /* ChartSleepInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB7A0CB1CD3497F00DFB8DC /* ChartSleepInfoCell.xib */; };
-		4CB7A0D91CD3497F00DFB8DC /* ChartTimeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0CC1CD3497F00DFB8DC /* ChartTimeButton.swift */; };
-		4CB7A0DA1CD3497F00DFB8DC /* ChartTimeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0CD1CD3497F00DFB8DC /* ChartTimeCollectionCell.swift */; };
-		4CB7A0DB1CD3497F00DFB8DC /* ChartBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0CF1CD3497F00DFB8DC /* ChartBaseViewModel.swift */; };
-		4CB7A0DF1CD35BF900DFB8DC /* ChartsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0DE1CD35BF900DFB8DC /* ChartsJSON.swift */; };
-		4CB7A0E61CD4793F00DFB8DC /* ShowChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0E51CD4793F00DFB8DC /* ShowChartsView.swift */; };
 		4CC499011CA9102800B2EE85 /* ContactsAccoundInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */; };
 		4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */; };
 		4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */; };
 		4CD5AABE1CEDA6030011CD13 /* HomeListWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AABD1CEDA6030011CD13 /* HomeListWebApi.swift */; };
 		4CD5AAC31CEEB36A0011CD13 /* HomeListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */; };
 		4CD5AAC51CEEE22E0011CD13 /* HomeListOper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */; };
-		4CD5AAC71CF2E1D10011CD13 /* ChartsWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC61CF2E1D10011CD13 /* ChartsWebApi.swift */; };
 		4CD5AAC91CF42D310011CD13 /* HomeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC81CF42D310011CD13 /* HomeListViewModel.swift */; };
 		4CD5AACB1CF42DB40011CD13 /* HomeListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AACA1CF42DB40011CD13 /* HomeListProtocol.swift */; };
 		4CD5AAD11CF583420011CD13 /* HomeDateTimeLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5AACF1CF583420011CD13 /* HomeDateTimeLineCell.xib */; };
+		4CE1DBAB1D1BAE4800A67FDD /* ChartsBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DBA81D1BAE4800A67FDD /* ChartsBaseView.swift */; };
+		4CE1DBAC1D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DBA91D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift */; };
+		4CE1DBAD1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DBAA1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift */; };
+		4CE8F0051D1CD2990069F1C5 /* ChartsTableListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8F0041D1CD2990069F1C5 /* ChartsTableListViewModel.swift */; };
 		67837F3055FAE4CB07F34391 /* Pods_CavyLifeBand2UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B308C2BA77F2EED99C226A28 /* Pods_CavyLifeBand2UITests.framework */; };
 		683655271CBB3B2C009373EA /* SettingSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */; };
 		683655281CBB3B2C009373EA /* SettingSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 683655261CBB3B2C009373EA /* SettingSwitchTableViewCell.xib */; };
@@ -358,12 +363,26 @@
 		4C4C602B1CE5C4A10026C045 /* ContactRecommendFriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactRecommendFriendView.swift; sourceTree = "<group>"; };
 		4C4C602C1CE5C4A10026C045 /* ContactsAddFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendCell.swift; sourceTree = "<group>"; };
 		4C5396B41CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsReqFriendProtocol.swift; sourceTree = "<group>"; };
-		4C5396BF1CE190E600BCFAEB /* ShowStackedChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStackedChartsView.swift; sourceTree = "<group>"; };
-		4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartOtherSetting.swift; sourceTree = "<group>"; };
 		4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate_Extension.swift; sourceTree = "<group>"; };
-		4C6895F31CE96CFD00CAC412 /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
-		4C6895F71CE9A7BE00CAC412 /* ShareCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareCollectionCell.swift; sourceTree = "<group>"; };
 		4C6895F91CEAE28400CAC412 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C9E0B301D1A395200DBC1FC /* ChartsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
+		4C9E0B331D1A395200DBC1FC /* ChartsInfoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsInfoCollectionCell.swift; sourceTree = "<group>"; };
+		4C9E0B341D1A395200DBC1FC /* ChartInfoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInfoListCell.swift; sourceTree = "<group>"; };
+		4C9E0B351D1A395200DBC1FC /* ChartInfoListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChartInfoListCell.xib; sourceTree = "<group>"; };
+		4C9E0B361D1A395200DBC1FC /* ChartSleepInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartSleepInfoCell.swift; sourceTree = "<group>"; };
+		4C9E0B371D1A395200DBC1FC /* ChartSleepInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChartSleepInfoCell.xib; sourceTree = "<group>"; };
+		4C9E0B381D1A395200DBC1FC /* ChartsTimeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsTimeButton.swift; sourceTree = "<group>"; };
+		4C9E0B3A1D1A395200DBC1FC /* ShareCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareCollectionCell.swift; sourceTree = "<group>"; };
+		4C9E0B3B1D1A395200DBC1FC /* ShareView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		4C9E0B3C1D1A395200DBC1FC /* ShowChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowChartsView.swift; sourceTree = "<group>"; };
+		4C9E0B3D1D1A395200DBC1FC /* ShowPieChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPieChartsView.swift; sourceTree = "<group>"; };
+		4C9E0B3E1D1A395200DBC1FC /* ShowStackedChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowStackedChartsView.swift; sourceTree = "<group>"; };
+		4C9E0B401D1A395200DBC1FC /* ChartBaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartBaseViewModel.swift; sourceTree = "<group>"; };
+		4C9E0B411D1A395200DBC1FC /* ChartOtherSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartOtherSetting.swift; sourceTree = "<group>"; };
+		4C9E0B421D1A395200DBC1FC /* ShareViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
+		4C9E0B441D1A395200DBC1FC /* ChartsDataRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsDataRealm.swift; sourceTree = "<group>"; };
+		4C9E0B451D1A395200DBC1FC /* ChartsJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsJSON.swift; sourceTree = "<group>"; };
+		4C9E0B461D1A395200DBC1FC /* ChartsWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsWebApi.swift; sourceTree = "<group>"; };
 		4C6895FB1CEAF24A00CAC412 /* ShareViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
 		4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsDataRealm.swift; sourceTree = "<group>"; };
 		4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowPieChartsView.swift; sourceTree = "<group>"; };
@@ -393,28 +412,19 @@
 		4CB7A06B1CD095C400DFB8DC /* HomeUpperView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeUpperView.xib; sourceTree = "<group>"; };
 		4CB7A06C1CD095C400DFB8DC /* HomeWeatherView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWeatherView.swift; sourceTree = "<group>"; };
 		4CB7A06D1CD095C400DFB8DC /* HomeWeatherView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeWeatherView.xib; sourceTree = "<group>"; };
-		4CB7A0C31CD3497F00DFB8DC /* ChartBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartBaseViewController.swift; sourceTree = "<group>"; };
-		4CB7A0C51CD3497F00DFB8DC /* ChartBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartBaseView.swift; sourceTree = "<group>"; };
-		4CB7A0C61CD3497F00DFB8DC /* ChartInfoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInfoCollectionCell.swift; sourceTree = "<group>"; };
-		4CB7A0C71CD3497F00DFB8DC /* ChartInfoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInfoListCell.swift; sourceTree = "<group>"; };
-		4CB7A0C81CD3497F00DFB8DC /* ChartInfoListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChartInfoListCell.xib; sourceTree = "<group>"; };
-		4CB7A0CA1CD3497F00DFB8DC /* ChartSleepInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartSleepInfoCell.swift; sourceTree = "<group>"; };
-		4CB7A0CB1CD3497F00DFB8DC /* ChartSleepInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChartSleepInfoCell.xib; sourceTree = "<group>"; };
-		4CB7A0CC1CD3497F00DFB8DC /* ChartTimeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartTimeButton.swift; sourceTree = "<group>"; };
-		4CB7A0CD1CD3497F00DFB8DC /* ChartTimeCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartTimeCollectionCell.swift; sourceTree = "<group>"; };
-		4CB7A0CF1CD3497F00DFB8DC /* ChartBaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartBaseViewModel.swift; sourceTree = "<group>"; };
-		4CB7A0DE1CD35BF900DFB8DC /* ChartsJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsJSON.swift; sourceTree = "<group>"; };
-		4CB7A0E51CD4793F00DFB8DC /* ShowChartsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowChartsView.swift; sourceTree = "<group>"; };
 		4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccoundInfoTest.swift; sourceTree = "<group>"; };
 		4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountInfo_Ok.json; sourceTree = "<group>"; };
 		4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FriendInfo_Ok.json; sourceTree = "<group>"; };
 		4CD5AABD1CEDA6030011CD13 /* HomeListWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListWebApi.swift; sourceTree = "<group>"; };
 		4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListRealm.swift; sourceTree = "<group>"; };
 		4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListOper.swift; sourceTree = "<group>"; };
-		4CD5AAC61CF2E1D10011CD13 /* ChartsWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsWebApi.swift; sourceTree = "<group>"; };
 		4CD5AAC81CF42D310011CD13 /* HomeListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListViewModel.swift; sourceTree = "<group>"; };
 		4CD5AACA1CF42DB40011CD13 /* HomeListProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListProtocol.swift; sourceTree = "<group>"; };
 		4CD5AACF1CF583420011CD13 /* HomeDateTimeLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDateTimeLineCell.xib; sourceTree = "<group>"; };
+		4CE1DBA81D1BAE4800A67FDD /* ChartsBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsBaseView.swift; sourceTree = "<group>"; };
+		4CE1DBA91D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsSubTimeBucketCell.swift; sourceTree = "<group>"; };
+		4CE1DBAA1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsSubTimeBucketFlowLayout.swift; sourceTree = "<group>"; };
+		4CE8F0041D1CD2990069F1C5 /* ChartsTableListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsTableListViewModel.swift; sourceTree = "<group>"; };
 		62B877474089074C0F590F2C /* Pods-CavyLifeBand2UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		683655251CBB3B2C009373EA /* SettingSwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		683655261CBB3B2C009373EA /* SettingSwitchTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingSwitchTableViewCell.xib; sourceTree = "<group>"; };
@@ -747,6 +757,67 @@
 			path = WebApi;
 			sourceTree = "<group>";
 		};
+		4C9E0B2E1D1A395200DBC1FC /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				4C9E0B2F1D1A395200DBC1FC /* controller */,
+				4C9E0B311D1A395200DBC1FC /* View */,
+				4C9E0B3F1D1A395200DBC1FC /* ViewModel */,
+				4C9E0B431D1A395200DBC1FC /* WebApi */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		4C9E0B2F1D1A395200DBC1FC /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				4C9E0B301D1A395200DBC1FC /* ChartsViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		4C9E0B311D1A395200DBC1FC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4CE1DBA81D1BAE4800A67FDD /* ChartsBaseView.swift */,
+				4C9E0B331D1A395200DBC1FC /* ChartsInfoCollectionCell.swift */,
+				4C9E0B381D1A395200DBC1FC /* ChartsTimeButton.swift */,
+				4CE1DBA91D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift */,
+				4CE1DBAA1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift */,
+				4C9E0B341D1A395200DBC1FC /* ChartInfoListCell.swift */,
+				4C9E0B351D1A395200DBC1FC /* ChartInfoListCell.xib */,
+				4C9E0B361D1A395200DBC1FC /* ChartSleepInfoCell.swift */,
+				4C9E0B371D1A395200DBC1FC /* ChartSleepInfoCell.xib */,
+				4C9E0B3C1D1A395200DBC1FC /* ShowChartsView.swift */,
+				4C9E0B3D1D1A395200DBC1FC /* ShowPieChartsView.swift */,
+				4C9E0B3E1D1A395200DBC1FC /* ShowStackedChartsView.swift */,
+				4C9E0B3A1D1A395200DBC1FC /* ShareCollectionCell.swift */,
+				4C9E0B3B1D1A395200DBC1FC /* ShareView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4C9E0B3F1D1A395200DBC1FC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				4C9E0B401D1A395200DBC1FC /* ChartBaseViewModel.swift */,
+				4CE8F0041D1CD2990069F1C5 /* ChartsTableListViewModel.swift */,
+				4C9E0B411D1A395200DBC1FC /* ChartOtherSetting.swift */,
+				4C9E0B421D1A395200DBC1FC /* ShareViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		4C9E0B431D1A395200DBC1FC /* WebApi */ = {
+			isa = PBXGroup;
+			children = (
+				4C9E0B441D1A395200DBC1FC /* ChartsDataRealm.swift */,
+				4C9E0B451D1A395200DBC1FC /* ChartsJSON.swift */,
+				4C9E0B461D1A395200DBC1FC /* ChartsWebApi.swift */,
+			);
+			path = WebApi;
+			sourceTree = "<group>";
+		};
 		4CB7A0541CD095C400DFB8DC /* DrawerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -790,65 +861,6 @@
 				4CB7A06D1CD095C400DFB8DC /* HomeWeatherView.xib */,
 			);
 			path = UpperRingView;
-			sourceTree = "<group>";
-		};
-		4CB7A0C11CD3497F00DFB8DC /* Chart */ = {
-			isa = PBXGroup;
-			children = (
-				4CB7A0C21CD3497F00DFB8DC /* controller */,
-				4CB7A0C41CD3497F00DFB8DC /* View */,
-				4CB7A0CE1CD3497F00DFB8DC /* ViewModel */,
-				4CB7A0D01CD3497F00DFB8DC /* WebApi */,
-			);
-			path = Chart;
-			sourceTree = "<group>";
-		};
-		4CB7A0C21CD3497F00DFB8DC /* controller */ = {
-			isa = PBXGroup;
-			children = (
-				4CB7A0C31CD3497F00DFB8DC /* ChartBaseViewController.swift */,
-			);
-			path = controller;
-			sourceTree = "<group>";
-		};
-		4CB7A0C41CD3497F00DFB8DC /* View */ = {
-			isa = PBXGroup;
-			children = (
-				4CB7A0C51CD3497F00DFB8DC /* ChartBaseView.swift */,
-				4CB7A0CD1CD3497F00DFB8DC /* ChartTimeCollectionCell.swift */,
-				4CB7A0C61CD3497F00DFB8DC /* ChartInfoCollectionCell.swift */,
-				4C6895F31CE96CFD00CAC412 /* ShareView.swift */,
-				4C6895F71CE9A7BE00CAC412 /* ShareCollectionCell.swift */,
-				4CB7A0E51CD4793F00DFB8DC /* ShowChartsView.swift */,
-				4C6F149A1CDC9B06007E923B /* ShowPieChartsView.swift */,
-				4C5396BF1CE190E600BCFAEB /* ShowStackedChartsView.swift */,
-				4CB7A0C71CD3497F00DFB8DC /* ChartInfoListCell.swift */,
-				4CB7A0C81CD3497F00DFB8DC /* ChartInfoListCell.xib */,
-				4CB7A0CA1CD3497F00DFB8DC /* ChartSleepInfoCell.swift */,
-				4CB7A0CB1CD3497F00DFB8DC /* ChartSleepInfoCell.xib */,
-				4CB7A0CC1CD3497F00DFB8DC /* ChartTimeButton.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		4CB7A0CE1CD3497F00DFB8DC /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				4C5396C91CE1B28000BCFAEB /* ChartOtherSetting.swift */,
-				4CB7A0CF1CD3497F00DFB8DC /* ChartBaseViewModel.swift */,
-				4C6895FB1CEAF24A00CAC412 /* ShareViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		4CB7A0D01CD3497F00DFB8DC /* WebApi */ = {
-			isa = PBXGroup;
-			children = (
-				4CD5AAC61CF2E1D10011CD13 /* ChartsWebApi.swift */,
-				4CB7A0DE1CD35BF900DFB8DC /* ChartsJSON.swift */,
-				4C6F14961CD9F454007E923B /* ChartsDataRealm.swift */,
-			);
-			path = WebApi;
 			sourceTree = "<group>";
 		};
 		4CC498FF1CA9102800B2EE85 /* ContactsTest */ = {
@@ -1339,7 +1351,7 @@
 				91E1B49E1CA510BD008ADEE6 /* Contacts */,
 				91E1B49A1CA50DEF008ADEE6 /* AccountInfo */,
 				9114D2001C99314E008CB4CE /* Home */,
-				4CB7A0C11CD3497F00DFB8DC /* Chart */,
+				4C9E0B2E1D1A395200DBC1FC /* Chart */,
 				9114D1BF1C97AB05008CB4CE /* User */,
 				9114D1BC1C97A1BB008CB4CE /* Resource */,
 				913D0BCF1C3FA126006EE7F8 /* Camera */,
@@ -1815,7 +1827,6 @@
 				4CB7A0791CD095C400DFB8DC /* HomeDateViewCell.xib in Resources */,
 				91D192921C7DA87B00482019 /* colors.txt in Resources */,
 				4CB7A07B1CD095C400DFB8DC /* HomeTimeLineSection.xib in Resources */,
-				4CB7A0D81CD3497F00DFB8DC /* ChartSleepInfoCell.xib in Resources */,
 				4CB7A06F1CD095C400DFB8DC /* BandElectricView.xib in Resources */,
 				686A5EEB1CDC309400EB8D0E /* Relate.storyboard in Resources */,
 				686A5EF91CDC3D4500EB8D0E /* AboutCell.xib in Resources */,
@@ -1848,6 +1859,7 @@
 				91E1B4D81CA510BD008ADEE6 /* ContactsAddFriendCell.xib in Resources */,
 				4CB7A0801CD095C400DFB8DC /* HomeRingView.xib in Resources */,
 				68648A8B1CF699C9009D4BEE /* GuideIntroduceView.xib in Resources */,
+				4C9E0B4D1D1A395200DBC1FC /* ChartSleepInfoCell.xib in Resources */,
 				68E9780E1CC758CE00651724 /* PKChallengeView.xib in Resources */,
 				91A2EC911CB350D200361952 /* InfoSecurity.storyboard in Resources */,
 				91E1B4CC1CA510BD008ADEE6 /* ContactsFriendListCell.xib in Resources */,
@@ -1860,10 +1872,10 @@
 				91EB796D1CAE075C00ED3E67 /* Sign_In_Ok.json in Resources */,
 				917DA99E1C3BA12E00FF675D /* InfoPlist.strings in Resources */,
 				91E1B4D11CA510BD008ADEE6 /* ContactsPersonInfoListCell.xib in Resources */,
+				4C9E0B4B1D1A395200DBC1FC /* ChartInfoListCell.xib in Resources */,
 				6836557F1CBC84B7009373EA /* SecondsCollectionViewCell.xib in Resources */,
 				91E1B4CA1CA510BD008ADEE6 /* ContactsLetterView.xib in Resources */,
 				9114D1F81C97AB05008CB4CE /* GoalView.xib in Resources */,
-				4CB7A0D51CD3497F00DFB8DC /* ChartInfoListCell.xib in Resources */,
 				4CB7A0841CD095C400DFB8DC /* HomeWeatherView.xib in Resources */,
 				686A5F051CDC7F3900EB8D0E /* RelateAppCell.xib in Resources */,
 				91E1B4C81CA510BD008ADEE6 /* ContactsFriendQualityCell.xib in Resources */,
@@ -2054,6 +2066,7 @@
 				4CD5AAC31CEEB36A0011CD13 /* HomeListRealm.swift in Sources */,
 				910DFED31D0029E0009B944D /* FirmwareUpdate.swift in Sources */,
 				68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */,
+				4CE1DBAC1D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift in Sources */,
 				4CB16D6B1D1130A7006858B5 /* HomeViewController.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
@@ -2061,12 +2074,12 @@
 				6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
 				4CD5AACB1CF42DB40011CD13 /* HomeListProtocol.swift in Sources */,
-				4CD5AAC71CF2E1D10011CD13 /* ChartsWebApi.swift in Sources */,
+				4C9E0B471D1A395200DBC1FC /* ChartsViewController.swift in Sources */,
 				6836557D1CBC84B7009373EA /* LineLayout.swift in Sources */,
-				4C5396CA1CE1B28000BCFAEB /* ChartOtherSetting.swift in Sources */,
 				4CB7A0811CD095C400DFB8DC /* HomeUpperView.swift in Sources */,
 				4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */,
 				686A5EFD1CDC694800EB8D0E /* WebViewController.swift in Sources */,
+				4C9E0B571D1A395200DBC1FC /* ShareViewModel.swift in Sources */,
 				9199E4881CAE4A7D00397883 /* AccountMangerProtocol.swift in Sources */,
 				91E1B4FB1CA6A475008ADEE6 /* FriendInfoListOper.swift in Sources */,
 				4CB7A0751CD095C400DFB8DC /* HomeDataCellFlowLayout.swift in Sources */,
@@ -2078,16 +2091,21 @@
 				9114D1F71C97AB05008CB4CE /* GoalView.swift in Sources */,
 				9150CAB61CC89EA600A398E9 /* RightViewController.swift in Sources */,
 				9179DA991CD5E93800FCA63C /* AddressBookDataSource.swift in Sources */,
+				4C9E0B541D1A395200DBC1FC /* ShowStackedChartsView.swift in Sources */,
+				4C9E0B561D1A395200DBC1FC /* ChartOtherSetting.swift in Sources */,
 				68C558D41CB754090031719D /* IntelligentClockCell.swift in Sources */,
 				686A5EE51CDB16DE00EB8D0E /* AKPickerView.swift in Sources */,
 				9114D1F21C97AB05008CB4CE /* UserProtocolView.swift in Sources */,
+				4C9E0B4A1D1A395200DBC1FC /* ChartInfoListCell.swift in Sources */,
 				91B04DDA1CB3D4F0007E67B0 /* UserViewControllerProtocol.swift in Sources */,
 				6859BC3E1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift in Sources */,
 				917644D41CFDA26300AB469B /* RootViewControllerExtBand.swift in Sources */,
 				68E9780C1CC758B400651724 /* PKChallengeView.swift in Sources */,
+				4C9E0B501D1A395200DBC1FC /* ShareCollectionCell.swift in Sources */,
 				91E1B4DD1CA510BD008ADEE6 /* ContactsTabButton.swift in Sources */,
 				4CB7A07E1CD095C400DFB8DC /* HomeTimeLineView.swift in Sources */,
 				68A453531D0F96E800552521 /* FirmwareUpdateJSON.swift in Sources */,
+				4CE1DBAD1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift in Sources */,
 				6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */,
 				9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */,
 				91C3AE561C474305006B67AF /* Log_Extension.swift in Sources */,
@@ -2099,14 +2117,10 @@
 				91E1B4E81CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift in Sources */,
 				68E978111CC7698900651724 /* PKInvitationVCViewModel.swift in Sources */,
 				91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */,
-				4C6F14971CD9F454007E923B /* ChartsDataRealm.swift in Sources */,
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
-				4CB7A0E61CD4793F00DFB8DC /* ShowChartsView.swift in Sources */,
 				4CB7A0831CD095C400DFB8DC /* HomeWeatherView.swift in Sources */,
-				4CB7A0D41CD3497F00DFB8DC /* ChartInfoListCell.swift in Sources */,
-				4CB7A0D31CD3497F00DFB8DC /* ChartInfoCollectionCell.swift in Sources */,
+				4C9E0B521D1A395200DBC1FC /* ShowChartsView.swift in Sources */,
 				4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */,
-				4C6895FC1CEAF24A00CAC412 /* ShareViewModel.swift in Sources */,
 				686A5EEF1CDC35AE00EB8D0E /* HelpAndFeedbackListVC.swift in Sources */,
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,
 				917B98B91CB8E7CA008698F5 /* Font_Extension.swift in Sources */,
@@ -2123,9 +2137,9 @@
 				91DFA9221CD8C49F0036B939 /* PKListSectionView.swift in Sources */,
 				91B49AEA1CF29B080017CC69 /* LifeBandCtrl.swift in Sources */,
 				91E1B4F01CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift in Sources */,
-				4CB7A0DA1CD3497F00DFB8DC /* ChartTimeCollectionCell.swift in Sources */,
 				683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */,
 				684C6AD81CC9BA1C000C176E /* PKJSON.swift in Sources */,
+				4C9E0B581D1A395200DBC1FC /* ChartsDataRealm.swift in Sources */,
 				91ACEC5C1CB4B526008ED8B0 /* GuideUserInfo.swift in Sources */,
 				9114D1EF1C97AB05008CB4CE /* PageViewController.swift in Sources */,
 				6836552E1CBB4CEA009373EA /* SafetySettingTableFooterView.swift in Sources */,
@@ -2134,16 +2148,20 @@
 				4CB7A07A1CD095C400DFB8DC /* HomeTimeLineSection.swift in Sources */,
 				91B49AED1CF446540017CC69 /* LifeBandSyncData.swift in Sources */,
 				918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */,
+				4C9E0B591D1A395200DBC1FC /* ChartsJSON.swift in Sources */,
 				68E978061CC62B5600651724 /* PKInvitationVC.swift in Sources */,
 				91DFA91E1CD84DC20036B939 /* PKListDataSource.swift in Sources */,
 				91E1B4CB1CA510BD008ADEE6 /* ContactsFriendListCell.swift in Sources */,
+				4C9E0B531D1A395200DBC1FC /* ShowPieChartsView.swift in Sources */,
 				9144D1121CC0921F006002A8 /* ContactsTableViewProtocol.swift in Sources */,
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
 				4CB7A0701CD095C400DFB8DC /* BandInfoView.swift in Sources */,
 				4CD5AABE1CEDA6030011CD13 /* HomeListWebApi.swift in Sources */,
 				68648ADF1CF83CFB009D4BEE /* ContactListEmptyView.swift in Sources */,
+				4C9E0B551D1A395200DBC1FC /* ChartBaseViewModel.swift in Sources */,
 				917B98C01CB8E841008698F5 /* UserAchievementView.swift in Sources */,
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
+				4CE1DBAB1D1BAE4800A67FDD /* ChartsBaseView.swift in Sources */,
 				4CD5AAC51CEEE22E0011CD13 /* HomeListOper.swift in Sources */,
 				68C558CF1CB751050031719D /* IntelligentClockTableFooterView.swift in Sources */,
 				68B4DEDA1CE57B6E00BE041C /* RelateAppWebApi.swift in Sources */,
@@ -2155,23 +2173,20 @@
 				91E1B4EE1CA523B5008ADEE6 /* ContactsFriendListViewModel.swift in Sources */,
 				4C4C602E1CE5C4A10026C045 /* ContactsAddFriendCell.swift in Sources */,
 				68648A771CEEDFF6009D4BEE /* EmergencyJSON.swift in Sources */,
-				4CB7A0D21CD3497F00DFB8DC /* ChartBaseView.swift in Sources */,
 				683655921CBE25A6009373EA /* SettingSwitchCellViewModel.swift in Sources */,
 				684097081CE058A400A8BAD2 /* WebVCViewModel.swift in Sources */,
 				68648A831CF3F234009D4BEE /* UpdateProgressView.swift in Sources */,
 				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,
-				4C6F149B1CDC9B06007E923B /* ShowPieChartsView.swift in Sources */,
-				4CB7A0D91CD3497F00DFB8DC /* ChartTimeButton.swift in Sources */,
 				686A5EF81CDC3D4500EB8D0E /* AboutCell.swift in Sources */,
 				918AA22E1CE327DC0022AE30 /* LifeBandBLE.swift in Sources */,
+				4C9E0B511D1A395200DBC1FC /* ShareView.swift in Sources */,
 				916456451CE1C115002D2D87 /* AlamofireImageExtension.swift in Sources */,
+				4C9E0B491D1A395200DBC1FC /* ChartsInfoCollectionCell.swift in Sources */,
 				683655951CBE25DB009373EA /* ReminderSettingVCViewModel.swift in Sources */,
-				4CB7A0DB1CD3497F00DFB8DC /* ChartBaseViewModel.swift in Sources */,
 				91E1B4C71CA510BD008ADEE6 /* ContactsFriendQualityCell.swift in Sources */,
 				9114D1FD1C97AB05008CB4CE /* WeightView.swift in Sources */,
 				91E1B4DC1CA510BD008ADEE6 /* ContactsReqFriendVC.swift in Sources */,
 				91D274D01C86AD55004F1AA7 /* CavyLifeBandAlertView.swift in Sources */,
-				4C5396C01CE190E600BCFAEB /* ShowStackedChartsView.swift in Sources */,
 				915FFAA61C4E0CA500A492F7 /* AppDelegate.swift in Sources */,
 				91B04DE41CB4A39C007E67B0 /* GuideBluetoothModelView.swift in Sources */,
 				686A5EFB1CDC474000EB8D0E /* AboutSectionEmptyView.swift in Sources */,
@@ -2197,6 +2212,7 @@
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
 				6859BC851CD32D690050F6A0 /* EmergencyContactInfoCell.swift in Sources */,
 				68E977F61CC6008F00651724 /* PKRulesView.swift in Sources */,
+				4CE8F0051D1CD2990069F1C5 /* ChartsTableListViewModel.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				686A5EED1CDC30D100EB8D0E /* AboutVC.swift in Sources */,
 				887C75B81D114AB2009EA1F6 /* Array_Extension.swift in Sources */,
@@ -2217,7 +2233,7 @@
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
 				686A5EF31CDC35E700EB8D0E /* HelpAndFeedbackVC.swift in Sources */,
 				686A5EF51CDC360000EB8D0E /* RelateAppVC.swift in Sources */,
-				4C6895F81CE9A7BE00CAC412 /* ShareCollectionCell.swift in Sources */,
+				4C9E0B5A1D1A395200DBC1FC /* ChartsWebApi.swift in Sources */,
 				68648A751CEC71B8009D4BEE /* FullScreenImageView.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
@@ -2233,9 +2249,9 @@
 				6836557E1CBC84B7009373EA /* SecondsCollectionViewCell.swift in Sources */,
 				91ACEC601CB65456008ED8B0 /* GuideSetModelView.swift in Sources */,
 				4CB7A07C1CD095C400DFB8DC /* HomeTimeLineTableCell.swift in Sources */,
+				4C9E0B4E1D1A395200DBC1FC /* ChartsTimeButton.swift in Sources */,
 				917B98BE1CB8E841008698F5 /* UserAchievementCell.swift in Sources */,
 				4C4C602A1CE5C4790026C045 /* GuideViewConfigDefine.swift in Sources */,
-				4CB7A0D11CD3497F00DFB8DC /* ChartBaseViewController.swift in Sources */,
 				68E977FC1CC610DB00651724 /* PKRulesVC.swift in Sources */,
 				91E1B4D01CA510BD008ADEE6 /* ContactsPersonInfoListCell.swift in Sources */,
 				4C5396D01CE419EC00BCFAEB /* NSDate_Extension.swift in Sources */,
@@ -2243,20 +2259,18 @@
 				9114D1FB1C97AB05008CB4CE /* RulerScroller.swift in Sources */,
 				91E1B4C61CA510BD008ADEE6 /* ContactsFriendInfoVC.swift in Sources */,
 				6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */,
-				4CB7A0D71CD3497F00DFB8DC /* ChartSleepInfoCell.swift in Sources */,
 				9114D1F61C97AB05008CB4CE /* GenderView.swift in Sources */,
 				9179DA9B1CD5E95D00FCA63C /* AddressBookPicker.swift in Sources */,
 				9197CF9E1C58BADE00E5D1C9 /* NetRequestAdapter.swift in Sources */,
 				91AC64BC1CDAF161006577D4 /* PKSelectOppTVC.swift in Sources */,
 				98CE4AAE2910AB63E72ECA83 /* UIImageExtension.swift in Sources */,
-				4CB7A0DF1CD35BF900DFB8DC /* ChartsJSON.swift in Sources */,
 				9114D1E81C97AB05008CB4CE /* AccountManagerViewController.swift in Sources */,
 				6859BC821CD221A80050F6A0 /* EmergencyContactRealmModel.swift in Sources */,
 				6849D3B31CE9AE82001CB7EC /* EmergencyWebApi.swift in Sources */,
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,
 				68A453551D0F97FA00552521 /* FirmwareUpdateWebApi.swift in Sources */,
-				4C6895F41CE96CFD00CAC412 /* ShareView.swift in Sources */,
+				4C9E0B4C1D1A395200DBC1FC /* ChartSleepInfoCell.swift in Sources */,
 				683655821CBC85BE009373EA /* SecondsTableViewCell.swift in Sources */,
 				6836552B1CBB49F7009373EA /* EmergencyContactPersonCell.swift in Sources */,
 				9150CABC1CC8D12D00A398E9 /* MenuProtocol.swift in Sources */,
