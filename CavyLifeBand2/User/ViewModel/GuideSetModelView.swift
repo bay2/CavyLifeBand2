@@ -108,6 +108,7 @@ struct GuideSetLocationShare: GuideViewModelPotocols, UserInfoRealmOperateDelega
         }
                 
         UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
+        UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
         
     }
     
