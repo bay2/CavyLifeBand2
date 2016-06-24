@@ -50,7 +50,8 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         drawBordersEnabled = false //是否在折线图上添加边框
         drawGridBackgroundEnabled = false // 是否显示表格颜色
         drawBarShadowEnabled = false //柱状图没有数据的部分是否显示阴影效果
-        
+        doubleTapToZoomEnabled = false
+
         drawValueAboveBarEnabled = true
         
         rightAxis.enabled = false // Y轴方向左边 不放轴
@@ -179,7 +180,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
 
             self.data = data
             // 动画
-            self.animate(yAxisDuration: 2)
+            self.animate(yAxisDuration: 0)
             }
 
     }

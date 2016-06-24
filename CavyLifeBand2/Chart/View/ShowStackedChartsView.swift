@@ -54,6 +54,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         drawBordersEnabled = false //是否在折线图上添加边框
         drawGridBackgroundEnabled = false // 是否显示表格颜色
         drawBarShadowEnabled = false //柱状图没有数据的部分是否显示阴影效果
+        doubleTapToZoomEnabled = false
         
         drawValueAboveBarEnabled = true
         
@@ -62,6 +63,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         
         delegate = self
         highlightPerTapEnabled = true // 点击时是否高亮
+        
         if timeBucketStyle != .Month {
             
             dragEnabled = false // 是否可以拖拽
@@ -191,7 +193,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
             self.data = data
             
             // 动画
-            self.animate(yAxisDuration: 2)
+            self.animate(yAxisDuration: 0)
         }
         
     }
