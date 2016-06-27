@@ -87,12 +87,4 @@ extension RootViewController: LifeBandBleDelegate {
         
     }
     
-    
-    
-    /**
-     保存mac地址
-     
-     - author: sim cai
-     - date: 2016-06-02
-     */
-   }
+}

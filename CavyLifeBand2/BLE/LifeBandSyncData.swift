@@ -73,10 +73,7 @@ class LifeBandSyncData {
             self = dayCount == 0 ? SyncDateCtrl.Today : SyncDateCtrl.Yesterday
             
         }
-        
-        
-        
-        
+
         init(dateCmd: UInt8) {
             
             switch dateCmd {

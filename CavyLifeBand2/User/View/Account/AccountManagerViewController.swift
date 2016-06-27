@@ -13,7 +13,7 @@ import AlamofireImage
 import Log
 import RealmSwift
 
-class AccountManagerViewController: UIViewController, BaseViewControllerPresenter, UserInfoRealmOperateDelegate {
+class AccountManagerViewController: UIViewController, BaseViewControllerPresenter, UserInfoRealmOperateDelegate , LifeBandBleDelegate{
     
     enum UserViewStyle {
         
@@ -368,8 +368,9 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                 self.addUserInfo(userInfoModel)
                 
                 
-                //TODO: 登录成功后需添加 绑定
+                // MARK:登录成功后添加 绑定
                 
+                self.saveMacAddress()
                
                 // 注册成功后显示首页
                 UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())

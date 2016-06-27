@@ -39,6 +39,12 @@ extension LifeBandBleDelegate {
     
     func bleMangerState(bleState: CBCentralManagerState) {}
     
+    /**
+     保存mac地址
+     
+     - author: sim cai
+     - date: 2016-06-02
+     */
     func saveMacAddress() {
         
         let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
