@@ -180,7 +180,7 @@ extension NSDate {
         
         let daysCount = (NSDate().gregorian.beginningOfDay.date - self).totalDays + 1
         
-        if daysCount < 1 {
+        if self.toString(format: "yyyy-MM-dd") == NSDate().toString(format: "yyyy-MM-dd") || daysCount < 1 {
             
             return [NSDate().toString(format: "yyyy.M.d")]
         }
