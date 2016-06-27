@@ -166,18 +166,19 @@ struct LoginUserBaseInfo {
     var loginUserId: String
     var loginUsername: String
     var loginAvatar: String
-    
+    var loginAuthToken: String
     
     init(dictionary: [String: AnyObject]) {
 
         loginUserId   = (dictionary["SignUserId"] as? String) ?? ""
         loginUsername = (dictionary["SignUserName"] as? String) ?? ""
         loginAvatar = (dictionary["SignUserAvatar"] as? String) ?? ""
+        loginAuthToken = (dictionary["SignUserAuthToken"] as? String) ?? ""
         
     }
     
     func serialize() -> [String: AnyObject] {
-        return ["SignUserId": loginUserId, "SignUserName": loginUsername, "SignUserAvatar": loginAvatar]
+        return ["SignUserId": loginUserId, "SignUserName": loginUsername, "SignUserAvatar": loginAvatar, "SignUserAuthToken": loginAuthToken]
     }
     
 }
@@ -268,6 +269,41 @@ enum NotificationName: String {
     case HomeShowPKView                     // 主页push PK页面
     case HomeShowAchieveView                  // 主页push 徽章页面
     case HomeShowHealthyView                // 主页push 健康页面
+    
+}
+
+enum RequestApiCode: Int {
+
+    case Success      = 1000
+    case UnknownError = 9999
+    
+    init(apiCode: Int) {
+        
+        switch apiCode {
+        case 1000:
+            self = RequestApiCode.Success
+        case 9999:
+            self = RequestApiCode.UnknownError
+        default:
+            self = RequestApiCode.UnknownError
+        }
+        
+    }
+    
+}
+
+extension RequestApiCode: CustomStringConvertible {
+    
+    var description: String {
+        
+        switch self {
+        case .Success:
+            return ""
+        case .UnknownError:
+            return L10n.WebErrorCode1000.string
+        }
+        
+    }
     
 }
 
@@ -482,6 +518,7 @@ enum UserNetRequsetKey: String {
     case Remarks         = "remarks"
     case StepsList       = "stepsList"
     case Version         = "version"
+    case AuthToken       = "auth-token"
 }
 
 // MARK: - 服务器接口命令
