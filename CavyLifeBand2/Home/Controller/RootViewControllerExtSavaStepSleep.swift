@@ -125,19 +125,18 @@ extension RootViewController: ChartsRealmProtocol {
      */
     func saveTiltsToRealm(sleeps: [(NSDate, Int)]) {
         
-//        let realmArray = self.queryAllSleepInfo(userId)
         
         for i in 0 ..< sleeps.count {
-//
-//            if realmArray.count == 0 {
-//                
-//                self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
-//                
-//            } else {
-//                
-//                return
-//            }
-//            
+
+            let realmArray = self.queryAllSleepInfo(userId)
+            if realmArray.count == 0 {
+                
+                self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
+                
+            } else {
+                
+                return
+            }
             
             if i == 0 {
                 
@@ -159,20 +158,6 @@ extension RootViewController: ChartsRealmProtocol {
             self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
             
         }
-        
-
-        
-        
-//
-//        _ = steps.map { (date: NSDate, tilts: Int) -> (NSDate, Int)? in
-//
-//            if tilts == 0 {
-//                return nil
-//            }
-//
-//            self.addSleepData(ChartSleepDataRealm(time: date, tilts: tilts))
-//            return (date, tilts)
-//        }
         
     }
     

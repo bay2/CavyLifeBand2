@@ -92,7 +92,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
         addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
         // 后台进入前台 同步数据
-        addNotificationObserver("updateHomeViewData", selector: #selector(refreshingStatus))
+        addNotificationObserver("updateHomeViewData", selector: #selector(beginRefreshing))
  
 
     }
@@ -169,8 +169,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             
             //MARK: 手动刷新
             RootViewController().syncDataFormBand(false)
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
                 
                 self.scrollView.mj_header.endRefreshing()
             }
@@ -183,11 +183,19 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     }
     
     /**
-     同步数据
+     开始同步数据
      */
-    func refreshingStatus() {
+    func beginRefreshing() {
         
         scrollView.mj_header.beginRefreshing()
+    }
+    
+    /**
+     结束同步数据
+     */
+    func endRefreshing() {
+        
+        scrollView.mj_header.endRefreshing()
     }
     
     /**
@@ -237,7 +245,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
     }
     
-    // MARK: --- 解析数据 保存数据库
+    // MARK: 解析数据 保存数据库
     
     /**
      解析 计步睡眠数据 并保存Realm
@@ -592,8 +600,20 @@ extension HomeViewController: UIScrollViewDelegate {
             label.text = L10n.HomeRefreshRefreshing.string
 
         }
+
+        if scrollView.mj_header.state == MJRefreshState.NoMoreData{
+
+            // 结束刷新
+            label.text = ""
+            scrollView.mj_header.endRefreshing()
+            
+        }
+        
         
     }
+    
+    
+    
     
     
 }

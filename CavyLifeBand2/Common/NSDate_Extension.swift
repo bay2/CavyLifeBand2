@@ -176,6 +176,10 @@ extension NSDate {
      */
     func untilTodayArrayWithFormatter(formatter: String) -> [String]? {
         
+        if self.toString(format: "yyyy-MM-dd") == NSDate().toString(format: "yyyy-MM-dd") {
+            return [NSDate().toString(format: "yyyy.M.d")]
+        }
+        
         var returnArray: [String] = []
         
         let daysCount = (NSDate().gregorian.beginningOfDay.date - self).totalDays + 1
@@ -193,6 +197,7 @@ extension NSDate {
             
         }
         
+        Log.info("\(returnArray) - \(returnArray.count)")
         return returnArray
     }
     

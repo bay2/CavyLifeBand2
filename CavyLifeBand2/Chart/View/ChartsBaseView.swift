@@ -153,6 +153,7 @@ class ChartsBaseView: UIView, UICollectionViewDelegateFlowLayout, ChartsRealmPro
         }
         
     }
+    
 }
 
 // MARK: -- collectionView Delegate

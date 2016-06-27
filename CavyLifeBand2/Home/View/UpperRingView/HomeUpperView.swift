@@ -56,6 +56,8 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         stepNotificationToken = stepRealmReslut.addNotificationBlock { change in
             
             switch change {
+//            case .Initial(_):
+//                self.configStepValue()
             case .Update(_, deletions: _, insertions: _, modifications: _):
                 self.configStepValue()
             default:
@@ -66,6 +68,8 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         
         sleepNotificationToken = sleepRealmReslut.addNotificationBlock { change in
             switch change {
+//            case .Initial(_):
+//                self.configSleepValue()
             case .Update(_, deletions: _, insertions: _, modifications: _):
                 self.configSleepValue()
             default:
