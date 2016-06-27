@@ -11,9 +11,7 @@ import EZSwiftExtensions
 import KeychainAccess
 
 struct CavyDefine {
-    
-    // 异常上报服务器地址
-    static let bugHDKey = "https://collector.bughd.com/kscrash?key=9c009d806879cec4233b3b66b4264315"
+
     
     // 服务器地址
     static let serverAddr = "http://115.28.144.243/cavylife"

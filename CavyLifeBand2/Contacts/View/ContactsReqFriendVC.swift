@@ -11,7 +11,7 @@ import MHRotaryKnob
 import Log
 
 class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UITextFieldDelegate {
-
+    
     enum RequestStyle {
         
         case AddFriend
@@ -19,7 +19,10 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
         case ChangeSelfName
         
     }
-
+    
+    /// 最大输入18个字符
+    let MAX_COUNT = 18
+    
     var viewModel: ContactsReqFriendPortocols?
     
     @IBOutlet weak var textFieldView: UIView!
@@ -35,7 +38,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
     var navTitle: String {
         
         return viewModel?.navTitle ?? ""
-    
+        
     }
     
     override func viewDidLoad() {
@@ -45,13 +48,15 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
         
         requestTextField.delegate = self
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ContactsReqFriendVC.textChange(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
+        
         updateNavUI()
-
+        
         requestViewLayout()
         
     }
     
-
+    
     /**
      点击发送按钮
      
@@ -100,18 +105,62 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
     }
     
     
+    
+    func textChange(Noti: NSNotification) {
+        
+        if requestTextField.markedTextRange != nil {
+            
+            return
+        }
+        
+        let string = requestTextField.text
+        
+        
+        requestTextField.text = confineTextFiledText(string) as String
+        
+    }
+    
+    
     //MARK: UITextFieldDelegate
     
     /**
-        限制输入的字符串长度为10
+     限制输入的字符长度为18
      */
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
-        guard textField.text?.length < 10 else {
+        
+        
+        if string.length == 0 || textField.markedTextRange != nil {
+            
+            return true
+        }
+        
+        let text: NSString =  (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        
+        if text.length > MAX_COUNT {
+            
             return false
         }
         
         return true
+        
     }
-
+    
+    
+    
+    func confineTextFiledText(text: NSString?) -> NSString {
+        
+        let length = text?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+        var newText = text
+        
+        if length > MAX_COUNT {
+            
+            newText  = confineTextFiledText(newText?.substringToIndex(newText!.length - 1))
+            
+        }
+        
+        return newText!
+        
+    }
+    
 }
