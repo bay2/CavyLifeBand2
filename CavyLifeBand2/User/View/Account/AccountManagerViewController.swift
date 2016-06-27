@@ -13,7 +13,7 @@ import AlamofireImage
 import Log
 import RealmSwift
 
-class AccountManagerViewController: UIViewController, BaseViewControllerPresenter, UserInfoRealmOperateDelegate , LifeBandBleDelegate{
+class AccountManagerViewController: UIViewController, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, LifeBandBleDelegate{
     
     enum UserViewStyle {
         

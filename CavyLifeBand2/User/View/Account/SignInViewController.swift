@@ -12,7 +12,7 @@ import EZSwiftExtensions
 import Log
 import RealmSwift
 
-class SignInViewController: UIViewController, SignInDelegate, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate {
+class SignInViewController: UIViewController, SignInDelegate, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate, LifeBandBleDelegate {
 
     // 登入按钮
     @IBOutlet weak var signInBtn: MainPageButton!
@@ -276,6 +276,9 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
                     
                 } else {
                     
+                    // 登录绑定
+                    
+                   self.saveMacAddress()
                     UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
                     
                 }
