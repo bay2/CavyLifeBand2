@@ -94,7 +94,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         // 后台进入前台 同步数据
         addNotificationObserver("updateHomeViewData", selector: #selector(refreshingStatus))
  
-
     }
 
     

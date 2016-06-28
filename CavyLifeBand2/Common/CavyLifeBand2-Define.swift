@@ -19,6 +19,9 @@ struct CavyDefine {
     static let serverAddr = "http://115.28.144.243/cavylife"
 //    static let serverAddr = "http://192.168.100.214/cavylife"
     
+    // 新的后台服务器地址
+    static let webServerAddr = "http://pay.tunshu.com/live/api/v1/"
+    
     // webApi地址
     static let webApiAddr = serverAddr + "/api.do"
     
@@ -166,18 +169,19 @@ struct LoginUserBaseInfo {
     var loginUserId: String
     var loginUsername: String
     var loginAvatar: String
-    
+    var loginAuthToken: String
     
     init(dictionary: [String: AnyObject]) {
 
         loginUserId   = (dictionary["SignUserId"] as? String) ?? ""
         loginUsername = (dictionary["SignUserName"] as? String) ?? ""
         loginAvatar = (dictionary["SignUserAvatar"] as? String) ?? ""
+        loginAuthToken = (dictionary["SignUserAuthToken"] as? String) ?? ""
         
     }
     
     func serialize() -> [String: AnyObject] {
-        return ["SignUserId": loginUserId, "SignUserName": loginUsername, "SignUserAvatar": loginAvatar]
+        return ["SignUserId": loginUserId, "SignUserName": loginUsername, "SignUserAvatar": loginAvatar, "SignUserAuthToken": loginAuthToken]
     }
     
 }
@@ -482,6 +486,7 @@ enum UserNetRequsetKey: String {
     case Remarks         = "remarks"
     case StepsList       = "stepsList"
     case Version         = "version"
+    case AuthToken       = "auth-token"
 }
 
 // MARK: - 服务器接口命令
@@ -553,3 +558,76 @@ enum UserNetRequestMethod: String {
     case SetStepCount      = "setStepCount"
     case GetVersion        = "getVersion"
 }
+
+
+// MARK: - Web Api 方法定义
+enum WebApiMethod: CustomStringConvertible {
+    case Login, Logout, Dailies, Steps, Sleep
+
+    var description: String {
+        
+        switch self {
+        case .Login:
+            return CavyDefine.webServerAddr + "login"
+        case .Logout:
+            return CavyDefine.webServerAddr + "logout"
+        case .Dailies:
+            return CavyDefine.webServerAddr + "dailies"
+        case .Steps:
+            return CavyDefine.webServerAddr + "steps"
+        case .Sleep:
+            return CavyDefine.webServerAddr + "sleep"
+        }
+        
+    }
+    
+}
+
+
+// MARK: - Request Api Code
+
+enum RequestApiCode: Int {
+    
+    case Success            = 1000
+    case UukownError        = 1100
+    case IncorrectParameter = 1102
+    case LostAccountField   = 1200
+    case LostPasswordField  = 1201
+    case AccountNotExist    = 1202
+    case LoginFailed        = 1203
+    case LogoutFailed       = 1204
+    case InvalidToken       = 1205
+    case NetError           = 9999
+    
+    init(apiCode: Int) {
+        
+        switch apiCode {
+        case 1000:
+            self = RequestApiCode.Success
+        case 9999:
+            self = RequestApiCode.NetError
+        default:
+            self = RequestApiCode.NetError
+        }
+        
+    }
+    
+}
+
+extension RequestApiCode: CustomStringConvertible {
+    
+    var description: String {
+        
+        switch self {
+        case .Success:
+            return ""
+        case .NetError:
+            return L10n.UserModuleErrorCodeNetError.string
+        default:
+            return L10n.UserModuleErrorCodeNetError.string
+        }
+        
+    }
+    
+}
+
