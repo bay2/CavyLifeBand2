@@ -250,6 +250,10 @@ class LifeBandSyncData {
             syncState = .NoSync
             
             Log.info("Band sync end")
+            
+            // 发送通知让主页停止同步数据下拉消失
+            NSNotificationCenter.defaultCenter().postNotificationName("endHomeViewRefresh", object: nil)
+            
             return true
             
         }

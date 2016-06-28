@@ -199,7 +199,18 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         let kilometer = String(format: "%.1f", stepRealm.totalKilometer)
         resultArray.append("\(stepRealm.totalStep)\(L10n.GuideStep.string)")
         resultArray.append("\(kilometer)km")
-        resultArray.append("\(percent)%")
+        // 日:完成度 周&月:日均步数 
+        switch timeBucketStyle {
+        case .Day:
+            
+            resultArray.append("\(percent)%")
+            
+        case .Week, .Month:
+            
+            resultArray.append("\(stepRealm.totalStep / 30)\(L10n.GuideStep.string)")
+
+        }
+        
         resultArray.append("\(hour)\(L10n.HomeSleepRingUnitHour.string)\(min)\(L10n.HomeSleepRingUnitMinute.string)")
 
         return resultArray
@@ -272,9 +283,23 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             
         }
        
-        resultArray.append("\(deepSleep / 6)\(L10n.HomeSleepRingUnitHour.string)\(deepSleep % 6)\(L10n.HomeSleepRingUnitMinute.string)")
         resultArray.append("\(lightSleep / 6)\(L10n.HomeSleepRingUnitHour.string)\(lightSleep % 6)\(L10n.HomeSleepRingUnitMinute.string)")
-        resultArray.append("\(percent)%")
+        resultArray.append("\(deepSleep / 6)\(L10n.HomeSleepRingUnitHour.string)\(deepSleep % 6)\(L10n.HomeSleepRingUnitMinute.string)")
+        
+        // 日:完成度 周&月:日均步数
+        switch timeBucketStyle {
+        case .Day:
+            
+            resultArray.append("\(percent)%")
+            
+        case .Week, .Month:
+            
+            let avgSleepTime = deepSleep + lightSleep / 30
+
+            resultArray.append("\(avgSleepTime / 6)\(L10n.HomeSleepRingUnitHour.string)\(avgSleepTime % 6)\(L10n.HomeSleepRingUnitMinute.string)")
+            
+        }
+
 
         return resultArray
     }
@@ -309,6 +334,7 @@ extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
         var dataStepArray: [String] = [L10n.ChartStepTodayStep.string, L10n.ChartStepKilometer.string, L10n.ChartTargetPercent.string, L10n.ChartStepTimeUsed.string]
 
         switch timeBucketStyle {
+            
         case .Week:
             dataStepArray = [L10n.ChartStepWeekStep.string, L10n.ChartStepKilometer.string, L10n.ChartStepAverageStep.string, L10n.ChartStepTimeUsed.string]
         case .Month:
@@ -331,8 +357,8 @@ extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
                 
                 let cell = tableView.dequeueReusableCellWithIdentifier("ChartSleepInfoCell", forIndexPath: indexPath) as! ChartSleepInfoCell
                 
-
                 cell.configSleepCell(sleepStatusArray[indexPath.row], text: "8")
+                cell.rightLabel.text = listDataArray[indexPath.row]
                 return cell
                 
             }
@@ -347,13 +373,14 @@ extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
             }
             
             cell.rightLabel.text = listDataArray[indexPath.row]
-            
+           
             return cell
             
         case .StepChart:
             
             let cell = tableView.dequeueReusableCellWithIdentifier("ChartInfoListCell", forIndexPath: indexPath) as! ChartInfoListCell
             cell.leftLabel.text = dataStepArray[indexPath.row]
+            
             cell.rightLabel.text = listDataArray[indexPath.row]
             
             return cell

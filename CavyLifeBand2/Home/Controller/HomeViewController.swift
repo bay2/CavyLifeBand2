@@ -78,7 +78,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         parseChartListData()
 
         addAllView()
-        addRefresh()
+        addFirstRefresh()
         scrollView.mj_header.beginRefreshing()
 
         self.updateNavUI()
@@ -92,8 +92,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
         addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
         // 后台进入前台 同步数据
-        addNotificationObserver("updateHomeViewData", selector: #selector(beginRefreshing))
+        addNotificationObserver("updateHomeViewData", selector: #selector(addFirstRefresh))
+        
+        // 停止首次进入的刷新
+        addNotificationObserver("endHomeViewRefresh", selector: #selector(endFirstRefresh))
  
+        
 
     }
 
@@ -161,26 +165,51 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     }
 
     /**
-     添加下拉刷新
+     添加第一次进入同步刷新
      */
-    func addRefresh() {
+    func addFirstRefresh() {
         
-        let header = MJRefreshHeader(refreshingBlock: {
-            
-            //MARK: 手动刷新
-            RootViewController().syncDataFormBand(false)
+        let OnlyShowheader = MJRefreshHeader(refreshingBlock: {
 
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(20 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
                 
                 self.scrollView.mj_header.endRefreshing()
             }
 
         })
 
+        OnlyShowheader.backgroundColor = UIColor(named: .HomeViewMainColor)
+        scrollView.mj_header = OnlyShowheader
+        
+    }
+    
+    /**
+     添加下拉刷新
+     */
+    func addMoveRefresh() {
+        
+        let header = MJRefreshHeader(refreshingBlock: {
+            //MARK: 手动刷新
+            RootViewController().syncDataFormBand(false)
+                        
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(5 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+                
+                self.scrollView.mj_header.endRefreshing()
+            }
+        })
+        
         header.backgroundColor = UIColor(named: .HomeViewMainColor)
         scrollView.mj_header = header
         
     }
+    
+    func endFirstRefresh() {
+        
+        scrollView.mj_header.endRefreshing()
+        scrollView.mj_header.removeFromSuperview()
+        addMoveRefresh()
+    }
+    
     
     /**
      开始同步数据

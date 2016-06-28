@@ -155,12 +155,12 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
 
             // yVals
             // 随机产生数据
-            let val1 = Double(arc4random_uniform(200) + 1)// 浅睡
-            let val2 = Double(arc4random_uniform(200) + 1)// 深睡
+//            let val1 = Double(arc4random_uniform(200) + 1)// 浅睡
+//            let val2 = Double(arc4random_uniform(200) + 1)// 深睡
             
             // 数据库取出的
-//            let val1 = Double(chartsData[i].deepSleep)
-//            let val2 = Double(chartsData[i].lightSleep)
+            let val1 = Double(chartsData[i].deepSleep)
+            let val2 = Double(chartsData[i].lightSleep)
             
             let dataEntrys = BarChartDataEntry(values: [val1, val2], xIndex: i)
         
