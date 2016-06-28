@@ -13,7 +13,7 @@ import AlamofireImage
 import Log
 import RealmSwift
 
-class AccountManagerViewController: UIViewController, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, LifeBandBleDelegate{
+class AccountManagerViewController: UIViewController, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, LifeBandBleDelegate, SignInDelegate, QueryUserInfoRequestsDelegate{
     
     enum UserViewStyle {
         
@@ -25,7 +25,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     }
     
     var realm: Realm = try! Realm()
-
+    
     // 手机输入框
     @IBOutlet weak var userNameTextField: AccountTextField!
     
@@ -49,7 +49,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     
     // 用户协议框
     @IBOutlet weak var userProtocolView: UserProtocolView!
-   
+    
     // 输入框视图
     @IBOutlet weak var textFieldView: UIView!
     
@@ -70,6 +70,15 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     }()
     
     
+    var leftBtn: UIButton? = {
+        
+        let leftItemBtn = UIButton(frame: CGRectMake(0, 0, 30, 30))
+        leftItemBtn.setBackgroundImage(UIImage(asset: .Backbtn), forState: .Normal)
+        return leftItemBtn
+        
+    }()
+    
+    
     // 垂直分割线
     @IBOutlet weak var verticalLine: UIView!
     
@@ -77,14 +86,14 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     var popToViewController: UIViewController {
         return self.navigationController!.viewControllers[0]
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setSubViewsTitle()
-
+        
         defineSubViewsLayout()
-
+        
         refreshEmailSafetyCode()
         
         emailSafetyCode.userInteractionEnabled = true
@@ -105,59 +114,59 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         setViewStyle()
         
         updateNavUI()
-
+        
         // Do any additional setup after loading the view.
     }
-
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
         
     }
-
+    
     /**
      设置title
      */
     func setSubViewsTitle() {
-
+        
         safetyCodeTextField.placeholder = L10n.SignUpSafetyCodeTextField.string
         safetyCodeBtn.setTitle(L10n.SignUpSendSafetyCode.string, forState: .Normal)
         backSignInBtn.setTitleColor(UIColor(named: .SignInForgotPwdBtnText), forState: .Normal)
         backSignInBtn.titleLabel!.font = UIFont.systemFontOfSize(14)
-
+        
     }
-
+    
     /**
      定义子视图布局
      */
     func defineSubViewsLayout() {
-
+        
         defineViewLayout()
-
+        
         defineButtonLayout()
-
+        
         defineTextFieldLayout()
-
+        
     }
-
+    
     /**
      定义view 布局
      */
     func defineViewLayout() {
-
+        
         textFieldView.snp_makeConstraints { make -> Void in
             
             make.top.equalTo(self.view).offset(16)
             make.left.equalTo(self.view).offset(30)
             make.right.equalTo(self.view).offset(-30)
-
+            
             if (UIScreen.mainScreen().scale == 2) {         // tailor:disable
                 make.height.equalTo((CavyDefine.spacingWidth25 * 3) * 3 + 1)
             } else {
                 make.height.equalTo((CavyDefine.spacingWidth25 * 3) * 3 + 0.3)
             }
-
+            
         }
         
         userProtocolView.snp_makeConstraints { make -> Void in
@@ -176,7 +185,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
             make.left.equalTo(safetyCodeTextField.snp_right).offset(10)
         }
     }
-
+    
     /**
      定义按钮布局
      */
@@ -198,14 +207,14 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
             make.width.equalTo(90)
             make.right.equalTo(self.textFieldView).offset(-20)
         }
-
+        
     }
-
+    
     /**
      定义输入框布局
      */
     func defineTextFieldLayout() {
-
+        
         userNameTextField.snp_makeConstraints { make -> Void in
             make.left.equalTo(textFieldView).offset(20)
             make.right.equalTo(textFieldView).offset(-20)
@@ -248,14 +257,14 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         self.dataSource = dataSource
         
     }
-
+    
     /**
      点击右侧按钮
      
      - parameter sender:
      */
-     func onRightBtn() {
-
+    func onRightBtn() {
+        
         var viewModel: AccountManagerViewDataSource?
         let nextView = StoryboardScene.Main.instantiateAccountManagerView()
         
@@ -276,11 +285,11 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         self.pushVC(nextView)
         
-//        ez.topMostVC?.pushVC(nextView)
+        //        ez.topMostVC?.pushVC(nextView)
         
     }
-
-
+    
+    
     /**
      刷新邮箱验证码
      */
@@ -295,7 +304,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         }
         
     }
-
+    
     /**
      返回登录页面
      
@@ -306,7 +315,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         self.navigationController?.popToViewController((self.navigationController?.viewControllers[0])!, animated: true)
         
     }
-
+    
     /**
      点击主按钮
      
@@ -328,9 +337,9 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         if dataSource?.isSignUp == true {
             
             signUp {
-            
-                if $0 == WebApiCode.UserExisted.rawValue {
                 
+                if $0 == WebApiCode.UserExisted.rawValue {
+                    
                     let alertView = UIAlertController(title: "", message: WebApiCode(apiCode: $0).description, preferredStyle: .Alert)
                     
                     let signInAction = UIAlertAction(title: L10n.SignUpDirectSinIn.string, style: .Cancel) { [unowned self] (action) in
@@ -340,7 +349,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                         self.presentViewController(UINavigationController(rootViewController: StoryboardScene.Main.instantiateSignInView()), animated: true, completion: nil)
                         
                     }
-
+                    
                     let reSinUpAction = UIAlertAction(title: L10n.SignUpReSignUp.string, style: .Default) { [unowned self] (action) in
                         self.userNameTextField.text = ""
                         
@@ -358,7 +367,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                     
                     return
                 }
-                                
+                
                 GuideUserInfo.userInfo.userId = $0
                 
                 Log.info("[\(GuideUserInfo.userInfo.userId)] Sign up success")
@@ -367,16 +376,9 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                 userInfoModel.isSync = false
                 self.addUserInfo(userInfoModel)
                 
+                // 注册成功之后走登录流程
+                self.singIn()
                 
-                // MARK:登录成功后添加 绑定
-                
-                self.saveMacAddress()
-               
-                // 注册成功后显示首页
-                UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
-                UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: {
-                    
-                })
                 
             }
             
@@ -385,30 +387,104 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
             forgotPwd()
             
         }
-
+        
     }
     
-
+    
+    
+    
+    func singIn() {
+        
+        signIn {
+            
+            // 登录绑定场景
+            BindBandCtrl.bindScene = .SignInBind
+            
+            let guideVC = StoryboardScene.Guide.instantiateGuideView()
+            
+            let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+            
+            // 查询不到用户信息，走绑定流程
+            guard let bindBandValue = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] else {
+                
+                //用户未绑定，走绑定流程
+                let guideVC = StoryboardScene.Guide.instantiateGuideView()
+                let guideVM = GuideBandBluetooth()
+                guideVC.configView(guideVM, delegate: guideVM)
+                self.pushVC(guideVC)
+                
+                return
+                
+            }
+            
+            // 手环已绑定，记录手环信息，root 页面中会根据此属性设置绑定的手环
+            //                GuideUserInfo.userInfo.bandName = bindBandValue
+            BindBandCtrl.bandMacAddress = bindBandValue
+            
+            // 通过查询用户信息判断是否是老的豚鼠用户
+            self.queryUserInfoByNet(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, vc: self) {
+                
+                guard let userProfile = $0 else {
+                    return
+                }
+                
+                // 老用户进入引导页
+                if userProfile.sleepTime.isEmpty {
+                    
+                    let guideVM = GuideGenderViewModel()
+                    guideVC.configView(guideVM, delegate: guideVM)
+                    self.pushVC(guideVC)
+                    
+                    
+                } else {
+                    
+                    // 登录绑定
+                    
+                    self.saveMacAddress()
+                    UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
+                    
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    
     /**
      点击发送验证码
      
      - parameter sender: 
      */
     @IBAction func onClickSendSafetyCode(sender: AnyObject) {
-
+        
         sendSafetyCode()
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    func onLeftBtnBack() {
+        
+        
+        guard let _ = self.navigationController?.popViewControllerAnimated(true) else{
+            
+            self.dismissVC(completion: nil)
+            
+            return
+        }
+        
     }
-    */
+    
+    /*
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
 }
 
 extension AccountManagerViewController {
