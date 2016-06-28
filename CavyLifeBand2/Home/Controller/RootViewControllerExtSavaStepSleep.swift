@@ -33,6 +33,9 @@ extension RootViewController: ChartsRealmProtocol {
                 
                 guard (NSDate().gregorian.beginningOfDay.date - syncDate).totalMinutes >= 10  else {
                     
+                    // 发送通知让主页停止同步数据下拉消失
+                    NSNotificationCenter.defaultCenter().postNotificationName("endHomeViewRefresh", object: nil)
+                    
                     return
                 }
             }
@@ -47,6 +50,16 @@ extension RootViewController: ChartsRealmProtocol {
                 let steps = titlsAndSteps.map { return ($0.date, $0.steps) }
                 let sleeps = titlsAndSteps.map { return ($0.date, $0.tilts) }
                 
+                // 上报睡眠信息
+                StepSleepReportedData.shareApi.sleepReportedDataToWebServer(sleeps).responseJSON {
+                    $0.result.success { value in
+                        self.saveTiltsToRealm(sleeps)
+                        }
+                        .failure { error in
+                            self.saveTiltsToRealm(sleeps)
+                    }
+                }
+                
                 // 上报计步信息
                 StepSleepReportedData.shareApi.stepsReportedDataToWebServer(steps).responseJSON {
                     
@@ -59,16 +72,6 @@ extension RootViewController: ChartsRealmProtocol {
                         }
                         .failure { error in
                             self.saveStepsToRealm(steps)
-                    }
-                }
-                
-                // 上报睡眠信息
-                StepSleepReportedData.shareApi.sleepReportedDataToWebServer(sleeps).responseJSON {
-                    $0.result.success { value in
-                        self.saveTiltsToRealm(sleeps)
-                        }
-                        .failure { error in
-                            self.saveTiltsToRealm(sleeps)
                     }
                 }
                 
@@ -125,19 +128,18 @@ extension RootViewController: ChartsRealmProtocol {
      */
     func saveTiltsToRealm(sleeps: [(NSDate, Int)]) {
         
-//        let realmArray = self.queryAllSleepInfo(userId)
         
         for i in 0 ..< sleeps.count {
-//
-//            if realmArray.count == 0 {
-//                
-//                self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
-//                
-//            } else {
-//                
-//                return
-//            }
-//            
+
+            let realmArray = self.queryAllSleepInfo(userId)
+            if realmArray.count == 0 {
+                
+                self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
+                
+            } else {
+                
+                return
+            }
             
             if i == 0 {
                 
@@ -159,20 +161,6 @@ extension RootViewController: ChartsRealmProtocol {
             self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
             
         }
-        
-
-        
-        
-//
-//        _ = steps.map { (date: NSDate, tilts: Int) -> (NSDate, Int)? in
-//
-//            if tilts == 0 {
-//                return nil
-//            }
-//
-//            self.addSleepData(ChartSleepDataRealm(time: date, tilts: tilts))
-//            return (date, tilts)
-//        }
         
     }
     

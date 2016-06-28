@@ -156,8 +156,8 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         var sleepString = userInfo.sleepTime
         
         if sleepString == "" {
-            
-            sleepString = "0:0"
+            // 如果没有目标值 则显示推荐值
+            sleepString = "8:30"
             
         }
         
@@ -179,8 +179,13 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
             return
         }
+        var stepTargetNumber = userInfo.stepNum
         
-        let stepTargetNumber = userInfo.stepNum
+        // 如果没有目标值 则显示推荐值
+        if stepTargetNumber == 0 {
+            stepTargetNumber = 8000
+            
+        }
         
         let time = NSDate()
         let resultStep = self.queryStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)
