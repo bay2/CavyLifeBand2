@@ -11,6 +11,9 @@ import Alamofire
 import EZSwiftExtensions
 import JSONJoy
 
+// MARK: Result 扩展
+// 由于原来的Request写过，所以暂时注释，等所有接口替换成新接口后，删除原来文件后 放开注释
+
 //extension Result {
 //    
 //    func success(@noescape closure: (Value -> Void)) -> Result {
@@ -39,6 +42,8 @@ import JSONJoy
 //    
 //}
 
+// MARK: - RequestError
+
 enum RequestError: ErrorType {
    case NetErr
 }
@@ -56,23 +61,43 @@ extension RequestError: CustomStringConvertible {
     
 }
 
+// MARK: - Request方法
+
+/// 请求的回调
 typealias RequestHandler = (Result<AnyObject, RequestError>) -> Void
 
-typealias ResponseHandler = (Any) -> Void
-
-typealias FailureHandler = (String) -> Void
+/// 失败响应的回调
+typealias FailureHandler = (CommenResponse) -> Void
 
 protocol NetRequest {
     
-    func netPostRequest<T: JSONJoy where T: CommenResponseProtocol>(urlString: String, para: [String: AnyObject]?, modelObject: T.Type?, failureHandler: FailureHandler?, successHandler: ResponseHandler?)
+    /**
+     Post请求
+     
+     - parameter urlString:
+     - parameter para:
+     - parameter modelObject:
+     - parameter failureHandler:
+     - parameter successHandler:
+     */
+    func netPostRequest<T: JSONJoy where T: CommenResponseProtocol>(urlString: String, para: [String: AnyObject]?, modelObject: T.Type, successHandler: ((T) -> Void)?, failureHandler: FailureHandler?)
     
-    func netGetRequest<T: JSONJoy where T: CommenResponseProtocol>(urlString: String, para: [String: AnyObject]?, modelObject: T.Type?, failureHandler: FailureHandler?, successHandler: ResponseHandler?)
+    /**
+     Get请求
+     
+     - parameter urlString:
+     - parameter para:
+     - parameter modelObject:
+     - parameter failureHandler:
+     - parameter successHandler:
+     */
+    func netGetRequest<T: JSONJoy where T: CommenResponseProtocol>(urlString: String, para: [String: AnyObject]?, modelObject: T.Type, successHandler: ((T) -> Void)?, failureHandler: FailureHandler?)
     
 }
 
 extension NetRequest {
     
-    func netPostRequest<T: JSONJoy where T: CommenResponseProtocol>(urlString: String, para: [String: AnyObject]? = nil, modelObject: T.Type? = nil, failureHandler: FailureHandler? = nil, successHandler: ResponseHandler? = nil) {
+    func netPostRequest<T: JSONJoy where T: CommenResponseProtocol>(urlString: String, para: [String: AnyObject]? = nil, modelObject: T.Type, successHandler: ((T) -> Void)? = nil, failureHandler: FailureHandler? = nil) {
         
         var parameters: [String: AnyObject] = ["phoneType": "ios", "language": UIDevice.deviceLanguage()]
         
@@ -83,48 +108,43 @@ extension NetRequest {
         
         Log.netRequestFormater(urlString, para: para)
         
-        requestByAlamofire(.GET, urlString: urlString, parameters: parameters) { (result) in
+        requestByAlamofire(.POST, urlString: urlString, parameters: parameters) { (result) in
             
             guard result.isSuccess else {
                 
-                failureHandler?(RequestError.NetErr.description)
+                let commonMsg = try! CommenResponse(JSONDecoder(["msg": RequestApiCode.NetError.description, "code": RequestApiCode.NetError.rawValue, "time": NSDate().timeIntervalSince1970]))
+                
+                failureHandler?(commonMsg)
                 
                 return
                 
             }
             
-            if modelObject != nil {
                 
+            do {
                 
-                do {
-                    
-                    let resultResponse = try T(JSONDecoder(result.value ?? ""))
-                    
-                    guard resultResponse.commonMsg.code == RequestApiCode.Success.rawValue else {
-                        failureHandler?(RequestError.NetErr.description)
-                        return
-                    }
-                    
-                    successHandler?(resultResponse)
-                    
-                } catch {
-                    
-                    failureHandler?(RequestError.NetErr.description)
-                    
+                let resultResponse = try T(JSONDecoder(result.value ?? ""))
+                
+                guard resultResponse.commonMsg.code == RequestApiCode.Success.rawValue else {
+                    failureHandler?(resultResponse.commonMsg)
+                    return
                 }
                 
-            } else {
+                successHandler?(resultResponse)
                 
-                successHandler?(result.value)
+            } catch {
+                
+                let commonMsg = try! CommenResponse(JSONDecoder(["msg": RequestApiCode.NetError.description, "code": RequestApiCode.NetError.rawValue, "time": NSDate().timeIntervalSince1970]))
+                
+                failureHandler?(commonMsg)
                 
             }
             
         }
-
         
     }
     
-    func netGetRequest<T: JSONJoy where T: CommenResponseProtocol>(urlString: String, para: [String: AnyObject]? = nil, modelObject: T.Type? = nil, failureHandler: FailureHandler? = nil, successHandler: ResponseHandler?) {
+    func netGetRequest<T: JSONJoy where T: CommenResponseProtocol>(urlString: String, para: [String: AnyObject]? = nil, modelObject: T.Type, successHandler: ((T) -> Void)? = nil, failureHandler: FailureHandler? = nil) {
         
         var parameters: [String: AnyObject] = ["phoneType": "ios", "language": UIDevice.deviceLanguage()]
         
@@ -139,38 +159,33 @@ extension NetRequest {
             
             guard result.isSuccess else {
                 
-                failureHandler?(RequestError.NetErr.description)
+                let commonMsg = try! CommenResponse(JSONDecoder(["msg": RequestApiCode.NetError.description, "code": RequestApiCode.NetError.rawValue, "time": NSDate().timeIntervalSince1970]))
+                
+                failureHandler?(commonMsg)
                 
                 return
                 
             }
             
-            if modelObject != nil {
+            do {
+            
+                let resultResponse = try T(JSONDecoder(result.value ?? ""))
                 
-                
-                do {
-                
-                    let resultResponse = try T(JSONDecoder(result.value ?? ""))
-                    
-                    guard resultResponse.commonMsg.code == RequestApiCode.Success.rawValue else {
-                        failureHandler?(RequestError.NetErr.description)
-                        return
-                    }
-                    
-                    successHandler?(resultResponse)
-                    
-                } catch {
-                    
-                    failureHandler?(RequestError.NetErr.description)
-                    
+                guard resultResponse.commonMsg.code == RequestApiCode.Success.rawValue else {
+                    failureHandler?(resultResponse.commonMsg)
+                    return
                 }
                 
+                successHandler?(resultResponse)
+                
+            } catch {
+                
+                let commonMsg = try! CommenResponse(JSONDecoder(["msg": RequestApiCode.NetError.description, "code": RequestApiCode.NetError.rawValue, "time": NSDate().timeIntervalSince1970]))
+                
+                failureHandler?(commonMsg)
+                
             }
-//            else {
-//                
-//                successHandler?(result.value)
-//            
-//            }
+            
             
         }
         
@@ -179,7 +194,7 @@ extension NetRequest {
     
     func requestByAlamofire(method: Alamofire.Method = .POST, urlString: String, parameters: [String: AnyObject]? = nil, completionHandler: RequestHandler? = nil) -> Request {
         
-        let authToken: String = "oQnuAhizJ4bJhzkNJ"//CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken ?? ""
+        let authToken: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken ?? ""
         
         let request = Alamofire.request(method, urlString, encoding: method == .POST ? .JSON : .URL, parameters: parameters, headers: [UserNetRequsetKey.AuthToken.rawValue: authToken]).responseJSON { response -> Void in
             
@@ -206,17 +221,30 @@ extension NetRequest {
         return request
         
     }
-
+    
 }
 
+// MARK: - Api Class 定义
 
+class NetWebApi: NetRequest {
+    
+    static var shareApi = NetWebApi()
+    
+}
+
+// MARK: - 通用响应的定义
+
+/**
+ *  通用响应协议
+ *  用于接口Api底层做转换
+ */
 protocol CommenResponseProtocol {
     //通用消息头
     var commonMsg: CommenResponse { get }
 }
 
 /**
- *  通用响应格式
+ *  通用消息格式
  */
 struct CommenResponse: JSONJoy {
     
@@ -234,7 +262,10 @@ struct CommenResponse: JSONJoy {
     
 }
 
-struct CommenTest: CommenResponseProtocol, JSONJoy {
+/**
+ *  通用响应模型
+ */
+struct CommenMsgResponse: CommenResponseProtocol, JSONJoy {
     //通用消息头
     var commonMsg: CommenResponse
     
@@ -243,14 +274,11 @@ struct CommenTest: CommenResponseProtocol, JSONJoy {
         commonMsg = try CommenResponse(decoder)
         
     }
+    
 }
 
 
-class NetWebApi: NetRequest {
-    
-    static var shareApi = NetWebApi()
-    
-}
+
 
 
 
