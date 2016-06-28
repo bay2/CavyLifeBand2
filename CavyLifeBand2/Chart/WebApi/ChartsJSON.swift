@@ -30,7 +30,7 @@ struct ChartStepData: JSONJoy {
         do { step = try decoder["step"].getInt() } catch { step = 0 }
         do { kilometer = try decoder["kilometer"].getInt() } catch { kilometer = 0 }
 
-    }
+        }
     
 }
 
