@@ -141,6 +141,7 @@
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		688E7B5C1D20FB3F0062DF9D /* NetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */; };
+		688E7B5F1D2259BB0062DF9D /* SleepWebJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688E7B5E1D2259BB0062DF9D /* SleepWebJSON.swift */; };
 		68A453531D0F96E800552521 /* FirmwareUpdateJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */; };
 		68A453551D0F97FA00552521 /* FirmwareUpdateWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A453541D0F97FA00552521 /* FirmwareUpdateWebApi.swift */; };
 		68B4DED41CE1BBEC00BE041C /* HelpFeedbackJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */; };
@@ -484,6 +485,7 @@
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequest.swift; sourceTree = "<group>"; };
+		688E7B5E1D2259BB0062DF9D /* SleepWebJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepWebJSON.swift; sourceTree = "<group>"; };
 		68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateJSON.swift; sourceTree = "<group>"; };
 		68A453541D0F97FA00552521 /* FirmwareUpdateWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateWebApi.swift; sourceTree = "<group>"; };
 		68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpFeedbackJSON.swift; sourceTree = "<group>"; };
@@ -756,6 +758,7 @@
 		4C9E0B2E1D1A395200DBC1FC /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				688E7B5D1D22591C0062DF9D /* SleepControl */,
 				4C9E0B2F1D1A395200DBC1FC /* controller */,
 				4C9E0B311D1A395200DBC1FC /* View */,
 				4C9E0B3F1D1A395200DBC1FC /* ViewModel */,
@@ -1013,6 +1016,14 @@
 				688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */,
 			);
 			path = NetWorking;
+			sourceTree = "<group>";
+		};
+		688E7B5D1D22591C0062DF9D /* SleepControl */ = {
+			isa = PBXGroup;
+			children = (
+				688E7B5E1D2259BB0062DF9D /* SleepWebJSON.swift */,
+			);
+			path = SleepControl;
 			sourceTree = "<group>";
 		};
 		68B4DED21CE1BBC000BE041C /* WebApi */ = {
@@ -2121,6 +2132,7 @@
 				91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */,
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91E1B4E81CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift in Sources */,
+				688E7B5F1D2259BB0062DF9D /* SleepWebJSON.swift in Sources */,
 				68E978111CC7698900651724 /* PKInvitationVCViewModel.swift in Sources */,
 				91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */,
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,

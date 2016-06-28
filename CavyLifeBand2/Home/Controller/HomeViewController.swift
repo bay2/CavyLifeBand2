@@ -93,6 +93,28 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
         // 后台进入前台 同步数据
         addNotificationObserver("updateHomeViewData", selector: #selector(refreshingStatus))
+        
+        
+        
+        let parameters: [String: AnyObject] = ["start_date": "2016-6-5",
+                                               "end_date": "2016-6-20"]
+        
+        
+//        NetWebApi.shareApi.netGetRequest(Web, para: parameters, modelObject: NChartSleepMsg.self, failureHandler: { (str) in
+//            
+//        }) { (any: Any) in
+//            
+//            
+//            return
+//        }
+        
+        
+        NetWebApi.shareApi.netGetRequest(WebApiMethod.Sleep.description, para: parameters, modelObject: NChartSleepMsg.self, successHandler: { (data) in
+            
+        }) { (msg) in
+                
+        }
+        
  
     }
 
