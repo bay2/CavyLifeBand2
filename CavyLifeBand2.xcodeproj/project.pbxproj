@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C0574441D226A4100D78716 /* HomeViewControllerParserExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0574431D226A4000D78716 /* HomeViewControllerParserExtension.swift */; };
+		4C0574491D226FF500D78716 /* HomeListNetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0574481D226FF500D78716 /* HomeListNetRequest.swift */; };
 		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
 		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
 		4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E61CB78F0500DB06FC /* Home.storyboard */; };
@@ -349,6 +351,8 @@
 		0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4C0574431D226A4000D78716 /* HomeViewControllerParserExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerParserExtension.swift; sourceTree = "<group>"; };
+		4C0574481D226FF500D78716 /* HomeListNetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListNetRequest.swift; sourceTree = "<group>"; };
 		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E61CB78F0500DB06FC /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -718,6 +722,7 @@
 			isa = PBXGroup;
 			children = (
 				4CB16D6A1D1130A7006858B5 /* HomeViewController.swift */,
+				4C0574431D226A4000D78716 /* HomeViewControllerParserExtension.swift */,
 				4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */,
 				9150CAB51CC89EA600A398E9 /* RightViewController.swift */,
 				4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */,
@@ -742,6 +747,7 @@
 		4C0BFA081CBF27A900DB06FC /* WebApi */ = {
 			isa = PBXGroup;
 			children = (
+				4C0574481D226FF500D78716 /* HomeListNetRequest.swift */,
 				4CD5AABD1CEDA6030011CD13 /* HomeListWebApi.swift */,
 				4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */,
 				4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */,
@@ -2194,6 +2200,7 @@
 				686A5EFB1CDC474000EB8D0E /* AboutSectionEmptyView.swift in Sources */,
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
 				4CD5AAC91CF42D310011CD13 /* HomeListViewModel.swift in Sources */,
+				4C0574491D226FF500D78716 /* HomeListNetRequest.swift in Sources */,
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
 				4CB7A0731CD095C400DFB8DC /* MenuTableViewCell.swift in Sources */,
@@ -2240,6 +2247,7 @@
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,
 				4CB7A0721CD095C400DFB8DC /* LeftHeaderView.swift in Sources */,
+				4C0574441D226A4100D78716 /* HomeViewControllerParserExtension.swift in Sources */,
 				685204E91CB7938C004179B0 /* AddClockViewController.swift in Sources */,
 				4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */,
 				683655991CBE3C84009373EA /* AlarmRealmModel.swift in Sources */,
