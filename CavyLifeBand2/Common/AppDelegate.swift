@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         #if RELEASE
             Log.enabled = false
-            crashConfig()
+           
         #endif
     
         realmConfig()
@@ -43,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         registerShareSdk()
         
         setRootViewController()
+        crashConfig()
         
        
 

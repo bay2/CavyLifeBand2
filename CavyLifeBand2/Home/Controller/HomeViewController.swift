@@ -97,8 +97,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         // 停止首次进入的刷新
         addNotificationObserver("endHomeViewRefresh", selector: #selector(endFirstRefresh))
  
-        
-
     }
 
     
@@ -169,7 +167,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func addFirstRefresh() {
         
-        let OnlyShowheader = MJRefreshHeader(refreshingBlock: {
+        let onlyShowheader = MJRefreshHeader(refreshingBlock: {
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(10 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
                 
@@ -178,8 +176,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 
         })
 
-        OnlyShowheader.backgroundColor = UIColor(named: .HomeViewMainColor)
-        scrollView.mj_header = OnlyShowheader
+        onlyShowheader.backgroundColor = UIColor(named: .HomeViewMainColor)
+        scrollView.mj_header = onlyShowheader
         
     }
     

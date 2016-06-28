@@ -185,10 +185,13 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             return ["0", "0", "0", "0\(L10n.HomeSleepRingUnitMinute.string)"]
         }
         
-        let stepTargetNumber = userInfo.stepNum
-        if stepTargetNumber != 0 {
-            percent = stepRealm.totalStep * 100 / stepTargetNumber
+        var stepTargetNumber = userInfo.stepNum
+        
+        if stepTargetNumber == 0 {
+            stepTargetNumber = 8000
         }
+        
+        percent = stepRealm.totalStep * 100 / stepTargetNumber
         if percent > 100 {
             percent = 100
         }
@@ -233,7 +236,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         
         if sleepTarge == "" {
             
-            sleepTarge = "0:0"
+            sleepTarge = "8:30"
             
         }
         

@@ -185,7 +185,7 @@ struct GuideBandLinking: GuideViewModelPotocols, LifeBandBleDelegate  {
     init() {
         
         let imageView = AnimatableImageView()
-        imageView.animateWithImage(named: "GuideLinking.gif")
+        imageView.animateWithImage(named: "GuideLinking@3x.gif")
         centerView = PictureView(title: L10n.GuideLinking.string, midImage: imageView)
         
     }
