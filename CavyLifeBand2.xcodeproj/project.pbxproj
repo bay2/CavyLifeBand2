@@ -138,6 +138,7 @@
 		686A5F051CDC7F3900EB8D0E /* RelateAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
+		688E7B5C1D20FB3F0062DF9D /* NetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */; };
 		68A453531D0F96E800552521 /* FirmwareUpdateJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */; };
 		68A453551D0F97FA00552521 /* FirmwareUpdateWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A453541D0F97FA00552521 /* FirmwareUpdateWebApi.swift */; };
 		68B4DED41CE1BBEC00BE041C /* HelpFeedbackJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */; };
@@ -479,6 +480,7 @@
 		686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelateAppCell.xib; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
+		688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequest.swift; sourceTree = "<group>"; };
 		68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateJSON.swift; sourceTree = "<group>"; };
 		68A453541D0F97FA00552521 /* FirmwareUpdateWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateWebApi.swift; sourceTree = "<group>"; };
 		68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpFeedbackJSON.swift; sourceTree = "<group>"; };
@@ -1003,6 +1005,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		688E7B5A1D20FB230062DF9D /* NetWorking */ = {
+			isa = PBXGroup;
+			children = (
+				688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */,
+			);
+			path = NetWorking;
+			sourceTree = "<group>";
+		};
 		68B4DED21CE1BBC000BE041C /* WebApi */ = {
 			isa = PBXGroup;
 			children = (
@@ -1246,6 +1256,7 @@
 		913D0BD51C3FA126006EE7F8 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				688E7B5A1D20FB230062DF9D /* NetWorking */,
 				91D274CC1C86ABB8004F1AA7 /* Define */,
 				91D274CB1C86ABA1004F1AA7 /* Extension */,
 				91D274CA1C86AB8E004F1AA7 /* UI */,
@@ -2086,6 +2097,7 @@
 				68C558D41CB754090031719D /* IntelligentClockCell.swift in Sources */,
 				686A5EE51CDB16DE00EB8D0E /* AKPickerView.swift in Sources */,
 				9114D1F21C97AB05008CB4CE /* UserProtocolView.swift in Sources */,
+				688E7B5C1D20FB3F0062DF9D /* NetRequest.swift in Sources */,
 				4C9E0B4A1D1A395200DBC1FC /* ChartInfoListCell.swift in Sources */,
 				91B04DDA1CB3D4F0007E67B0 /* UserViewControllerProtocol.swift in Sources */,
 				6859BC3E1CD04FE80050F6A0 /* PKRecordsCellViewModel.swift in Sources */,
