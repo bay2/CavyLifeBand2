@@ -31,12 +31,42 @@ struct BindBandCtrl {
 protocol LifeBandBleDelegate {
     
     func bleMangerState(bleState: CBCentralManagerState)
+    func saveMacAddress()
     
 }
 
 extension LifeBandBleDelegate {
     
     func bleMangerState(bleState: CBCentralManagerState) {}
+    
+    /**
+     保存mac地址
+     
+     - author: sim cai
+     - date: 2016-06-02
+     */
+    func saveMacAddress() {
+        
+        let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        
+        CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
+        
+        if BindBandCtrl.bandMacAddress.length == 6 {
+            CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = LifeBandBle.shareInterface.getPeripheralName() + "," +
+                String(format: "%02X:%02X:%02X:%02X:%02X:%02X",
+                       BindBandCtrl.bandMacAddress[0],
+                       BindBandCtrl.bandMacAddress[1],
+                       BindBandCtrl.bandMacAddress[2],
+                       BindBandCtrl.bandMacAddress[3],
+                       BindBandCtrl.bandMacAddress[4],
+                       BindBandCtrl.bandMacAddress[5])
+        }
+        
+        Log.info("defaultBindBand = \(CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand)")
+        //        defaultBindBand = Cavy2-D525,25:D5:4B:F8:E6:A0
+    }
+    
+
     
 }
 
@@ -273,6 +303,7 @@ class LifeBandBle: NSObject {
         if getConnectState() == .Connected {
             
             Log.info("bleConnect end")
+            
             connectComplete?()
             return
         }

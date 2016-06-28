@@ -80,6 +80,4 @@ protocol GuideViewDelegate {
         
     }
     
-    
-    
 }

@@ -232,7 +232,7 @@ struct GuideBandLinking: GuideViewModelPotocols, LifeBandBleDelegate  {
  *
  *  绑定成功
  */
-struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
+struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate, LifeBandBleDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView { return PictureView(title: L10n.GuidePairSuccess.string, titleInfo: L10n.GuidePairSuccessInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairSeccuss))) }
@@ -281,11 +281,13 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
             
         }
         
-        // 重新绑定手环在这里设置信息，其他在RootViewController 设置
+        // 重新绑定手环在这里设置信息，其他在RootViewController 
+         //设置 保存 MacAddress
         if BindBandCtrl.bindScene == .Rebind {
             
-            let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-            CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
+            
+            saveMacAddress()
+            
             UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView())
             UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView())
             return
