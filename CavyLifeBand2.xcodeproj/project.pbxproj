@@ -166,6 +166,7 @@
 		88482C221D220AC30084628B /* GuideLinking@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 88482C201D220AC30084628B /* GuideLinking@2x.gif */; };
 		88482C231D220AC30084628B /* GuideLinking@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 88482C211D220AC30084628B /* GuideLinking@3x.gif */; };
 		887C75B81D114AB2009EA1F6 /* Array_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887C75B71D114AB2009EA1F6 /* Array_Extension.swift */; };
+		88D1B5711D236BC000BB1F30 /* StepWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D1B5701D236BC000BB1F30 /* StepWebApi.swift */; };
 		88F6E2AA1D225B37008F373B /* StepsDataReaml.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6E2A91D225B37008F373B /* StepsDataReaml.swift */; };
 		88F6E2AC1D226971008F373B /* StepDataJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F6E2AB1D226971008F373B /* StepDataJson.swift */; };
 		9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */; };
@@ -511,6 +512,7 @@
 		88482C201D220AC30084628B /* GuideLinking@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GuideLinking@2x.gif"; sourceTree = "<group>"; };
 		88482C211D220AC30084628B /* GuideLinking@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GuideLinking@3x.gif"; sourceTree = "<group>"; };
 		887C75B71D114AB2009EA1F6 /* Array_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array_Extension.swift; sourceTree = "<group>"; };
+		88D1B5701D236BC000BB1F30 /* StepWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepWebApi.swift; sourceTree = "<group>"; };
 		88F6E2A91D225B37008F373B /* StepsDataReaml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsDataReaml.swift; sourceTree = "<group>"; };
 		88F6E2AB1D226971008F373B /* StepDataJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDataJson.swift; sourceTree = "<group>"; };
 		9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtSearch.swift; sourceTree = "<group>"; };
@@ -1151,6 +1153,7 @@
 			children = (
 				88F6E2A91D225B37008F373B /* StepsDataReaml.swift */,
 				88F6E2AB1D226971008F373B /* StepDataJson.swift */,
+				88D1B5701D236BC000BB1F30 /* StepWebApi.swift */,
 			);
 			path = WebApi;
 			sourceTree = "<group>";
@@ -2222,6 +2225,7 @@
 				4C4C602E1CE5C4A10026C045 /* ContactsAddFriendCell.swift in Sources */,
 				68648A771CEEDFF6009D4BEE /* EmergencyJSON.swift in Sources */,
 				683655921CBE25A6009373EA /* SettingSwitchCellViewModel.swift in Sources */,
+				88D1B5711D236BC000BB1F30 /* StepWebApi.swift in Sources */,
 				684097081CE058A400A8BAD2 /* WebVCViewModel.swift in Sources */,
 				68648A831CF3F234009D4BEE /* UpdateProgressView.swift in Sources */,
 				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,

@@ -288,30 +288,48 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func parseStepDate(startDate: String, endDate: String) {
 
-        ChartsWebApi.shareApi.parseStepChartsData(startDate, endDate: endDate) { result in
-
-            guard result.isSuccess else {
-                Log.error("Parse Home Lists Data Error")
-                return
+//        ChartsWebApi.shareApi.parseStepChartsData(startDate, endDate: endDate) { result in
+//
+//            guard result.isSuccess else {
+//                Log.error("Parse Home Lists Data Error")
+//                return
+//            }
+//            
+//            do {
+//                
+//                let netResult = try ChartStepMsg(JSONDecoder(result.value!))
+//
+//                
+//                for list in netResult.stepList {
+//                    // 保存到数据库
+//                    self.addStepListRealm(list)
+//                }
+//                
+//            } catch let error {
+//                
+//                Log.error("\(#function) result error: \(error)")
+//            }
+//
+//        }
+//        
+        
+     let  parameters: [String: AnyObject] = ["start_date": startDate, "end_date": endDate]
+        
+        NetWebApi.shareApi.netGetRequest(WebApiMethod.Steps.description , para: parameters, modelObject: NChartStepData.self , successHandler: { result  in
+            
+            Log.info(result)
+            
+            for list in result.stepsData.stepsData {
+               
+                self.addStepListRealm(list)
             }
             
-            do {
+            }) {   Msg in
                 
-                let netResult = try ChartStepMsg(JSONDecoder(result.value!))
-
                 
-                for list in netResult.stepList {
-                    // 保存到数据库
-                    self.addStepListRealm(list)
-                }
-                
-            } catch let error {
-                
-                Log.error("\(#function) result error: \(error)")
-            }
-            
+             Log.info(Msg)
+             Log.error("Parse Home Lists Data Error")
         }
-
     }
     
     /**
@@ -355,11 +373,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      
      - parameter list: 计步信息JSON
      */
-    func addStepListRealm(list: StepMsg) {
-        
-        guard let date = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
-            return
-        }
+    func addStepListRealm(list: StepsDataItem) {
+    
         
         self.addStepData(ChartStepDataRealm(userId: self.userId, time: date, step: list.stepCount))
 

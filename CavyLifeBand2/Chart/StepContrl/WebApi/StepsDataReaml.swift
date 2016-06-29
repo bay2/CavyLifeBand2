@@ -15,13 +15,23 @@ import JSONJoy
 
 class NChartStepDataRealm: Object {
     
-    dynamic var userId             = ""
-    dynamic var date: NSDate       = NSDate()
-    dynamic var kilometer: CGFloat = 0
-    dynamic var totalTime: Int     = 0
-    dynamic var totalStep: Int     = 0
-    dynamic var stepList: Array<[[String :Int]]>    = []
+    dynamic var userId                           = ""
+    dynamic var date: NSDate                     = NSDate()
+    dynamic var kilometer: CGFloat               = 0
+    dynamic var totalTime: Int                   = 0
+    dynamic var totalStep: Int                   = 0
+    dynamic var stepList: Array<[[String :Int]]> = []
   
+    convenience init(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, date: NSDate, kilometer: CGFloat, totalTime: Int, totalStep: Int, stepList: Array<[[String :Int]]> ) {
+
+        self.init()
+        self.userId    = userId
+        self.date      = date
+        self.kilometer = kilometer
+        self.totalTime = totalTime
+        self.totalStep = totalStep
+        self.stepList  = stepList
+    }
     
 }
 
