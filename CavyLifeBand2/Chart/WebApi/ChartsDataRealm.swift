@@ -160,12 +160,12 @@ extension ChartsRealmProtocol {
             
         } catch {
             
-            Log.error("Add charts info error [\(chartsInfo)]")
+            Log.error("Add step charts info error [\(chartsInfo)]")
             return false
             
         }
         
-        Log.info("Add charts info success")
+        Log.info("Add step charts info success")
         
         return true
         
@@ -376,12 +376,12 @@ extension ChartsRealmProtocol {
             
         } catch {
             
-            Log.error("Add charts info error [\(chartsInfo)]")
+            Log.error("Add sleep charts info error [\(chartsInfo)]")
             return false
             
         }
         
-        Log.info("Add charts info success")
+        Log.info("Add Sleep charts info success")
         return true
         
     }

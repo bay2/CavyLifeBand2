@@ -34,7 +34,7 @@ extension RootViewController: ChartsRealmProtocol {
                 guard (NSDate().gregorian.beginningOfDay.date - syncDate).totalMinutes >= 10  else {
                     
                     // 发送通知让主页停止同步数据下拉消失
-                    NSNotificationCenter.defaultCenter().postNotificationName("endHomeViewRefresh", object: nil)
+                    NSNotificationCenter.defaultCenter().postNotificationName("endHomeViewAutoRefresh", object: nil)
                     
                     return
                 }
@@ -194,6 +194,10 @@ extension RootViewController: ChartsRealmProtocol {
         
         if bleState == .PoweredOn &&
             (LifeBandBle.shareInterface.getConnectState() == .Connected || LifeBandBle.shareInterface.getConnectState() == .Connecting) {
+            
+            // 蓝牙状态改变
+            // 通知主页 自动下拉刷新 同步手环数据
+//            NSNotificationCenter.defaultCenter().postNotificationName("addHomeViewAutoRefresh", object: nil)
         }
         
     }

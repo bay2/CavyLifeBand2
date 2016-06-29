@@ -373,7 +373,12 @@ extension LifeBandBle: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(central: CBCentralManager) {
         
         if central.state == .PoweredOn {
+            
             bleConnect(self.peripheralMacAddress)
+            // 蓝牙状态改变
+            // 通知主页 自动下拉刷新 同步手环数据
+            NSNotificationCenter.defaultCenter().postNotificationName("addHomeViewAutoRefresh", object: nil)
+            
         } else {
             NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
         }
