@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 import Log
 import Datez
+import Alamofire
 
 /// 长时间没有数据，12 = 2小时， 12 * 10分钟
 let noSleepTime = 12
@@ -57,7 +58,7 @@ class ChartSleepDataRealm: Object {
 }
 
 // MARK: 计步睡眠数据库操作协议
-protocol ChartsRealmProtocol {
+protocol ChartsRealmProtocol: SleepWebRealmOperate {
     
     var realm: Realm { get }
     var userId: String { get }
@@ -672,27 +673,103 @@ extension ChartsRealmProtocol {
      
      - returns: [(总的睡眠时间, 深睡, 浅睡)] 数据按每天返回
      */
+//    func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)] {
+//        
+//        var reslutData: [(Double, Double, Double)] = []
+//        
+//        let dayTotal = (endTime - beginTime).totalDays
+//        
+//        Log.info("querySleepInfoDays Begin \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
+//        
+//        for i in 0...dayTotal {
+//            
+//            // 从前天的晚上6点开始算起
+//            let newBeginTime = ((beginTime.gregorian + i.day).beginningOfDay - 6.hour).date
+//            let newEndTime = (newBeginTime.gregorian + 24.day).date
+//            
+//            reslutData.append(querySleepInfo(newBeginTime, endTime: newEndTime))
+//            
+//        }
+//        
+//        Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
+//        
+//        return reslutData
+//        
+//    }
+    
     func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)] {
         
         var reslutData: [(Double, Double, Double)] = []
         
         let dayTotal = (endTime - beginTime).totalDays
         
+        /// 取出数据库中这段时间里的数据
+        let sleepWenRealms = querySleepWebRealm(startDate: beginTime, endDate: endTime)
+        
+        var realmIndex = 0
+        
         Log.info("querySleepInfoDays Begin \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
         
+        /// 数据库中没有 即没数据
+        guard sleepWenRealms?.count > 0 else {
+            
+            for _ in 0...dayTotal {
+                
+                reslutData.append((0.0, 0.0, 0.0))
+                
+            }
+            
+            return reslutData
+        
+        }
+        
+        /// 转化数据库中的数据，并做断档数据补0
         for i in 0...dayTotal {
             
-            // 从前天的晚上6点开始算起
-            let newBeginTime = ((beginTime.gregorian + i.day).beginningOfDay - 6.hour).date
-            let newEndTime = (newBeginTime.gregorian + 24.day).date
+            if realmIndex < sleepWenRealms?.count {
+                
+                if ((beginTime.gregorian + i.day).beginningOfDay.date - sleepWenRealms![realmIndex].date).totalDays == 0 {
+                
+                    reslutData.append(sleepWenRealms![realmIndex].transformToTuple())
+                    
+                    realmIndex += 1
+                    
+                } else {
+                    reslutData.append((0.0, 0.0, 0.0))
+                }
+                
+            } else {
             
-            reslutData.append(querySleepInfo(newBeginTime, endTime: newEndTime))
+                reslutData.append((0.0, 0.0, 0.0))
+                
+            }
             
         }
         
         Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
         
-        return reslutData
+        let nowDate = NSDate()
+        
+        // 当天数据的特殊处理
+        if (nowDate - beginTime).totalDays >= 0 && (nowDate - endTime).totalDays <= 0 {
+            // 有网直接返回
+            guard NetworkReachabilityManager(host: "www.baidu.com")?.isReachable == false else {
+                return reslutData
+            }
+            
+            // 没网显示手环数据库的数据
+            
+            // 从前天的晚上6点开始算起
+            let newBeginTime = (nowDate.gregorian.beginningOfDay - 6.hour).date
+            let newEndTime = (newBeginTime.gregorian + 1.day).date
+            
+            reslutData[(nowDate - beginTime).totalDays] = querySleepInfo(newBeginTime, endTime: newEndTime)
+            
+            return reslutData
+            
+        } else {
+            return reslutData
+        }
         
     }
     

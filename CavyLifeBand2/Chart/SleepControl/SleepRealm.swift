@@ -40,6 +40,22 @@ extension SleepWebRealm {
 
     }
     
+    /**
+     转换至Tuple格式
+     
+     - returns: 
+     */
+    func transformToTuple() -> (Double, Double, Double) {
+        
+        let totalTime: Double = self.totalTime.toDouble
+        let deepTime: Double  = self.deepTime.toDouble
+        let lightTime: Double = totalTime - deepTime
+        
+        return (totalTime, deepTime, lightTime)
+        
+    }
+    
+    
 }
 
 protocol SleepWebRealmOperate {
