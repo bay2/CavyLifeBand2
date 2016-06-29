@@ -21,7 +21,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
     }
     
     /// 最大输入18个字符
-    let MAX_COUNT = 18
+    let MAXCOUNT = 18
     
     var viewModel: ContactsReqFriendPortocols?
     
@@ -106,7 +106,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
     
     
     
-    func textChange(Noti: NSNotification) {
+    func textChange(noti: NSNotification) {
         
         if requestTextField.markedTextRange != nil {
             
@@ -137,7 +137,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
         
         let text: NSString =  (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
         
-        if text.length > MAX_COUNT {
+        if text.length > MAXCOUNT {
             
             return false
         }
@@ -153,7 +153,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
         let length = text?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
         var newText = text
         
-        if length > MAX_COUNT {
+        if length > MAXCOUNT {
             
             newText  = confineTextFiledText(newText?.substringToIndex(newText!.length - 1))
             
