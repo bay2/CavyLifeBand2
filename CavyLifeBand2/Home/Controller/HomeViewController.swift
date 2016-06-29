@@ -321,7 +321,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             
             for list in result.stepsData.stepsData {
                
-                self.addStepListRealm(list)
+//                self.addStepListRealm(list)
             }
             
             }) {   Msg in
@@ -373,8 +373,11 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      
      - parameter list: 计步信息JSON
      */
-    func addStepListRealm(list: StepsDataItem) {
+    func addStepListRealm(list: StepMsg) {
     
+        guard let date = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
+            return
+        }
         
         self.addStepData(ChartStepDataRealm(userId: self.userId, time: date, step: list.stepCount))
 

@@ -37,5 +37,18 @@ class NChartStepDataRealm: Object {
 }
 
 
+// MARK: 计步数据库操作协议
+protocol ChartStepRealmProtocol {
+    
+    var realm:  Realm  { get }
+    var userId: String { get }
+    
+    
+    func queryBeforTodayStepInfo
+    
+    
+}
+
+
 
 
