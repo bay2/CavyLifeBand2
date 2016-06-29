@@ -50,6 +50,8 @@ protocol SleepWebRealmOperate {
     
     func querySleepWebRealm(userId: String, startDate: NSDate, endDate: NSDate) -> Results<(SleepWebRealm)>?
     
+    func deleteSleepWebRealm(userId: String, startDate: NSDate, endDate: NSDate) -> Bool
+    
 }
 
 extension SleepWebRealmOperate {
@@ -89,6 +91,31 @@ extension SleepWebRealmOperate {
         
         return sleepData
     
+    }
+    
+    func deleteSleepWebRealm(userId: String, startDate: NSDate, endDate: NSDate) -> Bool {
+        
+        let predicate = NSPredicate(format: "userId == %@ AND date >= %@ AND date <= %@", userId, startDate, endDate)
+        
+        let sleepData = realm.objects(SleepWebRealm).filter(predicate)
+        
+        if sleepData.count <= 0 {
+            return true
+        }
+        
+        realm.beginWrite()
+        
+        realm.delete(sleepData)
+        
+        do {
+            try realm.commitWrite()
+        } catch let error {
+            Log.error("\(#function) error = \(error)")
+            return false
+        }
+        
+        return true
+
     }
 
 }
