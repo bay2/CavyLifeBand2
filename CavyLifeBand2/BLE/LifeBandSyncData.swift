@@ -283,7 +283,7 @@ class LifeBandSyncData {
             tiltsAndStepsInfo.append(dataTiltsAndStep)
             
         }
-        
+    
         packetNo = (packetNo == 72 ? 1 : packetNo + 1)
         
         return false
