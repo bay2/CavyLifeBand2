@@ -94,11 +94,11 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         // 添加自动刷新
         addAutoRefreshHeader()
 
-        // 后台进入前台 同步数据
-        addNotificationObserver("addHomeViewAutoRefresh", selector: #selector(beginHomeViewRefreshing))
+        // 后台进入前台 同步数据  "addHomeViewAutoRefresh"
+        addNotificationObserver(RefreshStatus.AddAutoRefresh.rawValue, selector: #selector(beginHomeViewRefreshing))
         
-        // 停止自动刷新 更改刷新的header为手动刷新模式
-        addNotificationObserver("endHomeViewAutoRefresh", selector: #selector(endHomeViewRefreshing))
+        // 停止自动刷新 更改刷新的header为手动刷新模式 "endHomeViewAutoRefresh"
+        addNotificationObserver(RefreshStatus.StopRefresh.rawValue, selector: #selector(endHomeViewRefreshing))
  
     }
     
@@ -121,7 +121,11 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     func bandConnect() {
 
         // 手环连接 自动同步数据
-        scrollView.mj_header.beginRefreshing()
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+            // 等待两秒 连接手环的时间
+            self.scrollView.mj_header.beginRefreshing()
+            
+        }
         rightBtn?.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
         
     }

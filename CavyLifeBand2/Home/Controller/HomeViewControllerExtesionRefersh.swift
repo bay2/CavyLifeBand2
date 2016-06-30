@@ -14,6 +14,15 @@ import EZSwiftExtensions
 import RealmSwift
 import MJRefresh
 
+enum RefreshStatus: String {
+    
+    case AddAutoRefresh
+    case StopRefresh
+    
+}
+
+
+
 extension HomeViewController {
     
     /**  开始刷新

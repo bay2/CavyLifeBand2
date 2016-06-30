@@ -684,7 +684,7 @@ extension ChartsRealmProtocol {
             
             // 从前天的晚上6点开始算起
             let newBeginTime = ((beginTime.gregorian + i.day).beginningOfDay - 6.hour).date
-            let newEndTime = (newBeginTime.gregorian + 24.day).date
+            let newEndTime = (newBeginTime.gregorian + 24.hour).date
             
             reslutData.append(querySleepInfo(newBeginTime, endTime: newEndTime))
             
