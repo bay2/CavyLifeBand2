@@ -36,7 +36,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         // 接收通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeStepNumber), name: NumberFollowUpper.FollowUpperStep.rawValue, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeSleepNumber), name: NumberFollowUpper.FollowUpperSleep.rawValue, object: nil)
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeSleepNumber), name: NumberFollowUpper.FollowUpperSleep.rawValue, object: nil)
     }
     
     deinit {
@@ -350,18 +350,18 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     /**
      接受通知更新睡眠值
      */
-    func changeSleepNumber() {
-        
-        guard let curDate = NSDate(fromString: timeString, format: "yyyy.M.d") else {
-            fatalError("时间格式不正确\(timeString)")
-        }
-        
-        let endDate = curDate.gregorian.isToday ? NSDate() : (curDate.gregorian.beginningOfDay + 24.hour).date
-
-        self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: Int(self.querySleepInfoDay(curDate, endTime: endDate).0))
-        self.tableView.reloadData()
-        
-    }
+//    func changeSleepNumber() {
+//        
+//        guard let curDate = NSDate(fromString: timeString, format: "yyyy.M.d") else {
+//            fatalError("时间格式不正确\(timeString)")
+//        }
+//        
+//        let endDate = curDate.gregorian.isToday ? NSDate() : (curDate.gregorian.beginningOfDay + 24.hour).date
+//
+//        self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: Int(self.querySleepInfoDay(curDate, endTime: endDate).0))
+//        self.tableView.reloadData()
+//        
+//    }
     
 }
 
