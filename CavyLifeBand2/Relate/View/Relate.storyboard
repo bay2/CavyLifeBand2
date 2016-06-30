@@ -177,6 +177,41 @@
             </objects>
             <point key="canvasLocation" x="4799" y="220"/>
         </scene>
+        <!--Function IntroduceVC-->
+        <scene sceneID="wBb-bI-Q3s">
+            <objects>
+                <viewController storyboardIdentifier="FunctionIntroduceVC" id="NWP-Kj-A77" customClass="FunctionIntroduceVC" customModule="CavyLifeBand2" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7eu-1w-VUf"/>
+                        <viewControllerLayoutGuide type="bottom" id="edZ-v3-a4G"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vkL-mt-aOS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DhP-8j-qJj">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <connections>
+                                    <outlet property="delegate" destination="NWP-Kj-A77" id="Fs1-1s-Tat"/>
+                                </connections>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="DhP-8j-qJj" firstAttribute="top" secondItem="7eu-1w-VUf" secondAttribute="bottom" id="NkC-9o-M3A"/>
+                            <constraint firstAttribute="trailing" secondItem="DhP-8j-qJj" secondAttribute="trailing" id="RAQ-vv-FmM"/>
+                            <constraint firstItem="DhP-8j-qJj" firstAttribute="leading" secondItem="vkL-mt-aOS" secondAttribute="leading" id="fpI-df-oLS"/>
+                            <constraint firstItem="edZ-v3-a4G" firstAttribute="top" secondItem="DhP-8j-qJj" secondAttribute="bottom" id="xp7-vt-82b"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scrollView" destination="DhP-8j-qJj" id="P8b-oB-whR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ywf-6q-fMt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5462" y="220"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="w8n-kZ-94d">
             <objects>
