@@ -247,6 +247,10 @@ class LifeBandSyncData {
             syncState = .NoSync
             
             Log.info("Band sync end")
+            
+            // 发送通知让主页停止同步数据下拉消失
+            NSNotificationCenter.defaultCenter().postNotificationName("endHomeViewRefresh", object: nil)
+            
             return true
             
         }
@@ -272,9 +276,10 @@ class LifeBandSyncData {
                 continue
             }
             
-            if dataTiltsAndStep.steps == 0 && dataTiltsAndStep.tilts == 0 {
-                continue
-            }
+            // 0数据也保存
+//            if dataTiltsAndStep.steps == 0 && dataTiltsAndStep.tilts == 0 {
+//                continue
+//            }
             
             tiltsAndStepsInfo.append(dataTiltsAndStep)
             

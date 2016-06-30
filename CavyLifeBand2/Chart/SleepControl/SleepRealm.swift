@@ -62,11 +62,45 @@ protocol SleepWebRealmOperate {
     
     var realm: Realm { get }
     
+    /**
+     添加睡眠数据
+     
+     - parameter model:
+     
+     - returns:
+     */
     func addSleepWebRealm(model: SleepWebRealm) -> Bool
     
+    /**
+     获取一段时间内的睡眠数据
+     
+     - parameter userId:
+     - parameter startDate:
+     - parameter endDate:
+     
+     - returns:
+     */
     func querySleepWebRealm(userId: String, startDate: NSDate, endDate: NSDate) -> Results<(SleepWebRealm)>?
     
+    /**
+     删除数据
+     
+     - parameter userId:
+     - parameter startDate:
+     - parameter endDate:
+     
+     - returns:
+     */
     func deleteSleepWebRealm(userId: String, startDate: NSDate, endDate: NSDate) -> Bool
+    
+    /**
+     获取该用户所有睡眠数据
+     
+     - parameter userId:
+     
+     - returns:
+     */
+    func queryUserSleepWebRealm(userId: String) -> Results<(SleepWebRealm)>?
 
 }
 
@@ -132,6 +166,21 @@ extension SleepWebRealmOperate {
         
         return true
 
+    }
+    
+    func queryUserSleepWebRealm(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(SleepWebRealm)>? {
+        
+        let predicate = NSPredicate(format: "userId == %@", userId)
+        
+        let sleepData = realm.objects(SleepWebRealm).filter(predicate)
+        
+        guard sleepData.count > 0 else {
+            Log.info("There is no sleepWebData for this userId")
+            return nil
+        }
+        
+        return sleepData
+        
     }
 
 }

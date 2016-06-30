@@ -303,6 +303,7 @@ class LifeBandBle: NSObject {
         if getConnectState() == .Connected {
             
             Log.info("bleConnect end")
+            
             connectComplete?()
             return
         }

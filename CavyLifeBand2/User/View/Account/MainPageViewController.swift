@@ -88,17 +88,24 @@ class MainPageViewController: UIViewController {
         }
         
         signUpBtn.addTapGesture { _ in
-            
-            let guideVC = StoryboardScene.Guide.instantiateGuideView()
-            
-            let guideVM = GuideBandBluetooth()
-            guideVC.configView(guideVM, delegate: guideVM)
-            
-            self.presentVC(UINavigationController(rootViewController: guideVC))
-            
+//            
+//            let guideVC = StoryboardScene.Guide.instantiateGuideView()
+//            
+//            let guideVM = GuideBandBluetooth()
+//            guideVC.configView(guideVM, delegate: guideVM)
+//            
+//            self.presentVC(UINavigationController(rootViewController: guideVC))
+//            
             // 注册绑定场景
-            BindBandCtrl.bindScene = .SignUpBind
+//            BindBandCtrl.bindScene = .SignUpBind
             
+            
+            let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
+            
+            accountVC.configView(PhoneSignUpViewModel())
+            
+          self.presentVC(UINavigationController(rootViewController: accountVC))
+        
         }
         
         signUpBtn.awakeFromNib()

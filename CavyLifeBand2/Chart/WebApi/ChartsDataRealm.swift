@@ -23,6 +23,7 @@ class ChartStepDataRealm: Object {
     dynamic var time: NSDate       = NSDate()
     dynamic var step               = 0
     dynamic var kilometer: CGFloat = 0
+    dynamic var syncState          = ChartBandDataSyncState.UnSync.rawValue
     
     convenience init(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, time: NSDate, step: Int) {
         
@@ -43,6 +44,7 @@ class ChartSleepDataRealm: Object {
     dynamic var userId       = ""
     dynamic var time: NSDate = NSDate()
     dynamic var tilts        = 0
+    dynamic var syncState    = ChartBandDataSyncState.UnSync.rawValue
     
     convenience init(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, time: NSDate, tilts: Int) {
         
@@ -55,6 +57,11 @@ class ChartSleepDataRealm: Object {
     }
     
     
+}
+
+enum ChartBandDataSyncState: Int {
+    case Synced = 0
+    case UnSync = 1
 }
 
 // MARK: 计步睡眠数据库操作协议
@@ -803,6 +810,28 @@ extension ChartsRealmProtocol {
         
         
     }
+    
+//    func queryUploadBandData() -> [Int] {
+//        
+//        let realmSleepData = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND syncState == %d", ChartBandDataSyncState.UnSync.rawValue).sorted("time", ascending: true)
+//        
+//        if realmSleepData.isEmpty {
+//            return []
+//        }
+//        
+//        let dataSize = ((realmSleepData.last!.time - realmSleepData[0].time).totalMinutes) / 10 + 1
+//        
+//        var reslutArray = Array<Int>(count: dataSize, repeatedValue: 0)
+//        
+//        for data in realmSleepData {
+//            
+//            let index = (data.time - beginTime).totalMinutes / 10
+//            reslutArray[index] = data.tilts
+//        }
+//        
+//        return reslutArray
+//        
+//    }
 
 }
 
