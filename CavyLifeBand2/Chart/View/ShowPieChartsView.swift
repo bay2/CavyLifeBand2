@@ -24,11 +24,11 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         /**
          *  添加假数据
          */
-        self.deepSleep = 120
-        self.lightSleep = 278
+//        self.deepSleep = 120
+//        self.lightSleep = 278
         
-//        self.deepSleep  = deepSleep
-//        self.lightSleep = lightSleep
+        self.deepSleep  = deepSleep
+        self.lightSleep = lightSleep
         
         self.backgroundColor = UIColor(named: .HomeViewMainColor)
         

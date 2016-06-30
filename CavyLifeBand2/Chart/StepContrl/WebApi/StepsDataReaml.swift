@@ -44,7 +44,27 @@ protocol ChartStepRealmProtocol {
     var userId: String { get }
     
     
-    func queryBeforTodayStepInfo()
+    func queryBeforTodayStepInfo(userId: String) -> Results<(NChartStepDataRealm)>
+    func isNeedUpdateStepData() -> Bool
+    func addStepData(chartStepInfo: NChartStepDataRealm) -> Bool
+    func removeStepData(chartsInfo: NChartStepDataRealm) -> Bool
+    func delecSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool
+     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData
+    
+    
+}
+
+
+struct StepShowItem {
+    
+    var totalStep: Int          = 0
+    var totalKilometer: CGFloat = 0.0
+    var finishTime: Int
+    
+    
+    
+    
+    
     
     
 }

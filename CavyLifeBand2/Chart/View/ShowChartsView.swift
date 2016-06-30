@@ -149,9 +149,9 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
                 
             }
             // 假数据
-            let dataEntry = BarChartDataEntry(value: Double(arc4random_uniform(30)+1)/10, xIndex: i)
+//            let dataEntry = BarChartDataEntry(value: Double(arc4random_uniform(30)+1)/10, xIndex: i)
         
-//            let dataEntry = BarChartDataEntry(value: Double(chartsData[i].kilometer), xIndex: i)
+            let dataEntry = BarChartDataEntry(value: Double(chartsData[i].kilometer), xIndex: i)
             
             yVals.append(dataEntry)
         }
