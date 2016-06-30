@@ -139,6 +139,7 @@
 		686A5F041CDC7F3900EB8D0E /* RelateAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5F021CDC7F3900EB8D0E /* RelateAppCell.swift */; };
 		686A5F051CDC7F3900EB8D0E /* RelateAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */; };
 		6874798D1D22943100354A5B /* SleepRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6874798C1D22943100354A5B /* SleepRealm.swift */; };
+		687479941D24AF0600354A5B /* SleepWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479931D24AF0600354A5B /* SleepWebApi.swift */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		688E7B5C1D20FB3F0062DF9D /* NetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */; };
@@ -484,6 +485,7 @@
 		686A5F021CDC7F3900EB8D0E /* RelateAppCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelateAppCell.swift; sourceTree = "<group>"; };
 		686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelateAppCell.xib; sourceTree = "<group>"; };
 		6874798C1D22943100354A5B /* SleepRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepRealm.swift; sourceTree = "<group>"; };
+		687479931D24AF0600354A5B /* SleepWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepWebApi.swift; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequest.swift; sourceTree = "<group>"; };
@@ -1024,6 +1026,7 @@
 			isa = PBXGroup;
 			children = (
 				688E7B5E1D2259BB0062DF9D /* SleepWebJSON.swift */,
+				687479931D24AF0600354A5B /* SleepWebApi.swift */,
 				6874798C1D22943100354A5B /* SleepRealm.swift */,
 			);
 			path = SleepControl;
@@ -2104,6 +2107,7 @@
 				4CB7A0751CD095C400DFB8DC /* HomeDataCellFlowLayout.swift in Sources */,
 				4CB7A0771CD095C400DFB8DC /* HomeDateView.swift in Sources */,
 				685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */,
+				687479941D24AF0600354A5B /* SleepWebApi.swift in Sources */,
 				68648A891CF6936D009D4BEE /* GuideIntroduceView.swift in Sources */,
 				683655271CBB3B2C009373EA /* SettingSwitchTableViewCell.swift in Sources */,
 				4CB7A0781CD095C400DFB8DC /* HomeDateViewCell.swift in Sources */,
