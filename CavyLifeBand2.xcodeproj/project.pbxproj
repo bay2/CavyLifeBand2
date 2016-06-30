@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C05744B1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */; };
 		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
 		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
 		4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E61CB78F0500DB06FC /* Home.storyboard */; };
@@ -350,6 +351,7 @@
 		0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerExtesionRefersh.swift; sourceTree = "<group>"; };
 		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E61CB78F0500DB06FC /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 			isa = PBXGroup;
 			children = (
 				4CB16D6A1D1130A7006858B5 /* HomeViewController.swift */,
+				4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */,
 				4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */,
 				9150CAB51CC89EA600A398E9 /* RightViewController.swift */,
 				4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */,
@@ -2064,7 +2067,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\n  tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n  echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+			shellScript = "if hash tailor 2>/dev/null; then\n tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2193,6 +2196,7 @@
 				686A5EF81CDC3D4500EB8D0E /* AboutCell.swift in Sources */,
 				918AA22E1CE327DC0022AE30 /* LifeBandBLE.swift in Sources */,
 				4C9E0B511D1A395200DBC1FC /* ShareView.swift in Sources */,
+				4C05744B1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift in Sources */,
 				916456451CE1C115002D2D87 /* AlamofireImageExtension.swift in Sources */,
 				4C9E0B491D1A395200DBC1FC /* ChartsInfoCollectionCell.swift in Sources */,
 				683655951CBE25DB009373EA /* ReminderSettingVCViewModel.swift in Sources */,

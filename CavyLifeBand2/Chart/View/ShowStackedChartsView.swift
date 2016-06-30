@@ -24,6 +24,9 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     // 深睡浅睡柱状图
     var chartsData: [PerSleepChartsData] = []
     
+    // 最大值 显示在左上角
+    var maxValue: Int = 0
+
     /**
      配置所有视图 主入口
      */
@@ -71,8 +74,8 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
             pinchZoomEnabled = false
             
         }
-
-        descriptionText = "12h"
+        
+        descriptionText = "\(maxValue  / 60 + 1)h"
         descriptionFont = UIFont.systemFontOfSize(12)
         descriptionTextPosition = CGPointMake(20, 0)
         descriptionTextColor = UIColor.whiteColor()
@@ -162,12 +165,17 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
             let val1 = Double(chartsData[i].deepSleep)
             let val2 = Double(chartsData[i].lightSleep)
             
+            if maxValue < chartsData[i].deepSleep + chartsData[i].lightSleep {
+                maxValue = chartsData[i].deepSleep + chartsData[i].lightSleep
+            }
             let dataEntrys = BarChartDataEntry(values: [val1, val2], xIndex: i)
         
             yVals.append(dataEntrys)
         }
         
-        
+        // 更新左边显示的最大值
+        descriptionText = "\(maxValue / 60 + 1)h"
+
         var dataSet = BarChartDataSet()
         if self.data?.dataSetCount > 0 {
             
@@ -205,6 +213,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         
         Log.info("\n\(chartView)\n\(entry)\n\(dataSetIndex)\n\(highlight)")
+        
         chartView.data?.setDrawValues(true)
         
         chartView.setNeedsDisplay()
