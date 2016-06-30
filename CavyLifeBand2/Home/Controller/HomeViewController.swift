@@ -20,7 +20,7 @@ let dateViewHeight: CGFloat = 50.0
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
 let navBarHeight: CGFloat = 64.0
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate ,ChartStepRealmProtocol {
     
     var leftBtn: UIButton? = {
         
@@ -347,7 +347,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 //            }
 //
 //        }
-//        
+//
         
 //     let  parameters: [String: AnyObject] = ["start_date": startDate, "end_date": endDate]
      let  parameters: [String: AnyObject] = ["start_date": "2016-6-5", "end_date": "2016-6-20"]
@@ -357,7 +357,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             
             for list in result.stepsData.stepsData {
                
-//                self.addStepListRealm(list)
+                self.addNStepListRealm(list)
             }
             
             }) {   Msg in
@@ -418,6 +418,26 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         self.addStepData(ChartStepDataRealm(userId: self.userId, time: date, step: list.stepCount))
 
     }
+    
+    //  从服务器获取数据存入表
+    
+    func addNStepListRealm(list: StepsDataItem) {
+        
+        let stepList = List<StepListItem> ()
+        
+        for item in list.hours {
+         
+            let  stepItem = StepListItem(step: item.steps)
+            
+            stepList.append(stepItem)
+        }
+        
+    
+        self.addStepData(NChartStepDataRealm(userId: self.userId, date:list.date , totalTime: list.totalTime, totalStep: list.totalSteps, stepList: stepList))
+        
+    }
+    
+    
     
     func addSleepListRealm(list: SleepMsg) {
         

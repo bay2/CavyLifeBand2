@@ -42,6 +42,12 @@ class StepListItem: Object {
     
     dynamic var step = 0
     
+    convenience required init(step: Int) {
+        
+        self.init()
+        self.step = step
+    }
+    
 }
 
 
@@ -53,7 +59,7 @@ protocol ChartStepRealmProtocol {
     var userId: String { get }
     
     
-    func queryBeforTodayStepInfo(userId: String) -> Results<(NChartStepDataRealm)>
+    
     func addStepData(chartStepInfo: NChartStepDataRealm) -> Bool
      func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepShowItem
     
