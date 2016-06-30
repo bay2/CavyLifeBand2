@@ -60,15 +60,7 @@ class CustomCamera: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomCamera.photoAndVideo), name: LifeBandCtrlNotificationName.BandButtonEvenClick1.rawValue, object: nil)
         
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
-        // 更改UIStatusBar背景颜色
-        let statusBarView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
-        statusBarView.backgroundColor = UIColor.blackColor()
-        camera.view.addSubview(statusBarView)
-        
     }
-    
     
     override func viewDidLoad() {
         
@@ -79,16 +71,7 @@ class CustomCamera: UIViewController {
         cameraAllViewLayout()
         
     }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: LifeBandCtrlNotificationName.BandButtonEvenClick1.rawValue, object: nil)
-        
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: false)
-        
-    }
-    
+
     // 全部控件布局
     func cameraAllViewLayout() {
         

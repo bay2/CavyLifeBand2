@@ -39,6 +39,12 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         
         self.backgroundColor = UIColor.whiteColor()//(named: .ChartBackground)
         
+        if viewStyle == .SleepChart {
+            
+            listCount = 3
+            
+        }
+        
         addChartsView()
         
         addInfoTableView()
@@ -115,13 +121,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
      添加tableView
      */
     func addInfoTableView() {
-        
-        if viewStyle == .SleepChart {
-            
-           listCount = 3
-            
-        }
-        
+
         let listViewHeight = listcellHight * CGFloat(listCount)
         listView = UITableView()
         listView!.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
@@ -299,17 +299,8 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
 extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch viewStyle {
-            
-        case .SleepChart:
-            
-            return listCount - 1
-            
-        case .StepChart:
-            
-            return listCount
-        }
+  
+        return listCount
         
     }
     

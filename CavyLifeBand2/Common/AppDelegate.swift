@@ -35,7 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             Log.enabled = false
            
         #endif
-    
+        
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         /**
          5适配
          */
