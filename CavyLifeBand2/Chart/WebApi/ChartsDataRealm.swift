@@ -59,7 +59,7 @@ class ChartSleepDataRealm: Object {
 
 // MARK: 计步睡眠数据库操作协议
 protocol ChartsRealmProtocol: SleepWebRealmOperate {
-    
+
     var realm: Realm { get }
     var userId: String { get }
     

@@ -95,6 +95,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver("updateHomeViewData", selector: #selector(refreshingStatus))
         
  
+        
+       
+        
+        
     }
 
     

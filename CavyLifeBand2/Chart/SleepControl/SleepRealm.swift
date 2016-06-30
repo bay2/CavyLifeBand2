@@ -67,7 +67,7 @@ protocol SleepWebRealmOperate {
     func querySleepWebRealm(userId: String, startDate: NSDate, endDate: NSDate) -> Results<(SleepWebRealm)>?
     
     func deleteSleepWebRealm(userId: String, startDate: NSDate, endDate: NSDate) -> Bool
-    
+
 }
 
 extension SleepWebRealmOperate {
@@ -109,7 +109,7 @@ extension SleepWebRealmOperate {
     
     }
     
-    func deleteSleepWebRealm(userId: String, startDate: NSDate, endDate: NSDate) -> Bool {
+    func deleteSleepWebRealm(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, startDate: NSDate, endDate: NSDate) -> Bool {
         
         let predicate = NSPredicate(format: "userId == %@ AND date >= %@ AND date <= %@", userId, startDate, endDate)
         
