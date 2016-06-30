@@ -46,33 +46,49 @@ extension RootViewController: ChartsRealmProtocol {
         LifeBandSyncData.shareInterface.syncDataFormBand(syncDate) {
             
             $0.success { titlsAndSteps in
+                
+                
                 let steps = titlsAndSteps.map { return ($0.date, $0.steps) }
                 let sleeps = titlsAndSteps.map { return ($0.date, $0.tilts) }
                 
-                // 上报睡眠信息
-                StepSleepReportedData.shareApi.sleepReportedDataToWebServer(sleeps).responseJSON {
-                    $0.result.success { value in
-                        self.saveTiltsToRealm(sleeps)
-                        }
-                        .failure { error in
-                            self.saveTiltsToRealm(sleeps)
-                    }
+                self.saveTiltsToRealm(sleeps)
+                
+                self.saveStepsToRealm(steps)
+                
+                let uploadData = self.queryUploadBandData()
+                
+                guard uploadData.0.count > 0 else {
+                    return
                 }
                 
-                // 上报计步信息
-                StepSleepReportedData.shareApi.stepsReportedDataToWebServer(steps).responseJSON {
-                    
-                    $0.result.success{ value in
-                        
-                        // 保存数据到数据库中
-                        // TODO: 这里需要设置同步标识
-                        self.saveStepsToRealm(steps)
-                        
-                        }
-                        .failure { error in
-                            self.saveStepsToRealm(steps)
-                    }
+                UploadBandData.shareApi.uploadBandData(uploadData.0) { [unowned self] data in
+                    self.setChartBandDataSynced(uploadData.1, endDate: uploadData.2)
                 }
+                
+//                // 上报睡眠信息
+//                StepSleepReportedData.shareApi.sleepReportedDataToWebServer(sleeps).responseJSON {
+//                    $0.result.success { value in
+//                        self.saveTiltsToRealm(sleeps)
+//                        }
+//                        .failure { error in
+//                            self.saveTiltsToRealm(sleeps)
+//                    }
+//                }
+//                
+//                // 上报计步信息
+//                StepSleepReportedData.shareApi.stepsReportedDataToWebServer(steps).responseJSON {
+//                    
+//                    $0.result.success{ value in
+//                        
+//                        // 保存数据到数据库中
+//                        // TODO: 这里需要设置同步标识
+//                        self.saveStepsToRealm(steps)
+//                        
+//                        }
+//                        .failure { error in
+//                            self.saveStepsToRealm(steps)
+//                    }
+//                }
                 
                 }
                 .failure { error in

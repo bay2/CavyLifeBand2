@@ -279,7 +279,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     func parseChartListData() {
         
         // TODO: PR前放开注释
-//        SleepWebApi.shareApi.fetchSleepWebData()
+        SleepWebApi.shareApi.fetchSleepWebData()
         
         // TODO: PR前删除以下
 //        var startDate = ""
