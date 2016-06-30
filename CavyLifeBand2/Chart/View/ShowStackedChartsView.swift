@@ -44,6 +44,11 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
 
         addLegend()
         
+        if UIDevice.isPhone5() {
+            
+            self.leftAxis.spaceBottom = 0
+            self.leftAxis.spaceTop = 0
+        }
         
     }
     

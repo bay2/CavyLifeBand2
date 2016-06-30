@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C05744B1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */; };
+		4C05744D1D25063900D78716 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744C1D25063900D78716 /* UIDeviceExtension.swift */; };
 		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
 		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
 		4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E61CB78F0500DB06FC /* Home.storyboard */; };
@@ -352,6 +353,7 @@
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerExtesionRefersh.swift; sourceTree = "<group>"; };
+		4C05744C1D25063900D78716 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E61CB78F0500DB06FC /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -1530,6 +1532,7 @@
 				9150CAAD1CC66CBB00A398E9 /* UIWindowExtension.swift */,
 				4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */,
 				887C75B71D114AB2009EA1F6 /* Array_Extension.swift */,
+				4C05744C1D25063900D78716 /* UIDeviceExtension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -2067,7 +2070,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\n tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\n echo \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+			shellScript = "if hash tailor 2>/dev/null; then\ntailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\necho \"warning: Please install Tailor from https://tailor.sh\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2193,6 +2196,7 @@
 				684097081CE058A400A8BAD2 /* WebVCViewModel.swift in Sources */,
 				68648A831CF3F234009D4BEE /* UpdateProgressView.swift in Sources */,
 				91A2EC901CB350D200361952 /* AccountInfoSecurityVC.swift in Sources */,
+				4C05744D1D25063900D78716 /* UIDeviceExtension.swift in Sources */,
 				686A5EF81CDC3D4500EB8D0E /* AboutCell.swift in Sources */,
 				918AA22E1CE327DC0022AE30 /* LifeBandBLE.swift in Sources */,
 				4C9E0B511D1A395200DBC1FC /* ShareView.swift in Sources */,

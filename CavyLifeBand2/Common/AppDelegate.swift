@@ -35,7 +35,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             Log.enabled = false
            
         #endif
-    
+        
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        /**
+         5适配
+         */
+        appFitWithDevice()
+        
         realmConfig()
         
         pgyUpdateConfig()
@@ -45,10 +51,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         setRootViewController()
         crashConfig()
         
-       
-
         return true
 
+    }
+    
+    /**
+     5,5c,5s适配
+     */
+    func appFitWithDevice() {
+        
+        if UIDevice.isPhone5() {
+            
+            timeButtonHeight = 40
+            subTimeButtonHeight = 40
+            chartTopHeigh = 20
+            chartBottomHeigh = 20
+            chartViewHight = 230
+            listcellHight = 44
+            
+        }
+        
     }
     
     /**
