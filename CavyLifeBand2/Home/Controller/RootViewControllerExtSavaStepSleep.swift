@@ -136,6 +136,7 @@ extension RootViewController: ChartsRealmProtocol {
             if realmArray.count == 0 {
                 
                 self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
+                
                 return
 
             }
