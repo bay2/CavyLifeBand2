@@ -119,6 +119,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      - date: 2016-05-31
      */
     func bandConnect() {
+        
 
         // 手环连接 自动同步数据
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {

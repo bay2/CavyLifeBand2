@@ -123,14 +123,14 @@ extension NetRequest {
                 
             do {
                 
-                let resultResponse = try T(JSONDecoder(result.value ?? ""))
+                let response = try CommenMsgResponse (JSONDecoder(result.value ?? ""))
                 
-                guard resultResponse.commonMsg.code == RequestApiCode.Success.rawValue else {
-                    failureHandler?(resultResponse.commonMsg)
+                guard response.commonMsg.code == RequestApiCode.Success.rawValue else {
+                    failureHandler?(response.commonMsg)
                     return
                 }
                 
-                successHandler?(resultResponse)
+                successHandler?(try T(JSONDecoder(result.value ?? "")))
                 
             } catch {
                 
@@ -168,15 +168,15 @@ extension NetRequest {
             }
             
             do {
-            
-                let resultResponse = try T(JSONDecoder(result.value ?? ""))
                 
-                guard resultResponse.commonMsg.code == RequestApiCode.Success.rawValue else {
-                    failureHandler?(resultResponse.commonMsg)
+                let response = try CommenMsgResponse (JSONDecoder(result.value ?? ""))
+                
+                guard response.commonMsg.code == RequestApiCode.Success.rawValue else {
+                    failureHandler?(response.commonMsg)
                     return
                 }
                 
-                successHandler?(resultResponse)
+                successHandler?(try T(JSONDecoder(result.value ?? "")))
                 
             } catch {
                 

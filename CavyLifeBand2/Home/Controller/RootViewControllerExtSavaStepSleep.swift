@@ -130,14 +130,14 @@ extension RootViewController: ChartsRealmProtocol {
         
         
         for i in 0 ..< sleeps.count {
-
+            
             let realmArray = self.queryAllSleepInfo(userId)
             
             if realmArray.count == 0 {
                 
                 self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
-                
                 return
+
             }
             
             if i == 0 {

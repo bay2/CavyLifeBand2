@@ -14,7 +14,7 @@ struct CavyDefine {
 
     
     // 服务器地址
-    static let serverAddr = "http://115.28.144.243/cavylife"
+    static let serverAddr = "http://test.tunshu.com/cavylife"
 //    static let serverAddr = "http://192.168.100.214/cavylife"
     
     // 新的后台服务器地址
@@ -580,6 +580,15 @@ enum WebApiMethod: CustomStringConvertible {
     }
     
 }
+
+// MARK: - Web Api 参数定义
+enum NetRequsetKey: String {
+    
+    case UserName = "username"
+    case Password = "password"
+    
+}
+
 
 
 // MARK: - Request Api Code

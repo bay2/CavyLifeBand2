@@ -107,16 +107,16 @@ extension HomeViewController {
                 //MARK: 手动刷新
                 RootViewController().syncDataFormBand(false)
                 
-                var daleyTime = 10
+                var daleyTime = 15
                 
                 let lastTime = self.queryAllStepInfo(self.userId).last?.time ?? NSDate()
                 
                 if lastTime.toString(format: "yyyy-MM-dd") == NSDate().toString(format: "yyyy-MM-dd") {
-                    daleyTime = 3
+                    daleyTime = 5
                 }
                 
                 if lastTime.toString(format: "yyyy-MM-dd HH") == NSDate().toString(format: "yyyy-MM-dd HH") {
-                    daleyTime = 2
+                    daleyTime = 3
                 }
                 
                 if lastTime.toString(format: "yyyy-MM-dd HH:mm") == NSDate().toString(format: "yyyy-MM-dd HH:mm") {
