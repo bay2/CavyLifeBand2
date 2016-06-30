@@ -44,7 +44,7 @@ protocol ChartStepRealmProtocol {
     var userId: String { get }
     
     
-    func queryBeforTodayStepInfo
+    func queryBeforTodayStepInfo()
     
     
 }
