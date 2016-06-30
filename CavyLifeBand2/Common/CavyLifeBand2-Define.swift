@@ -581,6 +581,15 @@ enum WebApiMethod: CustomStringConvertible {
     
 }
 
+// MARK: - Web Api 参数定义
+enum NetRequsetKey: String {
+    
+    case UserName = "username"
+    case Password = "password"
+    
+}
+
+
 
 // MARK: - Request Api Code
 
