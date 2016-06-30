@@ -46,7 +46,6 @@ extension RootViewController: ChartsRealmProtocol {
         LifeBandSyncData.shareInterface.syncDataFormBand(syncDate) {
             
             $0.success { titlsAndSteps in
-                
                 let steps = titlsAndSteps.map { return ($0.date, $0.steps) }
                 let sleeps = titlsAndSteps.map { return ($0.date, $0.tilts) }
                 
@@ -108,9 +107,9 @@ extension RootViewController: ChartsRealmProtocol {
                 
             }
             
-            if steps[i].1 == 0 {
-                continue
-            }
+//            if steps[i].1 == 0 {
+//                continue
+//            }
             
             self.addStepData(ChartStepDataRealm(time: steps[i].0, step: steps[i].1))
             
@@ -151,9 +150,9 @@ extension RootViewController: ChartsRealmProtocol {
                 
             }
             
-            if sleeps[i].1 == 0 {
-                continue
-            }
+//            if sleeps[i].1 == 0 {
+//                continue
+//            }
             
             self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
             

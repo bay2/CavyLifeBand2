@@ -14,7 +14,6 @@ import EZSwiftExtensions
 import RealmSwift
 import MJRefresh
 
-
 let dateViewHeight: CGFloat = 50.0
 // 大环是 0.55 大环顶部距离NavBar高度是 96
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
@@ -96,11 +95,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         // 停止首次进入的刷新
         addNotificationObserver("endHomeViewRefresh", selector: #selector(endFirstRefresh))
- 
-        
-       
-        
-        
+                
     }
 
     
@@ -283,39 +278,43 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func parseChartListData() {
         
-        var startDate = ""
-        var endDate = ""
+        // TODO: PR前放开注释
+//        SleepWebApi.shareApi.fetchSleepWebData()
         
-        if isNeedUpdateStepData() {
-            
-            let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
-            
-            if personalList.count != 0 {
-                
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
-                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
-                
-            }
-            
-            parseStepDate(startDate, endDate: endDate)
-            
-        }
+        // TODO: PR前删除以下
+//        var startDate = ""
+//        var endDate = ""
         
-        
-        if isNeedUpdateSleepData() {
-            
-            let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
-            
-            if personalList.count != 0 {
-                
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
-                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
-                
-            }
-            
-            parseSleepDate(startDate, endDate: endDate)
-            
-        }
+//        if isNeedUpdateStepData() {
+//            
+//            let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+//            
+//            if personalList.count != 0 {
+//                
+//                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
+//                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
+//                
+//            }
+//            
+//            parseStepDate(startDate, endDate: endDate)
+//            
+//        }
+//        
+//        
+//        if isNeedUpdateSleepData() {
+//            
+//            let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
+//            
+//            if personalList.count != 0 {
+//                
+//                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
+//                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
+//                
+//            }
+//            
+//            parseSleepDate(startDate, endDate: endDate)
+//            
+//        }
         
  
     }

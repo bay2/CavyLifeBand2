@@ -811,27 +811,53 @@ extension ChartsRealmProtocol {
         
     }
     
-//    func queryUploadBandData() -> [Int] {
-//        
-//        let realmSleepData = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND syncState == %d", ChartBandDataSyncState.UnSync.rawValue).sorted("time", ascending: true)
-//        
-//        if realmSleepData.isEmpty {
-//            return []
-//        }
-//        
-//        let dataSize = ((realmSleepData.last!.time - realmSleepData[0].time).totalMinutes) / 10 + 1
-//        
-//        var reslutArray = Array<Int>(count: dataSize, repeatedValue: 0)
-//        
-//        for data in realmSleepData {
-//            
-//            let index = (data.time - beginTime).totalMinutes / 10
-//            reslutArray[index] = data.tilts
-//        }
-//        
-//        return reslutArray
-//        
-//    }
+    func queryUploadBandData() -> [NSDictionary] {
+        
+        let realmSleepData = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND syncState == %d", ChartBandDataSyncState.UnSync.rawValue).sorted("time", ascending: true)
+        
+        let realmStepData = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND syncState == %d", ChartBandDataSyncState.UnSync.rawValue).sorted("time", ascending: true)
+        
+        if realmSleepData.isEmpty {
+            return []
+        }
+        
+        let startTime = realmSleepData[0].time.gregorian.beginningOfDay.date
+        
+        let format = NSDateFormatter()
+        
+        format.dateFormat = "yyyy-MM-dd"
+        
+        var reslutArray: [NSDictionary] = []
+        
+        
+        for i in 0..<realmSleepData.count {
+            
+            let tilt = realmSleepData[i].tilts
+            let step = realmStepData[i].step
+            var dateStr: String = format.stringFromDate(realmStepData[i].time)
+            
+            let totalMinutes = (realmStepData[i].time - startTime).totalMinutes / 10
+            
+            let time: Int = (totalMinutes % 144) == 0 ? 144 : (totalMinutes % 144)
+            
+            if time == 144 {
+               dateStr = format.stringFromDate((realmStepData[i].time.gregorian - 1.day).date)
+            }
+            
+            let dataStruct = [ NetRequsetKey.Date.rawValue: dateStr,
+                               NetRequsetKey.Time.rawValue: time,
+                               NetRequsetKey.Tilts.rawValue: tilt,
+                               NetRequsetKey.Steps.rawValue: step]
+            
+            reslutArray.append(dataStruct)
+            
+            Log.info("index\(i) ---- 分钟数\(time) ---- 日期\(dateStr) ---- 原日期\(realmStepData[i].time)")
+        
+        }
+        
+        return reslutArray
+
+    }
 
 }
 

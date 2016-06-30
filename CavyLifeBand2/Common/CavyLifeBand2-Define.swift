@@ -588,6 +588,12 @@ enum NetRequsetKey: String {
     case Password  = "password"
     case StartDate = "start_date"
     case EndDate   = "end_date"
+    case Date      = "date"
+    case Time      = "time"
+    case Tilts     = "tilts"
+    case Steps     = "steps"
+    case Raw       = "raw"
+    case TimeScale = "time_scale"
     
 }
 
