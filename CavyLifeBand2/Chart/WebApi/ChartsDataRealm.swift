@@ -200,7 +200,7 @@ extension ChartsRealmProtocol {
         // 初始化0~23 24 小时
         for i in 0...23 {
             
-            stepChartsData.datas.append(PerStepChartsData(time: "\(i)", kilometer: 0))
+            stepChartsData.datas.append(PerStepChartsData(time: "\(i)", step: 0))
         }
         
         
@@ -211,8 +211,8 @@ extension ChartsRealmProtocol {
             stepChartsData.totalStep += data.step
             stepChartsData.totalKilometer += data.kilometer
             stepChartsData.finishTime += 10
-            stepChartsData.datas[index].kilometer += data.kilometer
- 
+            stepChartsData.datas[index].step += data.step
+            
         }
         
         return stepChartsData
@@ -228,7 +228,7 @@ extension ChartsRealmProtocol {
         let maxNum = (endTime - beginTime).totalDays + 1
         
         for i in 1...maxNum {
-            stepChartsData.datas.append(PerStepChartsData(time: "\(i)", kilometer: 0))
+            stepChartsData.datas.append(PerStepChartsData(time: "\(i)", step: 0))
         }
         
         for data in dataInfo {
@@ -238,7 +238,7 @@ extension ChartsRealmProtocol {
             stepChartsData.totalKilometer += data.kilometer
             stepChartsData.totalStep += data.step
             stepChartsData.finishTime += 10
-            stepChartsData.datas[index].kilometer += data.kilometer
+            stepChartsData.datas[index].step += data.step
             
         }
         
