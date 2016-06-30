@@ -58,7 +58,7 @@ class SleepWebApi: NetRequest, SleepWebRealmOperate {
         guard sleepData != nil && sleepData?.count > 0 else {
             
             // TODO 开始时间应该返回 用户注册时间
-            return (format.stringFromDate(NSDate()), format.stringFromDate(NSDate()))
+            return ("2016-5-5", format.stringFromDate(NSDate()))
             
         }
         
