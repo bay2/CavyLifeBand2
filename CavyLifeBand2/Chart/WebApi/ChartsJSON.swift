@@ -50,7 +50,7 @@ struct StepChartsData {
 struct PerStepChartsData {
     
     var time: String
-    var kilometer: CGFloat
+    var step: Int
 }
 
 

@@ -23,6 +23,9 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     // 计步柱状图
     var chartsData: [PerStepChartsData] = []
     
+    // 左上角显示最大值
+    var maxValue: Int = 3
+    
     /**
      配置所有视图 主入口
      */
@@ -37,6 +40,12 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         addxAxis()
         
         addLegend()
+        
+        if UIDevice.isPhone5() {
+            
+            self.leftAxis.spaceBottom = 0
+            self.leftAxis.spaceTop = 0
+        }
         
 
     }
@@ -67,7 +76,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
 
         }
         
-        descriptionText = "3k"
+        descriptionText = "\(maxValue + 1)k"
         descriptionFont = UIFont.systemFontOfSize(12)
         descriptionTextPosition = CGPointMake(20, 0)
         descriptionTextColor = UIColor.whiteColor()
@@ -127,6 +136,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func setData(count: Int) {
         
+        maxValue = 0
         
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
@@ -151,10 +161,16 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
             // 假数据
 //            let dataEntry = BarChartDataEntry(value: Double(arc4random_uniform(30)+1)/10, xIndex: i)
         
-            let dataEntry = BarChartDataEntry(value: Double(chartsData[i].kilometer), xIndex: i)
+            if maxValue < chartsData[i].step / 1000 {
+                maxValue = chartsData[i].step / 1000
+            }
+            
+            let dataEntry = BarChartDataEntry(value: Double(chartsData[i].step), xIndex: i)
             
             yVals.append(dataEntry)
         }
+        
+        descriptionText = "\(maxValue + 1)k"
         
         var dataSet = BarChartDataSet()
         if self.data?.dataSetCount > 0 {
@@ -192,10 +208,18 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: ChartHighlight) {
         
 //        Log.info("\n\(chartView)\n\(entry)\n\(dataSetIndex)\n\(highlight)")
-        chartView.data?.setDrawValues(true)
-     
-        chartView.setNeedsDisplay()
         
+        var totalStep = 0
+        
+        for data in chartsData {
+            totalStep += data.step
+        }
+        
+        if totalStep != 0 {
+            chartView.data?.setDrawValues(true)
+            
+            chartView.setNeedsDisplay()
+        }
         
     }
     

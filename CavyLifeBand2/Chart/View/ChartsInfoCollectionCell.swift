@@ -16,7 +16,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
     var viewStyle: ChartViewStyle = .StepChart
     var timeBucketStyle: TimeBucketStyle = .Day
     
-    let listCount = 4
+    var listCount = 4
     
     /// 时间标签的String
     var timeString: String = ""
@@ -38,6 +38,12 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
     func configAllView() {
         
         self.backgroundColor = UIColor.whiteColor()//(named: .ChartBackground)
+        
+        if viewStyle == .SleepChart {
+            
+            listCount = 3
+            
+        }
         
         addChartsView()
         
@@ -115,41 +121,22 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
      添加tableView
      */
     func addInfoTableView() {
-        
-        var listViewHeight: CGFloat = 0
-        
-        switch viewStyle {
-            
-        case .SleepChart:
-           listViewHeight  = listcellHight * 3 + 20
-            
-        case .StepChart:
-            
-            listViewHeight = listcellHight * 4 + 20
-        }
-        
-        let listBottomView = UIView()
-        self.addSubview(listBottomView)
-        listBottomView.snp_makeConstraints { make in
-            make.top.equalTo(self).offset(chartViewHight)
-            make.centerX.equalTo(self)
-            make.size.equalTo(CGSize(width: ez.screenWidth, height: listViewHeight))
-        }
-        listBottomView.backgroundColor = UIColor.whiteColor()
-        
+
+        let listViewHeight = listcellHight * CGFloat(listCount)
         listView = UITableView()
         listView!.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
         listView!.separatorStyle = .SingleLine
         listView!.separatorColor = UIColor(named: .LColor)
         listView!.backgroundColor = UIColor.whiteColor()
 
-        listBottomView.addSubview(listView!)
+        self.addSubview(listView!)
         
         listView!.snp_makeConstraints { make in
-            make.top.equalTo(listBottomView).offset(10)
+            make.top.equalTo(self).offset(chartViewHight)
             make.centerX.equalTo(self)
-            make.size.equalTo(CGSize(width: infoViewWidth, height: listViewHeight - 20))
+            make.size.equalTo(CGSize(width: ez.screenWidth, height: listViewHeight))
         }
+        
         listView!.delegate = self
         listView!.dataSource = self
         listView!.scrollEnabled = false
@@ -167,8 +154,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         chartsView.addSubview(view)
         
         view.snp_makeConstraints { make in
-            make.edges.equalTo(UIEdgeInsets(top: 15, left: 20, bottom: -20, right: -10))
-//            make.centerX.equalTo(chartsView)
+            make.edges.equalTo(UIEdgeInsets(top: chartTopHeigh / 2 - 5 , left: insetSpace, bottom: -(chartBottomHeigh / 2 - 5), right: -insetSpace))
         }
     }
     
@@ -313,17 +299,8 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
 extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        switch viewStyle {
-            
-        case .SleepChart:
-            
-            return listCount - 1
-            
-        case .StepChart:
-            
-            return listCount
-        }
+  
+        return listCount
         
     }
     
@@ -333,6 +310,7 @@ extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+
         
         var dataStepArray: [String] = [L10n.ChartStepTodayStep.string, L10n.ChartStepKilometer.string, L10n.ChartTargetPercent.string, L10n.ChartStepTimeUsed.string]
 
@@ -362,6 +340,7 @@ extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
                 
                 cell.configSleepCell(sleepStatusArray[indexPath.row], text: "8")
                 cell.rightLabel.text = listDataArray[indexPath.row]
+                
                 return cell
                 
             }

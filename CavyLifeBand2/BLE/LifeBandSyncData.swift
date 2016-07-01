@@ -249,7 +249,7 @@ class LifeBandSyncData {
             Log.info("Band sync end")
             
             // 发送通知让主页停止同步数据下拉消失
-            NSNotificationCenter.defaultCenter().postNotificationName("endHomeViewRefresh", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
             
             return true
             
@@ -283,7 +283,7 @@ class LifeBandSyncData {
             tiltsAndStepsInfo.append(dataTiltsAndStep)
             
         }
-        
+    
         packetNo = (packetNo == 72 ? 1 : packetNo + 1)
         
         return false

@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import EZSwiftExtensions
 
-
 enum ChartViewStyle {
     case SleepChart
     case StepChart
@@ -25,19 +24,39 @@ enum TimeBucketStyle: String {
 /// 时间段 宽度
 let timeButtonWidth = ez.screenWidth / 3
 let subTimeButtonWidth = ez.screenWidth / 5
-/// 时间段 高度
-let timeButtonHeight: CGFloat = 50
-let subTimeButtonHeight: CGFloat = 44
 /// 左右inset
 let insetSpace: CGFloat = 20
-/// 详情 - chart 高度  |-40-|-210-|-30-|
-let chartViewHight: CGFloat = 280
+
+// ----------计步睡眠图标页面的高度--------------
+
+/* 详情 - chart
+ * 其他高度  |-50-|-44-|-280-|-50 * 4(或3)-|
+ * 5s的     |-40-|-40-|-230-|-44 * 4(或3)-|
+ */
+/// 时间段 高度
+var timeButtonHeight: CGFloat = 50
+var subTimeButtonHeight: CGFloat = 44
+//var timeButtonHeight: CGFloat = 40
+//var subTimeButtonHeight: CGFloat = 40
+
+/* 详情 - chart
+ * 其他高度  |-40-|-210-|-30-| = 280
+ * 5s的     |-20-|-190-|-20-| = 230
+ */
+//var chartTopHeigh: CGFloat = 20
+//var chartMiddleHeigh: CGFloat = 190
+//var chartBottomHeigh: CGFloat = 20
+//var chartViewHight: CGFloat = chartTopHeigh + chartMiddleHeigh + chartBottomHeigh
+var chartTopHeigh: CGFloat = 40
+var chartMiddleHeigh: CGFloat = 210
+var chartBottomHeigh: CGFloat = 30
+var chartViewHight: CGFloat = chartTopHeigh + chartMiddleHeigh + chartBottomHeigh
+
 /// 详情 -list - cell 高度
-let listcellHight: CGFloat = 50
-/// 详情-list 高度
-//let listViewHight: CGFloat = listcellHight * 4 + 20
-/// 详情页面 宽
-let infoViewWidth: CGFloat = ez.screenWidth - insetSpace * 2
+var listcellHight: CGFloat = 50
+//var listcellHight: CGFloat = 44
+
+// ----------计步睡眠图标页面的高度--------------
 
 //let weekTime = ["Mon", "Stu", "Wed", "Thu", "Fir", "Str", "Sun"]
 let weekArray: [String] = [L10n.AlarmDayMonday.string,
