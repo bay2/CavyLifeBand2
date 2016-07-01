@@ -58,11 +58,10 @@ protocol ChartStepRealmProtocol {
     var realm:  Realm  { get }
     var userId: String { get }
     
-    
-    
+    func isNeedUpdateNStepData() -> Bool
+    func queryAllStepInfo(userId: String) -> Results<(NChartStepDataRealm)>
     func addStepData(chartStepInfo: NChartStepDataRealm) -> Bool
-     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepShowItem
-    
+    func queryNStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepShowItem
     
 }
 
@@ -70,6 +69,38 @@ protocol ChartStepRealmProtocol {
 
 
 extension ChartStepRealmProtocol {
+    
+    /**
+     是否需要从服务器拉取计步数据
+     
+     - returns: <#return value description#>
+     */
+    
+    func isNeedUpdateNStepData() -> Bool {
+        
+        let list = realm.objects(ChartStepDataRealm)
+        
+        if list.count == 0 {
+            return true
+        }
+        
+        let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+        
+        if personalList.count == 0 {
+            return true
+        }
+        
+        let totalMinutes = (NSDate().gregorian.beginningOfDay.date - personalList.last!.time).totalMinutes
+        Log.info(totalMinutes)
+        
+        if totalMinutes > 10 {
+            return true
+        }
+        
+        return false
+        
+    }
+    
     
     /**
      返回从服务器存储拉取的所有单条数据 --- 不包括当天
@@ -111,7 +142,7 @@ extension ChartStepRealmProtocol {
     /**
      查询 日周月下 某一时段的 数据信息
      */
-    func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepShowItem {
+    func queryNStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepShowItem {
         
         let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
         
