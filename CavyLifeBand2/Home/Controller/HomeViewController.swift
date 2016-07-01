@@ -254,7 +254,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             
             if personalList.count != 0 {
                 
-                startDate = personalList.last!.date!.toString(format: "yyyy-MM-dd")
+                startDate = personalList.last!.date.toString(format: "yyyy-MM-dd")
                 endDate = NSDate().toString(format: "yyyy-MM-dd")
                 
             }
@@ -399,7 +399,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         }
         
     
-        self.addStepData(NChartStepDataRealm(userId: self.userId, date:list.date , totalTime: list.totalTime, totalStep: list.totalSteps, stepList: stepList))
+        self.addStepData(NChartStepDataRealm(userId: self.userId, date:list.date! , totalTime: list.totalTime, totalStep: list.totalSteps, stepList: stepList))
         
     }
     

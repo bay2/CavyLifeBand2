@@ -34,6 +34,8 @@ class ChartStepDataRealm: Object {
     }
     
     
+    
+    
 }
 
 // MARK: Sleep
@@ -70,6 +72,7 @@ protocol ChartsRealmProtocol {
     // MARK: 计步
     func isNeedUpdateStepData() -> Bool
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
+    // MARK: 修改
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData
     func removeStepData(chartsInfo: ChartStepDataRealm) -> Bool
     func delecSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool
@@ -88,6 +91,7 @@ protocol ChartsRealmProtocol {
 extension ChartsRealmProtocol {
     
     func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(ChartStepDataRealm)> {
+        
         return realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
     }
     
@@ -728,6 +732,8 @@ extension ChartsRealmProtocol {
     }
 
 }
+
+
 
 
 

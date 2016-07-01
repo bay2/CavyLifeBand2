@@ -16,7 +16,7 @@ import JSONJoy
 class NChartStepDataRealm: Object {
     
     dynamic var userId             = ""
-    dynamic var date: NSDate?
+    dynamic var date: NSDate       = NSDate()
     dynamic var totalTime: Int     = 0
     dynamic var totalStep: Int     = 0
     dynamic var kilometer: CGFloat = 0
@@ -25,7 +25,7 @@ class NChartStepDataRealm: Object {
     
    
     
-    convenience init(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, date: NSDate?, totalTime: Int, totalStep: Int, stepList: List<StepListItem>) {
+    convenience init(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, date: NSDate, totalTime: Int, totalStep: Int, stepList: List<StepListItem>) {
         
         self.init()
         self.userId    = userId
@@ -52,11 +52,9 @@ class StepListItem: Object {
 
 
 
-// MARK: 计步数据库操作协议
-protocol ChartStepRealmProtocol {
+// MARK: 服务器计步数据库操作协议
+protocol ChartStepRealmProtocol: ChartsRealmProtocol {
     
-    var realm:  Realm  { get }
-    var userId: String { get }
     
     func isNeedUpdateNStepData() -> Bool
     func queryAllStepInfo(userId: String) -> Results<(NChartStepDataRealm)>
@@ -138,14 +136,12 @@ extension ChartStepRealmProtocol {
     
     
     /**
-     返回从服务器存储拉取的所有单条数据 --- 不包括当天
+     返回从服务器存储拉取的所有单条数据
      */
     func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(NChartStepDataRealm)> {
-        
-        
-        
-        
+
         return realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
+        
     }
     
 
