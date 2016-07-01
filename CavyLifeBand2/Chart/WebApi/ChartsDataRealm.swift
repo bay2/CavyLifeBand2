@@ -160,12 +160,12 @@ extension ChartsRealmProtocol {
             
         } catch {
             
-            Log.error("Add charts info error [\(chartsInfo)]")
+            Log.error("Add step charts info error [\(chartsInfo)]")
             return false
             
         }
         
-        Log.info("Add charts info success")
+        Log.info("Add step charts info success")
         
         return true
         
@@ -200,7 +200,7 @@ extension ChartsRealmProtocol {
         // 初始化0~23 24 小时
         for i in 0...23 {
             
-            stepChartsData.datas.append(PerStepChartsData(time: "\(i)", kilometer: 0))
+            stepChartsData.datas.append(PerStepChartsData(time: "\(i)", step: 0))
         }
         
         
@@ -211,8 +211,8 @@ extension ChartsRealmProtocol {
             stepChartsData.totalStep += data.step
             stepChartsData.totalKilometer += data.kilometer
             stepChartsData.finishTime += 10
-            stepChartsData.datas[index].kilometer += data.kilometer
- 
+            stepChartsData.datas[index].step += data.step
+            
         }
         
         return stepChartsData
@@ -228,7 +228,7 @@ extension ChartsRealmProtocol {
         let maxNum = (endTime - beginTime).totalDays + 1
         
         for i in 1...maxNum {
-            stepChartsData.datas.append(PerStepChartsData(time: "\(i)", kilometer: 0))
+            stepChartsData.datas.append(PerStepChartsData(time: "\(i)", step: 0))
         }
         
         for data in dataInfo {
@@ -238,7 +238,7 @@ extension ChartsRealmProtocol {
             stepChartsData.totalKilometer += data.kilometer
             stepChartsData.totalStep += data.step
             stepChartsData.finishTime += 10
-            stepChartsData.datas[index].kilometer += data.kilometer
+            stepChartsData.datas[index].step += data.step
             
         }
         
@@ -376,12 +376,12 @@ extension ChartsRealmProtocol {
             
         } catch {
             
-            Log.error("Add charts info error [\(chartsInfo)]")
+            Log.error("Add sleep charts info error [\(chartsInfo)]")
             return false
             
         }
         
-        Log.info("Add charts info success")
+        Log.info("Add Sleep charts info success")
         return true
         
     }
@@ -684,7 +684,7 @@ extension ChartsRealmProtocol {
             
             // 从前天的晚上6点开始算起
             let newBeginTime = ((beginTime.gregorian + i.day).beginningOfDay - 6.hour).date
-            let newEndTime = (newBeginTime.gregorian + 24.day).date
+            let newEndTime = (newBeginTime.gregorian + 24.hour).date
             
             reslutData.append(querySleepInfo(newBeginTime, endTime: newEndTime))
             

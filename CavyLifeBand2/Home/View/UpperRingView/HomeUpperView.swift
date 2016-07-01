@@ -11,6 +11,13 @@ import EZSwiftExtensions
 import RealmSwift
 import Datez
 
+enum NumberFollowUpper: String {
+    
+    case FollowUpperSleep
+    case FollowUpperStep
+    
+}
+
 class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     
     var realm: Realm = try! Realm()
@@ -35,6 +42,12 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     
     var sleepNotificationToken: NotificationToken?
     
+    /**
+     上面环形和下面List的计步睡眠数据不一致 需要同步
+     
+     - FollowUpperSleep: 跟随Upper的睡眠变化
+     - FollowUpperStep:  跟随Upper的计步变化
+     */
 
     override func awakeFromNib() {
         
@@ -58,6 +71,8 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
             switch change {
             case .Update(_, deletions: _, insertions: _, modifications: _):
                 self.configStepValue()
+                NSNotificationCenter.defaultCenter().postNotificationName(NumberFollowUpper.FollowUpperStep.rawValue, object: nil)
+
             default:
                 break
             }
@@ -68,6 +83,8 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
             switch change {
             case .Update(_, deletions: _, insertions: _, modifications: _):
                 self.configSleepValue()
+                NSNotificationCenter.defaultCenter().postNotificationName(NumberFollowUpper.FollowUpperSleep.rawValue, object: nil)
+
             default:
                 break
             }
@@ -156,8 +173,8 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         var sleepString = userInfo.sleepTime
         
         if sleepString == "" {
-            
-            sleepString = "0:0"
+            // 如果没有目标值 则显示推荐值
+            sleepString = "8:30"
             
         }
         
@@ -179,8 +196,13 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
             return
         }
+        var stepTargetNumber = userInfo.stepNum
         
-        let stepTargetNumber = userInfo.stepNum
+        // 如果没有目标值 则显示推荐值
+        if stepTargetNumber == 0 {
+            stepTargetNumber = 8000
+            
+        }
         
         let time = NSDate()
         let resultStep = self.queryStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)

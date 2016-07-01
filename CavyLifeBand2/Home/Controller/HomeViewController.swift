@@ -20,7 +20,7 @@ let dateViewHeight: CGFloat = 50.0
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
 let navBarHeight: CGFloat = 64.0
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol,  SinglePKRealmModelOperateDelegate {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, SinglePKRealmModelOperateDelegate {
     
     var leftBtn: UIButton? = {
         
@@ -78,9 +78,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         parseChartListData()
 
         addAllView()
-        addRefresh()
-        scrollView.mj_header.beginRefreshing()
-
+        
         self.updateNavUI()
         
         addNotificationObserver(NotificationName.HomePushView.rawValue, selector: #selector(HomeViewController.pushNextView))
@@ -89,10 +87,18 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(NotificationName.HomeShowPKView.rawValue, selector: #selector(HomeViewController.showPKDetailView))
         addNotificationObserver(NotificationName.HomeShowAchieveView.rawValue, selector: #selector(HomeViewController.showAchieveDetailView))
         addNotificationObserver(NotificationName.HomeShowHealthyView.rawValue, selector: #selector(HomeViewController.showHealthyDetailView))
+        
         addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
         addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
-        // 后台进入前台 同步数据
-        addNotificationObserver("updateHomeViewData", selector: #selector(refreshingStatus))
+        
+        // 添加自动刷新
+        addAutoRefreshHeader()
+
+        // 后台进入前台 同步数据  "addHomeViewAutoRefresh"
+        addNotificationObserver(RefreshStatus.AddAutoRefresh.rawValue, selector: #selector(beginHomeViewRefreshing))
+        
+        // 停止自动刷新 更改刷新的header为手动刷新模式 "endHomeViewAutoRefresh"
+        addNotificationObserver(RefreshStatus.StopRefresh.rawValue, selector: #selector(endHomeViewRefreshing))
  
     }
 
@@ -113,7 +119,16 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      - date: 2016-05-31
      */
     func bandConnect() {
+        
+
+        // 手环连接 自动同步数据
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+            // 等待两秒 连接手环的时间
+            self.scrollView.mj_header.beginRefreshing()
+            
+        }
         rightBtn?.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
+        
     }
     
     /**
@@ -157,35 +172,22 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         }
         
     }
-
-    /**
-     添加下拉刷新
-     */
-    func addRefresh() {
-        
-        let header = MJRefreshHeader(refreshingBlock: {
-            
-            //MARK: 手动刷新
-            RootViewController().syncDataFormBand(false)
-            
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
-                
-                self.scrollView.mj_header.endRefreshing()
-            }
-
-        })
-
-        header.backgroundColor = UIColor(named: .HomeViewMainColor)
-        scrollView.mj_header = header
-        
-    }
     
-    /**
-     同步数据
+    
+       /**
+     未连接手环的弹窗
      */
-    func refreshingStatus() {
+    func addAlertView() {
+     
+        let alertView = UIAlertController(title: "同步数据失败", message: "请您绑定手环，重新同步数据", preferredStyle: .Alert)
         
-        scrollView.mj_header.beginRefreshing()
+        let sureAction = UIAlertAction(title: "确定", style: .Cancel, handler: nil)
+        
+        alertView.addAction(sureAction)
+        
+        self.presentViewController(alertView, animated: true, completion: nil)
+        
+
     }
     
     /**
@@ -234,8 +236,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         self.navigationController?.pushViewController(viewController, animated: false)
         
     }
-    
-      // MARK: 加载详情
+   
+    // MARK: 加载详情
     /**
      显示计步页面
      */
@@ -380,79 +382,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-}
-
-// MARK: UIScrollViewDelegate
-
-var oldOffSet: CGFloat = 0
-
-extension HomeViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        // 禁止上拉
-        if scrollView.contentOffset.y > 0 {
-            
-            scrollView.setContentOffset(CGPointMake(0, 0), animated: false)
-            return
-        }
-        
-        // head 最高60
-        if scrollView.contentOffset.y < -60 {
-            
-            scrollView.setContentOffset(CGPointMake(0, -60), animated: false)
-            return
-        }
-        
-        // 判断 下滑时候
-        scrollView.mj_header.removeSubviews()
-        let label = UILabel()
-        scrollView.mj_header.addSubview(label)
-        label.snp_makeConstraints { make in
-            make.center.equalTo(0)
-            make.size.equalTo(CGSizeMake(ez.screenWidth, 20))
-        }
-        label.text = ""
-        label.font = UIFont.systemFontOfSize(12)
-        label.textColor = UIColor.whiteColor()
-        label.textAlignment = .Center
-        
-        if scrollView.mj_header.state == MJRefreshState.Idle {
-            
-            label.text = L10n.HomeRefreshIdle.string
-            
-        }
-        
-        if scrollView.mj_header.state == MJRefreshState.Pulling {
-            
-            label.text = L10n.HomeRefreshPulling.string
-
-        }
-        
-        if scrollView.mj_header.state == MJRefreshState.Refreshing {
-            
-            // 添加活动指示器旋转
-            let activityView = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.White)
-            scrollView.mj_header.addSubview(activityView)
-            activityView.snp_makeConstraints{ make in
-                make.centerX.equalTo(0).offset(-40)
-                make.size.equalTo(CGSizeMake(20, 20))
-                make.centerY.equalTo(0)
-            }
-            // 添加文字
-            activityView.startAnimating()
-            
-            label.snp_remakeConstraints{ make in
-                make.left.equalTo(activityView.snp_right)
-                make.centerY.equalTo(0)
-            }
-            label.text = L10n.HomeRefreshRefreshing.string
-
-        }
-        
-    }
-    
     
 }
 

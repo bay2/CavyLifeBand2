@@ -16,23 +16,31 @@ class HomeListNetRequest: NetRequest {
     static var shareApi = HomeListNetRequest()
     
     /**
-     解析全部数据
-     startTime：注册时间
-     endTime：当前日期
+     * 解析全部数据
+     * startTime：注册时间
+     * endTime：当前日期
+     * http://pay.tunshu.com/live/api/v1/dailies?start_date=2016-6-5&end_date=2016-6-20
+     * 默认CavyDefine.webServerAddr 参数 dailies
      - parameter callBack: 返回T
      */
-    func parserAllHomeListData(callBack: RequestHandler? = nil) {
+    func parserAllHomeListData(startTime: String?, endTime: String?, callBack: RequestHandler? = nil) {
         
-        // 默认CavyDefine.webServerAddr 参数 dailies
-        // http://pay.tunshu.com/live/api/v1/dailies?start_date=2016-6-5&end_date=2016-6-20
+        // 注册时间
+        let registerTime = "2016-04-08"
+        
+        let startDate = startTime ?? registerTime
+        
+        let endDate = endTime ?? NSDate().toString(format: "yyyy-MM-dd")
+
         let head = "dailies?"
-        let startDate = "2016-6-5"  // 用户的注册时间：CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken
-        let endDate = NSDate().toString(format: "yyyy-M-d")
         let parameters: [String: AnyObject] = ["start_date": startDate,"end_date": endDate]
         
-        netGetRequest(CavyDefine.webServerAddr + head, para: parameters, modelObject: HomeListMsg.self, successHandler: { (HomeListMsg) in
-            
-            }, failureHandler: <#T##FailureHandler?##FailureHandler?##(CommenResponse) -> Void#>)
+//        netGetRequest(CavyDefine.webServerAddr + head, para: parameters, modelObject: HomeListMsg.self, successHandler: <#T##((τ_0_0) -> Void)?##((τ_0_0) -> Void)?##(τ_0_0) -> Void#>, failureHandler: <#T##FailureHandler?##FailureHandler?##(CommenResponse) -> Void#>)
+        
+        
+//        netGetRequest(CavyDefine.webServerAddr + head, para: parameters, modelObject: HomeListMsg.self, successHandler: { (HomeListMsg) in
+//
+//            }, failureHandler: <#T##FailureHandler?##FailureHandler?##(CommenResponse) -> Void#>)
         
         
     }

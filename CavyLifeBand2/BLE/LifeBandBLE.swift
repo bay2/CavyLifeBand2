@@ -303,6 +303,7 @@ class LifeBandBle: NSObject {
         if getConnectState() == .Connected {
             
             Log.info("bleConnect end")
+            
             connectComplete?()
             return
         }
@@ -372,8 +373,28 @@ extension LifeBandBle: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(central: CBCentralManager) {
         
         if central.state == .PoweredOn {
+            
             bleConnect(self.peripheralMacAddress)
+            
+            /**
+             *  蓝牙状态改变 要自动刷新
+             *
+             *  等待1秒 连接手环的时间 手环连接商会请求刷新
+             *  所以如果手环未连接 次吃在轻轻刷新 如果连接 就不要刷新
+             *
+             */
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+                
+                if LifeBandBle.shareInterface.getConnectState() != .Connected {
+                    
+                    NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.AddAutoRefresh.rawValue, object: nil)
+                    
+                }
+                
+            }
+            
         } else {
+            
             NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
         }
         

@@ -31,6 +31,12 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     
     override func awakeFromNib() {
         addCollectionView()
+        
+        // 跟随上面的环的数值再变化一下
+        // 接收通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeStepNumber), name: NumberFollowUpper.FollowUpperStep.rawValue, object: nil)
+        
+//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(changeSleepNumber), name: NumberFollowUpper.FollowUpperSleep.rawValue, object: nil)
     }
     
     deinit {
@@ -51,6 +57,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         initNotificationSleep()
         
     }
+    
     
     /**
      主页列表数据库数据监控
@@ -191,11 +198,16 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         if isExistHomeList(timeString) { return }
         
         let date = NSDate(fromString: timeString, format: "yyyy.M.d")
-        let time = date!.toString(format: "yyyy-MM-dd")
+        _ = date!.toString(format: "yyyy-MM-dd")
         
         // 不存在 解析数据 并保存
-        HomeListWebApi.shareApi.parseHomeListData(time) { result in
+        
+        HomeListNetRequest.shareApi.parserAllHomeListData { result in
             
+//        }
+//        
+//        HomeListWebApi.shareApi.parseHomeListData(time) { result in
+//            
             guard result.isSuccess else {
                 Log.error("Parse Home Lists Data Error")
                 return
@@ -224,7 +236,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      */
     func saveHomeListRealm(result: HomeListMsg) {
         
-        guard result.commonMsg.code == WebApiCode.Success.rawValue else {
+        guard result.commonMsg.code == WebApiCode.Success.rawValue.toInt()! else {
             
             Log.error("Query home list error \(result.commonMsg.code)")
             return
@@ -323,6 +335,38 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
 
         return listVM
     }
+    
+    /**
+     接受通知更新计步值
+     */
+    func changeStepNumber() {
+        
+        guard let curDate = NSDate(fromString: timeString, format: "yyyy.M.d") else {
+            fatalError("时间格式不正确\(timeString)")
+        }
+        
+        let endDate = curDate.gregorian.isToday ? NSDate() : (curDate.gregorian.beginningOfDay + 24.hour).date
+        
+        self.datasViewModels[0] = HomeListStepViewModel(stepNumber: self.queryStepNumber(curDate, endTime: endDate, timeBucket: TimeBucketStyle.Day).totalStep)
+        
+        self.tableView.reloadData()
+    }
+    
+    /**
+     接受通知更新睡眠值
+     */
+//    func changeSleepNumber() {
+//        
+//        guard let curDate = NSDate(fromString: timeString, format: "yyyy.M.d") else {
+//            fatalError("时间格式不正确\(timeString)")
+//        }
+//        
+//        let endDate = curDate.gregorian.isToday ? NSDate() : (curDate.gregorian.beginningOfDay + 24.hour).date
+//
+//        self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: Int(self.querySleepInfoDay(curDate, endTime: endDate).0))
+//        self.tableView.reloadData()
+//        
+//    }
     
 }
 

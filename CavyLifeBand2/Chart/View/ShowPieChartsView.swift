@@ -17,6 +17,9 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
     var deepSleep: Int  = 0
     var lightSleep: Int = 0
     
+    // 左上角显示最大值
+    var maxValue: Int = 0
+    
     convenience init(frame: CGRect, deepSleep: Int, lightSleep: Int) {
        
         self.init(frame: frame)
@@ -24,11 +27,13 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         /**
          *  添加假数据
          */
-        self.deepSleep = 120
-        self.lightSleep = 278
+//        self.deepSleep = 120
+//        self.lightSleep = 278
         
-//        self.deepSleep  = deepSleep
-//        self.lightSleep = lightSleep
+        self.deepSleep  = deepSleep
+        self.lightSleep = lightSleep
+        
+        maxValue = deepSleep + lightSleep
         
         self.backgroundColor = UIColor(named: .HomeViewMainColor)
         
@@ -69,7 +74,7 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         self.rotationAngle = 0
         self.rotationEnabled = true
         
-        descriptionText = "\((lightSleep + deepSleep) / 60 + 1)h"
+        descriptionText = "\(maxValue  / 60 + 1)h"
         descriptionFont = UIFont.systemFontOfSize(12)
         descriptionTextPosition = CGPointMake(20, 0)
         descriptionTextColor = UIColor.whiteColor()
@@ -106,11 +111,11 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         for i in 0 ..< dataCount {
             
             let sleepName = ["\(L10n.ChartSleepLight.string)", "\(L10n.ChartSleepDeep.string)"]
-            yVals.append(BarChartDataEntry(value: sleepDegreeArray[i], xIndex: i))
             xVals.append(sleepName[i])
             
+            yVals.append(BarChartDataEntry(value: sleepDegreeArray[i], xIndex: i))
+            
         }
-        
         
         let dataSet: PieChartDataSet = PieChartDataSet(yVals: yVals, label: "")
         dataSet.sliceSpace = 0
