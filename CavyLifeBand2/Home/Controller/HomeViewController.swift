@@ -240,21 +240,22 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     // MARK: 解析数据 保存数据库
     
     /**
-     解析 计步睡眠数据 并保存Realm
+     解析 计步睡眠数据 并保存Realm 每次请求前前先删除最后一条数据 在获取时间同步
      */
     func parseChartListData() {
         
         var startDate = ""
         var endDate = ""
         
-        if isNeedUpdateStepData() {
+        if isNeedUpdateNStepData() {
             
-            let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+            
+            let personalList = realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
             
             if personalList.count != 0 {
                 
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
-                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
+                startDate = personalList.last!.date!.toString(format: "yyyy-MM-dd")
+                endDate = NSDate().toString(format: "yyyy-MM-dd")
                 
             }
             

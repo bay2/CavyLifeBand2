@@ -60,6 +60,7 @@ protocol ChartStepRealmProtocol {
     
     func isNeedUpdateNStepData() -> Bool
     func queryAllStepInfo(userId: String) -> Results<(NChartStepDataRealm)>
+    func delectStepData(chartStepInfo: NChartStepDataRealm) -> Bool
     func addStepData(chartStepInfo: NChartStepDataRealm) -> Bool
     func queryNStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepShowItem
     
@@ -69,6 +70,40 @@ protocol ChartStepRealmProtocol {
 
 
 extension ChartStepRealmProtocol {
+ 
+    /**
+     
+     删除一条计步数据
+     
+     - parameter chartStepInfo: <#chartStepInfo description#>
+     
+     - returns: <#return value description#>
+     */
+    
+    
+    func delectStepData(chartStepInfo: NChartStepDataRealm) -> Bool {
+        
+        self.realm.beginWrite()
+        
+        self.realm.delete(chartStepInfo)
+        
+        do {
+            
+            try self.realm.commitWrite()
+            
+        } catch let error {
+            
+            Log.error("\(#function) error = \(error)")
+            
+            return false
+        }
+        Log.info("delete chartStep info success")
+        
+        return true
+
+    }
+    
+    
     
     /**
      是否需要从服务器拉取计步数据
@@ -106,6 +141,10 @@ extension ChartStepRealmProtocol {
      返回从服务器存储拉取的所有单条数据 --- 不包括当天
      */
     func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(NChartStepDataRealm)> {
+        
+        
+        
+        
         return realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
     }
     
