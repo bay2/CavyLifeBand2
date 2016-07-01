@@ -30,9 +30,7 @@ extension HomeViewController {
      *   后台进入前台（ addPullRefreshHeader ）
      */
     func beginHomeViewRefreshing() {
-        
-//        scrollView.mj_header.removeFromSuperview()
-   
+
         addAutoRefreshHeader()
         
         scrollView.mj_header.beginRefreshing()
@@ -149,7 +147,6 @@ extension HomeViewController {
     func endHomeViewRefreshing() {
         
         scrollView.mj_header.endRefreshing()
-        scrollView.mj_header.removeFromSuperview()
         addPullRefreshHeader()
     }
     
