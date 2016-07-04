@@ -285,7 +285,8 @@ class CustomCamera: UIViewController {
     func videoBeginRunTimer() {
         
         Log.info("录像开始计时")
-        
+        timer.invalidate()
+
         timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(CustomCamera.timerRun(_:)), userInfo: nil, repeats: true)
         
     }
