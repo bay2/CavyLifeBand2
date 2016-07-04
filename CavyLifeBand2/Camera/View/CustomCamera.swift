@@ -239,18 +239,19 @@ class CustomCamera: UIViewController {
         
         Log.info("停止录像")
         
-        self.camera.recording = false
-        
-        // 停止计时器 时间归零
-        timer.invalidate()
-        timerCount = 0
-        
         self.flashSwitch.hidden = false
         self.shotCutSwitch.hidden = false
         self.changeToPhoto.hidden = false
         self.changeToVideo.hidden = false
         self.lastImage.hidden = false
         self.videRecordTime.hidden = true
+        
+        // 停止计时器 时间归零
+        timerCount = 0
+        timer.invalidate()
+        
+        self.camera.recording = false
+        
         
         self.shutterPhoto.setImage(UIImage(asset: .CameraVideoWait), forState: .Normal)
         
@@ -267,6 +268,8 @@ class CustomCamera: UIViewController {
         // 停止计时器 时间归零
         timer.invalidate()
         timerCount = 0
+        
+        timerRun()
         
         self.flashSwitch.hidden = false
         self.shotCutSwitch.hidden = false
@@ -286,12 +289,25 @@ class CustomCamera: UIViewController {
         
         Log.info("录像开始计时")
         timer.invalidate()
-
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(CustomCamera.timerRun(_:)), userInfo: nil, repeats: true)
+        
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(CustomCamera.timerRun), userInfo: nil, repeats: true)
         
     }
     
-    func timerRun(timer: NSTimer) {
+    func timerRun() {
+        
+        // 如果当前是非录像状态
+        if self.camera.recording == false {
+            
+            self.flashSwitch.hidden = false
+            self.shotCutSwitch.hidden = false
+            self.changeToPhoto.hidden = false
+            self.changeToVideo.hidden = false
+            self.lastImage.hidden = false
+            self.videRecordTime.hidden = true
+            
+            return
+        }
         
         timerCount += 1
         Log.info(timerCount)

@@ -70,7 +70,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         leftAxis.enabled = false // Y轴方向右边 不放轴
         
         delegate = self
-        highlightPerTapEnabled = true // 点击时是否高亮
+        highlightPerTapEnabled = false // 点击时是否高亮
         
         if timeBucketStyle != .Month {
             
