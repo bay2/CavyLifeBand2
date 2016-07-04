@@ -78,7 +78,7 @@ struct UserProfile: JSONJoy {
         
         do {
             let timeString = try decoder["birthday"].getString()
-            let timeDate = NSDate(fromString: timeString, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ")!
+            let timeDate = NSDate(fromString: timeString, format: "yyyy-MM-dd")!
             let format = NSDateFormatter()
             format.dateFormat = "yyyy-MM-dd"
             birthday = format.stringFromDate(timeDate)

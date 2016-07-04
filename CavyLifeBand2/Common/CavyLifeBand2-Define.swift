@@ -609,6 +609,11 @@ enum NetRequsetKey: String {
     case ShareBirthday = "share_birthday"
     case ShareHeight = "share_height"
     case ShareWeight = "share_weight"
+    case Contacts = "contacts"
+    case Name = "name"
+    case Phone = "phone"
+    case Longitude = "longitude"
+    case Latitude = "latitude"
     
 }
 

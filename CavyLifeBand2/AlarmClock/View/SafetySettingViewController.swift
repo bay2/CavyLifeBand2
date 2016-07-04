@@ -80,33 +80,17 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
     
     func loadContactFromWeb() {
         
-        do {
+        EmergencyWebApi.shareApi.netGetRequest(WebApiMethod.EmergencyContacts.description, modelObject: EmergencyListResponse.self, successHandler: { (data) in
             
-            try EmergencyWebApi.shareApi.getEmergencyList { [unowned self] result in
+            if data.phoneList.count > 0 {
                 
                 self.contactModels.removeAll()
                 
-                guard result.isSuccess else {
-                    Log.error(result.error?.description ?? "")
-                    return
-                }
-                
-                let resultMsg = try! EmergencyListResponse(JSONDecoder(result.value!))
-                
-                guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
-                    Log.error(WebApiCode(apiCode: resultMsg.commonMsg.code).description)
-                    return
-                }
-                
-                if resultMsg.phoneList.count > 0 {
+                for i in 0..<data.phoneList.count {
                     
-                    for i in 0..<resultMsg.phoneList.count {
-                        
-                        let contactVM = EmergencyContactInfoCellViewModel(name: resultMsg.phoneList[i].name, phone: resultMsg.phoneList[i].phoneNum)
-                        
-                        self.contactModels.append(contactVM)
-                        
-                    }
+                    let contactVM = EmergencyContactInfoCellViewModel(name: data.phoneList[i].name, phone: data.phoneList[i].phoneNum)
+                    
+                    self.contactModels.append(contactVM)
                     
                 }
                 
@@ -114,8 +98,10 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
                 
             }
             
-        } catch let error  {
-            Log.error(error)
+        }) { (msg) in
+            
+            Log.error(msg)
+            
         }
         
     }
@@ -171,14 +157,14 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
                 return
             }
             
-            let dic = [UserNetRequsetKey.Name.rawValue: model.name,
-                       UserNetRequsetKey.PhoneNum.rawValue: model.phoneNumber]
+            let dic = [NetRequsetKey.Name.rawValue: model.name,
+                       NetRequsetKey.Phone.rawValue: model.phoneNumber]
             
             phoneArr.append(dic)
         }
         
-        phoneArr.append([UserNetRequsetKey.Name.rawValue: name,
-            UserNetRequsetKey.PhoneNum.rawValue: phoneNumber])
+        phoneArr.append([NetRequsetKey.Name.rawValue: name,
+                         NetRequsetKey.Phone.rawValue: phoneNumber])
         
         setEmergencyList(phoneArr) {
             
@@ -203,8 +189,8 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         var phoneArr: [[String: String]] = [[String: String]]()
         
         for model in self.contactModels {
-            let dic = [UserNetRequsetKey.Name.rawValue: model.name,
-                       UserNetRequsetKey.PhoneNum.rawValue: model.phoneNumber]
+            let dic = [NetRequsetKey.Name.rawValue: model.name,
+                       NetRequsetKey.Phone.rawValue: model.phoneNumber]
             phoneArr.append(dic)
         }
         
@@ -223,18 +209,6 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         do {
             
             try EmergencyWebApi.shareApi.setEmergencyPhoneList(phoneList) { result in
-                
-                guard result.isSuccess else {
-                    Log.error(result.error?.description ?? "")
-                    return
-                }
-                
-                let resultMsg = try! EmergencyListResponse(JSONDecoder(result.value!))
-                
-                guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
-                    Log.error(WebApiCode(apiCode: resultMsg.commonMsg.code).description)
-                    return
-                }
                 
                 callBack()
                 

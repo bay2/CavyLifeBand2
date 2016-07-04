@@ -25,13 +25,20 @@ class EmergencyWebApi: NetRequestAdapter, EmergencyContactRealmListOperateDelega
      
      - throws:
      */
-    func setEmergencyPhoneList(phoneList: [[String: String]], callBack: CompletionHandlernType? = nil) throws {
+    func setEmergencyPhoneList(phoneList: [[String: String]], callBack: (Void -> Void)? = nil) throws {
         
-        let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.SetEmergencyPhone.rawValue,
-                                               UserNetRequsetKey.UserID.rawValue: self.userId,
-                                               UserNetRequsetKey.PhoneList.rawValue: phoneList]
+        let parameters: [String: AnyObject] = [NetRequsetKey.Contacts.rawValue: phoneList]
         
-        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
+        netPostRequest(WebApiMethod.EmergencyContacts.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+            
+            callBack?()
+            
+        }) { (msg) in
+            
+            Log.error(msg)
+            
+        }
+
         
     }
     
@@ -56,41 +63,25 @@ class EmergencyWebApi: NetRequestAdapter, EmergencyContactRealmListOperateDelega
      
      - throws:
      */
-    func sendEmergencyMsg(callBack: CompletionHandlernType? = nil) throws {
+    func sendEmergencyMsg(callBack: (Void -> Void)? = nil) throws {
         
-        SCLocationManager.shareInterface.startUpdateLocation { coordinate in
+        SCLocationManager.shareInterface.startUpdateLocation { [unowned self] coordinate in
             
-            let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.SendEmergencyMsg.rawValue,
-                UserNetRequsetKey.UserID.rawValue: self.userId,
-                UserNetRequsetKey.Latitude.rawValue: coordinate.latitude.toString,
-                UserNetRequsetKey.Longitude.rawValue: coordinate.longitude.toString]
+            let parameters: [String: AnyObject] = [NetRequsetKey.Latitude.rawValue: coordinate.latitude.toString,
+                                                   NetRequsetKey.Longitude.rawValue: coordinate.longitude.toString]
             
-            self.netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
+            self.netPostRequest(WebApiMethod.Emergency.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+                
+                callBack?()
+                
+            }) { (msg) in
+                
+                Log.error(msg)
+                
+            }
             
         }
         
     }
     
-    /**
-     获取紧急联系人列表
-     
-     - parameter callBack: 回调
-     
-     - throws:
-     */
-    func getEmergencyList(callBack: (EmergencyListResponse) -> Void? = nil) throws {
-        
-        let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetEmergencyPhone.rawValue,
-                                               UserNetRequsetKey.UserID.rawValue: self.userId]
-        
-//        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
-        
-//        netGetRequest(WebApiMethod.EmergencyContacts.description, modelObject: EmergencyListResponse.self, successHandler: { (data) in
-//            callBack(data.phoneList)
-//        }) { (msg) in
-//            Log.error(msg)
-//        }
-        
-    }
-
 }
