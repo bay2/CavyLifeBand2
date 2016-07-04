@@ -222,7 +222,6 @@ extension SignInDelegate where Self: UIViewController {
         
 //        }
         
-        
         let parameters: [String: AnyObject] = [NetRequsetKey.UserName.rawValue: userName,
                                                NetRequsetKey.Password.rawValue: passwd.md5()]
         

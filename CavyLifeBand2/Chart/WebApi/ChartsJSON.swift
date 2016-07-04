@@ -43,6 +43,8 @@ struct StepChartsData {
     var totalStep: Int
     var totalKilometer: CGFloat
     var finishTime: Int
+    var averageStep: Int
+    
     
 }
 

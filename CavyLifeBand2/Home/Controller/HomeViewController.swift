@@ -316,10 +316,21 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 //
         
 //     let  parameters: [String: AnyObject] = ["start_date": startDate, "end_date": endDate]
-     let  parameters: [String: AnyObject] = ["start_date": "2016-6-5", "end_date": "2016-6-20"]
+         let  parameters: [String: AnyObject] = ["start_date": "2016-6-5", "end_date": "2016-7-4"]
         NetWebApi.shareApi.netGetRequest(WebApiMethod.Steps.description , para: parameters, modelObject: NChartStepData.self , successHandler: { result  in
+ 
+            //服务器数据获取成功判断数据库最后一条数据时间是否是当天 如果是当天就删除之后再开始添加新数据
             
-            Log.info(result)
+            let today = NSDate(fromString: endDate, format: "yyyy-MM-dd")?.gregorian.isToday
+            
+            //如果传入的时间是当天 则查询是否有当天的数据然后删除
+            
+            if today == true {
+                
+              self.deleteStepDataWithDate(endDate)
+                
+            }
+            
             
             for list in result.stepsData.stepsData {
                
@@ -403,6 +414,19 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
     }
     
+    
+    
+    func deleteStepDataWithDate(searchDate: String) {
+        
+       
+        guard let time = NSDate(fromString: searchDate, format: "yyyy-MM-dd") else {
+            Log.error("Time from erro [\(searchDate)]")
+            return
+        }
+        
+        self.delecNSteptDate(time, endTime: time)
+        
+    }
     
     
     func addSleepListRealm(list: SleepMsg) {
