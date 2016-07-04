@@ -81,7 +81,6 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
 
     }
     
-    
     func addAllViewLayout() {
         
         // 上面的CollectionView

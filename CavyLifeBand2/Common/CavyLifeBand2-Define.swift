@@ -584,8 +584,16 @@ enum WebApiMethod: CustomStringConvertible {
 // MARK: - Web Api 参数定义
 enum NetRequsetKey: String {
     
-    case UserName = "username"
-    case Password = "password"
+    case UserName  = "username"
+    case Password  = "password"
+    case StartDate = "start_date"
+    case EndDate   = "end_date"
+    case Date      = "date"
+    case Time      = "time"
+    case Tilts     = "tilts"
+    case Steps     = "steps"
+    case Raw       = "raw"
+    case TimeScale = "time_scale"
     
 }
 

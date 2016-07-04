@@ -14,7 +14,6 @@ import EZSwiftExtensions
 import RealmSwift
 import MJRefresh
 
-
 let dateViewHeight: CGFloat = 50.0
 // 大环是 0.55 大环顶部距离NavBar高度是 96
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55

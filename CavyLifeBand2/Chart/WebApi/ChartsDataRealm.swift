@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 import Log
 import Datez
+import Alamofire
 
 /// 长时间没有数据，12 = 2小时， 12 * 10分钟
 let noSleepTime = 12
@@ -22,6 +23,7 @@ class ChartStepDataRealm: Object {
     dynamic var time: NSDate       = NSDate()
     dynamic var step               = 0
     dynamic var kilometer: CGFloat = 0
+    dynamic var syncState          = ChartBandDataSyncState.UnSync.rawValue
     
     convenience init(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, time: NSDate, step: Int) {
         
@@ -42,6 +44,7 @@ class ChartSleepDataRealm: Object {
     dynamic var userId       = ""
     dynamic var time: NSDate = NSDate()
     dynamic var tilts        = 0
+    dynamic var syncState    = ChartBandDataSyncState.UnSync.rawValue
     
     convenience init(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, time: NSDate, tilts: Int) {
         
@@ -56,9 +59,14 @@ class ChartSleepDataRealm: Object {
     
 }
 
+enum ChartBandDataSyncState: Int {
+    case Synced = 0
+    case UnSync = 1
+}
+
 // MARK: 计步睡眠数据库操作协议
-protocol ChartsRealmProtocol {
-    
+protocol ChartsRealmProtocol: SleepWebRealmOperate {
+
     var realm: Realm { get }
     var userId: String { get }
     
@@ -88,7 +96,7 @@ protocol ChartsRealmProtocol {
 extension ChartsRealmProtocol {
     
     func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(ChartStepDataRealm)> {
-        return realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+        return realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'").sorted("time", ascending: true)
     }
     
     // 返回 第一天开始的时间段
@@ -357,7 +365,7 @@ extension ChartsRealmProtocol {
      - returns:
      */
     func queryAllSleepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(ChartSleepDataRealm)> {
-        return realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
+        return realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'").sorted("time", ascending: true)
     }
     
     /**
@@ -672,27 +680,103 @@ extension ChartsRealmProtocol {
      
      - returns: [(总的睡眠时间, 深睡, 浅睡)] 数据按每天返回
      */
+//    func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)] {
+//        
+//        var reslutData: [(Double, Double, Double)] = []
+//        
+//        let dayTotal = (endTime - beginTime).totalDays
+//        
+//        Log.info("querySleepInfoDays Begin \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
+//        
+//        for i in 0...dayTotal {
+//            
+//            // 从前天的晚上6点开始算起
+//            let newBeginTime = ((beginTime.gregorian + i.day).beginningOfDay - 6.hour).date
+//            let newEndTime = (newBeginTime.gregorian + 24.day).date
+//            
+//            reslutData.append(querySleepInfo(newBeginTime, endTime: newEndTime))
+//            
+//        }
+//        
+//        Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
+//        
+//        return reslutData
+//        
+//    }
+    
     func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)] {
         
         var reslutData: [(Double, Double, Double)] = []
         
         let dayTotal = (endTime - beginTime).totalDays
         
+        /// 取出数据库中这段时间里的数据
+        let sleepWebRealms = querySleepWebRealm(startDate: beginTime, endDate: endTime)
+        
+        var realmIndex = 0
+        
         Log.info("querySleepInfoDays Begin \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
         
+        /// 数据库中没有 即没数据
+        guard sleepWebRealms?.count > 0 else {
+            
+            for _ in 0...dayTotal {
+                
+                reslutData.append((0.0, 0.0, 0.0))
+                
+            }
+            
+            return reslutData
+        
+        }
+        
+        /// 转化数据库中的数据，并做断档数据补0
         for i in 0...dayTotal {
             
-            // 从前天的晚上6点开始算起
-            let newBeginTime = ((beginTime.gregorian + i.day).beginningOfDay - 6.hour).date
-            let newEndTime = (newBeginTime.gregorian + 24.hour).date
+            if realmIndex < sleepWebRealms?.count {
+                
+                if ((beginTime.gregorian + i.day).beginningOfDay.date - sleepWebRealms![realmIndex].date).totalDays == 0 {
+                
+                    reslutData.append(sleepWebRealms![realmIndex].transformToTuple())
+                    
+                    realmIndex += 1
+                    
+                } else {
+                    reslutData.append((0.0, 0.0, 0.0))
+                }
+                
+            } else {
             
-            reslutData.append(querySleepInfo(newBeginTime, endTime: newEndTime))
+                reslutData.append((0.0, 0.0, 0.0))
+                
+            }
             
         }
         
         Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
         
-        return reslutData
+        let nowDate = NSDate()
+        
+        // 当天数据的特殊处理
+        if (nowDate - beginTime).totalDays >= 0 && (nowDate - endTime).totalDays <= 0 {
+            // 有网直接返回
+            guard NetworkReachabilityManager(host: "www.baidu.com")?.isReachable == false else {
+                return reslutData
+            }
+            
+            // 没网显示手环数据库的数据
+            
+            // 从前天的晚上6点开始算起
+            let newBeginTime = (nowDate.gregorian.beginningOfDay - 6.hour).date
+            let newEndTime = (newBeginTime.gregorian + 1.day).date
+            
+            reslutData[(nowDate - beginTime).totalDays] = querySleepInfo(newBeginTime, endTime: newEndTime)
+            
+            return reslutData
+            
+        } else {
+            return reslutData
+        }
         
     }
     
@@ -725,6 +809,129 @@ extension ChartsRealmProtocol {
         return true
         
         
+    }
+    
+    /**
+     获取需要上报的数据
+     
+     - returns: ([NSDictionary], NSDate, NSDate) 上报数据 ，起始时间，结束时间
+     */
+    func queryUploadBandData() -> ([NSDictionary], NSDate, NSDate) {
+        
+        let realmSleepData = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND syncState == %d", ChartBandDataSyncState.UnSync.rawValue).sorted("time", ascending: true)
+        
+        let realmStepData = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND syncState == %d", ChartBandDataSyncState.UnSync.rawValue).sorted("time", ascending: true)
+        
+        if realmSleepData.isEmpty {
+            return ([], NSDate(), NSDate())
+        }
+        
+        let startTime = realmSleepData[0].time.gregorian.beginningOfDay.date
+        
+        let format = NSDateFormatter()
+        
+        format.dateFormat = "yyyy-MM-dd"
+        
+        var reslutArray: [NSDictionary] = []
+        
+        
+        for i in 0..<realmSleepData.count {
+            
+            let tilt = realmSleepData[i].tilts
+            let step = realmStepData[i].step
+            var dateStr: String = format.stringFromDate(realmStepData[i].time)
+            
+            let totalMinutes = (realmStepData[i].time - startTime).totalMinutes / 10
+            
+            let time: Int = (totalMinutes % 144) == 0 ? 144 : (totalMinutes % 144)
+            
+            if time == 144 {
+               dateStr = format.stringFromDate((realmStepData[i].time.gregorian - 1.day).date)
+            }
+            
+            let dataStruct = [ NetRequsetKey.Date.rawValue: dateStr,
+                               NetRequsetKey.Time.rawValue: time,
+                               NetRequsetKey.Tilts.rawValue: tilt,
+                               NetRequsetKey.Steps.rawValue: step]
+            
+            reslutArray.append(dataStruct)
+            
+            Log.info("index\(i) ---- 分钟数\(time) ---- 日期\(dateStr) ---- 原日期\(realmStepData[i].time)")
+        
+        }
+        
+        return (reslutArray, realmStepData[0].time, realmStepData.last!.time)
+
+    }
+    
+    /**
+     将手环数据库的数据置为已同步状态
+     
+     - parameter startDate: 开始时间
+     - parameter endDate:   结束时间
+     */
+    func setChartBandDataSynced(startDate: NSDate, endDate: NSDate) {
+        setSleepChartBandDataSynced(startDate, endDate: endDate)
+        setStepChartBandDataSynced(startDate, endDate: endDate)
+    }
+    
+    /**
+     将手环睡眠数据库的数据置为已同步状态
+     
+     - parameter startDate: 开始时间
+     - parameter endDate:   结束时间
+     */
+    func setSleepChartBandDataSynced(startDate: NSDate, endDate: NSDate) {
+        
+        let realmSleepData = realm.objects(ChartSleepDataRealm).filter("userId == '\(userId)' AND time >= %@ AND time <= %@", startDate, endDate)
+        
+        guard realmSleepData.count > 0 else {
+            Log.info("\(#function) 该记录不存在")
+            return
+        }
+        
+        self.realm.beginWrite()
+        
+        
+        realmSleepData.forEach { (data) in
+            data.syncState = ChartBandDataSyncState.Synced.rawValue
+        }
+        
+        do {
+            try self.realm.commitWrite()
+        } catch let error {
+            Log.error("\(#function) error = \(error)")
+        }
+        
+    }
+    
+    /**
+     将手环计步数据库的数据置为已同步状态
+     
+     - parameter startDate: 开始时间
+     - parameter endDate:   结束时间
+     */
+    func setStepChartBandDataSynced(startDate: NSDate, endDate: NSDate) {
+        let realmStepData = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time >= %@ AND time <= %@", startDate, endDate)
+        
+        guard realmStepData.count > 0 else {
+            Log.info("\(#function) 该记录不存在")
+            return
+        }
+        
+        self.realm.beginWrite()
+        
+        
+        realmStepData.forEach { (data) in
+            data.syncState = ChartBandDataSyncState.Synced.rawValue
+        }
+        
+        do {
+            try self.realm.commitWrite()
+        } catch let error {
+            Log.error("\(#function) error = \(error)")
+        }
+
     }
 
 }
