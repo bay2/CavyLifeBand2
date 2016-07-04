@@ -10,7 +10,7 @@ import Alamofire
 import JSONJoy
 import RealmSwift
 
-class EmergencyWebApi: NetRequestAdapter, EmergencyContactRealmListOperateDelegate {
+class EmergencyWebApi: NetRequestAdapter, EmergencyContactRealmListOperateDelegate, NetRequest {
     
     static var shareApi = EmergencyWebApi()
     
@@ -78,12 +78,18 @@ class EmergencyWebApi: NetRequestAdapter, EmergencyContactRealmListOperateDelega
      
      - throws:
      */
-    func getEmergencyList(callBack: CompletionHandlernType? = nil) throws {
+    func getEmergencyList(callBack: (EmergencyListResponse) -> Void? = nil) throws {
         
         let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetEmergencyPhone.rawValue,
                                                UserNetRequsetKey.UserID.rawValue: self.userId]
         
-        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
+//        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
+        
+//        netGetRequest(WebApiMethod.EmergencyContacts.description, modelObject: EmergencyListResponse.self, successHandler: { (data) in
+//            callBack(data.phoneList)
+//        }) { (msg) in
+//            Log.error(msg)
+//        }
         
     }
 
