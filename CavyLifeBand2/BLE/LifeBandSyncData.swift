@@ -264,6 +264,17 @@ class LifeBandSyncData {
                     
                 }
                 
+            } else {
+                
+                let last = tiltsAndStepsInfo.last
+                let lastSecond = tiltsAndStepsInfo[tiltsAndStepsInfo.count - 2]
+                
+                let diffMinutes = (last!.date - lastSecond.date).totalMinutes
+                
+                if diffMinutes != 10 {
+                    tiltsAndStepsInfo.removeLast()
+                }
+                
             }
             
             /*-------判断无效数据------*/

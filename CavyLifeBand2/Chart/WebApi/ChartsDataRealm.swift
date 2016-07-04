@@ -717,43 +717,43 @@ extension ChartsRealmProtocol {
         
         Log.info("querySleepInfoDays Begin \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
         
-        /// 数据库中没有 即没数据
-        guard sleepWebRealms?.count > 0 else {
+        /// 数据库中没有数据
+        if sleepWebRealms?.count == 0 {
             
             for _ in 0...dayTotal {
                 
                 reslutData.append((0.0, 0.0, 0.0))
                 
             }
-            
-            return reslutData
         
-        }
+        } else {
         
-        /// 转化数据库中的数据，并做断档数据补0
-        for i in 0...dayTotal {
-            
-            if realmIndex < sleepWebRealms?.count {
+            /// 转化数据库中的数据，并做断档数据补0
+            for i in 0...dayTotal {
                 
-                if ((beginTime.gregorian + i.day).beginningOfDay.date - sleepWebRealms![realmIndex].date).totalDays == 0 {
-                
-                    reslutData.append(sleepWebRealms![realmIndex].transformToTuple())
+                if realmIndex < sleepWebRealms?.count {
                     
-                    realmIndex += 1
+                    if ((beginTime.gregorian + i.day).beginningOfDay.date - sleepWebRealms![realmIndex].date).totalDays == 0 {
+                    
+                        reslutData.append(sleepWebRealms![realmIndex].transformToTuple())
+                        
+                        realmIndex += 1
+                        
+                    } else {
+                        reslutData.append((0.0, 0.0, 0.0))
+                    }
                     
                 } else {
-                    reslutData.append((0.0, 0.0, 0.0))
-                }
                 
-            } else {
-            
-                reslutData.append((0.0, 0.0, 0.0))
+                    reslutData.append((0.0, 0.0, 0.0))
+                    
+                }
                 
             }
             
-        }
+            Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
         
-        Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
+        }
         
         let nowDate = NSDate()
         
