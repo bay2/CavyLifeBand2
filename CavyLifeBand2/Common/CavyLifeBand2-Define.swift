@@ -560,7 +560,7 @@ enum UserNetRequestMethod: String {
 
 // MARK: - Web Api 方法定义
 enum WebApiMethod: CustomStringConvertible {
-    case Login, Logout, Dailies, Steps, Sleep
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware
 
     var description: String {
         
@@ -575,6 +575,10 @@ enum WebApiMethod: CustomStringConvertible {
             return CavyDefine.webServerAddr + "steps"
         case .Sleep:
             return CavyDefine.webServerAddr + "sleep"
+        case .UsersProfile:
+            return CavyDefine.webServerAddr + "users/profile"
+        case .Firmware:
+            return CavyDefine.webServerAddr + "firmware"
         }
         
     }
