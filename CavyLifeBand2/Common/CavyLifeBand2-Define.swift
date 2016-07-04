@@ -590,6 +590,21 @@ enum NetRequsetKey: String {
     
     case UserName = "username"
     case Password = "password"
+    case Profile = "profile"
+    case Nickname = "nickname"
+    case Address = "address"
+    case Sex = "sex"
+    case Height = "height"
+    case Weight = "weight"
+    case Figure = "figure"
+    case Birthday = "birthday"
+    case StepsGoal = "steps_goal"
+    case SleepTimeGoal = "sleep_time_goal"
+    case EnableNotification = "enable_notification"
+    case ShareLocation = "share_location"
+    case ShareBirthday = "share_birthday"
+    case ShareHeight = "share_height"
+    case ShareWeight = "share_weight"
     
 }
 

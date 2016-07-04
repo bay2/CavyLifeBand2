@@ -422,14 +422,14 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
             BindBandCtrl.bandMacAddress = bindBandValue
             
             // 通过查询用户信息判断是否是老的豚鼠用户
-            self.queryUserInfoByNet(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, vc: self) {
+            self.queryUserInfoByNet(self) {
                 
                 guard let userProfile = $0 else {
                     return
                 }
                 
                 // 老用户进入引导页
-                if userProfile.sleepTime.isEmpty {
+                if userProfile.sleepGoal == 0 {
                     
                     let guideVM = GuideGenderViewModel()
                     guideVC.configView(guideVM, delegate: guideVM)

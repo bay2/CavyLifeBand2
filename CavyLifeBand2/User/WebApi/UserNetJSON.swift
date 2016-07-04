@@ -28,44 +28,89 @@ struct UserSignUpMsg: JSONJoy {
  *
  *  用户信息
  */
-struct UserProfile {
+struct UserProfile: JSONJoy {
     
-    var sex: String
-    var height: String
-    var weight: String
+    var coins: Double
+    var phone: String
+    var sex: Int
+    var height: Double
+    var weight: Double
     var birthday: String
     var avatarUrl: String
     var address: String
     var nickName: String
-    var stepNum: Int
-    var sleepTime: String
+    var stepGoal: Int
+    var sleepGoal: Int
     var isNotification: Bool
     var isLocalShare: Bool
     var isOpenBirthday: Bool
     var isOpenHeight: Bool
     var isOpenWeight: Bool
-    var achievementType: String
+    var awards: [UserAward]
+    var signUpDate: NSDate
     
     init(_ decoder: JSONDecoder) throws  {
         
-        do { sex = try decoder["sex"].getString() } catch { sex = "0" }
-        do { height = try decoder["height"].getString() } catch { height = "" }
-        do { weight = try decoder["weight"].getString() } catch { weight = "" }
-        do { birthday = try decoder["birthday"].getString() } catch { birthday = "" }
+        awards = []
+        
+        do { coins = try decoder["coins"].getDouble() } catch { coins = 0.0 }
+        do { phone = try decoder["phone"].getString() } catch { phone = "" }
+        do { sex = try decoder["sex"].getInt() } catch { sex = 0 }
+        do { height = try decoder["height"].getDouble() } catch { height = 0.0 }
+        do { weight = try decoder["weight"].getDouble() } catch { weight = 0.0 }
         do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
         do { address = try decoder["address"].getString() } catch { address = "" }
         do { nickName = try decoder["nickname"].getString() } catch { nickName = "" }
-        do { stepNum = try decoder["stepNum"].getInt() } catch { stepNum = 0 }
-        do { sleepTime = try decoder["sleepTime"].getString() } catch { sleepTime = "" }
-        do { isNotification = decoder["isNotification"].bool }
-        do { isLocalShare = decoder["isLocalShare"].bool }
-        do { isOpenBirthday = decoder["isLocalShare"].bool }
-        do { isOpenHeight = decoder["isOpenHeight"].bool }
-        do { isOpenWeight = decoder["isOpenWeight"].bool }
-        do { achievementType = try decoder["achievementType"].getString() } catch { achievementType = "0" }
+        do { stepGoal = try decoder["steps_goal"].getInt() } catch { stepGoal = 0 }
+        do { sleepGoal = try decoder["sleep_time_goal"].getInt() } catch { sleepGoal = 0 }
+        do { isNotification = decoder["enable_notification"].bool }
+        do { isLocalShare = decoder["share_location"].bool }
+        do { isOpenBirthday = decoder["share_birthday"].bool }
+        do { isOpenHeight = decoder["share_height"].bool }
+        do { isOpenWeight = decoder["share_weight"].bool }
+        
+        do {
+            let timeString = try decoder["signupAt"].getString()
+            signUpDate = NSDate(fromString: timeString, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ")!
+        } catch {
+            signUpDate = NSDate()
+        }
+        
+        do {
+            let timeString = try decoder["birthday"].getString()
+            let timeDate = NSDate(fromString: timeString, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ")!
+            let format = NSDateFormatter()
+            format.dateFormat = "yyyy-MM-dd"
+            birthday = format.stringFromDate(timeDate)
+        } catch {
+            birthday = ""
+        }
+        
+        guard let awardArr = decoder["awards"].array else {
+            return
+        }
+        
+        for award in awardArr {
+            
+            awards.append(try UserAward(award))
+            
+        }
 
     }
     
+}
+
+struct UserAward: JSONJoy {
+    var name: String
+    
+    var number: String
+    
+    init(_ decoder: JSONDecoder) throws {
+        
+        do { name = try decoder["name"].getString() } catch { name = "" }
+        do { number = try decoder["number"].getString() } catch { number = "" }
+        
+    }
 }
 
 /**
@@ -73,15 +118,15 @@ struct UserProfile {
  *
  *  查询用户消息
  */
-struct UserProfileMsg {
+struct UserProfileMsg: JSONJoy, CommenResponseProtocol {
 
-    var commonMsg: CommenMsg?
+    var commonMsg: CommenResponse
     var userProfile: UserProfile?
     
     init(_ decoder: JSONDecoder) throws  {
 
-        commonMsg = try CommenMsg(decoder)
-        userProfile = try UserProfile(decoder)
+        commonMsg = try CommenResponse(decoder)
+        userProfile = try UserProfile(decoder["profile"])
         
     }
 
