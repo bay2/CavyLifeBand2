@@ -361,7 +361,7 @@ extension ChartsRealmProtocol {
     }
     
     /**
-     添加计步数据
+     添加睡眠数据
      - parameter chartsInfo: 用户的睡眠信息
      - returns: 成功：true 失败： false
      */

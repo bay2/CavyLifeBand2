@@ -50,7 +50,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      */
     func configLayout() {
         
-        parseDataToHomeListRealm()
+//        parseDataToHomeListRealm()
         
         initNotificationHomeList()
         initNotificationStep()
