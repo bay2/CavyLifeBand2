@@ -8,89 +8,49 @@
 
 import JSONJoy
 
-struct FirmwareUpdateResponse: JSONJoy {
-    //通用消息头
-    var commonMsg: CommenMsg?
+struct FirmwareUpdateResponse: JSONJoy, CommenResponseProtocol {
     
-    //版本列表
-    var versionList: [Version]?
+    //通用消息头
+    var commonMsg: CommenResponse
+    
+    //版本信息
+    var data: FWVersionInfo
     
     init(_ decoder: JSONDecoder) throws {
-        commonMsg = try CommenMsg(decoder)
         
-        versionList = [Version]()
+        commonMsg = try CommenResponse(decoder)
         
-        if let versionArray = decoder["versionList"].array {
-            
-            for version in versionArray {
-                
-                versionList?.append(try Version(version))
-                
-            }
-        }
+        data = try FWVersionInfo(decoder["data"])
         
     }
     
 }
 
-struct Version: JSONJoy {
+struct FWVersionInfo: JSONJoy {
     
+    // 版本名稱 如 "0.0.1"
     var version: String
     
+    // 版本號
+    var reversion: Int
+    
+    // 版本描述
+    var description: String
+    
+    // 版本下載链接
     var url: String
+    
+    // 版本日期
+    var publishDate: String
     
     init(_ decoder: JSONDecoder) throws {
         
         do { version = try decoder["version"].getString() } catch { version = "" }
+        do { reversion = try decoder["reversion"].getInt() } catch { reversion = 0 }
+        do { description = try decoder["description"].getString() } catch { description = "" }
         do { url = try decoder["url"].getString() } catch { url = "" }
+        do { publishDate = try decoder["publish_date"].getString() } catch { publishDate = "" }
         
     }
     
 }
-
-//struct FirmwareUpdateResponse: JSONJoy, CommenResponseProtocol {
-//    
-//    //通用消息头
-//    var commonMsg: CommenResponse
-//    
-//    //版本信息
-//    var data: FWVersionInfo
-//    
-//    init(_ decoder: JSONDecoder) throws {
-//        
-//        commonMsg = try CommenResponse(decoder)
-//        
-//        data = try FWVersionInfo(decoder["data"])
-//        
-//    }
-//    
-//}
-//
-//struct FWVersionInfo: JSONJoy {
-//    
-//    // 版本名稱 如 "0.0.1"
-//    var version: String
-//    
-//    // 版本號
-//    var reversion: Int
-//    
-//    // 版本描述
-//    var description: String
-//    
-//    // 版本下載链接
-//    var url: String
-//    
-//    // 版本日期
-//    var publishDate: String
-//    
-//    init(_ decoder: JSONDecoder) throws {
-//        
-//        do { version = try decoder["version"].getString() } catch { version = "" }
-//        do { reversion = try decoder["reversion"].getInt() } catch { reversion = 0 }
-//        do { description = try decoder["description"].getString() } catch { description = "" }
-//        do { url = try decoder["url"].getString() } catch { url = "" }
-//        do { publishDate = try decoder["publish_date"].getString() } catch { publishDate = "" }
-//        
-//    }
-//    
-//}

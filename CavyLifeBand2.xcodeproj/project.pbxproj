@@ -144,7 +144,6 @@
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		688E7B5C1D20FB3F0062DF9D /* NetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */; };
 		68A453531D0F96E800552521 /* FirmwareUpdateJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */; };
-		68A453551D0F97FA00552521 /* FirmwareUpdateWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A453541D0F97FA00552521 /* FirmwareUpdateWebApi.swift */; };
 		68B4DED41CE1BBEC00BE041C /* HelpFeedbackJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */; };
 		68B4DED61CE1BDF600BE041C /* HelpFeedbackWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED51CE1BDF600BE041C /* HelpFeedbackWebApi.swift */; };
 		68B4DED81CE574E600BE041C /* RelateAppJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED71CE574E600BE041C /* RelateAppJSON.swift */; };
@@ -490,7 +489,6 @@
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequest.swift; sourceTree = "<group>"; };
 		68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateJSON.swift; sourceTree = "<group>"; };
-		68A453541D0F97FA00552521 /* FirmwareUpdateWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateWebApi.swift; sourceTree = "<group>"; };
 		68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpFeedbackJSON.swift; sourceTree = "<group>"; };
 		68B4DED51CE1BDF600BE041C /* HelpFeedbackWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpFeedbackWebApi.swift; sourceTree = "<group>"; };
 		68B4DED71CE574E600BE041C /* RelateAppJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelateAppJSON.swift; sourceTree = "<group>"; };
@@ -957,7 +955,6 @@
 			children = (
 				68648A821CF3F234009D4BEE /* UpdateProgressView.swift */,
 				68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */,
-				68A453541D0F97FA00552521 /* FirmwareUpdateWebApi.swift */,
 			);
 			path = FirmwareUpdate;
 			sourceTree = "<group>";
@@ -2295,7 +2292,6 @@
 				6849D3B31CE9AE82001CB7EC /* EmergencyWebApi.swift in Sources */,
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,
-				68A453551D0F97FA00552521 /* FirmwareUpdateWebApi.swift in Sources */,
 				4C9E0B4C1D1A395200DBC1FC /* ChartSleepInfoCell.swift in Sources */,
 				683655821CBC85BE009373EA /* SecondsTableViewCell.swift in Sources */,
 				6836552B1CBB49F7009373EA /* EmergencyContactPersonCell.swift in Sources */,
