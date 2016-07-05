@@ -614,6 +614,14 @@ enum NetRequsetKey: String {
     case Phone = "phone"
     case Longitude = "longitude"
     case Latitude = "latitude"
+    case StartDate = "start_date"
+    case EndDate   = "end_date"
+    case Date      = "date"
+    case Time      = "time"
+    case Tilts     = "tilts"
+    case Steps     = "steps"
+    case Raw       = "raw"
+    case TimeScale = "time_scale"
     
 }
 
