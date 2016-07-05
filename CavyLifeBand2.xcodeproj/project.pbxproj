@@ -145,6 +145,7 @@
 		686A5F051CDC7F3900EB8D0E /* RelateAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */; };
 		6874798D1D22943100354A5B /* SleepRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6874798C1D22943100354A5B /* SleepRealm.swift */; };
 		687479921D23A33700354A5B /* LoginJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479911D23A33700354A5B /* LoginJSON.swift */; };
+		687479991D24EE0F00354A5B /* FunctionIntroduceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479981D24EE0F00354A5B /* FunctionIntroduceVC.swift */; };
 		687479941D24AF0600354A5B /* SleepWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479931D24AF0600354A5B /* SleepWebApi.swift */; };
 		687479971D24BA8B00354A5B /* UploadBandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479961D24BA8B00354A5B /* UploadBandData.swift */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
@@ -152,7 +153,6 @@
 		688E7B5C1D20FB3F0062DF9D /* NetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */; };
 		688E7B5F1D2259BB0062DF9D /* SleepWebJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688E7B5E1D2259BB0062DF9D /* SleepWebJSON.swift */; };
 		68A453531D0F96E800552521 /* FirmwareUpdateJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */; };
-		68A453551D0F97FA00552521 /* FirmwareUpdateWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A453541D0F97FA00552521 /* FirmwareUpdateWebApi.swift */; };
 		68B4DED41CE1BBEC00BE041C /* HelpFeedbackJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */; };
 		68B4DED61CE1BDF600BE041C /* HelpFeedbackWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED51CE1BDF600BE041C /* HelpFeedbackWebApi.swift */; };
 		68B4DED81CE574E600BE041C /* RelateAppJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED71CE574E600BE041C /* RelateAppJSON.swift */; };
@@ -178,6 +178,8 @@
 		88482C221D220AC30084628B /* GuideLinking@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 88482C201D220AC30084628B /* GuideLinking@2x.gif */; };
 		88482C231D220AC30084628B /* GuideLinking@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 88482C211D220AC30084628B /* GuideLinking@3x.gif */; };
 		887C75B81D114AB2009EA1F6 /* Array_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887C75B71D114AB2009EA1F6 /* Array_Extension.swift */; };
+		889519EF1D26397E00BC4938 /* StepDataJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889519EC1D26397E00BC4938 /* StepDataJson.swift */; };
+		889519F01D26397E00BC4938 /* StepsDataReaml.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889519ED1D26397E00BC4938 /* StepsDataReaml.swift */; };
 		9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */; };
 		9104AA701CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */; };
 		910DFED31D0029E0009B944D /* FirmwareUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910DFED21D0029E0009B944D /* FirmwareUpdate.swift */; };
@@ -499,6 +501,7 @@
 		686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelateAppCell.xib; sourceTree = "<group>"; };
 		6874798C1D22943100354A5B /* SleepRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepRealm.swift; sourceTree = "<group>"; };
 		687479911D23A33700354A5B /* LoginJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginJSON.swift; sourceTree = "<group>"; };
+		687479981D24EE0F00354A5B /* FunctionIntroduceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionIntroduceVC.swift; sourceTree = "<group>"; };
 		687479931D24AF0600354A5B /* SleepWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepWebApi.swift; sourceTree = "<group>"; };
 		687479961D24BA8B00354A5B /* UploadBandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadBandData.swift; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
@@ -506,7 +509,6 @@
 		688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequest.swift; sourceTree = "<group>"; };
 		688E7B5E1D2259BB0062DF9D /* SleepWebJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepWebJSON.swift; sourceTree = "<group>"; };
 		68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateJSON.swift; sourceTree = "<group>"; };
-		68A453541D0F97FA00552521 /* FirmwareUpdateWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateWebApi.swift; sourceTree = "<group>"; };
 		68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpFeedbackJSON.swift; sourceTree = "<group>"; };
 		68B4DED51CE1BDF600BE041C /* HelpFeedbackWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpFeedbackWebApi.swift; sourceTree = "<group>"; };
 		68B4DED71CE574E600BE041C /* RelateAppJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelateAppJSON.swift; sourceTree = "<group>"; };
@@ -533,6 +535,8 @@
 		88482C201D220AC30084628B /* GuideLinking@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GuideLinking@2x.gif"; sourceTree = "<group>"; };
 		88482C211D220AC30084628B /* GuideLinking@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GuideLinking@3x.gif"; sourceTree = "<group>"; };
 		887C75B71D114AB2009EA1F6 /* Array_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array_Extension.swift; sourceTree = "<group>"; };
+		889519EC1D26397E00BC4938 /* StepDataJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDataJson.swift; sourceTree = "<group>"; };
+		889519ED1D26397E00BC4938 /* StepsDataReaml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsDataReaml.swift; sourceTree = "<group>"; };
 		9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtSearch.swift; sourceTree = "<group>"; };
 		9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtDataSource.swift; sourceTree = "<group>"; };
 		910DFED21D0029E0009B944D /* FirmwareUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdate.swift; sourceTree = "<group>"; };
@@ -780,6 +784,7 @@
 		4C9E0B2E1D1A395200DBC1FC /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				889519E71D26397E00BC4938 /* StepContrl */,
 				687479951D24BA5F00354A5B /* UploadBandData */,
 				688E7B5D1D22591C0062DF9D /* SleepControl */,
 				4C9E0B2F1D1A395200DBC1FC /* controller */,
@@ -987,7 +992,6 @@
 			children = (
 				68648A821CF3F234009D4BEE /* UpdateProgressView.swift */,
 				68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */,
-				68A453541D0F97FA00552521 /* FirmwareUpdateWebApi.swift */,
 			);
 			path = FirmwareUpdate;
 			sourceTree = "<group>";
@@ -1029,6 +1033,7 @@
 			isa = PBXGroup;
 			children = (
 				686A5EEA1CDC309400EB8D0E /* Relate.storyboard */,
+				687479981D24EE0F00354A5B /* FunctionIntroduceVC.swift */,
 				686A5EEE1CDC35AE00EB8D0E /* HelpAndFeedbackListVC.swift */,
 				686A5EF21CDC35E700EB8D0E /* HelpAndFeedbackVC.swift */,
 				686A5EF41CDC360000EB8D0E /* RelateAppVC.swift */,
@@ -1172,6 +1177,47 @@
 				91DFA91D1CD84DC20036B939 /* PKListDataSource.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		889519E71D26397E00BC4938 /* StepContrl */ = {
+			isa = PBXGroup;
+			children = (
+				889519E81D26397E00BC4938 /* Controller */,
+				889519E91D26397E00BC4938 /* View */,
+				889519EA1D26397E00BC4938 /* ViewModel */,
+				889519EB1D26397E00BC4938 /* WebApi */,
+			);
+			path = StepContrl;
+			sourceTree = "<group>";
+		};
+		889519E81D26397E00BC4938 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		889519E91D26397E00BC4938 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		889519EA1D26397E00BC4938 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		889519EB1D26397E00BC4938 /* WebApi */ = {
+			isa = PBXGroup;
+			children = (
+				889519EC1D26397E00BC4938 /* StepDataJson.swift */,
+				889519ED1D26397E00BC4938 /* StepsDataReaml.swift */,
+			);
+			path = WebApi;
 			sourceTree = "<group>";
 		};
 		9114D1BC1C97A1BB008CB4CE /* Resource */ = {
@@ -2121,7 +2167,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\ntailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\necho \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+			shellScript = "#if hash tailor 2>/dev/null; then\n#tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2138,7 +2184,9 @@
 				4CE1DBAC1D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift in Sources */,
 				4CB16D6B1D1130A7006858B5 /* HomeViewController.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
+				889519EF1D26397E00BC4938 /* StepDataJson.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
+				687479991D24EE0F00354A5B /* FunctionIntroduceVC.swift in Sources */,
 				68648A801CF3F125009D4BEE /* AccountSettingViewModel.swift in Sources */,
 				6859BC901CD354BA0050F6A0 /* EmptyClockView.swift in Sources */,
 				9122AB1A1C7D766C00E2C31E /* StoryboardDefine.swift in Sources */,
@@ -2270,6 +2318,7 @@
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
 				4CD5AAC91CF42D310011CD13 /* HomeListViewModel.swift in Sources */,
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
+				889519F01D26397E00BC4938 /* StepsDataReaml.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
 				4C05744F1D26642E00D78716 /* HomeViewControllerExtensinPreser.swift in Sources */,
 				4CB7A0731CD095C400DFB8DC /* MenuTableViewCell.swift in Sources */,
@@ -2351,7 +2400,6 @@
 				6849D3B31CE9AE82001CB7EC /* EmergencyWebApi.swift in Sources */,
 				917936CE1CBCEE1B002936E3 /* CoordinateReport.swift in Sources */,
 				9114D1EA1C97AB05008CB4CE /* CheckboxButton.swift in Sources */,
-				68A453551D0F97FA00552521 /* FirmwareUpdateWebApi.swift in Sources */,
 				4C9E0B4C1D1A395200DBC1FC /* ChartSleepInfoCell.swift in Sources */,
 				683655821CBC85BE009373EA /* SecondsTableViewCell.swift in Sources */,
 				6836552B1CBB49F7009373EA /* EmergencyContactPersonCell.swift in Sources */,

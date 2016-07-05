@@ -170,7 +170,7 @@ extension NetRequest {
             do {
                 
                 let response = try CommenMsgResponse (JSONDecoder(result.value ?? ""))
-                
+                Log.info("\(result.value)")
                 guard response.commonMsg.code == RequestApiCode.Success.rawValue else {
                     failureHandler?(response.commonMsg)
                     return

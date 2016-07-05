@@ -213,6 +213,11 @@ struct StoryboardScene {
       return StoryboardScene.Relate.AboutVCScene.viewController() as! AboutVC
     }
 
+    case FunctionIntroduceVCScene = "FunctionIntroduceVC"
+    static func instantiateFunctionIntroduceVC() -> FunctionIntroduceVC {
+      return StoryboardScene.Relate.FunctionIntroduceVCScene.viewController() as! FunctionIntroduceVC
+    }
+
     case HelpAndFeedbackListVCScene = "HelpAndFeedbackListVC"
     static func instantiateHelpAndFeedbackListVC() -> HelpAndFeedbackListVC {
       return StoryboardScene.Relate.HelpAndFeedbackListVCScene.viewController() as! HelpAndFeedbackListVC

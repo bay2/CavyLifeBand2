@@ -36,6 +36,8 @@ class ChartStepDataRealm: Object {
     }
     
     
+    
+    
 }
 
 // MARK: Sleep
@@ -65,7 +67,9 @@ enum ChartBandDataSyncState: Int {
 }
 
 // MARK: 计步睡眠数据库操作协议
-protocol ChartsRealmProtocol: SleepWebRealmOperate {
+
+protocol ChartsRealmProtocol: ChartStepRealmProtocol, SleepWebRealmOperate {
+
 
     var realm: Realm { get }
     var userId: String { get }
@@ -78,6 +82,7 @@ protocol ChartsRealmProtocol: SleepWebRealmOperate {
     // MARK: 计步
     func isNeedUpdateStepData() -> Bool
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
+    // MARK: 修改
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData
     func removeStepData(chartsInfo: ChartStepDataRealm) -> Bool
     func delecSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool
@@ -96,11 +101,17 @@ protocol ChartsRealmProtocol: SleepWebRealmOperate {
 extension ChartsRealmProtocol {
     
     func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(ChartStepDataRealm)> {
+
         return realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'").sorted("time", ascending: true)
+
     }
     
     // 返回 第一天开始的时间段
     func queryTimeBucketFromFirstDay() -> [String]? {
+        
+        
+//        let startDate = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first!.signUpDate.toString(format: "yyyy-MM-dd HH:mm:ss")
+
         
         let userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         
@@ -183,16 +194,21 @@ extension ChartsRealmProtocol {
      查询 日周月下 某一时段的 数据信息
      */
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData {
+   
+        // 取出服务区查询所得数据
+      let  serverData =  queryNStepNumber(beginTime, endTime: endTime, timeBucket: timeBucket)
         
-        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
+        //处理当天数据
+       let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
         
+//        Log.info("dataInfo======\(dataInfo.last)==========")
         switch timeBucket {
             
         case .Day:
-            return returnHourChartsArray(dataInfo)
+            return returnHourChartsArray(dataInfo, stepData: serverData)
             
         case .Week, .Month:
-            return returnDayChartsArray(beginTime, endTime: endTime, dataInfo: dataInfo)
+            return returnDayChartsArray(beginTime, endTime: endTime, dataInfo: dataInfo, stepData: serverData)
             
         }
         
@@ -201,9 +217,9 @@ extension ChartsRealmProtocol {
     /**
      按小时分组 一天24小时
      */
-    func returnHourChartsArray(dataInfo: Results<(ChartStepDataRealm)>) -> StepChartsData {
+    func returnHourChartsArray(dataInfo: Results<(ChartStepDataRealm)> ,stepData: StepChartsData) -> StepChartsData {
         
-        var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0)
+        var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0, averageStep: 0)
         
         // 初始化0~23 24 小时
         for i in 0...23 {
@@ -223,15 +239,30 @@ extension ChartsRealmProtocol {
             
         }
         
+        
+        stepChartsData.totalStep += stepData.totalStep
+        stepChartsData.totalKilometer += stepData.totalKilometer
+        stepChartsData.finishTime += stepData.finishTime
+        
+        for indext in  0..<stepChartsData.datas.count {
+         
+            stepChartsData.datas[indext].step += stepData.datas[indext].step
+            
+        }
+        
+        
+        
+        
+        
         return stepChartsData
         
     }
     
     /**
      按天分组 一周七天 一个月30天
-     */    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(ChartStepDataRealm)>) -> StepChartsData {
+     */    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(ChartStepDataRealm)>, stepData: StepChartsData) -> StepChartsData {
         
-        var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0)
+        var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0, averageStep: 0)
         
         let maxNum = (endTime - beginTime).totalDays + 1
         
@@ -247,6 +278,17 @@ extension ChartsRealmProtocol {
             stepChartsData.totalStep += data.step
             stepChartsData.finishTime += 10
             stepChartsData.datas[index].step += data.step
+            
+        }
+        
+        
+        stepChartsData.totalStep += stepData.totalStep
+        stepChartsData.totalKilometer += stepData.totalKilometer
+        stepChartsData.finishTime += stepData.finishTime
+        
+        for indext in  0..<stepChartsData.datas.count {
+            
+            stepChartsData.datas[indext].step += stepData.datas[indext].step
             
         }
         
@@ -717,43 +759,43 @@ extension ChartsRealmProtocol {
         
         Log.info("querySleepInfoDays Begin \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
         
-        /// 数据库中没有 即没数据
-        guard sleepWebRealms?.count > 0 else {
+        /// 数据库中没有数据
+        if sleepWebRealms?.count == 0 {
             
             for _ in 0...dayTotal {
                 
                 reslutData.append((0.0, 0.0, 0.0))
                 
             }
-            
-            return reslutData
         
-        }
+        } else {
         
-        /// 转化数据库中的数据，并做断档数据补0
-        for i in 0...dayTotal {
-            
-            if realmIndex < sleepWebRealms?.count {
+            /// 转化数据库中的数据，并做断档数据补0
+            for i in 0...dayTotal {
                 
-                if ((beginTime.gregorian + i.day).beginningOfDay.date - sleepWebRealms![realmIndex].date).totalDays == 0 {
-                
-                    reslutData.append(sleepWebRealms![realmIndex].transformToTuple())
+                if realmIndex < sleepWebRealms?.count {
                     
-                    realmIndex += 1
+                    if ((beginTime.gregorian + i.day).beginningOfDay.date - sleepWebRealms![realmIndex].date).totalDays == 0 {
+                    
+                        reslutData.append(sleepWebRealms![realmIndex].transformToTuple())
+                        
+                        realmIndex += 1
+                        
+                    } else {
+                        reslutData.append((0.0, 0.0, 0.0))
+                    }
                     
                 } else {
-                    reslutData.append((0.0, 0.0, 0.0))
-                }
                 
-            } else {
-            
-                reslutData.append((0.0, 0.0, 0.0))
+                    reslutData.append((0.0, 0.0, 0.0))
+                    
+                }
                 
             }
             
-        }
+            Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
         
-        Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
+        }
         
         let nowDate = NSDate()
         
@@ -935,6 +977,8 @@ extension ChartsRealmProtocol {
     }
 
 }
+
+
 
 
 

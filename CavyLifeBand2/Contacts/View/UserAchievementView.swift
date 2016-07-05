@@ -82,31 +82,32 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         // 成就图标展示视图设置
         collectionView.delegate      = self
         collectionView.dataSource    = self
-        collectionView.scrollEnabled = false
+        collectionView.scrollEnabled = ez.screenWidth <= 320 ? true : false
         collectionView.showsVerticalScrollIndicator = ez.screenWidth <= 320 ? true : false
         collectionView.registerNib(UINib(nibName: userAchievementViewCollectionCell, bundle: nil), forCellWithReuseIdentifier: userAchievementViewCollectionCell)
         
         self.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         
-        guard var achieveIndex = userInfo.achievementType.toInt() else {
-            return
-        }
-        
-        var locationIndex = 1
-        
-        for i in 0 ..< stepArray.count {
-            
-            if achievementCount >= stepArray[i] {
-                locationIndex += 1
-            }
-        }
-        
-        if locationIndex > achieveIndex {
-            
-            achieveIndex = locationIndex
-            // 上报 成就徽章是否点亮
-            userInfo.achievementType = String(achieveIndex)
-        }
+        //TODO 接口返回的规则不确定，先不写
+//        guard var achieveIndex = userInfo.achievementType.toInt() else {
+//            return
+//        }
+//        
+//        var locationIndex = 1
+//        
+//        for i in 0 ..< stepArray.count {
+//            
+//            if achievementCount >= stepArray[i] {
+//                locationIndex += 1
+//            }
+//        }
+//        
+//        if locationIndex > achieveIndex {
+//            
+//            achieveIndex = locationIndex
+//            // 上报 成就徽章是否点亮
+//            userInfo.achievementType = String(achieveIndex)
+//        }
         
     }
     

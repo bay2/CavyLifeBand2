@@ -47,7 +47,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     var bandMenuVC: RightViewController?
     let homeMaskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
     var realm: Realm = try! Realm()
-    var updateUserInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+    var updateUserInfoPara: [String: AnyObject] = [String: AnyObject]()
     
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
@@ -178,19 +178,18 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
             return
         }
         
-        updateUserInfoPara += [UserNetRequsetKey.UserID.rawValue: userInfo.userId,
-                               UserNetRequsetKey.Sex.rawValue: userInfo.sex.toString,
-                               UserNetRequsetKey.Height.rawValue: userInfo.height,
-                               UserNetRequsetKey.Weight.rawValue: userInfo.weight,
-                               UserNetRequsetKey.Birthday.rawValue: userInfo.birthday,
-                               UserNetRequsetKey.Address.rawValue: userInfo.address,
-                               UserNetRequsetKey.StepNum.rawValue: userInfo.stepNum,
-                               UserNetRequsetKey.SleepTime.rawValue: userInfo.sleepTime,
-                               UserNetRequsetKey.IsNotification.rawValue: userInfo.isNotification,
-                               UserNetRequsetKey.IsLocalShare.rawValue: userInfo.isLocalShare,
-                               UserNetRequsetKey.IsOpenBirthday.rawValue: userInfo.isOpenBirthday,
-                               UserNetRequsetKey.IsOpenHeight.rawValue: userInfo.isOpenHeight,
-                               UserNetRequsetKey.IsOpenWeight.rawValue: userInfo.isOpenWeight]
+        updateUserInfoPara += [NetRequsetKey.Sex.rawValue: userInfo.sex,
+                               NetRequsetKey.Height.rawValue: userInfo.height,
+                               NetRequsetKey.Weight.rawValue: userInfo.weight,
+                               NetRequsetKey.Birthday.rawValue: userInfo.birthday,
+                               NetRequsetKey.Address.rawValue: userInfo.address,
+                               NetRequsetKey.StepsGoal.rawValue: userInfo.stepGoal,
+                               NetRequsetKey.SleepTimeGoal.rawValue: userInfo.sleepGoal,
+                               NetRequsetKey.EnableNotification.rawValue: userInfo.isNotification,
+                               NetRequsetKey.ShareLocation.rawValue: userInfo.isLocalShare,
+                               NetRequsetKey.ShareBirthday.rawValue: userInfo.isOpenBirthday,
+                               NetRequsetKey.ShareHeight.rawValue: userInfo.isOpenHeight,
+                               NetRequsetKey.ShareWeight.rawValue: userInfo.isOpenWeight]
         
         self.setUserInfo {
             
@@ -408,15 +407,27 @@ extension UserInfoModel {
         
         self.userId         = userId
         self.nickname       = userProfile.nickName
-        self.sex            = userProfile.sex.toInt() ?? 0
+        self.sex            = userProfile.sex ?? 0
         self.address        = userProfile.address
         self.avatarUrl      = userProfile.avatarUrl
         self.birthday       = userProfile.birthday
         self.height         = userProfile.height
         self.weight         = userProfile.weight
-        self.sleepTime      = userProfile.sleepTime
-        self.stepNum        = userProfile.stepNum
-
+        self.sleepGoal      = userProfile.sleepGoal
+        self.stepGoal        = userProfile.stepGoal
+        self.coins       = userProfile.coins
+        self.phone       = userProfile.phone
+        self.signUpDate = userProfile.signUpDate
+        
+        for data in userProfile.awards {
+            let award = UserAwardsModel()
+            
+            award.name = data.name
+            award.number = data.number
+            
+            self.awards.append(award)
+        }
+        
         self.isLocalShare   = userProfile.isLocalShare
         self.isNotification = userProfile.isNotification
         self.isOpenHeight   = userProfile.isOpenHeight

@@ -170,9 +170,9 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
             return
         }
         
-        var sleepString = userInfo.sleepTime
+        var sleepString = "\(userInfo.sleepGoal/60):\(userInfo.sleepGoal%60)"
         
-        if sleepString == "" {
+        if sleepString == "0:0" {
             // 如果没有目标值 则显示推荐值
             sleepString = "8:30"
             
@@ -196,7 +196,7 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
             return
         }
-        var stepTargetNumber = userInfo.stepNum
+        var stepTargetNumber = userInfo.stepGoal
         
         // 如果没有目标值 则显示推荐值
         if stepTargetNumber == 0 {

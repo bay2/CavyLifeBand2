@@ -145,21 +145,15 @@ extension RootViewController: ChartsRealmProtocol {
         
         
         for i in 0 ..< sleeps.count {
-            
-            let realmArray = self.queryAllSleepInfo(userId)
-        
-            if realmArray.count == 0 {
-                
-                self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
-                
-                continue
-            }
-            
+
             if i == 0 {
                 
                 let lastRealmTime = self.queryAllSleepInfo(userId).last?.time
                 
-                if lastRealmTime == nil || sleeps[0].0.compare(lastRealmTime!) == .OrderedSame {
+                // 数据库无数据 直接添加
+                if lastRealmTime != nil && sleeps[0].0.compare(lastRealmTime!) == .OrderedSame {
+                    
+                    // 比对最后一条数据的时间
                     
                     removeSleepData(self.queryAllSleepInfo(userId).last!)
                     

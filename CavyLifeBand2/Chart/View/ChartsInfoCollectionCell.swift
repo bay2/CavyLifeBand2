@@ -171,7 +171,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             return ["0", "0", "0", "0\(L10n.HomeSleepRingUnitMinute.string)"]
         }
         
-        var stepTargetNumber = userInfo.stepNum
+        var stepTargetNumber = userInfo.stepGoal
         
         if stepTargetNumber == 0 {
             stepTargetNumber = 8000
@@ -218,9 +218,9 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             return ["0\(L10n.HomeSleepRingUnitMinute.string)", "0\(L10n.HomeSleepRingUnitMinute.string)", "0%"]
         }
         
-        var sleepTarge = userInfo.sleepTime
+        var sleepTarge = "\(userInfo.sleepGoal/60):\(userInfo.sleepGoal%60)"
         
-        if sleepTarge == "" {
+        if sleepTarge == "0:0" {
             
             sleepTarge = "8:30"
             
