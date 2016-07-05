@@ -61,10 +61,10 @@ class GoalView: UIView {
     @IBOutlet weak var sleepSlider: UISlider!
     
     
-    var sleepTimeString: String {
+    var sleepTimeValue: Int {
         
-        return "\(self.hhCurrentValue):\(self.mmCurrentValue)"
-        
+        return self.hhCurrentValue * 60 + self.mmCurrentValue
+                
     }
 
     // 布局

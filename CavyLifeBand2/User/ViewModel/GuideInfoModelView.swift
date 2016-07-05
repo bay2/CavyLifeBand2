@@ -89,7 +89,7 @@ struct GuideHeightViewModel: GuideViewModelPotocols {
             return
         }
         
-        GuideUserInfo.userInfo.height = heightView.heightString
+        GuideUserInfo.userInfo.height = heightView.heightValue.toDouble
         
         let nextVC = StoryboardScene.Guide.instantiateGuideView()
         let weightVM = GuideWeightViewModel()
@@ -118,7 +118,7 @@ struct GuideWeightViewModel: GuideViewModelPotocols {
             return
         }
         
-        GuideUserInfo.userInfo.weight = weightView.weightString
+        GuideUserInfo.userInfo.weight = weightView.weightString.toDouble() ?? 0.0
         
         let nextVC = StoryboardScene.Guide.instantiateGuideView()
         let goalVM = GuideGoalViewModel(viewStyle: .Guide)
@@ -178,9 +178,9 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
                     return
                 }
                 
-                goalView.sliderStepToValue(userInfo.stepNum)
+                goalView.sliderStepToValue(userInfo.stepGoal)
                 
-                self.setGoalViewSleepValue(userInfo.sleepTime, view: goalView)
+                self.setGoalViewSleepValue(userInfo.sleepGoal, view: goalView)
                 
             }
             
@@ -189,21 +189,10 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
 
     }
     
-    func setGoalViewSleepValue(value: String, view: GoalView) {
+    func setGoalViewSleepValue(value: Int, view: GoalView) {
         
-        let sleepArr = value.componentsSeparatedByString(":")
+        view.sliderSleepToValue(value/60, minute: value%60)
         
-        switch sleepArr.count {
-        case 0:
-            view.sliderSleepToValue(0, minute: 0)
-        case 1:
-            view.sliderSleepToValue(sleepArr[0].toInt() ?? 0, minute: 0)
-        case 2:
-            view.sliderSleepToValue(sleepArr[0].toInt() ?? 0, minute: 0)
-        default:
-            view.sliderSleepToValue(sleepArr[0].toInt() ?? 0, minute: sleepArr[1].toInt() ?? 0)
-        }
-
     }
     
     /**
@@ -225,9 +214,9 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
                 return
             }
             
-            goalView!.sliderStepToValue(userInfo.stepNum)
+            goalView!.sliderStepToValue(userInfo.stepGoal)
             
-            setGoalViewSleepValue(userInfo.sleepTime, view: goalView!)
+            setGoalViewSleepValue(userInfo.sleepGoal, view: goalView!)
             
             break
         }
@@ -252,8 +241,8 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
         
         if self.viewStyle == .Guide {
             
-            GuideUserInfo.userInfo.sleepTime = goalView.sleepTimeString
-            GuideUserInfo.userInfo.stepNum = goalView.stepCurrentValue
+            GuideUserInfo.userInfo.sleepGoal = goalView.sleepTimeValue
+            GuideUserInfo.userInfo.stepGoal = goalView.stepCurrentValue
         
             let nextVC = StoryboardScene.Guide.instantiateGuideView()
 
@@ -284,49 +273,24 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
      */
     func uploadGoalData(completeHandler: (Void -> Void)) {
         
-        guard let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
-            return
-        }
-        
         let goalView = self.centerView as? GoalView
         
-        let updateUserInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId,
-                                                       UserNetRequsetKey.StepNum.rawValue: goalView!.stepCurrentValue,
-                                                       UserNetRequsetKey.SleepTime.rawValue: goalView!.sleepTimeString,
-                                                       UserNetRequsetKey.Sex.rawValue: userInfo.sex.toString,
-                                                       UserNetRequsetKey.Height.rawValue: userInfo.height,
-                                                       UserNetRequsetKey.Weight.rawValue: userInfo.weight,
-                                                       UserNetRequsetKey.Birthday.rawValue: userInfo.birthday,
-                                                       UserNetRequsetKey.Address.rawValue: userInfo.address,
-                                                       UserNetRequsetKey.IsNotification.rawValue: userInfo.isNotification,
-                                                       UserNetRequsetKey.IsLocalShare.rawValue: userInfo.isLocalShare,
-                                                       UserNetRequsetKey.IsOpenBirthday.rawValue: userInfo.isOpenBirthday,
-                                                       UserNetRequsetKey.IsOpenHeight.rawValue: userInfo.isOpenHeight,
-                                                       UserNetRequsetKey.IsOpenWeight.rawValue: userInfo.isOpenWeight]
+        let updateUserInfoPara: [String: AnyObject] = [NetRequsetKey.StepsGoal.rawValue: goalView!.stepCurrentValue,
+                                                       NetRequsetKey.SleepTimeGoal.rawValue: goalView!.sleepTimeValue]
         
-        UserNetRequestData.shareApi.setProfile(updateUserInfoPara) { result in
-            
-            guard result.isSuccess else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error!)
-                return
-            }
-            
-            let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
-            
-            guard resultMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.code)
-                return
-            }
-            
-            Log.info("Update user info success")
+        let parameters: [String: AnyObject] = [NetRequsetKey.Profile.rawValue: updateUserInfoPara]
+
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.UsersProfile.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { data in
             
             self.updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
-                $0.sleepTime = goalView!.sleepTimeString
-                $0.stepNum = goalView!.stepCurrentValue
+                $0.sleepGoal = goalView!.sleepTimeValue
+                $0.stepGoal = goalView!.stepCurrentValue
                 return $0
             }
             
             completeHandler()
+            
+        }) { (msg) in
             
         }
 
