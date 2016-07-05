@@ -14,7 +14,6 @@ import EZSwiftExtensions
 import RealmSwift
 import MJRefresh
 
-
 let dateViewHeight: CGFloat = 50.0
 // 大环是 0.55 大环顶部距离NavBar高度是 96
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
@@ -244,18 +243,29 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func parseChartListData() {
         
+
+        // MARK: 睡眠相关
+        SleepWebApi.shareApi.fetchSleepWebData()
+        
+        // MARK
         var startDate = ""
         var endDate = ""
         
-        if isNeedUpdateNStepData() {
-            
+        if isNeedUpdateStepData() {
             
             let personalList = realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
             
             if personalList.count != 0 {
                 
-                startDate = personalList.last!.date.toString(format: "yyyy-MM-dd")
-                endDate = NSDate().toString(format: "yyyy-MM-dd")
+                startDate = personalList.last!.date.toString(format: "yyyy-MM-dd HH:mm:ss")
+                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
+                
+            }else
+            {
+                // 如果查询不到数据 则 使用注册日期开始请求
+                
+              startDate = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first!.signUpDate.toString(format: "yyyy-MM-dd HH:mm:ss")
+                
                 
             }
             
@@ -263,23 +273,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             
         }
         
-        
-        if isNeedUpdateSleepData() {
-            
-            let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
-            
-            if personalList.count != 0 {
-                
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
-                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
-                
-            }
-            
-            parseSleepDate(startDate, endDate: endDate)
-            
-        }
-        
- 
     }
     
       /**
@@ -290,33 +283,9 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func parseStepDate(startDate: String, endDate: String) {
 
-//        ChartsWebApi.shareApi.parseStepChartsData(startDate, endDate: endDate) { result in
-//
-//            guard result.isSuccess else {
-//                Log.error("Parse Home Lists Data Error")
-//                return
-//            }
-//            
-//            do {
-//                
-//                let netResult = try ChartStepMsg(JSONDecoder(result.value!))
-//
-//                
-//                for list in netResult.stepList {
-//                    // 保存到数据库
-//                    self.addStepListRealm(list)
-//                }
-//                
-//            } catch let error {
-//                
-//                Log.error("\(#function) result error: \(error)")
-//            }
-//
-//        }
-//
         
-//     let  parameters: [String: AnyObject] = ["start_date": startDate, "end_date": endDate]
-         let  parameters: [String: AnyObject] = ["start_date": "2016-6-5", "end_date": "2016-7-4"]
+     let  parameters: [String: AnyObject] = ["start_date": startDate, "end_date": endDate]
+//         let  parameters: [String: AnyObject] = ["start_date": "2016-6-5", "end_date": "2016-7-4"]
         NetWebApi.shareApi.netGetRequest(WebApiMethod.Steps.description , para: parameters, modelObject: NChartStepData.self , successHandler: { result  in
  
             //服务器数据获取成功判断数据库最后一条数据时间是否是当天 如果是当天就删除之后再开始添加新数据

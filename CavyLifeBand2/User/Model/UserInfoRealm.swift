@@ -18,28 +18,40 @@ class UserInfoModel: Object {
 //    return []
 //  }
     
-    dynamic var userId          = ""
-    dynamic var sex             = 0
-    dynamic var height          = ""
-    dynamic var weight          = ""
-    dynamic var birthday        = ""
-    dynamic var avatarUrl       = ""
-    dynamic var address         = ""
-    dynamic var nickname        = ""
-    dynamic var stepNum         = 0
-    dynamic var sleepTime       = "0:0"
-    dynamic var isNotification  = true
-    dynamic var isLocalShare    = true
-    dynamic var isOpenBirthday  = true
-    dynamic var isOpenHeight    = true
-    dynamic var isOpenWeight    = true
-    dynamic var isSync          = false
-    dynamic var achievementType = ""
+    dynamic var coins              = 0.0
+    dynamic var phone              = ""
+    dynamic var userId             = ""
+    dynamic var sex                = 0
+    dynamic var height             = 0.0
+    dynamic var weight             = 0.0
+    dynamic var birthday           = ""
+    dynamic var avatarUrl          = ""
+    dynamic var address            = ""
+    dynamic var nickname           = ""
+    dynamic var stepGoal: Int      = 0
+    dynamic var sleepGoal: Int     = 0
+    dynamic var isNotification     = true
+    dynamic var isLocalShare       = true
+    dynamic var isOpenBirthday     = true
+    dynamic var isOpenHeight       = true
+    dynamic var isOpenWeight       = true
+    dynamic var isSync             = false
+    dynamic var signUpDate: NSDate = NSDate()
+    var awards = List<UserAwardsModel>()
 
     override class func primaryKey() -> String? {
         return "userId"
     }
 
+}
+
+class UserAwardsModel: Object {
+    
+    dynamic var name: String = ""
+    dynamic var number: String = ""
+    
+    let owners = LinkingObjects(fromType: UserInfoModel.self, property: "awards")
+    
 }
 
 protocol UserInfoRealmOperateDelegate {

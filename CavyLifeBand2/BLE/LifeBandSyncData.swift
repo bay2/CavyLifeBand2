@@ -238,6 +238,47 @@ class LifeBandSyncData {
         
         if data[2...3]?.uint16 == 0xFFFF {
             
+            /**
+             因为手环返回的包数据大小为固定的20bytes
+             所以最后一个包会出现以下数据 <24da0201 40140009 00000000 00000000 00000000>
+             00000000 00000000 00000000其实是无效数据
+             所以拿完整个数据后，要在最后四个数据判断无效数据
+             即把最后一个数据和前面的三个数据比较，记录重复值，最后做删除
+             */
+            
+            /*-------判断无效数据------*/
+            
+            var repeatCount = 0
+            
+            for i in tiltsAndStepsInfo.count-4...tiltsAndStepsInfo.count-2 {
+                if tiltsAndStepsInfo.last?.date == tiltsAndStepsInfo[i].date {
+                    repeatCount += 1
+                }
+            }
+            
+            if repeatCount != 0 {
+                
+                for _ in 0...repeatCount {
+                    
+                    tiltsAndStepsInfo.removeLast()
+                    
+                }
+                
+            } else {
+                
+                let last = tiltsAndStepsInfo.last
+                let lastSecond = tiltsAndStepsInfo[tiltsAndStepsInfo.count - 2]
+                
+                let diffMinutes = (last!.date - lastSecond.date).totalMinutes
+                
+                if diffMinutes != 10 {
+                    tiltsAndStepsInfo.removeLast()
+                }
+                
+            }
+            
+            /*-------判断无效数据------*/
+            
             reslut(.Success(tiltsAndStepsInfo))
             packetNo = 0
             tiltsAndStepsInfo.removeAll()
@@ -276,9 +317,10 @@ class LifeBandSyncData {
                 continue
             }
             
-            if dataTiltsAndStep.steps == 0 && dataTiltsAndStep.tilts == 0 {
-                continue
-            }
+            // 0数据也保存
+//            if dataTiltsAndStep.steps == 0 && dataTiltsAndStep.tilts == 0 {
+//                continue
+//            }
             
             tiltsAndStepsInfo.append(dataTiltsAndStep)
             

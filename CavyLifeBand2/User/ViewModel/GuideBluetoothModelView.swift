@@ -265,7 +265,7 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate, 
             }
             
             // 有目标值信息
-            guard userInfo.sleepTime.isEmpty == true else {
+            guard userInfo.sleepGoal == 0 else {
                 
                 UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
                 

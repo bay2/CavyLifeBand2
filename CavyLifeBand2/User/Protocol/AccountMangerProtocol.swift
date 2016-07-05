@@ -198,29 +198,6 @@ extension SignInDelegate where Self: UIViewController {
     
     func signIn(callBack: (Void -> Void)? = nil) {
         
-//        UserNetRequestData.shareApi.requestSignIn(userName, passwd: passwd) { result in
-//            
-//            if result.isFailure {
-//                
-//                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
-//                return
-//            }
-//            
-//            let msg: UserSignUpMsg = try! UserSignUpMsg(JSONDecoder(result.value!))
-//            
-//            if msg.commonMsg?.code != WebApiCode.Success.rawValue {
-//                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.commonMsg?.code ?? "")
-//                return
-//            }
-//            
-//            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = msg.userId ?? ""
-//            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = self.userName
-//            
-//            Log.info("[\(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)] Sign in succeess")
-//            
-//            callBack?()
-        
-//        }
         
         let parameters: [String: AnyObject] = [NetRequsetKey.UserName.rawValue: userName,
                                                NetRequsetKey.Password.rawValue: passwd.md5()]
@@ -234,7 +211,9 @@ extension SignInDelegate where Self: UIViewController {
             callBack?()
             
         }) { (msg) in
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: msg.msg)
+
         }
         
         return

@@ -562,7 +562,7 @@ enum UserNetRequestMethod: String {
 
 // MARK: - Web Api 方法定义
 enum WebApiMethod: CustomStringConvertible {
-    case Login, Logout, Dailies, Steps, Sleep
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency
 
     var description: String {
         
@@ -577,6 +577,14 @@ enum WebApiMethod: CustomStringConvertible {
             return CavyDefine.webServerAddr + "steps"
         case .Sleep:
             return CavyDefine.webServerAddr + "sleep"
+        case .UsersProfile:
+            return CavyDefine.webServerAddr + "users/profile"
+        case .Firmware:
+            return CavyDefine.webServerAddr + "firmware"
+        case .EmergencyContacts:
+            return CavyDefine.webServerAddr + "emergency/contacts"
+        case .Emergency:
+            return CavyDefine.webServerAddr + "emergency"
         }
         
     }
@@ -588,6 +596,34 @@ enum NetRequsetKey: String {
     
     case UserName = "username"
     case Password = "password"
+    case Profile = "profile"
+    case Nickname = "nickname"
+    case Address = "address"
+    case Sex = "sex"
+    case Height = "height"
+    case Weight = "weight"
+    case Figure = "figure"
+    case Birthday = "birthday"
+    case StepsGoal = "steps_goal"
+    case SleepTimeGoal = "sleep_time_goal"
+    case EnableNotification = "enable_notification"
+    case ShareLocation = "share_location"
+    case ShareBirthday = "share_birthday"
+    case ShareHeight = "share_height"
+    case ShareWeight = "share_weight"
+    case Contacts = "contacts"
+    case Name = "name"
+    case Phone = "phone"
+    case Longitude = "longitude"
+    case Latitude = "latitude"
+    case StartDate = "start_date"
+    case EndDate   = "end_date"
+    case Date      = "date"
+    case Time      = "time"
+    case Tilts     = "tilts"
+    case Steps     = "steps"
+    case Raw       = "raw"
+    case TimeScale = "time_scale"
     
 }
 

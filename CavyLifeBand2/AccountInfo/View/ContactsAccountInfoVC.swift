@@ -165,11 +165,19 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         // 退出按钮手势
         logoutButton.addTapGesture { _ in
             
-            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+            NetWebApi.shareApi.netPostRequest(WebApiMethod.Logout.description, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = ""
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken = ""
+                
+                UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Main.instantiateMainPageView(), transition: CATransition())
+                
+                LifeBandBle.shareInterface.bleDisconnect()
+            }, failureHandler: { (msg) in
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
+            })
             
-            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Main.instantiateMainPageView(), transition: CATransition())
             
-            LifeBandBle.shareInterface.bleDisconnect()
             
         }
         

@@ -238,7 +238,8 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     @IBAction func onClickSignIn(sender: AnyObject) {
 
         signIn {
-//            
+//<<<<<<< HEAD
+//
 //            // 登录绑定场景
 //            BindBandCtrl.bindScene = .SignInBind
 //            
@@ -279,12 +280,55 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
 //                    // 登录绑定
 //                    
 //                   self.saveMacAddress()
+//=======
+            
+            // 登录绑定场景
+            BindBandCtrl.bindScene = .SignInBind
+            
+            let guideVC = StoryboardScene.Guide.instantiateGuideView()
+            
+            let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+            
+            // 查询不到用户信息，走绑定流程
+            guard let bindBandValue = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] else {
+                
+                //用户未绑定，走绑定流程
+                self.gotoBinding()
+                return
+  
+            }
+            
+            // 手环已绑定，记录手环信息，root 页面中会根据此属性设置绑定的手环
+            //                GuideUserInfo.userInfo.bandName = bindBandValue
+            BindBandCtrl.bandMacAddress = bindBandValue
+            
+            // 通过查询用户信息判断是否是老的豚鼠用户
+            self.queryUserInfoByNet(self) {
+                
+                guard let userProfile = $0 else {
+                    return
+                }
+                
+                // 老用户进入引导页
+                if userProfile.sleepGoal == 0 {
+                    
+                    let guideVM = GuideGenderViewModel()
+                    guideVC.configView(guideVM, delegate: guideVM)
+                    self.pushVC(guideVC)
+                    
+                    
+                } else {
+                    
+                    // 登录绑定
+                    
+                   self.saveMacAddress()
+//>>>>>>> 12ce660b830ba3c00ff13182d1fbd93bd3cba4c4
                     UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
                     
-//                }
-//                
-//            }
-//            
+                }
+                
+            }
+
         }
         
     }
