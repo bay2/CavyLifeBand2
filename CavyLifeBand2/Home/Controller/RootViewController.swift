@@ -422,7 +422,7 @@ extension UserInfoModel {
         for data in userProfile.awards {
             let award = UserAwardsModel()
             
-            award.name = data.name
+            award.date = data.date
             award.number = data.number
             
             self.awards.append(award)

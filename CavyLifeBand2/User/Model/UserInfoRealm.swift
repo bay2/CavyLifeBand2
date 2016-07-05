@@ -47,7 +47,7 @@ class UserInfoModel: Object {
 
 class UserAwardsModel: Object {
     
-    dynamic var name: String = ""
+    dynamic var date: NSDate = NSDate()
     dynamic var number: String = ""
     
     let owners = LinkingObjects(fromType: UserInfoModel.self, property: "awards")
