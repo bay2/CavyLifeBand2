@@ -152,11 +152,10 @@ extension RootViewController: ChartsRealmProtocol {
                 
                 self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
                 
+                continue
             }
-
             
             if i == 0 {
-                
                 
                 let lastRealmTime = self.queryAllSleepInfo(userId).last?.time
                 
