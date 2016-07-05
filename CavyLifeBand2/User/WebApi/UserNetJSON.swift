@@ -71,17 +71,33 @@ struct UserProfile: JSONJoy {
         
         do {
             let timeString = try decoder["signupAt"].getString()
-            signUpDate = NSDate(fromString: timeString, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ")!
+            signUpDate = NSDate(fromString: timeString, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ") ?? NSDate()
+            
         } catch {
             signUpDate = NSDate()
         }
         
         do {
             let timeString = try decoder["birthday"].getString()
-            let timeDate = NSDate(fromString: timeString, format: "yyyy-MM-dd")!
-            let format = NSDateFormatter()
-            format.dateFormat = "yyyy-MM-dd"
-            birthday = format.stringFromDate(timeDate)
+            
+            if let dateA = NSDate(fromString: timeString, format: "yyyy-MM-dd") {
+                
+                let format = NSDateFormatter()
+                format.dateFormat = "yyyy-MM-dd"
+                
+                birthday = format.stringFromDate(dateA)
+                
+            } else if let dateB = NSDate(fromString: timeString, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ") {
+                
+                let format = NSDateFormatter()
+                format.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"
+                
+                birthday = format.stringFromDate(dateB)
+                
+            } else {
+                birthday = ""
+            }
+            
         } catch {
             birthday = ""
         }
