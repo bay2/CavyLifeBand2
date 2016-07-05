@@ -12,7 +12,7 @@ import JSONJoy
 import Log
 import EZSwiftExtensions
 import RealmSwift
-
+import Datez
 
 class HomeWebApi: NetRequest, HomeRealmProtocol {
     
@@ -26,10 +26,14 @@ class HomeWebApi: NetRequest, HomeRealmProtocol {
      某一天的数据
      */
     
-    func parserHomeLineData(startDate: String, endDate: String) {
-
-        let parameters: [String: AnyObject] = [NetRequsetKey.StartDate.rawValue: startDate,
-                                         NetRequsetKey.EndDate.rawValue: endDate]
+    func parserHomeLineData(timeString: String) {
+        
+        let date = NSDate(fromString: timeString, format: "yyyy.M.d")
+    
+        let startDate = (date!.gregorian - 2.day).date
+        let endDate = date!
+        
+        let parameters: [String: AnyObject] = [NetRequsetKey.StartDate.rawValue: startDate.toString(format: "yyyy-MM-dd"), NetRequsetKey.EndDate.rawValue: endDate.toString(format: "yyyy-MM-dd")]
    
         netGetRequest(WebApiMethod.Dailies.description, para: parameters, modelObject: HomeLineMsg.self, successHandler: { result in
             
