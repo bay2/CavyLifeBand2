@@ -67,7 +67,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         leftAxis.enabled = false // Y轴方向右边 不放轴
         
         delegate = self
-        highlightPerTapEnabled = true // 点击时是否高亮
+        highlightPerTapEnabled = false // 点击时是否高亮
                 if timeBucketStyle != .Month {
             
             dragEnabled = false // 是否可以拖拽
@@ -215,19 +215,19 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
             totalStep += data.step
         }
         
-        if totalStep != 0 {
-            chartView.data?.setDrawValues(true)
+//        if totalStep != 0 {
+//            chartView.data?.setDrawValues(true)
             
-            chartView.setNeedsDisplay()
-        }
+//            chartView.setNeedsDisplay()
+//        }
         
     }
     
     func chartValueNothingSelected(chartView: ChartViewBase) {
         
-        chartView.data?.setDrawValues(false)
+//        chartView.data?.setDrawValues(false)
         
-        chartView.setNeedsDisplay()
+//        chartView.setNeedsDisplay()
 
     }
     
