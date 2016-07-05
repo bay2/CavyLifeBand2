@@ -56,16 +56,11 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
             $0.0! + $0.1.step
         }
         
-        Log.info(achievementCount!)
         
         infoLabel.text = infoStrFormatter(String.numberDecimalFormatter(achievementCount!))
         Log.info(infoLabel.text)
         
-        guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
-            return
-        }
-        
-        configWithAchieveIndex(0)
+        configWithAchieveIndexForUser()
         
         // 成就标题Label样式设置
         titleLabel.text      = L10n.ContactsShowInfoAchievement.string
@@ -119,16 +114,44 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
      - Jessica
      - returns: 徽章数组
      */
-    func configWithAchieveIndex(index: Int = 0) {
-
+    func configWithAchieveIndexForUser(awards: [Int] = []) {
+        
+       
+        defaultConfigureAchievement(awards)
+        
+        // TODO 用户总步数获取
+        achievementCount = 0
+            
+        
+    }
+    
+    func defaultConfigureAchievement(awards: [Int] = []) {
+        
+        achievementsList?.removeAll()
+        
+        guard awards.count > 0 else {
+            
+            var array: [AchievementDataSource] = []
+            
+            for i in 0...5 {
+                array.append(UserAchievementCellViewModel(madelIndex: i, isAchieve: 0))
+            }
+            
+            achievementsList = array
+            
+            return
+        }
+        
         var array: [AchievementDataSource] = []
-
+        
+        let maxAwardIndex = sortInt(awards) 
+        
         for i in 0 ..< medalCount {
             
             array.append(UserAchievementCellViewModel(madelIndex: i, isAchieve: 0))
         }
         
-        for i in 0 ..< index  {
+        for i in 0 ..< maxAwardIndex  {
             
             let vm = UserAchievementCellViewModel(madelIndex: i, isAchieve: 1)
             array[i] = vm
@@ -136,10 +159,23 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         }
         
         achievementsList = array
+    }
+    
+    func sortInt(awards: [Int]) -> Int {
         
-        achievementCount = stepArray[index]
+        var x: Int = 0
+        
+        for value in awards {
+            
+            if value > x { x = value }
+            
+        }
+        
+        return x
         
     }
+    
+    
     
 }
 

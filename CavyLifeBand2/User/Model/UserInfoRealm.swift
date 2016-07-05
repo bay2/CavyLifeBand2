@@ -45,6 +45,23 @@ class UserInfoModel: Object {
 
 }
 
+extension UserInfoModel {
+    
+    func translateAwards() -> [Int] {
+        guard self.awards.count > 0 else {
+            return []
+        }
+        
+        let awardArr = self.awards.map { (award) -> Int in
+            return award.number.toInt() ?? 1
+        }
+        
+        return awardArr
+        
+    }
+
+}
+
 class UserAwardsModel: Object {
     
     dynamic var date: NSDate = NSDate()
