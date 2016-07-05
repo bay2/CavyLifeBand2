@@ -85,7 +85,7 @@ extension ChartStepRealmProtocol {
     func delecNSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool {
         
         
-        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND date > %@ AND date < %@", beginTime, endTime)
+        let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date > %@ AND date < %@", beginTime, endTime)
         
         self.realm.beginWrite()
         
@@ -120,19 +120,19 @@ extension ChartStepRealmProtocol {
     
     func isNeedUpdateNStepData() -> Bool {
         
-        let list = realm.objects(ChartStepDataRealm)
+        let list = realm.objects(NChartStepDataRealm)
         
         if list.count == 0 {
             return true
         }
         
-        let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+        let personalList = realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
         
         if personalList.count == 0 {
             return true
         }
         
-        let totalMinutes = (NSDate().gregorian.beginningOfDay.date - personalList.last!.time).totalMinutes
+        let totalMinutes = (NSDate().gregorian.beginningOfDay.date - personalList.last!.date).totalMinutes
         Log.info(totalMinutes)
         
         if totalMinutes > 10 {
@@ -202,8 +202,9 @@ extension ChartStepRealmProtocol {
         }
     
         
+        //转换时间格式
         
-    let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date > %@ AND date < %@", beginTime, scanTime)
+    let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date >= %@ AND date <= %@",NSDate().formartDate(beginTime) , NSDate().formartDate(scanTime))
         
         switch timeBucket {
             
@@ -293,7 +294,15 @@ extension ChartStepRealmProtocol {
             }
         }
         
-        stepChartsData.averageStep = Int(stepChartsData.finishTime / averageStepCount)
+        if averageStepCount == 0 {
+            
+            stepChartsData.averageStep = 0
+            
+        }else {
+            
+             stepChartsData.averageStep = Int(stepChartsData.finishTime / averageStepCount)
+        }
+       
     
         return stepChartsData
         

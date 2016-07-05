@@ -184,9 +184,9 @@ extension ChartsRealmProtocol {
       let  serverData =  queryNStepNumber(beginTime, endTime: endTime, timeBucket: timeBucket)
         
         //处理当天数据
-       let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", endTime, endTime)
+       let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
         
-        
+//        Log.info("dataInfo======\(dataInfo.last)==========")
         switch timeBucket {
             
         case .Day:
