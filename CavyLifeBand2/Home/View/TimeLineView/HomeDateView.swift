@@ -55,8 +55,9 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
      */
     func initNotificationDateStringArray() {
         
-        notificationTimeStringArrayToken = self.queryAllStepInfo(userId).addNotificationBlock { [unowned self] change in
-            
+        let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
+        
+        notificationTimeStringArrayToken = userInfos.addNotificationBlock{ (change: RealmCollectionChange ) in
             switch change {
                 
             case .Initial(_):
@@ -73,11 +74,10 @@ class HomeDateView: UIView, UICollectionViewDataSource, UICollectionViewDelegate
                 
             default:
                 break
-                
-                
             }
             
         }
+        
 
     }
     
