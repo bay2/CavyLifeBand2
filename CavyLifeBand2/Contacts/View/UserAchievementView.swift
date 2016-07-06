@@ -48,20 +48,9 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         
     override func awakeFromNib() {
         
-//        for chartsData in queryAllStepInfo(userId) {
-//            achievementCount! += chartsData.step
-//        }
-        
-        achievementCount = queryAllStepInfo(userId).reduce(0) {
-            $0.0! + $0.1.step
-        }
-        
-        
         infoLabel.text = infoStrFormatter(String.numberDecimalFormatter(achievementCount!))
         Log.info(infoLabel.text)
-        
-        configWithAchieveIndexForUser()
-        
+    
         // 成就标题Label样式设置
         titleLabel.text      = L10n.ContactsShowInfoAchievement.string
         titleLabel.textColor = UIColor(named: .EColor)
@@ -83,43 +72,19 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         
         self.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         
-        //TODO 接口返回的规则不确定，先不写
-//        guard var achieveIndex = userInfo.achievementType.toInt() else {
-//            return
-//        }
-//        
-//        var locationIndex = 1
-//        
-//        for i in 0 ..< stepArray.count {
-//            
-//            if achievementCount >= stepArray[i] {
-//                locationIndex += 1
-//            }
-//        }
-//        
-//        if locationIndex > achieveIndex {
-//            
-//            achieveIndex = locationIndex
-//            // 上报 成就徽章是否点亮
-//            userInfo.achievementType = String(achieveIndex)
-//        }
-        
     }
     
     /**
-     传进来的指数 
-     
-     0:没有成就; 1:5000步;2:20000步;3:1000000步;4：500000步;5：1000000步;6：5000000步;
-     - parameter index: 传进来的指数
-     - Jessica
-     - returns: 徽章数组
+     配置登录用户的成就页面
      */
-    func configWithAchieveIndexForUser(awards: [Int] = []) {
+    func configWithAchieveIndexForUser() {
         
-       
-        defaultConfigureAchievement(awards)
+        let userInfo: UserInfoModel = queryUserInfo(userId)!
         
-        // TODO 用户总步数获取
+        
+        defaultConfigureAchievement(userInfo.translateAwards())
+        
+        // TODO 用户总步数将会由接口给出，待修改
         
     }
     
@@ -163,6 +128,13 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         achievementCount = stepArray[maxAwardIndex]
     }
     
+    /**
+     取出Int数组中的最大值
+     
+     - parameter awards: [Int]  如 [2,3]
+     
+     - returns: Int
+     */
     func sortInt(awards: [Int]) -> Int {
         
         var x: Int = 0
