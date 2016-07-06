@@ -71,7 +71,7 @@ struct UserProfile: JSONJoy {
         
         do {
             let timeString = try decoder["signupAt"].getString()
-            signUpDate = NSDate(fromString: timeString, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ") ?? NSDate()
+            signUpDate = NSDate(fromString: timeString, format: "yyyy-MM-dd HH:mm:ss") ?? NSDate()
             
         } catch {
             signUpDate = NSDate()
@@ -80,22 +80,17 @@ struct UserProfile: JSONJoy {
         do {
             let timeString = try decoder["birthday"].getString()
             
-            if let dateA = NSDate(fromString: timeString, format: "yyyy-MM-dd") {
+            if let dateB = NSDate(fromString: timeString, format: "yyyy-MM-dd HH:mm:ss") {
                 
                 let format = NSDateFormatter()
-                format.dateFormat = "yyyy-MM-dd"
-                
-                birthday = format.stringFromDate(dateA)
-                
-            } else if let dateB = NSDate(fromString: timeString, format: "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ") {
-                
-                let format = NSDateFormatter()
-                format.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZ"
+                format.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 
                 birthday = format.stringFromDate(dateB)
                 
             } else {
+                
                 birthday = ""
+                
             }
             
         } catch {
@@ -117,13 +112,20 @@ struct UserProfile: JSONJoy {
 }
 
 struct UserAward: JSONJoy {
-    var name: String
+    var date: NSDate
     
     var number: String
     
     init(_ decoder: JSONDecoder) throws {
         
-        do { name = try decoder["name"].getString() } catch { name = "" }
+        do {
+            let timeString = try decoder["date"].getString()
+            date = NSDate(fromString: timeString, format: "yyyy-MM-dd HH:mm:ss") ?? NSDate()
+            
+        } catch {
+            date = NSDate()
+        }
+        
         do { number = try decoder["number"].getString() } catch { number = "" }
         
     }
