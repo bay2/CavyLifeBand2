@@ -83,7 +83,7 @@ struct UserProfile: JSONJoy {
             if let dateB = NSDate(fromString: timeString, format: "yyyy-MM-dd HH:mm:ss") {
                 
                 let format = NSDateFormatter()
-                format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                format.dateFormat = "yyyy-MM-dd"
                 
                 birthday = format.stringFromDate(dateB)
                 

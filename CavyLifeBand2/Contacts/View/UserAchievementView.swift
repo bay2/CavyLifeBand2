@@ -120,8 +120,6 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         defaultConfigureAchievement(awards)
         
         // TODO 用户总步数获取
-        achievementCount = 0
-            
         
     }
     
@@ -138,6 +136,8 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
             }
             
             achievementsList = array
+            
+            achievementCount = 0
             
             return
         }
@@ -159,6 +159,8 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         }
         
         achievementsList = array
+        
+        achievementCount = stepArray[maxAwardIndex]
     }
     
     func sortInt(awards: [Int]) -> Int {

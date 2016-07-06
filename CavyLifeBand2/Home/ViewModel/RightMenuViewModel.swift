@@ -80,7 +80,7 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
 //            let fwVersion = bandInfo.fwVersion
 //            let hwVersion = bandInfo.hwVersion
 //            
-//            let localVersion = ""
+//            let localVersion = "\(hwVersion)" + "\(fwVersion / 10)" + "\(fwVersion % 10)"
             
 //            NetWebApi.shareApi.netGetRequest(WebApiMethod.Firmware.description, modelObject: FirmwareUpdateResponse.self, successHandler: { (data) in
 //                let localIsLast = loaclVersion.compare(data.data.version, options: .NumericSearch, range: nil, locale: nil) == .OrderedDescending
