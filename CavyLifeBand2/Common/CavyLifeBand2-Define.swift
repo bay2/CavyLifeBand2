@@ -180,6 +180,8 @@ struct LoginUserBaseInfo {
     
     func serialize() -> [String: AnyObject] {
         return ["SignUserId": loginUserId, "SignUserName": loginUsername, "SignUserAvatar": loginAvatar, "SignUserAuthToken": loginAuthToken]
+//        return ["SignUserId": loginUserId, "SignUserName": loginUsername, "SignUserAvatar": loginAvatar, "SignUserAuthToken": "sX9oLibbpvsZmpNYe"]
+        
     }
     
 }

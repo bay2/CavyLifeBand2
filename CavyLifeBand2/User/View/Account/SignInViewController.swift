@@ -261,6 +261,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         
         signIn({ [unowned self] in
             self.loadingView.stopAnimating()
+
             
             // 登录绑定场景
             BindBandCtrl.bindScene = .SignInBind
@@ -302,13 +303,13 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
                     // 登录绑定
                     
                     self.saveMacAddress()
+
                     UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
                     
                 }
                 
             }
 
-            
         }) { [unowned self] in
                 self.loadingView.stopAnimating()
         }

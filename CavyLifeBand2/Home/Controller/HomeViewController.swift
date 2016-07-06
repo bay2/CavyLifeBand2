@@ -19,7 +19,7 @@ let dateViewHeight: CGFloat = 50.0
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
 let navBarHeight: CGFloat = 64.0
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate ,ChartStepRealmProtocol {
     
     var leftBtn: UIButton? = {
         
@@ -239,49 +239,40 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     // MARK: 解析数据 保存数据库
     
     /**
-     解析 计步睡眠数据 并保存Realm
+     解析 计步睡眠数据 并保存Realm 每次请求前前先删除最后一条数据 在获取时间同步
      */
     func parseChartListData() {
         
-        // TODO: PR前放开注释
+
+        // MARK: 睡眠相关
         SleepWebApi.shareApi.fetchSleepWebData()
         
-        // TODO: PR前删除以下
-//        var startDate = ""
-//        var endDate = ""
+        // MARK
+        var startDate = ""
+        var endDate = ""
         
-//        if isNeedUpdateStepData() {
-//            
-//            let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
-//            
-//            if personalList.count != 0 {
-//                
-//                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
-//                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
-//                
-//            }
-//            
-//            parseStepDate(startDate, endDate: endDate)
-//            
-//        }
-//        
-//        
-//        if isNeedUpdateSleepData() {
-//            
-//            let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
-//            
-//            if personalList.count != 0 {
-//                
-//                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
-//                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
-//                
-//            }
-//            
-//            parseSleepDate(startDate, endDate: endDate)
-//            
-//        }
+        if isNeedUpdateStepData() {
+            
+            let personalList = realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
+            
+            if personalList.count != 0 {
+                
+                startDate = personalList.last!.date.toString(format: "yyyy-MM-dd HH:mm:ss")
+                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
+                
+            }else
+            {
+                // 如果查询不到数据 则 使用注册日期开始请求
+                
+              startDate = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first!.signUpDate.toString(format: "yyyy-MM-dd HH:mm:ss")
+                
+                
+            }
+            
+            parseStepDate(startDate, endDate: endDate)
+            
+        }
         
- 
     }
     
       /**
@@ -292,30 +283,35 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func parseStepDate(startDate: String, endDate: String) {
 
-        ChartsWebApi.shareApi.parseStepChartsData(startDate, endDate: endDate) { result in
-
-            guard result.isSuccess else {
-                Log.error("Parse Home Lists Data Error")
-                return
+        
+     let  parameters: [String: AnyObject] = ["start_date": startDate, "end_date": endDate]
+//         let  parameters: [String: AnyObject] = ["start_date": "2016-6-5", "end_date": "2016-7-4"]
+        NetWebApi.shareApi.netGetRequest(WebApiMethod.Steps.description , para: parameters, modelObject: NChartStepData.self , successHandler: { result  in
+ 
+            //服务器数据获取成功判断数据库最后一条数据时间是否是当天 如果是当天就删除之后再开始添加新数据
+            
+            let today = NSDate(fromString: endDate, format: "yyyy-MM-dd")?.gregorian.isToday
+            
+            //如果传入的时间是当天 则查询是否有当天的数据然后删除
+            
+            if today == true {
+                
+              self.deleteStepDataWithDate(endDate)
+                
             }
             
-            do {
-                
-                let netResult = try ChartStepMsg(JSONDecoder(result.value!))
-
-                
-                for list in netResult.stepList {
-                    // 保存到数据库
-                    self.addStepListRealm(list)
-                }
-                
-            } catch let error {
-                
-                Log.error("\(#function) result error: \(error)")
+            
+            for list in result.stepsData.stepsData {
+               
+                self.addNStepListRealm(list)
             }
             
+            }) {   Msg in
+                
+                
+             Log.info(Msg)
+             Log.error("Parse Home Lists Data Error")
         }
-
     }
     
     /**
@@ -360,7 +356,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      - parameter list: 计步信息JSON
      */
     func addStepListRealm(list: StepMsg) {
-        
+    
         guard let date = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
             return
         }
@@ -368,6 +364,39 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         self.addStepData(ChartStepDataRealm(userId: self.userId, time: date, step: list.stepCount))
 
     }
+    
+    //  从服务器获取数据存入表
+    
+    func addNStepListRealm(list: StepsDataItem) {
+        
+        let stepList = List<StepListItem> ()
+        
+        for item in list.hours {
+         
+            let  stepItem = StepListItem(step: item.steps)
+            
+            stepList.append(stepItem)
+        }
+        
+    
+        self.addStepData(NChartStepDataRealm(userId: self.userId, date:list.date! , totalTime: list.totalTime, totalStep: list.totalSteps, stepList: stepList))
+        
+    }
+    
+    
+    
+    func deleteStepDataWithDate(searchDate: String) {
+        
+       
+        guard let time = NSDate(fromString: searchDate, format: "yyyy-MM-dd") else {
+            Log.error("Time from erro [\(searchDate)]")
+            return
+        }
+        
+        self.delecNSteptDate(time, endTime: time)
+        
+    }
+    
     
     func addSleepListRealm(list: SleepMsg) {
         

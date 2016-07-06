@@ -200,9 +200,9 @@ extension SignInDelegate where Self: UIViewController {
         
         let parameters: [String: AnyObject] = [NetRequsetKey.UserName.rawValue: userName,
                                                NetRequsetKey.Password.rawValue: passwd.md5()]
-
+        
         NetWebApi.shareApi.netPostRequest(WebApiMethod.Login.description, para: parameters, modelObject: LoginResponse.self, successHandler: { (data) in
-
+            
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = data.userId
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = data.userName
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken = data.authToken

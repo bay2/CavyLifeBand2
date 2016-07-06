@@ -36,6 +36,8 @@ class ChartStepDataRealm: Object {
     }
     
     
+    
+    
 }
 
 // MARK: Sleep
@@ -65,7 +67,9 @@ enum ChartBandDataSyncState: Int {
 }
 
 // MARK: 计步睡眠数据库操作协议
-protocol ChartsRealmProtocol: SleepWebRealmOperate {
+
+protocol ChartsRealmProtocol: ChartStepRealmProtocol, SleepWebRealmOperate {
+
 
     var realm: Realm { get }
     var userId: String { get }
@@ -78,6 +82,7 @@ protocol ChartsRealmProtocol: SleepWebRealmOperate {
     // MARK: 计步
     func isNeedUpdateStepData() -> Bool
     func addStepData(chartsInfo: ChartStepDataRealm) -> Bool
+    // MARK: 修改
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData
     func removeStepData(chartsInfo: ChartStepDataRealm) -> Bool
     func delecSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool
@@ -96,7 +101,9 @@ protocol ChartsRealmProtocol: SleepWebRealmOperate {
 extension ChartsRealmProtocol {
     
     func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(ChartStepDataRealm)> {
+
         return realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'").sorted("time", ascending: true)
+
     }
     
     // 返回 第一天开始的时间段
@@ -183,16 +190,21 @@ extension ChartsRealmProtocol {
      查询 日周月下 某一时段的 数据信息
      */
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData {
+   
+        // 取出服务区查询所得数据
+      let  serverData =  queryNStepNumber(beginTime, endTime: endTime, timeBucket: timeBucket)
         
-        let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
+        //处理当天数据
+       let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime, endTime)
         
+//        Log.info("dataInfo======\(dataInfo.last)==========")
         switch timeBucket {
             
         case .Day:
-            return returnHourChartsArray(dataInfo)
+            return returnHourChartsArray(dataInfo, stepData: serverData)
             
         case .Week, .Month:
-            return returnDayChartsArray(beginTime, endTime: endTime, dataInfo: dataInfo)
+            return returnDayChartsArray(beginTime, endTime: endTime, dataInfo: dataInfo, stepData: serverData)
             
         }
         
@@ -201,9 +213,9 @@ extension ChartsRealmProtocol {
     /**
      按小时分组 一天24小时
      */
-    func returnHourChartsArray(dataInfo: Results<(ChartStepDataRealm)>) -> StepChartsData {
+    func returnHourChartsArray(dataInfo: Results<(ChartStepDataRealm)> ,stepData: StepChartsData) -> StepChartsData {
         
-        var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0)
+        var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0, averageStep: 0)
         
         // 初始化0~23 24 小时
         for i in 0...23 {
@@ -223,15 +235,30 @@ extension ChartsRealmProtocol {
             
         }
         
+        
+        stepChartsData.totalStep += stepData.totalStep
+        stepChartsData.totalKilometer += stepData.totalKilometer
+        stepChartsData.finishTime += stepData.finishTime
+        
+        for indext in  0..<stepChartsData.datas.count {
+         
+            stepChartsData.datas[indext].step += stepData.datas[indext].step
+            
+        }
+        
+        
+        
+        
+        
         return stepChartsData
         
     }
     
     /**
      按天分组 一周七天 一个月30天
-     */    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(ChartStepDataRealm)>) -> StepChartsData {
+     */    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(ChartStepDataRealm)>, stepData: StepChartsData) -> StepChartsData {
         
-        var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0)
+        var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0, averageStep: 0)
         
         let maxNum = (endTime - beginTime).totalDays + 1
         
@@ -247,6 +274,17 @@ extension ChartsRealmProtocol {
             stepChartsData.totalStep += data.step
             stepChartsData.finishTime += 10
             stepChartsData.datas[index].step += data.step
+            
+        }
+        
+        
+        stepChartsData.totalStep += stepData.totalStep
+        stepChartsData.totalKilometer += stepData.totalKilometer
+        stepChartsData.finishTime += stepData.finishTime
+        
+        for indext in  0..<stepChartsData.datas.count {
+            
+            stepChartsData.datas[indext].step += stepData.datas[indext].step
             
         }
         
@@ -935,6 +973,8 @@ extension ChartsRealmProtocol {
     }
 
 }
+
+
 
 
 
