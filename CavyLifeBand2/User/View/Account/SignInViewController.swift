@@ -32,6 +32,8 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     // textfield之间的分割线
     @IBOutlet weak var separatorLine: UIView!
     
+    var loadingView: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     var realm: Realm = try! Realm()
     
     var userName: String {
@@ -94,6 +96,8 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
+        addLodingView()
+        
         updateNavUI()
         
     }
@@ -105,6 +109,22 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func addLodingView() {
+        
+        self.view.addSubview(loadingView)
+        
+        loadingView.hidesWhenStopped = true
+        
+        loadingView.activityIndicatorViewStyle = .Gray
+        
+        loadingView.snp_makeConstraints { make in
+            make.center.equalTo(self.view)
+            make.width.equalTo(50.0)
+            make.height.equalTo(50.0)
+        }
+
     }
     
     /**
@@ -236,8 +256,11 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      - parameter sender: 
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
-
-        signIn {
+        
+        loadingView.startAnimating()
+        
+        signIn({ [unowned self] in
+            self.loadingView.stopAnimating()
             
             // 登录绑定场景
             BindBandCtrl.bindScene = .SignInBind
@@ -252,7 +275,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
                 //用户未绑定，走绑定流程
                 self.gotoBinding()
                 return
-  
+                
             }
             
             // 手环已绑定，记录手环信息，root 页面中会根据此属性设置绑定的手环
@@ -278,13 +301,16 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
                     
                     // 登录绑定
                     
-                   self.saveMacAddress()
+                    self.saveMacAddress()
                     UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
                     
                 }
                 
             }
+
             
+        }) { [unowned self] in
+                self.loadingView.stopAnimating()
         }
         
     }

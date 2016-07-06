@@ -170,8 +170,7 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
         switch viewStyle {
         case .Guide:
             break
-        case .RightMenu:
-            
+        case .RightMenu:            
             queryUserInfoByNet{ resultUserInfo in
                 
                 guard let userInfo = resultUserInfo else {

@@ -189,14 +189,14 @@ protocol SignInDelegate {
     
     var userName: String { get }
     var passwd: String { get }
-    func signIn(callBack: (Void -> Void)?)
+    func signIn(successBack: (Void -> Void)?, failBack: (Void -> Void)?)
     
 }
 
 // MARK: - 登录协议扩展
 extension SignInDelegate where Self: UIViewController {
     
-    func signIn(callBack: (Void -> Void)? = nil) {
+    func signIn(successBack: (Void -> Void)? = nil, failBack: (Void -> Void)? = nil) {
         
         let parameters: [String: AnyObject] = [NetRequsetKey.UserName.rawValue: userName,
                                                NetRequsetKey.Password.rawValue: passwd.md5()]
@@ -207,9 +207,12 @@ extension SignInDelegate where Self: UIViewController {
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = data.userName
             CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken = data.authToken
 
-            callBack?()
+            successBack?()
 
         }) { (msg) in
+            
+            failBack?()
+            
             CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: msg.msg)
         }
         

@@ -24,16 +24,22 @@ extension QueryUserInfoRequestsDelegate {
     /**
      查询用户信息
      */
-    func queryUserInfoByNet(vc: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController, completeHeadle completeHandle: (UserProfile? -> Void)? = nil) {
+    func queryUserInfoByNet(vc: UIViewController? = nil, completeHeadle completeHandle: (UserProfile? -> Void)? = nil) {
 
         NetWebApi.shareApi.netGetRequest(WebApiMethod.UsersProfile.description, modelObject: UserProfileMsg.self, successHandler: { (data) in
 
             completeHandle?(data.userProfile)
 
         }) { (msg) in
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
+            Log.info(msg.msg)
+            
+            if vc != nil {
+            
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(vc, message: msg.msg)
+                
+            }
+            
         }
-        
         
     }
     
