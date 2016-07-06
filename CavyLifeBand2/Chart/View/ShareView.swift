@@ -53,7 +53,6 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
 
         addCollectionView()
         
-        
         self.animate(duration: 0.2, animations: {
             self.bottomView.frame = CGRectMake(0, ez.screenHeight - 148, ez.screenWidth, 148)
         })
@@ -149,8 +148,8 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
         
         publishContent.setImage(ShareSDK.imageWithPath(savePath))
         
-        ShareSDK.shareContent(publishContent, type: type, authOptions: nil, statusBarTips: true) { (shareType, state, platformShareInfo, error, end) in
-            
+        
+        ShareSDK.clientShareContent(publishContent, type: type, statusBarTips: true, result: { (shareType, state, platformShareInfo, error, end) in
             switch state{
                 
             case SSResponseStateSuccess:
@@ -165,9 +164,7 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
             default:
                 break
             }
-            
-        }
-        
+        })
 
     }
     

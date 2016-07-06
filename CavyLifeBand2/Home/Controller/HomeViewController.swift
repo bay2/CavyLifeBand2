@@ -446,7 +446,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
         
         // TODO 数据结构有变
-//        achieveView?.configWithAchieveIndex((notification.object as? Int) ?? 0)
+        achieveView?.configWithAchieveIndexForUser()
 
         maskView.addSubview(achieveView!)
 
