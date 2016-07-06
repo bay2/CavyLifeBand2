@@ -10,7 +10,7 @@ import Alamofire
 import JSONJoy
 import RealmSwift
 
-class SleepWebApi: NetRequest, SleepWebRealmOperate {
+class SleepWebApi: NetRequest, SleepWebRealmOperate, UserInfoRealmOperateDelegate {
 
     static var shareApi = SleepWebApi()
     
@@ -58,8 +58,15 @@ class SleepWebApi: NetRequest, SleepWebRealmOperate {
         
         guard sleepData != nil && sleepData?.count > 0 else {
             
-            // TODO 开始时间应该返回 用户注册时间
-            return ("2016-5-5", format.stringFromDate(NSDate()))
+            if let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
+                
+                return (format.stringFromDate(userInfo.signUpDate) ,format.stringFromDate(NSDate()))
+            
+            } else {
+                
+                return ("2016-5-5", format.stringFromDate(NSDate()))
+                
+            }
             
         }
         

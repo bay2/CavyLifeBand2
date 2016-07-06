@@ -45,10 +45,14 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     
     var accountInfos: Array<AnyObject?> = []
     
+    let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        addAllViews()
         
         accountInfoQuery()
         
@@ -120,8 +124,8 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         accountInfos.append(addressCellViewModel)
         
         self.tableView.reloadData()
-        
-        addAllViews()
+                
+        achieveView?.configWithAchieveIndexForUser([2,3])
         
     }
     
@@ -133,7 +137,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         // InfoTableView高度
         // |-infoListCell-136-|-cellCount-1[infoListCell] * 50-|-边10-|
-        let tableViewHeight = CGFloat(130 + (accountInfos.count - 1) * 50 + 10 + 16)
+        let tableViewHeight = CGFloat(130 + 5 * 50 + 10 + 16)
         
         // collectionView 高度
         // |-(badgeCount / 3） *（20 + 112）-|
@@ -211,8 +215,6 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             make.height.equalTo(68 + height)
         }
         
-        let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
-        
         badgeView.addSubview(achieveView!)
         achieveView!.snp_makeConstraints { make in
             make.left.right.top.bottom.equalTo(badgeView)
@@ -234,10 +236,10 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 1
+            return accountInfos.count > 0 ? 1 : 0
         }
         
-        return accountInfos.count - 1
+        return accountInfos.count - 1 >= 0 ? accountInfos.count - 1 : 0
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
