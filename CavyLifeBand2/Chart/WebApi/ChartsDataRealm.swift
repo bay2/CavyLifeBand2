@@ -11,6 +11,7 @@ import RealmSwift
 import Log
 import Datez
 import Alamofire
+import Realm
 
 /// 长时间没有数据，12 = 2小时， 12 * 10分钟
 let noSleepTime = 12
@@ -68,7 +69,7 @@ enum ChartBandDataSyncState: Int {
 
 // MARK: 计步睡眠数据库操作协议
 
-protocol ChartsRealmProtocol: ChartStepRealmProtocol, SleepWebRealmOperate {
+protocol ChartsRealmProtocol: ChartStepRealmProtocol, SleepWebRealmOperate, UserInfoRealmOperateDelegate {
 
 
     var realm: Realm { get }
@@ -109,23 +110,30 @@ extension ChartsRealmProtocol {
     // 返回 第一天开始的时间段
     func queryTimeBucketFromFirstDay() -> [String]? {
         
+        var realmUserInfo: UserInfoModel?
         
-//        let startDate = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first!.signUpDate.toString(format: "yyyy-MM-dd HH:mm:ss")
+        realmUserInfo = queryUserInfo(userId)
+        
+        let signDate = realmUserInfo?.signUpDate ?? NSDate()
+        
+        return signDate.untilTodayArrayWithFormatter("yyy.M.d")
+        
+//        let signUpDate = realm.objects(UserInfoModel).filter("userId = '\(self.userId)'").first!.signUpDate
 
         
-        let userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-        
-        let realmList = queryAllStepInfo(userId)
-        
-        if realmList.count == 0 || realmList.first?.time == nil {
-            
-            return [NSDate().toString(format: "yyy.M.d")]
-        }
-        
-        let firstDate = realmList.first!.time
-        
-        return firstDate.untilTodayArrayWithFormatter("yyy.M.d")
-        
+//        let userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+//        
+//        let realmList = queryAllStepInfo(userId)
+//        
+//        if realmList.count == 0 || realmList.first?.time == nil {
+//            
+//            return [NSDate().toString(format: "yyy.M.d")]
+//        }
+//        
+//        let firstDate = realmList.first!.time
+//        
+//        return firstDate.untilTodayArrayWithFormatter("yyy.M.d")
+//        
     }
     
 }

@@ -266,7 +266,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             {
                 // 如果查询不到数据 则 使用注册日期开始请求
                 
-              startDate = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first!.signUpDate.toString(format: "yyyy-MM-dd HH:mm:ss")
+              startDate = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first!.signUpDate.toString(format: "yyyy-MM-dd HH:mm:ss") ?? NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")  
                 
                 
             }

@@ -97,7 +97,7 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
         
         // 如果只有一条 需要从数据库去监听是否加载完毕 添加其他的数据
         if self.dateArray.count == 1 {
-            
+        
             initNotificationDateStringArrayAction()
             
         }
