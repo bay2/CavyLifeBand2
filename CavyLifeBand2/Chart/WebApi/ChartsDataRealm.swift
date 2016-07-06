@@ -110,30 +110,13 @@ extension ChartsRealmProtocol {
     // 返回 第一天开始的时间段
     func queryTimeBucketFromFirstDay() -> [String]? {
         
-        var realmUserInfo: UserInfoModel?
+        guard let realmUserInfo: UserInfoModel = queryUserInfo(userId) else {
+            return [NSDate().toString(format: "yyyy.M.d")]
+        }
         
-        realmUserInfo = queryUserInfo(userId)
+        let signDate = realmUserInfo.signUpDate ?? NSDate()
         
-        let signDate = realmUserInfo?.signUpDate ?? NSDate()
-        
-        return signDate.untilTodayArrayWithFormatter("yyy.M.d")
-        
-//        let signUpDate = realm.objects(UserInfoModel).filter("userId = '\(self.userId)'").first!.signUpDate
-
-        
-//        let userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-//        
-//        let realmList = queryAllStepInfo(userId)
-//        
-//        if realmList.count == 0 || realmList.first?.time == nil {
-//            
-//            return [NSDate().toString(format: "yyy.M.d")]
-//        }
-//        
-//        let firstDate = realmList.first!.time
-//        
-//        return firstDate.untilTodayArrayWithFormatter("yyy.M.d")
-//        
+        return signDate.untilTodayArrayWithFormatter("yyyy.M.d")
     }
     
 }

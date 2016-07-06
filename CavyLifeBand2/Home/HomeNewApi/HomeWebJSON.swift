@@ -85,6 +85,17 @@ struct HomeData: JSONJoy {
 
 }
 
+/**
+ * 
+ {
+ "date": "2016-06-18",
+ "total_steps": 820,
+ "total_steps_time": 60,
+ "total_sleep_time": 20,
+ "total_deep_time": 10,
+ "awards": [1]
+ }
+ */
 struct HomeDailiesData: JSONJoy {
     
     var date: NSDate = NSDate()
@@ -96,7 +107,7 @@ struct HomeDailiesData: JSONJoy {
     
     init(_ decoder: JSONDecoder) throws {
         
-        let dateSring = try decoder["start_date"].getString()
+        let dateSring = try decoder["date"].getString()
         date = NSDate(fromString: dateSring, format: "yyyy-MM-dd")!
         
         do { totalSteps = try decoder["total_steps"].getInt() } catch { totalSteps = 0 }

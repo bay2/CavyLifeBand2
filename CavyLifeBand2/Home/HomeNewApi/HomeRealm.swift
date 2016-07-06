@@ -14,7 +14,7 @@ class HomeLineRealm: Object {
     
     dynamic var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
     
-    dynamic var date: String = ""
+    dynamic var date: String = "" //yyyy.M.d
     
     dynamic var totalSteps: Int = 0
     
@@ -47,7 +47,7 @@ extension HomeLineRealm {
     convenience init(jsonModel: HomeDailiesData) {
         
         self.init()
-        self.date = jsonModel.date.toString(format: "yyyy-MM-dd")
+        self.date = jsonModel.date.toString(format: "yyyy.M.d")
         self.totalSteps = jsonModel.totalSteps
         self.totalStepTime = jsonModel.totalStepTime
         self.totalSleep = jsonModel.totalSleep
