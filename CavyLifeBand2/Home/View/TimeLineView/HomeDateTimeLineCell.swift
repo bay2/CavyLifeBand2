@@ -1,4 +1,4 @@
-//
+  //
 //  HomeDateTimeLineCell.swift
 //  CavyLifeBand2
 //
@@ -12,7 +12,7 @@ import RealmSwift
 import JSONJoy
 import Datez
 
-class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource, HomeListRealmProtocol, ChartsRealmProtocol {
+class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource, HomeRealmProtocol, ChartsRealmProtocol {
     
     var realm: Realm = try! Realm()
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
@@ -50,7 +50,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      */
     func configLayout() {
         
-//        parseDataToHomeListRealm()
+        parseDataToHomeListRealm()
         
         initNotificationHomeList()
         initNotificationStep()
@@ -69,7 +69,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      */
     func initNotificationHomeList() {
         
-        notificationHomeListToken = self.queryHomeList(timeString).addNotificationBlock { [unowned self] change in
+        notificationHomeListToken = self.queryHomeData(timeString).addNotificationBlock { [unowned self] change in
             
             switch change {
             case .Initial(let value):
@@ -96,28 +96,21 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      */
     func initNotificationSleep() {
         
-        guard let curDate = NSDate(fromString: timeString, format: "yyyy.M.d") else {
-            fatalError("时间格式不正确\(timeString)")
-        }
-        
-        let endDate = curDate.gregorian.isToday ? NSDate() : (curDate.gregorian.beginningOfDay + 24.hour).date
-        
-        Log.info("\(curDate.toString(format: "yyyy.M.d HH:mm:ss")) -------- \(endDate.toString(format: "yyyy.M.d HH:mm:ss"))")
-        
-        
         notificationSleepToken = self.queryAllStepInfo(userId).addNotificationBlock { [unowned self] chage in
             
             switch chage {
                 
             case .Initial(_):
-                self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: Int(self.querySleepInfoDay(curDate, endTime: endDate).0))
-                self.tableView.reloadData()
                 
+                let sleepTime = self.queryHomeData(self.timeString).last?.totalStepTime ?? 0
+                self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: sleepTime)
+                self.tableView.reloadData()
+         
             case .Update(_, deletions: _, insertions: _, modifications: _):
-                if curDate.gregorian.isToday {
-                    self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: Int(self.querySleepInfoDay(curDate, endTime: endDate).0))
-                    self.tableView.reloadData()
-                }
+
+                let sleepTime = self.queryHomeData(self.timeString).last?.totalStepTime ?? 0
+                self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: sleepTime)
+                self.tableView.reloadData()
                 
             default:
                 break
@@ -138,28 +131,23 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      - returns:
      */
     func initNotificationStep() {
-        
-        guard let curDate = NSDate(fromString: timeString, format: "yyyy.M.d") else {
-            fatalError("时间格式不正确\(timeString)")
-        }
-        
-        let endDate = curDate.gregorian.isToday ? NSDate() : (curDate.gregorian.beginningOfDay + 24.hour).date
-        
-        
+
         notificationStepToken = self.queryAllStepInfo(userId).addNotificationBlock { [unowned self] chage in
             
             switch chage {
                 
             case .Initial(_):
-                self.datasViewModels[0] = HomeListStepViewModel(stepNumber: self.queryStepNumber(curDate, endTime: endDate, timeBucket: TimeBucketStyle.Day).totalStep)
-                self.tableView.reloadData()
-
-            case .Update(_, deletions: _, insertions: _, modifications: _):
-                if curDate.gregorian.isToday {
-                    self.datasViewModels[0] = HomeListStepViewModel(stepNumber: self.queryStepNumber(curDate, endTime: endDate, timeBucket: TimeBucketStyle.Day).totalStep)
-                    self.tableView.reloadData()
-                }
                 
+                let steps = self.queryHomeData(self.timeString).last?.totalSteps ?? 0
+                self.datasViewModels[0] = HomeListStepViewModel(stepNumber: steps)
+                self.tableView.reloadData()
+        
+            case .Update(_, deletions: _, insertions: _, modifications: _):
+                
+                let steps = self.queryHomeData(self.timeString).last?.totalSteps ?? 0
+                self.datasViewModels[0] = HomeListStepViewModel(stepNumber: steps)
+                self.tableView.reloadData()
+      
             default:
                 break
                 
@@ -195,98 +183,17 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     func parseDataToHomeListRealm(){
         
         // 如果数据库存在数据 就直接返回
-        if isExistHomeList(timeString) { return }
-        
-        let date = NSDate(fromString: timeString, format: "yyyy.M.d")
-        let time = date!.toString(format: "yyyy-MM-dd")
+        if isExistHomeData(timeString) { return }
         
         // 不存在 解析数据 并保存
-        HomeListWebApi.shareApi.parseHomeListData(time) { result in
-            
-            guard result.isSuccess else {
-                Log.error("Parse Home Lists Data Error")
-                return
-            }
-            
-            do {
-                
-                let netResult = try HomeListMsg(JSONDecoder(result.value!))
-                Log.info(netResult)
-                
-                // 保存到数据库
-                self.saveHomeListRealm(netResult)
-                
-            } catch let error {
-                
-                Log.error("\(#function) result error: \(error)")
-                
-            }
-            
-        }
-        
+        HomeWebApi.shareApi.parserHomeLineData(timeString)
     }
     
-    /**
-     将解析的HomeListMsg数据保存到Realm
-     */
-    func saveHomeListRealm(result: HomeListMsg) {
-        
-        guard result.commonMsg.code == WebApiCode.Success.rawValue else {
-            
-            Log.error("Query home list error \(result.commonMsg.code)")
-            return
-            
-        }
-        
-        let homeListRealm = HomeListRealm()
-        
-        homeListRealm.userId = self.userId
-        homeListRealm.time = timeString
-        homeListRealm.sleepTime = result.sleepTime
-        homeListRealm.stepCount = result.stepCount
-        
-        // 成就
-        for infoList in result.achieveList {
-            
-            let achieveRealm = AchieveListRealm()
-            achieveRealm.achieve = infoList
-            
-            homeListRealm.achieveList.append(achieveRealm)
-        }
-        
-        // pk
-        for infoList in result.pkList {
-            
-            let pkRealm = PKListRealm()
-            
-            pkRealm.friendName = infoList.friendName!
-            pkRealm.pkId = infoList.pkId!
-            pkRealm.status = infoList.status!
-            
-            homeListRealm.pkList.append(pkRealm)
-            
-        }
-        
-        // 健康
-        for infoList in result.healthList {
-            
-            let healthRealm = HealthListRealm()
-            
-            healthRealm.friendId = infoList.friendId!
-            healthRealm.iconUrl = infoList.iconUrl!
-            healthRealm.friendName = infoList.friendName!
-            homeListRealm.healthList.append(healthRealm)
-            
-        }
-        
-        // 存储
-        addHomeList(homeListRealm)
-    }
 
     /**
      数据库数据 转换 VM数组
      */
-    func queryRealmGetViewModelLists(homeListRealm: Results<(HomeListRealm)>) -> [HomeListViewModelProtocol] {
+    func queryRealmGetViewModelLists(homeListRealm: Results<(HomeLineRealm)>) -> [HomeListViewModelProtocol] {
     
         // 转成 VM数组
         var listVM: [HomeListViewModelProtocol] = [HomeListStepViewModel(stepNumber: 0), HomeListSleepViewModel(sleepTime: 0)]
@@ -298,6 +205,16 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         listVM[0] = self.datasViewModels[0]
         listVM[1] = self.datasViewModels[1]
 
+        
+        // 成就列表
+        if listRealm.awards.count > 0 {
+            
+            for list in listRealm.awards {
+                
+                listVM.append(HomeListAchiveViewModel(medalIndex: list.award))
+            }
+        }
+        
         // 隐藏PK模块
 //        // PK
 //        if listRealm.pkList.count > 0 {
@@ -310,23 +227,21 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
 //            }
 //            
 //        }
-        
-        // 成就列表
-        if listRealm.achieveList.count > 0 {
-            
-            for list in listRealm.achieveList {
-                
-                listVM.append(HomeListAchiveViewModel(medalIndex: list.achieve))
-            }
-        }
-        
-        // 健康列表
-        if listRealm.healthList.count > 0 {
-            
-            for list in listRealm.healthList {
-                listVM.append(HomeListHealthViewModel(othersName: list.friendName, iconUrl: list.iconUrl, friendId: list.friendId))
-            }
-        }
+//        // 成就列表
+//        if listRealm.achieveList.count > 0 {
+//            
+//            for list in listRealm.achieveList {
+//                
+//                listVM.append(HomeListAchiveViewModel(medalIndex: list.achieve))
+//            }
+//        }
+//        // 健康列表
+//        if listRealm.healthList.count > 0 {
+//            
+//            for list in listRealm.healthList {
+//                listVM.append(HomeListHealthViewModel(othersName: list.friendName, iconUrl: list.iconUrl, friendId: list.friendId))
+//            }
+//        }
 
         return listVM
     }

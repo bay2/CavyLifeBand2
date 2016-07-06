@@ -24,8 +24,9 @@ class HomeWebApi: NetRequest, HomeRealmProtocol {
     
     /**
      某一天的数据
+     
+     - parameter timeString: yyyy.M.d
      */
-    
     func parserHomeLineData(timeString: String) {
         
         let date = NSDate(fromString: timeString, format: "yyyy.M.d")

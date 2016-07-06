@@ -15,31 +15,10 @@ protocol HomeRealmProtocol {
     var realm: Realm { set get }
     var userId: String { get }
     
-    /**
-     是否存在主页每日资讯
-     
-     - parameter timeString: 时间 yyyy-MM-dd
-     
-     - returns: 是否成功
-     */
     func isExistHomeData(timeString: String) -> Bool
     
-    /**
-     添加到数据库
-     
-     - parameter homeList: homeList description
-     
-     - returns: 是否成功
-     */
     func addHomeData(homeRealm: HomeLineRealm) -> Bool
-    
-    /**
-     查询全部数据库变化的
-     
-     - parameter timeString: 时间 yyyy-MM-dd
-     
-     - returns: 查询结果
-     */
+
     func queryHomeData(timeString: String) -> Results<(HomeLineRealm)>
 
 }
@@ -55,7 +34,7 @@ extension HomeRealmProtocol {
      */
     func isExistHomeData(timeString: String) -> Bool {
         
-        let array = realm.objects(HomeLineRealm).filter("userId = '\(userId)' AND time = '\(timeString)'")
+        let array = realm.objects(HomeLineRealm).filter("userId = '\(userId)' AND date = '\(timeString)'")
         
         if array.count == 0 {
             
@@ -101,7 +80,7 @@ extension HomeRealmProtocol {
     func queryHomeData(timeString: String) -> Results<(HomeLineRealm)> {
         
         Log.info("userId = \(userId)")
-        return realm.objects(HomeLineRealm).filter("userId = '\(userId)' AND time = '\(timeString)'")
+        return realm.objects(HomeLineRealm).filter("userId = '\(userId)' AND date = '\(timeString)'")
         
     }
     

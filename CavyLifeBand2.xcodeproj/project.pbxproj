@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		4C05744B1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */; };
 		4C05744D1D25063900D78716 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744C1D25063900D78716 /* UIDeviceExtension.swift */; };
-		4C05744F1D26642E00D78716 /* HomeViewControllerExtensinPreser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744E1D26642E00D78716 /* HomeViewControllerExtensinPreser.swift */; };
 		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
 		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
 		4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E61CB78F0500DB06FC /* Home.storyboard */; };
@@ -145,9 +144,9 @@
 		686A5F051CDC7F3900EB8D0E /* RelateAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */; };
 		6874798D1D22943100354A5B /* SleepRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6874798C1D22943100354A5B /* SleepRealm.swift */; };
 		687479921D23A33700354A5B /* LoginJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479911D23A33700354A5B /* LoginJSON.swift */; };
-		687479991D24EE0F00354A5B /* FunctionIntroduceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479981D24EE0F00354A5B /* FunctionIntroduceVC.swift */; };
 		687479941D24AF0600354A5B /* SleepWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479931D24AF0600354A5B /* SleepWebApi.swift */; };
 		687479971D24BA8B00354A5B /* UploadBandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479961D24BA8B00354A5B /* UploadBandData.swift */; };
+		687479991D24EE0F00354A5B /* FunctionIntroduceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479981D24EE0F00354A5B /* FunctionIntroduceVC.swift */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		688E7B5C1D20FB3F0062DF9D /* NetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */; };
@@ -365,7 +364,6 @@
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerExtesionRefersh.swift; sourceTree = "<group>"; };
 		4C05744C1D25063900D78716 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
-		4C05744E1D26642E00D78716 /* HomeViewControllerExtensinPreser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerExtensinPreser.swift; sourceTree = "<group>"; };
 		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E61CB78F0500DB06FC /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -501,9 +499,9 @@
 		686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelateAppCell.xib; sourceTree = "<group>"; };
 		6874798C1D22943100354A5B /* SleepRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepRealm.swift; sourceTree = "<group>"; };
 		687479911D23A33700354A5B /* LoginJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginJSON.swift; sourceTree = "<group>"; };
-		687479981D24EE0F00354A5B /* FunctionIntroduceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionIntroduceVC.swift; sourceTree = "<group>"; };
 		687479931D24AF0600354A5B /* SleepWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepWebApi.swift; sourceTree = "<group>"; };
 		687479961D24BA8B00354A5B /* UploadBandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadBandData.swift; sourceTree = "<group>"; };
+		687479981D24EE0F00354A5B /* FunctionIntroduceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionIntroduceVC.swift; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequest.swift; sourceTree = "<group>"; };
@@ -747,7 +745,6 @@
 			children = (
 				4CB16D6A1D1130A7006858B5 /* HomeViewController.swift */,
 				4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */,
-				4C05744E1D26642E00D78716 /* HomeViewControllerExtensinPreser.swift */,
 				4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */,
 				9150CAB51CC89EA600A398E9 /* RightViewController.swift */,
 				4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */,
@@ -2320,7 +2317,6 @@
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
 				889519F01D26397E00BC4938 /* StepsDataReaml.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
-				4C05744F1D26642E00D78716 /* HomeViewControllerExtensinPreser.swift in Sources */,
 				4CB7A0731CD095C400DFB8DC /* MenuTableViewCell.swift in Sources */,
 				91B49AF01CF45E870017CC69 /* NSDataExtensions.swift in Sources */,
 				911FDB781CF7F2CE00F2E42E /* RootViewControllerExtSavaStepSleep.swift in Sources */,

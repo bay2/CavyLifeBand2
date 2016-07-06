@@ -204,6 +204,9 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
             
         }
         
+//         let stepCurrentNumber = self.queryHomeData(NSDate().toString(format: "yyyy.M.d")).last?.totalSteps ?? 0
+        
+        
         let time = NSDate()
         let resultStep = self.queryStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)
         
