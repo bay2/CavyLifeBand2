@@ -18,7 +18,7 @@ enum NumberFollowUpper: String {
     
 }
 
-class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
+class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, HomeRealmProtocol, ChartStepRealmProtocol, SleepWebRealmOperate {
     
     var realm: Realm = try! Realm()
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
@@ -177,15 +177,15 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
             sleepString = "8:30"
             
         }
-        
         let sleepTimeArray = sleepString.componentsSeparatedByString(":")
         let sleepTargetNumber = sleepTimeArray[0].toInt()! * 60 + sleepTimeArray[1].toInt()!
         
-        // 计步睡眠 当前值
+        // 睡眠当前值 新协议
         let time = NSDate()
-        let resultSeelp = self.querySleepInfoDay(time.gregorian.beginningOfDay.date, endTime: time)
-        let sleepCurrentNumber = Int(resultSeelp.0 * 10)
+        let resultSeelp = querySleepWebRealm(startDate: time.gregorian.beginningOfDay.date, endDate: time)?.last
         
+        let sleepCurrentNumber = resultSeelp?.totalTime ?? 0
+
         sleepView.ringWithStyle(sleepTargetNumber, currentNumber: sleepCurrentNumber)
         
     }
@@ -204,11 +204,9 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
             
         }
         
-//         let stepCurrentNumber = self.queryHomeData(NSDate().toString(format: "yyyy.M.d")).last?.totalSteps ?? 0
-        
-        
+        // 新表的查询协议 查询当天总步数
         let time = NSDate()
-        let resultStep = self.queryStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)
+        let resultStep = queryNStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)
         
          let stepCurrentNumber = resultStep.totalStep
         

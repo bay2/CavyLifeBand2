@@ -60,7 +60,7 @@ class SleepWebApi: NetRequest, SleepWebRealmOperate, UserInfoRealmOperateDelegat
             
             if let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
                 
-                return (format.stringFromDate(userInfo.signUpDate) ,format.stringFromDate(NSDate()))
+                return (format.stringFromDate(userInfo.signUpDate), format.stringFromDate(NSDate()))
             
             } else {
                 

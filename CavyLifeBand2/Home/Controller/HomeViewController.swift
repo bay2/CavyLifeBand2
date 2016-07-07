@@ -19,7 +19,7 @@ let dateViewHeight: CGFloat = 50.0
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
 let navBarHeight: CGFloat = 64.0
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate ,ChartStepRealmProtocol {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate, ChartStepRealmProtocol {
     
     var leftBtn: UIButton? = {
         
@@ -290,7 +290,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
      let  parameters: [String: AnyObject] = ["start_date": startDate, "end_date": endDate]
 //         let  parameters: [String: AnyObject] = ["start_date": "2016-6-5", "end_date": "2016-7-4"]
-        NetWebApi.shareApi.netGetRequest(WebApiMethod.Steps.description , para: parameters, modelObject: NChartStepData.self , successHandler: { result  in
+        NetWebApi.shareApi.netGetRequest(WebApiMethod.Steps.description, para: parameters, modelObject: NChartStepData.self, successHandler: { result  in
  
             //服务器数据获取成功判断数据库最后一条数据时间是否是当天 如果是当天就删除之后再开始添加新数据
             
@@ -383,7 +383,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         }
         
     
-        self.addStepData(NChartStepDataRealm(userId: self.userId, date:list.date! , totalTime: list.totalTime, totalStep: list.totalSteps, stepList: stepList))
+        self.addStepData(NChartStepDataRealm(userId: self.userId, date: list.date!, totalTime: list.totalTime, totalStep: list.totalSteps, stepList: stepList))
         
     }
     

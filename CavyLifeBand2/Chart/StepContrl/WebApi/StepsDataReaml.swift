@@ -204,7 +204,7 @@ extension ChartStepRealmProtocol {
         
         //转换时间格式
         
-    let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date >= %@ AND date <= %@",NSDate().formartDate(beginTime) , NSDate().formartDate(scanTime))
+    let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date >= %@ AND date <= %@", NSDate().formartDate(beginTime), NSDate().formartDate(scanTime))
         
         switch timeBucket {
             

@@ -125,7 +125,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         self.tableView.reloadData()
                 
-        achieveView?.configWithAchieveIndexForUser([2,3])
+        achieveView?.configWithAchieveIndexForUser([2, 3])
         
     }
     

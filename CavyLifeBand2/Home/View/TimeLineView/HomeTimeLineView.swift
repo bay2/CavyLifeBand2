@@ -113,7 +113,7 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
         
         let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
-        notificationTimeStringArrayToken = userInfos.addNotificationBlock{ (change: RealmCollectionChange ) in
+        notificationTimeStringArrayToken = userInfos.addNotificationBlock{ (change: RealmCollectionChange) in
             switch change {
                 
             case .Initial(_):

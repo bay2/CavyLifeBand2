@@ -94,7 +94,7 @@ struct StepsDataItem: JSONJoy {
             
             for item in stepHoursArr {
                 
-                hours.append( try StepHourCoun(item))
+                hours.append(try StepHourCoun(item))
             }
         }
 
