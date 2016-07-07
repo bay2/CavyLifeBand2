@@ -104,12 +104,26 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
                 
                 let sleepTime = self.queryHomeData(self.timeString).last?.totalStepTime ?? 0
                 self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: sleepTime)
+                if self.timeString == NSDate().toString(format: "yyyy.M.d") {
+                    
+                    let resultSeelp = self.querySleepInfoDay(NSDate().gregorian.beginningOfDay.date, endTime: NSDate().timeStringChangeToNSDate(.Day).1)
+                    let sleepCurrentNumber = Int(resultSeelp.0 * 10)
+                    self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: sleepCurrentNumber)
+                    
+                }
                 self.tableView.reloadData()
          
             case .Update(_, deletions: _, insertions: _, modifications: _):
 
                 let sleepTime = self.queryHomeData(self.timeString).last?.totalStepTime ?? 0
                 self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: sleepTime)
+                if self.timeString == NSDate().toString(format: "yyyy.M.d") {
+                    
+                    let resultSeelp = self.querySleepInfoDay(NSDate().gregorian.beginningOfDay.date, endTime: NSDate().timeStringChangeToNSDate(.Day).1)
+                    let sleepCurrentNumber = Int(resultSeelp.0 * 10)
+                    self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: sleepCurrentNumber)
+                    
+                }
                 self.tableView.reloadData()
                 
             default:
@@ -140,12 +154,30 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
                 
                 let steps = self.queryHomeData(self.timeString).last?.totalSteps ?? 0
                 self.datasViewModels[0] = HomeListStepViewModel(stepNumber: steps)
+
+                if self.timeString == NSDate().toString(format: "yyyy.M.d") {
+                    
+                    let resultStep = self.queryStepNumber(NSDate().gregorian.beginningOfDay.date, endTime: NSDate(), timeBucket: .Day)
+                    let stepCurrentNumber = resultStep.totalStep
+                    
+                    self.datasViewModels[0] = HomeListStepViewModel(stepNumber: stepCurrentNumber)
+                    
+                }
                 self.tableView.reloadData()
         
             case .Update(_, deletions: _, insertions: _, modifications: _):
                 
                 let steps = self.queryHomeData(self.timeString).last?.totalSteps ?? 0
                 self.datasViewModels[0] = HomeListStepViewModel(stepNumber: steps)
+                
+                if self.timeString == NSDate().toString(format: "yyyy.M.d") {
+                    
+                    let resultStep = self.queryStepNumber(NSDate().gregorian.beginningOfDay.date, endTime: NSDate(), timeBucket: .Day)
+                    let stepCurrentNumber = resultStep.totalStep
+                    
+                    self.datasViewModels[0] = HomeListStepViewModel(stepNumber: stepCurrentNumber)
+                    
+                }
                 self.tableView.reloadData()
       
             default:
@@ -194,7 +226,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      数据库数据 转换 VM数组
      */
     func queryRealmGetViewModelLists(homeListRealm: Results<(HomeLineRealm)>) -> [HomeListViewModelProtocol] {
-    
+
         // 转成 VM数组
         var listVM: [HomeListViewModelProtocol] = [HomeListStepViewModel(stepNumber: 0), HomeListSleepViewModel(sleepTime: 0)]
         
@@ -202,8 +234,25 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
             return listVM
         }
         
-        listVM[0] = self.datasViewModels[0]
-        listVM[1] = self.datasViewModels[1]
+        if homeListRealm.first == NSDate().toString(format: "yyyy.M.d") {
+            
+            let resultSeelp = self.querySleepInfoDay(NSDate().gregorian.beginningOfDay.date, endTime: NSDate().timeStringChangeToNSDate(.Day).1)
+            let sleepCurrentNumber = Int(resultSeelp.0 * 10)
+            let resultStep = queryStepNumber(NSDate().gregorian.beginningOfDay.date, endTime: NSDate(), timeBucket: .Day)
+            let stepCurrentNumber = resultStep.totalStep
+            
+            
+            listVM[0] = HomeListStepViewModel(stepNumber: stepCurrentNumber)
+            listVM[1] = HomeListSleepViewModel(sleepTime: sleepCurrentNumber)
+            
+        } else {
+            
+            // 其他天数直接查询HomeLineData
+            listVM[0] = self.datasViewModels[0]
+            listVM[1] = self.datasViewModels[1]
+            
+        }
+        
 
         
         // 成就列表

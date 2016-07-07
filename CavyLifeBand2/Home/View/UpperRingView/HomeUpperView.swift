@@ -52,6 +52,7 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, 
     override func awakeFromNib() {
         
         allViewLayout()
+        
         configStepAndSleepValue()
         
         configRealm()
@@ -72,7 +73,7 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, 
             case .Update(_, deletions: _, insertions: _, modifications: _):
                 self.configStepValue()
                 NSNotificationCenter.defaultCenter().postNotificationName(NumberFollowUpper.FollowUpperStep.rawValue, object: nil)
-
+                
             default:
                 break
             }
@@ -84,7 +85,7 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, 
             case .Update(_, deletions: _, insertions: _, modifications: _):
                 self.configSleepValue()
                 NSNotificationCenter.defaultCenter().postNotificationName(NumberFollowUpper.FollowUpperSleep.rawValue, object: nil)
-
+                
             default:
                 break
             }
@@ -170,23 +171,12 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, 
             return
         }
         
-        var sleepString = "\(userInfo.sleepGoal/60):\(userInfo.sleepGoal%60)"
+        let sleepTarget = userInfo.sleepGoal
         
-        if sleepString == "0:0" {
-            // 如果没有目标值 则显示推荐值
-            sleepString = "8:30"
-            
-        }
-        let sleepTimeArray = sleepString.componentsSeparatedByString(":")
-        let sleepTargetNumber = sleepTimeArray[0].toInt()! * 60 + sleepTimeArray[1].toInt()!
-        
-        // 睡眠当前值 新协议
-        let time = NSDate()
-        let resultSeelp = querySleepWebRealm(startDate: time.gregorian.beginningOfDay.date, endDate: time)?.last
-        
-        let sleepCurrentNumber = resultSeelp?.totalTime ?? 0
+        let resultSeelp = self.querySleepInfoDay(NSDate().gregorian.beginningOfDay.date, endTime: NSDate().timeStringChangeToNSDate(.Day).1)
+        let sleepCurrentNumber = Int(resultSeelp.0 * 10)
 
-        sleepView.ringWithStyle(sleepTargetNumber, currentNumber: sleepCurrentNumber)
+        sleepView.ringWithStyle(sleepTarget, currentNumber: sleepCurrentNumber)
         
     }
     
@@ -205,9 +195,7 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, 
         }
         
         // 新表的查询协议 查询当天总步数
-        let time = NSDate()
-        let resultStep = queryNStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)
-        
+        let resultStep = queryStepNumber(NSDate().gregorian.beginningOfDay.date, endTime: NSDate(), timeBucket: .Day)
          let stepCurrentNumber = resultStep.totalStep
         
         stepView.ringWithStyle(stepTargetNumber, currentNumber: stepCurrentNumber)
