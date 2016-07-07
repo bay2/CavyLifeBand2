@@ -57,11 +57,8 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         titleLabel.textColor = UIColor(named: .EColor)
         titleLabel.font      = UIFont.mediumSystemFontOfSize(16.0)
         
-        // 斜体字体
-        let font   = UIFont.mediumSystemFontOfSize(14.0)
-        
         // 成就详情Label样式设置
-        infoLabel.font      = font
+        infoLabel.font      = UIFont.mediumSystemFontOfSize(14.0)
         infoLabel.textColor = UIColor(named: .KColor)
         
         // 成就图标展示视图设置
@@ -81,7 +78,6 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
     func configWithAchieveIndexForUser() {
         
         let userInfo: UserInfoModel = queryUserInfo(userId)!
-        
         
         defaultConfigureAchievement(userInfo.translateAwards())
         

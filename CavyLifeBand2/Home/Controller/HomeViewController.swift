@@ -19,7 +19,7 @@ let dateViewHeight: CGFloat = 50.0
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
 let navBarHeight: CGFloat = 64.0
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate ,ChartStepRealmProtocol {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate ,ChartStepRealmProtocol, QueryUserInfoRequestsDelegate {
     
     var leftBtn: UIButton? = {
         
@@ -487,6 +487,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         })
         
         UIApplication.sharedApplication().keyWindow?.addSubview(maskView)
+        
+        queryUserInfoByNet() { resultUserInfo in
+            
+            achieveView?.configWithAchieveIndexForUser()
+            
+        }
         
     }
     
