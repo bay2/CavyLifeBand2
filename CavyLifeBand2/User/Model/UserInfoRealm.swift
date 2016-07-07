@@ -28,6 +28,7 @@ class UserInfoModel: Object {
     dynamic var avatarUrl          = ""
     dynamic var address            = ""
     dynamic var nickname           = ""
+    dynamic var steps: Int         = 0
     dynamic var stepGoal: Int      = 0
     dynamic var sleepGoal: Int     = 0
     dynamic var isNotification     = true

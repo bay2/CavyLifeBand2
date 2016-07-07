@@ -39,6 +39,7 @@ struct UserProfile: JSONJoy {
     var avatarUrl: String
     var address: String
     var nickName: String
+    var steps: Int
     var stepGoal: Int
     var sleepGoal: Int
     var isNotification: Bool
@@ -61,6 +62,7 @@ struct UserProfile: JSONJoy {
         do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
         do { address = try decoder["address"].getString() } catch { address = "" }
         do { nickName = try decoder["nickname"].getString() } catch { nickName = "" }
+        do { steps = try decoder["steps"].getInt() } catch { steps = 0 }
         do { stepGoal = try decoder["steps_goal"].getInt() } catch { stepGoal = 0 }
         do { sleepGoal = try decoder["sleep_time_goal"].getInt() } catch { sleepGoal = 0 }
         do { isNotification = decoder["enable_notification"].bool }

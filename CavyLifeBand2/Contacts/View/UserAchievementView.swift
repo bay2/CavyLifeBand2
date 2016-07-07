@@ -48,9 +48,10 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         
     override func awakeFromNib() {
         
-        infoLabel.text = infoStrFormatter(String.numberDecimalFormatter(achievementCount!))
-        Log.info(infoLabel.text)
-    
+        infoLabel.text = infoStrFormatter("0")
+
+        defaultConfigureAchievement()
+        
         // 成就标题Label样式设置
         titleLabel.text      = L10n.ContactsShowInfoAchievement.string
         titleLabel.textColor = UIColor(named: .EColor)
@@ -84,7 +85,7 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         
         defaultConfigureAchievement(userInfo.translateAwards())
         
-        // TODO 用户总步数将会由接口给出，待修改
+        achievementCount = userInfo.steps
         
     }
     
@@ -92,40 +93,31 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         
         achievementsList?.removeAll()
         
-        guard awards.count > 0 else {
-            
-            var array: [AchievementDataSource] = []
-            
-            for i in 0...5 {
-                array.append(UserAchievementCellViewModel(madelIndex: i, isAchieve: 0))
-            }
-            
-            achievementsList = array
-            
-            achievementCount = 0
-            
-            return
-        }
-        
         var array: [AchievementDataSource] = []
-        
-        let maxAwardIndex = sortInt(awards) 
         
         for i in 0 ..< medalCount {
             
             array.append(UserAchievementCellViewModel(madelIndex: i, isAchieve: 0))
         }
         
-        for i in 0 ..< maxAwardIndex  {
+        guard awards.count > 0 else {
             
-            let vm = UserAchievementCellViewModel(madelIndex: i, isAchieve: 1)
-            array[i] = vm
+            achievementsList = array
+            
+            return
+        }
+        
+        let maxAwardIndex = sortInt(awards)
+        
+        for j in 0 ..< maxAwardIndex  {
+            
+            let vm = UserAchievementCellViewModel(madelIndex: j, isAchieve: 1)
+            array[j] = vm
             
         }
         
         achievementsList = array
         
-        achievementCount = stepArray[maxAwardIndex]
     }
     
     /**

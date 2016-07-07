@@ -75,29 +75,29 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
         // 固件版本校验
         LifeBandCtrl.shareInterface.getLifeBandInfo { bandInfo in
             
-            self.downloadAndUpdateFW(testFile31, updateView: updateView)
+//            self.downloadAndUpdateFW(testFile31, updateView: updateView)
             
-//            let fwVersion = bandInfo.fwVersion
-//            let hwVersion = bandInfo.hwVersion
-//            
-//            let localVersion = "\(hwVersion)" + "\(fwVersion / 10)" + "\(fwVersion % 10)"
+            let fwVersion = bandInfo.fwVersion
+            let hwVersion = bandInfo.hwVersion
             
-//            NetWebApi.shareApi.netGetRequest(WebApiMethod.Firmware.description, modelObject: FirmwareUpdateResponse.self, successHandler: { (data) in
-//                let localIsLast = loaclVersion.compare(data.data.version, options: .NumericSearch, range: nil, locale: nil) == .OrderedDescending
-//                
-//                guard localIsLast == false else {
-//                    UpdateProgressView.hide()
-//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareIsNewVersionAlertMsg.string)
-//                    return
-//                    
-//                }
-//                
-//                self.downloadAndUpdateFW(data.data.url, updateView: updateView)
-//                
-//            }) { (msg) in
-//                UpdateProgressView.hide()
-//                CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
-//            }
+            let localVersion = "\(hwVersion)" + "." + "\(fwVersion)"
+            
+            NetWebApi.shareApi.netGetRequest(WebApiMethod.Firmware.description, modelObject: FirmwareUpdateResponse.self, successHandler: { (data) in
+                let localIsLast = localVersion.compare(data.data.version, options: .NumericSearch, range: nil, locale: nil) == .OrderedDescending
+                
+                guard localIsLast == false else {
+                    UpdateProgressView.hide()
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareIsNewVersionAlertMsg.string)
+                    return
+                    
+                }
+                
+                self.downloadAndUpdateFW(data.data.url, updateView: updateView)
+                
+            }) { (msg) in
+                UpdateProgressView.hide()
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
+            }
             
         }
   
