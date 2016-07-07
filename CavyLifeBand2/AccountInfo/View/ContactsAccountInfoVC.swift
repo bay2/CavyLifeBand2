@@ -17,7 +17,7 @@ protocol AccountItemDataSource {
     associatedtype viewModeType
 }
 
-class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITableViewDelegate, UITableViewDataSource, UserInfoRealmOperateDelegate {
+class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate {
     
     var realm: Realm = try! Realm()
     
@@ -46,6 +46,19 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     var accountInfos: Array<AnyObject?> = []
     
     let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        // 调接口获取个人信息
+        queryUserInfoByNet() { resultUserInfo in
+            
+            let userInfoModel = UserInfoModel(userId: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, userProfile: resultUserInfo!)
+            
+            self.updateUserInfo(userInfoModel)
+          
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,7 +138,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         self.tableView.reloadData()
                 
-        achieveView?.configWithAchieveIndexForUser([2,3])
+        achieveView?.configWithAchieveIndexForUser()
         
     }
     
@@ -226,8 +239,13 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - UITableView Delegate
     
+}
+
+// MARK: - UITableView Delegate
+extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
+    
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
         return 2

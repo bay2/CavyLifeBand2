@@ -211,7 +211,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
      */
     func querySyncDate() {
         
-        queryUserInfoByNet{ resultUserInfo in
+        queryUserInfoByNet(homeVC) { resultUserInfo in
             
             guard let userInfo = resultUserInfo else {
                 return

@@ -19,7 +19,7 @@ let dateViewHeight: CGFloat = 50.0
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
 let navBarHeight: CGFloat = 64.0
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate ,ChartStepRealmProtocol {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate ,ChartStepRealmProtocol, QueryUserInfoRequestsDelegate {
     
     var leftBtn: UIButton? = {
         
@@ -260,12 +260,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
                 startDate = personalList.last!.date.toString(format: "yyyy-MM-dd HH:mm:ss")
                 endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
                 
-            }else
-            {
+            } else {
                 // 如果查询不到数据 则 使用注册日期开始请求
                 
-              startDate = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first!.signUpDate.toString(format: "yyyy-MM-dd HH:mm:ss")
+                guard let userInfo = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first else { return }
                 
+                startDate = userInfo.signUpDate.toString(format: "yyyy-MM-dd HH:mm:ss")
                 
             }
             
@@ -487,6 +487,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         })
         
         UIApplication.sharedApplication().keyWindow?.addSubview(maskView)
+        
+        queryUserInfoByNet() { resultUserInfo in
+            
+            achieveView?.configWithAchieveIndexForUser()
+            
+        }
         
     }
     
