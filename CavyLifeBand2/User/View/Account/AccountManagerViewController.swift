@@ -38,9 +38,6 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     // 发送验证码按钮
     @IBOutlet weak var safetyCodeBtn: SendSafetyCodeButton!
     
-    // 邮箱验证码
-    @IBOutlet weak var emailSafetyCode: UIImageView!
-    
     // 返回登录按钮
     @IBOutlet weak var backSignInBtn: UIButton!
     
@@ -93,11 +90,6 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         setSubViewsTitle()
         
         defineSubViewsLayout()
-        
-        refreshEmailSafetyCode()
-        
-        emailSafetyCode.userInteractionEnabled = true
-        emailSafetyCode.addTapGesture(target: self, action: #selector(AccountManagerViewController.refreshEmailSafetyCode))
         
         userNameTextField.becomeFirstResponder()
         userNameTextField.backgroundColor = UIColor.whiteColor()
@@ -179,11 +171,6 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
             make.right.equalTo(self.textFieldView).offset(-110)
         }
         
-        emailSafetyCode.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(80, 30))
-            make.centerY.equalTo(self.safetyCodeTextField)
-            make.left.equalTo(safetyCodeTextField.snp_right).offset(10)
-        }
     }
     
     /**
@@ -241,10 +228,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         backSignInBtn.hidden = dataSource!.isSignUp
         userProtocolView.hidden = !dataSource!.isSignUp
-        
-        safetyCodeBtn.hidden = dataSource!.isEmail
-        emailSafetyCode.hidden = !dataSource!.isEmail
-        
+
     }
     
     /**
@@ -289,22 +273,6 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
     }
     
-    
-    /**
-     刷新邮箱验证码
-     */
-    func refreshEmailSafetyCode() {
-        
-        Alamofire.request(.GET, CavyDefine.emailCodeAddr).responseImage { (response) -> Void in
-            
-            if let image = response.result.value {
-                
-                self.emailSafetyCode.image = image
-            }
-        }
-        
-    }
-    
     /**
      返回登录页面
      
@@ -336,41 +304,9 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         if dataSource?.isSignUp == true {
             
-            signUp {
-                
-                if $0 == WebApiCode.UserExisted.rawValue {
-                    
-                    let alertView = UIAlertController(title: "", message: WebApiCode(apiCode: $0).description, preferredStyle: .Alert)
-                    
-                    let signInAction = UIAlertAction(title: L10n.SignUpDirectSinIn.string, style: .Cancel) { [unowned self] (action) in
-                        
-                        self.view.endEditing(true)
-                        
-                        self.presentViewController(UINavigationController(rootViewController: StoryboardScene.Main.instantiateSignInView()), animated: true, completion: nil)
-                        
-                    }
-                    
-                    let reSinUpAction = UIAlertAction(title: L10n.SignUpReSignUp.string, style: .Default) { [unowned self] (action) in
-                        self.userNameTextField.text = ""
-                        
-                        self.safetyCodeTextField.text = ""
-                        
-                        self.passwdTextField.text = ""
-                        
-                        self.userNameTextField.becomeFirstResponder()
-                    }
-                    
-                    alertView.addAction(signInAction)
-                    alertView.addAction(reSinUpAction)
-                    
-                    self.presentViewController(alertView, animated: true, completion: nil)
-                    
-                    return
-                }
+            signUp((dataSource?.isEmail)!, successBack: {
                 
                 GuideUserInfo.userInfo.userId = $0
-                
-                Log.info("[\(GuideUserInfo.userInfo.userId)] Sign up success")
                 
                 let userInfoModel = UserInfoModel(guideUserinfo: GuideUserInfo.userInfo)
                 userInfoModel.isSync = false
@@ -379,12 +315,14 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                 // 注册成功之后走登录流程
                 self.singIn()
                 
+            }, failBack: { (msg) in
                 
-            }
+                self.signUpOrCodeFail(msg)
+            })
             
         } else {
             
-            forgotPwd()
+            if dataSource?.isEmail == true { forgetPwdEmail() } else { forgetPwdPhone() }
             
         }
         
@@ -439,7 +377,6 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                 } else {
                     
                     // 登录绑定
-                    
                     self.saveMacAddress()
                     UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
                     
@@ -459,8 +396,72 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
      */
     @IBAction func onClickSendSafetyCode(sender: AnyObject) {
         
-        sendSafetyCode()
+        guard checkUsernameAvailable() == true else {
+            return
+        }
         
+        if dataSource?.isSignUp == true {
+            
+            if dataSource?.isEmail == true {
+                
+                sendSignUpEmailCode({ [unowned self] (msg) in
+                    self.signUpOrCodeFail(msg)
+                })
+                
+            } else {
+                sendSignUpPhoneCode({ [unowned self] (msg) in
+                    self.signUpOrCodeFail(msg)
+                })
+            }
+            
+        } else {
+            
+            if dataSource?.isEmail == true { sendResetPwdEmailCode() }
+            else { sendResetPwdPhoneCode() }
+            
+        }
+        
+    }
+    
+    /**
+     验证码和注册接口失败处理
+     
+     - parameter msg: 
+     */
+    func signUpOrCodeFail(msg: CommenResponse) {
+        
+        if msg.code == RequestApiCode.AccountAlreadyExist.rawValue {
+        
+            let alertView = UIAlertController(title: "", message: msg.msg, preferredStyle: .Alert)
+            
+            let signInAction = UIAlertAction(title: L10n.SignUpDirectSinIn.string, style: .Cancel) { [unowned self] (action) in
+                
+                self.view.endEditing(true)
+                
+                self.presentViewController(UINavigationController(rootViewController: StoryboardScene.Main.instantiateSignInView()), animated: true, completion: nil)
+                
+            }
+            
+            let reSinUpAction = UIAlertAction(title: L10n.SignUpReSignUp.string, style: .Default) { [unowned self] (action) in
+                self.userNameTextField.text = ""
+                
+                self.safetyCodeTextField.text = ""
+                
+                self.passwdTextField.text = ""
+                
+                self.userNameTextField.becomeFirstResponder()
+            }
+            
+            alertView.addAction(signInAction)
+            alertView.addAction(reSinUpAction)
+            
+            self.presentViewController(alertView, animated: true, completion: nil)
+                        
+        } else {
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: msg.msg)
+        }
+        
+
     }
     
     

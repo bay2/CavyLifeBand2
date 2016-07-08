@@ -562,7 +562,7 @@ enum UserNetRequestMethod: String {
 
 // MARK: - Web Api 方法定义
 enum WebApiMethod: CustomStringConvertible {
-    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail
 
     var description: String {
         
@@ -585,6 +585,22 @@ enum WebApiMethod: CustomStringConvertible {
             return CavyDefine.webServerAddr + "emergency/contacts"
         case .Emergency:
             return CavyDefine.webServerAddr + "emergency"
+        case .SignUpEmailCode:
+            return CavyDefine.webServerAddr + "signup/email/verify_code"
+        case .SignUpPhoneCode:
+            return CavyDefine.webServerAddr + "signup/phone/verify_code"
+        case .ResetPwdEmailCode:
+            return CavyDefine.webServerAddr + "reset_password/email/verify_code"
+        case .ResetPwdPhoneCode:
+            return CavyDefine.webServerAddr + "reset_password/phone/verify_code"
+        case .ResetPwdEmail:
+            return CavyDefine.webServerAddr + "reset_password/email"
+        case .ResetPwdPhone:
+            return CavyDefine.webServerAddr + "reset_password/phone"
+        case .SignUpEmail:
+            return CavyDefine.webServerAddr + "signup/email"
+        case .SignUpPhone:
+            return CavyDefine.webServerAddr + "signup/phone"
         }
         
     }
@@ -627,6 +643,8 @@ enum NetRequsetKey: String {
     case AuthToken          = "auth-token"
     case Language           = "language"
     case PhoneType          = "phoneType"
+    case Email              = "email"
+    case Code               = "code"
 }
 
 
@@ -635,16 +653,17 @@ enum NetRequsetKey: String {
 
 enum RequestApiCode: Int {
     
-    case Success            = 1000
-    case UukownError        = 1100
-    case IncorrectParameter = 1102
-    case LostAccountField   = 1200
-    case LostPasswordField  = 1201
-    case AccountNotExist    = 1202
-    case LoginFailed        = 1203
-    case LogoutFailed       = 1204
-    case InvalidToken       = 1205
-    case NetError           = 9999
+    case Success             = 1000
+    case UukownError         = 1100
+    case IncorrectParameter  = 1102
+    case LostAccountField    = 1200
+    case LostPasswordField   = 1201
+    case AccountNotExist     = 1202
+    case LoginFailed         = 1203
+    case LogoutFailed        = 1204
+    case InvalidToken        = 1205
+    case AccountAlreadyExist = 1206
+    case NetError            = 9999
     
     init(apiCode: Int) {
         

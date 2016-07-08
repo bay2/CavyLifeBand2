@@ -42,42 +42,53 @@ protocol ForgotPasswordDelegate {
     var passwd: String { get }
     var safetyCode: String { get }
     var popToViewController: UIViewController { get }
-    func forgotPwd()
+    
+    /**
+     ## 忘记密码 手机
+     */
+    func forgetPwdPhone()
+    
+    /**
+     ## 忘记密码 邮箱
+     */
+    func forgetPwdEmail()
     
 }
 
 // MARK: - 找回密码协议扩展
 extension ForgotPasswordDelegate where Self: UIViewController {
     
-    func forgotPwd() {
-
-        if userName.isEmpty && isEmail {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: .EmailNil)
-            return
-        } else if userName.isEmpty {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: .PhoneNil)
-            return
-        }
-
-        UserNetRequestData.shareApi.forgotPasswd(userName, passwd: passwd, safetyCode: safetyCode) { result in
-            
-            if result.isFailure {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
-                return
-            }
-            
-            let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
-            if msg.code != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.code)
-                return
-            }
-            
-            Log.info("Forgot password success")
+    func forgetPwdPhone() {
+        
+        let para = [NetRequsetKey.Phone.rawValue: userName,
+                    NetRequsetKey.Password.rawValue: passwd.md5(),
+                    NetRequsetKey.Code.rawValue: safetyCode]
+        
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.ResetPwdPhone.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
             
             self.navigationController?.popToViewController(self.popToViewController, animated: true)
             
+        }) { (msg) in
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: msg.msg)
         }
         
+    }
+    
+  
+    func forgetPwdEmail() {
+        let para = [NetRequsetKey.Email.rawValue: userName,
+                    NetRequsetKey.Password.rawValue: passwd.md5(),
+                    NetRequsetKey.Code.rawValue: safetyCode]
+        
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.ResetPwdEmail.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+            
+            self.navigationController?.popToViewController(self.popToViewController, animated: true)
+            
+        }) { (msg) in
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: msg.msg)
+        }
     }
     
 }
@@ -90,39 +101,127 @@ extension ForgotPasswordDelegate where Self: UIViewController {
 protocol SendSafetyCodeDelegate {
     
     var userName: String { get }
-    func sendSafetyCode()
     var sendSafetyCodeBtn: SendSafetyCodeButton { get }
+    
+    /**
+     ## 邮箱注册验证码
+     */
+    func sendSignUpEmailCode(failBack: (CommenResponse -> Void)?)
+    
+    /**
+     ## 手机号注册验证码
+     */
+    func sendSignUpPhoneCode(failBack: (CommenResponse -> Void)?)
+    
+    /**
+     ## 忘记密码手机验证码
+     */
+    func sendResetPwdPhoneCode()
+    
+    /**
+     ## 忘记密码邮箱验证码
+     */
+    func sendResetPwdEmailCode()
+    
+    /**
+     检测用户名是否有效
+     
+     - returns:
+     */
+    func checkUsernameAvailable() -> Bool
     
 }
 
 // MARK: - 发送验证码协议扩展
 extension SendSafetyCodeDelegate where Self: UIViewController {
     
-    func sendSafetyCode() {
+    func checkUsernameAvailable() -> Bool {
+        if userName.characters.count == 0 { return false }
+        else { return true }
+    }
+    
+    func sendSignUpEmailCode(failBack: (CommenResponse -> Void)? = nil) {
+        
+        let para = [NetRequsetKey.Email.rawValue: userName]
         
         sendSafetyCodeBtn.enabled = false
         
-        let para = [UserNetRequsetKey.PhoneNum.rawValue: userName]
-        
-        UserNetRequestData.shareApi.requestPhoneSecurityCode(para) { (result) in
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.SignUpEmailCode.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
             
             self.sendSafetyCodeBtn.enabled = true
             
-            if result.isFailure {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
-                return
-            }
+            self.sendSafetyCodeBtn.countDown()
             
-            let msg: CommenMsg = try! CommenMsg(JSONDecoder(result.value!))
-            if msg.code != WebApiCode.Success.rawValue {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(self, webApiErrorCode: msg.code)
-                return
-            }
+        }) { (msg) in
+            
+            self.sendSafetyCodeBtn.enabled = true
+            
+            failBack?(msg)
+        }
+        
+    }
+    
+    func sendSignUpPhoneCode(failBack: (CommenResponse -> Void)? = nil) {
+        
+        let para = [NetRequsetKey.Phone.rawValue: userName]
+        
+        sendSafetyCodeBtn.enabled = false
+        
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.SignUpPhoneCode.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+            
+            self.sendSafetyCodeBtn.enabled = true
             
             self.sendSafetyCodeBtn.countDown()
             
+        }) { (msg) in
+            
+            self.sendSafetyCodeBtn.enabled = true
+            
+            failBack?(msg)
+            
+        }
+    
+    }
+    
+    func sendResetPwdPhoneCode() {
+    
+        let para = [NetRequsetKey.Phone.rawValue: userName]
+        
+        sendSafetyCodeBtn.enabled = false
+        
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.ResetPwdPhoneCode.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+            
+            self.sendSafetyCodeBtn.enabled = true
+            
+            self.sendSafetyCodeBtn.countDown()
+            
+        }) { (msg) in
+            
+            self.sendSafetyCodeBtn.enabled = true
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: msg.msg)
         }
         
+    }
+    
+    func sendResetPwdEmailCode() {
+        let para = [NetRequsetKey.Phone.rawValue: userName]
+        
+        sendSafetyCodeBtn.enabled = false
+        
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.ResetPwdEmailCode.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+            
+            self.sendSafetyCodeBtn.enabled = true
+            
+            self.sendSafetyCodeBtn.countDown()
+            
+        }) { (msg) in
+            
+            self.sendSafetyCodeBtn.enabled = true
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: msg.msg)
+        }
+
     }
     
 }
@@ -138,10 +237,81 @@ protocol SignUpDelegate {
     
     func signUp(callBack: (String -> Void)?)
     
+    /**
+     注册
+     
+     - parameter isEmail:     是否是邮箱注册
+     - parameter successBack:
+     - parameter failBack:    
+     */
+    func signUp(isEmail: Bool, successBack:(String -> Void)?, failBack: (CommenResponse -> Void)?)
+    
 }
 
 // MARK: - 注册协议扩展
 extension SignUpDelegate where Self: UIViewController {
+    
+    func signUp(isEmail: Bool = false, successBack:(String -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
+        
+        if isEmail {
+            signUpEmial({ (data) in
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = data.userId ?? ""
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = self.userName
+                
+                successBack?(data.userId)
+                
+            }, failBack: { (msg) in
+                failBack?(msg)
+            })
+        } else {
+            signUpPhone({ (data) in
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = data.userId ?? ""
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = self.userName
+                
+                successBack?(data.userId)
+                
+            }, failBack: { (msg) in
+                failBack?(msg)
+            })
+        }
+        
+    }
+    
+    func signUpEmial(successBack:(SignUpResponse -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
+        
+        let parameters: [String: AnyObject] = [NetRequsetKey.Email.rawValue: userName,
+                                               NetRequsetKey.Password.rawValue: passwd.md5(),
+                                               NetRequsetKey.Code.rawValue: safetyCode]
+        
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.SignUpEmail.description, para: parameters, modelObject: SignUpResponse.self, successHandler: { data in
+            
+            successBack?(data)
+            
+        }) { (msg) in
+            
+            failBack?(msg)
+            
+        }
+        
+    }
+    
+    func signUpPhone(successBack:(SignUpResponse -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
+        
+        let parameters: [String: AnyObject] = [NetRequsetKey.Phone.rawValue: userName,
+                                               NetRequsetKey.Password.rawValue: passwd.md5(),
+                                               NetRequsetKey.Code.rawValue: safetyCode]
+        
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.SignUpPhone.description, para: parameters, modelObject: SignUpResponse.self, successHandler: { data in
+            
+            successBack?(data)
+            
+        }) { (msg) in
+            
+            failBack?(msg)
+            
+        }
+        
+    }
     
     
     func signUp(callBack: (String -> Void)? = nil) {
