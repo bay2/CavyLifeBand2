@@ -440,8 +440,8 @@ extension ChartsRealmProtocol {
             let newDate = (beginTime.gregorian + index.day).date
             index += 1
             
-            //将单位长度1  转换为 10分钟 用于显示
-            return PerSleepChartsData(time: newDate, deepSleep: Int($0.1 * 10), lightSleep: Int($0.2 * 10))
+            // 新接口 直接存的分钟 
+            return PerSleepChartsData(time: newDate, deepSleep: Int($0.1), lightSleep: Int($0.2))
         }
         
         return sleepDatas

@@ -78,6 +78,11 @@ struct StoryboardScene {
     static func instantiatePhotoAlbumView() -> PhotoAlbum {
       return StoryboardScene.Camera.PhotoAlbumViewScene.viewController() as! PhotoAlbum
     }
+
+    case PhotoViewScene = "PhotoView"
+    static func instantiatePhotoView() -> PhotoView {
+      return StoryboardScene.Camera.PhotoViewScene.viewController() as! PhotoView
+    }
   }
   enum Contacts: String, StoryboardSceneType {
     static let storyboardName = "Contacts"

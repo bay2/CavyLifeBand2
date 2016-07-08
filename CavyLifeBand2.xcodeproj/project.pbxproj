@@ -22,6 +22,7 @@
 		4C5396B51CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396B41CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift */; };
 		4C5396D01CE419EC00BCFAEB /* NSDate_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */; };
 		4C6895FA1CEAE28400CAC412 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6895F91CEAE28400CAC412 /* Assets.xcassets */; };
+		4C80C6C71D2FA1410007F577 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C80C6C61D2FA1410007F577 /* PhotoView.swift */; };
 		4C9E0B471D1A395200DBC1FC /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B301D1A395200DBC1FC /* ChartsViewController.swift */; };
 		4C9E0B491D1A395200DBC1FC /* ChartsInfoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B331D1A395200DBC1FC /* ChartsInfoCollectionCell.swift */; };
 		4C9E0B4A1D1A395200DBC1FC /* ChartInfoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B341D1A395200DBC1FC /* ChartInfoListCell.swift */; };
@@ -377,6 +378,7 @@
 		4C5396B41CE06AF500BCFAEB /* ContactsReqFriendProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsReqFriendProtocol.swift; sourceTree = "<group>"; };
 		4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate_Extension.swift; sourceTree = "<group>"; };
 		4C6895F91CEAE28400CAC412 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4C80C6C61D2FA1410007F577 /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		4C9E0B301D1A395200DBC1FC /* ChartsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
 		4C9E0B331D1A395200DBC1FC /* ChartsInfoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsInfoCollectionCell.swift; sourceTree = "<group>"; };
 		4C9E0B341D1A395200DBC1FC /* ChartInfoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInfoListCell.swift; sourceTree = "<group>"; };
@@ -1359,6 +1361,7 @@
 				913D0BD11C3FA126006EE7F8 /* Camera.storyboard */,
 				4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */,
 				4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */,
+				4C80C6C61D2FA1410007F577 /* PhotoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2276,6 +2279,7 @@
 				9144D1121CC0921F006002A8 /* ContactsTableViewProtocol.swift in Sources */,
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
 				4CB7A0701CD095C400DFB8DC /* BandInfoView.swift in Sources */,
+				4C80C6C71D2FA1410007F577 /* PhotoView.swift in Sources */,
 				4CD5AABE1CEDA6030011CD13 /* HomeListWebApi.swift in Sources */,
 				68648ADF1CF83CFB009D4BEE /* ContactListEmptyView.swift in Sources */,
 				4C9E0B551D1A395200DBC1FC /* ChartBaseViewModel.swift in Sources */,
