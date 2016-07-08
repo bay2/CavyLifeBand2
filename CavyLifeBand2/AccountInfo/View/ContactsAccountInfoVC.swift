@@ -138,7 +138,11 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         
         self.tableView.reloadData()
                 
+//<<<<<<< HEAD
+//        achieveView?.configWithAchieveIndexForUser([2, 3])
+//=======
         achieveView?.configWithAchieveIndexForUser()
+//>>>>>>> 9ec314997a452e41882ecbf99aa00cf79ec648ff
         
     }
     

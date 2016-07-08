@@ -25,6 +25,7 @@ class SleepWebApi: NetRequest, SleepWebRealmOperate, UserInfoRealmOperateDelegat
         
         netGetRequest(WebApiMethod.Sleep.description, para: parameters, modelObject: NChartSleepMsg.self, successHandler: { [unowned self] (data) in
             
+            
             // 把数据库最后一条数据删除，以防止原本的最后一条数据不是最新的
             self.deleteSleepWebRealm(startDate: NSDate(fromString: dateTuple.0, format: "yyyy-MM-dd")!,
                                        endDate: NSDate(fromString: dateTuple.0, format: "yyyy-MM-dd")!)
@@ -59,7 +60,7 @@ class SleepWebApi: NetRequest, SleepWebRealmOperate, UserInfoRealmOperateDelegat
             
             if let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
                 
-                return (format.stringFromDate(userInfo.signUpDate) ,format.stringFromDate(NSDate()))
+                return (format.stringFromDate(userInfo.signUpDate), format.stringFromDate(NSDate()))
             
             } else {
                 

@@ -11,6 +11,7 @@ import RealmSwift
 import Log
 import Datez
 import Alamofire
+import Realm
 
 /// 长时间没有数据，12 = 2小时， 12 * 10分钟
 let noSleepTime = 12
@@ -68,7 +69,7 @@ enum ChartBandDataSyncState: Int {
 
 // MARK: 计步睡眠数据库操作协议
 
-protocol ChartsRealmProtocol: ChartStepRealmProtocol, SleepWebRealmOperate {
+protocol ChartsRealmProtocol: ChartStepRealmProtocol, SleepWebRealmOperate, UserInfoRealmOperateDelegate {
 
 
     var realm: Realm { get }
@@ -109,19 +110,13 @@ extension ChartsRealmProtocol {
     // 返回 第一天开始的时间段
     func queryTimeBucketFromFirstDay() -> [String]? {
         
-        let userId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-        
-        let realmList = queryAllStepInfo(userId)
-        
-        if realmList.count == 0 || realmList.first?.time == nil {
-            
-            return [NSDate().toString(format: "yyy.M.d")]
+        guard let realmUserInfo: UserInfoModel = queryUserInfo(userId) else {
+            return [NSDate().toString(format: "yyyy.M.d")]
         }
         
-        let firstDate = realmList.first!.time
+        let signDate = realmUserInfo.signUpDate ?? NSDate()
         
-        return firstDate.untilTodayArrayWithFormatter("yyy.M.d")
-        
+        return signDate.untilTodayArrayWithFormatter("yyyy.M.d")
     }
     
 }
@@ -213,7 +208,7 @@ extension ChartsRealmProtocol {
     /**
      按小时分组 一天24小时
      */
-    func returnHourChartsArray(dataInfo: Results<(ChartStepDataRealm)> ,stepData: StepChartsData) -> StepChartsData {
+    func returnHourChartsArray(dataInfo: Results<(ChartStepDataRealm)>, stepData: StepChartsData) -> StepChartsData {
         
         var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0, averageStep: 0)
         
@@ -407,7 +402,7 @@ extension ChartsRealmProtocol {
     }
     
     /**
-     添加计步数据
+     添加睡眠数据
      - parameter chartsInfo: 用户的睡眠信息
      - returns: 成功：true 失败： false
      */
@@ -445,8 +440,8 @@ extension ChartsRealmProtocol {
             let newDate = (beginTime.gregorian + index.day).date
             index += 1
             
-            //将单位长度1  转换为 10分钟 用于显示
-            return PerSleepChartsData(time: newDate, deepSleep: Int($0.1 * 10), lightSleep: Int($0.2 * 10))
+            // 新接口 直接存的分钟 
+            return PerSleepChartsData(time: newDate, deepSleep: Int($0.1), lightSleep: Int($0.2))
         }
         
         return sleepDatas
@@ -481,7 +476,7 @@ extension ChartsRealmProtocol {
      - returns: 睡眠时长 10分钟为单位， 1 = 10 分钟
      （$0  睡眠时长     $1 深睡时长）
      */
-    private func validSleep(beginTime: NSDate, endTime: NSDate) ->  (Int , Int) {
+    private func validSleep(beginTime: NSDate, endTime: NSDate) ->  (Int,Int) {
         
         var minustsCount   = 0 // 睡眠计数
         var longSleepCount = 0 // 无效睡眠计数
@@ -494,7 +489,7 @@ extension ChartsRealmProtocol {
         let stepDatas = transformStepData(beginTime, endTime: endTime)
         
         if stepDatas.isEmpty || sleepDatas.isEmpty {
-            return (0,0)
+            return (0, 0)
         }
         
         for timeIndex in 0..<sleepDatas.count {
@@ -530,7 +525,7 @@ extension ChartsRealmProtocol {
             
             if longSleepCount == sleepDatas.count || longSleepCount == stepDatas.count {
                 
-                return (0,0)
+                return (0, 0)
             }
             
             
@@ -585,16 +580,14 @@ extension ChartsRealmProtocol {
         
         Log.info("validSleep end")
         
-        
         guard  minustsCount >= 0 else {
             
-            return  (0,0)
+            return  (0, 0)
         }
-        
         
         Log.info("总共睡眠\(minustsCount)=====深睡个数\(longSleepCount)")
         
-        return (minustsCount,longSleepCount)
+        return (minustsCount, longSleepCount)
     }
     
     

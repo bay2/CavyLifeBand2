@@ -85,9 +85,8 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
 
         if viewStyle == .SleepChart && timeBucketStyle == .Day {
             
-            
             let sleepInfo = querySleepNumber(time.beginTime, endTime: time.endTime)
-            
+                        
             listDataArray = infoViewSleepListArray(sleepInfo)
             
             let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: sleepInfo.first!.deepSleep, lightSleep: sleepInfo.first!.lightSleep)
@@ -154,7 +153,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         chartsView.addSubview(view)
         
         view.snp_makeConstraints { make in
-            make.edges.equalTo(UIEdgeInsets(top: chartTopHeigh / 2 - 5 , left: insetSpace, bottom: -(chartBottomHeigh / 2 - 5), right: -insetSpace))
+            make.edges.equalTo(UIEdgeInsets(top: chartTopHeigh / 2 - 5, left: insetSpace, bottom: -(chartBottomHeigh / 2 - 5), right: -insetSpace))
         }
     }
     
@@ -218,22 +217,15 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             return ["0\(L10n.HomeSleepRingUnitMinute.string)", "0\(L10n.HomeSleepRingUnitMinute.string)", "0%"]
         }
         
-        var sleepTarge = "\(userInfo.sleepGoal/60):\(userInfo.sleepGoal%60)"
-        
-        if sleepTarge == "0:0" {
+        var sleepTarge = userInfo.sleepGoal
+
+        if sleepTarge == 0 {
             
-            sleepTarge = "8:30"
+            sleepTarge = 500
             
         }
-        
-        let array = sleepTarge.componentsSeparatedByString(":")
-        
-        guard array.count == 2 else {
-            
-            return resultArray
-        }
-        
-        let targetMinutes = array[0].toInt()! * 60 + array[1].toInt()!
+        // 有数据的天数
+        var avgIndex = 0
         
         var deepSleep: Int  = 0
         var lightSleep: Int = 0
@@ -242,49 +234,44 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             
             deepSleep += perData.deepSleep
             lightSleep += perData.lightSleep
+            if (perData.deepSleep + perData.lightSleep) != 0 {
+                avgIndex += 1
+            }
             
         }
-        
-        
-        let  sleepNumber =  deepSleep + lightSleep
+        if avgIndex == 0 { avgIndex = 1 }
+
+        let sleepCur = deepSleep + lightSleep
         
         // 60% 格式 所以 * 100
-        if targetMinutes != 0 {
-            
-            switch timeBucketStyle {
-                
-            case .Day:
-                percent = sleepNumber  * 100 / targetMinutes
-                
-            default:
-                break
-                
-            }
+        if sleepTarge != 0 && timeBucketStyle == .Day {
+    
+            percent = sleepCur * 100 / sleepTarge
+   
         }
         
         if percent > 100 {
             percent = 100
         }
         
-        
-        
         resultArray.append("\(lightSleep / 60)\(L10n.HomeSleepRingUnitHour.string)\(lightSleep % 60)\(L10n.HomeSleepRingUnitMinute.string)")
         resultArray.append("\(deepSleep / 60)\(L10n.HomeSleepRingUnitHour.string)\(deepSleep % 60)\(L10n.HomeSleepRingUnitMinute.string)")
         
         // 日:完成度 周&月:日均步数
         switch timeBucketStyle {
+            
         case .Day:
             
             resultArray.append("\(percent)%")
             
         case .Week, .Month:
             
-            let avgSleepTime = deepSleep + lightSleep / 30
-            
+            let avgSleepTime = sleepCur / avgIndex
+
             resultArray.append("\(avgSleepTime / 60)\(L10n.HomeSleepRingUnitHour.string)\(avgSleepTime % 60)\(L10n.HomeSleepRingUnitMinute.string)")
             
+
         }
-        
         
         return resultArray
     }

@@ -148,7 +148,6 @@ extension RootViewController: ChartsRealmProtocol {
 
             if i == 0 {
                 
-                
                 let lastRealmTime = self.queryAllSleepInfo(userId).last?.time
                 
                 // 数据库无数据 直接添加

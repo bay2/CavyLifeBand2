@@ -409,18 +409,18 @@ extension UserInfoModel {
         
         self.init()
         
-        self.userId         = userId
-        self.nickname       = userProfile.nickName
-        self.sex            = userProfile.sex ?? 0
-        self.address        = userProfile.address
-        self.avatarUrl      = userProfile.avatarUrl
-        self.birthday       = userProfile.birthday
-        self.height         = userProfile.height
-        self.weight         = userProfile.weight
-        self.sleepGoal      = userProfile.sleepGoal
-        self.stepGoal        = userProfile.stepGoal
-        self.coins       = userProfile.coins
-        self.phone       = userProfile.phone
+        self.userId     = userId
+        self.nickname   = userProfile.nickName
+        self.sex        = userProfile.sex ?? 0
+        self.address    = userProfile.address
+        self.avatarUrl  = userProfile.avatarUrl
+        self.birthday   = userProfile.birthday
+        self.height     = userProfile.height
+        self.weight     = userProfile.weight
+        self.sleepGoal  = userProfile.sleepGoal
+        self.stepGoal   = userProfile.stepGoal
+        self.coins      = userProfile.coins
+        self.phone      = userProfile.phone
         self.signUpDate = userProfile.signUpDate
         
         for data in userProfile.awards {

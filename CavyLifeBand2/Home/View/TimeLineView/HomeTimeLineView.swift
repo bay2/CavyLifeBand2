@@ -97,7 +97,7 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
         
         // 如果只有一条 需要从数据库去监听是否加载完毕 添加其他的数据
         if self.dateArray.count == 1 {
-            
+        
             initNotificationDateStringArrayAction()
             
         }
@@ -111,8 +111,9 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
      */
     func initNotificationDateStringArrayAction() {
         
-        notificationTimeStringArrayToken = self.queryAllStepInfo(userId).addNotificationBlock { [unowned self] change in
-            
+        let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
+        
+        notificationTimeStringArrayToken = userInfos.addNotificationBlock{ (change: RealmCollectionChange) in
             switch change {
                 
             case .Initial(_):
@@ -127,8 +128,6 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
                 
             default:
                 break
-                
-                
             }
             
         }
