@@ -181,14 +181,19 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
                 switch changes {
                     
                 case .Initial(let value):
-                    goalView.sliderStepToValue(value.first!.stepGoal)
                     
-                    self.setGoalViewSleepValue(value.first!.sleepGoal, view: goalView)
+                    if let user = value.first {
+                        goalView.sliderStepToValue(user.stepGoal)
+                        
+                        self.setGoalViewSleepValue(user.sleepGoal, view: goalView)
+                    }
                     
                 case .Update(let value, deletions: _, insertions: _, modifications: _):
-                    goalView.sliderStepToValue(value.first!.stepGoal)
-                    
-                    self.setGoalViewSleepValue(value.first!.sleepGoal, view: goalView)
+                    if let user = value.first {
+                        goalView.sliderStepToValue(user.stepGoal)
+                        
+                        self.setGoalViewSleepValue(user.sleepGoal, view: goalView)
+                    }
                     
                 default:
                     break
