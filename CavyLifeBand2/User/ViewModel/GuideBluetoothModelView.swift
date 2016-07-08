@@ -174,21 +174,37 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
  *
  *  手环连接中
  */
-struct GuideBandLinking: GuideViewModelPotocols, LifeBandBleDelegate  {
+class GuideBandLinking: NSObject, GuideViewModelPotocols, LifeBandBleDelegate  {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView
     var hiddeGuideBtn: Bool { return true }
     var realm: Realm = try! Realm()
     var hiddeBackBtn: Bool { return true }
+    var isPush: Bool?
     
-    init() {
+    
+    
+    override init() {
+        
         
         let imageView = AnimatableImageView()
         imageView.animateWithImage(named: "GuideLinking@3x.gif")
         centerView = PictureView(title: L10n.GuideLinking.string, midImage: imageView)
         
+        super.init()
+        
+        // MARK: 开始失败记时
+        self.startTimer()
+        
     }
+    
+    
+    
+}
+
+extension GuideBandLinking {
+    
     
     func onLoadView() {
         
@@ -198,16 +214,48 @@ struct GuideBandLinking: GuideViewModelPotocols, LifeBandBleDelegate  {
             
             let rootViewController = StoryboardScene.Guide.instantiateGuideView()
             let bandVM = GuideBandSuccess()
-            
+            self.isPush =  true
             rootViewController.configView(bandVM, delegate: bandVM)
             
             Log.info("GuideBandLinking")
             
             CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: rootViewController))
             
+            
         }
         
     }
+    
+    
+    func startTimer() {
+        
+        
+        NSTimer.runThisAfterDelay(seconds: 10) {
+            
+            if self.isPush ==  true  {
+                
+                return
+                
+            }else{
+                
+                
+                // 如果10秒连接上了 return
+                if LifeBandBle.shareInterface.peripheral?.state == .Connected  {
+                    return
+                }
+                
+                
+                let rootVC = StoryboardScene.Guide.instantiateGuideView()
+                let failVM = GuideBandFail()
+                rootVC.configView(failVM, delegate: failVM)
+                CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: rootVC))
+                
+            }
+            
+        }
+        
+    }
+    
     
     func bleMangerState(bleState: CBCentralManagerState) {
         
@@ -225,7 +273,9 @@ struct GuideBandLinking: GuideViewModelPotocols, LifeBandBleDelegate  {
         
     }
     
+    
 }
+
 
 /**
  *  @author xuemincai
@@ -311,17 +361,26 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate, 
 /**
  *  @author xuemincai
  *
- *  连接失败
+ *  连接失败  从显示连接开始 10秒内未连接成功 显示失败
  */
 struct GuideBandFail: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideLinkCavy.string }
-    var hiddeGuideBtn: Bool { return true }
-    var centerView: UIView { return PictureView(title: L10n.GuidePairFail.string, titleInfo: L10n.GuidePairFailInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairFail))) }
+    var hiddeGuideBtn: Bool { return false }
+    var hiddeBackBtn: Bool  { return true }
+    var centerView: UIView  { return PictureView(title: L10n.GuidePairFail.string, titleInfo: L10n.GuidePairFailInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairFail))) }
+    
+    var guideBtnImage: UIImage { return UIImage(asset: .GuideFlashBtn) }
+    var guideBtnHighLightImage: UIImage { return UIImage(asset: .GuideFlashBtnHighLight) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
-        LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandMacAddress)
+        let rootVC = StoryboardScene.Guide.instantiateGuideView()
+        let openBandVM = GuideBandOpenBand()
+        
+        rootVC.configView(openBandVM, delegate: openBandVM)
+        CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: rootVC))
+        
         
     }
     

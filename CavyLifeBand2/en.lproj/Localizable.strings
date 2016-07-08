@@ -95,13 +95,13 @@
 "Guide.LinkCavy"              = "连接手环";
 "Guide.OpenBluetooth"         = "打开蓝牙";
 "Guide.OpenBluetoothInfo"     = "手机蓝牙打开后才能成功连接手环";
-"Guide.OpenCavy"              = "开启手环";
+"Guide.OpenCavy"              = "绑定手环";
 "Guide.OpenCavySugg"          = "没有灯充电试试看";
-"Guide.OpenCavyInfo"          = "按下手环按钮等待红灯亮起即打开手环";
+"Guide.OpenCavyInfo"          = "请按下手环按钮，绑定手环";
 "Guide.Linking"               = "正在连接...";
-"Guide.PairSuccess"           = "配对成功";
+"Guide.PairSuccess"           = "绑定成功";
 "Guide.PairSuccessInfo"       = "开始健康之旅吧";
-"Guide.PairFail"              = "无法配对";
+"Guide.PairFail"              = "绑定失败";
 "Guide.PairFailInfo"          = "确保手环有电，并且位于手机的连接范围";
 
 "Guide.PhoneRemind.Title"   = "来电提醒";
@@ -154,13 +154,13 @@
 "Home.LifeList.Title.Help"             = "帮助与反馈";
 "Home.LifeList.Title.Related"          = "APP推荐";
 "Home.RightList.Title.Camera"          = "遥控相机";
-"Home.RightList.Title.Notification"    = "提醒";
+"Home.RightList.Title.Notification"    = "来电提醒";
 "Home.RightList.Title.AlarmClock"      = "智能闹钟";
-"Home.RightList.Title.Security"        = "安全";
+"Home.RightList.Title.Security"        = "紧急求救";
 "Home.RightList.Title.FirmwareUpgrade" = "固件升级";
 "Home.RightList.Title.BindingBand"     = "绑定新的CavyBand";
 
-"Band.Title"                           = "我的CavyBand";
+"Band.Title"                           = "我的豚鼠手环Band";
 "Band.FWVersion"                       = "固件版本: ";
 "Band.Disconnect.Title"                = "手环未连接";
 "Band.Disconnect.FWVersion.Title"      = "开启蓝牙，按下手环";
@@ -263,13 +263,13 @@
 "AlarmClock.AlarmClockCountError"             = "手环最多只能添加2个闹钟";
 
 //设置
-"Setting.Safety.Title"                          = "安全";
+"Setting.Safety.Title"                          = "紧急求救";
 "Setting.SafetyTableCell.ContactButton"         = "点击添加";
 "Setting.SafetyTableCell.ContactTitle"          = "紧急联系人";
 "Setting.SafetyPhoneNumberError"                = "手机号格式错误，无法发送短信";
 "Setting.SafetyPhoneNumberCancel"               = "取消";
 "Setting.SafetyTableCell.GPSTitle"              = "GPS定位";
-"Setting.SafetyTableFooter.Title"               = "紧急报警";
+"Setting.SafetyTableFooter.Title"               = "温馨提示";
 "Setting.SafetyTableFooter.Info"                = "紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。";
 "Setting.SafetyTableEmergencyContact.CancelBtn" = "取消";
 "Setting.SafetyTableEmergency.AlertMsg"         = "紧急联系人上限3人";

@@ -100,8 +100,8 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
             fatalError("时间格式不正确\(timeString)")
         }
         
-        let endDate = curDate.gregorian.isToday ? NSDate() : (curDate.gregorian.beginningOfDay + 24.hour).date
-        
+        let endDate = curDate.gregorian.isToday ? NSDate().timeStringChangeToNSDate(.Day).1 : curDate.timeStringChangeToNSDate(.Day).1
+
         Log.info("\(curDate.toString(format: "yyyy.M.d HH:mm:ss")) -------- \(endDate.toString(format: "yyyy.M.d HH:mm:ss"))")
         
         
