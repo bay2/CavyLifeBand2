@@ -151,19 +151,19 @@ enum L10n {
   case GuideOpenBluetooth
   /// 手机蓝牙打开后才能成功连接手环
   case GuideOpenBluetoothInfo
-  /// 开启手环
+  /// 绑定手环
   case GuideOpenCavy
   /// 没有灯充电试试看
   case GuideOpenCavySugg
-  /// 按下手环按钮等待红灯亮起即打开手环
+  /// 请按下手环按钮，绑定手环
   case GuideOpenCavyInfo
   /// 正在连接...
   case GuideLinking
-  /// 配对成功
+  /// 绑定成功
   case GuidePairSuccess
   /// 开始健康之旅吧
   case GuidePairSuccessInfo
-  /// 无法配对
+  /// 绑定失败
   case GuidePairFail
   /// 确保手环有电，并且位于手机的连接范围
   case GuidePairFailInfo
@@ -255,17 +255,17 @@ enum L10n {
   case HomeLifeListTitleRelated
   /// 遥控相机
   case HomeRightListTitleCamera
-  /// 提醒
+  /// 来电提醒
   case HomeRightListTitleNotification
   /// 智能闹钟
   case HomeRightListTitleAlarmClock
-  /// 安全
+  /// 紧急求救
   case HomeRightListTitleSecurity
   /// 固件升级
   case HomeRightListTitleFirmwareUpgrade
   /// 绑定新的CavyBand
   case HomeRightListTitleBindingBand
-  /// 我的CavyBand
+  /// 我的豚鼠手环Band
   case BandTitle
   /// 固件版本: 
   case BandFWVersion
@@ -447,7 +447,7 @@ enum L10n {
   case AlarmClockCircleWeekendInfo
   /// 手环最多只能添加2个闹钟
   case AlarmClockAlarmClockCountError
-  /// 安全
+  /// 紧急求救
   case SettingSafetyTitle
   /// 点击添加
   case SettingSafetyTableCellContactButton
@@ -459,7 +459,7 @@ enum L10n {
   case SettingSafetyPhoneNumberCancel
   /// GPS定位
   case SettingSafetyTableCellGPSTitle
-  /// 紧急报警
+  /// 温馨提示
   case SettingSafetyTableFooterTitle
   /// 紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。
   case SettingSafetyTableFooterInfo

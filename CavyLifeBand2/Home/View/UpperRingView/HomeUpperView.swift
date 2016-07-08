@@ -183,7 +183,8 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         
         // 计步睡眠 当前值
         let time = NSDate()
-        let resultSeelp = self.querySleepInfoDay(time.gregorian.beginningOfDay.date, endTime: time)
+        let resultSeelp = self.querySleepInfoDay(time.gregorian.beginningOfDay.date, endTime: time.timeStringChangeToNSDate( .Day).1)
+
         let sleepCurrentNumber = Int(resultSeelp.0 * 10)
         
         sleepView.ringWithStyle(sleepTargetNumber, currentNumber: sleepCurrentNumber)

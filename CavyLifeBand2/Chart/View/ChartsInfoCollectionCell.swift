@@ -235,7 +235,18 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         
         let targetMinutes = array[0].toInt()! * 60 + array[1].toInt()!
         
-        let  sleepNumber = 0
+        var deepSleep: Int  = 0
+        var lightSleep: Int = 0
+        
+        for perData in sleepInfo {
+            
+            deepSleep += perData.deepSleep
+            lightSleep += perData.lightSleep
+            
+        }
+        
+        
+        let  sleepNumber =  deepSleep + lightSleep
         
         // 60% 格式 所以 * 100
         if targetMinutes != 0 {
@@ -243,17 +254,10 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             switch timeBucketStyle {
                 
             case .Day:
-                percent = sleepNumber / targetMinutes * 100
+                percent = sleepNumber  * 100 / targetMinutes
                 
-            case .Week:
-                
-                percent = sleepNumber / targetMinutes * 7 * 100
-                
-            case .Month:
-                
-                let currentDay = timeString.componentsSeparatedByString(".")
-                let days = NSDate().daysCount(currentDay[0].toInt()!, month: currentDay[1].toInt()!)
-                percent = sleepNumber / targetMinutes * days * 100
+            default:
+                break
                 
             }
         }
@@ -262,18 +266,10 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             percent = 100
         }
         
-        var deepSleep: Int  = 0
-        var lightSleep: Int = 0
-
-        for perData in sleepInfo {
-            
-            deepSleep += perData.deepSleep
-            lightSleep += perData.lightSleep
-            
-        }
-       
-        resultArray.append("\(lightSleep / 6)\(L10n.HomeSleepRingUnitHour.string)\(lightSleep % 6)\(L10n.HomeSleepRingUnitMinute.string)")
-        resultArray.append("\(deepSleep / 6)\(L10n.HomeSleepRingUnitHour.string)\(deepSleep % 6)\(L10n.HomeSleepRingUnitMinute.string)")
+        
+        
+        resultArray.append("\(lightSleep / 60)\(L10n.HomeSleepRingUnitHour.string)\(lightSleep % 60)\(L10n.HomeSleepRingUnitMinute.string)")
+        resultArray.append("\(deepSleep / 60)\(L10n.HomeSleepRingUnitHour.string)\(deepSleep % 60)\(L10n.HomeSleepRingUnitMinute.string)")
         
         // 日:完成度 周&月:日均步数
         switch timeBucketStyle {
@@ -284,12 +280,12 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         case .Week, .Month:
             
             let avgSleepTime = deepSleep + lightSleep / 30
-
-            resultArray.append("\(avgSleepTime / 6)\(L10n.HomeSleepRingUnitHour.string)\(avgSleepTime % 6)\(L10n.HomeSleepRingUnitMinute.string)")
+            
+            resultArray.append("\(avgSleepTime / 60)\(L10n.HomeSleepRingUnitHour.string)\(avgSleepTime % 60)\(L10n.HomeSleepRingUnitMinute.string)")
             
         }
-
-
+        
+        
         return resultArray
     }
 
