@@ -50,6 +50,8 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     // 输入框视图
     @IBOutlet weak var textFieldView: UIView!
     
+    var loadingView: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     var dataSource: AccountManagerViewDataSource?
     
     var navTitle: String {
@@ -105,6 +107,8 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         setViewStyle()
         
+        addLodingView()
+        
         updateNavUI()
         
         // Do any additional setup after loading the view.
@@ -114,6 +118,22 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        
+    }
+    
+    func addLodingView() {
+        
+        self.view.addSubview(loadingView)
+        
+        loadingView.hidesWhenStopped = true
+        
+        loadingView.activityIndicatorViewStyle = .Gray
+        
+        loadingView.snp_makeConstraints { make in
+            make.center.equalTo(self.view)
+            make.width.equalTo(50.0)
+            make.height.equalTo(50.0)
+        }
         
     }
     
@@ -303,8 +323,8 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         }
         
         if dataSource?.isSignUp == true {
-            
-            signUp((dataSource?.isEmail)!, successBack: {
+            loadingView.startAnimating()
+            signUp((dataSource?.isEmail)!, successBack: { [unowned self] in
                 
                 GuideUserInfo.userInfo.userId = $0
                 
@@ -315,8 +335,8 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                 // 注册成功之后走登录流程
                 self.singIn()
                 
-            }, failBack: { (msg) in
-                
+            }, failBack: { [unowned self] (msg) in
+                self.loadingView.stopAnimating()
                 self.signUpOrCodeFail(msg)
             })
             
@@ -333,7 +353,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     
     func singIn() {
         
-        signIn {
+        signIn({
             
             // 登录绑定场景
             BindBandCtrl.bindScene = .SignInBind
@@ -344,7 +364,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
             
             // 查询不到用户信息，走绑定流程
             guard let bindBandValue = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] else {
-                
+                self.loadingView.stopAnimating()
                 //用户未绑定，走绑定流程
                 let guideVC = StoryboardScene.Guide.instantiateGuideView()
                 let guideVM = GuideBandBluetooth()
@@ -360,8 +380,10 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
             BindBandCtrl.bandMacAddress = bindBandValue
             
             // 通过查询用户信息判断是否是老的豚鼠用户
-            self.queryUserInfoByNet(self) {
-                
+            self.queryUserInfoByNet(self, failBack: {
+                self.loadingView.stopAnimating()
+            }) {
+                self.loadingView.stopAnimating()
                 guard let userProfile = $0 else {
                     return
                 }
@@ -384,6 +406,8 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
                 
             }
             
+        }) {
+            self.loadingView.stopAnimating()
         }
         
     }
@@ -509,18 +533,18 @@ extension AccountManagerViewController {
         
         let newString = textField.text! + string
         
-        if newString.length > 4 {
-            textField.text = newString[0...3]
-            return false
-        }
+//        if newString.length > 4 {
+//            textField.text = newString[0...3]
+//            return false
+//        }
         
-        if dataSource?.itemRightTitle == L10n.SignUpPhoneRightItemBtn.string {
-            
-            guard let _ = newString.toInt() else {
-                return false
-            }
-            
-        }
+//        if dataSource?.itemRightTitle == L10n.SignUpPhoneRightItemBtn.string {
+//            
+//            guard let _ = newString.toInt() else {
+//                return false
+//            }
+//            
+//        }
         
         return true
         

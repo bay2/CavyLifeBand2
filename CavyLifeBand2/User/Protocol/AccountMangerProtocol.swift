@@ -42,6 +42,7 @@ protocol ForgotPasswordDelegate {
     var passwd: String { get }
     var safetyCode: String { get }
     var popToViewController: UIViewController { get }
+    var loadingView: UIActivityIndicatorView { get }
     
     /**
      ## 忘记密码 手机
@@ -58,18 +59,22 @@ protocol ForgotPasswordDelegate {
 // MARK: - 找回密码协议扩展
 extension ForgotPasswordDelegate where Self: UIViewController {
     
+    
+    
     func forgetPwdPhone() {
+        
+        loadingView.startAnimating()
         
         let para = [NetRequsetKey.Phone.rawValue: userName,
                     NetRequsetKey.Password.rawValue: passwd.md5(),
                     NetRequsetKey.Code.rawValue: safetyCode]
         
-        NetWebApi.shareApi.netPostRequest(WebApiMethod.ResetPwdPhone.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
-            
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.ResetPwdPhone.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { [unowned self] (data) in
+            self.loadingView.stopAnimating()
             self.navigationController?.popToViewController(self.popToViewController, animated: true)
             
         }) { (msg) in
-            
+            self.loadingView.stopAnimating()
             CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: msg.msg)
         }
         
@@ -77,16 +82,19 @@ extension ForgotPasswordDelegate where Self: UIViewController {
     
   
     func forgetPwdEmail() {
+        
+        loadingView.startAnimating()
+        
         let para = [NetRequsetKey.Email.rawValue: userName,
                     NetRequsetKey.Password.rawValue: passwd.md5(),
                     NetRequsetKey.Code.rawValue: safetyCode]
         
-        NetWebApi.shareApi.netPostRequest(WebApiMethod.ResetPwdEmail.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
-            
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.ResetPwdEmail.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { [unowned self] (data) in
+            self.loadingView.stopAnimating()
             self.navigationController?.popToViewController(self.popToViewController, animated: true)
             
         }) { (msg) in
-            
+            self.loadingView.stopAnimating()
             CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: msg.msg)
         }
     }
@@ -102,6 +110,7 @@ protocol SendSafetyCodeDelegate {
     
     var userName: String { get }
     var sendSafetyCodeBtn: SendSafetyCodeButton { get }
+    var loadingView: UIActivityIndicatorView { get }
     
     /**
      ## 邮箱注册验证码
@@ -142,11 +151,15 @@ extension SendSafetyCodeDelegate where Self: UIViewController {
     
     func sendSignUpEmailCode(failBack: (CommenResponse -> Void)? = nil) {
         
+        loadingView.startAnimating()
+        
         let para = [NetRequsetKey.Email.rawValue: userName]
         
         sendSafetyCodeBtn.enabled = false
         
-        NetWebApi.shareApi.netPostRequest(WebApiMethod.SignUpEmailCode.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.SignUpEmailCode.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { [unowned self] (data) in
+            
+            self.loadingView.stopAnimating()
             
             self.sendSafetyCodeBtn.enabled = true
             
@@ -155,6 +168,8 @@ extension SendSafetyCodeDelegate where Self: UIViewController {
         }) { (msg) in
             
             self.sendSafetyCodeBtn.enabled = true
+            
+            self.loadingView.stopAnimating()
             
             failBack?(msg)
         }
@@ -164,19 +179,19 @@ extension SendSafetyCodeDelegate where Self: UIViewController {
     func sendSignUpPhoneCode(failBack: (CommenResponse -> Void)? = nil) {
         
         let para = [NetRequsetKey.Phone.rawValue: userName]
-        
+        loadingView.startAnimating()
         sendSafetyCodeBtn.enabled = false
         
-        NetWebApi.shareApi.netPostRequest(WebApiMethod.SignUpPhoneCode.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.SignUpPhoneCode.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { [unowned self] (data) in
             
             self.sendSafetyCodeBtn.enabled = true
-            
+            self.loadingView.stopAnimating()
             self.sendSafetyCodeBtn.countDown()
             
         }) { (msg) in
             
             self.sendSafetyCodeBtn.enabled = true
-            
+            self.loadingView.stopAnimating()
             failBack?(msg)
             
         }
@@ -186,39 +201,39 @@ extension SendSafetyCodeDelegate where Self: UIViewController {
     func sendResetPwdPhoneCode() {
     
         let para = [NetRequsetKey.Phone.rawValue: userName]
-        
+        loadingView.startAnimating()
         sendSafetyCodeBtn.enabled = false
         
         NetWebApi.shareApi.netPostRequest(WebApiMethod.ResetPwdPhoneCode.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
             
             self.sendSafetyCodeBtn.enabled = true
-            
+            self.loadingView.stopAnimating()
             self.sendSafetyCodeBtn.countDown()
             
         }) { (msg) in
             
             self.sendSafetyCodeBtn.enabled = true
-            
+            self.loadingView.stopAnimating()
             CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: msg.msg)
         }
         
     }
     
     func sendResetPwdEmailCode() {
-        let para = [NetRequsetKey.Phone.rawValue: userName]
-        
+        let para = [NetRequsetKey.Email.rawValue: userName]
+        loadingView.startAnimating()
         sendSafetyCodeBtn.enabled = false
         
         NetWebApi.shareApi.netPostRequest(WebApiMethod.ResetPwdEmailCode.description, para: para, modelObject: CommenMsgResponse.self, successHandler: { (data) in
             
             self.sendSafetyCodeBtn.enabled = true
-            
+            self.loadingView.stopAnimating()
             self.sendSafetyCodeBtn.countDown()
             
         }) { (msg) in
             
             self.sendSafetyCodeBtn.enabled = true
-            
+            self.loadingView.stopAnimating()
             CavyLifeBandAlertView.sharedIntance.showViewTitle(self, message: msg.msg)
         }
 
