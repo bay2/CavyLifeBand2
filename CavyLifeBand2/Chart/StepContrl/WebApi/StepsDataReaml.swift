@@ -12,7 +12,6 @@ import Log
 import Datez
 import JSONJoy
 
-
 class NChartStepDataRealm: Object {
     
     dynamic var userId             = ""
@@ -24,7 +23,6 @@ class NChartStepDataRealm: Object {
     var stepList = List<StepListItem>()
     
    
-    
     convenience init(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, date: NSDate, totalTime: Int, totalStep: Int, stepList: List<StepListItem>) {
         
         self.init()
@@ -59,7 +57,7 @@ protocol ChartStepRealmProtocol {
     var userId: String { get }
     
     func isNeedUpdateNStepData() -> Bool
-    func queryAllStepInfo(userId: String) -> Results<(NChartStepDataRealm)>
+    func queryAllStepInfo(userId: String) -> Results<(NChartStepDataRealm)>?
     func delecNSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool
     func addStepData(chartStepInfo: NChartStepDataRealm) -> Bool
     func queryNStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData
@@ -147,7 +145,7 @@ extension ChartStepRealmProtocol {
     /**
      返回从服务器存储拉取的所有单条数据
      */
-    func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(NChartStepDataRealm)> {
+    func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(NChartStepDataRealm)>? {
 
         return realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
         
@@ -204,7 +202,7 @@ extension ChartStepRealmProtocol {
         
         //转换时间格式
         
-    let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date >= %@ AND date <= %@",NSDate().formartDate(beginTime) , NSDate().formartDate(scanTime))
+    let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date >= %@ AND date <= %@", NSDate().formartDate(beginTime), NSDate().formartDate(scanTime))
         
         switch timeBucket {
             

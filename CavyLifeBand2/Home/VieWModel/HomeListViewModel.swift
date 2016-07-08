@@ -47,8 +47,8 @@ struct HomeListSleepViewModel: HomeListViewModelProtocol {
     
     init(sleepTime: Int) {
 
-        let sleepHour = sleepTime / 6
-        let sleepMin = (sleepTime - sleepHour * 6) * 10
+        let sleepHour = sleepTime / 60
+        let sleepMin = sleepTime - sleepHour * 60
         resultNum = NSMutableAttributedString().attributeString(String(sleepHour), numSize: 30, unit: L10n.HomeSleepRingUnitHour.string, unitSize: 12)
         resultNum.appendAttributedString(NSMutableAttributedString().attributeString(String(sleepMin), numSize: 30, unit: L10n.HomeSleepRingUnitMinute.string, unitSize: 12))
     }

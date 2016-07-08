@@ -52,6 +52,12 @@ class CustomCamera: UIViewController {
         
         super.viewWillAppear(animated)
         
+        if isPhotoOrVideo {
+            
+            self.shutterPhoto.setImage(UIImage(asset: .CameraTakePhoto), forState: .Normal)
+
+        }
+        
         getLastPhoto()         // show lastImage
         
         camera.start()         // start Camera
@@ -71,7 +77,15 @@ class CustomCamera: UIViewController {
         cameraAllViewLayout()
         
     }
-
+    
+    // 离开这个页面时候
+    override func viewDidDisappear(animated: Bool) {
+        
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+    }
+    
     // 全部控件布局
     func cameraAllViewLayout() {
         
@@ -428,17 +442,20 @@ class CustomCamera: UIViewController {
     // 打开相册
     @IBAction func goPhotoAlbum(sender: AnyObject) {
         
-        // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult
-        let fetchOptions = PHFetchOptions()        
-        let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
+        let photoView = StoryboardScene.Camera.instantiatePhotoView()
+        self.presentVC(photoView)
         
-        let photoVC = StoryboardScene.Camera.instantiatePhotoAlbumView()
-
-        photoVC.totalCount = fetchResults.count
-        photoVC.currentCount = fetchResults.count
-        photoVC.loadIndex = fetchResults.count - 10 < 0 ? 0 : fetchResults.count - 10
-        
-        self.presentVC(photoVC)
+//        // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult
+//        let fetchOptions = PHFetchOptions()        
+//        let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
+//        
+//        let photoVC = StoryboardScene.Camera.instantiatePhotoAlbumView()
+//
+//        photoVC.totalCount = fetchResults.count
+//        photoVC.currentCount = fetchResults.count
+//        photoVC.loadIndex = fetchResults.count - 10 < 0 ? 0 : fetchResults.count - 10
+//        
+//        self.presentVC(photoVC)
 
     }
     
