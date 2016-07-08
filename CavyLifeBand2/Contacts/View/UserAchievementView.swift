@@ -48,30 +48,17 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         
     override func awakeFromNib() {
         
-//        for chartsData in queryAllStepInfo(userId) {
-//            achievementCount! += chartsData.step
-//        }
-        
-        achievementCount = queryAllStepInfo(userId).reduce(0) {
-            $0.0! + $0.1.step
-        }
-        
-        
-        infoLabel.text = infoStrFormatter(String.numberDecimalFormatter(achievementCount!))
-        Log.info(infoLabel.text)
-        
-        configWithAchieveIndexForUser()
+        infoLabel.text = infoStrFormatter("0")
+
+        defaultConfigureAchievement()
         
         // 成就标题Label样式设置
         titleLabel.text      = L10n.ContactsShowInfoAchievement.string
         titleLabel.textColor = UIColor(named: .EColor)
         titleLabel.font      = UIFont.mediumSystemFontOfSize(16.0)
         
-        // 斜体字体
-        let font   = UIFont.mediumSystemFontOfSize(14.0)
-        
         // 成就详情Label样式设置
-        infoLabel.font      = font
+        infoLabel.font      = UIFont.mediumSystemFontOfSize(14.0)
         infoLabel.textColor = UIColor(named: .KColor)
         
         // 成就图标展示视图设置
@@ -83,45 +70,18 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         
         self.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         
-        //TODO 接口返回的规则不确定，先不写
-//        guard var achieveIndex = userInfo.achievementType.toInt() else {
-//            return
-//        }
-//        
-//        var locationIndex = 1
-//        
-//        for i in 0 ..< stepArray.count {
-//            
-//            if achievementCount >= stepArray[i] {
-//                locationIndex += 1
-//            }
-//        }
-//        
-//        if locationIndex > achieveIndex {
-//            
-//            achieveIndex = locationIndex
-//            // 上报 成就徽章是否点亮
-//            userInfo.achievementType = String(achieveIndex)
-//        }
-        
     }
     
     /**
-     传进来的指数 
-     
-     0:没有成就; 1:5000步;2:20000步;3:1000000步;4：500000步;5：1000000步;6：5000000步;
-     - parameter index: 传进来的指数
-     - Jessica
-     - returns: 徽章数组
+     配置登录用户的成就页面
      */
-    func configWithAchieveIndexForUser(awards: [Int] = []) {
+    func configWithAchieveIndexForUser() {
         
-       
-        defaultConfigureAchievement(awards)
+        let userInfo: UserInfoModel = queryUserInfo(userId)!
         
-        // TODO 用户总步数获取
-        achievementCount = 0
-            
+        defaultConfigureAchievement(userInfo.translateAwards())
+        
+        achievementCount = userInfo.steps
         
     }
     
@@ -129,38 +89,40 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         
         achievementsList?.removeAll()
         
-        guard awards.count > 0 else {
-            
-            var array: [AchievementDataSource] = []
-            
-            for i in 0...5 {
-                array.append(UserAchievementCellViewModel(madelIndex: i, isAchieve: 0))
-            }
-            
-            achievementsList = array
-            
-            return
-        }
-        
         var array: [AchievementDataSource] = []
-        
-        let maxAwardIndex = sortInt(awards) 
         
         for i in 0 ..< medalCount {
             
             array.append(UserAchievementCellViewModel(madelIndex: i, isAchieve: 0))
         }
         
-        for i in 0 ..< maxAwardIndex  {
+        guard awards.count > 0 else {
             
-            let vm = UserAchievementCellViewModel(madelIndex: i, isAchieve: 1)
-            array[i] = vm
+            achievementsList = array
+            
+            return
+        }
+        
+        let maxAwardIndex = sortInt(awards)
+        
+        for j in 0 ..< maxAwardIndex  {
+            
+            let vm = UserAchievementCellViewModel(madelIndex: j, isAchieve: 1)
+            array[j] = vm
             
         }
         
         achievementsList = array
+        
     }
     
+    /**
+     取出Int数组中的最大值
+     
+     - parameter awards: [Int]  如 [2,3]
+     
+     - returns: Int
+     */
     func sortInt(awards: [Int]) -> Int {
         
         var x: Int = 0

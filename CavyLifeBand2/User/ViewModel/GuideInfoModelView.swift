@@ -149,6 +149,8 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
     var viewStyle: GoalViewStyle
     var realm: Realm = try! Realm()
     
+    var notificationToken: NotificationToken? = nil
+    
     init(viewStyle: GoalViewStyle) {
         
         self.viewStyle = viewStyle
@@ -170,20 +172,35 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
         switch viewStyle {
         case .Guide:
             break
-        case .RightMenu:
+        case .RightMenu:            
+       
+            let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
             
-            queryUserInfoByNet{ resultUserInfo in
+            notificationToken = userInfos.addNotificationBlock { (changes: RealmCollectionChange)  in
                 
-                guard let userInfo = resultUserInfo else {
-                    return
+                switch changes {
+                    
+                case .Initial(let value):
+                    
+                    if let user = value.first {
+                        goalView.sliderStepToValue(user.stepGoal)
+                        
+                        self.setGoalViewSleepValue(user.sleepGoal, view: goalView)
+                    }
+                    
+                case .Update(let value, deletions: _, insertions: _, modifications: _):
+                    if let user = value.first {
+                        goalView.sliderStepToValue(user.stepGoal)
+                        
+                        self.setGoalViewSleepValue(user.sleepGoal, view: goalView)
+                    }
+                    
+                default:
+                    break
+                    
                 }
                 
-                goalView.sliderStepToValue(userInfo.stepGoal)
-                
-                self.setGoalViewSleepValue(userInfo.sleepGoal, view: goalView)
-                
             }
-            
            
         }
 

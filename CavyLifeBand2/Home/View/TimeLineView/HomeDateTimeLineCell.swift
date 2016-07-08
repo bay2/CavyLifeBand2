@@ -95,6 +95,14 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      - returns:
      */
     func initNotificationSleep() {
+
+        guard let curDate = NSDate(fromString: timeString, format: "yyyy.M.d") else {
+            fatalError("时间格式不正确\(timeString)")
+        }
+        
+        let endDate = curDate.gregorian.isToday ? NSDate().timeStringChangeToNSDate(.Day).1 : curDate.timeStringChangeToNSDate(.Day).1
+
+        Log.info("\(curDate.toString(format: "yyyy.M.d HH:mm:ss")) -------- \(endDate.toString(format: "yyyy.M.d HH:mm:ss"))")
         
         notificationSleepToken = self.queryAllStepInfo(userId).addNotificationBlock { [unowned self] chage in
             

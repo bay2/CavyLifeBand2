@@ -270,8 +270,9 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
 
             resultArray.append("\(avgSleepTime / 60)\(L10n.HomeSleepRingUnitHour.string)\(avgSleepTime % 60)\(L10n.HomeSleepRingUnitMinute.string)")
             
-        }
 
+        }
+        
         return resultArray
     }
 

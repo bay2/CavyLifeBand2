@@ -18,7 +18,7 @@ class SleepWebApi: NetRequest, SleepWebRealmOperate, UserInfoRealmOperateDelegat
     
     func fetchSleepWebData() {
         
-        let dateTuple = calculateFetchDate()
+        guard let dateTuple = calculateFetchDate() else { return }
         
         let parameters: [String: AnyObject] = [NetRequsetKey.StartDate.rawValue: dateTuple.0,
                                                NetRequsetKey.EndDate.rawValue: dateTuple.1]
@@ -48,7 +48,7 @@ class SleepWebApi: NetRequest, SleepWebRealmOperate, UserInfoRealmOperateDelegat
      
      - returns: (String, String) 开始时间，结束时间
      */
-    func calculateFetchDate() -> (String, String) {
+    func calculateFetchDate() -> (String, String)? {
         
         let format = NSDateFormatter()
         
@@ -64,7 +64,7 @@ class SleepWebApi: NetRequest, SleepWebRealmOperate, UserInfoRealmOperateDelegat
             
             } else {
                 
-                return ("2016-5-5", format.stringFromDate(NSDate()))
+                return nil
                 
             }
             

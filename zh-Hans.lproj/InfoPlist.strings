@@ -5,6 +5,6 @@
   Created by xuemincai on 16/1/5.
   Copyright © 2016年 xuemincai. All rights reserved.
 */
-"CFBundleDisplayName" = "生活手环2";
-"CFBundleName" = "生活手环2";
+"CFBundleDisplayName" = "豚鼠生活";
+"CFBundleName" = "豚鼠生活";
 "NSLocationWhenInUseUsageDescription" = "开启定位功能->设置->隐私->定位服务 打开该服务";

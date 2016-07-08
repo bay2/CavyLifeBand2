@@ -19,7 +19,8 @@ let dateViewHeight: CGFloat = 50.0
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
 let navBarHeight: CGFloat = 64.0
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, SinglePKRealmModelOperateDelegate, ChartStepRealmProtocol {
+//class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, SinglePKRealmModelOperateDelegate, ChartStepRealmProtocol {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate ,ChartStepRealmProtocol, QueryUserInfoRequestsDelegate {
     
     var leftBtn: UIButton? = {
         
@@ -236,8 +237,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
     }
     
-//<<<<<<< HEAD
-//=======
     // MARK: 解析数据 保存数据库
     
     /**
@@ -269,7 +268,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
                 }
                 
                 startDate = startTime.toString(format: "yyyy-MM-dd HH:mm:ss")
-                
                 
             }
             
@@ -413,7 +411,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 
     }
     
-//>>>>>>> e9ead0ed2e86ecbfab501ce422f9bd5d9fc21d18
     // MARK: 加载详情
     /**
      显示计步页面
@@ -492,6 +489,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         })
         
         UIApplication.sharedApplication().keyWindow?.addSubview(maskView)
+        
+        queryUserInfoByNet() { resultUserInfo in
+            
+            achieveView?.configWithAchieveIndexForUser()
+            
+        }
         
     }
     
