@@ -98,6 +98,8 @@
 		683655951CBE25DB009373EA /* ReminderSettingVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655941CBE25DB009373EA /* ReminderSettingVCViewModel.swift */; };
 		683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655961CBE261B009373EA /* SettingRealmModel.swift */; };
 		683655991CBE3C84009373EA /* AlarmRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683655981CBE3C84009373EA /* AlarmRealmModel.swift */; };
+		6838ABB51D33421300586354 /* UploadAvatarJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838ABB41D33421300586354 /* UploadAvatarJSON.swift */; };
+		6838ABB71D3345BA00586354 /* UploadAvatarWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6838ABB61D3345BA00586354 /* UploadAvatarWebApi.swift */; };
 		684097081CE058A400A8BAD2 /* WebVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684097071CE058A400A8BAD2 /* WebVCViewModel.swift */; };
 		6849D3B31CE9AE82001CB7EC /* EmergencyWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6849D3B21CE9AE82001CB7EC /* EmergencyWebApi.swift */; };
 		684C6AD81CC9BA1C000C176E /* PKJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684C6AD71CC9BA1C000C176E /* PKJSON.swift */; };
@@ -454,6 +456,8 @@
 		683655941CBE25DB009373EA /* ReminderSettingVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReminderSettingVCViewModel.swift; sourceTree = "<group>"; };
 		683655961CBE261B009373EA /* SettingRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingRealmModel.swift; sourceTree = "<group>"; };
 		683655981CBE3C84009373EA /* AlarmRealmModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlarmRealmModel.swift; sourceTree = "<group>"; };
+		6838ABB41D33421300586354 /* UploadAvatarJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadAvatarJSON.swift; sourceTree = "<group>"; };
+		6838ABB61D3345BA00586354 /* UploadAvatarWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadAvatarWebApi.swift; sourceTree = "<group>"; };
 		684097071CE058A400A8BAD2 /* WebVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebVCViewModel.swift; sourceTree = "<group>"; };
 		6849D3B21CE9AE82001CB7EC /* EmergencyWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmergencyWebApi.swift; sourceTree = "<group>"; };
 		684C6AD71CC9BA1C000C176E /* PKJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKJSON.swift; sourceTree = "<group>"; };
@@ -1684,6 +1688,8 @@
 				91E1B4A01CA510BD008ADEE6 /* ContactsSortAndGroup.swift */,
 				91E1B4F81CA69CAA008ADEE6 /* FriendInfoListRealm.swift */,
 				91E1B4FA1CA6A475008ADEE6 /* FriendInfoListOper.swift */,
+				6838ABB41D33421300586354 /* UploadAvatarJSON.swift */,
+				6838ABB61D3345BA00586354 /* UploadAvatarWebApi.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2287,6 +2293,7 @@
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
 				4CE1DBAB1D1BAE4800A67FDD /* ChartsBaseView.swift in Sources */,
 				4CD5AAC51CEEE22E0011CD13 /* HomeListOper.swift in Sources */,
+				6838ABB71D3345BA00586354 /* UploadAvatarWebApi.swift in Sources */,
 				68C558CF1CB751050031719D /* IntelligentClockTableFooterView.swift in Sources */,
 				68B4DEDA1CE57B6E00BE041C /* RelateAppWebApi.swift in Sources */,
 				9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */,
@@ -2371,6 +2378,7 @@
 				683655991CBE3C84009373EA /* AlarmRealmModel.swift in Sources */,
 				9114D1F91C97AB05008CB4CE /* HightView.swift in Sources */,
 				91E1B4D61CA510BD008ADEE6 /* ContactsSearchController.swift in Sources */,
+				6838ABB51D33421300586354 /* UploadAvatarJSON.swift in Sources */,
 				917936CB1CBCEB4B002936E3 /* SCLocationManager.swift in Sources */,
 				9114D1FA1C97AB05008CB4CE /* PictureView.swift in Sources */,
 				68B4DED41CE1BBEC00BE041C /* HelpFeedbackJSON.swift in Sources */,

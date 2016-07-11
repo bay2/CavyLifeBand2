@@ -562,7 +562,7 @@ enum UserNetRequestMethod: String {
 
 // MARK: - Web Api 方法定义
 enum WebApiMethod: CustomStringConvertible {
-    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar
 
     var description: String {
         
@@ -601,6 +601,8 @@ enum WebApiMethod: CustomStringConvertible {
             return CavyDefine.webServerAddr + "signup/email"
         case .SignUpPhone:
             return CavyDefine.webServerAddr + "signup/phone"
+        case .UploadAvatar:
+            return CavyDefine.webServerAddr + "avatar"
         }
         
     }
@@ -645,6 +647,7 @@ enum NetRequsetKey: String {
     case PhoneType          = "phoneType"
     case Email              = "email"
     case Code               = "code"
+    case Base64Data         = "base64Data"
 }
 
 
@@ -663,6 +666,7 @@ enum RequestApiCode: Int {
     case LogoutFailed        = 1204
     case InvalidToken        = 1205
     case AccountAlreadyExist = 1206
+    case ImageParseFail      = 9998
     case NetError            = 9999
     
     init(apiCode: Int) {
@@ -670,6 +674,26 @@ enum RequestApiCode: Int {
         switch apiCode {
         case 1000:
             self = RequestApiCode.Success
+        case 1100:
+            self = RequestApiCode.UukownError
+        case 1102:
+            self = RequestApiCode.IncorrectParameter
+        case 1200:
+            self = RequestApiCode.LostAccountField
+        case 1201:
+            self = RequestApiCode.LostPasswordField
+        case 1202:
+            self = RequestApiCode.AccountNotExist
+        case 1203:
+            self = RequestApiCode.LoginFailed
+        case 1204:
+            self = RequestApiCode.LogoutFailed
+        case 1205:
+            self = RequestApiCode.InvalidToken
+        case 1206:
+            self = RequestApiCode.AccountAlreadyExist
+        case 9998:
+            self = RequestApiCode.ImageParseFail
         case 9999:
             self = RequestApiCode.NetError
         default:
@@ -687,6 +711,8 @@ extension RequestApiCode: CustomStringConvertible {
         switch self {
         case .Success:
             return ""
+        case .ImageParseFail:
+            return L10n.UserModuleErrorCodeNetError.string
         case .NetError:
             return L10n.UserModuleErrorCodeNetError.string
         default:

@@ -40,7 +40,7 @@
 "UserModuleErrorCode.ParaError"       = "参数有误";
 "UserModuleErrorCode.LBSNil"          = "LBS不能为空";
 "UserModuleErrorCode.PhoneNumListNil" = "电话号码列表不能为空";
-
+"UserModuleErrorCode.ImageParseFail"  = "图片转换失败";
 
 // 首页
 "MainPage.SignInBtn"       = "登入";

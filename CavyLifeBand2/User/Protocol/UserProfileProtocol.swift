@@ -14,7 +14,7 @@ import Log
 protocol QueryUserInfoRequestsDelegate {
     
     
-    func queryUserInfoByNet(vc: UIViewController?, failBack:(Void -> Void)?, completeHeadle: (UserProfile? -> Void)?)
+    func queryUserInfoByNet(vc: UIViewController?, failBack: (Void -> Void)?, completeHeadle: (UserProfile? -> Void)?)
     
 }
 
@@ -24,7 +24,7 @@ extension QueryUserInfoRequestsDelegate {
     /**
      查询用户信息
      */
-    func queryUserInfoByNet(vc: UIViewController? = nil, failBack:(Void -> Void)? = nil, completeHeadle completeHandle: (UserProfile? -> Void)? = nil) {
+    func queryUserInfoByNet(vc: UIViewController? = nil, failBack: (Void -> Void)? = nil, completeHeadle completeHandle: (UserProfile? -> Void)? = nil) {
 
         NetWebApi.shareApi.netGetRequest(WebApiMethod.UsersProfile.description, modelObject: UserProfileMsg.self, successHandler: { (data) in
 
