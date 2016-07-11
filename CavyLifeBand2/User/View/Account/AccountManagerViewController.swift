@@ -98,7 +98,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         emailSafetyCode.userInteractionEnabled = true
         emailSafetyCode.addTapGesture(target: self, action: #selector(AccountManagerViewController.refreshEmailSafetyCode))
-        
+        userProtocolView.protocolBtn.addTarget(self, action: #selector(AccountManagerViewController.protocolBtnDown), forControlEvents: .TouchUpInside)
         userNameTextField.becomeFirstResponder()
         userNameTextField.backgroundColor = UIColor.whiteColor()
         passwdTextField.backgroundColor = UIColor.whiteColor()
@@ -134,6 +134,20 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         safetyCodeBtn.setTitle(L10n.SignUpSendSafetyCode.string, forState: .Normal)
         backSignInBtn.setTitleColor(UIColor(named: .SignInForgotPwdBtnText), forState: .Normal)
         backSignInBtn.titleLabel!.font = UIFont.systemFontOfSize(14)
+        
+    }
+    
+    /**
+     协议跳转
+     */
+    
+    func protocolBtnDown()  {
+        
+        let targetVC = WebViewController()
+        
+        targetVC.dataSource = RegisterProtoclWeb()
+        
+        self.pushVC(targetVC)
         
     }
     

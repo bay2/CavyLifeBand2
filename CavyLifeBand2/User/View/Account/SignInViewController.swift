@@ -14,7 +14,7 @@ import RealmSwift
 
 class SignInViewController: UIViewController, SignInDelegate, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate, LifeBandBleDelegate {
 
-    // 登入按钮
+    // 登录按钮
     @IBOutlet weak var signInBtn: MainPageButton!
 
     // 输入框视图
@@ -126,6 +126,8 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         }
 
     }
+    
+   
     
     /**
      设置子视图标题

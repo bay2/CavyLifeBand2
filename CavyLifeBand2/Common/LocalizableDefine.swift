@@ -63,7 +63,7 @@ enum L10n {
   case UserModuleErrorCodeLBSNil
   /// 电话号码列表不能为空
   case UserModuleErrorCodePhoneNumListNil
-  /// 登入
+  /// 登录
   case MainPageSignInBtn
   /// 加入豚鼠
   case MainPageSignUpBtn
