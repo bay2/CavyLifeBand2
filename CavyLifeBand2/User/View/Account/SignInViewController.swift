@@ -211,13 +211,19 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      */
      func onRightBtn() {
 
-        // 注册绑定场景
-        BindBandCtrl.bindScene = .SignUpBind
+//        // 注册绑定场景
+//        BindBandCtrl.bindScene = .SignUpBind
+//        
+//        let guideVC = StoryboardScene.Guide.instantiateGuideView()
+//        let guideVM = GuideBandBluetooth()
+//        guideVC.configView(guideVM, delegate: guideVM)
+//        self.pushVC(guideVC)
         
-        let guideVC = StoryboardScene.Guide.instantiateGuideView()
-        let guideVM = GuideBandBluetooth()
-        guideVC.configView(guideVM, delegate: guideVM)
-        self.pushVC(guideVC)
+        let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
+        
+        accountVC.configView(PhoneSignUpViewModel())
+        
+        self.presentVC(UINavigationController(rootViewController: accountVC))
 
     }
 
