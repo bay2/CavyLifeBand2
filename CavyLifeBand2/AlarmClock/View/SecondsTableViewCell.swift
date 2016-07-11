@@ -83,14 +83,16 @@ class SecondsTableViewCell: UITableViewCell {
         separatorView1.snp_makeConstraints { make in
             make.height.equalTo(1)
             make.bottom.equalTo(self.pickerView.snp_bottom)
-            make.width.equalTo(200.0)
+            make.leading.equalTo(self).offset(20.0)
+            make.trailing.equalTo(self).offset(-20.0)
             make.centerX.equalTo(self.contentView.snp_centerX)
         }
         
         separatorView2.snp_makeConstraints { make in
             make.height.equalTo(1)
             make.top.equalTo(self.pickerView.snp_top)
-            make.width.equalTo(separatorView1.snp_width)
+            make.leading.equalTo(self).offset(20.0)
+            make.trailing.equalTo(self).offset(-20.0)
             make.centerX.equalTo(separatorView1.snp_centerX)
         }
     
