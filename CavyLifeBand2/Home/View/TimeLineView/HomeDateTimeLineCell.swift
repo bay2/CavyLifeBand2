@@ -395,24 +395,5 @@ extension HomeDateTimeLineCell {
         datasViewModels[indexPath.section].onClickCell()
 
     }
-    
-    /**
-     section不悬浮
-     */
-//    func scrollViewDidScroll(scrollView: UIScrollView) {
-//        
-//        let sectionHeight: CGFloat = 16
-//        
-//        if scrollView.contentOffset.y <= sectionHeight && scrollView.contentOffset.y >= 0{
-//            
-//            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)
-//            
-//        } else if scrollView.contentOffset.y >= sectionHeight {
-//            
-//            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeight, 0, 0, 0)
-//            
-//        }
-//
-//    }
 
 }
