@@ -131,19 +131,19 @@ extension ChartsRealmProtocol {
      */
     func isNeedUpdateStepData() -> Bool {
         
-        let list = realm.objects(ChartStepDataRealm)
+        let list = realm.objects(NChartStepDataRealm)
         
         if list.count == 0 {
             return true
         }
         
-        let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+        let personalList = realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
         
         if personalList.count == 0 {
             return true
         }
         
-        let totalMinutes = (NSDate().gregorian.beginningOfDay.date - personalList.last!.time).totalMinutes
+        let totalMinutes = (NSDate().gregorian.beginningOfDay.date - personalList.last!.date).totalMinutes
         Log.info(totalMinutes)
         
         if totalMinutes > 10 {
@@ -222,10 +222,13 @@ extension ChartsRealmProtocol {
         for data in dataInfo {
             
             let index = data.time.gregorian.components.hour
-            
             stepChartsData.totalStep += data.step
             stepChartsData.totalKilometer += data.kilometer
-            stepChartsData.finishTime += 10
+            
+            if data.step != 0 {
+                 stepChartsData.finishTime += 10
+            }
+           
             stepChartsData.datas[index].step += data.step
             
         }
@@ -240,11 +243,7 @@ extension ChartsRealmProtocol {
             stepChartsData.datas[indext].step += stepData.datas[indext].step
             
         }
-        
-        
-        
-        
-        
+ 
         return stepChartsData
         
     }
@@ -267,7 +266,11 @@ extension ChartsRealmProtocol {
             
             stepChartsData.totalKilometer += data.kilometer
             stepChartsData.totalStep += data.step
-            stepChartsData.finishTime += 10
+            
+            if data.step != 0 {
+                stepChartsData.finishTime += 10
+            }
+            
             stepChartsData.datas[index].step += data.step
             
         }
@@ -476,11 +479,12 @@ extension ChartsRealmProtocol {
      - returns: 睡眠时长 10分钟为单位， 1 = 10 分钟
      （$0  睡眠时长     $1 深睡时长）
      */
-    private func validSleep(beginTime: NSDate, endTime: NSDate) ->  (Int,Int) {
+    private func validSleep(beginTime: NSDate, endTime: NSDate) -> (Int, Int) {
         
         var minustsCount   = 0 // 睡眠计数
-        var longSleepCount = 0 // 无效睡眠计数
-        var testCount = 0
+        var zeroCount = 0   // 都为0的计数
+        var longSleepCount = 0 // 深睡时长
+        var totalCount = 0
         
         
         Log.info("validSleep Begin")
@@ -494,7 +498,7 @@ extension ChartsRealmProtocol {
         
         for timeIndex in 0..<sleepDatas.count {
             
-            testCount += 1
+            totalCount += 1
             
             // 前后计算范围
             let range = 2
@@ -511,140 +515,90 @@ extension ChartsRealmProtocol {
             let tiltsItem = sleepDatas[timeIndex]
             
             
-            //记录连续的 0 去掉连续的0
+            // 1. 如果全部都没有数据 直接返回无睡眠
             
-            if stepItem == 0 && tiltsItem == 0 {
-                
-                longSleepCount += 1
-                
-            }
-            
-            
-            
-            // 如果全部都没有数据 直接返回无睡眠
-            
-            if longSleepCount == sleepDatas.count || longSleepCount == stepDatas.count {
+            if  sleepDatas.count == 0 || stepDatas.count == 0 {
                 
                 return (0, 0)
             }
             
             
             
-            // 退出无睡眠状态,减掉无效计数
-            // 如果longSleepCount 大于 noSleepTime  往后能找到非0 值 这可以去掉该部分无效数据
-            // 如果 在 往后找不到非0 的数值 这判断这个循环结束的时候 有多少0
+            // 2. 记录连续的 0
             
-            if stepItem != 0 || tiltsItem != 0 {
+            if stepItem == 0 && tiltsItem == 0 {
                 
-                if longSleepCount >= noSleepTime
-                    
-                {
-                    
-                    minustsCount -= longSleepCount
-                    longSleepCount = 0
-                    
-                }
-                
-            }else  {
-                
-                // 如果在循环结束的时候 还没有出现非0 的数据 则 在循环结束的时候 截掉数据
-                
-                if testCount == sleepDatas.count - 1 {
-                    
-                    if longSleepCount >= noSleepTime
-                        
-                    {
-                        
-                        minustsCount -= longSleepCount
-                        longSleepCount = 0
-                        
-                    }
-                    
-                }
+                zeroCount += 1
                 
             }
             
             
-            // 条件1：之前20分钟tilt数量+当前10分钟tilt +之后20分钟tilt数量<40
-            // 条件2：当前10分钟tilt<15
-            // 条件3：当前10分钟step<30
+            // 条件3.1：之前20分钟tilt数量+当前10分钟tilt +之后20分钟tilt数量<40
+            // 条件3.2：当前10分钟tilt<15
+            // 条件3.3：当前10分钟step<30
             
             if tiltsTotal < 40 &&  tiltsItem < 15 && stepItem < 30 {
                 
                 minustsCount += 1
                 
             }
+ 
+            // 4. 退出无睡眠状态,减掉无效计数
+            // 如果longSleepCount 大于 noSleepTime  往后能找到非0 值 这可以去掉该部分无效数据
+            // 如果 在 往后找不到非0 的数值 这判断这个循环结束的时候 有多少0
             
             
+            if stepItem != 0 || tiltsItem != 0 {
+                
+                // 去掉超过连续的>=12 的0
+                if zeroCount >= noSleepTime
+                    
+                {
+                    
+                    minustsCount -= zeroCount
+                    zeroCount = 0
+                    
+                }else
+                {
+                    // 有效的0
+                    
+                    longSleepCount += zeroCount
+                }
+                
+            }else {
+                
+                // 如果在循环结束的时候 还没有出现非0 的数据 则 在循环结束的时候 截掉数据
+                
+                if stepItem == 0 && tiltsItem == 0 {
+                    
+                    if totalCount == sleepDatas.count - 1 {
+                        
+                        if zeroCount >= noSleepTime
+                            
+                        {
+                            
+                            minustsCount -= zeroCount
+                            zeroCount = 0
+                            longSleepCount = 0
+                            
+                        }
+                        
+                    }
+                }
+            }
+  
         }
-        
-        Log.info("validSleep end")
         
         guard  minustsCount >= 0 else {
             
             return  (0, 0)
         }
         
-        Log.info("总共睡眠\(minustsCount)=====深睡个数\(longSleepCount)")
+        Log.info("总共睡眠\(minustsCount - 1)=====深睡个数\(longSleepCount)")
         
-        return (minustsCount, longSleepCount)
+        return (minustsCount - 1, longSleepCount)
     }
-    
-    
-    
-    /**
-     统计深度睡眠数据
-     
-     - author: sim cai
-     - date: 2016-05-31
-     
-     - parameter beginTime: 开始时间
-     - parameter endTime:   结束时间
-     
-     - returns: 深度睡眠值  10分钟为单位， 1 = 10 分钟
-     */
-//    private func sumDeepSleep(beginTime: NSDate, endTime: NSDate) -> Int {
-//        
-//        var minustsCount   = 0
-//        var longSleepCount = 0 // 长时间睡眠计数
-//        
-//        Log.info("sumDeepSleep Begin")
-//        
-//        let sleepDatas = transformSleepData(beginTime, endTime: endTime)
-//        let stepDatas = transformStepData(beginTime, endTime: endTime)
-//        
-//        if stepDatas.isEmpty && stepDatas.isEmpty {
-//            return 0
-//        }
-//        
-//        for timeIndex in 0..<sleepDatas.count {
-//            
-//            if sleepDatas[timeIndex] != 0 || stepDatas[timeIndex] != 0 {
-//                
-//                // 退出无睡眠状态,减掉无效计数
-//                if longSleepCount >= noSleepTime {
-//                    minustsCount -= longSleepCount
-//                }
-//                
-//                longSleepCount = 0
-//                continue
-//            }
-//            
-//            minustsCount += 1
-//            longSleepCount += 1
-//            
-//            
-//        }
-//        
-//        if longSleepCount >= noSleepTime {
-//            minustsCount -= longSleepCount
-//        }
-//        
-//        Log.info("sumDeepSleep end")
-//        
-//        return minustsCount
-//        
-//    }
+
     
     /**
      将数据库中的睡眠数据转成10分钟存储的数组
@@ -766,30 +720,6 @@ extension ChartsRealmProtocol {
      
      - returns: [(总的睡眠时间, 深睡, 浅睡)] 数据按每天返回
      */
-//    func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)] {
-//        
-//        var reslutData: [(Double, Double, Double)] = []
-//        
-//        let dayTotal = (endTime - beginTime).totalDays
-//        
-//        Log.info("querySleepInfoDays Begin \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
-//        
-//        for i in 0...dayTotal {
-//            
-//            // 从前天的晚上6点开始算起
-//            let newBeginTime = ((beginTime.gregorian + i.day).beginningOfDay - 6.hour).date
-//            let newEndTime = (newBeginTime.gregorian + 24.day).date
-//            
-//            reslutData.append(querySleepInfo(newBeginTime, endTime: newEndTime))
-//            
-//        }
-//        
-//        Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
-//        
-//        return reslutData
-//        
-//    }
-    
     func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)] {
         
         var reslutData: [(Double, Double, Double)] = []
@@ -844,11 +774,11 @@ extension ChartsRealmProtocol {
         let nowDate = NSDate()
         
         // 当天数据的特殊处理
-        if (nowDate - beginTime).totalDays >= 0 && (nowDate - endTime).totalDays <= 0 {
+        if (nowDate - beginTime).totalMinutes >= 0 && (nowDate - endTime).totalMinutes <= 0 {
             // 有网直接返回
-            guard NetworkReachabilityManager(host: "www.baidu.com")?.isReachable == false else {
-                return reslutData
-            }
+//            guard NetworkReachabilityManager(host: "www.baidu.com")?.isReachable == false else {
+//                return reslutData
+//            }
             
             // 没网显示手环数据库的数据
             

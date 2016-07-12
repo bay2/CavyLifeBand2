@@ -12,9 +12,9 @@ import AlamofireImage
 class HomeTimeLineTableCell: UITableViewCell {
     
     /// 图片上面的线
-    @IBOutlet weak var headLine: UIView!
+//    @IBOutlet weak var headLine: UIView!
     /// 图片下面的线
-    @IBOutlet weak var bottomLine: UIView!
+//    @IBOutlet weak var bottomLine: UIView!
     
     /// 图片
     @IBOutlet weak var imgView: UIImageView!
@@ -59,8 +59,8 @@ class HomeTimeLineTableCell: UITableViewCell {
         
         imgView.layer.masksToBounds = true
         imgView.layer.cornerRadius = imgView.frame.width / 2
-        headLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
-        bottomLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
+//        headLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
+//        bottomLine.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
         nameLabel.textColor = UIColor(named: .HomeViewUserName)
         othersName.textColor = UIColor(named: .HomeViewUserName)
         resultLabel.textColor = UIColor(named: .HomeViewUserName)

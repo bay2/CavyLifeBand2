@@ -40,16 +40,14 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pm9-9w-IuS">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pm9-9w-IuS" userLabel="headLineView">
                         <rect key="frame" x="42" y="0.0" width="2" height="126"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="2" id="yIh-AX-579"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ByS-aD-YQM">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ByS-aD-YQM" userLabel="bottonLineView">
                         <rect key="frame" x="42" y="172" width="2" height="126"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="2" id="1kI-7h-fH5"/>
                         </constraints>
@@ -76,8 +74,6 @@
                 <constraint firstAttribute="bottom" secondItem="ByS-aD-YQM" secondAttribute="bottom" id="Mhx-6X-Lik"/>
             </constraints>
             <connections>
-                <outlet property="bottomLine" destination="ByS-aD-YQM" id="FxT-uP-TMx"/>
-                <outlet property="headLine" destination="Pm9-9w-IuS" id="9Vo-Mb-OdQ"/>
                 <outlet property="imgView" destination="zKG-i8-kdy" id="Eo3-Q7-TUf"/>
                 <outlet property="nameLabel" destination="MMr-KV-tGZ" id="Gh8-re-Qev"/>
                 <outlet property="othersName" destination="eR6-EH-c7s" id="fl0-va-IsZ"/>

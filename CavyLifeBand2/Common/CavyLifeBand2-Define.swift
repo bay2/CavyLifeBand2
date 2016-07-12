@@ -19,7 +19,7 @@ struct CavyDefine {
     
     // 新的后台服务器地址
     static let webServerAddr = "http://pay.tunshu.com/live/api/v1/"
-    
+
     // webApi地址
     static let webApiAddr = serverAddr + "/api.do"
     
@@ -199,8 +199,9 @@ protocol LoginStorage {
 extension NSUserDefaults: LoginStorage { }
 
 // MARK: - 手环绑定信息存储 KeyChain
+
 /**
- *  手环绑定信息
+ *  手环绑定信息  每个user 只会绑定一个MACAddress
  */
 struct BindBandInfo {
     
@@ -562,7 +563,7 @@ enum UserNetRequestMethod: String {
 
 // MARK: - Web Api 方法定义
 enum WebApiMethod: CustomStringConvertible {
-    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Issues
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Issues, Weather
 
     var description: String {
         
@@ -605,6 +606,8 @@ enum WebApiMethod: CustomStringConvertible {
             return CavyDefine.webServerAddr + "avatar"
         case .Issues:
             return CavyDefine.webServerAddr + "issues"
+        case .Weather:
+            return CavyDefine.webServerAddr + "weather"
         }
         
     }
@@ -652,7 +655,7 @@ enum NetRequsetKey: String {
     case Base64Data         = "base64Data"
     case Question           = "question"
     case Detail             = "detail"
-    
+    case City               = "city"
 }
 
 

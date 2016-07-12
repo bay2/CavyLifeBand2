@@ -33,9 +33,6 @@ extension RootViewController: ChartsRealmProtocol {
                 
                 guard (NSDate().gregorian.beginningOfDay.date - syncDate).totalMinutes >= 10  else {
                     
-                    // 发送通知让主页停止同步数据下拉消失
-                    NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
-                    
                     return
                 }
             }
@@ -57,6 +54,10 @@ extension RootViewController: ChartsRealmProtocol {
                 
                 let uploadData = self.queryUploadBandData()
                 
+                
+                // 发送通知让主页停止同步数据下拉消失
+                NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
+                
                 guard uploadData.0.count > 0 else {
                     return
                 }
@@ -64,35 +65,12 @@ extension RootViewController: ChartsRealmProtocol {
                 UploadBandData.shareApi.uploadBandData(uploadData.0) { [unowned self] data in
                     self.setChartBandDataSynced(uploadData.1, endDate: uploadData.2)
                 }
-                
-//                // 上报睡眠信息
-//                StepSleepReportedData.shareApi.sleepReportedDataToWebServer(sleeps).responseJSON {
-//                    $0.result.success { value in
-//                        self.saveTiltsToRealm(sleeps)
-//                        }
-//                        .failure { error in
-//                            self.saveTiltsToRealm(sleeps)
-//                    }
-//                }
-//                
-//                // 上报计步信息
-//                StepSleepReportedData.shareApi.stepsReportedDataToWebServer(steps).responseJSON {
-//                    
-//                    $0.result.success{ value in
-//                        
-//                        // 保存数据到数据库中
-//                        // TODO: 这里需要设置同步标识
-//                        self.saveStepsToRealm(steps)
-//                        
-//                        }
-//                        .failure { error in
-//                            self.saveStepsToRealm(steps)
-//                    }
-//                }
-                
-                }
+            
+        }
                 .failure { error in
                     Log.error("\(error)")
+                    // 发送通知让主页停止同步数据下拉消失
+                    NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
             }
             
         }

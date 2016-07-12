@@ -442,7 +442,15 @@ class CustomCamera: UIViewController {
     // 打开相册
     @IBAction func goPhotoAlbum(sender: AnyObject) {
         
+        // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult
+        let fetchOptions = PHFetchOptions()
+        let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
+        
         let photoView = StoryboardScene.Camera.instantiatePhotoView()
+        
+        photoView.totalCount = fetchResults.count
+        photoView.currentCount = fetchResults.count
+        
         self.presentVC(photoView)
         
 //        // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult

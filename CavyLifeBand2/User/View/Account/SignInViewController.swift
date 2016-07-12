@@ -266,6 +266,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     @IBAction func onClickSignIn(sender: AnyObject) {
         
         loadingView.startAnimating()
+        self.view.endEditing(true)
         
         signIn({ [unowned self] in
             self.loadingView.stopAnimating()
@@ -326,6 +327,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     
     func onLeftBtnBack() {
         
+        self.view.endEditing(true)
         self.dismissVC(completion: nil)
         
     }

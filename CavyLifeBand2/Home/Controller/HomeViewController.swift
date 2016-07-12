@@ -19,8 +19,7 @@ let dateViewHeight: CGFloat = 50.0
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
 let navBarHeight: CGFloat = 64.0
 
-//class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, SinglePKRealmModelOperateDelegate, ChartStepRealmProtocol {
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate,ChartStepRealmProtocol, QueryUserInfoRequestsDelegate {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, SinglePKRealmModelOperateDelegate, ChartStepRealmProtocol, QueryUserInfoRequestsDelegate {
     
     var leftBtn: UIButton? = {
         
@@ -101,7 +100,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(RefreshStatus.StopRefresh.rawValue, selector: #selector(endHomeViewRefreshing))
  
     }
-    
+
     /**
      手环断线通知
      
@@ -179,7 +178,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func addAlertView() {
      
-        let alertView = UIAlertController(title: "同步数据失败", message: "请您绑定手环，重新同步数据", preferredStyle: .Alert)
+        let alertView = UIAlertController(title: L10n.HomeRefreshAlertTitle.string , message: L10n.HomeRefreshFaildDes.string, preferredStyle: .Alert)
         
         let sureAction = UIAlertAction(title: "确定", style: .Cancel, handler: nil)
         
@@ -236,6 +235,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         self.navigationController?.pushViewController(viewController, animated: false)
         
     }
+
     
     // MARK: 解析数据 保存数据库
     
@@ -250,7 +250,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         // MARK: 计步相关
         var startDate = ""
-        var endDate = ""
+        let endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
         
         if isNeedUpdateStepData() {
             
@@ -259,9 +259,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             if personalList.count != 0 {
                 
                 startDate = personalList.last!.date.toString(format: "yyyy-MM-dd HH:mm:ss")
-                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
+                
                 
             } else {
+                
                 // 如果查询不到数据 则 使用注册日期开始请求
                 guard let startTime = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first?.signUpDate else {
                     return
@@ -274,7 +275,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             parseStepDate(startDate, endDate: endDate)
             
         }
-        
     }
     
       /**

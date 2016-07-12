@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		4C05744B1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */; };
 		4C05744D1D25063900D78716 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744C1D25063900D78716 /* UIDeviceExtension.swift */; };
+		4C05F9B21D347A820085C9C8 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05F9B11D347A820085C9C8 /* ImageViewCell.swift */; };
 		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
 		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
 		4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E61CB78F0500DB06FC /* Home.storyboard */; };
 		4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */; };
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C2B67DC1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */; };
-		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4C4C602A1CE5C4790026C045 /* GuideViewConfigDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C60291CE5C4790026C045 /* GuideViewConfigDefine.swift */; };
 		4C4C602D1CE5C4A10026C045 /* ContactRecommendFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C602B1CE5C4A10026C045 /* ContactRecommendFriendView.swift */; };
 		4C4C602E1CE5C4A10026C045 /* ContactsAddFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C602C1CE5C4A10026C045 /* ContactsAddFriendCell.swift */; };
@@ -68,9 +68,6 @@
 		4CC499011CA9102800B2EE85 /* ContactsAccoundInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */; };
 		4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */; };
 		4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */; };
-		4CD5AABE1CEDA6030011CD13 /* HomeListWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AABD1CEDA6030011CD13 /* HomeListWebApi.swift */; };
-		4CD5AAC31CEEB36A0011CD13 /* HomeListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */; };
-		4CD5AAC51CEEE22E0011CD13 /* HomeListOper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */; };
 		4CD5AAC91CF42D310011CD13 /* HomeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC81CF42D310011CD13 /* HomeListViewModel.swift */; };
 		4CD5AACB1CF42DB40011CD13 /* HomeListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AACA1CF42DB40011CD13 /* HomeListProtocol.swift */; };
 		4CD5AAD11CF583420011CD13 /* HomeDateTimeLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5AACF1CF583420011CD13 /* HomeDateTimeLineCell.xib */; };
@@ -367,13 +364,13 @@
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerExtesionRefersh.swift; sourceTree = "<group>"; };
 		4C05744C1D25063900D78716 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
+		4C05F9B11D347A820085C9C8 /* ImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E61CB78F0500DB06FC /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWeatherWebApi.swift; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString_Extension.swift; sourceTree = "<group>"; };
-		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4C4C60291CE5C4790026C045 /* GuideViewConfigDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewConfigDefine.swift; sourceTree = "<group>"; };
 		4C4C602B1CE5C4A10026C045 /* ContactRecommendFriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactRecommendFriendView.swift; sourceTree = "<group>"; };
 		4C4C602C1CE5C4A10026C045 /* ContactsAddFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendCell.swift; sourceTree = "<group>"; };
@@ -426,9 +423,6 @@
 		4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccoundInfoTest.swift; sourceTree = "<group>"; };
 		4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountInfo_Ok.json; sourceTree = "<group>"; };
 		4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FriendInfo_Ok.json; sourceTree = "<group>"; };
-		4CD5AABD1CEDA6030011CD13 /* HomeListWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListWebApi.swift; sourceTree = "<group>"; };
-		4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListRealm.swift; sourceTree = "<group>"; };
-		4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListOper.swift; sourceTree = "<group>"; };
 		4CD5AAC81CF42D310011CD13 /* HomeListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListViewModel.swift; sourceTree = "<group>"; };
 		4CD5AACA1CF42DB40011CD13 /* HomeListProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListProtocol.swift; sourceTree = "<group>"; };
 		4CD5AACF1CF583420011CD13 /* HomeDateTimeLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDateTimeLineCell.xib; sourceTree = "<group>"; };
@@ -775,9 +769,6 @@
 		4C0BFA081CBF27A900DB06FC /* WebApi */ = {
 			isa = PBXGroup;
 			children = (
-				4CD5AABD1CEDA6030011CD13 /* HomeListWebApi.swift */,
-				4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */,
-				4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */,
 				4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */,
 				9157BE401CFD687B0020BF66 /* StepSleepReportedData.swift */,
 			);
@@ -1364,8 +1355,8 @@
 			children = (
 				913D0BD11C3FA126006EE7F8 /* Camera.storyboard */,
 				4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */,
-				4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */,
 				4C80C6C61D2FA1410007F577 /* PhotoView.swift */,
+				4C05F9B11D347A820085C9C8 /* ImageViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2173,7 +2164,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#if hash tailor 2>/dev/null; then\n#tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
+			shellScript = "if hash tailor 2>/dev/null; then\ntailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\necho \"warning: Please install Tailor from https://tailor.sh\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2184,7 +2175,6 @@
 			files = (
 				68D6ED5F1CB7AEE700E1A1FB /* SafetySettingViewController.swift in Sources */,
 				685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */,
-				4CD5AAC31CEEB36A0011CD13 /* HomeListRealm.swift in Sources */,
 				910DFED31D0029E0009B944D /* FirmwareUpdate.swift in Sources */,
 				68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */,
 				4CE1DBAC1D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift in Sources */,
@@ -2246,6 +2236,7 @@
 				91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */,
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
 				4CB7A0831CD095C400DFB8DC /* HomeWeatherView.swift in Sources */,
+				4C05F9B21D347A820085C9C8 /* ImageViewCell.swift in Sources */,
 				4C9E0B521D1A395200DBC1FC /* ShowChartsView.swift in Sources */,
 				4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */,
 				686A5EEF1CDC35AE00EB8D0E /* HelpAndFeedbackListVC.swift in Sources */,
@@ -2286,13 +2277,11 @@
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
 				4CB7A0701CD095C400DFB8DC /* BandInfoView.swift in Sources */,
 				4C80C6C71D2FA1410007F577 /* PhotoView.swift in Sources */,
-				4CD5AABE1CEDA6030011CD13 /* HomeListWebApi.swift in Sources */,
 				68648ADF1CF83CFB009D4BEE /* ContactListEmptyView.swift in Sources */,
 				4C9E0B551D1A395200DBC1FC /* ChartBaseViewModel.swift in Sources */,
 				917B98C01CB8E841008698F5 /* UserAchievementView.swift in Sources */,
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
 				4CE1DBAB1D1BAE4800A67FDD /* ChartsBaseView.swift in Sources */,
-				4CD5AAC51CEEE22E0011CD13 /* HomeListOper.swift in Sources */,
 				6838ABB71D3345BA00586354 /* UploadAvatarWebApi.swift in Sources */,
 				68C558CF1CB751050031719D /* IntelligentClockTableFooterView.swift in Sources */,
 				68B4DEDA1CE57B6E00BE041C /* RelateAppWebApi.swift in Sources */,
@@ -2362,7 +2351,6 @@
 				918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */,
 				686A5F041CDC7F3900EB8D0E /* RelateAppCell.swift in Sources */,
 				9150CAAE1CC66CBB00A398E9 /* UIWindowExtension.swift in Sources */,
-				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
 				4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */,
 				4C4C602D1CE5C4A10026C045 /* ContactRecommendFriendView.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,

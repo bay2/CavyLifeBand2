@@ -13,7 +13,7 @@ class HomeTimeLineSection: UIView {
     @IBOutlet weak var lineView: UIView!
     
     override func awakeFromNib() {
-        lineView.backgroundColor = UIColor(named: .HomeTimeLineLineColor)
+        lineView.backgroundColor = UIColor(named: .LColor)
     }
 
 }
