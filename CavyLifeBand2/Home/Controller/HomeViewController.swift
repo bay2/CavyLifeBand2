@@ -19,8 +19,7 @@ let dateViewHeight: CGFloat = 50.0
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
 let navBarHeight: CGFloat = 64.0
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate, ChartStepRealmProtocol, QueryUserInfoRequestsDelegate {
-
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, SinglePKRealmModelOperateDelegate, ChartStepRealmProtocol, QueryUserInfoRequestsDelegate {
     
     var leftBtn: UIButton? = {
         
@@ -101,7 +100,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(RefreshStatus.StopRefresh.rawValue, selector: #selector(endHomeViewRefreshing))
  
     }
-    
+
     /**
      手环断线通知
      
@@ -236,6 +235,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         self.navigationController?.pushViewController(viewController, animated: false)
         
     }
+
     
     // MARK: 解析数据 保存数据库
     

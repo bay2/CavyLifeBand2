@@ -223,16 +223,19 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
     func parseDataToHomeListRealm(){
         
         // 如果数据库存在数据 就直接返回
+
         if isExistHomeData(timeString) { return }
         
         // 不存在 解析数据 并保存
         HomeWebApi.shareApi.parserHomeLineData(timeString)
+
     }
     
 
     /**
      数据库数据 转换 VM数组
      */
+
     func queryRealmGetViewModelLists(homeListRealm: Results<(HomeLineRealm)>) -> [HomeListViewModelProtocol] {
 
         // 转成 VM数组
@@ -363,17 +366,12 @@ extension HomeDateTimeLineCell {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 66
+        return 75
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        if section == 0 {
-            
-            return 16
-        }
-        
-        return 10
+       return 1
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -384,18 +382,6 @@ extension HomeDateTimeLineCell {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("HomeTimeLineTableCell", forIndexPath: indexPath) as! HomeTimeLineTableCell
-
-        cell.headLine.hidden = false
-        cell.bottomLine.hidden = false
-
-        if indexPath.section == 0 {
-            cell.headLine.hidden = true
-        }
-
-        if indexPath.section == datasViewModels.count - 1 {
-            
-            cell.bottomLine.hidden = true
-        }
         
         let viewModel = datasViewModels[indexPath.section]
         
@@ -407,25 +393,6 @@ extension HomeDateTimeLineCell {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         datasViewModels[indexPath.section].onClickCell()
-
-    }
-    
-    /**
-     section不悬浮
-     */
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        let sectionHeight: CGFloat = 16
-        
-        if scrollView.contentOffset.y <= sectionHeight && scrollView.contentOffset.y >= 0{
-            
-            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)
-            
-        } else if scrollView.contentOffset.y >= sectionHeight {
-            
-            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeight, 0, 0, 0)
-            
-        }
 
     }
 
