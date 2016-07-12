@@ -366,17 +366,12 @@ extension HomeDateTimeLineCell {
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        return 66
+        return 75
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        if section == 0 {
-            
-            return 16
-        }
-        
-        return 10
+       return 1
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -387,18 +382,6 @@ extension HomeDateTimeLineCell {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("HomeTimeLineTableCell", forIndexPath: indexPath) as! HomeTimeLineTableCell
-
-        cell.headLine.hidden = false
-        cell.bottomLine.hidden = false
-
-        if indexPath.section == 0 {
-            cell.headLine.hidden = true
-        }
-
-        if indexPath.section == datasViewModels.count - 1 {
-            
-            cell.bottomLine.hidden = true
-        }
         
         let viewModel = datasViewModels[indexPath.section]
         
@@ -416,20 +399,20 @@ extension HomeDateTimeLineCell {
     /**
      section不悬浮
      */
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-        
-        let sectionHeight: CGFloat = 16
-        
-        if scrollView.contentOffset.y <= sectionHeight && scrollView.contentOffset.y >= 0{
-            
-            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)
-            
-        } else if scrollView.contentOffset.y >= sectionHeight {
-            
-            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeight, 0, 0, 0)
-            
-        }
-
-    }
+//    func scrollViewDidScroll(scrollView: UIScrollView) {
+//        
+//        let sectionHeight: CGFloat = 16
+//        
+//        if scrollView.contentOffset.y <= sectionHeight && scrollView.contentOffset.y >= 0{
+//            
+//            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0)
+//            
+//        } else if scrollView.contentOffset.y >= sectionHeight {
+//            
+//            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeight, 0, 0, 0)
+//            
+//        }
+//
+//    }
 
 }

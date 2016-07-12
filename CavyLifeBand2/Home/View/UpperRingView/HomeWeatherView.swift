@@ -142,8 +142,8 @@ class HomeWeatherView: UIView {
     */
     func addCondImage(cond: String) {
         
-        imgView.layer.masksToBounds = true
-        imgView.layer.cornerRadius = 10
+//        imgView.layer.masksToBounds = true
+//        imgView.layer.cornerRadius = 10
         
         let weatherNames = [L10n.HomeWeatherSun.string,
                             L10n.HomeWeatherCloudy.string,
