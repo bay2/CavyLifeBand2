@@ -240,7 +240,10 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
         
         if viewController.navigationController?.viewControllers.count > 1 {
             
-            viewController.popVC()
+            UIApplication.sharedApplication().idleTimerDisabled = false
+            viewController.navigationController?.popViewControllerAnimated(false)
+
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
             
         } else {
             

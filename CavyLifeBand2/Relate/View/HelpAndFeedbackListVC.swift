@@ -78,6 +78,16 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         
     }
     
+    /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+        
+    }
+    
     func tableViewSetting() {
         
         tableView.delegate           = self
