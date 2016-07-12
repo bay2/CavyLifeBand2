@@ -378,3 +378,4 @@
 "Alert.SureAction.Title"     = "确认";
 "Alert.CancelAction.Title"   = "取消";
 "Alert.UndoPKWaitRecord.Msg" = "确认撤销此次PK？";
+"Alert.ReBindBand.Msg"       = "确认重新绑定手环？";

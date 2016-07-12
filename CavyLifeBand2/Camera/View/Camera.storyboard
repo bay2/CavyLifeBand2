@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -117,7 +117,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nGc-5O-ka9">
-                                        <rect key="frame" x="530" y="35" width="40" height="40"/>
+                                        <rect key="frame" x="530" y="25" width="40" height="40"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="fBD-IG-Me0"/>
@@ -128,7 +128,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me2-4B-1se">
-                                        <rect key="frame" x="30" y="40" width="29" height="29"/>
+                                        <rect key="frame" x="30" y="30" width="29" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Me2-4B-1se" secondAttribute="height" multiplier="1:1" id="cc5-z3-OF6"/>
                                             <constraint firstAttribute="width" constant="29" id="shX-lw-tNz"/>
@@ -145,12 +145,12 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="3NI-2C-baU" firstAttribute="centerY" secondItem="3ke-8r-ILT" secondAttribute="centerY" id="F7O-g2-wNJ"/>
-                                    <constraint firstItem="nGc-5O-ka9" firstAttribute="centerY" secondItem="3ke-8r-ILT" secondAttribute="centerY" constant="10" id="FI8-cS-BM2"/>
+                                    <constraint firstItem="nGc-5O-ka9" firstAttribute="centerY" secondItem="3ke-8r-ILT" secondAttribute="centerY" id="FI8-cS-BM2"/>
                                     <constraint firstItem="Me2-4B-1se" firstAttribute="leading" secondItem="3ke-8r-ILT" secondAttribute="leading" constant="30" id="fKf-b5-qtW"/>
                                     <constraint firstAttribute="trailing" secondItem="nGc-5O-ka9" secondAttribute="trailing" constant="30" id="gqI-Xj-Oo4"/>
                                     <constraint firstItem="3NI-2C-baU" firstAttribute="centerX" secondItem="3ke-8r-ILT" secondAttribute="centerX" id="krX-lY-9X9"/>
                                     <constraint firstAttribute="height" constant="89" id="srl-7t-BXy"/>
-                                    <constraint firstItem="Me2-4B-1se" firstAttribute="centerY" secondItem="3ke-8r-ILT" secondAttribute="centerY" constant="10" id="wWM-ue-4Pp"/>
+                                    <constraint firstItem="Me2-4B-1se" firstAttribute="centerY" secondItem="3ke-8r-ILT" secondAttribute="centerY" id="wWM-ue-4Pp"/>
                                 </constraints>
                             </view>
                         </subviews>

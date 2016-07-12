@@ -154,7 +154,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         
         // collectionView 高度
         // |-(badgeCount / 3） *（20 + 112）-|
-        let collectionViewHeight = CGFloat((badgeCount / 3) * 132)
+        let collectionViewHeight = ez.screenWidth <= 320 ? CGFloat((badgeCount / 2) * 132): CGFloat((badgeCount / 3) * 132)
 
         // contentView
         contectView.setCornerRadius(radius: CavyDefine.commonCornerRadius)
@@ -326,7 +326,9 @@ extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
             // 跳转到修改备注
             let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
             
-            let changeNicknameVM = UserChangeNicknameVM(viewController: requestVC)
+            let cellViewModel = accountInfos[indexPath.row] as? PresonInfoCellViewModel
+            
+            let changeNicknameVM = UserChangeNicknameVM(viewController: requestVC, textFeildText: cellViewModel?.title)
             
             requestVC.viewConfig(changeNicknameVM)
             
@@ -337,7 +339,9 @@ extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
                 // 跳转到修改地址
                 let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
                 
-                let changeRemarkVM = UserChangeAddressVM(viewController: requestVC)
+                let cellViewModel = accountInfos[indexPath.row + 1] as? PresonInfoListCellViewModel
+                
+                let changeRemarkVM = UserChangeAddressVM(viewController: requestVC, textFieldText: cellViewModel?.info)
                 
                 requestVC.viewConfig(changeRemarkVM)
                 

@@ -647,6 +647,8 @@ enum L10n {
   case AlertCancelActionTitle
   /// 确认撤销此次PK？
   case AlertUndoPKWaitRecordMsg
+  /// 确认重新绑定手环？
+  case AlertReBindBandMsg
 }
 
 extension L10n: CustomStringConvertible {
@@ -1298,6 +1300,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Alert.CancelAction.Title")
       case .AlertUndoPKWaitRecordMsg:
         return L10n.tr("Alert.UndoPKWaitRecord.Msg")
+      case .AlertReBindBandMsg:
+        return L10n.tr("Alert.ReBindBand.Msg")
     }
   }
 
