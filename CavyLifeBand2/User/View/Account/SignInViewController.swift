@@ -14,7 +14,7 @@ import RealmSwift
 
 class SignInViewController: UIViewController, SignInDelegate, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate, LifeBandBleDelegate {
 
-    // 登入按钮
+    // 登录按钮
     @IBOutlet weak var signInBtn: MainPageButton!
 
     // 输入框视图
@@ -127,6 +127,8 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
 
     }
     
+   
+    
     /**
      设置子视图标题
      */
@@ -211,13 +213,19 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      */
      func onRightBtn() {
 
-        // 注册绑定场景
-        BindBandCtrl.bindScene = .SignUpBind
+//        // 注册绑定场景
+//        BindBandCtrl.bindScene = .SignUpBind
+//        
+//        let guideVC = StoryboardScene.Guide.instantiateGuideView()
+//        let guideVM = GuideBandBluetooth()
+//        guideVC.configView(guideVM, delegate: guideVM)
+//        self.pushVC(guideVC)
         
-        let guideVC = StoryboardScene.Guide.instantiateGuideView()
-        let guideVM = GuideBandBluetooth()
-        guideVC.configView(guideVM, delegate: guideVM)
-        self.pushVC(guideVC)
+        let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
+        
+        accountVC.configView(PhoneSignUpViewModel())
+        
+        self.presentVC(UINavigationController(rootViewController: accountVC))
 
     }
 

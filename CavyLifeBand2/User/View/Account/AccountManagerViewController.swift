@@ -92,7 +92,8 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         setSubViewsTitle()
         
         defineSubViewsLayout()
-        
+     
+        userProtocolView.protocolBtn.addTarget(self, action: #selector(AccountManagerViewController.protocolBtnDown), forControlEvents: .TouchUpInside)
         userNameTextField.becomeFirstResponder()
         userNameTextField.backgroundColor = UIColor.whiteColor()
         passwdTextField.backgroundColor = UIColor.whiteColor()
@@ -146,6 +147,20 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         safetyCodeBtn.setTitle(L10n.SignUpSendSafetyCode.string, forState: .Normal)
         backSignInBtn.setTitleColor(UIColor(named: .SignInForgotPwdBtnText), forState: .Normal)
         backSignInBtn.titleLabel!.font = UIFont.systemFontOfSize(14)
+        
+    }
+    
+    /**
+     协议跳转
+     */
+    
+    func protocolBtnDown()  {
+        
+        let targetVC = WebViewController()
+        
+        targetVC.dataSource = RegisterProtoclWeb()
+        
+        self.pushVC(targetVC)
         
     }
     
@@ -533,18 +548,18 @@ extension AccountManagerViewController {
         
         let newString = textField.text! + string
         
-//        if newString.length > 4 {
-//            textField.text = newString[0...3]
-//            return false
-//        }
+        if newString.length > 6 {
+            textField.text = newString[0...5]
+            return false
+        }
         
-//        if dataSource?.itemRightTitle == L10n.SignUpPhoneRightItemBtn.string {
-//            
-//            guard let _ = newString.toInt() else {
-//                return false
-//            }
-//            
-//        }
+        if dataSource?.itemRightTitle == L10n.SignUpPhoneRightItemBtn.string {
+            
+            guard let _ = newString.toInt() else {
+                return false
+            }
+            
+        }
         
         return true
         

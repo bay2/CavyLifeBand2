@@ -44,7 +44,7 @@
 
 
 // 首页
-"MainPage.SignInBtn"       = "登入";
+"MainPage.SignInBtn"       = "登录";
 "MainPage.SignUpBtn"       = "加入豚鼠";
 
 // 登录页面

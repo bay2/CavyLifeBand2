@@ -65,7 +65,7 @@ enum L10n {
   case UserModuleErrorCodePhoneNumListNil
   /// 图片转换失败
   case UserModuleErrorCodeImageParseFail
-  /// 登入
+  /// 登录
   case MainPageSignInBtn
   /// 加入豚鼠
   case MainPageSignUpBtn

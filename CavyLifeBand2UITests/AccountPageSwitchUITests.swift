@@ -42,7 +42,7 @@ class AccountPageSwitchUITests: XCTestCase {
     }
     
     /**
-     登入
+     登录
      */
     func testLoginCavy() {
         
@@ -51,7 +51,7 @@ class AccountPageSwitchUITests: XCTestCase {
             
             
             let app = XCUIApplication()
-            app.buttons["登入"].tap()
+            app.buttons["登录"].tap()
             let backbtnButton = app.buttons["backbtn"]
             
             XCTAssert(backbtnButton.exists)

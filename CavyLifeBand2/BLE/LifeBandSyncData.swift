@@ -188,7 +188,10 @@ class LifeBandSyncData {
                 NSThread.sleepForTimeInterval(1)
             }
             
+            var i: Int = 0
             LifeBandBle.shareInterface.installCmd(0xDA) { [unowned self] data in
+                
+                Log.info("同步\(i += 1)")
                 
                 Log.info("syncDataFormBand ---- \(data)")
                 

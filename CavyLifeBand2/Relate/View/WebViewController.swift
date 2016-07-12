@@ -81,6 +81,7 @@ class WebViewController: UIViewController, BaseViewControllerPresenter {
         }
         
         webView.delegate = self
+        webView.scalesPageToFit = true
         
         let webUrl = NSURL.init(string: dataSource?.webUrlStr ?? "")
         let webRequeat = NSURLRequest.init(URL: webUrl!)
