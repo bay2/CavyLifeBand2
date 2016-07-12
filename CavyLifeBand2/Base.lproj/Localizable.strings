@@ -373,6 +373,9 @@
 "Home.Refresh.Idle"       = "下拉同步数据...";
 "Home.Refresh.Pulling"    = "松开同步数据...";
 "Home.Refresh.Refreshing" = "  正在同步数据...";
+"Home.Refresh.AlertTitle" = "同步数据失败";
+"Home.Refresh.faildDes"   = "请您绑定手环，重新同步数据";
+
 
 // 弹窗相关
 "Alert.SureAction.Title"     = "确认";

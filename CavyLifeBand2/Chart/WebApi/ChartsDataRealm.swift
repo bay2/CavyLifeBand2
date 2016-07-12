@@ -131,19 +131,19 @@ extension ChartsRealmProtocol {
      */
     func isNeedUpdateStepData() -> Bool {
         
-        let list = realm.objects(ChartStepDataRealm)
+        let list = realm.objects(NChartStepDataRealm)
         
         if list.count == 0 {
             return true
         }
         
-        let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+        let personalList = realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
         
         if personalList.count == 0 {
             return true
         }
         
-        let totalMinutes = (NSDate().gregorian.beginningOfDay.date - personalList.last!.time).totalMinutes
+        let totalMinutes = (NSDate().gregorian.beginningOfDay.date - personalList.last!.date).totalMinutes
         Log.info(totalMinutes)
         
         if totalMinutes > 10 {

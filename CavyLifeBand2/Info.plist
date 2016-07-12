@@ -80,8 +80,8 @@
 	<string></string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>bluetooth-peripheral</string>
 		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
 		<string>fetch</string>
 		<string>remote-notification</string>
 		<string>voip</string>

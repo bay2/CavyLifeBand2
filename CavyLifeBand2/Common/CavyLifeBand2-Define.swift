@@ -199,8 +199,9 @@ protocol LoginStorage {
 extension NSUserDefaults: LoginStorage { }
 
 // MARK: - 手环绑定信息存储 KeyChain
+
 /**
- *  手环绑定信息
+ *  手环绑定信息  每个user 只会绑定一个MACAddress
  */
 struct BindBandInfo {
     
