@@ -562,7 +562,7 @@ enum UserNetRequestMethod: String {
 
 // MARK: - Web Api 方法定义
 enum WebApiMethod: CustomStringConvertible {
-    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar
 
     var description: String {
         
@@ -585,6 +585,24 @@ enum WebApiMethod: CustomStringConvertible {
             return CavyDefine.webServerAddr + "emergency/contacts"
         case .Emergency:
             return CavyDefine.webServerAddr + "emergency"
+        case .SignUpEmailCode:
+            return CavyDefine.webServerAddr + "signup/email/verify_code"
+        case .SignUpPhoneCode:
+            return CavyDefine.webServerAddr + "signup/phone/verify_code"
+        case .ResetPwdEmailCode:
+            return CavyDefine.webServerAddr + "reset_password/email/verify_code"
+        case .ResetPwdPhoneCode:
+            return CavyDefine.webServerAddr + "reset_password/phone/verify_code"
+        case .ResetPwdEmail:
+            return CavyDefine.webServerAddr + "reset_password/email"
+        case .ResetPwdPhone:
+            return CavyDefine.webServerAddr + "reset_password/phone"
+        case .SignUpEmail:
+            return CavyDefine.webServerAddr + "signup/email"
+        case .SignUpPhone:
+            return CavyDefine.webServerAddr + "signup/phone"
+        case .UploadAvatar:
+            return CavyDefine.webServerAddr + "avatar"
         }
         
     }
@@ -627,6 +645,9 @@ enum NetRequsetKey: String {
     case AuthToken          = "auth-token"
     case Language           = "language"
     case PhoneType          = "phoneType"
+    case Email              = "email"
+    case Code               = "code"
+    case Base64Data         = "base64Data"
 }
 
 
@@ -635,22 +656,44 @@ enum NetRequsetKey: String {
 
 enum RequestApiCode: Int {
     
-    case Success            = 1000
-    case UukownError        = 1100
-    case IncorrectParameter = 1102
-    case LostAccountField   = 1200
-    case LostPasswordField  = 1201
-    case AccountNotExist    = 1202
-    case LoginFailed        = 1203
-    case LogoutFailed       = 1204
-    case InvalidToken       = 1205
-    case NetError           = 9999
+    case Success             = 1000
+    case UukownError         = 1100
+    case IncorrectParameter  = 1102
+    case LostAccountField    = 1200
+    case LostPasswordField   = 1201
+    case AccountNotExist     = 1202
+    case LoginFailed         = 1203
+    case LogoutFailed        = 1204
+    case InvalidToken        = 1205
+    case AccountAlreadyExist = 1206
+    case ImageParseFail      = 9998
+    case NetError            = 9999
     
     init(apiCode: Int) {
         
         switch apiCode {
         case 1000:
             self = RequestApiCode.Success
+        case 1100:
+            self = RequestApiCode.UukownError
+        case 1102:
+            self = RequestApiCode.IncorrectParameter
+        case 1200:
+            self = RequestApiCode.LostAccountField
+        case 1201:
+            self = RequestApiCode.LostPasswordField
+        case 1202:
+            self = RequestApiCode.AccountNotExist
+        case 1203:
+            self = RequestApiCode.LoginFailed
+        case 1204:
+            self = RequestApiCode.LogoutFailed
+        case 1205:
+            self = RequestApiCode.InvalidToken
+        case 1206:
+            self = RequestApiCode.AccountAlreadyExist
+        case 9998:
+            self = RequestApiCode.ImageParseFail
         case 9999:
             self = RequestApiCode.NetError
         default:
@@ -668,6 +711,8 @@ extension RequestApiCode: CustomStringConvertible {
         switch self {
         case .Success:
             return ""
+        case .ImageParseFail:
+            return L10n.UserModuleErrorCodeNetError.string
         case .NetError:
             return L10n.UserModuleErrorCodeNetError.string
         default:

@@ -40,6 +40,7 @@
 "UserModuleErrorCode.ParaError"       = "参数有误";
 "UserModuleErrorCode.LBSNil"          = "LBS不能为空";
 "UserModuleErrorCode.PhoneNumListNil" = "电话号码列表不能为空";
+"UserModuleErrorCode.ImageParseFail"  = "图片转换失败";
 
 
 // 首页
@@ -155,7 +156,7 @@
 "Home.LifeList.Title.Related"          = "APP推荐";
 "Home.RightList.Title.Camera"          = "遥控相机";
 "Home.RightList.Title.Notification"    = "来电提醒";
-"Home.RightList.Title.AlarmClock"      = "智能闹钟";
+"Home.RightList.Title.AlarmClock"      = "手环闹钟";
 "Home.RightList.Title.Security"        = "紧急求救";
 "Home.RightList.Title.FirmwareUpgrade" = "固件升级";
 "Home.RightList.Title.BindingBand"     = "绑定新的CavyBand";
@@ -234,6 +235,8 @@
 "Contacts.Request.SureButton"          = "确定";
 "Contacts.EmptyView.NearbyInfo"        = "附近暂时未搜索到";
 "Contacts.EmptyView.AddressBookInfo"   = "手机通讯录中的好友中\n还没加入豚鼠";
+"Contacts.ChangeNickName.NavTitle"     = "昵称";
+"Contacts.ChangeAddress.NavTitle"      = "地址";
 
 //账户信息
 "AccountInfo.Title"                      = "账户信息";
@@ -246,12 +249,12 @@
 
 //闹钟
 "AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";
-"AlarmClock.Title"                            = "智能闹钟";
+"AlarmClock.Title"                            = "手环闹钟";
 "AlarmClock.Awake.Title"                      = "智能唤醒";
 "AlarmClock.Awake.Description"                = "允许你闹钟在目标唤醒时间之前30分钟内将我从浅度睡眠中唤醒，让我更轻松的起床。";
 "AlarmClock.AlarmCircle.Title"                = "闹钟周期";
 "AlarmClock.AlarmCircle.SubTitle"             = "小提示";
-"AlarmClock.AlarmCircle.Description"          = "闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。";
+"AlarmClock.AlarmCircle.Description"          = "闹钟振动过程中，按一下手环按钮即可停止振动。";
 "AlarmClock.DeleteBtn.Title"                  = "删除";
 "AlarmClock.AlarmCircle.AlertTitle"           = "请选择闹钟周期";
 "AlarmClock.EmptyView.Title"                  = "未设置闹钟";
