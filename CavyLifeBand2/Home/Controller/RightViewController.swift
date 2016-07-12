@@ -19,12 +19,21 @@ class RightViewController: UIViewController {
     
     @IBOutlet weak var bandElectricView: BandElectricView!
     
+    @IBOutlet weak var bandElectricViewRightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var fwVersion: UILabel!
     @IBOutlet weak var bandName: UILabel!
     @IBOutlet weak var bandTitle: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        if UIDevice.isPhone5() || UIDevice.isPhone4() {
+            
+           bandElectricViewRightConstraint.constant = 20
+        }
+
         
         setTopViewLabel()
         
@@ -47,6 +56,8 @@ class RightViewController: UIViewController {
         
         
     }
+
+    
     
     func getBandElectric() {
         

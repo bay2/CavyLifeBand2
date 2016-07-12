@@ -63,7 +63,9 @@ enum L10n {
   case UserModuleErrorCodeLBSNil
   /// 电话号码列表不能为空
   case UserModuleErrorCodePhoneNumListNil
-  /// 登入
+  /// 图片转换失败
+  case UserModuleErrorCodeImageParseFail
+  /// 登录
   case MainPageSignInBtn
   /// 加入豚鼠
   case MainPageSignUpBtn
@@ -151,19 +153,19 @@ enum L10n {
   case GuideOpenBluetooth
   /// 手机蓝牙打开后才能成功连接手环
   case GuideOpenBluetoothInfo
-  /// 开启手环
+  /// 绑定手环
   case GuideOpenCavy
   /// 没有灯充电试试看
   case GuideOpenCavySugg
-  /// 按下手环按钮等待红灯亮起即打开手环
+  /// 请按下手环按钮，绑定手环
   case GuideOpenCavyInfo
   /// 正在连接...
   case GuideLinking
-  /// 配对成功
+  /// 绑定成功
   case GuidePairSuccess
   /// 开始健康之旅吧
   case GuidePairSuccessInfo
-  /// 无法配对
+  /// 绑定失败
   case GuidePairFail
   /// 确保手环有电，并且位于手机的连接范围
   case GuidePairFailInfo
@@ -255,17 +257,17 @@ enum L10n {
   case HomeLifeListTitleRelated
   /// 遥控相机
   case HomeRightListTitleCamera
-  /// 提醒
+  /// 来电提醒
   case HomeRightListTitleNotification
-  /// 智能闹钟
+  /// 手环闹钟
   case HomeRightListTitleAlarmClock
-  /// 安全
+  /// 紧急求救
   case HomeRightListTitleSecurity
   /// 固件升级
   case HomeRightListTitleFirmwareUpgrade
   /// 绑定新的CavyBand
   case HomeRightListTitleBindingBand
-  /// 我的CavyBand
+  /// 我的豚鼠手环Band
   case BandTitle
   /// 固件版本: 
   case BandFWVersion
@@ -401,6 +403,10 @@ enum L10n {
   case ContactsEmptyViewNearbyInfo
   /// 手机通讯录中的好友中\n还没加入豚鼠
   case ContactsEmptyViewAddressBookInfo
+  /// 昵称
+  case ContactsChangeNickNameNavTitle
+  /// 地址
+  case ContactsChangeAddressNavTitle
   /// 账户信息
   case AccountInfoTitle
   /// 退出登录
@@ -417,7 +423,7 @@ enum L10n {
   case AccountInfoAchieveViewNumPrefix
   /// 手环振动提醒 取消传统声音唤醒体系
   case AlarmClockIntelligentClockTableFooterInfo
-  /// 智能闹钟
+  /// 手环闹钟
   case AlarmClockTitle
   /// 智能唤醒
   case AlarmClockAwakeTitle
@@ -427,7 +433,7 @@ enum L10n {
   case AlarmClockAlarmCircleTitle
   /// 小提示
   case AlarmClockAlarmCircleSubTitle
-  /// 闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。
+  /// 闹钟振动过程中，按一下手环按钮即可停止振动。
   case AlarmClockAlarmCircleDescription
   /// 删除
   case AlarmClockDeleteBtnTitle
@@ -447,7 +453,7 @@ enum L10n {
   case AlarmClockCircleWeekendInfo
   /// 手环最多只能添加2个闹钟
   case AlarmClockAlarmClockCountError
-  /// 安全
+  /// 紧急求救
   case SettingSafetyTitle
   /// 点击添加
   case SettingSafetyTableCellContactButton
@@ -459,7 +465,7 @@ enum L10n {
   case SettingSafetyPhoneNumberCancel
   /// GPS定位
   case SettingSafetyTableCellGPSTitle
-  /// 紧急报警
+  /// 温馨提示
   case SettingSafetyTableFooterTitle
   /// 紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。
   case SettingSafetyTableFooterInfo
@@ -708,6 +714,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UserModuleErrorCode.LBSNil")
       case .UserModuleErrorCodePhoneNumListNil:
         return L10n.tr("UserModuleErrorCode.PhoneNumListNil")
+      case .UserModuleErrorCodeImageParseFail:
+        return L10n.tr("UserModuleErrorCode.ImageParseFail")
       case .MainPageSignInBtn:
         return L10n.tr("MainPage.SignInBtn")
       case .MainPageSignUpBtn:
@@ -1046,6 +1054,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.EmptyView.NearbyInfo")
       case .ContactsEmptyViewAddressBookInfo:
         return L10n.tr("Contacts.EmptyView.AddressBookInfo")
+      case .ContactsChangeNickNameNavTitle:
+        return L10n.tr("Contacts.ChangeNickName.NavTitle")
+      case .ContactsChangeAddressNavTitle:
+        return L10n.tr("Contacts.ChangeAddress.NavTitle")
       case .AccountInfoTitle:
         return L10n.tr("AccountInfo.Title")
       case .AccountInfoLoginoutButtonTitle:

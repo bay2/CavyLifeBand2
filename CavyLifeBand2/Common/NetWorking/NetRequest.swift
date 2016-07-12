@@ -99,16 +99,7 @@ extension NetRequest {
     
     func netPostRequest<T: JSONJoy where T: CommenResponseProtocol>(urlString: String, para: [String: AnyObject]? = nil, modelObject: T.Type, successHandler: ((T) -> Void)? = nil, failureHandler: FailureHandler? = nil) {
         
-        var parameters: [String: AnyObject] = ["phoneType": "ios", "language": UIDevice.deviceLanguage()]
-        
-        //发送API请求
-        if para != nil {
-            parameters = parameters.union(para!)
-        }
-        
-        Log.netRequestFormater(urlString, para: para)
-        
-        requestByAlamofire(.POST, urlString: urlString, parameters: parameters) { (result) in
+        requestByAlamofire(.POST, urlString: urlString, parameters: para) { (result) in
             
             guard result.isSuccess else {
                 
@@ -146,16 +137,7 @@ extension NetRequest {
     
     func netGetRequest<T: JSONJoy where T: CommenResponseProtocol>(urlString: String, para: [String: AnyObject]? = nil, modelObject: T.Type, successHandler: ((T) -> Void)? = nil, failureHandler: FailureHandler? = nil) {
         
-        var parameters: [String: AnyObject] = ["phoneType": "ios", "language": UIDevice.deviceLanguage()]
-        
-        //发送API请求
-        if para != nil {
-            parameters = parameters.union(para!)
-        }
-        
-        Log.netRequestFormater(urlString, para: parameters)
-        
-        requestByAlamofire(.GET, urlString: urlString, parameters: parameters) { (result) in
+        requestByAlamofire(.GET, urlString: urlString, parameters: para) { (result) in
             
             guard result.isSuccess else {
                 
@@ -170,7 +152,7 @@ extension NetRequest {
             do {
                 
                 let response = try CommenMsgResponse (JSONDecoder(result.value ?? ""))
-                
+                Log.info("\(result.value)")
                 guard response.commonMsg.code == RequestApiCode.Success.rawValue else {
                     failureHandler?(response.commonMsg)
                     return
@@ -196,7 +178,11 @@ extension NetRequest {
         
         let authToken: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken ?? ""
         
-        let request = Alamofire.request(method, urlString, encoding: method == .POST ? .JSON : .URL, parameters: parameters, headers: [UserNetRequsetKey.AuthToken.rawValue: authToken]).responseJSON { response -> Void in
+        let headers: [String: String] = [NetRequsetKey.PhoneType.rawValue: "ios",
+                                            NetRequsetKey.Language.rawValue: UIDevice.deviceLanguage(),
+                                            NetRequsetKey.AuthToken.rawValue: authToken]
+        
+        let request = Alamofire.request(method, urlString, encoding: method == .POST ? .JSON : .URL, parameters: parameters, headers: headers).responseJSON { response -> Void in
             
             if response.result.isFailure {
                 completionHandler?(.Failure(.NetErr))

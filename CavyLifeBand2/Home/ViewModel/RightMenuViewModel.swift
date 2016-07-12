@@ -73,64 +73,34 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
         // TODO 接口和手环版本格式改好后放开注释
         
         // 固件版本校验
-//        LifeBandCtrl.shareInterface.getLifeBandInfo {
-//            
-//            let fwVersion = $0.fwVersion
-//            
-//            do {
-        
-//                try FirmwareUpdateWebApi.shareApi.getVersion(fwVersion.toString) { result in
-//                    
-//                    guard result.isSuccess else {
-//                        UpdateProgressView.hide()
-//                        CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
-//                        return
-//                    }
-//                    
-//                    let resultMsg = try! FirmwareUpdateResponse(JSONDecoder(result.value!))
-//                    
-//                    guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-//                        UpdateProgressView.hide()
-//                        CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.commonMsg?.code ?? "")
-//                        return
-//                    }
-//                    
-//                    guard let versionList = resultMsg.versionList else {
-//                        UpdateProgressView.hide()
-//                        CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareIsNewVersionAlertMsg.string)
-//                        return
-//                    }
-//                    
-//                    guard versionList.count > 0 else {
-//                        UpdateProgressView.hide()
-//                        CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareIsNewVersionAlertMsg.string)
-//                        return
-//                    }
-//                    
-//                    let localIsLast = fwVersion.toString.compare(versionList[0].version, options: .NumericSearch, range: nil, locale: nil) == .OrderedDescending
-//                    
-//                    guard localIsLast == false else {
-//                        UpdateProgressView.hide()
-//                        CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareIsNewVersionAlertMsg.string)
-//                        return
-//                    
-//                    }
-                
-//                    self.downloadAndUpdateFW(versionList[0].url, updateView: updateView)
-                
-                self.downloadAndUpdateFW("", updateView: updateView)
-                
-//                }
-                
-//            } catch let error {
-//                
-//                CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
-//                return
-//                
-//            }
+        LifeBandCtrl.shareInterface.getLifeBandInfo { bandInfo in
             
-//        }
-        
+//            self.downloadAndUpdateFW(testFile31, updateView: updateView)
+            
+            let fwVersion = bandInfo.fwVersion
+            let hwVersion = bandInfo.hwVersion
+            
+            let localVersion = "\(hwVersion)" + "." + "\(fwVersion)"
+            
+            NetWebApi.shareApi.netGetRequest(WebApiMethod.Firmware.description, modelObject: FirmwareUpdateResponse.self, successHandler: { (data) in
+                let localIsLast = localVersion.compare(data.data.version, options: .NumericSearch, range: nil, locale: nil) == .OrderedDescending
+                
+                guard localIsLast == false else {
+                    UpdateProgressView.hide()
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareIsNewVersionAlertMsg.string)
+                    return
+                    
+                }
+                
+                self.downloadAndUpdateFW(data.data.url, updateView: updateView)
+                
+            }) { (msg) in
+                UpdateProgressView.hide()
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
+            }
+            
+        }
+  
     }
     
     /**
@@ -141,7 +111,7 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
     func downloadAndUpdateFW(downLoadUrl: String, updateView: UpdateProgressView) {
         
         // TODO 改成传来的url
-        self.downloadFirmware(testFile31) {
+        self.downloadFirmware(downLoadUrl) {
             
             LifeBandBle.shareInterface.updateFirmware($0) {
                 
@@ -364,8 +334,8 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
 struct AppAboutMenuGroupDataModel: MenuGroupDataSource {
     
     var items: [MenuProtocol] = []
-    var sectionView: UIView = LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 10))
-    var sectionHeight: CGFloat = 10
+    var sectionView: UIView = UIView() // LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 10))
+    var sectionHeight: CGFloat = 0 // 10
     var titleColor = UIColor.whiteColor()
     
     init() {

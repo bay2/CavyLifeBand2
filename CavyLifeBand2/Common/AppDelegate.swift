@@ -51,6 +51,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         setRootViewController()
         crashConfig()
         
+        Log.theme = Theme(
+            trace:   "#C5C8C6",
+            debug:   "#81A2BE",
+            info:    "#B5BD68",
+            warning: "#F0C674",
+            error:   "#CC6666"
+        )
+        
+        
         return true
 
     }

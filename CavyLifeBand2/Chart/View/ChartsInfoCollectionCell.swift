@@ -85,9 +85,8 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
 
         if viewStyle == .SleepChart && timeBucketStyle == .Day {
             
-            
             let sleepInfo = querySleepNumber(time.beginTime, endTime: time.endTime)
-            
+                        
             listDataArray = infoViewSleepListArray(sleepInfo)
             
             let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: sleepInfo.first!.deepSleep, lightSleep: sleepInfo.first!.lightSleep)
@@ -171,7 +170,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             return ["0", "0", "0", "0\(L10n.HomeSleepRingUnitMinute.string)"]
         }
         
-        var stepTargetNumber = userInfo.stepNum
+        var stepTargetNumber = userInfo.stepGoal
         
         if stepTargetNumber == 0 {
             stepTargetNumber = 8000
@@ -218,78 +217,62 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             return ["0\(L10n.HomeSleepRingUnitMinute.string)", "0\(L10n.HomeSleepRingUnitMinute.string)", "0%"]
         }
         
-        var sleepTarge = userInfo.sleepTime
-        
-        if sleepTarge == "" {
+        var sleepTarge = userInfo.sleepGoal
+
+        if sleepTarge == 0 {
             
-            sleepTarge = "8:30"
+            sleepTarge = 500
             
         }
+        // 有数据的天数
+        var avgIndex = 0
         
-        let array = sleepTarge.componentsSeparatedByString(":")
+        var deepSleep: Int  = 0
+        var lightSleep: Int = 0
         
-        guard array.count == 2 else {
+        for perData in sleepInfo {
             
-            return resultArray
+            deepSleep += perData.deepSleep
+            lightSleep += perData.lightSleep
+            if (perData.deepSleep + perData.lightSleep) != 0 {
+                avgIndex += 1
+            }
+            
         }
-        
-        let targetMinutes = array[0].toInt()! * 60 + array[1].toInt()!
-        
-        let  sleepNumber = 0
+        if avgIndex == 0 { avgIndex = 1 }
+
+        let sleepCur = deepSleep + lightSleep
         
         // 60% 格式 所以 * 100
-        if targetMinutes != 0 {
-            
-            switch timeBucketStyle {
-                
-            case .Day:
-                percent = sleepNumber / targetMinutes * 100
-                
-            case .Week:
-                
-                percent = sleepNumber / targetMinutes * 7 * 100
-                
-            case .Month:
-                
-                let currentDay = timeString.componentsSeparatedByString(".")
-                let days = NSDate().daysCount(currentDay[0].toInt()!, month: currentDay[1].toInt()!)
-                percent = sleepNumber / targetMinutes * days * 100
-                
-            }
+        if sleepTarge != 0 && timeBucketStyle == .Day {
+    
+            percent = sleepCur * 100 / sleepTarge
+   
         }
         
         if percent > 100 {
             percent = 100
         }
         
-        var deepSleep: Int  = 0
-        var lightSleep: Int = 0
-
-        for perData in sleepInfo {
-            
-            deepSleep += perData.deepSleep
-            lightSleep += perData.lightSleep
-            
-        }
-       
-        resultArray.append("\(lightSleep / 6)\(L10n.HomeSleepRingUnitHour.string)\(lightSleep % 6)\(L10n.HomeSleepRingUnitMinute.string)")
-        resultArray.append("\(deepSleep / 6)\(L10n.HomeSleepRingUnitHour.string)\(deepSleep % 6)\(L10n.HomeSleepRingUnitMinute.string)")
+        resultArray.append("\(lightSleep / 60)\(L10n.HomeSleepRingUnitHour.string)\(lightSleep % 60)\(L10n.HomeSleepRingUnitMinute.string)")
+        resultArray.append("\(deepSleep / 60)\(L10n.HomeSleepRingUnitHour.string)\(deepSleep % 60)\(L10n.HomeSleepRingUnitMinute.string)")
         
         // 日:完成度 周&月:日均步数
         switch timeBucketStyle {
+            
         case .Day:
             
             resultArray.append("\(percent)%")
             
         case .Week, .Month:
             
-            let avgSleepTime = deepSleep + lightSleep / 30
+            let avgSleepTime = sleepCur / avgIndex
 
-            resultArray.append("\(avgSleepTime / 6)\(L10n.HomeSleepRingUnitHour.string)\(avgSleepTime % 6)\(L10n.HomeSleepRingUnitMinute.string)")
+            resultArray.append("\(avgSleepTime / 60)\(L10n.HomeSleepRingUnitHour.string)\(avgSleepTime % 60)\(L10n.HomeSleepRingUnitMinute.string)")
             
+
         }
-
-
+        
         return resultArray
     }
 

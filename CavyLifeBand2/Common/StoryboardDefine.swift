@@ -74,9 +74,9 @@ struct StoryboardScene {
       return StoryboardScene.Camera.CustomCameraViewScene.viewController() as! CustomCamera
     }
 
-    case PhotoAlbumViewScene = "PhotoAlbumView"
-    static func instantiatePhotoAlbumView() -> PhotoAlbum {
-      return StoryboardScene.Camera.PhotoAlbumViewScene.viewController() as! PhotoAlbum
+    case PhotoViewScene = "PhotoView"
+    static func instantiatePhotoView() -> PhotoView {
+      return StoryboardScene.Camera.PhotoViewScene.viewController() as! PhotoView
     }
   }
   enum Contacts: String, StoryboardSceneType {

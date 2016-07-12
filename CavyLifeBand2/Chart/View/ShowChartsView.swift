@@ -26,6 +26,9 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     // 左上角显示最大值
     var maxValue: Int = 3
     
+    /// 透明视图 负责显示柱状图的数值
+    var clearView = UIView()
+    
     /**
      配置所有视图 主入口
      */
@@ -67,7 +70,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         leftAxis.enabled = false // Y轴方向右边 不放轴
         
         delegate = self
-        highlightPerTapEnabled = true // 点击时是否高亮
+        highlightPerTapEnabled = false // 点击时是否高亮
                 if timeBucketStyle != .Month {
             
             dragEnabled = false // 是否可以拖拽
@@ -201,6 +204,18 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
 
     }
     
+    func addClearView() {
+        
+        clearView.backgroundColor = UIColor.lightGrayColor()
+        clearView.alpha = 0.2
+        self.addSubview(clearView)
+        clearView.snp_makeConstraints { make in
+            make.left.right.top.bottom.equalTo(self)
+            
+        }
+
+    }
+    
     // MARK: -- ChartViewDelegate
     /**
      点击事件
@@ -215,21 +230,45 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
             totalStep += data.step
         }
         
-        if totalStep != 0 {
-            chartView.data?.setDrawValues(true)
+//        if totalStep != 0 {
+//            chartView.data?.setDrawValues(true)
             
-            chartView.setNeedsDisplay()
-        }
+//            chartView.setNeedsDisplay()
+//        }
         
     }
     
     func chartValueNothingSelected(chartView: ChartViewBase) {
         
-        chartView.data?.setDrawValues(false)
+//        chartView.data?.setDrawValues(false)
         
-        chartView.setNeedsDisplay()
+//        chartView.setNeedsDisplay()
 
     }
+    
+    /**
+     单独显示某一根柱状图的数据
+     
+     - parameter index: 第几根柱状图
+     - parameter value: 其数值
+     */
+    func addChartDataEntryValue(index: Int, value: Int) {
+        
+        let label = UILabel()
+        label.textColor = UIColor.whiteColor()
+        label.snp_makeConstraints { (make) in
+            make.top.equalTo(0)
+            make.left.equalTo(0)
+            
+        }
+        
+        
+        
+        
+        
+    }
+    
+    
     
    
     

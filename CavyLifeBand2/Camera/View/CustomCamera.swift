@@ -52,6 +52,12 @@ class CustomCamera: UIViewController {
         
         super.viewWillAppear(animated)
         
+        if isPhotoOrVideo {
+            
+            self.shutterPhoto.setImage(UIImage(asset: .CameraTakePhoto), forState: .Normal)
+
+        }
+        
         getLastPhoto()         // show lastImage
         
         camera.start()         // start Camera
@@ -71,7 +77,15 @@ class CustomCamera: UIViewController {
         cameraAllViewLayout()
         
     }
-
+    
+    // 离开这个页面时候
+    override func viewDidDisappear(animated: Bool) {
+        
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        
+    }
+    
     // 全部控件布局
     func cameraAllViewLayout() {
         
@@ -239,18 +253,19 @@ class CustomCamera: UIViewController {
         
         Log.info("停止录像")
         
-        self.camera.recording = false
-        
-        // 停止计时器 时间归零
-        timer.invalidate()
-        timerCount = 0
-        
         self.flashSwitch.hidden = false
         self.shotCutSwitch.hidden = false
         self.changeToPhoto.hidden = false
         self.changeToVideo.hidden = false
         self.lastImage.hidden = false
         self.videRecordTime.hidden = true
+        
+        // 停止计时器 时间归零
+        timerCount = 0
+        timer.invalidate()
+        
+        self.camera.recording = false
+        
         
         self.shutterPhoto.setImage(UIImage(asset: .CameraVideoWait), forState: .Normal)
         
@@ -267,6 +282,8 @@ class CustomCamera: UIViewController {
         // 停止计时器 时间归零
         timer.invalidate()
         timerCount = 0
+        
+        timerRun()
         
         self.flashSwitch.hidden = false
         self.shotCutSwitch.hidden = false
@@ -285,12 +302,26 @@ class CustomCamera: UIViewController {
     func videoBeginRunTimer() {
         
         Log.info("录像开始计时")
+        timer.invalidate()
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(CustomCamera.timerRun(_:)), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(CustomCamera.timerRun), userInfo: nil, repeats: true)
         
     }
     
-    func timerRun(timer: NSTimer) {
+    func timerRun() {
+        
+        // 如果当前是非录像状态
+        if self.camera.recording == false {
+            
+            self.flashSwitch.hidden = false
+            self.shotCutSwitch.hidden = false
+            self.changeToPhoto.hidden = false
+            self.changeToVideo.hidden = false
+            self.lastImage.hidden = false
+            self.videRecordTime.hidden = true
+            
+            return
+        }
         
         timerCount += 1
         Log.info(timerCount)
@@ -412,16 +443,27 @@ class CustomCamera: UIViewController {
     @IBAction func goPhotoAlbum(sender: AnyObject) {
         
         // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult
-        let fetchOptions = PHFetchOptions()        
+        let fetchOptions = PHFetchOptions()
         let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
         
-        let photoVC = StoryboardScene.Camera.instantiatePhotoAlbumView()
-
-        photoVC.totalCount = fetchResults.count
-        photoVC.currentCount = fetchResults.count
-        photoVC.loadIndex = fetchResults.count - 10 < 0 ? 0 : fetchResults.count - 10
+        let photoView = StoryboardScene.Camera.instantiatePhotoView()
         
-        self.presentVC(photoVC)
+        photoView.totalCount = fetchResults.count
+        photoView.currentCount = fetchResults.count
+        
+        self.presentVC(photoView)
+        
+//        // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult
+//        let fetchOptions = PHFetchOptions()        
+//        let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
+//        
+//        let photoVC = StoryboardScene.Camera.instantiatePhotoAlbumView()
+//
+//        photoVC.totalCount = fetchResults.count
+//        photoVC.currentCount = fetchResults.count
+//        photoVC.loadIndex = fetchResults.count - 10 < 0 ? 0 : fetchResults.count - 10
+//        
+//        self.presentVC(photoVC)
 
     }
     

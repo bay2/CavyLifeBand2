@@ -14,13 +14,12 @@ import EZSwiftExtensions
 import RealmSwift
 import MJRefresh
 
-
 let dateViewHeight: CGFloat = 50.0
 // 大环是 0.55 大环顶部距离NavBar高度是 96
 let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
 let navBarHeight: CGFloat = 64.0
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, SinglePKRealmModelOperateDelegate {
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate, ChartStepRealmProtocol, QueryUserInfoRequestsDelegate {
     
     var leftBtn: UIButton? = {
         
@@ -236,7 +235,182 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         self.navigationController?.pushViewController(viewController, animated: false)
         
     }
-   
+
+    
+    // MARK: 解析数据 保存数据库
+    
+    /**
+     解析 计步睡眠数据 并保存Realm 每次请求前前先删除最后一条数据 在获取时间同步
+     */
+    func parseChartListData() {
+        
+
+        // MARK: 睡眠相关
+        SleepWebApi.shareApi.fetchSleepWebData()
+        
+        // MARK: 计步相关
+        var startDate = ""
+        var endDate = ""
+        
+        if isNeedUpdateStepData() {
+            
+            let personalList = realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
+            
+            if personalList.count != 0 {
+                
+                startDate = personalList.last!.date.toString(format: "yyyy-MM-dd HH:mm:ss")
+                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
+                
+            } else {
+                // 如果查询不到数据 则 使用注册日期开始请求
+                guard let startTime = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first?.signUpDate else {
+                    return
+                }
+                
+                startDate = startTime.toString(format: "yyyy-MM-dd HH:mm:ss")
+                
+            }
+            
+            parseStepDate(startDate, endDate: endDate)
+            
+        }
+        
+    }
+    
+      /**
+     解析计步数据
+     时间格式： yyyy-MM-dd
+     有时间：更新数据
+     没有时间：解析全部数据
+     */
+    func parseStepDate(startDate: String, endDate: String) {
+
+        
+     let  parameters: [String: AnyObject] = ["start_date": startDate, "end_date": endDate]
+//         let  parameters: [String: AnyObject] = ["start_date": "2016-6-5", "end_date": "2016-7-4"]
+        NetWebApi.shareApi.netGetRequest(WebApiMethod.Steps.description, para: parameters, modelObject: NChartStepData.self, successHandler: { result  in
+ 
+            //服务器数据获取成功判断数据库最后一条数据时间是否是当天 如果是当天就删除之后再开始添加新数据
+            
+            let today = NSDate(fromString: endDate, format: "yyyy-MM-dd")?.gregorian.isToday
+            
+            //如果传入的时间是当天 则查询是否有当天的数据然后删除
+            
+            if today == true {
+                
+              self.deleteStepDataWithDate(endDate)
+                
+            }
+            
+            
+            for list in result.stepsData.stepsData {
+               
+                self.addNStepListRealm(list)
+            }
+            
+            }) {   Msg in
+                
+                
+             Log.info(Msg)
+             Log.error("Parse Home Lists Data Error")
+        }
+    }
+    
+    /**
+     解析睡眠数据
+     时间格式： yyyy-MM-dd
+     有时间：更新数据
+     没有时间：解析全部数据
+     */
+    func parseSleepDate(startDate: String, endDate: String) {
+
+        ChartsWebApi.shareApi.parseSleepChartsData(startDate, endDate: endDate) { result in
+            
+            guard result.isSuccess else {
+                Log.error("Parse Home Lists Data Error")
+                return
+            }
+            do {
+                Log.info(result.value!)
+                let netResult = try ChartSleepMsg(JSONDecoder(result.value!))
+                for list in netResult.sleepList {
+                    
+                    Log.info(list)
+                    // 保存到数据库
+                    self.addSleepListRealm(list)
+                }
+                
+            } catch let error {
+                Log.error("\(#function) result error: \(error)")
+            }
+            
+        }
+
+    }
+    
+      /**
+     添加计步信息
+     
+     - author: sim cai
+     - date: 16-05-27 10:05:27
+     
+     
+     - parameter list: 计步信息JSON
+     */
+    func addStepListRealm(list: StepMsg) {
+    
+        guard let date = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
+            return
+        }
+        
+        self.addStepData(ChartStepDataRealm(userId: self.userId, time: date, step: list.stepCount))
+
+    }
+    
+    //  从服务器获取数据存入表
+    
+    func addNStepListRealm(list: StepsDataItem) {
+        
+        let stepList = List<StepListItem> ()
+        
+        for item in list.hours {
+         
+            let  stepItem = StepListItem(step: item.steps)
+            
+            stepList.append(stepItem)
+        }
+        
+    
+        self.addStepData(NChartStepDataRealm(userId: self.userId, date: list.date!, totalTime: list.totalTime, totalStep: list.totalSteps, stepList: stepList))
+        
+    }
+    
+    
+    
+    func deleteStepDataWithDate(searchDate: String) {
+        
+       
+        guard let time = NSDate(fromString: searchDate, format: "yyyy-MM-dd") else {
+            Log.error("Time from erro [\(searchDate)]")
+            return
+        }
+        
+        self.delecNSteptDate(time, endTime: time)
+        
+    }
+    
+    
+    func addSleepListRealm(list: SleepMsg) {
+        
+        guard let time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
+            Log.error("Time from erro [\(list.dateTime)]")
+            return
+        }
+        
+        self.addSleepData(ChartSleepDataRealm(userId: self.userId, time: time, tilts: list.rollCount))
+
+    }
+    
     // MARK: 加载详情
     /**
      显示计步页面
@@ -302,7 +476,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 
         let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
         
-        achieveView?.configWithAchieveIndex((notification.object as? Int) ?? 0)
+        // TODO 数据结构有变
+        achieveView?.configWithAchieveIndexForUser()
 
         maskView.addSubview(achieveView!)
 
@@ -314,6 +489,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         })
         
         UIApplication.sharedApplication().keyWindow?.addSubview(maskView)
+        
+        queryUserInfoByNet() { resultUserInfo in
+            
+            achieveView?.configWithAchieveIndexForUser()
+            
+        }
         
     }
     
