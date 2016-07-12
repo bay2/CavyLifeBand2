@@ -63,7 +63,9 @@ enum L10n {
   case UserModuleErrorCodeLBSNil
   /// 电话号码列表不能为空
   case UserModuleErrorCodePhoneNumListNil
-  /// 登入
+  /// 图片转换失败
+  case UserModuleErrorCodeImageParseFail
+  /// 登录
   case MainPageSignInBtn
   /// 加入豚鼠
   case MainPageSignUpBtn
@@ -257,7 +259,7 @@ enum L10n {
   case HomeRightListTitleCamera
   /// 来电提醒
   case HomeRightListTitleNotification
-  /// 智能闹钟
+  /// 手环闹钟
   case HomeRightListTitleAlarmClock
   /// 紧急求救
   case HomeRightListTitleSecurity
@@ -401,6 +403,10 @@ enum L10n {
   case ContactsEmptyViewNearbyInfo
   /// 手机通讯录中的好友中\n还没加入豚鼠
   case ContactsEmptyViewAddressBookInfo
+  /// 昵称
+  case ContactsChangeNickNameNavTitle
+  /// 地址
+  case ContactsChangeAddressNavTitle
   /// 账户信息
   case AccountInfoTitle
   /// 退出登录
@@ -417,7 +423,7 @@ enum L10n {
   case AccountInfoAchieveViewNumPrefix
   /// 手环振动提醒 取消传统声音唤醒体系
   case AlarmClockIntelligentClockTableFooterInfo
-  /// 智能闹钟
+  /// 手环闹钟
   case AlarmClockTitle
   /// 智能唤醒
   case AlarmClockAwakeTitle
@@ -427,7 +433,7 @@ enum L10n {
   case AlarmClockAlarmCircleTitle
   /// 小提示
   case AlarmClockAlarmCircleSubTitle
-  /// 闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。
+  /// 闹钟振动过程中，按一下手环按钮即可停止振动。
   case AlarmClockAlarmCircleDescription
   /// 删除
   case AlarmClockDeleteBtnTitle
@@ -708,6 +714,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UserModuleErrorCode.LBSNil")
       case .UserModuleErrorCodePhoneNumListNil:
         return L10n.tr("UserModuleErrorCode.PhoneNumListNil")
+      case .UserModuleErrorCodeImageParseFail:
+        return L10n.tr("UserModuleErrorCode.ImageParseFail")
       case .MainPageSignInBtn:
         return L10n.tr("MainPage.SignInBtn")
       case .MainPageSignUpBtn:
@@ -1046,6 +1054,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.EmptyView.NearbyInfo")
       case .ContactsEmptyViewAddressBookInfo:
         return L10n.tr("Contacts.EmptyView.AddressBookInfo")
+      case .ContactsChangeNickNameNavTitle:
+        return L10n.tr("Contacts.ChangeNickName.NavTitle")
+      case .ContactsChangeAddressNavTitle:
+        return L10n.tr("Contacts.ChangeAddress.NavTitle")
       case .AccountInfoTitle:
         return L10n.tr("AccountInfo.Title")
       case .AccountInfoLoginoutButtonTitle:

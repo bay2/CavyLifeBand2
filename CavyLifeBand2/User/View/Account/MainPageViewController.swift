@@ -22,7 +22,7 @@ class MainPageViewController: UIViewController {
     // 注册按钮
     var signInBtn = MainPageButton()
     
-    // 登入按钮
+    // 登录按钮
     var signUpBtn = MainPageButton()
     
     // 按钮大小

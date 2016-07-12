@@ -163,7 +163,7 @@
                                 <rect key="frame" x="0.0" y="87" width="600" height="264"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2tG-rC-pbI" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="88"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="87"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -178,7 +178,7 @@
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKq-lp-KHa" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="89" width="463" height="87"/>
+                                        <rect key="frame" x="0.0" y="88" width="463" height="88"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                         <connections>
@@ -194,7 +194,10 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9r-xP-wKb" customClass="SendSafetyCodeButton" customModule="CavyLifeBand2" customModuleProvider="target">
-                                        <rect key="frame" x="464" y="88" width="136" height="87"/>
+                                        <rect key="frame" x="464" y="88" width="136" height="88"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="136" id="Xkx-KX-A2h"/>
+                                        </constraints>
                                         <state key="normal" title="发送验证码">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -202,24 +205,15 @@
                                             <action selector="onClickSendSafetyCode:" destination="Qo9-lx-23e" eventType="touchUpInside" id="gGg-6x-YQY"/>
                                         </connections>
                                     </button>
-                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QK5-an-TCA">
-                                        <rect key="frame" x="464" y="88" width="136" height="87"/>
-                                        <accessibility key="accessibilityConfiguration" label="EmailSafetyCode">
-                                            <bool key="isElement" value="NO"/>
-                                        </accessibility>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="136" placeholder="YES" id="haZ-NK-6m6"/>
-                                        </constraints>
-                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bo0-h3-Jst" userLabel="line">
-                                        <rect key="frame" x="0.0" y="175" width="600" height="1"/>
+                                        <rect key="frame" x="0.0" y="176" width="600" height="1"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.19942989864864866" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="0.29999999999999999" id="ekG-Dh-aw5"/>
                                         </constraints>
                                     </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cdp-ez-pgc" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="176" width="600" height="88"/>
+                                        <rect key="frame" x="0.0" y="177" width="600" height="87"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                         <connections>
@@ -233,9 +227,8 @@
                                     <constraint firstItem="yKA-bu-4Od" firstAttribute="top" secondItem="2tG-rC-pbI" secondAttribute="bottom" id="5Ts-W3-AsO"/>
                                     <constraint firstAttribute="bottom" secondItem="Cdp-ez-pgc" secondAttribute="bottom" id="CLl-2V-Bwy"/>
                                     <constraint firstItem="d9r-xP-wKb" firstAttribute="leading" secondItem="5uz-nw-j6I" secondAttribute="trailing" id="FIN-Kp-TcN"/>
-                                    <constraint firstItem="QK5-an-TCA" firstAttribute="leading" secondItem="5uz-nw-j6I" secondAttribute="trailing" placeholder="YES" id="GZ9-6Q-jok"/>
                                     <constraint firstItem="Cdp-ez-pgc" firstAttribute="top" secondItem="bo0-h3-Jst" secondAttribute="bottom" id="Hhj-M2-P29"/>
-                                    <constraint firstItem="bo0-h3-Jst" firstAttribute="top" secondItem="QK5-an-TCA" secondAttribute="bottom" placeholder="YES" id="L3C-eg-ycN"/>
+                                    <constraint firstItem="d9r-xP-wKb" firstAttribute="bottom" secondItem="bo0-h3-Jst" secondAttribute="bottom" id="Mpb-cz-evw"/>
                                     <constraint firstItem="XKq-lp-KHa" firstAttribute="leading" secondItem="tzV-Xo-a7H" secondAttribute="leading" placeholder="YES" id="Ni2-8C-3qH"/>
                                     <constraint firstItem="bo0-h3-Jst" firstAttribute="top" secondItem="XKq-lp-KHa" secondAttribute="bottom" id="Nrv-b7-GA1"/>
                                     <constraint firstItem="XKq-lp-KHa" firstAttribute="height" secondItem="2tG-rC-pbI" secondAttribute="height" id="RSY-uP-SE6"/>
@@ -246,18 +239,21 @@
                                     <constraint firstAttribute="trailing" secondItem="2tG-rC-pbI" secondAttribute="trailing" placeholder="YES" id="Yo2-qV-icL"/>
                                     <constraint firstItem="5uz-nw-j6I" firstAttribute="centerY" secondItem="XKq-lp-KHa" secondAttribute="centerY" id="ZBl-Ns-mFp"/>
                                     <constraint firstItem="Cdp-ez-pgc" firstAttribute="height" secondItem="2tG-rC-pbI" secondAttribute="height" id="Zl9-dJ-Mq6"/>
-                                    <constraint firstAttribute="trailing" secondItem="QK5-an-TCA" secondAttribute="trailing" placeholder="YES" id="ZwF-Wx-ZDd"/>
                                     <constraint firstItem="XKq-lp-KHa" firstAttribute="top" secondItem="yKA-bu-4Od" secondAttribute="bottom" id="aiF-zS-xoL"/>
                                     <constraint firstItem="d9r-xP-wKb" firstAttribute="top" secondItem="yKA-bu-4Od" secondAttribute="bottom" id="c0R-bU-9po"/>
                                     <constraint firstItem="yKA-bu-4Od" firstAttribute="centerX" secondItem="tzV-Xo-a7H" secondAttribute="centerX" id="e9U-Xf-ISm"/>
                                     <constraint firstAttribute="trailing" secondItem="Cdp-ez-pgc" secondAttribute="trailing" placeholder="YES" id="ehc-uY-bl9"/>
-                                    <constraint firstItem="QK5-an-TCA" firstAttribute="top" secondItem="yKA-bu-4Od" secondAttribute="bottom" placeholder="YES" id="kMp-FJ-oLd"/>
                                     <constraint firstItem="d9r-xP-wKb" firstAttribute="height" secondItem="2tG-rC-pbI" secondAttribute="height" id="mFu-0h-ub6"/>
                                     <constraint firstItem="bo0-h3-Jst" firstAttribute="width" secondItem="yKA-bu-4Od" secondAttribute="width" id="qcn-Kg-cQO"/>
                                     <constraint firstAttribute="trailing" secondItem="d9r-xP-wKb" secondAttribute="trailing" placeholder="YES" id="qe6-YF-Px9"/>
                                     <constraint firstItem="Cdp-ez-pgc" firstAttribute="height" secondItem="2tG-rC-pbI" secondAttribute="height" id="t0E-zh-nsk"/>
                                     <constraint firstItem="bo0-h3-Jst" firstAttribute="centerX" secondItem="tzV-Xo-a7H" secondAttribute="centerX" id="tGN-nr-Qfi"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Mpb-cz-evw"/>
+                                    </mask>
+                                </variation>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wkc-da-FNG" customClass="UserProtocolView" customModule="CavyLifeBand2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="351" width="600" height="50"/>
@@ -301,7 +297,6 @@
                     </view>
                     <connections>
                         <outlet property="backSignInBtn" destination="T2R-fn-Fcu" id="x5j-nh-C9Z"/>
-                        <outlet property="emailSafetyCode" destination="QK5-an-TCA" id="1SM-X3-pco"/>
                         <outlet property="mainBtn" destination="u6U-qo-ihY" id="DpA-tO-yH3"/>
                         <outlet property="passwdTextField" destination="Cdp-ez-pgc" id="zIY-du-Wu0"/>
                         <outlet property="safetyCodeBtn" destination="d9r-xP-wKb" id="KEg-co-owJ"/>

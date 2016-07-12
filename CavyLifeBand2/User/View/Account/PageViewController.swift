@@ -15,7 +15,7 @@ class PageViewController: UIViewController {
     // 注册按钮
     @IBOutlet weak var signInBtn: UIButton!
     
-    // 登入按钮
+    // 登录按钮
     @IBOutlet weak var signUpBtn: UIButton!
     
     // 存放注册、登录按钮的视图

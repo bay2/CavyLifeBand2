@@ -177,7 +177,7 @@ struct UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDele
     
     var realm: Realm = try! Realm()
     
-    var navTitle: String = L10n.AccountInfoTitle.string
+    var navTitle: String = L10n.ContactsChangeNickNameNavTitle.string
     
     var textFieldTitle: String {
         didSet {
@@ -237,7 +237,7 @@ struct UserChangeAddressVM: ContactsReqFriendPortocols, SetUserInfoRequestsDeleg
     
     var realm: Realm = try! Realm()
     
-    var navTitle: String = L10n.AccountInfoTitle.string
+    var navTitle: String = L10n.ContactsChangeAddressNavTitle.string
     
     var textFieldTitle: String {
         didSet {
