@@ -31,6 +31,8 @@ class HomeWeatherView: UIView {
         
         airQuality.textColor = UIColor(named: .AColor)
         airQuality.font = UIFont.mediumSystemFontOfSize(12.0)
+        loadWeahDate()
+
     }
     
 
@@ -40,7 +42,8 @@ class HomeWeatherView: UIView {
     func loadWeatherView() {
        
         // 确定城市名字索引
-        var cityResult = ""
+        var cityResult = "hangzou"
+
         SCLocationManager.shareInterface.startUpdateLocationCity {
             cityResult = $0
             // 去掉市
@@ -78,27 +81,11 @@ class HomeWeatherView: UIView {
      */
     func loadWeahDate() {
         
-        HomeWeatherWebApi.shareApi.parseWeatherData(city) { (result) in
+        WeatherWebApi.shareApi.parseWeatherInfo(city) { weatherInfo in
             
-            guard result.isSuccess else {
-                
-                Log.error("Get friend list error")
-                return
-            }
-            
-            do {
-                
-                let netResult = try HomeWeatherMsg(JSONDecoder(result.value!))
-                
-                self.temperature.text = "\(netResult.tmp!)°C"
-                self.addAirCondition(netResult.pm25!)
-                self.addCondImage(netResult.cond!)
-                
-            } catch let error {
-                
-                Log.error("\(#function) result error (\(error))")
-                
-            }
+            self.temperature.text = "\(weatherInfo.tmp!)°C"
+            self.addAirCondition(weatherInfo.pm25!)
+            self.addCondImage(weatherInfo.condition!)
             
         }
         
@@ -141,10 +128,7 @@ class HomeWeatherView: UIView {
      添加天气状况的图片
     */
     func addCondImage(cond: String) {
-        
-//        imgView.layer.masksToBounds = true
-//        imgView.layer.cornerRadius = 10
-        
+                
         let weatherNames = [L10n.HomeWeatherSun.string,
                             L10n.HomeWeatherCloudy.string,
                             L10n.HomeWeatherOvercast.string,

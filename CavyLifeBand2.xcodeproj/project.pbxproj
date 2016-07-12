@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C0574491D226FF500D78716 /* HomeListNetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0574481D226FF500D78716 /* HomeListNetRequest.swift */; };
 		4C05744B1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */; };
 		4C05744D1D25063900D78716 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744C1D25063900D78716 /* UIDeviceExtension.swift */; };
 		4C05F9B21D347A820085C9C8 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05F9B11D347A820085C9C8 /* ImageViewCell.swift */; };
@@ -69,9 +68,6 @@
 		4CC499011CA9102800B2EE85 /* ContactsAccoundInfoTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */; };
 		4CC499041CA9108700B2EE85 /* AccountInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */; };
 		4CC499061CA9123C00B2EE85 /* FriendInfo_Ok.json in Resources */ = {isa = PBXBuildFile; fileRef = 4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */; };
-		4CD5AABE1CEDA6030011CD13 /* HomeListWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AABD1CEDA6030011CD13 /* HomeListWebApi.swift */; };
-		4CD5AAC31CEEB36A0011CD13 /* HomeListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */; };
-		4CD5AAC51CEEE22E0011CD13 /* HomeListOper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */; };
 		4CD5AAC91CF42D310011CD13 /* HomeListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AAC81CF42D310011CD13 /* HomeListViewModel.swift */; };
 		4CD5AACB1CF42DB40011CD13 /* HomeListProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD5AACA1CF42DB40011CD13 /* HomeListProtocol.swift */; };
 		4CD5AAD11CF583420011CD13 /* HomeDateTimeLineCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CD5AACF1CF583420011CD13 /* HomeDateTimeLineCell.xib */; };
@@ -366,7 +362,6 @@
 		0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		4C0574481D226FF500D78716 /* HomeListNetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListNetRequest.swift; sourceTree = "<group>"; };
 		4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerExtesionRefersh.swift; sourceTree = "<group>"; };
 		4C05744C1D25063900D78716 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		4C05F9B11D347A820085C9C8 /* ImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
@@ -428,9 +423,6 @@
 		4CC499001CA9102800B2EE85 /* ContactsAccoundInfoTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAccoundInfoTest.swift; sourceTree = "<group>"; };
 		4CC499031CA9108700B2EE85 /* AccountInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AccountInfo_Ok.json; sourceTree = "<group>"; };
 		4CC499051CA9123C00B2EE85 /* FriendInfo_Ok.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FriendInfo_Ok.json; sourceTree = "<group>"; };
-		4CD5AABD1CEDA6030011CD13 /* HomeListWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListWebApi.swift; sourceTree = "<group>"; };
-		4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListRealm.swift; sourceTree = "<group>"; };
-		4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListOper.swift; sourceTree = "<group>"; };
 		4CD5AAC81CF42D310011CD13 /* HomeListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListViewModel.swift; sourceTree = "<group>"; };
 		4CD5AACA1CF42DB40011CD13 /* HomeListProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeListProtocol.swift; sourceTree = "<group>"; };
 		4CD5AACF1CF583420011CD13 /* HomeDateTimeLineCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeDateTimeLineCell.xib; sourceTree = "<group>"; };
@@ -777,10 +769,6 @@
 		4C0BFA081CBF27A900DB06FC /* WebApi */ = {
 			isa = PBXGroup;
 			children = (
-				4C0574481D226FF500D78716 /* HomeListNetRequest.swift */,
-				4CD5AABD1CEDA6030011CD13 /* HomeListWebApi.swift */,
-				4CD5AAC21CEEB36A0011CD13 /* HomeListRealm.swift */,
-				4CD5AAC41CEEE22E0011CD13 /* HomeListOper.swift */,
 				4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */,
 				9157BE401CFD687B0020BF66 /* StepSleepReportedData.swift */,
 			);
@@ -2187,7 +2175,6 @@
 			files = (
 				68D6ED5F1CB7AEE700E1A1FB /* SafetySettingViewController.swift in Sources */,
 				685204E71CB78C6C004179B0 /* IntelligentClockTableHeaderView.swift in Sources */,
-				4CD5AAC31CEEB36A0011CD13 /* HomeListRealm.swift in Sources */,
 				910DFED31D0029E0009B944D /* FirmwareUpdate.swift in Sources */,
 				68E9780A1CC6412800651724 /* TimePickerView.swift in Sources */,
 				4CE1DBAC1D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift in Sources */,
@@ -2290,13 +2277,11 @@
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
 				4CB7A0701CD095C400DFB8DC /* BandInfoView.swift in Sources */,
 				4C80C6C71D2FA1410007F577 /* PhotoView.swift in Sources */,
-				4CD5AABE1CEDA6030011CD13 /* HomeListWebApi.swift in Sources */,
 				68648ADF1CF83CFB009D4BEE /* ContactListEmptyView.swift in Sources */,
 				4C9E0B551D1A395200DBC1FC /* ChartBaseViewModel.swift in Sources */,
 				917B98C01CB8E841008698F5 /* UserAchievementView.swift in Sources */,
 				91E1B4D21CA510BD008ADEE6 /* ContactsPersonInfoVC.swift in Sources */,
 				4CE1DBAB1D1BAE4800A67FDD /* ChartsBaseView.swift in Sources */,
-				4CD5AAC51CEEE22E0011CD13 /* HomeListOper.swift in Sources */,
 				6838ABB71D3345BA00586354 /* UploadAvatarWebApi.swift in Sources */,
 				68C558CF1CB751050031719D /* IntelligentClockTableFooterView.swift in Sources */,
 				68B4DEDA1CE57B6E00BE041C /* RelateAppWebApi.swift in Sources */,
@@ -2329,7 +2314,6 @@
 				686A5EFB1CDC474000EB8D0E /* AboutSectionEmptyView.swift in Sources */,
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
 				4CD5AAC91CF42D310011CD13 /* HomeListViewModel.swift in Sources */,
-				4C0574491D226FF500D78716 /* HomeListNetRequest.swift in Sources */,
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
 				889519F01D26397E00BC4938 /* StepsDataReaml.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
