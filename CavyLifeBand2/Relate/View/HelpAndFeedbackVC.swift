@@ -16,7 +16,7 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
     
     @IBOutlet weak var textView: KMPlaceholderTextView!
     
-    var navTitle: String { return L10n.RelateHelpAndFeedbackNavTitle.string }
+    var navTitle: String { return L10n.RelateHelpAndFeedbackNavRightBtnTitle.string }
     
     override func viewDidLoad() {
         super.viewDidLoad()

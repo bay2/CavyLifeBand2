@@ -159,7 +159,7 @@
 "Home.RightList.Title.AlarmClock"      = "手环闹钟";
 "Home.RightList.Title.Security"        = "紧急求救";
 "Home.RightList.Title.FirmwareUpgrade" = "固件升级";
-"Home.RightList.Title.BindingBand"     = "绑定新的CavyBand";
+"Home.RightList.Title.BindingBand"     = "绑定新的豚鼠手环";
 
 "Band.Title"                           = "我的豚鼠手环Band";
 "Band.FWVersion"                       = "固件版本: ";

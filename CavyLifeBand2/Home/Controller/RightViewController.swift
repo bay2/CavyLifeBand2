@@ -73,7 +73,7 @@ class RightViewController: UIViewController {
         fwVersion.textColor = UIColor(named: .FColor)
         bandName.textColor  = UIColor(named: .FColor)
         
-        bandTitle.font = UIFont.mediumSystemFontOfSize(18.0)
+        bandTitle.font = UIFont.systemFontOfSize(18.0)
         fwVersion.font = UIFont.systemFontOfSize(12.0)
         bandName.font  = UIFont.systemFontOfSize(12.0)
     }
