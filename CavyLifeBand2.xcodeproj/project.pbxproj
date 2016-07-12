@@ -9,13 +9,13 @@
 /* Begin PBXBuildFile section */
 		4C05744B1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */; };
 		4C05744D1D25063900D78716 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744C1D25063900D78716 /* UIDeviceExtension.swift */; };
+		4C05F9B21D347A820085C9C8 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05F9B11D347A820085C9C8 /* ImageViewCell.swift */; };
 		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
 		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
 		4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E61CB78F0500DB06FC /* Home.storyboard */; };
 		4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */; };
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C2B67DC1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */; };
-		4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */; };
 		4C4C602A1CE5C4790026C045 /* GuideViewConfigDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C60291CE5C4790026C045 /* GuideViewConfigDefine.swift */; };
 		4C4C602D1CE5C4A10026C045 /* ContactRecommendFriendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C602B1CE5C4A10026C045 /* ContactRecommendFriendView.swift */; };
 		4C4C602E1CE5C4A10026C045 /* ContactsAddFriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C602C1CE5C4A10026C045 /* ContactsAddFriendCell.swift */; };
@@ -365,13 +365,13 @@
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerExtesionRefersh.swift; sourceTree = "<group>"; };
 		4C05744C1D25063900D78716 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
+		4C05F9B11D347A820085C9C8 /* ImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E61CB78F0500DB06FC /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWeatherWebApi.swift; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString_Extension.swift; sourceTree = "<group>"; };
-		4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 		4C4C60291CE5C4790026C045 /* GuideViewConfigDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewConfigDefine.swift; sourceTree = "<group>"; };
 		4C4C602B1CE5C4A10026C045 /* ContactRecommendFriendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactRecommendFriendView.swift; sourceTree = "<group>"; };
 		4C4C602C1CE5C4A10026C045 /* ContactsAddFriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendCell.swift; sourceTree = "<group>"; };
@@ -1360,8 +1360,8 @@
 			children = (
 				913D0BD11C3FA126006EE7F8 /* Camera.storyboard */,
 				4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */,
-				4C471F8B1C43931C001B9FA1 /* PhotoAlbum.swift */,
 				4C80C6C61D2FA1410007F577 /* PhotoView.swift */,
+				4C05F9B11D347A820085C9C8 /* ImageViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2240,6 +2240,7 @@
 				91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */,
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
 				4CB7A0831CD095C400DFB8DC /* HomeWeatherView.swift in Sources */,
+				4C05F9B21D347A820085C9C8 /* ImageViewCell.swift in Sources */,
 				4C9E0B521D1A395200DBC1FC /* ShowChartsView.swift in Sources */,
 				4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */,
 				686A5EEF1CDC35AE00EB8D0E /* HelpAndFeedbackListVC.swift in Sources */,
@@ -2355,7 +2356,6 @@
 				918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */,
 				686A5F041CDC7F3900EB8D0E /* RelateAppCell.swift in Sources */,
 				9150CAAE1CC66CBB00A398E9 /* UIWindowExtension.swift in Sources */,
-				4C471F8C1C43931C001B9FA1 /* PhotoAlbum.swift in Sources */,
 				4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */,
 				4C4C602D1CE5C4A10026C045 /* ContactRecommendFriendView.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
