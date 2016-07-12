@@ -65,7 +65,6 @@ extension UIImage {
     case HomeNavRightItem = "HomeNavRightItem"
     case HomeSleepRing = "HomeSleepRing"
     case HomeStepRing = "HomeStepRing"
-    case HomeTimelineCorn = "HomeTimelineCorn"
     case Medal100000 = "Medal100000"
     case Medal1000000 = "Medal1000000"
     case Medal1000000Lighted = "Medal1000000Lighted"

@@ -19,7 +19,7 @@ struct CavyDefine {
     
     // 新的后台服务器地址
     static let webServerAddr = "http://pay.tunshu.com/live/api/v1/"
-    
+
     // webApi地址
     static let webApiAddr = serverAddr + "/api.do"
     
@@ -563,7 +563,7 @@ enum UserNetRequestMethod: String {
 
 // MARK: - Web Api 方法定义
 enum WebApiMethod: CustomStringConvertible {
-    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Weather
 
     var description: String {
         
@@ -604,6 +604,8 @@ enum WebApiMethod: CustomStringConvertible {
             return CavyDefine.webServerAddr + "signup/phone"
         case .UploadAvatar:
             return CavyDefine.webServerAddr + "avatar"
+        case .Weather:
+            return CavyDefine.webServerAddr + "weather"
         }
         
     }
@@ -649,6 +651,7 @@ enum NetRequsetKey: String {
     case Email              = "email"
     case Code               = "code"
     case Base64Data         = "base64Data"
+    case City               = "city"
 }
 
 

@@ -30,7 +30,7 @@ extension HomeViewController {
      *   后台进入前台（ addPullRefreshHeader ）
      */
     func beginHomeViewRefreshing() {
-        
+
         addAutoRefreshHeader()
         
         scrollView.mj_header.beginRefreshing()
@@ -54,6 +54,12 @@ extension HomeViewController {
                 
                 return
             }
+
+            
+            // 如果没有连接手环
+            if LifeBandBle.shareInterface.getConnectState() == .Connecting {
+            }
+            
             
             // 如果没有连接手环
             if LifeBandBle.shareInterface.getConnectState() != .Connected {

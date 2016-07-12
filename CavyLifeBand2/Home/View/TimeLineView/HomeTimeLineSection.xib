@@ -8,27 +8,34 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="HomeTimeLineSection" id="iN0-l3-epB" customClass="HomeTimeLineSection" customModule="CavyLifeBand2" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="618" height="34"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQg-Tv-Sym">
-                    <rect key="frame" x="42" y="0.0" width="2" height="600"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQg-Tv-Sym">
+                    <rect key="frame" x="20" y="-11" width="578" height="45"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="2" id="QeH-NI-5Wp"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="QeH-NI-5Wp"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="dQg-Tv-Sym" secondAttribute="bottom" id="NYZ-y2-pmT"/>
-                <constraint firstItem="dQg-Tv-Sym" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="42" id="Qk6-nY-vbl"/>
-                <constraint firstItem="dQg-Tv-Sym" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WTG-jL-Tqk"/>
-                <constraint firstItem="dQg-Tv-Sym" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="l3H-IS-j0D"/>
+                <constraint firstItem="dQg-Tv-Sym" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="01t-e2-rdq"/>
+                <constraint firstItem="dQg-Tv-Sym" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="8Lt-bV-aZf"/>
+                <constraint firstAttribute="bottom" secondItem="dQg-Tv-Sym" secondAttribute="bottom" id="AW7-rj-1VT"/>
+                <constraint firstAttribute="trailing" secondItem="dQg-Tv-Sym" secondAttribute="trailing" constant="20" id="ShE-KU-nMN"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="lineView" destination="dQg-Tv-Sym" id="Gi0-uW-NOj"/>
             </connections>
+            <point key="canvasLocation" x="340" y="325"/>
         </view>
     </objects>
 </document>
