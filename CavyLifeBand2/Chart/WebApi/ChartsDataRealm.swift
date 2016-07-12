@@ -476,7 +476,7 @@ extension ChartsRealmProtocol {
      - returns: 睡眠时长 10分钟为单位， 1 = 10 分钟
      （$0  睡眠时长     $1 深睡时长）
      */
-    private func validSleep(beginTime: NSDate, endTime: NSDate) ->  (Int,Int) {
+    private func validSleep(beginTime: NSDate, endTime: NSDate) -> (Int, Int) {
         
         var minustsCount   = 0 // 睡眠计数
         var zeroCount = 0   // 都为0的计数
@@ -717,30 +717,6 @@ extension ChartsRealmProtocol {
      
      - returns: [(总的睡眠时间, 深睡, 浅睡)] 数据按每天返回
      */
-//    func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)] {
-//        
-//        var reslutData: [(Double, Double, Double)] = []
-//        
-//        let dayTotal = (endTime - beginTime).totalDays
-//        
-//        Log.info("querySleepInfoDays Begin \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
-//        
-//        for i in 0...dayTotal {
-//            
-//            // 从前天的晚上6点开始算起
-//            let newBeginTime = ((beginTime.gregorian + i.day).beginningOfDay - 6.hour).date
-//            let newEndTime = (newBeginTime.gregorian + 24.day).date
-//            
-//            reslutData.append(querySleepInfo(newBeginTime, endTime: newEndTime))
-//            
-//        }
-//        
-//        Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
-//        
-//        return reslutData
-//        
-//    }
-    
     func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)] {
         
         var reslutData: [(Double, Double, Double)] = []
@@ -795,11 +771,11 @@ extension ChartsRealmProtocol {
         let nowDate = NSDate()
         
         // 当天数据的特殊处理
-        if (nowDate - beginTime).totalDays >= 0 && (nowDate - endTime).totalDays <= 0 {
+        if (nowDate - beginTime).totalMinutes >= 0 && (nowDate - endTime).totalMinutes <= 0 {
             // 有网直接返回
-            guard NetworkReachabilityManager(host: "www.baidu.com")?.isReachable == false else {
-                return reslutData
-            }
+//            guard NetworkReachabilityManager(host: "www.baidu.com")?.isReachable == false else {
+//                return reslutData
+//            }
             
             // 没网显示手环数据库的数据
             
