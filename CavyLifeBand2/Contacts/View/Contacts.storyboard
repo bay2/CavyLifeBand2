@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -306,10 +305,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qr5-D4-9uf">
-                                <rect key="frame" x="40" y="30" width="520" height="50"/>
+                                <rect key="frame" x="20" y="30" width="560" height="50"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="    placeHolder" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BGC-Ko-dEN">
-                                        <rect key="frame" x="20" y="0.0" width="490" height="50"/>
+                                        <rect key="frame" x="20" y="0.0" width="530" height="50"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -331,7 +330,7 @@
                                 </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LwM-yM-nHI" customClass="MainPageButton" customModule="CavyLifeBand2" customModuleProvider="target">
-                                <rect key="frame" x="40" y="130" width="520" height="50"/>
+                                <rect key="frame" x="20" y="130" width="560" height="50"/>
                                 <color key="backgroundColor" red="1" green="0.68089345639999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="发送">
@@ -345,8 +344,8 @@
                         <color key="backgroundColor" red="0.20485528519999999" green="0.82762688760000003" blue="0.4879666527" alpha="0.82456896550000003" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="LwM-yM-nHI" firstAttribute="centerX" secondItem="OwO-DO-4Fs" secondAttribute="centerX" id="2YF-2a-FQv"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qr5-D4-9uf" secondAttribute="trailing" constant="20" id="Dxb-tF-o9M"/>
-                            <constraint firstItem="qr5-D4-9uf" firstAttribute="leading" secondItem="OwO-DO-4Fs" secondAttribute="leadingMargin" constant="20" id="F6t-z5-OLa"/>
+                            <constraint firstAttribute="trailing" secondItem="qr5-D4-9uf" secondAttribute="trailing" constant="20" id="Dxb-tF-o9M"/>
+                            <constraint firstItem="qr5-D4-9uf" firstAttribute="leading" secondItem="OwO-DO-4Fs" secondAttribute="leading" constant="20" id="F6t-z5-OLa"/>
                             <constraint firstItem="LwM-yM-nHI" firstAttribute="height" secondItem="qr5-D4-9uf" secondAttribute="height" id="HUm-AD-7k8"/>
                             <constraint firstItem="LwM-yM-nHI" firstAttribute="top" secondItem="qr5-D4-9uf" secondAttribute="bottom" constant="50" id="P9k-my-vgz"/>
                             <constraint firstItem="qr5-D4-9uf" firstAttribute="centerX" secondItem="OwO-DO-4Fs" secondAttribute="centerX" id="b8e-AK-JX1"/>

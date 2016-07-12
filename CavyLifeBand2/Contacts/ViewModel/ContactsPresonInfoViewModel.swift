@@ -98,6 +98,9 @@ extension PresonInfoCellViewModel: UIImagePickerControllerDelegate, UINavigation
         }
         
         if !mediaType.contains("public.image") {
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: "请选择静态图片")
+            
             return
         }
         
@@ -109,6 +112,9 @@ extension PresonInfoCellViewModel: UIImagePickerControllerDelegate, UINavigation
         
         guard let savePath: String = newImage.writeToChacheDocument(String.random(30, "a"..."z")) else {
             Log.error("图片保存失败")
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: "图片保存失败，请重试")
+            
             return
         }
         
@@ -122,32 +128,23 @@ extension PresonInfoCellViewModel: UIImagePickerControllerDelegate, UINavigation
         
         let loginUserId = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         
-        UserNetRequestData.shareApi.uploadPicture(loginUserId, filePath: "file://" + savePath) {
+        UploadAvatarWebApi.shareApi.uploadAvatar(savePath, successHandler: { (data) in
             
-            guard $0.isSuccess else {
-                picker.dismissVC(completion: nil)
-                return
-            }
-            
-            let reslutMsg = try! UplodPictureMsg(JSONDecoder($0.value ?? ""))
-            
-            guard reslutMsg.commonMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: reslutMsg.commonMsg.code)
-                picker.dismissVC(completion: nil)
-                return
-            }
-            
-            CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar = reslutMsg.iconUrl
-            
+            activityView.stopAnimating()
+            picker.dismissVC(completion: nil)
+            CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar = data.url
+
             self.updateUserInfo(loginUserId) { userInfo -> UserInfoModel in
-                
-                userInfo.avatarUrl = reslutMsg.iconUrl
+
+                userInfo.avatarUrl = data.url
                 return userInfo
                 
             }
             
+        }) { (msg) in
+            Log.error(msg.msg)
+            activityView.stopAnimating()
             picker.dismissVC(completion: nil)
-            
         }
         
     }

@@ -24,14 +24,14 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="1000"/>
                                         <subviews>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vQ9-pg-oVp">
-                                                <rect key="frame" x="20" y="16" width="560" height="406"/>
+                                                <rect key="frame" x="20" y="0.0" width="560" height="406"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="406" id="uhk-h0-Y3j"/>
                                                 </constraints>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="svq-EI-1IG">
-                                                <rect key="frame" x="20" y="432" width="560" height="128"/>
+                                                <rect key="frame" x="20" y="416" width="560" height="128"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="成就" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GjD-D6-Ti7">
                                                         <rect key="frame" x="30" y="25" width="32" height="20"/>
@@ -83,7 +83,7 @@
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Yp-Im-6HQ">
-                                                <rect key="frame" x="20" y="580" width="560" height="50"/>
+                                                <rect key="frame" x="20" y="564" width="560" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Oil-gZ-lCL"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="42" id="lAG-KJ-a1T"/>
@@ -103,7 +103,7 @@
                                         <constraints>
                                             <constraint firstItem="8Yp-Im-6HQ" firstAttribute="top" secondItem="svq-EI-1IG" secondAttribute="bottom" constant="20" id="3JM-CC-u9C"/>
                                             <constraint firstAttribute="trailing" secondItem="8Yp-Im-6HQ" secondAttribute="trailing" constant="20" id="9Tg-gf-Zdp"/>
-                                            <constraint firstItem="vQ9-pg-oVp" firstAttribute="top" secondItem="2kq-FW-Ftn" secondAttribute="top" constant="16" id="HYc-VH-uFw"/>
+                                            <constraint firstItem="vQ9-pg-oVp" firstAttribute="top" secondItem="2kq-FW-Ftn" secondAttribute="top" id="HYc-VH-uFw"/>
                                             <constraint firstAttribute="trailing" secondItem="vQ9-pg-oVp" secondAttribute="trailing" constant="20" id="JAz-ls-tTA"/>
                                             <constraint firstItem="svq-EI-1IG" firstAttribute="leading" secondItem="2kq-FW-Ftn" secondAttribute="leading" constant="20" id="Pys-c0-Pqu"/>
                                             <constraint firstAttribute="trailing" secondItem="8Yp-Im-6HQ" secondAttribute="trailing" constant="20" id="WKE-4i-mfK"/>

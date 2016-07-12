@@ -59,7 +59,7 @@ struct UserProfile: JSONJoy {
         do { sex = try decoder["sex"].getInt() } catch { sex = 0 }
         do { height = try decoder["height"].getDouble() } catch { height = 0.0 }
         do { weight = try decoder["weight"].getDouble() } catch { weight = 0.0 }
-        do { avatarUrl = try decoder["avatarUrl"].getString() } catch { avatarUrl = "" }
+        do { avatarUrl = try decoder["avatar"].getString() } catch { avatarUrl = "" }
         do { address = try decoder["address"].getString() } catch { address = "" }
         do { nickName = try decoder["nickname"].getString() } catch { nickName = "" }
         do { steps = try decoder["steps"].getInt() } catch { steps = 0 }
