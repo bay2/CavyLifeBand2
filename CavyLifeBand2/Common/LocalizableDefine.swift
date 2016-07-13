@@ -641,12 +641,18 @@ enum L10n {
   case HomeRefreshPulling
   ///   正在同步数据...
   case HomeRefreshRefreshing
+  /// 同步数据失败
+  case HomeRefreshAlertTitle
+  /// 请您绑定手环，重新同步数据
+  case HomeRefreshFaildDes
   /// 确认
   case AlertSureActionTitle
   /// 取消
   case AlertCancelActionTitle
   /// 确认撤销此次PK？
   case AlertUndoPKWaitRecordMsg
+  /// 确认重新绑定手环？
+  case AlertReBindBandMsg
 }
 
 extension L10n: CustomStringConvertible {
@@ -1292,12 +1298,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Home.Refresh.Pulling")
       case .HomeRefreshRefreshing:
         return L10n.tr("Home.Refresh.Refreshing")
+      case .HomeRefreshAlertTitle:
+        return L10n.tr("Home.Refresh.AlertTitle")
+      case .HomeRefreshFaildDes:
+        return L10n.tr("Home.Refresh.faildDes")
       case .AlertSureActionTitle:
         return L10n.tr("Alert.SureAction.Title")
       case .AlertCancelActionTitle:
         return L10n.tr("Alert.CancelAction.Title")
       case .AlertUndoPKWaitRecordMsg:
         return L10n.tr("Alert.UndoPKWaitRecord.Msg")
+      case .AlertReBindBandMsg:
+        return L10n.tr("Alert.ReBindBand.Msg")
     }
   }
 

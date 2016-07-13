@@ -55,7 +55,7 @@ class ContactsPersonInfoCell: UITableViewCell {
         subTitleLab.textColor = UIColor(named: .FColor)
         
         titleLab.font = UIFont.mediumSystemFontOfSize(18.0)
-        subTitleLab.font = UIFont.mediumSystemFontOfSize(12.0)
+        subTitleLab.font = UIFont.systemFontOfSize(12.0)
         
         lineView.backgroundColor = UIColor(named: .LColor)
         self.selectionStyle = .None

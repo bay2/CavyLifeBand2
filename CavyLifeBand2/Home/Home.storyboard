@@ -38,26 +38,26 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUw-oR-uXo" customClass="BandInfoView" customModule="CavyLifeBand2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="600" height="145"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的豚鼠手环" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMF-hI-9Zm">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="我的豚鼠手环" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PMF-hI-9Zm">
                                         <rect key="frame" x="32" y="25" width="108" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FASDKTS 001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cI2-oT-W8Z">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="FASDKTS 001" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cI2-oT-W8Z">
                                         <rect key="frame" x="32" y="78" width="79" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="版本号：2.136" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWd-Z8-aVI">
-                                        <rect key="frame" x="32" y="103" width="79" height="14"/>
+                                        <rect key="frame" x="32" y="100" width="79" height="15"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ru-q4-K2K" customClass="BandElectricView" customModule="CavyLifeBand2" customModuleProvider="target">
-                                        <rect key="frame" x="464" y="20" width="90" height="90"/>
+                                        <rect key="frame" x="490" y="25" width="90" height="90"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="90" id="YQh-f6-QEr"/>
@@ -70,11 +70,11 @@
                                     <constraint firstItem="cI2-oT-W8Z" firstAttribute="leading" secondItem="PMF-hI-9Zm" secondAttribute="leading" id="5BI-MQ-L2r"/>
                                     <constraint firstAttribute="height" constant="145" id="HNc-K1-6gU"/>
                                     <constraint firstItem="PWd-Z8-aVI" firstAttribute="top" secondItem="cI2-oT-W8Z" secondAttribute="bottom" constant="10" id="Hj9-4a-OjE"/>
-                                    <constraint firstItem="cI2-oT-W8Z" firstAttribute="top" secondItem="PMF-hI-9Zm" secondAttribute="bottom" constant="32" id="JFj-kd-dGx"/>
                                     <constraint firstItem="PMF-hI-9Zm" firstAttribute="leading" secondItem="YUw-oR-uXo" secondAttribute="leading" constant="32" id="UqW-4Z-MX9"/>
-                                    <constraint firstItem="8ru-q4-K2K" firstAttribute="top" secondItem="YUw-oR-uXo" secondAttribute="top" constant="20" id="bc4-6A-cbC"/>
-                                    <constraint firstAttribute="trailing" secondItem="8ru-q4-K2K" secondAttribute="trailing" constant="46" id="euS-nn-xWu"/>
+                                    <constraint firstAttribute="trailing" secondItem="8ru-q4-K2K" secondAttribute="trailing" constant="20" id="euS-nn-xWu"/>
+                                    <constraint firstItem="PWd-Z8-aVI" firstAttribute="bottom" secondItem="8ru-q4-K2K" secondAttribute="bottom" id="hZ7-qj-PL8"/>
                                     <constraint firstItem="PMF-hI-9Zm" firstAttribute="top" secondItem="YUw-oR-uXo" secondAttribute="top" constant="25" id="mtL-0F-LoG"/>
+                                    <constraint firstAttribute="bottom" secondItem="8ru-q4-K2K" secondAttribute="bottom" constant="30" id="umf-Pq-kOp"/>
                                     <constraint firstItem="PWd-Z8-aVI" firstAttribute="leading" secondItem="PMF-hI-9Zm" secondAttribute="leading" id="xhJ-eE-Xeu"/>
                                 </constraints>
                             </view>
@@ -100,7 +100,6 @@
                     </view>
                     <connections>
                         <outlet property="bandElectricView" destination="8ru-q4-K2K" id="hYQ-o7-N30"/>
-                        <outlet property="bandElectricViewRightConstraint" destination="euS-nn-xWu" id="23i-vh-jiU"/>
                         <outlet property="bandName" destination="cI2-oT-W8Z" id="oea-bk-qfE"/>
                         <outlet property="bandTitle" destination="PMF-hI-9Zm" id="h1h-o3-J3x"/>
                         <outlet property="fwVersion" destination="PWd-Z8-aVI" id="Y9d-is-vu3"/>

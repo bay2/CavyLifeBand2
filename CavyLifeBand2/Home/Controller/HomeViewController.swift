@@ -178,7 +178,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func addAlertView() {
      
-        let alertView = UIAlertController(title: "同步数据失败", message: "请您绑定手环，重新同步数据", preferredStyle: .Alert)
+        let alertView = UIAlertController(title: L10n.HomeRefreshAlertTitle.string , message: L10n.HomeRefreshFaildDes.string, preferredStyle: .Alert)
         
         let sureAction = UIAlertAction(title: "确定", style: .Cancel, handler: nil)
         
@@ -250,7 +250,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         // MARK: 计步相关
         var startDate = ""
-        var endDate = ""
+        let endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
         
         if isNeedUpdateStepData() {
             
@@ -259,9 +259,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             if personalList.count != 0 {
                 
                 startDate = personalList.last!.date.toString(format: "yyyy-MM-dd HH:mm:ss")
-                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
+                
                 
             } else {
+                
                 // 如果查询不到数据 则 使用注册日期开始请求
                 guard let startTime = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first?.signUpDate else {
                     return
@@ -274,7 +275,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             parseStepDate(startDate, endDate: endDate)
             
         }
-        
     }
     
       /**
@@ -480,12 +480,14 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         achieveView?.configWithAchieveIndexForUser()
 
         maskView.addSubview(achieveView!)
+        
+        let collectionViewHeight = ez.screenWidth <= 320 ? CGFloat(3 * 132): CGFloat(2 * 132)
 
         achieveView!.snp_makeConstraints(closure: { make in
             make.leading.equalTo(maskView).offset(20.0)
             make.trailing.equalTo(maskView).offset(-20.0)
             make.centerY.equalTo(maskView)
-            make.height.equalTo(380.0)
+            make.height.equalTo(68 + collectionViewHeight)
         })
         
         UIApplication.sharedApplication().keyWindow?.addSubview(maskView)

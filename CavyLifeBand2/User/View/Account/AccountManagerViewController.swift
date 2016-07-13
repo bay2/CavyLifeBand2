@@ -506,7 +506,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     
     func onLeftBtnBack() {
         
-        
+        self.view.endEditing(true)
         guard let _ = self.navigationController?.popViewControllerAnimated(true) else{
             
             self.dismissVC(completion: nil)

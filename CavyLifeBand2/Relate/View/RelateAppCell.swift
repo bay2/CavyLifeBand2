@@ -23,7 +23,7 @@ class RelateAppCell: UITableViewCell {
         
         titleLabel.font = UIFont.mediumSystemFontOfSize(16.0)
         sizeLabel.font = UIFont.systemFontOfSize(12.0)
-        infoLabel.font = UIFont.mediumSystemFontOfSize(14.0)
+        infoLabel.font = UIFont.systemFontOfSize(14.0)
         
         titleLabel.textColor = UIColor(named: .EColor)
         sizeLabel.textColor = UIColor(named: .FColor)

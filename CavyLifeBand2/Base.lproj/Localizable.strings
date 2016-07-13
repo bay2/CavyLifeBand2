@@ -159,7 +159,7 @@
 "Home.RightList.Title.AlarmClock"      = "手环闹钟";
 "Home.RightList.Title.Security"        = "紧急求救";
 "Home.RightList.Title.FirmwareUpgrade" = "固件升级";
-"Home.RightList.Title.BindingBand"     = "绑定新的CavyBand";
+"Home.RightList.Title.BindingBand"     = "绑定新的豚鼠手环";
 
 "Band.Title"                           = "我的豚鼠手环Band";
 "Band.FWVersion"                       = "固件版本: ";
@@ -373,8 +373,12 @@
 "Home.Refresh.Idle"       = "下拉同步数据...";
 "Home.Refresh.Pulling"    = "松开同步数据...";
 "Home.Refresh.Refreshing" = "  正在同步数据...";
+"Home.Refresh.AlertTitle" = "同步数据失败";
+"Home.Refresh.faildDes"   = "请您绑定手环，重新同步数据";
+
 
 // 弹窗相关
 "Alert.SureAction.Title"     = "确认";
 "Alert.CancelAction.Title"   = "取消";
 "Alert.UndoPKWaitRecord.Msg" = "确认撤销此次PK？";
+"Alert.ReBindBand.Msg"       = "确认重新绑定手环？";

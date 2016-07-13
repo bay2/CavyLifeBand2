@@ -20,8 +20,8 @@ class AboutCell: UITableViewCell {
         infoLabel.textColor = UIColor(named: .EColor)
         titleLabel.textColor = UIColor(named: .FColor)
         
-        infoLabel.font = UIFont.mediumSystemFontOfSize(16.0)
-        titleLabel.font = UIFont.mediumSystemFontOfSize(16.0)
+        infoLabel.font = UIFont.systemFontOfSize(16.0)
+        titleLabel.font = UIFont.systemFontOfSize(16.0)
         
     }
 
