@@ -202,11 +202,11 @@ struct UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDele
     //点击发送请求成功回调
     var onClickButtonCellBack: (String -> Void)?
     
-    init(viewController: UIViewController, onClickButtonCellBack: (String -> Void)? = nil) {
+    init(viewController: UIViewController, textFeildText: String? = nil, onClickButtonCellBack: (String -> Void)? = nil) {
         
         self.viewController = viewController
         self.onClickButtonCellBack = onClickButtonCellBack
-        self.textFieldTitle = ""
+        self.textFieldTitle = textFeildText ?? ""
     }
     
     func onClickButton() {
@@ -262,11 +262,12 @@ struct UserChangeAddressVM: ContactsReqFriendPortocols, SetUserInfoRequestsDeleg
     //点击发送请求成功回调
     var onClickButtonCellBack: (String -> Void)?
     
-    init(viewController: UIViewController, onClickButtonCellBack: (String -> Void)? = nil) {
+    init(viewController: UIViewController, textFieldText: String? = nil, onClickButtonCellBack: (String -> Void)? = nil) {
         
         self.viewController = viewController
         self.onClickButtonCellBack = onClickButtonCellBack
-        self.textFieldTitle = ""
+        self.textFieldTitle = textFieldText ?? ""
+        
     }
     
     func onClickButton() {

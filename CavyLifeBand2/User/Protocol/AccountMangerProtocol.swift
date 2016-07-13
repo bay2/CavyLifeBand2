@@ -384,7 +384,9 @@ extension SignInDelegate where Self: UIViewController {
     func signIn(successBack: (Void -> Void)? = nil, failBack: (Void -> Void)? = nil) {
         
         let parameters: [String: AnyObject] = [NetRequsetKey.UserName.rawValue: userName,
-                                               NetRequsetKey.Password.rawValue: passwd.md5()]
+                                               NetRequsetKey.Password.rawValue: passwd.md5(),
+                                               NetRequsetKey.DeviceSerial.rawValue: CavyDefine.bindBandInfos.bindBandInfo.deviceSerial]
+        
         
         NetWebApi.shareApi.netPostRequest(WebApiMethod.Login.description, para: parameters, modelObject: LoginResponse.self, successHandler: { (data) in
             

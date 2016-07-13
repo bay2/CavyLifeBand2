@@ -10,7 +10,7 @@ import Alamofire
 import Log
 import JSONJoy
 
-class HelpFeedbackWebApi: NetRequestAdapter {
+class HelpFeedbackWebApi: NetRequestAdapter, NetRequest {
 
     static var shareApi = HelpFeedbackWebApi()
     
@@ -32,19 +32,24 @@ class HelpFeedbackWebApi: NetRequestAdapter {
     /**
      提交意见反馈
      
-     - parameter userId:   用户ID
-     - parameter feedback: 意见反馈内容
-     - parameter callBack:
-     
-     - throws: 
+     - parameter feedback:    意见反馈内容
+     - parameter successBack:
+     - parameter failBack:
      */
-    func submitFeedback(userId: String, feedback: String, callBack: CompletionHandlernType? = nil) throws {
+    func submitFeedback(feedback: String, successBack: (CommenResponse -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
         
-        let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.SubmitFeedback.rawValue,
-                                               UserNetRequsetKey.UserID.rawValue: userId,
-                                               UserNetRequsetKey.FeedbackContent.rawValue: feedback]
-        
-        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
+        let parameters: [String: AnyObject] = [NetRequsetKey.Question.rawValue: "Title",
+                                               NetRequsetKey.Detail.rawValue: feedback]
+      
+        netPostRequest(WebApiMethod.Issues.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: {
+            
+            successBack?($0.commonMsg)
+            
+        }) {
+            
+            failBack?($0)
+            
+        }
         
     }
     

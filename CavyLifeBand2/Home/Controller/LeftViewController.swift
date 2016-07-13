@@ -37,7 +37,7 @@ class LeftMenViewController: UIViewController, HomeUserDelegate, UserInfoRealmOp
         
         userInfoView.configuration(self)
         
-        iconImageView.addTapGesture { _ in
+        userInfoView.addTapGesture { _ in
             
             let userInfo = ["nextView": StoryboardScene.AccountInfo.instantiateContactsAccountInfoVC()] as [NSObject: AnyObject]
             NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)

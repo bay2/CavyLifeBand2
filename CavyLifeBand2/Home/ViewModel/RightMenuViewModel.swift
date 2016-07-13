@@ -174,18 +174,28 @@ struct UndoBindViewModel: MenuProtocol {
     
     func onClickCell() {
         
-        BindBandCtrl.bindScene = .Rebind
+        let alertView = UIAlertController(title: "", message: L10n.AlertReBindBandMsg.string, preferredStyle: .Alert)
         
-        LifeBandBle.shareInterface.bleDisconnect()
+        let cancelAction = UIAlertAction(title: L10n.AlertCancelActionTitle.string, style: .Cancel, handler: nil)
         
-        guard let newNextView = nextView else {
-            return
+        let sureAction = UIAlertAction(title: L10n.AlertSureActionTitle.string, style: .Default) { (action) in
+            
+            BindBandCtrl.bindScene = .Rebind
+            
+            LifeBandBle.shareInterface.bleDisconnect()
+            
+            guard let newNextView = self.nextView else { return }
+            
+            let userInfo = ["nextView": newNextView] as [NSObject: AnyObject]
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
         }
         
-        let userInfo = ["nextView": newNextView] as [NSObject: AnyObject]
+        alertView.addAction(cancelAction)
+        alertView.addAction(sureAction)
         
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
-        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)
+        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
         
     }
     

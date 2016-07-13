@@ -480,12 +480,14 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         achieveView?.configWithAchieveIndexForUser()
 
         maskView.addSubview(achieveView!)
+        
+        let collectionViewHeight = ez.screenWidth <= 320 ? CGFloat(3 * 132): CGFloat(2 * 132)
 
         achieveView!.snp_makeConstraints(closure: { make in
             make.leading.equalTo(maskView).offset(20.0)
             make.trailing.equalTo(maskView).offset(-20.0)
             make.centerY.equalTo(maskView)
-            make.height.equalTo(380.0)
+            make.height.equalTo(68 + collectionViewHeight)
         })
         
         UIApplication.sharedApplication().keyWindow?.addSubview(maskView)

@@ -55,14 +55,6 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         
         loadData()
         
-//        tableDataSource = [HelpFeedbackCellModel(title: "手环连接失败？", webStr: "http://www.baidu.com"),
-//                           HelpFeedbackCellModel(title: "按了手环按钮没有亮灯？", webStr: "http://www.baidu.com"),
-//                           HelpFeedbackCellModel(title: "安全功能如何使用？", webStr: "http://www.baidu.com"),
-//                           HelpFeedbackCellModel(title: "手环不能记录睡眠？", webStr: "http://www.baidu.com"),
-//                           HelpFeedbackCellModel(title: "手环不能记录计步？", webStr: "http://www.baidu.com")]
-        
-    
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +67,16 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         let targetVC = StoryboardScene.Relate.instantiateHelpAndFeedbackVC()
         
         self.pushVC(targetVC)
+        
+    }
+    
+    /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
         
     }
     
