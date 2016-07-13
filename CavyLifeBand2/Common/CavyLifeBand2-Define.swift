@@ -217,19 +217,25 @@ struct BindBandInfo {
     
     init() {
         
+        if keychain["CavyUserDevice"] == nil {
+            keychain["CavyUserDevice"] = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""
+        }
+        
         guard let userMac = keychain[data: "CavyUserMAC"] else {
             
-            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:])
+            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:],
+                                                    deviceSerial: keychain["CavyUserDevice"]!)
             return
             
         }
         
         guard let userBindBand = NSKeyedUnarchiver.unarchiveObjectWithData(userMac) as? [String: NSData] else {
-            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:])
+            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:],
+                                                    deviceSerial: keychain["CavyUserDevice"]!)
             return
         }
         
-        self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: userBindBand)
+        self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: userBindBand, deviceSerial: keychain["CavyUserDevice"]!)
         
     }
     
@@ -247,6 +253,7 @@ struct BindBandInfoStorage {
     
     var defaultBindBand: String
     var userBindBand: [String: NSData]
+    var deviceSerial: String
     
     
 }
@@ -563,7 +570,9 @@ enum UserNetRequestMethod: String {
 
 // MARK: - Web Api 方法定义
 enum WebApiMethod: CustomStringConvertible {
-    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Weather, Location
+
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Issues, Weather, Location
+
 
     var description: String {
         
@@ -604,6 +613,8 @@ enum WebApiMethod: CustomStringConvertible {
             return CavyDefine.webServerAddr + "signup/phone"
         case .UploadAvatar:
             return CavyDefine.webServerAddr + "avatar"
+        case .Issues:
+            return CavyDefine.webServerAddr + "issues"
         case .Weather:
             return CavyDefine.webServerAddr + "weather"
         case .Location:
@@ -653,7 +664,10 @@ enum NetRequsetKey: String {
     case Email              = "email"
     case Code               = "code"
     case Base64Data         = "base64Data"
+    case Question           = "question"
+    case Detail             = "detail"
     case City               = "city"
+    case DeviceSerial       = "device_serial"
 }
 
 

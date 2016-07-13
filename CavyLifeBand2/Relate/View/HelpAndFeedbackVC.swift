@@ -16,7 +16,7 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
     
     @IBOutlet weak var textView: KMPlaceholderTextView!
     
-    var navTitle: String { return L10n.RelateHelpAndFeedbackNavTitle.string }
+    var navTitle: String { return L10n.RelateHelpAndFeedbackNavRightBtnTitle.string }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,28 +69,15 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
         }
         
         self.view.endEditing(true)
-        
-        do {
+                
+        HelpFeedbackWebApi.shareApi.submitFeedback(textView.text, successBack: { [unowned self] in
             
-            try HelpFeedbackWebApi.shareApi.submitFeedback(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, feedback: textView.text) { [unowned self] result in
-                guard result.isSuccess else {
-                    self.createTimer(CavyLifeBandAlertView.sharedIntance.showViewTitleWithoutAction(userErrorCode: result.error), result: "0")
-                    return
-                }
-                
-                let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
-                
-                guard resultMsg.code == WebApiCode.Success.rawValue else {
-                    self.createTimer(CavyLifeBandAlertView.sharedIntance.showViewTitleWithoutAction(webApiErrorCode: resultMsg.code ?? ""), result: "0")
-                    return
-                }
-                
-                self.createTimer(CavyLifeBandAlertView.sharedIntance.showViewTitleWithoutAction(message: L10n.RelateHelpAndFeedbackSendSuccessAlertMsg.string), result: "1")
-                
-            }
+            Log.info($0.msg)
             
-        } catch let error {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+            self.createTimer(CavyLifeBandAlertView.sharedIntance.showViewTitleWithoutAction(message: L10n.RelateHelpAndFeedbackSendSuccessAlertMsg.string), result: "1")
+            
+        }) { [unowned self] in
+            self.createTimer(CavyLifeBandAlertView.sharedIntance.showViewTitleWithoutAction(message: $0.msg), result: "0")
         }
 
     }

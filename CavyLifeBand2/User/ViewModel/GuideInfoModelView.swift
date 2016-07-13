@@ -235,7 +235,13 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
             
             setGoalViewSleepValue(userInfo.sleepGoal, view: goalView!)
             
-            break
+            UIApplication.sharedApplication().idleTimerDisabled = false
+            viewController.navigationController?.popViewControllerAnimated(false)
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+            
+            return
+            
         }
         
         if viewController.navigationController?.viewControllers.count > 1 {
@@ -274,7 +280,10 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
             // 调接口上传目标设置
             uploadGoalData {
                 // 返回主页
-                viewController.popVC()
+                UIApplication.sharedApplication().idleTimerDisabled = false
+                viewController.navigationController?.popViewControllerAnimated(false)
+                
+                NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
                 // 目标值改变 通知 主页圆环更新
                 NSNotificationCenter.defaultCenter().postNotificationName("updateUpperViewRing", object: nil)
             }

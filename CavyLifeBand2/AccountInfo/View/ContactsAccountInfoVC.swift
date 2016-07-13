@@ -72,6 +72,15 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         self.updateNavUI()
         
     }
+    
+    /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+    }
    
     deinit {
         
@@ -154,7 +163,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         
         // collectionView 高度
         // |-(badgeCount / 3） *（20 + 112）-|
-        let collectionViewHeight = CGFloat((badgeCount / 3) * 132)
+        let collectionViewHeight = ez.screenWidth <= 320 ? CGFloat((badgeCount / 2) * 132): CGFloat((badgeCount / 3) * 132)
 
         // contentView
         contectView.setCornerRadius(radius: CavyDefine.commonCornerRadius)
@@ -182,7 +191,9 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         // 退出按钮手势
         logoutButton.addTapGesture { _ in
             
-            NetWebApi.shareApi.netPostRequest(WebApiMethod.Logout.description, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+            let parameters: [String: AnyObject] = [NetRequsetKey.DeviceSerial.rawValue: CavyDefine.bindBandInfos.bindBandInfo.deviceSerial]
+            
+            NetWebApi.shareApi.netPostRequest(WebApiMethod.Logout.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { (data) in
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = ""
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken = ""
@@ -326,7 +337,9 @@ extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
             // 跳转到修改备注
             let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
             
-            let changeNicknameVM = UserChangeNicknameVM(viewController: requestVC)
+            let cellViewModel = accountInfos[indexPath.row] as? PresonInfoCellViewModel
+            
+            let changeNicknameVM = UserChangeNicknameVM(viewController: requestVC, textFeildText: cellViewModel?.title)
             
             requestVC.viewConfig(changeNicknameVM)
             
@@ -337,7 +350,9 @@ extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
                 // 跳转到修改地址
                 let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
                 
-                let changeRemarkVM = UserChangeAddressVM(viewController: requestVC)
+                let cellViewModel = accountInfos[indexPath.row + 1] as? PresonInfoListCellViewModel
+                
+                let changeRemarkVM = UserChangeAddressVM(viewController: requestVC, textFieldText: cellViewModel?.info)
                 
                 requestVC.viewConfig(changeRemarkVM)
                 
