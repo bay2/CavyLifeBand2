@@ -570,7 +570,9 @@ enum UserNetRequestMethod: String {
 
 // MARK: - Web Api 方法定义
 enum WebApiMethod: CustomStringConvertible {
-    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Issues, Weather
+
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Issues, Weather, Location
+
 
     var description: String {
         
@@ -615,6 +617,8 @@ enum WebApiMethod: CustomStringConvertible {
             return CavyDefine.webServerAddr + "issues"
         case .Weather:
             return CavyDefine.webServerAddr + "weather"
+        case .Location:
+            return CavyDefine.webServerAddr + "users/location"
         }
         
     }

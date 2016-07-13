@@ -125,22 +125,24 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         syncPKRecords()
         
+       
+        
     }
     
-    /**
-     上报坐标
-     
-     - parameter isLocalShare:
-     */
-    func userCoordinateReport(isLocalShare: Bool) {
-        
-        guard isLocalShare else {
-            return
-        }
-        
-        self.coordinateReportServer()
-        
-    }
+//    /**
+//     上报坐标
+//     
+//     - parameter isLocalShare:
+//     */
+//    func userCoordinateReport(isLocalShare: Bool) {
+//        
+//        guard isLocalShare else {
+//            return
+//        }
+//        
+//        self.coordinateReportServer()
+//        
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -225,7 +227,10 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
             
             let userInfoModel = UserInfoModel(userId: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, userProfile: userInfo)
             
-            self.userCoordinateReport(userInfoModel.isLocalShare)
+            /**
+             上报坐标
+             */
+            self.coordinateReportServer()
             
             if let _: UserInfoModel = self.queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
                 self.updateUserInfo(userInfoModel)
