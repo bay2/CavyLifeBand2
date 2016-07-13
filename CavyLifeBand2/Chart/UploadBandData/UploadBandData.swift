@@ -14,7 +14,7 @@ class UploadBandData: NetRequest {
     
     static var shareApi = UploadBandData()
     
-    func uploadBandData(raw: [NSDictionary], successHandler: ((CommenMsgResponse) -> Void)? = nil) {
+    func uploadBandData(raw: [NSDictionary], successHandler: ((CommenMsgResponse) -> Void)? = nil, failHandler: (Void -> Void)? = nil) {
         
         let parameters: [String: AnyObject] = [NetRequsetKey.Raw.rawValue: raw,
                                                NetRequsetKey.TimeScale.rawValue: 10]
@@ -26,6 +26,8 @@ class UploadBandData: NetRequest {
         }) { (msg) in
             
             Log.error(msg)
+            
+            failHandler?()
             
         }
 

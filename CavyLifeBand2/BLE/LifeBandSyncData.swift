@@ -292,9 +292,6 @@ class LifeBandSyncData {
             
             Log.info("Band sync end")
             
-            // 发送通知让主页停止同步数据下拉消失
-            NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
-            
             return true
             
         }
