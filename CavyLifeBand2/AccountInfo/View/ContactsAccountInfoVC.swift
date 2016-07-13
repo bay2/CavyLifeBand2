@@ -182,7 +182,9 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         // 退出按钮手势
         logoutButton.addTapGesture { _ in
             
-            NetWebApi.shareApi.netPostRequest(WebApiMethod.Logout.description, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+            let parameters: [String: AnyObject] = [NetRequsetKey.DeviceSerial.rawValue: CavyDefine.bindBandInfos.bindBandInfo.deviceSerial]
+            
+            NetWebApi.shareApi.netPostRequest(WebApiMethod.Logout.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { (data) in
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = ""
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken = ""

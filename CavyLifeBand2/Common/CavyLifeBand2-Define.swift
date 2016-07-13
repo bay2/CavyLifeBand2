@@ -217,19 +217,25 @@ struct BindBandInfo {
     
     init() {
         
+        if keychain["CavyUserDevice"] == nil {
+            keychain["CavyUserDevice"] = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""
+        }
+        
         guard let userMac = keychain[data: "CavyUserMAC"] else {
             
-            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:])
+            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:],
+                                                    deviceSerial: keychain["CavyUserDevice"]!)
             return
             
         }
         
         guard let userBindBand = NSKeyedUnarchiver.unarchiveObjectWithData(userMac) as? [String: NSData] else {
-            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:])
+            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:],
+                                                    deviceSerial: keychain["CavyUserDevice"]!)
             return
         }
         
-        self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: userBindBand)
+        self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: userBindBand, deviceSerial: keychain["CavyUserDevice"]!)
         
     }
     
@@ -247,6 +253,7 @@ struct BindBandInfoStorage {
     
     var defaultBindBand: String
     var userBindBand: [String: NSData]
+    var deviceSerial: String
     
     
 }
@@ -656,6 +663,7 @@ enum NetRequsetKey: String {
     case Question           = "question"
     case Detail             = "detail"
     case City               = "city"
+    case DeviceSerial       = "device_serial"
 }
 
 
