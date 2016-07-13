@@ -62,8 +62,13 @@ extension RootViewController: ChartsRealmProtocol {
                     return
                 }
                 
-                UploadBandData.shareApi.uploadBandData(uploadData.0) { [unowned self] data in
+                UploadBandData.shareApi.uploadBandData(uploadData.0, successHandler: {
+                    [unowned self] data in
                     self.setChartBandDataSynced(uploadData.1, endDate: uploadData.2)
+                    
+                }) {
+                    // 发送通知让主页停止同步数据下拉消失
+                    NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
                 }
             
         }
