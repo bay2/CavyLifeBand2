@@ -558,7 +558,7 @@ extension ChartsRealmProtocol {
             }
             
 
-            guard totalCount == sleepDatas.count - 1 else {
+            guard totalCount == sleepDatas.count  else {
                 
                 continue
             }

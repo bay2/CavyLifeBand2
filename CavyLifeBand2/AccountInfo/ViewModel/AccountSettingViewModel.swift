@@ -176,6 +176,8 @@ struct AccountWeightViewModel: AccountSettingModelPotocols {
 struct UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDelegate, UserInfoRealmOperateDelegate {
     
     var realm: Realm = try! Realm()
+   
+    var restrictedInput: Bool  = true
     
     var navTitle: String = L10n.ContactsChangeNickNameNavTitle.string
     
@@ -236,6 +238,8 @@ struct UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDele
 struct UserChangeAddressVM: ContactsReqFriendPortocols, SetUserInfoRequestsDelegate, UserInfoRealmOperateDelegate {
     
     var realm: Realm = try! Realm()
+    
+    var restrictedInput: Bool  = false
     
     var navTitle: String = L10n.ContactsChangeAddressNavTitle.string
     

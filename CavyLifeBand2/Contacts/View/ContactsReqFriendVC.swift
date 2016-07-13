@@ -108,15 +108,28 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
     
     func textChange(noti: NSNotification) {
         
-        if requestTextField.markedTextRange != nil {
-            
+        guard self.viewModel?.restrictedInput == true else {
             return
         }
-        
+
+            
+        if requestTextField.markedTextRange != nil {
+                
+                return
+            }
+            
         let string = requestTextField.text
-        
-        
-        requestTextField.text = confineTextFiledText(string) as String
+            
+            
+        if shouldCut(string) {
+                
+                if string != confineTextFiledText(string) as String {
+                    
+                    requestTextField.text = confineTextFiledText(string) as String
+                }
+                
+            }
+
         
     }
     
@@ -128,7 +141,10 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
      */
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         
-        
+        guard self.viewModel?.restrictedInput == true else {
+            
+            return true
+        }
         
         if string.length == 0 || textField.markedTextRange != nil {
             
@@ -147,7 +163,14 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
     }
     
     
-    
+    /**
+     
+     截取有效长度的字符串
+     
+     - parameter text: <#text description#>
+     
+     - returns: <#return value description#>
+     */
     func confineTextFiledText(text: NSString?) -> NSString {
         
         let length = text?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
@@ -157,10 +180,29 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
             
             newText  = confineTextFiledText(newText?.substringToIndex(newText!.length - 1))
             
+        }else if (length == MAXCOUNT) {
+            
+            return text!
         }
         
         return newText!
         
+    }
+    
+    
+    
+    func shouldCut(text: NSString?) -> Bool {
+        
+        let length = text?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+        
+        if length > MAXCOUNT {
+            
+           return true
+            
+        }else
+        {
+            return false
+        }
     }
     
 }
