@@ -23,6 +23,17 @@ struct AccountGenderViewModel: AccountSettingModelPotocols {
     var centerView: UIView = GenderView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight)) 
     var userInfoPara: [String: AnyObject] = [String: AnyObject]()
     
+    init(gender: Int) {
+        
+        guard let genderView = centerView as? GenderView else {
+            return
+        }
+        
+        genderView.MOrG = gender == 0 ? false : true 
+        
+        genderView.updateGender()
+    }
+    
     mutating func onClickGuideOkBtn(viewController: UIViewController) {
         
         guard let genderView = centerView as? GenderView else {
@@ -103,6 +114,20 @@ struct AccountHeightViewModel: AccountSettingModelPotocols {
     var centerView: UIView = HightView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight))
     var userInfoPara: [String: AnyObject] = [String: AnyObject]()
     
+    init(height: String) {
+        
+        guard height.isEmpty == false else {
+            return
+        }
+        
+        guard let heightView = centerView as? HightView else {
+            return
+        }
+        
+        heightView.setHeightValue(height)
+    
+    }
+    
     mutating func onClickGuideOkBtn(viewController: UIViewController) {
         
         guard let heightView = centerView as? HightView else {
@@ -140,6 +165,20 @@ struct AccountWeightViewModel: AccountSettingModelPotocols {
     var subTitle: String { return L10n.GuideIntroduce.string }
     var centerView: UIView = WeightView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight))
     var userInfoPara: [String: AnyObject] = [String: AnyObject]()
+    
+    init(weight: String = "") {
+        
+        guard weight.isEmpty == false else {
+            return
+        }
+        
+        guard let weightView = centerView as? WeightView else {
+            return
+        }
+        
+        weightView.setWeightValue(weight.toFloat() ?? 0.0)
+        
+    }
     
     mutating func onClickGuideOkBtn(viewController: UIViewController) {
         

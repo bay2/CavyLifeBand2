@@ -36,7 +36,7 @@ class RulerScroller: UIScrollView {
     /**
      更新视图风格
      */
-    func updateRulerViewStyle() {
+    func updateRulerViewStyle(value: String? = nil) {
         
         /// 长竖线之间的距离
         
@@ -136,11 +136,11 @@ class RulerScroller: UIScrollView {
         case .HeightRuler:
             
             // 当前刻度值
-            currentValue = "160"
+            currentValue = value ?? "160"
             let minHeight = 30
             let maxHeight = 240
             let allCount = maxHeight - minHeight
-            let beginCount = 160 - minHeight
+            let beginCount = (currentValue.toInt() ?? 160) - minHeight
             self.contentSize = CGSizeMake(60, heightRulerHeight + CGFloat(allCount * lineSpace))
             self.contentOffset = CGPointMake(0, CGFloat(beginCount * lineSpace))
 

@@ -104,6 +104,12 @@ class WeightView: UIView {
 
     }
     
+    func setWeightValue(value: Float) {
+        
+        rotaryView!.setValue(value, animated: false)
+        valueLabel.text = String(format: "%.1f", value)
+    }
+    
     /*
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.

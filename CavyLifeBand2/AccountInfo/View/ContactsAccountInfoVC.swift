@@ -346,12 +346,12 @@ extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
             self.pushVC(requestVC)
         } else {
             
+            let cellViewModel = accountInfos[indexPath.row + 1] as? PresonInfoListCellViewModel
+            
             if indexPath.row == accountInfos.count - 2 {
                 // 跳转到修改地址
                 let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
-                
-                let cellViewModel = accountInfos[indexPath.row + 1] as? PresonInfoListCellViewModel
-                
+                                
                 let changeRemarkVM = UserChangeAddressVM(viewController: requestVC, textFieldText: cellViewModel?.info)
                 
                 requestVC.viewConfig(changeRemarkVM)
@@ -365,13 +365,13 @@ extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
                     
             switch indexPath.row {
             case 0:
-                let nextVM = AccountGenderViewModel()
+                let nextVM = AccountGenderViewModel(gender: CavyDefine.translateSexToNumber(cellViewModel?.info ?? ""))
                 nextVC.configView(nextVM, delegate: nextVM)
             case 1:
-                let nextVM = AccountHeightViewModel()
+                let nextVM = AccountHeightViewModel(height: cellViewModel?.info.stringByReplacingOccurrencesOfString("cm", withString: "") ?? "")
                 nextVC.configView(nextVM, delegate: nextVM)
             case 2:
-                let nextVM = AccountWeightViewModel()
+                let nextVM = AccountWeightViewModel(weight: cellViewModel?.info.stringByReplacingOccurrencesOfString("kg", withString: "") ?? "")
                 nextVC.configView(nextVM, delegate: nextVM)
             case 3:
                 let nextVM = AccountBirthdayViewModel()

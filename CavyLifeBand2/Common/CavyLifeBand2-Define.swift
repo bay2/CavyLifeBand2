@@ -88,6 +88,24 @@ struct CavyDefine {
         return accountSex
     }
     
+    /**
+     性别汉字转数字
+     
+     - parameter sex: 性别标识
+     
+     - returns: 性别
+     */
+    static func translateSexToNumber(sex: String) -> Int {
+                
+        if sex == L10n.ContactsGenderGirl.string {
+            
+            return 0
+            
+        }
+        
+        return 1
+    }
+    
     // MARK - 蓝牙连接ViewController 跳转处理
     /**
      蓝牙连接Present视图
