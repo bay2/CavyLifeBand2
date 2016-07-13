@@ -90,7 +90,7 @@ class GoalView: UIView {
         // 单位：步
         stepUnit.text = L10n.GuideStep.string
         stepUnit.textColor = UIColor(named: .EColor)
-        stepUnit.font = UIFont.mediumSystemFontOfSize(14)
+        stepUnit.font = UIFont.systemFontOfSize(14)
         
         // 目标步数
         stepValue.text = String(stepCurrentValue)
@@ -104,12 +104,12 @@ class GoalView: UIView {
         
         // 平均值线
         stepPinAvg.textColor = UIColor(named: .HColor)
-        stepPinAvg.font = UIFont.mediumSystemFontOfSize(14)
+        stepPinAvg.font = UIFont.systemFontOfSize(12)
         stepPineLine.backgroundColor = UIColor(named: .HColor)
         
         // 推荐值线
         stepPinRecom.textColor = UIColor(named: .HColor)
-        stepPinRecom.font = UIFont.mediumSystemFontOfSize(14)
+        stepPinRecom.font = UIFont.systemFontOfSize(12)
         stepPinRecomLIne.backgroundColor = UIColor(named: .HColor)
 
     }
@@ -119,7 +119,7 @@ class GoalView: UIView {
         
         // 单位：分钟
         sleepMMUnit.text = L10n.GuideMinute.string
-        sleepMMUnit.font = UIFont.mediumSystemFontOfSize(14)
+        sleepMMUnit.font = UIFont.systemFontOfSize(14)
         sleepMMUnit.textColor = UIColor(named: .EColor)
 
         sleepMMValue.text = String(mmCurrentValue)
@@ -129,7 +129,7 @@ class GoalView: UIView {
         // 单位：小时
         sleepHHUnit.text = L10n.GuideHour.string
         sleepHHUnit.textColor = UIColor(named: .EColor)
-        sleepHHUnit.font = UIFont.mediumSystemFontOfSize(14)
+        sleepHHUnit.font = UIFont.systemFontOfSize(14)
         sleepHHValue.text = String(hhCurrentValue)
         sleepHHValue.font = UIFont.mediumSystemFontOfSize(30)
         sleepHHValue.textColor = UIColor(named: .EColor)
@@ -141,13 +141,13 @@ class GoalView: UIView {
 
         // 平均值线
         sleepPinAvgLab.textColor = UIColor(named: .HColor)
-        sleepPinAvgLab.font = UIFont.mediumSystemFontOfSize(14)
+        sleepPinAvgLab.font = UIFont.systemFontOfSize(12)
         sleepPineAvgLine.backgroundColor = UIColor(named: .HColor)
         
         // 推荐值线
         sleepPinRecomLine.backgroundColor = UIColor(named: .HColor)
         sleepPinRecomLab.textColor = UIColor(named: .HColor)
-        sleepPinRecomLab.font = UIFont.mediumSystemFontOfSize(14)
+        sleepPinRecomLab.font = UIFont.systemFontOfSize(12)
 
     }
     

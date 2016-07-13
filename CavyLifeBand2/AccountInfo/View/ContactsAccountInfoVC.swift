@@ -72,6 +72,15 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         self.updateNavUI()
         
     }
+    
+    /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+    }
    
     deinit {
         
