@@ -1176,26 +1176,10 @@
 		889519E71D26397E00BC4938 /* StepContrl */ = {
 			isa = PBXGroup;
 			children = (
-				889519E81D26397E00BC4938 /* Controller */,
-				889519E91D26397E00BC4938 /* View */,
 				889519EA1D26397E00BC4938 /* ViewModel */,
 				889519EB1D26397E00BC4938 /* WebApi */,
 			);
 			path = StepContrl;
-			sourceTree = "<group>";
-		};
-		889519E81D26397E00BC4938 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		889519E91D26397E00BC4938 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		889519EA1D26397E00BC4938 /* ViewModel */ = {

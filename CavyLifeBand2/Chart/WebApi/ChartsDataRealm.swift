@@ -485,9 +485,7 @@ extension ChartsRealmProtocol {
         var zeroCount = 0   // 都为0的计数
         var longSleepCount = 0 // 深睡时长
         var totalCount = 0
-        
-        
-        Log.info("validSleep Begin")
+
         
         let sleepDatas = transformSleepData(beginTime, endTime: endTime)
         let stepDatas = transformStepData(beginTime, endTime: endTime)
@@ -513,29 +511,20 @@ extension ChartsRealmProtocol {
             
             let stepItem = stepDatas[timeIndex]
             let tiltsItem = sleepDatas[timeIndex]
+
             
-            
-            // 1. 如果全部都没有数据 直接返回无睡眠
-            
-            if  sleepDatas.count == 0 || stepDatas.count == 0 {
-                
-                return (0, 0)
-            }
-            
-            
-            
-            // 2. 记录连续的 0
+            // 1. 记录连续的 0
             
             if stepItem == 0 && tiltsItem == 0 {
                 
                 zeroCount += 1
-                
+    
             }
             
             
-            // 条件3.1：之前20分钟tilt数量+当前10分钟tilt +之后20分钟tilt数量<40
-            // 条件3.2：当前10分钟tilt<15
-            // 条件3.3：当前10分钟step<30
+            // 条件2.1：之前20分钟tilt数量+当前10分钟tilt +之后20分钟tilt数量<40
+            // 条件2.2：当前10分钟tilt<15
+            // 条件2.3：当前10分钟step<30
             
             if tiltsTotal < 40 &&  tiltsItem < 15 && stepItem < 30 {
                 
@@ -543,14 +532,14 @@ extension ChartsRealmProtocol {
                 
             }
  
-            // 4. 退出无睡眠状态,减掉无效计数
+            // 3. 退出无睡眠状态,减掉无效计数
             // 如果longSleepCount 大于 noSleepTime  往后能找到非0 值 这可以去掉该部分无效数据
             // 如果 在 往后找不到非0 的数值 这判断这个循环结束的时候 有多少0
             
             
             if stepItem != 0 || tiltsItem != 0 {
                 
-                // 去掉超过连续的>=12 的0
+                // 4.去掉超过连续的>=12 的0
                 if zeroCount >= noSleepTime
                     
                 {
@@ -562,41 +551,45 @@ extension ChartsRealmProtocol {
                 {
                     // 有效的0
                     
-                    longSleepCount += zeroCount
+                    longSleepCount += 1
                 }
                 
-            }else {
+            }
+            
+
+            guard totalCount == sleepDatas.count - 1 else {
                 
-                // 如果在循环结束的时候 还没有出现非0 的数据 则 在循环结束的时候 截掉数据
+                continue
+            }
+            
+            
+               //5. 如果在循环结束的时候 还没有出现非0 的数据 则 在循环结束的时候 截掉数据
+            
+            if stepItem == 0 && tiltsItem == 0 {
                 
-                if stepItem == 0 && tiltsItem == 0 {
-                    
-                    if totalCount == sleepDatas.count - 1 {
+                if zeroCount >= noSleepTime
                         
-                        if zeroCount >= noSleepTime
-                            
-                        {
-                            
-                            minustsCount -= zeroCount
-                            zeroCount = 0
-                            longSleepCount = 0
-                            
-                        }
+                    {
+                        
+                        minustsCount -= zeroCount
+                        longSleepCount -= zeroCount
+                        zeroCount = 0
                         
                     }
-                }
             }
-  
+            
         }
         
+        
         guard  minustsCount >= 0 else {
-            
+    
             return  (0, 0)
         }
         
-        Log.info("总共睡眠\(minustsCount - 1)=====深睡个数\(longSleepCount)")
+    
+        Log.info("总共睡眠\(minustsCount)=====深睡个数\(longSleepCount)")
         
-        return (minustsCount - 1, longSleepCount)
+        return (minustsCount, longSleepCount)
     }
 
     
@@ -889,6 +882,7 @@ extension ChartsRealmProtocol {
     func setChartBandDataSynced(startDate: NSDate, endDate: NSDate) {
         setSleepChartBandDataSynced(startDate, endDate: endDate)
         setStepChartBandDataSynced(startDate, endDate: endDate)
+        NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
     }
     
     /**
