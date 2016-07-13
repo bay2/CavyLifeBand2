@@ -135,8 +135,7 @@ class ChartsBaseView: UIView, UICollectionViewDelegateFlowLayout, ChartsRealmPro
         timeLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
         
         infoView = UICollectionView(frame: CGRectMake(0, 0, ez.screenWidth, infoViewHeight), collectionViewLayout: timeLayout)
-        infoView!.setCornerRadius(radius: CavyDefine.commonCornerRadius)
-        infoView!.backgroundColor = UIColor.whiteColor()//(named: .ChartBackground)
+        infoView!.backgroundColor = UIColor.whiteColor()
         infoView!.alwaysBounceHorizontal = true
         infoView!.showsHorizontalScrollIndicator = false
         infoView!.contentSize = CGSizeMake(CGFloat(dates.count) * ez.screenWidth, subTimeButtonHeight)
