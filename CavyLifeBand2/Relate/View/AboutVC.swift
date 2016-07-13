@@ -89,15 +89,15 @@ class AboutVC: UIViewController, BaseViewControllerPresenter {
             self?.pushVC(targetVC)
         }
         
-        copyrightLabel.addTapGesture { [weak self] sender in
-            Log.info("前往版权网页")
-            
-            let targetVC = WebViewController()
-            
-            targetVC.dataSource = CopyrightWebViewModel()
-            
-            self?.pushVC(targetVC)
-        }
+//        copyrightLabel.addTapGesture { [weak self] sender in
+//            Log.info("前往版权网页")
+//            
+//            let targetVC = WebViewController()
+//            
+//            targetVC.dataSource = CopyrightWebViewModel()
+//            
+//            self?.pushVC(targetVC)
+//        }
         
     }
     
