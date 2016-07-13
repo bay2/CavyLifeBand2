@@ -93,7 +93,7 @@ protocol ChartsRealmProtocol: ChartStepRealmProtocol, SleepWebRealmOperate, User
     func addSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
     func querySleepNumber(beginTime: NSDate, endTime: NSDate) -> [PerSleepChartsData]
     func querySleepInfoDays(beginTime: NSDate, endTime: NSDate) -> [(Double, Double, Double)]
-    func querySleepInfoDay(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double)
+    func queryTodaySleepInfo() -> (Double, Double, Double)
     func removeSleepData(chartsInfo: ChartSleepDataRealm) -> Bool
     
 }
@@ -445,6 +445,7 @@ extension ChartsRealmProtocol {
             
             // 新接口 直接存的分钟 
             return PerSleepChartsData(time: newDate, deepSleep: Int($0.1), lightSleep: Int($0.2))
+            
         }
         
         return sleepDatas
@@ -680,26 +681,21 @@ extension ChartsRealmProtocol {
         
         Log.info("sleepTime =\(sleepInfo.0), deepSleep = \(deepSleep), lightSleep = \(lightSleep)")
         
-        return (Double(sleepInfo.0), Double(deepSleep), Double(lightSleep))
+        return (Double(sleepInfo.0) * 10, Double(deepSleep) * 10, Double(lightSleep) * 10)
     }
     
     /**
-     查询一天的睡眠信息
-     
-     - author: sim cai
-     - date: 2016-06-01
-     
-     - parameter beginTime: 开始时间
-     - parameter endTime:   结束时间
+     查询今天的睡眠数据
      
      - returns: (总的睡眠时间, 深睡, 浅睡)
      */
-    func querySleepInfoDay(beginTime: NSDate, endTime: NSDate) -> (Double, Double, Double) {
-        
-        let newBeginTime = (beginTime.gregorian.beginningOfDay - 6.hour).date
-        let newEndTime = endTime
+    func queryTodaySleepInfo() -> (Double, Double, Double) {
+      
+        let newBeginTime = (NSDate().gregorian.beginningOfDay - 6.hour).date
+        let newEndTime = (newBeginTime.gregorian + 1.day).date
         
         return querySleepInfo(newBeginTime, endTime: newEndTime)
+        
     }
     
     /**
