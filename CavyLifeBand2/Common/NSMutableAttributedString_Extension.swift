@@ -47,14 +47,14 @@ extension String {
         let detailUnitSize: CGFloat = 12
         
         let currentString = NSMutableAttributedString(string: numStr + unitStr)
-        
-        let attrs1: [String: AnyObject] = [NSFontAttributeName: UIFont.mediumSystemFontOfSize(detailNumSize)]
-        
-        currentString.addAttributes(attrs1, range: NSMakeRange(0, numStr.length))
-        
-        let attrs2: [String: AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(detailUnitSize), NSBaselineOffsetAttributeName: 4]
-        
-        currentString.addAttributes(attrs2, range: NSMakeRange(currentString.length - unitStr.length, unitStr.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.mediumSystemFontOfSize(detailNumSize), range: NSMakeRange(0, numStr.length))
+        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(detailUnitSize), range: NSMakeRange(currentString.length - unitStr.length, unitStr.length))
+
+        // 如果需要垂直居中 就是需要加入下面的 NSBaselineOffsetAttributeName 基数偏移
+
+//        let attrs2: [String: AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(detailUnitSize)， NSBaselineOffsetAttributeName: 4]
+//        
+//        currentString.addAttributes(attrs2, range: NSMakeRange(currentString.length - unitStr.length, unitStr.length))
    
         return currentString
     }

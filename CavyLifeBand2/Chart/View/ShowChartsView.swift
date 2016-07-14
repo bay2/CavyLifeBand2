@@ -146,18 +146,18 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func setData(count: Int) {
         
+        var datasCount = count
+
         maxValue = 0
         
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
         
-        if chartsData.count == 0 {
-            
-            return
-            
-        }
+        if datasCount == 0 { return }
         
-        for i in 0 ..< chartsData.count {
+        if timeBucketStyle == .Week { datasCount = 7 }
+
+        for i in 0 ..< datasCount {
 
             if timeBucketStyle == .Week {
                 
@@ -179,7 +179,6 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
             
             yVals.append(dataEntry)
 
-            
         }
         
         Log.info(yVals)
