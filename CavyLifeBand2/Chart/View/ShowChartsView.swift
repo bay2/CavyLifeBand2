@@ -10,11 +10,12 @@ import UIKit
 import Charts
 
 var spaceBetweenLabels = 0 // X轴 显示Label的个数
+var defaultSpaceHeigh = 50 // 当数值为0时候 也默认显示5个像素点
 
 class ShowChartsView: BarChartView, ChartViewDelegate {
 
     var legendColors = [UIColor.whiteColor()]
-    var legdendText = L10n.ChartStep.string
+    var legdendText = ""// L10n.ChartStepTodayStep.string
     var legendTextColor = UIColor.whiteColor()
     var leftUnit = " k"
 
@@ -81,8 +82,14 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         
         descriptionText = "\(maxValue + 1)k"
         descriptionFont = UIFont.systemFontOfSize(12)
-        descriptionTextPosition = CGPointMake(20, 0)
+        descriptionTextPosition = CGPointMake(10, 0)//chartTopHeigh / 2 - 5)
         descriptionTextColor = UIColor.whiteColor()
+        
+        if UIDevice.isPhone5() {
+            
+            descriptionTextPosition = CGPointMake(12, chartTopHeigh / 2 - 6)
+
+        }
         
     }
 
@@ -125,10 +132,10 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         self.legend.horizontalAlignment = .Right
         self.legend.verticalAlignment = .Top
         self.legend.form = .Circle
-        self.legend.formSize = 10
+        self.legend.formSize = 0
         self.legend.textColor = UIColor.whiteColor()
         self.legend.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
-        self.legend.xEntrySpace = 10
+        self.legend.xEntrySpace = 0
         
     }
     
@@ -139,25 +146,25 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
      */
     func setData(count: Int) {
         
+        var datasCount = count
+
         maxValue = 0
         
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
         
-        if chartsData.count == 0 {
-            
-            return
-            
-        }
+        if datasCount == 0 { return }
         
-        for i in 0 ..< chartsData.count {
-            
+        if timeBucketStyle == .Week { datasCount = 7 }
+
+        for i in 0 ..< datasCount {
+
             if timeBucketStyle == .Week {
                 
                 xVals.append(weekArray[i])
 
             } else {
-                
+            
                 xVals.append(chartsData[i].time)
                 
             }
@@ -167,11 +174,14 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
             if maxValue < chartsData[i].step / 1000 {
                 maxValue = chartsData[i].step / 1000
             }
-            
+
             let dataEntry = BarChartDataEntry(value: Double(chartsData[i].step), xIndex: i)
             
             yVals.append(dataEntry)
+
         }
+        
+        Log.info(yVals)
         
         descriptionText = "\(maxValue + 1)k"
         
@@ -262,14 +272,6 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
             
         }
         
-        
-        
-        
-        
     }
-    
-    
-    
-   
     
 }

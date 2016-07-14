@@ -36,8 +36,8 @@ class ChartsSubTimeBucketFlowLayout: UICollectionViewFlowLayout {
         let array: Array<UICollectionViewLayoutAttributes> = super.layoutAttributesForElementsInRect(rect)!
         
         let centerX = ez.screenWidth * 0.5 + self.collectionView!.contentOffset.x
+        
         for attrs in array {
-            attrs
             
             let itemCenterX = attrs.center.x
             
@@ -53,7 +53,5 @@ class ChartsSubTimeBucketFlowLayout: UICollectionViewFlowLayout {
         
         return array
     }
-    
-    
-    
+  
 }

@@ -143,11 +143,13 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
      */
     func setData(count: Int) {
         
+        var datasCount = count
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
         
+        if timeBucketStyle == .Week { datasCount = 7 }
 
-        for i in 0 ..< count {
+        for i in 0 ..< datasCount {
             
             // xVals
             if timeBucketStyle == .Week {
