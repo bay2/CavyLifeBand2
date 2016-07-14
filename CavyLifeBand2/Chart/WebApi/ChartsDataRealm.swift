@@ -551,6 +551,8 @@ extension ChartsRealmProtocol {
             }
             
             
+            //2. 记录伪睡眠数据
+            
             // 条件2.1：之前20分钟tilt数量+当前10分钟tilt +之后20分钟tilt数量<40
             // 条件2.2：当前10分钟tilt<15
             // 条件2.3：当前10分钟step<30
@@ -561,43 +563,39 @@ extension ChartsRealmProtocol {
                 
             }
  
-            // 3. 退出无睡眠状态,减掉无效计数
+            // 3.
             // 如果longSleepCount 大于 noSleepTime  往后能找到非0 值 这可以去掉该部分无效数据
             // 如果 在 往后找不到非0 的数值 这判断这个循环结束的时候 有多少0
             
             
             if stepItem != 0 || tiltsItem != 0 {
                 
-                // 4.去掉超过连续的>=12 的0
+                // 4.无效睡眠状态 去掉超过连续的>=12 的0
                 if zeroCount >= noSleepTime
                     
                 {
                     
                     minustsCount -= zeroCount
+                    longSleepCount -= zeroCount
                     zeroCount = 0
+                 
                     
                     
                 }else
                 {
-                    // 有效的0
+                    // 有效睡眠状态
                     
                     longSleepCount += 1
+                    
                 }
                 
-            }
-            
-
-            guard totalCount == sleepDatas.count  else {
+            }else{
                 
-                continue
-            }
-            
-            
-               //5. 如果在循环结束的时候 还没有出现非0 的数据 则 在循环结束的时候 截掉数据
-            
-            if stepItem == 0 && tiltsItem == 0 {
+                //5. 如果在循环结束的时候 还没有出现非0 的数据 则 在循环结束的时候 截掉数据
                 
-                if zeroCount >= noSleepTime
+                if stepItem == 0 && tiltsItem == 0 {
+                    
+                    if zeroCount >= noSleepTime
                         
                     {
                         
@@ -606,6 +604,7 @@ extension ChartsRealmProtocol {
                         zeroCount = 0
                         
                     }
+                }
             }
             
         }
