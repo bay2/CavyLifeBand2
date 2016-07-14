@@ -33,6 +33,13 @@ class AwardsRealm: Object {
     
     dynamic var award = 0
     
+    convenience init(awardValue: Int) {
+        
+        self.init()
+        
+        award = awardValue
+    }
+    
 }
 
 extension HomeLineRealm {
@@ -54,7 +61,7 @@ extension HomeLineRealm {
         self.totalDeepSleep = jsonModel.totalDeepSleep
         for award in jsonModel.awards {
             
-            self.awards.append(AwardsRealm(value: award))
+            self.awards.append(AwardsRealm(awardValue: award))
             
         }
         

@@ -88,6 +88,24 @@ struct CavyDefine {
         return accountSex
     }
     
+    /**
+     性别汉字转数字
+     
+     - parameter sex: 性别标识
+     
+     - returns: 性别
+     */
+    static func translateSexToNumber(sex: String) -> Int {
+                
+        if sex == L10n.ContactsGenderGirl.string {
+            
+            return 0
+            
+        }
+        
+        return 1
+    }
+    
     // MARK - 蓝牙连接ViewController 跳转处理
     /**
      蓝牙连接Present视图
@@ -571,7 +589,7 @@ enum UserNetRequestMethod: String {
 // MARK: - Web Api 方法定义
 enum WebApiMethod: CustomStringConvertible {
 
-    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Issues, Weather, Location
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Issues, Weather, Location, Helps
 
 
     var description: String {
@@ -619,6 +637,8 @@ enum WebApiMethod: CustomStringConvertible {
             return CavyDefine.webServerAddr + "weather"
         case .Location:
             return CavyDefine.webServerAddr + "users/location"
+        case .Helps:
+            return CavyDefine.webServerAddr + "helps"
         }
         
     }

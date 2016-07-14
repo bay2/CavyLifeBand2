@@ -27,7 +27,7 @@ protocol ContactsReqFriendViewControllerDataSource {
 
 protocol ContactsReqFriendViewControllerDelegate {
     
-    func onClickButton()
+    mutating func onClickButton()
     
 }
 
