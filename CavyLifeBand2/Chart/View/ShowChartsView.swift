@@ -82,12 +82,15 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         
         descriptionText = "\(maxValue + 1)k"
         descriptionFont = UIFont.systemFontOfSize(12)
-        descriptionTextPosition = CGPointMake(10, 0)//chartTopHeigh / 2 - 5)
+        descriptionTextAlign = .Left
+     
+        descriptionTextPosition = CGPointMake(10, 5)
+        
         descriptionTextColor = UIColor.whiteColor()
         
         if UIDevice.isPhone5() {
             
-            descriptionTextPosition = CGPointMake(12, chartTopHeigh / 2 - 6)
+            descriptionTextPosition = CGPointMake(15, chartTopHeigh / 2 - 6)
 
         }
         

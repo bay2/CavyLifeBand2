@@ -24,12 +24,6 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
        
         self.init(frame: frame)
         
-        /**
-         *  添加假数据
-         */
-//        self.deepSleep = 120
-//        self.lightSleep = 278
-        
         self.deepSleep  = deepSleep
         self.lightSleep = lightSleep
         
@@ -76,7 +70,8 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         
         descriptionText = "\(maxValue  / 60 + 1)h"
         descriptionFont = UIFont.systemFontOfSize(12)
-        descriptionTextPosition = CGPointMake(20, 0)
+        descriptionTextAlign = .Left
+        descriptionTextPosition = CGPointMake(10, 1)
         descriptionTextColor = UIColor.whiteColor()
         
     }
@@ -86,10 +81,10 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         self.legend.horizontalAlignment = .Right
         self.legend.verticalAlignment = .Top
         self.legend.form = .Circle
-        self.legend.formSize = 10
-        self.legend.textColor = UIColor.whiteColor()//(named: .ChartViewTextColor)
+        self.legend.formSize = 0
+        self.legend.textColor = UIColor.clearColor()//(named: .ChartViewTextColor)
         self.legend.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
-        self.legend.xEntrySpace = 10
+        self.legend.xEntrySpace = 0
         
     }
     
@@ -132,9 +127,9 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         // 如果深睡浅睡都为0 指出来的线不知道起点在哪 error
         if deepSleep != 0 && lightSleep != 0 {
             
-            dataSet.valueLinePart1OffsetPercentage = 0.8
-            dataSet.valueLinePart1Length = 0.5
-            dataSet.valueLinePart2Length = 0.5
+//            dataSet.valueLinePart1OffsetPercentage = 0.5
+            dataSet.valueLinePart1Length = 0.4
+            dataSet.valueLinePart2Length = 0.4
             dataSet.yValuePosition = .OutsideSlice
             dataSet.valueLineColor = lineAndTextColor
         }

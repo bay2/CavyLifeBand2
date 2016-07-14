@@ -154,9 +154,10 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         chartsView.addSubview(view)
         
         view.snp_makeConstraints { make in
-            make.edges.equalTo(UIEdgeInsets(top: chartTopHeigh / 2 - 5, left: insetSpace, bottom: -(chartBottomHeigh / 2 - 5), right: -insetSpace))
+            make.edges.equalTo(UIEdgeInsets(top: chartTopHeigh / 2 - 5, left: insetSpace / 2, bottom: -(chartBottomHeigh / 2 - 5), right: -insetSpace / 2))
         }
         
+        // 添加计步 右上角的legend
         if viewStyle == .StepChart {
             
             let label = UILabel()
@@ -169,6 +170,18 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             label.font = UIFont.systemFontOfSize(12)
             label.textColor = UIColor.whiteColor()
             
+        }
+        
+        // 添加睡眠 右上角的legend
+        if viewStyle == .SleepChart {
+
+            let sleepLegend = NSBundle.mainBundle().loadNibNamed("ChartsSleepLegendView", owner: nil, options: nil).first as? ChartsSleepLegendView
+            chartsView.addSubview(sleepLegend!)
+            sleepLegend!.snp_makeConstraints { make in
+                make.top.equalTo(0).offset(chartTopHeigh / 2 - 5)
+                make.right.equalTo(0).offset(-insetSpace)
+            }
+
         }
         
     }
