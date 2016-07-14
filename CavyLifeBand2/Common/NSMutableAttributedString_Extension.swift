@@ -52,12 +52,10 @@ extension String {
         
         currentString.addAttributes(attrs1, range: NSMakeRange(0, numStr.length))
         
-        let attrs2: [String: AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(detailUnitSize)]
-        currentString.addAttributes(attrs2, range: NSMakeRange(currentString.length - unitStr.length, unitStr.length))
-
-//        currentString.addAttribute(NSFontAttributeName, value: UIFont.mediumSystemFontOfSize(detailNumSize), range: NSMakeRange(0, numStr.length))
-//        currentString.addAttribute(NSFontAttributeName, value: UIFont.systemFontOfSize(detailUnitSize), range: NSMakeRange(currentString.length - unitStr.length, unitStr.length))
+        let attrs2: [String: AnyObject] = [NSFontAttributeName: UIFont.systemFontOfSize(detailUnitSize), NSBaselineOffsetAttributeName: 4]
         
+        currentString.addAttributes(attrs2, range: NSMakeRange(currentString.length - unitStr.length, unitStr.length))
+   
         return currentString
     }
     
