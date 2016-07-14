@@ -15,7 +15,7 @@ var defaultSpaceHeigh = 50 // 当数值为0时候 也默认显示5个像素点
 class ShowChartsView: BarChartView, ChartViewDelegate {
 
     var legendColors = [UIColor.whiteColor()]
-    var legdendText = L10n.ChartStepTodayStep.string
+    var legdendText = ""// L10n.ChartStepTodayStep.string
     var legendTextColor = UIColor.whiteColor()
     var leftUnit = " k"
 
@@ -82,8 +82,14 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         
         descriptionText = "\(maxValue + 1)k"
         descriptionFont = UIFont.systemFontOfSize(12)
-        descriptionTextPosition = CGPointMake(20, 0)//chartTopHeigh / 2 - 5)
+        descriptionTextPosition = CGPointMake(10, 0)//chartTopHeigh / 2 - 5)
         descriptionTextColor = UIColor.whiteColor()
+        
+        if UIDevice.isPhone5() {
+            
+            descriptionTextPosition = CGPointMake(12, chartTopHeigh / 2 - 6)
+
+        }
         
     }
 
@@ -129,7 +135,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         self.legend.formSize = 0
         self.legend.textColor = UIColor.whiteColor()
         self.legend.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
-        self.legend.xEntrySpace = 10
+        self.legend.xEntrySpace = 0
         
     }
     
@@ -175,6 +181,8 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
 
             
         }
+        
+        Log.info(yVals)
         
         descriptionText = "\(maxValue + 1)k"
         
