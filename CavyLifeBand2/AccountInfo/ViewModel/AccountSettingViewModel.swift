@@ -57,6 +57,7 @@ extension SetUserInfoRequestsDelegate {
         
         return loadingView
     }
+    
 }
 
 

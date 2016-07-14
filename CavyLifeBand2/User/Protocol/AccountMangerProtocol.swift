@@ -259,14 +259,14 @@ protocol SignUpDelegate {
      - parameter successBack:
      - parameter failBack:    
      */
-    func signUp(isEmail: Bool, successBack:(String -> Void)?, failBack: (CommenResponse -> Void)?)
+    func signUp(isEmail: Bool, successBack: (String -> Void)?, failBack: (CommenResponse -> Void)?)
     
 }
 
 // MARK: - 注册协议扩展
 extension SignUpDelegate where Self: UIViewController {
     
-    func signUp(isEmail: Bool = false, successBack:(String -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
+    func signUp(isEmail: Bool = false, successBack: (String -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
         
         if isEmail {
             signUpEmial({ (data) in
@@ -292,7 +292,7 @@ extension SignUpDelegate where Self: UIViewController {
         
     }
     
-    func signUpEmial(successBack:(SignUpResponse -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
+    func signUpEmial(successBack: (SignUpResponse -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
         
         let parameters: [String: AnyObject] = [NetRequsetKey.Email.rawValue: userName,
                                                NetRequsetKey.Password.rawValue: passwd.md5(),
@@ -310,7 +310,7 @@ extension SignUpDelegate where Self: UIViewController {
         
     }
     
-    func signUpPhone(successBack:(SignUpResponse -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
+    func signUpPhone(successBack: (SignUpResponse -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
         
         let parameters: [String: AnyObject] = [NetRequsetKey.Phone.rawValue: userName,
                                                NetRequsetKey.Password.rawValue: passwd.md5(),

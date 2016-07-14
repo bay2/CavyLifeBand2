@@ -40,10 +40,12 @@ extension CoordinateReport {
         SCLocationManager.shareInterface.startUpdateLocation { coordinate in
   
        let parameters: [String: AnyObject] = [NetRequsetKey.Longitude.rawValue: "\(coordinate.longitude)",
-                NetRequsetKey.Latitude.rawValue:  "\(coordinate.latitude)"]
+                NetRequsetKey.Latitude.rawValue: "\(coordinate.latitude)"]
             
             self.netPostRequest(WebApiMethod.Location.description, para: parameters, modelObject: CommenMsgResponse.self)
 
        }
+        
     }
+    
 }

@@ -171,13 +171,13 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
                         UpdateProgressView.hide()
                         
                     }
-                }.failure({ _ in
+                }.failure{ _ in
                    
                     UpdateProgressView.hide()
                     
                     self.alertUpdateFail(downLoadUrl, updateView: updateView)
                    
-                })
+                }
             }
             
         }.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in

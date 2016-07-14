@@ -51,7 +51,7 @@ class WeatherWebApi: NetRequest {
 }
 */
 
-struct WeatherMsg: JSONJoy , CommenResponseProtocol {
+struct WeatherMsg: JSONJoy, CommenResponseProtocol {
     
     var commonMsg: CommenResponse
     
