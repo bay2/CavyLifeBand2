@@ -45,6 +45,8 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
     
     var accountInfos: Array<AnyObject?> = []
     
+    var loadingView: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
     
     override func viewWillAppear(animated: Bool) {
@@ -87,6 +89,25 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         notificationToken?.stop()
         
         Log.info("deinit ContactsAccountInfoVC")
+        
+    }
+    
+    /**
+      添加加载圈圈
+     */
+    func addLodingView() {
+        
+        self.view.addSubview(loadingView)
+        
+        loadingView.hidesWhenStopped = true
+        
+        loadingView.activityIndicatorViewStyle = .Gray
+        
+        loadingView.snp_makeConstraints { make in
+            make.center.equalTo(self.view)
+            make.width.equalTo(50.0)
+            make.height.equalTo(50.0)
+        }
         
     }
     
@@ -191,23 +212,29 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         // 退出按钮手势
         logoutButton.addTapGesture { _ in
             
+            self.loadingView.startAnimating()
+            
             let parameters: [String: AnyObject] = [NetRequsetKey.DeviceSerial.rawValue: CavyDefine.bindBandInfos.bindBandInfo.deviceSerial]
             
-            NetWebApi.shareApi.netPostRequest(WebApiMethod.Logout.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+            NetWebApi.shareApi.netPostRequest(WebApiMethod.Logout.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { [unowned self] (data) in
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = ""
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken = ""
                 
                 UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Main.instantiateMainPageView(), transition: CATransition())
-                
+                self.loadingView.stopAnimating()
                 LifeBandBle.shareInterface.bleDisconnect()
             }, failureHandler: { (msg) in
                 CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
+                
+                self.loadingView.stopAnimating()
             })
             
             
             
         }
+        
+        addLodingView()
         
     }
 
