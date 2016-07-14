@@ -65,7 +65,9 @@ let weekArray: [String] = [L10n.AlarmDayMonday.string,
                            L10n.AlarmDayThursday.string,
                            L10n.AlarmDayFriday.string,
                            L10n.AlarmDaySaturday.string,
-                           L10n.AlarmDaySunday.string]
+                           L10n.AlarmDaySunday.string, "", "", ""]
+
+
 //MARK: 解析数据 一小时6条数据 一天 24小时
 let oneHourHav = 6
 let OneDayHave = 24
