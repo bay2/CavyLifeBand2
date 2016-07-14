@@ -32,7 +32,7 @@ struct UseAndPrivateWebViewModel: WebVCDataSourceProtocol {
     
     var navTitle: String  = L10n.RelateAboutUseAndPrivate.string
     
-    var webUrlStr: String = "http://www.baidu.com"
+    var webUrlStr: String = "http://bbs.tunshu.com/r/cms/www/blue/bbs_forum/img/top/phone_xieyi.html"
     
 }
 
