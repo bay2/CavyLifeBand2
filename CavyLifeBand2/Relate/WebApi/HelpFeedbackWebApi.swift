@@ -21,11 +21,13 @@ class HelpFeedbackWebApi: NetRequestAdapter, NetRequest {
      
      - throws:
      */
-    func getHelpFeedbackList(callBack: CompletionHandlernType? = nil) throws {
+    func getHelpFeedbackList(successBack: (HelpFeedbackResponse -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
         
-        let parameters: [String: AnyObject] = [UserNetRequsetKey.Cmd.rawValue: UserNetRequestMethod.GetHelpList.rawValue]
-        
-        netPostRequestAdapter(CavyDefine.webApiAddr, para: parameters, completionHandler: callBack)
+        netGetRequest(WebApiMethod.Helps.description, modelObject: HelpFeedbackResponse.self, successHandler: {
+            successBack?($0)
+        }) {
+            failBack?($0)
+        }
         
     }
     
