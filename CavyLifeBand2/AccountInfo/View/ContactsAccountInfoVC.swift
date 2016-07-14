@@ -374,7 +374,12 @@ extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
                 let nextVM = AccountWeightViewModel()
                 nextVC.configView(nextVM, delegate: nextVM)
             case 3:
-                let nextVM = AccountBirthdayViewModel()
+
+                let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
+                let userInfo = userInfos.first
+                let userBirthday = userInfo!.birthday ?? "1990-01-15"
+                let birthdayDate = NSDate(fromString: userBirthday , format: "yyyy-MM-dd")
+                let nextVM = AccountBirthdayViewModel(year: birthdayDate!.toString(format: "yyyy").toInt()!, month: birthdayDate!.toString(format: "M").toInt()!, day: birthdayDate!.toString(format: "d").toInt()!)
                 nextVC.configView(nextVM, delegate: nextVM)
             default:
                 break

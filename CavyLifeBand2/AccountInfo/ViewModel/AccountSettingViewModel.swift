@@ -60,8 +60,15 @@ struct AccountBirthdayViewModel: AccountSettingModelPotocols {
     var realm: Realm = try! Realm()
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
-    var centerView: UIView = BirthdayView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight))
+//    var centerView: UIView = BirthdayView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight))
+    var centerView: UIView
     var userInfoPara: [String: AnyObject] = [String: AnyObject]()
+    
+    // 添加初始化方法
+    init(year: Int, month: Int, day: Int) {
+        
+        centerView = BirthdayView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight), year: year, month: month, day: day)
+    }
     
     mutating func onClickGuideOkBtn(viewController: UIViewController) {
         
