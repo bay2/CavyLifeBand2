@@ -19,7 +19,7 @@ struct ContactsChangeRemarkViewModel: ContactsReqFriendPortocols {
     var navTitle: String = L10n.ContactsNavTitleRemark.string
     
     var textFieldTitle: String = ""
-    
+    var restrictedInput: Bool  = false
     var placeholderText: String {
         return L10n.ContactsChangeNotesNamePlaceHolder.string
     }

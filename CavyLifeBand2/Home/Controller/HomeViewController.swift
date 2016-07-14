@@ -73,7 +73,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+
         parseChartListData()
 
         addAllView()

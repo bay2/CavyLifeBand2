@@ -25,18 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
-        #if UITEST
-            
-            uiTestStub()
-            
-        #endif
         
-        #if RELEASE
-            Log.enabled = false
-           
-        #endif
-        
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
         /**
          5适配
          */
@@ -44,21 +33,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         realmConfig()
         
-        pgyUpdateConfig()
-        
         registerShareSdk()
         
         setRootViewController()
+        
+        
+        
+        #if UITEST
+            
+            uiTestStub()
+            
+        #endif
+        
+        
+        #if RELEASE
+            
+            PgyManager.sharedPgyManager().enableFeedback = false
+            Log.enabled = false
+            
+        #endif
+        
+        
+        
+        #if DEBUG
+            
+            pgyUpdateConfig()
+            
+            Log.theme = Theme(
+                trace: "#C5C8C6",
+                debug: "#81A2BE",
+                info: "#B5BD68",
+                warning: "#F0C674",
+                error: "#CC6666"
+            )
+            
+        #endif
+        
+        
         crashConfig()
-        
-        Log.theme = Theme(
-            trace: "#C5C8C6",
-            debug: "#81A2BE",
-            info: "#B5BD68",
-            warning: "#F0C674",
-            error: "#CC6666"
-        )
-        
         
         return true
 
