@@ -33,6 +33,7 @@ class LeftMenViewController: UIViewController, HomeUserDelegate, UserInfoRealmOp
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         setTableViewStyle()
         
         userInfoView.configuration(self)

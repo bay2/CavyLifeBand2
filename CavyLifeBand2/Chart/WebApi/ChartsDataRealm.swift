@@ -513,7 +513,7 @@ extension ChartsRealmProtocol {
         var minustsCount   = 0 // 睡眠计数
         var zeroCount = 0   // 都为0的计数
         var longSleepCount = 0 // 深睡时长
-        var totalCount = 0
+   
 
         
         let sleepDatas = transformSleepData(beginTime, endTime: endTime)
@@ -524,8 +524,7 @@ extension ChartsRealmProtocol {
         }
         
         for timeIndex in 0..<sleepDatas.count {
-            
-            totalCount += 1
+          
             
             // 前后计算范围
             let range = 2
@@ -547,6 +546,7 @@ extension ChartsRealmProtocol {
             if stepItem == 0 && tiltsItem == 0 {
                 
                 zeroCount += 1
+                longSleepCount += 1
     
             }
             
@@ -579,34 +579,29 @@ extension ChartsRealmProtocol {
                     longSleepCount -= zeroCount
                     zeroCount = 0
                  
-                    
-                    
-                }else
-                {
-                    // 有效睡眠状态
-                    
-                    longSleepCount += 1
-                    
                 }
                 
             }else{
                 
                 //5. 如果在循环结束的时候 还没有出现非0 的数据 则 在循环结束的时候 截掉数据
-                
-                if stepItem == 0 && tiltsItem == 0 {
+                if timeIndex ==  sleepDatas.count - 1 {
                     
-                    if zeroCount >= noSleepTime
+                    if stepItem == 0 && tiltsItem == 0 {
                         
-                    {
-                        
-                        minustsCount -= zeroCount
-                        longSleepCount -= zeroCount
-                        zeroCount = 0
-                        
+                        if zeroCount >= noSleepTime
+                            
+                        {
+                            
+                            minustsCount -= zeroCount
+                            longSleepCount -= zeroCount
+                            zeroCount = 0
+                            
+                        }
                     }
                 }
+
             }
-            
+                
         }
         
         
