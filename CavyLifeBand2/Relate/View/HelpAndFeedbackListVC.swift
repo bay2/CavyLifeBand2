@@ -121,42 +121,62 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         
         loadingView.startAnimating()
         
-        do {
+        HelpFeedbackWebApi.shareApi.getHelpFeedbackList({
             
-            try HelpFeedbackWebApi.shareApi.getHelpFeedbackList { result in
+            for help in $0.helpList {
                 
-                self.loadingView.stopAnimating()
+                let celVM = HelpFeedbackCellModel(title: help.title, webStr: help.webUrl)
                 
-                guard result.isSuccess else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
-                    return
-                }
+                self.tableDataSource.append(celVM)
                 
-                let resultMsg = try! HelpFeedbackResponse(JSONDecoder(result.value!))
-                
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.commonMsg?.code ?? "")
-                    return
-                }
-                
-                guard let helpList = resultMsg.helpList else {
-                    return
-                }
-                
-                for help in helpList {
-                    
-                    let celVM = HelpFeedbackCellModel(title: help.title, webStr: help.webUrl)
-                    
-                    self.tableDataSource.append(celVM)
-                    
-                    self.tableView.reloadData()
-                }
-                
+                self.tableView.reloadData()
             }
             
-        } catch let error {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+            self.loadingView.stopAnimating()
+            
+        }) {
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: $0.msg)
+            self.loadingView.stopAnimating()
+            
         }
+        
+//        do {
+//            
+//            try HelpFeedbackWebApi.shareApi.getHelpFeedbackList { result in
+//                
+//                self.loadingView.stopAnimating()
+//                
+//                guard result.isSuccess else {
+//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
+//                    return
+//                }
+//                
+//                let resultMsg = try! HelpFeedbackResponse(JSONDecoder(result.value!))
+//                
+//                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
+//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.commonMsg?.code ?? "")
+//                    return
+//                }
+//                
+//                guard let helpList = resultMsg.helpList else {
+//                    return
+//                }
+//                
+//                for help in helpList {
+//                    
+//                    let celVM = HelpFeedbackCellModel(title: help.title, webStr: help.webUrl)
+//                    
+//                    self.tableDataSource.append(celVM)
+//                    
+//                    self.tableView.reloadData()
+//                }
+//                
+//            }
+//            
+//        } catch let error {
+//            CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+//        }
 
     }
 

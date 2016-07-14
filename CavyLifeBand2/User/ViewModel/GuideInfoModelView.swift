@@ -149,6 +149,8 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
     var viewStyle: GoalViewStyle
     var realm: Realm = try! Realm()
     
+    var loadingView: UIActivityIndicatorView?
+    
     var notificationToken: NotificationToken? = nil
     
     init(viewStyle: GoalViewStyle) {
@@ -256,7 +258,7 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
         
     }
     
-    func onClickGuideOkBtn(viewController: UIViewController) {
+    mutating func onClickGuideOkBtn(viewController: UIViewController) {
         
         guard let goalView = centerView as? GoalView else {
             return
@@ -276,6 +278,12 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
             viewController.pushVC(nextVC)
             
         } else {
+            
+            if loadingView == nil {
+                loadingView = getLoadingView()
+            }
+            
+            loadingView?.startAnimating()
             
             // 调接口上传目标设置
             uploadGoalData {
@@ -314,10 +322,11 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
                 return $0
             }
             
+            self.loadingView?.stopAnimating()
             completeHandler()
             
         }) { (msg) in
-            
+            self.loadingView?.stopAnimating()
         }
 
     }

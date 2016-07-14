@@ -45,6 +45,8 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
     
     var accountInfos: Array<AnyObject?> = []
     
+    var loadingView: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
     
     override func viewWillAppear(animated: Bool) {
@@ -87,6 +89,25 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         notificationToken?.stop()
         
         Log.info("deinit ContactsAccountInfoVC")
+        
+    }
+    
+    /**
+      添加加载圈圈
+     */
+    func addLodingView() {
+        
+        self.view.addSubview(loadingView)
+        
+        loadingView.hidesWhenStopped = true
+        
+        loadingView.activityIndicatorViewStyle = .Gray
+        
+        loadingView.snp_makeConstraints { make in
+            make.center.equalTo(self.view)
+            make.width.equalTo(50.0)
+            make.height.equalTo(50.0)
+        }
         
     }
     
@@ -191,23 +212,29 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         // 退出按钮手势
         logoutButton.addTapGesture { _ in
             
+            self.loadingView.startAnimating()
+            
             let parameters: [String: AnyObject] = [NetRequsetKey.DeviceSerial.rawValue: CavyDefine.bindBandInfos.bindBandInfo.deviceSerial]
             
-            NetWebApi.shareApi.netPostRequest(WebApiMethod.Logout.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+            NetWebApi.shareApi.netPostRequest(WebApiMethod.Logout.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { [unowned self] (data) in
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = ""
                 CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken = ""
                 
                 UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Main.instantiateMainPageView(), transition: CATransition())
-                
+                self.loadingView.stopAnimating()
                 LifeBandBle.shareInterface.bleDisconnect()
             }, failureHandler: { (msg) in
                 CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
+                
+                self.loadingView.stopAnimating()
             })
             
             
             
         }
+        
+        addLodingView()
         
     }
 
@@ -346,12 +373,12 @@ extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
             self.pushVC(requestVC)
         } else {
             
+            let cellViewModel = accountInfos[indexPath.row + 1] as? PresonInfoListCellViewModel
+            
             if indexPath.row == accountInfos.count - 2 {
                 // 跳转到修改地址
                 let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
-                
-                let cellViewModel = accountInfos[indexPath.row + 1] as? PresonInfoListCellViewModel
-                
+                                
                 let changeRemarkVM = UserChangeAddressVM(viewController: requestVC, textFieldText: cellViewModel?.info)
                 
                 requestVC.viewConfig(changeRemarkVM)
@@ -365,13 +392,13 @@ extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
                     
             switch indexPath.row {
             case 0:
-                let nextVM = AccountGenderViewModel()
+                let nextVM = AccountGenderViewModel(gender: CavyDefine.translateSexToNumber(cellViewModel?.info ?? ""))
                 nextVC.configView(nextVM, delegate: nextVM)
             case 1:
-                let nextVM = AccountHeightViewModel()
+                let nextVM = AccountHeightViewModel(height: cellViewModel?.info.stringByReplacingOccurrencesOfString("cm", withString: "") ?? "")
                 nextVC.configView(nextVM, delegate: nextVM)
             case 2:
-                let nextVM = AccountWeightViewModel()
+                let nextVM = AccountWeightViewModel(weight: cellViewModel?.info.stringByReplacingOccurrencesOfString("kg", withString: "") ?? "")
                 nextVC.configView(nextVM, delegate: nextVM)
             case 3:
                 let nextVM = AccountBirthdayViewModel()

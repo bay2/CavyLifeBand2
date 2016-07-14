@@ -84,6 +84,9 @@ class HightView: UIView, RulerViewDelegate {
         
     }
     
+    func setHeightValue(height: String) {
+        heightRuler.rulerScroll.updateRulerViewStyle(height)
+    }
 
     
     /*

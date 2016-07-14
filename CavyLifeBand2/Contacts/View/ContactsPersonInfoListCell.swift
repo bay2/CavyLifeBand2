@@ -23,7 +23,7 @@ class ContactsPersonInfoListCell: UITableViewCell {
         // Initialization code
         
         titleLabel.textColor = UIColor(named: .EColor)
-        titleLabel.font = UIFont.mediumSystemFontOfSize(16.0)
+        titleLabel.font = UIFont.systemFontOfSize(16.0)
         
         titleInfoLabel.textColor = UIColor(named: .EColor)
         titleInfoLabel.font = UIFont.systemFontOfSize(16.0)
