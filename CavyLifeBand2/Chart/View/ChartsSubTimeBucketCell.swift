@@ -40,4 +40,5 @@ class ChartsSubTimeBucketCell: UICollectionViewCell {
         
         label.font = UIFont.systemFontOfSize(14)
     }
+    
 }

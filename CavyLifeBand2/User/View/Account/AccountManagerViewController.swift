@@ -443,14 +443,14 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
             
             if dataSource?.isEmail == true {
                 
-                sendSignUpEmailCode({ [unowned self] (msg) in
+                sendSignUpEmailCode{ [unowned self] (msg) in
                     self.signUpOrCodeFail(msg)
-                })
+                }
                 
             } else {
-                sendSignUpPhoneCode({ [unowned self] (msg) in
+                sendSignUpPhoneCode{ [unowned self] (msg) in
                     self.signUpOrCodeFail(msg)
-                })
+                }
             }
             
         } else {

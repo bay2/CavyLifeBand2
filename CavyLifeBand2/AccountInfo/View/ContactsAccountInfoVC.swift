@@ -52,7 +52,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
     override func viewWillAppear(animated: Bool) {
         
         // 调接口获取个人信息
-        queryUserInfoByNet() { resultUserInfo in
+        queryUserInfoByNet { resultUserInfo in
             
             let userInfoModel = UserInfoModel(userId: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, userProfile: resultUserInfo!)
             
@@ -184,7 +184,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, User
         
         // collectionView 高度
         // |-(badgeCount / 3） *（20 + 112）-|
-        let collectionViewHeight = ez.screenWidth <= 320 ? CGFloat((badgeCount / 2) * 132): CGFloat((badgeCount / 3) * 132)
+        let collectionViewHeight = ez.screenWidth <= 320 ? CGFloat((badgeCount / 2) * 132) : CGFloat((badgeCount / 3) * 132)
 
         // contentView
         contectView.setCornerRadius(radius: CavyDefine.commonCornerRadius)

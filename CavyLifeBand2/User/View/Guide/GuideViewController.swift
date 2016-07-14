@@ -90,6 +90,10 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
             make.top.equalTo(self.view)
         }
         
+        middleView.snp_makeConstraints { (make) in
+            make.bottom.equalTo(self.view).offset(ez.screenWidth <= 320 ? -90 : -110)
+        }
+        
     }
     
     /**

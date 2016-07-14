@@ -60,20 +60,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             pgyUpdateConfig()
             
             Log.theme = Theme(
-                trace:   "#C5C8C6",
-                debug:   "#81A2BE",
-                info:    "#B5BD68",
+                trace: "#C5C8C6",
+                debug: "#81A2BE",
+                info: "#B5BD68",
                 warning: "#F0C674",
-                error:   "#CC6666"
+                error: "#CC6666"
             )
             
         #endif
         
         
         crashConfig()
-        
-       
-        
         
         return true
 

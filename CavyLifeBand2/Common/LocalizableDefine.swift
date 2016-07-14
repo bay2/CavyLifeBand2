@@ -265,7 +265,7 @@ enum L10n {
   case HomeRightListTitleSecurity
   /// 固件升级
   case HomeRightListTitleFirmwareUpgrade
-  /// 绑定新的CavyBand
+  /// 绑定新的豚鼠手环
   case HomeRightListTitleBindingBand
   /// 我的豚鼠手环Band
   case BandTitle
@@ -635,6 +635,18 @@ enum L10n {
   case UpdateFirmwareBandDisconnectAlertMsg
   /// 固件版本已最新版本
   case UpdateFirmwareIsNewVersionAlertMsg
+  /// 安装新的固件版本
+  case UpdateFirmwareInstallNewVersionAlertTitle
+  /// error
+  case UpdateFirmwareDownloadError
+  /// 手环电量过低
+  case UpdateFirmwareLowElectricAlertTitle
+  /// 手环电量过低，固件升级至少需要20%电量，请充电后再试
+  case UpdateFirmwareLowElectricAlertMsg
+  /// 固件升级失败
+  case UpdateFirmwareUpdateFailAlertMsg
+  /// 正在检测固件版本
+  case UpdateFirmwareCheckVersionAlertMsg
   /// 下拉同步数据...
   case HomeRefreshIdle
   /// 松开同步数据...
@@ -649,10 +661,16 @@ enum L10n {
   case AlertSureActionTitle
   /// 取消
   case AlertCancelActionTitle
+  /// 升级
+  case AlertUpdateActionTitle
   /// 确认撤销此次PK？
   case AlertUndoPKWaitRecordMsg
   /// 确认重新绑定手环？
   case AlertReBindBandMsg
+  /// 重新升级
+  case AlertReUpdateActionTitle
+  /// 充电后再试
+  case AlertReTryAfterChargeActionTitle
 }
 
 extension L10n: CustomStringConvertible {
@@ -1292,6 +1310,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UpdateFirmware.BandDisconnect.AlertMsg")
       case .UpdateFirmwareIsNewVersionAlertMsg:
         return L10n.tr("UpdateFirmware.IsNewVersion.AlertMsg")
+      case .UpdateFirmwareInstallNewVersionAlertTitle:
+        return L10n.tr("UpdateFirmware.InstallNewVersion.AlertTitle")
+      case .UpdateFirmwareDownloadError:
+        return L10n.tr("UpdateFirmware.DownloadError")
+      case .UpdateFirmwareLowElectricAlertTitle:
+        return L10n.tr("UpdateFirmware.LowElectric.AlertTitle")
+      case .UpdateFirmwareLowElectricAlertMsg:
+        return L10n.tr("UpdateFirmware.LowElectric.AlertMsg")
+      case .UpdateFirmwareUpdateFailAlertMsg:
+        return L10n.tr("UpdateFirmware.UpdateFail.AlertMsg")
+      case .UpdateFirmwareCheckVersionAlertMsg:
+        return L10n.tr("UpdateFirmware.CheckVersion.AlertMsg")
       case .HomeRefreshIdle:
         return L10n.tr("Home.Refresh.Idle")
       case .HomeRefreshPulling:
@@ -1306,10 +1336,16 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Alert.SureAction.Title")
       case .AlertCancelActionTitle:
         return L10n.tr("Alert.CancelAction.Title")
+      case .AlertUpdateActionTitle:
+        return L10n.tr("Alert.UpdateAction.Title")
       case .AlertUndoPKWaitRecordMsg:
         return L10n.tr("Alert.UndoPKWaitRecord.Msg")
       case .AlertReBindBandMsg:
         return L10n.tr("Alert.ReBindBand.Msg")
+      case .AlertReUpdateActionTitle:
+        return L10n.tr("Alert.ReUpdateAction.Title")
+      case .AlertReTryAfterChargeActionTitle:
+        return L10n.tr("Alert.ReTryAfterChargeAction.Title")
     }
   }
 
