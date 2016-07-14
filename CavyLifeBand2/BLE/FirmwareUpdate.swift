@@ -269,6 +269,7 @@ extension FirmwareDownload {
         }.response(completionHandler: { _, _, _, error in
             
             if  error != nil {
+                completeHandle(L10n.UpdateFirmwareDownloadError.string)
                 return
             }
             
