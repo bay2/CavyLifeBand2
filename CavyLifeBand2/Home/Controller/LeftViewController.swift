@@ -48,6 +48,7 @@ class LeftMenViewController: UIViewController, HomeUserDelegate, UserInfoRealmOp
         
         addMenumenuGroupData(AppFeatureMenuGroupDataModel())
         addMenumenuGroupData(AppAboutMenuGroupDataModel())
+        addMenumenuGroupData(AppRecommendMenuGroupDataModel())
         
         let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
