@@ -105,7 +105,7 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         
         for i in 0 ..< dataCount {
             
-            let sleepName = ["\(L10n.ChartSleepLight.string)", "\(L10n.ChartSleepDeep.string)"]
+            let sleepName = ["", ""]//["\(L10n.ChartSleepLight.string)", "\(L10n.ChartSleepDeep.string)"]
             xVals.append(sleepName[i])
             
             yVals.append(BarChartDataEntry(value: sleepDegreeArray[i], xIndex: i))
