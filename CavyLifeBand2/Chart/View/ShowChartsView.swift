@@ -283,7 +283,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
         
         // 间隔dataSet.barSpace = 0.80
         
-        var yValsCount = 24
+        var  yValsCount = 24
         
         if timeBucketStyle == .Week { yValsCount = 7}
         if timeBucketStyle == .Month{ yValsCount = chartsData.count}

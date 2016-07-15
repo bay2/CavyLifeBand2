@@ -285,8 +285,12 @@ extension ChartStepRealmProtocol {
         
         var averageStepCount = 0
         
+        var indext = 0
+        
+        
         for data in dataInfo {
-            
+           
+            indext += 1
             stepChartsData.totalKilometer += data.kilometer
             stepChartsData.totalStep += data.totalStep
             stepChartsData.finishTime += data.totalTime
@@ -299,13 +303,9 @@ extension ChartStepRealmProtocol {
                 averageStepCount += 1
             }
             
-           
-            for step in data.stepList {
-                
-            let index = (data.date - beginTime).components.day
-            stepChartsData.datas[index].step += step.step
-                
-            }
+        
+            stepChartsData.datas[indext - 1].step = data.totalStep
+            
         }
         
         if averageStepCount == 0 {
