@@ -31,7 +31,7 @@ extension HomeViewController {
      */
     func beginHomeViewRefreshing() {
 
-        addAutoRefreshHeader()
+//        addAutoRefreshHeader()
         
         scrollView.mj_header.beginRefreshing()
         

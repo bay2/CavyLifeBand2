@@ -102,7 +102,7 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
             lineAndTextColor = UIColor.clearColor()
 
         }
-        
+    
         for i in 0 ..< dataCount {
             
             let sleepName = ["", ""]//["\(L10n.ChartSleepLight.string)", "\(L10n.ChartSleepDeep.string)"]
