@@ -106,8 +106,8 @@
 
 "Guide.PhoneRemind.Title"   = "来电提醒";
 "Guide.PhoneRemind.Info"    = "来电振动提醒，不漏接一个重要来电";
-"Guide.PK.Title"            = "计步PK";
-"Guide.PK.Info"             = "实时查看与好友计步PK详情\n让走路成为一种乐趣";
+"Guide.PK.Title"            = "计步成就";
+"Guide.PK.Info"             = "让走路成为一种乐趣";
 "Guide.SafetyService.Title" = "安全服务";
 "Guide.SafetyService.Info"  = "遇到紧急情况，连按4下按钮\n立即向联系人发送求救信息";
 "Guide.LifeBand.Title"      = "豚鼠手环";
@@ -152,7 +152,7 @@
 "Home.LifeList.Title.PK"               = "PK";
 "Home.LifeList.Title.About"            = "关于";
 "Home.LifeList.Title.Help"             = "帮助与反馈";
-"Home.LifeList.Title.Related"          = "APP推荐";
+"Home.LifeList.Title.Related"          = "体感应用";
 "Home.RightList.Title.Camera"          = "遥控相机";
 "Home.RightList.Title.Notification"    = "来电提醒";
 "Home.RightList.Title.AlarmClock"      = "手环闹钟";
@@ -247,7 +247,7 @@
 "AccountInfo.AchieveView.NumPrefix"      = "您已累计行走";
 
 //闹钟
-"AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 取消传统声音唤醒体系";
+"AlarmClock.IntelligentClockTableFooter.Info" = "手环振动提醒 远离传统闹铃噪声";
 "AlarmClock.Title"                            = "手环闹钟";
 "AlarmClock.Awake.Title"                      = "智能唤醒";
 "AlarmClock.Awake.Description"                = "允许你闹钟在目标唤醒时间之前30分钟内将我从浅度睡眠中唤醒，让我更轻松的起床。";
@@ -350,7 +350,7 @@
 "Relate.HelpAndFeedback.SendBtnTitle"        = "发送";
 "Relate.HelpAndFeedback.TextViewPlaceHolder" = "请描述你的问题或意见";
 
-"Relate.RelateApp.NavTitle"                  = "APP推荐";
+"Relate.RelateApp.NavTitle"                  = "体感应用";
 "Relate.RelateAppCell.DownloadBtnTitle"      = "下载";
 "Relate.HelpAndFeedback.SendSuccessAlertMsg" = "发送成功";
 
@@ -388,7 +388,7 @@
 "Alert.CancelAction.Title"   = "取消";
 "Alert.UpdateAction.Title"   = "升级";
 "Alert.UndoPKWaitRecord.Msg" = "确认撤销此次PK？";
-"Alert.ReBindBand.Msg"       = "确认重新绑定手环？";
+"Alert.ReBindBand.Msg"       = "确认绑定新的手环？";
 "Alert.tips.Msg"             = "提示";
 "Alert.relogin.Title"        = "登录已失效，请重新登录";
 "Alert.ReUpdateAction.Title" = "重新升级";

@@ -32,7 +32,7 @@ extension RootViewController: ChartsRealmProtocol {
             if autoUpdate == true {  //自动刷新 进入调用
                 
                 guard (NSDate().gregorian.beginningOfDay.date - syncDate).totalMinutes >= 10  else {
-                    
+                    NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
                     return
                 }
             }

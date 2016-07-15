@@ -23,6 +23,26 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
     var totalIndex: Int = Int(MAXINTERP)
     
     var currentIndex: Int = 1
+    
+    lazy var loadingView: UIActivityIndicatorView = {
+        
+        let loadingView: UIActivityIndicatorView = UIActivityIndicatorView()
+        
+        loadingView.hidesWhenStopped = true
+        
+        loadingView.activityIndicatorViewStyle = .Gray
+        
+        self.view.addSubview(loadingView)
+        
+        loadingView.snp_makeConstraints { make in
+            make.center.equalTo(self.view)
+            make.width.equalTo(50.0)
+            make.height.equalTo(50.0)
+        }
+        
+        return loadingView
+
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +86,9 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
         
         tableView.registerNib(UINib.init(nibName: relateAppCellID, bundle: nil), forCellReuseIdentifier: relateAppCellID)
         
-        self.tableView.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: #selector(RelateAppVC.loadDataByIndex))
+//        self.tableView.mj_footer = MJRefreshBackNormalFooter(refreshingTarget: self, refreshingAction: #selector(RelateAppVC.loadDataByIndex))
+//        
+//        self.tableView.mj_footer.beginRefreshing()
         
     }
     
@@ -81,46 +103,41 @@ class RelateAppVC: UIViewController, BaseViewControllerPresenter {
     }
 
     func loadDataByIndex() {
-                
-        do {
+        
+        loadingView.startAnimating()
+        
+        RelateAppWebApi.shareApi.getRelateAppList(self.currentIndex, successHandler: { [unowned self] (gameList) in
             
-            try RelateAppWebApi.shareApi.getRelateAppList(currentIndex) { result in
+            // 分页加载功能暂时注释
+            
+//            self.currentIndex += 1
+//            
+//            if gameList.count == 0 {
+//                self.tableView.mj_footer.endRefreshingWithNoMoreData()
+//                return
+//            }
+            
+            for i in 0..<gameList.count {
                 
-                guard result.isSuccess else {
-                    return
-                }
-                
-                let resultMsg = try! RelateAppResponse(JSONDecoder(result.value!))
-                
-                guard resultMsg.commonMsg.code == WebGetApiCode.Success.rawValue else {
-                    return
-                }
-                
-                self.currentIndex += 1
-                
-                if resultMsg.data.gamelist.count == 0 {
-                    self.tableView.mj_footer.endRefreshingWithNoMoreData()
-                    return
-                }
-                
-                let gameList = resultMsg.data.gamelist
-                
-                for i in 0..<gameList.count {
-                    
-                    self.tableDataSource.append(RelateAppCellModel(gameModel: gameList[i]))
-                    
-                }
-                
-                self.tableView.mj_footer.endRefreshing()
-                
-                self.tableView.reloadData()
+                self.tableDataSource.append(RelateAppCellModel(gameModel: gameList[i]))
                 
             }
             
-        } catch let error {
-            Log.error(error)
+//            self.tableView.mj_footer.endRefreshing()
+            
+            self.loadingView.stopAnimating()
+            
+            self.tableView.reloadData()
+            
+        }) { (msg) in
+            
+//            self.tableView.mj_footer.endRefreshing()
+            
+            self.loadingView.stopAnimating()
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
         }
-        
+                
     }
 
 }
@@ -136,10 +153,7 @@ extension RelateAppVC: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         
-//        goDetailInfoWeb(indexPath.row)
-        
-        // TODO 暂时写死
-        UIApplication.sharedApplication().openURL(NSURL(string: "https://itunes.apple.com/cn/app/suan-shu-pao-ku-tun-shu-ke/id1097470418?mt=8")!)
+        goDetailInfoWeb(indexPath.row)
         
     }
     

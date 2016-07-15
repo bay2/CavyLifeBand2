@@ -8,6 +8,7 @@
 
 import UIKit
 import JSONJoy
+import EZSwiftExtensions
 
 class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
 
@@ -96,6 +97,10 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
 
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
         
+        tableView.estimatedRowHeight = 50.0
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         tableView.registerNib(UINib.init(nibName: HelpAndFeedbackCellID, bundle: nil), forCellReuseIdentifier: HelpAndFeedbackCellID)
         
     }
@@ -140,43 +145,6 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
             self.loadingView.stopAnimating()
             
         }
-        
-//        do {
-//            
-//            try HelpFeedbackWebApi.shareApi.getHelpFeedbackList { result in
-//                
-//                self.loadingView.stopAnimating()
-//                
-//                guard result.isSuccess else {
-//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
-//                    return
-//                }
-//                
-//                let resultMsg = try! HelpFeedbackResponse(JSONDecoder(result.value!))
-//                
-//                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-//                    CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.commonMsg?.code ?? "")
-//                    return
-//                }
-//                
-//                guard let helpList = resultMsg.helpList else {
-//                    return
-//                }
-//                
-//                for help in helpList {
-//                    
-//                    let celVM = HelpFeedbackCellModel(title: help.title, webStr: help.webUrl)
-//                    
-//                    self.tableDataSource.append(celVM)
-//                    
-//                    self.tableView.reloadData()
-//                }
-//                
-//            }
-//            
-//        } catch let error {
-//            CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
-//        }
 
     }
 
@@ -191,10 +159,6 @@ extension HelpAndFeedbackListVC: UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return tableSectionHeight
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -233,6 +197,8 @@ extension HelpAndFeedbackListVC: UITableViewDelegate {
         self.pushVC(targetVC)
 
     }
+    
+    
     
 }
 
