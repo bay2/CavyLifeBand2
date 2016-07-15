@@ -276,7 +276,11 @@ extension ChartsRealmProtocol {
     
     /**
      按天分组 一周七天 一个月30天
-     */    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(ChartStepDataRealm)>?, stepData: StepChartsData) -> StepChartsData {
+     */
+    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(ChartStepDataRealm)>?, stepData: StepChartsData) -> StepChartsData {
+        
+        // 有数据的天数
+        var spendDay: Int = 0
         
         var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0, averageStep: 0)
         
@@ -312,7 +316,14 @@ extension ChartsRealmProtocol {
             
             stepChartsData.datas[indext].step += stepData.datas[indext].step
             
+            if stepChartsData.datas[indext].step != 0 { spendDay += 1 }
+            
         }
+        
+        // 被除数不可以为 0 
+        if spendDay == 0 { spendDay = 1 }
+        
+        stepChartsData.averageStep = stepChartsData.totalStep / spendDay
         
         return stepChartsData
         

@@ -72,7 +72,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             let chartView = ShowChartsView()
             chartView.timeBucketStyle = self.timeBucketStyle
             
-            let stepRealms =  queryStepNumber(time.beginTime, endTime: time.endTime, timeBucket: timeBucketStyle)
+            let stepRealms = queryStepNumber(time.beginTime, endTime: time.endTime, timeBucket: timeBucketStyle)
             
             attrsArray = infoViewStepListAttributeArray(stepRealms)
             
