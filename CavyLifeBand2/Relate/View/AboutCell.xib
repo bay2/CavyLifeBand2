@@ -28,7 +28,6 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="kzn-NR-HNv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4Xs-cy-hOz"/>
                     <constraint firstAttribute="bottom" secondItem="kzn-NR-HNv" secondAttribute="bottom" constant="11" id="ANW-sc-Hmj"/>
                     <constraint firstAttribute="trailing" secondItem="81k-H1-4nr" secondAttribute="trailing" constant="20" id="BKy-je-aDW"/>
                     <constraint firstItem="kzn-NR-HNv" firstAttribute="trailing" secondItem="81k-H1-4nr" secondAttribute="leading" constant="-2" id="edv-Q2-9Dr"/>
@@ -36,11 +35,6 @@
                     <constraint firstItem="kzn-NR-HNv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="hfR-Uf-iN0"/>
                     <constraint firstItem="81k-H1-4nr" firstAttribute="centerY" secondItem="kzn-NR-HNv" secondAttribute="centerY" id="pnZ-nl-eRR"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="4Xs-cy-hOz"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="infoLabel" destination="81k-H1-4nr" id="xku-pb-4bJ"/>

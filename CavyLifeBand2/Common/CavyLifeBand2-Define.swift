@@ -640,7 +640,7 @@ enum WebApiMethod: CustomStringConvertible {
         case .Helps:
             return CavyDefine.webServerAddr + "helps"
         case .RecommendGames:
-            return CavyDefine.webServerAddr + "recommend_games"
+            return CavyDefine.webServerAddr + "games/recommend"
         }
         
     }
