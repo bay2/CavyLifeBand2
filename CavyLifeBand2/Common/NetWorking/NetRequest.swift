@@ -237,13 +237,14 @@ extension NetRequest {
         CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
         CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = ""
         CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken = ""
+        LifeBandBle.shareInterface.bleDisconnect()
         
         let alertView = UIAlertController(title: L10n.AlertTipsMsg.string, message: L10n.AlertReloginTitle.string, preferredStyle: .Alert)
         
         let defaultAction = UIAlertAction(title: L10n.AlertSureActionTitle.string , style: .Default, handler:{
-            
+    
             _ in
-  
+            
           let accountVC =  UINavigationController(rootViewController: StoryboardScene.Main.instantiateSignInView())
             
              UIApplication.sharedApplication().keyWindow?.setRootViewController(accountVC, transition: CATransition())

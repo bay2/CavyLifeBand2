@@ -257,7 +257,6 @@ extension ChartsRealmProtocol {
         
         if stepData != nil {
             
-            
             stepChartsData.totalStep += stepData!.totalStep
             stepChartsData.totalKilometer += stepData!.totalKilometer
             stepChartsData.finishTime += stepData!.finishTime
@@ -276,13 +275,14 @@ extension ChartsRealmProtocol {
     
     /**
      按天分组 一周七天 一个月30天
-     */    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(ChartStepDataRealm)>?, stepData: StepChartsData) -> StepChartsData {
+     */    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(ChartStepDataRealm)>?, stepData: StepChartsData?) -> StepChartsData {
         
         var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0, averageStep: 0)
         
         let maxNum = (endTime - beginTime).totalDays + 1
         
         for i in 1...maxNum {
+            
             stepChartsData.datas.append(PerStepChartsData(time: "\(i)", step: 0))
         }
         
@@ -303,15 +303,18 @@ extension ChartsRealmProtocol {
                 
             }
         }
-
-        stepChartsData.totalStep += stepData.totalStep
-        stepChartsData.totalKilometer += stepData.totalKilometer
-        stepChartsData.finishTime += stepData.finishTime
         
-        for indext in  0..<stepChartsData.datas.count {
+        if stepData != nil {
             
-            stepChartsData.datas[indext].step += stepData.datas[indext].step
+            stepChartsData.totalStep += stepData!.totalStep
+            stepChartsData.totalKilometer += stepData!.totalKilometer
+            stepChartsData.finishTime += stepData!.finishTime
             
+            for indext in  0..<stepChartsData.datas.count {
+                
+                stepChartsData.datas[indext].step += stepData!.datas[indext].step
+                
+            }
         }
         
         return stepChartsData

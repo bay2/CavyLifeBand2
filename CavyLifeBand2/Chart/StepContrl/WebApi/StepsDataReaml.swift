@@ -60,7 +60,7 @@ protocol ChartStepRealmProtocol {
     func queryAllStepInfo(userId: String) -> Results<(NChartStepDataRealm)>?
     func delecNSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool
     func addStepData(chartStepInfo: NChartStepDataRealm) -> Bool
-    func queryNStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData
+    func queryNStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData?
     
 }
 
@@ -184,7 +184,7 @@ extension ChartStepRealmProtocol {
     /**
      查询 日周月下 某一时段的 数据信息
      */
-    func queryNStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData {
+    func queryNStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData? {
         
         let today = endTime.gregorian.isToday
         // 判断是否是当然 如果是当天 则查询日期往前推一天
@@ -207,9 +207,17 @@ extension ChartStepRealmProtocol {
         switch timeBucket {
             
         case .Day:
-            return returnHourChartsArray(dataInfo)
+            
+            if today {
+                return returnHourChartsArray(nil)
+            }else{
+                return returnHourChartsArray(dataInfo)
+            }
+            
+            
             
         case .Week, .Month:
+            
             return returnDayChartsArray(beginTime, endTime: endTime, dataInfo: dataInfo)
             
         }
@@ -221,7 +229,13 @@ extension ChartStepRealmProtocol {
     /**
      按小时分组 一天24小时
      */
-    func returnHourChartsArray(dataInfo: Results<(NChartStepDataRealm)>) -> StepChartsData {
+    func returnHourChartsArray(dataInfo: Results<(NChartStepDataRealm)>?) -> StepChartsData? {
+        
+        
+        guard let newData = dataInfo else {
+            
+            return nil
+        }
         
         var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0, averageStep: 0)
         
@@ -230,18 +244,20 @@ extension ChartStepRealmProtocol {
             
             stepChartsData.datas.append(PerStepChartsData(time: "\(i)", step: 0))
         }
-
         
-        for data in dataInfo {
-           let index = data.date.gregorian.components.hour
+        for data in newData {
+          
             stepChartsData.totalStep = data.totalStep
             stepChartsData.totalKilometer = data.kilometer
             stepChartsData.finishTime = data.totalTime
             stepChartsData.averageStep = data.totalStep
             
+            var index: Int = 0
             for step in data.stepList {
                 
-                stepChartsData.datas[index].step = step.step
+                index += 1
+                stepChartsData.datas[index - 1].step = step.step
+                
             }
             
         
