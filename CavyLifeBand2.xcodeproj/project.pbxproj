@@ -23,6 +23,8 @@
 		4C5396D01CE419EC00BCFAEB /* NSDate_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */; };
 		4C6895FA1CEAE28400CAC412 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C6895F91CEAE28400CAC412 /* Assets.xcassets */; };
 		4C80C6C71D2FA1410007F577 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C80C6C61D2FA1410007F577 /* PhotoView.swift */; };
+		4C8D36AE1D377ADE00CCE06F /* ChartsSleepLegendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8D36AD1D377ADE00CCE06F /* ChartsSleepLegendView.swift */; };
+		4C8D36B01D377BB200CCE06F /* ChartsSleepLegendView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C8D36AF1D377BB200CCE06F /* ChartsSleepLegendView.xib */; };
 		4C9E0B471D1A395200DBC1FC /* ChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B301D1A395200DBC1FC /* ChartsViewController.swift */; };
 		4C9E0B491D1A395200DBC1FC /* ChartsInfoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B331D1A395200DBC1FC /* ChartsInfoCollectionCell.swift */; };
 		4C9E0B4A1D1A395200DBC1FC /* ChartInfoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B341D1A395200DBC1FC /* ChartInfoListCell.swift */; };
@@ -378,6 +380,8 @@
 		4C5396CF1CE419EC00BCFAEB /* NSDate_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSDate_Extension.swift; sourceTree = "<group>"; };
 		4C6895F91CEAE28400CAC412 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C80C6C61D2FA1410007F577 /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		4C8D36AD1D377ADE00CCE06F /* ChartsSleepLegendView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsSleepLegendView.swift; sourceTree = "<group>"; };
+		4C8D36AF1D377BB200CCE06F /* ChartsSleepLegendView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChartsSleepLegendView.xib; sourceTree = "<group>"; };
 		4C9E0B301D1A395200DBC1FC /* ChartsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsViewController.swift; sourceTree = "<group>"; };
 		4C9E0B331D1A395200DBC1FC /* ChartsInfoCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsInfoCollectionCell.swift; sourceTree = "<group>"; };
 		4C9E0B341D1A395200DBC1FC /* ChartInfoListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartInfoListCell.swift; sourceTree = "<group>"; };
@@ -814,6 +818,8 @@
 				4C9E0B3E1D1A395200DBC1FC /* ShowStackedChartsView.swift */,
 				4C9E0B3A1D1A395200DBC1FC /* ShareCollectionCell.swift */,
 				4C9E0B3B1D1A395200DBC1FC /* ShareView.swift */,
+				4C8D36AD1D377ADE00CCE06F /* ChartsSleepLegendView.swift */,
+				4C8D36AF1D377BB200CCE06F /* ChartsSleepLegendView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1937,6 +1943,7 @@
 				4CB7A0741CD095C400DFB8DC /* MenuTableViewCell.xib in Resources */,
 				683655321CBB7E43009373EA /* AlarmClockDateCollectionViewCell.xib in Resources */,
 				683655281CBB3B2C009373EA /* SettingSwitchTableViewCell.xib in Resources */,
+				4C8D36B01D377BB200CCE06F /* ChartsSleepLegendView.xib in Resources */,
 				4CB7A0821CD095C400DFB8DC /* HomeUpperView.xib in Resources */,
 				91EB796C1CAE075C00ED3E67 /* Sign_In_Error.json in Resources */,
 				917DA9761C3B8EB700FF675D /* LaunchScreen.storyboard in Resources */,
@@ -2243,6 +2250,7 @@
 				91E1B4F01CA524BA008ADEE6 /* ContactsAddFriendViewModel.swift in Sources */,
 				683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */,
 				684C6AD81CC9BA1C000C176E /* PKJSON.swift in Sources */,
+				4C8D36AE1D377ADE00CCE06F /* ChartsSleepLegendView.swift in Sources */,
 				4C9E0B581D1A395200DBC1FC /* ChartsDataRealm.swift in Sources */,
 				91ACEC5C1CB4B526008ED8B0 /* GuideUserInfo.swift in Sources */,
 				9114D1EF1C97AB05008CB4CE /* PageViewController.swift in Sources */,

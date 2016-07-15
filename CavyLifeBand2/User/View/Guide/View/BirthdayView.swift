@@ -22,6 +22,23 @@ class BirthdayView: UIView, RulerViewDelegate {
         return "\(self.yymmRuler.nowYear + beginYear)-\(self.yymmRuler.nowMonth)-\(self.dayRuler.nowDay)"
     }
     
+    convenience init(frame: CGRect, year: Int, month: Int, day: Int) {
+
+      self.init(frame: frame)
+        
+        yymmRuler.rulerScroll.currentValue = "\(year).\(month)"
+        yymmRuler.rulerDelegate?.changeRulerValue!(yymmRuler.rulerScroll)
+        
+        let nowCount = (year  - 1901) * birthYYMMLineCount + month
+        yymmRuler.rulerScroll.setContentOffset(CGPointMake(CGFloat(nowCount * birthYYMMLineSpace), 0), animated: false)
+        
+        dayRuler.rulerScroll.currentValue = "\(day)"
+        dayRuler.rulerDelegate?.changeDayRulerValue!(dayRuler.rulerScroll)
+        dayRuler.rulerScroll.setContentOffset(CGPointMake(CGFloat((day - 1) * birthDayLineSpace) + horizontalInset / 2, 0), animated: false)
+
+        
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
