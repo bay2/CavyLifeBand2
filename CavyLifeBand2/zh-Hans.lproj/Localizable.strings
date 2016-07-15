@@ -364,10 +364,16 @@
 "AlarmDay.Sunday"    = "日";
 
 // 固件升级
-"UpdateProgress.Info"                    = "请勿退出应用或关闭手环";
-"UpdateProgress.title"                   = "手环正在升级";
-"UpdateFirmware.BandDisconnect.AlertMsg" = "请先连接手环";
-"UpdateFirmware.IsNewVersion.AlertMsg"   = "固件版本已最新版本";
+"UpdateProgress.Info"                         = "请勿退出应用或关闭手环";
+"UpdateProgress.title"                        = "手环正在升级";
+"UpdateFirmware.BandDisconnect.AlertMsg"      = "请先连接手环";
+"UpdateFirmware.IsNewVersion.AlertMsg"        = "固件版本已最新版本";
+"UpdateFirmware.InstallNewVersion.AlertTitle" = "安装新的固件版本";
+"UpdateFirmware.DownloadError" = "error";
+"UpdateFirmware.LowElectric.AlertTitle" = "手环电量过低";
+"UpdateFirmware.LowElectric.AlertMsg" = "手环电量过低，固件升级至少需要20%电量，请充电后再试";
+"UpdateFirmware.UpdateFail.AlertMsg" = "固件升级失败";
+"UpdateFirmware.CheckVersion.AlertMsg" = "正在检测固件版本";
 
 // 主页同步数据
 "Home.Refresh.Idle"       = "下拉同步数据...";
@@ -380,7 +386,11 @@
 // 弹窗相关
 "Alert.SureAction.Title"     = "确定";
 "Alert.CancelAction.Title"   = "取消";
+"Alert.UpdateAction.Title"   = "升级";
 "Alert.UndoPKWaitRecord.Msg" = "确认撤销此次PK？";
 "Alert.ReBindBand.Msg"       = "确认重新绑定手环？";
 "Alert.tips.Msg"             = "提示";
 "Alert.relogin.Title"        = "登录已失效，请重新登录";
+"Alert.ReUpdateAction.Title" = "重新升级";
+"Alert.ReTryAfterChargeAction.Title" = "充电后再试";
+

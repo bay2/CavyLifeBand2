@@ -55,7 +55,7 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProt
         // 成就标题Label样式设置
         titleLabel.text      = L10n.ContactsShowInfoAchievement.string
         titleLabel.textColor = UIColor(named: .EColor)
-        titleLabel.font      = UIFont.systemFontOfSize(16.0)
+        titleLabel.font      = UIFont.mediumSystemFontOfSize(16.0)
         
         // 成就详情Label样式设置
         infoLabel.font      = UIFont.systemFontOfSize(14.0)
