@@ -139,14 +139,16 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
             }
             
         } else if BindBandCtrl.bindScene == .Rebind {
+                        
+            UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
             
-            viewController.dismissVC(completion: nil)
-            
-            guard let rootVC = UIApplication.sharedApplication().keyWindow?.rootViewController as? RootViewController else {
-                return
-            }
-            
-            rootVC.homeVC?.popToRootViewControllerAnimated(false)
+//            viewController.dismissVC(completion: nil)
+//            
+//            guard let rootVC = UIApplication.sharedApplication().keyWindow?.rootViewController as? RootViewController else {
+//                return
+//            }
+//            
+//            rootVC.homeVC?.popToRootViewControllerAnimated(false)
             
         } else {
         // 登录流程 返回登录页面
@@ -338,9 +340,9 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate, 
             
             saveMacAddress()
             
-            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView())
-            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView())
-            
+//            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView())
+//            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView())
+            UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
             
             // 发送通知发送自动刷新
             

@@ -427,6 +427,27 @@ struct AppAboutMenuGroupDataModel: MenuGroupDataSource {
             title: L10n.HomeLifeListTitleHelp.string,
             nextView: StoryboardScene.Relate.instantiateHelpAndFeedbackListVC()))
         
+//        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuApp),
+//            title: L10n.HomeLifeListTitleRelated.string,
+//            nextView: StoryboardScene.Relate.instantiateRelateAppVC()))
+        
+        
+    }
+    
+}
+
+/**
+ *  APP 推荐App
+ */
+struct AppRecommendMenuGroupDataModel: MenuGroupDataSource {
+    
+    var items: [MenuProtocol] = []
+    var sectionView: UIView = LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 10))
+    var sectionHeight: CGFloat = 10
+    var titleColor = UIColor.whiteColor()
+    
+    init() {
+        
         items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuApp),
             title: L10n.HomeLifeListTitleRelated.string,
             nextView: StoryboardScene.Relate.instantiateRelateAppVC()))

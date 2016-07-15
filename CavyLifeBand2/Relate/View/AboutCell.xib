@@ -14,13 +14,13 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzn-NR-HNv">
-                        <rect key="frame" x="20" y="22" width="0.0" height="0.0"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kzn-NR-HNv">
+                        <rect key="frame" x="20" y="11" width="278" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81k-H1-4nr">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81k-H1-4nr">
                         <rect key="frame" x="300" y="22" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -28,8 +28,10 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="kzn-NR-HNv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="4Xs-cy-hOz"/>
+                    <constraint firstAttribute="bottom" secondItem="kzn-NR-HNv" secondAttribute="bottom" constant="11" id="ANW-sc-Hmj"/>
                     <constraint firstAttribute="trailing" secondItem="81k-H1-4nr" secondAttribute="trailing" constant="20" id="BKy-je-aDW"/>
+                    <constraint firstItem="kzn-NR-HNv" firstAttribute="trailing" secondItem="81k-H1-4nr" secondAttribute="leading" constant="-2" id="edv-Q2-9Dr"/>
+                    <constraint firstItem="kzn-NR-HNv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="f7b-Sz-CS2"/>
                     <constraint firstItem="kzn-NR-HNv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="hfR-Uf-iN0"/>
                     <constraint firstItem="81k-H1-4nr" firstAttribute="centerY" secondItem="kzn-NR-HNv" secondAttribute="centerY" id="pnZ-nl-eRR"/>
                 </constraints>
