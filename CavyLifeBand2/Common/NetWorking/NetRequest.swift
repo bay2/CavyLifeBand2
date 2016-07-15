@@ -117,6 +117,14 @@ extension NetRequest {
                 let response = try CommenMsgResponse (JSONDecoder(result.value ?? ""))
                 
                 guard response.commonMsg.code == RequestApiCode.Success.rawValue else {
+                    
+                    // token失效 重新去登录
+                    if response.commonMsg.code == RequestApiCode.InvalidToken.rawValue {
+                    
+                   self.RequesInvalidToken()
+                        
+                    }
+                    
                     failureHandler?(response.commonMsg)
                     return
                 }
@@ -154,6 +162,14 @@ extension NetRequest {
                 let response = try CommenMsgResponse (JSONDecoder(result.value ?? ""))
                 Log.info("\(result.value)")
                 guard response.commonMsg.code == RequestApiCode.Success.rawValue else {
+                    
+                    // token失效 重新去登录
+                    if response.commonMsg.code == RequestApiCode.InvalidToken.rawValue {
+                        
+                        self.RequesInvalidToken()
+                       
+                    }
+
                     failureHandler?(response.commonMsg)
                     return
                 }
@@ -208,7 +224,44 @@ extension NetRequest {
         
     }
     
+    
+    /**
+     token 失效 重新登录
+     */
+    
+    func RequesInvalidToken() {
+        
+        
+        //清空登录信息
+        
+        CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+        CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = ""
+        CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken = ""
+        LifeBandBle.shareInterface.bleDisconnect()
+        
+        let alertView = UIAlertController(title: L10n.AlertTipsMsg.string, message: L10n.AlertReloginTitle.string, preferredStyle: .Alert)
+        
+        let defaultAction = UIAlertAction(title: L10n.AlertSureActionTitle.string , style: .Default, handler:{
+    
+            _ in
+            
+          let accountVC =  UINavigationController(rootViewController: StoryboardScene.Main.instantiateSignInView())
+            
+             UIApplication.sharedApplication().keyWindow?.setRootViewController(accountVC, transition: CATransition())
+        })
+        
+        alertView.addAction(defaultAction)
+        
+        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+        
+        return
+   
+    }
+    
 }
+
+
+
 
 // MARK: - Api Class 定义
 

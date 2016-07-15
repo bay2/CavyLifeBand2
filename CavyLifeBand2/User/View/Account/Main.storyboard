@@ -177,7 +177,7 @@
                                             <constraint firstAttribute="height" constant="0.29999999999999999" id="FI6-b2-Bjb"/>
                                         </constraints>
                                     </view>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKq-lp-KHa" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="验证码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKq-lp-KHa" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="88" width="463" height="88"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -193,7 +193,7 @@
                                             <constraint firstAttribute="width" constant="0.29999999999999999" id="ifz-Er-Y9t"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9r-xP-wKb" customClass="SendSafetyCodeButton" customModule="CavyLifeBand2" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9r-xP-wKb" customClass="SendSafetyCodeButton" customModule="CavyLifeBand2" customModuleProvider="target">
                                         <rect key="frame" x="464" y="88" width="136" height="88"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="136" id="Xkx-KX-A2h"/>

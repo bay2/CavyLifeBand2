@@ -383,10 +383,13 @@
 "Home.Refresh.faildDes"   = "请您绑定手环，重新同步数据";
 
 // 弹窗相关
-"Alert.SureAction.Title"     = "确认";
+"Alert.SureAction.Title"     = "确定";
 "Alert.CancelAction.Title"   = "取消";
 "Alert.UpdateAction.Title"   = "升级";
 "Alert.UndoPKWaitRecord.Msg" = "确认撤销此次PK？";
 "Alert.ReBindBand.Msg"       = "确认绑定新的手环？";
+"Alert.tips.Msg"             = "提示";
+"Alert.relogin.Title"        = "登录已失效，请重新登录";
 "Alert.ReUpdateAction.Title" = "重新升级";
 "Alert.ReTryAfterChargeAction.Title" = "充电后再试";
+
