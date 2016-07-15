@@ -58,8 +58,8 @@ struct GameJSON: JSONJoy {
         do { desc = try decoder["desc"].getString() } catch { desc = "" }
         do { developer = try decoder["developer"].getString() } catch { developer = "" }
         do { type = try decoder["type"].getString() } catch { type = "" }
-        do { appUrl = try decoder["appUrl"].getString() } catch { appUrl = "" }
-        do { htmlUrl = try decoder["htmlUrl"].getString() } catch { htmlUrl = "" }
+        do { appUrl = try decoder["app_url"].getString() } catch { appUrl = "" }
+        do { htmlUrl = try decoder["html_url"].getString() } catch { htmlUrl = "" }
         do { updatedAt = try decoder["updatedAt"].getString() } catch { updatedAt = "" }
     }
     
