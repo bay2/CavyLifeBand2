@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import EZSwiftExtensions
+import SnapKit
 
 class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     
@@ -82,7 +83,8 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         
         descriptionText = "\(maxValue  / 60 + 1)h"
         descriptionFont = UIFont.systemFontOfSize(12)
-        descriptionTextPosition = CGPointMake(20, 0)
+        descriptionTextAlign = .Left
+        descriptionTextPosition = CGPointMake(10, 1)
         descriptionTextColor = UIColor.whiteColor()
         
     }
@@ -129,10 +131,10 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         self.legend.horizontalAlignment = .Right
         self.legend.verticalAlignment = .Top
         self.legend.form = .Circle
-        self.legend.formSize = 10
-        self.legend.textColor = UIColor.whiteColor()
+        self.legend.formSize = 0
+        self.legend.textColor = UIColor.clearColor()
         self.legend.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
-        self.legend.xEntrySpace = 10
+        self.legend.xEntrySpace = 0
         
     }
     

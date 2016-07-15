@@ -173,9 +173,9 @@ extension ChartsBaseView: UICollectionViewDelegate, UICollectionViewDataSource {
             
             cell.label.text = NSDate(fromString: dates[indexPath.item], format: "yyyy.M.d")!.dateChangeToLabelText(timeBucketStyle)
             
-            if indexPath.item == dates.count - 1 {
-                cell.selectStatus()
-            }
+//            if indexPath.item == dates.count - 1 {
+//                cell.selectStatus()
+//            }
             
             return cell
             
@@ -261,20 +261,20 @@ extension ChartsBaseView: UIScrollViewDelegate {
      */
     func changeButtonStauts(collectionView: UICollectionView, indexPath: NSIndexPath) {
         
-        // 更改 选中日期的状态
-        for i in 0 ..< dates.count {
-            guard let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) as? ChartsSubTimeBucketCell else {
-                continue
-            }
-            cell.unSlectStatus()
-        }
-        
-        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? ChartsSubTimeBucketCell else {
-            return
-        }
-        cell.selectStatus()
+//        // 更改 选中日期的状态
+//        for i in 0 ..< dates.count {
+//            guard let cell = collectionView.cellForItemAtIndexPath(NSIndexPath(forItem: i, inSection: 0)) as? ChartsSubTimeBucketCell else {
+//                continue
+//            }
+//            cell.unSlectStatus()
+//        }
+//        
+//        guard let cell = collectionView.cellForItemAtIndexPath(indexPath) as? ChartsSubTimeBucketCell else {
+//            return
+//        }
+//        cell.selectStatus()
 
-        collectionView.setContentOffset(CGPointMake(CGFloat(indexPath.item) * subTimeButtonWidth, 0), animated: false)
+        collectionView.setContentOffset(CGPointMake(CGFloat(indexPath.item) * subTimeButtonWidth, 0), animated: true)
 
         infoView!.setContentOffset(CGPointMake(CGFloat(indexPath.item) * ez.screenWidth, 0), animated: false)
         
