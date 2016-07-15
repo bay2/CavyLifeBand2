@@ -118,8 +118,6 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         
         xAxis.setLabelsToSkip(spaceBetweenLabels) //设置横坐标显示的间隔
 
-        
-        
     }
     
 
@@ -170,9 +168,9 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
 //            let val1 = Double(arc4random_uniform(200) + 1)// 浅睡
 //            let val2 = Double(arc4random_uniform(200) + 1)// 深睡
             
-            // 数据库取出的
-            let val1 = Double(chartsData[i].deepSleep)
-            let val2 = Double(chartsData[i].lightSleep)
+            // 数据库取出的 先浅睡 后深睡
+            let val1 = Double(chartsData[i].lightSleep)
+            let val2 = Double(chartsData[i].deepSleep)
             
             if maxValue < chartsData[i].deepSleep + chartsData[i].lightSleep {
                 maxValue = chartsData[i].deepSleep + chartsData[i].lightSleep
