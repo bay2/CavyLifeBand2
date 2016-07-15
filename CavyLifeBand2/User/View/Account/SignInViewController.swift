@@ -78,7 +78,12 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     override func viewDidLoad() {
 
         super.viewDidLoad()
-
+     
+        // 当该control 作为root 时 清空返回按钮
+        if  self.navigationController?.viewControllers.count == 1 {
+            leftBtn = nil
+        }
+        
         // 定义视图布局
         defineSubViewLayer()
         
@@ -153,6 +158,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         defineViewLayer()
         defineTextFieldLayer()
         defineButtonLayer()
+       
         
     }
     

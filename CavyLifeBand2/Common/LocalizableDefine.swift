@@ -267,7 +267,7 @@ enum L10n {
   case HomeRightListTitleFirmwareUpgrade
   /// 绑定新的豚鼠手环
   case HomeRightListTitleBindingBand
-  /// 我的豚鼠手环Band
+  /// 我的豚鼠手环
   case BandTitle
   /// 固件版本: 
   case BandFWVersion
@@ -667,10 +667,15 @@ enum L10n {
   case AlertUndoPKWaitRecordMsg
   /// 确认重新绑定手环？
   case AlertReBindBandMsg
+  /// 提示
+  case AlertTipsMsg
+  /// 登录已失效，请重新登录
+  case AlertReloginTitle
   /// 重新升级
   case AlertReUpdateActionTitle
   /// 充电后再试
   case AlertReTryAfterChargeActionTitle
+
 }
 
 extension L10n: CustomStringConvertible {
@@ -1342,6 +1347,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Alert.UndoPKWaitRecord.Msg")
       case .AlertReBindBandMsg:
         return L10n.tr("Alert.ReBindBand.Msg")
+      case .AlertTipsMsg:
+        return L10n.tr("Alert.tips.Msg")
+      case .AlertReloginTitle:
+        return L10n.tr("Alert.relogin.Title")
       case .AlertReUpdateActionTitle:
         return L10n.tr("Alert.ReUpdateAction.Title")
       case .AlertReTryAfterChargeActionTitle:
