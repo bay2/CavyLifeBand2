@@ -12,7 +12,7 @@ import Realm
 import RealmSwift
 
 class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserInfoRealmOperateDelegate {
-
+    
     var viewStyle: ChartViewStyle = .StepChart
     var timeBucketStyle: TimeBucketStyle = .Day
     
@@ -20,7 +20,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
     
     /// 时间标签的String
     var timeString: String = ""
-
+    
     // 图标视图
     var chartsView = UIView()
     /// 列表展示信息
@@ -83,7 +83,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             chartView.configAllView()
             
         }
-
+        
         if viewStyle == .SleepChart && timeBucketStyle == .Day {
             
             let sleepInfo = querySleepNumber(time.beginTime, endTime: time.endTime)
@@ -121,14 +121,14 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
      添加tableView
      */
     func addInfoTableView() {
-
+        
         let listViewHeight = listcellHight * CGFloat(listCount)
         listView = UITableView()
         listView!.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
         listView!.separatorStyle = .SingleLine
         listView!.separatorColor = UIColor(named: .LColor)
         listView!.backgroundColor = UIColor.whiteColor()
-
+        
         self.addSubview(listView!)
         
         listView!.snp_makeConstraints { make in
@@ -143,7 +143,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         
         listView!.registerNib(UINib(nibName: "ChartInfoListCell", bundle: nil), forCellReuseIdentifier: "ChartInfoListCell")
         listView!.registerNib(UINib(nibName: "ChartSleepInfoCell", bundle: nil), forCellReuseIdentifier: "ChartSleepInfoCell")
-
+        
     }
     
     /**
@@ -174,18 +174,18 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         
         // 添加睡眠 右上角的legend
         if viewStyle == .SleepChart {
-
+            
             let sleepLegend = NSBundle.mainBundle().loadNibNamed("ChartsSleepLegendView", owner: nil, options: nil).first as? ChartsSleepLegendView
             chartsView.addSubview(sleepLegend!)
             sleepLegend!.snp_makeConstraints { make in
                 make.top.equalTo(0).offset(chartTopHeigh / 2 - 5)
                 make.right.equalTo(0).offset(-insetSpace)
             }
-
+            
         }
         
     }
-
+    
     /**
      返回富文本Array
      */
@@ -207,7 +207,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
                 attrs.append(String(0).detailAttributeString(L10n.GuideStep.string))
             }
             attrs.append(0.detailTimeAttributeString())
-
+            
             return attrs
         }
         
@@ -222,11 +222,11 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         if percent > 100 {
             percent = 100
         }
-
+        
         let kilometer = String(format: "%.1f", stepRealm.totalKilometer)
         resultArray.append(String(stepRealm.totalStep).detailAttributeString(L10n.GuideStep.string))
         resultArray.append(String(kilometer).detailAttributeString("km"))
-
+        
         
         // 日:完成度 周&月:日均步数
         switch timeBucketStyle {
@@ -266,7 +266,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             attrs.append(0.detailTimeAttributeString())
             attrs.append(0.detailTimeAttributeString())
             attrs.append(0.detailTimeAttributeString())
-
+            
             return attrs
         }
         
@@ -277,7 +277,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
             sleepTarge = 500
             
         }
-
+        
         for perData in sleepInfo {
             
             deepSleep += perData.deepSleep
@@ -304,25 +304,25 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         
         resultArray.append(lightSleep.detailTimeAttributeString())
         resultArray.append(deepSleep.detailTimeAttributeString())
-
+        
         // 日:完成度 周&月:日均步数
         switch timeBucketStyle {
             
         case .Day:
             
             resultArray.append(String(percent).detailAttributeString("%"))
-
+            
         case .Week, .Month:
             
             let avgSleepTime = sleepCur / avgIndex
             
             resultArray.append(avgSleepTime.detailTimeAttributeString())
-  
+            
         }
         
         return resultArray
     }
-
+    
     
 }
 
@@ -330,7 +330,7 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
 extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-  
+        
         return listCount
         
     }
@@ -341,10 +341,10 @@ extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-
+        
         
         var dataStepArray: [String] = [L10n.ChartStepTodayStep.string, L10n.ChartStepKilometer.string, L10n.ChartTargetPercent.string, L10n.ChartStepTimeUsed.string]
-
+        
         switch timeBucketStyle {
             
         case .Week:
@@ -352,10 +352,10 @@ extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
         case .Month:
             
             dataStepArray = [L10n.ChartStepMonthStep.string, L10n.ChartStepKilometer.string, L10n.ChartStepAverageStep.string, L10n.ChartStepTimeUsed.string]
-
+            
         default:
             dataStepArray = [L10n.ChartStepTodayStep.string, L10n.ChartStepKilometer.string, L10n.ChartTargetPercent.string, L10n.ChartStepTimeUsed.string]
-
+            
             
         }
         
@@ -387,7 +387,7 @@ extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
             }
             
             cell.rightLabel.attributedText = attrsArray[indexPath.row]
-
+            
             return cell
             
         case .StepChart:
@@ -396,9 +396,9 @@ extension ChartsInfoCollectionCell: UITableViewDelegate, UITableViewDataSource {
             cell.leftLabel.text = dataStepArray[indexPath.row]
             
             cell.rightLabel.attributedText = attrsArray[indexPath.row]
-
+            
             return cell
-
+            
         }
         
     }

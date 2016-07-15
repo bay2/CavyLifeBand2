@@ -327,25 +327,3 @@ extension ChartStepRealmProtocol {
 
 
 
-
-
-
-
-/**
- *  Step 整个数据 包括总步数 总公里数 花费时长 平均时长
- */
-
-//struct StepShowItem {
-//    
-//    var totalStep: Int          = 0
-//    var totalKilometer: CGFloat = 0.0
-//    var spendTime: Int
-//    var averageStep: Int        = 0
-//    var datas: [Int]
-//  
-//}
-
-
-
-
-
