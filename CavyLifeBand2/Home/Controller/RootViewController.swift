@@ -87,6 +87,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         Log.info("\(realm.configuration.fileURL)")
         
         
+        
+        removeNotificationObserver()
         loadHomeView()
             
         addNotificationObserver(NotificationName.HomeLeftOnClickMenu.rawValue, selector: #selector(RootViewController.onClickMenu))

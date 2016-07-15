@@ -21,11 +21,13 @@ protocol ContactsReqFriendViewControllerDataSource {
     
     var navTitle: String { get }
     
+    var restrictedInput: Bool { get }
+    
 }
 
 protocol ContactsReqFriendViewControllerDelegate {
     
-    func onClickButton()
+    mutating func onClickButton()
     
 }
 

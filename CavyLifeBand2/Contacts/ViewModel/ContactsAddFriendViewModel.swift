@@ -221,7 +221,7 @@ struct ContactsNewFriendCellViewModel: ContactsNewFriendPortocols {
 struct ContactsFriendReqViewModel: ContactsReqFriendPortocols {
     
     var textFieldTitle: String = L10n.ContactsRequestVerifyMsg.string + CavyDefine.userNickname
-    
+     var restrictedInput: Bool  = false
     var placeholderText: String {
         return L10n.ContactsRequestPlaceHolder.string
     }

@@ -54,7 +54,7 @@ extension QueryUserInfoRequestsDelegate {
 protocol SetUserInfoRequestsDelegate {
     
     var userInfoPara: [String: AnyObject] { get set }
-    
+
     func setUserInfo(completeHandle: (Bool -> Void)?)
     
     var viewController: UIViewController? { get }
@@ -65,6 +65,7 @@ protocol SetUserInfoRequestsDelegate {
 extension SetUserInfoRequestsDelegate {
     
     var viewController: UIViewController? { return nil }
+    
     
     /**
      设置用户信息

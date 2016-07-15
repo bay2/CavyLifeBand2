@@ -54,10 +54,6 @@ extension RootViewController: ChartsRealmProtocol {
                 
                 let uploadData = self.queryUploadBandData()
                 
-                
-                // 发送通知让主页停止同步数据下拉消失
-                NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
-                
                 guard uploadData.0.count > 0 else {
                     return
                 }
@@ -71,11 +67,10 @@ extension RootViewController: ChartsRealmProtocol {
                     NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
                 }
             
-        }
-                .failure { error in
-                    Log.error("\(error)")
-                    // 发送通知让主页停止同步数据下拉消失
-                    NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
+            }.failure { error in
+                Log.error("\(error)")
+                // 发送通知让主页停止同步数据下拉消失
+                NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
             }
             
         }

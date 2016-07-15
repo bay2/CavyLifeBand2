@@ -73,7 +73,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+
         parseChartListData()
 
         addAllView()
@@ -178,7 +178,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func addAlertView() {
      
-        let alertView = UIAlertController(title: L10n.HomeRefreshAlertTitle.string , message: L10n.HomeRefreshFaildDes.string, preferredStyle: .Alert)
+        let alertView = UIAlertController(title: L10n.HomeRefreshAlertTitle.string, message: L10n.HomeRefreshFaildDes.string, preferredStyle: .Alert)
         
         let sureAction = UIAlertAction(title: "确定", style: .Cancel, handler: nil)
         
@@ -481,7 +481,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 
         maskView.addSubview(achieveView!)
         
-        let collectionViewHeight = ez.screenWidth <= 320 ? CGFloat(3 * 132): CGFloat(2 * 132)
+        let collectionViewHeight = ez.screenWidth <= 320 ? CGFloat(3 * 132) : CGFloat(2 * 132)
 
         achieveView!.snp_makeConstraints(closure: { make in
             make.leading.equalTo(maskView).offset(20.0)

@@ -33,8 +33,8 @@ class HomeUserInfo: UIView {
         delegate.userName.textColor = UIColor(named: .EColor)
         delegate.account.textColor = UIColor(named: .FColor)
 
-        delegate.userName.font = UIFont.mediumSystemFontOfSize(18.0)
-        delegate.account.font = UIFont.mediumSystemFontOfSize(12)
+        delegate.userName.font = UIFont.systemFontOfSize(18.0)
+        delegate.account.font = UIFont.systemFontOfSize(12.0)
 
     }
 
