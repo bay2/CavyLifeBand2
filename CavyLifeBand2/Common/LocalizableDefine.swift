@@ -173,9 +173,9 @@ enum L10n {
   case GuidePhoneRemindTitle
   /// 来电振动提醒，不漏接一个重要来电
   case GuidePhoneRemindInfo
-  /// 计步PK
+  /// 计步成就
   case GuidePKTitle
-  /// 实时查看与好友计步PK详情\n让走路成为一种乐趣
+  /// 让走路成为一种乐趣
   case GuidePKInfo
   /// 安全服务
   case GuideSafetyServiceTitle
@@ -253,7 +253,7 @@ enum L10n {
   case HomeLifeListTitleAbout
   /// 帮助与反馈
   case HomeLifeListTitleHelp
-  /// APP推荐
+  /// 体感应用
   case HomeLifeListTitleRelated
   /// 遥控相机
   case HomeRightListTitleCamera
@@ -267,7 +267,7 @@ enum L10n {
   case HomeRightListTitleFirmwareUpgrade
   /// 绑定新的豚鼠手环
   case HomeRightListTitleBindingBand
-  /// 我的豚鼠手环Band
+  /// 我的豚鼠手环
   case BandTitle
   /// 固件版本: 
   case BandFWVersion
@@ -421,7 +421,7 @@ enum L10n {
   case AccountInfoChangeAddressPlaceholder
   /// 您已累计行走
   case AccountInfoAchieveViewNumPrefix
-  /// 手环振动提醒 取消传统声音唤醒体系
+  /// 手环振动提醒 远离传统闹铃噪声
   case AlarmClockIntelligentClockTableFooterInfo
   /// 手环闹钟
   case AlarmClockTitle
@@ -609,7 +609,7 @@ enum L10n {
   case RelateHelpAndFeedbackTextViewPlaceHolder
   /// 发送成功
   case RelateHelpAndFeedbackSendSuccessAlertMsg
-  /// APP推荐
+  /// 体感应用
   case RelateRelateAppNavTitle
   /// 下载
   case RelateRelateAppCellDownloadBtnTitle
@@ -665,7 +665,7 @@ enum L10n {
   case AlertUpdateActionTitle
   /// 确认撤销此次PK？
   case AlertUndoPKWaitRecordMsg
-  /// 确认重新绑定手环？
+  /// 确认绑定新的手环？
   case AlertReBindBandMsg
   /// 重新升级
   case AlertReUpdateActionTitle

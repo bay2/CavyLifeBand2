@@ -15,7 +15,7 @@ class RelateAppWebApi: NetRequest {
     static var shareApi = RelateAppWebApi()
     
     /**
-     获取APP推荐信息
+     获取体感应用信息
      
      - parameter callBack: 回调
      - parameter pagenum:  当前页
