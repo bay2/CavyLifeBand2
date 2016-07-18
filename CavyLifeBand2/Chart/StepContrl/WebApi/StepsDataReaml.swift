@@ -203,7 +203,7 @@ extension ChartStepRealmProtocol {
         
         //转换时间格式
         
-    let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date => %@ AND date <= %@", beginTime.gregorian.beginningOfDay.date,scanTime.gregorian.beginningOfDay.date)
+    let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date => %@ AND date <= %@", beginTime.gregorian.beginningOfDay.date, scanTime.gregorian.beginningOfDay.date)
         
         Log.info("\(dataInfo.count)")
         print("=============\(dataInfo.count)==============")
