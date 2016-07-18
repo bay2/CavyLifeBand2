@@ -60,6 +60,7 @@ protocol ChartStepRealmProtocol {
     func queryAllStepInfo(userId: String) -> Results<(NChartStepDataRealm)>?
     func delecNSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool
     func addStepData(chartStepInfo: NChartStepDataRealm) -> Bool
+  
     func queryNStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData?
     
 }
@@ -202,7 +203,10 @@ extension ChartStepRealmProtocol {
         
         //转换时间格式
         
-    let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date >= %@ AND date <= %@", NSDate().formartDate(beginTime), NSDate().formartDate(scanTime))
+    let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date => %@ AND date <= %@", beginTime.gregorian.beginningOfDay.date,scanTime.gregorian.beginningOfDay.date)
+        
+        Log.info("\(dataInfo.count)")
+        print("=============\(dataInfo.count)==============")
         
         switch timeBucket {
             
@@ -287,8 +291,9 @@ extension ChartStepRealmProtocol {
         
         var indext = 0
         
+        let dataInfoArr = completeStepData(beginTime, endTime: endTime, dataInfo: dataInfo)
         
-        for data in dataInfo {
+        for data in dataInfoArr {
            
             indext += 1
             stepChartsData.totalKilometer += data.kilometer
@@ -303,8 +308,12 @@ extension ChartStepRealmProtocol {
                 averageStepCount += 1
             }
             
-        
-            stepChartsData.datas[indext - 1].step = data.totalStep
+            
+            if indext - 1 < maxNum   {
+                
+                 stepChartsData.datas[indext - 1].step = data.totalStep
+            }
+           
             
         }
         
@@ -321,6 +330,41 @@ extension ChartStepRealmProtocol {
         return stepChartsData
         
     }
+    
+    
+    /**
+     数据补齐操作
+     
+     - parameter beginTime: <#beginTime description#>
+     - parameter endTime:   <#endTime description#>
+     
+     - returns: <#return value description#>
+     */
+    
+    func completeStepData(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(NChartStepDataRealm)>) -> [NChartStepDataRealm]{
+       
+         let maxNum = (NSDate().gregorian.date - beginTime).totalDays + 1
+         let infoCount = dataInfo.count
+         var resultDataArr: [NChartStepDataRealm] = []
+        
+        if infoCount < maxNum {
+           
+            for _ in 0..<(maxNum - infoCount) {
+                
+                resultDataArr.append(NChartStepDataRealm())
+            }
+            
+        }
+        
+        for data in dataInfo {
+            
+            resultDataArr.append(data)
+        }
+        
+        
+        return resultDataArr
+    }
+    
     
 }
 
