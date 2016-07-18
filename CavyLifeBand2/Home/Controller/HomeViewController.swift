@@ -62,8 +62,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
-    var aphlaView: UIView?
-    var activityView: UIActivityIndicatorView?
+    // 当前刷新状态
+    var refreshStatus: MJRefreshState = .Idle
+    
+    static var shareInterface = HomeViewController()
     
     deinit {
         removeNotificationObserver()
@@ -90,14 +92,10 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
         addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
         
-        // 添加自动刷新
-        addAutoRefreshHeader()
-
-        // 后台进入前台 同步数据  "addHomeViewAutoRefresh"
-        addNotificationObserver(RefreshStatus.AddAutoRefresh.rawValue, selector: #selector(beginHomeViewRefreshing))
-        
-        // 停止自动刷新 更改刷新的header为手动刷新模式 "endHomeViewAutoRefresh"
-        addNotificationObserver(RefreshStatus.StopRefresh.rawValue, selector: #selector(endHomeViewRefreshing))
+        // 刷新
+        addRefershHeader()
+        addNotificationObserver(RefreshStyle.BeginRefresh.rawValue, selector: #selector(beginBandRefersh))
+        addNotificationObserver(RefreshStyle.StopRefresh.rawValue, selector: #selector(endBandRefersh))
  
     }
 
@@ -171,23 +169,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         }
         
     }
-    
-    
-       /**
-     未连接手环的弹窗
-     */
-    func addAlertView() {
-     
-        let alertView = UIAlertController(title: L10n.HomeRefreshAlertTitle.string, message: L10n.HomeRefreshFaildDes.string, preferredStyle: .Alert)
-        
-        let sureAction = UIAlertAction(title: "确定", style: .Cancel, handler: nil)
-        
-        alertView.addAction(sureAction)
-        
-        self.presentViewController(alertView, animated: true, completion: nil)
-        
 
-    }
     
     /**
      点击左侧按钮

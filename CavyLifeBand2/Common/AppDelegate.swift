@@ -299,7 +299,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         // 只有 打开蓝牙并且连接手环 自动刷新的处理
         if LifeBandBle.shareInterface.centraManager?.state == .PoweredOn && LifeBandBle.shareInterface.getConnectState() == .Connected {
         
-        NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.AddAutoRefresh.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.BeginRefresh.rawValue, object: nil)
             
         }
     }

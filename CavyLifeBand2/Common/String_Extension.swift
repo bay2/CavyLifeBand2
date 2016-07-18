@@ -81,5 +81,16 @@ extension String {
         return string!
     }
  
+    /**
+     Unicode转化为汉字
+     * \U9635\U96e8 = 多云
+     */
+    func convertFromUnicode() -> String {
+        
+        let result = self.stringByRemovingPercentEncoding ?? ""
+
+        return result
+    }
+    
        
 }

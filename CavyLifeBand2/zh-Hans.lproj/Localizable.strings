@@ -380,8 +380,7 @@
 "Home.Refresh.Pulling"    = "松开同步数据...";
 "Home.Refresh.Refreshing" = "  正在同步数据...";
 "Home.Refresh.AlertTitle" = "同步数据失败";
-"Home.Refresh.faildDes"   = "请您绑定手环，重新同步数据";
-
+"Home.Refresh.faildDes"   = "                1.确认蓝牙已打开\n                2.确认手环处于连接状态\n                3.下拉重新同步数据";
 
 // 弹窗相关
 "Alert.SureAction.Title"     = "确定";

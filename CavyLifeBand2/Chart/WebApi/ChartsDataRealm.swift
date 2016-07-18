@@ -918,7 +918,7 @@ extension ChartsRealmProtocol {
     func setChartBandDataSynced(startDate: NSDate, endDate: NSDate) {
         setSleepChartBandDataSynced(startDate, endDate: endDate)
         setStepChartBandDataSynced(startDate, endDate: endDate)
-        NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.StopRefresh.rawValue, object: nil)
     }
     
     /**
