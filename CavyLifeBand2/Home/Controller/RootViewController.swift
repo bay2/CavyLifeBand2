@@ -20,6 +20,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     
     var vibrateSeconds: Int = 0
     
+    var phoneReminderAble: Bool = true
+    
     enum MoveDirection {
         
         case LeftMove

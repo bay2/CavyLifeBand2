@@ -24,8 +24,10 @@ extension RootViewController: SettingRealmListOperateDelegate {
             switch change {
             case .Initial(let value):
                 self.vibrateSeconds = value.first?.settingRealmList.first?.settingInfo ?? 0
+                self.phoneReminderAble = value.first?.settingRealmList.first?.isOpenSetting ?? false
             case .Update(let value, deletions: _, insertions: _, modifications: _):
                 self.vibrateSeconds = value.first?.settingRealmList.first?.settingInfo ?? 0
+                self.phoneReminderAble = value.first?.settingRealmList.first?.isOpenSetting ?? false
                 break
             default:
                 break
@@ -46,7 +48,7 @@ extension RootViewController: SettingRealmListOperateDelegate {
      */
     func phoneCall(call: CTCall) {
         
-        if call.callState == CTCallStateIncoming {
+        if call.callState == CTCallStateIncoming && phoneReminderAble == true {
             
             NSTimer.runThisAfterDelay(seconds: NSTimeInterval(vibrateSeconds * 5)) {
                 LifeBandCtrl.shareInterface.vibrate(10)
