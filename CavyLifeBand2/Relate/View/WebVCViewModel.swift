@@ -58,6 +58,8 @@ struct RelateAppDetailInfoWebViewModel: WebVCDataSourceProtocol {
     
     var webUrlStr: String
     
+    var webBouncesable: Bool = false
+    
     init(webUrlStr: String = "http://www.baidu.com") {
         
         self.webUrlStr = webUrlStr
