@@ -27,7 +27,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
     
     // 最大值 显示在左上角
     var maxValue: Int = 0
-
+    
     /**
      配置所有视图 主入口
      */
@@ -42,7 +42,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         setupBarLineChartView()
         
         addxAxis()
-
+        
         addLegend()
         
         if UIDevice.isPhone5() {
@@ -120,7 +120,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
 
     }
     
-
+    
     /**
      添加右上角标志
      */
@@ -148,7 +148,7 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         var yVals: [BarChartDataEntry] = []
         
         if timeBucketStyle == .Week { datasCount = 7 }
-
+        
         for i in 0 ..< datasCount {
             
             // xVals
@@ -162,13 +162,13 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
                 xVals.append(timeString)
                 
             }
-
-            // yVals
-            // 随机产生数据
-//            let val1 = Double(arc4random_uniform(200) + 1)// 浅睡
-//            let val2 = Double(arc4random_uniform(200) + 1)// 深睡
+            
+            // yVals 随机产生数据
+            //            let val1 = Double(arc4random_uniform(200) + 1)// 浅睡
+            //            let val2 = Double(arc4random_uniform(200) + 1)// 深睡
             
             // 数据库取出的 先浅睡 后深睡
+
             let val1 = Double(chartsData[i].lightSleep)
             let val2 = Double(chartsData[i].deepSleep)
             
@@ -176,13 +176,13 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
                 maxValue = chartsData[i].deepSleep + chartsData[i].lightSleep
             }
             let dataEntrys = BarChartDataEntry(values: [val1, val2], xIndex: i)
-        
+            
             yVals.append(dataEntrys)
         }
         
         // 更新左边显示的最大值
         descriptionText = "\(maxValue / 60 + 1)h"
-
+        
         var dataSet = BarChartDataSet()
         if self.data?.dataSetCount > 0 {
             

@@ -10,12 +10,12 @@ import Alamofire
 import Log
 import JSONJoy
 
-class RelateAppWebApi: NetRequestAdapter {
+class RelateAppWebApi: NetRequest {
 
     static var shareApi = RelateAppWebApi()
     
     /**
-     获取APP推荐信息
+     获取体感应用信息
      
      - parameter callBack: 回调
      - parameter pagenum:  当前页
@@ -23,13 +23,24 @@ class RelateAppWebApi: NetRequestAdapter {
      
      - throws: 
      */
-    func getRelateAppList(pagenum: Int = 1, pagesize: Int = 10, callBack: CompletionHandlernType? = nil) throws {
+    func getRelateAppList(pagenum: Int = 1, pagesize: Int = 10, successHandler: ([GameJSON] -> Void)? = nil, failHandler: (CommenResponse -> Void)? = nil) {
         
-        let parameters: [String: AnyObject] = [UserNetRequsetKey.AC.rawValue: UserNetRequestMethod.CavyLife.rawValue,
-                                               UserNetRequsetKey.PageNum.rawValue: pagenum,
-                                               UserNetRequsetKey.PageSize.rawValue: pagesize]
+//        let parameters: [String: AnyObject] = [UserNetRequsetKey.AC.rawValue: UserNetRequestMethod.CavyLife.rawValue,
+//                                               UserNetRequsetKey.PageNum.rawValue: pagenum,
+//                                               UserNetRequsetKey.PageSize.rawValue: pagesize]
         
-        netGetRequestAdapter(CavyDefine.relateAppWebApiAddr, para: parameters, completionHandler: callBack)
+//        netGetRequestAdapter(CavyDefine.relateAppWebApiAddr, para: parameters, completionHandler: callBack)
+        
+        
+        netGetRequest(WebApiMethod.RecommendGames.description, modelObject: RelateAppResponse.self, successHandler: {
+            
+            successHandler?($0.gameList)
+            
+        }) { (msg) in
+            
+            failHandler?(msg)
+            
+        }
     }
 
     

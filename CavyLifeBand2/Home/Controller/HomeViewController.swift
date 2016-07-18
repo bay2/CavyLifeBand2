@@ -214,6 +214,17 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             return
         }
         
+        if let guide = viewController as? GuideViewController {
+            
+            if guide.dataSource is GuideBandBluetooth {
+                
+                CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: viewController))
+                
+                return
+            }
+        
+        }
+        
         self.navigationController?.pushViewController(viewController, animated: false)
         
     }

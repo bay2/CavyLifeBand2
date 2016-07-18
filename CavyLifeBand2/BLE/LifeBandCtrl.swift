@@ -15,6 +15,7 @@ enum LifeBandModelType: Int {
     case LLA   = 8
     case Tilt  = 16
     case Step  = 32
+    case Alert = 64
 }
 
 enum LifeBandCtrlNotificationName: String {
@@ -32,6 +33,7 @@ class LifeBandCtrl {
         var fwVersion: Int
         var model: Int
         var hwVersion: Int
+        
     }
     
     enum BandAlarmType {
@@ -238,17 +240,21 @@ class LifeBandCtrl {
      
      ex:
      
-     %CFG=3,1\n //生活手环模式下，斷線後震動提示
+     %CFG=2,1\n //clock alarm on
+     %CFG=3,1\n //生活手環模式下，斷線後震動提示
      %CFG=4,1\n //Tilt function on
      %CFG=5,1\n //計步 function on
+     %CFG=6,1\n //connect alert function on
      - - -
      
      */
     func seLifeBandModel() {
         
+        LifeBandBle.shareInterface.sendMsgToBand("%CFG=2,1")
         LifeBandBle.shareInterface.sendMsgToBand("%CFG=3,1")
         LifeBandBle.shareInterface.sendMsgToBand("%CFG=4,1")
         LifeBandBle.shareInterface.sendMsgToBand("%CFG=5,1")
+        LifeBandBle.shareInterface.sendMsgToBand("%CFG=6,1")
         
     }
     

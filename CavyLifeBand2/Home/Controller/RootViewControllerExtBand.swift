@@ -48,7 +48,7 @@ extension RootViewController: LifeBandBleDelegate {
             
             LifeBandCtrl.shareInterface.setDateToBand(NSDate())
             
-            let lifeBandModel = LifeBandModelType.LLA.rawValue | LifeBandModelType.Step.rawValue | LifeBandModelType.Tilt.rawValue
+            let lifeBandModel = LifeBandModelType.LLA.rawValue | LifeBandModelType.Step.rawValue | LifeBandModelType.Tilt.rawValue | LifeBandModelType.Alarm.rawValue | LifeBandModelType.Alert.rawValue
             LifeBandCtrl.shareInterface.getLifeBandInfo {
                 
                 // 如果不等于生活手环模式，则重新设置生活手环模式
