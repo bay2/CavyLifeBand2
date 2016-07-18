@@ -57,7 +57,7 @@
                                 <rect key="frame" x="0.0" y="115" width="600" height="139"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" allowsEditingTextAttributes="YES" placeholder="手机/邮箱" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="uNl-PL-77D" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="69"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="69.5"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -65,15 +65,8 @@
                                             <outlet property="delegate" destination="OdM-eG-hBA" id="Wpa-Ki-FF2"/>
                                         </connections>
                                     </textField>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttQ-NM-VcE" userLabel="分割线">
-                                        <rect key="frame" x="0.0" y="69" width="600" height="1"/>
-                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="0.29999999999999999" id="yuL-3F-ZYm"/>
-                                        </constraints>
-                                    </view>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="密码" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="hVG-TM-RqG" customClass="AccountTextField" customModule="CavyLifeBand2" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="70" width="600" height="69"/>
+                                        <rect key="frame" x="0.0" y="69.5" width="600" height="69.5"/>
                                         <color key="textColor" white="0.0" alpha="0.20000000000000001" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -81,6 +74,13 @@
                                             <outlet property="delegate" destination="OdM-eG-hBA" id="SGt-CY-tfM"/>
                                         </connections>
                                     </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ttQ-NM-VcE" userLabel="分割线">
+                                        <rect key="frame" x="0.0" y="69.5" width="600" height="0.0"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="0.29999999999999999" id="kme-Bb-CH0"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -139,6 +139,7 @@
                         <outlet property="passwdTextField" destination="hVG-TM-RqG" id="2CK-ky-375"/>
                         <outlet property="separatorLine" destination="ttQ-NM-VcE" id="2jj-Tv-EFi"/>
                         <outlet property="signInBtn" destination="N1v-w3-cuR" id="xf7-AG-IdW"/>
+                        <outlet property="spearLineConstraint" destination="kme-Bb-CH0" id="Gtl-ek-lVo"/>
                         <outlet property="textFieldView" destination="r3d-DE-zZQ" id="aW5-i3-T4M"/>
                         <outlet property="userNameTextField" destination="uNl-PL-77D" id="qdT-Tg-HmM"/>
                     </connections>
@@ -297,6 +298,7 @@
                     </view>
                     <connections>
                         <outlet property="backSignInBtn" destination="T2R-fn-Fcu" id="x5j-nh-C9Z"/>
+                        <outlet property="lineConstraint" destination="ekG-Dh-aw5" id="pPH-JQ-zm4"/>
                         <outlet property="mainBtn" destination="u6U-qo-ihY" id="DpA-tO-yH3"/>
                         <outlet property="passwdTextField" destination="Cdp-ez-pgc" id="zIY-du-Wu0"/>
                         <outlet property="safetyCodeBtn" destination="d9r-xP-wKb" id="KEg-co-owJ"/>
