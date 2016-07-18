@@ -53,11 +53,11 @@ extension NSDate {
             
             let index = self.indexInArray()
             var monday = self
-            let sunDay = (self.gregorian + (6 - index).day).date
+            let sunDay = (self.gregorian + (7 - index).day).date
             
-            if index != 0 {
+            if index != 1 {
                 
-                monday = (self.gregorian - index.day).date
+                monday = (self.gregorian - (index - 1).day).date
                 
             }
             
@@ -76,8 +76,8 @@ extension NSDate {
     
     /**
      当前是这周的第几天
-     * 0 - 6
-     * 6 周二
+     * 1 - 7
+     * 1 周一
      */
 
     func indexInArray() -> Int {
@@ -176,11 +176,15 @@ extension NSDate {
      */
     func untilTodayArrayWithFormatter(formatter: String) -> [String]? {
         
+        if self.toString(format: "yyyy-MM-dd") == NSDate().toString(format: "yyyy-MM-dd") {
+            return [NSDate().toString(format: "yyyy.M.d")]
+        }
+        
         var returnArray: [String] = []
         
         let daysCount = (NSDate().gregorian.beginningOfDay.date - self).totalDays + 1
         
-        if daysCount < 1 {
+        if self.toString(format: "yyyy-MM-dd") == NSDate().toString(format: "yyyy-MM-dd") || daysCount < 1 {
             
             return [NSDate().toString(format: "yyyy.M.d")]
         }
@@ -193,7 +197,30 @@ extension NSDate {
             
         }
         
+        Log.info("\(returnArray) - \(returnArray.count)")
         return returnArray
+    }
+    
+    
+    /**
+     格式化输出当天 day 时间
+     
+     - parameter newDate: <#newDate description#>
+     
+     - returns: <#return value description#>
+     */
+    
+    func formartDate(newDate: NSDate) -> NSDate {
+        
+        let formart = NSDateFormatter()
+        formart.dateFormat = "YYYY-MM-dd"
+        
+        let dateStr = formart.stringFromDate(newDate)
+        
+        let date = formart.dateFromString(dateStr)
+        
+        return date!
+        
     }
     
 }

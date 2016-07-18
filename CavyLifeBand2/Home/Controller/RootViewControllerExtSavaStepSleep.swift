@@ -17,51 +17,82 @@ extension RootViewController: ChartsRealmProtocol {
      - author: sim cai
      - date: 16-05-27 10:05:37
      */
-    func syncDataFormBand() {
+    func syncDataFormBand(autoUpdate: Bool = true) {
         
         // 目前手环只支持两天，默认从昨天开始同步
         var syncDate = (NSDate().gregorian - 1.day).beginningOfDay.date
         
         // 如果数据库有数据，就从最后一天数据开始同步
         if let lastData = queryAllStepInfo().last {
+            
             syncDate = lastData.time
+            
+            // 转换当前所在时区的时间   间隔10分钟 同步一次
+            
+            if autoUpdate == true {  //自动刷新 进入调用
+                
+                guard (NSDate().gregorian.beginningOfDay.date - syncDate).totalMinutes >= 10  else {
+                    
+                    // 发送通知让主页停止同步数据下拉消失
+                    NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
+                    
+                    return
+                }
+            }
+            
         }
+        
         
         LifeBandSyncData.shareInterface.syncDataFormBand(syncDate) {
             
             $0.success { titlsAndSteps in
                 
+                
                 let steps = titlsAndSteps.map { return ($0.date, $0.steps) }
                 let sleeps = titlsAndSteps.map { return ($0.date, $0.tilts) }
                 
-                // 上报计步信息
-                StepSleepReportedData.shareApi.stepsReportedDataToWebServer(steps).responseJSON {
-                    
-                    $0.result.success{ value in
-                        
-                        // 保存数据到数据库中
-                        // TODO: 这里需要设置同步标识
-                        self.saveStepsToRealm(steps)
-                        
-                    }
-                    .failure { error in
-                        self.saveStepsToRealm(steps)
-                    }
+                self.saveTiltsToRealm(sleeps)
+                
+                self.saveStepsToRealm(steps)
+                
+                let uploadData = self.queryUploadBandData()
+                
+                guard uploadData.0.count > 0 else {
+                    return
                 }
                 
-                // 上报睡眠信息
-                StepSleepReportedData.shareApi.sleepReportedDataToWebServer(sleeps).responseJSON {
-                    $0.result.success { value in
-                        self.saveTiltsToRealm(sleeps)
-                    }
-                    .failure { error in
-                        self.saveTiltsToRealm(sleeps)
-                    }
+                UploadBandData.shareApi.uploadBandData(uploadData.0) { [unowned self] data in
+                    self.setChartBandDataSynced(uploadData.1, endDate: uploadData.2)
                 }
                 
-            }
-            .failure { error in
-                Log.error("\(error)")
+//                // 上报睡眠信息
+//                StepSleepReportedData.shareApi.sleepReportedDataToWebServer(sleeps).responseJSON {
+//                    $0.result.success { value in
+//                        self.saveTiltsToRealm(sleeps)
+//                        }
+//                        .failure { error in
+//                            self.saveTiltsToRealm(sleeps)
+//                    }
+//                }
+//                
+//                // 上报计步信息
+//                StepSleepReportedData.shareApi.stepsReportedDataToWebServer(steps).responseJSON {
+//                    
+//                    $0.result.success{ value in
+//                        
+//                        // 保存数据到数据库中
+//                        // TODO: 这里需要设置同步标识
+//                        self.saveStepsToRealm(steps)
+//                        
+//                        }
+//                        .failure { error in
+//                            self.saveStepsToRealm(steps)
+//                    }
+//                }
+                
+                }
+                .failure { error in
+                    Log.error("\(error)")
             }
             
         }
@@ -78,14 +109,26 @@ extension RootViewController: ChartsRealmProtocol {
      */
     func saveStepsToRealm(steps: [(NSDate, Int)]) {
         
-        _ = steps.map { (date: NSDate, steps: Int) -> (NSDate, Int)? in
+        for i in 0 ..< steps.count {
             
-            if steps == 0 {
-                return nil
+            if i == 0 && self.queryAllStepInfo(userId).count > 0 {
+                
+                let lastRealmTime = self.queryAllStepInfo(userId).last?.time
+                
+                if steps[0].0.compare(lastRealmTime!) == .OrderedSame {
+                    
+                    removeStepData(self.queryAllStepInfo(userId).last!)
+                    
+                }
+                
             }
             
-            self.addStepData(ChartStepDataRealm(time: date, step: steps))
-            return (date, steps)
+//            if steps[i].1 == 0 {
+//                continue
+//            }
+            
+            self.addStepData(ChartStepDataRealm(time: steps[i].0, step: steps[i].1))
+            
         }
         
     }
@@ -96,18 +139,34 @@ extension RootViewController: ChartsRealmProtocol {
      - author: sim cai
      - date: 2016-05-31
      
-     - parameter steps:
+     - parameter sleeps:
      */
-    func saveTiltsToRealm(steps: [(NSDate, Int)]) {
+    func saveTiltsToRealm(sleeps: [(NSDate, Int)]) {
         
-        _ = steps.map { (date: NSDate, tilts: Int) -> (NSDate, Int)? in
-            
-            if tilts == 0 {
-                return nil
+        
+        for i in 0 ..< sleeps.count {
+
+            if i == 0 {
+                
+                let lastRealmTime = self.queryAllSleepInfo(userId).last?.time
+                
+                // 数据库无数据 直接添加
+                if lastRealmTime != nil && sleeps[0].0.compare(lastRealmTime!) == .OrderedSame {
+                    
+                    // 比对最后一条数据的时间
+                    
+                    removeSleepData(self.queryAllSleepInfo(userId).last!)
+                    
+                }
+                
             }
             
-            self.addSleepData(ChartSleepDataRealm(time: date, tilts: tilts))
-            return (date, tilts)
+//            if sleeps[i].1 == 0 {
+//                continue
+//            }
+            
+            self.addSleepData(ChartSleepDataRealm(time: sleeps[i].0, tilts: sleeps[i].1))
+            
         }
         
     }

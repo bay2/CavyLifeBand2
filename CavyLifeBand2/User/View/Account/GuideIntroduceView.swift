@@ -80,3 +80,11 @@ struct GuideLoginDataSource: GuideIntroduceViewDataSource {
     
     var image: UIImage = UIImage(named: "banner_home")!
 }
+
+struct GuideLifeBandDataSource: GuideIntroduceViewDataSource {
+    var title: String = L10n.GuideLifeBandTitle.string
+    
+    var info: String = L10n.GuideLifeBandInfo.string
+    
+    var image: UIImage = UIImage(named: "banner_home")!
+}

@@ -43,7 +43,7 @@ class GenderView: UIView {
         self.addSubview(downGenderBtn)
 
         titleLab.text = L10n.GuideMine.string
-        titleLab.font = UIFont.systemFontOfSize(18)
+        titleLab.font = UIFont.mediumSystemFontOfSize(18)
         titleLab.textColor = UIColor(named: .EColor)
         titleLab.textAlignment = .Center
         titleLab.snp_makeConstraints { make -> Void in
@@ -53,6 +53,7 @@ class GenderView: UIView {
         }
         
         upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyChosen), forState: .Normal)
+        upGenderBtn.setImage(UIImage(asset: .GuideGenderBoyChosen), forState: .Highlighted)
         upGenderBtn.snp_makeConstraints { make -> Void in
             make.size.equalTo(genderBtnSize)
             make.centerX.equalTo(self)
@@ -60,6 +61,7 @@ class GenderView: UIView {
         }
         
         downGenderBtn.setImage(UIImage(asset: .GuideGenderGirlGary), forState: .Normal)
+        downGenderBtn.setImage(UIImage(asset: .GuideGenderGirlChosen), forState: .Highlighted)
         downGenderBtn.snp_makeConstraints { make -> Void in
             make.size.equalTo(genderBtnSize)
             make.centerX.equalTo(self)

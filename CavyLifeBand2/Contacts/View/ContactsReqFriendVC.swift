@@ -10,8 +10,8 @@ import UIKit
 import MHRotaryKnob
 import Log
 
-class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
-
+class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UITextFieldDelegate {
+    
     enum RequestStyle {
         
         case AddFriend
@@ -19,8 +19,12 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         case ChangeSelfName
         
     }
-
+    
+    /// 最大输入18个字符
+    let MAXCOUNT = 18
+    
     var viewModel: ContactsReqFriendPortocols?
+    
     @IBOutlet weak var textFieldView: UIView!
     
     /// TextField
@@ -34,7 +38,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     var navTitle: String {
         
         return viewModel?.navTitle ?? ""
-    
+        
     }
     
     override func viewDidLoad() {
@@ -42,13 +46,17 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
+        requestTextField.delegate = self
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ContactsReqFriendVC.textChange(_:)), name: UITextFieldTextDidChangeNotification, object: nil)
+        
         updateNavUI()
-
+        
         requestViewLayout()
         
     }
     
-
+    
     /**
      点击发送按钮
      
@@ -80,6 +88,8 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
     func requestViewLayout() {
         
         textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        sendButton.layer.masksToBounds = true
+        sendButton.layer.cornerRadius = 3
         
         sendButton.setTitle(viewModel?.bottonTitle, forState: .Normal)
         
@@ -93,5 +103,64 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
+    
+    func textChange(noti: NSNotification) {
+        
+        if requestTextField.markedTextRange != nil {
+            
+            return
+        }
+        
+        let string = requestTextField.text
+        
+        
+        requestTextField.text = confineTextFiledText(string) as String
+        
+    }
+    
+    
+    //MARK: UITextFieldDelegate
+    
+    /**
+     限制输入的字符长度为18
+     */
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+        
+        
+        if string.length == 0 || textField.markedTextRange != nil {
+            
+            return true
+        }
+        
+        let text: NSString =  (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
+        
+        if text.length > MAXCOUNT {
+            
+            return false
+        }
+        
+        return true
+        
+    }
+    
+    
+    
+    func confineTextFiledText(text: NSString?) -> NSString {
+        
+        let length = text?.lengthOfBytesUsingEncoding(NSUTF8StringEncoding)
+        var newText = text
+        
+        if length > MAXCOUNT {
+            
+            newText  = confineTextFiledText(newText?.substringToIndex(newText!.length - 1))
+            
+        }
+        
+        return newText!
+        
+    }
+    
 }

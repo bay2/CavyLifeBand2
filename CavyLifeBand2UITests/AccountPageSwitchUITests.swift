@@ -42,7 +42,7 @@ class AccountPageSwitchUITests: XCTestCase {
     }
     
     /**
-     登入
+     登录
      */
     func testLoginCavy() {
         
@@ -51,7 +51,7 @@ class AccountPageSwitchUITests: XCTestCase {
             
             
             let app = XCUIApplication()
-            app.buttons["登入"].tap()
+            app.buttons["登录"].tap()
             let backbtnButton = app.buttons["backbtn"]
             
             XCTAssert(backbtnButton.exists)
@@ -157,12 +157,7 @@ class AccountPageSwitchUITests: XCTestCase {
      */
     func loginOrder() {
         
-        
-        
-        
-        
         if #available(iOS 9.0, *) {
-            
             
             let app = XCUIApplication()
             let guideButton = app.buttons["GuideRightBtn"]
@@ -179,8 +174,8 @@ class AccountPageSwitchUITests: XCTestCase {
             // 连接手环
             XCTAssert(app.staticTexts["连接手环"].exists)
             //            XCTAssert(infoTitle.label == "")
-            XCTAssert(app.staticTexts["开启手环"].exists)
-            XCTAssert(app.staticTexts["按下手环按钮等待红灯亮起即打开手环"].exists)
+            XCTAssert(app.staticTexts["绑定手环"].exists)
+            XCTAssert(app.staticTexts["请按下手环按钮，绑定手环"].exists)
             XCTAssert(app.images["GuideOpenBand"].exists)
             XCTAssert(app.staticTexts["没有灯充电试试看"].exists)
             guideButton.tap()
@@ -191,10 +186,10 @@ class AccountPageSwitchUITests: XCTestCase {
             XCTAssert(app.staticTexts["正在连接..."].exists)
             guideButton.tap()
             
-            // 配对成功
+            // 绑定成功
             XCTAssert(app.staticTexts["连接手环"].exists)
             //            XCTAssert(infoTitle.label == "")
-            XCTAssert(app.staticTexts["配对成功"].exists)
+            XCTAssert(app.staticTexts["绑定成功"].exists)
             XCTAssert(app.images["GuidePairSeccuss"].exists)
             XCTAssert(app.staticTexts["开始健康之旅吧"].exists)
             guideButton.tap()

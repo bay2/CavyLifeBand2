@@ -132,6 +132,12 @@ extension AboutVC: UITableViewDelegate {
             UIApplication.sharedApplication().openURL(NSURL(string: "http://www.tunshu.com")!)
         }
         
+        if tableDataSource[indexPath.row].title == L10n.RelateAboutFunctionIntroduce.string {
+            
+            self.pushVC(StoryboardScene.Relate.instantiateFunctionIntroduceVC())
+        
+        }
+        
     }
     
 }

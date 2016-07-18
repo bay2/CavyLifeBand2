@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import KSCrash
 import Log
 import EZSwiftExtensions
 import RealmSwift
@@ -16,6 +15,8 @@ import OHHTTPStubs
 #endif
 
 var realm: Realm = try! Realm()
+let PGYAPPID = "9bb10b86bf5f62f10ec4f83d1c9847e7"
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
@@ -32,9 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         #if RELEASE
             Log.enabled = false
-            crashConfig()
+           
         #endif
-    
+        
+        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
+        /**
+         5适配
+         */
+        appFitWithDevice()
+        
         realmConfig()
         
         pgyUpdateConfig()
@@ -42,9 +49,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         registerShareSdk()
         
         setRootViewController()
+        crashConfig()
+        
+        Log.theme = Theme(
+            trace:   "#C5C8C6",
+            debug:   "#81A2BE",
+            info:    "#B5BD68",
+            warning: "#F0C674",
+            error:   "#CC6666"
+        )
+        
         
         return true
 
+    }
+    
+    /**
+     5,5c,5s适配
+     */
+    func appFitWithDevice() {
+        
+        if UIDevice.isPhone5() {
+            
+            timeButtonHeight = 40
+            subTimeButtonHeight = 40
+            chartTopHeigh = 20
+            chartBottomHeigh = 20
+            chartViewHight = 230
+            listcellHight = 44
+            
+        }
+        
     }
     
     /**
@@ -57,6 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         if CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId.isEmpty {
             return
         }
+        
         
         let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         BindBandCtrl.bandMacAddress = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] ?? NSData()
@@ -73,9 +109,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      */
     func pgyUpdateConfig() {
     
-        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
+        PgyUpdateManager.sharedPgyManager().startManagerWithAppId(PGYAPPID)
         PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
         PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
+        
+    }
+    
+    /**
+     自动异常上报
+     
+     - author: sim cai
+     - date: 2016-06-01
+     */
+    func crashConfig() {
+        
+       PgyManager.sharedPgyManager().startManagerWithAppId(PGYAPPID)
         
     }
     
@@ -101,22 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
-    /**
-     异常上报
-     
-     - author: sim cai
-     - date: 2016-06-01
-     */
-    func crashConfig() {
-        
-        let installation = KSCrashInstallationStandard.sharedInstance()
-        
-        installation.url = NSURL(string: CavyDefine.bugHDKey)
-        
-        installation.install()
-        installation.sendAllReportsWithCompletion(nil)
-        
-    }
+
     
     /**
      realm 数据合并配置
@@ -250,6 +283,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
+        // 只有 打开蓝牙并且连接手环 自动刷新的处理
+        if LifeBandBle.shareInterface.centraManager?.state == .PoweredOn && LifeBandBle.shareInterface.getConnectState() == .Connected {
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.AddAutoRefresh.rawValue, object: nil)
+            
+        }
     }
 
     func applicationDidBecomeActive(application: UIApplication) {

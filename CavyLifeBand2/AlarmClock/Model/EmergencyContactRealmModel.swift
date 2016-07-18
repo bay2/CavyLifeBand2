@@ -12,7 +12,6 @@ import RealmSwift
 class EmergencyContactRealmModel: Object {
     dynamic var contactName = ""
     dynamic var phoneNumber = ""
-    dynamic var userId = ""
     
     let owners = LinkingObjects(fromType: EmergencyContactRealmListModel.self, property: "emergencyContactRealmList")
 

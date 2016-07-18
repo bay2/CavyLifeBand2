@@ -21,7 +21,7 @@ struct AccountGenderViewModel: AccountSettingModelPotocols {
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
     var centerView: UIView = GenderView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight)) 
-    var userInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+    var userInfoPara: [String: AnyObject] = [String: AnyObject]()
     
     mutating func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -31,7 +31,7 @@ struct AccountGenderViewModel: AccountSettingModelPotocols {
         
         let gender = genderView.MOrG ? 0 : 1
         
-        userInfoPara[UserNetRequsetKey.Sex.rawValue] = gender
+        userInfoPara[NetRequsetKey.Sex.rawValue] = gender
         
         setUserInfo {
             
@@ -61,7 +61,7 @@ struct AccountBirthdayViewModel: AccountSettingModelPotocols {
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
     var centerView: UIView = BirthdayView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight))
-    var userInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+    var userInfoPara: [String: AnyObject] = [String: AnyObject]()
     
     mutating func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -69,7 +69,7 @@ struct AccountBirthdayViewModel: AccountSettingModelPotocols {
             return
         }
         
-        userInfoPara[UserNetRequsetKey.Birthday.rawValue] = birthdayView.birthdayString
+        userInfoPara[NetRequsetKey.Birthday.rawValue] = birthdayView.birthdayString
         
         setUserInfo {
             
@@ -78,6 +78,7 @@ struct AccountBirthdayViewModel: AccountSettingModelPotocols {
                 self.updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
                     
                     $0.birthday = birthdayView.birthdayString
+                    
                     return $0
                     
                 }
@@ -100,7 +101,7 @@ struct AccountHeightViewModel: AccountSettingModelPotocols {
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
     var centerView: UIView = HightView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight))
-    var userInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+    var userInfoPara: [String: AnyObject] = [String: AnyObject]()
     
     mutating func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -108,7 +109,7 @@ struct AccountHeightViewModel: AccountSettingModelPotocols {
             return
         }
         
-        userInfoPara[UserNetRequsetKey.Height.rawValue] = heightView.heightString
+        userInfoPara[NetRequsetKey.Height.rawValue] = heightView.heightValue
         
         setUserInfo {
             
@@ -116,7 +117,7 @@ struct AccountHeightViewModel: AccountSettingModelPotocols {
                 
                 self.updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
                     
-                    $0.height = heightView.heightString
+                    $0.height = heightView.heightValue.toDouble
                     return $0
                     
                 }
@@ -138,7 +139,7 @@ struct AccountWeightViewModel: AccountSettingModelPotocols {
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
     var centerView: UIView = WeightView(frame: CGRectMake(0, 0, middleViewWidth, middleViewHeight))
-    var userInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+    var userInfoPara: [String: AnyObject] = [String: AnyObject]()
     
     mutating func onClickGuideOkBtn(viewController: UIViewController) {
         
@@ -146,7 +147,7 @@ struct AccountWeightViewModel: AccountSettingModelPotocols {
             return
         }
         
-        userInfoPara[UserNetRequsetKey.Weight.rawValue] = weightView.weightString
+        userInfoPara[NetRequsetKey.Weight.rawValue] = weightView.weightString
         
         setUserInfo {
             
@@ -154,7 +155,7 @@ struct AccountWeightViewModel: AccountSettingModelPotocols {
                 
                 self.updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
                     
-                    $0.weight = weightView.weightString
+                    $0.weight = weightView.weightString.toDouble() ?? 0.0
                     return $0
                     
                 }
@@ -176,11 +177,11 @@ struct UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDele
     
     var realm: Realm = try! Realm()
     
-    var navTitle: String = L10n.AccountInfoTitle.string
+    var navTitle: String = L10n.ContactsChangeNickNameNavTitle.string
     
     var textFieldTitle: String {
         didSet {
-            userInfoPara[UserNetRequsetKey.NickName.rawValue] = textFieldTitle
+            userInfoPara[NetRequsetKey.Nickname.rawValue] = textFieldTitle
         }
     }
     
@@ -196,7 +197,7 @@ struct UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDele
     
     weak var viewController: UIViewController?
     
-    var userInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+    var userInfoPara: [String: AnyObject] = [String: AnyObject]()
     
     //点击发送请求成功回调
     var onClickButtonCellBack: (String -> Void)?
@@ -236,11 +237,11 @@ struct UserChangeAddressVM: ContactsReqFriendPortocols, SetUserInfoRequestsDeleg
     
     var realm: Realm = try! Realm()
     
-    var navTitle: String = L10n.AccountInfoTitle.string
+    var navTitle: String = L10n.ContactsChangeAddressNavTitle.string
     
     var textFieldTitle: String {
         didSet {
-            userInfoPara[UserNetRequsetKey.Address.rawValue] = textFieldTitle
+            userInfoPara[NetRequsetKey.Address.rawValue] = textFieldTitle
         }
     }
     
@@ -256,7 +257,7 @@ struct UserChangeAddressVM: ContactsReqFriendPortocols, SetUserInfoRequestsDeleg
     
     weak var viewController: UIViewController?
     
-    var userInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+    var userInfoPara: [String: AnyObject] = [String: AnyObject]()
     
     //点击发送请求成功回调
     var onClickButtonCellBack: (String -> Void)?

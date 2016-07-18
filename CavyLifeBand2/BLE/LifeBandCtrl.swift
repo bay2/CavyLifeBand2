@@ -31,6 +31,7 @@ class LifeBandCtrl {
     struct LifeBandInfo {
         var fwVersion: Int
         var model: Int
+        var hwVersion: Int
     }
     
     enum BandAlarmType {
@@ -291,8 +292,9 @@ class LifeBandCtrl {
             
             let fwVersion = Int(data[5] ?? 0)
             let model = Int(data[3] ?? 0)
+            let hwVersion = Int(data[4] ?? 0)
             
-            let lifeBandInfo = LifeBandInfo(fwVersion: fwVersion, model: model)
+            let lifeBandInfo = LifeBandInfo(fwVersion: fwVersion, model: model, hwVersion: hwVersion)
             
             closure(lifeBandInfo)
             
@@ -316,6 +318,7 @@ class LifeBandCtrl {
                 NSTimer.runThisAfterDelay(seconds: 4, after: {
                     
                     if self.buttonCount >= 4 {
+                        LifeBandCtrl.shareInterface.vibrate(1)
                         NSNotificationCenter.defaultCenter().postNotificationName(LifeBandCtrlNotificationName.BandButtonEvenClick4.rawValue, object: nil)
                     }
                     

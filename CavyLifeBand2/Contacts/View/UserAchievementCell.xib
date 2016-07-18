@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -9,10 +9,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="UserAchievementCell" customModule="CavyLifeBand2" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="90" height="132"/>
+            <rect key="frame" x="0.0" y="0.0" width="90" height="122"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="90" height="132"/>
+                <rect key="frame" x="0.0" y="0.0" width="90" height="122"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y9A-j9-fNz">
                         <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
@@ -35,7 +35,7 @@
                 <constraint firstItem="Y9A-j9-fNz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8rQ-Um-091"/>
                 <constraint firstItem="Cdh-2k-qSz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="9v3-Fl-UEQ"/>
                 <constraint firstAttribute="trailing" secondItem="Cdh-2k-qSz" secondAttribute="trailing" constant="5" id="WEJ-eB-Lks"/>
-                <constraint firstAttribute="bottom" secondItem="Cdh-2k-qSz" secondAttribute="bottom" constant="20" id="ZBv-Is-NDR"/>
+                <constraint firstAttribute="bottom" secondItem="Cdh-2k-qSz" secondAttribute="bottom" constant="10" id="ZBv-Is-NDR"/>
                 <constraint firstItem="Y9A-j9-fNz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="aSM-cX-TSu"/>
             </constraints>
             <connections>

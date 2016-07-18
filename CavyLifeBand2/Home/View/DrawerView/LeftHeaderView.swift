@@ -16,7 +16,7 @@ class LeftHeaderView: UIView {
 
         super.init(frame: frame)
 
-        let lineView = UIView(frame: CGRectMake(32, 5, ez.screenWidth, 0.3))
+        let lineView = UIView(frame: CGRectMake(30, 5, ez.screenWidth, 0.5))
 
         lineView.backgroundColor = UIColor(named: .HomeViewLeftHeaderLine)
         self.addSubview(lineView)

@@ -11,17 +11,17 @@ import RealmSwift
 import JSONJoy
 
 class SafetySettingViewController: UIViewController, BaseViewControllerPresenter {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     let tableViewMargin: CGFloat          = 20.0
     
-    let tableSectionHeaderHeight: CGFloat = 20.0
-    
-    let tableSectionFooterHeight: CGFloat = 100.0
-    
-    let safetySwitchCell  = "SettingSwitchTableViewCell"
+    let tableSectionHeaderHeight: CGFloat    = 20.0
 
+    let tableSectionFooterHeight: CGFloat = 100.0
+
+    let safetySwitchCell  = "SettingSwitchTableViewCell"
+    
     let safetyContactCell = "EmergencyContactPersonCell"
     
     let ContactInfoCell   = "EmergencyContactInfoCell"
@@ -79,74 +79,105 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
     }
     
     func loadContactFromWeb() {
-     
-        do {
+        
+        EmergencyWebApi.shareApi.netGetRequest(WebApiMethod.EmergencyContacts.description, modelObject: EmergencyListResponse.self, successHandler: { (data) in
             
-            try EmergencyWebApi.shareApi.getEmergencyList { [unowned self] result in
+            if data.phoneList.count > 0 {
                 
                 self.contactModels.removeAll()
                 
-                guard result.isSuccess else {
-                    Log.error(result.error?.description ?? "")
-                    return
-                }
-                
-                let resultMsg = try! EmergencyListResponse(JSONDecoder(result.value!))
-                
-                guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
-                    Log.error(WebApiCode(apiCode: resultMsg.commonMsg.code).description)
-                    return
-                }
-                
-                if resultMsg.phoneList.count > 0 {
+                for i in 0..<data.phoneList.count {
                     
-                    for i in 0..<resultMsg.phoneList.count {
-                        
-                        let contactVM = EmergencyContactInfoCellViewModel(name: resultMsg.phoneList[i].name, phone: resultMsg.phoneList[i].phoneNum)
-                        
-                        self.contactModels.append(contactVM)
-                    }
+                    let contactVM = EmergencyContactInfoCellViewModel(name: data.phoneList[i].name, phone: data.phoneList[i].phoneNum)
+                    
+                    self.contactModels.append(contactVM)
                     
                 }
                 
                 self.tableView.reloadData()
                 
             }
-        
-        } catch let error  {
-            Log.error(error)
+            
+        }) { (msg) in
+            
+            Log.error(msg)
+            
         }
         
     }
     
+    /**
+     如果有多个号码 添加提示
+     
+     - parameter contact: 返回的联系人信息
+     */
+    
     func addEmergency(contact: SCAddressBookContact) {
         
-        var phoneArr: [[String: String]] = [[String: String]]()
+        guard  contact.phoneList.count > 0 else {
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.SettingSafetyPhoneNumberError.string)
+            
+            return
+        }
+        //MARK: 单个联系人
+        if contact.phoneList.count == 1
+        {
+            
+            configSendPara(contact.name, phoneNumber: contact.phoneList[0])
+            
+            //MARK: 多个联系人
+        }else
+            
+        {
+            
+            let  sheet = UIActionSheet(title: contact.name, delegate: self, cancelButtonTitle: L10n.SettingSafetyPhoneNumberCancel.string, destructiveButtonTitle: nil)
+            
+            for phoneNumber in contact.phoneList {
+                
+                sheet.addButtonWithTitle(phoneNumber)
+            }
+            
+            sheet.showInView(self.view)
+        }
+        
+    }
+    
+    
+    
+    func configSendPara(name: String, phoneNumber: String) {
+        
+        var phoneArr: Array<[String: String]> = []
         
         for model in self.contactModels {
             
-            if contact.name == model.name && contact.phoneName == model.phoneNumber {
+            if phoneNumber ==  model.phoneNumber{
+                
                 Log.info("联系人重复，已添加")
                 return
             }
             
-            let dic = [UserNetRequsetKey.Name.rawValue: model.name,
-                       UserNetRequsetKey.PhoneNum.rawValue: model.phoneNumber]
+            let dic = [NetRequsetKey.Name.rawValue: model.name,
+                       NetRequsetKey.Phone.rawValue: model.phoneNumber]
+            
             phoneArr.append(dic)
         }
         
-        phoneArr.append([UserNetRequsetKey.Name.rawValue: contact.name,
-            UserNetRequsetKey.PhoneNum.rawValue: contact.phoneName])
+        phoneArr.append([NetRequsetKey.Name.rawValue: name,
+                         NetRequsetKey.Phone.rawValue: phoneNumber])
         
         setEmergencyList(phoneArr) {
-            let cellVM = EmergencyContactInfoCellViewModel(name: contact.name, phone: contact.phoneName)
+            
+            let cellVM = EmergencyContactInfoCellViewModel(name: name, phone: phoneNumber)
             
             self.contactModels.insertAsFirst(cellVM)
             
             self.tableView.reloadData()
+            
         }
         
     }
+    
     
     func deleteEmergency(index: Int) {
         
@@ -158,8 +189,8 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         var phoneArr: [[String: String]] = [[String: String]]()
         
         for model in self.contactModels {
-            let dic = [UserNetRequsetKey.Name.rawValue: model.name,
-                       UserNetRequsetKey.PhoneNum.rawValue: model.phoneNumber]
+            let dic = [NetRequsetKey.Name.rawValue: model.name,
+                       NetRequsetKey.Phone.rawValue: model.phoneNumber]
             phoneArr.append(dic)
         }
         
@@ -179,18 +210,6 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
             
             try EmergencyWebApi.shareApi.setEmergencyPhoneList(phoneList) { result in
                 
-                guard result.isSuccess else {
-                    Log.error(result.error?.description ?? "")
-                    return
-                }
-                
-                let resultMsg = try! EmergencyListResponse(JSONDecoder(result.value!))
-                
-                guard resultMsg.commonMsg.code == WebApiCode.Success.rawValue else {
-                    Log.error(WebApiCode(apiCode: resultMsg.commonMsg.code).description)
-                    return
-                }
-                
                 callBack()
                 
             }
@@ -198,8 +217,8 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         } catch let error  {
             Log.error(error)
         }
-
-    
+        
+        
     }
     
     /**
@@ -218,7 +237,7 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         
         if contactModels.count == 3 {
             
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: "紧急联系人上限三人")
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.SettingSafetyTableEmergencyAlertMsg.string)
             
         } else {
             
@@ -235,12 +254,12 @@ extension SafetySettingViewController: SCAddressBookPickerDelegate {
     
     func contactPicker(didSelectContact contact: SCAddressBookContact) {
         
-        var newContact = contact
+        let
+        newContact = contact
         
-        newContact.phoneName = contact.phoneName.stringByReplacingOccurrencesOfString("-", withString: "")
-        
+        Log.info(newContact.phoneList)
         addEmergency(newContact)
-   
+        
     }
     
 }
@@ -345,9 +364,26 @@ extension SafetySettingViewController: UITableViewDelegate {
 }
 
 extension SafetySettingViewController: EmergencyContactInfoDelegate {
-
+    
     func cancelEmergencyContact(index: NSIndexPath) {
         deleteEmergency(index.row - 1)
     }
+    
+}
 
+
+// MARK:  -UIActionSheetDelegate
+extension SafetySettingViewController: UIActionSheetDelegate
+{
+    
+    func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
+        
+        guard buttonIndex != 0 else {
+            return
+        }
+        
+        configSendPara(actionSheet.title, phoneNumber: actionSheet.buttonTitleAtIndex(buttonIndex)!)
+        
+    }
+    
 }

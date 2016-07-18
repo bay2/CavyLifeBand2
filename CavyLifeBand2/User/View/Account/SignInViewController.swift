@@ -12,9 +12,9 @@ import EZSwiftExtensions
 import Log
 import RealmSwift
 
-class SignInViewController: UIViewController, SignInDelegate, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate {
+class SignInViewController: UIViewController, SignInDelegate, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate, LifeBandBleDelegate {
 
-    // 登入按钮
+    // 登录按钮
     @IBOutlet weak var signInBtn: MainPageButton!
 
     // 输入框视图
@@ -31,6 +31,8 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     
     // textfield之间的分割线
     @IBOutlet weak var separatorLine: UIView!
+    
+    var loadingView: UIActivityIndicatorView = UIActivityIndicatorView()
     
     var realm: Realm = try! Realm()
     
@@ -69,6 +71,10 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         
     }()
     
+    override func viewWillAppear(animated: Bool) {
+        LifeBandBle.shareInterface.stopScaning()
+    }
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -90,6 +96,8 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
+        addLodingView()
+        
         updateNavUI()
         
     }
@@ -102,6 +110,24 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func addLodingView() {
+        
+        self.view.addSubview(loadingView)
+        
+        loadingView.hidesWhenStopped = true
+        
+        loadingView.activityIndicatorViewStyle = .Gray
+        
+        loadingView.snp_makeConstraints { make in
+            make.center.equalTo(self.view)
+            make.width.equalTo(50.0)
+            make.height.equalTo(50.0)
+        }
+
+    }
+    
+   
     
     /**
      设置子视图标题
@@ -187,13 +213,19 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      */
      func onRightBtn() {
 
-        // 注册绑定场景
-        BindBandCtrl.bindScene = .SignUpBind
+//        // 注册绑定场景
+//        BindBandCtrl.bindScene = .SignUpBind
+//        
+//        let guideVC = StoryboardScene.Guide.instantiateGuideView()
+//        let guideVM = GuideBandBluetooth()
+//        guideVC.configView(guideVM, delegate: guideVM)
+//        self.pushVC(guideVC)
         
-        let guideVC = StoryboardScene.Guide.instantiateGuideView()
-        let guideVM = GuideBandBluetooth()
-        guideVC.configView(guideVM, delegate: guideVM)
-        self.pushVC(guideVC)
+        let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
+        
+        accountVC.configView(PhoneSignUpViewModel())
+        
+        self.presentVC(UINavigationController(rootViewController: accountVC))
 
     }
 
@@ -232,8 +264,13 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
      - parameter sender: 
      */
     @IBAction func onClickSignIn(sender: AnyObject) {
+        
+        loadingView.startAnimating()
+        self.view.endEditing(true)
+        
+        signIn({ [unowned self] in
+            self.loadingView.stopAnimating()
 
-        signIn {
             
             // 登录绑定场景
             BindBandCtrl.bindScene = .SignInBind
@@ -243,33 +280,27 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
             let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
             
             // 查询不到用户信息，走绑定流程
-            if let bindBandValue = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] {
+            guard let bindBandValue = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] else {
                 
-                // 没绑定并且蓝牙没打开
-                if bindBandValue.length == 0 {
-                
-                    //用户未绑定，走绑定流程
-                    self.gotoBinding()
-                    return
-                    
-                }
-                
-                // 手环已绑定，记录手环信息，root 页面中会根据此属性设置绑定的手环
-//                GuideUserInfo.userInfo.bandName = bindBandValue
-                BindBandCtrl.bandMacAddress = bindBandValue
-                
+                //用户未绑定，走绑定流程
+                self.gotoBinding()
+                return
                 
             }
             
+            // 手环已绑定，记录手环信息，root 页面中会根据此属性设置绑定的手环
+            //                GuideUserInfo.userInfo.bandName = bindBandValue
+            BindBandCtrl.bandMacAddress = bindBandValue
+            
             // 通过查询用户信息判断是否是老的豚鼠用户
-            self.queryUserInfoByNet(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, vc: self) {
+            self.queryUserInfoByNet(self) {
                 
                 guard let userProfile = $0 else {
                     return
                 }
                 
                 // 老用户进入引导页
-                if userProfile.sleepTime.isEmpty {
+                if userProfile.sleepGoal == 0 {
                     
                     let guideVM = GuideGenderViewModel()
                     guideVC.configView(guideVM, delegate: guideVM)
@@ -278,18 +309,25 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
                     
                 } else {
                     
+                    // 登录绑定
+                    
+                    self.saveMacAddress()
+
                     UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
                     
                 }
                 
             }
-            
+
+        }) { [unowned self] in
+                self.loadingView.stopAnimating()
         }
         
     }
     
     func onLeftBtnBack() {
         
+        self.view.endEditing(true)
         self.dismissVC(completion: nil)
         
     }

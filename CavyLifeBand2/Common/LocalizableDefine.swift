@@ -63,7 +63,9 @@ enum L10n {
   case UserModuleErrorCodeLBSNil
   /// 电话号码列表不能为空
   case UserModuleErrorCodePhoneNumListNil
-  /// 登入
+  /// 图片转换失败
+  case UserModuleErrorCodeImageParseFail
+  /// 登录
   case MainPageSignInBtn
   /// 加入豚鼠
   case MainPageSignUpBtn
@@ -101,6 +103,10 @@ enum L10n {
   case SignUpSignUpBtn
   /// 请先阅读《豚鼠科技服务协议》
   case SignUpReadProcotol
+  /// 重新注册
+  case SignUpReSignUp
+  /// 直接登录
+  case SignUpDirectSinIn
   /// 我的信息
   case GuideMyInfo
   /// 我是
@@ -147,19 +153,19 @@ enum L10n {
   case GuideOpenBluetooth
   /// 手机蓝牙打开后才能成功连接手环
   case GuideOpenBluetoothInfo
-  /// 开启手环
+  /// 绑定手环
   case GuideOpenCavy
   /// 没有灯充电试试看
   case GuideOpenCavySugg
-  /// 按下手环按钮等待红灯亮起即打开手环
+  /// 请按下手环按钮，绑定手环
   case GuideOpenCavyInfo
   /// 正在连接...
   case GuideLinking
-  /// 配对成功
+  /// 绑定成功
   case GuidePairSuccess
   /// 开始健康之旅吧
   case GuidePairSuccessInfo
-  /// 无法配对
+  /// 绑定失败
   case GuidePairFail
   /// 确保手环有电，并且位于手机的连接范围
   case GuidePairFailInfo
@@ -175,6 +181,10 @@ enum L10n {
   case GuideSafetyServiceTitle
   /// 遇到紧急情况，连按4下按钮\n立即向联系人发送求救信息
   case GuideSafetyServiceInfo
+  /// 豚鼠手环
+  case GuideLifeBandTitle
+  /// 开启我的豚鼠生活
+  case GuideLifeBandInfo
   /// 忘记密码了?
   case ForgotTitle
   /// 新密码
@@ -243,21 +253,21 @@ enum L10n {
   case HomeLifeListTitleAbout
   /// 帮助与反馈
   case HomeLifeListTitleHelp
-  /// 相关APP
+  /// APP推荐
   case HomeLifeListTitleRelated
   /// 遥控相机
   case HomeRightListTitleCamera
-  /// 提醒
+  /// 来电提醒
   case HomeRightListTitleNotification
-  /// 智能闹钟
+  /// 手环闹钟
   case HomeRightListTitleAlarmClock
-  /// 安全
+  /// 紧急求救
   case HomeRightListTitleSecurity
   /// 固件升级
   case HomeRightListTitleFirmwareUpgrade
   /// 绑定新的CavyBand
   case HomeRightListTitleBindingBand
-  /// 我的CavyBand
+  /// 我的豚鼠手环Band
   case BandTitle
   /// 固件版本: 
   case BandFWVersion
@@ -279,6 +289,18 @@ enum L10n {
   case ChartTimeBucketMonth
   /// 目标完成度
   case ChartTargetPercent
+  /// 步数
+  case ChartStepTodayStep
+  /// 路程
+  case ChartStepKilometer
+  /// 用时
+  case ChartStepTimeUsed
+  /// 周总步数
+  case ChartStepWeekStep
+  /// 日均步数
+  case ChartStepAverageStep
+  /// 月总步数
+  case ChartStepMonthStep
   /// 深睡
   case ChartSleepDeep
   /// 浅睡
@@ -287,14 +309,8 @@ enum L10n {
   case ChartSleepDegreeDeep
   /// 浅度
   case ChartSleepDegreeLight
-  /// 步数
-  case ChartStepTodayStep
-  /// 周总步数
-  case ChartStepWeekStep
-  /// 行走公里数
-  case ChartStepKilometer
-  /// 花费时长
-  case ChartStepTimeUsed
+  /// 日均睡眠
+  case ChartSleepAverage
   /// 分享到
   case ShareTo
   /// 生活豚鼠
@@ -387,6 +403,10 @@ enum L10n {
   case ContactsEmptyViewNearbyInfo
   /// 手机通讯录中的好友中\n还没加入豚鼠
   case ContactsEmptyViewAddressBookInfo
+  /// 昵称
+  case ContactsChangeNickNameNavTitle
+  /// 地址
+  case ContactsChangeAddressNavTitle
   /// 账户信息
   case AccountInfoTitle
   /// 退出登录
@@ -403,7 +423,7 @@ enum L10n {
   case AccountInfoAchieveViewNumPrefix
   /// 手环振动提醒 取消传统声音唤醒体系
   case AlarmClockIntelligentClockTableFooterInfo
-  /// 智能闹钟
+  /// 手环闹钟
   case AlarmClockTitle
   /// 智能唤醒
   case AlarmClockAwakeTitle
@@ -413,7 +433,7 @@ enum L10n {
   case AlarmClockAlarmCircleTitle
   /// 小提示
   case AlarmClockAlarmCircleSubTitle
-  /// 闹钟振动过程中，按一下手环按钮即可停止振动。手环检测到你已起床，即会停止振动。
+  /// 闹钟振动过程中，按一下手环按钮即可停止振动。
   case AlarmClockAlarmCircleDescription
   /// 删除
   case AlarmClockDeleteBtnTitle
@@ -433,20 +453,26 @@ enum L10n {
   case AlarmClockCircleWeekendInfo
   /// 手环最多只能添加2个闹钟
   case AlarmClockAlarmClockCountError
-  /// 安全
+  /// 紧急求救
   case SettingSafetyTitle
   /// 点击添加
   case SettingSafetyTableCellContactButton
   /// 紧急联系人
   case SettingSafetyTableCellContactTitle
+  /// 手机号格式错误，无法发送短信
+  case SettingSafetyPhoneNumberError
+  /// 取消
+  case SettingSafetyPhoneNumberCancel
   /// GPS定位
   case SettingSafetyTableCellGPSTitle
-  /// 紧急报警
+  /// 温馨提示
   case SettingSafetyTableFooterTitle
   /// 紧急情况下，连续按4下按钮，紧急联系人即可收到豚鼠为您发送的请求信息及GPS定位消息。
   case SettingSafetyTableFooterInfo
   /// 取消
   case SettingSafetyTableEmergencyContactCancelBtn
+  /// 紧急联系人上限3人
+  case SettingSafetyTableEmergencyAlertMsg
   /// 来电提醒
   case SettingReminderPhoneCallTitle
   /// 秒未接提醒
@@ -581,7 +607,9 @@ enum L10n {
   case RelateHelpAndFeedbackSendBtnTitle
   /// 请描述你的问题或意见
   case RelateHelpAndFeedbackTextViewPlaceHolder
-  /// 相关App
+  /// 发送成功
+  case RelateHelpAndFeedbackSendSuccessAlertMsg
+  /// APP推荐
   case RelateRelateAppNavTitle
   /// 下载
   case RelateRelateAppCellDownloadBtnTitle
@@ -603,6 +631,22 @@ enum L10n {
   case UpdateProgressInfo
   /// 手环正在升级
   case UpdateProgressTitle
+  /// 请先连接手环
+  case UpdateFirmwareBandDisconnectAlertMsg
+  /// 固件版本已最新版本
+  case UpdateFirmwareIsNewVersionAlertMsg
+  /// 下拉同步数据...
+  case HomeRefreshIdle
+  /// 松开同步数据...
+  case HomeRefreshPulling
+  ///   正在同步数据...
+  case HomeRefreshRefreshing
+  /// 确认
+  case AlertSureActionTitle
+  /// 取消
+  case AlertCancelActionTitle
+  /// 确认撤销此次PK？
+  case AlertUndoPKWaitRecordMsg
 }
 
 extension L10n: CustomStringConvertible {
@@ -670,6 +714,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UserModuleErrorCode.LBSNil")
       case .UserModuleErrorCodePhoneNumListNil:
         return L10n.tr("UserModuleErrorCode.PhoneNumListNil")
+      case .UserModuleErrorCodeImageParseFail:
+        return L10n.tr("UserModuleErrorCode.ImageParseFail")
       case .MainPageSignInBtn:
         return L10n.tr("MainPage.SignInBtn")
       case .MainPageSignUpBtn:
@@ -708,6 +754,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("SignUp.SignUpBtn")
       case .SignUpReadProcotol:
         return L10n.tr("SignUp.ReadProcotol")
+      case .SignUpReSignUp:
+        return L10n.tr("SignUp.ReSignUp")
+      case .SignUpDirectSinIn:
+        return L10n.tr("SignUp.DirectSinIn")
       case .GuideMyInfo:
         return L10n.tr("Guide.MyInfo")
       case .GuideMine:
@@ -782,6 +832,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Guide.SafetyService.Title")
       case .GuideSafetyServiceInfo:
         return L10n.tr("Guide.SafetyService.Info")
+      case .GuideLifeBandTitle:
+        return L10n.tr("Guide.LifeBand.Title")
+      case .GuideLifeBandInfo:
+        return L10n.tr("Guide.LifeBand.Info")
       case .ForgotTitle:
         return L10n.tr("Forgot.Title")
       case .ForgotPasswdTextField:
@@ -886,6 +940,18 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Chart.TimeBucket.Month")
       case .ChartTargetPercent:
         return L10n.tr("Chart.Target.Percent")
+      case .ChartStepTodayStep:
+        return L10n.tr("Chart.Step.Today.Step")
+      case .ChartStepKilometer:
+        return L10n.tr("Chart.Step.Kilometer")
+      case .ChartStepTimeUsed:
+        return L10n.tr("Chart.Step.TimeUsed")
+      case .ChartStepWeekStep:
+        return L10n.tr("Chart.Step.Week.Step")
+      case .ChartStepAverageStep:
+        return L10n.tr("Chart.Step.Average.Step")
+      case .ChartStepMonthStep:
+        return L10n.tr("Chart.Step.Month.Step")
       case .ChartSleepDeep:
         return L10n.tr("Chart.Sleep.Deep")
       case .ChartSleepLight:
@@ -894,14 +960,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Chart.Sleep.Degree.Deep")
       case .ChartSleepDegreeLight:
         return L10n.tr("Chart.Sleep.Degree.Light")
-      case .ChartStepTodayStep:
-        return L10n.tr("Chart.Step.Today.Step")
-      case .ChartStepWeekStep:
-        return L10n.tr("Chart.Step.Week.Step")
-      case .ChartStepKilometer:
-        return L10n.tr("Chart.Step.Kilometer")
-      case .ChartStepTimeUsed:
-        return L10n.tr("Chart.Step.TimeUsed")
+      case .ChartSleepAverage:
+        return L10n.tr("Chart.Sleep.Average.")
       case .ShareTo:
         return L10n.tr("Share.To")
       case .ContactsListCellCavy:
@@ -994,6 +1054,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Contacts.EmptyView.NearbyInfo")
       case .ContactsEmptyViewAddressBookInfo:
         return L10n.tr("Contacts.EmptyView.AddressBookInfo")
+      case .ContactsChangeNickNameNavTitle:
+        return L10n.tr("Contacts.ChangeNickName.NavTitle")
+      case .ContactsChangeAddressNavTitle:
+        return L10n.tr("Contacts.ChangeAddress.NavTitle")
       case .AccountInfoTitle:
         return L10n.tr("AccountInfo.Title")
       case .AccountInfoLoginoutButtonTitle:
@@ -1046,6 +1110,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Setting.SafetyTableCell.ContactButton")
       case .SettingSafetyTableCellContactTitle:
         return L10n.tr("Setting.SafetyTableCell.ContactTitle")
+      case .SettingSafetyPhoneNumberError:
+        return L10n.tr("Setting.SafetyPhoneNumberError")
+      case .SettingSafetyPhoneNumberCancel:
+        return L10n.tr("Setting.SafetyPhoneNumberCancel")
       case .SettingSafetyTableCellGPSTitle:
         return L10n.tr("Setting.SafetyTableCell.GPSTitle")
       case .SettingSafetyTableFooterTitle:
@@ -1054,6 +1122,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Setting.SafetyTableFooter.Info")
       case .SettingSafetyTableEmergencyContactCancelBtn:
         return L10n.tr("Setting.SafetyTableEmergencyContact.CancelBtn")
+      case .SettingSafetyTableEmergencyAlertMsg:
+        return L10n.tr("Setting.SafetyTableEmergency.AlertMsg")
       case .SettingReminderPhoneCallTitle:
         return L10n.tr("Setting.ReminderPhoneCall.Title")
       case .SettingReminderPhoneCallDescription:
@@ -1188,6 +1258,8 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Relate.HelpAndFeedback.SendBtnTitle")
       case .RelateHelpAndFeedbackTextViewPlaceHolder:
         return L10n.tr("Relate.HelpAndFeedback.TextViewPlaceHolder")
+      case .RelateHelpAndFeedbackSendSuccessAlertMsg:
+        return L10n.tr("Relate.HelpAndFeedback.SendSuccessAlertMsg")
       case .RelateRelateAppNavTitle:
         return L10n.tr("Relate.RelateApp.NavTitle")
       case .RelateRelateAppCellDownloadBtnTitle:
@@ -1210,6 +1282,22 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UpdateProgress.Info")
       case .UpdateProgressTitle:
         return L10n.tr("UpdateProgress.title")
+      case .UpdateFirmwareBandDisconnectAlertMsg:
+        return L10n.tr("UpdateFirmware.BandDisconnect.AlertMsg")
+      case .UpdateFirmwareIsNewVersionAlertMsg:
+        return L10n.tr("UpdateFirmware.IsNewVersion.AlertMsg")
+      case .HomeRefreshIdle:
+        return L10n.tr("Home.Refresh.Idle")
+      case .HomeRefreshPulling:
+        return L10n.tr("Home.Refresh.Pulling")
+      case .HomeRefreshRefreshing:
+        return L10n.tr("Home.Refresh.Refreshing")
+      case .AlertSureActionTitle:
+        return L10n.tr("Alert.SureAction.Title")
+      case .AlertCancelActionTitle:
+        return L10n.tr("Alert.CancelAction.Title")
+      case .AlertUndoPKWaitRecordMsg:
+        return L10n.tr("Alert.UndoPKWaitRecord.Msg")
     }
   }
 

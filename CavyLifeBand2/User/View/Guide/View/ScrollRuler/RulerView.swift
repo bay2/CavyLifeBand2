@@ -147,7 +147,7 @@ class RulerView: UIView, UIScrollViewDelegate {
             let allCount = (sc.yearValue - 1901) * sc.lineCount + sc.monthValue - 1
             
             // 计算起始位置
-            let beginSetX = CGFloat(allCount * sc.lineSpace)
+            let beginSetX = CGFloat(allCount * sc.lineSpace) + horizontalInset / 2
 
             // 移动的位置
             let endSetX = scrollView.contentOffset.x
@@ -173,7 +173,7 @@ class RulerView: UIView, UIScrollViewDelegate {
         }else if sc.rulerStyle == .DayRuler{
             
             // 计算起始位置
-            let beginSetX = CGFloat(sc.lineSpace * 14)
+            let beginSetX = CGFloat(sc.lineSpace * 14) + horizontalInset / 2
             
             // 移动的位置
             let endSetX = scrollView.contentOffset.x
@@ -254,7 +254,7 @@ class RulerView: UIView, UIScrollViewDelegate {
             
         } else if sc.rulerStyle == .DayRuler{
             
-            sc.setContentOffset(CGPointMake(CGFloat((self.nowDay - 1) * sc.lineSpace), 0), animated: true)
+            sc.setContentOffset(CGPointMake(CGFloat((self.nowDay - 1) * sc.lineSpace) + horizontalInset / 2, 0), animated: true)
          
         } else if sc.rulerStyle == .HeightRuler{
             

@@ -21,8 +21,8 @@ extension UserInfoModel {
         self.birthday       = guideUserinfo.birthday
         self.isNotification = guideUserinfo.isNoitfication
         self.isLocalShare   = guideUserinfo.isLocalShare
-        self.stepNum        = guideUserinfo.stepNum
-        self.sleepTime      = guideUserinfo.sleepTime
+        self.stepGoal       = guideUserinfo.stepGoal
+        self.sleepGoal      = guideUserinfo.sleepGoal
         
     }
     
@@ -39,8 +39,8 @@ extension UserInfoModel {
         self.birthday       = guideUserinfo.birthday
         self.isNotification = guideUserinfo.isNoitfication
         self.isLocalShare   = guideUserinfo.isLocalShare
-        self.stepNum        = guideUserinfo.stepNum
-        self.sleepTime      = guideUserinfo.sleepTime
+        self.stepGoal       = guideUserinfo.stepGoal
+        self.sleepGoal      = guideUserinfo.sleepGoal
         
     }
     
@@ -56,13 +56,13 @@ struct GuideUserInfo {
     
     var userId: String
     var gender: Int
-    var height: String
-    var weight: String
+    var height: Double
+    var weight: Double
     var birthday: String
     var isNoitfication: Bool
     var isLocalShare: Bool
-    var stepNum: Int
-    var sleepTime: String
+    var stepGoal: Int
+    var sleepGoal: Int
 
     
     static var userInfo = GuideUserInfo()
@@ -71,13 +71,13 @@ struct GuideUserInfo {
         
         userId         = ""
         gender         = 0
-        height         = ""
-        weight         = ""
+        height         = 0.0
+        weight         = 0.0
         birthday       = ""
         isNoitfication = true
         isLocalShare   = true
-        stepNum        = 0
-        sleepTime      = ""
+        stepGoal       = 0
+        sleepGoal      = 0
         
     }
     

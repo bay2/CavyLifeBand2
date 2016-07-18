@@ -9,10 +9,18 @@
 import UIKit
 import Log
 import JSONJoy
+import SnapKit
 import EZSwiftExtensions
 import RealmSwift
+import MJRefresh
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate {
+let dateViewHeight: CGFloat = 50.0
+// 大环是 0.55 大环顶部距离NavBar高度是 96
+let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
+let navBarHeight: CGFloat = 64.0
+
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate, ChartStepRealmProtocol, QueryUserInfoRequestsDelegate {
+
     
     var leftBtn: UIButton? = {
         
@@ -40,6 +48,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     
     var navTitle: String { return "" }
     
+    var scrollView = UIScrollView()
+    
     /// 上部分 计步睡眠天气页面
     var upperView: HomeUpperView?
     
@@ -66,7 +76,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         super.viewDidLoad()
         
         parseChartListData()
-        parseHomeListData()
 
         addAllView()
         
@@ -78,16 +87,19 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(NotificationName.HomeShowPKView.rawValue, selector: #selector(HomeViewController.showPKDetailView))
         addNotificationObserver(NotificationName.HomeShowAchieveView.rawValue, selector: #selector(HomeViewController.showAchieveDetailView))
         addNotificationObserver(NotificationName.HomeShowHealthyView.rawValue, selector: #selector(HomeViewController.showHealthyDetailView))
+        
         addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
         addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
-    
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
-        upperView!.frame = CGRectMake(0, 0, ez.screenWidth, 96 + ez.screenWidth * 0.55)
+        // 添加自动刷新
+        addAutoRefreshHeader()
 
+        // 后台进入前台 同步数据  "addHomeViewAutoRefresh"
+        addNotificationObserver(RefreshStatus.AddAutoRefresh.rawValue, selector: #selector(beginHomeViewRefreshing))
+        
+        // 停止自动刷新 更改刷新的header为手动刷新模式 "endHomeViewAutoRefresh"
+        addNotificationObserver(RefreshStatus.StopRefresh.rawValue, selector: #selector(endHomeViewRefreshing))
+ 
     }
     
     /**
@@ -107,7 +119,16 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      - date: 2016-05-31
      */
     func bandConnect() {
+        
+
+        // 手环连接 自动同步数据
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+            // 等待两秒 连接手环的时间
+            self.scrollView.mj_header.beginRefreshing()
+            
+        }
         rightBtn?.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
+        
     }
     
     /**
@@ -117,27 +138,58 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
-        upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
-        
-        upperView?.viewController = self
-        view.addSubview(upperView!)
-        
-        view.addSubview(dateView)
-        dateView.backgroundColor = UIColor.whiteColor()
-        dateView.snp_makeConstraints { make in
-            make.top.equalTo(self.view).offset(96 + ez.screenWidth * 0.55)
-            make.left.right.equalTo(self.view)
-            make.height.equalTo(50)
+        self.view.addSubview(scrollView)
+        scrollView.contentSize = CGSizeMake(ez.screenWidth, navBarHeight + navBarHeight)
+        scrollView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        scrollView.delegate = self
+        scrollView.snp_makeConstraints { (make) in
+            make.left.right.bottom.top.equalTo(self.view)
         }
         
-        view.addSubview(timeLineView)
-        timeLineView.snp_makeConstraints { make in
-            make.top.equalTo(dateView).offset(50)
-            make.left.right.bottom.equalTo(self.view)
+        upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
+        upperView?.viewController = self
+        scrollView.addSubview(upperView!)
+        upperView!.snp_updateConstraints { make in
+            make.top.left.right.equalTo(0)
+            make.size.equalTo(CGSizeMake(ez.screenWidth, ringViewHeight))
+            make.centerX.equalTo(0)
+            
+        }
+        
+        scrollView.addSubview(dateView)
+        dateView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        dateView.snp_updateConstraints { make in
+            make.top.equalTo(scrollView).offset(ringViewHeight)
+            make.left.right.equalTo(scrollView)
+            make.height.equalTo(dateViewHeight)
+        }
+        
+        scrollView.addSubview(timeLineView)
+        timeLineView.snp_updateConstraints { make in
+            make.top.equalTo(dateView.snp_bottom)
+            make.size.equalTo(CGSizeMake(ez.screenWidth, ez.screenHeight - navBarHeight - ringViewHeight - dateViewHeight))
+            make.centerX.equalTo(0)
         }
         
     }
+    
+    
+       /**
+     未连接手环的弹窗
+     */
+    func addAlertView() {
+     
+        let alertView = UIAlertController(title: "同步数据失败", message: "请您绑定手环，重新同步数据", preferredStyle: .Alert)
+        
+        let sureAction = UIAlertAction(title: "确定", style: .Cancel, handler: nil)
+        
+        alertView.addAction(sureAction)
+        
+        self.presentViewController(alertView, animated: true, completion: nil)
+        
 
+    }
+    
     /**
      点击左侧按钮
      */
@@ -185,52 +237,44 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
     }
     
-    // MARK: --- 解析数据 保存数据库
+    // MARK: 解析数据 保存数据库
     
     /**
-     解析全部HomeList数据
-     */
-    func parseHomeListData() {
-        
-    }
-    
-    /**
-     解析 计步睡眠数据 并保存Realm
+     解析 计步睡眠数据 并保存Realm 每次请求前前先删除最后一条数据 在获取时间同步
      */
     func parseChartListData() {
         
+
+        // MARK: 睡眠相关
+        SleepWebApi.shareApi.fetchSleepWebData()
+        
+        // MARK: 计步相关
         var startDate = ""
         var endDate = ""
         
         if isNeedUpdateStepData() {
             
-            let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
+            let personalList = realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
             
             if personalList.count != 0 {
                 
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
+                startDate = personalList.last!.date.toString(format: "yyyy-MM-dd HH:mm:ss")
                 endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
                 
-            }
-        }
-        
-        parseStepDate(startDate, endDate: endDate)
+            } else {
+                // 如果查询不到数据 则 使用注册日期开始请求
+                guard let startTime = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first?.signUpDate else {
+                    return
+                }
                 
-        if isNeedUpdateSleepData() {
-            
-            let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
-            
-            if personalList.count != 0 {
-                
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd HH:mm:ss")
-                endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
+                startDate = startTime.toString(format: "yyyy-MM-dd HH:mm:ss")
                 
             }
             
+            parseStepDate(startDate, endDate: endDate)
+            
         }
         
-        parseSleepDate(startDate, endDate: endDate)
- 
     }
     
       /**
@@ -241,28 +285,35 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      */
     func parseStepDate(startDate: String, endDate: String) {
 
-        ChartsWebApi.shareApi.parseStepChartsData(startDate, endDate: endDate) { result in
-
-            guard result.isSuccess else {
-                Log.error("Parse Home Lists Data Error")
-                return
+        
+     let  parameters: [String: AnyObject] = ["start_date": startDate, "end_date": endDate]
+//         let  parameters: [String: AnyObject] = ["start_date": "2016-6-5", "end_date": "2016-7-4"]
+        NetWebApi.shareApi.netGetRequest(WebApiMethod.Steps.description, para: parameters, modelObject: NChartStepData.self, successHandler: { result  in
+ 
+            //服务器数据获取成功判断数据库最后一条数据时间是否是当天 如果是当天就删除之后再开始添加新数据
+            
+            let today = NSDate(fromString: endDate, format: "yyyy-MM-dd")?.gregorian.isToday
+            
+            //如果传入的时间是当天 则查询是否有当天的数据然后删除
+            
+            if today == true {
+                
+              self.deleteStepDataWithDate(endDate)
+                
             }
             
-            do {
-                
-                let netResult = try ChartStepMsg(JSONDecoder(result.value!))
-                for list in netResult.stepList {
-                    // 保存到数据库
-                    self.addStepListRealm(list)
-                }
-                
-            } catch let error {
-                
-                Log.error("\(#function) result error: \(error)")
+            
+            for list in result.stepsData.stepsData {
+               
+                self.addNStepListRealm(list)
             }
             
+            }) {   Msg in
+                
+                
+             Log.info(Msg)
+             Log.error("Parse Home Lists Data Error")
         }
-
     }
     
     /**
@@ -283,6 +334,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
                 Log.info(result.value!)
                 let netResult = try ChartSleepMsg(JSONDecoder(result.value!))
                 for list in netResult.sleepList {
+                    
+                    Log.info(list)
                     // 保存到数据库
                     self.addSleepListRealm(list)
                 }
@@ -305,7 +358,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      - parameter list: 计步信息JSON
      */
     func addStepListRealm(list: StepMsg) {
-        
+    
         guard let date = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
             return
         }
@@ -314,13 +367,45 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 
     }
     
+    //  从服务器获取数据存入表
+    
+    func addNStepListRealm(list: StepsDataItem) {
+        
+        let stepList = List<StepListItem> ()
+        
+        for item in list.hours {
+         
+            let  stepItem = StepListItem(step: item.steps)
+            
+            stepList.append(stepItem)
+        }
+        
+    
+        self.addStepData(NChartStepDataRealm(userId: self.userId, date: list.date!, totalTime: list.totalTime, totalStep: list.totalSteps, stepList: stepList))
+        
+    }
+    
+    
+    
+    func deleteStepDataWithDate(searchDate: String) {
+        
+       
+        guard let time = NSDate(fromString: searchDate, format: "yyyy-MM-dd") else {
+            Log.error("Time from erro [\(searchDate)]")
+            return
+        }
+        
+        self.delecNSteptDate(time, endTime: time)
+        
+    }
+    
+    
     func addSleepListRealm(list: SleepMsg) {
         
         guard let time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
             Log.error("Time from erro [\(list.dateTime)]")
             return
         }
-        
         
         self.addSleepData(ChartSleepDataRealm(userId: self.userId, time: time, tilts: list.rollCount))
 
@@ -333,8 +418,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     func showStepDetailView(){
         
         let stepVM = ChartViewModel(title: L10n.ContactsShowInfoStep.string, chartStyle: .StepChart)
-        let chartVC = ChartBaseViewController()
-        chartVC.configChartBaseView(stepVM)
+        let chartVC = ChartsViewController()
+        chartVC.configChartsView(stepVM)
         self.pushVC(chartVC)
         
     }
@@ -345,8 +430,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     func showSleepDetailView(){
         
         let sleepVM = ChartViewModel(title: L10n.ContactsShowInfoSleep.string, chartStyle: .SleepChart)
-        let chartVC = ChartBaseViewController()
-        chartVC.configChartBaseView(sleepVM)
+        let chartVC = ChartsViewController()
+        chartVC.configChartsView(sleepVM)
         self.pushVC(chartVC)
         
     }
@@ -376,7 +461,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
     }
     
-    
     /**
      显示成就页面
      */
@@ -392,7 +476,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
 
         let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
         
-        achieveView?.configWithAchieveIndex((notification.object as? Int) ?? 0)
+        // TODO 数据结构有变
+        achieveView?.configWithAchieveIndexForUser()
 
         maskView.addSubview(achieveView!)
 
@@ -404,6 +489,12 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         })
         
         UIApplication.sharedApplication().keyWindow?.addSubview(maskView)
+        
+        queryUserInfoByNet() { resultUserInfo in
+            
+            achieveView?.configWithAchieveIndexForUser()
+            
+        }
         
     }
     
@@ -474,4 +565,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     }
     
 }
+
+
 

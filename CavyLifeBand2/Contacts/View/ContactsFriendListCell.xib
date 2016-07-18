@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -16,15 +16,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="LBN-Me-Lrl">
-                        <rect key="frame" x="30" y="13" width="40" height="40"/>
+                        <rect key="frame" x="20" y="13" width="40" height="40"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="LBN-Me-Lrl" secondAttribute="height" multiplier="1:1" id="b5k-6n-1Oh"/>
                             <constraint firstAttribute="width" constant="40" id="zDE-HC-XGJ"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="想吃麻辣拌" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjD-4p-2k0">
-                        <rect key="frame" x="86" y="25" width="150" height="16"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AjD-4p-2k0">
+                        <rect key="frame" x="76" y="25" width="368" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="Chv-qI-E0u"/>
                             <constraint firstAttribute="height" constant="16" id="qrn-w8-Gpg"/>
@@ -32,6 +32,11 @@
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Chv-qI-E0u"/>
+                            </mask>
+                        </variation>
                     </label>
                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ContactsCare" translatesAutoresizingMaskIntoConstraints="NO" id="F7a-ka-HWe">
                         <rect key="frame" x="460" y="18" width="30" height="30"/>
@@ -64,8 +69,9 @@
                     <constraint firstItem="F7a-ka-HWe" firstAttribute="centerY" secondItem="VZd-RJ-3O9" secondAttribute="centerY" id="HAp-q3-bEW"/>
                     <constraint firstAttribute="trailing" secondItem="gBm-4c-TqO" secondAttribute="trailing" id="LXj-K2-R4O"/>
                     <constraint firstAttribute="bottom" secondItem="m3o-Mf-nr0" secondAttribute="bottom" id="M3R-be-Vgs"/>
-                    <constraint firstItem="LBN-Me-Lrl" firstAttribute="leading" secondItem="VZd-RJ-3O9" secondAttribute="leading" constant="30" id="Ng9-eK-BxN"/>
+                    <constraint firstItem="LBN-Me-Lrl" firstAttribute="leading" secondItem="VZd-RJ-3O9" secondAttribute="leading" constant="20" id="Ng9-eK-BxN"/>
                     <constraint firstItem="gBm-4c-TqO" firstAttribute="top" secondItem="VZd-RJ-3O9" secondAttribute="top" id="STY-v7-hUl"/>
+                    <constraint firstItem="F7a-ka-HWe" firstAttribute="leading" secondItem="AjD-4p-2k0" secondAttribute="trailing" constant="16" id="bgK-Ha-w0X"/>
                     <constraint firstItem="gBm-4c-TqO" firstAttribute="leading" secondItem="VZd-RJ-3O9" secondAttribute="leading" id="dWI-zb-I1A"/>
                     <constraint firstItem="LBN-Me-Lrl" firstAttribute="width" secondItem="LBN-Me-Lrl" secondAttribute="height" multiplier="1:1" id="f7c-pP-3kB"/>
                     <constraint firstItem="LBN-Me-Lrl" firstAttribute="centerY" secondItem="VZd-RJ-3O9" secondAttribute="centerY" id="lTX-9O-oAu"/>

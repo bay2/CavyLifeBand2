@@ -47,11 +47,13 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
         
         super.init()
         
+       
         locationManager = CLLocationManager()
         locationManager.delegate = self
-        
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.distanceFilter = 100
+        locationManager.requestWhenInUseAuthorization()
+        
     }
     
     /**
@@ -59,8 +61,9 @@ class SCLocationManager: NSObject, CLLocationManagerDelegate {
      */
     func startUpdateLocation(complete: (CLLocationCoordinate2D -> Void)? = nil) {
         
+        
+        
         if CLLocationManager.authorizationStatus() == .Denied || CLLocationManager.authorizationStatus() == .Restricted {
-            
             return
         }
         

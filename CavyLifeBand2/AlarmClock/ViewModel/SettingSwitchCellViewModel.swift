@@ -14,12 +14,11 @@ typealias SettingSwitchCellViewModelPresentable = protocol<SettingCellDataSource
 struct PhoneReminderTimeModel {
     
     var timeArr = {
-        return ["5",
+        return ["0",
+                "5",
                 "10",
                 "15",
-                "20",
-                "25",
-                "30"]
+                "20"]
     }()
     
 }

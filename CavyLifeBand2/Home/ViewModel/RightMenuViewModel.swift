@@ -8,13 +8,14 @@
 import UIKit
 import EZSwiftExtensions
 import RealmSwift
+import JSONJoy
 
 
 //TODO: 固件升级测试数据
-let testFile = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F17.bin"
-let testFile30 = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2H25F30.bin"
+let testFile    = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F17.bin"
+let testFile30  = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2H25F30.bin"
 let testFile31E = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F31e.bin"
-let testFile31 = "https://attachments.tower.im/tower/e1396addf18d45479f1ef20925f6e13b?download=true&filename=Cavy2PR3F32b.bin"
+let testFile31  = "http://7xrhrs.com1.z0.glb.clouddn.com/Cavy2PR3F31e.bin"
 
 
 /**
@@ -25,12 +26,15 @@ struct MenuViewModel: MenuProtocol {
     var title: String
     var icon: UIImage?
     var nextView: UIViewController?
+    var titleColor: UIColor
     
-    init(icon: UIImage? = nil, title: String, nextView: UIViewController) {
+    
+    init(icon: UIImage? = nil, title: String, titleColor: UIColor = UIColor(named: .AColor), nextView: UIViewController) {
         
         self.icon = icon
         self.title = title
         self.nextView = nextView
+        self.titleColor = titleColor
         
     }
     
@@ -42,40 +46,91 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
     var icon: UIImage?
     var nextView: UIViewController? = nil
     var filePath: String = ""
+    var titleColor: UIColor = UIColor.whiteColor()
     
-    init(icon: UIImage? = nil, title: String) {
+    
+    init(icon: UIImage? = nil, title: String, titleColor: UIColor) {
         
         self.icon = icon
         self.title = title
-
+        self.titleColor = titleColor
         
     }
     
+    /**
+     版本校验和下载地址获取
+     */
     func onClickCell() {
+        
+        // 如果手环没连接，return
+        if LifeBandBle.shareInterface.getConnectState() != .Connected {
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareBandDisconnectAlertMsg.string)
+            return
+        }
         
         let updateView = UpdateProgressView.show()
         
-        //TODO: 固件升级，等服务器接口完成，这边补充版本校验和下载地址获取
-        self.downloadFirmware(testFile31) {
+        // TODO 接口和手环版本格式改好后放开注释
+        
+        // 固件版本校验
+        LifeBandCtrl.shareInterface.getLifeBandInfo { bandInfo in
             
-                LifeBandBle.shareInterface.updateFirmware($0) {
+//            self.downloadAndUpdateFW(testFile31, updateView: updateView)
+            
+            let fwVersion = bandInfo.fwVersion
+            let hwVersion = bandInfo.hwVersion
+            
+            let localVersion = "\(hwVersion)" + "." + "\(fwVersion)"
+            
+            NetWebApi.shareApi.netGetRequest(WebApiMethod.Firmware.description, modelObject: FirmwareUpdateResponse.self, successHandler: { (data) in
+                let localIsLast = localVersion.compare(data.data.version, options: .NumericSearch, range: nil, locale: nil) == .OrderedDescending
+                
+                guard localIsLast == false else {
+                    UpdateProgressView.hide()
+                    CavyLifeBandAlertView.sharedIntance.showViewTitle(message: L10n.UpdateFirmwareIsNewVersionAlertMsg.string)
+                    return
                     
-                    $0.success { value in
+                }
+                
+                self.downloadAndUpdateFW(data.data.url, updateView: updateView)
+                
+            }) { (msg) in
+                UpdateProgressView.hide()
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
+            }
+            
+        }
+  
+    }
+    
+    /**
+     下载并更新固件
+     
+     - parameter downLoadUrl: 下载地址
+     */
+    func downloadAndUpdateFW(downLoadUrl: String, updateView: UpdateProgressView) {
+        
+        // TODO 改成传来的url
+        self.downloadFirmware(downLoadUrl) {
+            
+            LifeBandBle.shareInterface.updateFirmware($0) {
+                
+                $0.success { value in
+                    
+                    updateView.updateProgress(0.5 + value / 2) { progress in
                         
-                        updateView.updateProgress(0.5 + value / 2) { progress in
-                            
-                            if progress != 1 {
-                                return
-                            }
-                            
-                            UpdateProgressView.hide()
-                            
+                        if progress != 1 {
+                            return
                         }
+                        
+                        UpdateProgressView.hide()
+                        
                     }
                 }
+            }
             
-            }.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
-            
+        }.progress { bytesRead, totalBytesRead, totalBytesExpectedToRead in
+                
             var percentage = (Double(totalBytesRead) / Double(totalBytesExpectedToRead)) * 100
             
             percentage = percentage == 100 ? 99 : percentage
@@ -87,9 +142,9 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
                 updateView.updateProgress(percentage / 100 / 2)
                 
             }
-            
+                
         }
-        
+
     }
     
 }
@@ -99,11 +154,14 @@ struct UndoBindViewModel: MenuProtocol {
     var title: String
     var icon: UIImage?
     var nextView: UIViewController?
+    var titleColor: UIColor
     
-    init(icon: UIImage? = nil, title: String) {
+    
+    init(icon: UIImage? = nil, title: String, titleColor: UIColor = UIColor.whiteColor()) {
         
         self.icon = icon
         self.title = title
+        self.titleColor = titleColor
         
         let guideVC = StoryboardScene.Guide.instantiateGuideView()
         let guideVM = GuideBandBluetooth()
@@ -135,31 +193,32 @@ struct UndoBindViewModel: MenuProtocol {
 
 
 /**
- *  手环功能菜单项
+ *  手环功能菜单项  连接状态和非连接状态的切换
  */
 struct BandFeatureMenuGroupDataModel: MenuGroupDataSource {
     
     var items: [MenuProtocol] = []
     var sectionView: UIView = UIView()
     var sectionHeight: CGFloat = 16
+    var titleColor = UIColor(named: .AColor)
     
-    init() {
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .RightMenuCamera),
-            title: L10n.HomeRightListTitleCamera.string,
-            nextView: StoryboardScene.Camera.instantiateCustomCameraView()))
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .RightMenuNotice),
-            title: L10n.HomeRightListTitleNotification.string,
-            nextView: StoryboardScene.AlarmClock.instantiateRemindersSettingViewController()))
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .RightMenuAlarmClock),
-            title: L10n.HomeRightListTitleAlarmClock.string,
-            nextView: StoryboardScene.AlarmClock.instantiateIntelligentClockViewController()))
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .RightMenuSecurity),
-            title: L10n.HomeRightListTitleSecurity.string,
-            nextView: StoryboardScene.AlarmClock.instantiateSafetySettingViewController()))
+    init(isConnect: Bool) {
+            
+        items.append(MenuViewModel(icon: UIImage(asset: isConnect ? .RightMenuCamera : .RightMenuAlarmClock_disable),
+                title: L10n.HomeRightListTitleCamera.string, titleColor: UIColor(named: isConnect ? .AColor : .BColor),
+                nextView: StoryboardScene.Camera.instantiateCustomCameraView()))
+            
+        items.append(MenuViewModel(icon: UIImage(asset: isConnect ? .RightMenuNotice : .RightMenuNotice_disable),
+                title: L10n.HomeRightListTitleNotification.string, titleColor: UIColor(named: isConnect ? .AColor : .BColor),
+                nextView: StoryboardScene.AlarmClock.instantiateRemindersSettingViewController()))
+            
+        items.append(MenuViewModel(icon: UIImage(asset: isConnect ? .RightMenuAlarmClock : .RightMenuAlarmClock_disable),
+                title: L10n.HomeRightListTitleAlarmClock.string, titleColor: UIColor(named: isConnect ? .AColor : .BColor),
+                nextView: StoryboardScene.AlarmClock.instantiateIntelligentClockViewController()))
+            
+        items.append(MenuViewModel(icon: UIImage(asset: isConnect ? .RightMenuSecurity : .RightMenuSecurity_disable),
+                title: L10n.HomeRightListTitleSecurity.string, titleColor: UIColor(named: isConnect ? .AColor : .BColor),
+                nextView: StoryboardScene.AlarmClock.instantiateSafetySettingViewController()))
         
     }
     
@@ -173,10 +232,13 @@ struct BandHardwareMenuGroupDataModel: MenuGroupDataSource {
     var items: [MenuProtocol] = []
     var sectionView: UIView = LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
     var sectionHeight: CGFloat = 10
+    var titleColor = UIColor(named: .AColor)
     
-    init() {
+    
+    
+    init(isConnect: Bool) {
         
-        items.append(UpdateFWViewModel(title: L10n.HomeRightListTitleFirmwareUpgrade.string))
+        items.append(UpdateFWViewModel(title: L10n.HomeRightListTitleFirmwareUpgrade.string, titleColor: isConnect ? titleColor : UIColor(named: .BColor)))
         
     }
     
@@ -190,6 +252,7 @@ struct BindingBandMenuGroupDataModel: MenuGroupDataSource {
     var items: [MenuProtocol] = []
     var sectionView: UIView = LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
     var sectionHeight: CGFloat = 10
+    var titleColor = UIColor.whiteColor()
     
     init() {
         
@@ -208,6 +271,8 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
     var sectionView: UIView = UIView()
     var sectionHeight: CGFloat = 16
     var realm: Realm = try! Realm()
+    var titleColor = UIColor.whiteColor()
+    
     var loginUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
     
     init() {
@@ -220,17 +285,18 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
             title: L10n.HomeLifeListTitleTarget.string,
             nextView: guideSet))
         
-        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuInformation),
-            title: L10n.HomeLifeListTitleInfoOpen.string,
-            nextView: StoryboardScene.InfoSecurity.AccountInfoSecurityVCScene.viewController()))
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuFriend),
-            title: L10n.HomeLifeListTitleFriend.string,
-            nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
-        
-        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuPK),
-            title: L10n.HomeLifeListTitlePK.string,
-            nextView: StoryboardScene.PK.instantiatePKListVC()))
+        //TODO 第一版隐藏 信息公开，好友，PK 功能模块
+//        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuInformation),
+//            title: L10n.HomeLifeListTitleInfoOpen.string,
+//            nextView: StoryboardScene.InfoSecurity.AccountInfoSecurityVCScene.viewController()))
+//        
+//        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuFriend),
+//            title: L10n.HomeLifeListTitleFriend.string,
+//            nextView: StoryboardScene.Contacts.ContactsFriendListVCScene.viewController()))
+//        
+//        items.append(MenuViewModel(icon: UIImage(asset: .LeftMenuPK),
+//            title: L10n.HomeLifeListTitlePK.string,
+//            nextView: StoryboardScene.PK.instantiatePKListVC()))
         
     }
     
@@ -268,8 +334,9 @@ struct AppFeatureMenuGroupDataModel: MenuGroupDataSource, PKRecordsRealmModelOpe
 struct AppAboutMenuGroupDataModel: MenuGroupDataSource {
     
     var items: [MenuProtocol] = []
-    var sectionView: UIView = LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
-    var sectionHeight: CGFloat = 10
+    var sectionView: UIView = UIView() // LeftHeaderView(frame: CGRectMake(0, 0, ez.screenWidth, 10))
+    var sectionHeight: CGFloat = 0 // 10
+    var titleColor = UIColor.whiteColor()
     
     init() {
         

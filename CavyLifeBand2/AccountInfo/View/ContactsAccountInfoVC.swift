@@ -17,7 +17,7 @@ protocol AccountItemDataSource {
     associatedtype viewModeType
 }
 
-class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITableViewDelegate, UITableViewDataSource, UserInfoRealmOperateDelegate {
+class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate {
     
     var realm: Realm = try! Realm()
     
@@ -45,10 +45,27 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     
     var accountInfos: Array<AnyObject?> = []
     
+    let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        // 调接口获取个人信息
+        queryUserInfoByNet() { resultUserInfo in
+            
+            let userInfoModel = UserInfoModel(userId: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, userProfile: resultUserInfo!)
+            
+            self.updateUserInfo(userInfoModel)
+          
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        addAllViews()
         
         accountInfoQuery()
         
@@ -120,8 +137,8 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         accountInfos.append(addressCellViewModel)
         
         self.tableView.reloadData()
-        
-        addAllViews()
+                
+        achieveView?.configWithAchieveIndexForUser()
         
     }
     
@@ -133,7 +150,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         // InfoTableView高度
         // |-infoListCell-136-|-cellCount-1[infoListCell] * 50-|-边10-|
-        let tableViewHeight = CGFloat(136 + (accountInfos.count - 1) * 50 + 10)
+        let tableViewHeight = CGFloat(130 + 5 * 50 + 10 + 16)
         
         // collectionView 高度
         // |-(badgeCount / 3） *（20 + 112）-|
@@ -156,6 +173,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         logoutButton.setTitle(L10n.AccountInfoLoginoutButtonTitle.string, forState: .Normal)
 
         logoutButton.layer.cornerRadius = CavyDefine.commonCornerRadius
+        logoutButton.clipsToBounds = true
         logoutButton.backgroundColor = UIColor(named: .QColor)
         logoutButton.setBackgroundColor(UIColor(named: .QColor), forState: .Normal)
         logoutButton.titleLabel?.font = UIFont.mediumSystemFontOfSize(18.0)
@@ -164,11 +182,19 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         // 退出按钮手势
         logoutButton.addTapGesture { _ in
             
-            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+            NetWebApi.shareApi.netPostRequest(WebApiMethod.Logout.description, modelObject: CommenMsgResponse.self, successHandler: { (data) in
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = ""
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken = ""
+                
+                UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Main.instantiateMainPageView(), transition: CATransition())
+                
+                LifeBandBle.shareInterface.bleDisconnect()
+            }, failureHandler: { (msg) in
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
+            })
             
-            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Main.instantiateMainPageView(), transition: CATransition())
             
-            LifeBandBle.shareInterface.bleDisconnect()
             
         }
         
@@ -202,8 +228,6 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             make.height.equalTo(68 + height)
         }
         
-        let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
-        
         badgeView.addSubview(achieveView!)
         achieveView!.snp_makeConstraints { make in
             make.left.right.top.bottom.equalTo(badgeView)
@@ -215,52 +239,82 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - UITableView Delegate
     
+}
+
+// MARK: - UITableView Delegate
+extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
+    
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 1
+        return 2
         
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return accountInfos.count > 0 ? 1 : 0
+        }
         
-        return accountInfos.count
+        return accountInfos.count - 1 >= 0 ? accountInfos.count - 1 : 0
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             
-            return 136
+            return 130
             
         } else {
             
             return 50
         }
         
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 10
+        }
         
+        return 0.01
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 16
+        }
+        
+        return 0.01
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if let cellViewModel = accountInfos[indexPath.row] as? PresonInfoListCellViewModel {
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
-            cell.configCell(cellViewModel)
-            return cell
-            
-        }
         
-        if let cellViewModel = accountInfos[indexPath.row] as? PresonInfoCellViewModel {
+        if indexPath.section == 0 {
             
+            let cellViewModel = accountInfos[indexPath.row] as! PresonInfoCellViewModel
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
             cell.configCell(cellViewModel, delegate: cellViewModel)
             return cell
             
+        } else {
+            
+            let cellViewModel = accountInfos[indexPath.row + 1] as? PresonInfoListCellViewModel
+            let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
+            cell.configCell(cellViewModel!)
+            return cell
+            
         }
-        
-        return tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
 
     }
     
@@ -268,8 +322,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if accountInfos[indexPath.row] is PresonInfoCellViewModel {
-            
+        if indexPath.section == 0 {
             // 跳转到修改备注
             let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
             
@@ -278,10 +331,9 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             requestVC.viewConfig(changeNicknameVM)
             
             self.pushVC(requestVC)
-            
         } else {
             
-            if indexPath.row == accountInfos.count - 1 {
+            if indexPath.row == accountInfos.count - 2 {
                 // 跳转到修改地址
                 let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
                 
@@ -297,16 +349,16 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             let nextVC = StoryboardScene.Guide.instantiateGuideView()
                     
             switch indexPath.row {
-            case 1:
+            case 0:
                 let nextVM = AccountGenderViewModel()
                 nextVC.configView(nextVM, delegate: nextVM)
-            case 2:
+            case 1:
                 let nextVM = AccountHeightViewModel()
                 nextVC.configView(nextVM, delegate: nextVM)
-            case 3:
+            case 2:
                 let nextVM = AccountWeightViewModel()
                 nextVC.configView(nextVM, delegate: nextVM)
-            case 4:
+            case 3:
                 let nextVM = AccountBirthdayViewModel()
                 nextVC.configView(nextVM, delegate: nextVM)
             default:

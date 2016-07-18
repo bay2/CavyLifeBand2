@@ -20,12 +20,12 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
     
     var dateArray: [String] = []
     
+    var notificationTimeStringArrayToken: NotificationToken?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
-        self.dateArray = self.queryTimeBucketFromFirstDay()!
-            
+        dateArray = queryTimeBucketFromFirstDay()!
         
         collectionViewLayOut(frame)
         
@@ -33,6 +33,12 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        
+        notificationTimeStringArrayToken?.stop()
+        
     }
     
     func collectionViewLayOut(frame: CGRect) {
@@ -89,8 +95,45 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
         
         let count = sender.userInfo!["currentPage"] as! CGFloat
         
+        // 如果只有一条 需要从数据库去监听是否加载完毕 添加其他的数据
+        if self.dateArray.count == 1 {
+        
+            initNotificationDateStringArrayAction()
+            
+        }
+        
         self.collectionView!.setContentOffset(CGPointMake(count * ez.screenWidth, 0), animated: true)
         
     }
+    
+    /**
+     数据库下载完更新视图监控
+     */
+    func initNotificationDateStringArrayAction() {
+        
+        let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
+        
+        notificationTimeStringArrayToken = userInfos.addNotificationBlock{ (change: RealmCollectionChange) in
+            switch change {
+                
+            case .Initial(_):
+                
+                self.dateArray = self.queryTimeBucketFromFirstDay()!
+                self.collectionView!.reloadData()
+                
+            case .Update(_, deletions: _, insertions: _, modifications: _):
+                
+                self.dateArray = self.queryTimeBucketFromFirstDay()!
+                self.collectionView!.reloadData()
+                
+            default:
+                break
+            }
+            
+        }
+        
+    }
+    
+
 
 }

@@ -63,6 +63,9 @@ class ContactsAddFriendCell: UITableViewCell {
         super.awakeFromNib()
 
         headView.roundSquareImage()
+        headView.layer.borderWidth = 1
+        headView.layer.borderColor = UIColor.whiteColor().CGColor
+        
         nameLabel.textColor = UIColor(named: .EColor)
         nameLabel.font = UIFont.mediumSystemFontOfSize(16.0)
         
@@ -106,7 +109,7 @@ class ContactsAddFriendCell: UITableViewCell {
         self.requestBtn.backgroundColor = delegate.btnBGColor
 
         self.labelLayout(dataSource)
-        headView.af_setCircleImageWithURL(NSURL(string: dataSource.headImageUrl)!, placeholderImage: UIImage(asset: .DefaultHead))
+        headView.af_setCircleImageWithURL(NSURL(string: dataSource.headImageUrl)!, placeholderImage: UIImage(asset: .DefaultHead_small))
         
     }
 

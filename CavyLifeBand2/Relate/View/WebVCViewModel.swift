@@ -65,3 +65,18 @@ struct RelateAppDetailInfoWebViewModel: WebVCDataSourceProtocol {
     }
     
 }
+
+
+struct RegisterProtoclWeb: WebVCDataSourceProtocol {
+    
+    var navTitle: String  = L10n.SignUpProcotolViewBtn.string
+    
+    var webUrlStr: String
+    
+    init(webUrlStr: String =  "http://bbs.tunshu.com/r/cms/www/blue/bbs_forum/img/top/phone_xieyi.html"){
+        
+        self.webUrlStr = webUrlStr
+    }
+    
+    
+}

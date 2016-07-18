@@ -31,6 +31,21 @@ class CavyLifeBandAlertView {
         viewController?.presentViewController(alertView, animated: true, completion: nil)
 
     }
+    
+    /**
+     显示信息提示 不带操作按钮
+     
+     - parameter viewController:
+     - parameter title:
+     - parameter message:
+     */
+    func showViewTitleWithoutAction(viewController: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController, title: String = "", message: String) -> UIAlertController {
+        let alertView = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        viewController?.presentViewController(alertView, animated: true, completion: nil)
+        
+        return alertView
+    }
 
     /**
      通过用户错误码提示错误信息
@@ -42,6 +57,19 @@ class CavyLifeBandAlertView {
         let userError = userErrorCode ?? UserRequestErrorType.UnknownError
         
         showViewTitle(viewController, message: userError.description)
+        
+    }
+    
+    /**
+     通过用户错误码提示错误信息 不带操作按钮
+     
+     - parameter userErrorCode:
+     */
+    func showViewTitleWithoutAction(viewController: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController, userErrorCode: UserRequestErrorType?) -> UIAlertController {
+        
+        let userError = userErrorCode ?? UserRequestErrorType.UnknownError
+        
+        return showViewTitleWithoutAction(viewController, message: userError.description)
         
     }
 
@@ -57,6 +85,17 @@ class CavyLifeBandAlertView {
     }
     
     /**
+     通过web返回错误码提示错误信息 不带操作按钮
+     
+     - parameter webApiErrorCode:
+     */
+    func showViewTitleWithoutAction(viewController: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController, webApiErrorCode: String) -> UIAlertController {
+        
+        return showViewTitleWithoutAction(viewController, message: WebApiCode(apiCode: webApiErrorCode).description)
+        
+    }
+    
+    /**
      通过web返回错误码提示错误信息:Get方法的API
      
      - parameter webGetApiErrorCode: 
@@ -67,6 +106,15 @@ class CavyLifeBandAlertView {
         
     }
     
-
+    /**
+     通过web返回错误码提示错误信息:Get方法的API 不带操作按钮
+     
+     - parameter webGetApiErrorCode:
+     */
+    func showViewTitleWithoutAction(viewController: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController, webGetApiErrorCode: String) -> UIAlertController {
+        
+        return showViewTitleWithoutAction(viewController, message: WebGetApiCode(apiCode: webGetApiErrorCode).description)
+        
+    }
 
 }

@@ -31,12 +31,42 @@ struct BindBandCtrl {
 protocol LifeBandBleDelegate {
     
     func bleMangerState(bleState: CBCentralManagerState)
+    func saveMacAddress()
     
 }
 
 extension LifeBandBleDelegate {
     
     func bleMangerState(bleState: CBCentralManagerState) {}
+    
+    /**
+     保存mac地址
+     
+     - author: sim cai
+     - date: 2016-06-02
+     */
+    func saveMacAddress() {
+        
+        let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+        
+        CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
+        
+        if BindBandCtrl.bandMacAddress.length == 6 {
+            CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = LifeBandBle.shareInterface.getPeripheralName() + "," +
+                String(format: "%02X:%02X:%02X:%02X:%02X:%02X",
+                       BindBandCtrl.bandMacAddress[0],
+                       BindBandCtrl.bandMacAddress[1],
+                       BindBandCtrl.bandMacAddress[2],
+                       BindBandCtrl.bandMacAddress[3],
+                       BindBandCtrl.bandMacAddress[4],
+                       BindBandCtrl.bandMacAddress[5])
+        }
+        
+        Log.info("defaultBindBand = \(CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand)")
+        //        defaultBindBand = Cavy2-D525,25:D5:4B:F8:E6:A0
+    }
+    
+
     
 }
 
@@ -273,6 +303,7 @@ class LifeBandBle: NSObject {
         if getConnectState() == .Connected {
             
             Log.info("bleConnect end")
+            
             connectComplete?()
             return
         }
@@ -342,8 +373,28 @@ extension LifeBandBle: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(central: CBCentralManager) {
         
         if central.state == .PoweredOn {
+            
             bleConnect(self.peripheralMacAddress)
+            
+            /**
+             *  蓝牙状态改变 要自动刷新
+             *
+             *  等待1秒 连接手环的时间 手环连接商会请求刷新
+             *  所以如果手环未连接 次吃在轻轻刷新 如果连接 就不要刷新
+             *
+             */
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+                
+                if LifeBandBle.shareInterface.getConnectState() != .Connected {
+                    
+                    NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.AddAutoRefresh.rawValue, object: nil)
+                    
+                }
+                
+            }
+            
         } else {
+            
             NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
         }
         

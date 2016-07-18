@@ -68,8 +68,8 @@ class PKChallengeView: UIView {
         userAvatarImageView.layer.borderColor       = UIColor.whiteColor().CGColor
         competitorAvatarImageView.layer.borderColor = UIColor.whiteColor().CGColor
         
-        userAvatarImageView.layer.borderWidth       = 3.0
-        competitorAvatarImageView.layer.borderWidth = 3.0
+        userAvatarImageView.layer.borderWidth       = 2.0
+        competitorAvatarImageView.layer.borderWidth = 2.0
         
         self.clipsToBounds = true
         self.layer.cornerRadius = CavyDefine.commonCornerRadius
@@ -90,8 +90,8 @@ class PKChallengeView: UIView {
         PKSeeStateLabel.text     = dataSource?.seeState
         PKTimeLabel.text         = dataSource?.PKTime
         
-        userAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.userAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
-        competitorAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.comprtitorAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
+        userAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.userAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead_small))
+        competitorAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.comprtitorAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead_small))
 
     }
     
