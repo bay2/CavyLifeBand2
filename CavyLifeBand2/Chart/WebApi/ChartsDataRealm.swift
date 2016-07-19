@@ -722,7 +722,6 @@ extension ChartsRealmProtocol {
         
         
         let nowTime = NSDate().gregorian.date
-
         let newBeginTime = (NSDate().gregorian.beginningOfDay - 6.hour).date
         var  endDate = (newBeginTime.gregorian + 1.day).date
         
