@@ -125,7 +125,7 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         formatter.percentSymbol = " %"
         
         // 如果深睡浅睡都为0 指出来的线不知道起点在哪 error
-        if deepSleep != 0 && lightSleep != 0 {
+        if deepSleep != 0 || lightSleep != 0 {
             
 //            dataSet.valueLinePart1OffsetPercentage = 0.5
             dataSet.valueLinePart1Length = 0.4
