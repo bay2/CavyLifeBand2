@@ -73,24 +73,13 @@ extension String {
      - returns: 转换后的字符串
      */
     static func  numberDecimalFormatter(num: Int = 0) -> String {
-    
+        
         let numberFormatter = NSNumberFormatter()
         numberFormatter.numberStyle = .DecimalStyle
         let string = numberFormatter.stringFromNumber(NSNumber(integer: num))
         
         return string!
     }
- 
-    /**
-     Unicode转化为汉字
-     * \U9635\U96e8 = 多云
-     */
-    func convertFromUnicode() -> String {
-        
-        let result = self.stringByRemovingPercentEncoding ?? ""
-
-        return result
-    }
     
-       
+    
 }

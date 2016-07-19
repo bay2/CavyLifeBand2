@@ -624,7 +624,7 @@ extension ChartsRealmProtocol {
     
     
     /**
-     将数据库中的睡眠数据转成10分钟存储的数组
+     将数据库中的睡眠数据转成10分钟存储的数组  计算时间是数据库中的有效数据 不去补0
      
      - author: sim cai
      - date: 2016-06-03
@@ -642,14 +642,19 @@ extension ChartsRealmProtocol {
             return []
         }
         
-        let dataSize = ((endTime - beginTime).totalMinutes) / 10
         
-        var reslutArray = Array<Int>(count: dataSize, repeatedValue: 0)
         
+//        let dataSize = ((endTime - beginTime).totalMinutes) / 10
+        
+        var reslutArray = Array<Int>(count: realmSleepData.count, repeatedValue: 0)
+        
+        var indext = 0
         for data in realmSleepData {
+         
+            indext += 1
             
-            let index = (data.time - beginTime).totalMinutes / 10 - 1  // 防止数组越界
-            reslutArray[index] = data.tilts
+//            let index = (data.time - beginTime).totalMinutes / 10 - 1  // 防止数组越界
+            reslutArray[indext - 1] = data.tilts
         }
         
         return reslutArray
@@ -657,7 +662,7 @@ extension ChartsRealmProtocol {
     }
     
     /**
-     将数据库中的计步数据转成10分钟存储的数组
+     将数据库中的计步数据转成10分钟存储的数组   计算时间是数据库中的有效数据 不去补0
      
      - author: sim cai
      - date: 2016-06-03
@@ -675,14 +680,15 @@ extension ChartsRealmProtocol {
             return []
         }
         
-        let dataSize = ((endTime - beginTime).totalMinutes) / 10
+//        let dataSize = ((endTime - beginTime).totalMinutes) / 10
         
-        var reslutArray = Array<Int>(count: dataSize, repeatedValue: 0)
+        var indext = 0
+        var reslutArray = Array<Int>(count: realmStepData.count, repeatedValue: 0)
         
         for data in realmStepData {
-            
-            let index = (data.time - beginTime).totalMinutes / 10 - 1
-            reslutArray[index] = data.step
+           indext += 1
+//            let index = (data.time - beginTime).totalMinutes / 10 - 1
+            reslutArray[indext - 1] = data.step
         }
         
         return reslutArray

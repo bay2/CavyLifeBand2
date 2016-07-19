@@ -86,11 +86,12 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         
         if viewStyle == .SleepChart && timeBucketStyle == .Day {
             
-            let sleepInfo = querySleepNumber(time.beginTime, endTime: time.endTime)
+            let sleepInfo = queryTodaySleepInfo()
             
             attrsArray = infoViewSleepListAttrributeArray(sleepInfo)
             
-            let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: sleepInfo.first!.deepSleep, lightSleep: sleepInfo.first!.lightSleep)
+            let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: Int(sleepInfo.1), lightSleep: Int(sleepInfo.2))
+            
             chartViewLayout(peiChartView)
             
         }
@@ -323,6 +324,52 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         return resultArray
     }
     
+    
+    /**
+     - parameter sleepInfo: (总的睡眠时间,浅睡, 深睡)
+     
+     - returns: 当天的数据
+////     */
+    private func infoViewSleepListAttrributeArray(sleepInfo: (Double, Double, Double)) -> [NSAttributedString] {
+        
+        
+        var resultArray: [NSAttributedString] = []
+   
+        
+        guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
+            
+            var attrs: [NSAttributedString] = []
+            
+            attrs.append(0.detailTimeAttributeString())
+            attrs.append(0.detailTimeAttributeString())
+            attrs.append(0.detailTimeAttributeString())
+            
+            return attrs
+        }
+        
+        var sleepTarge = userInfo.sleepGoal
+        
+        if sleepTarge == 0 {
+            
+            sleepTarge = 500
+            
+        }
+        
+      
+       var  percent = Int(sleepInfo.0  / Double(sleepTarge) * 100)
+        
+        if percent > 100 {
+            percent = 100
+        }
+        
+        resultArray.append(Int(sleepInfo.2).detailTimeAttributeString())
+        resultArray.append(Int(sleepInfo.1).detailTimeAttributeString())
+        resultArray.append(String(percent).detailAttributeString("%"))
+            
+        return resultArray
+        
+        
+    }
     
 }
 
