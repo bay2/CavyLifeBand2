@@ -655,9 +655,9 @@ enum L10n {
   case HomeRefreshRefreshing
   /// 同步数据失败
   case HomeRefreshAlertTitle
-  /// 请您绑定手环，重新同步数据
+  ///                 1.确认蓝牙已打开\n                2.确认手环处于连接状态\n                3.下拉重新同步数据
   case HomeRefreshFaildDes
-  /// 确认
+  /// 确定
   case AlertSureActionTitle
   /// 取消
   case AlertCancelActionTitle
@@ -675,7 +675,6 @@ enum L10n {
   case AlertReUpdateActionTitle
   /// 充电后再试
   case AlertReTryAfterChargeActionTitle
-
 }
 
 extension L10n: CustomStringConvertible {
