@@ -80,6 +80,5 @@ extension String {
         
         return string!
     }
-    
-    
+
 }

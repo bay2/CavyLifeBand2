@@ -52,7 +52,6 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
     
     
     func setupPieChartView() {
-        
 
         self.usePercentValuesEnabled = true
         self.drawSlicesUnderHoleEnabled = true

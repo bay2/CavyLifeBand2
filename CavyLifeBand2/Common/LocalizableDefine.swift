@@ -675,6 +675,12 @@ enum L10n {
   case AlertReUpdateActionTitle
   /// 充电后再试
   case AlertReTryAfterChargeActionTitle
+  /// 请在iPhone的“设置-隐私-相机”选项中，允许豚鼠生活访问你的相机
+  case AlertCameraOpenCamera
+  /// 请在iPhone的“设置-隐私-麦克风”选项中，允许豚鼠生活访问你的麦克风
+  case AlertCameraOpenMicrophone
+  /// 请在iPhone的“设置-隐私”选项中，允许豚鼠生活访问你的相机和麦克风
+  case AlertCameraOpenAll
 }
 
 extension L10n: CustomStringConvertible {
@@ -1354,6 +1360,12 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Alert.ReUpdateAction.Title")
       case .AlertReTryAfterChargeActionTitle:
         return L10n.tr("Alert.ReTryAfterChargeAction.Title")
+      case .AlertCameraOpenCamera:
+        return L10n.tr("Alert.Camera.OpenCamera")
+      case .AlertCameraOpenMicrophone:
+        return L10n.tr("Alert.Camera.OpenMicrophone")
+      case .AlertCameraOpenAll:
+        return L10n.tr("Alert.Camera.Open.All")
     }
   }
 
