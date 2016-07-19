@@ -26,6 +26,7 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
     // 用户名输入框
     @IBOutlet weak var userNameTextField: AccountTextField!
 
+    @IBOutlet weak var spearLineConstraint: NSLayoutConstraint!
     // 忘记密码按钮
     @IBOutlet weak var forgetPasswdBtn: UIButton!
     
@@ -91,6 +92,11 @@ class SignInViewController: UIViewController, SignInDelegate, BaseViewController
         setSubViewTitle()
         
         separatorLine.backgroundColor = UIColor(named: .LColor)
+        
+        if UIDevice.isPhone4() || UIDevice.isPhone5() { //解决iphone 5 不显示分割线bug
+           
+            spearLineConstraint.constant = 0.5
+        }
         
         userNameTextField.becomeFirstResponder()
         userNameTextField.backgroundColor = UIColor.whiteColor()
