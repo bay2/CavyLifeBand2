@@ -121,7 +121,7 @@ extension NetRequest {
                     // token失效 重新去登录
                     if response.commonMsg.code == RequestApiCode.InvalidToken.rawValue {
                     
-                   self.RequesInvalidToken()
+                   self.requesInvalidToken()
                         
                     }
                     
@@ -166,7 +166,7 @@ extension NetRequest {
                     // token失效 重新去登录
                     if response.commonMsg.code == RequestApiCode.InvalidToken.rawValue {
                         
-                        self.RequesInvalidToken()
+                        self.requesInvalidToken()
                        
                     }
 
@@ -229,7 +229,7 @@ extension NetRequest {
      token 失效 重新登录
      */
     
-    func RequesInvalidToken() {
+    func requesInvalidToken() {
         
         
         //清空登录信息
@@ -241,7 +241,7 @@ extension NetRequest {
         
         let alertView = UIAlertController(title: L10n.AlertTipsMsg.string, message: L10n.AlertReloginTitle.string, preferredStyle: .Alert)
         
-        let defaultAction = UIAlertAction(title: L10n.AlertSureActionTitle.string , style: .Default, handler:{
+        let defaultAction = UIAlertAction(title: L10n.AlertSureActionTitle.string, style: .Default, handler: {
     
             _ in
             

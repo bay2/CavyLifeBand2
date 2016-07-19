@@ -485,7 +485,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         UIApplication.sharedApplication().keyWindow?.addSubview(maskView)
         
-        queryUserInfoByNet() { resultUserInfo in
+        queryUserInfoByNet { resultUserInfo in
             
             achieveView?.configWithAchieveIndexForUser()
             

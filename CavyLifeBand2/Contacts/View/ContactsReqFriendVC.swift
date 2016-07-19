@@ -180,7 +180,7 @@ class ContactsReqFriendVC: UIViewController, BaseViewControllerPresenter, UIText
             
             newText  = confineTextFiledText(newText?.substringToIndex(newText!.length - 1))
             
-        }else if (length == MAXCOUNT) {
+        }else if length == MAXCOUNT {
             
             return text!
         }
