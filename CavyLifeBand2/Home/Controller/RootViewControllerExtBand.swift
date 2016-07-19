@@ -61,7 +61,9 @@ extension RootViewController: LifeBandBleDelegate {
             }
             
             LifeBandCtrl.shareInterface.installButtonEven()
-            self.syncDataFormBand()
+//            self.syncDataFormBand()
+            NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.BeginRefresh.rawValue, object: nil)
+            
         }
     }
     
