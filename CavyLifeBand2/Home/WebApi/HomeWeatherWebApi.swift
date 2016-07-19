@@ -79,7 +79,7 @@ struct WeatherInfoMsg: JSONJoy {
     
     init(_ decoder: JSONDecoder) throws {
         
-        do { condition = try decoder["condition"].getString() } catch { condition = "" }
+        do { condition = try decoder["cond"].getString() } catch { condition = "" }
         do { tmp = try decoder["tmp"].getInt() } catch { tmp = 0 }
         do { pm25 = try decoder["pm25"].getInt() } catch { pm25 = 0 }
         
