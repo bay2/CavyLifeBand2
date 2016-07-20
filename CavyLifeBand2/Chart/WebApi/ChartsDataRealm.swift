@@ -529,7 +529,7 @@ extension ChartsRealmProtocol {
         
         var minustsCount   = 0 // 睡眠计数
         var longSleepCount = 0 // 深睡时长
-        var ContinuousZeroCoun = 0 // 记录连续的0
+        var continuousZeroCoun = 0 // 记录连续的0
 //        var zeroCoun = 0   // 0 的个数
         
         let sleepDatas = transformSleepData(beginTime, endTime: endTime)
@@ -572,7 +572,7 @@ extension ChartsRealmProtocol {
                 if stepItem == 0 && tiltsItem == 0 {
                     
                     longSleepCount += 1
-                    ContinuousZeroCoun += 1
+                    continuousZeroCoun += 1
                     
                 
                 }else
@@ -582,13 +582,13 @@ extension ChartsRealmProtocol {
                     // 如果 在 往后找不到非0 的数值 这判断这个循环结束的时候 有多少0
                         
                         // 4.无效睡眠状态 去掉超过连续的>=12 的0
-                        if ContinuousZeroCoun >= noSleepTime
+                        if continuousZeroCoun >= noSleepTime
                             
                         {
                             
-                            minustsCount -= ContinuousZeroCoun
-                            longSleepCount -= ContinuousZeroCoun
-                            ContinuousZeroCoun = 0
+                            minustsCount -= continuousZeroCoun
+                            longSleepCount -= continuousZeroCoun
+                            continuousZeroCoun = 0
                             
                         }
                 }
@@ -599,13 +599,13 @@ extension ChartsRealmProtocol {
         
         //3 遍历结束之后判断同时为0 的个数 如果大于 noSleepTime 则全部截去
         
-        if ContinuousZeroCoun >= noSleepTime
+        if continuousZeroCoun >= noSleepTime
             
         {
             
-            minustsCount -= ContinuousZeroCoun
-            longSleepCount -= ContinuousZeroCoun
-            ContinuousZeroCoun = 0
+            minustsCount -= continuousZeroCoun
+            longSleepCount -= continuousZeroCoun
+            continuousZeroCoun = 0
             
         }
         
