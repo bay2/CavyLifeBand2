@@ -114,8 +114,11 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
                 self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: sleepTime)
                 if self.timeString == NSDate().toString(format: "yyyy.M.d") {
                     
-                    let resultSeelp = self.queryTodaySleepInfo()
-                    let sleepCurrentNumber = Int(resultSeelp.0)
+                    
+                    let sleepInfo = self.querySleepNumber(NSDate().gregorian.beginningOfDay.date, endTime:NSDate()).first
+                    let resultSeelp = (sleepInfo!.lightSleep + sleepInfo!.deepSleep) ?? 0
+                    let sleepCurrentNumber = resultSeelp
+
                     self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: sleepCurrentNumber)
                     
                 }
@@ -127,9 +130,10 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
                 self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: sleepTime)
                 if self.timeString == NSDate().toString(format: "yyyy.M.d") {
                     
-                    let resultSeelp = self.queryTodaySleepInfo()
-                    
-                    let sleepCurrentNumber = Int(resultSeelp.0)
+                    let sleepInfo = self.querySleepNumber(NSDate().gregorian.beginningOfDay.date, endTime:NSDate()).first
+                    let resultSeelp = (sleepInfo!.lightSleep + sleepInfo!.deepSleep) ?? 0
+                    let sleepCurrentNumber = resultSeelp
+
                     self.datasViewModels[1] = HomeListSleepViewModel(sleepTime: sleepCurrentNumber)
                     
                 }
@@ -247,9 +251,11 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         }
         
         if homeListRealm.first == NSDate().toString(format: "yyyy.M.d") {
+          
+            let sleepInfo = querySleepNumber(NSDate().gregorian.beginningOfDay.date, endTime:NSDate()).first
+            let resultSeelp = (sleepInfo!.lightSleep + sleepInfo!.deepSleep) ?? 0
+            let sleepCurrentNumber = resultSeelp
             
-            let resultSeelp = self.queryTodaySleepInfo()
-            let sleepCurrentNumber = Int(resultSeelp.0)
             let resultStep = queryStepNumber(NSDate().gregorian.beginningOfDay.date, endTime: NSDate(), timeBucket: .Day)
             let stepCurrentNumber = resultStep.totalStep
             
