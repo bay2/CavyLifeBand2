@@ -528,8 +528,8 @@ extension ChartsRealmProtocol {
     private func validSleep(beginTime: NSDate, endTime: NSDate) -> (Int, Int) {
         
         var minustsCount   = 0 // 睡眠计数
-        var zeroCount = 0   // 都为0的计数
         var longSleepCount = 0 // 深睡时长
+        var ContinuousZeroCoun = 0 // 记录连续的0
         
         let sleepDatas = transformSleepData(beginTime, endTime: endTime)
         let stepDatas = transformStepData(beginTime, endTime: endTime)
@@ -566,12 +566,18 @@ extension ChartsRealmProtocol {
                 
                 minustsCount += 1
                 
-                // 1.4. 记录当中的 0
+                // 1.4. 记录当中连续的0
                 
                 if stepItem == 0 && tiltsItem == 0 {
                     
-                    zeroCount += 1
+                    ContinuousZeroCoun += 1
                     longSleepCount += 1
+                    
+                    continue
+                }else
+                {
+                    // 遇到非0的时候 把计数归零
+                    ContinuousZeroCoun = 0
                 }
                 
                 
@@ -581,14 +587,15 @@ extension ChartsRealmProtocol {
                 
                 if stepItem != 0 || tiltsItem != 0 {
                     
+                    
                     // 4.无效睡眠状态 去掉超过连续的>=12 的0
-                    if zeroCount >= noSleepTime
+                    if ContinuousZeroCoun >= noSleepTime
                         
                     {
                         
-                        minustsCount -= zeroCount
-                        longSleepCount -= zeroCount
-                        zeroCount = 0
+                        minustsCount -= ContinuousZeroCoun
+                        longSleepCount -= ContinuousZeroCoun
+                        ContinuousZeroCoun = 0
                         
                     }
                     
@@ -600,13 +607,13 @@ extension ChartsRealmProtocol {
         
         //3 遍历结束之后判断同时为0 的个数 如果大于 noSleepTime 则全部截去
         
-        if zeroCount >= noSleepTime
+        if ContinuousZeroCoun >= noSleepTime
             
         {
             
-            minustsCount -= zeroCount
-            longSleepCount -= zeroCount
-            zeroCount = 0
+            minustsCount -= ContinuousZeroCoun
+            longSleepCount -= ContinuousZeroCoun
+            ContinuousZeroCoun = 0
             
         }
         
