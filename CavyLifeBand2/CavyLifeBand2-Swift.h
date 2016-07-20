@@ -8,7 +8,7 @@
 
 #ifndef CavyLifeBand2_Swift_h
 #define CavyLifeBand2_Swift_h
-#import <PgyUpdate/PgyUpdateManager.h>
+//#import <PgyUpdate/PgyUpdateManager.h>
 #import <PgySDK/PgyManager.h>
 
 /*----------share----------*/

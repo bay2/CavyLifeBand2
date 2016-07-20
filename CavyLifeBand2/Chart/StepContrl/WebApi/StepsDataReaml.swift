@@ -60,7 +60,7 @@ protocol ChartStepRealmProtocol {
     func queryAllStepInfo(userId: String) -> Results<(NChartStepDataRealm)>?
     func delecNSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool
     func addStepData(chartStepInfo: NChartStepDataRealm) -> Bool
-  
+    func delecNSteptDate(chartStepInfo: NChartStepDataRealm) -> Bool
     func queryNStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData?
     
 }
@@ -93,6 +93,36 @@ extension ChartStepRealmProtocol {
             self.realm.delete(data)
         }
         
+        do {
+            
+            try self.realm.commitWrite()
+            
+        } catch let error {
+            
+            Log.error("\(#function) error = \(error)")
+            
+            return false
+        }
+        Log.info("delete charts info success")
+        
+        return true
+        
+    }
+    
+    /**
+     删除某一条数据
+     
+     - parameter chartStepInfo: <#chartStepInfo description#>
+     
+     - returns: <#return value description#>
+     */
+    
+    func delecNSteptDate(chartStepInfo: NChartStepDataRealm) -> Bool {
+        
+        self.realm.beginWrite()
+        
+        self.realm.delete(chartStepInfo)
+    
         do {
             
             try self.realm.commitWrite()
