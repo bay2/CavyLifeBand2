@@ -530,6 +530,7 @@ extension ChartsRealmProtocol {
         var minustsCount   = 0 // 睡眠计数
         var longSleepCount = 0 // 深睡时长
         var ContinuousZeroCoun = 0 // 记录连续的0
+//        var zeroCoun = 0   // 0 的个数
         
         let sleepDatas = transformSleepData(beginTime, endTime: endTime)
         let stepDatas = transformStepData(beginTime, endTime: endTime)
@@ -566,39 +567,30 @@ extension ChartsRealmProtocol {
                 
                 minustsCount += 1
                 
-                // 1.4. 记录当中连续的0
+                // 1.4. 记录当中的0
                 
                 if stepItem == 0 && tiltsItem == 0 {
                     
-                    ContinuousZeroCoun += 1
                     longSleepCount += 1
+                    ContinuousZeroCoun += 1
                     
-                    continue
+                
                 }else
                 {
-                    // 遇到非0的时候 把计数归零
-                    ContinuousZeroCoun = 0
-                }
-                
-                
-                // 2.
-                // 如果longSleepCount 大于 noSleepTime  往后能找到非0 值 这可以去掉该部分无效数据
-                // 如果 在 往后找不到非0 的数值 这判断这个循环结束的时候 有多少0
-                
-                if stepItem != 0 || tiltsItem != 0 {
-                    
-                    
-                    // 4.无效睡眠状态 去掉超过连续的>=12 的0
-                    if ContinuousZeroCoun >= noSleepTime
+                    // 2.
+                    // 如果longSleepCount 大于 noSleepTime  往后能找到非0 值 这可以去掉该部分无效数据
+                    // 如果 在 往后找不到非0 的数值 这判断这个循环结束的时候 有多少0
                         
-                    {
-                        
-                        minustsCount -= ContinuousZeroCoun
-                        longSleepCount -= ContinuousZeroCoun
-                        ContinuousZeroCoun = 0
-                        
-                    }
-                    
+                        // 4.无效睡眠状态 去掉超过连续的>=12 的0
+                        if ContinuousZeroCoun >= noSleepTime
+                            
+                        {
+                            
+                            minustsCount -= ContinuousZeroCoun
+                            longSleepCount -= ContinuousZeroCoun
+                            ContinuousZeroCoun = 0
+                            
+                        }
                 }
                 
             }
