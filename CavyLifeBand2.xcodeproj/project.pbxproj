@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C05744B1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */; };
 		4C05744D1D25063900D78716 /* UIDeviceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05744C1D25063900D78716 /* UIDeviceExtension.swift */; };
 		4C05F9B21D347A820085C9C8 /* ImageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C05F9B11D347A820085C9C8 /* ImageViewCell.swift */; };
 		4C0BF9EA1CB78F0500DB06FC /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */; };
 		4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */; };
 		4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C0BF9E61CB78F0500DB06FC /* Home.storyboard */; };
 		4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */; };
+		4C11B2181D3C943C00A552FA /* HomeRefershExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C11B2171D3C943C00A552FA /* HomeRefershExtension.swift */; };
+		4C11B21C1D3CA39700A552FA /* loading@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4C11B21A1D3CA39700A552FA /* loading@3x.gif */; };
 		4C124E311C3FB61400C9FDF4 /* CustomCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */; };
 		4C2B67DC1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */; };
 		4C4C602A1CE5C4790026C045 /* GuideViewConfigDefine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4C60291CE5C4790026C045 /* GuideViewConfigDefine.swift */; };
@@ -176,7 +177,6 @@
 		68E978111CC7698900651724 /* PKInvitationVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978101CC7698900651724 /* PKInvitationVCViewModel.swift */; };
 		68E978151CC77D8C00651724 /* PKInfoOrResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */; };
 		68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E978161CC77DE500651724 /* PKInfoOrResultView.xib */; };
-		88482C221D220AC30084628B /* GuideLinking@2x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 88482C201D220AC30084628B /* GuideLinking@2x.gif */; };
 		88482C231D220AC30084628B /* GuideLinking@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 88482C211D220AC30084628B /* GuideLinking@3x.gif */; };
 		887C75B81D114AB2009EA1F6 /* Array_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887C75B71D114AB2009EA1F6 /* Array_Extension.swift */; };
 		889519EF1D26397E00BC4938 /* StepDataJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889519EC1D26397E00BC4938 /* StepDataJson.swift */; };
@@ -364,13 +364,14 @@
 		0E86C8C6C588F3A38FB9C30B /* Pods-CavyLifeBand2UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2UITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2UITests/Pods-CavyLifeBand2UITests.release.xcconfig"; sourceTree = "<group>"; };
 		24A7CFAEA8FAD0237C60B20B /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F583E886E98A1695CB4FA4C /* Pods-CavyLifeBand2Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CavyLifeBand2Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CavyLifeBand2Tests/Pods-CavyLifeBand2Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewControllerExtesionRefersh.swift; sourceTree = "<group>"; };
 		4C05744C1D25063900D78716 /* UIDeviceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceExtension.swift; sourceTree = "<group>"; };
 		4C05F9B11D347A820085C9C8 /* ImageViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewCell.swift; sourceTree = "<group>"; };
 		4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		4C0BF9E61CB78F0500DB06FC /* Home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		4C0BFA091CBF27CF00DB06FC /* HomeWeatherWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWeatherWebApi.swift; sourceTree = "<group>"; };
+		4C11B2171D3C943C00A552FA /* HomeRefershExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRefershExtension.swift; sourceTree = "<group>"; };
+		4C11B21A1D3CA39700A552FA /* loading@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "loading@3x.gif"; sourceTree = "<group>"; };
 		4C124E301C3FB61400C9FDF4 /* CustomCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCamera.swift; sourceTree = "<group>"; };
 		4C2B67DB1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSMutableAttributedString_Extension.swift; sourceTree = "<group>"; };
 		4C4C60291CE5C4790026C045 /* GuideViewConfigDefine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideViewConfigDefine.swift; sourceTree = "<group>"; };
@@ -534,7 +535,6 @@
 		68E978141CC77D8C00651724 /* PKInfoOrResultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKInfoOrResultView.swift; sourceTree = "<group>"; };
 		68E978161CC77DE500651724 /* PKInfoOrResultView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKInfoOrResultView.xib; sourceTree = "<group>"; };
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		88482C201D220AC30084628B /* GuideLinking@2x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GuideLinking@2x.gif"; sourceTree = "<group>"; };
 		88482C211D220AC30084628B /* GuideLinking@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GuideLinking@3x.gif"; sourceTree = "<group>"; };
 		887C75B71D114AB2009EA1F6 /* Array_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array_Extension.swift; sourceTree = "<group>"; };
 		889519EC1D26397E00BC4938 /* StepDataJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDataJson.swift; sourceTree = "<group>"; };
@@ -748,7 +748,7 @@
 			isa = PBXGroup;
 			children = (
 				4CB16D6A1D1130A7006858B5 /* HomeViewController.swift */,
-				4C05744A1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift */,
+				4C11B2171D3C943C00A552FA /* HomeRefershExtension.swift */,
 				4C0BF9E41CB78F0500DB06FC /* LeftViewController.swift */,
 				9150CAB51CC89EA600A398E9 /* RightViewController.swift */,
 				4C0BF9E51CB78F0500DB06FC /* RootViewController.swift */,
@@ -1199,7 +1199,7 @@
 		9114D1BC1C97A1BB008CB4CE /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				88482C201D220AC30084628B /* GuideLinking@2x.gif */,
+				4C11B21A1D3CA39700A552FA /* loading@3x.gif */,
 				88482C211D220AC30084628B /* GuideLinking@3x.gif */,
 			);
 			path = Resource;
@@ -1303,13 +1303,13 @@
 		9114D2001C99314E008CB4CE /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				4CF9CB2D1D2A41FF00D9C88F /* HomeNewApi */,
 				4C0BF9E61CB78F0500DB06FC /* Home.storyboard */,
 				4C0BF9E21CB78F0500DB06FC /* Controller */,
 				9114D2011C99314E008CB4CE /* View */,
 				4C0BF9E71CB78F0500DB06FC /* ViewModel */,
 				4C0BFA081CBF27A900DB06FC /* WebApi */,
 				9150CABD1CC8D14100A398E9 /* Protocol */,
+				4CF9CB2D1D2A41FF00D9C88F /* HomeNewApi */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1944,12 +1944,12 @@
 				4C0BF9EC1CB78F0500DB06FC /* Home.storyboard in Resources */,
 				91EB79691CAE075C00ED3E67 /* Profile_Ok.json in Resources */,
 				91A2EC941CB350D200361952 /* AccountInfoSecurityCell.xib in Resources */,
+				4C11B21C1D3CA39700A552FA /* loading@3x.gif in Resources */,
 				68648AE11CF83D0A009D4BEE /* ContactListEmptyView.xib in Resources */,
 				91EB79581CAC049700ED3E67 /* SearchFrendListResult.json in Resources */,
 				917B98BF1CB8E841008698F5 /* UserAchievementCell.xib in Resources */,
 				91E1B49D1CA50E0D008ADEE6 /* AccountInfo.storyboard in Resources */,
 				917B98C11CB8E841008698F5 /* UserAchievementView.xib in Resources */,
-				88482C221D220AC30084628B /* GuideLinking@2x.gif in Resources */,
 				6859BC861CD32D690050F6A0 /* EmergencyContactInfoCell.xib in Resources */,
 				88482C231D220AC30084628B /* GuideLinking@3x.gif in Resources */,
 				91E1B4D81CA510BD008ADEE6 /* ContactsAddFriendCell.xib in Resources */,
@@ -2147,7 +2147,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\ntailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\necho \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+			shellScript = "#if hash tailor 2>/dev/null; then\n#tailor --except=brace-style,trailing-whitespace,comment-#whitespace,terminating-newline,forced-type-cast\n#else\n#echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2285,7 +2285,6 @@
 				686A5EF81CDC3D4500EB8D0E /* AboutCell.swift in Sources */,
 				918AA22E1CE327DC0022AE30 /* LifeBandBLE.swift in Sources */,
 				4C9E0B511D1A395200DBC1FC /* ShareView.swift in Sources */,
-				4C05744B1D2398AA00D78716 /* HomeViewControllerExtesionRefersh.swift in Sources */,
 				916456451CE1C115002D2D87 /* AlamofireImageExtension.swift in Sources */,
 				4C9E0B491D1A395200DBC1FC /* ChartsInfoCollectionCell.swift in Sources */,
 				683655951CBE25DB009373EA /* ReminderSettingVCViewModel.swift in Sources */,
@@ -2330,6 +2329,7 @@
 				68C558CD1CB74D3E0031719D /* IntelligentClockViewController.swift in Sources */,
 				4CF9CB351D2A41FF00D9C88F /* HomeWebJSON.swift in Sources */,
 				9141C7FE1C7D72CD003E24F2 /* ImageDefine.swift in Sources */,
+				4C11B2181D3C943C00A552FA /* HomeRefershExtension.swift in Sources */,
 				4CB7A07F1CD095C400DFB8DC /* HomeRingView.swift in Sources */,
 				683655311CBB7E43009373EA /* AlarmClockDateCollectionViewCell.swift in Sources */,
 				918435F31C7D6784005B6E92 /* LocalizableDefine.swift in Sources */,

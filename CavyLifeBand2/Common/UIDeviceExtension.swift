@@ -9,22 +9,22 @@
 import Foundation
 
 enum DeviceMaxWidth: Float {
-    case iPhone4     = 480.0
-    case iPhone5     = 568.0
-    case iPhone6     = 667.0
-    case iPhone6Plus = 736.0
-    case iPad        = 1024.0
-    case iPadPro     = 1366.0
+    case IPhone4     = 480.0
+    case IPhone5     = 568.0
+    case IPhone6     = 667.0
+    case IPhone6Plus = 736.0
+    case IPad        = 1024.0
+    case IPadPro     = 1366.0
 }
 
 enum DeviceType: String {
-    case iPhone
-    case iPhone4
-    case iPhone5
-    case iPhone6
-    case iPhone6Plus
-    case iPad
-    case iPadPro
+    case IPhone
+    case IPhone4
+    case IPhone5
+    case IPhone6
+    case IPhone6Plus
+    case IPad
+    case IPadPro
     case Unknown
 }
 
@@ -37,13 +37,13 @@ extension UIDevice {
     }
     
     class func deviceType() -> DeviceType {
-        if isPhone4()     { return DeviceType.iPhone4     }
-        if isPhone5()     { return DeviceType.iPhone5     }
-        if isPhone6()     { return DeviceType.iPhone6     }
-        if isPhone6Plus() { return DeviceType.iPhone6Plus }
-        if isPadPro()     { return DeviceType.iPadPro     }
-        if isPad()        { return DeviceType.iPad        }
-        if isPhone()      { return DeviceType.iPhone      }
+        if isPhone4()     { return DeviceType.IPhone4     }
+        if isPhone5()     { return DeviceType.IPhone5     }
+        if isPhone6()     { return DeviceType.IPhone6     }
+        if isPhone6Plus() { return DeviceType.IPhone6Plus }
+        if isPadPro()     { return DeviceType.IPadPro     }
+        if isPad()        { return DeviceType.IPad        }
+        if isPhone()      { return DeviceType.IPhone      }
         return DeviceType.Unknown
     }
     
@@ -56,23 +56,23 @@ extension UIDevice {
     }
     
     class func isPhone4() -> Bool {
-        return isPhone() && maxDeviceWidth() == DeviceMaxWidth.iPhone4.rawValue
+        return isPhone() && maxDeviceWidth() == DeviceMaxWidth.IPhone4.rawValue
     }
     
     class func isPhone5() -> Bool {
-        return isPhone() && maxDeviceWidth() == DeviceMaxWidth.iPhone5.rawValue
+        return isPhone() && maxDeviceWidth() == DeviceMaxWidth.IPhone5.rawValue
     }
     
     class func isPhone6() -> Bool {
-        return isPhone() && maxDeviceWidth() == DeviceMaxWidth.iPhone6.rawValue
+        return isPhone() && maxDeviceWidth() == DeviceMaxWidth.IPhone6.rawValue
     }
     
     class func isPhone6Plus() -> Bool {
-        return isPhone() && maxDeviceWidth() == DeviceMaxWidth.iPhone6Plus.rawValue
+        return isPhone() && maxDeviceWidth() == DeviceMaxWidth.IPhone6Plus.rawValue
     }
     
     class func isPadPro() -> Bool {
-        return isPad() && maxDeviceWidth() == DeviceMaxWidth.iPadPro.rawValue
+        return isPad() && maxDeviceWidth() == DeviceMaxWidth.IPadPro.rawValue
     }
     
 }

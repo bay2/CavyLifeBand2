@@ -382,8 +382,7 @@
 "Home.Refresh.Pulling"    = "松开同步数据...";
 "Home.Refresh.Refreshing" = "  正在同步数据...";
 "Home.Refresh.AlertTitle" = "同步数据失败";
-"Home.Refresh.faildDes"   = "请您绑定手环，重新同步数据";
-
+"Home.Refresh.faildDes"   = "                1.确认蓝牙已打开\n                2.确认手环处于连接状态\n                3.下拉重新同步数据";
 
 // 弹窗相关
 "Alert.SureAction.Title"     = "确定";
@@ -395,4 +394,6 @@
 "Alert.relogin.Title"        = "登录已失效，请重新登录";
 "Alert.ReUpdateAction.Title" = "重新升级";
 "Alert.ReTryAfterChargeAction.Title" = "充电后再试";
-
+"Alert.Camera.OpenCamera" = "请在iPhone的“设置-隐私-相机”选项中，允许豚鼠生活访问你的相机";
+"Alert.Camera.OpenMicrophone" = "请在iPhone的“设置-隐私-麦克风”选项中，允许豚鼠生活访问你的麦克风";
+"Alert.Camera.Open.All" = "请在iPhone的“设置-隐私”选项中，允许豚鼠生活访问你的相机和麦克风";

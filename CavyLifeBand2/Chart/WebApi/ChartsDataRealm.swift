@@ -70,8 +70,8 @@ enum ChartBandDataSyncState: Int {
 // MARK: 计步睡眠数据库操作协议
 
 protocol ChartsRealmProtocol: ChartStepRealmProtocol, SleepWebRealmOperate, UserInfoRealmOperateDelegate {
-
-
+    
+    
     var realm: Realm { get }
     var userId: String { get }
     
@@ -102,9 +102,9 @@ protocol ChartsRealmProtocol: ChartStepRealmProtocol, SleepWebRealmOperate, User
 extension ChartsRealmProtocol {
     
     func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(ChartStepDataRealm)> {
-
+        
         return realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'").sorted("time", ascending: true)
-
+        
     }
     
     // 返回 第一天开始的时间段
@@ -185,9 +185,9 @@ extension ChartsRealmProtocol {
      查询 日周月下 某一时段的 数据信息
      */
     func queryStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData {
-   
+        
         // 取出服务区查询所得数据
-      let  serverData =  queryNStepNumber(beginTime, endTime: endTime, timeBucket: timeBucket)
+        let  serverData =  queryNStepNumber(beginTime, endTime: endTime, timeBucket: timeBucket)
         
         switch timeBucket {
             
@@ -197,7 +197,7 @@ extension ChartsRealmProtocol {
                 
                 let dataInfo = realm.objects(ChartStepDataRealm).filter("userId == '\(userId)' AND time > %@ AND time < %@", beginTime.timeStringChangeToNSDate(.Day).0, endTime.timeStringChangeToNSDate(.Day).1)
                 
-              return returnHourChartsArray(dataInfo, stepData: nil)
+                return returnHourChartsArray(dataInfo, stepData: nil)
                 
             }else
                 
@@ -221,7 +221,7 @@ extension ChartsRealmProtocol {
                 
                 return returnDayChartsArray(beginTime, endTime: endTime, dataInfo: nil, stepData: serverData)
             }
- 
+            
         }
     }
     
@@ -267,21 +267,21 @@ extension ChartsRealmProtocol {
                 
             }
         }
-       
- 
+        
+        
         return stepChartsData
         
     }
     
     /**
      按天分组 一周七天 一个月30天
-
+     
      */    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(ChartStepDataRealm)>?, stepData: StepChartsData?) -> StepChartsData {
-
+        
         
         // 有数据的天数
         var spendDay: Int = 0
-
+        
         
         var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0, averageStep: 0)
         
@@ -316,14 +316,14 @@ extension ChartsRealmProtocol {
             stepChartsData.totalKilometer += stepData!.totalKilometer
             stepChartsData.finishTime += stepData!.finishTime
             
-
+            
             for indext in  0..<stepChartsData.datas.count {
                 
                 
                 stepChartsData.datas[indext].step += stepData!.datas[indext].step
-                  if stepChartsData.datas[indext].step != 0 { spendDay += 1 }
+                if stepChartsData.datas[indext].step != 0 { spendDay += 1 }
             }
-
+            
         }
         
         // 被除数不可以为 0 
@@ -382,7 +382,7 @@ extension ChartsRealmProtocol {
         self.realm.beginWrite()
         
         for data in dataInfo {
-        
+            
             self.realm.delete(data)
         }
         
@@ -530,18 +530,17 @@ extension ChartsRealmProtocol {
         var minustsCount   = 0 // 睡眠计数
         var zeroCount = 0   // 都为0的计数
         var longSleepCount = 0 // 深睡时长
-   
-
         
         let sleepDatas = transformSleepData(beginTime, endTime: endTime)
         let stepDatas = transformStepData(beginTime, endTime: endTime)
         
+    
         if stepDatas.isEmpty || sleepDatas.isEmpty {
             return (0, 0)
         }
         
         for timeIndex in 0..<sleepDatas.count {
-          
+            
             
             // 前后计算范围
             let range = 2
@@ -556,86 +555,76 @@ extension ChartsRealmProtocol {
             
             let stepItem = stepDatas[timeIndex]
             let tiltsItem = sleepDatas[timeIndex]
-
             
-            // 1. 记录连续的 0
+            //1. 记录伪睡眠数据
             
-            if stepItem == 0 && tiltsItem == 0 {
-                
-                zeroCount += 1
-                longSleepCount += 1
-    
-            }
-            
-            
-            //2. 记录伪睡眠数据
-            
-            // 条件2.1：之前20分钟tilt数量+当前10分钟tilt +之后20分钟tilt数量<40
-            // 条件2.2：当前10分钟tilt<15
-            // 条件2.3：当前10分钟step<30
+            // 条件1.1：之前20分钟tilt数量+当前10分钟tilt +之后20分钟tilt数量<40
+            // 条件1.2：当前10分钟tilt<15
+            // 条件1.3：当前10分钟step<30
             
             if tiltsTotal < 40 &&  tiltsItem < 15 && stepItem < 30 {
                 
                 minustsCount += 1
                 
-            }
- 
-            // 3.
-            // 如果longSleepCount 大于 noSleepTime  往后能找到非0 值 这可以去掉该部分无效数据
-            // 如果 在 往后找不到非0 的数值 这判断这个循环结束的时候 有多少0
-            
-            
-            if stepItem != 0 || tiltsItem != 0 {
+                // 1.4. 记录当中的 0
                 
-                // 4.无效睡眠状态 去掉超过连续的>=12 的0
-                if zeroCount >= noSleepTime
+                if stepItem == 0 && tiltsItem == 0 {
                     
-                {
-                    
-                    minustsCount -= zeroCount
-                    longSleepCount -= zeroCount
-                    zeroCount = 0
-                 
+                    zeroCount += 1
+                    longSleepCount += 1
                 }
                 
-            }else{
                 
-                //5. 如果在循环结束的时候 还没有出现非0 的数据 则 在循环结束的时候 截掉数据
-                if timeIndex ==  sleepDatas.count - 1 {
+                // 2.
+                // 如果longSleepCount 大于 noSleepTime  往后能找到非0 值 这可以去掉该部分无效数据
+                // 如果 在 往后找不到非0 的数值 这判断这个循环结束的时候 有多少0
+                
+                if stepItem != 0 || tiltsItem != 0 {
                     
-                    if stepItem == 0 && tiltsItem == 0 {
+                    // 4.无效睡眠状态 去掉超过连续的>=12 的0
+                    if zeroCount >= noSleepTime
                         
-                        if zeroCount >= noSleepTime
-                            
-                        {
-                            
-                            minustsCount -= zeroCount
-                            longSleepCount -= zeroCount
-                            zeroCount = 0
-                            
-                        }
+                    {
+                        
+                        minustsCount -= zeroCount
+                        longSleepCount -= zeroCount
+                        zeroCount = 0
+                        
                     }
+                    
                 }
-
-            }
                 
+            }
+            
+        }
+        
+        //3 遍历结束之后判断同时为0 的个数 如果大于 noSleepTime 则全部截去
+        
+        if zeroCount >= noSleepTime
+            
+        {
+            
+            minustsCount -= zeroCount
+            longSleepCount -= zeroCount
+            zeroCount = 0
+            
         }
         
         
         guard  minustsCount >= 0 else {
-    
+            
             return  (0, 0)
         }
         
-    
+        
         Log.info("总共睡眠\(minustsCount)=====深睡个数\(longSleepCount)")
         
         return (minustsCount, longSleepCount)
     }
-
+    
     
     /**
-     将数据库中的睡眠数据转成10分钟存储的数组
+     将数据库中的睡眠数据转成10分钟存储的数组  计算时间是数据库中的有效数据 不去补0
      
      - author: sim cai
      - date: 2016-06-03
@@ -653,14 +642,19 @@ extension ChartsRealmProtocol {
             return []
         }
         
-        let dataSize = ((endTime - beginTime).totalMinutes) / 10
         
-        var reslutArray = Array<Int>(count: dataSize, repeatedValue: 0)
         
+//        let dataSize = ((endTime - beginTime).totalMinutes) / 10
+        
+        var reslutArray = Array<Int>(count: realmSleepData.count, repeatedValue: 0)
+        
+        var indext = 0
         for data in realmSleepData {
+         
+            indext += 1
             
-            let index = (data.time - beginTime).totalMinutes / 10 - 1  // 防止数组越界
-            reslutArray[index] = data.tilts
+//            let index = (data.time - beginTime).totalMinutes / 10 - 1  // 防止数组越界
+            reslutArray[indext - 1] = data.tilts
         }
         
         return reslutArray
@@ -668,7 +662,7 @@ extension ChartsRealmProtocol {
     }
     
     /**
-     将数据库中的计步数据转成10分钟存储的数组
+     将数据库中的计步数据转成10分钟存储的数组   计算时间是数据库中的有效数据 不去补0
      
      - author: sim cai
      - date: 2016-06-03
@@ -686,14 +680,15 @@ extension ChartsRealmProtocol {
             return []
         }
         
-        let dataSize = ((endTime - beginTime).totalMinutes) / 10
+//        let dataSize = ((endTime - beginTime).totalMinutes) / 10
         
-        var reslutArray = Array<Int>(count: dataSize, repeatedValue: 0)
+        var indext = 0
+        var reslutArray = Array<Int>(count: realmStepData.count, repeatedValue: 0)
         
         for data in realmStepData {
-            
-            let index = (data.time - beginTime).totalMinutes / 10 - 1
-            reslutArray[index] = data.step
+           indext += 1
+//            let index = (data.time - beginTime).totalMinutes / 10 - 1
+            reslutArray[indext - 1] = data.step
         }
         
         return reslutArray
@@ -730,11 +725,20 @@ extension ChartsRealmProtocol {
      - returns: (总的睡眠时间, 深睡, 浅睡)
      */
     func queryTodaySleepInfo() -> (Double, Double, Double) {
-      
-        let newBeginTime = (NSDate().gregorian.beginningOfDay - 6.hour).date
-        let newEndTime = (newBeginTime.gregorian + 1.day).date
         
-        return querySleepInfo(newBeginTime, endTime: newEndTime)
+        
+        let nowTime = NSDate().gregorian.date
+        let newBeginTime = (NSDate().gregorian.beginningOfDay - 6.hour).date
+        var  endDate = (newBeginTime.gregorian + 1.day).date
+        
+        //当前的时间
+        if nowTime.compare(endDate) == .OrderedAscending {
+            
+            endDate = nowTime
+            
+        }
+        
+        return querySleepInfo(newBeginTime, endTime: endDate)
         
     }
     
@@ -770,16 +774,16 @@ extension ChartsRealmProtocol {
                 reslutData.append((0.0, 0.0, 0.0))
                 
             }
-        
+            
         } else {
-        
+            
             /// 转化数据库中的数据，并做断档数据补0
             for i in 0...dayTotal {
                 
                 if realmIndex < sleepWebRealms?.count {
                     
                     if ((beginTime.gregorian + i.day).beginningOfDay.date - sleepWebRealms![realmIndex].date).totalDays == 0 {
-                    
+                        
                         reslutData.append(sleepWebRealms![realmIndex].transformToTuple())
                         
                         realmIndex += 1
@@ -789,7 +793,7 @@ extension ChartsRealmProtocol {
                     }
                     
                 } else {
-                
+                    
                     reslutData.append((0.0, 0.0, 0.0))
                     
                 }
@@ -797,7 +801,7 @@ extension ChartsRealmProtocol {
             }
             
             Log.info("querySleepInfoDays end \(beginTime.toString(format: "yyyy-MM-dd")) - \(endTime.toString(format: "yyyy-MM-dd")))")
-        
+            
         }
         
         let nowDate = NSDate()
@@ -805,9 +809,9 @@ extension ChartsRealmProtocol {
         // 当天数据的特殊处理
         if (nowDate - beginTime).totalMinutes >= 0 && (nowDate - endTime).totalMinutes <= 0 {
             // 有网直接返回
-//            guard NetworkReachabilityManager(host: "www.baidu.com")?.isReachable == false else {
-//                return reslutData
-//            }
+            //            guard NetworkReachabilityManager(host: "www.baidu.com")?.isReachable == false else {
+            //                return reslutData
+            //            }
             
             // 没网显示手环数据库的数据
             
@@ -891,7 +895,7 @@ extension ChartsRealmProtocol {
             let time: Int = (totalMinutes % 144) == 0 ? 144 : (totalMinutes % 144)
             
             if time == 144 {
-               dateStr = format.stringFromDate((realmStepData[i].time.gregorian - 1.day).date)
+                dateStr = format.stringFromDate((realmStepData[i].time.gregorian - 1.day).date)
             }
             
             let dataStruct = [ NetRequsetKey.Date.rawValue: dateStr,
@@ -902,11 +906,11 @@ extension ChartsRealmProtocol {
             reslutArray.append(dataStruct)
             
             Log.info("index\(i) ---- 分钟数\(time) ---- 日期\(dateStr) ---- 原日期\(realmStepData[i].time)")
-        
+            
         }
         
         return (reslutArray, realmStepData[0].time, realmStepData.last!.time)
-
+        
     }
     
     /**
@@ -918,7 +922,7 @@ extension ChartsRealmProtocol {
     func setChartBandDataSynced(startDate: NSDate, endDate: NSDate) {
         setSleepChartBandDataSynced(startDate, endDate: endDate)
         setStepChartBandDataSynced(startDate, endDate: endDate)
-        NSNotificationCenter.defaultCenter().postNotificationName(RefreshStatus.StopRefresh.rawValue, object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.StopRefresh.rawValue, object: nil)
     }
     
     /**
@@ -977,9 +981,9 @@ extension ChartsRealmProtocol {
         } catch let error {
             Log.error("\(#function) error = \(error)")
         }
-
+        
     }
-
+    
 }
 
 

@@ -26,6 +26,7 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
     
     var realm: Realm = try! Realm()
     
+    @IBOutlet weak var lineConstraint: NSLayoutConstraint!
     // 手机输入框
     @IBOutlet weak var userNameTextField: AccountTextField!
     
@@ -101,6 +102,12 @@ class AccountManagerViewController: UIViewController, BaseViewControllerPresente
         
         textFieldView.backgroundColor = UIColor.whiteColor()
         textFieldView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        
+        if UIDevice.isPhone5() || UIDevice.isPhone4() {
+            
+            lineConstraint.constant = 0.5
+        }
+        
         
         rightBtn?.setTitle(dataSource?.itemRightTitle, forState: .Normal)
         

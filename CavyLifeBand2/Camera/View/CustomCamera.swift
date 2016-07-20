@@ -40,7 +40,6 @@ class CustomCamera: UIViewController {
     @IBOutlet weak var lastImage: UIButton!
 
     var isPhotoOrVideo: Bool = true // true 代表拍照
-    var errorLabel     = UILabel?()
     var camera         = LLSimpleCamera()
     var library        = ALAssetsLibrary()
     var timer = NSTimer()
@@ -137,31 +136,33 @@ class CustomCamera: UIViewController {
         
         Log.error("Camera error:\(error)")
         
-        if error?.domain == LLSimpleCameraErrorDomain {
-            return
+        var massage: String = L10n.AlertCameraOpenAll.string
+
+        // 没有麦克风的使用权限
+        if String(error?.code) == String(LLSimpleCameraErrorCodeMicrophonePermission) {
+            massage = L10n.AlertCameraOpenMicrophone.string
         }
         
-        if String(error?.code) == String(LLSimpleCameraErrorCodeCameraPermission) || String(error?.code) == String(LLSimpleCameraErrorCodeMicrophonePermission) {
-            
-            if self.errorLabel != nil{
-                
-                self.errorLabel!.removeFromSuperview()
-            }
-            
-            let label = UILabel.init(frame: CGRectZero)
-            label.text = "We need permission for the camera.\nPlease go to your settings."
-            label.font = UIFont.init(name: "AvenirNext-DemiBold", size: 13)
-            label.numberOfLines = 2
-            label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-            label.backgroundColor = UIColor.clearColor()
-            label.textColor = UIColor.whiteColor()
-            label.sizeToFit()
-            label.center = CGPointMake(ez.screenWidth / 2, ez.screenHeight / 2)
-            self.errorLabel = label
-            
-            
-            self.view.addSubview(self.errorLabel!)
+        // 没有相机的使用权限
+        if String(error?.code) == String(LLSimpleCameraErrorCodeCameraPermission) {
+            massage = L10n.AlertCameraOpenCamera.string
         }
+        
+        addAlertView(massage)
+        
+    }
+    
+    // 添加弹窗 允许访问权限
+    func addAlertView(massage: String) {
+        
+        let alertView = UIAlertController(title: "", message: massage, preferredStyle: .Alert)
+        
+        let sureAction = UIAlertAction(title: L10n.AlertSureActionTitle.string, style: .Cancel, handler: nil)
+        
+        alertView.addAction(sureAction)
+        
+        self.presentViewController(alertView, animated: true, completion: nil)
+        
     }
     
     // MARK: 其他方法
@@ -453,18 +454,6 @@ class CustomCamera: UIViewController {
         
         self.presentVC(photoView)
         
-//        // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult
-//        let fetchOptions = PHFetchOptions()        
-//        let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
-//        
-//        let photoVC = StoryboardScene.Camera.instantiatePhotoAlbumView()
-//
-//        photoVC.totalCount = fetchResults.count
-//        photoVC.currentCount = fetchResults.count
-//        photoVC.loadIndex = fetchResults.count - 10 < 0 ? 0 : fetchResults.count - 10
-//        
-//        self.presentVC(photoVC)
-
     }
     
     // 更改到照相模式

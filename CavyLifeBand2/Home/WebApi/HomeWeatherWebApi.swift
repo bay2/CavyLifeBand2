@@ -19,7 +19,7 @@ class WeatherWebApi: NetRequest {
     static var shareApi = WeatherWebApi()
     
     func parseWeatherInfo(location: String, callBack: WearherCallBack? = nil) {
-
+        
         let parameters: [String: AnyObject] = [NetRequsetKey.City.rawValue: location]
         
         netGetRequest(WebApiMethod.Weather.description, para: parameters, modelObject: WeatherMsg.self, successHandler: { result in
@@ -27,29 +27,29 @@ class WeatherWebApi: NetRequest {
             Log.info(result.data)
             
             callBack?(result.data!)
-
-            }) { msg in
-                
-                Log.error(msg)
+            
+        }) { msg in
+            
+            Log.error(msg)
         }
         
     }
-   
+    
 }
 
 
 /*
-{
-    "data": {
-        "condition": "多云",
-        "tmp": 34,
-        "pm25": 127
-    },
-    "code": 1000,
-    "msg": "",
-    "time": 1468048519
-}
-*/
+ {
+ "data": {
+ "condition": "多云",
+ "tmp": 34,
+ "pm25": 127
+ },
+ "code": 1000,
+ "msg": "",
+ "time": 1468048519
+ }
+ */
 
 struct WeatherMsg: JSONJoy, CommenResponseProtocol {
     
@@ -79,7 +79,7 @@ struct WeatherInfoMsg: JSONJoy {
     
     init(_ decoder: JSONDecoder) throws {
         
-        do { condition = try decoder["condition"].getString() } catch { condition = "" }
+        do { condition = try decoder["cond"].getString() } catch { condition = "" }
         do { tmp = try decoder["tmp"].getInt() } catch { tmp = 0 }
         do { pm25 = try decoder["pm25"].getInt() } catch { pm25 = 0 }
         
