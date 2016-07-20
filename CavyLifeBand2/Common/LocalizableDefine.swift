@@ -641,10 +641,12 @@ enum L10n {
   case UpdateFirmwareDownloadError
   /// 手环电量过低
   case UpdateFirmwareLowElectricAlertTitle
-  /// 手环电量过低，固件升级至少需要20%电量，请充电后再试
-  case UpdateFirmwareLowElectricAlertMsg
+  /// 手环电量过低，固件升级至少需要20%%电量，请充电后再试
+  case UpdateFirmwareLowEleAlertMsg
   /// 固件升级失败
   case UpdateFirmwareUpdateFailAlertMsg
+  /// 请稍等，豚鼠手环将在重启后自动连接
+  case UpdateFirmwareUpdateSuccessAlertMsg
   /// 正在检测固件版本
   case UpdateFirmwareCheckVersionAlertMsg
   /// 下拉同步数据...
@@ -657,7 +659,7 @@ enum L10n {
   case HomeRefreshAlertTitle
   /// 请您绑定手环，重新同步数据
   case HomeRefreshFaildDes
-  /// 确认
+  /// 确定
   case AlertSureActionTitle
   /// 取消
   case AlertCancelActionTitle
@@ -675,7 +677,6 @@ enum L10n {
   case AlertReUpdateActionTitle
   /// 充电后再试
   case AlertReTryAfterChargeActionTitle
-
 }
 
 extension L10n: CustomStringConvertible {
@@ -1321,10 +1322,12 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("UpdateFirmware.DownloadError")
       case .UpdateFirmwareLowElectricAlertTitle:
         return L10n.tr("UpdateFirmware.LowElectric.AlertTitle")
-      case .UpdateFirmwareLowElectricAlertMsg:
-        return L10n.tr("UpdateFirmware.LowElectric.AlertMsg")
+      case .UpdateFirmwareLowEleAlertMsg:
+        return L10n.tr("UpdateFirmware.LowEle.AlertMsg")
       case .UpdateFirmwareUpdateFailAlertMsg:
         return L10n.tr("UpdateFirmware.UpdateFail.AlertMsg")
+      case .UpdateFirmwareUpdateSuccessAlertMsg:
+        return L10n.tr("UpdateFirmware.UpdateSuccess.AlertMsg")
       case .UpdateFirmwareCheckVersionAlertMsg:
         return L10n.tr("UpdateFirmware.CheckVersion.AlertMsg")
       case .HomeRefreshIdle:
