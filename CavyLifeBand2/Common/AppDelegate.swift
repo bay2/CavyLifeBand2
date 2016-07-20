@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         #if DEBUG
             
-            pgyUpdateConfig()
+//            pgyUpdateConfig()
             
             Log.theme = Theme(
                 trace: "#C5C8C6",
@@ -113,19 +113,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
-    /**
-     蒲公英升级
-     
-     - author: sim cai
-     - date: 2016-06-01
-     */
-    func pgyUpdateConfig() {
-    
-        PgyUpdateManager.sharedPgyManager().startManagerWithAppId(PGYAPPID)
-        PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
-        PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
-        
-    }
+//    /**
+//     蒲公英升级
+//     
+//     - author: sim cai
+//     - date: 2016-06-01
+//     */
+//    func pgyUpdateConfig() {
+//    
+//        PgyUpdateManager.sharedPgyManager().startManagerWithAppId(PGYAPPID)
+//        PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
+//        PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
+//        
+//    }
     
     /**
      自动异常上报
@@ -188,30 +188,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
-    /**
-     蒲公英更新检查
-     
-     - author: sim cai
-     - date: 2016-06-01
-     
-     - parameter updateMethodWithDictionary: 
-     */
-    func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {
-        
-        guard let updateDictionary = updateMethodWithDictionary else {
-            return
-        }
-        
-        let localBuild = ez.appBuild?.toInt() ?? 0
-        let newBuild = (updateDictionary["versionCode"] as? String ?? "").toInt() ?? 0
-        
-        guard localBuild < newBuild else {
-            return
-        }
-        
-        PgyUpdateManager.sharedPgyManager().checkUpdate()
-        
-    }
+//    /**
+//     蒲公英更新检查
+//     
+//     - author: sim cai
+//     - date: 2016-06-01
+//     
+//     - parameter updateMethodWithDictionary: 
+//     */
+//    func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {
+//        
+//        guard let updateDictionary = updateMethodWithDictionary else {
+//            return
+//        }
+//        
+//        let localBuild = ez.appBuild?.toInt() ?? 0
+//        let newBuild = (updateDictionary["versionCode"] as? String ?? "").toInt() ?? 0
+//        
+//        guard localBuild < newBuild else {
+//            return
+//        }
+//        
+//        PgyUpdateManager.sharedPgyManager().checkUpdate()
+//        
+//    }
 
 #if UITEST
     

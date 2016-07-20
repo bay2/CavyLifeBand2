@@ -1874,7 +1874,7 @@
 				TargetAttributes = {
 					917DA9671C3B8EB700FF675D = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = D89C92XETL;
+						DevelopmentTeam = QPTW8BT3J8;
 						SystemCapabilities = {
 							com.apple.Keychain = {
 								enabled = 1;
