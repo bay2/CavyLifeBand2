@@ -898,10 +898,10 @@ extension ChartsRealmProtocol {
                 dateStr = format.stringFromDate((realmStepData[i].time.gregorian - 1.day).date)
             }
             
-            let dataStruct = [ NetRequsetKey.Date.rawValue: dateStr,
-                               NetRequsetKey.Time.rawValue: time,
-                               NetRequsetKey.Tilts.rawValue: tilt,
-                               NetRequsetKey.Steps.rawValue: step]
+            let dataStruct = [ NetRequestKey.Date.rawValue: dateStr,
+                               NetRequestKey.Time.rawValue: time,
+                               NetRequestKey.Tilts.rawValue: tilt,
+                               NetRequestKey.Steps.rawValue: step]
             
             reslutArray.append(dataStruct)
             

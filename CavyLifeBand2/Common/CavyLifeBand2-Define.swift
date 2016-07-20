@@ -52,6 +52,9 @@ struct CavyDefine {
     // 已登录用户昵称
     static var userNickname = ""
     
+    // 用户经纬度，用于用户登录退出事件统计的入参
+    static var userCoordinate = UserCoordinateInfo()
+    
     static var shareImageName: String = "CavyLifeBand2ShareImage"
     
     static var shareSDKAppKey: String = "12dda1a902dc9"
@@ -274,6 +277,11 @@ struct BindBandInfoStorage {
     var deviceSerial: String
     
     
+}
+
+struct UserCoordinateInfo {
+    var latitude: String = ""
+    var longitude: String = ""
 }
 
 
@@ -589,7 +597,7 @@ enum UserNetRequestMethod: String {
 // MARK: - Web Api 方法定义
 enum WebApiMethod: CustomStringConvertible {
 
-    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Issues, Weather, Location, Helps, RecommendGames
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Issues, Weather, Location, Helps, RecommendGames, Activities
 
 
     var description: String {
@@ -641,6 +649,8 @@ enum WebApiMethod: CustomStringConvertible {
             return CavyDefine.webServerAddr + "helps"
         case .RecommendGames:
             return CavyDefine.webServerAddr + "games/recommend"
+        case .Activities:
+            return CavyDefine.webServerAddr + "activities"
         }
         
     }
@@ -648,7 +658,7 @@ enum WebApiMethod: CustomStringConvertible {
 }
 
 // MARK: - Web Api 参数定义
-enum NetRequsetKey: String {
+enum NetRequestKey: String {
 
     case UserName           = "username"
     case Password           = "password"
@@ -690,6 +700,10 @@ enum NetRequsetKey: String {
     case Detail             = "detail"
     case City               = "city"
     case DeviceSerial       = "device_serial"
+    case DeviceModel        = "device_model"
+    case AuthKey            = "auth_key"
+    case BandMac            = "band_mac"
+    case EventType          = "event_type"
 }
 
 

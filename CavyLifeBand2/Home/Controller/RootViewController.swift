@@ -188,18 +188,18 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
             return
         }
         
-        updateUserInfoPara += [NetRequsetKey.Sex.rawValue: userInfo.sex,
-                               NetRequsetKey.Height.rawValue: userInfo.height,
-                               NetRequsetKey.Weight.rawValue: userInfo.weight,
-                               NetRequsetKey.Birthday.rawValue: userInfo.birthday,
-                               NetRequsetKey.Address.rawValue: userInfo.address,
-                               NetRequsetKey.StepsGoal.rawValue: userInfo.stepGoal,
-                               NetRequsetKey.SleepTimeGoal.rawValue: userInfo.sleepGoal,
-                               NetRequsetKey.EnableNotification.rawValue: userInfo.isNotification,
-                               NetRequsetKey.ShareLocation.rawValue: userInfo.isLocalShare,
-                               NetRequsetKey.ShareBirthday.rawValue: userInfo.isOpenBirthday,
-                               NetRequsetKey.ShareHeight.rawValue: userInfo.isOpenHeight,
-                               NetRequsetKey.ShareWeight.rawValue: userInfo.isOpenWeight]
+        updateUserInfoPara += [NetRequestKey.Sex.rawValue: userInfo.sex,
+                               NetRequestKey.Height.rawValue: userInfo.height,
+                               NetRequestKey.Weight.rawValue: userInfo.weight,
+                               NetRequestKey.Birthday.rawValue: userInfo.birthday,
+                               NetRequestKey.Address.rawValue: userInfo.address,
+                               NetRequestKey.StepsGoal.rawValue: userInfo.stepGoal,
+                               NetRequestKey.SleepTimeGoal.rawValue: userInfo.sleepGoal,
+                               NetRequestKey.EnableNotification.rawValue: userInfo.isNotification,
+                               NetRequestKey.ShareLocation.rawValue: userInfo.isLocalShare,
+                               NetRequestKey.ShareBirthday.rawValue: userInfo.isOpenBirthday,
+                               NetRequestKey.ShareHeight.rawValue: userInfo.isOpenHeight,
+                               NetRequestKey.ShareWeight.rawValue: userInfo.isOpenWeight]
         
         self.setUserInfo {
             

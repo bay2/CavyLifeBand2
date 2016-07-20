@@ -194,9 +194,9 @@ extension NetRequest {
         
         let authToken: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken ?? ""
         
-        let headers: [String: String] = [NetRequsetKey.PhoneType.rawValue: "ios",
-                                            NetRequsetKey.Language.rawValue: UIDevice.deviceLanguage(),
-                                            NetRequsetKey.AuthToken.rawValue: authToken]
+        let headers: [String: String] = [NetRequestKey.PhoneType.rawValue: "ios",
+                                            NetRequestKey.Language.rawValue: UIDevice.deviceLanguage(),
+                                            NetRequestKey.AuthToken.rawValue: authToken]
         
         let request = Alamofire.request(method, urlString, encoding: method == .POST ? .JSON : .URL, parameters: parameters, headers: headers).responseJSON { response -> Void in
             

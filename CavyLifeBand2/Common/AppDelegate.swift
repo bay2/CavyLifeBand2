@@ -37,7 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         setRootViewController()
         
+        setUserDefaultCoordinate()
         
+        EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.AppOpen)
         
         #if UITEST
             
@@ -212,6 +214,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
 //        PgyUpdateManager.sharedPgyManager().checkUpdate()
 //        
 //    }
+    
+    /**
+     获取用户经纬度 用于事件统计接口
+     */
+    func setUserDefaultCoordinate() {
+        
+        SCLocationManager.shareInterface.startUpdateLocation { coordinate in
+            
+            CavyDefine.userCoordinate.latitude = coordinate.latitude.toString
+            CavyDefine.userCoordinate.longitude = coordinate.longitude.toString
+            
+        }
+
+    }
+    
 
 #if UITEST
     
@@ -310,6 +327,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.AppQuit)
     }
 
     // MARK: - 如果使用SSO（可以简单理解成跳客户端授权），以下方法是必要的

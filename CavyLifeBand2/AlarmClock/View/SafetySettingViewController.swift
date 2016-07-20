@@ -157,14 +157,14 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
                 return
             }
             
-            let dic = [NetRequsetKey.Name.rawValue: model.name,
-                       NetRequsetKey.Phone.rawValue: model.phoneNumber]
+            let dic = [NetRequestKey.Name.rawValue: model.name,
+                       NetRequestKey.Phone.rawValue: model.phoneNumber]
             
             phoneArr.append(dic)
         }
         
-        phoneArr.append([NetRequsetKey.Name.rawValue: name,
-                         NetRequsetKey.Phone.rawValue: phoneNumber])
+        phoneArr.append([NetRequestKey.Name.rawValue: name,
+                         NetRequestKey.Phone.rawValue: phoneNumber])
         
         setEmergencyList(phoneArr) {
             
@@ -189,8 +189,8 @@ class SafetySettingViewController: UIViewController, BaseViewControllerPresenter
         var phoneArr: [[String: String]] = [[String: String]]()
         
         for model in self.contactModels {
-            let dic = [NetRequsetKey.Name.rawValue: model.name,
-                       NetRequsetKey.Phone.rawValue: model.phoneNumber]
+            let dic = [NetRequestKey.Name.rawValue: model.name,
+                       NetRequestKey.Phone.rawValue: model.phoneNumber]
             phoneArr.append(dic)
         }
         
