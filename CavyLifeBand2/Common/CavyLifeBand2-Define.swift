@@ -55,6 +55,8 @@ struct CavyDefine {
     // 用户经纬度，用于用户登录退出事件统计的入参
     static var userCoordinate = UserCoordinateInfo()
     
+    static var gameServerAuthKey: String = "5QaN4e9i4HeqcSuX4"
+    
     static var shareImageName: String = "CavyLifeBand2ShareImage"
     
     static var shareSDKAppKey: String = "12dda1a902dc9"

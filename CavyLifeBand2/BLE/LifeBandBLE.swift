@@ -383,6 +383,7 @@ extension LifeBandBle: CBCentralManagerDelegate {
         } else {
             
             NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
+            EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.BandDisconnect)
         }
         
         lifeBandBleDelegate?.bleMangerState(central.state)

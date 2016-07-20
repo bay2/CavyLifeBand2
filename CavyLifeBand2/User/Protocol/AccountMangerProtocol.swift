@@ -387,7 +387,7 @@ extension SignInDelegate where Self: UIViewController {
                                                NetRequestKey.Password.rawValue: passwd.md5(),
                                                NetRequestKey.DeviceSerial.rawValue: CavyDefine.bindBandInfos.bindBandInfo.deviceSerial,
                                                NetRequestKey.DeviceModel.rawValue: UIDevice.deviceType().rawValue,
-                                               NetRequestKey.AuthKey.rawValue: "",
+                                               NetRequestKey.AuthKey.rawValue: CavyDefine.gameServerAuthKey,
                                                NetRequestKey.BandMac.rawValue: CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand,
                                                NetRequestKey.Longitude.rawValue: CavyDefine.userCoordinate.longitude,
                                                NetRequestKey.Latitude.rawValue: CavyDefine.userCoordinate.latitude]
