@@ -683,6 +683,10 @@ enum L10n {
   case AlertCameraOpenMicrophone
   /// 请在iPhone的“设置-隐私”选项中，允许豚鼠生活访问你的相机和麦克风
   case AlertCameraOpenAll
+  /// 能玩体感游戏的智能手环
+  case ShareTitle
+  /// 来自豚鼠科技
+  case ShareContent
 }
 
 extension L10n: CustomStringConvertible {
@@ -1370,6 +1374,10 @@ extension L10n: CustomStringConvertible {
         return L10n.tr("Alert.Camera.OpenMicrophone")
       case .AlertCameraOpenAll:
         return L10n.tr("Alert.Camera.Open.All")
+      case .ShareTitle:
+        return L10n.tr("Share.Title")
+      case .ShareContent:
+        return L10n.tr("Share.Content")
     }
   }
 
