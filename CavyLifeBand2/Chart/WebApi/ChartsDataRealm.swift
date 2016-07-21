@@ -808,9 +808,9 @@ extension ChartsRealmProtocol {
         // 当天数据的特殊处理
         if (nowDate - beginTime).totalMinutes >= 0 && (nowDate - endTime).totalMinutes <= 0 {
             // 有网直接返回
-            //            guard NetworkReachabilityManager(host: "www.baidu.com")?.isReachable == false else {
-            //                return reslutData
-            //            }
+            guard NetworkReachabilityManager(host: "www.baidu.com")?.isReachable == false else {
+                return reslutData
+            }
             
             // 没网显示手环数据库的数据
             

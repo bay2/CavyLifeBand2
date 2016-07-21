@@ -86,11 +86,11 @@ class ChartsInfoCollectionCell: UICollectionViewCell, ChartsRealmProtocol, UserI
         
         if viewStyle == .SleepChart && timeBucketStyle == .Day {
             
-            let sleepInfo = queryTodaySleepInfo()
+            let sleepInfo = querySleepNumber(time.beginTime, endTime: time.endTime)
             
             attrsArray = infoViewSleepListAttrributeArray(sleepInfo)
             
-            let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: Int(sleepInfo.1), lightSleep: Int(sleepInfo.2))
+            let peiChartView = ShowPieChartsView(frame: CGRectMake(0, 0, 0, 0), deepSleep: Int(sleepInfo.first?.deepSleep ?? 0), lightSleep: sleepInfo.first?.lightSleep ?? 0)
             
             chartViewLayout(peiChartView)
             
