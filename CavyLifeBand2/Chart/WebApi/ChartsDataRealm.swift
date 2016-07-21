@@ -528,8 +528,9 @@ extension ChartsRealmProtocol {
     private func validSleep(beginTime: NSDate, endTime: NSDate) -> (Int, Int) {
         
         var minustsCount   = 0 // 睡眠计数
-        var zeroCount = 0   // 都为0的计数
         var longSleepCount = 0 // 深睡时长
+        var ContinuousZeroCoun = 0 // 记录连续的0
+//        var zeroCoun = 0   // 0 的个数
         
         let sleepDatas = transformSleepData(beginTime, endTime: endTime)
         let stepDatas = transformStepData(beginTime, endTime: endTime)
@@ -566,32 +567,30 @@ extension ChartsRealmProtocol {
                 
                 minustsCount += 1
                 
-                // 1.4. 记录当中的 0
+                // 1.4. 记录当中的0
                 
                 if stepItem == 0 && tiltsItem == 0 {
                     
-                    zeroCount += 1
                     longSleepCount += 1
-                }
-                
-                
-                // 2.
-                // 如果longSleepCount 大于 noSleepTime  往后能找到非0 值 这可以去掉该部分无效数据
-                // 如果 在 往后找不到非0 的数值 这判断这个循环结束的时候 有多少0
-                
-                if stepItem != 0 || tiltsItem != 0 {
+                    ContinuousZeroCoun += 1
                     
-                    // 4.无效睡眠状态 去掉超过连续的>=12 的0
-                    if zeroCount >= noSleepTime
+                
+                }else
+                {
+                    // 2.
+                    // 如果longSleepCount 大于 noSleepTime  往后能找到非0 值 这可以去掉该部分无效数据
+                    // 如果 在 往后找不到非0 的数值 这判断这个循环结束的时候 有多少0
                         
-                    {
-                        
-                        minustsCount -= zeroCount
-                        longSleepCount -= zeroCount
-                        zeroCount = 0
-                        
-                    }
-                    
+                        // 4.无效睡眠状态 去掉超过连续的>=12 的0
+                        if ContinuousZeroCoun >= noSleepTime
+                            
+                        {
+                            
+                            minustsCount -= ContinuousZeroCoun
+                            longSleepCount -= ContinuousZeroCoun
+                            ContinuousZeroCoun = 0
+                            
+                        }
                 }
                 
             }
@@ -600,13 +599,13 @@ extension ChartsRealmProtocol {
         
         //3 遍历结束之后判断同时为0 的个数 如果大于 noSleepTime 则全部截去
         
-        if zeroCount >= noSleepTime
+        if ContinuousZeroCoun >= noSleepTime
             
         {
             
-            minustsCount -= zeroCount
-            longSleepCount -= zeroCount
-            zeroCount = 0
+            minustsCount -= ContinuousZeroCoun
+            longSleepCount -= ContinuousZeroCoun
+            ContinuousZeroCoun = 0
             
         }
         
