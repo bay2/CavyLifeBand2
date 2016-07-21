@@ -25,11 +25,11 @@ extension AccountInfoSecurityUpdateByNetwork {
             return
         }
         
-        let subPara: [String: AnyObject] = [NetRequsetKey.ShareHeight.rawValue: userInfo.isOpenHeight.boolValue,
-                                               NetRequsetKey.ShareWeight.rawValue: userInfo.isOpenWeight.boolValue,
-                                               NetRequsetKey.ShareBirthday.rawValue: userInfo.isOpenBirthday.boolValue]
+        let subPara: [String: AnyObject] = [NetRequestKey.ShareHeight.rawValue: userInfo.isOpenHeight.boolValue,
+                                               NetRequestKey.ShareWeight.rawValue: userInfo.isOpenWeight.boolValue,
+                                               NetRequestKey.ShareBirthday.rawValue: userInfo.isOpenBirthday.boolValue]
         
-        let parameters: [String: AnyObject] = [NetRequsetKey.Profile.rawValue: subPara]
+        let parameters: [String: AnyObject] = [NetRequestKey.Profile.rawValue: subPara]
         
         NetWebApi.shareApi.netPostRequest(WebApiMethod.UsersProfile.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { data in
 

@@ -379,7 +379,7 @@ extension LifeBandBle: CBCentralManagerDelegate {
         } else {
             
             NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
-            
+            EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.BandDisconnect)
             // 如果在正在同步数据时候 断开蓝牙 要是下拉同步消失
             NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.StopRefresh.rawValue, object: nil)
 
@@ -395,15 +395,18 @@ extension LifeBandBle: CBCentralManagerDelegate {
         stopScaning()
         central.stopScan()
         
-         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
             
-        NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandConnectNotification.rawValue, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandConnectNotification.rawValue, object: nil)
+            
+            EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.BandConnect)
         }
         
     }
     
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
+        EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.BandDisconnect)
     }
     
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {

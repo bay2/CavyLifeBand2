@@ -98,10 +98,10 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
                     // 检测电量是否足够
                     LifeBandCtrl.shareInterface.getBandElectric { electric in
                         
-                        guard electric > 0.2 else {
+                        guard electric >= 0.2 else {
                             
                             let electricAlert = UIAlertController(title: L10n.UpdateFirmwareLowElectricAlertTitle.string,
-                                message: L10n.UpdateFirmwareLowElectricAlertMsg.string, preferredStyle: .Alert)
+                                message: L10n.UpdateFirmwareLowEleAlertMsg.string, preferredStyle: .Alert)
                             
                             let cancelAction = UIAlertAction(title: L10n.AlertReTryAfterChargeActionTitle.string, style: .Cancel) { (action) in }
                             
@@ -170,6 +170,8 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
                         
                         UpdateProgressView.hide()
                         
+                        self.alertUpdatesuccess()
+                        
                     }
                 }.failure{ _ in
                    
@@ -214,6 +216,19 @@ struct UpdateFWViewModel: MenuProtocol, FirmwareDownload {
         versionAlert.addAction(updateAction)
         
         UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(versionAlert, animated: true, completion: nil)
+    }
+    
+    // 固件升级成功的Alert提示
+    func alertUpdatesuccess() {
+        
+        let versionAlert = UIAlertController(title: "", message: L10n.UpdateFirmwareUpdateSuccessAlertMsg.string, preferredStyle: .Alert)
+        
+        let sureAction = UIAlertAction(title: L10n.AlertSureActionTitle.string, style: .Cancel) { (action) in }
+        
+        versionAlert.addAction(sureAction)
+        
+        UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(versionAlert, animated: true, completion: nil)
+        
     }
     
 }

@@ -16,8 +16,8 @@ class UploadBandData: NetRequest {
     
     func uploadBandData(raw: [NSDictionary], successHandler: ((CommenMsgResponse) -> Void)? = nil, failHandler: (Void -> Void)? = nil) {
         
-        let parameters: [String: AnyObject] = [NetRequsetKey.Raw.rawValue: raw,
-                                               NetRequsetKey.TimeScale.rawValue: 10]
+        let parameters: [String: AnyObject] = [NetRequestKey.Raw.rawValue: raw,
+                                               NetRequestKey.TimeScale.rawValue: 10]
         
         netPostRequest(WebApiMethod.Dailies.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { (data) in
             

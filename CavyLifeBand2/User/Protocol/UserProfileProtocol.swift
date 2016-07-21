@@ -74,7 +74,7 @@ extension SetUserInfoRequestsDelegate {
      */
     func setUserInfo(completeHandle: (Bool -> Void)? = nil) {
         
-        let parameters: [String: AnyObject] = [NetRequsetKey.Profile.rawValue: userInfoPara]
+        let parameters: [String: AnyObject] = [NetRequestKey.Profile.rawValue: userInfoPara]
 
         NetWebApi.shareApi.netPostRequest(WebApiMethod.UsersProfile.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { (data) in
             
