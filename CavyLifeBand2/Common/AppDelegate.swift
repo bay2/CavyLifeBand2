@@ -308,6 +308,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        // 进入后台和杀死进程
+        EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.AppQuit)
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
@@ -316,9 +319,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         // 只有 打开蓝牙并且连接手环 自动刷新的处理
         if LifeBandBle.shareInterface.centraManager?.state == .PoweredOn && LifeBandBle.shareInterface.getConnectState() == .Connected {
         
-        NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.BeginRefresh.rawValue, object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.BeginRefresh.rawValue, object: nil)
             
         }
+        
+        EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.AppOpen)
+        
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -328,7 +334,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         
-        EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.AppQuit)
+        if LifeBandBle.shareInterface.centraManager?.state == .PoweredOn && LifeBandBle.shareInterface.getConnectState() == .Connected {
+            
+            EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.BandDisconnect)
+            
+        }
+        
     }
 
     // MARK: - 如果使用SSO（可以简单理解成跳客户端授权），以下方法是必要的

@@ -101,43 +101,7 @@ extension NetRequest {
         
         requestByAlamofire(.POST, urlString: urlString, parameters: para) { (result) in
             
-            guard result.isSuccess else {
-                
-                let commonMsg = try! CommenResponse(JSONDecoder(["msg": RequestApiCode.NetError.description, "code": RequestApiCode.NetError.rawValue, "time": NSDate().timeIntervalSince1970]))
-                
-                failureHandler?(commonMsg)
-                
-                return
-                
-            }
-            
-                
-            do {
-                
-                let response = try CommenMsgResponse (JSONDecoder(result.value ?? ""))
-                
-                guard response.commonMsg.code == RequestApiCode.Success.rawValue else {
-                    
-                    // token失效 重新去登录
-                    if response.commonMsg.code == RequestApiCode.InvalidToken.rawValue {
-                    
-                   self.requesInvalidToken()
-                        
-                    }
-                    
-                    failureHandler?(response.commonMsg)
-                    return
-                }
-                
-                successHandler?(try T(JSONDecoder(result.value ?? "")))
-                
-            } catch {
-                
-                let commonMsg = try! CommenResponse(JSONDecoder(["msg": RequestApiCode.NetError.description, "code": RequestApiCode.NetError.rawValue, "time": NSDate().timeIntervalSince1970]))
-                
-                failureHandler?(commonMsg)
-                
-            }
+            self.requestHanlder(result, url:urlString, successHandler: successHandler, failureHandler: failureHandler)
             
         }
         
@@ -147,43 +111,7 @@ extension NetRequest {
         
         requestByAlamofire(.GET, urlString: urlString, parameters: para) { (result) in
             
-            guard result.isSuccess else {
-                
-                let commonMsg = try! CommenResponse(JSONDecoder(["msg": RequestApiCode.NetError.description, "code": RequestApiCode.NetError.rawValue, "time": NSDate().timeIntervalSince1970]))
-                
-                failureHandler?(commonMsg)
-                
-                return
-                
-            }
-            
-            do {
-                
-                let response = try CommenMsgResponse (JSONDecoder(result.value ?? ""))
-                Log.info("\(result.value)")
-                guard response.commonMsg.code == RequestApiCode.Success.rawValue else {
-                    
-                    // token失效 重新去登录
-                    if response.commonMsg.code == RequestApiCode.InvalidToken.rawValue {
-                        
-                        self.requesInvalidToken()
-                       
-                    }
-
-                    failureHandler?(response.commonMsg)
-                    return
-                }
-                
-                successHandler?(try T(JSONDecoder(result.value ?? "")))
-                
-            } catch {
-                
-                let commonMsg = try! CommenResponse(JSONDecoder(["msg": RequestApiCode.NetError.description, "code": RequestApiCode.NetError.rawValue, "time": NSDate().timeIntervalSince1970]))
-                
-                failureHandler?(commonMsg)
-                
-            }
-            
+            self.requestHanlder(result, url: urlString, successHandler: successHandler, failureHandler: failureHandler)
             
         }
         
@@ -253,9 +181,51 @@ extension NetRequest {
         alertView.addAction(defaultAction)
         
         UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
-        
-        return
+
    
+    }
+    
+    func requestHanlder<T: JSONJoy where T: CommenResponseProtocol>(result: Result<AnyObject, RequestError>, url: String, successHandler: ((T) -> Void)? = nil, failureHandler: FailureHandler? = nil) {
+        
+        guard result.isSuccess else {
+            
+            let commonMsg = try! CommenResponse(JSONDecoder(["msg": RequestApiCode.NetError.description, "code": RequestApiCode.NetError.rawValue, "time": NSDate().timeIntervalSince1970]))
+            
+            failureHandler?(commonMsg)
+            
+            return
+            
+        }
+        
+        do {
+            
+            let response = try CommenMsgResponse (JSONDecoder(result.value ?? ""))
+            Log.info("\(result.value)")
+            guard response.commonMsg.code == RequestApiCode.Success.rawValue else {
+                
+                // token失效 重新去登录
+                if response.commonMsg.code == RequestApiCode.InvalidToken.rawValue {
+                    
+                    self.requesInvalidToken()
+                    
+                    return
+                        
+                }
+                
+                failureHandler?(response.commonMsg)
+                return
+            }
+            
+            successHandler?(try T(JSONDecoder(result.value ?? "")))
+            
+        } catch {
+            
+            let commonMsg = try! CommenResponse(JSONDecoder(["msg": RequestApiCode.NetError.description, "code": RequestApiCode.NetError.rawValue, "time": NSDate().timeIntervalSince1970]))
+            
+            failureHandler?(commonMsg)
+            
+        }
+
     }
     
 }

@@ -33,10 +33,10 @@ class EventStatisticsApi: NetRequest {
 
 enum ActivityEventType: String {
     
-    case AppOpen        = "GAME_OPEN"
-    case AppQuit        = "GAME_QUIT"
-    case BandConnect    = "GAME_CONNECT"
-    case BandDisconnect = "GAME_DISCONNECT"
+    case AppOpen        = "APP_OPEN"
+    case AppQuit        = "APP_QUIT"
+    case BandConnect    = "BAND_CONNECT"
+    case BandDisconnect = "BAND_DISCONNECT"
     case UserOnline     = "USER_ONLINE"
     case UserOffline    = "USER_OFFLINE"
     case Unkown         = "Unkown"    
