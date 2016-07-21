@@ -104,7 +104,12 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
         
         Log.info("\(curDate.toString(format: "yyyy.M.d HH:mm:ss")) -------- \(endDate.toString(format: "yyyy.M.d HH:mm:ss"))")
         
-        notificationSleepToken = self.queryAllStepInfo(userId).addNotificationBlock { [unowned self] chage in
+        guard let sleepRealmReslut: Results<(SleepWebRealm)> = queryUserSleepWebRealm() else {
+            
+            return
+        }
+        
+        notificationSleepToken = sleepRealmReslut.addNotificationBlock { [unowned self] chage in
             
             switch chage {
                 
