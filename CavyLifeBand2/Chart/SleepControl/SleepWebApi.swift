@@ -20,8 +20,8 @@ class SleepWebApi: NetRequest, SleepWebRealmOperate, UserInfoRealmOperateDelegat
         
         guard let dateTuple = calculateFetchDate() else { return }
         
-        let parameters: [String: AnyObject] = [NetRequsetKey.StartDate.rawValue: dateTuple.0,
-                                               NetRequsetKey.EndDate.rawValue: dateTuple.1]
+        let parameters: [String: AnyObject] = [NetRequestKey.StartDate.rawValue: dateTuple.0,
+                                               NetRequestKey.EndDate.rawValue: dateTuple.1]
         
         netGetRequest(WebApiMethod.Sleep.description, para: parameters, modelObject: NChartSleepMsg.self, successHandler: { [unowned self] (data) in
             

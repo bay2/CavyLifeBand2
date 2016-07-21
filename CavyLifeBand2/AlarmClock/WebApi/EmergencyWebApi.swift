@@ -27,7 +27,7 @@ class EmergencyWebApi: NetRequestAdapter, EmergencyContactRealmListOperateDelega
      */
     func setEmergencyPhoneList(phoneList: [[String: String]], callBack: (Void -> Void)? = nil) throws {
         
-        let parameters: [String: AnyObject] = [NetRequsetKey.Contacts.rawValue: phoneList]
+        let parameters: [String: AnyObject] = [NetRequestKey.Contacts.rawValue: phoneList]
         
         netPostRequest(WebApiMethod.EmergencyContacts.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { (data) in
             
@@ -67,8 +67,8 @@ class EmergencyWebApi: NetRequestAdapter, EmergencyContactRealmListOperateDelega
         
         SCLocationManager.shareInterface.startUpdateLocation { [unowned self] coordinate in
             
-            let parameters: [String: AnyObject] = [NetRequsetKey.Latitude.rawValue: coordinate.latitude.toString,
-                                                   NetRequsetKey.Longitude.rawValue: coordinate.longitude.toString]
+            let parameters: [String: AnyObject] = [NetRequestKey.Latitude.rawValue: coordinate.latitude.toString,
+                                                   NetRequestKey.Longitude.rawValue: coordinate.longitude.toString]
             
             self.netPostRequest(WebApiMethod.Emergency.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { (data) in
                 

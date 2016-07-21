@@ -145,6 +145,7 @@
 		686A5EFD1CDC694800EB8D0E /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5EFC1CDC694800EB8D0E /* WebViewController.swift */; };
 		686A5F041CDC7F3900EB8D0E /* RelateAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5F021CDC7F3900EB8D0E /* RelateAppCell.swift */; };
 		686A5F051CDC7F3900EB8D0E /* RelateAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */; };
+		686FAC671D3F63AC001ED6A9 /* EventStatisticsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686FAC661D3F63AC001ED6A9 /* EventStatisticsProtocol.swift */; };
 		6874798D1D22943100354A5B /* SleepRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6874798C1D22943100354A5B /* SleepRealm.swift */; };
 		687479921D23A33700354A5B /* LoginJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479911D23A33700354A5B /* LoginJSON.swift */; };
 		687479941D24AF0600354A5B /* SleepWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479931D24AF0600354A5B /* SleepWebApi.swift */; };
@@ -502,6 +503,7 @@
 		686A5EFC1CDC694800EB8D0E /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		686A5F021CDC7F3900EB8D0E /* RelateAppCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelateAppCell.swift; sourceTree = "<group>"; };
 		686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelateAppCell.xib; sourceTree = "<group>"; };
+		686FAC661D3F63AC001ED6A9 /* EventStatisticsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStatisticsProtocol.swift; sourceTree = "<group>"; };
 		6874798C1D22943100354A5B /* SleepRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepRealm.swift; sourceTree = "<group>"; };
 		687479911D23A33700354A5B /* LoginJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginJSON.swift; sourceTree = "<group>"; };
 		687479931D24AF0600354A5B /* SleepWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepWebApi.swift; sourceTree = "<group>"; };
@@ -1362,6 +1364,7 @@
 			isa = PBXGroup;
 			children = (
 				9150CABB1CC8D12D00A398E9 /* MenuProtocol.swift */,
+				686FAC661D3F63AC001ED6A9 /* EventStatisticsProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -2182,6 +2185,7 @@
 				4CB7A0771CD095C400DFB8DC /* HomeDateView.swift in Sources */,
 				685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */,
 				687479941D24AF0600354A5B /* SleepWebApi.swift in Sources */,
+				686FAC671D3F63AC001ED6A9 /* EventStatisticsProtocol.swift in Sources */,
 				4CF9CB321D2A41FF00D9C88F /* HomeRealm.swift in Sources */,
 				68648A891CF6936D009D4BEE /* GuideIntroduceView.swift in Sources */,
 				683655271CBB3B2C009373EA /* SettingSwitchTableViewCell.swift in Sources */,

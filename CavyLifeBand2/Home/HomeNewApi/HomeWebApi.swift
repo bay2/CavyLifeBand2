@@ -34,7 +34,7 @@ class HomeWebApi: NetRequest, HomeRealmProtocol {
         let startDate = (date!.gregorian - 2.day).date
         let endDate = date!
         
-        let parameters: [String: AnyObject] = [NetRequsetKey.StartDate.rawValue: startDate.toString(format: "yyyy-MM-dd"), NetRequsetKey.EndDate.rawValue: endDate.toString(format: "yyyy-MM-dd")]
+        let parameters: [String: AnyObject] = [NetRequestKey.StartDate.rawValue: startDate.toString(format: "yyyy-MM-dd"), NetRequestKey.EndDate.rawValue: endDate.toString(format: "yyyy-MM-dd")]
    
         netGetRequest(WebApiMethod.Dailies.description, para: parameters, modelObject: HomeLineMsg.self, successHandler: { result in
             

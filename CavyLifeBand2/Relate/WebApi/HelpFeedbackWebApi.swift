@@ -40,8 +40,8 @@ class HelpFeedbackWebApi: NetRequestAdapter, NetRequest {
      */
     func submitFeedback(feedback: String, successBack: (CommenResponse -> Void)? = nil, failBack: (CommenResponse -> Void)? = nil) {
         
-        let parameters: [String: AnyObject] = [NetRequsetKey.Question.rawValue: "Title",
-                                               NetRequsetKey.Detail.rawValue: feedback]
+        let parameters: [String: AnyObject] = [NetRequestKey.Question.rawValue: "Title",
+                                               NetRequestKey.Detail.rawValue: feedback]
       
         netPostRequest(WebApiMethod.Issues.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: {
             

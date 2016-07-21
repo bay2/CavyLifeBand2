@@ -20,7 +20,7 @@ class WeatherWebApi: NetRequest {
     
     func parseWeatherInfo(location: String, callBack: WearherCallBack? = nil) {
         
-        let parameters: [String: AnyObject] = [NetRequsetKey.City.rawValue: location]
+        let parameters: [String: AnyObject] = [NetRequestKey.City.rawValue: location]
         
         netGetRequest(WebApiMethod.Weather.description, para: parameters, modelObject: WeatherMsg.self, successHandler: { result in
             
