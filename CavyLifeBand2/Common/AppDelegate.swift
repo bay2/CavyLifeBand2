@@ -10,6 +10,7 @@ import UIKit
 import Log
 import EZSwiftExtensions
 import RealmSwift
+
 #if UITEST
 import OHHTTPStubs
 #endif
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
+     
         
         /**
          5适配
