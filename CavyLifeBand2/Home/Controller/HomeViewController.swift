@@ -61,10 +61,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     var realm: Realm = try! Realm()
     
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
-    
-    // 当前刷新状态
-    var refreshStatus: MJRefreshState = .Idle
-    
+        
     static var shareInterface = HomeViewController()
     
     deinit {
