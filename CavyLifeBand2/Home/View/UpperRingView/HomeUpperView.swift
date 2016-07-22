@@ -65,7 +65,6 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, 
     func configRealm() {
         
         let stepRealmReslut = queryAllStepInfo()
-        let sleepRealmReslut = queryAllSleepInfo()
         
         stepNotificationToken = stepRealmReslut.addNotificationBlock { change in
             
@@ -80,6 +79,28 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, 
             
         }
         
+        let sleepRealmReslut = queryAllSleepInfo()
+        
+        sleepNotificationToken = sleepRealmReslut.addNotificationBlock { change in
+            switch change {
+            case .Update(_, deletions: _, insertions: _, modifications: _):
+                self.configSleepValue()
+                self.configSleepWebRealm()
+                NSNotificationCenter.defaultCenter().postNotificationName(NumberFollowUpper.FollowUpperSleep.rawValue, object: nil)
+                
+            default:
+                break
+            }
+        }
+        
+    }
+
+    func configSleepWebRealm() {
+        
+        guard let sleepRealmReslut = queryUserSleepWebRealm() else {
+            return
+        }
+        
         sleepNotificationToken = sleepRealmReslut.addNotificationBlock { change in
             switch change {
             case .Update(_, deletions: _, insertions: _, modifications: _):
@@ -90,9 +111,10 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, 
                 break
             }
         }
-        
-    }
 
+    }
+    
+    
     /**
      适配
      */
@@ -174,10 +196,9 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, 
         let sleepTarget = userInfo.sleepGoal
 
         // 计步睡眠 当前值
+        let resultSeelp = self.querySleepNumber(NSDate().gregorian.beginningOfDay.date, endTime:NSDate()).first //self.queryTodaySleepInfo()
 
-        let resultSeelp = self.queryTodaySleepInfo()
-
-        let sleepCurrentNumber = Int(resultSeelp.0)
+        let sleepCurrentNumber = (resultSeelp!.deepSleep + resultSeelp!.lightSleep) ?? 0  //Int(resultSeelp.0)
 
         sleepView.ringWithStyle(sleepTarget, currentNumber: sleepCurrentNumber)
         
