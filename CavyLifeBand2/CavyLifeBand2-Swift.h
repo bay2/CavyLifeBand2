@@ -8,8 +8,6 @@
 
 #ifndef CavyLifeBand2_Swift_h
 #define CavyLifeBand2_Swift_h
-//#import <PgyUpdate/PgyUpdateManager.h>
-#import <PgySDK/PgyManager.h>
 
 /*----------share----------*/
 #import <ShareSDK/ShareSDK.h>
@@ -25,5 +23,8 @@
 //新浪微博SDK头文件
 #import "WeiboSDK.h"
 /*----------share----------*/
+
+// 友盟统计SDK
+#import <UMMobClick/MobClick.h>
 
 #endif /* CavyLifeBand2_Swift_h */

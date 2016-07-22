@@ -11,13 +11,14 @@ import Log
 import EZSwiftExtensions
 import RealmSwift
 
+
 #if UITEST
 import OHHTTPStubs
 #endif
 
 var realm: Realm = try! Realm()
-let PGYAPPID = "9bb10b86bf5f62f10ec4f83d1c9847e7"
 
+let UMAPPKey = "5791832167e58e3ffd001bd0"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
@@ -36,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         registerShareSdk()
         
+        appConfigUMobClickSDK()
+        
         setRootViewController()
         
         setUserDefaultCoordinate()
@@ -50,8 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         
         #if RELEASE
-            
-            PgyManager.sharedPgyManager().enableFeedback = false
+
             Log.enabled = false
             
         #endif
@@ -59,8 +61,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         
         #if DEBUG
-            
-//            pgyUpdateConfig()
             
             Log.theme = Theme(
                 trace: "#C5C8C6",
@@ -73,11 +73,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         #endif
         
         
-        crashConfig()
-        
         return true
 
     }
+    
+    /**
+     初始化友盟统计
+     */
+    
+    func appConfigUMobClickSDK() {
+        
+        UMAnalyticsConfig.sharedInstance().appKey = UMAPPKey
+        MobClick.startWithConfigure(UMAnalyticsConfig.sharedInstance())
+        
+     
+    }
+    
     
     /**
      5,5c,5s适配
@@ -116,31 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
-//    /**
-//     蒲公英升级
-//     
-//     - author: sim cai
-//     - date: 2016-06-01
-//     */
-//    func pgyUpdateConfig() {
-//    
-//        PgyUpdateManager.sharedPgyManager().startManagerWithAppId(PGYAPPID)
-//        PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
-//        PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
-//        
-//    }
-    
-    /**
-     自动异常上报
-     
-     - author: sim cai
-     - date: 2016-06-01
-     */
-    func crashConfig() {
-        
-       PgyManager.sharedPgyManager().startManagerWithAppId(PGYAPPID)
-        
-    }
+
     
     /**
      分享SDK
@@ -191,30 +178,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
-//    /**
-//     蒲公英更新检查
-//     
-//     - author: sim cai
-//     - date: 2016-06-01
-//     
-//     - parameter updateMethodWithDictionary: 
-//     */
-//    func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {
-//        
-//        guard let updateDictionary = updateMethodWithDictionary else {
-//            return
-//        }
-//        
-//        let localBuild = ez.appBuild?.toInt() ?? 0
-//        let newBuild = (updateDictionary["versionCode"] as? String ?? "").toInt() ?? 0
-//        
-//        guard localBuild < newBuild else {
-//            return
-//        }
-//        
-//        PgyUpdateManager.sharedPgyManager().checkUpdate()
-//        
-//    }
+
     
     /**
      获取用户经纬度 用于事件统计接口
