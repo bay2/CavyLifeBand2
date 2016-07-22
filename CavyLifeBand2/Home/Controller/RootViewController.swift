@@ -103,6 +103,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         bandInit()
         
+        // 开启来电提醒
         phoneCallInit()
         
     }

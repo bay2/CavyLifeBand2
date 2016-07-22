@@ -37,8 +37,6 @@ enum ActivityEventType: String {
     case AppQuit        = "APP_QUIT"
     case BandConnect    = "BAND_CONNECT"
     case BandDisconnect = "BAND_DISCONNECT"
-    case UserOnline     = "USER_ONLINE"
-    case UserOffline    = "USER_OFFLINE"
     case Unkown         = "Unkown"    
 
 }

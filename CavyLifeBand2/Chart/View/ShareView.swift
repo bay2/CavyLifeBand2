@@ -18,12 +18,12 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
     let shareDataArray: [ShareViewDataSource] = [ShareWechatViewModel(), ShareWechatMomentsViewModel(),
                                                  ShareQQViewModel(), ShareWeiboViewModel()]
     
-    var publishContent: ISSContent = ShareSDK.content("分享内容",
-                                                       defaultContent: "默认分享内容，没内容时显示",
+    var publishContent: ISSContent = ShareSDK.content(L10n.ShareContent.string,
+                                                       defaultContent: L10n.ShareTitle.string,
                                                        image: ShareSDK.jpegImageWithImage(UIImage(named: "banner_home"), quality: 1.0),
-                                                       title: "标题",
+                                                       title: L10n.ShareTitle.string,
                                                        url: "http://www.tunshu.com",
-                                                       description: "测试分享",
+                                                       description: L10n.ShareContent.string,
                                                        mediaType: SSPublishContentMediaTypeImage)
     
     

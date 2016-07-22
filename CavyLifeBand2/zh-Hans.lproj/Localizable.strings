@@ -397,3 +397,6 @@
 "Alert.Camera.OpenMicrophone" = "请在iPhone的“设置-隐私-麦克风”选项中，允许豚鼠生活访问你的麦克风";
 "Alert.Camera.Open.All" = "请在iPhone的“设置-隐私”选项中，允许豚鼠生活访问你的相机和麦克风";
 
+// 分享
+"Share.Title" = "能玩体感游戏的智能手环";
+"Share.Content" = "来自豚鼠科技";

@@ -788,7 +788,6 @@
 				687479951D24BA5F00354A5B /* UploadBandData */,
 				688E7B5D1D22591C0062DF9D /* SleepControl */,
 				4C9E0B2F1D1A395200DBC1FC /* controller */,
-				4C9E0B311D1A395200DBC1FC /* View */,
 				4C9E0B3F1D1A395200DBC1FC /* ViewModel */,
 				4C9E0B431D1A395200DBC1FC /* WebApi */,
 			);
@@ -823,7 +822,8 @@
 				4C8D36AD1D377ADE00CCE06F /* ChartsSleepLegendView.swift */,
 				4C8D36AF1D377BB200CCE06F /* ChartsSleepLegendView.xib */,
 			);
-			path = View;
+			name = View;
+			path = ../../Chart/View;
 			sourceTree = "<group>";
 		};
 		4C9E0B3F1D1A395200DBC1FC /* ViewModel */ = {
@@ -1363,6 +1363,7 @@
 		9150CABD1CC8D14100A398E9 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				4C9E0B311D1A395200DBC1FC /* View */,
 				9150CABB1CC8D12D00A398E9 /* MenuProtocol.swift */,
 				686FAC661D3F63AC001ED6A9 /* EventStatisticsProtocol.swift */,
 			);
@@ -2150,7 +2151,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if hash tailor 2>/dev/null; then\ntailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\nelse\necho \"warning: Please install Tailor from https://tailor.sh\"\nfi";
+			shellScript = "#if hash tailor 2>/dev/null; then\n#tailor --except=brace-style,trailing-whitespace,comment-whitespace,terminating-newline,forced-type-cast\n#else\n#echo \"warning: Please install Tailor from https://tailor.sh\"\n#fi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
