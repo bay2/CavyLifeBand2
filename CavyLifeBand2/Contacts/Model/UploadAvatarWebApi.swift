@@ -39,7 +39,7 @@ class UploadAvatarWebApi: NetRequest {
             return
         }
         
-        let para = [NetRequsetKey.Base64Data.rawValue: imageBase64]
+        let para = [NetRequestKey.Base64Data.rawValue: imageBase64]
         
         netPostRequest(WebApiMethod.UploadAvatar.description, para: para, modelObject: UploadAvatarJSON.self, successHandler: {
             successHandler?($0)

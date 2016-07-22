@@ -94,7 +94,7 @@ struct AccountGenderViewModel: AccountSettingModelPotocols {
         
         let gender = genderView.MOrG ? 0 : 1
         
-        userInfoPara[NetRequsetKey.Sex.rawValue] = gender
+        userInfoPara[NetRequestKey.Sex.rawValue] = gender
         
         if loadingView == nil {
             loadingView = getLoadingView()
@@ -149,7 +149,7 @@ struct AccountBirthdayViewModel: AccountSettingModelPotocols {
             return
         }
         
-        userInfoPara[NetRequsetKey.Birthday.rawValue] = birthdayView.birthdayString
+        userInfoPara[NetRequestKey.Birthday.rawValue] = birthdayView.birthdayString
         
         if loadingView == nil {
             loadingView = getLoadingView()
@@ -213,7 +213,7 @@ struct AccountHeightViewModel: AccountSettingModelPotocols {
             return
         }
         
-        userInfoPara[NetRequsetKey.Height.rawValue] = heightView.heightValue
+        userInfoPara[NetRequestKey.Height.rawValue] = heightView.heightValue
         
         if loadingView == nil {
             loadingView = getLoadingView()
@@ -275,7 +275,7 @@ struct AccountWeightViewModel: AccountSettingModelPotocols {
             return
         }
         
-        userInfoPara[NetRequsetKey.Weight.rawValue] = weightView.weightString
+        userInfoPara[NetRequestKey.Weight.rawValue] = weightView.weightString
         
         if loadingView == nil {
             loadingView = getLoadingView()
@@ -319,7 +319,7 @@ struct UserChangeNicknameVM: ContactsReqFriendPortocols, SetUserInfoRequestsDele
     
     var textFieldTitle: String {
         didSet {
-            userInfoPara[NetRequsetKey.Nickname.rawValue] = textFieldTitle
+            userInfoPara[NetRequestKey.Nickname.rawValue] = textFieldTitle
         }
     }
     
@@ -391,7 +391,7 @@ struct UserChangeAddressVM: ContactsReqFriendPortocols, SetUserInfoRequestsDeleg
     
     var textFieldTitle: String {
         didSet {
-            userInfoPara[NetRequsetKey.Address.rawValue] = textFieldTitle
+            userInfoPara[NetRequestKey.Address.rawValue] = textFieldTitle
         }
     }
     

@@ -309,10 +309,10 @@ struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate,
         
         let goalView = self.centerView as? GoalView
         
-        let updateUserInfoPara: [String: AnyObject] = [NetRequsetKey.StepsGoal.rawValue: goalView!.stepCurrentValue,
-                                                       NetRequsetKey.SleepTimeGoal.rawValue: goalView!.sleepTimeValue]
+        let updateUserInfoPara: [String: AnyObject] = [NetRequestKey.StepsGoal.rawValue: goalView!.stepCurrentValue,
+                                                       NetRequestKey.SleepTimeGoal.rawValue: goalView!.sleepTimeValue]
         
-        let parameters: [String: AnyObject] = [NetRequsetKey.Profile.rawValue: updateUserInfoPara]
+        let parameters: [String: AnyObject] = [NetRequestKey.Profile.rawValue: updateUserInfoPara]
 
         NetWebApi.shareApi.netPostRequest(WebApiMethod.UsersProfile.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { data in
             
