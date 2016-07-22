@@ -376,14 +376,13 @@ extension LifeBandBle: CBCentralManagerDelegate {
             
             bleConnect(self.peripheralMacAddress)
             
-            // 蓝牙连接不需要重新刷新
-//                    NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.BeginRefresh.rawValue, object: nil)
-
-            
         } else {
             
             NSNotificationCenter.defaultCenter().postNotificationName(BandBleNotificationName.BandDesconnectNotification.rawValue, object: nil)
             EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.BandDisconnect)
+            // 如果在正在同步数据时候 断开蓝牙 要是下拉同步消失
+            NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.StopRefresh.rawValue, object: nil)
+
         }
         
         lifeBandBleDelegate?.bleMangerState(central.state)

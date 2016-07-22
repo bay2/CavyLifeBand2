@@ -28,7 +28,7 @@ extension HomeViewController {
     
     func beginBandRefersh(){
         
-       if refreshStatus == .Refreshing {
+       if scrollView.mj_header.state == .Refreshing {
             
             return
             
@@ -41,30 +41,37 @@ extension HomeViewController {
     
     func endBandRefersh() {
         
-        if refreshStatus != .Refreshing {
+        if scrollView.mj_header.state != .Refreshing {
             
             return
         }
         
-        scrollView.mj_header.endRefreshing()
+        // 没有打开蓝牙 || 没有连接手环
+        if LifeBandBle.shareInterface.centraManager?.state != .PoweredOn || LifeBandBle.shareInterface.getConnectState() != .Connected {
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+                // 同步数据失败
+                self.addAlertView()
+                // 停止刷新
+                self.scrollView.mj_header.endRefreshing()
+                
+            }
+
+            return
+        }
+        
+        self.scrollView.mj_header.endRefreshing()
 
     }
     
     func addRefershHeader() {
         
         let header = MJRefreshHeader(refreshingBlock: {
-
+            
             // 没有打开蓝牙 || 没有连接手环
             if LifeBandBle.shareInterface.centraManager?.state != .PoweredOn || LifeBandBle.shareInterface.getConnectState() != .Connected {
                 
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(1 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
-                    // AlertView 提醒没有绑定手环
-                    self.addAlertView()
-                    // 停止刷新
-                    self.endBandRefersh()
-                    
-                }
-                return
+                self.endBandRefersh()
             }
             
             // 打开蓝牙并且连接手环
@@ -147,20 +154,17 @@ extension HomeViewController: UIScrollViewDelegate {
 
         if scrollView.mj_header.state == MJRefreshState.Idle {
 
-            refreshStatus = .Idle
             label.text = L10n.HomeRefreshIdle.string
 
         }
 
         if scrollView.mj_header.state == MJRefreshState.Pulling {
-            refreshStatus = .Pulling
 
             label.text = L10n.HomeRefreshPulling.string
 
         }
 
         if scrollView.mj_header.state == MJRefreshState.Refreshing {
-            refreshStatus = .Refreshing
             
             let imgView = AnimatableImageView()
             imgView.animateWithImage(named: "loading@3x.gif")
@@ -181,7 +185,6 @@ extension HomeViewController: UIScrollViewDelegate {
         }
 
         if scrollView.mj_header.state == MJRefreshState.NoMoreData{
-            refreshStatus = .NoMoreData
             // 结束刷新
             label.text = ""
             scrollView.mj_header.endRefreshing()
