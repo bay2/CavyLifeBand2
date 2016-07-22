@@ -103,7 +103,6 @@ struct StepsDataItem: JSONJoy {
 }
 
 
-
 struct StepHourCoun: JSONJoy {
     
     var steps: Int

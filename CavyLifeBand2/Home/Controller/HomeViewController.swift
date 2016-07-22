@@ -244,7 +244,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         if isNeedUpdateStepData() {
             
-            let personalList = realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
+            let personalList = realm.objects(StepWebRealm).filter("userId = '\(userId)'")
             
             if personalList.count != 0 {
                 
@@ -296,57 +296,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
              Log.error("Parse Home Lists Data Error")
         }
     }
-    
-    /**
-     解析睡眠数据
-     时间格式： yyyy-MM-dd
-     有时间：更新数据
-     没有时间：解析全部数据
-     */
-    func parseSleepDate(startDate: String, endDate: String) {
 
-        ChartsWebApi.shareApi.parseSleepChartsData(startDate, endDate: endDate) { result in
-            
-            guard result.isSuccess else {
-                Log.error("Parse Home Lists Data Error")
-                return
-            }
-            do {
-                Log.info(result.value!)
-                let netResult = try ChartSleepMsg(JSONDecoder(result.value!))
-                for list in netResult.sleepList {
-                    
-                    Log.info(list)
-                    // 保存到数据库
-                    self.addSleepListRealm(list)
-                }
-                
-            } catch let error {
-                Log.error("\(#function) result error: \(error)")
-            }
-            
-        }
-
-    }
-    
-      /**
-     添加计步信息
-     
-     - author: sim cai
-     - date: 16-05-27 10:05:27
-     
-     
-     - parameter list: 计步信息JSON
-     */
-    func addStepListRealm(list: StepMsg) {
-    
-        guard let date = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
-            return
-        }
-        
-        self.addStepData(ChartStepDataRealm(userId: self.userId, time: date, step: list.stepCount))
-
-    }
     
     //  从服务器获取数据存入表
     
@@ -362,7 +312,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         }
         
     
-        self.addStepData(NChartStepDataRealm(userId: self.userId, date: list.date!, totalTime: list.totalTime, totalStep: list.totalSteps, stepList: stepList))
+        self.addStepData(StepWebRealm(userId: self.userId, date: list.date!, totalTime: list.totalTime, totalStep: list.totalSteps, stepList: stepList))
         
     }
     
@@ -381,16 +331,16 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     }
     
     
-    func addSleepListRealm(list: SleepMsg) {
-        
-        guard let time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
-            Log.error("Time from erro [\(list.dateTime)]")
-            return
-        }
-        
-        self.addSleepData(ChartSleepDataRealm(userId: self.userId, time: time, tilts: list.rollCount))
-
-    }
+//    func addSleepListRealm(list: SleepMsg) {
+//        
+//        guard let time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
+//            Log.error("Time from erro [\(list.dateTime)]")
+//            return
+//        }
+//        
+//        self.addSleepData(ChartSleepDataRealm(userId: self.userId, time: time, tilts: list.rollCount))
+//
+//    }
     
     // MARK: 加载详情
     /**

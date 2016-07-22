@@ -25,6 +25,6 @@
 /*----------share----------*/
 
 // 友盟统计SDK
-#import <UMMobClick/MobClick.h>
+//#import <UMMobClick/MobClick.h>
 
 #endif /* CavyLifeBand2_Swift_h */

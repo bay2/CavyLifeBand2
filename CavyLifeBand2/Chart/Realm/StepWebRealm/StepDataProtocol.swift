@@ -1,8 +1,8 @@
 //
-//  StepsDataReaml.swift
+//  StepDataProtocol.swift
 //  CavyLifeBand2
 //
-//  Created by Hanks on 16/6/28.
+//  Created by Jessica on 16/7/22.
 //  Copyright © 2016年 xuemincai. All rights reserved.
 //
 
@@ -12,44 +12,6 @@ import Log
 import Datez
 import JSONJoy
 
-class NChartStepDataRealm: Object {
-    
-    dynamic var userId             = ""
-    dynamic var date: NSDate       = NSDate()
-    dynamic var totalTime: Int     = 0
-    dynamic var totalStep: Int     = 0
-    dynamic var kilometer: CGFloat = 0
-    
-    var stepList = List<StepListItem>()
-    
-   
-    convenience init(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, date: NSDate, totalTime: Int, totalStep: Int, stepList: List<StepListItem>) {
-        
-        self.init()
-        self.userId    = userId
-        self.date      = date
-        self.totalStep = totalStep
-        self.kilometer = CGFloat(self.totalStep) * 0.0006
-        self.totalTime = totalTime
-        self.stepList  = stepList
-    }
-    
-}
-
-class StepListItem: Object {
-    
-    dynamic var step = 0
-    
-    convenience required init(step: Int) {
-        
-        self.init()
-        self.step = step
-    }
-    
-}
-
-
-
 // MARK: 服务器计步数据库操作协议
 protocol ChartStepRealmProtocol {
     
@@ -57,20 +19,17 @@ protocol ChartStepRealmProtocol {
     var userId: String { get }
     
     func isNeedUpdateNStepData() -> Bool
-    func queryAllStepInfo(userId: String) -> Results<(NChartStepDataRealm)>?
+    func queryAllStepInfo(userId: String) -> Results<(StepWebRealm)>?
     func delecNSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool
-    func addStepData(chartStepInfo: NChartStepDataRealm) -> Bool
-    func delecNSteptDate(chartStepInfo: NChartStepDataRealm) -> Bool
+    func addStepData(chartStepInfo: StepWebRealm) -> Bool
+    func delecNSteptDate(chartStepInfo: StepWebRealm) -> Bool
     func queryNStepNumber(beginTime: NSDate, endTime: NSDate, timeBucket: TimeBucketStyle) -> StepChartsData?
     
 }
 
-
-
-
 extension ChartStepRealmProtocol {
- 
-  
+    
+    
     
     /**
      删除某一段时间的数据
@@ -84,7 +43,7 @@ extension ChartStepRealmProtocol {
     func delecNSteptDate(beginTime: NSDate, endTime: NSDate) -> Bool {
         
         
-        let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date > %@ AND date < %@", beginTime, endTime)
+        let dataInfo = realm.objects(StepWebRealm).filter("userId == '\(userId)' AND date > %@ AND date < %@", beginTime, endTime)
         
         self.realm.beginWrite()
         
@@ -117,12 +76,12 @@ extension ChartStepRealmProtocol {
      - returns: <#return value description#>
      */
     
-    func delecNSteptDate(chartStepInfo: NChartStepDataRealm) -> Bool {
+    func delecNSteptDate(chartStepInfo: StepWebRealm) -> Bool {
         
         self.realm.beginWrite()
         
         self.realm.delete(chartStepInfo)
-    
+        
         do {
             
             try self.realm.commitWrite()
@@ -138,7 +97,7 @@ extension ChartStepRealmProtocol {
         return true
         
     }
-
+    
     
     
     /**
@@ -149,13 +108,13 @@ extension ChartStepRealmProtocol {
     
     func isNeedUpdateNStepData() -> Bool {
         
-        let list = realm.objects(NChartStepDataRealm)
+        let list = realm.objects(StepWebRealm)
         
         if list.count == 0 {
             return true
         }
         
-        let personalList = realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
+        let personalList = realm.objects(StepWebRealm).filter("userId = '\(userId)'")
         
         if personalList.count == 0 {
             return true
@@ -176,20 +135,20 @@ extension ChartStepRealmProtocol {
     /**
      返回从服务器存储拉取的所有单条数据
      */
-    func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(NChartStepDataRealm)>? {
-
-        return realm.objects(NChartStepDataRealm).filter("userId = '\(userId)'")
+    func queryAllStepInfo(userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) -> Results<(StepWebRealm)>? {
+        
+        return realm.objects(StepWebRealm).filter("userId = '\(userId)'")
         
     }
     
-
+    
     
     /**
      添加计步数据
      - parameter chartsInfo: 用户的计步信息
      - returns: 成功：true 失败： false
      */
-    func addStepData(chartsInfo: NChartStepDataRealm) -> Bool {
+    func addStepData(chartsInfo: StepWebRealm) -> Bool {
         
         do {
             
@@ -211,7 +170,7 @@ extension ChartStepRealmProtocol {
         
     }
     
-
+    
     /**
      查询 日周月下 某一时段的 数据信息
      */
@@ -223,17 +182,17 @@ extension ChartStepRealmProtocol {
         
         if today {
             
-          scanTime = NSDate(timeInterval: -24 * 60 * 60, sinceDate: endTime)
+            scanTime = NSDate(timeInterval: -24 * 60 * 60, sinceDate: endTime)
             
         }else
         {
             scanTime = endTime
         }
-    
+        
         
         //转换时间格式
         
-    let dataInfo = realm.objects(NChartStepDataRealm).filter("userId == '\(userId)' AND date => %@ AND date <= %@", beginTime.gregorian.beginningOfDay.date, scanTime.gregorian.beginningOfDay.date)
+        let dataInfo = realm.objects(StepWebRealm).filter("userId == '\(userId)' AND date => %@ AND date <= %@", beginTime.gregorian.beginningOfDay.date, scanTime.gregorian.beginningOfDay.date)
         
         Log.info("\(dataInfo.count)")
         print("=============\(dataInfo.count)==============")
@@ -263,7 +222,7 @@ extension ChartStepRealmProtocol {
     /**
      按小时分组 一天24小时
      */
-    func returnHourChartsArray(dataInfo: Results<(NChartStepDataRealm)>?) -> StepChartsData? {
+    func returnHourChartsArray(dataInfo: Results<(StepWebRealm)>?) -> StepChartsData? {
         
         
         guard let newData = dataInfo else {
@@ -280,7 +239,7 @@ extension ChartStepRealmProtocol {
         }
         
         for data in newData {
-          
+            
             stepChartsData.totalStep = data.totalStep
             stepChartsData.totalKilometer = data.kilometer
             stepChartsData.finishTime = data.totalTime
@@ -294,7 +253,7 @@ extension ChartStepRealmProtocol {
                 
             }
             
-        
+            
         }
         
         return stepChartsData
@@ -305,7 +264,7 @@ extension ChartStepRealmProtocol {
     
     /**
      按天分组 一周七天 一个月30天
-     */    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(NChartStepDataRealm)>) -> StepChartsData {
+     */    func returnDayChartsArray(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(StepWebRealm)>) -> StepChartsData {
         
         var stepChartsData = StepChartsData(datas: [], totalStep: 0, totalKilometer: 0, finishTime: 0, averageStep: 0)
         
@@ -324,7 +283,7 @@ extension ChartStepRealmProtocol {
         let dataInfoArr = completeStepData(beginTime, endTime: endTime, dataInfo: dataInfo)
         
         for data in dataInfoArr {
-           
+            
             indext += 1
             stepChartsData.totalKilometer += data.kilometer
             stepChartsData.totalStep += data.totalStep
@@ -334,16 +293,16 @@ extension ChartStepRealmProtocol {
             // 取平局数时候去除0步的情况
             
             if data.totalStep != 0 {
-        
+                
                 averageStepCount += 1
             }
             
             
             if indext - 1 < maxNum   {
                 
-                 stepChartsData.datas[indext - 1].step = data.totalStep
+                stepChartsData.datas[indext - 1].step = data.totalStep
             }
-           
+            
             
         }
         
@@ -353,10 +312,10 @@ extension ChartStepRealmProtocol {
             
         }else {
             
-             stepChartsData.averageStep = Int(stepChartsData.finishTime / averageStepCount)
+            stepChartsData.averageStep = Int(stepChartsData.finishTime / averageStepCount)
         }
-       
-    
+        
+        
         return stepChartsData
         
     }
@@ -371,17 +330,17 @@ extension ChartStepRealmProtocol {
      - returns: <#return value description#>
      */
     
-    func completeStepData(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(NChartStepDataRealm)>) -> [NChartStepDataRealm]{
-       
-         let maxNum = (NSDate().gregorian.date - beginTime).totalDays + 1
-         let infoCount = dataInfo.count
-         var resultDataArr: [NChartStepDataRealm] = []
+    func completeStepData(beginTime: NSDate, endTime: NSDate, dataInfo: Results<(StepWebRealm)>) -> [StepWebRealm]{
+        
+        let maxNum = (NSDate().gregorian.date - beginTime).totalDays + 1
+        let infoCount = dataInfo.count
+        var resultDataArr: [StepWebRealm] = []
         
         if infoCount < maxNum {
-           
+            
             for _ in 0..<(maxNum - infoCount) {
                 
-                resultDataArr.append(NChartStepDataRealm())
+                resultDataArr.append(StepWebRealm())
             }
             
         }

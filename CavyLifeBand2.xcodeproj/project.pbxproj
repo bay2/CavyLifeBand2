@@ -41,9 +41,17 @@
 		4C9E0B551D1A395200DBC1FC /* ChartBaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B401D1A395200DBC1FC /* ChartBaseViewModel.swift */; };
 		4C9E0B561D1A395200DBC1FC /* ChartOtherSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B411D1A395200DBC1FC /* ChartOtherSetting.swift */; };
 		4C9E0B571D1A395200DBC1FC /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B421D1A395200DBC1FC /* ShareViewModel.swift */; };
-		4C9E0B581D1A395200DBC1FC /* ChartsDataRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B441D1A395200DBC1FC /* ChartsDataRealm.swift */; };
-		4C9E0B591D1A395200DBC1FC /* ChartsJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B451D1A395200DBC1FC /* ChartsJSON.swift */; };
-		4C9E0B5A1D1A395200DBC1FC /* ChartsWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9E0B461D1A395200DBC1FC /* ChartsWebApi.swift */; };
+		4CAC8ED91D41F09C00083879 /* ChartsRealmProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC8ED11D41F09C00083879 /* ChartsRealmProtocol.swift */; };
+		4CAC8EDA1D41F09C00083879 /* SleepRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC8ED31D41F09C00083879 /* SleepRealm.swift */; };
+		4CAC8EDB1D41F09C00083879 /* SleepWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC8ED41D41F09C00083879 /* SleepWebApi.swift */; };
+		4CAC8EDC1D41F09C00083879 /* SleepWebJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC8ED51D41F09C00083879 /* SleepWebJSON.swift */; };
+		4CAC8EDD1D41F09C00083879 /* StepJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC8ED71D41F09C00083879 /* StepJSON.swift */; };
+		4CAC8EDE1D41F09C00083879 /* StepsDataReaml.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC8ED81D41F09C00083879 /* StepsDataReaml.swift */; };
+		4CAC8EE01D41F0E400083879 /* ChartOriginalRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC8EDF1D41F0E400083879 /* ChartOriginalRealm.swift */; };
+		4CAC8EE41D41F21800083879 /* ChartsOutStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC8EE31D41F21800083879 /* ChartsOutStruct.swift */; };
+		4CAC8EE81D41F74600083879 /* StepDataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC8EE71D41F74600083879 /* StepDataProtocol.swift */; };
+		4CAC8EEA1D41F7EB00083879 /* StepWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC8EE91D41F7EB00083879 /* StepWebApi.swift */; };
+		4CAC8EED1D41FCD700083879 /* ChartsRealmSleepPronintocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CAC8EEC1D41FCD700083879 /* ChartsRealmSleepPronintocal.swift */; };
 		4CB16D6B1D1130A7006858B5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB16D6A1D1130A7006858B5 /* HomeViewController.swift */; };
 		4CB7A06E1CD095C400DFB8DC /* BandElectricView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */; };
 		4CB7A06F1CD095C400DFB8DC /* BandElectricView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CB7A0561CD095C400DFB8DC /* BandElectricView.xib */; };
@@ -77,7 +85,6 @@
 		4CE1DBAB1D1BAE4800A67FDD /* ChartsBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DBA81D1BAE4800A67FDD /* ChartsBaseView.swift */; };
 		4CE1DBAC1D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DBA91D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift */; };
 		4CE1DBAD1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE1DBAA1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift */; };
-		4CE8F0051D1CD2990069F1C5 /* ChartsTableListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE8F0041D1CD2990069F1C5 /* ChartsTableListViewModel.swift */; };
 		4CF9CB321D2A41FF00D9C88F /* HomeRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9CB2E1D2A41FF00D9C88F /* HomeRealm.swift */; };
 		4CF9CB331D2A41FF00D9C88F /* HomeRealmApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9CB2F1D2A41FF00D9C88F /* HomeRealmApi.swift */; };
 		4CF9CB341D2A41FF00D9C88F /* HomeWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF9CB301D2A41FF00D9C88F /* HomeWebApi.swift */; };
@@ -146,15 +153,12 @@
 		686A5F041CDC7F3900EB8D0E /* RelateAppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686A5F021CDC7F3900EB8D0E /* RelateAppCell.swift */; };
 		686A5F051CDC7F3900EB8D0E /* RelateAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */; };
 		686FAC671D3F63AC001ED6A9 /* EventStatisticsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 686FAC661D3F63AC001ED6A9 /* EventStatisticsProtocol.swift */; };
-		6874798D1D22943100354A5B /* SleepRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6874798C1D22943100354A5B /* SleepRealm.swift */; };
 		687479921D23A33700354A5B /* LoginJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479911D23A33700354A5B /* LoginJSON.swift */; };
-		687479941D24AF0600354A5B /* SleepWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479931D24AF0600354A5B /* SleepWebApi.swift */; };
 		687479971D24BA8B00354A5B /* UploadBandData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479961D24BA8B00354A5B /* UploadBandData.swift */; };
 		687479991D24EE0F00354A5B /* FunctionIntroduceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687479981D24EE0F00354A5B /* FunctionIntroduceVC.swift */; };
 		6889FD331CBF776D00C03E90 /* AddClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */; };
 		6889FD351CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */; };
 		688E7B5C1D20FB3F0062DF9D /* NetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */; };
-		688E7B5F1D2259BB0062DF9D /* SleepWebJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688E7B5E1D2259BB0062DF9D /* SleepWebJSON.swift */; };
 		68A453531D0F96E800552521 /* FirmwareUpdateJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */; };
 		68B4DED41CE1BBEC00BE041C /* HelpFeedbackJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */; };
 		68B4DED61CE1BDF600BE041C /* HelpFeedbackWebApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B4DED51CE1BDF600BE041C /* HelpFeedbackWebApi.swift */; };
@@ -180,8 +184,6 @@
 		68E978171CC77DE500651724 /* PKInfoOrResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 68E978161CC77DE500651724 /* PKInfoOrResultView.xib */; };
 		88482C231D220AC30084628B /* GuideLinking@3x.gif in Resources */ = {isa = PBXBuildFile; fileRef = 88482C211D220AC30084628B /* GuideLinking@3x.gif */; };
 		887C75B81D114AB2009EA1F6 /* Array_Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 887C75B71D114AB2009EA1F6 /* Array_Extension.swift */; };
-		889519EF1D26397E00BC4938 /* StepDataJson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889519EC1D26397E00BC4938 /* StepDataJson.swift */; };
-		889519F01D26397E00BC4938 /* StepsDataReaml.swift in Sources */ = {isa = PBXBuildFile; fileRef = 889519ED1D26397E00BC4938 /* StepsDataReaml.swift */; };
 		9104AA6E1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */; };
 		9104AA701CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */; };
 		910DFED31D0029E0009B944D /* FirmwareUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 910DFED21D0029E0009B944D /* FirmwareUpdate.swift */; };
@@ -399,9 +401,17 @@
 		4C9E0B401D1A395200DBC1FC /* ChartBaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartBaseViewModel.swift; sourceTree = "<group>"; };
 		4C9E0B411D1A395200DBC1FC /* ChartOtherSetting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartOtherSetting.swift; sourceTree = "<group>"; };
 		4C9E0B421D1A395200DBC1FC /* ShareViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
-		4C9E0B441D1A395200DBC1FC /* ChartsDataRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsDataRealm.swift; sourceTree = "<group>"; };
-		4C9E0B451D1A395200DBC1FC /* ChartsJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsJSON.swift; sourceTree = "<group>"; };
-		4C9E0B461D1A395200DBC1FC /* ChartsWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsWebApi.swift; sourceTree = "<group>"; };
+		4CAC8ED11D41F09C00083879 /* ChartsRealmProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsRealmProtocol.swift; sourceTree = "<group>"; };
+		4CAC8ED31D41F09C00083879 /* SleepRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepRealm.swift; sourceTree = "<group>"; };
+		4CAC8ED41D41F09C00083879 /* SleepWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepWebApi.swift; sourceTree = "<group>"; };
+		4CAC8ED51D41F09C00083879 /* SleepWebJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepWebJSON.swift; sourceTree = "<group>"; };
+		4CAC8ED71D41F09C00083879 /* StepJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepJSON.swift; sourceTree = "<group>"; };
+		4CAC8ED81D41F09C00083879 /* StepsDataReaml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsDataReaml.swift; sourceTree = "<group>"; };
+		4CAC8EDF1D41F0E400083879 /* ChartOriginalRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartOriginalRealm.swift; sourceTree = "<group>"; };
+		4CAC8EE31D41F21800083879 /* ChartsOutStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsOutStruct.swift; sourceTree = "<group>"; };
+		4CAC8EE71D41F74600083879 /* StepDataProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDataProtocol.swift; sourceTree = "<group>"; };
+		4CAC8EE91D41F7EB00083879 /* StepWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepWebApi.swift; sourceTree = "<group>"; };
+		4CAC8EEC1D41FCD700083879 /* ChartsRealmSleepPronintocal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsRealmSleepPronintocal.swift; sourceTree = "<group>"; };
 		4CB16D6A1D1130A7006858B5 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		4CB7A0551CD095C400DFB8DC /* BandElectricView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BandElectricView.swift; sourceTree = "<group>"; };
 		4CB7A0561CD095C400DFB8DC /* BandElectricView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BandElectricView.xib; sourceTree = "<group>"; };
@@ -435,7 +445,6 @@
 		4CE1DBA81D1BAE4800A67FDD /* ChartsBaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsBaseView.swift; sourceTree = "<group>"; };
 		4CE1DBA91D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsSubTimeBucketCell.swift; sourceTree = "<group>"; };
 		4CE1DBAA1D1BAE4800A67FDD /* ChartsSubTimeBucketFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsSubTimeBucketFlowLayout.swift; sourceTree = "<group>"; };
-		4CE8F0041D1CD2990069F1C5 /* ChartsTableListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartsTableListViewModel.swift; sourceTree = "<group>"; };
 		4CF9CB2E1D2A41FF00D9C88F /* HomeRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRealm.swift; sourceTree = "<group>"; };
 		4CF9CB2F1D2A41FF00D9C88F /* HomeRealmApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRealmApi.swift; sourceTree = "<group>"; };
 		4CF9CB301D2A41FF00D9C88F /* HomeWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWebApi.swift; sourceTree = "<group>"; };
@@ -504,15 +513,12 @@
 		686A5F021CDC7F3900EB8D0E /* RelateAppCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelateAppCell.swift; sourceTree = "<group>"; };
 		686A5F031CDC7F3900EB8D0E /* RelateAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RelateAppCell.xib; sourceTree = "<group>"; };
 		686FAC661D3F63AC001ED6A9 /* EventStatisticsProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventStatisticsProtocol.swift; sourceTree = "<group>"; };
-		6874798C1D22943100354A5B /* SleepRealm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepRealm.swift; sourceTree = "<group>"; };
 		687479911D23A33700354A5B /* LoginJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginJSON.swift; sourceTree = "<group>"; };
-		687479931D24AF0600354A5B /* SleepWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepWebApi.swift; sourceTree = "<group>"; };
 		687479961D24BA8B00354A5B /* UploadBandData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadBandData.swift; sourceTree = "<group>"; };
 		687479981D24EE0F00354A5B /* FunctionIntroduceVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunctionIntroduceVC.swift; sourceTree = "<group>"; };
 		6889FD321CBF776D00C03E90 /* AddClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddClockVCViewModel.swift; sourceTree = "<group>"; };
 		6889FD341CBF8D3900C03E90 /* IntelligentClockVCViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntelligentClockVCViewModel.swift; sourceTree = "<group>"; };
 		688E7B5B1D20FB3F0062DF9D /* NetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetRequest.swift; sourceTree = "<group>"; };
-		688E7B5E1D2259BB0062DF9D /* SleepWebJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepWebJSON.swift; sourceTree = "<group>"; };
 		68A453521D0F96E800552521 /* FirmwareUpdateJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdateJSON.swift; sourceTree = "<group>"; };
 		68B4DED31CE1BBEC00BE041C /* HelpFeedbackJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpFeedbackJSON.swift; sourceTree = "<group>"; };
 		68B4DED51CE1BDF600BE041C /* HelpFeedbackWebApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpFeedbackWebApi.swift; sourceTree = "<group>"; };
@@ -539,8 +545,6 @@
 		8459E91F9A54D3E7AB8FF576 /* Pods_CavyLifeBand2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CavyLifeBand2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88482C211D220AC30084628B /* GuideLinking@3x.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "GuideLinking@3x.gif"; sourceTree = "<group>"; };
 		887C75B71D114AB2009EA1F6 /* Array_Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array_Extension.swift; sourceTree = "<group>"; };
-		889519EC1D26397E00BC4938 /* StepDataJson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepDataJson.swift; sourceTree = "<group>"; };
-		889519ED1D26397E00BC4938 /* StepsDataReaml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepsDataReaml.swift; sourceTree = "<group>"; };
 		9104AA6D1CC37EED00FE03E7 /* ContactsAddFriendVC_ExtSearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtSearch.swift; sourceTree = "<group>"; };
 		9104AA6F1CC37F5100FE03E7 /* ContactsAddFriendVC_ExtDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsAddFriendVC_ExtDataSource.swift; sourceTree = "<group>"; };
 		910DFED21D0029E0009B944D /* FirmwareUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirmwareUpdate.swift; sourceTree = "<group>"; };
@@ -784,21 +788,20 @@
 		4C9E0B2E1D1A395200DBC1FC /* Chart */ = {
 			isa = PBXGroup;
 			children = (
-				889519E71D26397E00BC4938 /* StepContrl */,
+				4C9E0B2F1D1A395200DBC1FC /* Controller */,
+				4CAC8ECF1D41F09C00083879 /* Realm */,
 				687479951D24BA5F00354A5B /* UploadBandData */,
-				688E7B5D1D22591C0062DF9D /* SleepControl */,
-				4C9E0B2F1D1A395200DBC1FC /* controller */,
 				4C9E0B3F1D1A395200DBC1FC /* ViewModel */,
-				4C9E0B431D1A395200DBC1FC /* WebApi */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
 		};
-		4C9E0B2F1D1A395200DBC1FC /* controller */ = {
+		4C9E0B2F1D1A395200DBC1FC /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				4C9E0B301D1A395200DBC1FC /* ChartsViewController.swift */,
 			);
+			name = Controller;
 			path = controller;
 			sourceTree = "<group>";
 		};
@@ -830,21 +833,52 @@
 			isa = PBXGroup;
 			children = (
 				4C9E0B401D1A395200DBC1FC /* ChartBaseViewModel.swift */,
-				4CE8F0041D1CD2990069F1C5 /* ChartsTableListViewModel.swift */,
 				4C9E0B411D1A395200DBC1FC /* ChartOtherSetting.swift */,
 				4C9E0B421D1A395200DBC1FC /* ShareViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		4C9E0B431D1A395200DBC1FC /* WebApi */ = {
+		4CAC8ECF1D41F09C00083879 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				4C9E0B441D1A395200DBC1FC /* ChartsDataRealm.swift */,
-				4C9E0B451D1A395200DBC1FC /* ChartsJSON.swift */,
-				4C9E0B461D1A395200DBC1FC /* ChartsWebApi.swift */,
+				4CAC8ED01D41F09C00083879 /* OriginalRealm */,
+				4CAC8ED21D41F09C00083879 /* SleepWebRealm */,
+				4CAC8ED61D41F09C00083879 /* StepWebRealm */,
 			);
-			path = WebApi;
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		4CAC8ED01D41F09C00083879 /* OriginalRealm */ = {
+			isa = PBXGroup;
+			children = (
+				4CAC8EDF1D41F0E400083879 /* ChartOriginalRealm.swift */,
+				4CAC8ED11D41F09C00083879 /* ChartsRealmProtocol.swift */,
+				4CAC8EEC1D41FCD700083879 /* ChartsRealmSleepPronintocal.swift */,
+				4CAC8EE31D41F21800083879 /* ChartsOutStruct.swift */,
+			);
+			path = OriginalRealm;
+			sourceTree = "<group>";
+		};
+		4CAC8ED21D41F09C00083879 /* SleepWebRealm */ = {
+			isa = PBXGroup;
+			children = (
+				4CAC8ED31D41F09C00083879 /* SleepRealm.swift */,
+				4CAC8ED41D41F09C00083879 /* SleepWebApi.swift */,
+				4CAC8ED51D41F09C00083879 /* SleepWebJSON.swift */,
+			);
+			path = SleepWebRealm;
+			sourceTree = "<group>";
+		};
+		4CAC8ED61D41F09C00083879 /* StepWebRealm */ = {
+			isa = PBXGroup;
+			children = (
+				4CAC8ED71D41F09C00083879 /* StepJSON.swift */,
+				4CAC8EE91D41F7EB00083879 /* StepWebApi.swift */,
+				4CAC8ED81D41F09C00083879 /* StepsDataReaml.swift */,
+				4CAC8EE71D41F74600083879 /* StepDataProtocol.swift */,
+			);
+			path = StepWebRealm;
 			sourceTree = "<group>";
 		};
 		4CB7A0541CD095C400DFB8DC /* DrawerView */ = {
@@ -1075,16 +1109,6 @@
 			path = NetWorking;
 			sourceTree = "<group>";
 		};
-		688E7B5D1D22591C0062DF9D /* SleepControl */ = {
-			isa = PBXGroup;
-			children = (
-				688E7B5E1D2259BB0062DF9D /* SleepWebJSON.swift */,
-				687479931D24AF0600354A5B /* SleepWebApi.swift */,
-				6874798C1D22943100354A5B /* SleepRealm.swift */,
-			);
-			path = SleepControl;
-			sourceTree = "<group>";
-		};
 		68B4DED21CE1BBC000BE041C /* WebApi */ = {
 			isa = PBXGroup;
 			children = (
@@ -1179,23 +1203,6 @@
 				91DFA91D1CD84DC20036B939 /* PKListDataSource.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		889519E71D26397E00BC4938 /* StepContrl */ = {
-			isa = PBXGroup;
-			children = (
-				889519EB1D26397E00BC4938 /* WebApi */,
-			);
-			path = StepContrl;
-			sourceTree = "<group>";
-		};
-		889519EB1D26397E00BC4938 /* WebApi */ = {
-			isa = PBXGroup;
-			children = (
-				889519EC1D26397E00BC4938 /* StepDataJson.swift */,
-				889519ED1D26397E00BC4938 /* StepsDataReaml.swift */,
-			);
-			path = WebApi;
 			sourceTree = "<group>";
 		};
 		9114D1BC1C97A1BB008CB4CE /* Resource */ = {
@@ -2167,7 +2174,6 @@
 				4CE1DBAC1D1BAE4800A67FDD /* ChartsSubTimeBucketCell.swift in Sources */,
 				4CB16D6B1D1130A7006858B5 /* HomeViewController.swift in Sources */,
 				917B98CB1CB8F417008698F5 /* ContactsCellPresenter.swift in Sources */,
-				889519EF1D26397E00BC4938 /* StepDataJson.swift in Sources */,
 				91E1B4E41CA513A4008ADEE6 /* ContactRecommendFriendTV.swift in Sources */,
 				687479991D24EE0F00354A5B /* FunctionIntroduceVC.swift in Sources */,
 				68648A801CF3F125009D4BEE /* AccountSettingViewModel.swift in Sources */,
@@ -2185,7 +2191,6 @@
 				4CB7A0751CD095C400DFB8DC /* HomeDataCellFlowLayout.swift in Sources */,
 				4CB7A0771CD095C400DFB8DC /* HomeDateView.swift in Sources */,
 				685204EB1CB79D40004179B0 /* RemindersSettingViewController.swift in Sources */,
-				687479941D24AF0600354A5B /* SleepWebApi.swift in Sources */,
 				686FAC671D3F63AC001ED6A9 /* EventStatisticsProtocol.swift in Sources */,
 				4CF9CB321D2A41FF00D9C88F /* HomeRealm.swift in Sources */,
 				68648A891CF6936D009D4BEE /* GuideIntroduceView.swift in Sources */,
@@ -2216,10 +2221,11 @@
 				4C2B67DC1CCDECD500512CC7 /* NSMutableAttributedString_Extension.swift in Sources */,
 				9114D1FE1C97AB05008CB4CE /* UserNetJSON.swift in Sources */,
 				9150CABA1CC8D03800A398E9 /* RightMenuViewModel.swift in Sources */,
+				4CAC8EDC1D41F09C00083879 /* SleepWebJSON.swift in Sources */,
 				91E1B4C11CA510BD008ADEE6 /* ContactsSortAndGroup.swift in Sources */,
+				4CAC8EE81D41F74600083879 /* StepDataProtocol.swift in Sources */,
 				9114D1F01C97AB05008CB4CE /* SendSafetyCodeButton.swift in Sources */,
 				91E1B4E81CA51E7F008ADEE6 /* ContactsAccountInfoVC.swift in Sources */,
-				688E7B5F1D2259BB0062DF9D /* SleepWebJSON.swift in Sources */,
 				68E978111CC7698900651724 /* PKInvitationVCViewModel.swift in Sources */,
 				91B04DDC1CB3EC83007E67B0 /* GuideViewProtocol.swift in Sources */,
 				91A2EC931CB350D200361952 /* AccountInfoSecurityCell.swift in Sources */,
@@ -2227,6 +2233,7 @@
 				4C05F9B21D347A820085C9C8 /* ImageViewCell.swift in Sources */,
 				4C9E0B521D1A395200DBC1FC /* ShowChartsView.swift in Sources */,
 				4C0BFA0A1CBF27D000DB06FC /* HomeWeatherWebApi.swift in Sources */,
+				4CAC8EED1D41FCD700083879 /* ChartsRealmSleepPronintocal.swift in Sources */,
 				686A5EEF1CDC35AE00EB8D0E /* HelpAndFeedbackListVC.swift in Sources */,
 				4CF9CB331D2A41FF00D9C88F /* HomeRealmApi.swift in Sources */,
 				91E1B4DA1CA510BD008ADEE6 /* ContactsFriendListVC.swift in Sources */,
@@ -2239,7 +2246,6 @@
 				68648A731CEC4FF1009D4BEE /* ContactChangeRemarkVM.swift in Sources */,
 				4CB7A0711CD095C400DFB8DC /* HomeUserInfo.swift in Sources */,
 				91DFA91C1CD8445C0036B939 /* PKListVC.swift in Sources */,
-				6874798D1D22943100354A5B /* SleepRealm.swift in Sources */,
 				91ACEC621CB654BD008ED8B0 /* GuideInfoModelView.swift in Sources */,
 				917936C71CBB8E34002936E3 /* BaseViewController.swift in Sources */,
 				91DFA9221CD8C49F0036B939 /* PKListSectionView.swift in Sources */,
@@ -2248,7 +2254,6 @@
 				683655971CBE261B009373EA /* SettingRealmModel.swift in Sources */,
 				684C6AD81CC9BA1C000C176E /* PKJSON.swift in Sources */,
 				4C8D36AE1D377ADE00CCE06F /* ChartsSleepLegendView.swift in Sources */,
-				4C9E0B581D1A395200DBC1FC /* ChartsDataRealm.swift in Sources */,
 				91ACEC5C1CB4B526008ED8B0 /* GuideUserInfo.swift in Sources */,
 				9114D1EF1C97AB05008CB4CE /* PageViewController.swift in Sources */,
 				6836552E1CBB4CEA009373EA /* SafetySettingTableFooterView.swift in Sources */,
@@ -2257,13 +2262,14 @@
 				4CB7A07A1CD095C400DFB8DC /* HomeTimeLineSection.swift in Sources */,
 				91B49AED1CF446540017CC69 /* LifeBandSyncData.swift in Sources */,
 				918435EF1C7D629D005B6E92 /* ColorsDefine.swift in Sources */,
-				4C9E0B591D1A395200DBC1FC /* ChartsJSON.swift in Sources */,
+				4CAC8EE01D41F0E400083879 /* ChartOriginalRealm.swift in Sources */,
 				68E978061CC62B5600651724 /* PKInvitationVC.swift in Sources */,
 				91DFA91E1CD84DC20036B939 /* PKListDataSource.swift in Sources */,
 				91E1B4CB1CA510BD008ADEE6 /* ContactsFriendListCell.swift in Sources */,
 				4C9E0B531D1A395200DBC1FC /* ShowPieChartsView.swift in Sources */,
 				9144D1121CC0921F006002A8 /* ContactsTableViewProtocol.swift in Sources */,
 				9114D1FC1C97AB05008CB4CE /* RulerView.swift in Sources */,
+				4CAC8EDD1D41F09C00083879 /* StepJSON.swift in Sources */,
 				4CB7A0701CD095C400DFB8DC /* BandInfoView.swift in Sources */,
 				4C80C6C71D2FA1410007F577 /* PhotoView.swift in Sources */,
 				68648ADF1CF83CFB009D4BEE /* ContactListEmptyView.swift in Sources */,
@@ -2274,6 +2280,7 @@
 				6838ABB71D3345BA00586354 /* UploadAvatarWebApi.swift in Sources */,
 				68C558CF1CB751050031719D /* IntelligentClockTableFooterView.swift in Sources */,
 				68B4DEDA1CE57B6E00BE041C /* RelateAppWebApi.swift in Sources */,
+				4CAC8EE41D41F21800083879 /* ChartsOutStruct.swift in Sources */,
 				9114D1E41C97AB05008CB4CE /* UserInfoRealm.swift in Sources */,
 				919FC6681CC613660062A1CB /* MainPageViewController.swift in Sources */,
 				9114D1F11C97AB05008CB4CE /* SignInViewController.swift in Sources */,
@@ -2289,6 +2296,7 @@
 				4C05744D1D25063900D78716 /* UIDeviceExtension.swift in Sources */,
 				686A5EF81CDC3D4500EB8D0E /* AboutCell.swift in Sources */,
 				918AA22E1CE327DC0022AE30 /* LifeBandBLE.swift in Sources */,
+				4CAC8EDB1D41F09C00083879 /* SleepWebApi.swift in Sources */,
 				4C9E0B511D1A395200DBC1FC /* ShareView.swift in Sources */,
 				916456451CE1C115002D2D87 /* AlamofireImageExtension.swift in Sources */,
 				4C9E0B491D1A395200DBC1FC /* ChartsInfoCollectionCell.swift in Sources */,
@@ -2303,7 +2311,6 @@
 				917B98CD1CB8F561008698F5 /* ContactsPresonInfoViewModel.swift in Sources */,
 				4CD5AAC91CF42D310011CD13 /* HomeListViewModel.swift in Sources */,
 				91E1B4D91CA510BD008ADEE6 /* ContactsAddFriendVC.swift in Sources */,
-				889519F01D26397E00BC4938 /* StepsDataReaml.swift in Sources */,
 				917936C91CBCE7D4002936E3 /* ContactsFriendLoadDataViewModel.swift in Sources */,
 				4CB7A0731CD095C400DFB8DC /* MenuTableViewCell.swift in Sources */,
 				91B49AF01CF45E870017CC69 /* NSDataExtensions.swift in Sources */,
@@ -2323,13 +2330,14 @@
 				918E26D31C88307900115C4E /* NSUserDefaultsExtension.swift in Sources */,
 				6859BC851CD32D690050F6A0 /* EmergencyContactInfoCell.swift in Sources */,
 				68E977F61CC6008F00651724 /* PKRulesView.swift in Sources */,
-				4CE8F0051D1CD2990069F1C5 /* ChartsTableListViewModel.swift in Sources */,
 				9114D1E91C97AB05008CB4CE /* AccountTextField.swift in Sources */,
 				686A5EED1CDC30D100EB8D0E /* AboutVC.swift in Sources */,
 				887C75B81D114AB2009EA1F6 /* Array_Extension.swift in Sources */,
 				9114D1EB1C97AB05008CB4CE /* CLBPageControl.swift in Sources */,
 				91ACEC671CB68D74008ED8B0 /* AccountInfoSecurityNetworkRequest.swift in Sources */,
+				4CAC8EEA1D41F7EB00083879 /* StepWebApi.swift in Sources */,
 				68B4DED81CE574E600BE041C /* RelateAppJSON.swift in Sources */,
+				4CAC8EDA1D41F09C00083879 /* SleepRealm.swift in Sources */,
 				91E1B4C91CA510BD008ADEE6 /* ContactsLetterView.swift in Sources */,
 				68C558CD1CB74D3E0031719D /* IntelligentClockViewController.swift in Sources */,
 				4CF9CB351D2A41FF00D9C88F /* HomeWebJSON.swift in Sources */,
@@ -2341,11 +2349,12 @@
 				686A5F041CDC7F3900EB8D0E /* RelateAppCell.swift in Sources */,
 				9150CAAE1CC66CBB00A398E9 /* UIWindowExtension.swift in Sources */,
 				4C0BF9EB1CB78F0500DB06FC /* RootViewController.swift in Sources */,
+				4CAC8EDE1D41F09C00083879 /* StepsDataReaml.swift in Sources */,
 				4C4C602D1CE5C4A10026C045 /* ContactRecommendFriendView.swift in Sources */,
 				9114D1F41C97AB05008CB4CE /* GuideViewController.swift in Sources */,
 				686A5EF31CDC35E700EB8D0E /* HelpAndFeedbackVC.swift in Sources */,
+				4CAC8ED91D41F09C00083879 /* ChartsRealmProtocol.swift in Sources */,
 				686A5EF51CDC360000EB8D0E /* RelateAppVC.swift in Sources */,
-				4C9E0B5A1D1A395200DBC1FC /* ChartsWebApi.swift in Sources */,
 				68648A751CEC71B8009D4BEE /* FullScreenImageView.swift in Sources */,
 				91E1B4F51CA53C96008ADEE6 /* ContactsJSON.swift in Sources */,
 				9114D1FF1C97AB05008CB4CE /* UserNetRequestData.swift in Sources */,

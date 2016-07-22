@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
         registerShareSdk()
         
-        appConfigUMobClickSDK()
+//        appConfigUMobClickSDK()
         
         setRootViewController()
         
@@ -81,13 +81,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
      初始化友盟统计
      */
     
-    func appConfigUMobClickSDK() {
-        
-        UMAnalyticsConfig.sharedInstance().appKey = UMAPPKey
-        MobClick.startWithConfigure(UMAnalyticsConfig.sharedInstance())
-        
-     
-    }
+//    func appConfigUMobClickSDK() {
+//        
+//        UMAnalyticsConfig.sharedInstance().appKey = UMAPPKey
+//        MobClick.startWithConfigure(UMAnalyticsConfig.sharedInstance())
+//        
+//     
+//    }
     
     
     /**

@@ -378,13 +378,13 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
             self.homeVC!.view.frame.origin = CGPointMake(0, 0)
             self.homeMaskView.backgroundColor = UIColor.clearColor()
         
-        }) { [unowned self] in
+        }) { [unowned self] _ in
                 
-            if $0 == true {
-                
+//            if $0 == true {
+            
                 self.homeMaskView.removeFromSuperview()
                     
-            }
+//            }
         }
 
     }
