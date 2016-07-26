@@ -25,9 +25,7 @@ class ChartInfoListCell: UITableViewCell {
         rightLabel.font = UIFont.mediumSystemFontOfSize(16.0)
         
         self.selectionStyle = .None
-        
-        
-        
+                
     }
     
 }

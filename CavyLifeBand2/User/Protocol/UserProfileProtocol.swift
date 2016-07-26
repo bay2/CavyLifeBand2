@@ -14,7 +14,7 @@ import Log
 protocol QueryUserInfoRequestsDelegate {
     
     
-    func queryUserInfoByNet(queryUserId: String, vc: UIViewController?, completeHeadle: (UserProfile? -> Void)?)
+    func queryUserInfoByNet(vc: UIViewController?, failBack: (Void -> Void)?, completeHeadle: (UserProfile? -> Void)?)
     
 }
 
@@ -24,25 +24,20 @@ extension QueryUserInfoRequestsDelegate {
     /**
      查询用户信息
      */
-    func queryUserInfoByNet(queryUserId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, vc: UIViewController? = UIApplication.sharedApplication().keyWindow?.rootViewController, completeHeadle completeHandle: (UserProfile? -> Void)? = nil) {
-        
-        UserNetRequestData.shareApi.queryProfile(queryUserId) { result in
+    func queryUserInfoByNet(vc: UIViewController? = nil, failBack: (Void -> Void)? = nil, completeHeadle completeHandle: (UserProfile? -> Void)? = nil) {
+
+        NetWebApi.shareApi.netGetRequest(WebApiMethod.UsersProfile.description, modelObject: UserProfileMsg.self, successHandler: { (data) in
+
+            completeHandle?(data.userProfile)
+
+        }) { (msg) in
+            Log.info(msg.msg)
             
-            guard result.isSuccess else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(vc, userErrorCode: result.error ?? UserRequestErrorType.UnknownError)
-                completeHandle?(nil)
-                return
+            if vc != nil {
+                failBack?()
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(vc, message: msg.msg)
+                
             }
-            
-            let resultMsg = try! UserProfileMsg(JSONDecoder(result.value!))
-            
-            guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(vc, webApiErrorCode: resultMsg.commonMsg?.code ?? "")
-                completeHandle?(nil)
-                return
-            }
-            
-            completeHandle?(resultMsg.userProfile)
             
         }
         
@@ -59,7 +54,7 @@ extension QueryUserInfoRequestsDelegate {
 protocol SetUserInfoRequestsDelegate {
     
     var userInfoPara: [String: AnyObject] { get set }
-    
+
     func setUserInfo(completeHandle: (Bool -> Void)?)
     
     var viewController: UIViewController? { get }
@@ -71,6 +66,7 @@ extension SetUserInfoRequestsDelegate {
     
     var viewController: UIViewController? { return nil }
     
+    
     /**
      设置用户信息
      
@@ -78,25 +74,14 @@ extension SetUserInfoRequestsDelegate {
      */
     func setUserInfo(completeHandle: (Bool -> Void)? = nil) {
         
-        UserNetRequestData.shareApi.setProfile(userInfoPara) { result in
+        let parameters: [String: AnyObject] = [NetRequestKey.Profile.rawValue: userInfoPara]
+
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.UsersProfile.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { (data) in
             
-            guard result.isSuccess else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error!)
-                completeHandle?(false)
-                return
-            }
-            
-            let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
-            
-            guard resultMsg.code == WebApiCode.Success.rawValue else {
-                CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.code)
-                completeHandle?(false)
-                return
-            }
-            
-            Log.info("Update user info success")
             completeHandle?(true)
-            
+     
+        }) { (msg) in
+            completeHandle?(false)
         }
         
     }

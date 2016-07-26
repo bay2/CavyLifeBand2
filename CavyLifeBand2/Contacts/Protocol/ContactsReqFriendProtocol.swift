@@ -21,11 +21,13 @@ protocol ContactsReqFriendViewControllerDataSource {
     
     var navTitle: String { get }
     
+    var restrictedInput: Bool { get }
+    
 }
 
 protocol ContactsReqFriendViewControllerDelegate {
     
-    func onClickButton()
+    mutating func onClickButton()
     
 }
 
@@ -61,7 +63,7 @@ extension ContactsReqFriendDeleteItemDelegate {
         
         let addFirendVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
         
-        addFirendVC.viewConfig(friendReqVM, delegate: friendReqVM)
+        addFirendVC.viewConfig(friendReqVM)
         
         viewController.pushVC(addFirendVC)
         

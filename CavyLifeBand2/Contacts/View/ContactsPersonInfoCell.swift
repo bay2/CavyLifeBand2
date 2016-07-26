@@ -55,7 +55,7 @@ class ContactsPersonInfoCell: UITableViewCell {
         subTitleLab.textColor = UIColor(named: .FColor)
         
         titleLab.font = UIFont.mediumSystemFontOfSize(18.0)
-        subTitleLab.font = UIFont.mediumSystemFontOfSize(12.0)
+        subTitleLab.font = UIFont.systemFontOfSize(12.0)
         
         lineView.backgroundColor = UIColor(named: .LColor)
         self.selectionStyle = .None
@@ -70,7 +70,7 @@ class ContactsPersonInfoCell: UITableViewCell {
     
     func configCell(datasource: ContactsPersonInfoCellPresenter, delegate: ContactsPersonInfoCellDelegate) {
         
-        headView.af_setCircleImageWithURL(NSURL(string: datasource.avatarUrl)!, placeholderImage: UIImage(asset: .DefaultHead))
+        headView.af_setCircleImageWithURL(NSURL(string: datasource.avatarUrl)!, placeholderImage: UIImage(asset: .DefaultHead_big))
         
         /**
          如果备注名称为空字符串则主标题显示用户昵称，副标题为空字符串；

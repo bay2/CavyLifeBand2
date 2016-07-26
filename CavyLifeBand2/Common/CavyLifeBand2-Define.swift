@@ -11,14 +11,15 @@ import EZSwiftExtensions
 import KeychainAccess
 
 struct CavyDefine {
-    
-    // 异常上报服务器地址
-    static let bugHDKey = "https://collector.bughd.com/kscrash?key=9c009d806879cec4233b3b66b4264315"
+
     
     // 服务器地址
-    static let serverAddr = "http://115.28.144.243/cavylife"
+    static let serverAddr = "http://test.tunshu.com/cavylife"
 //    static let serverAddr = "http://192.168.100.214/cavylife"
     
+    // 新的后台服务器地址
+    static let webServerAddr = "http://pay.tunshu.com/live/api/v1/"
+
     // webApi地址
     static let webApiAddr = serverAddr + "/api.do"
     
@@ -30,7 +31,7 @@ struct CavyDefine {
     // 官网Api地址
     static let officialSiteAddr = "http://game.tunshu.com"
     
-    //相关App地址
+    //APP推荐地址
     static let relateAppWebApiAddr = officialSiteAddr + "/appIndex/index"
     
     // 1/25 宽度间隙
@@ -50,6 +51,11 @@ struct CavyDefine {
     
     // 已登录用户昵称
     static var userNickname = ""
+    
+    // 用户经纬度，用于用户登录退出事件统计的入参
+    static var userCoordinate = UserCoordinateInfo()
+    
+    static var gameServerAuthKey: String = "5QaN4e9i4HeqcSuX4"
     
     static var shareImageName: String = "CavyLifeBand2ShareImage"
     
@@ -85,6 +91,24 @@ struct CavyDefine {
         }
         
         return accountSex
+    }
+    
+    /**
+     性别汉字转数字
+     
+     - parameter sex: 性别标识
+     
+     - returns: 性别
+     */
+    static func translateSexToNumber(sex: String) -> Int {
+                
+        if sex == L10n.ContactsGenderGirl.string {
+            
+            return 0
+            
+        }
+        
+        return 1
     }
     
     // MARK - 蓝牙连接ViewController 跳转处理
@@ -166,18 +190,21 @@ struct LoginUserBaseInfo {
     var loginUserId: String
     var loginUsername: String
     var loginAvatar: String
-    
+    var loginAuthToken: String
     
     init(dictionary: [String: AnyObject]) {
 
         loginUserId   = (dictionary["SignUserId"] as? String) ?? ""
         loginUsername = (dictionary["SignUserName"] as? String) ?? ""
         loginAvatar = (dictionary["SignUserAvatar"] as? String) ?? ""
+        loginAuthToken = (dictionary["SignUserAuthToken"] as? String) ?? ""
         
     }
     
     func serialize() -> [String: AnyObject] {
-        return ["SignUserId": loginUserId, "SignUserName": loginUsername, "SignUserAvatar": loginAvatar]
+        return ["SignUserId": loginUserId, "SignUserName": loginUsername, "SignUserAvatar": loginAvatar, "SignUserAuthToken": loginAuthToken]
+//        return ["SignUserId": loginUserId, "SignUserName": loginUsername, "SignUserAvatar": loginAvatar, "SignUserAuthToken": "sX9oLibbpvsZmpNYe"]
+        
     }
     
 }
@@ -195,8 +222,9 @@ protocol LoginStorage {
 extension NSUserDefaults: LoginStorage { }
 
 // MARK: - 手环绑定信息存储 KeyChain
+
 /**
- *  手环绑定信息
+ *  手环绑定信息  每个user 只会绑定一个MACAddress
  */
 struct BindBandInfo {
     
@@ -212,19 +240,25 @@ struct BindBandInfo {
     
     init() {
         
+        if keychain["CavyUserDevice"] == nil {
+            keychain["CavyUserDevice"] = UIDevice.currentDevice().identifierForVendor?.UUIDString ?? ""
+        }
+        
         guard let userMac = keychain[data: "CavyUserMAC"] else {
             
-            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:])
+            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:],
+                                                    deviceSerial: keychain["CavyUserDevice"]!)
             return
             
         }
         
         guard let userBindBand = NSKeyedUnarchiver.unarchiveObjectWithData(userMac) as? [String: NSData] else {
-            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:])
+            self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: [:],
+                                                    deviceSerial: keychain["CavyUserDevice"]!)
             return
         }
         
-        self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: userBindBand)
+        self.bindBandInfo = BindBandInfoStorage(defaultBindBand: keychain["CavyGameMAC"] ?? "", userBindBand: userBindBand, deviceSerial: keychain["CavyUserDevice"]!)
         
     }
     
@@ -242,8 +276,14 @@ struct BindBandInfoStorage {
     
     var defaultBindBand: String
     var userBindBand: [String: NSData]
+    var deviceSerial: String
     
     
+}
+
+struct UserCoordinateInfo {
+    var latitude: String = ""
+    var longitude: String = ""
 }
 
 
@@ -425,6 +465,7 @@ extension WebGetApiCode: CustomStringConvertible {
  - Name:
  - FeedbackContent: 意见反馈内容
  - PhoneList: 电话号码列表
+ - Version: 固件当前版本
  */
 enum UserNetRequsetKey: String {
     
@@ -480,6 +521,8 @@ enum UserNetRequsetKey: String {
     case PhoneList       = "phoneList"
     case Remarks         = "remarks"
     case StepsList       = "stepsList"
+    case Version         = "version"
+    case AuthToken       = "auth-token"
 }
 
 // MARK: - 服务器接口命令
@@ -510,12 +553,13 @@ enum UserNetRequsetKey: String {
  - GetHelpList:      获取帮助与反馈列表
  - SubmitFeedback:   提交意见反馈
  - GetPKInfo:        获取pk信息
- - CavyLife:         获取相关App
+ - CavyLife:         获取APP推荐
  - SetEmergencyPhone 上传紧急联系人电话号码列表
  - GetFriendInfo     查询好友信息
  - SetFriendRemark   设置好友备注
  - SendEmergencyMsg  发送紧急消息
  - GetEmergencyPhone 查询紧急联系人列表
+ - GetVersion        查询版本信息
  */
 enum UserNetRequestMethod: String {
     
@@ -548,4 +592,192 @@ enum UserNetRequestMethod: String {
     case SendEmergencyMsg  = "sendEmergencyMsg"
     case GetEmergencyPhone = "getEmergencyPhone"
     case SetStepCount      = "setStepCount"
+    case GetVersion        = "getVersion"
 }
+
+
+// MARK: - Web Api 方法定义
+enum WebApiMethod: CustomStringConvertible {
+
+    case Login, Logout, Dailies, Steps, Sleep, UsersProfile, Firmware, EmergencyContacts, Emergency, SignUpEmailCode, SignUpPhoneCode, ResetPwdPhoneCode, ResetPwdEmailCode, ResetPwdEmail, ResetPwdPhone, SignUpPhone, SignUpEmail, UploadAvatar, Issues, Weather, Location, Helps, RecommendGames, Activities
+
+
+    var description: String {
+        
+        switch self {
+        case .Login:
+            return CavyDefine.webServerAddr + "login"
+        case .Logout:
+            return CavyDefine.webServerAddr + "logout"
+        case .Dailies:
+            return CavyDefine.webServerAddr + "dailies"
+        case .Steps:
+            return CavyDefine.webServerAddr + "steps"
+        case .Sleep:
+            return CavyDefine.webServerAddr + "sleep"
+        case .UsersProfile:
+            return CavyDefine.webServerAddr + "users/profile"
+        case .Firmware:
+            return CavyDefine.webServerAddr + "firmware"
+        case .EmergencyContacts:
+            return CavyDefine.webServerAddr + "emergency/contacts"
+        case .Emergency:
+            return CavyDefine.webServerAddr + "emergency"
+        case .SignUpEmailCode:
+            return CavyDefine.webServerAddr + "signup/email/verify_code"
+        case .SignUpPhoneCode:
+            return CavyDefine.webServerAddr + "signup/phone/verify_code"
+        case .ResetPwdEmailCode:
+            return CavyDefine.webServerAddr + "reset_password/email/verify_code"
+        case .ResetPwdPhoneCode:
+            return CavyDefine.webServerAddr + "reset_password/phone/verify_code"
+        case .ResetPwdEmail:
+            return CavyDefine.webServerAddr + "reset_password/email"
+        case .ResetPwdPhone:
+            return CavyDefine.webServerAddr + "reset_password/phone"
+        case .SignUpEmail:
+            return CavyDefine.webServerAddr + "signup/email"
+        case .SignUpPhone:
+            return CavyDefine.webServerAddr + "signup/phone"
+        case .UploadAvatar:
+            return CavyDefine.webServerAddr + "avatar"
+        case .Issues:
+            return CavyDefine.webServerAddr + "issues"
+        case .Weather:
+            return CavyDefine.webServerAddr + "weather"
+        case .Location:
+            return CavyDefine.webServerAddr + "users/location"
+        case .Helps:
+            return CavyDefine.webServerAddr + "helps"
+        case .RecommendGames:
+            return CavyDefine.webServerAddr + "games/recommend"
+        case .Activities:
+            return CavyDefine.webServerAddr + "activities"
+        }
+        
+    }
+    
+}
+
+// MARK: - Web Api 参数定义
+enum NetRequestKey: String {
+
+    case UserName           = "username"
+    case Password           = "password"
+    case Profile            = "profile"
+    case Nickname           = "nickname"
+    case Address            = "address"
+    case Sex                = "sex"
+    case Height             = "height"
+    case Weight             = "weight"
+    case Figure             = "figure"
+    case Birthday           = "birthday"
+    case StepsGoal          = "steps_goal"
+    case SleepTimeGoal      = "sleep_time_goal"
+    case EnableNotification = "enable_notification"
+    case ShareLocation      = "share_location"
+    case ShareBirthday      = "share_birthday"
+    case ShareHeight        = "share_height"
+    case ShareWeight        = "share_weight"
+    case Contacts           = "contacts"
+    case Name               = "name"
+    case Phone              = "phone"
+    case Longitude          = "longitude"
+    case Latitude           = "latitude"
+    case StartDate          = "start_date"
+    case EndDate            = "end_date"
+    case Date               = "date"
+    case Time               = "time"
+    case Tilts              = "tilts"
+    case Steps              = "steps"
+    case Raw                = "raw"
+    case TimeScale          = "time_scale"
+    case AuthToken          = "auth-token"
+    case Language           = "language"
+    case PhoneType          = "phoneType"
+    case Email              = "email"
+    case Code               = "code"
+    case Base64Data         = "base64Data"
+    case Question           = "question"
+    case Detail             = "detail"
+    case City               = "city"
+    case DeviceSerial       = "device_serial"
+    case DeviceModel        = "device_model"
+    case AuthKey            = "auth_key"
+    case BandMac            = "band_mac"
+    case EventType          = "event_type"
+}
+
+
+
+// MARK: - Request Api Code
+
+enum RequestApiCode: Int {
+    
+    case Success             = 1000
+    case UukownError         = 1100
+    case IncorrectParameter  = 1102
+    case LostAccountField    = 1200
+    case LostPasswordField   = 1201
+    case AccountNotExist     = 1202
+    case LoginFailed         = 1203
+    case LogoutFailed        = 1204
+    case InvalidToken        = 1205
+    case AccountAlreadyExist = 1206
+    case ImageParseFail      = 9998
+    case NetError            = 9999
+    
+    init(apiCode: Int) {
+        
+        switch apiCode {
+        case 1000:
+            self = RequestApiCode.Success
+        case 1100:
+            self = RequestApiCode.UukownError
+        case 1102:
+            self = RequestApiCode.IncorrectParameter
+        case 1200:
+            self = RequestApiCode.LostAccountField
+        case 1201:
+            self = RequestApiCode.LostPasswordField
+        case 1202:
+            self = RequestApiCode.AccountNotExist
+        case 1203:
+            self = RequestApiCode.LoginFailed
+        case 1204:
+            self = RequestApiCode.LogoutFailed
+        case 1205:
+            self = RequestApiCode.InvalidToken
+        case 1206:
+            self = RequestApiCode.AccountAlreadyExist
+        case 9998:
+            self = RequestApiCode.ImageParseFail
+        case 9999:
+            self = RequestApiCode.NetError
+        default:
+            self = RequestApiCode.NetError
+        }
+        
+    }
+    
+}
+
+extension RequestApiCode: CustomStringConvertible {
+    
+    var description: String {
+        
+        switch self {
+        case .Success:
+            return ""
+        case .ImageParseFail:
+            return L10n.UserModuleErrorCodeNetError.string
+        case .NetError:
+            return L10n.UserModuleErrorCodeNetError.string
+        default:
+            return L10n.UserModuleErrorCodeNetError.string
+        }
+        
+    }
+    
+}
+

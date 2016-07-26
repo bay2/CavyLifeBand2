@@ -41,13 +41,14 @@ extension RootViewController: LifeBandBleDelegate {
             return
         }
         
+        
         LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandMacAddress) {
             
             self.saveMacAddress()
             
             LifeBandCtrl.shareInterface.setDateToBand(NSDate())
             
-            let lifeBandModel = LifeBandModelType.LLA.rawValue | LifeBandModelType.Step.rawValue | LifeBandModelType.Tilt.rawValue
+            let lifeBandModel = LifeBandModelType.LLA.rawValue | LifeBandModelType.Step.rawValue | LifeBandModelType.Tilt.rawValue | LifeBandModelType.Alarm.rawValue | LifeBandModelType.Alert.rawValue
             LifeBandCtrl.shareInterface.getLifeBandInfo {
                 
                 // 如果不等于生活手环模式，则重新设置生活手环模式
@@ -60,49 +61,31 @@ extension RootViewController: LifeBandBleDelegate {
             }
             
             LifeBandCtrl.shareInterface.installButtonEven()
-            self.syncDataFormBand()
+//            self.syncDataFormBand()
+            NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.BeginRefresh.rawValue, object: nil)
+            
         }
-        
     }
+    
     
     /**
      向紧急联系人发消息
-     
+     成功后手环振动一次
      - author: sim cai
      - date: 2016-05-31
      */
-    func callEmergency() {
-        
-        do { try EmergencyWebApi.shareApi.sendEmergencyMsg() }
-        catch let error
-        { Log.error("Cell EmergencyWebApi.shareApi.sendEmergencyMsg error (\(error))") }
-        
-    }
     
-    /**
-     保存mac地址
-     
-     - author: sim cai
-     - date: 2016-06-02
-     */
-    func saveMacAddress() {
+    func callEmergency()  {
         
-        let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         
-        CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
         
-        if BindBandCtrl.bandMacAddress.length == 6 {
-            CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand = LifeBandBle.shareInterface.getPeripheralName() + "," +
-                String(format: "%02X:%02X:%02X:%02X:%02X:%02X",
-                       BindBandCtrl.bandMacAddress[0],
-                       BindBandCtrl.bandMacAddress[1],
-                       BindBandCtrl.bandMacAddress[2],
-                       BindBandCtrl.bandMacAddress[3],
-                       BindBandCtrl.bandMacAddress[4],
-                       BindBandCtrl.bandMacAddress[5])
+        do {
+            
+            try EmergencyWebApi.shareApi.sendEmergencyMsg ()
+            
+        }catch let error {
+            Log.error("Cell EmergencyWebApi.shareApi.sendEmergencyMsg error (\(error))")
         }
-        
-        Log.info("defaultBindBand = \(CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand)")
         
     }
     

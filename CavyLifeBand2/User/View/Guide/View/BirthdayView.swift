@@ -22,6 +22,23 @@ class BirthdayView: UIView, RulerViewDelegate {
         return "\(self.yymmRuler.nowYear + beginYear)-\(self.yymmRuler.nowMonth)-\(self.dayRuler.nowDay)"
     }
     
+    convenience init(frame: CGRect, year: Int, month: Int, day: Int) {
+
+      self.init(frame: frame)
+        
+        yymmRuler.rulerScroll.currentValue = "\(year).\(month)"
+        yymmRuler.rulerDelegate?.changeRulerValue!(yymmRuler.rulerScroll)
+        
+        let nowCount = (year  - 1901) * birthYYMMLineCount + month
+        yymmRuler.rulerScroll.setContentOffset(CGPointMake(CGFloat(nowCount * birthYYMMLineSpace), 0), animated: false)
+        
+        dayRuler.rulerScroll.currentValue = "\(day)"
+        dayRuler.rulerDelegate?.changeDayRulerValue!(dayRuler.rulerScroll)
+        dayRuler.rulerScroll.setContentOffset(CGPointMake(CGFloat((day - 1) * birthDayLineSpace) + horizontalInset / 2, 0), animated: false)
+
+        
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -61,7 +78,9 @@ class BirthdayView: UIView, RulerViewDelegate {
         }
         
         yymmRuler.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(birthRulerWidth, birthRulerHeight))
+            make.height.equalTo(birthRulerHeight)
+            make.leading.equalTo(self).offset(10)
+            make.trailing.equalTo(self).offset(-10)
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(middleViewHeight / 2 - birthRulerHeight - rulerBetweenSpace / 2)
         }
@@ -78,7 +97,7 @@ class BirthdayView: UIView, RulerViewDelegate {
         yymmRuler.initYearMonthRuler(currentYear!, monthValue: currentMonth!, style: .YearMonthRuler)
         yyMMLabel.text = yymmRuler.rulerScroll.currentValue
         
-        dayLabel.font = UIFont.systemFontOfSize(42)
+        dayLabel.font = UIFont.mediumSystemFontOfSize(42)
         dayLabel.textColor = UIColor(named: .EColor)
         dayLabel.textAlignment = NSTextAlignment.Center
         dayLabel.snp_makeConstraints { make -> Void in
@@ -88,7 +107,9 @@ class BirthdayView: UIView, RulerViewDelegate {
         }
         
         dayRuler.snp_makeConstraints { make -> Void in
-            make.size.equalTo(CGSizeMake(birthRulerWidth, 60))
+            make.height.equalTo(60)
+            make.leading.equalTo(self).offset(10)
+            make.trailing.equalTo(self).offset(-10)
             make.centerX.equalTo(self)
             make.top.equalTo(self).offset(middleViewHeight / 2 + rulerBetweenSpace + birthRulerHeight)
         }

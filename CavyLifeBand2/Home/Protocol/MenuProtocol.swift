@@ -23,6 +23,9 @@ protocol MenuGroupDataSource {
     
     var sectionView: UIView { get }
     
+    var titleColor: UIColor { get }
+    
+    
     mutating func refurbishNextView()
     
 }
@@ -54,9 +57,6 @@ protocol MenuCellDateSource {
 
 extension MenuCellDateSource {
     
-    var titleColor: UIColor {
-        return UIColor(named: .AColor)
-    }
     
     var titleFont: UIFont {
         
@@ -77,7 +77,7 @@ extension MenuCellDateSource {
  */
 protocol MenuCellDelegate {
     
-    var nextView: UIViewController { get set }
+    var nextView: UIViewController? { get set }
     func onClickCell()
     
 }
@@ -85,8 +85,12 @@ protocol MenuCellDelegate {
 extension MenuCellDelegate {
     
     func onClickCell() {
+       
+        guard let newNextView = nextView else {
+            return
+        }
         
-        let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
+        let userInfo = ["nextView": newNextView] as [NSObject: AnyObject]
         
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
         NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeShowHomeView.rawValue, object: nil)

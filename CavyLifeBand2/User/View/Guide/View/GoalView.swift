@@ -15,7 +15,7 @@ class GoalView: UIView {
     var stepCurrentValue: Int = 8000
     var hhCurrentValue: Int = 4
     var mmCurrentValue: Int = 58
-    let sliderWidth = ez.screenWidth * 0.76
+    let sliderWidth = ez.screenWidth - 20 * 4
     // 标题 -- 目标
     @IBOutlet weak var titleLab: UILabel!
     
@@ -61,10 +61,10 @@ class GoalView: UIView {
     @IBOutlet weak var sleepSlider: UISlider!
     
     
-    var sleepTimeString: String {
+    var sleepTimeValue: Int {
         
-        return "\(self.hhCurrentValue):\(self.mmCurrentValue)"
-        
+        return self.hhCurrentValue * 60 + self.mmCurrentValue
+                
     }
 
     // 布局
@@ -90,59 +90,27 @@ class GoalView: UIView {
         // 单位：步
         stepUnit.text = L10n.GuideStep.string
         stepUnit.textColor = UIColor(named: .EColor)
-        stepUnit.font = UIFont.mediumSystemFontOfSize(14)
-        stepUnit.snp_makeConstraints { make -> Void in
-            make.right.equalTo(self).offset(0 - ez.screenWidth * 0.08)
-        }
+        stepUnit.font = UIFont.systemFontOfSize(14)
         
         // 目标步数
         stepValue.text = String(stepCurrentValue)
         stepValue.textColor = UIColor(named: .EColor)
         stepValue.font = UIFont.mediumSystemFontOfSize(30)
-        stepValue.snp_makeConstraints { make -> Void in
-            make.top.equalTo(titleLab).offset(ez.screenWidth * 0.14)
-        }
         
         // 计步模块
         stepModlue.text = L10n.GuideGoalStep.string
         stepModlue.font = UIFont.mediumSystemFontOfSize(14)
         stepModlue.textColor = UIColor(named: .EColor)
-        stepModlue.snp_makeConstraints { make -> Void in
-            make.left.equalTo(self).offset(ez.screenWidth * 0.08)
-        }
-        
-        // 滑块 stepSlider
-        stepSlider.snp_makeConstraints { make -> Void in
-            make.width.equalTo(sliderWidth)
-            make.top.equalTo(stepValue).offset(ez.screenWidth * 0.12 + 36)
-        }
         
         // 平均值线
         stepPinAvg.textColor = UIColor(named: .HColor)
-        stepPinAvg.font = UIFont.mediumSystemFontOfSize(14)
+        stepPinAvg.font = UIFont.systemFontOfSize(12)
         stepPineLine.backgroundColor = UIColor(named: .HColor)
-        stepPineLine.snp_makeConstraints { make -> Void in
-            make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.04)
-            make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
-        }
-        
-        stepPinAvg.snp_makeConstraints { make -> Void in
-            make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.06 - 14)
-        }
         
         // 推荐值线
         stepPinRecom.textColor = UIColor(named: .HColor)
-        stepPinRecom.font = UIFont.mediumSystemFontOfSize(14)
+        stepPinRecom.font = UIFont.systemFontOfSize(12)
         stepPinRecomLIne.backgroundColor = UIColor(named: .HColor)
-        stepPinRecomLIne.snp_makeConstraints { make -> Void in
-            make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.04)
-            make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
-        }
-        
-        stepPinRecom.snp_makeConstraints { make -> Void in
-            make.bottom.equalTo(stepSlider).offset(0 - ez.screenWidth * 0.06 - 14)
-        }
-        
 
     }
     
@@ -151,22 +119,17 @@ class GoalView: UIView {
         
         // 单位：分钟
         sleepMMUnit.text = L10n.GuideMinute.string
-        sleepMMUnit.font = UIFont.mediumSystemFontOfSize(14)
+        sleepMMUnit.font = UIFont.systemFontOfSize(14)
         sleepMMUnit.textColor = UIColor(named: .EColor)
-        sleepMMUnit.snp_makeConstraints { make -> Void in
-            make.right.equalTo(self).offset(0 - ez.screenWidth * 0.08)
-        }
+
         sleepMMValue.text = String(mmCurrentValue)
         sleepMMValue.textColor = UIColor(named: .EColor)
         sleepMMValue.font = UIFont.mediumSystemFontOfSize(30)
-        sleepMMValue.snp_makeConstraints { make -> Void in
-            make.top.equalTo(stepSlider).offset(ez.screenWidth * 0.22)
-        }
 
         // 单位：小时
         sleepHHUnit.text = L10n.GuideHour.string
         sleepHHUnit.textColor = UIColor(named: .EColor)
-        sleepHHUnit.font = UIFont.mediumSystemFontOfSize(14)
+        sleepHHUnit.font = UIFont.systemFontOfSize(14)
         sleepHHValue.text = String(hhCurrentValue)
         sleepHHValue.font = UIFont.mediumSystemFontOfSize(30)
         sleepHHValue.textColor = UIColor(named: .EColor)
@@ -175,40 +138,16 @@ class GoalView: UIView {
         sleepModlue.text = L10n.GuideGoalSleep.string
         sleepModlue.font = UIFont.mediumSystemFontOfSize(14)
         sleepModlue.textColor = UIColor(named: .EColor)
-        sleepModlue.snp_makeConstraints { make -> Void in
-            make.left.equalTo(self).offset(ez.screenWidth * 0.08)
-        }
-        
-        // 睡眠滑块
-        sleepSlider.snp_makeConstraints { make -> Void in
-            make.width.equalTo(sliderWidth)
-            make.top.equalTo(sleepHHValue).offset(ez.screenWidth * 0.12 + 36)
-        }
 
         // 平均值线
         sleepPinAvgLab.textColor = UIColor(named: .HColor)
-        sleepPinAvgLab.font = UIFont.mediumSystemFontOfSize(14)
+        sleepPinAvgLab.font = UIFont.systemFontOfSize(12)
         sleepPineAvgLine.backgroundColor = UIColor(named: .HColor)
-        sleepPineAvgLine.snp_makeConstraints { make -> Void in
-            make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.04)
-            make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
-        }
-        
-        sleepPinAvgLab.snp_makeConstraints { make -> Void in
-            make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.06 - 14)
-        }
         
         // 推荐值线
         sleepPinRecomLine.backgroundColor = UIColor(named: .HColor)
-        sleepPinRecomLine.snp_makeConstraints { make -> Void in
-            make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.04)
-            make.size.equalTo(CGSizeMake(1, ez.screenWidth * 0.04))
-        }
         sleepPinRecomLab.textColor = UIColor(named: .HColor)
-        sleepPinRecomLab.font = UIFont.mediumSystemFontOfSize(14)
-        sleepPinRecomLab.snp_makeConstraints { make -> Void in
-            make.bottom.equalTo(sleepSlider).offset(0 - ez.screenWidth * 0.06 - 14)
-        }
+        sleepPinRecomLab.font = UIFont.systemFontOfSize(12)
 
     }
     
@@ -292,6 +231,38 @@ class GoalView: UIView {
         self.sleepSlider.addTarget(self, action: #selector(GoalView.sleepSliderAction), forControlEvents: UIControlEvents.ValueChanged)
     }
     
+    /**
+     将睡眠滑杆滑到指定值
+     
+     - parameter hour:   小时
+     - parameter minute: 分钟
+     */
+    func sliderSleepToValue(hour: Int, minute: Int) {
+        
+        sleepHHValue.text = String(hour)
+        sleepMMValue.text = String(minute)
+        
+        let recCount = hourChangeToMinutes(hour, minutes: minute)
+        
+        self.sleepSlider.value = Float(recCount)
+        
+    }
+    
+    /**
+     将计步滑杆滑到指定值
+     
+     - parameter value: 值
+     */
+    func sliderStepToValue(value: Int) {
+        
+        stepValue.text = String(value)
+        
+        let recomSlider = Float(value / 100)
+        
+        self.stepSlider.value = recomSlider
+        
+    }
+    
 
     // 小时转分钟 10一个刻度
     func hourChangeToMinutes(hour: Int, minutes: Int) -> Int{
@@ -313,8 +284,10 @@ class GoalView: UIView {
         
         
         let step = String(format: "%.0f", stepSlider.value)
-        let stepInt: Int = Int(step)! * 100
-        self.stepValue.text = "\(stepInt)"
+
+        stepCurrentValue = Int(step)! * 100
+        
+        self.stepValue.text = "\(stepCurrentValue)"
         
     }
     
@@ -322,6 +295,9 @@ class GoalView: UIView {
     func sleepSliderAction(){
         
         let (hour, min) = minutesChangeToHours(Int(sleepSlider.value))
+        
+        hhCurrentValue = hour
+        mmCurrentValue = min
         
         self.sleepHHValue.text = String(hour)
         self.sleepMMValue.text = String(min)

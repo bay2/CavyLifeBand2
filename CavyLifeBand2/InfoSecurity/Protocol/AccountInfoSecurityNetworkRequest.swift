@@ -25,26 +25,19 @@ extension AccountInfoSecurityUpdateByNetwork {
             return
         }
         
-        let parameters: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: userInfo.userId,
-                                               UserNetRequsetKey.IsOpenHeight.rawValue: true,
-                                               UserNetRequsetKey.IsOpenWeight.rawValue: userInfo.isOpenWeight.boolValue,
-                                               UserNetRequsetKey.IsOpenBirthday.rawValue: userInfo.isOpenBirthday.boolValue]
+        let subPara: [String: AnyObject] = [NetRequestKey.ShareHeight.rawValue: userInfo.isOpenHeight.boolValue,
+                                               NetRequestKey.ShareWeight.rawValue: userInfo.isOpenWeight.boolValue,
+                                               NetRequestKey.ShareBirthday.rawValue: userInfo.isOpenBirthday.boolValue]
         
-        UserNetRequestData.shareApi.setProfile(parameters) { result in
-            
-            guard result.isSuccess else {
-                completeCallback?(false)
-                return
-            }
-            
-            let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
-            
-            guard resultMsg.code == WebApiCode.Success.rawValue else {
-                completeCallback?(false)
-                return
-            }
-            
+        let parameters: [String: AnyObject] = [NetRequestKey.Profile.rawValue: subPara]
+        
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.UsersProfile.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { data in
+
             completeCallback?(true)
+            
+        }) { (msg) in
+            
+            completeCallback?(false)
             
         }
         

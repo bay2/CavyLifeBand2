@@ -7,3 +7,4 @@
 */
 "CFBundleDisplayName" = "CavyBand 2";
 "CFBundleName" = "CavyBand 2";
+"NSLocationWhenInUseUsageDescription" = " Open the positioning function -> \"Settings\"-> \"Privacy\" -> \"Location services\" set to open the service";

@@ -81,6 +81,8 @@ class WebViewController: UIViewController, BaseViewControllerPresenter {
         }
         
         webView.delegate = self
+        webView.scalesPageToFit = true
+        webView.scrollView.bounces = dataSource?.webBouncesable ?? true
         
         let webUrl = NSURL.init(string: dataSource?.webUrlStr ?? "")
         let webRequeat = NSURLRequest.init(URL: webUrl!)
@@ -149,6 +151,8 @@ protocol WebVCDataSourceProtocol {
     
     var navRightBtnAction: navBtnHandle { get }
     
+    var webBouncesable: Bool { get }
+    
 }
 
 extension WebVCDataSourceProtocol {
@@ -158,6 +162,8 @@ extension WebVCDataSourceProtocol {
     var navRightBtnTitle: String { return "" }
     
     var navRightBtnAction: navBtnHandle { return {} }
+    
+    var webBouncesable: Bool { return true }
 
 }
 

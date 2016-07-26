@@ -26,7 +26,7 @@ class ContactsPersonInfoVC: UIViewController, BaseViewControllerPresenter {
         
         let firendReqViewModel = ContactsFriendReqViewModel(viewController: addFirendVC, friendId: self.friendId)
         
-        addFirendVC.viewConfig(firendReqViewModel, delegate: firendReqViewModel)
+        addFirendVC.viewConfig(firendReqViewModel)
         
         self.pushVC(addFirendVC)
         
@@ -92,7 +92,7 @@ class ContactsPersonInfoVC: UIViewController, BaseViewControllerPresenter {
         
         do {
             
-            try ContactsWebApi.shareApi.getContactPersonInfo(friendId: friendId) {(result)  in
+            try ContactsWebApi.shareApi.getContactPersonInfo(friendId: friendId) { (result)  in
                 
                 guard result.isSuccess else {
                     Log.error(result.error?.description ?? "")
@@ -145,7 +145,7 @@ extension ContactsPersonInfoVC: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
         if indexPath.row == 0 {
-            return 136
+            return 130
         } else if indexPath.row == 4{
             return 40
         } else {

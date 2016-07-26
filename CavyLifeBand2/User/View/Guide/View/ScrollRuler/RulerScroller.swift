@@ -36,7 +36,7 @@ class RulerScroller: UIScrollView {
     /**
      更新视图风格
      */
-    func updateRulerViewStyle() {
+    func updateRulerViewStyle(value: String? = nil) {
         
         /// 长竖线之间的距离
         
@@ -62,7 +62,7 @@ class RulerScroller: UIScrollView {
             self.contentSize = CGSizeMake(birthRulerWidth + CGFloat(allCount * lineSpace), birthRulerHeight)
             
             let defaultCount: Int = (defaultYear - beginYear) * lineCount
-            self.contentOffset = CGPointMake(CGFloat(defaultCount * lineSpace), 0)
+            self.contentOffset = CGPointMake(CGFloat(defaultCount * lineSpace) + horizontalInset / 2, 0)
             
             /// 循环添加刻度
             for i in 0...allCount {
@@ -101,7 +101,7 @@ class RulerScroller: UIScrollView {
             currentValue = "15"
             self.contentSize = CGSizeMake(birthRulerWidth + CGFloat(lineSpace * (dayValue - 1)), 60)
 
-            self.setContentOffset(CGPointMake(CGFloat(self.lineSpace * 14), 0), animated: true)
+            self.setContentOffset(CGPointMake(CGFloat(self.lineSpace * 14) + horizontalInset / 2, 0), animated: true)
             
             /// 循环添加刻度
             for i in 1...dayValue {
@@ -136,11 +136,11 @@ class RulerScroller: UIScrollView {
         case .HeightRuler:
             
             // 当前刻度值
-            currentValue = "160"
+            currentValue = value ?? "160"
             let minHeight = 30
             let maxHeight = 240
             let allCount = maxHeight - minHeight
-            let beginCount = 160 - minHeight
+            let beginCount = (currentValue.toInt() ?? 160) - minHeight
             self.contentSize = CGSizeMake(60, heightRulerHeight + CGFloat(allCount * lineSpace))
             self.contentOffset = CGPointMake(0, CGFloat(beginCount * lineSpace))
 

@@ -20,9 +20,9 @@ private extension BindScene {
         case .SignInBind:
             return false
         case .SignUpBind:
-            return true
+            return false
         case .Rebind:
-            return true
+            return false
         }
     }
     
@@ -93,8 +93,8 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView { return PictureView(title: L10n.GuideOpenCavy.string, titleInfo: L10n.GuideOpenCavyInfo.string, bottomInfo: L10n.GuideOpenCavySugg.string, midImage: AnimatableImageView(image: UIImage(asset: .GuideOpenBand))) }
-    var hiddeBackBtn: Bool { return BindBandCtrl.bindScene.hiddeBackBtn }
-    
+    var hiddeBackBtn: Bool { return false }//BindBandCtrl.bindScene.hiddeBackBtn }
+    var queryUserId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     var hiddeGuideBtn: Bool { return true }
     
     func onLoadView() {
@@ -103,7 +103,7 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
         
         LifeBandBle.shareInterface.bleBinding {
             
-            BindBandCtrl.bandMacAddress = $1
+                BindBandCtrl.bandMacAddress = $1
             
             let rootViewController = StoryboardScene.Guide.instantiateGuideView()
             let linkingVM = GuideBandLinking()
@@ -121,7 +121,42 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
     
     func onCilckBack(viewController: UIViewController) {
         
-        ez.topMostVC?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
+        // 注册流程时候 返回注册登录首页
+        if queryUserId.isEmpty {
+            
+            let vc = ez.topMostVC?.presentingViewController as? UINavigationController
+            
+            // 从登录页面 点击右上角注册按钮 进入的注册流程
+            // 因返回到登录页面
+            if vc?.viewControllers[0] is SignInViewController {
+                vc!.popToRootViewControllerAnimated(false)
+                vc!.dismissVC(completion: nil)
+            } else {
+                
+                // 直接走的注册流程
+                
+                ez.topMostVC?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
+            }
+            
+        } else if BindBandCtrl.bindScene == .Rebind {
+                        
+            UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+            
+//            viewController.dismissVC(completion: nil)
+//            
+//            guard let rootVC = UIApplication.sharedApplication().keyWindow?.rootViewController as? RootViewController else {
+//                return
+//            }
+//            
+//            rootVC.homeVC?.popToRootViewControllerAnimated(false)
+            
+        } else {
+        // 登录流程 返回登录页面
+            // TODO: 没有新的注册的号码 进行测试
+            viewController.navigationController?.popToRootViewControllerAnimated(true)
+            
+        }
+        
     }
     
     func bleMangerState(bleState: CBCentralManagerState) {
@@ -141,21 +176,37 @@ struct GuideBandOpenBand: GuideViewModelPotocols, LifeBandBleDelegate {
  *
  *  手环连接中
  */
-struct GuideBandLinking: GuideViewModelPotocols, LifeBandBleDelegate  {
+class GuideBandLinking: NSObject, GuideViewModelPotocols, LifeBandBleDelegate  {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView
     var hiddeGuideBtn: Bool { return true }
     var realm: Realm = try! Realm()
     var hiddeBackBtn: Bool { return true }
+    var isPush: Bool?
     
-    init() {
+    
+    
+    override init() {
+        
         
         let imageView = AnimatableImageView()
-        imageView.animateWithImage(named: "GuideLinking.gif")
+        imageView.animateWithImage(named: "GuideLinking@3x.gif")
         centerView = PictureView(title: L10n.GuideLinking.string, midImage: imageView)
         
+        super.init()
+        
+        // MARK: 开始失败记时
+        self.startTimer()
+        
     }
+    
+    
+    
+}
+
+extension GuideBandLinking {
+    
     
     func onLoadView() {
         
@@ -165,16 +216,48 @@ struct GuideBandLinking: GuideViewModelPotocols, LifeBandBleDelegate  {
             
             let rootViewController = StoryboardScene.Guide.instantiateGuideView()
             let bandVM = GuideBandSuccess()
-            
+            self.isPush =  true
             rootViewController.configView(bandVM, delegate: bandVM)
             
             Log.info("GuideBandLinking")
             
             CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: rootViewController))
             
+            
         }
         
     }
+    
+    
+    func startTimer() {
+        
+        
+        NSTimer.runThisAfterDelay(seconds: 10) {
+            
+            if self.isPush ==  true  {
+                
+                return
+                
+            }else{
+                
+                
+                // 如果10秒连接上了 return
+                if LifeBandBle.shareInterface.peripheral?.state == .Connected  {
+                    return
+                }
+                
+                
+                let rootVC = StoryboardScene.Guide.instantiateGuideView()
+                let failVM = GuideBandFail()
+                rootVC.configView(failVM, delegate: failVM)
+                CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: rootVC))
+                
+            }
+            
+        }
+        
+    }
+    
     
     func bleMangerState(bleState: CBCentralManagerState) {
         
@@ -192,14 +275,16 @@ struct GuideBandLinking: GuideViewModelPotocols, LifeBandBleDelegate  {
         
     }
     
+    
 }
+
 
 /**
  *  @author xuemincai
  *
  *  绑定成功
  */
-struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
+struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate, LifeBandBleDelegate {
     
     var title: String { return L10n.GuideLinkCavy.string }
     var centerView: UIView { return PictureView(title: L10n.GuidePairSuccess.string, titleInfo: L10n.GuidePairSuccessInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairSeccuss))) }
@@ -232,7 +317,7 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
             }
             
             // 有目标值信息
-            guard userInfo.sleepTime.isEmpty == true else {
+            guard userInfo.sleepGoal == 0 else {
                 
                 UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
                 
@@ -248,11 +333,18 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
             
         }
         
-        // 重新绑定手环在这里设置信息，其他在RootViewController 设置
+        // 重新绑定手环在这里设置信息，其他在RootViewController 
+         //设置 保存 MacAddress
         if BindBandCtrl.bindScene == .Rebind {
             
-            let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
-            CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] = BindBandCtrl.bandMacAddress
+            
+            saveMacAddress()
+            
+            UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+
+            NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.BeginRefresh.rawValue, object: nil)
+            
+            return
             
         }
         
@@ -261,8 +353,11 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
     }
     
     func onCilckBack(viewController: UIViewController) {
-        ez.topMostVC?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
         LifeBandBle.shareInterface.bleDisconnect()
+
+        ez.topMostVC?.presentingViewController?.presentingViewController?.dismissVC(completion: nil)
+        
+    
     }
     
 }
@@ -271,17 +366,26 @@ struct GuideBandSuccess: GuideViewModelPotocols, QueryUserInfoRequestsDelegate {
 /**
  *  @author xuemincai
  *
- *  连接失败
+ *  连接失败  从显示连接开始 10秒内未连接成功 显示失败
  */
 struct GuideBandFail: GuideViewModelPotocols {
     
     var title: String { return L10n.GuideLinkCavy.string }
-    var hiddeGuideBtn: Bool { return true }
-    var centerView: UIView { return PictureView(title: L10n.GuidePairFail.string, titleInfo: L10n.GuidePairFailInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairFail))) }
+    var hiddeGuideBtn: Bool { return false }
+    var hiddeBackBtn: Bool  { return true }
+    var centerView: UIView  { return PictureView(title: L10n.GuidePairFail.string, titleInfo: L10n.GuidePairFailInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuidePairFail))) }
+    
+    var guideBtnImage: UIImage { return UIImage(asset: .GuideFlashBtn) }
+    var guideBtnHighLightImage: UIImage { return UIImage(asset: .GuideFlashBtnHighLight) }
     
     func onClickGuideOkBtn(viewController: UIViewController) {
         
-        LifeBandBle.shareInterface.bleConnect(BindBandCtrl.bandMacAddress)
+        let rootVC = StoryboardScene.Guide.instantiateGuideView()
+        let openBandVM = GuideBandOpenBand()
+        
+        rootVC.configView(openBandVM, delegate: openBandVM)
+        CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: rootVC))
+        
         
     }
     

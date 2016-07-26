@@ -15,6 +15,7 @@ enum LifeBandModelType: Int {
     case LLA   = 8
     case Tilt  = 16
     case Step  = 32
+    case Alert = 64
 }
 
 enum LifeBandCtrlNotificationName: String {
@@ -31,6 +32,8 @@ class LifeBandCtrl {
     struct LifeBandInfo {
         var fwVersion: Int
         var model: Int
+        var hwVersion: Int
+        
     }
     
     enum BandAlarmType {
@@ -237,17 +240,21 @@ class LifeBandCtrl {
      
      ex:
      
-     %CFG=3,1\n //生活手环模式下，斷線後震動提示
+     %CFG=2,1\n //clock alarm on
+     %CFG=3,1\n //生活手環模式下，斷線後震動提示
      %CFG=4,1\n //Tilt function on
      %CFG=5,1\n //計步 function on
+     %CFG=6,1\n //connect alert function on
      - - -
      
      */
     func seLifeBandModel() {
         
+        LifeBandBle.shareInterface.sendMsgToBand("%CFG=2,1")
         LifeBandBle.shareInterface.sendMsgToBand("%CFG=3,1")
         LifeBandBle.shareInterface.sendMsgToBand("%CFG=4,1")
         LifeBandBle.shareInterface.sendMsgToBand("%CFG=5,1")
+        LifeBandBle.shareInterface.sendMsgToBand("%CFG=6,1")
         
     }
     
@@ -291,8 +298,9 @@ class LifeBandCtrl {
             
             let fwVersion = Int(data[5] ?? 0)
             let model = Int(data[3] ?? 0)
+            let hwVersion = Int(data[4] ?? 0)
             
-            let lifeBandInfo = LifeBandInfo(fwVersion: fwVersion, model: model)
+            let lifeBandInfo = LifeBandInfo(fwVersion: fwVersion, model: model, hwVersion: hwVersion)
             
             closure(lifeBandInfo)
             
@@ -316,6 +324,7 @@ class LifeBandCtrl {
                 NSTimer.runThisAfterDelay(seconds: 4, after: {
                     
                     if self.buttonCount >= 4 {
+                        LifeBandCtrl.shareInterface.vibrate(1)
                         NSNotificationCenter.defaultCenter().postNotificationName(LifeBandCtrlNotificationName.BandButtonEvenClick4.rawValue, object: nil)
                     }
                     
@@ -327,16 +336,30 @@ class LifeBandCtrl {
             
             NSNotificationCenter.defaultCenter().postNotificationName(LifeBandCtrlNotificationName.BandButtonEvenClick1.rawValue, object: nil)
             
+            /**
+             *  0,  button released
+             1,  button pressed
+             3,  long pressed
+             */
             if data[2] == 1 {
                 self.buttonCount += 1
+                
+                Log.info("Button count \(self.buttonCount)")
+                
+            } else if  data[2] == 3 {
+                
+                
+                LifeBandBle.shareInterface.sendMsgToBand("%OPR=1,1\n command")
+              
+                Log.info("Buttion Long press")
+                
             }
             
-            Log.info("Button count \(self.buttonCount)")
-            
+           
         }
         
     }
     
     
-    
+
 }

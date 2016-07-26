@@ -17,7 +17,7 @@ protocol AccountItemDataSource {
     associatedtype viewModeType
 }
 
-class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITableViewDelegate, UITableViewDataSource, UserInfoRealmOperateDelegate {
+class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate {
     
     var realm: Realm = try! Realm()
     
@@ -32,15 +32,6 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     ///  徽章视图
     @IBOutlet weak var badgeView: UIView!
     
-    /// 成就数值
-    @IBOutlet weak var badgeInfo: UILabel!
-    
-    /// 成就
-    @IBOutlet weak var badgeTitle: UILabel!
-    
-    /// 徽章视图
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     /// 退出登录
     @IBOutlet weak var logoutButton: UIButton!
     
@@ -54,10 +45,29 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
     
     var accountInfos: Array<AnyObject?> = []
     
+    var loadingView: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
+    
+    override func viewWillAppear(animated: Bool) {
+        
+        // 调接口获取个人信息
+        queryUserInfoByNet { resultUserInfo in
+            
+            let userInfoModel = UserInfoModel(userId: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, userProfile: resultUserInfo!)
+            
+            self.updateUserInfo(userInfoModel)
+          
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
+        
+        addAllViews()
         
         accountInfoQuery()
         
@@ -65,11 +75,39 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
     }
     
+    /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+    }
+   
     deinit {
         
         notificationToken?.stop()
         
         Log.info("deinit ContactsAccountInfoVC")
+        
+    }
+    
+    /**
+      添加加载圈圈
+     */
+    func addLodingView() {
+        
+        self.view.addSubview(loadingView)
+        
+        loadingView.hidesWhenStopped = true
+        
+        loadingView.activityIndicatorViewStyle = .Gray
+        
+        loadingView.snp_makeConstraints { make in
+            make.center.equalTo(self.view)
+            make.width.equalTo(50.0)
+            make.height.equalTo(50.0)
+        }
         
     }
     
@@ -80,7 +118,7 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
-        notificationToken = userInfos.addNotificationBlock { [weak self](changes: RealmCollectionChange)  in
+        notificationToken = userInfos.addNotificationBlock { [weak self] (changes: RealmCollectionChange)  in
             
             switch changes {
                 
@@ -129,8 +167,8 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         accountInfos.append(addressCellViewModel)
         
         self.tableView.reloadData()
-        
-        addAllViews()
+                
+        achieveView?.configWithAchieveIndexForUser()
         
     }
     
@@ -142,14 +180,14 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         // InfoTableView高度
         // |-infoListCell-136-|-cellCount-1[infoListCell] * 50-|-边10-|
-        let tableViewHeight = CGFloat(136 + (accountInfos.count - 1) * 50 + 10)
+        let tableViewHeight = CGFloat(130 + 5 * 50 + 10 + 16)
         
         // collectionView 高度
         // |-(badgeCount / 3） *（20 + 112）-|
-        let collectionViewHeight = CGFloat((badgeCount / 3) * 132)
+        let collectionViewHeight = ez.screenWidth <= 320 ? CGFloat((badgeCount / 2) * 132) : CGFloat((badgeCount / 3) * 132)
 
         // contentView
-        contectView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        contectView.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         
         contectView.backgroundColor = UIColor(named: .HomeViewMainColor)
         contectView.snp_makeConstraints { make in
@@ -158,26 +196,50 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             make.height.equalTo(16 + tableViewHeight + 10 + 68 + collectionViewHeight + 20 + 50 + 20)
         }
         
-        
         addTableView()
         addBadgeView(collectionViewHeight)
         
         // 退出登录按钮
         logoutButton.setTitle(L10n.AccountInfoLoginoutButtonTitle.string, forState: .Normal)
+
         logoutButton.layer.cornerRadius = CavyDefine.commonCornerRadius
-        logoutButton.backgroundColor = UIColor(named: .ContactsAccountLogoutButton)
-        logoutButton.setBackgroundColor(UIColor(named: .ContactsAccountLogoutButton), forState: .Normal)
-        
+        logoutButton.clipsToBounds = true
+        logoutButton.backgroundColor = UIColor(named: .QColor)
+        logoutButton.setBackgroundColor(UIColor(named: .QColor), forState: .Normal)
+        logoutButton.titleLabel?.font = UIFont.mediumSystemFontOfSize(18.0)
+        logoutButton.setTitleColor(UIColor(named: .AColor), forState: .Normal)
+                
         // 退出按钮手势
         logoutButton.addTapGesture { _ in
             
-            CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+            self.loadingView.startAnimating()
             
-            UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Main.instantiateMainPageView(), transition: CATransition())
+            let parameters: [String: AnyObject] = [NetRequestKey.DeviceSerial.rawValue: CavyDefine.bindBandInfos.bindBandInfo.deviceSerial,
+                                                    NetRequestKey.DeviceModel.rawValue: UIDevice.deviceType().rawValue,
+                                                    NetRequestKey.AuthKey.rawValue: CavyDefine.gameServerAuthKey,
+                                                    NetRequestKey.BandMac.rawValue: CavyDefine.bindBandInfos.bindBandInfo.defaultBindBand,
+                                                    NetRequestKey.Longitude.rawValue: CavyDefine.userCoordinate.longitude,
+                                                    NetRequestKey.Latitude.rawValue: CavyDefine.userCoordinate.latitude]
             
-            LifeBandBle.shareInterface.bleDisconnect()
+            NetWebApi.shareApi.netPostRequest(WebApiMethod.Logout.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { [unowned self] (data) in
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId = ""
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername = ""
+                CavyDefine.loginUserBaseInfo.loginUserInfo.loginAuthToken = ""
+                
+                UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Main.instantiateMainPageView(), transition: CATransition())
+                self.loadingView.stopAnimating()
+                LifeBandBle.shareInterface.bleDisconnect()
+            }, failureHandler: { (msg) in
+                CavyLifeBandAlertView.sharedIntance.showViewTitle(message: msg.msg)
+                
+                self.loadingView.stopAnimating()
+            })
+            
+            
             
         }
+        
+        addLodingView()
         
     }
 
@@ -186,8 +248,9 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
      */
     func addTableView(){
         
-        tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
-        tableView.backgroundColor = UIColor(named: .HomeViewMainColor)
+//        tableView.clipsToBounds = true
+        tableView.setCornerRadius(radius: CavyDefine.commonCornerRadius)
+        tableView.backgroundColor = UIColor.whiteColor() //(named: .HomeViewMainColor)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.bounces = false
@@ -201,14 +264,12 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
      */
     func addBadgeView(height: CGFloat) {
         
-        badgeView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        badgeView.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         badgeView.snp_makeConstraints { make in
             
             // |-16-|-tableView-|-10-|-badgeView-10- -50- -8- collectionView -|-20-|-logoutButton-50-|-20-|
             make.height.equalTo(68 + height)
         }
-        
-        let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
         
         badgeView.addSubview(achieveView!)
         achieveView!.snp_makeConstraints { make in
@@ -221,52 +282,82 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         // Dispose of any resources that can be recreated.
     }
     
-    // MARK: - UITableView Delegate
     
+}
+
+// MARK: - UITableView Delegate
+extension ContactsAccountInfoVC: UITableViewDelegate, UITableViewDataSource {
+    
+
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         
-        return 1
+        return 2
         
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return accountInfos.count > 0 ? 1 : 0
+        }
         
-        return accountInfos.count
+        return accountInfos.count - 1 >= 0 ? accountInfos.count - 1 : 0
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         
-        if indexPath.row == 0 {
+        if indexPath.section == 0 {
             
-            return 136
+            return 130
             
         } else {
             
             return 50
         }
         
+    }
+    
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 10
+        }
         
+        return 0.01
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 1 {
+            return 16
+        }
+        
+        return 0.01
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        if let cellViewModel = accountInfos[indexPath.row] as? PresonInfoListCellViewModel {
-            
-            let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
-            cell.configCell(cellViewModel)
-            return cell
-            
-        }
         
-        if let cellViewModel = accountInfos[indexPath.row] as? PresonInfoCellViewModel {
+        if indexPath.section == 0 {
             
+            let cellViewModel = accountInfos[indexPath.row] as! PresonInfoCellViewModel
             let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoCell", forIndexPath: indexPath) as! ContactsPersonInfoCell
             cell.configCell(cellViewModel, delegate: cellViewModel)
             return cell
             
+        } else {
+            
+            let cellViewModel = accountInfos[indexPath.row + 1] as? PresonInfoListCellViewModel
+            let cell = tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
+            cell.configCell(cellViewModel!)
+            return cell
+            
         }
-        
-        return tableView.dequeueReusableCellWithIdentifier("ContactsPersonInfoListCell", forIndexPath: indexPath) as! ContactsPersonInfoListCell
 
     }
     
@@ -274,26 +365,28 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
         
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        if accountInfos[indexPath.row] is PresonInfoCellViewModel {
-            
+        if indexPath.section == 0 {
             // 跳转到修改备注
             let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
             
-            let changeRemarkVM = UserChangeNicknameVM(viewController: requestVC)
+            let cellViewModel = accountInfos[indexPath.row] as? PresonInfoCellViewModel
             
-            requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+            let changeNicknameVM = UserChangeNicknameVM(viewController: requestVC, textFeildText: cellViewModel?.title)
+            
+            requestVC.viewConfig(changeNicknameVM)
             
             self.pushVC(requestVC)
-            
         } else {
             
-            if indexPath.row == accountInfos.count - 1 {
+            let cellViewModel = accountInfos[indexPath.row + 1] as? PresonInfoListCellViewModel
+            
+            if indexPath.row == accountInfos.count - 2 {
                 // 跳转到修改地址
                 let requestVC = StoryboardScene.Contacts.instantiateContactsReqFriendVC()
+                                
+                let changeRemarkVM = UserChangeAddressVM(viewController: requestVC, textFieldText: cellViewModel?.info)
                 
-                let changeRemarkVM = UserChangeAddressVM(viewController: requestVC)
-                
-                requestVC.viewConfig(changeRemarkVM, delegate: changeRemarkVM)
+                requestVC.viewConfig(changeRemarkVM)
                 
                 self.pushVC(requestVC)
                 
@@ -303,17 +396,22 @@ class ContactsAccountInfoVC: UIViewController, BaseViewControllerPresenter, UITa
             let nextVC = StoryboardScene.Guide.instantiateGuideView()
                     
             switch indexPath.row {
+            case 0:
+                let nextVM = AccountGenderViewModel(gender: CavyDefine.translateSexToNumber(cellViewModel?.info ?? ""))
+                nextVC.configView(nextVM, delegate: nextVM)
             case 1:
-                let nextVM = AccountGenderViewModel()
+                let nextVM = AccountHeightViewModel(height: cellViewModel?.info.stringByReplacingOccurrencesOfString("cm", withString: "") ?? "")
                 nextVC.configView(nextVM, delegate: nextVM)
             case 2:
-                let nextVM = AccountHeightViewModel()
+                let nextVM = AccountWeightViewModel(weight: cellViewModel?.info.stringByReplacingOccurrencesOfString("kg", withString: "") ?? "")
                 nextVC.configView(nextVM, delegate: nextVM)
             case 3:
-                let nextVM = AccountWeightViewModel()
-                nextVC.configView(nextVM, delegate: nextVM)
-            case 4:
-                let nextVM = AccountBirthdayViewModel()
+
+                let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
+                let userInfo = userInfos.first
+                let userBirthday = userInfo!.birthday ?? "1990-01-15"
+                let birthdayDate = NSDate(fromString: userBirthday, format: "yyyy-MM-dd")
+                let nextVM = AccountBirthdayViewModel(year: birthdayDate!.toString(format: "yyyy").toInt()!, month: birthdayDate!.toString(format: "M").toInt()!, day: birthdayDate!.toString(format: "d").toInt()!)
                 nextVC.configView(nextVM, delegate: nextVM)
             default:
                 break

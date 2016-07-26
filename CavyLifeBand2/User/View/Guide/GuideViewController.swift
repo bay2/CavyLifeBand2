@@ -57,7 +57,7 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
 //        updateNavUI()
         
-        delegate?.onLoadView()
+//        delegate?.onLoadView()
         
     }
     
@@ -65,6 +65,8 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         super.viewWillAppear(animated)
         
         updateViewStyle()
+        
+        delegate?.onLoadView()
     }
     
     deinit {
@@ -86,6 +88,10 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         infoLabel.font = UIFont.systemFontOfSize(14)
         infoLabel.snp_makeConstraints { make -> Void in
             make.top.equalTo(self.view)
+        }
+        
+        middleView.snp_makeConstraints { (make) in
+            make.bottom.equalTo(self.view).offset(ez.screenWidth <= 320 ? -90 : -110)
         }
         
     }
@@ -117,8 +123,10 @@ class GuideViewController: UIViewController, BaseViewControllerPresenter {
         
         self.guideButton.hidden = viewDataSource.hiddeGuideBtn
         self.guideButton.setImage(viewDataSource.guideBtnImage, forState: .Normal)
+        self.guideButton.setImage(viewDataSource.guideBtnHighLightImage, forState: .Highlighted)
         
         let centerView = viewDataSource.centerView
+        middleView.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         self.middleView.addSubview(centerView)
         
         self.infoLabel.text = dataSource?.subTitle

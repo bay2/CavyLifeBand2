@@ -35,6 +35,9 @@ HomeRingViewBackground : #309a6e
 HomeTimeLineLineColor :#e5e5e5
 HomeTimeLinePKCellTextColor : #ff8259
 ChartBackground : #e5e5e5
+ChartSubTimeBucketViewBg : #72e4b5
+ChartSubTimeBucketTint : #cef4e3
+ChartSubTimeBucketTintMore : #b3efd5
 ChartSleepDegreeText : #ff5757
 ChartDeselectText : #00000066
 ChartSleepDegreeDeep : #2db6cf
@@ -130,3 +133,10 @@ IColor: #ff7200
 JColor: #ff9138
 KColor: #48d299
 LColor: #e0e0e0
+MColor: #f2f2f2
+NColor: #dddddd
+OColor: #ffd46c
+PColor: #b46e00
+QColor: #ff6749
+RColor: #odcf7f
+SColor: #ff5656

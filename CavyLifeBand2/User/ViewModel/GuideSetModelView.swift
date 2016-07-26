@@ -60,7 +60,7 @@ struct GuideSetNoticeViewModel: GuideViewModelPotocols {
 struct GuideSetLocationShare: GuideViewModelPotocols, UserInfoRealmOperateDelegate {
     
     var title: String { return L10n.GuideSetting.string }
-    var rightItemBtnTitle: String { return L10n.GuidePassButton.string }
+//    var rightItemBtnTitle: String { return L10n.GuidePassButton.string }
     var centerView: UIView { return PictureView(title: L10n.GuideOpenLocationShare.string, titleInfo: L10n.GuideOpenLocationShareInfo.string, midImage: AnimatableImageView(image: UIImage(asset: .GuideLocation))) }
     
     var realm: Realm  = try! Realm()
@@ -106,9 +106,8 @@ struct GuideSetLocationShare: GuideViewModelPotocols, UserInfoRealmOperateDelega
         } else {
             addUserInfo(userInfoModel)
         }
-        
-        
-        
+                
+        UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
         UIApplication.sharedApplication().keyWindow?.setRootViewController(StoryboardScene.Home.instantiateRootView(), transition: CATransition())
         
     }

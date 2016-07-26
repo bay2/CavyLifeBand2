@@ -119,7 +119,9 @@ class AddClockViewController: UIViewController, BaseViewControllerPresenter {
         alarmCircleDescriptionLabel.font      = UIFont.systemFontOfSize(12.0)
         
         deleteBtn.layer.cornerRadius = CavyDefine.commonCornerRadius
-        deleteBtn.backgroundColor    = UIColor(named: .AlarmClockDeleteBtnBGColor)
+        deleteBtn.backgroundColor    = UIColor(named: .NColor)
+        deleteBtn.titleLabel?.font = UIFont.mediumSystemFontOfSize(18.0)
+        deleteBtn.setTitleColor(UIColor(named: .AColor), forState: .Normal)
     }
     
     /**

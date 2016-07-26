@@ -67,15 +67,13 @@ class LifeBandSyncData {
     enum SyncDateCtrl: Int, CustomStringConvertible {
         
         init(beginDate: NSDate) {
+ 
+            let dayCount = NSDate().formartDate(NSDate()).daysInBetweenDate(NSDate().formartDate(beginDate)).toInt
             
-            let dayCount = NSDate().daysInBetweenDate(beginDate).toInt
-            
-            // 目前只支持两天
             self = dayCount == 0 ? SyncDateCtrl.Today : SyncDateCtrl.Yesterday
             
         }
-        
-        
+
         init(dateCmd: UInt8) {
             
             switch dateCmd {
@@ -122,7 +120,9 @@ class LifeBandSyncData {
         case Today           // 今天
     }
     
-
+    
+ 
+    
     
     /**
      从手环同步计步睡眠时间
@@ -188,19 +188,22 @@ class LifeBandSyncData {
                 NSThread.sleepForTimeInterval(1)
             }
             
+            var i: Int = 0
             LifeBandBle.shareInterface.installCmd(0xDA) { [unowned self] data in
+                
+                Log.info("同步\(i += 1)")
                 
                 Log.info("syncDataFormBand ---- \(data)")
                 
                 self.saveTiltsAndStepsData(newBeginDate, data: data, reslut: reslut)
                 
-            }
-            .sendMsgToBand("%SYNC=\(dayCmd.rawValue),\(timeCmd)\n")
+                }
+                .sendMsgToBand("%SYNC=\(dayCmd.rawValue),\(timeCmd)\n")
             
             Log.info("Band sync begin ----  \(newBeginDate.toString(format: "yyyy-MM-dd HH:mm:ss"))")
             
         }
-
+        
     }
     
     /**
@@ -238,6 +241,47 @@ class LifeBandSyncData {
         
         if data[2...3]?.uint16 == 0xFFFF {
             
+            /**
+             因为手环返回的包数据大小为固定的20bytes
+             所以最后一个包会出现以下数据 <24da0201 40140009 00000000 00000000 00000000>
+             00000000 00000000 00000000其实是无效数据
+             所以拿完整个数据后，要在最后四个数据判断无效数据
+             即把最后一个数据和前面的三个数据比较，记录重复值，最后做删除
+             */
+            
+            /*-------判断无效数据------*/
+            
+            var repeatCount = 0
+            
+            for i in tiltsAndStepsInfo.count-4...tiltsAndStepsInfo.count-2 {
+                if tiltsAndStepsInfo.last?.date == tiltsAndStepsInfo[i].date {
+                    repeatCount += 1
+                }
+            }
+            
+            if repeatCount != 0 {
+                
+                for _ in 0...repeatCount {
+                    
+                    tiltsAndStepsInfo.removeLast()
+                    
+                }
+                
+            } else {
+                
+                let last = tiltsAndStepsInfo.last
+                let lastSecond = tiltsAndStepsInfo[tiltsAndStepsInfo.count - 2]
+                
+                let diffMinutes = (last!.date - lastSecond.date).totalMinutes
+                
+                if diffMinutes != 10 {
+                    tiltsAndStepsInfo.removeLast()
+                }
+                
+            }
+            
+            /*-------判断无效数据------*/
+            
             reslut(.Success(tiltsAndStepsInfo))
             packetNo = 0
             tiltsAndStepsInfo.removeAll()
@@ -247,6 +291,7 @@ class LifeBandSyncData {
             syncState = .NoSync
             
             Log.info("Band sync end")
+            
             return true
             
         }
@@ -257,10 +302,10 @@ class LifeBandSyncData {
         }
         
         //TODO: 等FW解决包序号问题，再把这里放开
-//        guard (packetNo + 1) == data[3] else {
-//            reslut(.Failure(.PacketNoError))
-//            return false
-//        }
+        //        guard (packetNo + 1) == data[3] else {
+        //            reslut(.Failure(.PacketNoError))
+        //            return false
+        //        }
         
         syncState = .Sync
         
@@ -272,14 +317,15 @@ class LifeBandSyncData {
                 continue
             }
             
-            if dataTiltsAndStep.steps == 0 && dataTiltsAndStep.tilts == 0 {
-                continue
-            }
+            // 0数据也保存
+//            if dataTiltsAndStep.steps == 0 && dataTiltsAndStep.tilts == 0 {
+//                continue
+//            }
             
             tiltsAndStepsInfo.append(dataTiltsAndStep)
             
         }
-        
+    
         packetNo = (packetNo == 72 ? 1 : packetNo + 1)
         
         return false

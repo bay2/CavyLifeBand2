@@ -18,12 +18,12 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
     let shareDataArray: [ShareViewDataSource] = [ShareWechatViewModel(), ShareWechatMomentsViewModel(),
                                                  ShareQQViewModel(), ShareWeiboViewModel()]
     
-    var publishContent: ISSContent = ShareSDK.content("分享内容",
-                                                       defaultContent: "默认分享内容，没内容时显示",
+    var publishContent: ISSContent = ShareSDK.content(L10n.ShareContent.string,
+                                                       defaultContent: L10n.ShareTitle.string,
                                                        image: ShareSDK.jpegImageWithImage(UIImage(named: "banner_home"), quality: 1.0),
-                                                       title: "标题",
+                                                       title: L10n.ShareTitle.string,
                                                        url: "http://www.tunshu.com",
-                                                       description: "测试分享",
+                                                       description: L10n.ShareContent.string,
                                                        mediaType: SSPublishContentMediaTypeImage)
     
     
@@ -52,7 +52,6 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
         bottomView.addSubview(titleView)
 
         addCollectionView()
-        
         
         self.animate(duration: 0.2, animations: {
             self.bottomView.frame = CGRectMake(0, ez.screenHeight - 148, ez.screenWidth, 148)
@@ -149,8 +148,8 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
         
         publishContent.setImage(ShareSDK.imageWithPath(savePath))
         
-        ShareSDK.shareContent(publishContent, type: type, authOptions: nil, statusBarTips: true) {(shareType, state, platformShareInfo, error, end) in
-            
+        
+        ShareSDK.clientShareContent(publishContent, type: type, statusBarTips: true, result: { (shareType, state, platformShareInfo, error, end) in
             switch state{
                 
             case SSResponseStateSuccess:
@@ -165,9 +164,7 @@ class ShareView: UIView, UICollectionViewDataSource, UICollectionViewDelegateFlo
             default:
                 break
             }
-            
-        }
-        
+        })
 
     }
     

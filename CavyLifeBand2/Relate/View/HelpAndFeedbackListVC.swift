@@ -8,6 +8,7 @@
 
 import UIKit
 import JSONJoy
+import EZSwiftExtensions
 
 class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
 
@@ -55,14 +56,6 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         
         loadData()
         
-//        tableDataSource = [HelpFeedbackCellModel(title: "手环连接失败？", webStr: "http://www.baidu.com"),
-//                           HelpFeedbackCellModel(title: "按了手环按钮没有亮灯？", webStr: "http://www.baidu.com"),
-//                           HelpFeedbackCellModel(title: "安全功能如何使用？", webStr: "http://www.baidu.com"),
-//                           HelpFeedbackCellModel(title: "手环不能记录睡眠？", webStr: "http://www.baidu.com"),
-//                           HelpFeedbackCellModel(title: "手环不能记录计步？", webStr: "http://www.baidu.com")]
-        
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +68,16 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         let targetVC = StoryboardScene.Relate.instantiateHelpAndFeedbackVC()
         
         self.pushVC(targetVC)
+        
+    }
+    
+    /**
+     返回按钮处理
+     */
+    func onLeftBtnBack() {
+        
+        self.navigationController?.popViewControllerAnimated(false)
+        NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
         
     }
     
@@ -93,6 +96,10 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         tableView.backgroundColor    = UIColor.clearColor()
 
         tableView.layer.cornerRadius = CavyDefine.commonCornerRadius
+        
+        tableView.estimatedRowHeight = 50.0
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         tableView.registerNib(UINib.init(nibName: HelpAndFeedbackCellID, bundle: nil), forCellReuseIdentifier: HelpAndFeedbackCellID)
         
@@ -119,41 +126,24 @@ class HelpAndFeedbackListVC: UIViewController, BaseViewControllerPresenter {
         
         loadingView.startAnimating()
         
-        do {
+        HelpFeedbackWebApi.shareApi.getHelpFeedbackList({
             
-            try HelpFeedbackWebApi.shareApi.getHelpFeedbackList { result in
+            for help in $0.helpList {
                 
-                self.loadingView.stopAnimating()
+                let celVM = HelpFeedbackCellModel(title: help.title, webStr: help.webUrl)
                 
-                guard result.isSuccess else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
-                    return
-                }
+                self.tableDataSource.append(celVM)
                 
-                let resultMsg = try! HelpFeedbackResponse(JSONDecoder(result.value!))
-                
-                guard resultMsg.commonMsg?.code == WebApiCode.Success.rawValue else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.commonMsg?.code ?? "")
-                    return
-                }
-                
-                guard let helpList = resultMsg.helpList else {
-                    return
-                }
-                
-                for help in helpList {
-                    
-                    let celVM = HelpFeedbackCellModel(title: help.title, webStr: help.webUrl)
-                    
-                    self.tableDataSource.append(celVM)
-                    
-                    self.tableView.reloadData()
-                }
-                
+                self.tableView.reloadData()
             }
             
-        } catch let error {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+            self.loadingView.stopAnimating()
+            
+        }) {
+            
+            CavyLifeBandAlertView.sharedIntance.showViewTitle(message: $0.msg)
+            self.loadingView.stopAnimating()
+            
         }
 
     }
@@ -169,10 +159,6 @@ extension HelpAndFeedbackListVC: UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return tableSectionHeight
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 50
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
@@ -211,6 +197,8 @@ extension HelpAndFeedbackListVC: UITableViewDelegate {
         self.pushVC(targetVC)
 
     }
+    
+    
     
 }
 

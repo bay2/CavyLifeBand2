@@ -7,15 +7,18 @@
 //
 
 import UIKit
-import KSCrash
 import Log
 import EZSwiftExtensions
 import RealmSwift
+
+
 #if UITEST
 import OHHTTPStubs
 #endif
 
 var realm: Realm = try! Realm()
+
+let UMAPPKey = "5791832167e58e3ffd001bd0"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
@@ -23,6 +26,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+     
+        
+        /**
+         5适配
+         */
+        appFitWithDevice()
+        
+        realmConfig()
+        
+        registerShareSdk()
+        
+//        appConfigUMobClickSDK()
+        
+        setRootViewController()
+        
+        setUserDefaultCoordinate()
+        
+        EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.AppOpen)
         
         #if UITEST
             
@@ -30,21 +51,61 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             
         #endif
         
-//        if ez.isRelease {
-//            Log.enabled = false
-//            crashConfig()
-//        }
         
-        realmConfig()
+        #if RELEASE
+
+            Log.enabled = false
+            
+        #endif
         
-        pgyUpdateConfig()
         
-        registerShareSdk()
         
-        setRootViewController()
+        #if DEBUG
+            
+            Log.theme = Theme(
+                trace: "#C5C8C6",
+                debug: "#81A2BE",
+                info: "#B5BD68",
+                warning: "#F0C674",
+                error: "#CC6666"
+            )
+            
+        #endif
+        
         
         return true
 
+    }
+    
+    /**
+     初始化友盟统计
+     */
+    
+//    func appConfigUMobClickSDK() {
+//        
+//        UMAnalyticsConfig.sharedInstance().appKey = UMAPPKey
+//        MobClick.startWithConfigure(UMAnalyticsConfig.sharedInstance())
+//        
+//     
+//    }
+    
+    
+    /**
+     5,5c,5s适配
+     */
+    func appFitWithDevice() {
+        
+        if UIDevice.isPhone5() {
+            
+            timeButtonHeight = 40
+            subTimeButtonHeight = 40
+            chartTopHeigh = 20
+            chartBottomHeigh = 20
+            chartViewHight = 230
+            listcellHight = 44
+            
+        }
+        
     }
     
     /**
@@ -58,6 +119,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
             return
         }
         
+        
         let bindBandKey = "CavyAppMAC_" + CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
         BindBandCtrl.bandMacAddress = CavyDefine.bindBandInfos.bindBandInfo.userBindBand[bindBandKey] ?? NSData()
         
@@ -65,19 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
-    /**
-     蒲公英升级
-     
-     - author: sim cai
-     - date: 2016-06-01
-     */
-    func pgyUpdateConfig() {
-    
-        PgyUpdateManager.sharedPgyManager().startManagerWithAppId("d349dbd8cf3ecc6504e070143916baf3")
-        PgyUpdateManager.sharedPgyManager().updateLocalBuildNumber()
-        PgyUpdateManager.sharedPgyManager().checkUpdateWithDelegete(self, selector: #selector(AppDelegate.updateMethod))
-        
-    }
+
     
     /**
      分享SDK
@@ -101,22 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
-    /**
-     异常上报
-     
-     - author: sim cai
-     - date: 2016-06-01
-     */
-    func crashConfig() {
-        
-        let installation = KSCrashInstallationStandard.sharedInstance()
-        
-        installation.url = NSURL(string: CavyDefine.bugHDKey)
-        
-        installation.install()
-        installation.sendAllReportsWithCompletion(nil)
-        
-    }
+
     
     /**
      realm 数据合并配置
@@ -132,7 +167,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
                 return
             }
             
-            migration.enumerate(FriendInfoRealm.className()) {(oldObject, newObject) in
+            migration.enumerate(FriendInfoRealm.className()) { (oldObject, newObject) in
                 
                 let nikeName = oldObject!["nikeName"] as! String
                 newObject!["fullName"] = nikeName.chineseToSpell() + nikeName
@@ -143,30 +178,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
         
     }
     
+
+    
     /**
-     蒲公英更新检查
-     
-     - author: sim cai
-     - date: 2016-06-01
-     
-     - parameter updateMethodWithDictionary: <#updateMethodWithDictionary description#>
+     获取用户经纬度 用于事件统计接口
      */
-    func updateMethod(updateMethodWithDictionary: [String: AnyObject]?) {
+    func setUserDefaultCoordinate() {
         
-        guard let updateDictionary = updateMethodWithDictionary else {
-            return
+        SCLocationManager.shareInterface.startUpdateLocation { coordinate in
+            
+            CavyDefine.userCoordinate.latitude = coordinate.latitude.toString
+            CavyDefine.userCoordinate.longitude = coordinate.longitude.toString
+            
         }
-        
-        let localBuild = ez.appBuild?.toInt() ?? 0
-        let newBuild = (updateDictionary["versionCode"] as? String ?? "").toInt() ?? 0
-        
-        guard localBuild < newBuild else {
-            return
-        }
-        
-        PgyUpdateManager.sharedPgyManager().checkUpdate()
-        
+
     }
+    
 
 #if UITEST
     
@@ -246,10 +273,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
     func applicationDidEnterBackground(application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        
+        // 进入后台和杀死进程
+        EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.AppQuit)
     }
 
     func applicationWillEnterForeground(application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+        
+        // 只有 打开蓝牙并且连接手环 自动刷新的处理
+        if LifeBandBle.shareInterface.centraManager?.state == .PoweredOn && LifeBandBle.shareInterface.getConnectState() == .Connected {
+        
+            NSNotificationCenter.defaultCenter().postNotificationName(RefreshStyle.BeginRefresh.rawValue, object: nil)
+            
+        }
+        
+        EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.AppOpen)
+        
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
@@ -258,6 +298,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, LifeBandBleDelegate {
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
+        if LifeBandBle.shareInterface.centraManager?.state == .PoweredOn && LifeBandBle.shareInterface.getConnectState() == .Connected {
+            
+            EventStatisticsApi.shareApi.uploadEventInfo(ActivityEventType.BandDisconnect)
+            
+        }
+        
     }
 
     // MARK: - 如果使用SSO（可以简单理解成跳客户端授权），以下方法是必要的

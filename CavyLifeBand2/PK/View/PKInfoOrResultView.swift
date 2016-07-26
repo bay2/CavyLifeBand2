@@ -78,7 +78,7 @@ class PKInfoOrResultView: UIView {
         userAvatarImageView.clipsToBounds = true
         competitorAvatarImageView.clipsToBounds = true
         
-        winnerImageView.snp_makeConstraints {(make) in
+        winnerImageView.snp_makeConstraints { (make) in
             make.height.equalTo(30)
             make.width.equalTo(30)
         }
@@ -88,7 +88,7 @@ class PKInfoOrResultView: UIView {
     //双方打平的UI设置
     func winnerBoth() -> Void {
         
-        competitorAvatarImageView.snp_makeConstraints {(make) in
+        competitorAvatarImageView.snp_makeConstraints { (make) in
             
             make.leading.equalTo(topBGView.snp_centerX).offset(30)
             
@@ -96,7 +96,7 @@ class PKInfoOrResultView: UIView {
             
         }
         
-        userAvatarImageView.snp_makeConstraints {(make) in
+        userAvatarImageView.snp_makeConstraints { (make) in
             
             make.trailing.equalTo(topBGView.snp_centerX).offset(-30)
             
@@ -114,20 +114,20 @@ class PKInfoOrResultView: UIView {
             
             winnerImageView.hidden = false
             
-            winnerImageView.snp_updateConstraints {(make) in
+            winnerImageView.snp_updateConstraints { (make) in
                 make.trailing.equalTo(competitorAvatarImageView.snp_trailing)
                 make.top.equalTo(competitorAvatarImageView.snp_top).offset(-6)
             }
         }
         
-        competitorAvatarImageView.snp_updateConstraints {(make) in
+        competitorAvatarImageView.snp_updateConstraints { (make) in
             
             make.leading.equalTo(topBGView.snp_centerX)
             
             make.width.equalTo(bigAvatarWidth)
         }
         
-        userAvatarImageView.snp_updateConstraints {(make) in
+        userAvatarImageView.snp_updateConstraints { (make) in
             
             make.trailing.equalTo(topBGView.snp_centerX).offset(-30)
             
@@ -152,7 +152,7 @@ class PKInfoOrResultView: UIView {
             
             winnerImageView.hidden = false
             
-            winnerImageView.snp_updateConstraints {(make) in
+            winnerImageView.snp_updateConstraints { (make) in
                 make.trailing.equalTo(userAvatarImageView.snp_trailing)
                 make.top.equalTo(userAvatarImageView.snp_top).offset(-6)
             }
@@ -160,14 +160,14 @@ class PKInfoOrResultView: UIView {
         
         competitorNameLabel.text = dataSource?.competitorName
         
-        competitorAvatarImageView.snp_updateConstraints {(make) in
+        competitorAvatarImageView.snp_updateConstraints { (make) in
             
             make.leading.equalTo(topBGView.snp_centerX).offset(30)
             
             make.width.equalTo(smallAvatarWidth)
         }
         
-        userAvatarImageView.snp_updateConstraints {(make) in
+        userAvatarImageView.snp_updateConstraints { (make) in
             
             make.trailing.equalTo(topBGView.snp_centerX)
             
@@ -209,8 +209,8 @@ class PKInfoOrResultView: UIView {
             winnerBoth()
         }
         
-        userAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.userAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
-        competitorAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.comprtitorAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
+        userAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.userAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead_small))
+        competitorAvatarImageView.af_setCircleImageWithURL(NSURL(string: dataSource?.comprtitorAvatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead_small))
         
         guard let pkId = dataSource?.pkId else {
             return

@@ -28,8 +28,10 @@ class UserProtocolView: UIView {
         protocolBtn.setTitle(L10n.SignUpProcotolViewBtn.string, forState: .Normal)
         protocolBtn.setTitleColor(UIColor(named: .CColor), forState: .Normal)
         protocolBtn.titleLabel!.font = UIFont.systemFontOfSize(14)
+
         
         defineViewLayout()
+      
 
     }
 
@@ -62,6 +64,5 @@ class UserProtocolView: UIView {
         }
 
     }
-
 
 }

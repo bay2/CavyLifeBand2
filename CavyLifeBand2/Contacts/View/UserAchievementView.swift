@@ -8,12 +8,13 @@
 
 import UIKit
 import RealmSwift
+import EZSwiftExtensions
 
-class UserAchievementView: UIView, UserInfoRealmOperateDelegate {
+class UserAchievementView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
 
     let userAchievementViewCollectionCell = "UserAchievementCell"
     
-    let cellSize  = CGSizeMake(90, 132)
+    let cellSize  = CGSizeMake(90, 122)
     
     /// 徽章个数
     var medalCount = 6
@@ -24,12 +25,17 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate {
         
         didSet {
             infoLabel.text = infoStrFormatter(String.numberDecimalFormatter(achievementCount!))
+            self.collectionView.reloadData()
         }
     
     }
     
     var realm: Realm = try! Realm()
+    
     var userId: String = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId
+    
+    // 判断本地是否需要点灯
+    let stepArray = [0, 5000, 20000, 100000, 500000, 1000000, 5000000]
 
     /// 成就标题Label
     @IBOutlet weak var titleLabel: UILabel!
@@ -42,74 +48,97 @@ class UserAchievementView: UIView, UserInfoRealmOperateDelegate {
         
     override func awakeFromNib() {
         
-        
-        guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
-            return
-        }
-        
-        achievementsList = configWithMadelIndex(0)
+        infoLabel.text = infoStrFormatter("0")
+
+        defaultConfigureAchievement()
         
         // 成就标题Label样式设置
         titleLabel.text      = L10n.ContactsShowInfoAchievement.string
         titleLabel.textColor = UIColor(named: .EColor)
         titleLabel.font      = UIFont.mediumSystemFontOfSize(16.0)
         
-        
-        // 斜体字体
-        let font   = UIFont.mediumSystemFontOfSize(14.0)
-        
         // 成就详情Label样式设置
-        infoLabel.text      = infoStrFormatter()
-        infoLabel.font      = font
+        infoLabel.font      = UIFont.systemFontOfSize(14.0)
         infoLabel.textColor = UIColor(named: .KColor)
         
         // 成就图标展示视图设置
-        collectionView.delegate   = self
-        collectionView.dataSource = self
+        collectionView.delegate      = self
+        collectionView.dataSource    = self
+        collectionView.scrollEnabled = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.registerNib(UINib(nibName: userAchievementViewCollectionCell, bundle: nil), forCellWithReuseIdentifier: userAchievementViewCollectionCell)
         
-        
-        self.clipsToBounds      = true
-        self.layer.cornerRadius = CavyDefine.commonCornerRadius
-        
-        guard let achieveIndex = userInfo.achievementType.toInt() else {
-            return
-        }
-        
-        achievementsList = configWithMadelIndex(achieveIndex)
+        self.setCornerRadius(radius: CavyDefine.commonCornerRadius)
         
     }
     
     /**
-     传进来的指数  
-     0:没有成就; 1:5000步;2:20000步;3:1000000步;4：500000步;5：1000000步;6：5000000步;
-     
-     - parameter index: 传进来的指数
-     
-     - returns: 徽章数组
+     配置登录用户的成就页面
      */
-    func configWithMadelIndex(index: Int = 0) -> [AchievementDataSource]? {
-
+    func configWithAchieveIndexForUser() {
+        
+        let userInfo: UserInfoModel = queryUserInfo(userId)!
+        
+        defaultConfigureAchievement(userInfo.translateAwards())
+        
+        achievementCount = userInfo.steps
+        
+    }
+    
+    func defaultConfigureAchievement(awards: [Int] = []) {
+        
+        achievementsList?.removeAll()
+        
         var array: [AchievementDataSource] = []
-
+        
         for i in 0 ..< medalCount {
             
             array.append(UserAchievementCellViewModel(madelIndex: i, isAchieve: 0))
         }
         
-        for i in 0 ..< index  {
+        guard awards.count > 0 else {
             
-            let vm = UserAchievementCellViewModel(madelIndex: index, isAchieve: 1)
-            array[i] = vm
+            achievementsList = array
+            
+            return
+        }
+        
+        let maxAwardIndex = sortInt(awards)
+        
+        for j in 0 ..< maxAwardIndex  {
+            
+            let vm = UserAchievementCellViewModel(madelIndex: j, isAchieve: 1)
+            array[j] = vm
             
         }
         
-        return array
+        achievementsList = array
+        
+    }
+    
+    /**
+     取出Int数组中的最大值
+     
+     - parameter awards: [Int]  如 [2,3]
+     
+     - returns: Int
+     */
+    func sortInt(awards: [Int]) -> Int {
+        
+        var x: Int = 0
+        
+        for value in awards {
+            
+            if value > x { x = value }
+            
+        }
+        
+        return x
+        
     }
     
     
-
+    
 }
 
 // MARK: - Tool Functions

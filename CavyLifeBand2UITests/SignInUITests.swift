@@ -28,7 +28,7 @@ class SignInUITests: XCTestCase {
             app.images["pageImage1"].swipeLeft()
             app.images["pageImage1"].swipeLeft()
             app.images["pageImage1"].swipeLeft()
-            let btn = app.buttons["登入"]
+            let btn = app.buttons["登录"]
             btn.tap()
             
             

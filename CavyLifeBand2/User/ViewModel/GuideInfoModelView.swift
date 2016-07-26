@@ -8,6 +8,8 @@
 
 import UIKit
 import EZSwiftExtensions
+import RealmSwift
+import JSONJoy
 
 /**
  *  @author xuemincai
@@ -87,7 +89,7 @@ struct GuideHeightViewModel: GuideViewModelPotocols {
             return
         }
         
-        GuideUserInfo.userInfo.height = heightView.heightString
+        GuideUserInfo.userInfo.height = heightView.heightValue.toDouble
         
         let nextVC = StoryboardScene.Guide.instantiateGuideView()
         let weightVM = GuideWeightViewModel()
@@ -116,7 +118,7 @@ struct GuideWeightViewModel: GuideViewModelPotocols {
             return
         }
         
-        GuideUserInfo.userInfo.weight = weightView.weightString
+        GuideUserInfo.userInfo.weight = weightView.weightString.toDouble() ?? 0.0
         
         let nextVC = StoryboardScene.Guide.instantiateGuideView()
         let goalVM = GuideGoalViewModel(viewStyle: .Guide)
@@ -139,12 +141,17 @@ enum GoalViewStyle {
  *
  *  目标设置view Model
  */
-struct GuideGoalViewModel: GuideViewModelPotocols {
+struct GuideGoalViewModel: GuideViewModelPotocols, UserInfoRealmOperateDelegate, QueryUserInfoRequestsDelegate {
     
     var title: String { return L10n.GuideMyInfo.string }
     var subTitle: String { return L10n.GuideIntroduce.string }
     var centerView: UIView
     var viewStyle: GoalViewStyle
+    var realm: Realm = try! Realm()
+    
+    var loadingView: UIActivityIndicatorView?
+    
+    var notificationToken: NotificationToken? = nil
     
     init(viewStyle: GoalViewStyle) {
         
@@ -161,37 +168,167 @@ struct GuideGoalViewModel: GuideViewModelPotocols {
         
         goalView.sliderStepAttribute(6000, recommandValue: 8000, minValue: 0, maxValue: 20000)
         goalView.sliderSleepAttribute(5, avgM: 30, recomH: 8, recomM: 30, minH: 2, minM: 0, maxH: 12, maxM: 00)
-        
+
         self.centerView = goalView
+        
+        switch viewStyle {
+        case .Guide:
+            break
+        case .RightMenu:            
+       
+            let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
+            
+            notificationToken = userInfos.addNotificationBlock { (changes: RealmCollectionChange)  in
+                
+                switch changes {
+                    
+                case .Initial(let value):
+                    
+                    if let user = value.first {
+                        goalView.sliderStepToValue(user.stepGoal)
+                        
+                        self.setGoalViewSleepValue(user.sleepGoal, view: goalView)
+                    }
+                    
+                case .Update(let value, deletions: _, insertions: _, modifications: _):
+                    if let user = value.first {
+                        goalView.sliderStepToValue(user.stepGoal)
+                        
+                        self.setGoalViewSleepValue(user.sleepGoal, view: goalView)
+                    }
+                    
+                default:
+                    break
+                    
+                }
+                
+            }
+           
+        }
+
+    }
+    
+    func setGoalViewSleepValue(value: Int, view: GoalView) {
+        
+        view.sliderSleepToValue(value/60, minute: value%60)
         
     }
     
-    func onClickGuideOkBtn(viewController: UIViewController) {
+    /**
+     为两种style区分返回方法的不同
+     
+     作为左边侧栏进入时，按返回将数据改为不保存返回，将数值改为用户上次设置的数据
+     
+     - parameter viewController:
+     */
+    func onCilckBack(viewController: UIViewController) {
+        
+        switch viewStyle {
+        case .Guide:
+            break
+        case .RightMenu:
+            let goalView = self.centerView as? GoalView
+            
+            guard let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
+                return
+            }
+            
+            goalView!.sliderStepToValue(userInfo.stepGoal)
+            
+            setGoalViewSleepValue(userInfo.sleepGoal, view: goalView!)
+            
+            UIApplication.sharedApplication().idleTimerDisabled = false
+            viewController.navigationController?.popViewControllerAnimated(false)
+            
+            NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+            
+            return
+            
+        }
+        
+        if viewController.navigationController?.viewControllers.count > 1 {
+            
+            viewController.popVC()
+            
+        } else {
+            
+            viewController.dismissVC(completion: nil)
+            
+        }
+        
+    }
+    
+    mutating func onClickGuideOkBtn(viewController: UIViewController) {
         
         guard let goalView = centerView as? GoalView else {
             return
         }
         
-        GuideUserInfo.userInfo.sleepTime = goalView.sleepTimeString
-        GuideUserInfo.userInfo.stepNum = goalView.stepCurrentValue
-        
         if self.viewStyle == .Guide {
+            
+            GuideUserInfo.userInfo.sleepGoal = goalView.sleepTimeValue
+            GuideUserInfo.userInfo.stepGoal = goalView.stepCurrentValue
         
             let nextVC = StoryboardScene.Guide.instantiateGuideView()
-            
-            let setVM = GuideSetNoticeViewModel()
-            
+
+            let setVM = GuideSetLocationShare()
+
             nextVC.configView(setVM, delegate: setVM)
-            
+
             viewController.pushVC(nextVC)
             
         } else {
             
-            // 返回主页
-            viewController.popVC()
+            if loadingView == nil {
+                loadingView = getLoadingView()
+            }
+            
+            loadingView?.startAnimating()
+            
+            // 调接口上传目标设置
+            uploadGoalData {
+                // 返回主页
+                UIApplication.sharedApplication().idleTimerDisabled = false
+                viewController.navigationController?.popViewControllerAnimated(false)
+                
+                NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomeLeftOnClickMenu.rawValue, object: nil)
+                // 目标值改变 通知 主页圆环更新
+                NSNotificationCenter.defaultCenter().postNotificationName("updateUpperViewRing", object: nil)
+            }
             
         }
         
+    }
+    
+    /**
+     上传目标设置到服务器
+     
+     - parameter completeHandler:
+     */
+    func uploadGoalData(completeHandler: (Void -> Void)) {
+        
+        let goalView = self.centerView as? GoalView
+        
+        let updateUserInfoPara: [String: AnyObject] = [NetRequestKey.StepsGoal.rawValue: goalView!.stepCurrentValue,
+                                                       NetRequestKey.SleepTimeGoal.rawValue: goalView!.sleepTimeValue]
+        
+        let parameters: [String: AnyObject] = [NetRequestKey.Profile.rawValue: updateUserInfoPara]
+
+        NetWebApi.shareApi.netPostRequest(WebApiMethod.UsersProfile.description, para: parameters, modelObject: CommenMsgResponse.self, successHandler: { data in
+            
+            self.updateUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
+                $0.sleepGoal = goalView!.sleepTimeValue
+                $0.stepGoal = goalView!.stepCurrentValue
+                return $0
+            }
+            
+            self.loadingView?.stopAnimating()
+            completeHandler()
+            
+        }) { (msg) in
+            self.loadingView?.stopAnimating()
+        }
+
     }
     
 }

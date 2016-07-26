@@ -52,6 +52,8 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
         
         loadFirendListData()
         
+        setTableView()
+        
         notificationToken = realm.addNotificationBlock { _, _ in
             
             self.loadFirendListData()
@@ -60,12 +62,24 @@ class ContactsFriendListVC: UIViewController, BaseViewControllerPresenter, UISea
         
     }
     
+    func setTableView() {
+        contactsTable.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
+        contactsTable.separatorStyle = .SingleLine
+        contactsTable.separatorColor = UIColor(named: .LColor)
+        contactsTable.tableFooterView = UIView()
+        
+        searchCtrlView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20)
+        searchCtrlView.separatorStyle = .SingleLine
+        searchCtrlView.separatorColor = UIColor(named: .LColor)
+        searchCtrlView.tableFooterView = UIView()
+    }
+    
     /**
      通过网络加载数据
      */
     func loadFriendListDataByNet() {
         
-        ContactsWebApi.shareApi.getFriendList(userId) {(result) in
+        ContactsWebApi.shareApi.getFriendList(userId) { (result) in
             
             guard result.isSuccess else {
                 
@@ -258,19 +272,6 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     /**
-     cell 编辑结束
-     
-     - parameter tableView:
-     - parameter indexPath:
-     */
-    func tableView(tableView: UITableView, didEndEditingRowAtIndexPath indexPath: NSIndexPath) {
-        
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsFriendListCell
-        cell?.showEditing(false)
-        
-    }
-    
-    /**
      左滑按钮
      
      - parameter tableView:
@@ -331,7 +332,7 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
         let deleteRowAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellDelete.string, handler: deleteActionProc)
         
         
-        deleteRowAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
+        deleteRowAction.backgroundColor = UIColor(named: .NColor)
         
         
         return deleteRowAction
@@ -364,7 +365,7 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
                         
         }
         
-        pkRowAction.backgroundColor = UIColor(named: .ContactsPKBtnColor)
+        pkRowAction.backgroundColor = UIColor(named: .JColor)
 
         return pkRowAction
 
@@ -380,7 +381,7 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
         var names = self.dataGroup!.contactsGroupList![indexPath.section].1
         
         let concernActionTitle = cell!.hiddenCare ? L10n.ContactsListCellCare.string : L10n.ContactsListCellUndoCare.string
-        let concernActionColor = cell!.hiddenCare ? UIColor(named: .ContactsCareBtnColor) : UIColor(named: .ContactsUndoCareBtnColor)
+        let concernActionColor = cell!.hiddenCare ? UIColor(named: .SColor) : UIColor(named: .FColor)
         
         let concernAction = UITableViewRowAction(style: .Default, title: concernActionTitle) {
             (action: UITableViewRowAction!, indexPath: NSIndexPath!) -> Void in
@@ -413,10 +414,6 @@ extension ContactsFriendListVC: UITableViewDataSource, UITableViewDelegate {
         if indexPath.section == 0 {
             return .None
         }
-        
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as? ContactsFriendListCell
-        
-        cell?.showEditing(true)
         
         return .Delete
         

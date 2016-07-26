@@ -33,11 +33,12 @@ class LeftMenViewController: UIViewController, HomeUserDelegate, UserInfoRealmOp
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        
         setTableViewStyle()
         
         userInfoView.configuration(self)
         
-        iconImageView.addTapGesture { _ in
+        userInfoView.addTapGesture { _ in
             
             let userInfo = ["nextView": StoryboardScene.AccountInfo.instantiateContactsAccountInfoVC()] as [NSObject: AnyObject]
             NSNotificationCenter.defaultCenter().postNotificationName(NotificationName.HomePushView.rawValue, object: nil, userInfo: userInfo)
@@ -47,11 +48,12 @@ class LeftMenViewController: UIViewController, HomeUserDelegate, UserInfoRealmOp
         
         addMenumenuGroupData(AppFeatureMenuGroupDataModel())
         addMenumenuGroupData(AppAboutMenuGroupDataModel())
+        addMenumenuGroupData(AppRecommendMenuGroupDataModel())
         
         let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
         
-        notificationToken = userInfos.addNotificationBlock {(changes: RealmCollectionChange) in
+        notificationToken = userInfos.addNotificationBlock { (changes: RealmCollectionChange) in
             
             switch changes {
                 
@@ -73,7 +75,7 @@ class LeftMenViewController: UIViewController, HomeUserDelegate, UserInfoRealmOp
     func updateUI(result: Results<UserInfoModel>) {
         
         self.userName.text = result.first?.nickname ?? ""
-        self.iconImageView.af_setCircleImageWithURL(NSURL(string: result.first?.avatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead))
+        self.iconImageView.af_setCircleImageWithURL(NSURL(string: result.first?.avatarUrl ?? "")!, placeholderImage: UIImage(asset: .DefaultHead_big))
         self.account.text = CavyDefine.loginUserBaseInfo.loginUserInfo.loginUsername
     
     }
@@ -194,7 +196,9 @@ extension LeftMenViewController {
         
         menuGroup[indexPath.section].refurbishNextView()
         
-        let nextView = menuGroup[indexPath.section].items[indexPath.row].nextView
+        guard let nextView = menuGroup[indexPath.section].items[indexPath.row].nextView else {
+            return
+        }
         
         let userInfo = ["nextView": nextView] as [NSObject: AnyObject]
         

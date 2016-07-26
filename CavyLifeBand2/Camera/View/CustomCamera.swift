@@ -40,7 +40,6 @@ class CustomCamera: UIViewController {
     @IBOutlet weak var lastImage: UIButton!
 
     var isPhotoOrVideo: Bool = true // true 代表拍照
-    var errorLabel     = UILabel?()
     var camera         = LLSimpleCamera()
     var library        = ALAssetsLibrary()
     var timer = NSTimer()
@@ -52,6 +51,12 @@ class CustomCamera: UIViewController {
         
         super.viewWillAppear(animated)
         
+        if isPhotoOrVideo {
+            
+            self.shutterPhoto.setImage(UIImage(asset: .CameraTakePhoto), forState: .Normal)
+
+        }
+        
         getLastPhoto()         // show lastImage
         
         camera.start()         // start Camera
@@ -60,15 +65,7 @@ class CustomCamera: UIViewController {
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CustomCamera.photoAndVideo), name: LifeBandCtrlNotificationName.BandButtonEvenClick1.rawValue, object: nil)
         
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.LightContent, animated: false)
-        
-        // 更改UIStatusBar背景颜色
-        let statusBarView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, 20))
-        statusBarView.backgroundColor = UIColor.blackColor()
-        camera.view.addSubview(statusBarView)
-        
     }
-    
     
     override func viewDidLoad() {
         
@@ -80,10 +77,11 @@ class CustomCamera: UIViewController {
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(animated)
+    // 离开这个页面时候
+    override func viewDidDisappear(animated: Bool) {
         
-        UIApplication.sharedApplication().setStatusBarStyle(UIStatusBarStyle.Default, animated: false)
+        super.viewDidDisappear(animated)
+        NSNotificationCenter.defaultCenter().removeObserver(self)
         
     }
     
@@ -138,31 +136,33 @@ class CustomCamera: UIViewController {
         
         Log.error("Camera error:\(error)")
         
-        if error?.domain == LLSimpleCameraErrorDomain {
-            return
+        var massage: String = L10n.AlertCameraOpenAll.string
+
+        // 没有麦克风的使用权限
+        if String(error?.code) == String(LLSimpleCameraErrorCodeMicrophonePermission) {
+            massage = L10n.AlertCameraOpenMicrophone.string
         }
         
-        if String(error?.code) == String(LLSimpleCameraErrorCodeCameraPermission) || String(error?.code) == String(LLSimpleCameraErrorCodeMicrophonePermission) {
-            
-            if self.errorLabel != nil{
-                
-                self.errorLabel!.removeFromSuperview()
-            }
-            
-            let label = UILabel.init(frame: CGRectZero)
-            label.text = "We need permission for the camera.\nPlease go to your settings."
-            label.font = UIFont.init(name: "AvenirNext-DemiBold", size: 13)
-            label.numberOfLines = 2
-            label.lineBreakMode = NSLineBreakMode.ByWordWrapping
-            label.backgroundColor = UIColor.clearColor()
-            label.textColor = UIColor.whiteColor()
-            label.sizeToFit()
-            label.center = CGPointMake(ez.screenWidth / 2, ez.screenHeight / 2)
-            self.errorLabel = label
-            
-            
-            self.view.addSubview(self.errorLabel!)
+        // 没有相机的使用权限
+        if String(error?.code) == String(LLSimpleCameraErrorCodeCameraPermission) {
+            massage = L10n.AlertCameraOpenCamera.string
         }
+        
+        addAlertView(massage)
+        
+    }
+    
+    // 添加弹窗 允许访问权限
+    func addAlertView(massage: String) {
+        
+        let alertView = UIAlertController(title: "", message: massage, preferredStyle: .Alert)
+        
+        let sureAction = UIAlertAction(title: L10n.AlertSureActionTitle.string, style: .Cancel, handler: nil)
+        
+        alertView.addAction(sureAction)
+        
+        self.presentViewController(alertView, animated: true, completion: nil)
+        
     }
     
     // MARK: 其他方法
@@ -191,14 +191,16 @@ class CustomCamera: UIViewController {
         let fetchOptions = PHFetchOptions()
         let fetchResults = PHAsset.fetchAssetsWithOptions(fetchOptions)
         
-        if fetchResults.countOfAssetsWithMediaType(.Image) > 0 {
-            Log.info(fetchResults.count)
+        guard fetchResults.countOfAssetsWithMediaType(.Image) > 0 else {
+            return
         }
+        
+        Log.info(fetchResults.count)
         
         // 最后一张
         let lastAsset = fetchResults.lastObject as! PHAsset
         var returnImg = UIImage()
-        PHImageManager.defaultManager().requestImageForAsset(lastAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenWidth), contentMode: .AspectFill, options: nil) {(result, info) -> Void in
+        PHImageManager.defaultManager().requestImageForAsset(lastAsset, targetSize: CGSizeMake(ez.screenWidth, ez.screenWidth), contentMode: .AspectFill, options: nil) { (result, info) -> Void in
             returnImg = result!
         }
                 
@@ -229,10 +231,10 @@ class CustomCamera: UIViewController {
         // start recording
         let outputURL = self.applicationDocumentsDirectory().URLByAppendingPathComponent("cavy").URLByAppendingPathExtension("mov")
         
-        self.camera.startRecordingWithOutputUrl(outputURL) {(camera, outputFileUrl, error) in
+        self.camera.startRecordingWithOutputUrl(outputURL) { (camera, outputFileUrl, error) in
             
             // 保存视频
-            self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileUrl) {(assetUrl, error) -> Void in
+            self.library.writeVideoAtPathToSavedPhotosAlbum(outputFileUrl) { (assetUrl, error) -> Void in
                 if error != nil {
                     Log.error("Save video fail:%@", error)
                 } else {
@@ -252,18 +254,19 @@ class CustomCamera: UIViewController {
         
         Log.info("停止录像")
         
-        self.camera.recording = false
-        
-        // 停止计时器 时间归零
-        timer.invalidate()
-        timerCount = 0
-        
         self.flashSwitch.hidden = false
         self.shotCutSwitch.hidden = false
         self.changeToPhoto.hidden = false
         self.changeToVideo.hidden = false
         self.lastImage.hidden = false
         self.videRecordTime.hidden = true
+        
+        // 停止计时器 时间归零
+        timerCount = 0
+        timer.invalidate()
+        
+        self.camera.recording = false
+        
         
         self.shutterPhoto.setImage(UIImage(asset: .CameraVideoWait), forState: .Normal)
         
@@ -280,6 +283,8 @@ class CustomCamera: UIViewController {
         // 停止计时器 时间归零
         timer.invalidate()
         timerCount = 0
+        
+        timerRun()
         
         self.flashSwitch.hidden = false
         self.shotCutSwitch.hidden = false
@@ -298,12 +303,26 @@ class CustomCamera: UIViewController {
     func videoBeginRunTimer() {
         
         Log.info("录像开始计时")
+        timer.invalidate()
         
-        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(CustomCamera.timerRun(_:)), userInfo: nil, repeats: true)
+        timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(CustomCamera.timerRun), userInfo: nil, repeats: true)
         
     }
     
-    func timerRun(timer: NSTimer) {
+    func timerRun() {
+        
+        // 如果当前是非录像状态
+        if self.camera.recording == false {
+            
+            self.flashSwitch.hidden = false
+            self.shotCutSwitch.hidden = false
+            self.changeToPhoto.hidden = false
+            self.changeToVideo.hidden = false
+            self.lastImage.hidden = false
+            self.videRecordTime.hidden = true
+            
+            return
+        }
         
         timerCount += 1
         Log.info(timerCount)
@@ -391,7 +410,7 @@ class CustomCamera: UIViewController {
             
             Log.info("照相")
             
-            self.camera.capture ({(camera, image, metadata, error) -> Void in
+            self.camera.capture ({ (camera, image, metadata, error) -> Void in
                 if error != nil{
                     return
                 }
@@ -425,17 +444,16 @@ class CustomCamera: UIViewController {
     @IBAction func goPhotoAlbum(sender: AnyObject) {
         
         // 使用Photos来获取照片的时候，我们首先需要使用PHAsset和PHFetchOptions来得到PHFetchResult
-        let fetchOptions = PHFetchOptions()        
+        let fetchOptions = PHFetchOptions()
         let fetchResults = PHAsset.fetchAssetsWithMediaType(PHAssetMediaType.Image, options: fetchOptions)
         
-        let photoVC = StoryboardScene.Camera.instantiatePhotoAlbumView()
-
-        photoVC.totalCount = fetchResults.count
-        photoVC.currentCount = fetchResults.count
-        photoVC.loadIndex = fetchResults.count - 10
+        let photoView = StoryboardScene.Camera.instantiatePhotoView()
         
-        self.presentVC(photoVC)
-
+        photoView.totalCount = fetchResults.count
+        photoView.currentCount = fetchResults.count
+        
+        self.presentVC(photoView)
+        
     }
     
     // 更改到照相模式

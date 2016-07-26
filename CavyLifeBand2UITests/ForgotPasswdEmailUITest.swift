@@ -26,7 +26,7 @@ class ForgotPasswdEmailUITest: XCTestCase {
             pageimage1Image.swipeLeft()
             pageimage1Image.swipeLeft()
             pageimage1Image.swipeLeft()
-            app.buttons["登入"].tap()
+            app.buttons["登录"].tap()
             app.buttons["忘记了密码？"].tap()
             app.buttons["邮箱"].tap()
             

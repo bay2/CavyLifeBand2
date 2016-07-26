@@ -16,7 +16,7 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
     
     @IBOutlet weak var textView: KMPlaceholderTextView!
     
-    var navTitle: String { return L10n.RelateHelpAndFeedbackNavTitle.string }
+    var navTitle: String { return L10n.RelateHelpAndFeedbackNavRightBtnTitle.string }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +57,9 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
         
         sendBtn.setTitle(L10n.RelateHelpAndFeedbackSendBtnTitle.string, forState: .Normal)
         
-        sendBtn.backgroundColor = UIColor(named: .RalateHelpFeedbackSendBtnBGColor)
+        sendBtn.backgroundColor = UIColor(named: .OColor)
         
-        sendBtn.setTitleColor(UIColor(named: .RalateHelpFeedbackSendBtnTitleColor), forState: .Normal)
+        sendBtn.setTitleColor(UIColor(named: .PColor), forState: .Normal)
     }
   
     @IBAction func sendAction(sender: UIButton) {
@@ -68,29 +68,55 @@ class HelpAndFeedbackVC: UIViewController, BaseViewControllerPresenter {
             return
         }
         
-        do {
+        self.view.endEditing(true)
+                
+        HelpFeedbackWebApi.shareApi.submitFeedback(textView.text, successBack: { [unowned self] in
             
-            try HelpFeedbackWebApi.shareApi.submitFeedback(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, feedback: textView.text) { result in
-                guard result.isSuccess else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: result.error)
-                    return
-                }
-                
-                let resultMsg = try! CommenMsg(JSONDecoder(result.value!))
-                
-                guard resultMsg.code == WebApiCode.Success.rawValue else {
-                    CavyLifeBandAlertView.sharedIntance.showViewTitle(webApiErrorCode: resultMsg.code ?? "")
-                    return
-                }
-                
-                self.popVC()
-                
-            }
+            Log.info($0.msg)
             
-        } catch let error {
-            CavyLifeBandAlertView.sharedIntance.showViewTitle(userErrorCode: error as? UserRequestErrorType ?? UserRequestErrorType.UnknownError)
+            self.createTimer(CavyLifeBandAlertView.sharedIntance.showViewTitleWithoutAction(message: L10n.RelateHelpAndFeedbackSendSuccessAlertMsg.string), result: "1")
+            
+        }) { [unowned self] in
+            self.createTimer(CavyLifeBandAlertView.sharedIntance.showViewTitleWithoutAction(message: $0.msg), result: "0")
         }
 
     }
-
+    
+    /**
+     隐藏alert
+     时间器的灰调
+     
+     - parameter sender: 
+     */
+    func dismissAlert(sender: NSTimer) {
+        
+        guard let alert: UIAlertController = sender.userInfo?["alert"] as? UIAlertController else {
+            return
+        }
+        
+        let result = sender.userInfo?["result"] as? String
+        
+        alert.dismissViewControllerAnimated(true) {
+            
+            guard result == "1" else {
+                return
+            }
+            
+            self.popVC()
+            
+        }
+        
+    }
+    
+    /**
+     建立时间器 自动隐藏alert
+     
+     - parameter alert:
+     - parameter result:
+     */
+    func createTimer(alert: UIAlertController, result: String) {
+        NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(HelpAndFeedbackVC.dismissAlert(_:)), userInfo: ["alert": alert, "result": result], repeats: false)
+    }
+    
+  
 }

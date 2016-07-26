@@ -20,13 +20,12 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
     
     var dateArray: [String] = []
     
+    var notificationTimeStringArrayToken: NotificationToken?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        
-        self.dateArray = self.queryTimeBucketFromFirstDay()!
-            
-        
+        dateArray = queryTimeBucketFromFirstDay()!
         
         collectionViewLayOut(frame)
         
@@ -34,6 +33,12 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        
+        notificationTimeStringArrayToken?.stop()
+        
     }
     
     func collectionViewLayOut(frame: CGRect) {
@@ -73,7 +78,9 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("HomeDateTimeLineCell", forIndexPath: indexPath) as! HomeDateTimeLineCell
-                
+        
+        Log.info(indexPath)
+        
         cell.timeString = dateArray[indexPath.item]
         cell.configLayout()
         return cell
@@ -88,59 +95,45 @@ class HomeTimeLineView: UIView, ChartsRealmProtocol, UICollectionViewDataSource,
         
         let count = sender.userInfo!["currentPage"] as! CGFloat
         
+        // 如果只有一条 需要从数据库去监听是否加载完毕 添加其他的数据
+        if self.dateArray.count == 1 {
+        
+            initNotificationDateStringArrayAction()
+            
+        }
+        
         self.collectionView!.setContentOffset(CGPointMake(count * ez.screenWidth, 0), animated: true)
         
     }
     
-
-}
-
-// MARK: - UIScrollViewDelegate
-extension HomeTimeLineView: UIScrollViewDelegate {
-    
-    // 停止拖拽
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
-        
-        scrollViewEndAction(scrollView)
-        
-    }
-    
-    // 滑动拖拽
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        
-        scrollViewEndAction(scrollView)
-        
-    }
-    
     /**
-     滑动结束事件
+     数据库下载完更新视图监控
      */
-    func scrollViewEndAction(scrollView: UIScrollView) {
+    func initNotificationDateStringArrayAction() {
         
-        let collView = scrollView as! UICollectionView
+        let userInfos: Results<UserInfoModel> = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId)
         
-        let countFloat = collView.contentOffset.x / ez.screenWidth
-        
-        var count = Int(countFloat)
-        Log.info(count)
-        
-        if count < 0 || count > dateArray.count {
-            return
-        }
-        
-        
-        if countFloat - CGFloat(count) >= 0.5 {
+        notificationTimeStringArrayToken = userInfos.addNotificationBlock{ (change: RealmCollectionChange) in
+            switch change {
+                
+            case .Initial(_):
+                
+                self.dateArray = self.queryTimeBucketFromFirstDay()!
+                self.collectionView!.reloadData()
+                
+            case .Update(_, deletions: _, insertions: _, modifications: _):
+                
+                self.dateArray = self.queryTimeBucketFromFirstDay()!
+                self.collectionView!.reloadData()
+                
+            default:
+                break
+            }
             
-            count += 1
         }
-        
-        collView.setContentOffset(CGPointMake(CGFloat(count) * ez.screenWidth, 0), animated: true)
-        
-        // 通知绑定日期和时间轴的同步
-        NSNotificationCenter.defaultCenter().postNotificationName("ChangeDatePage", object: nil, userInfo: ["currentPage": count])
         
     }
     
+
+
 }
-
-

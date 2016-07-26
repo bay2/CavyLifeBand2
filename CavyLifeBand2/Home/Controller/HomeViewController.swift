@@ -9,10 +9,17 @@
 import UIKit
 import Log
 import JSONJoy
+import SnapKit
 import EZSwiftExtensions
 import RealmSwift
+import MJRefresh
 
-class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, HomeListRealmProtocol, SinglePKRealmModelOperateDelegate {
+let dateViewHeight: CGFloat = 50.0
+// 大环是 0.55 大环顶部距离NavBar高度是 96
+let ringViewHeight: CGFloat = 96 + ez.screenWidth * 0.55
+let navBarHeight: CGFloat = 64.0
+
+class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsRealmProtocol, SinglePKRealmModelOperateDelegate, ChartStepRealmProtocol, QueryUserInfoRequestsDelegate {
     
     var leftBtn: UIButton? = {
         
@@ -40,6 +47,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     
     var navTitle: String { return "" }
     
+    var scrollView = UIScrollView()
+    
     /// 上部分 计步睡眠天气页面
     var upperView: HomeUpperView?
     
@@ -52,9 +61,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     var realm: Realm = try! Realm()
     
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
-    
-    var aphlaView: UIView?
-    var activityView: UIActivityIndicatorView?
+        
+    static var shareInterface = HomeViewController()
     
     deinit {
         removeNotificationObserver()
@@ -64,7 +72,7 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
+
         parseChartListData()
 
         addAllView()
@@ -77,18 +85,17 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         addNotificationObserver(NotificationName.HomeShowPKView.rawValue, selector: #selector(HomeViewController.showPKDetailView))
         addNotificationObserver(NotificationName.HomeShowAchieveView.rawValue, selector: #selector(HomeViewController.showAchieveDetailView))
         addNotificationObserver(NotificationName.HomeShowHealthyView.rawValue, selector: #selector(HomeViewController.showHealthyDetailView))
+        
         addNotificationObserver(BandBleNotificationName.BandDesconnectNotification.rawValue, selector: #selector(HomeViewController.bandDesconnect))
         addNotificationObserver(BandBleNotificationName.BandConnectNotification.rawValue, selector: #selector(HomeViewController.bandConnect))
-    
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
         
-        upperView!.frame = CGRectMake(0, 0, ez.screenWidth, 96 + ez.screenWidth * 0.55)
-
+        // 刷新
+        addRefershHeader()
+        addNotificationObserver(RefreshStyle.BeginRefresh.rawValue, selector: #selector(beginBandRefersh))
+        addNotificationObserver(RefreshStyle.StopRefresh.rawValue, selector: #selector(endBandRefersh))
+ 
     }
-    
+
     /**
      手环断线通知
      
@@ -106,7 +113,16 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
      - date: 2016-05-31
      */
     func bandConnect() {
+        
+
+        // 手环连接 自动同步数据
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(2 * NSEC_PER_SEC)), dispatch_get_main_queue ()) {
+            // 等待两秒 连接手环的时间
+            self.scrollView.mj_header.beginRefreshing()
+            
+        }
         rightBtn?.setBackgroundImage(UIImage(asset: .HomeBandMenu), forState: .Normal)
+        
     }
     
     /**
@@ -116,27 +132,42 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
         self.view.backgroundColor = UIColor(named: .HomeViewMainColor)
         
-        upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
-        
-        upperView?.viewController = self
-        view.addSubview(upperView!)
-        
-        view.addSubview(dateView)
-        dateView.backgroundColor = UIColor.whiteColor()
-        dateView.snp_makeConstraints { make in
-            make.top.equalTo(self.view).offset(96 + ez.screenWidth * 0.55)
-            make.left.right.equalTo(self.view)
-            make.height.equalTo(50)
+        self.view.addSubview(scrollView)
+        scrollView.contentSize = CGSizeMake(ez.screenWidth, navBarHeight + navBarHeight)
+        scrollView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        scrollView.delegate = self
+        scrollView.snp_makeConstraints { (make) in
+            make.left.right.bottom.top.equalTo(self.view)
         }
         
-        view.addSubview(timeLineView)
-        timeLineView.snp_makeConstraints { make in
-            make.top.equalTo(dateView).offset(50)
-            make.left.right.bottom.equalTo(self.view)
+        upperView = NSBundle.mainBundle().loadNibNamed("HomeUpperView", owner: nil, options: nil).first as? HomeUpperView
+        upperView?.viewController = self
+        scrollView.addSubview(upperView!)
+        upperView!.snp_updateConstraints { make in
+            make.top.left.right.equalTo(0)
+            make.size.equalTo(CGSizeMake(ez.screenWidth, ringViewHeight))
+            make.centerX.equalTo(0)
+            
+        }
+        
+        scrollView.addSubview(dateView)
+        dateView.backgroundColor = UIColor(named: .HomeViewMainColor)
+        dateView.snp_updateConstraints { make in
+            make.top.equalTo(scrollView).offset(ringViewHeight)
+            make.left.right.equalTo(scrollView)
+            make.height.equalTo(dateViewHeight)
+        }
+        
+        scrollView.addSubview(timeLineView)
+        timeLineView.snp_updateConstraints { make in
+            make.top.equalTo(dateView.snp_bottom)
+            make.size.equalTo(CGSizeMake(ez.screenWidth, ez.screenHeight - navBarHeight - ringViewHeight - dateViewHeight))
+            make.centerX.equalTo(0)
         }
         
     }
 
+    
     /**
      点击左侧按钮
      */
@@ -180,145 +211,39 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
             return
         }
         
+        if let guide = viewController as? GuideViewController {
+            
+            if guide.dataSource is GuideBandBluetooth {
+                
+                CavyDefine.bluetoothPresentViewController(UINavigationController(rootViewController: viewController))
+                
+                return
+            }
+        
+        }
+        
         self.navigationController?.pushViewController(viewController, animated: false)
         
     }
+
     
-    // MARK: --- 解析数据 保存数据库
+    // MARK: 解析数据 保存数据库
     
     /**
-     解析 计步睡眠数据 并保存Realm
+     解析 计步睡眠数据 并保存Realm 每次请求前前先删除最后一条数据 在获取时间同步
      */
     func parseChartListData() {
         
-        var startDate = ""
-        var endDate = ""
+
+        // MARK: 睡眠相关
+        SleepWebApi.shareApi.fetchSleepWebData()
         
-        if isNeedUpdateStepData() {
-            
-            let personalList = realm.objects(ChartStepDataRealm).filter("userId = '\(userId)'")
-            
-            if personalList.count != 0 {
-                
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd")
-                endDate = NSDate().toString(format: "yyyy-MM-dd")
-                
-            }
-        }
+        // MARK: 计步相关
+        StepWebApi.shareApi.fetchStepWebData()
         
-        parseStepDate(startDate, endDate: endDate)
-        
-        
-        if isNeedUpdateSleepData() {
-            
-            let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
-            
-            if personalList.count != 0 {
-                
-                startDate = personalList.last!.time.toString(format: "yyyy-MM-dd")
-                endDate = NSDate().toString(format: "yyyy-MM-dd")
-                
-            }
-            
-        }
-        
-        parseSleepDate(startDate, endDate: endDate)
- 
     }
     
-      /**
-     解析计步数据
-     时间格式： yyyy-MM-dd
-     有时间：更新数据
-     没有时间：解析全部数据
-     */
-    func parseStepDate(startDate: String, endDate: String) {
-
-        ChartsWebApi.shareApi.parseStepChartsData(startDate, endDate: endDate) { result in
-
-            guard result.isSuccess else {
-                Log.error("Parse Home Lists Data Error")
-                return
-            }
             
-            do {
-                
-                let netResult = try ChartStepMsg(JSONDecoder(result.value!))
-                for list in netResult.stepList {
-                    // 保存到数据库
-                    self.addStepListRealm(list)
-                }
-                
-            } catch let error {
-                
-                Log.error("\(#function) result error: \(error)")
-            }
-            
-        }
-
-    }
-    
-    /**
-     解析睡眠数据
-     时间格式： yyyy-MM-dd
-     有时间：更新数据
-     没有时间：解析全部数据
-     */
-    func parseSleepDate(startDate: String, endDate: String) {
-
-        ChartsWebApi.shareApi.parseSleepChartsData(startDate, endDate: endDate) { result in
-            
-            guard result.isSuccess else {
-                Log.error("Parse Home Lists Data Error")
-                return
-            }
-            do {
-                Log.info(result.value!)
-                let netResult = try ChartSleepMsg(JSONDecoder(result.value!))
-                for list in netResult.sleepList {
-                    // 保存到数据库
-                    self.addSleepListRealm(list)
-                }
-                
-            } catch let error {
-                Log.error("\(#function) result error: \(error)")
-            }
-            
-        }
-
-    }
-    
-      /**
-     添加计步信息
-     
-     - author: sim cai
-     - date: 16-05-27 10:05:27
-     
-     
-     - parameter list: 计步信息JSON
-     */
-    func addStepListRealm(list: StepMsg) {
-        
-        guard let date = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
-            return
-        }
-        
-        self.addStepData(ChartStepDataRealm(userId: self.userId, time: date, step: list.stepCount))
-
-    }
-    
-    func addSleepListRealm(list: SleepMsg) {
-        
-        guard let time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
-            Log.error("Time from erro [\(list.dateTime)]")
-            return
-        }
-        
-        
-        self.addSleepData(ChartSleepDataRealm(userId: self.userId, time: time, tilts: list.rollCount))
-
-    }
-    
     // MARK: 加载详情
     /**
      显示计步页面
@@ -326,8 +251,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     func showStepDetailView(){
         
         let stepVM = ChartViewModel(title: L10n.ContactsShowInfoStep.string, chartStyle: .StepChart)
-        let chartVC = ChartBaseViewController()
-        chartVC.configChartBaseView(stepVM)
+        let chartVC = ChartsViewController()
+        chartVC.configChartsView(stepVM)
         self.pushVC(chartVC)
         
     }
@@ -338,8 +263,8 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     func showSleepDetailView(){
         
         let sleepVM = ChartViewModel(title: L10n.ContactsShowInfoSleep.string, chartStyle: .SleepChart)
-        let chartVC = ChartBaseViewController()
-        chartVC.configChartBaseView(sleepVM)
+        let chartVC = ChartsViewController()
+        chartVC.configChartsView(sleepVM)
         self.pushVC(chartVC)
         
     }
@@ -369,7 +294,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         
     }
     
-    
     /**
      显示成就页面
      */
@@ -384,17 +308,28 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         }
 
         let achieveView = NSBundle.mainBundle().loadNibNamed("UserAchievementView", owner: nil, options: nil).first as? UserAchievementView
+        
+        // TODO 数据结构有变
+        achieveView?.configWithAchieveIndexForUser()
 
         maskView.addSubview(achieveView!)
+        
+        let collectionViewHeight = ez.screenWidth <= 320 ? CGFloat(3 * 132) : CGFloat(2 * 132)
 
         achieveView!.snp_makeConstraints(closure: { make in
             make.leading.equalTo(maskView).offset(20.0)
             make.trailing.equalTo(maskView).offset(-20.0)
             make.centerY.equalTo(maskView)
-            make.height.equalTo(380.0)
+            make.height.equalTo(68 + collectionViewHeight)
         })
         
         UIApplication.sharedApplication().keyWindow?.addSubview(maskView)
+        
+        queryUserInfoByNet { resultUserInfo in
+            
+            achieveView?.configWithAchieveIndexForUser()
+            
+        }
         
     }
     
@@ -465,4 +400,6 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
     }
     
 }
+
+
 

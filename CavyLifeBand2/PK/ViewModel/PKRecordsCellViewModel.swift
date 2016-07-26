@@ -40,7 +40,7 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
         self.name          = pkRecord.nickname
         self.introudce     = pkRecord.pkDuration + L10n.PKRecordsCellDurationDescription.string
         self.bottonTitle   = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? L10n.PKRecordsCellUndoBtnTitle.string : L10n.PKRecordsCellAcceptBtnTitle.string
-        self.btnBGColor    = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? UIColor(named: .PKRecordsCellUndoBtnBGColor) : UIColor(named: .PKRecordsCellAcceptBtnBGColor)
+        self.btnBGColor    = (pkRecord.type == PKWaitType.MeWaitOther.rawValue) ? UIColor(named: .NColor) : UIColor(named: .RColor)
         self.headImageUrl  = pkRecord.avatarUrl
         self.friendId      = pkRecord.userId
         
@@ -84,24 +84,38 @@ struct PKWaitRecordsCellViewModel: PKCellProtocols {
             
         case PKWaitType.MeWaitOther.rawValue://撤销
             
-            //将待回应记录的type改为已撤销
-            updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
             
-            //如果撤销一条未同步到服务器的pk，不需要调接口
-            if pkRecord.pkId != "" {
+            let alertView = UIAlertController(title: "", message: L10n.AlertUndoPKWaitRecordMsg.string, preferredStyle: .Alert)
+            
+            let sureAction = UIAlertAction(title: L10n.AlertSureActionTitle.string, style: .Default, handler: { (action) in
+                //将待回应记录的type改为已撤销
+                self.updatePKWaitRealm(self.pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
                 
-                updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
-                
-                undoPK([pkRecord], loginUserId: self.loginUserId, callBack: {
-                    self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: self.pkRecord.pkId)
-                }, failure: {
-                    Log.warning("弹框提示" + $0)
-                })
-               
-            } else {
-                updatePKWaitRealm(pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
-            }
+                //如果撤销一条未同步到服务器的pk，不需要调接口
+                if self.pkRecord.pkId != "" {
+                    
+                    self.updatePKWaitRealm(self.pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
+                    
+                    self.undoPK([self.pkRecord], loginUserId: self.loginUserId, callBack: {
+                        self.syncPKRecordsRealm(PKWaitRealmModel.self, pkId: self.pkRecord.pkId)
+                        }, failure: {
+                            Log.warning("弹框提示" + $0)
+                    })
+                    
+                } else {
+                    self.updatePKWaitRealm(self.pkRecord, updateType: PKRecordsRealmUpdateType.UndoWait)
+                }
 
+            })
+            
+            let cancelAction = UIAlertAction(title: L10n.AlertCancelActionTitle.string, style: .Cancel, handler: nil)
+            
+            alertView.addAction(sureAction)
+            alertView.addAction(cancelAction)
+            
+            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(alertView, animated: true, completion: nil)
+            
+            
             break
         default:
             break

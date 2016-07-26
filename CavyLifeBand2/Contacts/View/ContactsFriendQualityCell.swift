@@ -20,6 +20,8 @@ class ContactsFriendQualityCell: UITableViewCell {
     /// 右边数值Label
     @IBOutlet weak var infoLabel: UILabel!
     
+    @IBOutlet weak var separatorLine: UIView!
+    
     override func awakeFromNib() {
         
         super.awakeFromNib()
@@ -27,6 +29,7 @@ class ContactsFriendQualityCell: UITableViewCell {
         imgView.roundSquareImage()
         titleLable.textColor = UIColor(named: .ContactsTitleColor)
         infoLabel.textColor = UIColor(named: .ContactsName)
+        separatorLine.backgroundColor = UIColor(named: .LColor)
         self.selectionStyle = .None
         
     }
@@ -47,6 +50,8 @@ class ContactsFriendQualityCell: UITableViewCell {
         titleLable.text = model.title
         infoLabel.text = model.info
         infoLabel.textColor = model.infoTextColor
+        
+        separatorLine.hidden = model.hideSeparator
     }
     
     override func setSelected(selected: Bool, animated: Bool) {
@@ -68,6 +73,8 @@ protocol ContactsFriendQualityCellDataSource {
     var infoTextColor: UIColor { get }
     
     var iconImage: UIImage? { get }
+    
+    var hideSeparator: Bool { get }
 
 }
 
@@ -83,6 +90,7 @@ struct PKQualityCellVM: ContactsFriendQualityCellDataSource {
     
     var infoValue: String = L10n.ContactsShowInfoPKSubInfo.string
     
+    var hideSeparator: Bool = true
 }
 
 struct StepQualityCellVM: ContactsFriendQualityCellDataSource {
@@ -107,6 +115,8 @@ struct StepQualityCellVM: ContactsFriendQualityCellDataSource {
         
     }
     
+    var hideSeparator: Bool = false
+    
 }
 
 struct SleepQualityCellVM: ContactsFriendQualityCellDataSource {
@@ -126,5 +136,7 @@ struct SleepQualityCellVM: ContactsFriendQualityCellDataSource {
         self.infoValue = infoValue
         
     }
+    
+    var hideSeparator: Bool = false
     
 }

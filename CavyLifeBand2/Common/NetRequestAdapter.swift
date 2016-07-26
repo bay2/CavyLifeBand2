@@ -72,6 +72,8 @@ extension NetRequestAdapter {
         
         return requestByAlamofire(.POST, urlString: urlString, parameters: parameters) { result in
             completionHandler?(result)
+            
+            
         }
         
     }

@@ -23,7 +23,7 @@ class RelateAppCell: UITableViewCell {
         
         titleLabel.font = UIFont.mediumSystemFontOfSize(16.0)
         sizeLabel.font = UIFont.systemFontOfSize(12.0)
-        infoLabel.font = UIFont.mediumSystemFontOfSize(14.0)
+        infoLabel.font = UIFont.systemFontOfSize(14.0)
         
         titleLabel.textColor = UIColor(named: .EColor)
         sizeLabel.textColor = UIColor(named: .FColor)
@@ -77,7 +77,8 @@ struct RelateAppCellModel: RelateAppCellDataSource {
     
     var size: String {
         
-        get { return trueSize + "M" }
+        get { return "" }
+        //get { return trueSize + "M" } 接口暂时资料不全不能提供
         
     }
     
@@ -89,15 +90,15 @@ struct RelateAppCellModel: RelateAppCellDataSource {
     
     init(gameModel: GameJSON) {
         
-        title = gameModel.gamename
+        title = gameModel.title
         
-        trueSize = gameModel.filesize
+        trueSize = "0" //gameModel.filesize
         
-        info = gameModel.gamedesc
+        info = gameModel.desc
         
         logoImageUrlStr = gameModel.icon
         
-        webUrlStr = gameModel.cavyAPPHtml
+        webUrlStr = gameModel.htmlUrl
         
     }
 

@@ -11,7 +11,14 @@ import EZSwiftExtensions
 import RealmSwift
 import Datez
 
-class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
+enum NumberFollowUpper: String {
+    
+    case FollowUpperSleep
+    case FollowUpperStep
+    
+}
+
+class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, HomeRealmProtocol, ChartStepRealmProtocol, SleepWebRealmOperate {
     
     var realm: Realm = try! Realm()
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
@@ -35,35 +42,52 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     
     var sleepNotificationToken: NotificationToken?
     
+    /**
+     上面环形和下面List的计步睡眠数据不一致 需要同步
+     
+     - FollowUpperSleep: 跟随Upper的睡眠变化
+     - FollowUpperStep:  跟随Upper的计步变化
+     */
+
     override func awakeFromNib() {
+        
         allViewLayout()
+        
         configStepAndSleepValue()
         
         configRealm()
-        
+
+        // 接受改变目标后回来改变视图的通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(updateUpperViewRing), name: "updateUpperViewRing", object: nil)
 
     }
     
     func configRealm() {
         
-        let stepRealmReslut = queryAllStepInfo()
-        let sleepRealmReslut = queryAllSleepInfo()
+        let stepRealmReslut = queryAllWebStepRealm()
         
         stepNotificationToken = stepRealmReslut.addNotificationBlock { change in
             
             switch change {
             case .Update(_, deletions: _, insertions: _, modifications: _):
                 self.configStepValue()
+                NSNotificationCenter.defaultCenter().postNotificationName(NumberFollowUpper.FollowUpperStep.rawValue, object: nil)
+                
             default:
                 break
             }
             
         }
         
+        let sleepRealmReslut = queryAllSleepInfo()
+        
         sleepNotificationToken = sleepRealmReslut.addNotificationBlock { change in
             switch change {
             case .Update(_, deletions: _, insertions: _, modifications: _):
                 self.configSleepValue()
+                self.configSleepWebRealm()
+                NSNotificationCenter.defaultCenter().postNotificationName(NumberFollowUpper.FollowUpperSleep.rawValue, object: nil)
+                
             default:
                 break
             }
@@ -71,6 +95,26 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         
     }
 
+    func configSleepWebRealm() {
+        
+        guard let sleepRealmReslut = queryUserSleepWebRealm() else {
+            return
+        }
+        
+        sleepNotificationToken = sleepRealmReslut.addNotificationBlock { change in
+            switch change {
+            case .Update(_, deletions: _, insertions: _, modifications: _):
+                self.configSleepValue()
+                NSNotificationCenter.defaultCenter().postNotificationName(NumberFollowUpper.FollowUpperSleep.rawValue, object: nil)
+                
+            default:
+                break
+            }
+        }
+
+    }
+    
+    
     /**
      适配
      */
@@ -149,20 +193,14 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
             return
         }
         
-        var sleepString = userInfo.sleepTime
-        if sleepString == "" {
-            sleepString = "0:0"
-        }
-        
-        let sleepTimeArray = sleepString.componentsSeparatedByString(":")
-        let sleepTargetNumber = sleepTimeArray[0].toInt()! * 60 + sleepTimeArray[1].toInt()!
-        
+        let sleepTarget = userInfo.sleepGoal
+
         // 计步睡眠 当前值
-        let time = NSDate()
-        let resultSeelp = self.querySleepInfoDay(time.gregorian.beginningOfDay.date, endTime: time)
-        let sleepCurrentNumber = Int(resultSeelp.0 * 10)
-        
-        sleepView.ringWithStyle(sleepTargetNumber, currentNumber: sleepCurrentNumber)
+        let resultSeelp = self.querySleepNumber(NSDate().gregorian.beginningOfDay.date, endTime:NSDate()).first //self.queryTodaySleepInfo()
+
+        let sleepCurrentNumber = (resultSeelp!.deepSleep + resultSeelp!.lightSleep) ?? 0  //Int(resultSeelp.0)
+
+        sleepView.ringWithStyle(sleepTarget, currentNumber: sleepCurrentNumber)
         
     }
     
@@ -172,12 +210,16 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
         guard let userInfo: UserInfoModel = queryUserInfo(userId) else {
             return
         }
+        var stepTargetNumber = userInfo.stepGoal
         
-        let stepTargetNumber = userInfo.stepNum
+        // 如果没有目标值 则显示推荐值
+        if stepTargetNumber == 0 {
+            stepTargetNumber = 8000
+            
+        }
         
-        let time = NSDate()
-        let resultStep = self.queryStepNumber(time.gregorian.beginningOfDay.date, endTime: time, timeBucket: .Day)
-        
+        // 新表的查询协议 查询当天总步数
+        let resultStep = queryStepNumber(NSDate().gregorian.beginningOfDay.date, endTime: NSDate(), timeBucket: .Day)
          let stepCurrentNumber = resultStep.totalStep
         
         stepView.ringWithStyle(stepTargetNumber, currentNumber: stepCurrentNumber)
@@ -187,8 +229,8 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     func showSleepDetailView(){
         
         let sleepVM = ChartViewModel(title: L10n.ContactsShowInfoSleep.string, chartStyle: .SleepChart)
-        let chartVC = ChartBaseViewController()
-        chartVC.configChartBaseView(sleepVM)
+        let chartVC = ChartsViewController()
+        chartVC.configChartsView(sleepVM)
         
         self.viewController.pushVC(chartVC)
     }
@@ -196,10 +238,20 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol {
     func showStepDetailView(){
         
         let stepVM = ChartViewModel(title: L10n.ContactsShowInfoStep.string, chartStyle: .StepChart)
-        let chartVC = ChartBaseViewController()
-        chartVC.configChartBaseView(stepVM)
+        let chartVC = ChartsViewController()
+        chartVC.configChartsView(stepVM)
         
         self.viewController.pushVC(chartVC)
+    }
+    
+    /**
+     更新视图
+     修改目标值时候 更新视图
+     */
+    func updateUpperViewRing() {
+        
+        configStepAndSleepValue()
+        
     }
     
 }

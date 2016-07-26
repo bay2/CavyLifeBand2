@@ -17,6 +17,9 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
     var deepSleep: Int  = 0
     var lightSleep: Int = 0
     
+    // 左上角显示最大值
+    var maxValue: Int = 0
+    
     convenience init(frame: CGRect, deepSleep: Int, lightSleep: Int) {
        
         self.init(frame: frame)
@@ -24,7 +27,9 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         self.deepSleep  = deepSleep
         self.lightSleep = lightSleep
         
-        self.backgroundColor = UIColor(named: .ChartViewBackground)
+        maxValue = deepSleep + lightSleep
+        
+        self.backgroundColor = UIColor(named: .HomeViewMainColor)
         
         setupPieChartView()
         
@@ -47,21 +52,27 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
     
     
     func setupPieChartView() {
-        
+
         self.usePercentValuesEnabled = true
         self.drawSlicesUnderHoleEnabled = true
         self.holeRadiusPercent = 0.6
         self.transparentCircleRadiusPercent = 0
-        self.descriptionText = "         "
-        self.noDataTextDescription = "            "
+        self.noDataTextDescription = "You need to provide data for the chart."
         // 不允许点击放大
         self.highlightPerTapEnabled = false
         self.setExtraOffsets(left: 0, top: 1, right: 0, bottom: 1)
         self.drawCenterTextEnabled = false // 中间不显示字
-        self.holeColor = UIColor(named: .ChartViewBackground)
+        self.holeColor = UIColor(named: .HomeViewMainColor)
         self.drawHoleEnabled = true   // 中间是空的
         self.rotationAngle = 0
         self.rotationEnabled = true
+        
+        descriptionText = "\(maxValue  / 60 + 1)h"
+        descriptionFont = UIFont.systemFontOfSize(12)
+        descriptionTextAlign = .Left
+        descriptionTextPosition = CGPointMake(10, 1)
+        descriptionTextColor = UIColor.whiteColor()
+        
     }
     
     func addLegend() {
@@ -69,10 +80,10 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         self.legend.horizontalAlignment = .Right
         self.legend.verticalAlignment = .Top
         self.legend.form = .Circle
-        self.legend.formSize = 7
-        self.legend.textColor = UIColor(named: .ChartViewTextColor)
+        self.legend.formSize = 0
+        self.legend.textColor = UIColor.clearColor()//(named: .ChartViewTextColor)
         self.legend.font = UIFont(name: "HelveticaNeue-Light", size: 12)!
-        self.legend.xEntrySpace = 10
+        self.legend.xEntrySpace = 0
         
     }
     
@@ -81,31 +92,28 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         let dataCount = 2
         var xVals: [String] = []
         var yVals: [BarChartDataEntry] = []
-        var colors: [NSUIColor] = []
+        let colors: [NSUIColor] = [UIColor.whiteColor(), UIColor(named: .ChartSubTimeBucketViewBg)]
         var lineAndTextColor = UIColor.whiteColor()
-        let sleepDegreeArray = [Double(self.deepSleep), Double(self.lightSleep)]
+        let sleepDegreeArray = [Double(self.lightSleep), Double(self.deepSleep)]
         
         if deepSleep == 0 && lightSleep == 0 {
 
             lineAndTextColor = UIColor.clearColor()
 
         }
-        
+    
         for i in 0 ..< dataCount {
             
-            let sleepName = ["\(L10n.ChartSleepDeep.string)", "\(L10n.ChartSleepLight.string)"]
-            yVals.append(BarChartDataEntry(value: sleepDegreeArray[i], xIndex: i))
+            let sleepName = ["", ""]//["\(L10n.ChartSleepLight.string)", "\(L10n.ChartSleepDeep.string)"]
             xVals.append(sleepName[i])
             
+            yVals.append(BarChartDataEntry(value: sleepDegreeArray[i], xIndex: i))
+            
         }
-        
-        colors.append(UIColor(named: .ChartSleepDegreeDeep))
-        colors.append(UIColor(named: .ChartSleepDegreeLight))
         
         let dataSet: PieChartDataSet = PieChartDataSet(yVals: yVals, label: "")
         dataSet.sliceSpace = 0
         dataSet.colors = colors
-        
         
         let data = PieChartData(xVals: xVals, dataSet: dataSet)
         
@@ -116,11 +124,11 @@ class ShowPieChartsView: PieChartView, ChartViewDelegate  {
         formatter.percentSymbol = " %"
         
         // 如果深睡浅睡都为0 指出来的线不知道起点在哪 error
-        if deepSleep != 0 && lightSleep != 0 {
+        if deepSleep != 0 || lightSleep != 0 {
             
-            dataSet.valueLinePart1OffsetPercentage = 0.8
-            dataSet.valueLinePart1Length = 0.5
-            dataSet.valueLinePart2Length = 0.5
+//            dataSet.valueLinePart1OffsetPercentage = 0.5
+            dataSet.valueLinePart1Length = 0.4
+            dataSet.valueLinePart2Length = 0.4
             dataSet.yValuePosition = .OutsideSlice
             dataSet.valueLineColor = lineAndTextColor
         }

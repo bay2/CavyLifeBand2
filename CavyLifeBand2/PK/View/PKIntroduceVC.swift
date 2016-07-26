@@ -38,7 +38,7 @@ class PKIntroduceVC: UIViewController, BaseViewControllerPresenter {
         rulesView?.configure(PKIntroduceVCViewDataSource())
         rulesContainerView.addSubview(rulesView!)
         
-        rulesView?.snp_makeConstraints(closure: {(make) in
+        rulesView?.snp_makeConstraints(closure: { (make) in
             make.top.equalTo(rulesContainerView.snp_top)
             make.leading.equalTo(rulesContainerView.snp_leading)
             make.trailing.equalTo(rulesContainerView.snp_trailing)
@@ -56,8 +56,8 @@ class PKIntroduceVC: UIViewController, BaseViewControllerPresenter {
 
     func baseStting() -> Void {
         
-        nextBtn.setImage(UIImage(named: "PKNextBtnNormal"), forState: .Normal)
-        nextBtn.setImage(UIImage(named: "PKNextBtnSelected"), forState: .Highlighted)
+        nextBtn.setImage(UIImage(asset: .PKNextBtnNormal), forState: .Normal)
+        nextBtn.setImage(UIImage(asset: .PKNextBtnNormalHighLight), forState: .Highlighted)
         
         titleLabel.text = L10n.PKIntroduceVCInfoTitle.string
         infoLabel.text  = L10n.PKIntroduceVCSelectInfo.string

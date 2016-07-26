@@ -20,6 +20,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     
     var vibrateSeconds: Int = 0
     
+    var phoneReminderAble: Bool = true
+    
     enum MoveDirection {
         
         case LeftMove
@@ -47,7 +49,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
     var bandMenuVC: RightViewController?
     let homeMaskView = UIView(frame: CGRectMake(0, 0, ez.screenWidth, ez.screenHeight))
     var realm: Realm = try! Realm()
-    var updateUserInfoPara: [String: AnyObject] = [UserNetRequsetKey.UserID.rawValue: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId]
+    var updateUserInfoPara: [String: AnyObject] = [String: AnyObject]()
     
     var userId: String { return CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId }
     
@@ -87,6 +89,8 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         Log.info("\(realm.configuration.fileURL)")
         
         
+        
+        removeNotificationObserver()
         loadHomeView()
             
         addNotificationObserver(NotificationName.HomeLeftOnClickMenu.rawValue, selector: #selector(RootViewController.onClickMenu))
@@ -99,6 +103,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         bandInit()
         
+        // 开启来电提醒
         phoneCallInit()
         
     }
@@ -125,22 +130,24 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
         
         syncPKRecords()
         
+       
+        
     }
     
-    /**
-     上报坐标
-     
-     - parameter isLocalShare:
-     */
-    func userCoordinateReport(isLocalShare: Bool) {
-        
-        guard isLocalShare else {
-            return
-        }
-        
-        self.coordinateReportServer()
-        
-    }
+//    /**
+//     上报坐标
+//     
+//     - parameter isLocalShare:
+//     */
+//    func userCoordinateReport(isLocalShare: Bool) {
+//        
+//        guard isLocalShare else {
+//            return
+//        }
+//        
+//        self.coordinateReportServer()
+//        
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -152,18 +159,22 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
      */
     func syncUserInfo() {
         
-        guard let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) else {
+        if let userInfo: UserInfoModel = queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
         
-            querySyncDate()
-            return
+            if userInfo.isSync == false {
+                
+                updateSyncDate(userInfo)
+                
+                return
+                
+            }
+            
         }
         
-        userCoordinateReport(userInfo.isLocalShare)
-        
-        updateSyncDate(userInfo)
-        
-        CavyDefine.userNickname = userInfo.nickname
-        CavyDefine.loginUserBaseInfo.loginUserInfo.loginAvatar = userInfo.avatarUrl
+        querySyncDate()
+
+//        userCoordinateReport(userInfo.isLocalShare)
+
         
     }
     
@@ -178,19 +189,18 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
             return
         }
         
-        updateUserInfoPara += [UserNetRequsetKey.UserID.rawValue: userInfo.userId,
-                               UserNetRequsetKey.Sex.rawValue: userInfo.sex.toString,
-                               UserNetRequsetKey.Height.rawValue: userInfo.height,
-                               UserNetRequsetKey.Weight.rawValue: userInfo.weight,
-                               UserNetRequsetKey.Birthday.rawValue: userInfo.birthday,
-                               UserNetRequsetKey.Address.rawValue: userInfo.address,
-                               UserNetRequsetKey.StepNum.rawValue: userInfo.stepNum,
-                               UserNetRequsetKey.SleepTime.rawValue: userInfo.sleepTime,
-                               UserNetRequsetKey.IsNotification.rawValue: userInfo.isNotification,
-                               UserNetRequsetKey.IsLocalShare.rawValue: userInfo.isLocalShare,
-                               UserNetRequsetKey.IsOpenBirthday.rawValue: userInfo.isOpenBirthday,
-                               UserNetRequsetKey.IsOpenHeight.rawValue: userInfo.isOpenHeight,
-                               UserNetRequsetKey.IsOpenWeight.rawValue: userInfo.isOpenWeight]
+        updateUserInfoPara += [NetRequestKey.Sex.rawValue: userInfo.sex,
+                               NetRequestKey.Height.rawValue: userInfo.height,
+                               NetRequestKey.Weight.rawValue: userInfo.weight,
+                               NetRequestKey.Birthday.rawValue: userInfo.birthday,
+                               NetRequestKey.Address.rawValue: userInfo.address,
+                               NetRequestKey.StepsGoal.rawValue: userInfo.stepGoal,
+                               NetRequestKey.SleepTimeGoal.rawValue: userInfo.sleepGoal,
+                               NetRequestKey.EnableNotification.rawValue: userInfo.isNotification,
+                               NetRequestKey.ShareLocation.rawValue: userInfo.isLocalShare,
+                               NetRequestKey.ShareBirthday.rawValue: userInfo.isOpenBirthday,
+                               NetRequestKey.ShareHeight.rawValue: userInfo.isOpenHeight,
+                               NetRequestKey.ShareWeight.rawValue: userInfo.isOpenWeight]
         
         self.setUserInfo {
             
@@ -212,7 +222,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
      */
     func querySyncDate() {
         
-        queryUserInfoByNet{ resultUserInfo in
+        queryUserInfoByNet(homeVC) { resultUserInfo in
             
             guard let userInfo = resultUserInfo else {
                 return
@@ -222,9 +232,16 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
             
             let userInfoModel = UserInfoModel(userId: CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId, userProfile: userInfo)
             
-            self.userCoordinateReport(userInfoModel.isLocalShare)
+            /**
+             上报坐标
+             */
+            self.coordinateReportServer()
             
-            self.addUserInfo(userInfoModel)
+            if let _: UserInfoModel = self.queryUserInfo(CavyDefine.loginUserBaseInfo.loginUserInfo.loginUserId) {
+                self.updateUserInfo(userInfoModel)
+            } else {
+                self.addUserInfo(userInfoModel)
+            }
             
         }
         
@@ -245,7 +262,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 
                 self.pkSycnCount += 1
                 
-            }, failure: {(errorMsg) in
+            }, failure: { (errorMsg) in
                 Log.warning(errorMsg)
             })
         } else {
@@ -266,7 +283,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 }
                 
                 self.pkSycnCount += 1
-            }, failure: {(errorMsg) in
+            }, failure: { (errorMsg) in
                 Log.warning(errorMsg)
             })
         } else {
@@ -281,7 +298,7 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
                 }
                 
                 self.pkSycnCount += 1
-            }, failure: {(errorMsg) in
+            }, failure: { (errorMsg) in
                 Log.warning(errorMsg)
             })
         } else {
@@ -361,13 +378,13 @@ class RootViewController: UIViewController, CoordinateReport, PKWebRequestProtoc
             self.homeVC!.view.frame.origin = CGPointMake(0, 0)
             self.homeMaskView.backgroundColor = UIColor.clearColor()
         
-        }) { [unowned self] in
+        }) { [unowned self] _ in
                 
-            if $0 == true {
-                
+//            if $0 == true {
+            
                 self.homeMaskView.removeFromSuperview()
                     
-            }
+//            }
         }
 
     }
@@ -402,17 +419,29 @@ extension UserInfoModel {
         
         self.init()
         
-        self.userId         = userId
-        self.nickname       = userProfile.nickName
-        self.sex            = userProfile.sex.toInt() ?? 0
-        self.address        = userProfile.address
-        self.avatarUrl      = userProfile.avatarUrl
-        self.birthday       = userProfile.birthday
-        self.height         = userProfile.height
-        self.weight         = userProfile.weight
-        self.sleepTime      = userProfile.sleepTime
-        self.stepNum        = userProfile.stepNum
-
+        self.userId     = userId
+        self.nickname   = userProfile.nickName
+        self.sex        = userProfile.sex ?? 0
+        self.address    = userProfile.address
+        self.avatarUrl  = userProfile.avatarUrl
+        self.birthday   = userProfile.birthday
+        self.height     = userProfile.height
+        self.weight     = userProfile.weight
+        self.sleepGoal  = userProfile.sleepGoal
+        self.stepGoal   = userProfile.stepGoal
+        self.coins      = userProfile.coins
+        self.phone      = userProfile.phone
+        self.signUpDate = userProfile.signUpDate
+        
+        for data in userProfile.awards {
+            let award = UserAwardsModel()
+            
+            award.date = data.date
+            award.number = data.number
+            
+            self.awards.append(award)
+        }
+        
         self.isLocalShare   = userProfile.isLocalShare
         self.isNotification = userProfile.isNotification
         self.isOpenHeight   = userProfile.isOpenHeight

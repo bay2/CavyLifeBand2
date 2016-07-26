@@ -11,19 +11,19 @@ import JSONJoy
 /**
  *  紧急联系人响应结构
  */
-struct EmergencyListResponse: JSONJoy {
+struct EmergencyListResponse: JSONJoy, CommenResponseProtocol {
     
     //通用消息头
-    var commonMsg: CommenMsg
+    var commonMsg: CommenResponse
     
     //紧急联系人信息列表
     var phoneList: [EmergencyRecord] = []
     
     init(_ decoder: JSONDecoder) throws {
         
-        commonMsg = try CommenMsg(decoder)
+        commonMsg = try CommenResponse(decoder)
         
-        guard let phoneArray =  decoder["phoneList"].array else {
+        guard let phoneArray =  decoder["contacts"].array else {
             return
         }
         
@@ -45,7 +45,7 @@ struct EmergencyRecord: JSONJoy {
     
     init(_ decoder: JSONDecoder) throws {
         do { name = try decoder["name"].getString() } catch { name = "" }
-        do { phoneNum = try decoder["phoneNum"].getString() } catch { phoneNum = "" }
+        do { phoneNum = try decoder["phone"].getString() } catch { phoneNum = "" }
     }
 
 }

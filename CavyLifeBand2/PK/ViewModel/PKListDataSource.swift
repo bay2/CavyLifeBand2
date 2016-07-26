@@ -114,7 +114,7 @@ struct PKWaitListDataSource: PKListDataProtocols {
         
         let waitDataModel = queryPKWaitRecordsRealm()
         
-        item = waitDataModel.map {(waitModel) -> ItemType in
+        item = waitDataModel.map { (waitModel) -> ItemType in
             ItemType(pkRecord: waitModel, realm: realm)
         }
         
@@ -155,7 +155,7 @@ struct PKWaitListDataSource: PKListDataProtocols {
             make.leading.equalTo(maskView).offset(20.0)
             make.trailing.equalTo(maskView).offset(-20.0)
             make.centerY.equalTo(maskView)
-            make.height.equalTo(360.0)
+            make.height.equalTo(380.0)
         })
         
         return maskView
@@ -189,7 +189,7 @@ struct PKDueListDataSource: PKListDataProtocols {
         
         let pkDueModel = queryPKDueRecordsRealm()
         
-        item = pkDueModel.map {(dueModel) -> ItemType in
+        item = pkDueModel.map { (dueModel) -> ItemType in
             ItemType(pkRecord: dueModel)
         }
         
@@ -270,7 +270,7 @@ struct PKFinishListDataSource: PKListDataProtocols {
         
         let pkFinishModel = queryPKFinishRecordsRealm()
         
-        item = pkFinishModel.map {(finishModel) -> ItemType in
+        item = pkFinishModel.map { (finishModel) -> ItemType in
             ItemType(pkRecord: finishModel, realm: realm)
         }
         
@@ -290,13 +290,13 @@ struct PKFinishListDataSource: PKListDataProtocols {
     
     func createRowActions(indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
-        let delAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellDelete.string) {(_, indexPath) in
+        let delAction = UITableViewRowAction(style: .Default, title: L10n.ContactsListCellDelete.string) { (_, indexPath) in
             
             self.item[indexPath.row].clickDelete()
             
         }
         
-        delAction.backgroundColor = UIColor(named: .ContactsDeleteBtnColor)
+        delAction.backgroundColor = UIColor(named: .NColor)
         return [delAction]
         
     }

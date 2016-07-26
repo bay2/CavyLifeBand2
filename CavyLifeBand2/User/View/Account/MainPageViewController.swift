@@ -12,11 +12,8 @@ import SnapKit
 
 class MainPageViewController: UIViewController {
     
-    var imageViews = [UIImageView(image: UIImage(asset: .Banner_1)), UIImageView(image: UIImage(asset: .Banner_2)),
-                      UIImageView(image: UIImage(asset: .Banner_3)), UIImageView(image: UIImage(asset: .Splash))]
-    
     var guidePageDatasources: [GuideIntroduceViewDataSource] = [GuideSafetyDataSource(), GuideRemindDataSource(),
-                                                                GuidePKDataSource(), GuideLoginDataSource()]
+                                                                GuidePKDataSource(), GuideLifeBandDataSource()]
     
 
 
@@ -25,7 +22,7 @@ class MainPageViewController: UIViewController {
     // 注册按钮
     var signInBtn = MainPageButton()
     
-    // 登入按钮
+    // 登录按钮
     var signUpBtn = MainPageButton()
     
     // 按钮大小
@@ -53,6 +50,10 @@ class MainPageViewController: UIViewController {
         self.navBar?.translucent = false
         self.navigationController?.navigationBarHidden = true
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        LifeBandBle.shareInterface.stopScaning()
     }
     
     deinit {
@@ -87,17 +88,24 @@ class MainPageViewController: UIViewController {
         }
         
         signUpBtn.addTapGesture { _ in
-            
-            let guideVC = StoryboardScene.Guide.instantiateGuideView()
-            
-            let guideVM = GuideBandBluetooth()
-            guideVC.configView(guideVM, delegate: guideVM)
-            
-            self.presentVC(UINavigationController(rootViewController: guideVC))
-            
+//            
+//            let guideVC = StoryboardScene.Guide.instantiateGuideView()
+//            
+//            let guideVM = GuideBandBluetooth()
+//            guideVC.configView(guideVM, delegate: guideVM)
+//            
+//            self.presentVC(UINavigationController(rootViewController: guideVC))
+//            
             // 注册绑定场景
-            BindBandCtrl.bindScene = .SignUpBind
+//            BindBandCtrl.bindScene = .SignUpBind
             
+            
+            let accountVC = StoryboardScene.Main.instantiateAccountManagerView()
+            
+            accountVC.configView(PhoneSignUpViewModel())
+            
+          self.presentVC(UINavigationController(rootViewController: accountVC))
+        
         }
         
         signUpBtn.awakeFromNib()
