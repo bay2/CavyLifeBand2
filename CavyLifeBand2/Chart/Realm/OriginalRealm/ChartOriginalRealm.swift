@@ -38,9 +38,6 @@ class ChartStepDataRealm: Object {
         self.kilometer = CGFloat(self.step) * 0.0006// 相当于一部等于0.6米 公里数 = 步数 * 0.6 / 1000
     }
     
-    
-    
-    
 }
 
 // MARK: Sleep

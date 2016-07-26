@@ -164,7 +164,7 @@ class HomeDateTimeLineCell: UICollectionViewCell, UITableViewDelegate, UITableVi
      */
     func initNotificationStep() {
         
-        notificationStepToken = self.queryAllStepInfo(userId).addNotificationBlock { [unowned self] chage in
+        notificationStepToken = self.queryAllWebStepRealm(userId).addNotificationBlock { [unowned self] chage in
             
             switch chage {
                 

@@ -239,109 +239,11 @@ class HomeViewController: UIViewController, BaseViewControllerPresenter, ChartsR
         SleepWebApi.shareApi.fetchSleepWebData()
         
         // MARK: 计步相关
-        var startDate = ""
-        let endDate = NSDate().toString(format: "yyyy-MM-dd HH:mm:ss")
-        
-        if isNeedUpdateStepData() {
-            
-            let personalList = realm.objects(StepWebRealm).filter("userId = '\(userId)'")
-            
-            if personalList.count != 0 {
-                
-                startDate = personalList.last!.date.toString(format: "yyyy-MM-dd HH:mm:ss")
-                
-                 //删除数据库最后一条数据 重新开始添加
-                delecNSteptDate(personalList.last!)
-                
-                
-            } else {
-                
-                // 如果查询不到数据 则 使用注册日期开始请求
-                guard let startTime = realm.objects(UserInfoModel).filter("userId = '\(userId)'").first?.signUpDate else {
-                    return
-                }
-                
-                startDate = startTime.toString(format: "yyyy-MM-dd HH:mm:ss")
-                
-            }
-            
-           
-            parseStepDate(startDate, endDate: endDate)
-            
-        }
-    }
-    
-      /**
-     解析计步数据
-     时间格式： yyyy-MM-dd
-     有时间：更新数据
-     没有时间：解析全部数据
-     */
-    func parseStepDate(startDate: String, endDate: String) {
-
-        
-     let  parameters: [String: AnyObject] = ["start_date": startDate, "end_date": endDate]
-        
-        NetWebApi.shareApi.netGetRequest(WebApiMethod.Steps.description, para: parameters, modelObject: NChartStepData.self, successHandler: { result  in
- 
-            for list in result.stepsData.stepsData {
-               
-                self.addNStepListRealm(list)
-            }
-            
-            }) {   Msg in
-                
-                
-             Log.info(Msg)
-             Log.error("Parse Home Lists Data Error")
-        }
-    }
-
-    
-    //  从服务器获取数据存入表
-    
-    func addNStepListRealm(list: StepsDataItem) {
-        
-        let stepList = List<StepListItem> ()
-        
-        for item in list.hours {
-         
-            let  stepItem = StepListItem(step: item.steps)
-            
-            stepList.append(stepItem)
-        }
-        
-    
-        self.addStepData(StepWebRealm(userId: self.userId, date: list.date!, totalTime: list.totalTime, totalStep: list.totalSteps, stepList: stepList))
+        StepWebApi.shareApi.fetchStepWebData()
         
     }
     
-    
-    
-    func deleteStepDataWithDate(searchDate: String) {
-        
-       
-        guard let time = NSDate(fromString: searchDate, format: "yyyy-MM-dd") else {
-            Log.error("Time from erro [\(searchDate)]")
-            return
-        }
-        
-        self.delecNSteptDate(time, endTime: time)
-        
-    }
-    
-    
-//    func addSleepListRealm(list: SleepMsg) {
-//        
-//        guard let time = NSDate(fromString: list.dateTime, format: "yyyy-MM-dd HH:mm:ss") else {
-//            Log.error("Time from erro [\(list.dateTime)]")
-//            return
-//        }
-//        
-//        self.addSleepData(ChartSleepDataRealm(userId: self.userId, time: time, tilts: list.rollCount))
-//
-//    }
-    
+            
     // MARK: 加载详情
     /**
      显示计步页面

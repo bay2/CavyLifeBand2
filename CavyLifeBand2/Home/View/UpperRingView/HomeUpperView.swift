@@ -64,7 +64,7 @@ class HomeUpperView: UIView, UserInfoRealmOperateDelegate, ChartsRealmProtocol, 
     
     func configRealm() {
         
-        let stepRealmReslut = queryAllStepInfo()
+        let stepRealmReslut = queryAllWebStepRealm()
         
         stepNotificationToken = stepRealmReslut.addNotificationBlock { change in
             

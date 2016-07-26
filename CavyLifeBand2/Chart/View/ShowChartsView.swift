@@ -26,7 +26,7 @@ class ShowChartsView: BarChartView, ChartViewDelegate {
     var chartsData: [PerStepChartsData] = []
     
     // 左上角显示最大值
-    var maxValue: Int = 3
+    var maxValue: Int = 1000
     
     /// 透明视图 负责显示柱状图的数值
     var clearView = UIView()

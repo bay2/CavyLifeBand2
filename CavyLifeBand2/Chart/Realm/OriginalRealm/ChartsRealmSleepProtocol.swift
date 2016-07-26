@@ -1,6 +1,6 @@
 
 //
-//  ChartsRealmSleepProntocal.swift
+//  ChartsRealmSleepProtocol.swift
 //  CavyLifeBand2
 //
 //  Created by Jessica on 16/7/22.
@@ -16,34 +16,7 @@ import Realm
 
 // MARK: Sleep Extension
 extension ChartsRealmProtocol {
-    
-    /**
-     是否需要请求数据
-     
-     - returns: true 需要请求 false 不需要请求
-     */
-    func isNeedUpdateSleepData() -> Bool {
-        
-        let list = realm.objects(ChartSleepDataRealm)
-        if list.count == 0 {
-            return true
-        }
-        
-        let personalList = realm.objects(ChartSleepDataRealm).filter("userId = '\(userId)'")
-        if personalList.count == 0 {
-            return true
-        }
-        
-        let totalMinutes = (NSDate() - personalList.last!.time).totalMinutes
-        Log.info(totalMinutes)
-        
-        if totalMinutes > 10 {
-            return true
-        }
-        
-        return false
-        
-    }
+
     
     /**
      查询所有睡眠数据

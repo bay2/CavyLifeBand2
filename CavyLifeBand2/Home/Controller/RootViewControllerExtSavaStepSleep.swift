@@ -23,7 +23,7 @@ extension RootViewController: ChartsRealmProtocol {
         var syncDate = (NSDate().gregorian - 1.day).beginningOfDay.date
         
         // 如果数据库有数据，就从最后一天数据开始同步
-        if let lastData = queryAllStepInfo().last {
+        if let lastData = queryAllWebStepRealm().last {
             
             syncDate = lastData.time
             
@@ -80,13 +80,13 @@ extension RootViewController: ChartsRealmProtocol {
         
         for i in 0 ..< steps.count {
             
-            if i == 0 && self.queryAllStepInfo(userId).count > 0 {
+            if i == 0 && self.queryAllWebStepRealm(userId).count > 0 {
                 
-                let lastRealmTime = self.queryAllStepInfo(userId).last?.time
+                let lastRealmTime = self.queryAllWebStepRealm(userId).last?.time
                 
                 if steps[0].0.compare(lastRealmTime!) == .OrderedSame {
                     
-                    removeStepData(self.queryAllStepInfo(userId).last!)
+                    removeStepData(self.queryAllWebStepRealm(userId).last!)
                     
                 }
                 
@@ -96,7 +96,7 @@ extension RootViewController: ChartsRealmProtocol {
 //                continue
 //            }
             
-            self.addStepData(ChartStepDataRealm(time: steps[i].0, step: steps[i].1))
+            self.addWebStepRealm(ChartStepDataRealm(time: steps[i].0, step: steps[i].1))
             
         }
         

@@ -43,6 +43,8 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         
         addxAxis()
         
+        addyAxis()
+        
         addLegend()
         
         if UIDevice.isPhone5() {
@@ -67,7 +69,6 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         
         drawValueAboveBarEnabled = true
         
-        rightAxis.enabled = false // Y轴方向左边 不放轴
         leftAxis.enabled = false // Y轴方向右边 不放轴
         
         delegate = self
@@ -86,6 +87,18 @@ class ShowStackedChartsView: BarChartView, ChartViewDelegate {
         descriptionTextAlign = .Left
         descriptionTextPosition = CGPointMake(10, 1)
         descriptionTextColor = UIColor.whiteColor()
+        
+    }
+    
+    func addyAxis() {
+        
+//        rightAxis.enabled = false // Y轴方向左边 不放轴
+        
+        
+        let yAxis = self.rightAxis
+        yAxis.axisMaxValue = Double(maxValue)
+        
+        
         
     }
     
